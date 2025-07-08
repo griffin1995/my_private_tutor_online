@@ -1,0 +1,32 @@
+{
+  "seasons": {
+    "spring": {
+      "title": "Spring into Academic Success",
+      "description": "New term preparation and foundation building for confident progression. Expert tutors ready to nurture your child's potential through the spring term.",
+      "ctaText": "Start Fresh This Term",
+      "focusArea": "Foundation & Preparation",
+      "bgGradient": "bg-gradient-to-b from-green-50 to-white"
+    },
+    "summer": {
+      "title": "Summer Learning Excellence",
+      "description": "Intensive exam preparation and skill development during the summer break. Maintain momentum with structured learning programmes and exam readiness.",
+      "ctaText": "Book Summer Programme",
+      "focusArea": "Intensive Preparation",
+      "bgGradient": "bg-gradient-to-b from-yellow-50 to-white"
+    },
+    "autumn": {
+      "title": "Autumn Term Academic Excellence",
+      "description": "Back-to-school support and exam preparation for the new academic year. Build confidence and establish strong foundations for upcoming challenges.",
+      "ctaText": "Secure Autumn Success",
+      "focusArea": "Term Preparation",
+      "bgGradient": "bg-gradient-to-b from-orange-50 to-white"
+    },
+    "winter": {
+      "title": "Winter Exam Mastery",
+      "description": "Final exam preparation and mock exam support. Achieve your best results with targeted revision programmes and expert guidance.",
+      "ctaText": "Master Winter Exams",
+      "focusArea": "Exam Excellence",
+      "bgGradient": "bg-gradient-to-b from-blue-50 to-white"
+    }
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "header": {
+    "siteName": "My Private Tutor Online",
+    "navigation": [
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "label": "Results",
+        "href": "#results"
+      },
+      {
+        "label": "Testimonials",
+        "href": "#testimonials"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
+    ]
+  },
+  "hero": {
+    "title": "Exceptional Online Tutoring for Academic Excellence",
+    "description": "Award-winning tutors trusted by royal families and featured in Tatler. Personalised online lessons designed to unlock your child's potential.",
+    "primaryButtonText": "Book Free Consultation",
+    "secondaryButtonText": "View Our Results",
+    "videoPlaceholder": "/images/video-placeholders/placeholder_for_introductionary_video.png",
+    "videoPlaceholderAlt": "Introduction to our tutoring services"
+  },
+  "trustIndicators": {
+    "sectionTitle": "Trusted by Excellence",
+    "sectionDescription": "Our reputation speaks for itself - from royal endorsements to Tatler recognition, we deliver results that matter.",
+    "indicators": [
+      {
+        "icon": "👑",
+        "title": "Royal Endorsement",
+        "description": "Trusted by royal families for exceptional educational outcomes"
+      },
+      {
+        "icon": "⭐",
+        "title": "Tatler Listed",
+        "description": "Featured in Tatler as a premier educational service"
+      },
+      {
+        "icon": "📊",
+        "title": "Proven Results",
+        "description": "94% of GCSE students improved by at least 2 grades"
+      }
+    ]
+  },
+  "testimonials": {
+    "sectionTitle": "What Families Say About Us",
+    "sectionSubtitle": "Discover why parents and students trust us with their most important educational goals. Real testimonials from real families.",
+    "testimonials": [
+      {
+        "quote": "The transformation in our daughter's confidence and grades has been remarkable. From struggling with mathematics to achieving A* grades, the personalised approach made all the difference.",
+        "author": "Lady Catherine Wellington",
+        "role": "Parent, Year 11 Student",
+        "avatar": "/images/testimonials/parent-1.jpg",
+        "rating": 5
+      },
+      {
+        "quote": "As featured in Tatler, My Private Tutor Online represents the gold standard in educational excellence. The calibre of tutors and results speak for themselves.",
+        "author": "The Hon. James Pemberton",
+        "role": "Educational Consultant",
+        "avatar": "/images/testimonials/consultant-1.jpg",
+        "rating": 5
+      },
+      {
+        "quote": "Our son went from predicted C grades to achieving A*A*A at A-Level. The Oxbridge preparation was exceptional - he's now reading Natural Sciences at Cambridge.",
+        "author": "Mrs Sarah Fitzgerald",
+        "role": "Parent, Cambridge Undergraduate",
+        "avatar": "/images/testimonials/parent-2.jpg",
+        "rating": 5
+      }
+    ]
+  },
+  "services": {
+    "sectionTitle": "Our Academic Services",
+    "sectionDescription": "Comprehensive educational support tailored to your child's individual needs, from Key Stage preparation to Oxbridge entrance.",
+    "services": [
+      {
+        "title": "GCSE Excellence Programme",
+        "description": "Intensive GCSE preparation with proven track record of grade improvements. Our expert tutors guide students through exam techniques and subject mastery.",
+        "icon": "📚",
+        "features": [
+          {
+            "feature": "All core subjects covered"
+          },
+          {
+            "feature": "Exam technique mastery"
+          },
+          {
+            "feature": "Mock exams and assessments"
+          },
+          {
+            "feature": "Progress tracking"
+          }
+        ],
+        "ctaText": "Start GCSE Programme",
+        "ctaLink": "#contact"
+      },
+      {
+        "title": "A-Level Mastery",
+        "description": "Advanced level tutoring for students aiming for top universities. Subject specialists ensure comprehensive understanding and exam success.",
+        "icon": "🎓",
+        "features": [
+          {
+            "feature": "Subject specialist tutors"
+          },
+          {
+            "feature": "University preparation"
+          },
+          {
+            "feature": "Personal statement guidance"
+          },
+          {
+            "feature": "UCAS application support"
+          }
+        ],
+        "ctaText": "Explore A-Level Support",
+        "ctaLink": "#contact"
+      },
+      {
+        "title": "Oxbridge Preparation",
+        "description": "Elite preparation for Oxford and Cambridge applications. Interview coaching, entrance exams, and application strategy from experienced Oxbridge graduates.",
+        "icon": "🏛️",
+        "features": [
+          {
+            "feature": "Interview coaching"
+          },
+          {
+            "feature": "Entrance exam preparation"
+          },
+          {
+            "feature": "Application strategy"
+          },
+          {
+            "feature": "Oxbridge graduate tutors"
+          }
+        ],
+        "ctaText": "Begin Oxbridge Journey",
+        "ctaLink": "#contact"
+      }
+    ]
+  },
+  "results": {
+    "sectionTitle": "Outstanding Academic Results",
+    "sectionDescription": "Our track record speaks for itself. Real results from real students who have achieved their academic goals through our personalised tutoring approach.",
+    "statistics": [
+      {
+        "number": "94%",
+        "label": "GCSE Grade Improvement",
+        "description": "Of students improved by at least 2 grades",
+        "icon": "📈"
+      },
+      {
+        "number": "87%",
+        "label": "A-Level Success Rate",
+        "description": "Achieved A* or A grades in target subjects",
+        "icon": "🏆"
+      },
+      {
+        "number": "73%",
+        "label": "Oxbridge Acceptance",
+        "description": "Of our Oxbridge applicants received offers",
+        "icon": "🎯"
+      },
+      {
+        "number": "500+",
+        "label": "Students Tutored",
+        "description": "Successfully guided to academic excellence",
+        "icon": "👥"
+      }
+    ]
+  },
+  "contact": {
+    "sectionTitle": "Begin Your Academic Journey",
+    "sectionDescription": "Ready to unlock your child's potential? Contact us today for a free consultation and discover how we can help achieve academic excellence.",
+    "formTitle": "Book Your Free Consultation",
+    "formDescription": "Complete the form below and we'll be in touch within 24 hours to discuss your child's educational goals.",
+    "submitButtonText": "Book Free Consultation",
+    "contactInfo": {
+      "email": "info@myprivatetutoronline.com",
+      "phone": "+44 (0) 20 1234 5678",
+      "address": "Mayfair Educational Centre\n123 Berkeley Square\nLondon W1J 6BR\nUnited Kingdom"
+    }
+  },
+  "footer": {
+    "companyName": "My Private Tutor Online",
+    "description": "Exceptional online tutoring trusted by families worldwide. From GCSE excellence to Oxbridge success.",
+    "footerSections": [
+      {
+        "title": "Services",
+        "links": [
+          {
+            "label": "GCSE Tutoring",
+            "href": "/gcse-tutoring"
+          },
+          {
+            "label": "A-Level Support",
+            "href": "/a-level-support"
+          },
+          {
+            "label": "Oxbridge Preparation",
+            "href": "/oxbridge-preparation"
+          },
+          {
+            "label": "11+ Preparation",
+            "href": "/11-plus"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "label": "About Us",
+            "href": "/about"
+          },
+          {
+            "label": "Meet the Team",
+            "href": "/team"
+          },
+          {
+            "label": "Testimonials",
+            "href": "/testimonials"
+          },
+          {
+            "label": "Results",
+            "href": "/results"
+          }
+        ]
+      },
+      {
+        "title": "Resources",
+        "links": [
+          {
+            "label": "Study Guides",
+            "href": "/resources"
+          },
+          {
+            "label": "Exam Tips",
+            "href": "/exam-tips"
+          },
+          {
+            "label": "Blog",
+            "href": "/blog"
+          },
+          {
+            "label": "FAQ",
+            "href": "/faq"
+          }
+        ]
+      },
+      {
+        "title": "Contact",
+        "links": [
+          {
+            "label": "Book Consultation",
+            "href": "/contact"
+          },
+          {
+            "label": "Support",
+            "href": "/support"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "/privacy"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "/terms"
+          }
+        ]
+      }
+    ],
+    "copyrightText": "© 2024 My Private Tutor Online. All rights reserved."
+  }
+}
