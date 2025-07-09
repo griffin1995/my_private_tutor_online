@@ -36,12 +36,20 @@ function AdminInterface() {
                 Manage Blog
               </button>
             </div>
+            
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <h3 className="font-semibold text-orange-900 mb-2">Brand Assets</h3>
+              <p className="text-orange-700 text-sm mb-3">Manage logos, images, and brand elements</p>
+              <button className="bg-orange-600 text-white px-4 py-2 rounded text-sm hover:bg-orange-700 transition-colors">
+                Manage Brand Assets
+              </button>
+            </div>
           </div>
         </div>
         
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Quick Statistics</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             <div className="text-center">
               <div className="text-2xl font-bold text-blue-600">5</div>
               <div className="text-gray-600 text-sm">Content Sections</div>
@@ -57,6 +65,10 @@ function AdminInterface() {
             <div className="text-center">
               <div className="text-2xl font-bold text-orange-600">4</div>
               <div className="text-gray-600 text-sm">Statistics</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-indigo-600">2</div>
+              <div className="text-gray-600 text-sm">Brand Assets</div>
             </div>
           </div>
         </div>

@@ -1,6 +1,12 @@
 {
   "header": {
     "siteName": "My Private Tutor Online",
+    "logo": {
+      "main": "/uploads/logo.png",
+      "alt": "My Private Tutor Online - Premium Educational Services",
+      "width": 180,
+      "height": 60
+    },
     "navigation": [
       {
         "label": "About",
@@ -50,6 +56,48 @@
         "icon": "📊",
         "title": "Proven Results",
         "description": "94% of GCSE students improved by at least 2 grades"
+      }
+    ]
+  },
+  "studentJourney": {
+    "sectionTitle": "Your Academic Journey",
+    "sectionSubtitle": "From First Enquiry to Outstanding Results",
+    "sectionDescription": "Our proven 5-step process ensures every student receives the personalised attention they deserve, leading to exceptional academic outcomes.",
+    "steps": [
+      {
+        "step": "1",
+        "title": "Initial Enquiry",
+        "icon": "📞",
+        "description": "Get in touch with our educational consultants to discuss your specific needs and academic goals.",
+        "duration": "Free 15-minute consultation"
+      },
+      {
+        "step": "2",
+        "title": "Personalised Assessment",
+        "icon": "📋",
+        "description": "Comprehensive evaluation of current knowledge, learning style, and areas for improvement.",
+        "duration": "60-minute assessment"
+      },
+      {
+        "step": "3",
+        "title": "Tailored Learning Plan",
+        "icon": "🎯",
+        "description": "Custom curriculum designed specifically for your needs, with clear milestones and objectives.",
+        "duration": "Within 24 hours"
+      },
+      {
+        "step": "4",
+        "title": "Expert Tutoring",
+        "icon": "🎓",
+        "description": "One-to-one sessions with our Oxbridge-educated tutors using our interactive online platform.",
+        "duration": "Ongoing weekly sessions"
+      },
+      {
+        "step": "5",
+        "title": "Outstanding Results",
+        "icon": "🏆",
+        "description": "Achieve your academic goals with proven grade improvements and enhanced confidence.",
+        "duration": "Typically 6-12 weeks"
       }
     ]
   },
@@ -193,6 +241,12 @@
   },
   "footer": {
     "companyName": "My Private Tutor Online",
+    "logo": {
+      "main": "/uploads/logo.png",
+      "alt": "My Private Tutor Online - Premium Educational Services",
+      "width": 150,
+      "height": 50
+    },
     "description": "Exceptional online tutoring trusted by families worldwide. From GCSE excellence to Oxbridge success.",
     "footerSections": [
       {

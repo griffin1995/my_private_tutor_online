@@ -1,0 +1,132 @@
+{
+  "hero": {
+    "title": "About Our Tutoring Excellence",
+    "subtitle": "Dedicated to Academic Success",
+    "description": "With over a decade of experience in online education, we've helped thousands of students achieve their academic goals through personalised, high-quality tutoring that adapts to each learner's unique needs.",
+    "image": "/images/about-hero.jpg",
+    "imageAlt": "Professional tutors working with students online"
+  },
+  "mission": {
+    "title": "Our Mission",
+    "description": "To provide exceptional, personalised online tutoring that empowers students to reach their full academic potential whilst building confidence and fostering a genuine love for learning.",
+    "values": [
+      {
+        "title": "Excellence",
+        "description": "We maintain the highest standards in education, continuously improving our methods and outcomes.",
+        "icon": "⭐"
+      },
+      {
+        "title": "Personalisation",
+        "description": "Every student learns differently. We tailor our approach to match each individual's learning style.",
+        "icon": "🎯"
+      },
+      {
+        "title": "Innovation",
+        "description": "We embrace cutting-edge educational technology to enhance the learning experience.",
+        "icon": "💡"
+      },
+      {
+        "title": "Integrity",
+        "description": "We build trust through transparency, honesty, and ethical practices in all our interactions.",
+        "icon": "🤝"
+      }
+    ]
+  },
+  "story": {
+    "title": "Our Story",
+    "content": "Founded in 2012 by experienced educators who recognised the need for high-quality, accessible online tutoring, our platform has evolved into a comprehensive educational solution. What began as a small team of passionate teachers has grown into a thriving community of expert tutors, innovative technology, and successful students.\n\nOur journey has been driven by a simple belief: every student deserves access to excellent education, regardless of their location or circumstances. This philosophy has guided our growth and continues to shape our approach to online learning.",
+    "milestones": [
+      {
+        "year": "2012",
+        "title": "Founded",
+        "description": "Started with 5 tutors and a vision for accessible education"
+      },
+      {
+        "year": "2015",
+        "title": "Platform Launch",
+        "description": "Launched our interactive online learning platform"
+      },
+      {
+        "year": "2018",
+        "title": "1000+ Students",
+        "description": "Reached milestone of 1000 successful students"
+      },
+      {
+        "year": "2021",
+        "title": "Award Recognition",
+        "description": "Received Outstanding Online Education Provider award"
+      },
+      {
+        "year": "2024",
+        "title": "Global Reach",
+        "description": "Now serving students across 15 countries"
+      }
+    ]
+  },
+  "team": {
+    "title": "Meet Our Leadership Team",
+    "description": "Our experienced leadership team combines decades of educational expertise with innovative thinking to drive our mission forward.",
+    "members": [
+      {
+        "name": "Dr. Sarah Mitchell",
+        "role": "Founder & CEO",
+        "bio": "Former Oxford lecturer with 15 years in educational technology. PhD in Educational Psychology.",
+        "image": "/images/team/sarah-mitchell.jpg",
+        "credentials": ["PhD Educational Psychology", "Former Oxford Lecturer", "15+ Years Experience"]
+      },
+      {
+        "name": "Prof. James Thompson",
+        "role": "Head of Academic Standards",
+        "bio": "Cambridge graduate and former head teacher with expertise in curriculum development and student assessment.",
+        "image": "/images/team/james-thompson.jpg",
+        "credentials": ["Cambridge Graduate", "Former Head Teacher", "Curriculum Expert"]
+      },
+      {
+        "name": "Dr. Emily Chen",
+        "role": "Director of Technology",
+        "bio": "Leading educational technology specialist with a background in computer science and learning analytics.",
+        "image": "/images/team/emily-chen.jpg",
+        "credentials": ["PhD Computer Science", "EdTech Specialist", "Learning Analytics Expert"]
+      }
+    ]
+  },
+  "approach": {
+    "title": "Our Teaching Approach",
+    "description": "We believe in a student-centred approach that combines proven pedagogical methods with modern technology to create engaging, effective learning experiences.",
+    "methodology": [
+      {
+        "step": "1",
+        "title": "Initial Assessment",
+        "description": "Comprehensive evaluation of student's current knowledge, learning style, and goals to create a personalised learning plan."
+      },
+      {
+        "step": "2",
+        "title": "Tailored Learning Plan",
+        "description": "Custom curriculum designed specifically for each student's needs, incorporating their preferred learning methods and pace."
+      },
+      {
+        "step": "3",
+        "title": "Interactive Sessions",
+        "description": "Engaging one-to-one sessions using our advanced platform with interactive tools, real-time collaboration, and multimedia resources."
+      },
+      {
+        "step": "4",
+        "title": "Continuous Monitoring",
+        "description": "Regular progress tracking and assessment to ensure optimal learning outcomes and adjust strategies as needed."
+      },
+      {
+        "step": "5",
+        "title": "Ongoing Support",
+        "description": "24/7 academic support, revision materials, and exam preparation to ensure long-term success and confidence."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Begin Your Academic Journey?",
+    "description": "Join thousands of successful students who have achieved their goals with our expert tutoring.",
+    "primaryButtonText": "Book Free Consultation",
+    "primaryButtonLink": "/contact",
+    "secondaryButtonText": "View Our Tutors",
+    "secondaryButtonLink": "/tutors"
+  }
+}

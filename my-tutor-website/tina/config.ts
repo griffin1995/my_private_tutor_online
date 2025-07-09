@@ -55,6 +55,37 @@ export default defineConfig({
               },
               {
                 type: "object",
+                name: "logo",
+                label: "Logo",
+                fields: [
+                  {
+                    type: "image",
+                    name: "main",
+                    label: "Main Logo",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "alt",
+                    label: "Logo Alt Text",
+                    required: true,
+                  },
+                  {
+                    type: "number",
+                    name: "width",
+                    label: "Logo Width (pixels)",
+                    required: true,
+                  },
+                  {
+                    type: "number",
+                    name: "height",
+                    label: "Logo Height (pixels)",
+                    required: true,
+                  },
+                ],
+              },
+              {
+                type: "object",
                 name: "navigation",
                 label: "Navigation",
                 list: true,
@@ -166,6 +197,75 @@ export default defineConfig({
                     ui: {
                       component: "textarea",
                     },
+                    required: true,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: "object",
+            name: "studentJourney",
+            label: "Student Journey",
+            fields: [
+              {
+                type: "string",
+                name: "sectionTitle",
+                label: "Section Title",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "sectionSubtitle",
+                label: "Section Subtitle",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "sectionDescription",
+                label: "Section Description",
+                ui: {
+                  component: "textarea",
+                },
+                required: true,
+              },
+              {
+                type: "object",
+                name: "steps",
+                label: "Journey Steps",
+                list: true,
+                fields: [
+                  {
+                    type: "string",
+                    name: "step",
+                    label: "Step Number",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "title",
+                    label: "Step Title",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "icon",
+                    label: "Step Icon (Emoji)",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "description",
+                    label: "Step Description",
+                    ui: {
+                      component: "textarea",
+                    },
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "duration",
+                    label: "Duration/Timeline",
                     required: true,
                   },
                 ],
@@ -442,6 +542,37 @@ export default defineConfig({
                 name: "companyName",
                 label: "Company Name",
                 required: true,
+              },
+              {
+                type: "object",
+                name: "logo",
+                label: "Footer Logo",
+                fields: [
+                  {
+                    type: "image",
+                    name: "main",
+                    label: "Footer Logo",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "alt",
+                    label: "Footer Logo Alt Text",
+                    required: true,
+                  },
+                  {
+                    type: "number",
+                    name: "width",
+                    label: "Footer Logo Width (pixels)",
+                    required: true,
+                  },
+                  {
+                    type: "number",
+                    name: "height",
+                    label: "Footer Logo Height (pixels)",
+                    required: true,
+                  },
+                ],
               },
               {
                 type: "string",
