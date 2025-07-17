@@ -4,8 +4,42 @@ import Image from "next/image";
 import { getCurrentSeasonalContent } from "@/lib/seasonal-content";
 import landingPageData from "@/content/landing-page.json";
 import seasonalContentData from "@/content/seasonal-content.json";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Wave from "react-wavify";
+import { motion } from "framer-motion";
+import { 
+  Crown, 
+  Star, 
+  BarChart3, 
+  Phone, 
+  Clipboard, 
+  Target, 
+  GraduationCap, 
+  Trophy, 
+  BookOpen, 
+  Building2, 
+  TrendingUp, 
+  Users,
+  Check
+} from "lucide-react";
+import { useInView } from "react-intersection-observer";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+// Contact form validation schema
+const contactFormSchema = z.object({
+  firstName: z.string().min(2, "First name must be at least 2 characters").max(50, "First name must be less than 50 characters"),
+  lastName: z.string().min(2, "Last name must be at least 2 characters").max(50, "Last name must be less than 50 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  phone: z.string().min(10, "Phone number must be at least 10 characters").max(15, "Phone number must be less than 15 characters"),
+  subjectLevel: z.string().min(1, "Please select a subject level"),
+  message: z.string().min(10, "Message must be at least 10 characters").max(500, "Message must be less than 500 characters")
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export default function Home() {
   const currentSeason = getCurrentSeasonalContent().season;
@@ -23,6 +57,47 @@ export default function Home() {
   
   // Personalisation
   const [currentTime, setCurrentTime] = useState(new Date());
+  
+  // Video expansion state
+  const [isVideoExpanded, setIsVideoExpanded] = useState(false);
+  
+  // Video handler functions
+  const handleVideoPlay = () => {
+    setIsVideoExpanded(true);
+    // Auto-play video when expanded
+    setTimeout(() => {
+      const video = document.querySelector('video');
+      if (video) {
+        video.play();
+      }
+    }, 500);
+  };
+  
+  // Contact form setup
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema)
+  });
+  
+  // Trust Indicators Intersection Observer hooks
+  const { ref: trustHeaderRef, inView: trustHeaderInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  
+  const { ref: trustHubRef, inView: trustHubInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  
+  const { ref: trustGridRef, inView: trustGridInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
   
   // ===============================================
   // CENTRALIZED SECTION COLOR VARIABLES
@@ -96,6 +171,26 @@ export default function Home() {
     }
   };
 
+  // 🎨 ICON MAPPING FUNCTION
+  // Maps emoji icons from JSON to Lucide React icons
+  const getIconComponent = (emoji: string, className: string = "w-6 h-6") => {
+    const iconMap: { [key: string]: React.ReactElement } = {
+      "👑": <Crown className={className} />,
+      "⭐": <Star className={className} />,
+      "📊": <BarChart3 className={className} />,
+      "📞": <Phone className={className} />,
+      "📋": <Clipboard className={className} />,
+      "🎯": <Target className={className} />,
+      "🎓": <GraduationCap className={className} />,
+      "🏆": <Trophy className={className} />,
+      "📚": <BookOpen className={className} />,
+      "🏛️": <Building2 className={className} />,
+      "📈": <TrendingUp className={className} />,
+      "👥": <Users className={className} />
+    };
+    return iconMap[emoji] || <div className={className}>{emoji}</div>;
+  };
+
   // 🎨 SECTION PADDING CONFIGURATION
   // Centralized padding values for easy adjustment
   const sectionPadding = {
@@ -150,12 +245,44 @@ export default function Home() {
     };
   }, []);
   
+  // Form submission handler
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      // Here you would typically send the data to your backend/API
+      console.log("Form submitted:", data);
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Reset form on success
+      reset();
+      
+      // You might want to show a success message here
+      alert("Thank you for your message! We'll get back to you soon.");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // You might want to show an error message here
+      alert("There was an error submitting your form. Please try again.");
+    }
+  };
+  
   const getTimeBasedGreeting = () => {
     const hour = currentTime.getHours();
     if (hour < 12) return "Good Morning";
     if (hour < 17) return "Good Afternoon";
     return "Good Evening";
   };
+
+  // Student Journey intersection observer hooks
+  const { ref: journeyHeaderRef, inView: journeyHeaderInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
+  
+  const { ref: journeyTimelineRef, inView: journeyTimelineInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -192,36 +319,36 @@ export default function Home() {
       {heroVersion === 'light' && (
         <section className="relative overflow-hidden min-h-screen flex items-center" style={{backgroundColor: `var(${sectionColors.heroLight.cssVariable})`}}>
           {/* Premium Background decoration with sophisticated patterns */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-50/30 via-white to-blue-50/30"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-100/5 via-transparent to-blue-100/5"></div>
-          <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-slate-100/20 to-transparent rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-blue-100/20 to-transparent rounded-full blur-3xl animate-float"></div>
-          <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-gradient-to-br from-slate-50/30 to-blue-50/30 rounded-full blur-3xl animate-float"></div>
+          <div className={`absolute inset-0 bg-gradient-to-br from-slate-50/30 via-white to-blue-50/30 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-30' : 'opacity-100'}`}></div>
+          <div className={`absolute inset-0 bg-gradient-to-r from-slate-100/5 via-transparent to-blue-100/5 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-100'}`}></div>
+          <div className={`absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-slate-100/20 to-transparent rounded-full blur-3xl animate-float transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-100'}`}></div>
+          <div className={`absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-blue-100/20 to-transparent rounded-full blur-3xl animate-float transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-100'}`}></div>
+          <div className={`absolute top-1/3 left-1/3 w-64 h-64 bg-gradient-to-br from-slate-50/30 to-blue-50/30 rounded-full blur-3xl animate-float transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-100'}`}></div>
           
           {/* Sophisticated floating elements - minimalist approach */}
-          <div className="absolute top-20 right-20 w-2 h-2 bg-slate-300 rounded-full animate-bounce opacity-20 animation-delay-100"></div>
-          <div className="absolute top-40 left-20 w-1 h-1 bg-blue-300 rounded-full animate-bounce opacity-30 animation-delay-300"></div>
-          <div className="absolute bottom-40 right-40 w-3 h-3 bg-slate-200 rounded-full animate-bounce opacity-15 animation-delay-600"></div>
-          <div className="absolute top-32 left-1/3 w-1 h-1 bg-blue-400 rounded-full animate-bounce opacity-25 animation-delay-200"></div>
-          <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-slate-300 rounded-full animate-bounce opacity-20 animation-delay-400"></div>
-          <div className="absolute top-60 right-1/3 w-1 h-1 bg-blue-300 rounded-full animate-bounce opacity-30 animation-delay-500"></div>
-          <div className="absolute bottom-60 right-1/4 w-2 h-2 bg-slate-200 rounded-full animate-bounce opacity-15 animation-delay-700"></div>
-          <div className="absolute top-80 left-1/2 w-1 h-1 bg-blue-400 rounded-full animate-bounce opacity-25 animation-delay-800"></div>
-          <div className="absolute bottom-80 right-1/2 w-1 h-1 bg-slate-300 rounded-full animate-bounce opacity-20 animation-delay-100"></div>
-          <div className="absolute top-96 right-12 w-2 h-2 bg-blue-300 rounded-full animate-bounce opacity-25 animation-delay-900"></div>
-          <div className="absolute bottom-96 left-12 w-3 h-3 bg-slate-200 rounded-full animate-bounce opacity-15 animation-delay-600"></div>
+          <div className={`absolute top-20 right-20 w-2 h-2 bg-slate-300 rounded-full animate-bounce opacity-20 animation-delay-100 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-20'}`}></div>
+          <div className={`absolute top-40 left-20 w-1 h-1 bg-blue-300 rounded-full animate-bounce opacity-30 animation-delay-300 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-30'}`}></div>
+          <div className={`absolute bottom-40 right-40 w-3 h-3 bg-slate-200 rounded-full animate-bounce opacity-15 animation-delay-600 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-15'}`}></div>
+          <div className={`absolute top-32 left-1/3 w-1 h-1 bg-blue-400 rounded-full animate-bounce opacity-25 animation-delay-200 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-25'}`}></div>
+          <div className={`absolute bottom-32 left-1/4 w-2 h-2 bg-slate-300 rounded-full animate-bounce opacity-20 animation-delay-400 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-20'}`}></div>
+          <div className={`absolute top-60 right-1/3 w-1 h-1 bg-blue-300 rounded-full animate-bounce opacity-30 animation-delay-500 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-30'}`}></div>
+          <div className={`absolute bottom-60 right-1/4 w-2 h-2 bg-slate-200 rounded-full animate-bounce opacity-15 animation-delay-700 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-15'}`}></div>
+          <div className={`absolute top-80 left-1/2 w-1 h-1 bg-blue-400 rounded-full animate-bounce opacity-25 animation-delay-800 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-25'}`}></div>
+          <div className={`absolute bottom-80 right-1/2 w-1 h-1 bg-slate-300 rounded-full animate-bounce opacity-20 animation-delay-100 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-20'}`}></div>
+          <div className={`absolute top-96 right-12 w-2 h-2 bg-blue-300 rounded-full animate-bounce opacity-25 animation-delay-900 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-25'}`}></div>
+          <div className={`absolute bottom-96 left-12 w-3 h-3 bg-slate-200 rounded-full animate-bounce opacity-15 animation-delay-600 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-15'}`}></div>
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-6">
-                {/* Personalised greeting - premium styling */}
-                <div className={`inline-flex items-center bg-gradient-to-r from-white/90 to-slate-50/90 backdrop-blur-lg border border-slate-200/30 px-8 py-4 rounded-full text-sm font-medium text-slate-600 mb-8 shadow-xl transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                  <div className="w-2 h-2 bg-blue-600 rounded-full mr-3 animate-pulse"></div>
-                  {getTimeBasedGreeting()}, {seasonalContent.focusArea}
-                </div>
+            <div className={`grid grid-cols-1 gap-12 items-center transition-all duration-1000 ${isVideoExpanded ? 'lg:grid-cols-1' : 'lg:grid-cols-12'}`}>
+              <div className={`flex flex-col items-center text-center transition-all duration-1000 ${isVideoExpanded ? 'lg:col-span-1 opacity-0 pointer-events-none h-0 overflow-hidden' : 'lg:col-span-6 opacity-100'}`}>
                 
                 {/* Premium typography with sophisticated animations */}
-                <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-extralight text-gray-900 mb-10 leading-tight tracking-tight transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <motion.h1 
+                  className="text-5xl sm:text-6xl lg:text-7xl font-extralight text-gray-900 mb-10 leading-tight tracking-tight"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
                   <span className="bg-gradient-to-r from-slate-800 via-blue-700 to-slate-900 bg-clip-text text-transparent bg-size-200 animate-gradient-x font-thin">
                     Exceptional
                   </span>
@@ -230,7 +357,7 @@ export default function Home() {
                     Online Tutoring
                     <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-slate-800 to-blue-700 transition-all duration-1000 ${isLoaded ? 'w-full' : 'w-0'}`}></span>
                   </span>
-                </h1>
+                </motion.h1>
                 
                 <p className={`text-xl sm:text-2xl text-slate-600 mb-10 leading-relaxed font-light max-w-2xl transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   {seasonalContent.description}
@@ -252,7 +379,7 @@ export default function Home() {
                   </div>
                   <div className="bg-white/80 backdrop-blur-lg border border-white/30 rounded-3xl px-8 py-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
                     <div className="text-3xl font-light bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                      5★
+                      5<Star className="inline w-6 h-6 text-blue-300 ml-1" />
                     </div>
                     <div className="text-sm text-slate-600 font-medium">Average Rating</div>
                   </div>
@@ -279,50 +406,73 @@ export default function Home() {
                 <div className={`mt-12 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
                     <div className="flex items-center gap-2">
-                      <span className="text-green-500">✓</span>
+                      <Check className="w-4 h-4 text-green-500" />
                       <span>No Setup Fees</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-green-500">✓</span>
+                      <Check className="w-4 h-4 text-green-500" />
                       <span>Cancel Anytime</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-green-500">✓</span>
+                      <Check className="w-4 h-4 text-green-500" />
                       <span>Money-Back Guarantee</span>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="lg:col-span-6">
-                <div className={`relative transition-all duration-1000 delay-400 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+              <div className={`lg:col-span-6 transition-all duration-1000 ${isVideoExpanded ? 'lg:col-span-12 fixed inset-0 z-50 flex items-center justify-center bg-black/80' : ''}`}>
+                <div className={`relative transition-all duration-1000 ${isVideoExpanded ? 'w-full max-w-6xl h-auto' : `${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}`}>
                   {/* Glass morphism video container - larger */}
-                  <div className="relative bg-white/70 backdrop-blur-lg rounded-3xl overflow-hidden aspect-video shadow-2xl border border-white/20 hover:shadow-3xl transition-all duration-500 hover:scale-105 group">
-                    <Image
+                  <div className={`relative bg-white/70 backdrop-blur-lg rounded-3xl overflow-hidden aspect-video shadow-2xl border border-white/20 hover:shadow-3xl transition-all duration-500 hover:scale-105 group ${isVideoExpanded ? 'rounded-2xl shadow-4xl border-white/30' : ''}`}>
+                    <video
                       src={data.hero.videoPlaceholder}
-                      alt={data.hero.videoPlaceholderAlt}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      priority
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      controls={isVideoExpanded}
+                      muted
+                      playsInline
+                      poster="/images/video-placeholders/placeholder_for_introductionary_video.png"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <button className="bg-white/95 backdrop-blur-sm rounded-full p-6 shadow-2xl hover:bg-white hover:scale-110 transition-all duration-300 group-hover:shadow-3xl">
-                        <svg className="w-10 h-10 text-blue-800 group-hover:text-blue-700" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z"/>
+                    {!isVideoExpanded && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <button 
+                          onClick={handleVideoPlay}
+                          className="bg-white/95 backdrop-blur-sm rounded-full p-6 shadow-2xl hover:bg-white hover:scale-110 transition-all duration-300 group-hover:shadow-3xl"
+                        >
+                          <svg className="w-10 h-10 text-blue-800 group-hover:text-blue-700" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    )}
+                    
+                    {/* Back button - only visible when expanded */}
+                    {isVideoExpanded && (
+                      <button 
+                        onClick={() => setIsVideoExpanded(false)}
+                        className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-xl hover:bg-white hover:scale-110 transition-all duration-300 z-60"
+                      >
+                        <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
-                    </div>
+                    )}
                   </div>
                   
                   {/* Floating decoration elements */}
-                  <div className="absolute -z-10 top-8 -right-8 w-32 h-32 bg-blue-100 rounded-full opacity-60 animate-pulse"></div>
-                  <div className="absolute -z-10 -bottom-6 -left-6 w-24 h-24 bg-indigo-100 rounded-full opacity-60 animate-pulse animation-delay-300"></div>
-                  <div className="absolute -z-10 top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full opacity-40 animate-bounce animation-delay-600"></div>
+                  {!isVideoExpanded && (
+                    <>
+                      <div className="absolute -z-10 top-8 -right-8 w-32 h-32 bg-blue-100 rounded-full opacity-60 animate-pulse"></div>
+                      <div className="absolute -z-10 -bottom-6 -left-6 w-24 h-24 bg-indigo-100 rounded-full opacity-60 animate-pulse animation-delay-300"></div>
+                      <div className="absolute -z-10 top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full opacity-40 animate-bounce animation-delay-600"></div>
+                    </>
+                  )}
                 </div>
                 
                 {/* Testimonial preview popup - repositioned outside video area */}
-                <div className={`mt-8 bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-lg border border-white/20 max-w-sm animate-float transition-all duration-1000 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                {!isVideoExpanded && (
+                  <div className={`mt-8 bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-lg border border-white/20 max-w-sm animate-float transition-all duration-1000 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center">
                       <span className="text-sm font-bold text-blue-800">JM</span>
@@ -341,6 +491,7 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+                )}
               </div>
             </div>
           </div>
@@ -351,35 +502,35 @@ export default function Home() {
       {heroVersion === 'dark' && (
         <section className="relative overflow-hidden min-h-screen flex items-center" style={{backgroundColor: `var(${sectionColors.heroDark.cssVariable})`}}>
           {/* Enhanced Background decoration */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-indigo-900/80"></div>
-          <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-blue-600/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-indigo-600/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className={`absolute inset-0 bg-gradient-to-r from-blue-900/80 to-indigo-900/80 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-20' : 'opacity-100'}`}></div>
+          <div className={`absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-blue-600/20 to-transparent rounded-full blur-3xl animate-pulse transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-100'}`}></div>
+          <div className={`absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-indigo-600/20 to-transparent rounded-full blur-3xl animate-pulse transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-100'}`}></div>
+          <div className={`absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-100'}`}></div>
           
           {/* Floating elements - more dots for enhanced visual appeal */}
-          <div className="absolute top-20 right-20 w-6 h-6 bg-blue-400/40 rounded-full animate-bounce opacity-60"></div>
-          <div className="absolute top-40 left-20 w-4 h-4 bg-indigo-400/40 rounded-full animate-bounce opacity-60 animation-delay-300"></div>
-          <div className="absolute bottom-40 right-40 w-8 h-8 bg-blue-300/30 rounded-full animate-bounce opacity-60 animation-delay-600"></div>
-          <div className="absolute top-32 left-1/3 w-3 h-3 bg-blue-500/40 rounded-full animate-bounce opacity-50 animation-delay-200"></div>
-          <div className="absolute bottom-32 left-1/4 w-5 h-5 bg-indigo-400/40 rounded-full animate-bounce opacity-70 animation-delay-400"></div>
-          <div className="absolute top-60 right-1/3 w-4 h-4 bg-blue-400/40 rounded-full animate-bounce opacity-60 animation-delay-500"></div>
-          <div className="absolute bottom-60 right-1/4 w-6 h-6 bg-blue-300/30 rounded-full animate-bounce opacity-50 animation-delay-700"></div>
-          <div className="absolute top-80 left-1/2 w-3 h-3 bg-indigo-500/40 rounded-full animate-bounce opacity-40 animation-delay-800"></div>
-          <div className="absolute bottom-80 right-1/2 w-4 h-4 bg-blue-400/40 rounded-full animate-bounce opacity-60 animation-delay-100"></div>
-          <div className="absolute top-96 right-12 w-5 h-5 bg-blue-500/40 rounded-full animate-bounce opacity-50 animation-delay-900"></div>
-          <div className="absolute bottom-96 left-12 w-7 h-7 bg-indigo-300/30 rounded-full animate-bounce opacity-40 animation-delay-600"></div>
+          <div className={`absolute top-20 right-20 w-6 h-6 bg-blue-400/40 rounded-full animate-bounce opacity-60 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-60'}`}></div>
+          <div className={`absolute top-40 left-20 w-4 h-4 bg-indigo-400/40 rounded-full animate-bounce opacity-60 animation-delay-300 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-60'}`}></div>
+          <div className={`absolute bottom-40 right-40 w-8 h-8 bg-blue-300/30 rounded-full animate-bounce opacity-60 animation-delay-600 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-60'}`}></div>
+          <div className={`absolute top-32 left-1/3 w-3 h-3 bg-blue-500/40 rounded-full animate-bounce opacity-50 animation-delay-200 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-50'}`}></div>
+          <div className={`absolute bottom-32 left-1/4 w-5 h-5 bg-indigo-400/40 rounded-full animate-bounce opacity-70 animation-delay-400 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-70'}`}></div>
+          <div className={`absolute top-60 right-1/3 w-4 h-4 bg-blue-400/40 rounded-full animate-bounce opacity-60 animation-delay-500 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-60'}`}></div>
+          <div className={`absolute bottom-60 right-1/4 w-6 h-6 bg-blue-300/30 rounded-full animate-bounce opacity-50 animation-delay-700 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-50'}`}></div>
+          <div className={`absolute top-80 left-1/2 w-3 h-3 bg-indigo-500/40 rounded-full animate-bounce opacity-40 animation-delay-800 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-40'}`}></div>
+          <div className={`absolute bottom-80 right-1/2 w-4 h-4 bg-blue-400/40 rounded-full animate-bounce opacity-60 animation-delay-100 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-60'}`}></div>
+          <div className={`absolute top-96 right-12 w-5 h-5 bg-blue-500/40 rounded-full animate-bounce opacity-50 animation-delay-900 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-50'}`}></div>
+          <div className={`absolute bottom-96 left-12 w-7 h-7 bg-indigo-300/30 rounded-full animate-bounce opacity-40 animation-delay-600 transition-opacity duration-1000 ${isVideoExpanded ? 'opacity-0' : 'opacity-40'}`}></div>
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-6">
-                {/* Personalised greeting */}
-                <div className={`inline-flex items-center bg-blue-500/20 border border-blue-400/30 px-4 py-2 rounded-full text-sm font-medium text-blue-200 mb-6 backdrop-blur-lg shadow-lg transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                  <span className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></span>
-                  {getTimeBasedGreeting()}, {seasonalContent.focusArea}
-                </div>
+              <div className={`lg:col-span-6 flex flex-col items-center text-center transition-all duration-1000 ${isVideoExpanded ? 'transform -translate-x-full opacity-0 pointer-events-none' : 'transform translate-x-0 opacity-100'}`}>
                 
                 {/* Enhanced typography with animations */}
-                <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-light mb-8 leading-tight tracking-tight transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <motion.h1 
+                  className={`text-4xl sm:text-5xl lg:text-6xl font-light mb-8 leading-tight tracking-tight transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
                   <span className="bg-gradient-to-r from-blue-300 via-blue-100 to-white bg-clip-text text-transparent bg-size-200 animate-gradient-x font-bold">
                     Exceptional
                   </span>
@@ -388,7 +539,7 @@ export default function Home() {
                     Online Tutoring
                     <span className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-400 to-blue-300 transition-all duration-1000 ${isLoaded ? 'w-full' : 'w-0'}`}></span>
                   </span>
-                </h1>
+                </motion.h1>
                 
                 <p className={`text-xl sm:text-2xl text-blue-100 mb-8 leading-relaxed font-light max-w-2xl transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   {seasonalContent.description}
@@ -410,77 +561,124 @@ export default function Home() {
                   </div>
                   <div className="bg-blue-800/30 backdrop-blur-lg border border-blue-400/20 rounded-2xl px-6 py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <div className="text-3xl font-bold bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent">
-                      5★
+                      5<Star className="inline w-6 h-6 text-blue-300 ml-1" />
                     </div>
                     <div className="text-sm text-blue-200 font-medium">Average Rating</div>
                   </div>
                 </div>
                 
                 {/* Enhanced CTA buttons */}
-                <div className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                  <button className="group relative bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 overflow-hidden">
-                    <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                    <span className="relative flex items-center">
-                      {seasonalContent.ctaText}
-                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </span>
-                  </button>
-                  <button className="group relative border-2 border-blue-400/50 text-blue-200 px-8 py-4 rounded-xl font-semibold hover:bg-blue-800/50 hover:border-blue-400 transition-all duration-300 backdrop-blur-sm hover:scale-105 overflow-hidden">
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
-                    <span className="relative">{data.hero.secondaryButtonText}</span>
-                  </button>
-                </div>
+                <motion.div 
+                  className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button 
+                      size="lg"
+                      className="group relative bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold hover:from-blue-700 hover:to-blue-600 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                    >
+                      <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                      <span className="relative flex items-center">
+                        {seasonalContent.ctaText}
+                        <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </span>
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button 
+                      variant="outline"
+                      size="lg"
+                      className="group relative border-2 border-blue-400/50 text-blue-200 font-semibold hover:bg-blue-800/50 hover:border-blue-400 transition-all duration-300 backdrop-blur-sm overflow-hidden"
+                    >
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+                      <span className="relative">{data.hero.secondaryButtonText}</span>
+                    </Button>
+                  </motion.div>
+                </motion.div>
                 
                 {/* Trust indicators */}
                 <div className={`mt-12 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   <div className="flex flex-wrap items-center gap-6 text-sm text-blue-200">
                     <div className="flex items-center gap-2">
-                      <span className="text-green-400">✓</span>
+                      <Check className="w-4 h-4 text-green-400" />
                       <span>No Setup Fees</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-green-400">✓</span>
+                      <Check className="w-4 h-4 text-green-400" />
                       <span>Cancel Anytime</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-green-400">✓</span>
+                      <Check className="w-4 h-4 text-green-400" />
                       <span>Money-Back Guarantee</span>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="lg:col-span-6">
-                <div className={`relative transition-all duration-1000 delay-400 ${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+              <div className={`lg:col-span-6 transition-all duration-1000 ${isVideoExpanded ? 'lg:col-span-12 fixed inset-0 z-50 flex items-center justify-center bg-black/80' : ''}`}>
+                <div className={`relative transition-all duration-1000 ${isVideoExpanded ? 'w-full max-w-6xl h-auto' : `${isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}`}>
                   {/* Enhanced glass morphism video container - larger */}
-                  <div className="relative bg-blue-800/30 backdrop-blur-lg rounded-3xl overflow-hidden aspect-video shadow-2xl border border-blue-400/20 hover:shadow-3xl transition-all duration-500 hover:scale-105 group">
-                    <Image
+                  <div className={`relative bg-blue-800/30 backdrop-blur-lg rounded-3xl overflow-hidden aspect-video shadow-2xl border border-blue-400/20 hover:shadow-3xl transition-all duration-500 hover:scale-105 group ${isVideoExpanded ? 'rounded-2xl shadow-4xl border-blue-400/40' : ''}`}>
+                    <video
                       src={data.hero.videoPlaceholder}
-                      alt={data.hero.videoPlaceholderAlt}
-                      fill
-                      className="object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
-                      priority
+                      className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                      controls={isVideoExpanded}
+                      muted
+                      playsInline
+                      poster="/images/video-placeholders/placeholder_for_introductionary_video.png"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <button className="bg-blue-600/90 backdrop-blur-sm rounded-full p-6 shadow-2xl hover:bg-blue-500 hover:scale-110 transition-all duration-300 group-hover:shadow-3xl border border-blue-400/30">
-                        <svg className="w-10 h-10 text-white group-hover:text-blue-100" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z"/>
+                    {!isVideoExpanded && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <button 
+                          onClick={handleVideoPlay}
+                          className="bg-blue-600/90 backdrop-blur-sm rounded-full p-6 shadow-2xl hover:bg-blue-500 hover:scale-110 transition-all duration-300 group-hover:shadow-3xl border border-blue-400/30"
+                        >
+                          <svg className="w-10 h-10 text-white group-hover:text-blue-100" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    )}
+                    
+                    {/* Back button - only visible when expanded */}
+                    {isVideoExpanded && (
+                      <button 
+                        onClick={() => setIsVideoExpanded(false)}
+                        className="absolute top-6 right-6 bg-blue-600/90 backdrop-blur-sm rounded-full p-3 shadow-xl hover:bg-blue-500 hover:scale-110 transition-all duration-300 z-60 border border-blue-400/30"
+                      >
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
-                    </div>
+                    )}
                   </div>
                   
                   {/* Enhanced floating decoration elements */}
-                  <div className="absolute -z-10 top-8 -right-8 w-32 h-32 bg-blue-400/20 rounded-full blur-2xl animate-pulse"></div>
-                  <div className="absolute -z-10 -bottom-6 -left-6 w-24 h-24 bg-indigo-400/20 rounded-full blur-2xl animate-pulse animation-delay-300"></div>
-                  <div className="absolute -z-10 top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-blue-300/30 to-indigo-300/30 rounded-full opacity-40 animate-bounce animation-delay-600"></div>
+                  {!isVideoExpanded && (
+                    <>
+                      <div className="absolute -z-10 top-8 -right-8 w-32 h-32 bg-blue-400/20 rounded-full blur-2xl animate-pulse"></div>
+                      <div className="absolute -z-10 -bottom-6 -left-6 w-24 h-24 bg-indigo-400/20 rounded-full blur-2xl animate-pulse animation-delay-300"></div>
+                      <div className="absolute -z-10 top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-blue-300/30 to-indigo-300/30 rounded-full opacity-40 animate-bounce animation-delay-600"></div>
+                    </>
+                  )}
                 </div>
                 
                 {/* Enhanced testimonial preview popup - repositioned outside video area */}
-                <div className={`mt-8 bg-blue-900/90 backdrop-blur-lg rounded-2xl p-4 shadow-lg border border-blue-400/30 max-w-sm animate-float transition-all duration-1000 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                {!isVideoExpanded && (
+                  <div className={`mt-8 bg-blue-900/90 backdrop-blur-lg rounded-2xl p-4 shadow-lg border border-blue-400/30 max-w-sm animate-float transition-all duration-1000 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-8 h-8 bg-gradient-to-br from-blue-300 to-blue-400 rounded-full flex items-center justify-center">
                       <span className="text-sm font-bold text-blue-900">JM</span>
@@ -499,6 +697,7 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+                )}
               </div>
             </div>
           </div>
@@ -530,27 +729,27 @@ export default function Home() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-20">
-            <div className={`inline-flex items-center bg-gradient-to-r from-blue-50 to-indigo-50 backdrop-blur-sm border border-blue-200/50 px-6 py-3 rounded-full text-sm font-medium text-blue-800 mb-8 shadow-lg transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div ref={trustHeaderRef} className="text-center mb-20">
+            <div className={`inline-flex items-center bg-gradient-to-r from-blue-50 to-indigo-50 backdrop-blur-sm border border-blue-200/50 px-6 py-3 rounded-full text-sm font-medium text-blue-800 mb-8 shadow-lg transition-all duration-700 delay-100 ${trustHeaderInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <span className="w-2 h-2 bg-blue-600 rounded-full mr-2 animate-pulse"></span>
               Why Choose Excellence
             </div>
-            <h3 className={`text-5xl sm:text-6xl font-light text-gray-900 mb-8 leading-tight tracking-tight transition-all duration-1000 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h3 className={`text-5xl sm:text-6xl font-light text-gray-900 mb-8 leading-tight tracking-tight transition-all duration-1000 delay-200 ${trustHeaderInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <span className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-700 bg-clip-text text-transparent bg-size-200 animate-gradient-x font-bold">
                 {data.trustIndicators.sectionTitle}
               </span>
             </h3>
-            <p className={`text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <p className={`text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-300 ${trustHeaderInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               {data.trustIndicators.sectionDescription}
             </p>
-            <div className={`w-24 h-1 bg-gradient-to-r from-blue-800 to-blue-600 mx-auto mt-8 rounded-full transition-all duration-1000 delay-400 ${isLoaded ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}></div>
+            <div className={`w-24 h-1 bg-gradient-to-r from-blue-800 to-blue-600 mx-auto mt-8 rounded-full transition-all duration-1000 delay-400 ${trustHeaderInView ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}></div>
           </div>
           
           {/* Revolutionary Interactive Trust Indicators */}
           <div className="relative max-w-5xl mx-auto">
             {/* Central Interactive Hub */}
-            <div className="relative flex items-center justify-center mb-16">
-              <div className={`relative group transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+            <div ref={trustHubRef} className="relative flex items-center justify-center mb-16">
+              <div className={`relative group transition-all duration-1000 delay-500 ${trustHubInView ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                 {/* Orbital Rings */}
                 <div className="absolute inset-0 rounded-full border-2 border-blue-200/40 w-80 h-80 animate-spin-slow"></div>
                 <div className="absolute inset-0 rounded-full border border-indigo-200/30 w-96 h-96 animate-reverse-spin-slow"></div>
@@ -559,26 +758,26 @@ export default function Home() {
                 {/* Central Core */}
                 <div className="relative z-10 w-32 h-32 bg-gradient-to-r from-blue-800 to-blue-600 rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 group">
                   <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-700">
-                    <div className="text-4xl">🏆</div>
+                    <div className="text-4xl"><Trophy className="w-10 h-10 text-yellow-500" /></div>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"></div>
                 </div>
                 
                 {/* Floating Achievement Badges */}
                 <div className="absolute -top-8 -right-8 bg-yellow-400 rounded-full p-3 shadow-lg animate-bounce">
-                  <div className="text-lg font-bold text-yellow-900">★</div>
+                  <div className="text-lg font-bold text-yellow-900"><Star className="w-6 h-6" /></div>
                 </div>
                 <div className="absolute -bottom-8 -left-8 bg-green-500 rounded-full p-3 shadow-lg animate-bounce animation-delay-500">
-                  <div className="text-lg font-bold text-green-900">✓</div>
+                  <div className="text-lg font-bold text-green-900"><Check className="w-6 h-6" /></div>
                 </div>
                 <div className="absolute -top-8 -left-8 bg-purple-500 rounded-full p-3 shadow-lg animate-bounce animation-delay-1000">
-                  <div className="text-lg font-bold text-purple-900">👑</div>
+                  <div className="text-lg font-bold text-purple-900"><Crown className="w-6 h-6" /></div>
                 </div>
               </div>
             </div>
             
             {/* Interactive Trust Indicators - Geometric Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            <div ref={trustGridRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
               {data.trustIndicators.indicators.map((indicator, index) => {
                 const colors = ['blue', 'indigo', 'purple'];
                 const rotations = ['rotate-12', '-rotate-12', 'rotate-6'];
@@ -586,7 +785,7 @@ export default function Home() {
                 return (
                   <div 
                     key={index}
-                    className={`group relative transition-all duration-1000 delay-${600 + index * 200} ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}
+                    className={`group relative transition-all duration-1000 delay-${trustGridInView ? 600 + index * 200 : 0} ${trustGridInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}
                   >
                     {/* Geometric Container */}
                     <div className={`relative bg-white/90 backdrop-blur-lg rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-700 border border-white/60 hover:border-${colors[index]}-200/60 transform hover:-translate-y-4 hover:scale-105 group overflow-hidden`}>
@@ -601,21 +800,9 @@ export default function Home() {
                       <div className="relative z-10 text-center">
                         <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl mb-6 group-hover:from-blue-50 group-hover:to-blue-100 transition-all duration-500 shadow-lg group-hover:shadow-xl transform group-hover:scale-110 border border-slate-200/50 group-hover:border-blue-300/50">
                           <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-500">
-                            {index === 0 && (
-                              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3l14 9-14 9V3z" />
-                              </svg>
-                            )}
-                            {index === 1 && (
-                              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
-                              </svg>
-                            )}
-                            {index === 2 && (
-                              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                              </svg>
-                            )}
+                            <div className="text-white">
+                              {getIconComponent(indicator.icon, "w-6 h-6")}
+                            </div>
                           </div>
                         </div>
                         
@@ -745,24 +932,24 @@ export default function Home() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <div className={`inline-flex items-center bg-gradient-to-r from-blue-50 to-indigo-50 backdrop-blur-sm border border-blue-200/50 px-6 py-3 rounded-full text-sm font-medium text-blue-800 mb-8 shadow-lg transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div ref={journeyHeaderRef} className="text-center mb-16">
+            <div className={`inline-flex items-center bg-gradient-to-r from-blue-50 to-indigo-50 backdrop-blur-sm border border-blue-200/50 px-6 py-3 rounded-full text-sm font-medium text-blue-800 mb-8 shadow-lg transition-all duration-700 delay-100 ${journeyHeaderInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <span className="w-2 h-2 bg-blue-600 rounded-full mr-2 animate-pulse"></span>
               {data.studentJourney.sectionSubtitle}
             </div>
-            <h3 className={`text-5xl sm:text-6xl font-light text-gray-900 mb-8 leading-tight tracking-tight transition-all duration-1000 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h3 className={`text-5xl sm:text-6xl font-light text-gray-900 mb-8 leading-tight tracking-tight transition-all duration-1000 delay-200 ${journeyHeaderInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <span className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-700 bg-clip-text text-transparent bg-size-200 animate-gradient-x font-bold">
                 {data.studentJourney.sectionTitle}
               </span>
             </h3>
-            <p className={`text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <p className={`text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-300 ${journeyHeaderInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               {data.studentJourney.sectionDescription}
             </p>
-            <div className={`w-24 h-1 bg-gradient-to-r from-blue-800 to-blue-600 mx-auto mt-8 rounded-full transition-all duration-1000 delay-400 ${isLoaded ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}></div>
+            <div className={`w-24 h-1 bg-gradient-to-r from-blue-800 to-blue-600 mx-auto mt-8 rounded-full transition-all duration-1000 delay-400 ${journeyHeaderInView ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`}></div>
           </div>
 
           {/* Timeline Layout */}
-          <div className="relative max-w-6xl mx-auto">
+          <div ref={journeyTimelineRef} className="relative max-w-6xl mx-auto">
             {/* Central Timeline Line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200 transform -translate-x-1/2 hidden lg:block"></div>
             
@@ -777,8 +964,8 @@ export default function Home() {
               {data.studentJourney.steps.map((step, index) => (
                 <div key={index} className={`relative ${index % 2 === 0 ? 'lg:pr-1/2' : 'lg:pl-1/2'}`}>
                   {/* Step Card */}
-                  <div className={`group relative bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-700 overflow-hidden border border-white/40 hover:border-blue-200/60 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} ${index % 2 === 0 ? 'lg:mr-12' : 'lg:ml-12'}`}
-                    style={{ transitionDelay: `${500 + index * 200}ms` }}
+                  <div className={`group relative bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-700 overflow-hidden border border-white/40 hover:border-blue-200/60 ${journeyTimelineInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} ${index % 2 === 0 ? 'lg:mr-12' : 'lg:ml-12'}`}
+                    style={{ transitionDelay: `${journeyTimelineInView ? 200 + index * 100 : 0}ms` }}
                   >
                     {/* Background Pattern */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -792,32 +979,9 @@ export default function Home() {
                           <div className="relative">
                             <div className="w-20 h-20 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl flex items-center justify-center group-hover:from-blue-50 group-hover:to-blue-100 transition-all duration-500 shadow-lg group-hover:shadow-xl transform group-hover:scale-110 border border-slate-200/50 group-hover:border-blue-300/50">
                               <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-500">
-                                {index === 0 && (
-                                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                                  </svg>
-                                )}
-                                {index === 1 && (
-                                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" />
-                                  </svg>
-                                )}
-                                {index === 2 && (
-                                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                                  </svg>
-                                )}
-                                {index === 3 && (
-                                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-                                  </svg>
-                                )}
-                                {index === 4 && (
-                                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
-                                  </svg>
-                                )}
+                                <div className="text-white">
+                                  {getIconComponent(step.icon, "w-6 h-6")}
+                                </div>
                               </div>
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-br from-blue-200/50 to-blue-300/50 rounded-2xl w-20 h-20 blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500"></div>
@@ -923,7 +1087,7 @@ export default function Home() {
                   className={`group relative transition-all duration-1000 delay-${500 + index * 200} ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}
                 >
                   {/* Service Row Container */}
-                  <div className={`relative bg-white/90 backdrop-blur-lg rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 border border-white/40 hover:border-${serviceColor}-200/60 overflow-hidden`}>
+                  <Card className={`relative bg-white/90 backdrop-blur-lg rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 border border-white/40 hover:border-${serviceColor}-200/60 overflow-hidden p-0`}>
                     
                     {/* Background Pattern */}
                     <div className="absolute inset-0 bg-gradient-to-br from-gray-50/50 via-white to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -933,26 +1097,14 @@ export default function Home() {
                     <div className={`relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8 lg:p-12 ${isEven ? '' : 'lg:grid-flow-col-dense'}`}>
                       
                       {/* Service Icon Section */}
-                      <div className={`relative ${isEven ? 'lg:order-1' : 'lg:order-2'} text-center lg:text-${isEven ? 'left' : 'right'}`}>
+                      <CardHeader className={`relative ${isEven ? 'lg:order-1' : 'lg:order-2'} text-center lg:text-${isEven ? 'left' : 'right'} px-8 lg:px-12`}>
                         <div className="relative inline-block">
                           {/* Main Icon Container */}
                           <div className="relative w-32 h-32 lg:w-40 lg:h-40 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl flex items-center justify-center group-hover:from-blue-50 group-hover:to-blue-100 transition-all duration-500 shadow-2xl group-hover:shadow-3xl transform group-hover:scale-110 border border-slate-200/50 group-hover:border-blue-300/50">
                             <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-500 shadow-lg">
-                              {index === 0 && (
-                                <svg className="w-8 h-8 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
-                              )}
-                              {index === 1 && (
-                                <svg className="w-8 h-8 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                </svg>
-                              )}
-                              {index === 2 && (
-                                <svg className="w-8 h-8 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-                                </svg>
-                              )}
+                              <div className="text-white">
+                                {getIconComponent(service.icon, "w-8 h-8 lg:w-10 lg:h-10")}
+                              </div>
                             </div>
                           </div>
                           
@@ -974,16 +1126,16 @@ export default function Home() {
                           <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
                           <span className="text-sm font-medium text-slate-700">Programme {index + 1}</span>
                         </div>
-                      </div>
+                      </CardHeader>
                       
                       {/* Service Content Section */}
-                      <div className={`relative ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
+                      <CardContent className={`relative ${isEven ? 'lg:order-2' : 'lg:order-1'} px-8 lg:px-12`}>
                         <div className={`${isEven ? 'lg:text-left' : 'lg:text-right'}`}>
                           {/* Service Title */}
-                          <h4 className={`text-3xl lg:text-4xl font-bold text-gray-900 mb-6 group-hover:text-${serviceColor}-900 transition-colors duration-300 relative`}>
+                          <CardTitle className={`text-3xl lg:text-4xl font-bold text-gray-900 mb-6 group-hover:text-${serviceColor}-900 transition-colors duration-300 relative`}>
                             {service.title}
                             <span className={`absolute bottom-0 w-0 h-0.5 bg-gradient-to-r from-${serviceColor}-800 to-${serviceColor}-600 group-hover:w-full transition-all duration-500 ${isEven ? 'left-0' : 'right-0'}`}></span>
-                          </h4>
+                          </CardTitle>
                           
                           {/* Service Description */}
                           <p className="text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
@@ -1008,25 +1160,26 @@ export default function Home() {
                             ))}
                           </ul>
                           
-                          {/* Enhanced CTA Button */}
-                          {service.ctaText && (
-                            <div className={`relative ${isEven ? '' : 'lg:text-right'}`}>
-                              <a 
-                                href={service.ctaLink} 
-                                className="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-900 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 group/btn relative overflow-hidden"
-                              >
-                                {/* Button shimmer effect */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 transform -skew-x-12 translate-x-full group-hover/btn:translate-x-[-200%] transition-transform duration-700"></div>
-                                
-                                <span className="relative z-10">{service.ctaText}</span>
-                                <svg className={`w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300 relative z-10 ${isEven ? '' : 'lg:order-first lg:mr-2 lg:ml-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                </svg>
-                              </a>
-                            </div>
-                          )}
                         </div>
-                      </div>
+                        
+                        {/* Enhanced CTA Button */}
+                        {service.ctaText && (
+                          <CardFooter className={`relative ${isEven ? '' : 'lg:text-right'} px-8 lg:px-12`}>
+                            <a 
+                              href={service.ctaLink} 
+                              className="inline-flex items-center bg-gradient-to-r from-blue-800 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-900 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 group/btn relative overflow-hidden"
+                            >
+                              {/* Button shimmer effect */}
+                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 transform -skew-x-12 translate-x-full group-hover/btn:translate-x-[-200%] transition-transform duration-700"></div>
+                              
+                              <span className="relative z-10">{service.ctaText}</span>
+                              <svg className={`w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300 relative z-10 ${isEven ? '' : 'lg:order-first lg:mr-2 lg:ml-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                              </svg>
+                            </a>
+                          </CardFooter>
+                        )}
+                      </CardContent>
                     </div>
                     
                     {/* Connecting Line */}
@@ -1042,7 +1195,7 @@ export default function Home() {
                     
                     {/* Row Shimmer Effect */}
                     <div className={`absolute inset-0 bg-gradient-to-${isEven ? 'r' : 'l'} from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 transform -skew-x-12 ${isEven ? 'translate-x-full group-hover:translate-x-[-200%]' : '-translate-x-full group-hover:translate-x-[200%]'} transition-transform duration-1000 rounded-3xl`}></div>
-                  </div>
+                  </Card>
                 </div>
               );
             })}
@@ -1113,16 +1266,14 @@ export default function Home() {
           
           {/* Interactive Dashboard Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-            {/* Primary Stat - Large Featured */}
+            {/* Primary Stat - Large Featured Card */}
             <div className={`lg:col-span-2 group relative transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
-              <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 lg:p-12 shadow-2xl hover:shadow-3xl transition-all duration-700 border border-white/60 hover:border-blue-300/50 overflow-hidden">
-                
+              <Card className="relative bg-white/80 backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-700 border border-white/60 hover:border-blue-300/50 overflow-hidden">
                 {/* Background Pattern */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-blue-100/30 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                 
-                {/* Featured Statistic */}
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <CardContent className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center p-8 lg:p-12">
                   <div className="text-center lg:text-left">
                     <div className="inline-flex items-center bg-gradient-to-r from-blue-50 to-blue-100 backdrop-blur-sm border border-blue-200/50 px-4 py-2 rounded-full text-sm font-medium text-blue-800 mb-6">
                       <span className="w-2 h-2 bg-blue-600 rounded-full mr-2 animate-pulse"></span>
@@ -1131,12 +1282,12 @@ export default function Home() {
                     <div className="text-7xl lg:text-8xl font-black bg-gradient-to-r from-blue-800 via-blue-600 to-blue-700 bg-clip-text text-transparent mb-4 leading-none">
                       {data.results.statistics[0].number}
                     </div>
-                    <h4 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+                    <CardTitle className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
                       {data.results.statistics[0].label}
-                    </h4>
-                    <p className="text-gray-600 text-lg leading-relaxed">
+                    </CardTitle>
+                    <CardDescription className="text-gray-600 text-lg leading-relaxed">
                       {data.results.statistics[0].description}
-                    </p>
+                    </CardDescription>
                   </div>
                   
                   {/* Interactive Visual Element */}
@@ -1150,15 +1301,15 @@ export default function Home() {
                       {/* Center Icon */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
-                          <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                          </svg>
+                          <div className="text-white">
+                            {getIconComponent(data.results.statistics[0].icon, "w-12 h-12")}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
             
             {/* Secondary Stats - Vertical Stack */}
@@ -1168,33 +1319,18 @@ export default function Home() {
                   key={index}
                   className={`group relative transition-all duration-1000 delay-${700 + index * 200} ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}
                 >
-                  <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-700 border border-white/60 hover:border-blue-300/50 overflow-hidden">
-                    
+                  <Card className="relative bg-white/80 backdrop-blur-xl shadow-xl hover:shadow-2xl transition-all duration-700 border border-white/60 hover:border-blue-300/50 overflow-hidden">
                     {/* Background Effects */}
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-100/30 to-transparent rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
                     
-                    {/* Stat Content */}
-                    <div className="relative z-10 flex items-center gap-4">
+                    <CardContent className="relative z-10 flex items-center gap-4">
                       <div className="flex-shrink-0">
                         <div className="w-16 h-16 bg-gradient-to-br from-slate-100 to-slate-200 backdrop-blur-sm rounded-xl flex items-center justify-center border border-slate-200/30 group-hover:scale-110 transition-transform duration-500 group-hover:from-blue-50 group-hover:to-blue-100 group-hover:border-blue-300/50">
                           <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-                            {index === 0 && (
-                              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
-                              </svg>
-                            )}
-                            {index === 1 && (
-                              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                              </svg>
-                            )}
-                            {index === 2 && (
-                              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-                              </svg>
-                            )}
+                            <div className="text-white">
+                              {getIconComponent(stat.icon, "w-5 h-5")}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1202,20 +1338,20 @@ export default function Home() {
                         <div className="text-3xl font-bold bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent mb-1">
                           {stat.number}
                         </div>
-                        <h4 className="text-lg font-semibold text-gray-900 mb-1">
+                        <CardTitle className="text-lg font-semibold text-gray-900 mb-1">
                           {stat.label}
-                        </h4>
-                        <p className="text-gray-600 text-sm leading-relaxed">
+                        </CardTitle>
+                        <CardDescription className="text-gray-600 text-sm leading-relaxed">
                           {stat.description}
-                        </p>
+                        </CardDescription>
                       </div>
-                    </div>
+                    </CardContent>
                     
                     {/* Progress Bar Effect */}
                     <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-100/50 to-blue-200/50 rounded-b-2xl overflow-hidden">
                       <div className="h-full bg-gradient-to-r from-blue-600 to-blue-800 w-0 group-hover:w-full transition-all duration-1000"></div>
                     </div>
-                  </div>
+                  </Card>
                 </div>
               ))}
             </div>
@@ -1223,22 +1359,22 @@ export default function Home() {
           
           {/* Bottom Stats Bar */}
           <div className="mt-16">
-            <div className={`bg-white/80 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/60 transition-all duration-1000 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className={`bg-white/80 backdrop-blur-xl shadow-xl border border-white/60 transition-all duration-1000 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-800 mb-2">2,847+</div>
-                  <div className="text-sm text-gray-600">Students Mentored</div>
+                  <CardTitle className="text-2xl font-bold text-blue-800 mb-2">2,847+</CardTitle>
+                  <CardDescription className="text-sm text-gray-600">Students Mentored</CardDescription>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-800 mb-2">15+</div>
-                  <div className="text-sm text-gray-600">Years Experience</div>
+                  <CardTitle className="text-2xl font-bold text-blue-800 mb-2">15+</CardTitle>
+                  <CardDescription className="text-sm text-gray-600">Years Experience</CardDescription>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-800 mb-2">98%</div>
-                  <div className="text-sm text-gray-600">Satisfaction Rate</div>
+                  <CardTitle className="text-2xl font-bold text-blue-800 mb-2">98%</CardTitle>
+                  <CardDescription className="text-sm text-gray-600">Satisfaction Rate</CardDescription>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
         {/* Wavy bottom edge transitioning to Testimonials */}
@@ -1386,46 +1522,85 @@ export default function Home() {
             <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20">
               <h4 className="text-3xl font-bold text-gray-900 mb-4">{data.contact.formTitle}</h4>
               <p className="text-gray-600 mb-8 leading-relaxed">{data.contact.formDescription}</p>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input 
-                    type="text" 
-                    placeholder="First Name" 
-                    className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
-                  />
-                  <input 
-                    type="text" 
-                    placeholder="Last Name" 
-                    className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
-                  />
+                  <div>
+                    <input 
+                      type="text" 
+                      placeholder="First Name" 
+                      {...register("firstName")}
+                      className={`w-full px-4 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white ${errors.firstName ? 'border-red-500' : 'border-gray-200'}`}
+                    />
+                    {errors.firstName && (
+                      <p className="text-red-500 text-sm mt-1">{errors.firstName.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <input 
+                      type="text" 
+                      placeholder="Last Name" 
+                      {...register("lastName")}
+                      className={`w-full px-4 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white ${errors.lastName ? 'border-red-500' : 'border-gray-200'}`}
+                    />
+                    {errors.lastName && (
+                      <p className="text-red-500 text-sm mt-1">{errors.lastName.message}</p>
+                    )}
+                  </div>
                 </div>
-                <input 
-                  type="email" 
-                  placeholder="Email Address" 
-                  className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
-                />
-                <input 
-                  type="tel" 
-                  placeholder="Phone Number" 
-                  className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
-                />
-                <select className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white">
-                  <option>Select Subject Level</option>
-                  <option>GCSE</option>
-                  <option>A-Level</option>
-                  <option>Oxbridge Preparation</option>
-                  <option>11+ Preparation</option>
-                </select>
-                <textarea 
-                  placeholder="Tell us about your educational goals..." 
-                  rows={4}
-                  className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-none"
-                ></textarea>
+                <div>
+                  <input 
+                    type="email" 
+                    placeholder="Email Address" 
+                    {...register("email")}
+                    className={`w-full px-4 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white ${errors.email ? 'border-red-500' : 'border-gray-200'}`}
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                  )}
+                </div>
+                <div>
+                  <input 
+                    type="tel" 
+                    placeholder="Phone Number" 
+                    {...register("phone")}
+                    className={`w-full px-4 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white ${errors.phone ? 'border-red-500' : 'border-gray-200'}`}
+                  />
+                  {errors.phone && (
+                    <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                  )}
+                </div>
+                <div>
+                  <select 
+                    {...register("subjectLevel")}
+                    className={`w-full px-4 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white ${errors.subjectLevel ? 'border-red-500' : 'border-gray-200'}`}
+                  >
+                    <option value="">Select Subject Level</option>
+                    <option value="GCSE">GCSE</option>
+                    <option value="A-Level">A-Level</option>
+                    <option value="Oxbridge Preparation">Oxbridge Preparation</option>
+                    <option value="11+ Preparation">11+ Preparation</option>
+                  </select>
+                  {errors.subjectLevel && (
+                    <p className="text-red-500 text-sm mt-1">{errors.subjectLevel.message}</p>
+                  )}
+                </div>
+                <div>
+                  <textarea 
+                    placeholder="Tell us about your educational goals..." 
+                    rows={4}
+                    {...register("message")}
+                    className={`w-full px-4 py-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-none ${errors.message ? 'border-red-500' : 'border-gray-200'}`}
+                  ></textarea>
+                  {errors.message && (
+                    <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+                  )}
+                </div>
                 <button 
                   type="submit" 
-                  className="w-full bg-gradient-to-r from-blue-800 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-900 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  disabled={isSubmitting}
+                  className={`w-full bg-gradient-to-r from-blue-800 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-blue-900 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
-                  {data.contact.submitButtonText}
+                  {isSubmitting ? 'Submitting...' : data.contact.submitButtonText}
                 </button>
               </form>
             </div>
