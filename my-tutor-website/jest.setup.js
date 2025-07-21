@@ -1,4 +1,8 @@
 import '@testing-library/jest-dom'
+import { setupWebAPIMocks } from './tests/setup/test-utils'
+
+// Set up all Web API mocks
+setupWebAPIMocks()
 
 // Mock Next.js router
 jest.mock('next/navigation', () => ({
