@@ -8,6 +8,31 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Premium Brand Colors - My Private Tutor Online */
+  --color-navy-50: rgb(var(--navy-50));
+  --color-navy-100: rgb(var(--navy-100));
+  --color-navy-200: rgb(var(--navy-200));
+  --color-navy-300: rgb(var(--navy-300));
+  --color-navy-400: rgb(var(--navy-400));
+  --color-navy-500: rgb(var(--navy-500));
+  --color-navy-600: rgb(var(--navy-600));
+  --color-navy-700: rgb(var(--navy-700));
+  --color-navy-800: rgb(var(--navy-800));
+  --color-navy-900: rgb(var(--navy-900));
+  --color-navy-950: rgb(var(--navy-950));
+  
+  --color-gold-50: rgb(var(--gold-50));
+  --color-gold-100: rgb(var(--gold-100));
+  --color-gold-200: rgb(var(--gold-200));
+  --color-gold-300: rgb(var(--gold-300));
+  --color-gold-400: rgb(var(--gold-400));
+  --color-gold-500: rgb(var(--gold-500));
+  --color-gold-600: rgb(var(--gold-600));
+  --color-gold-700: rgb(var(--gold-700));
+  --color-gold-800: rgb(var(--gold-800));
+  --color-gold-900: rgb(var(--gold-900));
+  --color-gold-950: rgb(var(--gold-950));
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -45,6 +70,33 @@
 
 :root {
   --radius: 0.625rem;
+  
+  /* Premium Brand Colours - My Private Tutor Online */
+  --navy-50: 248 250 252;
+  --navy-100: 241 245 249;
+  --navy-200: 226 232 240;
+  --navy-300: 203 213 225;
+  --navy-400: 148 163 184;
+  --navy-500: 100 116 139;
+  --navy-600: 71 85 105;
+  --navy-700: 51 65 85;
+  --navy-800: 30 41 59;
+  --navy-900: 15 23 42;
+  --navy-950: 2 6 23;
+  
+  --gold-50: 255 251 235;
+  --gold-100: 254 243 199;
+  --gold-200: 253 230 138;
+  --gold-300: 252 211 77;
+  --gold-400: 251 191 36;
+  --gold-500: 245 158 11;
+  --gold-600: 217 119 6;
+  --gold-700: 180 83 9;
+  --gold-800: 146 64 14;
+  --gold-900: 120 53 15;
+  --gold-950: 69 26 3;
+
+  /* Core theme colours using navy/gold palette */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
