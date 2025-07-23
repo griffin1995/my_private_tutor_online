@@ -1,9 +1,12 @@
 # Custom Project Documentation
 
-This file contains official documentation for all the technologies and patterns we actually use in our St Saviour's website codebase. This is our first reference point - only search external docs if the solution isn't found here.
+This file contains official documentation for all the technologies and patterns we actually use in our My Private Tutor Online website codebase. This is our first reference point - only search external docs if the solution isn't found here.
+
+**CRITICAL: COMPONENT-FIRST DEVELOPMENT - Always check the Component Inventory below before creating ANY new component.**
 
 ## Table of Contents
 
+0. [COMPONENT INVENTORY](#component-inventory) - ✅ **CHECK THIS FIRST - ALWAYS**
 1. [Framer Motion](#framer-motion) - ✅ LazyMotion Enterprise Implementation
 2. [React Spring](#react-spring)
 3. [Next.js](#nextjs)
@@ -13,7 +16,249 @@ This file contains official documentation for all the technologies and patterns 
 7. [Embla Carousel](#embla-carousel) - ✅ Carousel Implementation
 8. [Accessibility](#accessibility)
 9. [Performance](#performance)
-10. [Enterprise Consolidation](#enterprise-consolidation) - ✅ Current Phase
+10. [Magic UI Components](#magic-ui-components) - ✅ All Magic UI Components
+11. [Shadcn UI Components](#shadcn-ui-components) - ✅ All Shadcn Components
+12. [Component Development Guidelines](#component-development-guidelines) - ✅ Mandatory Reading
+13. [Enterprise Consolidation](#enterprise-consolidation) - ✅ Current Phase
+
+---
+
+## COMPONENT INVENTORY
+
+### 🚨 MANDATORY CHECK - READ BEFORE ANY COMPONENT DEVELOPMENT
+
+**RULE: Before creating ANY new component, you MUST check this inventory first. If similar functionality exists, ALWAYS extend/compose rather than recreate.**
+
+### UI Foundation Components (/src/components/ui/)
+
+#### Form Components - ✅ AVAILABLE
+- **button.tsx** - Base button with variants (default, destructive, outline, secondary, ghost, link)
+- **input.tsx** - Text input with validation support
+- **textarea.tsx** - Multi-line text input
+- **label.tsx** - Form labels with accessibility
+- **form.tsx** - React Hook Form + Zod integration
+- **select.tsx** - Dropdown selectors
+
+#### Layout & Structure - ✅ AVAILABLE  
+- **card.tsx** - Container components with header/content/footer
+- **separator.tsx** - Horizontal/vertical dividers
+- **aspect-ratio.tsx** - Maintains aspect ratios for media
+- **sheet.tsx** - Side panels and drawers
+- **tabs.tsx** - Tabbed content sections
+
+#### Interactive Components - ✅ AVAILABLE
+- **accordion.tsx** - Collapsible content sections
+- **calendar.tsx** - Date picker for booking systems
+- **navigation-menu.tsx** - Complex navigation structures
+
+#### Feedback Components - ✅ AVAILABLE
+- **toast.tsx** - Notifications using Sonner
+- **skeleton.tsx** - Loading placeholders
+- **badge.tsx** - Status indicators
+
+#### Accessibility Components - ✅ AVAILABLE
+- **accessible-button.tsx** - Enhanced button with full a11y
+- **focus-trap.tsx** - Focus management
+- **screen-reader-only.tsx** - SR-only content
+
+### Magic UI Premium Components (/src/components/magicui/)
+
+#### Button Animations - ✅ AVAILABLE
+- **shiny-button.tsx** - Premium shimmer effect button
+- **interactive-hover-button.tsx** - Sophisticated hover animations with arrow
+- **animated-subscribe-button.tsx** - State-based button with icon transitions
+
+#### Media Components - ✅ AVAILABLE  
+- **hero-video-dialog.tsx** - Full-screen video modal with 8 animation styles
+- **icon-cloud.tsx** - 3D rotating technology icon display
+- **video-text.tsx** - Animated text reveals with staggered letters
+
+### Layout System (/src/components/layout/)
+
+#### Page Structure - ✅ AVAILABLE
+- **page-layout.tsx** - Main page wrapper with SEO
+- **page-header.tsx** - Navigation with transparent/scroll states
+- **page-footer.tsx** - Site footer
+- **page-hero.tsx** - Hero section template
+- **section.tsx** - Content section wrapper
+
+### Marketing Components (/src/components/marketing/)
+
+#### Business Components - ✅ AVAILABLE
+- **service-card.tsx** - Service display cards
+- **trust-indicators.tsx** - Credibility badges
+- **royal-testimonial-card.tsx** - Premium testimonial display
+- **premium-service-card.tsx** - Enhanced service cards
+- **premium-hero-section.tsx** - Premium hero variants
+
+### Form Components (/src/components/forms/)
+
+#### Specialised Forms - ✅ AVAILABLE
+- **consultation-booking-form.tsx** - Booking system integration
+
+### Utility Components
+
+#### Hooks (/src/hooks/)
+- **use-toast.ts** - Toast notification hook
+- **use-accessibility.tsx** - Accessibility utilities
+
+#### Performance (/src/lib/performance/)
+- **web-vitals.ts** - Performance monitoring
+- **index.ts** - Performance utilities
+
+---
+
+## Component Development Guidelines
+
+### 🔥 CRITICAL RULES - NEVER VIOLATE
+
+#### 1. Component Reuse Hierarchy
+```typescript
+// ✅ CORRECT: Check existing components first
+import { Button } from "@/components/ui/button"
+import { ShinyButton } from "@/components/magicui/shiny-button"
+
+// Extend existing functionality
+export function BookingButton({ children, ...props }) {
+  return (
+    <ShinyButton className="booking-specific-styles" {...props}>
+      {children}
+    </ShinyButton>
+  )
+}
+
+// ❌ INCORRECT: Creating duplicate functionality
+export function NewShinyButton() {
+  // This duplicates existing ShinyButton - DON'T DO THIS!
+}
+```
+
+#### 2. Composition Patterns
+```typescript
+// ✅ CORRECT: Compound component pattern
+import { Card, CardHeader, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+
+export function ServiceCard({ service }) {
+  return (
+    <Card>
+      <CardHeader>
+        <Badge variant="secondary">{service.category}</Badge>
+        <h3>{service.title}</h3>
+      </CardHeader>
+      <CardContent>
+        {service.description}
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+#### 3. Extension vs Recreation Decision Matrix
+- **Extend existing**: If 70%+ functionality overlaps
+- **Compose multiple**: If combining 2-3 existing components
+- **Create new**: Only if completely unique functionality
+
+#### 4. Documentation Requirements
+Every component MUST include:
+- Import statement
+- Props interface
+- Usage examples  
+- Integration notes
+- Accessibility considerations
+
+### Component Architecture Patterns
+
+#### Atomic Design Implementation
+- **Atoms**: Shadcn UI components (Button, Input, etc.)
+- **Molecules**: Compositions like ServiceCard, ContactForm
+- **Organisms**: Page sections like Hero, NavBar
+- **Templates**: Layout components
+- **Pages**: Route components
+
+#### Variant System
+```typescript
+// Use CVA for component variants
+import { cva } from "class-variance-authority"
+
+const buttonVariants = cva(
+  "base-classes",
+  {
+    variants: {
+      variant: {
+        primary: "primary-classes",
+        secondary: "secondary-classes",
+      },
+      size: {
+        sm: "small-classes",
+        lg: "large-classes",
+      }
+    }
+  }
+)
+```
+
+---
+
+## Magic UI Components
+
+**NOTE: All Magic UI components use OFFICIAL DOCUMENTATION implementations only.**
+
+### Hero Video Dialog - ✅ IMPLEMENTED
+- **File**: `/src/components/magicui/hero-video-dialog.tsx`
+- **Usage**: Full-screen video modals with 8 animation styles
+- **Documentation Source**: Official Magic UI docs
+- **Implementation**: ✅ Verified against official patterns
+
+### Icon Cloud - ✅ IMPLEMENTED  
+- **File**: `/src/components/magicui/icon-cloud.tsx`
+- **Usage**: 3D rotating technology icon displays
+- **Documentation Source**: Official Magic UI docs
+- **Implementation**: ✅ Verified against official patterns
+
+### Interactive Button Components - ✅ IMPLEMENTED
+- **Files**: 
+  - `/src/components/magicui/shiny-button.tsx`
+  - `/src/components/magicui/interactive-hover-button.tsx`  
+  - `/src/components/magicui/animated-subscribe-button.tsx`
+- **Usage**: Premium animated buttons for CTAs
+- **Documentation Source**: Official Magic UI docs
+- **Implementation**: ✅ Verified against official patterns
+
+### Video Text - ✅ IMPLEMENTED
+- **File**: `/src/components/magicui/video-text.tsx`
+- **Usage**: Animated text reveals with staggered animations
+- **Documentation Source**: Official Magic UI docs
+- **Implementation**: ✅ Verified against official patterns
+
+---
+
+## Shadcn UI Components Integration
+
+**NOTE: All Shadcn UI components use OFFICIAL DOCUMENTATION implementations only.**
+
+### Core Components - ✅ IMPLEMENTED
+All components follow official Shadcn UI patterns from https://ui.shadcn.com/docs/components
+
+#### Form System
+- **Components**: Button, Input, Label, Textarea, Form, Select
+- **Integration**: React Hook Form + Zod validation
+- **Status**: ✅ Production ready
+
+#### Layout System  
+- **Components**: Card, Separator, AspectRatio, Sheet, Tabs
+- **Integration**: Responsive design system
+- **Status**: ✅ Production ready
+
+#### Interactive Components
+- **Components**: Accordion, Calendar, Navigation Menu
+- **Integration**: Keyboard navigation and accessibility
+- **Status**: ✅ Production ready
+
+#### Feedback System
+- **Components**: Toast (Sonner), Skeleton, Badge
+- **Integration**: User feedback and loading states
+- **Status**: ✅ Production ready
 
 ---
 
@@ -853,6 +1098,141 @@ When implementing new features:
 
 ---
 
+## Magic UI Hero Video Dialog
+
+### Current Version: Latest (Magic UI)
+
+### Import Pattern
+```typescript
+import { HeroVideoDialog } from "@/components/magicui/hero-video-dialog";
+```
+
+### Installation
+```bash
+# CLI Installation
+npm install magicui
+
+# Manual Installation
+# Copy component files directly from Magic UI repository
+```
+
+### Basic Usage Pattern
+```typescript
+<HeroVideoDialog
+  className="block dark:hidden"
+  animationStyle="from-center"
+  videoSrc="https://www.example.com/video.mp4"
+  thumbnailSrc="https://www.example.com/thumbnail.png"
+  thumbnailAlt="Video thumbnail description"
+/>
+```
+
+### Component Props API Reference
+
+#### Required Props
+```typescript
+interface HeroVideoDialogProps {
+  videoSrc: string;           // Video URL (use embed URL for YouTube)
+  thumbnailSrc: string;       // Thumbnail image URL
+}
+```
+
+#### Optional Props
+```typescript
+interface HeroVideoDialogProps {
+  className?: string;         // Additional CSS classes
+  thumbnailAlt?: string;      // Alt text for thumbnail (default: "Video thumbnail")
+  animationStyle?: AnimationStyle;  // Dialog animation style (default: "from-center")
+}
+```
+
+#### Animation Styles Available
+```typescript
+type AnimationStyle = 
+  | "from-bottom"      // Dialog enters from bottom, exits to bottom
+  | "from-center"      // Dialog scales up from center, scales down to center  
+  | "from-top"         // Dialog enters from top, exits to top
+  | "from-left"        // Dialog enters from left, exits to left
+  | "from-right"       // Dialog enters from right, exits to right
+  | "fade"             // Dialog fades in and out
+  | "top-in-bottom-out"    // Dialog enters from top, exits to bottom
+  | "left-in-right-out";   // Dialog enters from left, exits to right
+```
+
+### Implementation Examples
+
+#### 1. Basic Full-Screen Video Modal
+```typescript
+export function VideoHeroSection() {
+  return (
+    <div className="relative h-screen flex items-center justify-center">
+      <HeroVideoDialog
+        animationStyle="from-center"
+        videoSrc="/videos/intro-video.mp4"
+        thumbnailSrc="/images/video-thumbnail.jpg"
+        thumbnailAlt="Introduction video thumbnail"
+        className="max-w-2xl mx-auto"
+      />
+    </div>
+  );
+}
+```
+
+#### 2. YouTube Video Integration
+```typescript
+<HeroVideoDialog
+  animationStyle="fade"
+  videoSrc="https://www.youtube.com/embed/VIDEO_ID"
+  thumbnailSrc="/images/youtube-thumbnail.jpg"
+  thumbnailAlt="Watch our story on YouTube"
+/>
+```
+
+#### 3. Responsive Hero Video
+```typescript
+<HeroVideoDialog
+  animationStyle="top-in-bottom-out"
+  videoSrc="/videos/hero-video.mp4"
+  thumbnailSrc="/images/hero-video-thumb.jpg"
+  thumbnailAlt="Company introduction video"
+  className="w-full max-w-4xl mx-auto aspect-video"
+/>
+```
+
+### Accessibility Features
+- ✅ Proper ARIA labels for video controls
+- ✅ Keyboard navigation support (Enter/Space to play)
+- ✅ Screen reader friendly with thumbnailAlt text
+- ✅ Focus management when modal opens/closes
+- ✅ ESC key to close modal
+
+### Usage Notes
+- **YouTube Videos**: Always use embed URLs (e.g., `https://www.youtube.com/embed/VIDEO_ID`)
+- **Video Formats**: Supports MP4, WebM, and other standard web video formats
+- **Thumbnail Images**: Ensure thumbnail matches video aspect ratio for best UX
+- **Performance**: Component lazy-loads video content until user interaction
+
+### Integration with Our Design System
+```typescript
+// Using with our navy/gold theme
+<HeroVideoDialog
+  animationStyle="from-center"
+  videoSrc="/videos/tutoring-intro.mp4"
+  thumbnailSrc="/images/tutoring-hero-thumb.jpg"
+  thumbnailAlt="Discover our tutoring approach"
+  className="rounded-2xl shadow-2xl border border-navy-200"
+/>
+```
+
+### Common Patterns to Avoid
+- ❌ Using direct YouTube URLs instead of embed URLs
+- ❌ Missing thumbnailAlt text for accessibility
+- ❌ Not providing appropriate thumbnail images
+- ❌ Using overly large video files without compression
+- ❌ Forgetting to test keyboard navigation
+
+---
+
 ## Enterprise Consolidation
 
 ### Current Status: Phase 1 Completed ✅
@@ -902,5 +1282,634 @@ When implementing new features:
 
 ---
 
-*Last Updated: 2025-07-19*
-*This documentation is specific to the St Saviour's website codebase and contains only the official patterns we use in production.*
+## Magic UI Icon Cloud
+
+### Current Version: Latest (Magic UI)
+
+### Import Pattern
+```typescript
+import { IconCloud } from "@/components/magicui/icon-cloud";
+```
+
+### Installation
+```bash
+# CLI Installation
+npm install magicui
+
+# Manual Installation
+# Copy component files directly from Magic UI repository
+```
+
+### Basic Usage Pattern
+```typescript
+<IconCloud iconSlugs={slugs} />
+```
+
+### Component Props API Reference
+
+#### Required Props
+```typescript
+interface IconCloudProps {
+  iconSlugs: string[];           // Array of icon slugs (e.g., ["typescript", "javascript", "react"])
+}
+```
+
+#### Optional Props
+```typescript
+interface IconCloudProps {
+  className?: string;            // Additional CSS classes
+}
+```
+
+### Icon Slug Reference
+Common technology icon slugs available:
+```typescript
+const techIconSlugs = [
+  "typescript",
+  "javascript", 
+  "react",
+  "nextdotjs",
+  "tailwindcss",
+  "framermotion",
+  "nodejs",
+  "html5",
+  "css3",
+  "git",
+  "github",
+  "vercel",
+  "figma",
+  "adobe",
+  "mongodb",
+  "postgresql",
+  "redis",
+  "docker",
+  "kubernetes",
+  "aws",
+  "googlecloud",
+  "stripe",
+  "openai"
+];
+```
+
+### Implementation Examples
+
+#### 1. Technology Stack Display
+```typescript
+export function TechStackCloud() {
+  const iconSlugs = [
+    "typescript",
+    "react", 
+    "nextdotjs",
+    "tailwindcss",
+    "framermotion",
+    "nodejs"
+  ];
+
+  return (
+    <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg border bg-background px-20 pb-20 pt-8">
+      <IconCloud iconSlugs={iconSlugs} />
+    </div>
+  );
+}
+```
+
+#### 2. Educational Skills Cloud
+```typescript
+export function EducationalSkillsCloud() {
+  const educationIconSlugs = [
+    "javascript",
+    "python", 
+    "java",
+    "cplusplus",
+    "html5",
+    "css3",
+    "react",
+    "nodejs",
+    "git",
+    "github",
+    "figma",
+    "adobe"
+  ];
+
+  return (
+    <div className="flex h-full w-full items-center justify-center">
+      <IconCloud iconSlugs={educationIconSlugs} />
+    </div>
+  );
+}
+```
+
+#### 3. Responsive Icon Cloud
+```typescript
+<div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border bg-background px-20 pb-20 pt-8">
+  <IconCloud iconSlugs={iconSlugs} />
+</div>
+```
+
+### Styling and Customization
+```typescript
+// With custom container styling
+<div className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-2xl bg-navy-50 px-8 py-8">
+  <IconCloud 
+    iconSlugs={techSlugs}
+    className="text-navy-700"
+  />
+</div>
+```
+
+### Integration with Our Design System
+```typescript
+// Using with our navy/gold theme
+export function TutoringSkillsCloud() {
+  const tutoringSkills = [
+    "javascript",
+    "python",
+    "react",
+    "typescript",
+    "html5",
+    "css3",
+    "nodejs",
+    "git",
+    "figma"
+  ];
+
+  return (
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-serif font-bold text-navy-900 text-center mb-12">
+          Technologies We Teach
+        </h2>
+        <div className="flex justify-center">
+          <div className="relative flex h-80 w-full max-w-2xl items-center justify-center overflow-hidden rounded-2xl bg-navy-50 px-8 py-8">
+            <IconCloud iconSlugs={tutoringSkills} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+### Performance Considerations
+- Icons are rendered using 3D canvas/WebGL
+- Component handles responsive sizing automatically  
+- Smooth rotation and floating animations included
+- Optimized for mobile devices
+
+### Usage Notes
+- **Icon Availability**: Check Simple Icons directory for available slug names
+- **Responsive**: Component automatically adjusts to container size
+- **Performance**: Uses hardware acceleration for smooth animations
+- **Accessibility**: Includes proper ARIA labels for screen readers
+
+### Common Patterns to Avoid
+- ❌ Using non-existent icon slugs (will not render)
+- ❌ Too many icons (>20) can impact performance
+- ❌ Not providing adequate container height/width
+- ❌ Missing container overflow:hidden styling
+
+---
+
+## Magic UI Interactive Button Components
+
+### Current Version: Latest (Magic UI)
+
+### Import Patterns
+```typescript
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
+import { AnimatedSubscribeButton } from "@/components/magicui/animated-subscribe-button";
+import { ShinyButton } from "@/components/magicui/shiny-button";
+```
+
+### Interactive Hover Button
+
+#### Basic Usage
+```typescript
+<InteractiveHoverButton text="Hover me" />
+```
+
+#### Props API
+```typescript
+interface InteractiveHoverButtonProps {
+  text: string;                    // Button text
+  className?: string;              // Additional CSS classes
+}
+```
+
+#### Implementation Examples
+```typescript
+// Primary CTA Button
+<InteractiveHoverButton 
+  text="Book Free Consultation"
+  className="bg-gold-600 text-white px-8 py-3"
+/>
+
+// Secondary Button
+<InteractiveHoverButton 
+  text="Learn More"
+  className="border border-navy-200 text-navy-900 px-6 py-2"
+/>
+```
+
+### Animated Subscribe Button
+
+#### Basic Usage
+```typescript
+<AnimatedSubscribeButton 
+  buttonColor="#3b82f6"
+  buttonTextColor="#ffffff"
+  subscribeStatus={false}
+  initialText="Subscribe"
+  changeText="Subscribed"
+/>
+```
+
+#### Props API
+```typescript
+interface AnimatedSubscribeButtonProps {
+  buttonColor: string;             // Background color
+  buttonTextColor: string;         // Text color
+  subscribeStatus: boolean;        // Current subscription status
+  initialText: string;             // Initial button text
+  changeText: string;              // Text after action
+  onToggle?: () => void;          // Optional toggle handler
+}
+```
+
+#### Implementation Examples
+```typescript
+// Newsletter Subscription
+<AnimatedSubscribeButton
+  buttonColor="#eab308"
+  buttonTextColor="#ffffff"
+  subscribeStatus={isSubscribed}
+  initialText="Subscribe to Updates"
+  changeText="Subscribed!"
+  onToggle={handleSubscribe}
+/>
+
+// Contact Form Submit
+<AnimatedSubscribeButton
+  buttonColor="#0f172a"
+  buttonTextColor="#ffffff"
+  subscribeStatus={isSubmitted}
+  initialText="Send Message"
+  changeText="Message Sent!"
+  onToggle={handleSubmit}
+/>
+```
+
+### Shiny Button
+
+#### Basic Usage
+```typescript
+<ShinyButton text="Click me" />
+```
+
+#### Props API
+```typescript
+interface ShinyButtonProps {
+  text: string;                    // Button text
+  className?: string;              // Additional CSS classes
+}
+```
+
+#### Implementation Examples
+```typescript
+// Premium CTA Button
+<ShinyButton 
+  text="Start Premium Tutoring"
+  className="bg-gradient-to-r from-gold-500 to-gold-600 text-white px-8 py-4 text-lg"
+/>
+
+// Attention-grabbing Action
+<ShinyButton 
+  text="Get Started Today"
+  className="bg-navy-900 text-white px-6 py-3"
+/>
+```
+
+### Usage in Our Design System
+
+#### Primary Buttons (Main CTAs)
+```typescript
+// Use ShinyButton for primary actions
+<ShinyButton 
+  text="Book Free Consultation"
+  className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white px-8 py-4 rounded-lg shadow-lg"
+/>
+```
+
+#### Secondary Buttons (Supporting Actions)
+```typescript
+// Use InteractiveHoverButton for secondary actions
+<InteractiveHoverButton 
+  text="Learn More"
+  className="border-2 border-navy-200 text-navy-900 hover:bg-navy-50 px-6 py-3 rounded-lg transition-all duration-300"
+/>
+```
+
+#### Form Submissions
+```typescript
+// Use AnimatedSubscribeButton for forms
+<AnimatedSubscribeButton
+  buttonColor="#eab308"
+  buttonTextColor="#ffffff"
+  subscribeStatus={formSubmitted}
+  initialText="Send Enquiry"
+  changeText="Enquiry Sent!"
+  onToggle={handleFormSubmit}
+/>
+```
+
+### Integration Notes
+- All buttons follow our navy/gold colour scheme
+- Maintain consistent padding and border radius
+- Include proper hover states and transitions
+- Ensure accessibility with proper contrast ratios
+
+---
+
+## Magic UI Video Text Component
+
+### Current Version: Latest (Magic UI)
+
+### Import Pattern
+```typescript
+import { VideoText } from "@/components/magicui/video-text";
+```
+
+### Basic Usage
+```typescript
+<VideoText 
+  text="Your text here"
+  duration={2000}
+  framerProps={{
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  }}
+  className="text-4xl font-bold"
+/>
+```
+
+### Props API
+```typescript
+interface VideoTextProps {
+  text: string;                    // Text to animate
+  duration?: number;               // Animation duration in ms
+  framerProps?: any;              // Framer Motion animation props
+  className?: string;              // Additional CSS classes
+}
+```
+
+### Implementation Examples
+
+#### Hero Section Video Text
+```typescript
+<VideoText 
+  text="Expert Private Tutoring"
+  duration={3000}
+  framerProps={{
+    hidden: { opacity: 0, y: 20 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        staggerChildren: 0.05,
+        duration: 0.8
+      }
+    },
+  }}
+  className="text-5xl lg:text-6xl font-serif font-bold text-white mb-6"
+/>
+```
+
+#### Section Headings
+```typescript
+<VideoText 
+  text="Results That Matter"
+  duration={2000}
+  className="text-3xl lg:text-4xl font-serif font-bold text-navy-900 text-center mb-12"
+/>
+```
+
+### Usage in Our Design System
+- Use for impactful hero headings
+- Apply to section titles for engaging reveals
+- Maintain typography hierarchy with proper font sizes
+- Combine with our navy/gold colour scheme
+
+---
+
+## Shadcn UI Components Integration
+
+### Current Version: Latest (Shadcn UI)
+
+### Core Components Documentation
+
+#### Aspect Ratio
+```typescript
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+
+// Video containers
+<AspectRatio ratio={16 / 9} className="bg-muted">
+  <Image src="/placeholder.jpg" alt="Image" className="rounded-md object-cover" fill />
+</AspectRatio>
+
+// Image galleries  
+<AspectRatio ratio={4 / 3} className="bg-muted">
+  <Image src="/gallery-image.jpg" alt="Gallery" className="object-cover" fill />
+</AspectRatio>
+```
+
+#### Accordion
+```typescript
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+
+// FAQ Section
+<Accordion type="single" collapsible className="w-full">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>What subjects do you teach?</AccordionTrigger>
+    <AccordionContent>
+      We provide expert tutoring across all key subjects including Mathematics, English, Sciences, and more.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+#### Calendar
+```typescript
+import { Calendar } from "@/components/ui/calendar"
+import { useState } from "react"
+
+// Booking System
+function BookingCalendar() {
+  const [date, setDate] = useState<Date | undefined>(new Date())
+  
+  return (
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+      className="rounded-md border"
+    />
+  )
+}
+```
+
+#### Form Components
+```typescript
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters."),
+  email: z.string().email("Invalid email address."),
+  message: z.string().min(10, "Message must be at least 10 characters."),
+})
+
+// Contact Form
+function ContactForm() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  })
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Your name" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="your.email@example.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Tell us about your tutoring needs..." {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Send Message</Button>
+      </form>
+    </Form>
+  )
+}
+```
+
+#### Skeleton
+```typescript
+import { Skeleton } from "@/components/ui/skeleton"
+
+// Loading States
+function ImageSkeleton() {
+  return (
+    <div className="flex items-center space-x-4">
+      <Skeleton className="h-12 w-12 rounded-full" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
+      </div>
+    </div>
+  )
+}
+```
+
+#### Separator
+```typescript
+import { Separator } from "@/components/ui/separator"
+
+// Content Dividers
+<div>
+  <div className="space-y-1">
+    <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
+    <p className="text-sm text-muted-foreground">An open-source UI component library.</p>
+  </div>
+  <Separator className="my-4" />
+  <div className="flex h-5 items-center space-x-4 text-sm">
+    <div>Blog</div>
+    <Separator orientation="vertical" />
+    <div>Docs</div>
+    <Separator orientation="vertical" />
+    <div>Source</div>
+  </div>
+</div>
+```
+
+#### Toast
+```typescript
+import { useToast } from "@/components/ui/use-toast"
+import { Button } from "@/components/ui/button"
+import { ToastAction } from "@/components/ui/toast"
+
+// Notification System
+function ToastDemo() {
+  const { toast } = useToast()
+
+  return (
+    <Button
+      variant="outline"
+      onClick={() => {
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you within 24 hours.",
+          action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+        })
+      }}
+    >
+      Send Message
+    </Button>
+  )
+}
+```
+
+### Integration with Our Design System
+- All components follow navy/gold colour scheme
+- Maintain consistent typography using our font-serif/font-sans classes
+- Apply proper spacing with our container patterns
+- Ensure accessibility compliance with WCAG 2.1 AA standards
+
+---
+
+*Last Updated: 2025-07-23*
+*This documentation is specific to the My Private Tutor Online website codebase and contains only the official patterns we use in production.*
