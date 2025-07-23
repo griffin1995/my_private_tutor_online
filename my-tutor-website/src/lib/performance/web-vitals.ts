@@ -1,12 +1,12 @@
 // Core Web Vitals tracking implementation
-// CLAUDE.md rule 21: Performance targets - LCP <2.5s, FID <100ms, CLS <0.1
+// CLAUDE.md rule 21: Performance targets - LCP <2.5s, INP <200ms, CLS <0.1
 
-import { getCLS, getFID, getFCP, getLCP, getTTFB, Metric } from 'web-vitals'
+import { onCLS, onINP, onFCP, onLCP, onTTFB, type Metric } from 'web-vitals'
 
 // Performance thresholds based on CLAUDE.md rule 21
 export const PERFORMANCE_THRESHOLDS = {
   LCP: 2500,   // Largest Contentful Paint: <2.5s
-  FID: 100,    // First Input Delay: <100ms
+  INP: 200,    // Interaction to Next Paint: <200ms
   CLS: 0.1,    // Cumulative Layout Shift: <0.1
   FCP: 1800,   // First Contentful Paint: <1.8s
   TTFB: 600    // Time to First Byte: <600ms
@@ -33,8 +33,8 @@ function rateMetric(name: MetricName, value: number): 'good' | 'needs-improvemen
   switch (name) {
     case 'LCP':
       return value <= 2500 ? 'good' : value <= 4000 ? 'needs-improvement' : 'poor'
-    case 'FID':
-      return value <= 100 ? 'good' : value <= 300 ? 'needs-improvement' : 'poor'
+    case 'INP':
+      return value <= 200 ? 'good' : value <= 500 ? 'needs-improvement' : 'poor'
     case 'CLS':
       return value <= 0.1 ? 'good' : value <= 0.25 ? 'needs-improvement' : 'poor'
     case 'FCP':
@@ -178,11 +178,11 @@ class WebVitalsTracker {
     if (typeof window === 'undefined') return
 
     // Track Core Web Vitals
-    getCLS(this.handleMetric)
-    getFID(this.handleMetric)
-    getFCP(this.handleMetric)
-    getLCP(this.handleMetric)
-    getTTFB(this.handleMetric)
+    onCLS(this.handleMetric)
+    onINP(this.handleMetric)
+    onFCP(this.handleMetric)
+    onLCP(this.handleMetric)
+    onTTFB(this.handleMetric)
     
     // Track additional performance metrics
     this.trackNavigationTiming()

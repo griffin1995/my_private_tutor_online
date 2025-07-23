@@ -35,9 +35,9 @@ export function PageLayout({
 
   const backgroundClasses = {
     white: 'bg-white',
-    gradient: 'bg-gradient-to-br from-white via-primary-50 to-accent-50',
-    pattern: 'bg-white bg-gradient-to-r from-primary-50/30 via-white to-accent-50/30',
-    dark: 'bg-primary-900'
+    gradient: 'bg-gradient-to-br from-white via-navy-50 to-gold-50',
+    pattern: 'bg-white bg-gradient-to-r from-navy-50/30 via-white to-gold-50/30',
+    dark: 'bg-navy-900'
   }
 
   const containerSizeClasses = {
@@ -103,7 +103,7 @@ export function SkipToContent() {
   return (
     <a
       href="#main-content"
-      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-900 text-white px-4 py-2 rounded-md text-sm font-medium z-50 focus:z-50"
+      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-navy-900 text-white px-4 py-2 rounded-md text-sm font-medium z-50 focus:z-50"
       style={{ zIndex: 1600 }} // zIndex.skipLink from design system
     >
       Skip to main content

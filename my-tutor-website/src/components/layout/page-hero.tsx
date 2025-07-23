@@ -41,7 +41,7 @@ export function PageHero({
 
   const backgroundClasses = {
     white: 'bg-white',
-    gradient: 'bg-gradient-to-br from-white via-primary-50 to-accent-50',
+    gradient: 'bg-gradient-to-br from-white via-navy-50 to-gold-50',
     image: 'bg-cover bg-center bg-no-repeat',
     video: 'relative overflow-hidden'
   }

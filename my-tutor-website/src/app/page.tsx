@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { Star, CheckCircle, Crown, Award, Users, ArrowRight } from 'lucide-react'
 import { getHeroContent, getTrustIndicators, getResultsStatistics, getTestimonials } from '@/lib/cms'
+import { getStudentImages, getOptimizedImageProps } from '@/lib/cms/cms-images'
+import Image from 'next/image'
 import { PageLayout } from '@/components/layout/page-layout'
 
 // CMS DATA SOURCE: Using proper CMS functions for homepage content
@@ -122,6 +124,8 @@ export default function Home() {
   const trustIndicators = getTrustIndicators()
   // CMS DATA SOURCE: Using getResultsStatistics for results section  
   const resultsStats = getResultsStatistics()
+  // CMS DATA SOURCE: Using getStudentImages for student photos
+  const studentImages = getStudentImages()
   // CMS DATA SOURCE: Using getTestimonials for testimonials
   const testimonials = getTestimonials()
 
@@ -146,7 +150,7 @@ export default function Home() {
   return (
     <PageLayout background="white">
       {/* Hero Section */}
-      <section className="py-16 lg:py-24 bg-navy-50">
+      <section className="py-16 lg:py-24 bg-navy-50" aria-label="Hero section with introduction to My Private Tutor Online">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-8">
@@ -166,10 +170,10 @@ export default function Home() {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-6 py-3 bg-gold-600 hover:bg-gold-700 text-white font-semibold rounded-lg transition-colors">
+                <button className="px-6 py-3 bg-gold-600 hover:bg-gold-700 text-white font-semibold rounded-lg transition-colors" aria-label="Enquire about tutoring services">
                   Enquire Now
                 </button>
-                <button className="px-6 py-3 border border-navy-300 text-navy-700 hover:bg-navy-50 rounded-lg transition-colors">
+                <button className="px-6 py-3 border border-navy-300 text-navy-700 hover:bg-navy-50 rounded-lg transition-colors" aria-label="Request a free consultation">
                   Request a Consultation
                 </button>
               </div>
@@ -217,7 +221,7 @@ export default function Home() {
       </section>
 
       {/* School Shields Section */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-white" aria-label="Elite schools and universities our students have placed at">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-2xl lg:text-3xl font-serif font-bold text-navy-900 mb-8">
@@ -270,20 +274,41 @@ export default function Home() {
       </section>
 
       {/* Results Section */}
-      <section className="py-16 lg:py-24 bg-white">
+      <section className="py-16 lg:py-24 bg-white" aria-label="Academic results and success statistics">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-navy-900 mb-12">
               {newHomepageContent.results.title}
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {resultsStats.map((stat, index) => (
-                <div key={index} className="bg-white rounded-lg border border-navy-200 p-6 text-center hover:shadow-lg transition-shadow duration-300">
-                  <CheckCircle className="w-8 h-8 text-gold-600 mx-auto mb-4" />
-                  <p className="text-navy-700">{stat.label}: {stat.description}</p>
-                </div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+              {resultsStats.map((stat, index) => {
+                // CMS DATA SOURCE: Using studentImages with imageKey for result card images
+                const studentImage = stat.imageKey ? studentImages[stat.imageKey as keyof typeof studentImages] : null
+                
+                return (
+                  <div key={index} className="bg-white rounded-lg border border-navy-200 p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    {/* Student Image */}
+                    {studentImage && (
+                      <div className="mb-4 overflow-hidden">
+                        <Image
+                          {...getOptimizedImageProps(studentImage, '(max-width: 768px) 100vw, 25vw')}
+                          className="w-full h-64 object-cover"
+                        />
+                      </div>
+                    )}
+                    
+                    {/* Statistics */}
+                    <div className="mb-4">
+                      <div className="text-3xl font-bold text-navy-900 mb-2">{stat.number}</div>
+                      <h3 className="text-lg font-semibold text-navy-900 mb-2">{stat.label}</h3>
+                      <p className="text-navy-700 text-sm">{stat.description}</p>
+                    </div>
+                    
+                    <CheckCircle className="w-6 h-6 text-gold-600 mx-auto" />
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>

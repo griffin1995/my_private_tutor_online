@@ -195,6 +195,42 @@ export const FALLBACK_IMAGES = {
   }
 } as const
 
+// Student images for results section
+export const STUDENT_IMAGES = {
+  teenager: {
+    src: '/images/students/student-teenager.jpg',
+    alt: 'GCSE student celebrating academic success with improved grades',
+    width: 300,
+    height: 400,
+    title: 'GCSE Success Story',
+    loading: 'lazy' as const
+  },
+  aLevel: {
+    src: '/images/students/student-university.jpg',
+    alt: 'A-Level student achieving excellent results for university application',
+    width: 300,
+    height: 400,
+    title: 'A-Level Achievement',
+    loading: 'lazy' as const
+  },
+  oxbridge: {
+    src: '/images/students/student-oxbridge.jpg',
+    alt: 'Oxbridge candidate celebrating university acceptance offer',
+    width: 300,
+    height: 400,
+    title: 'Oxbridge Success',
+    loading: 'lazy' as const
+  },
+  child: {
+    src: '/images/students/student-child.jpg',
+    alt: 'Young student engaged in personalised tutoring session',
+    width: 300,
+    height: 400,
+    title: 'Personalised Tutoring',
+    loading: 'lazy' as const
+  }
+} as const
+
 // CMS Functions for image retrieval
 
 /**
@@ -275,6 +311,14 @@ export const getFallbackImage = (): ImageAsset => {
  */
 export const getAvatarPlaceholder = (): ImageAsset => {
   return FALLBACK_IMAGES.avatarPlaceholder
+}
+
+/**
+ * Get student images for results section
+ * CMS DATA SOURCE: Using STUDENT_IMAGES for results section photos
+ */
+export const getStudentImages = () => {
+  return STUDENT_IMAGES
 }
 
 // Image optimization utilities
@@ -363,6 +407,7 @@ export default {
   team: TEAM_IMAGES,
   testimonials: TESTIMONIAL_IMAGES,
   videoPlaceholders: VIDEO_PLACEHOLDERS,
+  students: STUDENT_IMAGES,
   fallbacks: FALLBACK_IMAGES,
   getMainLogo,
   getFooterLogo,
@@ -372,6 +417,7 @@ export default {
   getTeamImages,
   getTestimonialImages,
   getVideoPlaceholders,
+  getStudentImages,
   getFallbackImage,
   getAvatarPlaceholder,
   generateResponsiveSizes,

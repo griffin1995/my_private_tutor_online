@@ -149,7 +149,7 @@ function FAQItem({ question, answer, isOpen, onToggle }: FAQItemProps) {
     <Card className="border-slate-200">
       <button
         onClick={onToggle}
-        className="w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-colors duration-200 text-left"
+        className="w-full p-6 flex items-center justify-between hover:bg-navy-50 transition-colors duration-200 text-left"
         aria-expanded={isOpen}
       >
         <h3 className="text-lg font-semibold text-slate-900 pr-4">{question}</h3>
@@ -249,7 +249,7 @@ export default function FAQPage() {
                 className={`flex items-center gap-2 ${
                   activeCategory === category.id 
                     ? 'bg-amber-600 hover:bg-amber-700 text-white' 
-                    : 'border-slate-300 text-slate-700 hover:bg-slate-50'
+                    : 'border-navy-300 text-navy-700 hover:bg-navy-50'
                 }`}
               >
                 {category.icon}

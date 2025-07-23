@@ -18,9 +18,14 @@ export function PerformanceMonitor({
 }: PerformanceMonitorProps) {
   const [metrics, setMetrics] = useState<Record<string, WebVitalsData>>({})
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    if (!enabled) return
+    setIsMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!enabled || !isMounted) return
 
     // Update metrics periodically
     const interval = setInterval(() => {
@@ -28,9 +33,9 @@ export function PerformanceMonitor({
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [enabled])
+  }, [enabled, isMounted])
 
-  if (!enabled || typeof window === 'undefined') {
+  if (!enabled || typeof window === 'undefined' || !isMounted) {
     return null
   }
 

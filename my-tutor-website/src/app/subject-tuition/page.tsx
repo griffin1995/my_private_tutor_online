@@ -178,7 +178,7 @@ function AccordionSection({ subject, isOpen, onToggle }: AccordionSectionProps) 
     <Card className="border-slate-200 overflow-hidden">
       <button
         onClick={onToggle}
-        className="w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-colors duration-200"
+        className="w-full p-6 flex items-center justify-between hover:bg-navy-50 transition-colors duration-200"
         aria-expanded={isOpen}
         aria-controls={`section-${subject.id}`}
       >

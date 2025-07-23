@@ -235,28 +235,32 @@
     "sectionDescription": "Our track record speaks for itself. Real results from real students who have achieved their academic goals through our personalised tutoring approach.",
     "statistics": [
       {
+        "number": "500+",
+        "label": "Students Tutored",
+        "description": "Successfully guided to academic excellence",
+        "icon": "👥",
+        "imageKey": "child"
+      },
+      {
         "number": "94%",
         "label": "GCSE Grade Improvement",
         "description": "Of students improved by at least 2 grades",
-        "icon": "📈"
+        "icon": "📈",
+        "imageKey": "teenager"
       },
       {
         "number": "87%",
         "label": "A-Level Success Rate",
         "description": "Achieved A* or A grades in target subjects",
-        "icon": "🏆"
+        "icon": "🏆",
+        "imageKey": "aLevel"
       },
       {
         "number": "73%",
         "label": "Oxbridge Acceptance",
         "description": "Of our Oxbridge applicants received offers",
-        "icon": "🎯"
-      },
-      {
-        "number": "500+",
-        "label": "Students Tutored",
-        "description": "Successfully guided to academic excellence",
-        "icon": "👥"
+        "icon": "🎯",
+        "imageKey": "oxbridge"
       }
     ]
   },
