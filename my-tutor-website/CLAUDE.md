@@ -2,6 +2,9 @@
 
 ## ABSOLUTELY CRITICAL RULES - NEVER VIOLATE THESE - APPLIES TO ALL CONTEXT WINDOWS
 1. **MANDATORY CODE DOCUMENTATION VERIFICATION** - ALL CODE, EVERY SINGLE PIECE OF CODE, MUST ALWAYS BE CHECKED AGAINST LOCAL DOCUMENTATION BEFORE IMPLEMENTATION. NEVER CREATE CODE WITHOUT VERIFYING IT FOLLOWS DOCUMENTATION BEST PRACTICES. THIS RULE APPLIES TO EVERY SINGLE LINE OF CODE WRITTEN.
+   - **EXISTING IMPLEMENTATION CHECK**: Before adding any CSS, JavaScript, or component functionality, ALWAYS verify if it already exists in globals.css, existing components, or utility files
+   - **CSS-JS DUPLICATION PREVENTION**: If functionality can be achieved with existing CSS (e.g. @media queries, Tailwind classes), NEVER implement equivalent JavaScript logic
+   - **FILE SYSTEM INSPECTION MANDATORY**: Use Read, Grep, and Glob tools to inspect existing implementations before writing new code
 2. **COMPONENT-FIRST DEVELOPMENT MANDATE** - ALWAYS CHECK EXISTING COMPONENTS FIRST. Before creating ANY new component, MUST verify existing components in /src/components/ui/, /src/components/magicui/, and /src/components/shared/. NEVER duplicate functionality that already exists. ALWAYS reuse and compose existing components.
 3. **MODULAR ARCHITECTURE REQUIREMENT** - ALL components must be maximally reusable, composable, and follow single responsibility principle. Create atomic components that can be combined rather than monolithic solutions.
 4. **NEVER add attribution to any AI tools** in code comments, commit messages, or documentation
@@ -28,14 +31,21 @@
 19. **SINGLE RESPONSIBILITY** - Each component should do one thing extremely well and be maximally reusable
 20. **COMPOSITION OVER INHERITANCE** - Use component composition patterns, render props, and compound components
 
+## CSS-JavaScript Integration Rules
+21. **CSS-FIRST IMPLEMENTATION PRINCIPLE** - Always implement functionality in CSS when possible before considering JavaScript alternatives
+22. **MANDATORY CSS INSPECTION** - Before implementing any client-side logic, ALWAYS check globals.css, component styles, and Tailwind configuration for existing solutions
+23. **MEDIA QUERY PRECEDENCE** - User preferences like `prefers-reduced-motion`, `prefers-color-scheme` MUST be handled via CSS @media queries, never JavaScript when possible
+24. **NO DUPLICATE IMPLEMENTATIONS** - If CSS can handle responsive behaviour, animations, or user preferences, NEVER create JavaScript equivalents
+25. **ACCESSIBILITY CSS INTEGRATION** - All WCAG 2.1 AA compliance features should leverage existing CSS infrastructure before adding JavaScript complexity
+
 ## Documentation Strategy
-21. **ALWAYS use documentation from the local docs/ directory** - all required documentation is provided locally
-22. **NEVER fetch external documentation** - all necessary references are maintained in the docs/ directory
-23. **MANDATORY DOCUMENTATION CHECK** - Before writing ANY code, ALWAYS verify the implementation against the relevant documentation in docs/ directory
-24. **STOP AND ASK POLICY** - If documentation for any technology is missing from docs/ directory, IMMEDIATELY STOP all code implementation and explicitly request the user to provide the documentation
-25. **ZERO TOLERANCE FOR UNDOCUMENTED CODE** - Never write code based on assumptions or general knowledge - ALL code must be verified against official documentation patterns
-26. **OFFICIAL DOCUMENTATION ONLY** - NEVER use unofficial tutorials, blogs, or community examples - ONLY use official library documentation provided by the maintainers
-27. **CUSTOM DOCUMENTATION MAINTENANCE** - Maintain /docs/CUSTOM_DOCUMENTATION.md file for proven patterns and component implementations for faster lookup
+26. **ALWAYS use documentation from the local docs/ directory** - all required documentation is provided locally
+27. **NEVER fetch external documentation** - all necessary references are maintained in the docs/ directory
+28. **MANDATORY DOCUMENTATION CHECK** - Before writing ANY code, ALWAYS verify the implementation against the relevant documentation in docs/ directory
+29. **STOP AND ASK POLICY** - If documentation for any technology is missing from docs/ directory, IMMEDIATELY STOP all code implementation and explicitly request the user to provide the documentation
+30. **ZERO TOLERANCE FOR UNDOCUMENTED CODE** - Never write code based on assumptions or general knowledge - ALL code must be verified against official documentation patterns
+31. **OFFICIAL DOCUMENTATION ONLY** - NEVER use unofficial tutorials, blogs, or community examples - ONLY use official library documentation provided by the maintainers
+32. **CUSTOM DOCUMENTATION MAINTENANCE** - Maintain /docs/CUSTOM_DOCUMENTATION.md file for proven patterns and component implementations for faster lookup
 
 ---
 

@@ -7,6 +7,7 @@ This file contains official documentation for all the technologies and patterns 
 ## Table of Contents
 
 0. [COMPONENT INVENTORY](#component-inventory) - ✅ **CHECK THIS FIRST - ALWAYS**
+0.1. [CSS-JAVASCRIPT INTEGRATION PATTERNS](#css-javascript-integration-patterns) - ⚠️ **CRITICAL: PREVENT DUPLICATION**
 1. [Framer Motion](#framer-motion) - ✅ LazyMotion Enterprise Implementation
 2. [React Spring](#react-spring)
 3. [Next.js](#nextjs)
@@ -259,6 +260,74 @@ All components follow official Shadcn UI patterns from https://ui.shadcn.com/doc
 - **Components**: Toast (Sonner), Skeleton, Badge
 - **Integration**: User feedback and loading states
 - **Status**: ✅ Production ready
+
+---
+
+## CSS-JAVASCRIPT INTEGRATION PATTERNS
+
+### 🚨 CRITICAL: PREVENT CSS-JS DUPLICATION
+
+**MANDATORY PROCEDURE**: Before implementing ANY client-side logic, ALWAYS check these existing implementations:
+
+#### Existing CSS Media Query Implementations
+
+These features are ALREADY implemented in CSS and MUST NOT be duplicated in JavaScript:
+
+##### 1. User Preference Handling
+```css
+/* EXISTING in globals.css - DO NOT RECREATE IN JS */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Dark theme variables already defined */
+}
+```
+
+##### 2. Responsive Breakpoints
+```css
+/* EXISTING in Tailwind config - DO NOT RECREATE IN JS */
+/* Use: sm:, md:, lg:, xl:, 2xl: classes instead of JavaScript */
+```
+
+##### 3. Accessibility Features
+- **Focus management**: Use CSS `:focus-visible` and existing focus utilities
+- **High contrast**: Already handled via system preferences
+- **Motion sensitivity**: Handled via `prefers-reduced-motion` media query
+
+#### Implementation Priority Order
+1. **CSS FIRST**: Check if functionality exists in globals.css or Tailwind
+2. **Component Composition**: Use existing UI components with different props
+3. **Hook Reuse**: Check existing custom hooks before creating new ones
+4. **JavaScript Only**: Only implement in JS if CSS cannot achieve the functionality
+
+#### Anti-Patterns to Avoid
+```typescript
+// ❌ WRONG - Duplicates existing CSS functionality
+const [reduceMotion, setReduceMotion] = useState(false)
+
+useEffect(() => {
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  setReduceMotion(mediaQuery.matches)
+}, [])
+
+// ✅ CORRECT - Use existing CSS implementation
+// Let CSS handle it via @media (prefers-reduced-motion: reduce)
+```
+
+#### Verification Checklist
+Before implementing client-side logic:
+- [ ] Checked globals.css for existing @media queries
+- [ ] Verified Tailwind config for responsive utilities  
+- [ ] Confirmed no existing component provides this functionality
+- [ ] Ensured CSS cannot achieve the desired behaviour
 
 ---
 
