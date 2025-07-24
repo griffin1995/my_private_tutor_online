@@ -72,7 +72,7 @@ This file contains official documentation for all the technologies and patterns 
 #### Media Components - ✅ AVAILABLE  
 - **hero-video-dialog.tsx** - Full-screen video modal with 8 animation styles
 - **icon-cloud.tsx** - 3D rotating technology icon display
-- **video-text.tsx** - Animated text reveals with staggered letters
+- **video-text.tsx** - SVG-masked video background for text effects with CMS integration (official Magic UI implementation)
 
 ### Layout System (/src/components/layout/)
 
@@ -91,6 +91,7 @@ This file contains official documentation for all the technologies and patterns 
 - **royal-testimonial-card.tsx** - Premium testimonial display
 - **premium-service-card.tsx** - Enhanced service cards
 - **premium-hero-section.tsx** - Premium hero variants
+- **brand-statement-video.tsx** - Video-text brand messaging component (NEW)
 
 ### Form Components (/src/components/forms/)
 
@@ -226,11 +227,49 @@ const buttonVariants = cva(
 - **Documentation Source**: Official Magic UI docs
 - **Implementation**: ✅ Verified against official patterns
 
-### Video Text - ✅ IMPLEMENTED
+### Video Text - ✅ IMPLEMENTED (UPDATED)
 - **File**: `/src/components/magicui/video-text.tsx`
-- **Usage**: Animated text reveals with staggered animations
-- **Documentation Source**: Official Magic UI docs
-- **Implementation**: ✅ Verified against official patterns
+- **Usage**: SVG-masked video backgrounds for text effects
+- **Documentation Source**: Official Magic UI docs (https://magicui.design/docs/components/video-text)
+- **Implementation**: ✅ Updated to match official Magic UI API
+- **CMS Integration**: Background videos managed via `getBackgroundVideo()` from CMS system
+
+#### Props API
+```typescript
+interface VideoTextProps {
+  src: string // Video source URL (required)
+  children: React.ReactNode // Text content (required)
+  className?: string // Additional CSS classes
+  autoPlay?: boolean // Default: true
+  muted?: boolean // Default: true
+  loop?: boolean // Default: true
+  preload?: string // Default: "auto"
+  fontSize?: string | number // Default: 20
+  fontWeight?: string | number // Default: "bold"
+  textAnchor?: string // Default: "middle"
+  dominantBaseline?: string // Default: "middle"
+  fontFamily?: string // Default: "sans-serif"
+  as?: React.ElementType // Default: "div"
+}
+```
+
+#### Usage Example
+```tsx
+import { VideoText } from '@/components/magicui/video-text'
+import { getBackgroundVideo } from '@/lib/cms/cms-images'
+
+const backgroundVideo = getBackgroundVideo('brandStatement')
+
+<VideoText
+  src={backgroundVideo.src}
+  className="h-[200px] w-full"
+  fontSize="4rem"
+  fontWeight="bold"
+  fontFamily="serif"
+>
+  Exact. Effective. Empowering.
+</VideoText>
+```
 
 ---
 

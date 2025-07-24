@@ -111,7 +111,7 @@ Modern 2025 redesign of the tutoring website focusing on:
 - **interactive-hover-button.tsx** - Sophisticated hover animations
 - **animated-subscribe-button.tsx** - State-based form buttons
 - **shiny-button.tsx** - Premium shimmer effect buttons
-- **video-text.tsx** - Animated text reveals
+- **video-text.tsx** - SVG-masked video background text effects with CMS integration
 
 ### Layout Components (/src/components/layout/)
 ✅ **AVAILABLE COMPONENTS** - Page structure:
@@ -126,6 +126,7 @@ Modern 2025 redesign of the tutoring website focusing on:
 - **service-card.tsx** - Service display cards
 - **trust-indicators.tsx** - Credibility elements
 - **royal-testimonial-card.tsx** - Premium testimonials
+- **brand-statement-video.tsx** - Video-text brand messaging component
 
 ## Component Development Workflow
 
@@ -198,6 +199,65 @@ Every new component MUST be documented in /docs/CUSTOM_DOCUMENTATION.md with:
 40. **PERFORMANCE MONITORING** - Bundle analysis, Web Vitals tracking, real user monitoring
 41. **SECURITY IMPLEMENTATION** - JWT authentication, HTTP-only cookies, input validation with Zod
 42. **TROUBLESHOOTING PREPARATION** - Document common issues and solutions in codebase
+
+# VIDEO-TEXT IMPLEMENTATION PATTERNS
+
+## Magic UI Video-Text Component Documentation
+
+### Core Implementation (video-text.tsx)
+```typescript
+// Official Magic UI pattern with SVG masking
+export function VideoText({
+  src,
+  children,
+  className,
+  autoPlay = true,
+  muted = true,
+  loop = true,
+  fontSize = 20,
+  fontWeight = "bold",
+  fontFamily = "sans-serif"
+}: VideoTextProps) {
+  // Uses SVG mask for text cutout effect
+  // Includes accessibility fallbacks
+  // Supports full typography customization
+}
+```
+
+### CMS Integration Pattern
+```typescript
+// Proper CMS integration for background videos
+import { getBackgroundVideo } from '@/lib/cms/cms-images'
+
+const backgroundVideo = getBackgroundVideo('brandStatement')
+const videoSrc = backgroundVideo?.src
+```
+
+### Marketing Component Pattern (brand-statement-video.tsx)
+```typescript
+// Modular wrapper for business-specific video-text effects
+export function BrandStatementVideo({ 
+  text = "Exact. Effective. Empowering.",
+  videoKey = 'brandStatement'
+}: BrandStatementVideoProps) {
+  // CMS integration
+  // Accessibility compliance
+  // Responsive design
+  // Fallback content
+}
+```
+
+### Usage Guidelines
+1. **ALWAYS use CMS integration** - Never hardcode video paths
+2. **ACCESSIBILITY MANDATORY** - Include screen reader text and noscript fallbacks
+3. **PERFORMANCE OPTIMISED** - Proper video loading, autoplay with muted
+4. **RESPONSIVE DESIGN** - Text scales appropriately across devices
+5. **BRITISH ENGLISH** - All content and documentation must use British spelling
+
+### Available Background Videos (CMS)
+- `brandStatement` - Elizabeth Burrows introduction video for brand messaging
+- `tutoring` - Professional tutoring context video
+- `oxbridge` - University preparation focused content
 
 ---
 

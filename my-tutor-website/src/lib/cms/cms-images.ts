@@ -175,6 +175,35 @@ export const VIDEO_PLACEHOLDERS = {
   }
 } as const
 
+// Background videos for video-text effects
+// CMS DATA SOURCE: Using existing video content for video-text component backgrounds
+export const BACKGROUND_VIDEOS = {
+  brandStatement: {
+    src: '/Elizabeth-Burrows-introduces-My-Private-Tutor-Online.mp4',
+    fallback: '/Elizabeth-Burrows-introduces-My-Private-Tutor-Online.webm',
+    poster: '/images/video-placeholders/placeholder_for_introductionary_video.png',
+    alt: 'Elizabeth Burrows introduces My Private Tutor Online - brand statement background',
+    title: 'Elizabeth Burrows Introduction Video',
+    description: 'Founder introduction video used as background for brand statement text effects'
+  },
+  tutoring: {
+    src: '/Elizabeth-Burrows-introduces-My-Private-Tutor-Online.mp4',
+    fallback: '/Elizabeth-Burrows-introduces-My-Private-Tutor-Online.webm',
+    poster: '/images/video-placeholders/placeholder_for_introductionary_video.png',
+    alt: 'Professional tutoring introduction video background',
+    title: 'Tutoring Introduction Background',
+    description: 'Professional introduction video for tutoring-focused video-text effects'
+  },
+  oxbridge: {
+    src: '/Elizabeth-Burrows-introduces-My-Private-Tutor-Online.mp4',
+    fallback: '/Elizabeth-Burrows-introduces-My-Private-Tutor-Online.webm',
+    poster: '/images/video-placeholders/placeholder_for_introductionary_video.png', 
+    alt: 'Oxford Cambridge preparation introduction video background',
+    title: 'Oxbridge Preparation Background',
+    description: 'Educational excellence video for university preparation content'
+  }
+} as const
+
 // Fallback images for missing content
 export const FALLBACK_IMAGES = {
   placeholder: {
@@ -298,6 +327,22 @@ export const getVideoPlaceholders = () => {
 }
 
 /**
+ * Get background video for video-text effects
+ * CMS DATA SOURCE: Using BACKGROUND_VIDEOS for video-text component backgrounds
+ */
+export const getBackgroundVideo = (videoKey: keyof typeof BACKGROUND_VIDEOS) => {
+  return BACKGROUND_VIDEOS[videoKey]
+}
+
+/**
+ * Get all background videos
+ * CMS DATA SOURCE: Using BACKGROUND_VIDEOS for complete video inventory
+ */
+export const getBackgroundVideos = () => {
+  return BACKGROUND_VIDEOS
+}
+
+/**
  * Get fallback image for missing assets
  * CMS DATA SOURCE: Using FALLBACK_IMAGES.placeholder for missing images
  */
@@ -407,6 +452,7 @@ export default {
   team: TEAM_IMAGES,
   testimonials: TESTIMONIAL_IMAGES,
   videoPlaceholders: VIDEO_PLACEHOLDERS,
+  backgroundVideos: BACKGROUND_VIDEOS,
   students: STUDENT_IMAGES,
   fallbacks: FALLBACK_IMAGES,
   getMainLogo,
@@ -417,6 +463,8 @@ export default {
   getTeamImages,
   getTestimonialImages,
   getVideoPlaceholders,
+  getBackgroundVideo,
+  getBackgroundVideos,
   getStudentImages,
   getFallbackImage,
   getAvatarPlaceholder,

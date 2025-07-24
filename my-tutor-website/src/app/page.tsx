@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { HeroVideoDialog } from '@/components/magicui/hero-video-dialog'
 import { IconCloud } from '@/components/magicui/icon-cloud'
+import { BrandStatementVideo } from '@/components/marketing/brand-statement-video'
 import { ShinyButton } from '@/components/magicui/shiny-button'
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
 import { VideoText } from '@/components/magicui/video-text'
@@ -421,9 +422,15 @@ export default function Home() {
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white mb-6">
               This Is Tutoring at Its Best
             </h2>
-            <p className="text-xl text-accent-300 mb-8">
-              Exact. Effective. Empowering.
-            </p>
+            
+            {/* Video-text brand statement */}
+            <div className="mb-8">
+              <BrandStatementVideo 
+                className="h-[120px]" 
+                text="Exact. Effective. Empowering."
+                videoKey="brandStatement"
+              />
+            </div>
             <p className="text-lg text-primary-300 mb-8 max-w-2xl mx-auto">
               From prep school entry to Oxbridge preparation, My Private Tutor Online delivers expert tuition for exceptional futures.
             </p>
