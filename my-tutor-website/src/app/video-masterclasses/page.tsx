@@ -10,12 +10,12 @@ import { Section } from '@/components/layout/section'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
-// CMS DATA SOURCE: Using structured content for Video Masterclasses page
+// CMS DATA SOURCE: Elizabeth's Video Masterclasses content from client brief
 const videoMasterclassesContent = {
   hero: {
-    title: "Video Masterclasses with Elizabeth",
-    subtitle: "Expert guidance from our founder",
-    description: "Exclusive masterclasses designed to provide invaluable insights into British education, university applications, and cultural integration.",
+    title: "Exclusive Video Masterclasses with Elizabeth Burrows",
+    subtitle: "A trusted guide to British education, culture, and university preparation",
+    description: "Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over 15 years of international education experience. These masterclasses offer rare access to the knowledge and strategies typically reserved for her private clients.",
     backgroundImage: "/images/hero/masterclasses-hero.jpg"
   },
   instructor: {
@@ -134,7 +134,7 @@ function MasterclassCard({ masterclass }: MasterclassCardProps) {
   const [showDetails, setShowDetails] = useState(false)
 
   return (
-    <Card className="border-slate-200 overflow-hidden">
+    <Card className="border-slate-200 overflow-hidden rounded-none">
       <div 
         className="aspect-video bg-gradient-to-br from-slate-200 to-slate-300 relative cursor-pointer group"
         onClick={() => setShowDetails(!showDetails)}
@@ -154,8 +154,8 @@ function MasterclassCard({ masterclass }: MasterclassCardProps) {
         </div>
       </div>
       
-      <CardHeader>
-        <div className="flex justify-between items-start mb-2">
+      <CardHeader className="p-8">
+        <div className="flex justify-between items-start mb-4">
           <div className="flex items-center gap-2">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
@@ -173,11 +173,11 @@ function MasterclassCard({ masterclass }: MasterclassCardProps) {
           </div>
         </div>
         
-        <CardTitle className="text-xl font-serif font-bold text-slate-900">
+        <CardTitle className="text-2xl font-serif font-bold text-slate-900 mb-2">
           {masterclass.title}
         </CardTitle>
-        <p className="text-amber-600 font-medium">{masterclass.subtitle}</p>
-        <p className="text-slate-600">{masterclass.description}</p>
+        <p className="text-amber-600 font-medium mb-4 text-lg">{masterclass.subtitle}</p>
+        <p className="text-slate-600 text-base leading-relaxed">{masterclass.description}</p>
         
         <div className="flex items-center gap-4 text-sm text-slate-500">
           <div className="flex items-center gap-1">
@@ -191,9 +191,9 @@ function MasterclassCard({ masterclass }: MasterclassCardProps) {
         </div>
       </CardHeader>
       
-      <CardContent>
+      <CardContent className="px-8 pb-8">
         <Button 
-          className="w-full bg-amber-600 hover:bg-amber-700 text-white mb-4"
+          className="w-full bg-amber-600 hover:bg-amber-700 text-white mb-6 py-3 text-base"
           onClick={() => setShowDetails(!showDetails)}
         >
           {showDetails ? 'Hide Details' : 'View Details & Enroll'}
@@ -344,7 +344,7 @@ export default function VideoMasterclassesPage() {
             </p>
           </m.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {videoMasterclassesContent.benefits.map((benefit, index) => (
               <m.div
                 key={index}
@@ -353,8 +353,8 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="text-center h-full border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
+                <Card className="text-center h-full border-slate-200 hover:shadow-lg transition-shadow duration-300 rounded-none">
+                  <CardContent className="p-8">
                     <div className="bg-amber-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center text-amber-600">
                       {benefit.icon}
                     </div>
@@ -386,7 +386,7 @@ export default function VideoMasterclassesPage() {
             </p>
           </m.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {videoMasterclassesContent.masterclasses.map((masterclass, index) => (
               <m.div
                 key={masterclass.id}
@@ -419,7 +419,7 @@ export default function VideoMasterclassesPage() {
               Get both masterclasses at a special discounted rate and save over £70 on individual purchases.
             </p>
             
-            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div className="bg-white shadow-lg p-12 mb-8">
               <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="text-left">
                   <h3 className="text-2xl font-semibold text-slate-900 mb-2">

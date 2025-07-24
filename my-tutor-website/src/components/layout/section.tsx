@@ -29,10 +29,10 @@ export function Section({
 
   const backgroundClasses = {
     white: 'bg-white',
-    grey: 'bg-navy-50',
-    gradient: 'bg-gradient-to-br from-white via-navy-50 to-gold-50',
-    accent: 'bg-gold-50',
-    primary: 'bg-navy-900 text-white',
+    grey: 'bg-primary-50',
+    gradient: 'bg-gradient-to-br from-white via-primary-50 to-accent-50',
+    accent: 'bg-accent-50',
+    primary: 'bg-primary-900 text-white',
     transparent: 'bg-transparent'
   }
 
@@ -124,13 +124,13 @@ export function SectionHeader({
       )}
 
       {/* Main Title */}
-      <TitleComponent className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 leading-tight mb-4">
+      <TitleComponent className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-primary-900 leading-tight mb-4">
         {title}
       </TitleComponent>
 
       {/* Description */}
       {description && (
-        <p className="text-lg text-navy-600 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-lg text-primary-600 leading-relaxed max-w-2xl mx-auto">
           {description}
         </p>
       )}

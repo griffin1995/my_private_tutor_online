@@ -197,7 +197,15 @@ export const FALLBACK_IMAGES = {
 
 // Student images for results section
 export const STUDENT_IMAGES = {
-  teenager: {
+  'student-child': {
+    src: '/images/students/student-child.jpg',
+    alt: 'Young student engaged in personalised tutoring session',
+    width: 300,
+    height: 400,
+    title: 'Personalised Tutoring',
+    loading: 'lazy' as const
+  },
+  'student-teenager': {
     src: '/images/students/student-teenager.jpg',
     alt: 'GCSE student celebrating academic success with improved grades',
     width: 300,
@@ -205,7 +213,7 @@ export const STUDENT_IMAGES = {
     title: 'GCSE Success Story',
     loading: 'lazy' as const
   },
-  aLevel: {
+  'student-university': {
     src: '/images/students/student-university.jpg',
     alt: 'A-Level student achieving excellent results for university application',
     width: 300,
@@ -213,20 +221,12 @@ export const STUDENT_IMAGES = {
     title: 'A-Level Achievement',
     loading: 'lazy' as const
   },
-  oxbridge: {
+  'student-oxbridge': {
     src: '/images/students/student-oxbridge.jpg',
     alt: 'Oxbridge candidate celebrating university acceptance offer',
     width: 300,
     height: 400,
     title: 'Oxbridge Success',
-    loading: 'lazy' as const
-  },
-  child: {
-    src: '/images/students/student-child.jpg',
-    alt: 'Young student engaged in personalised tutoring session',
-    width: 300,
-    height: 400,
-    title: 'Personalised Tutoring',
     loading: 'lazy' as const
   }
 } as const

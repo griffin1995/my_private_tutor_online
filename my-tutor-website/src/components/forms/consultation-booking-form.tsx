@@ -74,8 +74,8 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
       <Card className={cn("w-full max-w-2xl mx-auto", className)}>
         <CardContent className="text-center py-12">
           <div className="mb-6">
-            <CheckCircle className="h-16 w-16 text-gold-500 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold text-navy-900 mb-2">
+            <CheckCircle className="h-16 w-16 text-accent-500 mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold text-primary-900 mb-2">
               Consultation Request Received
             </h3>
             <p className="text-gray-600 max-w-md mx-auto">
@@ -84,8 +84,8 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
             </p>
           </div>
           
-          <div className="bg-gold-50 rounded-lg p-4 mb-6">
-            <div className="flex items-center justify-center gap-2 text-gold-700 font-medium text-sm">
+          <div className="bg-accent-50 rounded-lg p-4 mb-6">
+            <div className="flex items-center justify-center gap-2 text-accent-700 font-medium text-sm">
               <Crown className="h-4 w-4" />
               Royal Family Endorsed Service
             </div>
@@ -94,7 +94,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
           <Button 
             onClick={() => setIsSubmitted(false)}
             variant="outline"
-            className="text-navy-700 border-navy-200"
+            className="text-primary-700 border-primary-200"
           >
             Submit Another Enquiry
           </Button>
@@ -107,10 +107,10 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
     <Card className={cn("w-full max-w-2xl mx-auto", className)}>
       <CardHeader className={cn(compact ? "pb-4" : "pb-6")}>
         <div className="flex items-center gap-3 mb-2">
-          <Crown className="h-6 w-6 text-gold-500" />
+          <Crown className="h-6 w-6 text-accent-500" />
           <Badge variant="gold" className="text-xs">Royal Family Endorsed</Badge>
         </div>
-        <CardTitle className="text-navy-900 text-xl">
+        <CardTitle className="text-primary-900 text-xl">
           Book Your Confidential Consultation
         </CardTitle>
         <CardDescription className="leading-relaxed">
@@ -124,7 +124,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
           {/* Parent & Student Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="parentName" className="text-sm font-medium text-navy-800">
+              <Label htmlFor="parentName" className="text-sm font-medium text-primary-800">
                 Parent/Guardian Name *
               </Label>
               <Input
@@ -139,7 +139,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
             </div>
 
             <div>
-              <Label htmlFor="studentName" className="text-sm font-medium text-navy-800">
+              <Label htmlFor="studentName" className="text-sm font-medium text-primary-800">
                 Student Name *
               </Label>
               <Input
@@ -157,7 +157,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
           {/* Contact Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="email" className="text-sm font-medium text-navy-800">
+              <Label htmlFor="email" className="text-sm font-medium text-primary-800">
                 Email Address *
               </Label>
               <Input
@@ -173,7 +173,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
             </div>
 
             <div>
-              <Label htmlFor="phone" className="text-sm font-medium text-navy-800">
+              <Label htmlFor="phone" className="text-sm font-medium text-primary-800">
                 Phone Number *
               </Label>
               <Input
@@ -192,7 +192,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
           {/* Academic Details */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label className="text-sm font-medium text-navy-800">Academic Level *</Label>
+              <Label className="text-sm font-medium text-primary-800">Academic Level *</Label>
               <Select onValueChange={(value) => setValue('academicLevel', value)}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="Select level" />
@@ -213,7 +213,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
             </div>
 
             <div>
-              <Label className="text-sm font-medium text-navy-800 flex items-center gap-2">
+              <Label className="text-sm font-medium text-primary-800 flex items-center gap-2">
                 <Clock className="h-4 w-4" />
                 Timescale
               </Label>
@@ -233,7 +233,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
 
           {/* Subject Requirements */}
           <div>
-            <Label htmlFor="subjects" className="text-sm font-medium text-navy-800">
+            <Label htmlFor="subjects" className="text-sm font-medium text-primary-800">
               Subjects Required *
             </Label>
             <Input
@@ -249,7 +249,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
 
           {/* Specific Requirements */}
           <div>
-            <Label htmlFor="specificNeeds" className="text-sm font-medium text-navy-800">
+            <Label htmlFor="specificNeeds" className="text-sm font-medium text-primary-800">
               Specific Requirements (Optional)
             </Label>
             <Textarea
@@ -264,7 +264,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
           {/* Service Level */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label className="text-sm font-medium text-navy-800">Preferred Contact Method</Label>
+              <Label className="text-sm font-medium text-primary-800">Preferred Contact Method</Label>
               <Select onValueChange={(value) => setValue('preferredContact', value as any)}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="How should we contact you?" />
@@ -278,7 +278,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
             </div>
 
             <div>
-              <Label className="text-sm font-medium text-navy-800">Service Level</Label>
+              <Label className="text-sm font-medium text-primary-800">Service Level</Label>
               <Select onValueChange={(value) => setValue('budget', value as any)}>
                 <SelectTrigger className="mt-1">
                   <SelectValue placeholder="Select service level" />
@@ -297,7 +297,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
           <div className="pt-2">
             <Button 
               type="submit" 
-              className="w-full bg-gold-600 hover:bg-gold-700 text-white font-medium py-3"
+              className="w-full bg-accent-600 hover:bg-accent-700 text-white font-medium py-3"
               disabled={isSubmitting}
               size="lg"
             >

@@ -31,8 +31,8 @@ export function PageHeader({
   const contactInfo = getContactInfo()
 
   const containerClasses = {
-    default: 'bg-white border-b border-navy-100 sticky top-0 z-50',
-    transparent: 'bg-white/95 backdrop-blur-sm border-b border-navy-100/50 sticky top-0 z-50',
+    default: 'bg-white border-b border-primary-100 sticky top-0 z-50',
+    transparent: 'bg-white/95 backdrop-blur-sm border-b border-primary-100/50 sticky top-0 z-50',
     sticky: 'bg-white shadow-md sticky top-0 z-50'
   }
 
@@ -44,7 +44,7 @@ export function PageHeader({
       
       {/* Top Contact Bar - Desktop Only */}
       {showContactInfo && (
-        <div className="hidden lg:block bg-navy-900 text-white py-2">
+        <div className="hidden lg:block bg-primary-900 text-white py-2">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center text-sm">
               <div className="flex items-center gap-6">
@@ -97,7 +97,7 @@ export function PageHeader({
                 />
               </div>
               <div className="hidden sm:block">
-                <span className="font-serif text-lg lg:text-xl font-bold text-navy-900 group-hover:text-navy-700 transition-colors duration-300">
+                <span className="font-serif text-lg lg:text-xl font-bold text-primary-900 group-hover:text-primary-700 transition-colors duration-300">
                   {headerContent.siteName}
                 </span>
               </div>
@@ -113,7 +113,7 @@ export function PageHeader({
                     <NavigationMenuLink asChild>
                       <Link
                         href={item.href}
-                        className="text-navy-700 hover:text-navy-900 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-navy-50"
+                        className="text-primary-700 hover:text-primary-900 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-primary-50"
                       >
                         {item.label}
                       </Link>
@@ -143,7 +143,7 @@ export function PageHeader({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-navy-700 hover:text-navy-900 hover:bg-navy-50"
+                  className="text-primary-700 hover:text-primary-900 hover:bg-primary-50"
                   aria-label="Open mobile menu"
                 >
                   <Menu className="h-6 w-6" />
@@ -152,7 +152,7 @@ export function PageHeader({
               
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <SheetHeader className="text-left">
-                  <SheetTitle className="font-serif text-xl font-bold text-navy-900">
+                  <SheetTitle className="font-serif text-xl font-bold text-primary-900">
                     {headerContent.siteName}
                   </SheetTitle>
                 </SheetHeader>
@@ -165,7 +165,7 @@ export function PageHeader({
                         key={index}
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="text-navy-700 hover:text-navy-900 font-medium py-3 px-4 rounded-lg hover:bg-navy-50 transition-all duration-200"
+                        className="text-primary-700 hover:text-primary-900 font-medium py-3 px-4 rounded-lg hover:bg-primary-50 transition-all duration-200"
                       >
                         {item.label}
                       </Link>
@@ -174,22 +174,22 @@ export function PageHeader({
                 </nav>
 
                 {/* Mobile Contact Info */}
-                <div className="mt-8 pt-8 border-t border-navy-200">
+                <div className="mt-8 pt-8 border-t border-primary-200">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-navy-600">
+                    <div className="flex items-center gap-3 text-primary-600">
                       <Phone className="w-5 h-5" />
                       <a 
                         href={`tel:${contactInfo.phone}`}
-                        className="hover:text-navy-900 transition-colors duration-200"
+                        className="hover:text-primary-900 transition-colors duration-200"
                       >
                         {contactInfo.phone}
                       </a>
                     </div>
-                    <div className="flex items-center gap-3 text-navy-600">
+                    <div className="flex items-center gap-3 text-primary-600">
                       <Mail className="w-5 h-5" />
                       <a 
                         href={`mailto:${contactInfo.email}`}
-                        className="hover:text-navy-900 transition-colors duration-200"
+                        className="hover:text-primary-900 transition-colors duration-200"
                       >
                         {contactInfo.email}
                       </a>
@@ -198,7 +198,7 @@ export function PageHeader({
                 </div>
 
                 {/* Mobile CTA Button */}
-                <div className="mt-8 pt-6 border-t border-navy-200">
+                <div className="mt-8 pt-6 border-t border-primary-200">
                   <Button
                     className="w-full bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white shadow-gold"
                     onClick={() => setMobileMenuOpen(false)}

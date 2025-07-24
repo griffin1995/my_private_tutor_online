@@ -25,7 +25,7 @@ export function PerformanceMonitor({
   }, [])
 
   useEffect(() => {
-    if (!enabled || !isMounted) return
+    if (!enabled || !isMounted || typeof window === 'undefined') return
 
     // Update metrics periodically
     const interval = setInterval(() => {
@@ -35,7 +35,8 @@ export function PerformanceMonitor({
     return () => clearInterval(interval)
   }, [enabled, isMounted])
 
-  if (!enabled || typeof window === 'undefined' || !isMounted) {
+  // Prevent hydration mismatch by not rendering on server
+  if (!isMounted || !enabled || typeof window === 'undefined') {
     return null
   }
 
