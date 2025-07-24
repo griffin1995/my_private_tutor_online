@@ -70,14 +70,14 @@ export function RoyalTrustIndicators({
     horizontal: 'font-semibold text-primary-900 text-sm leading-tight',
     vertical: 'font-semibold text-primary-900 text-sm leading-tight',
     grid: 'font-semibold text-primary-900 text-sm leading-tight',
-    premium: 'font-serif font-bold text-primary-900 text-lg leading-tight group-hover:text-royal-700 transition-colors duration-300',
+    premium: 'font-serif font-bold text-primary-900 text-lg leading-tight group-hover:text-royal-700 transition-colours duration-300',
   }
 
   const descriptionClasses = {
     horizontal: 'text-xs text-primary-600 mt-1 leading-relaxed',
     vertical: 'text-xs text-primary-600 mt-1 leading-relaxed',
     grid: 'text-xs text-primary-600 mt-1 leading-relaxed',
-    premium: 'text-sm text-primary-600 mt-2 leading-relaxed group-hover:text-primary-700 transition-colors duration-300',
+    premium: 'text-sm text-primary-600 mt-2 leading-relaxed group-hover:text-primary-700 transition-colours duration-300',
   }
 
   return (

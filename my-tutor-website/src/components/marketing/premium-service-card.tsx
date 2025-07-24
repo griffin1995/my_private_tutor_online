@@ -55,15 +55,15 @@ export function PremiumServiceCard({
   }
 
   const iconContainerClasses = {
-    standard: 'w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mb-4 group-hover:bg-primary-200 transition-colors duration-300',
+    standard: 'w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center mb-4 group-hover:bg-primary-200 transition-colours duration-300',
     premium: 'w-16 h-16 rounded-full bg-gradient-to-br from-accent-400 to-accent-500 flex items-center justify-center mb-6 group-hover:from-accent-500 group-hover:to-accent-600 transition-all duration-300 shadow-lg',
     royal: 'w-20 h-20 rounded-full bg-gradient-to-br from-royal-500 to-royal-600 flex items-center justify-center mb-6 group-hover:from-royal-600 group-hover:to-royal-700 transition-all duration-300 shadow-xl ring-4 ring-royal-200'
   }
 
   const titleClasses = {
-    standard: 'font-serif text-xl font-bold text-primary-900 mb-3 group-hover:text-primary-700 transition-colors duration-300',
-    premium: 'font-serif text-2xl font-bold text-primary-900 mb-4 group-hover:text-accent-700 transition-colors duration-300',
-    royal: 'font-serif text-2xl font-bold text-primary-900 mb-4 group-hover:text-royal-700 transition-colors duration-300'
+    standard: 'font-serif text-xl font-bold text-primary-900 mb-3 group-hover:text-primary-700 transition-colours duration-300',
+    premium: 'font-serif text-2xl font-bold text-primary-900 mb-4 group-hover:text-accent-700 transition-colours duration-300',
+    royal: 'font-serif text-2xl font-bold text-primary-900 mb-4 group-hover:text-royal-700 transition-colours duration-300'
   }
 
   const descriptionClasses = {

@@ -52,7 +52,7 @@ export function PageHeader({
                   <Phone className="w-4 h-4" />
                   <a 
                     href={`tel:${contactInfo.phone}`}
-                    className="hover:text-accent-300 transition-colors duration-200"
+                    className="hover:text-accent-300 transition-colours duration-200"
                   >
                     {contactInfo.phone}
                   </a>
@@ -61,7 +61,7 @@ export function PageHeader({
                   <Mail className="w-4 h-4" />
                   <a 
                     href={`mailto:${contactInfo.email}`}
-                    className="hover:text-accent-300 transition-colors duration-200"
+                    className="hover:text-accent-300 transition-colours duration-200"
                   >
                     {contactInfo.email}
                   </a>
@@ -97,7 +97,7 @@ export function PageHeader({
                 />
               </div>
               <div className="hidden sm:block">
-                <span className="font-serif text-lg lg:text-xl font-bold text-primary-900 group-hover:text-primary-700 transition-colors duration-300">
+                <span className="font-serif text-lg lg:text-xl font-bold text-primary-900 group-hover:text-primary-700 transition-colours duration-300">
                   {headerContent.siteName}
                 </span>
               </div>
@@ -113,7 +113,7 @@ export function PageHeader({
                     <NavigationMenuLink asChild>
                       <Link
                         href={item.href}
-                        className="text-primary-700 hover:text-primary-900 font-medium transition-colors duration-200 px-3 py-2 rounded-md hover:bg-primary-50"
+                        className="text-primary-700 hover:text-primary-900 font-medium transition-colours duration-200 px-3 py-2 rounded-md hover:bg-primary-50"
                       >
                         {item.label}
                       </Link>
@@ -180,7 +180,7 @@ export function PageHeader({
                       <Phone className="w-5 h-5" />
                       <a 
                         href={`tel:${contactInfo.phone}`}
-                        className="hover:text-primary-900 transition-colors duration-200"
+                        className="hover:text-primary-900 transition-colours duration-200"
                       >
                         {contactInfo.phone}
                       </a>
@@ -189,7 +189,7 @@ export function PageHeader({
                       <Mail className="w-5 h-5" />
                       <a 
                         href={`mailto:${contactInfo.email}`}
-                        className="hover:text-primary-900 transition-colors duration-200"
+                        className="hover:text-primary-900 transition-colours duration-200"
                       >
                         {contactInfo.email}
                       </a>

@@ -168,7 +168,7 @@ export default function Home() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center space-x-3 group">
-                <span className={`font-serif text-lg lg:text-xl font-bold transition-colors duration-300 ${
+                <span className={`font-serif text-lg lg:text-xl font-bold transition-colours duration-300 ${
                   isScrolled ? 'text-primary-900' : 'text-white'
                 }`}>
                   My Private Tutor Online
@@ -188,7 +188,7 @@ export default function Home() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`font-medium transition-colors duration-300 hover:text-accent-400 ${
+                  className={`font-medium transition-colours duration-300 hover:text-accent-400 ${
                     isScrolled ? 'text-primary-700' : 'text-white'
                   }`}
                 >

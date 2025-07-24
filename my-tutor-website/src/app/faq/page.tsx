@@ -118,7 +118,7 @@ export default function FAQPage() {
                     <a 
                       key={index}
                       href={emailHref}
-                      className="px-8 py-3 border-2 border-primary-900 bg-transparent text-primary-900 hover:bg-primary-900 hover:text-white transition-colors duration-300 rounded-md font-medium"
+                      className="px-8 py-3 border-2 border-primary-900 bg-transparent text-primary-900 hover:bg-primary-900 hover:text-white transition-colours duration-300 rounded-md font-medium"
                     >
                       {button.text}
                     </a>

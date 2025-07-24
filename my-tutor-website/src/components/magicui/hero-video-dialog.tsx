@@ -140,7 +140,7 @@ export function HeroVideoDialog({
           />
           
           {/* Play Button Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colours group-hover:bg-black/30">
             <div className="flex items-center justify-center w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full shadow-lg transition-all duration-300 group-hover:bg-white group-hover:scale-110">
               <Play className="w-6 h-6 text-primary-900 ml-1" fill="currentColor" />
             </div>
@@ -162,7 +162,7 @@ export function HeroVideoDialog({
           >
             {/* Close Button */}
             <button
-              className="absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colours focus:outline-none focus:ring-2 focus:ring-white/50"
               onClick={handleClose}
               aria-label="Close video"
             >

@@ -43,7 +43,7 @@ export function ServiceCard({
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
-          <div className="absolute inset-0 bg-primary-900/10 group-hover:bg-primary-900/20 transition-colors duration-300" />
+          <div className="absolute inset-0 bg-primary-900/10 group-hover:bg-primary-900/20 transition-colours duration-300" />
         </div>
       )}
       

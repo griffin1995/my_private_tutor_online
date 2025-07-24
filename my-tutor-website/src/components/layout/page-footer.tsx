@@ -106,7 +106,7 @@ export function PageFooter({
                       <li key={linkIndex}>
                         <Link
                           href={link.href}
-                          className="text-primary-200 hover:text-white transition-colors duration-200 text-sm hover:underline"
+                          className="text-primary-200 hover:text-white transition-colours duration-200 text-sm hover:underline"
                         >
                           {link.label}
                         </Link>
@@ -131,7 +131,7 @@ export function PageFooter({
                   <h4 className="font-semibold text-white mb-1">Phone</h4>
                   <a 
                     href={`tel:${contactInfo.phone}`}
-                    className="text-primary-200 hover:text-white transition-colors duration-200"
+                    className="text-primary-200 hover:text-white transition-colours duration-200"
                   >
                     {contactInfo.phone}
                   </a>
@@ -147,7 +147,7 @@ export function PageFooter({
                   <h4 className="font-semibold text-white mb-1">Email</h4>
                   <a 
                     href={`mailto:${contactInfo.email}`}
-                    className="text-primary-200 hover:text-white transition-colors duration-200"
+                    className="text-primary-200 hover:text-white transition-colours duration-200"
                   >
                     {contactInfo.email}
                   </a>
@@ -189,19 +189,19 @@ export function PageFooter({
               <div className="flex items-center gap-6 text-sm">
                 <Link
                   href="/privacy"
-                  className="text-primary-300 hover:text-white transition-colors duration-200"
+                  className="text-primary-300 hover:text-white transition-colours duration-200"
                 >
                   Privacy Policy
                 </Link>
                 <Link
                   href="/terms"
-                  className="text-primary-300 hover:text-white transition-colors duration-200"
+                  className="text-primary-300 hover:text-white transition-colours duration-200"
                 >
                   Terms of Service
                 </Link>
                 <Link
                   href="/cookies"
-                  className="text-primary-300 hover:text-white transition-colors duration-200"
+                  className="text-primary-300 hover:text-white transition-colours duration-200"
                 >
                   Cookie Policy
                 </Link>
