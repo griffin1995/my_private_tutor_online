@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface VideoTextProps {
@@ -14,7 +14,7 @@ interface VideoTextProps {
   className?: string
 }
 
-export default function VideoText({
+export function VideoText({
   text,
   duration = 2000,
   framerProps = {
@@ -55,18 +55,17 @@ export default function VideoText({
         )}
       >
         {letters.map((letter, i) => (
-          <motion.span
+          <m.span
             key={i}
             variants={letterVariants}
             className="inline-block"
             style={{ whiteSpace: letter === " " ? "pre" : "normal" }}
           >
             {letter === " " ? "\u00A0" : letter}
-          </motion.span>
+          </m.span>
         ))}
       </MotionH1>
     </div>
   )
 }
 
-export { VideoText }

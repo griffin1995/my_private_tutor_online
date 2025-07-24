@@ -73,7 +73,7 @@ export default function IconCloud({ iconSlugs, imageArray }: DynamicCloudProps) 
 
   if (!renderedIcons) {
     return <div className="flex h-full w-full items-center justify-center">
-      <div className="h-8 w-8 animate-spin rounded-full border-2 border-navy-900 border-t-transparent"></div>
+      <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary-900 border-t-transparent"></div>
     </div>
   }
 

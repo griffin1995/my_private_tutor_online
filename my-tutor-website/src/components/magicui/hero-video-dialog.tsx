@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { X, Play } from 'lucide-react'
 import Image from 'next/image'
 
@@ -142,7 +142,7 @@ export function HeroVideoDialog({
           {/* Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
             <div className="flex items-center justify-center w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full shadow-lg transition-all duration-300 group-hover:bg-white group-hover:scale-110">
-              <Play className="w-6 h-6 text-navy-900 ml-1" fill="currentColor" />
+              <Play className="w-6 h-6 text-primary-900 ml-1" fill="currentColor" />
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@ export function HeroVideoDialog({
       {/* Full-Screen Video Modal */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -170,7 +170,7 @@ export function HeroVideoDialog({
             </button>
 
             {/* Video Container */}
-            <motion.div
+            <m.div
               className="relative w-full max-w-6xl mx-4 aspect-video"
               variants={animationVariants[animationStyle]}
               initial="initial"
@@ -205,8 +205,8 @@ export function HeroVideoDialog({
                   }}
                 />
               )}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

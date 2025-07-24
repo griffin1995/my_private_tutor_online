@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, m } from "framer-motion"
 import { CheckIcon, PlusIcon } from "lucide-react"
 
 interface AnimatedSubscribeButtonProps {
@@ -42,7 +42,7 @@ export const AnimatedSubscribeButton: React.FC<
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <motion.span
+          <m.span
             key="action"
             className="relative block h-full w-full font-semibold"
             initial={{ y: -50 }}
@@ -53,7 +53,7 @@ export const AnimatedSubscribeButton: React.FC<
               <CheckIcon className="h-4 w-4" />
               {changeText}
             </span>
-          </motion.span>
+          </m.span>
         </motion.button>
       ) : (
         <motion.button
@@ -64,7 +64,7 @@ export const AnimatedSubscribeButton: React.FC<
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <motion.span
+          <m.span
             key="reaction"
             className="relative block font-semibold"
             initial={{ x: 0 }}
@@ -74,7 +74,7 @@ export const AnimatedSubscribeButton: React.FC<
               <PlusIcon className="h-4 w-4" />
               {initialText}
             </span>
-          </motion.span>
+          </m.span>
         </motion.button>
       )}
     </AnimatePresence>
