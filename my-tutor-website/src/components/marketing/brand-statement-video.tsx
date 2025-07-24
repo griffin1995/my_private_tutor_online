@@ -26,14 +26,14 @@ export function BrandStatementVideo({
   
   return (
     <div className={cn(
-      "relative h-[200px] w-full flex items-center justify-center",
+      "relative full-width flex items-center justify-center overflow-hidden",
       className
     )}>
       <VideoText
         src={videoSrc}
-        className="h-full w-full"
-        fontSize="clamp(2rem, 12vw, 8rem)"
-        fontWeight="bold"
+        className="h-full w-full px-2 sm:px-4"
+        fontSize="clamp(1.5rem, 18vw, 16rem)"
+        fontWeight="900"
         fontFamily="serif"
         autoPlay={true}
         muted={true}
@@ -44,8 +44,8 @@ export function BrandStatementVideo({
       
       {/* Fallback content for accessibility and SEO */}
       <noscript>
-        <div className="absolute inset-0 flex items-center justify-center bg-primary-900 text-white">
-          <h2 className="text-[clamp(2rem,12vw,8rem)] font-serif font-bold text-center whitespace-nowrap">
+        <div className="absolute inset-0 flex items-center justify-center bg-primary-900 text-white px-2 sm:px-4">
+          <h2 className="text-[clamp(1.5rem,18vw,16rem)] font-serif font-black text-center whitespace-nowrap overflow-hidden text-ellipsis">
             {text}
           </h2>
         </div>

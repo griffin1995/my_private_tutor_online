@@ -263,13 +263,36 @@ const backgroundVideo = getBackgroundVideo('brandStatement')
 <VideoText
   src={backgroundVideo.src}
   className="h-[200px] w-full"
-  fontSize="4rem"
+  fontSize="clamp(1.5rem, 18vw, 16rem)"
   fontWeight="bold"
   fontFamily="serif"
 >
   Exact. Effective. Empowering.
 </VideoText>
 ```
+
+#### Full-Width Implementation Pattern
+For text that needs to break out of container constraints and scale to viewport width:
+
+```tsx
+// Component wrapper uses full-width CSS utility
+<div className="relative full-width flex items-center justify-center overflow-hidden">
+  <VideoText
+    src={backgroundVideo.src}
+    className="h-full w-full px-2 sm:px-4"
+    fontSize="clamp(1.5rem, 18vw, 16rem)"
+    fontWeight="bold"
+    fontFamily="serif"
+  >
+    {text}
+  </VideoText>
+</div>
+```
+
+#### CSS Utilities Available
+- `.full-width` - Breaks out of container constraints using viewport calculations
+- `.breakout-full` - Alternative breakout method using CSS positioning
+- Responsive font sizing with `clamp(min, preferred, max)` for optimal scaling
 
 ---
 

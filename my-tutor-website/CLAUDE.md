@@ -253,6 +253,8 @@ export function BrandStatementVideo({
 3. **PERFORMANCE OPTIMISED** - Proper video loading, autoplay with muted
 4. **RESPONSIVE DESIGN** - Text scales appropriately across devices
 5. **BRITISH ENGLISH** - All content and documentation must use British spelling
+6. **FULL-WIDTH BREAKOUT** - Use `.full-width` CSS utility for container breakout
+7. **RESPONSIVE FONT SCALING** - Use `clamp(min, preferred, max)` for optimal text sizing
 
 ### Available Background Videos (CMS)
 - `brandStatement` - Elizabeth Burrows introduction video for brand messaging

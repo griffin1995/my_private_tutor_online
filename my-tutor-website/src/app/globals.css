@@ -499,3 +499,20 @@ html {
 .animate-scroll {
   animation: scroll 30s linear infinite;
 }
+
+/* Full-width breakout utility for breaking out of container constraints */
+.full-width {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Alternative breakout method using CSS Grid */
+.breakout-full {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
