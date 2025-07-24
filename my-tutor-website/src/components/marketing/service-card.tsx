@@ -43,16 +43,16 @@ export function ServiceCard({
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
-          <div className="absolute inset-0 bg-navy-900/10 group-hover:bg-navy-900/20 transition-colors duration-300" />
+          <div className="absolute inset-0 bg-primary-900/10 group-hover:bg-primary-900/20 transition-colors duration-300" />
         </div>
       )}
       
       <CardHeader className="pb-4">
         <div className="flex items-center gap-3 mb-3">
-          <div className="p-2 rounded-lg bg-gold-50">
-            <GraduationCap className="h-5 w-5 text-gold-600" />
+          <div className="p-2 rounded-lg bg-accent-50">
+            <GraduationCap className="h-5 w-5 text-accent-600" />
           </div>
-          <CardTitle className="text-navy-900 text-lg leading-tight">
+          <CardTitle className="text-primary-900 text-lg leading-tight">
             {title}
           </CardTitle>
         </div>
@@ -65,8 +65,8 @@ export function ServiceCard({
         <div className="space-y-5 flex-1">
           {/* Academic Levels */}
           <div>
-            <h4 className="font-medium text-sm text-navy-800 mb-2 flex items-center gap-2">
-              <div className="w-1 h-4 bg-gold-500 rounded"></div>
+            <h4 className="font-medium text-sm text-primary-800 mb-2 flex items-center gap-2">
+              <div className="w-1 h-4 bg-accent-500 rounded"></div>
               Academic Levels
             </h4>
             <div className="flex flex-wrap gap-1">
@@ -80,8 +80,8 @@ export function ServiceCard({
 
           {/* Subjects Covered */}
           <div>
-            <h4 className="font-medium text-sm text-navy-800 mb-2 flex items-center gap-2">
-              <BookOpen className="h-4 w-4 text-gold-600" />
+            <h4 className="font-medium text-sm text-primary-800 mb-2 flex items-center gap-2">
+              <BookOpen className="h-4 w-4 text-accent-600" />
               Subjects Covered
             </h4>
             <div className="flex flex-wrap gap-1">
@@ -100,14 +100,14 @@ export function ServiceCard({
 
           {/* Key Features */}
           <div>
-            <h4 className="font-medium text-sm text-navy-800 mb-3 flex items-center gap-2">
-              <Target className="h-4 w-4 text-gold-600" />
+            <h4 className="font-medium text-sm text-primary-800 mb-3 flex items-center gap-2">
+              <Target className="h-4 w-4 text-accent-600" />
               Key Features
             </h4>
             <ul className="text-sm text-gray-600 space-y-2">
               {keyFeatures.slice(0, 3).map((feature, index) => (
                 <li key={index} className="flex items-start gap-2">
-                  <span className="text-gold-500 text-xs mt-1.5 font-bold">✓</span>
+                  <span className="text-accent-500 text-xs mt-1.5 font-bold">✓</span>
                   <span className="leading-relaxed">{feature}</span>
                 </li>
               ))}
@@ -126,14 +126,14 @@ export function ServiceCard({
             variant="outline" 
             size="sm" 
             onClick={onLearnMore} 
-            className="flex-1 text-navy-700 border-navy-200 hover:bg-navy-50"
+            className="flex-1 text-primary-700 border-primary-200 hover:bg-primary-50"
           >
             Learn More
           </Button>
           <Button 
             size="sm" 
             onClick={onBookConsultation} 
-            className="flex-1 bg-gold-600 hover:bg-gold-700 text-white"
+            className="flex-1 bg-accent-600 hover:bg-accent-700 text-white"
           >
             Book Consultation
           </Button>

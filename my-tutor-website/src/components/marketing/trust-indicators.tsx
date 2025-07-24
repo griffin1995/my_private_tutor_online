@@ -20,19 +20,19 @@ export function TrustIndicators({
       icon: Crown,
       title: brandConfig.credentials.royalEndorsement.title,
       description: brandConfig.credentials.royalEndorsement.description,
-      color: 'text-gold-500',
+      color: 'text-accent-500',
     },
     {
       icon: Award, 
       title: brandConfig.credentials.tatlersListing.title,
       description: brandConfig.credentials.tatlersListing.description,
-      color: 'text-gold-500',
+      color: 'text-accent-500',
     },
     {
       icon: Calendar,
       title: brandConfig.credentials.experience.description,
       description: `Established ${brandConfig.foundedYear}`,
-      color: 'text-gold-500',
+      color: 'text-accent-500',
     },
   ]
 
@@ -56,7 +56,7 @@ export function TrustIndicators({
             <indicator.icon className={cn("h-6 w-6", indicator.color)} />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-navy-900 text-sm leading-tight">
+            <h3 className="font-semibold text-primary-900 text-sm leading-tight">
               {indicator.title}
             </h3>
             {showDescription && (
