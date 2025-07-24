@@ -32,7 +32,7 @@ export function BrandStatementVideo({
       <VideoText
         src={videoSrc}
         className="h-full w-full"
-        fontSize="4rem"
+        fontSize="clamp(2rem, 12vw, 8rem)"
         fontWeight="bold"
         fontFamily="serif"
         autoPlay={true}
@@ -45,7 +45,7 @@ export function BrandStatementVideo({
       {/* Fallback content for accessibility and SEO */}
       <noscript>
         <div className="absolute inset-0 flex items-center justify-center bg-primary-900 text-white">
-          <h2 className="text-4xl font-serif font-bold text-center">
+          <h2 className="text-[clamp(2rem,12vw,8rem)] font-serif font-bold text-center whitespace-nowrap">
             {text}
           </h2>
         </div>
