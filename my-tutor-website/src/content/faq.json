@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about My Private Tutor Online",
+    "description": "Find detailed answers to the most commonly asked questions about our tutors, process, pricing, and more.",
+    "backgroundImageKey": "childWithLaptop"
+  },
+
+  "categories": [
+    {
+      "title": "About the Service",
+      "icon": "🌐",
+      "questions": [
+        {
+          "question": "What is My Private Tutor Online?",
+          "answer": "My Private Tutor Online is a boutique, specialist tutoring company founded in 2010 by Bristol-educated, Cambridge-accepted educator and ex-Forbes journalist Elizabeth Burrows. We deliver premium one-to-one tuition for students from KS1 to A-Level and IB. Our carefully selected tutors include Oxbridge graduates, experienced teachers, and official examiners."
+        },
+        {
+          "question": "Why do parents choose My Private Tutor Online?",
+          "answer": "Personalised Experience: Our model is highly curated. Elizabeth personally guides the tutor selection process. Expert Examiners: Our Tier 1 tutors are official examiners who write and mark real assessments. Outstanding Results: 94% of GCSE students improve by two or more grades, many jumping from grade 5 to grade 8/9 in months."
+        },
+        {
+          "question": "Do you offer in-person tutoring?",
+          "answer": "Our focus is online tutoring to maximise quality and match. However, we do have a select group of trusted educators who offer in-person sessions in London. Please contact our team to enquire about availability."
+        }
+      ]
+    },
+    {
+      "title": "Tutors & Teaching",  
+      "icon": "🧑‍🏫",
+      "questions": [
+        {
+          "question": "How do the tutor tiers work?",
+          "answer": "Tier 1: Official examiners ideal for high-achieving students. Tier 2: Qualified teachers with 5+ years experience. Tier 3: Graduate subject specialists for mentoring and confidence building. Specialist tutoring begins at just £47.50 per hour with no registration fees."
+        },
+        {
+          "question": "What if I don't like my tutor?",
+          "answer": "No problem. We'll quickly match you with another educator until we find the ideal fit."
+        }
+      ]
+    },
+    {
+      "title": "Subjects & Curriculum",
+      "icon": "📚", 
+      "questions": [
+        {
+          "question": "What subjects do you offer tutoring in?",
+          "answer": "We cover entrance exams (4+, 7+, 11+, 13+, 16+), core subjects (English, Maths, Sciences), languages, humanities, sciences, social sciences, arts, university preparation, specialist tests, English language exams, and SEN support."
+        },
+        {
+          "question": "Do you offer university admissions support?",
+          "answer": "Yes. Our support includes personal statement coaching, interview preparation, subject-specific entrance tests, and Oxbridge strategy masterclasses."
+        }
+      ]
+    },
+    {
+      "title": "Progress & Results",
+      "icon": "💡",
+      "questions": [
+        {
+          "question": "What are your success rates?",
+          "answer": "94% of GCSE students improve by at least two grades. Many progress from grade 5 to 8/9 within months. We have consistent placements at Oxbridge and other top-tier universities."
+        }
+      ]
+    },
+    {
+      "title": "Pricing & Payment",
+      "icon": "💰",
+      "questions": [
+        {
+          "question": "How much does tutoring cost?",
+          "answer": "Specialist tutoring begins at just £47.50 per hour. Unlike many providers, we don't charge registration or administrative fees. For a bespoke quote, please complete our enquiry form."
+        },
+        {
+          "question": "Do you offer discounts?",
+          "answer": "Yes, discounts are available for block bookings (15+ lessons/month) and sibling enrolment."
+        }
+      ]
+    }
+  ],
+
+  "contact": {
+    "title": "Still Have Questions?",
+    "description": "Our team is always happy to help. Get in touch to discuss your specific needs or schedule a consultation with Elizabeth.",
+    "buttons": [
+      {
+        "text": "Schedule Consultation",
+        "type": "primary",
+        "href": "/consultation"
+      },
+      {
+        "text": "Email Our Team",
+        "type": "secondary",
+        "action": "contactEmail"
+      }
+    ]
+  }
+}

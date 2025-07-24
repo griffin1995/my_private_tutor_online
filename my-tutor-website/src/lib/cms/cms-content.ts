@@ -4,6 +4,9 @@
 import landingPageContent from '@/content/landing-page.json'
 import businessContent from '@/content/business-content.json'
 import aboutContent from '@/content/about.json'
+import howItWorksContent from '@/content/how-it-works.json'
+import faqContent from '@/content/faq.json'
+import siteSettings from '@/content/settings.json'
 
 // TypeScript interfaces for content structure
 export interface NavigationItem {
@@ -62,6 +65,69 @@ export interface FooterLink {
 export interface FooterSection {
   title: string
   links: FooterLink[]
+}
+
+export interface HowItWorksStep {
+  number: string
+  title: string
+  description: string
+  features: string[]
+  icon: string
+}
+
+export interface TutorTier {
+  tier: string
+  description: string
+  bestFor: string
+  pricePoint: string
+}
+
+export interface CTAButton {
+  text: string
+  type: string
+  href: string
+}
+
+export interface FAQQuestion {
+  question: string
+  answer: string
+}
+
+export interface FAQCategory {
+  title: string
+  icon: string
+  questions: FAQQuestion[]
+}
+
+export interface ContactDetails {
+  primaryEmail: string
+  phone: string
+  address: {
+    line1: string
+    line2: string
+    city: string
+    postcode: string
+    country: string
+  }
+}
+
+export interface FAQQuestion {
+  question: string
+  answer: string
+}
+
+export interface FAQCategory {
+  title: string
+  icon: string
+  questions: FAQQuestion[]
+}
+
+export interface SiteConfig {
+  name: string
+  tagline: string
+  domain: string
+  foundedYear: string
+  heritage: string
 }
 
 // CMS Functions for content retrieval
@@ -202,6 +268,126 @@ export const getContactInfo = () => {
   return landingPageContent.contact.contactInfo
 }
 
+/**
+ * Get How It Works page content
+ * CMS DATA SOURCE: Using howItWorksContent for how it works page information
+ */
+export const getHowItWorksContent = () => {
+  return howItWorksContent
+}
+
+/**
+ * Get How It Works hero section
+ * CMS DATA SOURCE: Using howItWorksContent.hero for hero section
+ */
+export const getHowItWorksHero = () => {
+  return howItWorksContent.hero
+}
+
+/**
+ * Get How It Works process steps
+ * CMS DATA SOURCE: Using howItWorksContent.steps for process steps
+ */
+export const getHowItWorksSteps = (): HowItWorksStep[] => {
+  return howItWorksContent.steps
+}
+
+/**
+ * Get tutor tier information
+ * CMS DATA SOURCE: Using howItWorksContent.tutorTiers for tutor tier details
+ */
+export const getTutorTiers = (): TutorTier[] => {
+  return howItWorksContent.tutorTiers
+}
+
+/**
+ * Get How It Works benefits
+ * CMS DATA SOURCE: Using howItWorksContent.benefits for service benefits
+ */
+export const getHowItWorksBenefits = (): string[] => {
+  return howItWorksContent.benefits
+}
+
+/**
+ * Get How It Works CTA section
+ * CMS DATA SOURCE: Using howItWorksContent.cta for call to action
+ */
+export const getHowItWorksCTA = () => {
+  return howItWorksContent.cta
+}
+
+/**
+ * Get FAQ page content
+ * CMS DATA SOURCE: Using faqContent for FAQ page information
+ */
+export const getFAQContent = () => {
+  return faqContent
+}
+
+/**
+ * Get FAQ hero section
+ * CMS DATA SOURCE: Using faqContent.hero for hero section
+ */
+export const getFAQHero = () => {
+  return faqContent.hero
+}
+
+/**
+ * Get FAQ categories and questions
+ * CMS DATA SOURCE: Using faqContent.categories for FAQ categories
+ */
+export const getFAQCategories = (): FAQCategory[] => {
+  return faqContent.categories
+}
+
+/**
+ * Get FAQ contact section
+ * CMS DATA SOURCE: Using faqContent.contact for contact CTA
+ */
+export const getFAQContact = () => {
+  return faqContent.contact
+}
+
+/**
+ * Get site configuration settings
+ * CMS DATA SOURCE: Using siteSettings.siteConfig for site configuration
+ */
+export const getSiteConfig = (): SiteConfig => {
+  return siteSettings.siteConfig
+}
+
+/**
+ * Get contact details from settings
+ * CMS DATA SOURCE: Using siteSettings.contact for contact information
+ */
+export const getContactDetails = (): ContactDetails => {
+  return siteSettings.contact
+}
+
+/**
+ * Get business details and qualifications
+ * CMS DATA SOURCE: Using siteSettings for business information
+ */
+export const getBusinessDetails = () => {
+  return siteSettings.businessDetails
+}
+
+/**
+ * Get pricing information
+ * CMS DATA SOURCE: Using siteSettings.pricing for pricing details
+ */
+export const getPricingInfo = () => {
+  return siteSettings.pricing
+}
+
+/**
+ * Get qualifications and success rates
+ * CMS DATA SOURCE: Using siteSettings.qualifications for credentials
+ */
+export const getQualifications = () => {
+  return siteSettings.qualifications
+}
+
 // British English content formatting utilities
 
 /**
@@ -277,6 +463,21 @@ export default {
   getMainNavigation,
   getSiteBranding,
   getContactInfo,
+  getHowItWorksContent,
+  getHowItWorksHero,
+  getHowItWorksSteps,
+  getTutorTiers,
+  getHowItWorksBenefits,
+  getHowItWorksCTA,
+  getFAQContent,
+  getFAQHero,
+  getFAQCategories,
+  getFAQContact,
+  getSiteConfig,
+  getContactDetails,
+  getBusinessDetails,
+  getPricingInfo,
+  getQualifications,
   formatBritishEnglish,
   getCopyrightText,
   validateContentStructure

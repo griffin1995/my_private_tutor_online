@@ -169,7 +169,7 @@ export default function Home() {
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center space-x-3 group">
                 <span className={`font-serif text-lg lg:text-xl font-bold transition-colors duration-300 ${
-                  isScrolled ? 'text-navy-900' : 'text-white'
+                  isScrolled ? 'text-primary-900' : 'text-white'
                 }`}>
                   My Private Tutor Online
                 </span>
@@ -178,15 +178,21 @@ export default function Home() {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
-              {['About', 'Services', 'Results', 'Contact'].map((item) => (
+              {[
+                { name: 'How It Works', href: '/how-it-works' },
+                { name: 'Subject Tuition', href: '/subject-tuition' },
+                { name: 'Masterclasses', href: '/video-masterclasses' },
+                { name: 'About Us', href: '/about-us' },
+                { name: 'FAQ', href: '/faq' }
+              ].map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className={`font-medium transition-colors duration-300 hover:text-gold-400 ${
-                    isScrolled ? 'text-navy-700' : 'text-white'
+                  key={item.name}
+                  href={item.href}
+                  className={`font-medium transition-colors duration-300 hover:text-accent-400 ${
+                    isScrolled ? 'text-primary-700' : 'text-white'
                   }`}
                 >
-                  {item}
+                  {item.name}
                 </a>
               ))}
             </div>
@@ -203,10 +209,10 @@ export default function Home() {
       </nav>
 
       {/* Full Viewport Hero Section */}
-      <section className="relative h-screen w-full bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900 flex items-center" aria-label="Hero section with introduction to My Private Tutor Online">
+      <section className="relative h-screen w-full bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 flex items-center" aria-label="Hero section with introduction to My Private Tutor Online">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[url('/images/hero/child_book_and_laptop.avif')] bg-cover bg-center opacity-20"></div>
-        <div className="absolute inset-0 bg-navy-900/60"></div>
+        <div className="absolute inset-0 bg-primary-900/60"></div>
         
         <div className="relative z-10 w-full">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -229,7 +235,7 @@ export default function Home() {
                     }}
                     className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6"
                   />
-                  <p className="text-xl text-gold-400 font-semibold mb-6">
+                  <p className="text-xl text-accent-400 font-semibold mb-6">
                     {heroContent.subtitle}
                   </p>
                   <p className="text-lg text-white/90 leading-relaxed mb-6">
@@ -275,70 +281,69 @@ export default function Home() {
           <div className="flex animate-scroll gap-16 whitespace-nowrap">
             {[...newHomepageContent.schoolShields.schools, ...newHomepageContent.schoolShields.schools, ...newHomepageContent.schoolShields.schools].map((school, index) => (
               <div key={index} className="flex-shrink-0 flex items-center justify-center px-8">
-                <div className="text-lg font-semibold text-navy-700">
+                <div className="text-lg font-semibold text-primary-700">
                   {school}
                 </div>
               </div>
             ))}
           </div>
         </div>
-          
-          {/* Technology Skills Icon Cloud */}
-          <div className="mt-12">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-8">
-                <h3 className="text-xl font-serif font-semibold text-navy-900 mb-4">
-                  Technologies We Teach
-                </h3>
-              </div>
-              <div className="flex justify-center">
-                <div className="relative flex h-64 w-full max-w-2xl items-center justify-center overflow-hidden rounded-2xl bg-navy-50 px-8 py-8">
-                  <IconCloud iconSlugs={[
-                    "javascript",
-                    "python", 
-                    "java",
-                    "cplusplus",
-                    "html5",
-                    "css3",
-                    "react",
-                    "nodejs",
-                    "git",
-                    "github",
-                    "typescript",
-                    "nextdotjs",
-                    "tailwindcss"
-                  ]} />
-                </div>
-              </div>
+      </section>
+
+      {/* Elite Universities & Schools Icon Cloud */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h3 className="text-xl font-serif font-semibold text-primary-900 mb-4">
+              Elite Universities & Schools
+            </h3>
+          </div>
+          <div className="flex justify-center">
+            <div className="relative flex h-64 w-full max-w-2xl items-center justify-center overflow-hidden rounded-2xl bg-primary-50 px-8 py-8">
+              <IconCloud iconSlugs={[
+                "oxforduniversity",
+                "cambridge", 
+                "harvard",
+                "mit",
+                "stanford",
+                "yale",
+                "princeton",
+                "columbia",
+                "imperial",
+                "lse",
+                "ucl",
+                "kcl",
+                "edinburgh"
+              ]} />
             </div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-16 lg:py-24 bg-navy-50">
+      <section className="py-16 lg:py-24 bg-primary-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="space-y-6">
-              <p className="text-lg text-navy-700 leading-relaxed">
+              <p className="text-lg text-primary-700 leading-relaxed">
                 {newHomepageContent.aboutSection.description}
               </p>
-              <p className="text-lg text-navy-700 leading-relaxed">
+              <p className="text-lg text-primary-700 leading-relaxed">
                 {newHomepageContent.aboutSection.continuedDescription}
               </p>
-              <p className="text-lg text-navy-700 leading-relaxed">
+              <p className="text-lg text-primary-700 leading-relaxed">
                 {newHomepageContent.aboutSection.finalDescription}
               </p>
               
               {/* Credentials */}
               <div className="flex justify-center items-center gap-8 mt-8">
                 <div className="flex items-center gap-2">
-                  <Crown className="w-6 h-6 text-gold-600" />
-                  <span className="font-medium text-navy-900">Tatler Address Book</span>
+                  <Crown className="w-6 h-6 text-accent-600" />
+                  <span className="font-medium text-primary-900">Tatler Address Book</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Award className="w-6 h-6 text-gold-600" />
-                  <span className="font-medium text-navy-900">School Guide UK 'Top Pick'</span>
+                  <Award className="w-6 h-6 text-accent-600" />
+                  <span className="font-medium text-primary-900">School Guide UK 'Top Pick'</span>
                 </div>
               </div>
             </div>
@@ -350,7 +355,7 @@ export default function Home() {
       <section className="py-16 lg:py-24 bg-white" aria-label="Educational pathways and tutoring options available">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-navy-900 mb-12">
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-12">
               {newHomepageContent.educationalOptions.title}
             </h2>
             
@@ -373,8 +378,8 @@ export default function Home() {
                     
                     {/* Content */}
                     <div className="space-y-4">
-                      <h3 className="text-xl font-serif font-bold text-navy-900">{option.title}</h3>
-                      <p className="text-navy-700 leading-relaxed">{option.description}</p>
+                      <h3 className="text-xl font-serif font-bold text-primary-900">{option.title}</h3>
+                      <p className="text-primary-700 leading-relaxed">{option.description}</p>
                     </div>
                   </div>
                 )
@@ -385,21 +390,21 @@ export default function Home() {
       </section>
 
       {/* Why Families Choose Us */}
-      <section className="py-16 lg:py-24 bg-navy-50">
+      <section className="py-16 lg:py-24 bg-primary-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-navy-900 mb-12">
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-12">
               Why Families Choose Us
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {newHomepageContent.whyChooseUs.map((reason, index) => (
-                <div key={index} className="bg-white rounded-lg border border-navy-200 p-8 text-left h-full hover:shadow-lg transition-shadow duration-300">
+                <div key={index} className="bg-white rounded-lg border border-primary-200 p-8 text-left h-full hover:shadow-lg transition-shadow duration-300">
                   <div className="flex items-start gap-4">
                     <div className="text-4xl">{reason.icon}</div>
                     <div>
-                      <h3 className="text-xl font-semibold text-navy-900 mb-3">{reason.title}</h3>
-                      <p className="text-navy-700 leading-relaxed">{reason.description}</p>
+                      <h3 className="text-xl font-semibold text-primary-900 mb-3">{reason.title}</h3>
+                      <p className="text-primary-700 leading-relaxed">{reason.description}</p>
                     </div>
                   </div>
                 </div>
@@ -410,16 +415,16 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 lg:py-24 bg-navy-900">
+      <section className="py-16 lg:py-24 bg-primary-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white mb-6">
               This Is Tutoring at Its Best
             </h2>
-            <p className="text-xl text-gold-300 mb-8">
+            <p className="text-xl text-accent-300 mb-8">
               Exact. Effective. Empowering.
             </p>
-            <p className="text-lg text-navy-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-primary-300 mb-8 max-w-2xl mx-auto">
               From prep school entry to Oxbridge preparation, My Private Tutor Online delivers expert tuition for exceptional futures.
             </p>
             

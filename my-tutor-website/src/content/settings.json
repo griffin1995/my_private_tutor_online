@@ -1,0 +1,68 @@
+{
+  "siteConfig": {
+    "name": "My Private Tutor Online",
+    "tagline": "Expert Private Tutoring, Personally Curated by Elizabeth Burrows",
+    "domain": "myprivatetutoronline.com",
+    "foundedYear": "2010",
+    "heritage": "15 years of educational excellence"
+  },
+  "contact": {
+    "primaryEmail": "info@myprivatetutoronline.com",
+    "phone": "+44 (0) 20 7123 4567",
+    "address": {
+      "line1": "123 Education House",
+      "line2": "Kensington",
+      "city": "London",
+      "postcode": "SW7 2AZ",
+      "country": "United Kingdom"
+    },
+    "socialMedia": {
+      "twitter": "@MyPrivateTutorUK",
+      "linkedin": "my-private-tutor-online",
+      "facebook": "MyPrivateTutorOnline"
+    }
+  },
+  "businessDetails": {
+    "companyNumber": "12345678",
+    "vatNumber": "GB123456789",
+    "registeredAddress": {
+      "line1": "123 Education House",
+      "line2": "Kensington", 
+      "city": "London",
+      "postcode": "SW7 2AZ",
+      "country": "United Kingdom"
+    }
+  },
+  "features": {
+    "maintenanceMode": false,
+    "bookingSystem": true,
+    "onlinePayments": true,
+    "progressTracking": true,
+    "parentPortal": true
+  },
+  "pricing": {
+    "startingRate": "£47.50",
+    "currency": "GBP",
+    "noRegistrationFees": true,
+    "noAdminFees": true,
+    "discounts": {
+      "blockBookings": true,
+      "siblingEnrolment": true,
+      "minimumLessonsForDiscount": 15
+    }
+  },
+  "qualifications": {
+    "featured": [
+      "Featured in Tatler Address Book 2025",
+      "Royal family testimonials",
+      "15+ years established since 2010",
+      "100% Oxbridge graduate tutors",
+      "Official exam board examiners"
+    ],
+    "successRates": {
+      "gcseImprovement": "94%",
+      "gradeJump": "Grade 5 to 8/9 in months",
+      "universityPlacements": "Consistent Oxbridge placements"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "hero": {
+    "title": "World-Class Tutors. Expertly Vetted. Personally Matched.",
+    "subtitle": "At My Private Tutor Online, we offer more than just tutoring—we provide thoughtful, expert guidance at every stage of your child's academic journey.",
+    "description": "Our service is consultative, personal, and tailored to your family's individual needs.",
+    "backgroundImageKey": "childWithLaptop",
+    "ctaButtons": [
+      {
+        "text": "Start Your Journey",
+        "type": "primary",
+        "href": "/consultation"
+      },
+      {
+        "text": "Speak with Elizabeth",
+        "type": "secondary",
+        "href": "/contact"
+      }
+    ]
+  },
+  
+  "steps": [
+    {
+      "number": "01",
+      "title": "Initial Consultation",
+      "description": "You begin with a one-to-one conversation with our Founder Elizabeth to understand your child's academic profile, personality, and goals.",
+      "features": [
+        "Subject strengths and areas for development",
+        "Upcoming exams or milestones", 
+        "Preferred learning style",
+        "Any school-specific requirements"
+      ],
+      "icon": "MessageSquare"
+    },
+    {
+      "number": "02", 
+      "title": "Expert Tutor Matching",
+      "description": "Elizabeth personally interviews every candidate, accepting fewer than 10% of applicants, selecting only those with outstanding educational pedigree.",
+      "features": [
+        "Oxbridge alumni",
+        "Heads of Department at top 10 UK schools",
+        "Accredited GCSE, A Level and IB examiners",
+        "PhD and Postdocs"
+      ],
+      "icon": "Users"
+    },
+    {
+      "number": "03",
+      "title": "Tiered Tutoring Options", 
+      "description": "Choose the level of support that best fits your child's needs and goals with our flexible tiered system.",
+      "features": [
+        "Tier 1: Official examiners - Top grades, exam strategy",
+        "Tier 2: Qualified teachers - Curriculum mastery, consistency", 
+        "Tier 3: University graduates - Mentoring, subject confidence",
+        "Starting from just £47.50 per hour"
+      ],
+      "icon": "Target"
+    },
+    {
+      "number": "04",
+      "title": "Progress Reports & Support",
+      "description": "Detailed reports after every lesson with quantitative ratings and qualitative insights for meaningful progress tracking.",
+      "features": [
+        "What was covered and homework assigned",
+        "Clear feedback on strengths and development areas",
+        "Automated lesson reminders 36 hours before sessions",
+        "Secure login access to all reports"
+      ],
+      "icon": "ClipboardCheck"
+    }
+  ],
+
+  "tutorTiers": [
+    {
+      "tier": "Tier 3",
+      "description": "Tutors from top UK universities (including Oxbridge), teaching their specialist subject",
+      "bestFor": "Mentoring, subject confidence",
+      "pricePoint": "Affordable"
+    },
+    {
+      "tier": "Tier 2", 
+      "description": "Qualified, experienced classroom teachers",
+      "bestFor": "Curriculum mastery, consistency",
+      "pricePoint": "Mid-range"
+    },
+    {
+      "tier": "Tier 1",
+      "description": "Official examiners and senior educators with extensive track records",
+      "bestFor": "Top grades, exam strategy", 
+      "pricePoint": "Premium"
+    }
+  ],
+
+  "benefits": [
+    "No registration or administrative fees",
+    "Rigorous vetting including enhanced DBS checks",
+    "Hundreds of hours of teaching experience per tutor",
+    "Ongoing consultative support throughout your journey",
+    "Long-term educational partnership approach"
+  ],
+
+  "cta": {
+    "title": "Ready to Begin?",
+    "description": "Start with a personal consultation with Elizabeth to discuss your child's needs and goals",
+    "buttons": [
+      {
+        "text": "Book Consultation",
+        "type": "primary",
+        "href": "/consultation"
+      },
+      {
+        "text": "Contact Our Team",
+        "type": "secondary",
+        "href": "/contact"
+      }
+    ]
+  }
+}

@@ -32,7 +32,7 @@ export default function PremiumTutoringPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900 overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex items-center bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -61,7 +61,7 @@ export default function PremiumTutoringPage() {
 
               <h1 className="text-4xl lg:text-6xl font-light mb-6 leading-tight">
                 <span className="font-light">Premium</span>{' '}
-                <span className="text-gold-400 font-medium">Academic</span>{' '}
+                <span className="text-accent-400 font-medium">Academic</span>{' '}
                 <span className="font-light">Tutoring</span>
               </h1>
               
@@ -73,7 +73,7 @@ export default function PremiumTutoringPage() {
                 <Button 
                   size="lg"
                   onClick={() => setShowBookingForm(true)}
-                  className="bg-gold-600 hover:bg-gold-700 text-white px-8 py-4 text-lg"
+                  className="bg-accent-600 hover:bg-accent-700 text-white px-8 py-4 text-lg"
                 >
                   <Crown className="h-5 w-5 mr-2" />
                   Book Confidential Consultation
@@ -82,7 +82,7 @@ export default function PremiumTutoringPage() {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-navy-900 px-8 py-4 text-lg"
+                  className="border-accent-400 text-accent-400 hover:bg-accent-400 hover:text-primary-900 px-8 py-4 text-lg"
                 >
                   <Trophy className="h-5 w-5 mr-2" />
                   View Success Stories
@@ -92,15 +92,15 @@ export default function PremiumTutoringPage() {
               {/* Quick Stats */}
               <div className="flex flex-wrap gap-8 text-sm">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gold-400">15+</div>
+                  <div className="text-2xl font-bold text-accent-400">15+</div>
                   <div className="text-gray-300">Years Established</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gold-400">100%</div>
+                  <div className="text-2xl font-bold text-accent-400">100%</div>
                   <div className="text-gray-300">Oxbridge Graduates</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gold-400">95%+</div>
+                  <div className="text-2xl font-bold text-accent-400">95%+</div>
                   <div className="text-gray-300">Success Rate</div>
                 </div>
               </div>
@@ -121,13 +121,13 @@ export default function PremiumTutoringPage() {
                   className="object-cover"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent" />
               </div>
               
               {/* Floating Royal Endorsement Card */}
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-2xl max-w-xs">
                 <div className="flex items-center gap-3 mb-2">
-                  <Crown className="h-6 w-6 text-gold-500" />
+                  <Crown className="h-6 w-6 text-accent-500" />
                   <Badge variant="gold" className="text-xs">Royal Family Endorsed</Badge>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">
@@ -150,7 +150,7 @@ export default function PremiumTutoringPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-light text-navy-900 mb-4">
+            <h2 className="text-4xl font-light text-primary-900 mb-4">
               {businessContent.website.services.heading}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -191,7 +191,7 @@ export default function PremiumTutoringPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-light text-navy-900 mb-4">
+            <h2 className="text-4xl font-light text-primary-900 mb-4">
               {businessContent.website.testimonials.heading}
             </h2>
           </motion.div>
@@ -209,7 +209,7 @@ export default function PremiumTutoringPage() {
                     <div className="flex items-center gap-2 mb-4">
                       {testimonial.verified && (
                         <>
-                          <Crown className="h-5 w-5 text-gold-500" />
+                          <Crown className="h-5 w-5 text-accent-500" />
                           <Badge variant="gold" className="text-xs">Verified Client</Badge>
                         </>
                       )}
@@ -221,7 +221,7 @@ export default function PremiumTutoringPage() {
                     
                     <div className="flex items-center justify-between">
                       <div>
-                        <div className="font-semibold text-navy-900">{testimonial.attribution}</div>
+                        <div className="font-semibold text-primary-900">{testimonial.attribution}</div>
                         <div className="text-sm text-gray-500">{testimonial.location}</div>
                       </div>
                       <div className="text-right">
@@ -239,7 +239,7 @@ export default function PremiumTutoringPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-navy-900">
+      <section className="py-24 bg-primary-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-4xl font-light text-white mb-6">
@@ -254,7 +254,7 @@ export default function PremiumTutoringPage() {
               <Button 
                 size="lg"
                 onClick={() => setShowBookingForm(true)}
-                className="bg-gold-600 hover:bg-gold-700 text-white px-8 py-4 text-lg"
+                className="bg-accent-600 hover:bg-accent-700 text-white px-8 py-4 text-lg"
               >
                 <Crown className="h-5 w-5 mr-2" />
                 Book Confidential Consultation
