@@ -1,3 +1,17 @@
+/**
+ * Documentation Source: React 18 + WCAG 2.1 AA Semantic HTML
+ * Reference: https://react.dev/reference/react/ReactNode
+ * Reference: https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html
+ * Reference: https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/
+ * 
+ * Pattern: Semantic Section Component with Accessibility
+ * Architecture:
+ * - Proper semantic HTML structure
+ * - ARIA landmark roles
+ * - Flexible background and container system
+ * - Responsive padding and typography
+ */
+
 "use client"
 
 import { ReactNode } from 'react'

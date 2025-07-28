@@ -1,3 +1,25 @@
+/**
+ * Documentation Source: React 18 + TypeScript Best Practices
+ * Reference: https://react.dev/reference/react/ReactNode
+ * Reference: https://www.typescriptlang.org/docs/handbook/2/objects.html#index-signatures
+ * 
+ * Pattern: Layout Wrapper Component
+ * Architecture:
+ * - Client component for interactive header/footer
+ * - Composition pattern with optional sections
+ * - Flexible background and spacing system
+ * 
+ * Design System:
+ * - Consistent container sizes
+ * - Standardized vertical spacing
+ * - Background variants for visual hierarchy
+ * 
+ * Accessibility:
+ * - Semantic HTML structure
+ * - Skip navigation support (in header)
+ * - ARIA landmarks
+ */
+
 "use client"
 
 import { ReactNode } from 'react'
@@ -64,7 +86,6 @@ export function PageLayout({
         backgroundClasses[background],
         className
       )}
-      role="main"
     >
       
       {/* Header */}
