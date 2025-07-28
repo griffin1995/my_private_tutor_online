@@ -1,3 +1,23 @@
+/**
+ * Documentation Source: Next.js 14 App Router Layout
+ * Reference: https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts
+ * Reference: https://nextjs.org/docs/app/api-reference/functions/generate-metadata
+ * Reference: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
+ * 
+ * Pattern: Root Layout with Metadata and Font Optimization
+ * Architecture:
+ * - Server Component (no "use client" directive)
+ * - Metadata export for SEO optimization
+ * - Font optimization with next/font/google
+ * - Global providers wrapped around children
+ * 
+ * Best Practices Applied:
+ * - metadataBase for absolute URL generation
+ * - Comprehensive OpenGraph and Twitter cards
+ * - Font variables for CSS custom properties
+ * - British English locale (en_GB)
+ */
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -85,9 +105,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-GB" className="scroll-smooth">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0f172a" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
       >
         <LazyMotionProvider>
           {children}
