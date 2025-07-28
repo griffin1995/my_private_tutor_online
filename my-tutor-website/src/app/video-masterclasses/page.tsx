@@ -1,8 +1,6 @@
 "use client"
 
-import { useState } from 'react'
-import { m } from 'framer-motion'
-import { Play, Clock, Users, Star, Calendar, Download, CheckCircle } from 'lucide-react'
+import { Play, Clock, Users, Star, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
@@ -10,496 +8,337 @@ import { Section } from '@/components/layout/section'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
-// CMS DATA SOURCE: Elizabeth's Video Masterclasses content from client brief
+// CMS DATA SOURCE: Elizabeth's Video Masterclasses content from Beth's new_copy.md
 const videoMasterclassesContent = {
   hero: {
     title: "Exclusive Video Masterclasses with Elizabeth Burrows",
     subtitle: "A trusted guide to British education, culture, and university preparation",
-    description: "Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over 15 years of international education experience. These masterclasses offer rare access to the knowledge and strategies typically reserved for her private clients.",
-    backgroundImage: "/images/hero/masterclasses-hero.jpg"
+    description: "Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over 15 years of international education experience. These masterclasses, drawn from her live seminars, offer rare access to the knowledge and strategies typically reserved for her private clients."
   },
-  instructor: {
-    name: "Elizabeth Burrows",
-    title: "Founder & Lead Educational Consultant",
-    credentials: [
-      "Cambridge University Graduate",
-      "15+ Years Educational Experience",
-      "Featured in Tatler Address Book 2025",
-      "Trusted by Royal Families"
-    ],
-    bio: "Elizabeth brings unparalleled expertise in British education, having guided hundreds of students to success in top universities and prestigious institutions."
+  intro: {
+    bridge: "These sessions bridge the gap between international education and the expectations of British schools and universities.",
+    access: "Access on demand, from anywhere in the world."
   },
   masterclasses: [
     {
-      id: "british-culture-unlocked",
-      title: "British Culture Unlocked",
-      subtitle: "Essential insights for international families",
+      id: "unlocking-academic-success",
+      title: "Unlocking Academic Success",
+      price: "Free Access",
       duration: "90 minutes",
-      students: "250+ enrolled",
-      rating: 4.9,
-      price: "£49",
-      originalPrice: "£79",
-      description: "Comprehensive guide to British educational culture, etiquette, and social expectations for international families navigating the UK education system.",
-      whatYoullLearn: [
-        "Understanding British educational hierarchy and terminology",
-        "School culture and unwritten rules",
-        "Parent-teacher communication protocols",
-        "British social etiquette in educational settings",
-        "Integration strategies for international families",
-        "Navigating school events and parent communities"
-      ],
-      includes: [
-        "90-minute masterclass video",
-        "Downloadable cultural guide (PDF)",
-        "Checklist for school integration",
-        "Email templates for school communication",
-        "Lifetime access to updates"
-      ],
-      preview: "/videos/british-culture-preview.mp4",
-      testimonials: [
-        {
-          name: "Sarah Chen",
-          role: "Parent from Singapore",
-          quote: "This masterclass was invaluable for our family's move to London. Elizabeth's insights helped us integrate seamlessly into our children's school community.",
-          rating: 5
-        }
-      ]
+      description: "Elizabeth was invited to speak at the 2024 UCAS Summit, where she was called upon to share her expert guidance for parents on navigating the world of private tutoring. In this insightful session, she explores how to recognise when one-to-one support is needed, identify truly exceptional tutors and manage the tutor–student–parent relationship to ensure outstanding academic outcomes.",
+      content: "Practical strategies to help students develop independence, confidence and academic resilience.",
+      isFree: true
     },
     {
-      id: "ucas-masterclass",
-      title: "UCAS Masterclass",
-      subtitle: "Complete university application guide",
-      duration: "120 minutes", 
-      students: "180+ enrolled",
-      rating: 4.8,
-      price: "£89",
-      originalPrice: "£129",
-      description: "Step-by-step guide through the entire UCAS application process, including personal statements, university selection, and interview preparation.",
-      whatYoullLearn: [
-        "UCAS timeline and key deadlines",
-        "University selection strategies",
-        "Writing compelling personal statements",
-        "Understanding UCAS points and requirements",
-        "Interview preparation techniques",
-        "Student finance and funding options"
+      id: "ucas-guide-part-1",
+      title: "Elizabeth's Essential UCAS Guide - Part 1 of 2",
+      price: "£49.99",
+      duration: "90 minutes",
+      venue: "(As delivered at London School of Economics)",
+      description: "Widely recognised for her expertise in the British university admissions process, Elizabeth was invited to speak to international summer school students at LSE. In her session, she demystifies each stage of the UCAS application, offering clear, practical guidance to help students approach the process with confidence.",
+      content: "This 90-minute seminar draws on Elizabeth's 15 years of experience, blending expert guidance, practical strategies, and real-world anecdotes to equip students for a successful UCAS application. Ideal for both international and UK-based applicants.",
+      subtitle: "Demystifying UCAS: A Clear Path to UK University Success"
+    },
+    {
+      id: "personal-statements-part-2",
+      title: "Elizabeth's Top 10 Tips for Outstanding Personal Statements - Part 2 of 2",
+      price: "£89.99",
+      duration: "70 minutes",
+      venue: "(As delivered at London School of Economics)",
+      description: "Elizabeth is renowned for her success in guiding ambitious students into Oxbridge (she was offered a place at Cambridge herself) and top UK universities. Each year her private students secure places at the best British universities, including UCL, LSE, Imperial and Edinburgh. In this masterclass she reveals the 10 ingredients in her secret recipe for personal statement success.",
+      content: "In this 70-minute masterclass, Elizabeth shares insider strategies and expert insights you won't find anywhere else. You'll also gain rare access to a Medicine personal statement that helped a student win a place at the University of Oxford.",
+      note: "*This masterclass is relevant for students applying from 2025 onwards via the new UCAS personal statement format, which requires applicants to respond to three structured questions.*"
+    },
+    {
+      id: "british-literary-classics",
+      title: "Exploring British Literary Classics",
+      subtitle: "A Masterclass for Curious and Aspiring Readers (Ages 8–14)",
+      price: "£19.99",
+      duration: "60 minutes",
+      description: "From Wind in the Willows to Wuthering Heights, and Harry Potter to The Lord of the Rings, this engaging masterclass introduces students to some of the most celebrated works in British literature.",
+      instructor: "Led by Elizabeth Burrows, English Literature graduate and Founder of My Private Tutor Online, this session was originally delivered to an international audience and explores:",
+      topics: [
+        "What defines a literary classic",
+        "Key British literary genres",
+        "The conventions and themes that shape them"
+      ],
+      targetAge: "Ideal for students aged 8–14 (KS2–KS3)",
+      purpose: "This masterclass is designed to foster cultural fluency, literary appreciation, and a lifelong love of reading—whether your child is already an avid reader or needs encouragement. It is especially valuable for those preparing for interviews at British independent schools, where students are often expected to discuss books with confidence and insight.",
+      includes: [
+        "60-minute recorded masterclass (with partial Mandarin subtitles), delivered to an audience of international students",
+        "Accompanying PowerPoint presentation, including links to extension activities and enrichment resources",
+        "Curated reading list to inspire further exploration and discussion"
+      ],
+      summary: "A rich and accessible introduction to British literary heritage—designed to inform, inspire, and intellectually prepare young readers for their next academic steps."
+    },
+    {
+      id: "british-etiquette",
+      title: "Understanding British Etiquette",
+      subtitle: "A Masterclass on Polished Manners and Cultural Awareness",
+      price: "£19.99",
+      duration: "60 minutes",
+      description: "Join our Founder, Elizabeth Burrows, for this engaging and insightful masterclass on British etiquette. Drawing on her experience working with royalty and high-profile international families, Elizabeth demystifies the social codes that shape life in the UK's most prestigious schools and institutions.",
+      questions: "What is etiquette? Why does it matter? And how can you improve your own presentation and confidence in formal settings? Elizabeth answers all this and more—offering practical guidance in a warm, approachable style.",
+      learning: [
+        "The do's and don'ts of greetings, introductions, and dining",
+        "How etiquette differs across cultures",
+        "How to avoid common social faux pas in British settings"
       ],
       includes: [
-        "120-minute comprehensive masterclass",
-        "Personal statement template and examples",
-        "University comparison worksheet",
-        "Interview preparation guide",
-        "UCAS timeline planner",
-        "One-to-one follow-up session (30 minutes)"
+        "60-minute recorded masterclass, delivered to an international student audience (includes partial Mandarin subtitles)",
+        "Accompanying PowerPoint presentation, with links to further resources and enrichment materials"
       ],
-      preview: "/videos/ucas-masterclass-preview.mp4",
-      testimonials: [
-        {
-          name: "James Morrison",
-          role: "A-Level Student",
-          quote: "Elizabeth's UCAS masterclass gave me the confidence and knowledge to secure offers from all five universities I applied to, including Oxford.",
-          rating: 5
-        }
-      ]
+      audience: "Ideal for students of all ages, especially those preparing for British school interviews or public-facing opportunities, where social grace and cultural fluency are quietly—but closely—assessed.",
+      summary: "A fun, practical, and confidence-building introduction to navigating British life with ease and elegance."
     }
   ],
-  benefits: [
-    {
-      icon: <Play className="w-6 h-6" />,
-      title: "Expert-Led Content",
-      description: "Learn directly from Elizabeth's 15+ years of educational expertise"
-    },
-    {
-      icon: <Clock className="w-6 h-6" />,
-      title: "Self-Paced Learning",
-      description: "Study at your own pace with lifetime access to all materials"
-    },
-    {
-      icon: <Download className="w-6 h-6" />,
-      title: "Downloadable Resources",
-      description: "Comprehensive guides, templates, and checklists included"
-    },
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: "Community Access",
-      description: "Connect with other families and students in our exclusive community"
-    }
-  ]
-}
-
-interface MasterclassCardProps {
-  masterclass: typeof videoMasterclassesContent.masterclasses[0]
-}
-
-function MasterclassCard({ masterclass }: MasterclassCardProps) {
-  const [showDetails, setShowDetails] = useState(false)
-
-  return (
-    <Card className="border-slate-200 overflow-hidden rounded-none">
-      <div 
-        className="aspect-video bg-gradient-to-br from-slate-200 to-slate-300 relative cursor-pointer group"
-        onClick={() => setShowDetails(!showDetails)}
-      >
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="bg-amber-600 rounded-full p-4 group-hover:scale-110 transition-transform duration-300">
-            <Play className="w-8 h-8 text-white fill-current" />
-          </div>
-        </div>
-        <div className="absolute top-4 left-4">
-          <Badge className="bg-amber-100 text-amber-800">{masterclass.duration}</Badge>
-        </div>
-        <div className="absolute top-4 right-4">
-          <Badge variant="secondary" className="bg-white/90 text-slate-700">
-            Preview Available
-          </Badge>
-        </div>
-      </div>
-      
-      <CardHeader className="p-8">
-        <div className="flex justify-between items-start mb-4">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center">
-              {[...Array(5)].map((_, i) => (
-                <Star 
-                  key={i} 
-                  className={`w-4 h-4 ${i < Math.floor(masterclass.rating) ? 'text-amber-400 fill-current' : 'text-slate-300'}`} 
-                />
-              ))}
-              <span className="text-sm text-slate-600 ml-2">({masterclass.rating})</span>
-            </div>
-          </div>
-          <div className="text-right">
-            <div className="text-2xl font-bold text-slate-900">{masterclass.price}</div>
-            <div className="text-sm text-slate-500 line-through">{masterclass.originalPrice}</div>
-          </div>
-        </div>
-        
-        <CardTitle className="text-2xl font-serif font-bold text-slate-900 mb-2">
-          {masterclass.title}
-        </CardTitle>
-        <p className="text-amber-600 font-medium mb-4 text-lg">{masterclass.subtitle}</p>
-        <p className="text-slate-600 text-base leading-relaxed">{masterclass.description}</p>
-        
-        <div className="flex items-center gap-4 text-sm text-slate-500">
-          <div className="flex items-center gap-1">
-            <Users className="w-4 h-4" />
-            {masterclass.students}
-          </div>
-          <div className="flex items-center gap-1">
-            <Clock className="w-4 h-4" />
-            {masterclass.duration}
-          </div>
-        </div>
-      </CardHeader>
-      
-      <CardContent className="px-8 pb-8">
-        <Button 
-          className="w-full bg-amber-600 hover:bg-amber-700 text-white mb-6 py-3 text-base"
-          onClick={() => setShowDetails(!showDetails)}
-        >
-          {showDetails ? 'Hide Details' : 'View Details & Enroll'}
-        </Button>
-        
-        {showDetails && (
-          <m.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="border-t border-slate-200 pt-4 space-y-6"
-          >
-            <div>
-              <h4 className="font-semibold text-slate-900 mb-3">What You'll Learn</h4>
-              <ul className="space-y-2">
-                {masterclass.whatYoullLearn.map((item, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold text-slate-900 mb-3">Includes</h4>
-              <ul className="space-y-2">
-                {masterclass.includes.map((item, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-emerald-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-slate-700 text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="bg-slate-50 rounded-lg p-4">
-              <h4 className="font-semibold text-slate-900 mb-2">Student Testimonial</h4>
-              <blockquote className="text-slate-700 text-sm italic mb-2">
-                "{masterclass.testimonials[0].quote}"
-              </blockquote>
-              <cite className="text-slate-600 text-sm not-italic">
-                — {masterclass.testimonials[0].name}, {masterclass.testimonials[0].role}
-              </cite>
-            </div>
-            
-            <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white">
-              Enroll Now - {masterclass.price}
-            </Button>
-          </m.div>
-        )}
-      </CardContent>
-    </Card>
-  )
+  ideal: {
+    text: "These masterclasses are ideal for families looking to elevate their child's preparation for boarding school entry, UK university applications, or those simply looking to immerse their child in British academic culture."
+  }
 }
 
 export default function VideoMasterclassesPage() {
   return (
-    <PageLayout
-      title="Video Masterclasses with Elizabeth - My Private Tutor Online"
-      description="Expert video masterclasses covering British culture and UCAS applications. Learn from Elizabeth Burrows, Cambridge graduate with 15+ years experience."
-      keywords="video masterclasses, British culture, UCAS guide, university applications, educational consultant"
-      background="white"
-    >
+    <PageLayout>
       <PageHero
-        title={videoMasterclassesContent.hero.title}
-        subtitle={videoMasterclassesContent.hero.subtitle}
-        description={videoMasterclassesContent.hero.description}
-        backgroundImage={videoMasterclassesContent.hero.backgroundImage}
-        height="large"
-        overlay="medium"
-      />
+        background="gradient"
+        size="lg"
+        className="bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900"
+      >
+        <div className="text-center text-white">
+          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold leading-tight mb-6">
+            {videoMasterclassesContent.hero.title}
+          </h1>
+          <p className="text-xl text-accent-400 font-semibold mb-6">
+            {videoMasterclassesContent.hero.subtitle}
+          </p>
+          <p className="text-lg text-white/90 leading-relaxed max-w-3xl mx-auto">
+            {videoMasterclassesContent.hero.description}
+          </p>
+        </div>
+      </PageHero>
 
-      {/* Instructor Section */}
-      <Section className="py-16 lg:py-24" background="white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <m.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900">
-                Meet Your Instructor
-              </h2>
-              <div>
-                <h3 className="text-2xl font-semibold text-slate-900 mb-2">
-                  {videoMasterclassesContent.instructor.name}
-                </h3>
-                <p className="text-amber-600 font-medium mb-4">
-                  {videoMasterclassesContent.instructor.title}
-                </p>
-                <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                  {videoMasterclassesContent.instructor.bio}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {videoMasterclassesContent.instructor.credentials.map((credential, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-emerald-600" />
-                      <span className="text-slate-700 font-medium">{credential}</span>
-                    </div>
+      {/* Introduction */}
+      <Section background="white" className="pt-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-lg text-primary-700 leading-relaxed mb-4">
+            {videoMasterclassesContent.intro.bridge}
+          </p>
+          <p className="text-lg font-semibold text-accent-600">
+            {videoMasterclassesContent.intro.access}
+          </p>
+        </div>
+      </Section>
+
+      {/* Featured Masterclasses */}
+      <Section background="grey" className="py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-serif font-bold text-primary-900 mb-4">
+            Featured Masterclasses:
+          </h2>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+          {/* Free Masterclass */}
+          <Card className="border-accent-200 bg-accent-50">
+            <CardHeader>
+              <div className="flex items-center justify-between mb-2">
+                <Badge className="bg-accent-600 text-white">Free Access</Badge>
+                <div className="flex items-center gap-2 text-sm text-primary-600">
+                  <Clock className="w-4 h-4" />
+                  90 minutes
+                </div>
+              </div>
+              <CardTitle className="text-xl font-serif text-primary-900">
+                {videoMasterclassesContent.masterclasses[0].title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-primary-700 mb-4">
+                {videoMasterclassesContent.masterclasses[0].content}
+              </p>
+              <p className="text-sm text-primary-600 mb-6">
+                {videoMasterclassesContent.masterclasses[0].description}
+              </p>
+              <Button className="w-full bg-accent-600 hover:bg-accent-700">
+                <Play className="w-4 h-4 mr-2" />
+                Watch Free Masterclass
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* UCAS Guide Part 1 */}
+          <Card className="border-primary-200">
+            <CardHeader>
+              <div className="flex items-center justify-between mb-2">
+                <Badge variant="outline" className="border-primary-300 text-primary-700">
+                  {videoMasterclassesContent.masterclasses[1].price}
+                </Badge>
+                <div className="flex items-center gap-2 text-sm text-primary-600">
+                  <Clock className="w-4 h-4" />
+                  {videoMasterclassesContent.masterclasses[1].duration}
+                </div>
+              </div>
+              <CardTitle className="text-xl font-serif text-primary-900">
+                {videoMasterclassesContent.masterclasses[1].title}
+              </CardTitle>
+              <p className="text-sm text-primary-600 italic">
+                {videoMasterclassesContent.masterclasses[1].venue}
+              </p>
+            </CardHeader>
+            <CardContent>
+              <p className="text-primary-700 mb-4">
+                {videoMasterclassesContent.masterclasses[1].content}
+              </p>
+              <Button className="w-full">
+                Purchase Masterclass - {videoMasterclassesContent.masterclasses[1].price}
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Personal Statements Masterclass */}
+        <Card className="max-w-4xl mx-auto mb-8 border-accent-200">
+          <CardHeader>
+            <div className="flex items-center justify-between mb-2">
+              <Badge className="bg-primary-900 text-white">
+                {videoMasterclassesContent.masterclasses[2].price}
+              </Badge>
+              <div className="flex items-center gap-2 text-sm text-primary-600">
+                <Clock className="w-4 h-4" />
+                {videoMasterclassesContent.masterclasses[2].duration}
+              </div>
+            </div>
+            <CardTitle className="text-xl font-serif text-primary-900">
+              {videoMasterclassesContent.masterclasses[2].title}
+            </CardTitle>
+            <p className="text-sm text-primary-600 italic">
+              {videoMasterclassesContent.masterclasses[2].venue}
+            </p>
+          </CardHeader>
+          <CardContent>
+            <p className="text-primary-700 mb-4">
+              {videoMasterclassesContent.masterclasses[2].description}
+            </p>
+            <p className="text-primary-700 mb-4">
+              {videoMasterclassesContent.masterclasses[2].content}
+            </p>
+            <p className="text-sm text-primary-600 italic mb-6">
+              {videoMasterclassesContent.masterclasses[2].note}
+            </p>
+            <Button className="w-full">
+              Purchase Masterclass - {videoMasterclassesContent.masterclasses[2].price}
+            </Button>
+          </CardContent>
+        </Card>
+      </Section>
+
+      {/* Cultural Masterclasses */}
+      <Section background="white" className="py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-serif font-bold text-primary-900 mb-4">
+            Get Confident with British Culture
+          </h2>
+          <p className="text-lg text-primary-700 max-w-3xl mx-auto">
+            From literary classics to social customs—everything your child needs to feel at home in a British classroom
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* British Literary Classics */}
+          <Card className="border-primary-200">
+            <CardHeader>
+              <div className="flex items-center justify-between mb-2">
+                <Badge variant="outline" className="border-accent-300 text-accent-700">
+                  {videoMasterclassesContent.masterclasses[3].price}
+                </Badge>
+                <div className="flex items-center gap-2 text-sm text-primary-600">
+                  <Clock className="w-4 h-4" />
+                  {videoMasterclassesContent.masterclasses[3].duration}
+                </div>
+              </div>
+              <CardTitle className="text-xl font-serif text-primary-900">
+                {videoMasterclassesContent.masterclasses[3].title}
+              </CardTitle>
+              <p className="text-sm text-primary-600 font-medium">
+                {videoMasterclassesContent.masterclasses[3].subtitle}
+              </p>
+            </CardHeader>
+            <CardContent>
+              <p className="text-primary-700 mb-4">
+                {videoMasterclassesContent.masterclasses[3].description}
+              </p>
+              <div className="mb-4">
+                <h4 className="font-semibold text-primary-900 mb-2">Topics covered:</h4>
+                <ul className="space-y-1">
+                  {videoMasterclassesContent.masterclasses[3].topics.map((topic, index) => (
+                    <li key={index} className="flex items-center gap-2 text-sm text-primary-700">
+                      <CheckCircle className="w-4 h-4 text-accent-600" />
+                      {topic}
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
-            </m.div>
-            
-            <m.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div className="aspect-[4/5] bg-gradient-to-br from-slate-100 to-slate-200">
-                  <div className="w-full h-full flex items-center justify-center text-slate-500">
-                    <Users className="w-24 h-24" />
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-serif font-bold text-slate-900">Elizabeth Burrows</h3>
-                  <p className="text-slate-600">Cambridge Graduate & Education Expert</p>
-                </div>
-              </div>
-            </m.div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Benefits Section */}
-      <Section className="py-16 lg:py-24" background="slate-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-6">
-              Why Choose Our Masterclasses?
-            </h2>
-            <p className="text-lg text-slate-700 max-w-3xl mx-auto">
-              Gain exclusive insights and practical knowledge from an industry expert with proven results.
-            </p>
-          </m.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {videoMasterclassesContent.benefits.map((benefit, index) => (
-              <m.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="text-center h-full border-slate-200 hover:shadow-lg transition-shadow duration-300 rounded-none">
-                  <CardContent className="p-8">
-                    <div className="bg-amber-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center text-amber-600">
-                      {benefit.icon}
-                    </div>
-                    <h3 className="text-lg font-semibold text-slate-900 mb-3">{benefit.title}</h3>
-                    <p className="text-slate-600">{benefit.description}</p>
-                  </CardContent>
-                </Card>
-              </m.div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Masterclasses Section */}
-      <Section className="py-16 lg:py-24" background="white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-6">
-              Available Masterclasses
-            </h2>
-            <p className="text-lg text-slate-700 max-w-3xl mx-auto">
-              Choose from our expertly crafted masterclasses designed to give you the knowledge and confidence to succeed.
-            </p>
-          </m.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {videoMasterclassesContent.masterclasses.map((masterclass, index) => (
-              <m.div
-                key={masterclass.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-              >
-                <MasterclassCard masterclass={masterclass} />
-              </m.div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Bundle Offer Section */}
-      <Section className="py-16 lg:py-24" background="amber-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-6">
-              Complete Masterclass Bundle
-            </h2>
-            <p className="text-lg text-slate-700 mb-8">
-              Get both masterclasses at a special discounted rate and save over £70 on individual purchases.
-            </p>
-            
-            <div className="bg-white shadow-lg p-12 mb-8">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div className="text-left">
-                  <h3 className="text-2xl font-semibold text-slate-900 mb-2">
-                    British Culture Unlocked + UCAS Masterclass
-                  </h3>
-                  <p className="text-slate-600 mb-4">
-                    Complete educational guidance from cultural integration to university applications
-                  </p>
-                  <ul className="space-y-2 text-sm text-slate-700">
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-emerald-600" />
-                      Both complete masterclasses (210 minutes total)
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-emerald-600" />
-                      All downloadable resources and templates
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-emerald-600" />
-                      30-minute one-to-one consultation with Elizabeth
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-emerald-600" />
-                      Lifetime access to all materials and updates
-                    </li>
-                  </ul>
-                </div>
-                <div className="text-center">
-                  <div className="text-sm text-slate-500 line-through mb-1">Individual Price: £208</div>
-                  <div className="text-4xl font-bold text-amber-600 mb-2">£129</div>
-                  <div className="text-emerald-600 font-medium mb-4">Save £79</div>
-                  <Button 
-                    size="lg"
-                    className="bg-amber-600 hover:bg-amber-700 text-white font-semibold"
-                  >
-                    Get Bundle Now
-                  </Button>
-                </div>
-              </div>
-            </div>
-            
-            <p className="text-sm text-slate-600">
-              30-day money-back guarantee • Instant access after purchase
-            </p>
-          </m.div>
-        </div>
-      </Section>
-
-      {/* CTA Section */}
-      <Section className="py-16 lg:py-24" background="slate-900">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white mb-6">
-              Ready to Unlock Your Educational Success?
-            </h2>
-            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Join hundreds of families who have transformed their educational journey with Elizabeth's expert guidance.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg"
-                className="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-3"
-              >
-                Browse Masterclasses
+              <p className="text-sm text-primary-600 mb-4">
+                <strong>{videoMasterclassesContent.masterclasses[3].targetAge}</strong>
+              </p>
+              <Button className="w-full">
+                Purchase - {videoMasterclassesContent.masterclasses[3].price}
               </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-slate-900 font-semibold px-8 py-3"
-              >
-                Book Free Consultation
+            </CardContent>
+          </Card>
+
+          {/* British Etiquette */}
+          <Card className="border-primary-200">
+            <CardHeader>
+              <div className="flex items-center justify-between mb-2">
+                <Badge variant="outline" className="border-accent-300 text-accent-700">
+                  {videoMasterclassesContent.masterclasses[4].price}
+                </Badge>
+                <div className="flex items-center gap-2 text-sm text-primary-600">
+                  <Clock className="w-4 h-4" />
+                  {videoMasterclassesContent.masterclasses[4].duration}
+                </div>
+              </div>
+              <CardTitle className="text-xl font-serif text-primary-900">
+                {videoMasterclassesContent.masterclasses[4].title}
+              </CardTitle>
+              <p className="text-sm text-primary-600 font-medium">
+                {videoMasterclassesContent.masterclasses[4].subtitle}
+              </p>
+            </CardHeader>
+            <CardContent>
+              <p className="text-primary-700 mb-4">
+                {videoMasterclassesContent.masterclasses[4].description}
+              </p>
+              <p className="text-primary-700 mb-4">
+                {videoMasterclassesContent.masterclasses[4].questions}
+              </p>
+              <div className="mb-4">
+                <h4 className="font-semibold text-primary-900 mb-2">Students will learn:</h4>
+                <ul className="space-y-1">
+                  {videoMasterclassesContent.masterclasses[4].learning.map((item, index) => (
+                    <li key={index} className="flex items-center gap-2 text-sm text-primary-700">
+                      <CheckCircle className="w-4 h-4 text-accent-600" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <Button className="w-full">
+                Purchase - {videoMasterclassesContent.masterclasses[4].price}
               </Button>
-            </div>
-          </m.div>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Ideal For Section */}
+      <Section background="navy" className="py-16">
+        <div className="text-center max-w-4xl mx-auto">
+          <p className="text-xl text-white leading-relaxed">
+            {videoMasterclassesContent.ideal.text}
+          </p>
         </div>
       </Section>
     </PageLayout>

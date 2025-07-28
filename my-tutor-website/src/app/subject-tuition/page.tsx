@@ -251,13 +251,22 @@ export default function SubjectTuitionPage() {
       background="white"
     >
       <PageHero
-        title={subjectTuitionContent.hero.title}
-        subtitle={subjectTuitionContent.hero.subtitle}
-        description={subjectTuitionContent.hero.description}
-        backgroundImage={subjectTuitionContent.hero.backgroundImage}
-        height="large"
-        overlay="medium"
-      />
+        background="gradient"
+        size="lg"
+        className="bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900"
+      >
+        <div className="text-center text-white">
+          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold leading-tight mb-6">
+            {subjectTuitionContent.hero.title}
+          </h1>
+          <p className="text-xl text-accent-400 font-semibold mb-6">
+            {subjectTuitionContent.hero.subtitle}
+          </p>
+          <p className="text-lg text-white/90 leading-relaxed max-w-3xl mx-auto">
+            {subjectTuitionContent.hero.description}
+          </p>
+        </div>
+      </PageHero>
 
       {/* Quick Stats Section */}
       <Section className="py-12" background="slate-50">

@@ -1,7 +1,6 @@
+"use client"
+
 import { CheckCircle, Users, ClipboardCheck, Target, MessageSquare } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import type { Metadata } from 'next'
 import { ShinyButton } from '@/components/magicui/shiny-button'
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
 import { VideoText } from '@/components/magicui/video-text'
@@ -22,22 +21,6 @@ import {
 } from '@/lib/cms/cms-content'
 import { HERO_IMAGES } from '@/lib/cms/cms-images'
 
-export const metadata: Metadata = {
-  title: 'How It Works - My Private Tutor Online',
-  description: 'Discover our proven 4-step process for expert tutor matching and personalised academic support. World-class tutors, expertly vetted, personally matched.',
-  keywords: 'how it works, tutor matching, educational process, private tutoring, Oxbridge tutors'
-}
-
-// CMS DATA SOURCE: Using getHowItWorksHero for hero content
-// CMS DATA SOURCE: Using getHowItWorksSteps for process steps
-// CMS DATA SOURCE: Using HERO_IMAGES for background image assets
-const heroContent = getHowItWorksHero()
-const processSteps = getHowItWorksSteps()
-const tutorTiers = getTutorTiers()
-const benefits = getHowItWorksBenefits()
-const ctaContent = getHowItWorksCTA()
-const heroBackgroundImage = HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES]
-
 // Map icon names to actual icon components
 const iconMap = {
   MessageSquare,
@@ -47,6 +30,15 @@ const iconMap = {
 }
 
 export default function HowItWorksPage() {
+  // CMS DATA SOURCE: Using getHowItWorksHero for hero content
+  // CMS DATA SOURCE: Using getHowItWorksSteps for process steps
+  // CMS DATA SOURCE: Using HERO_IMAGES for background image assets
+  const heroContent = getHowItWorksHero()
+  const processSteps = getHowItWorksSteps()
+  const tutorTiers = getTutorTiers()
+  const benefits = getHowItWorksBenefits()
+  const ctaContent = getHowItWorksCTA()
+  const heroBackgroundImage = HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES]
   return (
     <PageLayout background="white">
       <PageHero

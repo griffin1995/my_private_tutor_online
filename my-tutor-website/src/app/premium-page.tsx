@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Crown, Star, BookOpen, GraduationCap, Users, Trophy, CheckCircle, Phone, Mail } from 'lucide-react'
 
-import { TrustIndicators } from '@/components/marketing/trust-indicators'
+import { RoyalTrustIndicators } from '@/components/marketing/royal-trust-indicators'
 import { ServiceCard } from '@/components/marketing/service-card'
 import { ConsultationBookingForm } from '@/components/forms/consultation-booking-form'
 import { Button } from '@/components/ui/button'
@@ -52,7 +52,7 @@ export default function PremiumTutoringPage() {
             >
               {/* Trust Indicators Banner */}
               <div className="mb-8">
-                <TrustIndicators 
+                <RoyalTrustIndicators 
                   variant="vertical" 
                   showDescription={false}
                   className="text-white [&_h3]:text-white [&_p]:text-gray-300"
@@ -173,7 +173,7 @@ export default function PremiumTutoringPage() {
                   levels={service.levels}
                   keyFeatures={service.keyFeatures}
                   image={service.image}
-                  onLearnMore={() => console.log(`Learn more about ${service.title}`)}
+                  onLearnMore={() => {}}
                   onBookConsultation={() => setShowBookingForm(true)}
                 />
               </motion.div>
@@ -272,7 +272,7 @@ export default function PremiumTutoringPage() {
               </div>
             </div>
 
-            <TrustIndicators 
+            <RoyalTrustIndicators 
               variant="horizontal"
               showDescription={false}
               className="text-white [&_h3]:text-white [&_p]:text-gray-300"
