@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect } from 'react'
-import { CheckCircle, Crown, Award } from 'lucide-react'
+import { CheckCircle, Crown, Award, Phone, Calendar, BookOpen, Trophy } from 'lucide-react'
+import { m } from 'framer-motion'
 import { getHeroContent, getResultsStatistics } from '@/lib/cms'
 import { getStudentImages, getOptimizedImageProps } from '@/lib/cms/cms-images'
 import Image from 'next/image'
@@ -12,6 +12,13 @@ import { BrandStatementVideo } from '@/components/marketing/brand-statement-vide
 import { ShinyButton } from '@/components/magicui/shiny-button'
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
 import { VideoText } from '@/components/magicui/video-text'
+import { PageHeader } from '@/components/layout/page-header'
+import { PageFooter } from '@/components/layout/page-footer'
+import { Timeline } from '@/components/ui/timeline'
+import { AnimatedSubscribeButton } from '@/components/magicui/animated-subscribe-button'
+import { Carousel } from '@/components/ui/carousel'
+import { Card, CardContent } from '@/components/ui/card'
+import { LazyMotionProvider } from '@/components/providers/LazyMotionProvider'
 
 // CMS DATA SOURCE: Using proper CMS functions for homepage content
 const newHomepageContent = {
@@ -101,6 +108,23 @@ const newHomepageContent = {
     text: "Parents come to us when something truly matters—an entrance exam, a lost sense of confidence, a desire for academic stretch. They stay with us because we deliver real progress, quietly and expertly. This is not a tutoring directory. This is a bespoke service for ambitious families looking for trusted partners in their child's academic career.",
     author: "Elizabeth Burrows, Founder"
   },
+  resultsStatistics: {
+    title: "Results that Speak for Themselves",
+    statistics: [
+      {
+        metric: "94%",
+        description: "of students improve by at least two grades at GCSE"
+      },
+      {
+        metric: "Top 2%",
+        description: "11+ tutees routinely place in the top 2% of candidates. 95% of candidates secure an offer from at least one of their desired schools"
+      },
+      {
+        metric: "Consistent",
+        description: "success with Oxbridge and top Russell Group universities"
+      }
+    ]
+  },
   tiers: [
     {
       tier: "Tier 3",
@@ -121,6 +145,19 @@ const newHomepageContent = {
       pricePoint: "Premium"
     }
   ],
+  clientTestimonials: [
+    "Elizabeth's team was the only one that actually delivered what they promised.",
+    "Your tutors are next level. We couldn't have done it without you.",
+    "Annika scored a 7 in her GCSE retake. We are thrilled—it's such an improvement on the 4 she got in summer.",
+    "Thank you for making my child believe in themselves again.",
+    "We were delighted to hear all three children were accepted into Le Rosey."
+  ],
+  howItWorksSteps: [
+    "Submit an enquiry or contact Elizabeth's team directly",
+    "Schedule a personal consultation call with Elizabeth", 
+    "Arrange an initial lesson to ensure it's a perfect match",
+    "Start regular tutorials—with ongoing support from our personable team and regular progress updates via our tutoring platform"
+  ],
   testimonials: [
     "Elizabeth's team was the only one that actually delivered what they promised.",
     "Your tutors are next level. We couldn't have done it without you.",
@@ -137,8 +174,6 @@ const newHomepageContent = {
 }
 
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  
   // CMS DATA SOURCE: Using getHeroContent for hero section
   const heroContent = getHeroContent()
   // CMS DATA SOURCE: Using educational options for tutoring paths section  
@@ -146,68 +181,10 @@ export default function Home() {
   // CMS DATA SOURCE: Using getStudentImages for student photos
   const studentImages = getStudentImages()
 
-  // Handle scroll for navbar transparency
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
   return (
-    <>
-      {/* Transparent Navbar with Scroll Effect */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
-          : 'bg-transparent'
-      }`}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <Link href="/" className="flex items-center space-x-3 group">
-                <span className={`font-serif text-lg lg:text-xl font-bold transition-colours duration-300 ${
-                  isScrolled ? 'text-primary-900' : 'text-white'
-                }`}>
-                  My Private Tutor Online
-                </span>
-              </Link>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              {[
-                { name: 'How It Works', href: '/how-it-works' },
-                { name: 'Subject Tuition', href: '/subject-tuition' },
-                { name: 'Masterclasses', href: '/video-masterclasses' },
-                { name: 'About Us', href: '/about-us' },
-                { name: 'FAQ', href: '/faq' }
-              ].map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`font-medium transition-colours duration-300 hover:text-accent-400 ${
-                    isScrolled ? 'text-primary-700' : 'text-white'
-                  }`}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden lg:flex">
-              <ShinyButton 
-                text="Book Consultation" 
-                className="px-6 py-3 h-auto"
-              />
-            </div>
-          </div>
-        </div>
-      </nav>
+    <LazyMotionProvider>
+      {/* Use consistent PageHeader component with transparent variant for homepage */}
+      <PageHeader variant="transparent" />
 
       {/* Full Viewport Hero Section */}
       <section className="relative h-screen w-full bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 flex items-center" aria-label="Hero section with introduction to My Private Tutor Online">
@@ -220,22 +197,9 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center h-full">
               <div className="lg:col-span-6 space-y-8">
                 <div>
-                  <VideoText 
-                    text={heroContent.title}
-                    duration={3000}
-                    framerProps={{
-                      hidden: { opacity: 0, y: 20 },
-                      show: { 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { 
-                          staggerChildren: 0.05,
-                          duration: 0.8
-                        }
-                      },
-                    }}
-                    className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6"
-                  />
+                  <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6">
+                    {heroContent.title}
+                  </h1>
                   <p className="text-xl text-accent-400 font-semibold mb-6">
                     {heroContent.subtitle}
                   </p>
@@ -249,12 +213,12 @@ export default function Home() {
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <ShinyButton 
-                    text="Enquire Now"
-                    className="px-8 py-4 h-auto"
+                    text="Book Free Consultation"
+                    className="px-10 py-5 h-auto text-lg font-semibold bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white shadow-gold transition-all duration-300 transform hover:scale-105"
                   />
                   <InteractiveHoverButton 
-                    text="Request a Consultation"
-                    className="px-8 py-4 border-2 border-white bg-transparent text-white hover:bg-white hover:text-primary-900"
+                    text="View Success Stories"
+                    className="px-10 py-5 text-lg font-semibold border-2 border-white/80 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-primary-900 transition-all duration-300"
                   />
                 </div>
               </div>
@@ -356,31 +320,47 @@ export default function Home() {
       <section className="py-16 lg:py-24 bg-white" aria-label="Educational pathways and tutoring options available">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-12">
+            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-4">
               {newHomepageContent.educationalOptions.title}
             </h2>
+            <p className="text-xl text-primary-700 max-w-3xl mx-auto mb-12">
+              Tailored academic support from early years through university entrance
+            </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {educationalOptions.map((option, index) => {
                 // CMS DATA SOURCE: Using studentImages with imageKey for educational option images
                 const studentImage = option.imageKey ? studentImages[option.imageKey as keyof typeof studentImages] : null
                 
                 return (
-                  <div key={index} className="bg-white rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-300">
-                    {/* Student Image - Vertical tall format, 130% larger */}
+                  <div key={index} className="group bg-white overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                    {/* Student Image - Larger with no rounded corners */}
                     {studentImage && (
-                      <div className="mb-6 overflow-hidden rounded-lg">
+                      <div className="relative overflow-hidden h-96">
                         <Image
                           {...getOptimizedImageProps(studentImage, '(max-width: 768px) 100vw, 25vw')}
-                          className="w-full h-80 object-cover"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-primary-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       </div>
                     )}
                     
-                    {/* Content */}
-                    <div className="space-y-4">
-                      <h3 className="text-xl font-serif font-bold text-primary-900">{option.title}</h3>
-                      <p className="text-primary-700 leading-relaxed">{option.description}</p>
+                    {/* Enhanced Content */}
+                    <div className="p-8 space-y-4">
+                      <h3 className="text-2xl font-serif font-bold text-primary-900 group-hover:text-accent-600 transition-colors duration-300">
+                        {option.title}
+                      </h3>
+                      <p className="text-primary-700 leading-relaxed text-lg">
+                        {option.description}
+                      </p>
+                      <AnimatedSubscribeButton
+                        buttonColor="#0f172a"
+                        buttonTextColor="#ffffff"
+                        subscribeStatus={false}
+                        initialText="Learn More"
+                        changeText="View Details"
+                        className="mt-4"
+                      />
                     </div>
                   </div>
                 )
@@ -390,28 +370,198 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Families Choose Us */}
-      <section className="py-16 lg:py-24 bg-primary-50">
+      {/* Why Families Choose Us - Full Width Photo Grid */}
+      <section className="relative py-0 bg-primary-900">
+        <div className="text-center py-16">
+          <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white mb-4">
+            Why Families Choose Us
+          </h2>
+          <p className="text-xl text-white/80 max-w-3xl mx-auto">
+            Four pillars of excellence that define our premium tutoring service
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          {newHomepageContent.whyChooseUs.map((reason, index) => (
+            <m.div 
+              key={index} 
+              className="relative h-[500px] group overflow-hidden"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <Image
+                  src={studentImages[Object.keys(studentImages)[index % Object.keys(studentImages).length]].src}
+                  alt={reason.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              </div>
+              
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/60 to-transparent" />
+              
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
+                <div className="transform transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                  <div className="text-5xl mb-4 text-accent-400">
+                    {reason.icon}
+                  </div>
+                  <h3 className="text-2xl font-serif font-bold mb-3">
+                    {reason.title}
+                  </h3>
+                  <p className="text-white/90 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    {reason.description}
+                  </p>
+                </div>
+              </div>
+            </m.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Results Statistics */}
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-12">
-              Why Families Choose Us
+              {newHomepageContent.resultsStatistics.title}
             </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {newHomepageContent.whyChooseUs.map((reason, index) => (
-                <div key={index} className="bg-white rounded-lg border border-primary-200 p-8 text-left h-full hover:shadow-lg transition-shadow duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="text-4xl">{reason.icon}</div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-primary-900 mb-3">{reason.title}</h3>
-                      <p className="text-primary-700 leading-relaxed">{reason.description}</p>
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {newHomepageContent.resultsStatistics.statistics.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-accent-50 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle className="w-12 h-12 text-accent-600" />
                   </div>
+                  <h3 className="text-2xl font-bold text-primary-900 mb-2">{stat.metric}</h3>
+                  <p className="text-primary-700 leading-relaxed">{stat.description}</p>
                 </div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Elizabeth's Quote */}
+      <section className="py-16 lg:py-24 bg-primary-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed mb-8">
+              "{newHomepageContent.elizabethQuote.text}"
+            </blockquote>
+            <cite className="text-lg font-semibold text-primary-900 not-italic">
+              — {newHomepageContent.elizabethQuote.author}
+            </cite>
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Support */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-12">
+              Who We Support
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {newHomepageContent.whoWeSupport.map((item, index) => (
+                <div key={index} className="flex items-center gap-3 text-left">
+                  <CheckCircle className="w-5 h-5 text-accent-600 flex-shrink-0" />
+                  <span className="text-primary-700">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works - Timeline */}
+      <section className="py-16 lg:py-24 bg-primary-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-primary-700 max-w-3xl mx-auto mb-12">
+              Your journey to academic excellence in four simple steps
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <Timeline 
+              items={[
+                {
+                  title: "Book a Free Consultation",
+                  description: newHomepageContent.howItWorksSteps[0],
+                  icon: <Phone className="w-6 h-6 text-accent-600" />
+                },
+                {
+                  title: "Get Matched with Your Tutor",
+                  description: newHomepageContent.howItWorksSteps[1],
+                  icon: <Calendar className="w-6 h-6 text-accent-600" />
+                },
+                {
+                  title: "Start Learning",
+                  description: newHomepageContent.howItWorksSteps[2],
+                  icon: <BookOpen className="w-6 h-6 text-accent-600" />
+                },
+                {
+                  title: "Track Progress & Succeed",
+                  description: newHomepageContent.howItWorksSteps[3],
+                  icon: <Trophy className="w-6 h-6 text-accent-600" />
+                }
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Client Reflections - Carousel */}
+      <section className="py-16 lg:py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-4">
+              Client Reflections
+            </h2>
+            <p className="text-xl text-primary-700 max-w-3xl mx-auto mb-12">
+              Hear from families who have experienced the transformative power of personalised tutoring
+            </p>
+          </div>
+          
+          <Carousel
+            centerMode={true}
+            autoPlay={true}
+            autoPlayInterval={5000}
+            showDots={true}
+            items={newHomepageContent.clientTestimonials.map((testimonial, index) => ({
+              id: index,
+              content: (
+                <Card className="h-full shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                  <CardContent className="p-8">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="mb-6">
+                        <div className="flex justify-center mb-4">
+                          {[...Array(5)].map((_, i) => (
+                            <Award key={i} className="w-5 h-5 text-accent-500 fill-current" />
+                          ))}
+                        </div>
+                        <blockquote className="text-lg text-primary-700 italic leading-relaxed">
+                          "{testimonial}"
+                        </blockquote>
+                      </div>
+                      <div className="mt-4">
+                        <p className="text-sm text-primary-600">Parent of successful student</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )
+            }))}
+            className="max-w-6xl mx-auto"
+          />
         </div>
       </section>
 
@@ -448,6 +598,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </>
+      <PageFooter />
+    </LazyMotionProvider>
   )
 }
