@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://myprivatetutoronline.com'),
   title: {
     default: "My Private Tutor Online | Premium Academic Tutoring | Oxbridge & 11+ Specialists",
     template: "%s | My Private Tutor Online"

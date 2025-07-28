@@ -15,16 +15,42 @@ import { CheckCircle, Clock, Crown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const consultationSchema = z.object({
-  parentName: z.string().min(2, 'Parent name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  phone: z.string().min(10, 'Please enter a valid phone number'),
-  studentName: z.string().min(2, 'Student name must be at least 2 characters'),
-  academicLevel: z.string().min(1, 'Please select an academic level'),
-  subjects: z.string().min(1, 'Please specify subjects needed'),
-  urgency: z.enum(['immediate', 'within-week', 'within-month', 'planning-ahead']),
-  specificNeeds: z.string().optional(),
-  preferredContact: z.enum(['phone', 'email', 'either']),
-  budget: z.enum(['standard', 'premium', 'elite', 'discuss']),
+  parentName: z.string()
+    .min(2, 'Parent name must be at least 2 characters')
+    .max(100, 'Parent name must be less than 100 characters')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Parent name can only contain letters, spaces, hyphens and apostrophes'),
+  email: z.string()
+    .email('Please enter a valid email address')
+    .max(255, 'Email address too long')
+    .toLowerCase(),
+  phone: z.string()
+    .min(10, 'Please enter a valid phone number')
+    .max(20, 'Phone number too long')
+    .regex(/^[\d\s\-\+\(\)]+$/, 'Phone number contains invalid characters'),
+  studentName: z.string()
+    .min(2, 'Student name must be at least 2 characters')
+    .max(100, 'Student name must be less than 100 characters')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Student name can only contain letters, spaces, hyphens and apostrophes'),
+  academicLevel: z.enum([
+    'primary', '11plus', 'secondary', 'gcse', 'alevel', 'oxbridge', 'university'
+  ], { errorMap: () => ({ message: 'Please select a valid academic level' }) }),
+  subjects: z.string()
+    .min(1, 'Please specify subjects needed')
+    .max(500, 'Subject list too long')
+    .trim(),
+  urgency: z.enum(['immediate', 'within-week', 'within-month', 'planning-ahead'], {
+    errorMap: () => ({ message: 'Please select a valid timescale' })
+  }),
+  specificNeeds: z.string()
+    .max(1000, 'Specific needs description too long')
+    .optional()
+    .or(z.literal('')),
+  preferredContact: z.enum(['phone', 'email', 'either'], {
+    errorMap: () => ({ message: 'Please select a valid contact method' })
+  }),
+  budget: z.enum(['standard', 'premium', 'elite', 'discuss'], {
+    errorMap: () => ({ message: 'Please select a valid service level' })
+  }),
 })
 
 type ConsultationFormData = z.infer<typeof consultationSchema>
@@ -65,7 +91,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
         reset()
       }
     } catch (error) {
-      console.error('Consultation booking error:', error)
+      // Form submission error handled
     }
   }
 
@@ -194,7 +220,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
             <div>
               <Label className="text-sm font-medium text-primary-800">Academic Level *</Label>
               <Select onValueChange={(value) => setValue('academicLevel', value)}>
-                <SelectTrigger className="mt-1">
+                <SelectTrigger className="mt-1" aria-label="Select academic level">
                   <SelectValue placeholder="Select level" />
                 </SelectTrigger>
                 <SelectContent>
@@ -218,7 +244,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
                 Timescale
               </Label>
               <Select onValueChange={(value) => setValue('urgency', value as any)}>
-                <SelectTrigger className="mt-1">
+                <SelectTrigger className="mt-1" aria-label="Select timescale for tutoring support">
                   <SelectValue placeholder="When do you need support?" />
                 </SelectTrigger>
                 <SelectContent>
@@ -266,7 +292,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
             <div>
               <Label className="text-sm font-medium text-primary-800">Preferred Contact Method</Label>
               <Select onValueChange={(value) => setValue('preferredContact', value as any)}>
-                <SelectTrigger className="mt-1">
+                <SelectTrigger className="mt-1" aria-label="Select preferred contact method">
                   <SelectValue placeholder="How should we contact you?" />
                 </SelectTrigger>
                 <SelectContent>
@@ -280,7 +306,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
             <div>
               <Label className="text-sm font-medium text-primary-800">Service Level</Label>
               <Select onValueChange={(value) => setValue('budget', value as any)}>
-                <SelectTrigger className="mt-1">
+                <SelectTrigger className="mt-1" aria-label="Select service level and budget">
                   <SelectValue placeholder="Select service level" />
                 </SelectTrigger>
                 <SelectContent>
