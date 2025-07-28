@@ -1,18 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
-// Validation schema matching the form
+// Comprehensive validation schema matching the form
 const consultationSchema = z.object({
-  parentName: z.string().min(2, 'Parent name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  phone: z.string().min(10, 'Please enter a valid phone number'),
-  studentName: z.string().min(2, 'Student name must be at least 2 characters'),
-  academicLevel: z.string().min(1, 'Please select an academic level'),
-  subjects: z.string().min(1, 'Please specify subjects needed'),
-  urgency: z.enum(['immediate', 'within-week', 'within-month', 'planning-ahead']),
-  specificNeeds: z.string().optional(),
-  preferredContact: z.enum(['phone', 'email', 'either']),
-  budget: z.enum(['standard', 'premium', 'elite', 'discuss']),
+  parentName: z.string()
+    .min(2, 'Parent name must be at least 2 characters')
+    .max(100, 'Parent name must be less than 100 characters')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Parent name can only contain letters, spaces, hyphens and apostrophes'),
+  email: z.string()
+    .email('Please enter a valid email address')
+    .max(255, 'Email address too long')
+    .toLowerCase(),
+  phone: z.string()
+    .min(10, 'Please enter a valid phone number')
+    .max(20, 'Phone number too long')
+    .regex(/^[\d\s\-\+\(\)]+$/, 'Phone number contains invalid characters'),
+  studentName: z.string()
+    .min(2, 'Student name must be at least 2 characters')
+    .max(100, 'Student name must be less than 100 characters')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Student name can only contain letters, spaces, hyphens and apostrophes'),
+  academicLevel: z.enum([
+    'primary', '11plus', 'secondary', 'gcse', 'alevel', 'oxbridge', 'university'
+  ], { errorMap: () => ({ message: 'Please select a valid academic level' }) }),
+  subjects: z.string()
+    .min(1, 'Please specify subjects needed')
+    .max(500, 'Subject list too long')
+    .trim(),
+  urgency: z.enum(['immediate', 'within-week', 'within-month', 'planning-ahead'], {
+    errorMap: () => ({ message: 'Please select a valid timescale' })
+  }),
+  specificNeeds: z.string()
+    .max(1000, 'Specific needs description too long')
+    .optional()
+    .or(z.literal('')),
+  preferredContact: z.enum(['phone', 'email', 'either'], {
+    errorMap: () => ({ message: 'Please select a valid contact method' })
+  }),
+  budget: z.enum(['standard', 'premium', 'elite', 'discuss'], {
+    errorMap: () => ({ message: 'Please select a valid service level' })
+  }),
 })
 
 export async function POST(request: NextRequest) {
@@ -28,12 +54,11 @@ export async function POST(request: NextRequest) {
     // 3. Integrate with CRM system
     // 4. Send confirmation emails
     
-    // For now, we'll log the data and return success
-    console.log('Consultation request received:', {
-      ...validatedData,
-      timestamp: new Date().toISOString(),
-      id: Math.random().toString(36).substr(2, 9),
-    })
+    // Process validated consultation request
+    const requestId = Math.random().toString(36).substr(2, 9)
+    const timestamp = new Date().toISOString()
+    
+    // In production: save to database, send notifications, etc.
 
     // Simulate processing delay
     await new Promise(resolve => setTimeout(resolve, 1000))
@@ -44,18 +69,19 @@ export async function POST(request: NextRequest) {
         success: true,
         message: 'Consultation request received successfully',
         data: {
-          id: Math.random().toString(36).substr(2, 9),
+          id: requestId,
           parentName: validatedData.parentName,
           studentName: validatedData.studentName,
           academicLevel: validatedData.academicLevel,
           urgency: validatedData.urgency,
+          timestamp,
         }
       },
       { status: 200 }
     )
 
   } catch (error) {
-    console.error('Consultation API error:', error)
+    // Handle API errors appropriately
 
     // Handle validation errors
     if (error instanceof z.ZodError) {

@@ -57,7 +57,7 @@ test.describe('Performance Tests', () => {
     // Get final measurements
     const finalVitals = await page.evaluate(() => (window as any).__webVitals || {})
     
-    console.log('Core Web Vitals:', finalVitals)
+    // Core Web Vitals measured
     
     // Assert Core Web Vitals thresholds (relaxed for test environment)
     if (finalVitals.lcp) {
@@ -131,8 +131,7 @@ test.describe('Performance Tests', () => {
     // Wait for all resources to load
     await page.waitForTimeout(2000)
     
-    console.log(`Total CSS size: ${totalCSSSize} bytes`)
-    console.log(`Total JS size: ${totalJSSize} bytes`)
+    // Bundle sizes measured
     
     // CSS bundle should be reasonable (under 100KB)
     expect(totalCSSSize).toBeLessThan(100 * 1024)
@@ -167,7 +166,7 @@ test.describe('Performance Tests', () => {
       })
     })
     
-    console.log('Fonts loaded:', await fontsLoaded)
+    // Font loading measured
     
     // Should have loaded custom fonts
     const fontInfo = await fontsLoaded
@@ -188,7 +187,7 @@ test.describe('Performance Tests', () => {
         const response = await request.get(`http://localhost:3000${endpoint}`)
         const responseTime = Date.now() - startTime
         
-        console.log(`${endpoint} response time: ${responseTime}ms`)
+        // API response time measured
         
         if (response.ok()) {
           // API responses should be under 500ms
@@ -196,7 +195,7 @@ test.describe('Performance Tests', () => {
         }
       } catch (error) {
         // Skip if endpoint doesn't exist
-        console.log(`Skipping ${endpoint} - not found`)
+        // Endpoint not found - skipped
       }
     }
   })
@@ -225,7 +224,7 @@ test.describe('Performance Tests', () => {
     await page.waitForLoadState('networkidle')
     const totalTime = Date.now() - startTime
     
-    console.log(`Slow network load time: ${totalTime}ms`)
+    // Slow network load time measured
     
     // Should complete loading within reasonable time on slow connection
     expect(totalTime).toBeLessThan(10000) // 10 seconds max
@@ -248,7 +247,7 @@ test.describe('Performance Tests', () => {
     })
     
     if (memoryUsage) {
-      console.log('Memory usage:', memoryUsage)
+      // Memory usage measured
       
       // Memory usage should be reasonable (under 50MB)
       expect(memoryUsage.usedJSHeapSize).toBeLessThan(50 * 1024 * 1024)
