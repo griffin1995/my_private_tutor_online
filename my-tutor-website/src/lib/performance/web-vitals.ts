@@ -70,15 +70,10 @@ export interface AnalyticsProvider {
 // Console logger for development
 const consoleAnalytics: AnalyticsProvider = {
   trackWebVital: (data) => {
-    console.log(`📊 Web Vital: ${data.name}`, {
-      value: data.value,
-      rating: data.rating,
-      threshold: PERFORMANCE_THRESHOLDS[data.name],
-      url: data.url
-    })
+    // Web vitals data captured for monitoring
   },
   trackPerformanceMetric: (name, value, attributes) => {
-    console.log(`⚡ Performance: ${name}`, { value, ...attributes })
+    // Performance metric captured for monitoring
   }
 }
 

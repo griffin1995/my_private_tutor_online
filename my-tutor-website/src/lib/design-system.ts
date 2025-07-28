@@ -205,7 +205,7 @@ export const getColor = (colorPath: string) => {
     if (current && current[key]) {
       current = current[key]
     } else {
-      console.warn(`Color not found: ${colorPath}`)
+      // Color lookup fallback applied
       return colors.primary[900] // Fallback to primary
     }
   }

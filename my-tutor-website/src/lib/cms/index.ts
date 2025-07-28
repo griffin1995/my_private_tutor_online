@@ -16,9 +16,9 @@ export const initializeCMS = () => {
   const isValid = validateContentStructure()
   
   if (!isValid) {
-    console.error('CMS content validation failed - check landing-page.json structure')
+    // CMS content validation failed
   } else {
-    console.log('✅ CMS content validation passed')
+    // CMS content validation passed
   }
   
   return isValid

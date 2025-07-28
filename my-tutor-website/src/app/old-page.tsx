@@ -257,7 +257,7 @@ export default function Home() {
   const onSubmit = async (data: ContactFormData) => {
     try {
       // Here you would typically send the data to your backend/API
-      console.log("Form submitted:", data);
+      // Form submission handled
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -268,7 +268,7 @@ export default function Home() {
       // You might want to show a success message here
       alert("Thank you for your message! We'll get back to you soon.");
     } catch (error) {
-      console.error("Error submitting form:", error);
+      // Form submission error handled
       // You might want to show an error message here
       alert("There was an error submitting your form. Please try again.");
     }
