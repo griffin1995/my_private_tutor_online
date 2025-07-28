@@ -1,3 +1,29 @@
+/**
+ * Documentation Source: React Hook Form v7 + Radix UI
+ * Reference: https://react-hook-form.com/docs/useformcontext
+ * Reference: https://react-hook-form.com/docs/usecontroller
+ * Reference: https://www.radix-ui.com/primitives/docs/utilities/slot
+ * 
+ * Pattern: Form Components with React Hook Form Integration
+ * Architecture:
+ * - Context-based form state management
+ * - Type-safe field definitions with TypeScript generics
+ * - Radix UI Label primitive integration
+ * - Controller pattern for form fields
+ * 
+ * Features:
+ * - FormProvider for form context
+ * - FormField wrapper for Controller
+ * - FormItem, FormLabel, FormControl, FormMessage compounds
+ * - Type-safe field paths
+ * - Automatic validation state management
+ * 
+ * Integration:
+ * - Works with Zod validation schemas
+ * - ARIA attributes for accessibility
+ * - Error message display
+ */
+
 "use client"
 
 import * as React from "react"

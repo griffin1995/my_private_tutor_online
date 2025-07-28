@@ -1,3 +1,27 @@
+/**
+ * Documentation Source: React 18 + Tailwind CSS
+ * Reference: https://react.dev/reference/react/forwardRef
+ * Reference: https://tailwindcss.com/docs/customizing-colors#using-css-variables
+ * Reference: https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/
+ * 
+ * Pattern: Compound Card Component
+ * Architecture:
+ * - Semantic HTML structure
+ * - Compound component pattern (Card, CardHeader, CardTitle, etc.)
+ * - CSS custom properties for theming
+ * - Container queries for responsive design
+ * 
+ * Accessibility:
+ * - data-slot attributes for component identification
+ * - Semantic HTML elements
+ * - Proper heading hierarchy support
+ * 
+ * Design System:
+ * - Consistent padding and spacing
+ * - Theme-aware colors (card, card-foreground)
+ * - Shadow and border styling
+ */
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"

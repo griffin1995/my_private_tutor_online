@@ -1,3 +1,30 @@
+/**
+ * Documentation Source: Radix UI Select + React 18
+ * Reference: https://www.radix-ui.com/primitives/docs/components/select
+ * Reference: https://react.dev/reference/react/forwardRef
+ * Reference: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+ * 
+ * Pattern: Accessible Select Component with Radix UI
+ * Architecture:
+ * - Radix UI Select primitive for accessibility
+ * - forwardRef for proper ref handling
+ * - Compound component pattern
+ * - Custom styling with Tailwind CSS
+ * 
+ * Accessibility Features:
+ * - Full keyboard navigation
+ * - ARIA attributes managed by Radix
+ * - Screen reader announcements
+ * - Focus management
+ * - Disabled state support
+ * 
+ * Components:
+ * - SelectTrigger: Button that opens dropdown
+ * - SelectContent: Dropdown content container
+ * - SelectItem: Individual option items
+ * - SelectValue: Display selected value
+ */
+
 "use client"
 
 import * as React from "react"

@@ -1,3 +1,26 @@
+/**
+ * Documentation Source: Radix UI Accordion Primitive
+ * Reference: https://www.radix-ui.com/primitives/docs/components/accordion
+ * Reference: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+ * 
+ * Pattern: Accessible Accordion Component
+ * Architecture:
+ * - Built on Radix UI primitives for full accessibility
+ * - Client component for interactivity
+ * - Compound component pattern (Item, Trigger, Content)
+ * 
+ * Accessibility Features:
+ * - Full keyboard navigation (Arrow keys, Home, End)
+ * - ARIA attributes managed automatically
+ * - Focus management
+ * - Screen reader announcements
+ * 
+ * Animation:
+ * - CSS animations for smooth open/close
+ * - data-state attributes for styling
+ * - Respects prefers-reduced-motion
+ */
+
 "use client"
 
 import * as React from "react"
