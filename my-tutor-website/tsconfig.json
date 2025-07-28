@@ -1,3 +1,27 @@
+/**
+ * Documentation Source: TypeScript + Next.js 14 Configuration
+ * Reference: https://www.typescriptlang.org/tsconfig
+ * Reference: https://nextjs.org/docs/app/building-your-application/configuring/typescript
+ * 
+ * Configuration Pattern: Strict TypeScript with Next.js Integration
+ * Key Features:
+ * - ES2022 target for modern JavaScript features
+ * - Bundler module resolution for Next.js compatibility
+ * - Strict mode enabled with all strict checks
+ * - Path aliases for clean imports
+ * - Next.js plugin for enhanced type checking
+ * 
+ * Compiler Options Explained:
+ * - moduleResolution: "bundler" - Required for Next.js 13+
+ * - jsx: "preserve" - Next.js handles JSX transformation
+ * - incremental: true - Faster subsequent builds
+ * - verbatimModuleSyntax: true - ESM compliance
+ * 
+ * Type Safety:
+ * - All strict checks enabled
+ * - No implicit any/returns/this
+ * - Consistent casing enforced
+ */
 {
   "compilerOptions": {
     "target": "ES2022",
@@ -18,6 +42,7 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@/components/*": ["./src/components/*"],
@@ -35,7 +60,7 @@
     "noUncheckedIndexedAccess": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": true,

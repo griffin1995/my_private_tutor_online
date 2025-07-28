@@ -10,7 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { getFAQContent, getFAQHero, getFAQCategories, getFAQContact, getContactDetails } from '@/lib/cms/cms-content'
+import { getFAQHero, getFAQCategories, getFAQContact, getContactDetails } from '@/lib/cms/cms-content'
 import { HERO_IMAGES } from '@/lib/cms/cms-images'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageFooter } from '@/components/layout/page-footer'

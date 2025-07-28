@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { m } from 'framer-motion'
-import { Home, BookOpen, Users, Calendar, CheckCircle, Clock, Target, Heart } from 'lucide-react'
+import { Home, CheckCircle, Clock, Target, Heart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
@@ -214,7 +214,7 @@ export default function HomeschoolingPage() {
               Homeschooling Programmes
             </h2>
             <p className="text-lg text-slate-700 max-w-3xl mx-auto">
-              Comprehensive educational programmes designed for every stage of your child's learning journey.
+              Comprehensive educational programmes designed for every stage of your child&apos;s learning journey.
             </p>
           </m.div>
 
@@ -452,7 +452,7 @@ export default function HomeschoolingPage() {
               Start Your Homeschooling Journey Today
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Book a free consultation to discuss your homeschooling needs and discover how we can support your family's educational goals.
+              Book a free consultation to discuss your homeschooling needs and discover how we can support your family&apos;s educational goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 

@@ -2,12 +2,12 @@
 
 import { useState } from 'react'
 import { m } from 'framer-motion'
-import { Star, Award, Users, BookOpen, CheckCircle } from 'lucide-react'
+import { Award, Users, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/layout/section'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
 // CMS DATA SOURCE: Using structured content for Expert Educators page
@@ -72,7 +72,7 @@ const expertEducatorsContent = {
 }
 
 export default function ExpertEducatorsPage() {
-  const [selectedTier, setSelectedTier] = useState('premium')
+  // const [selectedTier, setSelectedTier] = useState('premium') // TODO: Implement tier selection functionality
 
   return (
     <PageLayout
@@ -250,7 +250,7 @@ export default function ExpertEducatorsPage() {
                     <div className="px-6 py-4 font-medium text-slate-700 bg-slate-25">University Background</div>
                     <div className="px-6 py-4 text-center border-l border-slate-200">Oxford/Cambridge Graduate</div>
                     <div className="px-6 py-4 text-center border-l border-slate-200">Senior Oxbridge Graduate</div>
-                    <div className="px-6 py-4 text-center border-l border-slate-200">PhD/Master's Degree</div>
+                    <div className="px-6 py-4 text-center border-l border-slate-200">PhD/Master&apos;s Degree</div>
                   </div>
                   <div className="grid grid-cols-1 lg:grid-cols-4 gap-0 border-t border-slate-100">
                     <div className="px-6 py-4 font-medium text-slate-700 bg-slate-25">Teaching Experience</div>

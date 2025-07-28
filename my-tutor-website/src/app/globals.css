@@ -1,3 +1,28 @@
+/**
+ * Documentation Source: Tailwind CSS v4 + CSS Custom Properties
+ * Reference: https://tailwindcss.com/docs/adding-custom-styles
+ * Reference: https://tailwindcss.com/docs/customizing-colors
+ * Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+ * 
+ * Pattern: Global Styles with CSS Custom Properties
+ * Architecture:
+ * - Tailwind CSS v4 with @import syntax
+ * - CSS custom properties for dynamic theming
+ * - Dark mode variant configuration
+ * - Design tokens as CSS variables
+ * 
+ * Design System:
+ * - Premium brand colors (Navy & Gold)
+ * - Semantic color tokens
+ * - Typography variables
+ * - Component-specific tokens
+ * 
+ * Performance:
+ * - CSS custom properties for runtime theming
+ * - Minimal global styles
+ * - Tailwind JIT compilation
+ */
+
 @import "tailwindcss";
 @import "tw-animate-css";
 

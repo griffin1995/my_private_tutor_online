@@ -1,3 +1,27 @@
+/**
+ * Documentation Source: Tailwind CSS v3 Configuration
+ * Reference: https://tailwindcss.com/docs/configuration
+ * Reference: https://tailwindcss.com/docs/theme
+ * Reference: https://tailwindcss.com/docs/plugins
+ * 
+ * Pattern: Extended Theme Configuration with Design Tokens
+ * Architecture:
+ * - TypeScript configuration for type safety
+ * - Custom color palette following brand guidelines
+ * - Extended typography scale
+ * - Custom animations for UI components
+ * 
+ * Design System Integration:
+ * - Primary: Navy/Slate-900 (#0f172a)
+ * - Accent: Gold (#eab308)
+ * - Semantic color tokens
+ * - Consistent spacing scale
+ * 
+ * Performance:
+ * - JIT mode enabled by default in v3
+ * - Purged unused styles in production
+ */
+
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
