@@ -1,0 +1,68 @@
+{
+  "hero": {
+    "title": "Testimonials",
+    "subtitle": "What families say about My Private Tutor Online",
+    "description": "Since 2010, My Private Tutor Online has helped hundreds of students achieve their academic goals."
+  },
+  "mainContent": {
+    "intro": "We're proud to say we've never spent a penny on marketing or paid advertising — our tutors are consistently in demand through personal word-of-mouth referrals alone.",
+    "callToAction": "Here's what a selection of families have to say about their experience with us. We are always happy to share references for specific tutors upon request."
+  },
+  "video": {
+    "title": "TESTIMONIALS VIDEO JULY 2025 MPTO",
+    "videoKey": "testimonialsVideo",
+    "description": "Hear from our families about their experience with My Private Tutor Online"
+  },
+  "schoolsTitle": "WE HELP CLIENTS SECURE PLACES AT THE TOP EDUCATIONAL INSTITUTIONS IN THE WORLD",
+  "schools": [
+    "Eton College",
+    "Westminster School", 
+    "St Paul's School",
+    "Winchester College",
+    "Harrow School",
+    "Oxford University",
+    "Cambridge University",
+    "Imperial College London",
+    "London School of Economics",
+    "University College London"
+  ],
+  "recentTestimonials": [
+    {
+      "quote": "Elizabeth's team was the only one that actually delivered what they promised. Our daughter secured her place at Westminster School with their expert guidance.",
+      "author": "Sarah M.",
+      "role": "Parent of 11+ student",
+      "rating": 5,
+      "featured": true
+    },
+    {
+      "quote": "Your tutors are next level. We couldn't have done it without you. Both children achieved their Oxbridge offers!",
+      "author": "James & Victoria P.",
+      "role": "Parents of A-Level students",
+      "rating": 5
+    },
+    {
+      "quote": "Annika scored a 7 in her GCSE retake. We are thrilled—it's such an improvement on the 4 she got in summer.",
+      "author": "Maria L.",
+      "role": "Parent of GCSE student",
+      "rating": 5
+    },
+    {
+      "quote": "Thank you for making my child believe in themselves again. The transformation in confidence has been remarkable.",
+      "author": "David K.",
+      "role": "Parent of Year 9 student",
+      "rating": 5
+    },
+    {
+      "quote": "We were delighted to hear all three children were accepted into Le Rosey. Your preparation was absolutely invaluable.",
+      "author": "The Al-Rashid Family",
+      "role": "International clients",
+      "rating": 5
+    },
+    {
+      "quote": "The tutor you matched us with understood exactly what the Eton entrance exams required. Our son is now thriving there.",
+      "author": "Caroline W.",
+      "role": "Parent of 13+ student",
+      "rating": 5
+    }
+  ]
+}
