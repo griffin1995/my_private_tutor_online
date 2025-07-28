@@ -414,19 +414,19 @@ export const getOptimizedImageProps = (
 export const validateImageAccessibility = (image: ImageAsset): boolean => {
   // Check for required alt text
   if (!image.alt || image.alt.trim().length === 0) {
-    console.error('Image missing alt text:', image.src)
+    // Image missing alt text
     return false
   }
   
   // Check for meaningful alt text (not just filename)
   if (image.alt.includes('.jpg') || image.alt.includes('.png') || image.alt.includes('.avif')) {
-    console.warn('Alt text appears to be filename:', image.alt)
+    // Alt text appears to be filename
     return false
   }
   
   // Check for dimensions for layout stability
   if (!image.width || !image.height) {
-    console.warn('Image missing dimensions for CLS prevention:', image.src)
+    // Image missing dimensions for CLS prevention
   }
   
   return true

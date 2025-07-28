@@ -50,8 +50,14 @@ export const seasonalContent: Record<string, SeasonalContent> = {
 /**
  * Determines current season based on date
  * UK academic calendar consideration
+ * Returns null for SSR to prevent hydration issues
  */
-export function getCurrentSeason(): 'spring' | 'summer' | 'autumn' | 'winter' {
+export function getCurrentSeason(): 'spring' | 'summer' | 'autumn' | 'winter' | null {
+  // Return null during SSR to prevent hydration mismatch
+  if (typeof window === 'undefined') {
+    return null;
+  }
+  
   const now = new Date();
   const month = now.getMonth(); // 0-11
   
@@ -64,10 +70,12 @@ export function getCurrentSeason(): 'spring' | 'summer' | 'autumn' | 'winter' {
 
 /**
  * Gets content for current season
+ * Returns default autumn content during SSR to prevent hydration issues
  */
 export function getCurrentSeasonalContent(): SeasonalContent {
   const season = getCurrentSeason();
-  return seasonalContent[season];
+  // Default to autumn for consistent SSR behavior
+  return seasonalContent[season || 'autumn'];
 }
 
 /**

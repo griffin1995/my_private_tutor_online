@@ -4,6 +4,7 @@
 import landingPageContent from '@/content/landing-page.json'
 import businessContent from '@/content/business-content.json'
 import aboutContent from '@/content/about.json'
+import testimonialsContent from '@/content/testimonials.json'
 import howItWorksContent from '@/content/how-it-works.json'
 import faqContent from '@/content/faq.json'
 import siteSettings from '@/content/settings.json'
@@ -212,7 +213,7 @@ export const getBusinessContent = () => {
   try {
     return businessContent
   } catch (error) {
-    console.warn('Business content not found, using fallback')
+    // Business content fallback used
     return {
       companyName: 'My Private Tutor Online',
       founded: '2010',
@@ -229,7 +230,7 @@ export const getAboutContent = () => {
   try {
     return aboutContent
   } catch (error) {
-    console.warn('About content not found, using fallback')
+    // About content fallback used
     return {
       title: 'About My Private Tutor Online',
       description: 'Excellence in private tutoring since 2010'
@@ -404,9 +405,11 @@ export const formatBritishEnglish = (text: string): string => {
 
 /**
  * Get formatted copyright text with current year
+ * Uses consistent year during SSR to prevent hydration issues
  */
 export const getCopyrightText = (): string => {
-  const currentYear = new Date().getFullYear()
+  // Use consistent year during SSR, update on client
+  const currentYear = typeof window === 'undefined' ? 2025 : new Date().getFullYear()
   return `© ${currentYear} My Private Tutor Online. All rights reserved.`
 }
 
@@ -439,11 +442,59 @@ export const validateContentStructure = () => {
   })
   
   if (missingFields.length > 0) {
-    console.error('Missing required content fields:', missingFields)
+    // Missing required content fields detected
     return false
   }
   
   return true
+}
+
+/**
+ * Get testimonials page content
+ * CMS DATA SOURCE: Using testimonialsContent for testimonials page
+ */
+export const getTestimonialsContent = () => {
+  try {
+    return testimonialsContent
+  } catch (error) {
+    // Testimonials content fallback used
+    return {
+      hero: {
+        title: 'Testimonials',
+        subtitle: 'What families say about us',
+        description: 'Read about our families\' experiences'
+      },
+      mainContent: {
+        intro: '',
+        callToAction: ''
+      },
+      recentTestimonials: []
+    }
+  }
+}
+
+/**
+ * Get testimonials page hero content
+ * CMS DATA SOURCE: Using testimonialsContent.hero for testimonials hero
+ */
+export const getTestimonialsHero = () => {
+  return testimonialsContent.hero
+}
+
+/**
+ * Get recent testimonials for display
+ * CMS DATA SOURCE: Using testimonialsContent.recentTestimonials for testimonials
+ */
+export const getRecentTestimonials = () => {
+  return testimonialsContent.recentTestimonials
+}
+
+/**
+ * Get schools list for testimonials page
+ * CMS DATA SOURCE: Using testimonialsContent.schools for school shields
+ */
+export const getTestimonialsSchools = () => {
+  return testimonialsContent.schools
 }
 
 // Export default content object for direct access if needed
@@ -480,5 +531,9 @@ export default {
   getQualifications,
   formatBritishEnglish,
   getCopyrightText,
-  validateContentStructure
+  validateContentStructure,
+  getTestimonialsContent,
+  getTestimonialsHero,
+  getRecentTestimonials,
+  getTestimonialsSchools
 }
