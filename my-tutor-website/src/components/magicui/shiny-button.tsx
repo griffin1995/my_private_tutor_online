@@ -1,3 +1,28 @@
+/**
+ * Documentation Source: Magic UI + React 18 forwardRef
+ * Reference: https://react.dev/reference/react/forwardRef
+ * Reference: https://tailwindcss.com/docs/animation#customizing-your-theme
+ * Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient
+ * 
+ * Pattern: Animated Button Component with Shimmer Effect
+ * Architecture:
+ * - forwardRef for proper ref handling
+ * - CSS linear gradient animation
+ * - Custom Tailwind animation (animate-shimmer)
+ * - Focus ring for accessibility
+ * 
+ * Features:
+ * - Shimmer animation effect
+ * - Gold gradient background
+ * - WCAG focus indicators
+ * - Customizable styling via className
+ * 
+ * Animation:
+ * - CSS-based shimmer effect
+ * - Background gradient movement
+ * - Smooth transitions
+ */
+
 "use client"
 
 import React from "react"

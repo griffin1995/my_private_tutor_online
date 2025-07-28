@@ -1,10 +1,21 @@
+/**
+ * Documentation Source: Framer Motion Official Docs
+ * Reference: https://www.framer.com/motion/lazy-motion/
+ * Pattern: LazyMotion with domAnimation feature bundle
+ * Purpose: Reduces bundle size by lazy-loading animation features
+ * Bundle Impact: Reduces from ~34kb to ~4.6kb initial + 21kb for domAnimation
+ * 
+ * Implementation Notes:
+ * - strict mode ensures only m components are used (not motion)
+ * - domAnimation includes all DOM animation features
+ * - For even smaller bundles, could use domMax (complete) or custom feature sets
+ * Reference: https://www.framer.com/motion/guide-reduce-bundle-size/
+ */
+
 "use client"
 
 import { ReactNode } from "react"
 import { LazyMotion, domAnimation } from "framer-motion"
-
-// CMS DATA SOURCE: Using documented LazyMotion patterns from docs/CUSTOM_DOCUMENTATION.md
-// CLAUDE.md Rule 1: Following official LazyMotion documentation patterns for bundle optimization
 
 interface LazyMotionProviderProps {
   children: ReactNode

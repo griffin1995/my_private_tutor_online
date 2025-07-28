@@ -1,3 +1,29 @@
+/**
+ * Documentation Source: React Icon Cloud + React 18 Hooks
+ * Reference: https://github.com/jpmorganchase/react-icon-cloud
+ * Reference: https://react.dev/reference/react/useEffect
+ * Reference: https://react.dev/reference/react/useMemo
+ * 
+ * Pattern: 3D Icon Cloud Component
+ * Architecture:
+ * - Client component using react-icon-cloud library
+ * - Dynamic icon fetching from Simple Icons
+ * - Theme-aware icon rendering
+ * - Memoized performance optimization
+ * 
+ * Features:
+ * - 3D rotating icon cloud
+ * - Simple Icons integration
+ * - Light/dark theme support
+ * - Interactive hover effects
+ * - Customizable cloud properties
+ * 
+ * Performance:
+ * - useMemo for expensive computations
+ * - useEffect for side effects
+ * - Icon caching and optimization
+ */
+
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
