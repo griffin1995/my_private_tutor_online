@@ -1,13 +1,14 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X, Phone, Mail } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu'
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet'
-import { getSiteHeader, getMainNavigation, getContactInfo } from '@/lib/cms'
+import { NoSSR } from '@/components/ui/no-ssr'
+import { getSiteHeader, getMainNavigation, getContactInfo } from '@/lib/cms/cms-content'
 import { cn } from '@/lib/utils'
 
 // CMS DATA SOURCE: Using getSiteHeader for header content and navigation
@@ -23,9 +24,8 @@ export function PageHeader({
   variant = 'default',
   showContactInfo = true
 }: PageHeaderProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  
   // CMS DATA SOURCE: Using getSiteHeader for site branding and navigation
+  // Get CMS data - these are server-safe
   const headerContent = getSiteHeader()
   const navigation = getMainNavigation()
   const contactInfo = getContactInfo()
@@ -77,7 +77,7 @@ export function PageHeader({
 
       {/* Main Navigation */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-14 lg:h-16">
           
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -130,91 +130,120 @@ export function PageHeader({
               className="bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white shadow-gold"
               asChild
             >
-              <Link href="#contact">
+              <Link href="#contact" aria-label="Book free consultation with My Private Tutor Online">
                 Book Free Consultation
               </Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Wrapped with NoSSR */}
           <div className="lg:hidden">
-            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-primary-700 hover:text-primary-900 hover:bg-primary-50"
-                  aria-label="Open mobile menu"
-                >
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </SheetTrigger>
-              
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <SheetHeader className="text-left">
-                  <SheetTitle className="font-serif text-xl font-bold text-primary-900">
-                    {headerContent.siteName}
-                  </SheetTitle>
-                </SheetHeader>
-                
-                {/* Mobile Navigation */}
-                <nav className="mt-8" role="navigation" aria-label="Mobile navigation">
-                  <div className="flex flex-col space-y-4">
-                    {navigation.map((item, index) => (
-                      <Link
-                        key={index}
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="text-primary-700 hover:text-primary-900 font-medium py-3 px-4 rounded-lg hover:bg-primary-50 transition-all duration-200"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                </nav>
-
-                {/* Mobile Contact Info */}
-                <div className="mt-8 pt-8 border-t border-primary-200">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-primary-600">
-                      <Phone className="w-5 h-5" />
-                      <a 
-                        href={`tel:${contactInfo.phone}`}
-                        className="hover:text-primary-900 transition-colours duration-200"
-                      >
-                        {contactInfo.phone}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-3 text-primary-600">
-                      <Mail className="w-5 h-5" />
-                      <a 
-                        href={`mailto:${contactInfo.email}`}
-                        className="hover:text-primary-900 transition-colours duration-200"
-                      >
-                        {contactInfo.email}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Mobile CTA Button */}
-                <div className="mt-8 pt-6 border-t border-primary-200">
-                  <Button
-                    className="w-full bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white shadow-gold"
-                    onClick={() => setMobileMenuOpen(false)}
-                    asChild
-                  >
-                    <Link href="#contact">
-                      Book Free Consultation
-                    </Link>
-                  </Button>
-                </div>
-              </SheetContent>
-            </Sheet>
+            <NoSSR fallback={
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-primary-700 hover:text-primary-900 hover:bg-primary-50"
+                aria-label="Menu"
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
+            }>
+              <MobileMenu 
+                headerContent={headerContent}
+                navigation={navigation}
+                contactInfo={contactInfo}
+              />
+            </NoSSR>
           </div>
         </div>
       </div>
     </header>
+  )
+}
+
+// Mobile Menu Component - Separated for NoSSR wrapping
+function MobileMenu({ headerContent, navigation, contactInfo }: {
+  headerContent: ReturnType<typeof getSiteHeader>
+  navigation: ReturnType<typeof getMainNavigation>
+  contactInfo: ReturnType<typeof getContactInfo>
+}) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  return (
+    <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+      <SheetTrigger asChild>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-primary-700 hover:text-primary-900 hover:bg-primary-50"
+          aria-label="Open mobile menu"
+        >
+          <Menu className="h-6 w-6" />
+        </Button>
+      </SheetTrigger>
+      
+      <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+        <SheetHeader className="text-left">
+          <SheetTitle className="font-serif text-xl font-bold text-primary-900">
+            {headerContent.siteName}
+          </SheetTitle>
+        </SheetHeader>
+        
+        {/* Mobile Navigation */}
+        <nav className="mt-8" role="navigation" aria-label="Mobile navigation">
+          <div className="flex flex-col space-y-4">
+            {navigation.map((item, index) => (
+              <Link
+                key={index}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-primary-700 hover:text-primary-900 font-medium py-3 px-4 rounded-lg hover:bg-primary-50 transition-all duration-200"
+                aria-label={`Navigate to ${item.label} section`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+
+        {/* Mobile Contact Info */}
+        <div className="mt-8 pt-8 border-t border-primary-200">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 text-primary-600">
+              <Phone className="w-5 h-5" />
+              <a 
+                href={`tel:${contactInfo.phone}`}
+                className="hover:text-primary-900 transition-colours duration-200"
+              >
+                {contactInfo.phone}
+              </a>
+            </div>
+            <div className="flex items-center gap-3 text-primary-600">
+              <Mail className="w-5 h-5" />
+              <a 
+                href={`mailto:${contactInfo.email}`}
+                className="hover:text-primary-900 transition-colours duration-200"
+              >
+                {contactInfo.email}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile CTA Button */}
+        <div className="mt-8 pt-6 border-t border-primary-200">
+          <Button
+            className="w-full bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white shadow-gold"
+            onClick={() => setMobileMenuOpen(false)}
+            asChild
+          >
+            <Link href="#contact" aria-label="Book free consultation with My Private Tutor Online">
+              Book Free Consultation
+            </Link>
+          </Button>
+        </div>
+      </SheetContent>
+    </Sheet>
   )
 }
 
