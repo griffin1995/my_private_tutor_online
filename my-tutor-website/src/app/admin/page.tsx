@@ -1,3 +1,26 @@
+/**
+ * Documentation Source: Next.js 14 Client Components
+ * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Reference: https://tailwindcss.com/docs/utility-first
+ * 
+ * Pattern: Admin Dashboard Interface
+ * Architecture:
+ * - Client Component for interactivity
+ * - Static dashboard layout (placeholder)
+ * - TinaCMS integration placeholder
+ * 
+ * Status: Placeholder implementation
+ * TODO: Integrate with actual TinaCMS backend
+ * - Connect to TinaCMS API
+ * - Implement authentication
+ * - Add content editing functionality
+ * 
+ * Design:
+ * - Card-based layout for content sections
+ * - Color-coded content categories
+ * - Statistics overview section
+ */
+
 'use client';
 
 function AdminInterface() {

@@ -1,3 +1,26 @@
+/**
+ * Documentation Source: Next.js 14 + Framer Motion + React 18
+ * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Reference: https://www.framer.com/motion/animation/
+ * Reference: https://react.dev/reference/react/useState
+ * 
+ * Pattern: Client Component with scroll-triggered animations
+ * Architecture:
+ * - Full motion import (not LazyMotion) - consider optimization
+ * - Scroll-based animation triggers with whileInView
+ * - Staggered children animations
+ * 
+ * CMS Integration:
+ * - getAboutContent for all text content
+ * - getTeamImages for founder photo
+ * - getBackgroundVideo for brand video
+ * 
+ * Design Features:
+ * - Premium gradient backgrounds
+ * - Floating animation elements
+ * - Card-based statistics layout
+ */
+
 "use client"
 
 import { useState } from 'react'
