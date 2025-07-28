@@ -102,20 +102,22 @@ export function HeroVideoDialog({
   }
 
   useEffect(() => {
+    // Only manipulate DOM on client side
+    if (typeof window === 'undefined') return
+
     if (isOpen) {
       document.body.style.overflow = 'hidden'
-      document.addEventListener('keydown', (e) => {
+      const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === 'Escape') handleClose()
-      })
+      }
+      document.addEventListener('keydown', handleKeyDown)
+      
+      return () => {
+        document.body.style.overflow = 'unset'
+        document.removeEventListener('keydown', handleKeyDown)
+      }
     } else {
       document.body.style.overflow = 'unset'
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset'
-      document.removeEventListener('keydown', (e) => {
-        if (e.key === 'Escape') handleClose()
-      })
     }
   }, [isOpen])
 

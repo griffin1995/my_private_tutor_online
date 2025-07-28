@@ -1,13 +1,13 @@
 "use client"
 
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useEffect, useState, useId } from "react"
 import { cn } from "@/lib/utils"
 
 // CMS DATA SOURCE: Following official Magic UI video-text documentation patterns
 // CLAUDE.md Rule 31: Using official library documentation only
 
 interface VideoTextProps {
-  src: string
+  src?: string
   children: React.ReactNode
   className?: string
   autoPlay?: boolean
@@ -20,6 +20,9 @@ interface VideoTextProps {
   dominantBaseline?: string
   fontFamily?: string
   as?: React.ElementType
+  text?: string
+  duration?: number
+  framerProps?: any
 }
 
 export function VideoText({
@@ -36,14 +39,22 @@ export function VideoText({
   dominantBaseline = "middle",
   fontFamily = "sans-serif",
   as: Component = "div",
+  text,
+  duration,
+  framerProps,
 }: VideoTextProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [maskId, setMaskId] = useState("")
+  const [isClient, setIsClient] = useState(false)
+  
+  // Use React's built-in useId hook for consistent SSR-safe unique IDs
+  const maskId = useId()
 
   useEffect(() => {
-    // Generate unique mask ID to prevent conflicts
-    setMaskId(`video-text-mask-${Math.random().toString(36).substr(2, 9)}`)
+    setIsClient(true)
   }, [])
+
+  // Use text prop if provided, otherwise use children
+  const displayText = text || children
 
   // If no video source provided, render fallback
   if (!src) {
@@ -53,7 +64,21 @@ export function VideoText({
           className="text-center font-serif font-bold"
           style={{ fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize }}
         >
-          {children}
+          {displayText}
+        </div>
+      </Component>
+    )
+  }
+
+  // During SSR, render simple text without video effects to prevent hydration mismatch
+  if (!isClient) {
+    return (
+      <Component className={cn("relative flex items-center justify-center bg-primary-900 text-white", className)}>
+        <div 
+          className="text-center font-serif font-bold"
+          style={{ fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize }}
+        >
+          {displayText}
         </div>
       </Component>
     )
@@ -95,14 +120,14 @@ export function VideoText({
               fontFamily={fontFamily}
               fill="white"
             >
-              {children}
+              {displayText}
             </text>
           </mask>
         </defs>
       </svg>
 
       {/* Accessible text for screen readers */}
-      <span className="sr-only">{children}</span>
+      <span className="sr-only">{displayText}</span>
     </Component>
   )
 }
