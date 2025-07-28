@@ -6,31 +6,48 @@
     "image": "/images/about-hero.jpg",
     "imageAlt": "Professional tutors working with students online"
   },
-  "mission": {
-    "title": "Our Mission",
-    "description": "To provide exceptional, personalised online tutoring that empowers students to reach their full academic potential whilst building confidence and fostering a genuine love for learning.",
-    "values": [
+  "ourEthos": {
+    "title": "Our Ethos",
+    "subtitle": "Personalised. Empowering. World-Class.",
+    "description": "At My Private Tutor Online, we believe that every child deserves an education tailored to who they are — not just where they're expected to go.",
+    "mainContent": {
+      "introduction": "Our Founder Elizabeth didn't walk a conventional education path and we don't expect our tutees to either. Instead, we meet each student where they are and help them build the confidence, curiosity and clarity to move forward with purpose.",
+      "philosophy": "We combine academic rigour with personal mentorship, recognising that long-term success depends as much on emotional resilience and self-belief as it does on subject mastery."
+    },
+    "sections": [
       {
-        "title": "Excellence",
-        "description": "We maintain the highest standards in education, continuously improving our methods and outcomes.",
-        "icon": "⭐"
+        "title": "Global Perspective, Local Sensitivity",
+        "content": [
+          "With a team of world-class educators and experience spanning seven continents, we bring a truly global lens to tutoring. Families today are internationally mobile and often navigating multiple education systems. Our bespoke approach adapts to those complexities, offering structure, insight and flexibility.",
+          "Whether your child is preparing for the British school system, moving abroad, or sitting highly competitive exams, we help bridge the gap with confidence and clarity."
+        ]
       },
       {
-        "title": "Personalisation",
-        "description": "Every student learns differently. We tailor our approach to match each individual's learning style.",
-        "icon": "🎯"
-      },
-      {
-        "title": "Innovation",
-        "description": "We embrace cutting-edge educational technology to enhance the learning experience.",
-        "icon": "💡"
-      },
-      {
-        "title": "Integrity",
-        "description": "We build trust through transparency, honesty, and ethical practices in all our interactions.",
-        "icon": "🤝"
+        "title": "Supportive Guidance, Independent Growth",
+        "content": [
+          "Great tutoring begins with trust. That's why we take the time to understand your child — not just academically, but personally. We want to know what makes them tick so we can build a relationship where they feel seen, motivated, and empowered.",
+          "Our goal isn't long-term dependence — it's lasting confidence. We aim to become a victim of our own success: equipping students with the tools, strategies, and mindset to become independent learners. Tutoring should never be a crutch. We act as a guide and advocate during challenging moments, always with the aim of leading students back toward self-sufficiency."
+        ]
       }
-    ]
+    ],
+    "results": {
+      "title": "Our results speak for themselves:",
+      "statistics": [
+        {
+          "metric": "Oxbridge Success",
+          "description": "Consistent offers from Oxford and Cambridge"
+        },
+        {
+          "metric": "Top 2%",
+          "description": "Placements at elite UK independent schools, with 95% of tutees securing an offer from at least one of their desired schools"
+        },
+        {
+          "metric": "94%",
+          "description": "Of GCSE students improving by two or more grades"
+        }
+      ]
+    },
+    "conclusion": "Let us help your child find their path — and the courage to walk it with confidence."
   },
   "story": {
     "title": "Our Story",

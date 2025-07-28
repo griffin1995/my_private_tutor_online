@@ -9,16 +9,16 @@
     },
     "navigation": [
       {
-        "label": "Expert Educators",
-        "href": "/expert-educators"
+        "label": "How It Works",
+        "href": "/how-it-works"
+      },
+      {
+        "label": "About Us",
+        "href": "/about"
       },
       {
         "label": "Subject Tuition",
         "href": "/subject-tuition"
-      },
-      {
-        "label": "Homeschooling",
-        "href": "/homeschooling"
       },
       {
         "label": "Video Masterclasses",
