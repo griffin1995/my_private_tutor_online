@@ -1,3 +1,29 @@
+/**
+ * Documentation Source: Magic UI Video-Text + CMS Integration
+ * Reference: Magic UI video-text component documentation
+ * Reference: Next.js 14 Client Component patterns
+ * 
+ * Pattern: Business-Specific Video-Text Wrapper Component
+ * Architecture:
+ * - Modular wrapper around Magic UI VideoText component
+ * - Full CMS integration for all content and assets
+ * - Accessibility fallbacks for no-JavaScript users
+ * - Responsive design with proper font scaling
+ * 
+ * Features:
+ * - SVG-masked video background text effects
+ * - CMS-driven video content with fallbacks
+ * - Accessibility-first implementation
+ * - British English content compliance
+ * - Full-width breakout utility support
+ * 
+ * CMS Integration:
+ * - Uses getBackgroundVideo() for video assets
+ * - Supports multiple video keys (brandStatement, tutoring, oxbridge)
+ * - Fallback video path for missing CMS content
+ * - Accessibility metadata from CMS
+ */
+
 "use client"
 
 import { VideoText } from '@/components/magicui/video-text'
