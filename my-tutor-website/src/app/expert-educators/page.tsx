@@ -1,3 +1,16 @@
+/**
+ * Documentation Source: Next.js 14 + Framer Motion LazyMotion
+ * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Reference: https://www.framer.com/motion/lazy-motion/
+ * 
+ * Pattern: Client Component with LazyMotion 'm' component
+ * Optimization: Using 'm' from framer-motion for reduced bundle size
+ * Architecture: Page-level component with layout system integration
+ * 
+ * Data Pattern: Hardcoded content object (should be moved to CMS)
+ * TODO: Migrate expertEducatorsContent to CMS system
+ */
+
 "use client"
 
 import { useState } from 'react'

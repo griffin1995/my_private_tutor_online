@@ -1,3 +1,18 @@
+/**
+ * Documentation Source: Next.js 14 + Framer Motion Integration
+ * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Reference: https://www.framer.com/motion/component/
+ * 
+ * Pattern: Client Component with standard motion import
+ * Note: This page doesn't use LazyMotion optimization - consider wrapping in LazyMotionProvider
+ * for better bundle size optimization
+ * 
+ * Component Architecture:
+ * - Client-side search filtering
+ * - Animated accordion sections
+ * - Interactive hover states
+ */
+
 "use client"
 
 import { useState } from 'react'

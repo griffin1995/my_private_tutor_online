@@ -1,3 +1,26 @@
+/**
+ * Documentation Source: Next.js 14 + Radix UI Components
+ * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Reference: https://www.radix-ui.com/themes/docs/components/card
+ * Reference: https://www.radix-ui.com/themes/docs/components/badge
+ * 
+ * Pattern: Client Component with hardcoded content
+ * Architecture:
+ * - Static content (should migrate to CMS)
+ * - Card-based layout for masterclass listings
+ * - Structured data for video courses
+ * 
+ * TODO: Migrate videoMasterclassesContent to CMS system
+ * - Currently hardcoded from Beth's new_copy.md
+ * - Should follow CMS pattern like other pages
+ * 
+ * Component Usage:
+ * - PageLayout with PageHero pattern
+ * - Section components for layout structure
+ * - Radix UI Card and Badge components
+ * - Lucide icons for visual indicators
+ */
+
 "use client"
 
 import { Play, Clock, Users, Star, CheckCircle } from 'lucide-react'

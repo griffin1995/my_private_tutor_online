@@ -1,3 +1,27 @@
+/**
+ * Documentation Source: Next.js 14 + TypeScript
+ * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Reference: https://www.typescriptlang.org/docs/handbook/2/modules.html#export-and-import-type
+ * 
+ * Pattern: Client Component with CMS-driven content
+ * Architecture:
+ * - No animations (static page) - good for performance
+ * - Strong typing with imported types from CMS
+ * - Icon mapping pattern for dynamic icons
+ * 
+ * CMS Integration:
+ * - getHowItWorksHero for hero section
+ * - getHowItWorksSteps for process timeline
+ * - getTutorTiers for pricing tiers
+ * - getHowItWorksBenefits for benefits section
+ * 
+ * Component Usage:
+ * - PageLayout with explicit white background
+ * - PageHero with image background
+ * - Radix UI Card components
+ * - Magic UI button variants
+ */
+
 "use client"
 
 import { CheckCircle, Users, ClipboardCheck, Target, MessageSquare } from 'lucide-react'

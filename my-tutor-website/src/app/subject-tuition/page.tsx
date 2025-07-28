@@ -1,3 +1,26 @@
+/**
+ * Documentation Source: Next.js 14 + Framer Motion LazyMotion + React 18
+ * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Reference: https://www.framer.com/motion/lazy-motion/
+ * Reference: https://react.dev/reference/react/useState
+ * 
+ * Pattern: Client Component with expandable subject categories
+ * Architecture:
+ * - LazyMotion 'm' component for animations
+ * - State management for expandable sections
+ * - Hardcoded content (should migrate to CMS)
+ * 
+ * Features:
+ * - Accordion-style subject categories
+ * - Icon-based visual hierarchy
+ * - Expandable subject details
+ * - Key features lists
+ * 
+ * TODO: Migrate subjectTuitionContent to CMS system
+ * - Currently hardcoded in component
+ * - Should follow CMS pattern established in other pages
+ */
+
 "use client"
 
 import { useState } from 'react'

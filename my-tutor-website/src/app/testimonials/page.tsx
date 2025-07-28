@@ -1,3 +1,28 @@
+/**
+ * Documentation Source: Next.js 14 + React 18 + Framer Motion
+ * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Reference: https://react.dev/reference/react/useState
+ * Reference: https://www.framer.com/motion/animation/
+ * 
+ * Pattern: Client Component with filterable testimonials
+ * Architecture:
+ * - State management for category filtering
+ * - Motion animations for testimonial cards
+ * - Full CMS integration for all content
+ * 
+ * Features:
+ * - Category-based filtering
+ * - Animated testimonial carousel
+ * - Royal endorsement highlights
+ * - Video testimonials integration
+ * 
+ * CMS Integration:
+ * - getTestimonialsContent for page content
+ * - getTestimonialsHero for hero section
+ * - getRecentTestimonials for testimonial data
+ * - getTestimonialsSchools for school badges
+ */
+
 "use client"
 
 import { useState } from 'react'

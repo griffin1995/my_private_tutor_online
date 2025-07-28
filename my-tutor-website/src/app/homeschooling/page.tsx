@@ -1,3 +1,20 @@
+/**
+ * Documentation Source: Next.js 14 + React 18 + Framer Motion
+ * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Reference: https://react.dev/reference/react/useState
+ * Reference: https://www.framer.com/motion/lazy-motion/
+ * 
+ * Pattern: Client Component with interactive tabs and animations
+ * Architecture: Uses LazyMotion 'm' component for optimized bundle
+ * State Management: Local state with useState for tab selection
+ * 
+ * Component Libraries:
+ * - Radix UI (via shadcn/ui) for accessible Tabs component
+ * - Framer Motion for scroll animations
+ * 
+ * TODO: Migrate homeschoolingContent to CMS system
+ */
+
 "use client"
 
 import { useState } from 'react'
