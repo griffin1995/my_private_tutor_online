@@ -1,3 +1,27 @@
+/**
+ * Documentation Source: TypeScript Handbook + Next.js Data Patterns
+ * Reference: https://www.typescriptlang.org/docs/handbook/2/modules.html
+ * Reference: https://nextjs.org/docs/app/building-your-application/data-fetching/patterns
+ * 
+ * Pattern: Centralized CMS with TypeScript Interfaces
+ * Architecture:
+ * - JSON-based content storage for version control
+ * - Type-safe content access with interfaces
+ * - Synchronous data loading (suitable for static content)
+ * 
+ * Design Decisions:
+ * - File-based CMS for simplicity and Git tracking
+ * - Strongly typed interfaces for content structure
+ * - Getter functions for controlled access
+ * - No hardcoded content in components
+ * 
+ * MANDATORY Requirements (CLAUDE.md):
+ * - Rule 22: All content must use centralised CMS
+ * - Rule 23: Zero hardcoded content
+ * - Rule 24: CMS comment requirement
+ * - Rule 25: Structured data management
+ */
+
 // CMS DATA SOURCE: Centralised content management for My Private Tutor Online
 // MANDATORY: All content must use this CMS system - CLAUDE.md rule 22-25
 
@@ -110,17 +134,6 @@ export interface ContactDetails {
     postcode: string
     country: string
   }
-}
-
-export interface FAQQuestion {
-  question: string
-  answer: string
-}
-
-export interface FAQCategory {
-  title: string
-  icon: string
-  questions: FAQQuestion[]
 }
 
 export interface SiteConfig {
@@ -408,8 +421,8 @@ export const formatBritishEnglish = (text: string): string => {
  * Uses consistent year during SSR to prevent hydration issues
  */
 export const getCopyrightText = (): string => {
-  // Use consistent year during SSR, update on client
-  const currentYear = typeof window === 'undefined' ? 2025 : new Date().getFullYear()
+  // Always use 2025 for consistency during SSR/SSG builds
+  const currentYear = 2025
   return `© ${currentYear} My Private Tutor Online. All rights reserved.`
 }
 
