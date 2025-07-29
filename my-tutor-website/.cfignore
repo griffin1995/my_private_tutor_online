@@ -1,0 +1,56 @@
+# Cloudflare Pages ignore file
+# Exclude large cache files and build artifacts that exceed 25MB limit
+
+# Next.js cache files
+.next/cache/
+.next/standalone/
+.next/server/chunks/
+cache/
+
+# Node.js cache and temporary files
+node_modules/
+.npm/
+.pnpm-store/
+
+# Build artifacts and logs
+build/
+dist/
+out/
+*.log
+*.tsbuildinfo
+
+# Environment and config files
+.env*
+.config/
+
+# Large media files (if any)
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Development files
+.vscode/
+.idea/
+*.tmp
+*.temp
+
+# Source maps (can be large)
+*.map
+
+# Coverage reports
+coverage/
+
+# Webpack cache
+.cache/
+webpack-cache/
+
+# Yarn cache
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Testing files
+test-results/
+playwright-report/

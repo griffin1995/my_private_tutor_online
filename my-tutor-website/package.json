@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "clean": "rm -rf .next cache node_modules/.cache",
+    "build": "next build && npm run clean-cache",
+    "build:cloudflare": "next build && rm -rf .next/cache",
+    "clean-cache": "rm -rf .next/cache cache",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",

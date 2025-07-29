@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
+  // Disable build cache for Cloudflare Pages deployment
+  distDir: '.next',
+  generateBuildId: async () => {
+    return 'cloudflare-deployment'
+  },
+  
 
   // Image optimization
   images: {
