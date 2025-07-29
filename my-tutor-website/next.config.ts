@@ -11,21 +11,17 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
-  // Cloudflare Pages deployment configuration  
-  distDir: '.next',
+  // Cloudflare Pages static export configuration
+  output: 'export',
+  distDir: 'out',
+  trailingSlash: true,
   generateBuildId: async () => {
     return 'cloudflare-deployment'
   },
   
-
-  // Image optimization
+  // Image optimization - disabled for static export
   images: {
-    formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: true, // Required for static export
   },
 
   // Compression and optimization
@@ -54,52 +50,7 @@ const nextConfig: NextConfig = {
   },
 
 
-  // Headers for security and performance
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
-          },
-        ],
-      },
-      {
-        source: '/api/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=86400',
-          },
-        ],
-      },
-    ];
-  },
-
-  // Redirects and rewrites
-  async redirects() {
-    return [
-      {
-        source: '/home',
-        destination: '/',
-        permanent: true,
-      },
-    ];
-  },
+  // Headers and redirects disabled for static export
 };
 
 export default withBundleAnalyzer(nextConfig);
