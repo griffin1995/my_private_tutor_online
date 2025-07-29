@@ -6,18 +6,19 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
-  // Standalone output for Cloudflare Pages
-  output: 'standalone',
+  // Static export for Cloudflare Pages compatibility
+  output: 'export',
+  distDir: 'out',
+  trailingSlash: true,
   
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
-  // Dynamic Next.js configuration for Cloudflare Pages
+  // Image optimization disabled for static export
   images: {
-    domains: ['localhost', 'my-private-tutor-online.pages.dev'],
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
   },
 
   // Compression and optimization
@@ -45,28 +46,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
 
-  // Headers for security and performance
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-        ],
-      },
-    ];
-  },
+  // Headers disabled for static export - configured via Cloudflare Pages
 };
 
 export default withBundleAnalyzer(nextConfig);
