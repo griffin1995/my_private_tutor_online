@@ -1,7 +1,18 @@
+/**
+ * Documentation Source: Framer Motion LazyMotion
+ * Reference: https://www.framer.com/motion/lazy-motion/
+ * Reference: https://www.framer.com/motion/guide-reduce-bundle-size/
+ * 
+ * Pattern: Using m components with LazyMotion for bundle optimization
+ * - m components are required when using LazyMotion with strict mode
+ * - Reduces bundle from ~34kb to ~4.6kb initial + 21kb for animations
+ * - useInView hook works with both motion and m components
+ */
+
 'use client'
 
 import { useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Crown, Star, BookOpen, GraduationCap, Users, Trophy, CheckCircle, Phone, Mail } from 'lucide-react'
 
@@ -44,7 +55,7 @@ export default function PremiumTutoringPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Hero Content */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -50 }}
               animate={heroInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -104,10 +115,10 @@ export default function PremiumTutoringPage() {
                   <div className="text-gray-300">Success Rate</div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Hero Image */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 50 }}
               animate={heroInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -136,7 +147,7 @@ export default function PremiumTutoringPage() {
                 </p>
                 <div className="text-xs text-gray-500 mt-2 font-medium">— Royal Family Member</div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -144,7 +155,7 @@ export default function PremiumTutoringPage() {
       {/* Services Section */}
       <section ref={servicesRef} className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 50 }}
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
@@ -156,11 +167,11 @@ export default function PremiumTutoringPage() {
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               {businessContent.website.services.description}
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <motion.div
+              <m.div
                 key={service.title}
                 initial={{ opacity: 0, y: 50 }}
                 animate={servicesInView ? { opacity: 1, y: 0 } : {}}
@@ -176,7 +187,7 @@ export default function PremiumTutoringPage() {
                   onLearnMore={() => {}}
                   onBookConsultation={() => setShowBookingForm(true)}
                 />
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -185,7 +196,7 @@ export default function PremiumTutoringPage() {
       {/* Testimonials Section */}
       <section ref={testimonialsRef} className="py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 50 }}
             animate={testimonialsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
@@ -194,11 +205,11 @@ export default function PremiumTutoringPage() {
             <h2 className="text-4xl font-light text-primary-900 mb-4">
               {businessContent.website.testimonials.heading}
             </h2>
-          </motion.div>
+          </m.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {businessContent.website.testimonials.featured.map((testimonial, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 animate={testimonialsInView ? { opacity: 1, x: 0 } : {}}
@@ -232,7 +243,7 @@ export default function PremiumTutoringPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

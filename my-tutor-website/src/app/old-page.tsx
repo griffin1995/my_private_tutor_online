@@ -1,3 +1,13 @@
+/**
+ * Documentation Source: Framer Motion LazyMotion
+ * Reference: https://www.framer.com/motion/lazy-motion/
+ * Reference: https://www.framer.com/motion/guide-reduce-bundle-size/
+ * 
+ * Pattern: Using m components with LazyMotion for bundle optimization
+ * - m components are required when using LazyMotion with strict mode
+ * - Reduces bundle from ~34kb to ~4.6kb initial + 21kb for animations
+ */
+
 'use client';
 
 import Image from "next/image";
@@ -6,7 +16,7 @@ import landingPageData from "@/content/landing-page.json";
 import seasonalContentData from "@/content/seasonal-content.json";
 import React, { useState, useEffect } from "react";
 import Wave from "react-wavify";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { 
   Crown, 
   Star, 
@@ -348,7 +358,7 @@ export default function Home() {
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <motion.div 
+              <m.div 
                 className="lg:col-span-6 flex flex-col items-center text-center"
                 initial={false}
                 animate={{
@@ -359,7 +369,7 @@ export default function Home() {
               >
                 
                 {/* Premium typography with sophisticated animations */}
-                <motion.h1 
+                <m.h1 
                   className="text-5xl sm:text-6xl lg:text-7xl font-extralight text-gray-900 mb-10 leading-tight tracking-tight"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -373,7 +383,7 @@ export default function Home() {
                     Online Tutoring
                     <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-slate-800 to-blue-700 transition-all duration-1000 ${isLoaded ? 'w-full' : 'w-0'}`}></span>
                   </span>
-                </motion.h1>
+                </m.h1>
                 
                 <p className={`text-xl sm:text-2xl text-slate-600 mb-10 leading-relaxed font-light max-w-2xl transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   {seasonalContent.description}
@@ -435,15 +445,15 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
               
-              <motion.div 
+              <m.div 
                 className="lg:col-span-6 flex items-center justify-center"
                 style={{
                   transformOrigin: 'center center'
                 }}
               >
-                <motion.div 
+                <m.div 
                   className={`relative ${!isVideoExpanded && !isLoaded ? 'opacity-0 translate-x-8' : ''}`}
                   initial={false}
                   animate={{
@@ -459,7 +469,7 @@ export default function Home() {
                   transition={{ duration: 0.8, ease: "easeInOut" }}
                 >
                   {/* Glass morphism video container with smooth scaling */}
-                  <motion.div 
+                  <m.div 
                     className={`relative overflow-hidden aspect-video shadow-2xl hover:shadow-3xl group ${
                       isVideoExpanded 
                         ? 'bg-transparent border-0' 
@@ -499,7 +509,7 @@ export default function Home() {
                     
                     {/* Close button - animated entrance when expanded */}
                     {isVideoExpanded && (
-                      <motion.button 
+                      <m.button 
                         onClick={handleVideoClose}
                         className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm rounded-full p-2 shadow-xl hover:bg-black hover:scale-110 transition-all duration-300 z-10"
                         initial={{ opacity: 0, scale: 0 }}
@@ -511,12 +521,12 @@ export default function Home() {
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                      </motion.button>
+                      </m.button>
                     )}
-                  </motion.div>
+                  </m.div>
                   
                   {/* Enhanced floating decoration elements with fade-out animation */}
-                  <motion.div
+                  <m.div
                     className="absolute inset-0 -z-10 pointer-events-none"
                     initial={false}
                     animate={{ opacity: isVideoExpanded ? 0 : 1 }}
@@ -525,11 +535,11 @@ export default function Home() {
                     <div className="absolute top-8 -right-8 w-32 h-32 bg-blue-100 rounded-full opacity-60 animate-pulse"></div>
                     <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-indigo-100 rounded-full opacity-60 animate-pulse animation-delay-300"></div>
                     <div className="absolute top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full opacity-40 animate-bounce animation-delay-600"></div>
-                  </motion.div>
-                </motion.div>
+                  </m.div>
+                </m.div>
                 
                 {/* Enhanced testimonial preview popup with fade-out animation */}
-                <motion.div 
+                <m.div 
                   className={`mt-8 bg-white/90 backdrop-blur-lg rounded-2xl p-4 shadow-lg border border-white/20 max-w-sm animate-float transition-all duration-1000 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                   initial={false}
                   animate={{
@@ -556,8 +566,8 @@ export default function Home() {
                       </svg>
                     ))}
                   </div>
-                </motion.div>
-              </motion.div>
+                </m.div>
+              </m.div>
             </div>
           </div>
         </section>
@@ -590,7 +600,7 @@ export default function Home() {
               <div className={`lg:col-span-6 flex flex-col items-center text-center transition-all duration-1000 ${isVideoExpanded ? 'transform -translate-x-full opacity-0 pointer-events-none' : 'transform translate-x-0 opacity-100'}`}>
                 
                 {/* Enhanced typography with animations */}
-                <motion.h1 
+                <m.h1 
                   className={`text-4xl sm:text-5xl lg:text-6xl font-light mb-8 leading-tight tracking-tight transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -604,7 +614,7 @@ export default function Home() {
                     Online Tutoring
                     <span className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-400 to-blue-300 transition-all duration-1000 ${isLoaded ? 'w-full' : 'w-0'}`}></span>
                   </span>
-                </motion.h1>
+                </m.h1>
                 
                 <p className={`text-xl sm:text-2xl text-blue-100 mb-8 leading-relaxed font-light max-w-2xl transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                   {seasonalContent.description}
@@ -633,13 +643,13 @@ export default function Home() {
                 </div>
                 
                 {/* Enhanced CTA buttons */}
-                <motion.div 
+                <m.div 
                   className={`flex flex-col sm:flex-row gap-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                  <motion.div
+                  <m.div
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2 }}
@@ -656,8 +666,8 @@ export default function Home() {
                         </svg>
                       </span>
                     </Button>
-                  </motion.div>
-                  <motion.div
+                  </m.div>
+                  <m.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2 }}
@@ -670,8 +680,8 @@ export default function Home() {
                       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
                       <span className="relative">{data.hero.secondaryButtonText}</span>
                     </Button>
-                  </motion.div>
-                </motion.div>
+                  </m.div>
+                </m.div>
                 
                 {/* Trust indicators */}
                 <div className={`mt-12 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
@@ -692,13 +702,13 @@ export default function Home() {
                 </div>
               </div>
               
-              <motion.div 
+              <m.div 
                 className="lg:col-span-6 flex items-center justify-center"
                 style={{
                   transformOrigin: 'center center'
                 }}
               >
-                <motion.div 
+                <m.div 
                   className={`relative ${!isVideoExpanded && !isLoaded ? 'opacity-0 translate-x-8' : ''}`}
                   initial={false}
                   animate={{
@@ -714,7 +724,7 @@ export default function Home() {
                   transition={{ duration: 0.8, ease: "easeInOut" }}
                 >
                   {/* Enhanced glass morphism video container with smooth scaling */}
-                  <motion.div 
+                  <m.div 
                     className="relative bg-blue-800/30 backdrop-blur-lg overflow-hidden aspect-video shadow-2xl border border-blue-400/20 hover:shadow-3xl group"
                     initial={false}
                     animate={{
@@ -751,7 +761,7 @@ export default function Home() {
                     
                     {/* Close button - animated entrance when expanded */}
                     {isVideoExpanded && (
-                      <motion.button 
+                      <m.button 
                         onClick={handleVideoClose}
                         className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm rounded-full p-2 shadow-xl hover:bg-black hover:scale-110 transition-all duration-300 z-10"
                         initial={{ opacity: 0, scale: 0 }}
@@ -763,12 +773,12 @@ export default function Home() {
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                      </motion.button>
+                      </m.button>
                     )}
-                  </motion.div>
+                  </m.div>
                   
                   {/* Enhanced floating decoration elements with fade-out animation */}
-                  <motion.div
+                  <m.div
                     className="absolute inset-0 -z-10 pointer-events-none"
                     initial={false}
                     animate={{ opacity: isVideoExpanded ? 0 : 1 }}
@@ -777,11 +787,11 @@ export default function Home() {
                     <div className="absolute top-8 -right-8 w-32 h-32 bg-blue-400/20 rounded-full blur-2xl animate-pulse"></div>
                     <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-indigo-400/20 rounded-full blur-2xl animate-pulse animation-delay-300"></div>
                     <div className="absolute top-1/2 -right-12 w-16 h-16 bg-gradient-to-br from-blue-300/30 to-indigo-300/30 rounded-full opacity-40 animate-bounce animation-delay-600"></div>
-                  </motion.div>
-                </motion.div>
+                  </m.div>
+                </m.div>
                 
                 {/* Enhanced testimonial preview popup with fade-out animation */}
-                <motion.div 
+                <m.div 
                   className={`mt-8 bg-blue-900/90 backdrop-blur-lg rounded-2xl p-4 shadow-lg border border-blue-400/30 max-w-sm animate-float transition-all duration-1000 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                   initial={false}
                   animate={{
@@ -808,8 +818,8 @@ export default function Home() {
                       </svg>
                     ))}
                   </div>
-                </motion.div>
-              </motion.div>
+                </m.div>
+              </m.div>
             </div>
           </div>
         {/* Wavy bottom edge */}

@@ -3,11 +3,12 @@
  * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
  * Reference: https://react.dev/reference/react/useState
  * Reference: https://www.framer.com/motion/animation/
+ * Reference: https://www.framer.com/motion/lazy-motion/
  * 
- * Pattern: Client Component with filterable testimonials
+ * Pattern: Client Component with filterable testimonials using LazyMotion
  * Architecture:
  * - State management for category filtering
- * - Motion animations for testimonial cards
+ * - m component animations for testimonial cards (LazyMotion optimization)
  * - Full CMS integration for all content
  * 
  * Features:
@@ -21,12 +22,15 @@
  * - getTestimonialsHero for hero section
  * - getRecentTestimonials for testimonial data
  * - getTestimonialsSchools for school badges
+ * 
+ * Performance:
+ * - Using m components with LazyMotion reduces bundle from ~34kb to ~4.6kb + 21kb
  */
 
 "use client"
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Play, Star, Quote, Award, Crown, ChevronLeft, ChevronRight, Filter } from 'lucide-react'
 import { VideoText } from '@/components/magicui/video-text'
 import { ShinyButton } from '@/components/magicui/shiny-button'
@@ -108,7 +112,7 @@ export default function TestimonialsPage() {
         </div>
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="max-w-6xl mx-auto text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -117,30 +121,30 @@ export default function TestimonialsPage() {
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-white leading-tight mb-8">
               {heroContent.title}
             </h1>
-            <motion.p 
+            <m.p 
               className="text-2xl text-accent-400 font-semibold mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               {heroContent.subtitle}
-            </motion.p>
-            <motion.p 
+            </m.p>
+            <m.p 
               className="text-xl text-white/90 leading-relaxed max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               {heroContent.description}
-            </motion.p>
-          </motion.div>
+            </m.p>
+          </m.div>
         </div>
       </section>
 
       {/* Premium Introduction Section */}
       <section className="py-16 lg:py-20 bg-gradient-to-b from-white to-primary-50/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="max-w-5xl mx-auto text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -164,14 +168,14 @@ export default function TestimonialsPage() {
             <p className="text-xl text-primary-700 leading-relaxed">
               {testimonialsContent.mainContent.callToAction}
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Premium Video Section */}
       <section className="py-20 lg:py-28 bg-primary-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -184,9 +188,9 @@ export default function TestimonialsPage() {
             <p className="text-lg text-primary-600 max-w-2xl mx-auto">
               Hear directly from families about their transformative experiences with My Private Tutor Online
             </p>
-          </motion.div>
+          </m.div>
           
-          <motion.div 
+          <m.div 
             className="max-w-5xl mx-auto"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -207,14 +211,14 @@ export default function TestimonialsPage() {
                 <Play className="w-8 h-8 text-white ml-1" />
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Testimonials Filter Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -241,14 +245,14 @@ export default function TestimonialsPage() {
                 </Badge>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Premium Testimonials Grid */}
       <section className="py-16 lg:py-20 bg-gradient-to-b from-primary-50/30 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
             variants={containerVariants}
             initial="hidden"
@@ -256,7 +260,7 @@ export default function TestimonialsPage() {
             viewport={{ once: true }}
           >
             {filteredTestimonials.map((testimonial, index) => (
-              <motion.div
+              <m.div
                 key={index}
                 variants={itemVariants}
                 className="h-full"
@@ -287,16 +291,16 @@ export default function TestimonialsPage() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Elite Schools Carousel */}
       <section className="py-20 bg-primary-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -309,13 +313,13 @@ export default function TestimonialsPage() {
             <p className="text-primary-600 max-w-2xl mx-auto">
               Our students have secured places at the most prestigious educational institutions worldwide
             </p>
-          </motion.div>
+          </m.div>
           
           {/* Premium School Shields */}
           <div className="w-full overflow-hidden">
             <div className="flex animate-scroll gap-20 whitespace-nowrap py-8">
               {[...schools, ...schools, ...schools].map((school, index) => (
-                <motion.div 
+                <m.div 
                   key={index} 
                   className="flex-shrink-0 flex items-center justify-center px-8"
                   whileHover={{ scale: 1.05 }}
@@ -326,7 +330,7 @@ export default function TestimonialsPage() {
                       {school}
                     </span>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -342,7 +346,7 @@ export default function TestimonialsPage() {
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
+          <m.div 
             className="max-w-4xl mx-auto text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -356,7 +360,7 @@ export default function TestimonialsPage() {
               Experience the difference that personalised, expert tutoring can make to your child's academic journey. Your success story could be next.
             </p>
             
-            <motion.div 
+            <m.div 
               className="flex flex-col sm:flex-row gap-6 justify-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -371,8 +375,8 @@ export default function TestimonialsPage() {
                 text="Learn How It Works"
                 className="px-10 py-4 border-2 border-white bg-transparent text-white hover:bg-white hover:text-primary-900 text-lg font-semibold"
               />
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
       <PageFooter />
