@@ -19,19 +19,52 @@
  */
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lato } from "next/font/google";
 import "./globals.css";
 import { LazyMotionProvider } from "@/components/providers/LazyMotionProvider";
 // Performance monitoring disabled for now
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+/**
+ * Lato Font Family Implementation
+ * Documentation Source: Next.js Font Optimization + Google Fonts Official Documentation
+ * Reference: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
+ * Reference: https://fonts.google.com/specimen/Lato
+ * 
+ * Pattern: Variable font with comprehensive weight range
+ * Architecture: 
+ * - CSS variables for Tailwind integration
+ * - Multiple weights for design flexibility
+ * - Optimized subsets for performance
+ * 
+ * Available Lato Font Weights and Styles:
+ * - 100: Thin (Hairline)
+ * - 300: Light
+ * - 400: Regular (Normal)
+ * - 700: Bold
+ * - 900: Black (Ultra Bold)
+ * 
+ * Available Styles:
+ * - normal: Standard upright characters
+ * - italic: Slanted characters for emphasis
+ * 
+ * Design Usage Guidelines:
+ * - Headings: font-weight 700 (Bold) or 900 (Black)
+ * - Body text: font-weight 400 (Regular)
+ * - Captions/Small text: font-weight 300 (Light)
+ * - Emphasis: font-weight 700 (Bold) or italic
+ * - Thin accents: font-weight 100 (Thin)
+ * 
+ * Tailwind Integration:
+ * - font-sans: Uses Lato as primary sans-serif
+ * - Available utilities: font-thin, font-light, font-normal, font-bold, font-black
+ * - Italic support: italic class
+ */
+const lato = Lato({
+  weight: ['100', '300', '400', '700', '900'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-lato',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -113,7 +146,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
+        className={`${lato.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
       >
         <LazyMotionProvider>
           {children}
