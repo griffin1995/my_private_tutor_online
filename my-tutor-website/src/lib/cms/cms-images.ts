@@ -33,10 +33,11 @@ export const LOGOS = {
   }
 } as const
 
-// Institution logos for credibility
+// Institution logos for credibility - Updated with new 2025 assets
 export const INSTITUTION_LOGOS = {
+  // Universities
   oxford: {
-    src: '/images/logos/university-of-oxford-logo.avif',
+    src: '/images/logos/oxford-university-logo.jpeg',
     alt: 'University of Oxford logo',
     width: 120,
     height: 80,
@@ -44,16 +45,81 @@ export const INSTITUTION_LOGOS = {
     loading: 'lazy' as const
   },
   cambridge: {
-    src: '/images/logos/university-of-cambridge-logo.avif',
+    src: '/images/logos/cambridge-university-logo.png',
     alt: 'University of Cambridge logo', 
     width: 120,
     height: 80,
     title: 'University of Cambridge',
     loading: 'lazy' as const
   },
+  harvard: {
+    src: '/images/logos/harvard-university-logo.png',
+    alt: 'Harvard University logo',
+    width: 120,
+    height: 80,
+    title: 'Harvard University',
+    loading: 'lazy' as const
+  },
+  durham: {
+    src: '/images/logos/durham-university-logo.png',
+    alt: 'Durham University logo',
+    width: 120,
+    height: 80,
+    title: 'Durham University',
+    loading: 'lazy' as const
+  },
+  edinburgh: {
+    src: '/images/logos/edinburgh-university-logo.png',
+    alt: 'University of Edinburgh logo',
+    width: 120,
+    height: 80,
+    title: 'University of Edinburgh',
+    loading: 'lazy' as const
+  },
+  stAndrews: {
+    src: '/images/logos/st-andrews-university-logo.png',
+    alt: 'University of St Andrews logo',
+    width: 120,
+    height: 80,
+    title: 'University of St Andrews',
+    loading: 'lazy' as const
+  },
+  warwick: {
+    src: '/images/logos/warwick-university-logo.gif',
+    alt: 'University of Warwick logo',
+    width: 120,
+    height: 80,
+    title: 'University of Warwick',
+    loading: 'lazy' as const
+  },
+  lse: {
+    src: '/images/logos/lse-logo.png',
+    alt: 'London School of Economics logo',
+    width: 120,
+    height: 80,
+    title: 'London School of Economics',
+    loading: 'lazy' as const
+  },
+  kingsCollege: {
+    src: '/images/logos/kings-college-logo.jpeg',
+    alt: 'King\'s College London logo',
+    width: 120,
+    height: 80,
+    title: 'King\'s College London',
+    loading: 'lazy' as const
+  },
+  // Independent Schools
   eton: {
-    src: '/images/logos/eton-college-logo.avif',
+    src: '/images/logos/eton-college-logo-new.webp',
     alt: 'Eton College logo',
+    width: 100,
+    height: 80,
+    title: 'Eton College',
+    loading: 'lazy' as const
+  },
+  etonAlt: {
+    src: '/images/logos/eton-college-logo-alt.png',
+    alt: 'Eton College alternative logo',
     width: 100,
     height: 80,
     title: 'Eton College',
@@ -68,7 +134,7 @@ export const INSTITUTION_LOGOS = {
     loading: 'lazy' as const
   },
   westminster: {
-    src: '/images/logos/westminster-school-logo.avif',
+    src: '/images/logos/westminster-school-logo-new.png',
     alt: 'Westminster School logo',
     width: 100,
     height: 80,
@@ -76,21 +142,30 @@ export const INSTITUTION_LOGOS = {
     loading: 'lazy' as const
   },
   stPauls: {
-    src: '/images/logos/st-pauls-school-logo.avif',
+    src: '/images/logos/st-pauls-school-logo-new.jpg',
     alt: 'St Paul\'s School logo',
     width: 100,
     height: 80,
     title: 'St Paul\'s School',
     loading: 'lazy' as const
   },
-  harvard: {
-    src: '/images/logos/harvard-college-logo.avif',
-    alt: 'Harvard College logo',
+  brightonCollege: {
+    src: '/images/logos/brighton-college-logo.png',
+    alt: 'Brighton College logo',
     width: 100,
     height: 80,
-    title: 'Harvard College',
+    title: 'Brighton College',
     loading: 'lazy' as const
   },
+  highgate: {
+    src: '/images/logos/highgate-school-logo.png',
+    alt: 'Highgate School logo',
+    width: 100,
+    height: 80,
+    title: 'Highgate School',
+    loading: 'lazy' as const
+  },
+  // Legacy entries maintained for compatibility
   leRosey: {
     src: '/images/logos/lerosey-school-logo.avif',
     alt: 'Le Rosey School logo',
@@ -123,16 +198,41 @@ export const HERO_IMAGES = {
   }
 } as const
 
-// Team member images
+// Team member images - Updated with new 2025 photos
 export const TEAM_IMAGES = {
   founder: {
-    src: '/images/team/founder_headshot.avif',
-    alt: 'Founder headshot - My Private Tutor Online',
-    width: 300,
-    height: 300,
-    title: 'Company Founder',
+    src: '/images/team/elizabeth-burrows-founder-main.jpg',
+    alt: 'Elizabeth Burrows - Founder of My Private Tutor Online',
+    width: 400,
+    height: 400,
+    title: 'Elizabeth Burrows - Founder',
     loading: 'lazy' as const
   },
+  founderAlt: {
+    src: '/images/team/elizabeth-burrows-founder-alt.jpg',
+    alt: 'Elizabeth Burrows - My Private Tutor Online Founder Alternative Photo',
+    width: 400,
+    height: 400,
+    title: 'Elizabeth Burrows - Founder Alternative',
+    loading: 'lazy' as const
+  },
+  founderSpare: {
+    src: '/images/team/elizabeth-burrows-founder-spare.jpg',
+    alt: 'Elizabeth Burrows - MPTO 2025 Additional Photo',
+    width: 400,
+    height: 400,
+    title: 'Elizabeth Burrows - Additional Photo',
+    loading: 'lazy' as const
+  },
+  founderSignature: {
+    src: '/images/team/elizabeth-burrows-signature.png',
+    alt: 'Elizabeth Burrows Digital Signature - MPTO',
+    width: 200,
+    height: 80,
+    title: 'Elizabeth Burrows Signature',
+    loading: 'lazy' as const
+  },
+  // Legacy team member maintained for compatibility
   katherine: {
     src: '/images/team/katherine-mother-sebastian-headshot.avif',
     alt: 'Katherine Mother Sebastian - Senior Tutor',
@@ -143,7 +243,7 @@ export const TEAM_IMAGES = {
   }
 } as const
 
-// Testimonial images
+// Testimonial images - Enhanced with media recognition
 export const TESTIMONIAL_IMAGES = {
   schoolGuide: {
     src: '/images/testimonials/schoolguide-testimonial.avif',
@@ -151,6 +251,98 @@ export const TESTIMONIAL_IMAGES = {
     width: 400,
     height: 300,
     title: 'School Guide Review',
+    loading: 'lazy' as const
+  }
+} as const
+
+// Media recognition logos and images
+export const MEDIA_IMAGES = {
+  tatler: {
+    src: '/images/media/tatler-logo.png',
+    alt: 'Tatler Magazine - Featured in Address Book 2025',
+    width: 150,
+    height: 60,
+    title: 'Featured in Tatler Address Book 2025',
+    loading: 'lazy' as const
+  },
+  tatlerAlt: {
+    src: '/images/media/tatler-logo-alt.png',
+    alt: 'Tatler Magazine Alternative Logo',
+    width: 150,
+    height: 60,
+    title: 'Tatler Magazine',
+    loading: 'lazy' as const
+  },
+  schoolsGuideUK: {
+    src: '/images/media/schools-guide-uk-logo.png',
+    alt: 'Schools Guide UK - Trusted Educational Resource',
+    width: 200,
+    height: 80,
+    title: 'Schools Guide UK Recognition',
+    loading: 'lazy' as const
+  }
+} as const
+
+// Tutor profile images
+export const TUTOR_IMAGES = {
+  'tutor-facing-monitor': {
+    src: '/images/tutors/tutor-facing-monitor.jpg',
+    alt: 'Professional tutor working at computer delivering online lessons',
+    width: 400,
+    height: 300,
+    title: 'Online Tutoring Professional',
+    loading: 'lazy' as const
+  },
+  'tutor-inside-looking-at-camera': {
+    src: '/images/tutors/tutor-inside-looking-at-camera.jpg',
+    alt: 'Experienced tutor portrait - Oxford/Cambridge graduate educator',
+    width: 400,
+    height: 400,
+    title: 'Expert Educator Profile',
+    loading: 'lazy' as const
+  }
+} as const
+
+// Video testimonials and content
+export const VIDEO_CONTENT = {
+  parentsTestimonials: {
+    src: '/videos/testimonials/parents-testimonials-mpto-2025.mp4',
+    poster: '/images/video-placeholders/parents-testimonials-poster.jpg',
+    alt: 'Parent testimonials for My Private Tutor Online - July 2025',
+    title: 'Parent Success Stories 2025',
+    description: 'Real parents sharing their experiences with MPTO tutoring services'
+  },
+  studentsTestimonials: {
+    src: '/videos/testimonials/students-testimonials-mpto-2025.mp4',
+    poster: '/images/video-placeholders/students-testimonials-poster.jpg',
+    alt: 'Student testimonials for My Private Tutor Online - 2025',
+    title: 'Student Success Stories 2025',
+    description: 'Students sharing their academic achievements with MPTO tutors'
+  }
+} as const
+
+// Marketing materials and documents
+export const MARKETING_ASSETS = {
+  '11plusBootcampFlyer': {
+    src: '/documents/marketing/11-plus-bootcamp-flyer-2025.png',
+    alt: '11+ Bootcamp Flyer 2025 - Facebook Marketing Material',
+    width: 600,
+    height: 400,
+    title: '11+ Bootcamp Flyer 2025',
+    loading: 'lazy' as const
+  },
+  'elizabethTopTips': {
+    src: '/documents/marketing/elizabeth-10-top-tips-personal-statements-2025.pdf',
+    alt: 'Elizabeth\'s 10 Top Tips for Outstanding Personal Statements - MPTO 2025',
+    title: 'Personal Statement Guide 2025',
+    description: 'Expert guidance for university applications'
+  },
+  'enquiryFormScreenshot': {
+    src: '/images/graphics/enquiry-form-screenshot-footer.png',
+    alt: 'Enquiry Form Screenshot - MPTO July 2025 for Website Footer',
+    width: 400,
+    height: 300,
+    title: 'Enquiry Form Preview',
     loading: 'lazy' as const
   }
 } as const
@@ -224,8 +416,9 @@ export const FALLBACK_IMAGES = {
   }
 } as const
 
-// Student images for results section
+// Student images for results section - Updated with new 2025 collection
 export const STUDENT_IMAGES = {
+  // Legacy student images (maintained for compatibility)
   'student-child': {
     src: '/images/students/student-child.jpg',
     alt: 'Young student engaged in personalised tutoring session',
@@ -257,6 +450,55 @@ export const STUDENT_IMAGES = {
     height: 400,
     title: 'Oxbridge Success',
     loading: 'lazy' as const
+  },
+  // New 2025 student interaction images
+  'adult-student-with-teacher': {
+    src: '/images/students/adult-student-with-teacher.jpg',
+    alt: 'Adult student working closely with experienced tutor in comfortable learning environment',
+    width: 400,
+    height: 300,
+    title: 'Adult Learning Success',
+    loading: 'lazy' as const
+  },
+  'student-inside-holding-pencil': {
+    src: '/images/students/student-inside-holding-pencil.jpg',
+    alt: 'Focused student taking notes during personalised tutoring session',
+    width: 400,
+    height: 300,
+    title: 'Engaged Learning',
+    loading: 'lazy' as const
+  },
+  'student-learning-piano': {
+    src: '/images/students/student-learning-piano.jpg',
+    alt: 'Student receiving expert piano instruction from qualified music tutor',
+    width: 400,
+    height: 300,
+    title: 'Music Tuition Excellence',
+    loading: 'lazy' as const
+  },
+  'student-on-laptop-teacher-on-screen': {
+    src: '/images/students/student-on-laptop-teacher-on-screen.jpg',
+    alt: 'Student engaged in high-quality online tutoring session with expert tutor',
+    width: 400,
+    height: 300,
+    title: 'Online Tutoring Excellence',
+    loading: 'lazy' as const
+  },
+  'student-teacher-inside-comfortable': {
+    src: '/images/students/student-teacher-inside-comfortable.jpg',
+    alt: 'Student and tutor working together in comfortable indoor learning environment',
+    width: 400,
+    height: 300,
+    title: 'Comfortable Learning Environment',
+    loading: 'lazy' as const
+  },
+  'student-teacher-outside': {
+    src: '/images/students/student-teacher-outside.jpg',
+    alt: 'Outdoor tutoring session showing flexible learning approaches',
+    width: 400,
+    height: 300,
+    title: 'Flexible Learning Locations',
+    loading: 'lazy' as const
   }
 } as const
 
@@ -284,6 +526,38 @@ export const getFooterLogo = (): ImageAsset => {
  */
 export const getInstitutionLogos = () => {
   return INSTITUTION_LOGOS
+}
+
+/**
+ * Get media recognition images
+ * CMS DATA SOURCE: Using MEDIA_IMAGES for press and media logos
+ */
+export const getMediaImages = () => {
+  return MEDIA_IMAGES
+}
+
+/**
+ * Get tutor profile images
+ * CMS DATA SOURCE: Using TUTOR_IMAGES for tutor profile photos
+ */
+export const getTutorImages = () => {
+  return TUTOR_IMAGES
+}
+
+/**
+ * Get video testimonial content
+ * CMS DATA SOURCE: Using VIDEO_CONTENT for testimonial videos
+ */
+export const getVideoContent = () => {
+  return VIDEO_CONTENT
+}
+
+/**
+ * Get marketing assets and materials
+ * CMS DATA SOURCE: Using MARKETING_ASSETS for promotional materials
+ */
+export const getMarketingAssets = () => {
+  return MARKETING_ASSETS
 }
 
 /**
@@ -444,13 +718,17 @@ export const getCriticalImages = (): ImageAsset[] => {
   return allImages.filter(image => image.priority === true)
 }
 
-// Export default images object for direct access
+// Export default images object for direct access - Updated with 2025 assets
 export default {
   logos: LOGOS,
   institutions: INSTITUTION_LOGOS,
   hero: HERO_IMAGES,
   team: TEAM_IMAGES,
   testimonials: TESTIMONIAL_IMAGES,
+  media: MEDIA_IMAGES,
+  tutors: TUTOR_IMAGES,
+  videoContent: VIDEO_CONTENT,
+  marketingAssets: MARKETING_ASSETS,
   videoPlaceholders: VIDEO_PLACEHOLDERS,
   backgroundVideos: BACKGROUND_VIDEOS,
   students: STUDENT_IMAGES,
@@ -458,6 +736,10 @@ export default {
   getMainLogo,
   getFooterLogo,
   getInstitutionLogos,
+  getMediaImages,
+  getTutorImages,
+  getVideoContent,
+  getMarketingAssets,
   getHeroImage,
   getIntroVideo,
   getTeamImages,

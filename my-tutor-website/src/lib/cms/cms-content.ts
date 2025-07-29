@@ -42,6 +42,7 @@ export interface NavigationItem {
 export interface TrustIndicator {
   icon: string
   title: string
+  subtitle?: string
   description: string
 }
 
@@ -192,6 +193,14 @@ export const getTestimonials = (): Testimonial[] => {
  */
 export const getServices = (): Service[] => {
   return landingPageContent.services.services
+}
+
+/**
+ * Get who we support information
+ * CMS DATA SOURCE: Using landingPageContent.whoWeSupport for support areas
+ */
+export const getWhoWeSupport = () => {
+  return landingPageContent.whoWeSupport
 }
 
 /**
