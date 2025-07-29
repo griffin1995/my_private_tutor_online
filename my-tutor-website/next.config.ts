@@ -11,17 +11,10 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
-  // Cloudflare Pages static export configuration
-  output: 'export',
-  distDir: 'out',
-  trailingSlash: true,
-  generateBuildId: async () => {
-    return 'cloudflare-deployment'
-  },
-  
-  // Image optimization - disabled for static export
+  // Dynamic Next.js configuration for Cloudflare Pages
   images: {
-    unoptimized: true, // Required for static export
+    domains: ['localhost', 'my-private-tutor-online.pages.dev'],
+    formats: ['image/webp', 'image/avif'],
   },
 
   // Compression and optimization
@@ -39,18 +32,28 @@ const nextConfig: NextConfig = {
     },
   },
 
-  // TypeScript configuration - Temporarily ignore for deployment
-  typescript: {
-    ignoreBuildErrors: true,
+  // Headers for security and performance
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+        ],
+      },
+    ];
   },
-
-  // ESLint configuration - Temporarily ignore for deployment
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
-
-  // Headers and redirects disabled for static export
 };
 
 export default withBundleAnalyzer(nextConfig);

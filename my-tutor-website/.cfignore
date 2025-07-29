@@ -5,8 +5,12 @@
 .next/cache/
 .next/standalone/
 .next/server/chunks/
+.next/server/
 out/cache/
 cache/
+
+# Webpack cache files
+cache/webpack/
 
 # Node.js cache and temporary files
 node_modules/
