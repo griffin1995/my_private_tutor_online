@@ -86,9 +86,28 @@ const config: Config = {
       },
       
       // Typography - CLAUDE.md rule 27
+      // Lato Font Family Integration
       fontFamily: {
+        /**
+         * Lato Sans-Serif Font Family
+         * Documentation Source: Google Fonts Lato Specimen + Next.js Font Variables
+         * Reference: https://fonts.google.com/specimen/Lato
+         * Reference: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
+         * 
+         * Font Characteristics:
+         * - Humanist sans-serif designed by Łukasz Dziedzic
+         * - Excellent readability for both web and print
+         * - Semi-rounded details giving warmth while maintaining stability
+         * - Available in 5 weights: Thin (100), Light (300), Regular (400), Bold (700), Black (900)
+         * - Supports both normal and italic styles
+         * 
+         * Usage Guidelines:
+         * - Primary font for all body text and UI elements
+         * - Excellent for long-form reading and short interface text
+         * - Performs well at small sizes due to generous x-height
+         */
         sans: [
-          'Inter',
+          'var(--font-lato)',
           'system-ui',
           '-apple-system',
           'BlinkMacSystemFont',
@@ -99,12 +118,20 @@ const config: Config = {
           'Noto Sans',
           'sans-serif',
         ],
+        /**
+         * Serif Font Family
+         * Used for decorative headings and editorial content
+         */
         serif: [
           'Playfair Display',
           'Georgia',
           'Times New Roman',
           'serif',
         ],
+        /**
+         * Monospace Font Family
+         * Used for code blocks and technical content
+         */
         mono: [
           'Fira Code',
           'Monaco',
