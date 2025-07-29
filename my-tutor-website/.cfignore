@@ -28,11 +28,18 @@ out/
 .env*
 .config/
 
-# Large media files (if any)
+# Large media files (if any) - Exclude all video files over 25MB
 *.mp4
 *.mov
 *.avi
 *.mkv
+*.webm
+*.m4v
+
+# Specific large video files
+videos/testimonials/parents-testimonials-mpto-2025.mp4
+videos/testimonials/students-testimonials-mpto-2025.mp4
+videos/
 
 # Development files
 .vscode/
