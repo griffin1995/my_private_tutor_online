@@ -33,9 +33,9 @@ export function PageFooter({
   }
 
   const containerClasses = {
-    default: 'bg-primary-900 text-white',
-    minimal: 'bg-primary-800 text-white',
-    premium: 'bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden'
+    default: 'bg-white text-black',
+    minimal: 'bg-gray-50 text-black',
+    premium: 'bg-white text-black relative overflow-hidden'
   }
 
   return (
@@ -47,12 +47,12 @@ export function PageFooter({
       {/* Premium animated background */}
       {variant === 'premium' && (
         <>
-          <div className="absolute inset-0 bg-gradient-to-r from-accent-500/10 via-transparent to-accent-500/10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-100/50 via-transparent to-gray-100/50 pointer-events-none" />
           <m.div 
-            className="absolute inset-0 bg-gradient-to-br from-primary-900/50 via-transparent to-primary-900/50"
+            className="absolute inset-0 bg-gradient-to-br from-gray-50/30 via-transparent to-gray-50/30"
             animate={{ 
               backgroundPosition: ['0% 0%', '100% 100%'],
-              opacity: [0.5, 0.8, 0.5]
+              opacity: [0.3, 0.6, 0.3]
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
@@ -69,17 +69,17 @@ export function PageFooter({
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl font-serif font-bold text-white mb-4">
+              <h3 className="text-3xl font-serif font-bold text-black mb-4">
                 Join Our Exclusive Community
               </h3>
-              <p className="text-primary-200 mb-8 text-lg">
+              <p className="text-gray-700 mb-8 text-lg">
                 Receive personalised academic insights and exclusive opportunities for your child's success
               </p>
               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent"
+                  className="flex-1 px-6 py-3 bg-gray-100 border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent"
                 />
                 <ShinyButton
                   text="Subscribe"
@@ -90,14 +90,14 @@ export function PageFooter({
           </div>
         </div>
 
-        <Separator className="bg-primary-700" />
+        <Separator className="bg-gray-300" />
 
         {/* Main Footer Content */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          {/* Footer Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            {/* Company Information */}
-            <div className="lg:col-span-2">
+          {/* Footer Grid - 1/3 for company info, 2/3 for links */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Company Information - 1/3 width */}
+            <div className="lg:col-span-1">
               <m.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -117,76 +117,78 @@ export function PageFooter({
                       height={footerContent.logo.height}
                       className="h-10 w-auto group-hover:scale-110 transition-transform duration-300"
                     />
-                    <span className="font-serif text-2xl font-bold text-white">
+                    <span className="font-serif text-xl font-bold text-black">
                       {footerContent.companyName}
                     </span>
                   </Link>
                 </div>
                 
-                <p className="text-primary-200 leading-relaxed mb-8 text-lg max-w-md">
+                <p className="text-gray-700 leading-relaxed mb-8 text-base">
                   {footerContent.description}
                 </p>
 
-                {/* Premium Accolades */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                    <Crown className="w-6 h-6 text-accent-400 mb-2" />
-                    <p className="text-sm font-semibold text-white">Royal Family</p>
-                    <p className="text-xs text-primary-300">Endorsed</p>
+                {/* Premium Accolades - horizontal layout on one row */}
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
+                    <Crown className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
+                    <p className="text-xs font-semibold text-black leading-tight">Royal Family</p>
+                    <p className="text-xs text-gray-600">Endorsed</p>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                    <Award className="w-6 h-6 text-accent-400 mb-2" />
-                    <p className="text-sm font-semibold text-white">Tatler 2025</p>
-                    <p className="text-xs text-primary-300">Featured</p>
+                  <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
+                    <Award className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
+                    <p className="text-xs font-semibold text-black leading-tight">Tatler 2025</p>
+                    <p className="text-xs text-gray-600">Featured</p>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20 hover:bg-white/20 transition-all duration-300">
-                    <TrendingUp className="w-6 h-6 text-accent-400 mb-2" />
-                    <p className="text-sm font-semibold text-white">15+ Years</p>
-                    <p className="text-xs text-primary-300">Excellence</p>
+                  <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
+                    <TrendingUp className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
+                    <p className="text-xs font-semibold text-black leading-tight">15+ Years</p>
+                    <p className="text-xs text-gray-600">Excellence</p>
                   </div>
                 </div>
               </m.div>
             </div>
 
-            {/* Footer Links Sections */}
-            {footerContent.footerSections.map((section, sectionIndex) => (
-              <m.div 
-                key={sectionIndex} 
-                className="space-y-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="font-serif text-xl font-bold text-white flex items-center gap-2">
-                  {section.title}
-                  <Separator className="flex-1 bg-primary-700" />
-                </h3>
-                <nav role="navigation" aria-label={`${section.title} links`}>
-                  <ul className="space-y-3">
-                    {section.links.map((link, linkIndex) => (
-                      <li key={linkIndex}>
-                        <Link
-                          href={link.href}
-                          className="group flex items-center text-primary-200 hover:text-accent-400 transition-all duration-300"
-                        >
-                          <span className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden">
-                            <Send className="w-3 h-3" />
-                          </span>
-                          <span className="group-hover:translate-x-1 transition-transform duration-300">
-                            {link.label}
-                          </span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </m.div>
-            ))}
+            {/* Footer Links Sections - 2/3 width */}
+            <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8">
+              {footerContent.footerSections.map((section, sectionIndex) => (
+                <m.div 
+                  key={sectionIndex} 
+                  className="space-y-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <h3 className="font-serif text-xl font-bold text-black flex items-center gap-2">
+                    {section.title}
+                    <Separator className="flex-1 bg-gray-300" />
+                  </h3>
+                  <nav role="navigation" aria-label={`${section.title} links`}>
+                    <ul className="space-y-3">
+                      {section.links.map((link, linkIndex) => (
+                        <li key={linkIndex}>
+                          <Link
+                            href={link.href}
+                            className="group flex items-center text-gray-700 hover:text-accent-600 transition-all duration-300"
+                          >
+                            <span className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden">
+                              <Send className="w-3 h-3" />
+                            </span>
+                            <span className="group-hover:translate-x-1 transition-transform duration-300">
+                              {link.label}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </m.div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <Separator className="bg-primary-700 mt-16" />
+        <Separator className="bg-gray-300" />
 
         {/* Contact Information Section */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -202,14 +204,14 @@ export function PageFooter({
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <Phone className="w-8 h-8 text-white" />
               </div>
-              <h4 className="font-serif text-lg font-bold text-white mb-2">Call Us</h4>
+              <h4 className="font-serif text-lg font-bold text-black mb-2">Call Us</h4>
               <a 
                 href={`tel:${contactInfo.phone}`}
-                className="text-primary-200 hover:text-accent-400 transition-colors duration-300 text-lg"
+                className="text-gray-700 hover:text-accent-600 transition-colors duration-300 text-lg"
               >
                 {contactInfo.phone}
               </a>
-              <p className="text-sm text-primary-300 mt-1">Mon-Fri 9am-6pm</p>
+              <p className="text-sm text-gray-600 mt-1">Mon-Fri 9am-6pm</p>
             </div>
 
             {/* Email */}
@@ -217,14 +219,14 @@ export function PageFooter({
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <Mail className="w-8 h-8 text-white" />
               </div>
-              <h4 className="font-serif text-lg font-bold text-white mb-2">Email Us</h4>
+              <h4 className="font-serif text-lg font-bold text-black mb-2">Email Us</h4>
               <a 
                 href={`mailto:${contactInfo.email}`}
-                className="text-primary-200 hover:text-accent-400 transition-colors duration-300 text-lg"
+                className="text-gray-700 hover:text-accent-600 transition-colors duration-300 text-lg"
               >
                 {contactInfo.email}
               </a>
-              <p className="text-sm text-primary-300 mt-1">24/7 Response Time</p>
+              <p className="text-sm text-gray-600 mt-1">24/7 Response Time</p>
             </div>
 
             {/* Address */}
@@ -232,8 +234,8 @@ export function PageFooter({
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                 <MapPin className="w-8 h-8 text-white" />
               </div>
-              <h4 className="font-serif text-lg font-bold text-white mb-2">Visit Us</h4>
-              <address className="text-primary-200 not-italic leading-relaxed">
+              <h4 className="font-serif text-lg font-bold text-black mb-2">Visit Us</h4>
+              <address className="text-gray-700 not-italic leading-relaxed">
                 {contactInfo.address.split('\n').map((line, index) => (
                   <span key={index}>
                     {line}
@@ -246,37 +248,37 @@ export function PageFooter({
         </div>
 
         {/* Footer Bottom */}
-        <div className="bg-primary-950/50 backdrop-blur-sm">
+        <div className="bg-gray-100">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
               {/* Copyright & Legal */}
               <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-                <p className="text-primary-300 text-sm">
+                <p className="text-gray-600 text-sm">
                   {copyrightText}
                 </p>
-                <Separator orientation="vertical" className="hidden md:block h-4 bg-primary-700" />
+                <Separator orientation="vertical" className="hidden md:block h-4 bg-gray-400" />
                 <nav className="flex items-center gap-6 text-sm">
                   <Link
                     href="/privacy"
-                    className="text-primary-300 hover:text-accent-400 transition-colors duration-300"
+                    className="text-gray-600 hover:text-accent-600 transition-colors duration-300"
                   >
                     Privacy
                   </Link>
                   <Link
                     href="/terms"
-                    className="text-primary-300 hover:text-accent-400 transition-colors duration-300"
+                    className="text-gray-600 hover:text-accent-600 transition-colors duration-300"
                   >
                     Terms
                   </Link>
                   <Link
                     href="/cookies"
-                    className="text-primary-300 hover:text-accent-400 transition-colors duration-300"
+                    className="text-gray-600 hover:text-accent-600 transition-colors duration-300"
                   >
                     Cookies
                   </Link>
                   <Link
                     href="/accessibility"
-                    className="text-primary-300 hover:text-accent-400 transition-colors duration-300"
+                    className="text-gray-600 hover:text-accent-600 transition-colors duration-300"
                   >
                     Accessibility
                   </Link>
