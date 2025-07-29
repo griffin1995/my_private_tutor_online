@@ -29,34 +29,34 @@
   },
   "overrides": {
     "@visx/axis": {
-      "react": "$react",
-      "react-dom": "$react-dom"
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
     },
     "@graphiql/react": {
-      "react": "$react",
-      "react-dom": "$react-dom"
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
     },
     "@monaco-editor/react": {
-      "react": "$react",
-      "react-dom": "$react-dom"
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
     },
     "@reach/portal": {
-      "react": "$react",
-      "react-dom": "$react-dom"
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
     },
     "@reach/utils": {
-      "react": "$react",
-      "react-dom": "$react-dom"
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
     },
     "@react-spring/zdog": {
-      "react": "$react",
-      "react-dom": "$react-dom"
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0"
     },
     "@tinacms/schema-tools": {
-      "yup": "$yup"
+      "yup": "^1.6.1"
     },
-    "react": "$react",
-    "react-dom": "$react-dom"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "dependencies": {
     "@axe-core/react": "^4.10.2",
