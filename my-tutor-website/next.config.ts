@@ -6,15 +6,19 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  // Cloudflare Pages static export configuration
+  output: 'export',
+  distDir: 'out',
+  trailingSlash: true,
+  
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
-  // Dynamic Next.js configuration for Cloudflare Pages
+  // Image optimization - disabled for static export
   images: {
-    domains: ['localhost', 'my-private-tutor-online.pages.dev'],
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true, // Required for static export
   },
 
   // Compression and optimization
