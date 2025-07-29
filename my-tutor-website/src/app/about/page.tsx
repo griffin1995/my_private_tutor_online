@@ -47,8 +47,8 @@ export default function AboutPage() {
   const founderImage = teamImages.founder
   // CMS DATA SOURCE: Using getBackgroundVideo for hero background
   const aboutVideo = getBackgroundVideo('brandStatement')
-  // Hero background image
-  const heroBackgroundImage = HERO_IMAGES.oxfordGraduates
+  // Hero background image - using available hero image
+  const heroBackgroundImage = HERO_IMAGES.childWithLaptop
   
   // Add icons for ethos sections
   const ethosIcons = [Globe, Heart]
@@ -84,10 +84,12 @@ export default function AboutPage() {
       <section className="relative min-h-[80vh] flex items-center bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900 overflow-hidden">
         {/* Enhanced Background */}
         <div className="absolute inset-0">
-          <div 
-            className="absolute inset-0 bg-cover bg-center opacity-25 transform scale-105"
-            style={{ backgroundImage: `url(${heroBackgroundImage.src})` }}
-          />
+          {heroBackgroundImage?.src && (
+            <div 
+              className="absolute inset-0 bg-cover bg-center opacity-25 transform scale-105"
+              style={{ backgroundImage: `url(${heroBackgroundImage.src})` }}
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-br from-primary-900/95 via-primary-800/90 to-slate-900/95" />
           
           {/* Floating Elements */}
@@ -325,7 +327,7 @@ export default function AboutPage() {
             <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-16 border border-white/20">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div className="lg:col-span-4">
-                  {founderImage && (
+                  {founderImage?.src && (
                     <m.div 
                       className="relative"
                       initial={{ opacity: 0, scale: 0.9 }}
@@ -336,7 +338,7 @@ export default function AboutPage() {
                       <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto rounded-3xl overflow-hidden shadow-2xl">
                         <Image
                           src={founderImage.src}
-                          alt={founderImage.alt}
+                          alt={founderImage.alt || 'Elizabeth Burrows, Founder'}
                           fill
                           className="object-cover"
                         />
