@@ -5,6 +5,7 @@
 .next/cache/
 .next/standalone/
 .next/server/chunks/
+out/cache/
 cache/
 
 # Node.js cache and temporary files

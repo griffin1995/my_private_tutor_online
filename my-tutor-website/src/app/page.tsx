@@ -14,8 +14,7 @@ export default function Home() {
     <PageLayout background="white" showHeader showFooter containerSize="full" verticalSpacing="none" headerProps={{ isHeroPage: true }}>
       {/* Hero Section */}
       <PageHero 
-        background="video" 
-        backgroundVideo="/Elizabeth-Burrows-introduces-My-Private-Tutor-Online.mp4"
+        background="gradient" 
         size="full"
         overlay
         overlayOpacity="medium"
