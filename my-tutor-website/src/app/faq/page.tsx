@@ -16,7 +16,7 @@
 "use client"
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Search, ChevronDown, Mail, Phone, MessageCircle } from 'lucide-react'
 import { ShinyButton } from '@/components/magicui/shiny-button'
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
@@ -113,7 +113,7 @@ export default function FAQPage() {
         </div>
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="max-w-5xl mx-auto text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -122,30 +122,30 @@ export default function FAQPage() {
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-white leading-tight mb-8">
               {heroContent.title}
             </h1>
-            <motion.p 
+            <m.p 
               className="text-2xl text-accent-400 font-semibold mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               {heroContent.subtitle}
-            </motion.p>
-            <motion.p 
+            </m.p>
+            <m.p 
               className="text-xl text-white/90 leading-relaxed max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               {heroContent.description}
-            </motion.p>
-          </motion.div>
+            </m.p>
+          </m.div>
         </div>
       </section>
 
       {/* Premium Search Section */}
       <section className="py-16 bg-gradient-to-b from-white to-primary-50/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -183,7 +183,7 @@ export default function FAQPage() {
                 </Badge>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -191,7 +191,7 @@ export default function FAQPage() {
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
-            <motion.div
+            <m.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
@@ -200,7 +200,7 @@ export default function FAQPage() {
               {(searchQuery || selectedCategory ? filteredCategories : faqCategories)
                 .filter(category => !selectedCategory || category.title === selectedCategory)
                 .map((category, categoryIndex) => (
-                <motion.div 
+                <m.div 
                   key={categoryIndex} 
                   className="mb-16"
                   variants={categoryVariants}
@@ -250,9 +250,9 @@ export default function FAQPage() {
                       </Accordion>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </m.div>
               ))}
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -266,7 +266,7 @@ export default function FAQPage() {
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
+          <m.div 
             className="max-w-4xl mx-auto text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -276,7 +276,7 @@ export default function FAQPage() {
             <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white mb-8">
               {contactContent.title}
             </h2>
-            <motion.p 
+            <m.p 
               className="text-xl text-white/80 mb-12 leading-relaxed max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -284,10 +284,10 @@ export default function FAQPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               {contactContent.description}
-            </motion.p>
+            </m.p>
             
             {/* Contact Options */}
-            <motion.div 
+            <m.div 
               className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -330,10 +330,10 @@ export default function FAQPage() {
                 <p className="text-white/70 mb-4">Instant responses to quick questions</p>
                 <span className="text-accent-400 font-medium">Available 9am-6pm</span>
               </div>
-            </motion.div>
+            </m.div>
             
             {/* CTA Buttons */}
-            <motion.div 
+            <m.div 
               className="flex flex-col sm:flex-row gap-6 justify-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -361,8 +361,8 @@ export default function FAQPage() {
                   )
                 }
               })}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
       <PageFooter />

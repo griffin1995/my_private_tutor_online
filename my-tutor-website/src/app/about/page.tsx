@@ -24,7 +24,7 @@
 "use client"
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { PageLayout } from '@/components/layout/page-layout'
 import { Section } from '@/components/layout/section'
 import { Card } from '@/components/ui/card'
@@ -97,7 +97,7 @@ export default function AboutPage() {
         </div>
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="max-w-6xl mx-auto text-center"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -106,25 +106,25 @@ export default function AboutPage() {
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-white leading-tight mb-8">
               {aboutContent.hero.title}
             </h1>
-            <motion.p 
+            <m.p 
               className="text-2xl text-accent-400 font-semibold mb-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               {aboutContent.hero.subtitle}
-            </motion.p>
-            <motion.p 
+            </m.p>
+            <m.p 
               className="text-xl text-white/90 leading-relaxed max-w-4xl mx-auto mb-12"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               {aboutContent.hero.description}
-            </motion.p>
+            </m.p>
             
             {/* Hero Stats */}
-            <motion.div 
+            <m.div 
               className="flex flex-wrap justify-center gap-8 lg:gap-12"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -142,22 +142,22 @@ export default function AboutPage() {
                 <div className="text-4xl font-bold text-accent-400 mb-2">100%</div>
                 <div className="text-white/80 font-medium">Oxbridge Tutors</div>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
       {/* Our Ethos Section */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-white to-primary-50/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="max-w-6xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <motion.div 
+            <m.div 
               className="text-center mb-16"
               variants={itemVariants}
             >
@@ -181,9 +181,9 @@ export default function AboutPage() {
               <p className="text-xl text-primary-700 leading-relaxed max-w-4xl mx-auto">
                 {aboutContent.ourEthos.description}
               </p>
-            </motion.div>
+            </m.div>
 
-            <motion.div 
+            <m.div 
               className="max-w-5xl mx-auto text-center space-y-8 mb-20"
               variants={itemVariants}
             >
@@ -193,17 +193,17 @@ export default function AboutPage() {
               <p className="text-xl text-primary-700 leading-relaxed font-medium bg-accent-50 p-8 rounded-2xl border-l-4 border-accent-500">
                 {aboutContent.ourEthos.mainContent.philosophy}
               </p>
-            </motion.div>
+            </m.div>
 
             {/* Premium Core Values */}
-            <motion.div 
+            <m.div 
               className="space-y-20"
               variants={containerVariants}
             >
               {aboutContent.ourEthos.sections.map((section, index) => {
                 const Icon = ethosIcons[index]
                 return (
-                  <motion.div 
+                  <m.div 
                     key={index} 
                     className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
                     variants={itemVariants}
@@ -230,18 +230,18 @@ export default function AboutPage() {
                         ))}
                       </div>
                     </div>
-                  </motion.div>
+                  </m.div>
                 )
               })}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
       {/* Premium Results Section */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-primary-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <m.div 
             className="max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -255,7 +255,7 @@ export default function AboutPage() {
               <div className="w-24 h-1 bg-gradient-to-r from-accent-500 to-accent-600 mx-auto mb-8"></div>
             </div>
             
-            <motion.div 
+            <m.div 
               className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
               variants={containerVariants}
               initial="hidden"
@@ -263,7 +263,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
             >
               {aboutContent.ourEthos.results.statistics.map((stat, index) => (
-                <motion.div key={index} variants={itemVariants}>
+                <m.div key={index} variants={itemVariants}>
                   <Card className="p-8 text-center bg-white/80 backdrop-blur-sm border border-primary-200 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 group overflow-hidden relative">
                     {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-accent-500/10 to-transparent rounded-bl-3xl" />
@@ -280,11 +280,11 @@ export default function AboutPage() {
                       </p>
                     </div>
                   </Card>
-                </motion.div>
+                </m.div>
               ))}
-            </motion.div>
+            </m.div>
 
-            <motion.div 
+            <m.div 
               className="text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -294,8 +294,8 @@ export default function AboutPage() {
               <p className="text-2xl text-primary-700 font-serif leading-relaxed max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg border border-primary-100">
                 {aboutContent.ourEthos.conclusion}
               </p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
 
@@ -308,7 +308,7 @@ export default function AboutPage() {
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
+          <m.div 
             className="max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -326,7 +326,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div className="lg:col-span-4">
                   {founderImage && (
-                    <motion.div 
+                    <m.div 
                       className="relative"
                       initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
@@ -350,11 +350,11 @@ export default function AboutPage() {
                           <span className="font-semibold">15+ Years</span>
                         </div>
                       </div>
-                    </motion.div>
+                    </m.div>
                   )}
                 </div>
                 <div className="lg:col-span-8">
-                  <motion.div
+                  <m.div
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -390,11 +390,11 @@ export default function AboutPage() {
                         With over 15 years of experience tutoring students from the royal family to families across the UK, Elizabeth has built My Private Tutor Online into the premier tutoring service for discerning families seeking excellence.
                       </p>
                     </div>
-                  </motion.div>
+                  </m.div>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -407,7 +407,7 @@ export default function AboutPage() {
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div 
+          <m.div 
             className="text-center max-w-5xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -424,7 +424,7 @@ export default function AboutPage() {
               </p>
             </div>
             
-            <motion.div 
+            <m.div 
               className="flex flex-col sm:flex-row gap-6 justify-center mb-12"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -439,10 +439,10 @@ export default function AboutPage() {
                 text="Learn How We Work"
                 className="px-10 py-4 border-2 border-primary-700 bg-transparent text-primary-700 hover:bg-primary-700 hover:text-white text-lg font-semibold"
               />
-            </motion.div>
+            </m.div>
             
             {/* Trust indicators */}
-            <motion.div 
+            <m.div 
               className="flex flex-wrap justify-center gap-8 text-primary-600"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -461,8 +461,8 @@ export default function AboutPage() {
                 <Trophy className="w-5 h-5 text-accent-600" />
                 <span className="font-medium">15+ Years Excellence</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </section>
       <PageFooter />
