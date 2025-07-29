@@ -47,6 +47,12 @@
 31. **OFFICIAL DOCUMENTATION ONLY** - NEVER use unofficial tutorials, blogs, or community examples - ONLY use official library documentation provided by the maintainers
 32. **CUSTOM DOCUMENTATION MAINTENANCE** - Maintain /docs/CUSTOM_DOCUMENTATION.md file for proven patterns and component implementations for faster lookup
 
+## Styling and Design Implementation Rules
+33. **MANDATORY CONTEXT7 VERIFICATION** - For ALL revisions, edits, and styling changes on the site, EVERYTHING must be confirmed via Context7 MCP server and official documentation
+34. **REQUIRED CODE DOCUMENTATION** - ALL code must include comments referencing the specific design pattern, documentation source, and official reference used
+35. **OFFICIAL DOCS VALIDATION** - Every CSS property, Tailwind utility, design pattern, or styling approach MUST be validated against official documentation before implementation
+36. **REFERENCE COMMENT FORMAT** - Use format: `// Documentation Source: [Library/Framework] / Reference: [URL or Doc Section] / Pattern: [Pattern Name]`
+
 ---
 
 # Project: My Private Tutor Online - Website Redesign
