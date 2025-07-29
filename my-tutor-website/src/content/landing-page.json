@@ -33,7 +33,7 @@
   "hero": {
     "title": "Expert Private Tutoring, Personally Curated by Elizabeth Burrows",
     "subtitle": "Founded on trust. Built on results. Delivered by experts.",
-    "description": "For over fifteen years, Elizabeth and her team have provided world-class educational support to ambitious families. From key entry points such as the 7+, 8+, 11+, and 13+ through to GCSEs, A Levels, the IB and Pre-U, our tailored tuition ensures each student receives the highest level of academic guidance.",
+    "description": "For over fifteen years, Elizabeth and her team have provided world-class educational support to ambitious families.\n\nFrom key entry points such as the 7+, 8+, 11+, and 13+ through to GCSEs, A Levels, the IB and Pre-U, our tailored tuition ensures each student receives the highest level of academic guidance.\n\nOur clients entrust us with more than results. Under our care, students develop a genuine love of learning, achieve exceptional outcomes, secure places at the UK's most prestigious schools and universities, and are empowered to realise their full potential.",
     "primaryButtonText": "Enquire Now",
     "secondaryButtonText": "Request a Consultation",
     "videoPlaceholder": "/Elizabeth-Burrows-introduces-My-Private-Tutor-Online.mp4",
@@ -72,23 +72,32 @@
     ]
   },
   "trustIndicators": {
-    "sectionTitle": "Trusted by Excellence",
-    "sectionDescription": "Our reputation speaks for itself - from royal endorsements to Tatler recognition, we deliver results that matter.",
+    "sectionTitle": "Royal Endorsement",
+    "sectionDescription": "Trusted by Britain's Most Distinguished Families",
     "indicators": [
       {
-        "icon": "👑",
-        "title": "Royal Endorsement",
-        "description": "Trusted by royal families for exceptional educational outcomes"
+        "icon": "",
+        "title": "Built on Trust",
+        "subtitle": "placeholder heading 2",
+        "description": "Elizabeth only works with educators she knows, has taught alongside, or has personally vetted. Every tutor has a proven track record and aligns with our values of discretion, integrity, and academic rigour."
       },
       {
-        "icon": "⭐",
-        "title": "Tatler Listed",
-        "description": "Featured in Tatler as a premier educational service"
+        "icon": "",
+        "title": "Exam Insight from the Inside",
+        "subtitle": "placeholder heading 2",
+        "description": "Our Tier 1 tutors are not just excellent teachers—they are the very examiners who actually write and/or mark the assessments your child will take. This insider perspective is rare and a distinct advantage in today's academic landscape."
       },
       {
-        "icon": "📊",
-        "title": "Proven Results",
-        "description": "94% of GCSE students improved by at least 2 grades"
+        "icon": "",
+        "title": "Discretion & Results for High-Profile Families",
+        "subtitle": "placeholder heading 2",
+        "description": "We have proudly helped families from prominent global households, including VIPs and royalty."
+      },
+      {
+        "icon": "",
+        "title": "A Global Network, A Personal Touch",
+        "subtitle": "placeholder heading 2", 
+        "description": "While our families are based in London, Geneva, Dubai, New York, and beyond, our approach is never distant. Whether preparing for UK independent school entry or GCSE exams, your child is known, understood, and championed."
       }
     ]
   },
@@ -162,12 +171,12 @@
     ]
   },
   "services": {
-    "sectionTitle": "Our Academic Services",
-    "sectionDescription": "Comprehensive educational support tailored to your child's individual needs, from Key Stage preparation to Oxbridge entrance.",
+    "sectionTitle": "Who We Support",
+    "sectionDescription": "We work with a wide range of learners, offering guidance and transformation at every level:",
     "services": [
       {
-        "title": "GCSE Excellence Programme",
-        "description": "Intensive GCSE preparation with proven track record of grade improvements. Our expert tutors guide students through exam techniques and subject mastery.",
+        "title": "Primary and Secondary school learners, across all subjects",
+        "description": "Comprehensive support for students from early years through secondary education in all subject areas",
         "icon": "📚",
         "features": [
           {
@@ -183,13 +192,13 @@
             "feature": "Progress tracking"
           }
         ],
-        "ctaText": "Start GCSE Programme",
+        "ctaText": "Learn More",
         "ctaLink": "#contact"
       },
       {
-        "title": "A-Level Mastery",
-        "description": "Advanced level tutoring for students aiming for top universities. Subject specialists ensure comprehensive understanding and exam success.",
-        "icon": "🎓",
+        "title": "Competitive UK school entry (4+, 7+, 11+, 13+, 16+)",
+        "description": "Expert preparation for all major UK independent school entrance examinations",
+        "icon": "🎯",
         "features": [
           {
             "feature": "Subject specialist tutors"
@@ -204,13 +213,13 @@
             "feature": "UCAS application support"
           }
         ],
-        "ctaText": "Explore A-Level Support",
+        "ctaText": "Learn More",
         "ctaLink": "#contact"
       },
       {
-        "title": "Oxbridge Preparation",
-        "description": "Elite preparation for Oxford and Cambridge applications. Interview coaching, entrance exams, and application strategy from experienced Oxbridge graduates.",
-        "icon": "🏛️",
+        "title": "GCSE, A-Level and IB excellence",
+        "description": "Specialist tutoring to achieve top grades in GCSE, A-Level and International Baccalaureate programmes",
+        "icon": "🏆",
         "features": [
           {
             "feature": "Interview coaching"
@@ -225,8 +234,107 @@
             "feature": "Oxbridge graduate tutors"
           }
         ],
-        "ctaText": "Begin Oxbridge Journey",
+        "ctaText": "Learn More",
         "ctaLink": "#contact"
+      },
+      {
+        "title": "UCAS applications, including Oxbridge admissions",
+        "description": "Complete university application support with particular expertise in Oxford and Cambridge admissions",
+        "icon": "🎓",
+        "features": [
+          {
+            "feature": "Mathematical reasoning"
+          },
+          {
+            "feature": "English comprehension"
+          },
+          {
+            "feature": "Verbal & non-verbal reasoning"
+          },
+          {
+            "feature": "Mock exam practice"
+          }
+        ],
+        "ctaText": "Learn More",
+        "ctaLink": "#contact"
+      },
+      {
+        "title": "Specialist exams (TMUA, LNAT, BMAT, SAT, ACT, IELTS)",
+        "description": "Targeted preparation for specialist university entrance and aptitude tests",
+        "icon": "📝",
+        "features": [
+          {
+            "feature": "Specialist exam preparation"
+          },
+          {
+            "feature": "Practice test materials"
+          },
+          {
+            "feature": "Expert tutoring methods"
+          },
+          {
+            "feature": "Score improvement tracking"
+          }
+        ],
+        "ctaText": "Learn More",
+        "ctaLink": "#contact"
+      },
+      {
+        "title": "University level essay and thesis support",
+        "description": "Academic writing support for undergraduate and postgraduate students",
+        "icon": "📖",
+        "features": [
+          {
+            "feature": "Essay structure guidance"
+          },
+          {
+            "feature": "Research methodology"
+          },
+          {
+            "feature": "Academic writing style"
+          },
+          {
+            "feature": "Thesis supervision"
+          }
+        ],
+        "ctaText": "Learn More",
+        "ctaLink": "#contact"
+      }
+    ]
+  },
+  "whoWeSupport": {
+    "sectionTitle": "Who We Support",
+    "sectionDescription": "We work with a wide range of learners, offering guidance and transformation at every level:",
+    "supportAreas": [
+      {
+        "title": "Primary and Secondary school learners, across all subjects",
+        "icon": "📚",
+        "description": "Comprehensive support for students from early years through secondary education in all subject areas"
+      },
+      {
+        "title": "Competitive UK school entry (4+, 7+, 11+, 13+, 16+)",
+        "icon": "🎯",
+        "description": "Expert preparation for all major UK independent school entrance examinations"
+      },
+      {
+        "title": "GCSE, A-Level and IB excellence",
+        "icon": "🏆",
+        "description": "Specialist tutoring to achieve top grades in GCSE, A-Level and International Baccalaureate programmes"
+      },
+      {
+        "title": "UCAS applications, including Oxbridge admissions",
+        "icon": "🎓",
+        "description": "Complete university application support with particular expertise in Oxford and Cambridge admissions"
+      },
+      {
+        "title": "Specialist exams (TMUA, LNAT, BMAT, SAT, ACT, IELTS)",
+        "icon": "📝",
+        "description": "Targeted preparation for specialist university entrance and aptitude tests"
+      },
+      {
+        "title": "University level essay and thesis support",
+        "icon": "📖",
+        "description": "Academic writing support for undergraduate and postgraduate students"
       }
     ]
   },
