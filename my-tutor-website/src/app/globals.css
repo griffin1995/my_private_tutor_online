@@ -193,8 +193,34 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
+  /* Documentation Source: Context7 Tailwind CSS - Background color transparency for fixed header layouts
+   * Reference: /tailwindlabs/tailwindcss.com - background-color: transparent
+   * 
+   * Critical Fix: Transparent body background for fixed header overlay
+   * Problem Solved: Prevents white background gaps that appear above hero sections
+   * 
+   * Technical Details:
+   * - body element naturally has white background from CSS variables (--background: oklch(1 0 0))
+   * - This white background was creating visible gaps above full-viewport hero sections  
+   * - Fixed header positioning means content starts at viewport top (y=0)
+   * - Transparent body ensures hero content is visible immediately under transparent header
+   * 
+   * Why !important is necessary:
+   * - CSS custom properties (--background) have high specificity
+   * - Tailwind's @apply bg-transparent gets overridden by CSS variables
+   * - !important ensures transparency takes precedence over theme variables
+   * - This is a layout-critical override, not a styling preference
+   * 
+   * Impact:
+   * - Eliminates white space gaps above hero sections on all pages
+   * - Allows fixed header to truly overlay content without layout displacement
+   * - Maintains consistent transparent background across all viewport sizes
+   * - Essential for modern full-screen hero layouts with overlay navigation
+   */
   body {
     @apply text-foreground;
+    background: transparent !important;
   }
 }
 
@@ -540,4 +566,57 @@ html {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+}
+
+/* Documentation Source: Context7 Tailwind CSS - Transform and opacity animations for scroll indicators
+ * Reference: /tailwindlabs/tailwindcss.com - CSS transforms, opacity animations, and fade effects
+ * Pattern: Vertical line shrinking animation with fixed bottom position
+ * 
+ * scrollIndicator Animation:
+ * - Line bottom position remains fixed (no translateY movement)
+ * - Line shrinks vertically from top to bottom (scaleY: 1 → 0)
+ * - origin-bottom ensures bottom edge stays in same position while top edge moves down
+ * - Visual effect: top of line slides down to meet bottom, then disappears
+ * - 67% duration (2s) for line shrinking, remaining 33% for opacity fade
+ * 
+ * scrollText Animation:
+ * - Text moves downward with line during shrinking phase (translateY: 0 → 40px) (0-67%)
+ * - Text stops moving when line disappears completely (67%)
+ * - Text fade begins after line is gone (opacity: 1 → 0) during final 33%
+ * - Creates perfect synchronization: text follows line down, then fades when line is gone
+ * 
+ * Usage:
+ * - Applied to vertical line element with origin-bottom for fixed base
+ * - Applied to text element for delayed fade after line completion
+ * - Infinite loop creates continuous scroll hint animation
+ * - Visual effect: line top slides down to bottom, creating shrinking effect
+ */
+@keyframes scrollIndicator {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  67% {
+    transform: scaleY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  67% {
+    transform: translateY(40px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
 }
