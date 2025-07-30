@@ -37,10 +37,9 @@ npm run quality      # Run all quality checks
 
 ## 📚 Documentation
 
-- **[Complete Guide](documentation/technical_docs/consolidated_documentation.md)** - Comprehensive development reference
-- **[Development Rules](documentation/development_rules.md)** - Critical standards and requirements
-- **[Component Library](documentation/technical_docs/custom_documentation.md)** - UI components and patterns
-- **[Documentation Index](documentation/documentation_index.md)** - Navigation guide
+- **[Complete Guide](docs/CONSOLIDATED_DOCUMENTATION.md)** - Comprehensive development reference
+- **[Development Rules](CLAUDE.md)** - Critical standards and requirements
+- **[Component Library](docs/CUSTOM_DOCUMENTATION.md)** - UI components and patterns
 
 ## 🎯 Performance Targets
 
@@ -82,9 +81,9 @@ src/
 
 ## 🆘 Support
 
-1. **Check Documentation**: [Complete Guide](documentation/technical_docs/consolidated_documentation.md)
-2. **Component Issues**: Review [Component Library](documentation/technical_docs/custom_documentation.md)
-3. **Build Problems**: Verify [Development Rules](documentation/development_rules.md)
+1. **Check Documentation**: [Consolidated Guide](docs/CONSOLIDATED_DOCUMENTATION.md)
+2. **Component Issues**: Review [Component Library](docs/CUSTOM_DOCUMENTATION.md)
+3. **Build Problems**: Verify [Development Rules](CLAUDE.md)
 
 ---
 
