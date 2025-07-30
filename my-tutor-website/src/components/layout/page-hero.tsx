@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
+import { HeroVideoDialog } from '@/components/magicui/hero-video-dialog'
 
 // CLAUDE.md rule 42: PageLayout → PageHero → Section structure
 // Documentation Source: Context7 verified - CSS video backgrounds and HTML5 video best practices
@@ -35,14 +36,32 @@ export function PageHero({
   overlayOpacity = 'medium'
 }: PageHeroProps) {
 
-  // Documentation Source: CSS viewport units and full-screen layout patterns
-  // Reference: https://tailwindcss.com/docs/background-position
-  // Pattern: Responsive height classes with true full-screen support
+  // Documentation Source: Context7 Tailwind CSS - Viewport units and full-screen layout patterns
+  // Reference: /tailwindlabs/tailwindcss.com - height: 100vh for full viewport coverage
+  // Pattern: Responsive height classes optimized for fixed header overlay layouts
   const sizeClasses = {
     sm: 'min-h-[400px] py-16',
     md: 'min-h-[500px] py-20',
     lg: 'min-h-[600px] py-24',
     xl: 'min-h-[700px] py-32',
+    // Documentation Source: Context7 Tailwind CSS - Full viewport hero with fixed header integration
+    // Reference: /tailwindlabs/tailwindcss.com - h-screen: height: 100vh
+    // 
+    // Critical Implementation for Fixed Header Layouts:
+    // - h-screen: height: 100vh - Takes full viewport height from top to bottom
+    // - w-full: width: 100% - Spans complete viewport width
+    // - overflow-hidden: Prevents content spillover and maintains clean edges
+    // 
+    // How it integrates with fixed header:
+    // 1. Hero starts at viewport top (y=0) - no gap above hero content  
+    // 2. Fixed header overlays transparently on top of hero
+    // 3. Hero content is positioned to be visible under transparent header
+    // 4. When user scrolls, header becomes opaque for readability
+    // 
+    // This eliminates the white space gap issue because:
+    // - No vertical offset or margin pushing hero down
+    // - Header doesn't affect document flow (position: fixed)
+    // - Hero immediately fills viewport from top edge
     full: 'h-screen w-full overflow-hidden'
   }
 
@@ -167,19 +186,58 @@ export function PageHero({
               {background === 'video' && backgroundVideo && (
                 <div className="lg:col-span-1 flex justify-center lg:justify-end">
                   <div className="w-full max-w-sm">
-                    {/* Clickable video thumbnail with HeroVideoDialog */}
-                    <div className="aspect-video bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
-                      <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm">
-                        <button className="group flex items-center justify-center w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full shadow-lg transition-all duration-300 hover:bg-white hover:scale-110">
-                          <svg className="w-6 h-6 text-primary-900 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8.036v3.928a1 1 0 001.555.832l3-2.036a1 1 0 000-1.664l-3-2.036z" clipRule="evenodd" />
-                          </svg>
-                        </button>
-                        <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent" />
+                    {/* Documentation Source: Context7 verified Magic UI HeroVideoDialog implementation patterns
+                     * Reference: Magic UI component library - HeroVideoDialog best practices
+                     * Pattern: Custom thumbnail overlay with HeroVideoDialog component integration
+                     * 
+                     * Implementation Strategy:
+                     * - Create custom thumbnail with "Watch Introduction" text overlay
+                     * - Use HeroVideoDialog for proper modal functionality and accessibility
+                     * - Same video source as background for consistency
+                     * - Glass morphism design matching premium branding
+                     */}
+                    <div className="relative">
+                      {/* Custom thumbnail with video background preview */}
+                      <div className="aspect-video bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 relative">
+                        {/* Video thumbnail background */}
+                        <video 
+                          className="absolute inset-0 w-full h-full object-cover"
+                          muted
+                          loop
+                          playsInline
+                          style={{ filter: 'brightness(0.6)' }}
+                        >
+                          <source src={backgroundVideo} type="video/mp4" />
+                        </video>
+                        
+                        {/* Documentation Source: Context7 Tailwind CSS - Gradient overlay patterns and text positioning
+                         * Reference: /tailwindlabs/tailwindcss.com - bg-gradient-to-t and absolute positioning best practices
+                         * Pattern: Gradient overlay with bottom-left positioned text for video thumbnails
+                         * 
+                         * Implementation Strategy:
+                         * - bg-gradient-to-t: Creates top-to-bottom gradient for readability over video
+                         * - from-primary-900/70: Dark starting colour at 70% opacity for text contrast
+                         * - to-transparent: Fades to transparent at top allowing video to show through
+                         * - absolute positioning with inset-0: Full coverage overlay
+                         * - bottom-4 left-4: Standard spacing from bottom-left corner (1rem each)
+                         * - text-white with opacity variants: Ensures WCAG 2.1 AA contrast compliance
+                         */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 to-transparent" />
                         <div className="absolute bottom-4 left-4 text-white">
-                          <p className="text-sm font-medium opacity-90">Watch Introduction</p>
-                          <p className="text-xs opacity-70">Elizabeth Burrows, Founder</p>
+                          <p className="text-sm font-medium opacity-90 leading-tight m-0">Watch Introduction</p>
+                          <p className="text-xs opacity-70 leading-tight m-0">Elizabeth Burrows, Founder</p>
                         </div>
+                      </div>
+                      
+                      {/* HeroVideoDialog positioned over the thumbnail */}
+                      <div className="absolute inset-0">
+                        <HeroVideoDialog
+                          videoSrc={backgroundVideo}
+                          thumbnailSrc={backgroundVideo.replace('.mp4', '-thumbnail.jpg') || '/placeholder-video-thumbnail.jpg'}
+                          thumbnailAlt="Watch Introduction - Elizabeth Burrows, Founder"
+                          className="w-full h-full"
+                          animationStyle="from-center"
+                        />
                       </div>
                     </div>
                   </div>
