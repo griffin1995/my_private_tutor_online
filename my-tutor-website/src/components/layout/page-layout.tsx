@@ -60,6 +60,13 @@ export function PageLayout({
     gradient: 'bg-gradient-to-br from-white via-primary-50 to-accent-50',
     pattern: 'bg-white bg-gradient-to-r from-primary-50/30 via-white to-accent-50/30',
     dark: 'bg-primary-900',
+    // Documentation Source: Context7 Tailwind CSS - Transparent backgrounds for fixed header layouts
+    // Reference: /tailwindlabs/tailwindcss.com - background-color: transparent
+    // 
+    // Purpose: Enables fixed header overlay layouts without white space gaps
+    // Usage: Essential for pages with full-viewport hero sections
+    // Technical: Works with fixed positioned headers to create seamless overlays
+    // Impact: Allows hero content to start at viewport top (y=0) with header floating above
     transparent: 'bg-transparent'
   }
 
