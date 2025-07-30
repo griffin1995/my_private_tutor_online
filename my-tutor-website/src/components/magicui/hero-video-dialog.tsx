@@ -177,8 +177,19 @@ export function HeroVideoDialog({
           
           {/* Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colours group-hover:bg-black/30">
+            {/* Documentation Source: Context7 Tailwind CSS - Perfect Center Alignment for Play Button
+             * Reference: /context7/tailwindcss - Flexbox centering utilities for precise alignment
+             * Pattern: Using flex items-center justify-center for perfect center alignment
+             * 
+             * Alignment Logic:
+             * - Parent div: flex items-center justify-center creates perfect centering container
+             * - Child Play icon: Removed ml-1 offset that was causing misalignment
+             * - flex items-center justify-center on both parent and button ensures true center
+             * - Visual center achieved by removing any margin/padding offsets on icon
+             * - Play button now perfectly centered within its circular container
+             */}
             <div className="flex items-center justify-center w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full shadow-lg transition-all duration-300 group-hover:bg-white group-hover:scale-110">
-              <Play className="w-6 h-6 text-primary-900 ml-1" fill="currentColor" />
+              <Play className="w-6 h-6 text-primary-900" fill="currentColor" />
             </div>
           </div>
         </div>
