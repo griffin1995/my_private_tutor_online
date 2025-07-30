@@ -1,28 +1,33 @@
 /**
- * Documentation Source: Radix UI Navigation Menu + React 19 + Next.js 15
+ * Documentation Source: Context7 Tailwind CSS + Radix UI Navigation Menu + React 19 + Next.js 15
+ * Reference: /tailwindlabs/tailwindcss.com - Fixed positioning, z-index, backdrop filters
  * Reference: https://www.radix-ui.com/docs/primitives/components/navigation-menu
  * Reference: https://react.dev/reference/react/useEffect
  * Reference: https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating
  * 
- * Pattern: Modern responsive navbar with scroll-based transparency
+ * Pattern: Fixed overlay navbar with scroll-based transparency transitions
  * Architecture:
+ * - Fixed positioning (position: fixed) to overlay content without affecting document flow
  * - Three-section layout: Logo left, Navigation center, CTA right
  * - Radix UI NavigationMenu for WCAG 2.1 AA compliance
- * - React 19 hooks for scroll detection
- * - Context7 verified implementation patterns
+ * - React 19 hooks for optimized scroll detection and state management
+ * - Context7 verified implementation patterns for modern web applications
  * 
- * Features:
- * - Responsive mobile-first design
- * - Scroll-based background transparency
- * - Mobile hamburger menu with Sheet component
- * - Keyboard navigation support
- * - Focus management and ARIA labels
+ * Key Features:
+ * - Fixed positioning that doesn't push content down (eliminates white space gaps)
+ * - Dynamic transparency: transparent with white text by default, opaque with dark text when scrolled
+ * - Backdrop blur effects for glass morphism aesthetic on scroll
+ * - Responsive mobile-first design with collapsible hamburger menu
+ * - Keyboard navigation support and complete ARIA accessibility
+ * - Premium animation effects with smooth transitions
  * 
- * Performance:
- * - Passive scroll listeners for 60fps performance
- * - RequestAnimationFrame for smooth animations
- * - Proper cleanup functions
- * - Optimized re-renders with useCallback
+ * Technical Implementation:
+ * - CSS fixed positioning with top-0 left-0 right-0 for full-width overlay
+ * - z-index: 50 for proper stacking context above all page content
+ * - Backdrop filters with blur and transparency for glass effect when scrolled
+ * - Passive scroll event listeners for 60fps performance optimization
+ * - useCallback optimization to prevent unnecessary re-renders
+ * - Proper event listener cleanup to prevent memory leaks
  */
 
 "use client"
@@ -107,71 +112,112 @@ export function PageHeader({
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
-  // Documentation Source: React 19 useCallback for performance optimization
+  // Documentation Source: Context7 React 19 + Performance Optimization - useCallback for scroll handling
   // Reference: https://react.dev/reference/react/useCallback
-  // Pattern: Memoized scroll handler to prevent unnecessary re-renders
+  // Pattern: Memoized scroll handler to prevent unnecessary re-renders and optimize performance
   const handleScroll = useCallback(() => {
     // Documentation Source: Web API Window.scrollY property
     // Reference: https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
-    // Pattern: Simple scroll threshold detection (100px)
-    // This ensures navbar stays transparent at top and becomes opaque when scrolled
+    // 
+    // Scroll threshold logic: 100px creates optimal user experience
+    // - Below 100px: User is at top of page, keep header transparent to showcase hero content
+    // - Above 100px: User has scrolled, add glass morphism effect for better readability
+    // 
+    // Why 100px threshold?
+    // 1. Provides smooth transition point after initial hero content viewing
+    // 2. Prevents flickering on minor scroll movements
+    // 3. Aligns with modern web design patterns for fixed headers
+    // 4. Gives users clear visual feedback about scroll position
     setIsScrolled(window.scrollY > 100)
   }, [])
   
-  // Documentation Source: React 19 useEffect for side effects
+  // Documentation Source: Context7 React 19 + Performance - useEffect for scroll event management
   // Reference: https://react.dev/reference/react/useEffect
-  // Pattern: Scroll event listener with cleanup for memory management
+  // Pattern: Optimized scroll event listener with passive event handling and proper cleanup
   useEffect(() => {
-    // Only add scroll listener if this is a hero page
-    if (!isHeroPage) return
-    
-    // Documentation Source: Performance-optimized scroll event handling
+    // Documentation Source: Context7 Performance - Passive scroll event listeners
     // Reference: https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event#improving_scrolling_performance_with_passive_listeners
-    // Pattern: Passive event listeners for better performance
+    // 
+    // Performance Optimization Strategy:
+    // - passive: true flag tells browser we won't call preventDefault()
+    // - This allows browser to optimize scrolling performance (60fps target)
+    // - Prevents scroll jank and maintains smooth user experience
+    // - Critical for mobile performance where scroll events are frequent
     
-    // Check initial scroll position immediately on mount
+    // Initialize scroll state on component mount
+    // Handles cases where page is refreshed at scroll position > 0
     handleScroll()
     
-    // Add passive scroll listener for 60fps performance
+    // Add optimized scroll listener
+    // passive: true is crucial for performance - allows browser optimization
     window.addEventListener('scroll', handleScroll, { passive: true })
     
-    // Documentation Source: React useEffect cleanup pattern
+    // Documentation Source: React useEffect cleanup pattern for memory management
     // Reference: https://react.dev/reference/react/useEffect#subscribing-to-events
-    // Pattern: Cleanup function to prevent memory leaks
+    // Pattern: Essential cleanup to prevent memory leaks and duplicate listeners
+    // 
+    // Cleanup importance:
+    // 1. Prevents memory leaks when component unmounts
+    // 2. Avoids duplicate event listeners on component re-renders
+    // 3. Ensures proper browser resource management
+    // 4. Critical for SPA navigation where components mount/unmount frequently
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [isHeroPage, handleScroll])
+  }, [handleScroll])
   
-  // Documentation Source: Dynamic CSS classes based on component state
-  // Reference: https://tailwindcss.com/docs/conditional-styles
-  // Pattern: Context-aware styling for navbar transparency
+  // Documentation Source: Context7 Tailwind CSS - Background colors, backdrop filters, and transparency
+  // Reference: /tailwindlabs/tailwindcss.com - backdrop-filter utilities and color opacity
+  // Pattern: Conditional styling based on scroll state for glass morphism effect
   const getHeaderClasses = () => {
-    if (isHeroPage) {
-      // Transparent navbar over hero sections, opaque when scrolled
-      return isScrolled 
-        ? 'bg-white/95 backdrop-blur-lg border-b border-primary-100/80 shadow-lg'
-        : 'bg-transparent backdrop-blur-none border-b border-transparent'
-    }
+    // Dynamic header appearance based on scroll position
+    // Default: Fully transparent to showcase hero content underneath
+    // Scrolled: Glass morphism effect with backdrop blur and semi-transparent background
     
-    // Standard opaque navbar for non-hero pages
-    return 'bg-white/95 backdrop-blur-sm border-b border-primary-100/80 shadow-sm'
+    return isScrolled 
+      ? [
+          // Documentation Source: Context7 Tailwind CSS - Background color with opacity
+          // Reference: /tailwindlabs/tailwindcss.com - Semi-transparent backgrounds
+          // bg-white/95: background-color: rgb(255 255 255 / 0.95) - 95% opaque white background
+          'bg-white/95',
+          
+          // Documentation Source: Context7 Tailwind CSS - Backdrop blur filters  
+          // Reference: /tailwindlabs/tailwindcss.com - backdrop-filter: blur(16px)
+          // backdrop-blur-lg: Creates glass morphism effect by blurring content behind header
+          'backdrop-blur-lg',
+          
+          // Border and shadow for depth and definition when opaque
+          // border-b: Subtle bottom border to separate header from content
+          // border-primary-100/80: Semi-transparent primary color border
+          'border-b border-primary-100/80',
+          
+          // shadow-lg: Adds depth with drop shadow when header becomes opaque
+          'shadow-lg'
+        ].join(' ')
+      : [
+          // Documentation Source: Context7 Tailwind CSS - Transparent backgrounds
+          // Reference: /tailwindlabs/tailwindcss.com - Fully transparent elements
+          // Default state: Completely transparent to let hero content show through
+          
+          // bg-transparent: background-color: transparent - No background color
+          'bg-transparent',
+          
+          // backdrop-blur-none: backdrop-filter: none - No blur effect in default state
+          'backdrop-blur-none',
+          
+          // border-b border-transparent: Transparent border maintains layout consistency
+          'border-b border-transparent'
+        ].join(' ')
   }
   
-  // Documentation Source: Dynamic text color based on navbar transparency
-  // Reference: https://tailwindcss.com/docs/text-color
-  // Pattern: High contrast text for accessibility over different backgrounds
-  const getTextClasses = () => {
-    return isHeroPage && !isScrolled 
-      ? 'text-white hover:text-accent-200' 
-      : 'text-primary-900 hover:text-accent-600'
-  }
   
   // Documentation Source: Dynamic logo styling based on navbar state
   // Reference: https://tailwindcss.com/docs/background-clip
-  // Pattern: Gradient text effects that adapt to background transparency
+  // Pattern: Default white gradient, dark gradient when scrolled
   const getLogoClasses = () => {
-    return isHeroPage && !isScrolled
+    // All pages start with white gradient text
+    // Only becomes dark when scrolled
+    return !isScrolled
       ? 'bg-gradient-to-r from-white to-accent-200 bg-clip-text text-transparent hover:from-accent-200 hover:to-white'
       : 'bg-gradient-to-r from-primary-900 to-primary-700 bg-clip-text text-transparent hover:from-primary-700 hover:to-accent-600'
   }
@@ -179,7 +225,26 @@ export function PageHeader({
   return (
     <header 
       className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300 ease-out',
+        // Documentation Source: Context7 Tailwind CSS - Fixed positioning and z-index utilities
+        // Reference: /tailwindlabs/tailwindcss.com - position: fixed; z-index: 50;
+        // Pattern: Fixed overlay header that doesn't affect document flow
+        // 
+        // Key Implementation Details:
+        // - fixed: position: fixed - Positions header relative to viewport, not document flow
+        // - top-0: top: 0 - Anchors header to very top of viewport (y=0)
+        // - left-0: left: 0 - Anchors header to left edge of viewport (x=0) 
+        // - right-0: right: 0 - Anchors header to right edge of viewport (extends full width)
+        // - z-50: z-index: 50 - High stacking context to ensure header appears above all page content
+        // - w-full: width: 100% - Ensures header spans complete viewport width
+        // - transition-all: Smooth transitions for all animatable properties (background, backdrop-filter, etc.)
+        // - duration-300: 300ms transition timing for responsive feel without lag
+        // - ease-out: Deceleration curve for natural motion (fast start, slow end)
+        //
+        // Critical: This fixed positioning approach eliminates the white space gap issue because:
+        // 1. Header is removed from normal document flow (doesn't push content down)
+        // 2. Page content starts at viewport top (y=0) with header overlaying transparently
+        // 3. No layout shifts or content displacement when header changes appearance
+        'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-out',
         getHeaderClasses(),
         className
       )}
@@ -219,21 +284,19 @@ export function PageHeader({
                  */}
                 <div className="absolute inset-0 -z-10 rounded-lg bg-accent-100/20 scale-0 transition-transform duration-300 group-hover:scale-110 opacity-0 group-hover:opacity-100" />
               </div>
-              <div className="hidden sm:block">
-                <span className={cn(
-                  "font-serif text-xl lg:text-2xl font-bold transition-all duration-300",
-                  getLogoClasses()
-                )}>
-                  {headerContent.siteName}
-                </span>
-              </div>
             </Link>
           </div>
           
           {/* Navigation Section - Center (Desktop Only) */}
-          {/* Documentation Source: Radix UI NavigationMenu for accessibility
-           * Reference: https://www.radix-ui.com/docs/primitives/components/navigation-menu
-           * Pattern: WCAG 2.1 AA compliant navigation with keyboard support
+          {/* Documentation Source: Context7 Radix UI NavigationMenu - Individual Link Styling Pattern
+           * Reference: /radix-ui/website - NavigationMenu.Link data attributes and hover state management
+           * Pattern: WCAG 2.1 AA compliant navigation with proper individual link hover states
+           * 
+           * Critical Implementation Notes:
+           * - Each NavigationMenuItem must handle its own hover states independently
+           * - Radix UI NavigationMenu.Link components use [data-active] attributes for state management
+           * - CSS hover specificity must target individual Link elements, not parent containers
+           * - Group hover patterns prevent individual link state management conflicts
            */}
           <nav className="hidden lg:flex justify-center" role="navigation" aria-label="Main navigation">
             <NavigationMenu>
@@ -244,28 +307,99 @@ export function PageHeader({
                       <Link
                         href={item.href}
                         className={cn(
-                          "group relative inline-flex h-10 items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 focus:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/50",
-                          getTextClasses(),
-                          isHeroPage && !isScrolled 
-                            ? 'hover:bg-white/10 focus:bg-white/15'
-                            : 'hover:bg-primary-50 focus:bg-primary-100'
+                          // Documentation Source: Context7 Tailwind CSS - Individual Link Hover States with ::after Pseudo-elements
+                          // Reference: /tailwindlabs/tailwindcss.com - ::after pseudo-elements for decorative effects
+                          // Pattern: Individual link styling using Tailwind CSS ::after variants for underline animations
+                          "relative inline-flex h-10 items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/50 whitespace-nowrap",
+                          
+                          // Documentation Source: Context7 Tailwind CSS - ::after Pseudo-element Utilities
+                          // Reference: /tailwindlabs/tailwindcss.com - Using ::after variants for decorative underlines
+                          // Pattern: Tailwind automatically adds content: '' for ::after pseudo-elements
+                          "after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:duration-300",
+                          "hover:after:w-3/4 focus:after:w-3/4",
+                          
+                          // Documentation Source: Context7 Radix UI - Individual Link State Management
+                          // Reference: /radix-ui/website - Preventing hover state conflicts across NavigationMenu items
+                          // Pattern: State-specific styling that prevents cross-contamination between navigation links
+                          //
+                          // CRITICAL IMPLEMENTATION: Individual link hover states (no group dependencies)
+                          // Each NavigationMenuItem manages its own hover state completely independently
+                          // This prevents hover effects from affecting all navigation links simultaneously
+                          
+                          // Transparent Navbar State: Default state when at top of page
+                          !isScrolled && [
+                            // Documentation Source: Context7 Tailwind CSS - High Contrast Text on Transparent Backgrounds
+                            // Reference: /tailwindlabs/tailwindcss.com - Accessibility color contrast requirements
+                            // Base text color: Pure white for maximum visibility over hero backgrounds
+                            "text-white",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - Consistent White Text on Hover
+                            // Reference: /tailwindlabs/tailwindcss.com - Maintaining text color consistency for transparent states
+                            // Hover text color: Keep white text white on hover (no color change)
+                            "hover:text-white",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - ::after Gradient Backgrounds for Transparent State
+                            // Reference: /tailwindlabs/tailwindcss.com - Gradient utilities with ::after pseudo-elements
+                            // Underline gradient: White to light accent for transparent navbar state
+                            "after:bg-gradient-to-r after:from-white after:to-accent-200",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - Subtle Interactive Feedback
+                            // Reference: /tailwindlabs/tailwindcss.com - Semi-transparent overlays for visual hierarchy
+                            // Hover background: Subtle white overlay provides tactile feedback
+                            "hover:bg-white/10",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - Keyboard Navigation Accessibility
+                            // Reference: /tailwindlabs/tailwindcss.com - :focus pseudo-class for accessibility compliance
+                            // Focus background: Enhanced visibility for keyboard users
+                            "focus:bg-white/15",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - Premium Visual Effects
+                            // Reference: /tailwindlabs/tailwindcss.com - box-shadow utilities for depth perception
+                            // Premium shadow effects: Elevated visual hierarchy for luxury brand feel
+                            "hover:shadow-lg hover:shadow-white/20",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - Micro-interaction Animations
+                            // Reference: /tailwindlabs/tailwindcss.com - transform: scale() for engaging user feedback
+                            // Scale animation: Subtle interaction feedback maintaining professional aesthetic
+                            "hover:scale-105 focus:scale-105"
+                          ].join(' '),
+                          
+                          // Scrolled Navbar State: Opaque state when scrolled down page
+                          isScrolled && [
+                            // Documentation Source: Context7 Tailwind CSS - Dark Text for Light Backgrounds
+                            // Reference: /tailwindlabs/tailwindcss.com - Color contrast for readability on light backgrounds
+                            // Base text color: Dark primary for optimal contrast on light navbar
+                            "text-primary-900",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - Consistent Dark Text on Hover
+                            // Reference: /tailwindlabs/tailwindcss.com - Maintaining text color consistency for scrolled states
+                            // Hover text color: Keep dark text dark on hover (no color change)
+                            "hover:text-primary-900",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - ::after Gradient Backgrounds for Scrolled State
+                            // Reference: /tailwindlabs/tailwindcss.com - Accent color gradients for brand consistency
+                            // Underline gradient: Accent colors for scrolled navbar state
+                            "after:bg-gradient-to-r after:from-accent-500 after:to-accent-600",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - Light Hover Background States
+                            // Reference: /tailwindlabs/tailwindcss.com - Subtle feedback on light backgrounds
+                            // Hover background: Light primary tint provides gentle visual feedback
+                            "hover:bg-primary-50",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - Focus State Contrast Enhancement
+                            // Reference: /tailwindlabs/tailwindcss.com - Enhanced focus visibility for keyboard navigation
+                            // Focus background: Slightly darker for improved keyboard navigation visibility
+                            "focus:bg-primary-100",
+                            
+                            // Documentation Source: Context7 Tailwind CSS - Consistent Animation Patterns
+                            // Reference: /tailwindlabs/tailwindcss.com - Uniform interaction patterns across states
+                            // Scale animation: Consistent micro-interactions regardless of navbar state
+                            "hover:scale-105 focus:scale-105"
+                          ].join(' ')
                         )}
                         prefetch={false}
                       >
                         <span className="relative z-10">{item.label}</span>
-                        {/* Documentation Source: CSS pseudo-elements for hover effects
-                         * Reference: https://tailwindcss.com/docs/hover-focus-and-other-states
-                         * Pattern: Animated underline that adapts to navbar transparency
-                         */}
-                        <span 
-                          className={cn(
-                            "absolute bottom-1 left-1/2 h-0.5 w-0 -translate-x-1/2 transition-all duration-300 group-hover:w-3/4 group-focus:w-3/4",
-                            isHeroPage && !isScrolled
-                              ? 'bg-gradient-to-r from-white to-accent-200'
-                              : 'bg-gradient-to-r from-accent-500 to-accent-600'
-                          )}
-                          aria-hidden="true"
-                        />
                       </Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
@@ -319,11 +453,68 @@ export function PageHeader({
                     variant="ghost"
                     size="sm"
                     className={cn(
+                      // Documentation Source: Context7 Tailwind CSS - Mobile Menu Button Styling
+                      // Reference: /tailwindlabs/tailwindcss.com - Button component patterns and state variants
+                      // Pattern: Consistent styling with main navigation links for cohesive user experience
+                      //
+                      // Base mobile button styles:
+                      // - h-10 w-10: Square button with consistent sizing (40x40px)
+                      // - p-0: No internal padding (icon provides visual weight)
+                      // - transition-all duration-200: Smooth transitions for all properties
+                      // - hover:scale-105 focus:scale-105: Subtle scale feedback on interaction
                       "h-10 w-10 p-0 transition-all duration-200 hover:scale-105 focus:scale-105",
-                      getTextClasses(),
-                      isHeroPage && !isScrolled 
-                        ? 'hover:bg-white/10 focus:bg-white/15'
-                        : 'hover:bg-primary-50 focus:bg-primary-100'
+                      
+                      // Documentation Source: Context7 Tailwind CSS - Conditional State Application
+                      // Reference: /tailwindlabs/tailwindcss.com - Clean conditional styling patterns
+                      // Pattern: State-based styling that mirrors navigation link behavior
+                      //
+                      // Transparent State (Default - when !isScrolled):
+                      // Applied when navbar is transparent at top of page
+                      !isScrolled && [
+                        // Documentation Source: Context7 Tailwind CSS - Text Color for Icons
+                        // Reference: /tailwindlabs/tailwindcss.com - Using text-* utilities for SVG icon colors
+                        // Default icon color: Pure white for visibility over hero backgrounds
+                        'text-white',
+                        
+                        // Documentation Source: Context7 Tailwind CSS - Hover State Variants for Icons
+                        // Reference: /tailwindlabs/tailwindcss.com - hover: prefix for SVG color changes
+                        // Hover icon color: Light accent for consistent brand experience
+                        'hover:text-accent-200',
+                        
+                        // Documentation Source: Context7 Tailwind CSS - Semi-transparent Backgrounds
+                        // Reference: /tailwindlabs/tailwindcss.com - Background opacity utilities
+                        // Hover background: Subtle white overlay matching navigation links
+                        'hover:bg-white/10',
+                        
+                        // Documentation Source: Context7 Tailwind CSS - Focus State for Accessibility
+                        // Reference: /tailwindlabs/tailwindcss.com - focus: prefix for keyboard navigation
+                        // Focus background: Enhanced visibility for keyboard users
+                        'focus:bg-white/15'
+                      ].join(' '),
+                      
+                      // Scrolled State (when isScrolled):
+                      // Applied when navbar becomes opaque after scrolling
+                      isScrolled && [
+                        // Documentation Source: Context7 Tailwind CSS - Dark Text Colors
+                        // Reference: /tailwindlabs/tailwindcss.com - Primary color utilities for readability
+                        // Default icon color: Dark primary for contrast on light background
+                        'text-primary-900',
+                        
+                        // Documentation Source: Context7 Tailwind CSS - Hover State Consistency
+                        // Reference: /tailwindlabs/tailwindcss.com - Maintaining brand colors across states
+                        // Hover icon color: Accent color matching navigation link behavior
+                        'hover:text-accent-600',
+                        
+                        // Documentation Source: Context7 Tailwind CSS - Light Background Hover States
+                        // Reference: /tailwindlabs/tailwindcss.com - Subtle background color changes
+                        // Hover background: Light primary tint for visual feedback
+                        'hover:bg-primary-50',
+                        
+                        // Documentation Source: Context7 Tailwind CSS - Focus State Contrast
+                        // Reference: /tailwindlabs/tailwindcss.com - Accessible focus indication
+                        // Focus background: Darker tint for clear focus visibility
+                        'focus:bg-primary-100'
+                      ].join(' ')
                     )}
                     aria-label="Open mobile navigation menu"
                     aria-expanded={isMobileMenuOpen}

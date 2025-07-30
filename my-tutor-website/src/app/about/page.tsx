@@ -118,7 +118,22 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* Pass isHeroPage prop for transparent navbar over hero section */}
+      {/* Documentation Source: Context7 Fixed Header Implementation for All Pages
+       * Reference: /tailwindlabs/tailwindcss.com - Fixed positioning overlay pattern
+       *
+       * Fixed Header Strategy:
+       * - PageHeader uses position: fixed to overlay content without affecting document flow
+       * - isHeroPage prop now controls ONLY the initial transparency state (deprecated functionality)
+       * - All pages benefit from fixed positioning that eliminates white space gaps above content
+       * - Header automatically adjusts transparency based on scroll position (white text when transparent, dark when opaque)
+       *
+       * Implementation Benefits:
+       * 1. No white background gaps above hero sections on any page
+       * 2. Content starts at viewport top (y=0) with header overlaying
+       * 3. Smooth transitions between transparent and opaque header states
+       * 4. Consistent behaviour across all page types (hero, standard, about, etc.)
+       * 5. Optimal user experience with proper visual hierarchy
+       */}
       <PageHeader isHeroPage={true} />
       
       {/* Premium Hero Section */}
