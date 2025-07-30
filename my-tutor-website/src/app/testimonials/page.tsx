@@ -94,7 +94,8 @@ export default function TestimonialsPage() {
 
   return (
     <>
-      <PageHeader />
+      {/* Pass isHeroPage prop for transparent navbar over hero section */}
+      <PageHeader isHeroPage={true} />
       {/* Premium Hero Section */}
       <section className="relative min-h-[70vh] flex items-center bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900 overflow-hidden">
         {/* Enhanced Background */}

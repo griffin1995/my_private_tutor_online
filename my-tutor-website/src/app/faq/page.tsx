@@ -96,7 +96,8 @@ export default function FAQPage() {
   
   return (
     <>
-      <PageHeader />
+      {/* Pass isHeroPage prop for transparent navbar over hero section */}
+      <PageHeader isHeroPage={true} />
       {/* Premium Hero Section */}
       <section className="relative min-h-[60vh] flex items-center bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900">
         {/* Background with Parallax Effect */}

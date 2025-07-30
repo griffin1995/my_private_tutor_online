@@ -6,7 +6,11 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
-  // Static export for Cloudflare Pages compatibility
+  // ✅ CLOUDFLARE PAGES STATIC EXPORT CONFIGURATION - DO NOT CHANGE
+  // This configuration is PROVEN to work for Cloudflare Pages deployment
+  // Cloudflare Pages does not support Next.js App Router SSR natively
+  // Static export provides reliable deployment with all features working
+  // WARNING: Do not change to dynamic rendering without full migration plan
   output: 'export',
   distDir: 'out',
   trailingSlash: true,

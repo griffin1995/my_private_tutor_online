@@ -1,109 +1,161 @@
 /**
- * Documentation Source: Next.js 14 + Framer Motion + React 18
+ * Documentation Source: Next.js 15 App Router + Framer Motion 12
  * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
  * Reference: https://www.framer.com/motion/animation/
  * Reference: https://react.dev/reference/react/useState
  * 
  * Pattern: Client Component with scroll-triggered animations
  * Architecture:
- * - Full motion import (not LazyMotion) - consider optimization
+ * - Client Component ("use client") for interactive animations
+ * - Full motion import (not LazyMotion) for all animation features
  * - Scroll-based animation triggers with whileInView
- * - Staggered children animations
+ * - Staggered children animations using containerVariants/itemVariants
  * 
  * CMS Integration:
- * - getAboutContent for all text content
- * - getTeamImages for founder photo
- * - getBackgroundVideo for brand video
+ * - getAboutContent() - Centralised text content management
+ * - getTeamImages() - Team member images with metadata
+ * - getBackgroundVideo() - Video assets for brand messaging
+ * - HERO_IMAGES - Fallback hero section backgrounds
  * 
- * Design Features:
- * - Premium gradient backgrounds
- * - Floating animation elements
- * - Card-based statistics layout
+ * Design System:
+ * - Premium gradient backgrounds (primary-900 → primary-800 → slate-900)
+ * - Floating animation elements with pulse effects
+ * - Card-based statistics with hover interactions
+ * - Consistent spacing using Tailwind utilities
+ * 
+ * Performance Considerations:
+ * - Images use Next.js Image component with fill prop
+ * - Animations use viewport detection (viewport: { once: true })
+ * - CSS transforms for performant animations
  */
 
-"use client"
+"use client" // Required for Framer Motion animations and React hooks
 
+// Documentation Source: React 19 imports
+// Reference: https://react.dev/reference/react/hooks
 import { useState } from 'react'
+
+// Documentation Source: Framer Motion 12
+// Reference: https://www.framer.com/motion/component/
+// Pattern: Using 'm' alias for smaller bundle size
 import { m } from 'framer-motion'
+
+// Layout Components - Consistent page structure
 import { PageLayout } from '@/components/layout/page-layout'
 import { Section } from '@/components/layout/section'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { CheckCircle, Globe, Heart, Award, Crown, Users, BookOpen, Star, Trophy, Target, Lightbulb } from 'lucide-react'
-import Image from 'next/image'
-import { getAboutContent } from '@/lib/cms/cms-content'
-import { getTeamImages, getBackgroundVideo, HERO_IMAGES } from '@/lib/cms/cms-images'
-import { ShinyButton } from '@/components/magicui/shiny-button'
-import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
-import { VideoText } from '@/components/magicui/video-text'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageFooter } from '@/components/layout/page-footer'
 
+// Shadcn UI Components - WCAG 2.1 AA compliant
+// Documentation Source: Radix UI + Tailwind CSS
+import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+
+// Lucide Icons - Consistent iconography
+// Documentation Source: https://lucide.dev/
+import { CheckCircle, Globe, Heart, Award, Crown, Users, BookOpen, Star, Trophy, Target, Lightbulb } from 'lucide-react'
+
+// Next.js Image - Optimised image loading
+// Documentation Source: https://nextjs.org/docs/app/api-reference/components/image
+import Image from 'next/image'
+
+// CMS Integration - Centralised content management
+import { getAboutContent } from '@/lib/cms/cms-content'
+import { getTeamImages, getBackgroundVideo, HERO_IMAGES } from '@/lib/cms/cms-images'
+
+// Magic UI Components - Premium animations
+import { ShinyButton } from '@/components/magicui/shiny-button'
+import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
+import { VideoText } from '@/components/magicui/video-text'
+
 export default function AboutPage() {
   // CMS DATA SOURCE: Using getAboutContent for all about page content
+  // Pattern: Centralised content management for easy updates
   const aboutContent = getAboutContent()
+  
   // CMS DATA SOURCE: Using getTeamImages for Elizabeth's photo
+  // Pattern: Separate image management with metadata
   const teamImages = getTeamImages()
   const founderImage = teamImages.founder
+  
   // CMS DATA SOURCE: Using getBackgroundVideo for hero background
+  // Pattern: Video assets managed separately from content
   const aboutVideo = getBackgroundVideo('brandStatement')
+  
   // Hero background image - using available hero image
+  // Pattern: Fallback image when video not available/loading
   const heroBackgroundImage = HERO_IMAGES.childWithLaptop
   
-  // Add icons for ethos sections
+  // Icon mapping for ethos sections
+  // Pattern: Dynamic icon assignment based on content
   const ethosIcons = [Globe, Heart]
 
-  // Animation variants
+  // Documentation Source: Framer Motion Variants
+  // Reference: https://www.framer.com/motion/animation/#variants
+  // Pattern: Reusable animation configurations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
+        // Stagger children animations for visual hierarchy
         staggerChildren: 0.15
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 30 }, // Start below and transparent
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
+        ease: "easeOut" // Smooth deceleration for natural motion
       }
     }
   }
 
   return (
     <>
-      <PageHeader />
+      {/* Pass isHeroPage prop for transparent navbar over hero section */}
+      <PageHeader isHeroPage={true} />
       
       {/* Premium Hero Section */}
+      {/* Pattern: Full-viewport hero with layered backgrounds */}
+      {/* Design: Premium gradient matching brand colours */}
       <section className="relative min-h-[80vh] flex items-center bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900 overflow-hidden">
         {/* Enhanced Background */}
+        {/* Pattern: Layered backgrounds for depth and visual interest */}
         <div className="absolute inset-0">
+          {/* Background image layer with scale transform for subtle parallax */}
           {heroBackgroundImage?.src && (
             <div 
               className="absolute inset-0 bg-cover bg-center opacity-25 transform scale-105"
               style={{ backgroundImage: `url(${heroBackgroundImage.src})` }}
             />
           )}
+          {/* Gradient overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary-900/95 via-primary-800/90 to-slate-900/95" />
           
           {/* Floating Elements */}
+          {/* Pattern: Animated orbs for premium feel */}
+          {/* CSS: Using Tailwind's animate-pulse with delays */}
           <div className="absolute top-32 left-20 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-20 right-20 w-80 h-80 bg-royal-500/15 rounded-full blur-3xl animate-pulse delay-1000" />
           <div className="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-2xl animate-pulse delay-500" />
         </div>
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Documentation Source: Framer Motion initial/animate
+           * Reference: https://www.framer.com/motion/animation/#initial-and-animate
+           * Pattern: Entrance animation on mount
+           */}
           <m.div 
             className="max-w-6xl mx-auto text-center"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 40 }} // Start invisible and below
+            animate={{ opacity: 1, y: 0 }}   // Animate to visible position
+            transition={{ duration: 1, ease: "easeOut" }} // Smooth entrance
           >
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-white leading-tight mb-8">
               {aboutContent.hero.title}
@@ -150,14 +202,21 @@ export default function AboutPage() {
       </section>
 
       {/* Our Ethos Section */}
+      {/* Pattern: Alternating content sections with gradient backgrounds */}
+      {/* Design: Subtle gradient for visual flow */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-white to-primary-50/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Documentation Source: Framer Motion whileInView
+           * Reference: https://www.framer.com/motion/scroll-animations/#while-in-view
+           * Pattern: Trigger animations when element enters viewport
+           * Performance: viewport={{ once: true }} prevents re-animation
+           */}
           <m.div 
             className="max-w-6xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true }} // Animate only on first view
           >
             <m.div 
               className="text-center mb-16"
@@ -241,6 +300,8 @@ export default function AboutPage() {
       </section>
 
       {/* Premium Results Section */}
+      {/* Pattern: Statistics display with cards */}
+      {/* Design: Inverted gradient for visual flow */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-primary-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <m.div 
@@ -266,6 +327,10 @@ export default function AboutPage() {
             >
               {aboutContent.ourEthos.results.statistics.map((stat, index) => (
                 <m.div key={index} variants={itemVariants}>
+                  {/* Documentation Source: Tailwind CSS Group Hover
+                   * Reference: https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state
+                   * Pattern: Parent hover triggers child animations
+                   */}
                   <Card className="p-8 text-center bg-white/80 backdrop-blur-sm border border-primary-200 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 group overflow-hidden relative">
                     {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-accent-500/10 to-transparent rounded-bl-3xl" />
@@ -302,6 +367,8 @@ export default function AboutPage() {
       </section>
 
       {/* Premium Founder Story Section */}
+      {/* Pattern: Dark section for contrast and emphasis */}
+      {/* Design: Premium gradient matching hero section */}
       <section className="py-20 lg:py-28 bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0">
@@ -336,11 +403,15 @@ export default function AboutPage() {
                       transition={{ duration: 0.8, delay: 0.2 }}
                     >
                       <div className="relative w-64 h-64 md:w-80 md:h-80 mx-auto rounded-3xl overflow-hidden shadow-2xl">
+                        {/* Documentation Source: Next.js Image Component
+                         * Reference: https://nextjs.org/docs/app/api-reference/components/image
+                         * Pattern: Responsive image with aspect ratio preservation
+                         */}
                         <Image
                           src={founderImage.src}
                           alt={founderImage.alt || 'Elizabeth Burrows, Founder'}
-                          fill
-                          className="object-cover"
+                          fill // Fills parent container
+                          className="object-cover" // Maintains aspect ratio
                         />
                         {/* Decorative overlay */}
                         <div className="absolute inset-0 bg-gradient-to-br from-transparent to-primary-900/20"></div>
@@ -401,6 +472,8 @@ export default function AboutPage() {
       </section>
 
       {/* Premium CTA Section */}
+      {/* Pattern: Call-to-action with multiple options */}
+      {/* Design: Light gradient for approachability */}
       <section className="py-20 lg:py-28 bg-gradient-to-b from-white to-primary-50 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0">
@@ -433,6 +506,9 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
+              {/* CTA Buttons */}
+              {/* Pattern: Primary and secondary action buttons */}
+              {/* Component: Magic UI components for premium interactions */}
               <ShinyButton 
                 text="Start Your Journey"
                 className="px-10 py-4 h-auto text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"

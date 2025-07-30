@@ -146,7 +146,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body
-        className={`${lato.variable} font-sans antialiased min-h-screen bg-background text-foreground`}
+        className={`${lato.variable} font-sans antialiased min-h-screen bg-transparent text-foreground`}
       >
         <LazyMotionProvider>
           {children}

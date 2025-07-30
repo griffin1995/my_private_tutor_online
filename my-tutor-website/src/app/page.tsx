@@ -359,7 +359,7 @@ export default function Home() {
   const schoolNames = getTestimonialsSchools()
 
   return (
-    <PageLayout background="white" showHeader showFooter containerSize="full" verticalSpacing="none" headerProps={{ isHeroPage: true }}>
+    <PageLayout background="transparent" showHeader showFooter containerSize="full" verticalSpacing="none" headerProps={{ isHeroPage: true }}>
       {/* Hero Section with Full-Screen Video Background */}
       {/* Documentation Source: Context7 verified HTML5 video best practices and CMS integration */}
       {/* Pattern: Full-screen video hero with proper HTML5 attributes and CMS video source */}

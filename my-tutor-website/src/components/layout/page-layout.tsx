@@ -34,7 +34,7 @@ import { PageFooter } from './page-footer'
 interface PageLayoutProps {
   children: ReactNode
   className?: string
-  background?: 'white' | 'gradient' | 'pattern' | 'dark'
+  background?: 'white' | 'gradient' | 'pattern' | 'dark' | 'transparent'
   showHeader?: boolean
   showFooter?: boolean
   headerProps?: Record<string, any>
@@ -59,7 +59,8 @@ export function PageLayout({
     white: 'bg-white',
     gradient: 'bg-gradient-to-br from-white via-primary-50 to-accent-50',
     pattern: 'bg-white bg-gradient-to-r from-primary-50/30 via-white to-accent-50/30',
-    dark: 'bg-primary-900'
+    dark: 'bg-primary-900',
+    transparent: 'bg-transparent'
   }
 
   const containerSizeClasses = {
@@ -133,6 +134,6 @@ export function SkipToContent() {
 }
 
 // Export types for documentation
-export type PageLayoutBackground = 'white' | 'gradient' | 'pattern' | 'dark'
+export type PageLayoutBackground = 'white' | 'gradient' | 'pattern' | 'dark' | 'transparent'
 export type PageLayoutContainerSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'
 export type PageLayoutVerticalSpacing = 'none' | 'sm' | 'md' | 'lg' | 'xl'
