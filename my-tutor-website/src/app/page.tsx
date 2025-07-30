@@ -45,8 +45,10 @@ import Image from 'next/image'
 import { BrandStatementVideo } from '@/components/marketing/brand-statement-video'
 import { ShinyButton } from '@/components/magicui/shiny-button'
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
+import { HeroVideoDialog } from '@/components/magicui/hero-video-dialog'
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
+import { PageHeader } from '@/components/layout/page-header'
 import { Timeline } from '@/components/ui/timeline'
 import { AnimatedSubscribeButton } from '@/components/magicui/animated-subscribe-button'
 import { Carousel } from '@/components/ui/carousel'
@@ -359,8 +361,11 @@ export default function Home() {
   const schoolNames = getTestimonialsSchools()
 
   return (
-    <PageLayout background="transparent" showHeader showFooter containerSize="full" verticalSpacing="none" headerProps={{ isHeroPage: true }}>
-      {/* Hero Section with Full-Screen Video Background */}
+    <>
+      {/* Header outside of PageLayout for proper hero positioning */}
+      <PageHeader isHeroPage={true} />
+      
+      {/* Hero Section with Full-Screen Video Background - Outside PageLayout container */}
       {/* Documentation Source: Context7 verified HTML5 video best practices and CMS integration */}
       {/* Pattern: Full-screen video hero with proper HTML5 attributes and CMS video source */}
       <PageHero 
@@ -374,43 +379,171 @@ export default function Home() {
         {/* Hero Content - Centered over Full-Screen Video */}
         {/* Documentation Source: CSS Grid and Flexbox for hero content layout */}
         {/* Pattern: Centered hero content with responsive typography and prominent CTAs */}
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center space-y-8 max-w-4xl mx-auto">
-            <div className="space-y-6">
-              <h1 className="text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-white leading-tight drop-shadow-lg">
-                {heroContent.title}
-              </h1>
-              <p className="text-2xl lg:text-3xl text-accent-300 font-semibold drop-shadow-md">
-                {heroContent.subtitle}
+        <div className="min-h-screen flex items-center justify-center relative">
+          {/* Enhanced background effects */}
+          <div className="absolute inset-0 overflow-hidden">
+            {/* Animated gradient orbs for premium depth */}
+            <div className="absolute top-20 left-20 w-[500px] h-[500px] bg-gradient-to-r from-accent-500/20 to-gold-500/30 rounded-full blur-3xl animate-float animation-delay-0" />
+            <div className="absolute bottom-32 right-20 w-[400px] h-[400px] bg-gradient-to-l from-gold-600/25 to-accent-400/20 rounded-full blur-3xl animate-float animation-delay-1000" />
+            <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-gradient-to-br from-white/10 to-accent-300/15 rounded-full blur-2xl animate-float animation-delay-500" />
+            
+            {/* Floating particles for luxury effect */}
+            <div className="absolute top-1/4 right-1/4 w-2 h-2 bg-gold-400/60 rounded-full animate-pulse animation-delay-200" />
+            <div className="absolute bottom-1/3 left-1/5 w-3 h-3 bg-accent-400/50 rounded-full animate-pulse animation-delay-800" />
+            <div className="absolute top-3/4 right-1/3 w-1.5 h-1.5 bg-white/70 rounded-full animate-pulse animation-delay-600" />
+            
+            {/* Animated mesh gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-transparent to-primary-800/30 animate-gradient-x" />
+          </div>
+
+          <div className="text-center space-y-8 max-w-5xl mx-auto relative z-10 py-16 lg:py-20">
+            {/* Enhanced text with staggered animations and premium typography */}
+            <div className="space-y-8 px-6 lg:px-8">
+              {/* Documentation Source: Context7 Tailwind CSS - Centered Typography for Premium Hero Layout
+               * Reference: /tailwindlabs/tailwindcss.com - Text alignment utilities and hero section design patterns
+               * Pattern: Center-aligned text for premium hero presentation and brand focus
+               * 
+               * Typography Logic:
+               * - text-center for optimal hero section presentation and brand focus
+               * - Hero Title: Reduced from text-5xl/6xl/7xl to text-4xl/5xl/6xl for better balance
+               * - Subtitle: Reduced from text-2xl/3xl to text-lg/xl for hierarchy maintenance
+               * - Description: Reduced from text-xl/2xl to text-base/lg for improved readability
+               * - Increased vertical spacing (space-y-8) to compensate for smaller text
+               * - Added horizontal padding (px-6 lg:px-8) for better mobile experience
+               * - Accent line positioned centrally for balanced hero design
+               */}
+              <div className="relative">
+                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight drop-shadow-2xl animate-fade-in-up">
+                  <span className="bg-gradient-to-r from-white via-accent-200 to-white bg-clip-text text-transparent bg-size-200 animate-gradient-x">
+                    {heroContent.title}
+                  </span>
+                </h1>
+                {/* Documentation Source: Context7 Tailwind CSS - Centered Accent Design Patterns
+                 * Reference: /tailwindlabs/tailwindcss.com - Absolute positioning for centered decorative elements
+                 * Pattern: Centered underline accent for balanced premium branding
+                 * 
+                 * Design Logic:
+                 * - Positioned absolutely below the title with center alignment (left-1/2 -translate-x-1/2)
+                 * - Uses brand gold gradient (from-gold-400 to-accent-500) for luxury feel
+                 * - Width w-32 provides balanced proportion to title length
+                 * - Height h-1 maintains elegance without overwhelming text
+                 * - Subtle shadow for depth and premium appearance
+                 * - Centered to match the hero section alignment pattern
+                 */}
+                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-gold-400 to-accent-500 rounded-full shadow-lg animate-fade-in-up animation-delay-300" />
+              </div>
+              
+              <p className="text-lg lg:text-xl text-accent-300 font-semibold drop-shadow-lg animate-fade-in-up animation-delay-200">
+                <span className="bg-gradient-to-r from-accent-300 via-gold-300 to-accent-300 bg-clip-text text-transparent bg-size-200 animate-gradient-x">
+                  {heroContent.subtitle}
+                </span>
               </p>
-              <p className="text-xl lg:text-2xl text-white/95 leading-relaxed max-w-3xl mx-auto drop-shadow-sm">
+              
+              <p className="text-base lg:text-lg text-white/95 leading-relaxed max-w-3xl drop-shadow-md animate-fade-in-up animation-delay-400">
                 {heroContent.description}
               </p>
             </div>
             
-            {/* CTA Buttons - Prominent and Centered */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
-              <ShinyButton 
-                text="Book Free Consultation"
-                className="px-12 py-6 h-auto text-xl font-bold bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-lg"
-              />
-              <InteractiveHoverButton 
-                text="Watch Introduction"
-                className="px-12 py-6 text-xl font-bold border-3 border-white/90 bg-white/15 backdrop-blur-md text-white hover:bg-white hover:text-primary-900 transition-all duration-300 rounded-lg shadow-xl hover:shadow-2xl"
-              />
-            </div>
-
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-              <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-                <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse" />
+            {/* Enhanced CTA buttons with premium effects and improved sizing */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-12 animate-fade-in-up animation-delay-600">
+              {/* Documentation Source: Context7 Tailwind CSS - Button Sizing and Typography Consistency
+               * Reference: /tailwindlabs/tailwindcss.com - Padding utilities and text sizing for optimal touch targets
+               * Pattern: Reduced button text size while maintaining adequate padding for accessibility
+               * 
+               * Sizing Logic:
+               * - Button text reduced from text-xl to text-lg for better proportion
+               * - Padding reduced from px-12 py-6 to px-10 py-4 for more refined appearance
+               * - Maintains 44px minimum touch target for accessibility compliance
+               * - Increased top padding (pt-12) to provide more breathing room after text
+               */}
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-accent-500 via-gold-500 to-accent-600 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-500 animate-pulse" />
+                <ShinyButton 
+                  text="Book Free Consultation"
+                  className="relative px-10 py-4 h-auto text-lg font-bold bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white shadow-3xl hover:shadow-4xl transition-all duration-500 transform hover:scale-105 rounded-lg border border-gold-400/20"
+                />
+              </div>
+              
+              <div className="relative group">
+                {/* Documentation Source: Context7 Tailwind CSS - Button Background and Text Color Contrast
+                 * Reference: /tailwindlabs/tailwindcss.com - Text color utilities and accessibility contrast requirements
+                 * Pattern: Ensure proper text contrast on button backgrounds for readability
+                 * 
+                 * Accessibility Logic:
+                 * - Default state: text-primary-900 (dark text) on bg-white/10 (light semi-transparent background)
+                 * - Hover state: text-primary-900 (dark text) on hover:bg-white (solid white background)
+                 * - Removed text-white to prevent white-on-white contrast issues
+                 * - Maintains WCAG 2.1 AA contrast ratios for accessibility compliance
+                 * - Uses primary-900 for maximum contrast against white/light backgrounds
+                 */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-white/30 via-accent-300/40 to-white/30 rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-500" />
+                <InteractiveHoverButton 
+                  text="Watch Introduction"
+                  className="relative px-10 py-4 text-lg font-bold border-2 border-white/90 bg-white/10 backdrop-blur-lg text-primary-900 hover:bg-white hover:text-primary-900 transition-all duration-500 rounded-lg shadow-2xl hover:shadow-3xl hover:backdrop-blur-xl transform hover:scale-105"
+                />
               </div>
             </div>
+
+
+            {/* Floating decorative elements */}
+            <div className="absolute -top-20 -left-20 w-32 h-32 border border-white/10 rounded-full animate-spin-slow opacity-30" />
+            <div className="absolute -bottom-20 -right-20 w-24 h-24 border border-accent-400/20 rounded-full animate-reverse-spin-slow opacity-40" />
+            
+            {/* Premium glass morphism accent */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-px h-32 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
           </div>
         </div>
       </PageHero>
+      
+      {/* Documentation Source: Context7 Tailwind CSS - Transform and opacity animations for scroll indicators
+       * Reference: /tailwindlabs/tailwindcss.com - CSS transforms, opacity animations, and fade effects
+       * Pattern: Vertical line with fixed-bottom shrinking effect and delayed text fade animation
+       * 
+       * Implementation Strategy:
+       * - Single vertical line with bottom position fixed in place
+       * - Line shrinks from top to bottom (top edge moves down to meet bottom edge)
+       * - "SCROLL" text moves downward with the line as if connected together
+       * - Text stops moving when line disappears, then fades out smoothly
+       * - origin-bottom ensures bottom edge stays fixed while top edge slides down
+       * 
+       * Animation Details:
+       * - scrollIndicator: Line shrinks vertically (scaleY 1 → 0) with no position movement
+       * - scrollText: Text moves down with line (translateY 0 → 40px), then fades out (opacity 1 → 0)
+       * - 67% duration (2s) for line shrinking and text movement, remaining 33% (1s) for text fade
+       * - Perfect synchronization: text follows line down, stops when line disappears, then fades
+       * - Infinite loop with smooth ease-in-out timing function
+       * 
+       * Accessibility Considerations:
+       * - motion-reduce:hidden: Respects user preference for reduced motion
+       * - High contrast white text and line with shadow for visibility
+       * - Non-interactive indicator, purely visual scroll cue
+       * - Semantic text content for screen readers if needed
+       */}
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-30 motion-reduce:hidden">
+        <div className="relative flex flex-col items-center">
+          {/* SCROLL Text */}
+          <div 
+            className="text-white text-xs font-medium tracking-wider mb-3 drop-shadow-lg"
+            style={{
+              animation: 'scrollText 3s ease-in-out infinite'
+            }}
+          >
+            SCROLL
+          </div>
+          
+          {/* Vertical Line */}
+          <div 
+            className="w-0.5 h-8 bg-white shadow-lg origin-bottom"
+            style={{
+              animation: 'scrollIndicator 3s ease-in-out infinite'
+            }}
+          />
+        </div>
+      </div>
 
-      {/* School Shields Section - CMS DATA SOURCE: Using siteBranding for credentials */}
+      {/* Rest of content wrapped in PageLayout */}
+      <PageLayout background="transparent" showHeader={false} showFooter={true} containerSize="full" verticalSpacing="none">
+        {/* School Shields Section - CMS DATA SOURCE: Using siteBranding for credentials */}
       {/* Documentation Source: CSS spacing utilities for seamless section transitions */}
       {/* Pattern: Remove top padding to connect directly with hero section */}
       <section className="pb-16 bg-transparent" aria-label="Elite schools and universities our students have placed at">
@@ -800,6 +933,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </PageLayout>
+      </PageLayout>
+    </>
   )
 }
