@@ -56,6 +56,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { TypingAnimation } from '@/components/magicui/typing-animation'
 import { BoxReveal } from '@/components/magicui/box-reveal'
 import { TrustIndicatorsGrid } from '@/components/sections/trust-indicators-grid'
+import { ScrollingSchools } from '@/components/sections/scrolling-schools'
 
 /**
  * Documentation Source: Context7 Embla Carousel React Implementation + JSX Best Practices
@@ -87,21 +88,27 @@ function ServicesCarousel({ services, studentImages }: {
   /**
    * Documentation Source: Context7 Embla Carousel React Implementation
    * Reference: /davidjerleke/embla-carousel - Official React carousel with navigation and autoplay
-   * Pattern: useEmblaCarousel hook with responsive options and autoplay plugin
+   * Pattern: useEmblaCarousel hook with optimized options for smooth performance
    * 
    * Configuration Details:
    * - loop: true - Enables infinite scrolling for continuous browsing
    * - slidesToScroll: 1 - Single slide advancement for precise control
    * - containScroll: 'trimSnaps' - Prevents empty space at carousel edges
-   * - Autoplay: 4000ms intervals, continues even when user interacts
+   * - align: 'start' - Consistent alignment to prevent glitches
+   * - skipSnaps: false - Ensures all slides are accessible
+   * - Autoplay: 5000ms intervals (slower for better UX)
+   * - stopOnInteraction: true - Pauses on user interaction for better control
    */
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
       slidesToScroll: 1,
-      containScroll: 'trimSnaps'
+      containScroll: 'trimSnaps',
+      align: 'start',
+      skipSnaps: false,
+      startIndex: 0
     },
-    [Autoplay({ delay: 4000, stopOnInteraction: false })]
+    [Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })]
   )
   
   /**
@@ -191,72 +198,63 @@ function ServicesCarousel({ services, studentImages }: {
             const studentImage = studentImages[imageKeys[index] as keyof typeof studentImages]
             
             return (
-              <div key={index} className="flex-[0_0_33.333%] min-w-0 pl-4">
+              <div key={index} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4">
                 {/* 
-                 * Framer Motion Slide Animation Card
-                 * Documentation Source: Framer Motion - whileInView animations
-                 * Reference: https://www.framer.com/motion/use-in-view/
-                 * Pattern: Staggered entrance animations with hover effects
+                 * Optimized Framer Motion Card Animation
+                 * Documentation Source: Context7 Framer Motion Performance Optimization 
+                 * Reference: /grx7/framer-motion - Performance-first animation patterns
+                 * Pattern: Simplified animations to prevent carousel conflicts
                  * 
-                 * Animation Properties:
-                 * - initial: { opacity: 0, y: 20 } - Starts invisible and slightly below
-                 * - whileInView: { opacity: 1, y: 0 } - Fades in and moves to position
-                 * - viewport: { once: true } - Animation only triggers once per page load
-                 * - transition: 0.6s duration with staggered delay (index * 0.1)
+                 * Performance Optimizations:
+                 * - Removed staggered delays to prevent autoplay conflicts
+                 * - Simplified hover effects to reduce GPU load
+                 * - Used CSS transforms for better performance
+                 * - Removed whileInView to prevent scroll/carousel conflicts
                  * 
-                 * Hover Effects:
-                 * - hover:shadow-2xl: Premium shadow elevation
-                 * - hover:-translate-y-2: Subtle lift effect (8px up)
-                 * - duration-500: Smooth 500ms transitions
-                 * 
-                 * Card Design: Maintains 'long horizontal cards, squared edges' as requested
+                 * Card Design: Maintains premium aesthetic with optimized performance
                  */}
-                <m.div 
-                  className="group bg-white overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 h-full"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  {/* Student Image - 616px height with CMS integration and hover effects */}
+                <div className="group bg-white overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full will-change-transform">
+                  {/* Student Image - Optimized for performance */}
                   {studentImage ? (
-                    <div className="relative overflow-hidden h-[616px]">
-                      {/* Next.js Image with CMS optimized props */}
+                    <div className="relative overflow-hidden h-[400px] lg:h-[500px]">
+                      {/* Next.js Image with optimized loading */}
                       <Image
-                        {...getOptimizedImageProps(studentImage, '(max-width: 768px) 100vw, 33vw')}
+                        {...getOptimizedImageProps(studentImage, '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw')}
                         alt={service.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        priority={index < 3}
+                        loading={index < 3 ? 'eager' : 'lazy'}
                       />
-                      {/* Premium overlay effect - appears on hover for sophisticated interaction */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-primary-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      {/* Simplified overlay effect */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                   ) : (
-                    <div className="relative overflow-hidden h-[616px] bg-primary-100 flex items-center justify-center">
+                    <div className="relative overflow-hidden h-[400px] lg:h-[500px] bg-primary-100 flex items-center justify-center">
                       <span className="text-primary-400 text-4xl">{service.icon}</span>
                     </div>
                   )}
                   
-                  {/* Enhanced Content Section with right-aligned text and hover effects */}
-                  <div className="p-8 space-y-4 text-right">
-                    {/* Service Title - H1 equivalent with serif typography and hover colour change */}
-                    <h3 className="text-2xl font-serif font-bold text-primary-900 group-hover:text-accent-600 transition-colors duration-300">
+                  {/* Enhanced Content Section with optimized animations */}
+                  <div className="p-6 lg:p-8 space-y-4 text-right">
+                    {/* Service Title with simplified hover effect */}
+                    <h3 className="text-xl lg:text-2xl font-serif font-bold text-primary-900 group-hover:text-accent-600 transition-colors duration-200">
                       {service.title}
                     </h3>
-                    {/* Service Description - Clear, readable body text */}
-                    <p className="text-primary-700 leading-relaxed text-lg">
+                    {/* Service Description */}
+                    <p className="text-primary-700 leading-relaxed text-base lg:text-lg">
                       {service.description}
                     </p>
-                    {/* Magic UI AnimatedSubscribeButton with brand colours */}
+                    {/* Magic UI AnimatedSubscribeButton with proper key for carousel */}
                     <AnimatedSubscribeButton
+                      key={`button-${index}`}
                       buttonColor="#0f172a"
                       buttonTextColor="#ffffff"
                       subscribeStatus={false}
                       initialText="Learn More"
                       changeText="View Details"
-                      className="mt-4"
                     />
                   </div>
-                </m.div>
+                </div>
               </div>
             )
           })}
@@ -543,28 +541,31 @@ export default function Home() {
 
       {/* Rest of content wrapped in PageLayout */}
       <PageLayout background="transparent" showHeader={false} showFooter={true} containerSize="full" verticalSpacing="none">
-        {/* School Shields Section - CMS DATA SOURCE: Using siteBranding for credentials */}
-      {/* Documentation Source: CSS spacing utilities for seamless section transitions */}
-      {/* Pattern: Remove top padding to connect directly with hero section */}
-      <section className="pb-16 bg-transparent" aria-label="Elite schools and universities our students have placed at">
-        <div className="w-full overflow-hidden bg-transparent py-6">
-          <div className="flex animate-scroll gap-16 whitespace-nowrap">
-            {/* CMS DATA SOURCE: Using getTestimonialsSchools for elite institution names */}
-            {schoolNames.slice(0, 6).map((school: string | { name?: string; title?: string }, index: number) => (
-              <div key={index} className="flex-shrink-0 flex items-center justify-center px-8">
-                <div className="text-lg font-semibold text-primary-700">
-                  {typeof school === 'string' ? school : school.name || school.title}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* School Shields Section - CMS DATA SOURCE: Using ScrollingSchools component */}
+      {/* Documentation Source: Context7 Framer Motion infinite marquee pattern */}
+      {/* Pattern: Modular component with seamless infinite loop */}
+      <ScrollingSchools schools={schoolNames} speed={25} />
 
-      {/* Premium Animated Tagline - Using Magic UI TypingAnimation */}
-      {/* Documentation Source: Magic UI AutoAnimate + Framer Motion patterns */}
-      {/* Pattern: Professional UI library animation effects for premium brand positioning */}
-      <AnimatedTagline />
+      {/* 
+       * TEMPORARILY COMMENTED OUT - Premium Animated Tagline Section
+       * 
+       * What: Magic UI TypingAnimation component with text "We help students place at top 10 UK schools and universities"
+       * Why Commented: Generic tagline that may need refinement for brand positioning and specificity
+       * 
+       * Considerations for Re-enabling:
+       * - Text may be too generic/broad - "top 10" is vague without context
+       * - Could be more specific about tutoring specialties (11+, GCSE, A-Level, Oxbridge)
+       * - May want to align with royal endorsement/Tatler positioning
+       * - Animation timing may need adjustment relative to other page elements
+       * 
+       * Technical Notes:
+       * - Uses Magic UI TypingAnimation with 80ms duration, 500ms delay
+       * - Positioned between ScrollingSchools and About sections
+       * - Includes decorative flourishes with Framer Motion animations
+       * 
+       * To Re-enable: Uncomment AnimatedTagline component below
+       */}
+      {/* <AnimatedTagline /> */}
 
       {/* About Section - Text Left, Image Right Layout */}
       <section className="py-16 lg:py-24 bg-primary-50">
