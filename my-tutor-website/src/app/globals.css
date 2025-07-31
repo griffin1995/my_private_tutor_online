@@ -391,14 +391,51 @@ html {
   scroll-behavior: smooth;
 }
 
+/**
+ * Motion Preference Support
+ * Documentation Source: CSS Media Queries Level 5 & WCAG 2.1
+ * Reference: https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion
+ * Reference: https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions.html
+ * 
+ * Pattern: Progressive enhancement for motion
+ * Purpose: Respect user motion preferences while maintaining functionality
+ */
+
+/* CSS Variables for Motion Preferences */
+:root {
+  --animation-duration: 300ms;
+  --animation-timing: ease-out;
+  --transition-duration: 200ms;
+  --transition-timing: ease-out;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+  :root {
+    --animation-duration: 0s;
+    --animation-timing: step-end;
+    --transition-duration: 0s;
+    --transition-timing: step-end;
+  }
+  
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  
+  /* Preserve essential animations for accessibility */
+  .motion-safe-transform {
+    transition-property: transform !important;
+    transition-duration: 100ms !important;
+  }
+  
+  /* Allow opacity transitions for visibility changes */
+  .motion-safe-opacity {
+    transition-property: opacity !important;
+    transition-duration: 100ms !important;
   }
 }
 
