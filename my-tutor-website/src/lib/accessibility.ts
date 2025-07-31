@@ -197,6 +197,63 @@ export const prefersReducedMotion = (): boolean => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
+/**
+ * Motion Preference Utilities
+ * Documentation Source: CSS Media Queries Level 5 & Radix UI Animation Guide
+ * Reference: https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion
+ * Reference: https://www.radix-ui.com/primitives/docs/guides/animation
+ * 
+ * Pattern: Conditional animation based on user preferences
+ * Purpose: Respect user motion preferences for better accessibility
+ */
+
+// Get animation duration based on motion preference
+export const getAnimationDuration = (defaultDuration: number): number => {
+  return prefersReducedMotion() ? 0 : defaultDuration
+}
+
+// Get animation CSS classes based on motion preference
+export const getAnimationClasses = (animationClasses: string): string => {
+  return prefersReducedMotion() ? '' : animationClasses
+}
+
+// CSS animation variables for motion preferences
+export const injectMotionCSSVariables = (): void => {
+  if (typeof window === 'undefined') return
+
+  const root = document.documentElement
+  const reducedMotion = prefersReducedMotion()
+
+  // Set CSS custom properties
+  root.style.setProperty('--animation-duration', reducedMotion ? '0s' : '300ms')
+  root.style.setProperty('--animation-timing', reducedMotion ? 'step-end' : 'ease-out')
+  root.style.setProperty('--transition-duration', reducedMotion ? '0s' : '200ms')
+  root.style.setProperty('--transition-timing', reducedMotion ? 'step-end' : 'ease-out')
+}
+
+// Listen for motion preference changes
+export const watchMotionPreference = (callback: (prefersReduced: boolean) => void): (() => void) => {
+  if (typeof window === 'undefined') return () => {}
+
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  
+  const handler = (e: MediaQueryListEvent) => {
+    callback(e.matches)
+    injectMotionCSSVariables()
+  }
+
+  mediaQuery.addEventListener('change', handler)
+  
+  // Initial call
+  callback(mediaQuery.matches)
+  injectMotionCSSVariables()
+
+  // Return cleanup function
+  return () => {
+    mediaQuery.removeEventListener('change', handler)
+  }
+}
+
 // High contrast detection
 export const prefersHighContrast = (): boolean => {
   if (typeof window === 'undefined') return false
@@ -316,6 +373,10 @@ export default {
   getContrastRatio,
   meetsWCAGContrast,
   prefersReducedMotion,
+  getAnimationDuration,
+  getAnimationClasses,
+  injectMotionCSSVariables,
+  watchMotionPreference,
   prefersHighContrast,
   handleKeyboardNavigation,
   getFormErrorId,

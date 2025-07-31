@@ -1,121 +1,145 @@
-"use client"
+/**
+ * React Hooks for Accessibility Features
+ * Documentation Source: React Hooks & WCAG 2.1 Guidelines
+ * Reference: https://react.dev/reference/react/hooks
+ * Reference: https://www.w3.org/WAI/WCAG21/quickref/
+ * 
+ * Pattern: Custom React hooks for accessibility
+ * Purpose: Provide reusable accessibility patterns in React components
+ */
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { 
   prefersReducedMotion, 
-  prefersHighContrast,
-  screenReader
+  watchMotionPreference,
+  focusManager,
+  screenReader,
+  injectMotionCSSVariables
 } from '@/lib/accessibility'
 
-// Custom hook for accessibility preferences and utilities
-export function useAccessibility() {
-  const [reducedMotion, setReducedMotion] = useState(false)
-  const [highContrast, setHighContrast] = useState(false)
+/**
+ * useReducedMotion Hook
+ * Documentation Source: CSS Media Queries & React Hooks
+ * Reference: https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion
+ * 
+ * Pattern: React hook for motion preferences
+ * Purpose: Reactively respond to user motion preferences
+ */
+export const useReducedMotion = () => {
+  const [reducedMotion, setReducedMotion] = useState(() => prefersReducedMotion())
 
   useEffect(() => {
-    // Set initial values
-    setReducedMotion(prefersReducedMotion())
-    setHighContrast(prefersHighContrast())
-
-    // Listen for changes in user preferences
-    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const highContrastQuery = window.matchMedia('(prefers-contrast: high)')
-
-    const handleReducedMotionChange = (e: MediaQueryListEvent) => {
-      setReducedMotion(e.matches)
-    }
-
-    const handleHighContrastChange = (e: MediaQueryListEvent) => {
-      setHighContrast(e.matches)
-    }
-
-    reducedMotionQuery.addEventListener('change', handleReducedMotionChange)
-    highContrastQuery.addEventListener('change', handleHighContrastChange)
-
-    return () => {
-      reducedMotionQuery.removeEventListener('change', handleReducedMotionChange)
-      highContrastQuery.removeEventListener('change', handleHighContrastChange)
-    }
+    const unsubscribe = watchMotionPreference(setReducedMotion)
+    return unsubscribe
   }, [])
 
-  // Screen reader announcement function
+  return reducedMotion
+}
+
+/**
+ * useFocusTrap Hook
+ * Documentation Source: WAI-ARIA Dialog Pattern
+ * Reference: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
+ * 
+ * Pattern: Focus trap for modal dialogs
+ * Purpose: Keep focus within modal for keyboard navigation
+ */
+export const useFocusTrap = <T extends HTMLElement = HTMLElement>(
+  isActive: boolean = true
+) => {
+  const containerRef = useRef<T>(null)
+
+  useEffect(() => {
+    if (!isActive || !containerRef.current) return
+
+    const container = containerRef.current
+    const previouslyFocusedElement = document.activeElement as HTMLElement
+
+    // Focus first focusable element
+    const firstFocusable = focusManager.getFirstFocusableElement(container)
+    firstFocusable?.focus()
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      focusManager.trapFocus(container, event)
+    }
+
+    container.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      container.removeEventListener('keydown', handleKeyDown)
+      // Restore focus to previously focused element
+      focusManager.restoreFocus(previouslyFocusedElement)
+    }
+  }, [isActive])
+
+  return containerRef
+}
+
+/**
+ * useAnnouncement Hook
+ * Documentation Source: WAI-ARIA Live Regions
+ * Reference: https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA19
+ * 
+ * Pattern: Screen reader announcements
+ * Purpose: Announce dynamic content changes to screen readers
+ */
+export const useAnnouncement = () => {
   const announce = useCallback((message: string, priority: 'polite' | 'assertive' = 'polite') => {
     screenReader.announce(message, priority)
   }, [])
 
-  return {
-    preferences: {
-      reducedMotion,
-      highContrast
-    },
-    announce
-  }
+  return announce
 }
 
-// Custom hook for managing focus
-export function useFocus() {
-  const [focusedElementId, setFocusedElementId] = useState<string | null>(null)
-
-  const setFocus = useCallback((elementId: string) => {
-    const element = document.getElementById(elementId)
-    if (element) {
-      element.focus()
-      setFocusedElementId(elementId)
-    }
-  }, [])
-
-  const clearFocus = useCallback(() => {
-    setFocusedElementId(null)
-  }, [])
-
-  return {
-    focusedElementId,
-    setFocus,
-    clearFocus
-  }
-}
-
-// Custom hook for keyboard navigation
-export function useKeyboardNavigation(
-  items: string[],
+/**
+ * useKeyboardNavigation Hook
+ * Documentation Source: WCAG 2.1 Keyboard Navigation
+ * Reference: https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html
+ * 
+ * Pattern: Keyboard navigation for lists and grids
+ * Purpose: Navigate through items using arrow keys
+ */
+export const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
+  items: T[],
   options: {
-    wrap?: boolean
-    orientation?: 'horizontal' | 'vertical' | 'both'
-    onActivate?: (index: number) => void
+    orientation?: 'horizontal' | 'vertical' | 'grid'
+    loop?: boolean
+    onSelect?: (item: T, index: number) => void
   } = {}
-) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const { wrap = true, orientation = 'vertical', onActivate } = options
+) => {
+  const { orientation = 'vertical', loop = true, onSelect } = options
+  const [focusedIndex, setFocusedIndex] = useState(-1)
 
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    let newIndex = currentIndex
+  const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
+    const { key } = event
+    let newIndex = focusedIndex
 
-    switch (event.key) {
+    switch (key) {
       case 'ArrowUp':
-        if (orientation === 'vertical' || orientation === 'both') {
+        if (orientation !== 'horizontal') {
           event.preventDefault()
-          newIndex = currentIndex > 0 ? currentIndex - 1 : wrap ? items.length - 1 : currentIndex
+          newIndex = focusedIndex > 0 ? focusedIndex - 1 : (loop ? items.length - 1 : 0)
         }
         break
-
+      
       case 'ArrowDown':
-        if (orientation === 'vertical' || orientation === 'both') {
+        if (orientation !== 'horizontal') {
           event.preventDefault()
-          newIndex = currentIndex < items.length - 1 ? currentIndex + 1 : wrap ? 0 : currentIndex
+          newIndex = focusedIndex < items.length - 1 ? focusedIndex + 1 : (loop ? 0 : items.length - 1)
         }
         break
 
       case 'ArrowLeft':
-        if (orientation === 'horizontal' || orientation === 'both') {
+        if (orientation !== 'vertical') {
           event.preventDefault()
-          newIndex = currentIndex > 0 ? currentIndex - 1 : wrap ? items.length - 1 : currentIndex
+          newIndex = focusedIndex > 0 ? focusedIndex - 1 : (loop ? items.length - 1 : 0)
         }
         break
 
       case 'ArrowRight':
-        if (orientation === 'horizontal' || orientation === 'both') {
+        if (orientation !== 'vertical') {
           event.preventDefault()
-          newIndex = currentIndex < items.length - 1 ? currentIndex + 1 : wrap ? 0 : currentIndex
+          newIndex = focusedIndex < items.length - 1 ? focusedIndex + 1 : (loop ? 0 : items.length - 1)
         }
         break
 
@@ -132,84 +156,101 @@ export function useKeyboardNavigation(
       case 'Enter':
       case ' ':
         event.preventDefault()
-        onActivate?.(currentIndex)
-        return
+        if (focusedIndex >= 0 && focusedIndex < items.length) {
+          onSelect?.(items[focusedIndex], focusedIndex)
+        }
+        break
     }
 
-    if (newIndex !== currentIndex) {
-      setCurrentIndex(newIndex)
+    if (newIndex !== focusedIndex && newIndex >= 0 && newIndex < items.length) {
+      setFocusedIndex(newIndex)
+      items[newIndex]?.focus()
     }
-  }, [currentIndex, items.length, wrap, orientation, onActivate])
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [handleKeyDown])
+  }, [focusedIndex, items, orientation, loop, onSelect])
 
   return {
-    currentIndex,
-    setCurrentIndex
+    focusedIndex,
+    setFocusedIndex,
+    handleKeyDown
   }
 }
 
-// Custom hook for managing ARIA attributes
-export function useAriaAttributes(elementId: string) {
-  const [attributes, setAttributes] = useState<Record<string, string | boolean | undefined>>({})
+/**
+ * useMediaQuery Hook
+ * Documentation Source: CSS Media Queries
+ * Reference: https://www.w3.org/TR/mediaqueries-5/
+ * 
+ * Pattern: React hook for media queries
+ * Purpose: Respond to media query changes in React
+ */
+export const useMediaQuery = (query: string): boolean => {
+  const [matches, setMatches] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia(query).matches
+  })
 
-  const updateAttribute = useCallback((name: string, value: string | boolean | undefined) => {
-    setAttributes(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }, [])
+  useEffect(() => {
+    if (typeof window === 'undefined') return
 
-  const removeAttribute = useCallback((name: string) => {
-    setAttributes(prev => {
-      const newAttributes = { ...prev }
-      delete newAttributes[name]
-      return newAttributes
+    const mediaQuery = window.matchMedia(query)
+    const handler = (event: MediaQueryListEvent) => {
+      setMatches(event.matches)
+    }
+
+    mediaQuery.addEventListener('change', handler)
+    setMatches(mediaQuery.matches)
+
+    return () => {
+      mediaQuery.removeEventListener('change', handler)
+    }
+  }, [query])
+
+  return matches
+}
+
+/**
+ * useHighContrast Hook
+ * Documentation Source: CSS Media Queries Level 5
+ * Reference: https://www.w3.org/TR/mediaqueries-5/#prefers-contrast
+ * 
+ * Pattern: High contrast mode detection
+ * Purpose: Adapt UI for high contrast preferences
+ */
+export const useHighContrast = () => {
+  return useMediaQuery('(prefers-contrast: high)')
+}
+
+/**
+ * useColorScheme Hook
+ * Documentation Source: CSS Media Queries Level 5
+ * Reference: https://www.w3.org/TR/mediaqueries-5/#prefers-color-scheme
+ * 
+ * Pattern: Color scheme preference detection
+ * Purpose: Support dark/light mode preferences
+ */
+export const useColorScheme = () => {
+  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)')
+  return prefersDark ? 'dark' : 'light'
+}
+
+/**
+ * Initialize Accessibility Features
+ * Documentation Source: WCAG 2.1 Guidelines
+ * Reference: https://www.w3.org/WAI/WCAG21/quickref/
+ * 
+ * Pattern: Global accessibility initialization
+ * Purpose: Set up accessibility features on app mount
+ */
+export const useAccessibilityInit = () => {
+  useEffect(() => {
+    // Inject CSS variables for motion preferences
+    injectMotionCSSVariables()
+
+    // Set up motion preference watcher
+    const unsubscribe = watchMotionPreference(() => {
+      injectMotionCSSVariables()
     })
+
+    return unsubscribe
   }, [])
-
-  // Helper functions for common ARIA patterns
-  const setExpanded = useCallback((expanded: boolean) => {
-    updateAttribute('aria-expanded', expanded)
-  }, [updateAttribute])
-
-  const setPressed = useCallback((pressed: boolean) => {
-    updateAttribute('aria-pressed', pressed)
-  }, [updateAttribute])
-
-  const setSelected = useCallback((selected: boolean) => {
-    updateAttribute('aria-selected', selected)
-  }, [updateAttribute])
-
-  const setChecked = useCallback((checked: boolean) => {
-    updateAttribute('aria-checked', checked)
-  }, [updateAttribute])
-
-  const setDescribedBy = useCallback((describedBy: string) => {
-    updateAttribute('aria-describedby', describedBy)
-  }, [updateAttribute])
-
-  const setLabelledBy = useCallback((labelledBy: string) => {
-    updateAttribute('aria-labelledby', labelledBy)
-  }, [updateAttribute])
-
-  const setLabel = useCallback((label: string) => {
-    updateAttribute('aria-label', label)
-  }, [updateAttribute])
-
-  return {
-    attributes,
-    updateAttribute,
-    removeAttribute,
-    setExpanded,
-    setPressed,
-    setSelected,
-    setChecked,
-    setDescribedBy,
-    setLabelledBy,
-    setLabel
-  }
 }
