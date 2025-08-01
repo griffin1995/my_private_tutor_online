@@ -307,6 +307,12 @@ const config: Config = {
     'shadow-premium',
     'shadow-royal',
     'shadow-gold',
+    // Motion-safe utilities for accessibility
+    'motion-safe:animate-spin',
+    'motion-safe:transition-all',
+    'motion-safe:transition-colors',
+    'motion-safe:hover:scale-105',
+    'motion-reduce:animate-none',
   ],
 }
 
