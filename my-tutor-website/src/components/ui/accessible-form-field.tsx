@@ -1,19 +1,28 @@
 /**
- * Accessible Form Field Component
- * Documentation Source: WCAG 2.1 Form Guidelines & Radix UI Form
+ * Documentation Source: WCAG 2.1 + WAI-ARIA 1.2 + React Hook Form
  * Reference: https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html
- * Reference: https://www.radix-ui.com/primitives/docs/components/form
+ * Reference: https://www.w3.org/WAI/ARIA/apg/patterns/textbox/
+ * Reference: https://react-hook-form.com/docs/useform/register
  * 
- * Pattern: Accessible form field with comprehensive ARIA support
- * Purpose: Provide consistent, accessible form field patterns
+ * Pattern: Accessible Form Field Component
+ * Architecture:
+ * - Comprehensive ARIA labelling and descriptions
+ * - Error state management with screen reader announcements
+ * - Required field indicators with proper semantics
+ * - Focus management and keyboard navigation
+ * - Motion preference support for animations
  * 
- * Accessibility Features:
- * - Associated labels with proper for/id relationships
- * - Error messages with aria-describedby
- * - Required field indicators
- * - Field hints and descriptions
- * - Live error announcements
- * - Keyboard navigation support
+ * WCAG Compliance:
+ * - SC 3.3.2 Labels or Instructions (Level A)
+ * - SC 3.3.3 Error Suggestion (Level AA)
+ * - SC 3.3.4 Error Prevention (Level AA)
+ * - SC 4.1.3 Status Messages (Level AA)
+ * 
+ * Features:
+ * - Built-in validation message handling
+ * - Automatic aria-describedby association
+ * - Screen reader optimised error announcements
+ * - Progressive enhancement with motion preferences
  */
 
 import React, { useId } from 'react'
@@ -21,6 +30,7 @@ import { cn } from '@/lib/utils'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { useAnnouncement } from '@/hooks/use-accessibility'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 interface AccessibleFormFieldProps {
   // Field properties
@@ -78,6 +88,9 @@ export const AccessibleFormField: React.FC<AccessibleFormFieldProps> = ({
   const fieldId = useId()
   const errorId = `${fieldId}-error`
   const hintId = `${fieldId}-hint`
+  
+  // Motion preference detection for animations
+  const shouldReduceMotion = useReducedMotion()
   
   // Announce errors to screen readers
   const announce = useAnnouncement()
@@ -148,23 +161,39 @@ export const AccessibleFormField: React.FC<AccessibleFormFieldProps> = ({
         onBlur={onBlur}
         className={cn(
           error && 'border-destructive focus-visible:ring-destructive',
+          // Motion-aware transitions
+          'motion-safe:transition-colors motion-safe:duration-200',
           inputClassName
         )}
       />
       
       {/* Error message */}
       {error && (
-        <p
+        <div
           id={errorId}
           role="alert"
           aria-live="polite"
           className={cn(
-            'text-sm text-destructive',
+            'text-sm text-destructive flex items-center gap-2',
+            // Motion-aware animations
+            !shouldReduceMotion && 'animate-fade-in-up',
             errorClassName
           )}
         >
+          <svg
+            className="h-4 w-4 flex-shrink-0"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+              clipRule="evenodd"
+            />
+          </svg>
           {error}
-        </p>
+        </div>
       )}
     </div>
   )
@@ -229,10 +258,11 @@ export const FormSubmit: React.FC<FormSubmitProps> = ({
         'px-4 py-2',
         'bg-primary text-primary-foreground',
         'rounded-md font-medium',
-        'hover:bg-primary/90',
+        'motion-safe:hover:bg-primary/90',
         'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
         'disabled:opacity-50 disabled:cursor-not-allowed',
-        'transition-colors',
+        // Motion-aware transitions
+        'motion-safe:transition-colors motion-safe:duration-200',
         className
       )}
     >
