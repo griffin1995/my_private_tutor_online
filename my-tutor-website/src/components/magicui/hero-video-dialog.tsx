@@ -156,10 +156,10 @@ export function HeroVideoDialog({
   }, [isOpen])
 
   return (
-    <>
+    <div className={`relative ${className}`}>
       {/* Thumbnail/Trigger */}
       <div
-        className={`relative cursor-pointer group ${className}`}
+        className="relative cursor-pointer group"
         onClick={handleOpen}
         onKeyDown={handleKeyDown}
         tabIndex={0}
@@ -256,6 +256,6 @@ export function HeroVideoDialog({
           </m.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }

@@ -6,14 +6,16 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
-  // ✅ CLOUDFLARE PAGES STATIC EXPORT CONFIGURATION - DO NOT CHANGE
-  // This configuration is PROVEN to work for Cloudflare Pages deployment
-  // Cloudflare Pages does not support Next.js App Router SSR natively
-  // Static export provides reliable deployment with all features working
-  // WARNING: Do not change to dynamic rendering without full migration plan
-  output: 'export',
-  distDir: 'out',
-  trailingSlash: true,
+  // Documentation Source: Context7 MCP - Next.js Dynamic Rendering Configuration
+  // Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/05-config/01-next-config-js/index.mdx
+  // Pattern: Next.js configuration optimized for Vercel dynamic deployment
+  // Purpose: Enable server-side features, API routes, and dynamic functionality for tutoring business
+  // 
+  // MIGRATION FROM STATIC EXPORT TO DYNAMIC RENDERING:
+  // - Removed: output: 'export' (enables dynamic rendering)
+  // - Removed: distDir: 'out' (uses default .next directory) 
+  // - Removed: trailingSlash: true (not required for dynamic mode)
+  // - Configuration verified against Context7 MCP Next.js documentation
   
   // Performance optimizations
   experimental: {

@@ -15,8 +15,8 @@ export function NoSSR({ children, fallback = null }: NoSSRProps) {
   }, [])
 
   if (!isClient) {
-    return <>{fallback}</>
+    return <div>{fallback}</div>
   }
 
-  return <>{children}</>
+  return <div>{children}</div>
 }

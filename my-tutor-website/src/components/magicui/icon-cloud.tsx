@@ -105,11 +105,13 @@ export default function IconCloud({ iconSlugs, imageArray }: DynamicCloudProps) 
 
   return (
     <Cloud {...cloudProps}>
-      <>{renderedIcons}</>
-      {imageArray &&
-        imageArray.map((image, index) => (
-          <img key={index} height="42" width="42" alt={'Icon'} src={image} />
-        ))}
+      <div>
+        {renderedIcons}
+        {imageArray &&
+          imageArray.map((image, index) => (
+            <img key={index} height="42" width="42" alt={'Icon'} src={image} />
+          ))}
+      </div>
     </Cloud>
   )
 }

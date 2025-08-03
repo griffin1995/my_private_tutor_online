@@ -8,7 +8,9 @@ import { Separator } from '@/components/ui/separator'
 import { ShinyButton } from '@/components/magicui/shiny-button'
 import { getFooterContent, getContactInfo, getCopyrightText } from '@/lib/cms'
 import { cn } from '@/lib/utils'
-import { m } from 'framer-motion'
+// Documentation Source: Framer Motion LazyMotion with Static Export Compatibility
+// Reference: https://www.framer.com/motion/lazy-motion/
+// Pattern: Static-export compatible animations
 
 // CMS DATA SOURCE: Using getFooterContent for footer links and content
 
@@ -44,31 +46,19 @@ export function PageFooter({
       role="contentinfo"
       aria-label="Site footer"
     >
-      {/* Premium animated background */}
+      {/* Premium animated background - static export compatible */}
       {variant === 'premium' && (
-        <>
+        <div>
           <div className="absolute inset-0 bg-gradient-to-r from-gray-100/50 via-transparent to-gray-100/50 pointer-events-none" />
-          <m.div 
-            className="absolute inset-0 bg-gradient-to-br from-gray-50/30 via-transparent to-gray-50/30"
-            animate={{ 
-              backgroundPosition: ['0% 0%', '100% 100%'],
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-        </>
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-50/30 via-transparent to-gray-50/30 animate-pulse opacity-50" />
+        </div>
       )}
 
       <div className="relative">
         {/* Newsletter CTA Section */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="max-w-4xl mx-auto text-center">
-            <m.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <div className="animate-fade-in-up">
               <h3 className="text-3xl font-serif font-bold text-black mb-4">
                 Join Our Exclusive Community
               </h3>
@@ -86,7 +76,7 @@ export function PageFooter({
                   className="px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold"
                 />
               </div>
-            </m.div>
+            </div>
           </div>
         </div>
 
@@ -98,12 +88,7 @@ export function PageFooter({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Company Information - 1/3 width */}
             <div className="lg:col-span-1">
-              <m.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
+              <div className="animate-fade-in-left">
                 <div className="mb-8">
                   <Link 
                     href="/" 
@@ -145,19 +130,16 @@ export function PageFooter({
                     <p className="text-xs text-gray-600">Excellence</p>
                   </div>
                 </div>
-              </m.div>
+              </div>
             </div>
 
             {/* Footer Links Sections - 2/3 width */}
             <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8">
               {footerContent.footerSections.map((section, sectionIndex) => (
-                <m.div 
+                <div 
                   key={sectionIndex} 
-                  className="space-y-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
-                  viewport={{ once: true }}
+                  className="space-y-6 animate-fade-in-up"
+                  style={{ animationDelay: `${sectionIndex * 0.1}s` }}
                 >
                   <h3 className="font-serif text-xl font-bold text-black flex items-center gap-2">
                     {section.title}
@@ -182,7 +164,7 @@ export function PageFooter({
                       ))}
                     </ul>
                   </nav>
-                </m.div>
+                </div>
               ))}
             </div>
           </div>
@@ -192,13 +174,7 @@ export function PageFooter({
 
         {/* Contact Information Section */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <m.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto animate-fade-in-up">
             {/* Phone */}
             <div className="group text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -244,7 +220,7 @@ export function PageFooter({
                 ))}
               </address>
             </div>
-          </m.div>
+          </div>
         </div>
 
         {/* Footer Bottom */}
@@ -287,11 +263,7 @@ export function PageFooter({
 
               {/* Back to Top Button */}
               {showBackToTop && (
-                <m.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
+                <div className="animate-fade-in opacity-0 animate-delay-500">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -301,7 +273,7 @@ export function PageFooter({
                   >
                     <ArrowUp className="w-5 h-5" />
                   </Button>
-                </m.div>
+                </div>
               )}
             </div>
           </div>

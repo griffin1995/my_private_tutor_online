@@ -128,7 +128,7 @@ export function Carousel({
 
       {/* Arrows */}
       {showArrows && (
-        <>
+        <div>
           <button
             onClick={handlePrevious}
             className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-primary-900 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
@@ -143,7 +143,7 @@ export function Carousel({
           >
             <ChevronRight className="w-6 h-6" />
           </button>
-        </>
+        </div>
       )}
 
       {/* Dots */}
