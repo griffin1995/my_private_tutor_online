@@ -26,7 +26,7 @@
 
 import { CheckCircle, Crown, Award, Phone, Calendar, BookOpen, Trophy, ChevronLeft, ChevronRight } from 'lucide-react'
 import { m } from 'framer-motion'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { 
@@ -106,9 +106,16 @@ function ServicesCarousel({ services, studentImages }: {
       containScroll: 'trimSnaps',
       align: 'start',
       skipSnaps: false,
-      startIndex: 0
+      startIndex: 0,
+      dragFree: false,
+      duration: 25
     },
-    [Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })]
+    [Autoplay({ 
+      delay: 5000, 
+      stopOnInteraction: true, 
+      stopOnMouseEnter: true,
+      playOnInit: false 
+    })]
   )
   
   /**
@@ -129,8 +136,28 @@ function ServicesCarousel({ services, studentImages }: {
     if (emblaApi) emblaApi.scrollNext()
   }, [emblaApi])
 
+  const [isReady, setIsReady] = useState(false)
+
+  /**
+   * Performance Optimization: Delayed autoplay initialization
+   * Prevents initial flashing/glitching by starting autoplay after mount
+   */
+  useEffect(() => {
+    if (!emblaApi) return
+    
+    const autoplay = emblaApi.plugins().autoplay
+    if (autoplay) {
+      // Start autoplay after a brief delay to ensure smooth initialization
+      const timer = setTimeout(() => {
+        autoplay.play()
+        setIsReady(true)
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [emblaApi])
+
   return (
-    <div className="relative max-w-7xl mx-auto flex items-center">
+    <div className="relative max-w-7xl mx-auto flex items-center px-4 sm:px-0">
       {/* 
        * Navigation Arrow - Left (Positioned outside viewport)
        * Documentation Source: Tailwind CSS Positioning + Transform utilities
@@ -144,11 +171,11 @@ function ServicesCarousel({ services, studentImages }: {
        * - Interaction: Scale transform (110%) on hover provides tactile feedback
        */}
       <button
-        className="absolute -left-16 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        className="absolute left-2 sm:-left-16 top-1/2 -translate-y-1/2 z-10 bg-white/90 sm:bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm"
         onClick={scrollPrev}
         aria-label="Previous slide"
       >
-        <ChevronLeft className="w-6 h-6 text-primary-900" />
+        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-primary-900" />
       </button>
       
       {/* 
@@ -162,11 +189,11 @@ function ServicesCarousel({ services, studentImages }: {
        * - Accessibility: Proper ARIA labeling for screen readers
        */}
       <button
-        className="absolute -right-16 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        className="absolute right-2 sm:-right-16 top-1/2 -translate-y-1/2 z-10 bg-white/90 sm:bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm"
         onClick={scrollNext}
         aria-label="Next slide"
       >
-        <ChevronRight className="w-6 h-6 text-primary-900" />
+        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-primary-900" />
       </button>
 
       {/* 
@@ -186,8 +213,8 @@ function ServicesCarousel({ services, studentImages }: {
        * - min-w-0: Prevents flex item overflow issues
        * - pl-4: Spacing between slides (16px padding-left)
        */}
-      <div className="overflow-hidden w-full" ref={emblaRef}>
-        <div className="flex">
+      <div className={`overflow-hidden w-full transition-opacity duration-300 ${isReady ? 'opacity-100' : 'opacity-0'}`} ref={emblaRef}>
+        <div className="flex -ml-4">
           {services.map((service, index) => {
             // CMS DATA SOURCE: Using studentImages with service-based mapping
             // Documentation Source: CMS Images utility with dynamic key mapping
@@ -213,7 +240,7 @@ function ServicesCarousel({ services, studentImages }: {
                  * 
                  * Card Design: Maintains premium aesthetic with optimized performance
                  */}
-                <div className="group bg-white overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full will-change-transform">
+                <div className="group bg-white overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full transform-gpu">
                   {/* Student Image - Optimized for performance */}
                   {studentImage ? (
                     <div className="relative overflow-hidden h-[400px] lg:h-[500px]">
