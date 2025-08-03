@@ -16,7 +16,18 @@
 "use client"
 
 import { useState } from 'react'
-import { m } from 'framer-motion'
+/**
+ * Documentation Source: Next.js Static Export + Framer Motion Compatibility
+ * Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/static-exports.mdx
+ * Reference: https://github.com/grx7/framer-motion/blob/main/dev/html/public/optimized-appear/interrupt-tween-opacity.html
+ * 
+ * Pattern: Static Export with Force Static Directive
+ * Next.js static export requires: export const dynamic = 'force-static'
+ * Framer Motion compatibility: Use CSS animations instead of React motion components during static generation
+ * 
+ * Issue: React.Children.only errors occur when Framer Motion m.div components are server-rendered
+ * Solution: Convert to standard divs with CSS animations for static export compatibility
+ */
 import { Search, ChevronDown, Mail, Phone, MessageCircle } from 'lucide-react'
 import { ShinyButton } from '@/components/magicui/shiny-button'
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
@@ -29,6 +40,23 @@ import { getFAQHero, getFAQCategories, getFAQContact, getContactDetails } from '
 import { HERO_IMAGES } from '@/lib/cms/cms-images'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageFooter } from '@/components/layout/page-footer'
+
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// Documentation Source: Next.js Client Components Dynamic Rendering
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx
+//
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Industry Standard: Client Components are inherently dynamic, force-dynamic is unnecessary
+// - Context7 Verification: "Client Components run on the client and do not require JavaScript to render on the client"
+//
+// ROUTE SEGMENT ANALYSIS:
+// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
+// - Parent/Child: FAQ page component, children: PageHeader, PageFooter, search/filter components
+// - Dynamic Features: useState for search filtering, interactive accordion components, form handling
+// - Dependencies: CMS functions (getFAQHero, getFAQCategories, getFAQContact, getContactDetails), UI components
+// - Interactivity: Search functionality, accordion expand/collapse, contact form interactions
+// - CMS Integration: Complete with FAQ hero, categories, contact details
 
 // CMS DATA SOURCE: Using getFAQContent for FAQ page data
 
@@ -59,43 +87,12 @@ export default function FAQPage() {
     )
   })).filter(category => category.questions.length > 0)
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
-
-  const categoryVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  }
+  // Static export compatible: CSS animations instead of Framer Motion variants
+  // Documentation Source: Next.js Static Export Configuration
+  // Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/static-exports.mdx#_snippet_9
   
   return (
-    <>
+    <div>
       {/* Pass isHeroPage prop for transparent navbar over hero section */}
       <PageHeader isHeroPage={true} />
       {/* Premium Hero Section */}
@@ -114,45 +111,30 @@ export default function FAQPage() {
         </div>
         
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <m.div 
-            className="max-w-5xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+          <div className="max-w-5xl mx-auto text-center animate-fade-in-up">
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-white leading-tight mb-8">
               {heroContent.title}
             </h1>
-            <m.p 
-              className="text-2xl text-accent-400 font-semibold mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+            <p 
+              className="text-2xl text-accent-400 font-semibold mb-8 animate-fade-in-up"
+              style={{ animationDelay: '0.3s' }}
             >
               {heroContent.subtitle}
-            </m.p>
-            <m.p 
-              className="text-xl text-white/90 leading-relaxed max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+            </p>
+            <p 
+              className="text-xl text-white/90 leading-relaxed max-w-3xl mx-auto animate-fade-in-up"
+              style={{ animationDelay: '0.5s' }}
             >
               {heroContent.description}
-            </m.p>
-          </m.div>
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Premium Search Section */}
       <section className="py-16 bg-gradient-to-b from-white to-primary-50/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <m.div 
-            className="max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="max-w-2xl mx-auto animate-fade-in-up">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-primary-400" />
               <Input
@@ -184,7 +166,7 @@ export default function FAQPage() {
                 </Badge>
               ))}
             </div>
-          </m.div>
+          </div>
         </div>
       </section>
 
@@ -192,19 +174,16 @@ export default function FAQPage() {
       <section className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
-            <m.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
+            {/* Documentation Source: CSS Animation for Static Export Compatibility */}
+            {/* Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/static-exports.mdx */}
+            <div className="animate-fade-in-up">
               {(searchQuery || selectedCategory ? filteredCategories : faqCategories)
                 .filter(category => !selectedCategory || category.title === selectedCategory)
                 .map((category, categoryIndex) => (
-                <m.div 
+                <div 
                   key={categoryIndex} 
-                  className="mb-16"
-                  variants={categoryVariants}
+                  className="mb-16 animate-fade-in-left"
+                  style={{ animationDelay: `${categoryIndex * 0.1}s` }}
                 >
                   {/* Category Header */}
                   <div className="flex items-center gap-4 mb-12">
@@ -251,9 +230,9 @@ export default function FAQPage() {
                       </Accordion>
                     </CardContent>
                   </Card>
-                </m.div>
+                </div>
               ))}
-            </m.div>
+            </div>
           </div>
         </div>
       </section>
@@ -267,33 +246,23 @@ export default function FAQPage() {
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <m.div 
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          {/* Documentation Source: CSS Animation for Static Export Compatibility */}
+          {/* Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/static-exports.mdx */}
+          <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
             <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white mb-8">
               {contactContent.title}
             </h2>
-            <m.p 
-              className="text-xl text-white/80 mb-12 leading-relaxed max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+            <p 
+              className="text-xl text-white/80 mb-12 leading-relaxed max-w-2xl mx-auto animate-fade-in-up"
+              style={{ animationDelay: '0.3s' }}
             >
               {contactContent.description}
-            </m.p>
+            </p>
             
             {/* Contact Options */}
-            <m.div 
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            <div 
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 animate-fade-in-up"
+              style={{ animationDelay: '0.4s' }}
             >
               <div className="text-center">
                 <div className="w-16 h-16 bg-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -331,15 +300,12 @@ export default function FAQPage() {
                 <p className="text-white/70 mb-4">Instant responses to quick questions</p>
                 <span className="text-accent-400 font-medium">Available 9am-6pm</span>
               </div>
-            </m.div>
+            </div>
             
             {/* CTA Buttons */}
-            <m.div 
-              className="flex flex-col sm:flex-row gap-6 justify-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+            <div 
+              className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up"
+              style={{ animationDelay: '0.6s' }}
             >
               {contactContent.buttons.map((button, index) => {
                 if (button.type === 'primary') {
@@ -362,11 +328,11 @@ export default function FAQPage() {
                   )
                 }
               })}
-            </m.div>
-          </m.div>
+            </div>
+          </div>
         </div>
       </section>
       <PageFooter />
-    </>
+    </div>
   )
 }

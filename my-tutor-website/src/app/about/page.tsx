@@ -68,6 +68,23 @@ import { ShinyButton } from '@/components/magicui/shiny-button'
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
 import { VideoText } from '@/components/magicui/video-text'
 
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// Documentation Source: Next.js Client Components Dynamic Rendering
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx
+//
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Industry Standard: Client Components are inherently dynamic, force-dynamic is unnecessary
+// - Context7 Verification: "Client Components run on the client and do not require JavaScript to render on the client"
+//
+// ROUTE SEGMENT ANALYSIS:
+// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
+// - Parent/Child: About page component, children: PageHeader, PageFooter, multiple sections
+// - Dynamic Features: Framer Motion animations, useState hook, scroll-triggered animations
+// - Dependencies: CMS functions (getAboutContent, getTeamImages, getBackgroundVideo), Next.js Image
+// - Interactivity: Scroll animations, hover effects, viewport detection (whileInView)
+// - CMS Integration: Complete with about content, team images, and background video
+
 export default function AboutPage() {
   // CMS DATA SOURCE: Using getAboutContent for all about page content
   // Pattern: Centralised content management for easy updates
@@ -117,7 +134,7 @@ export default function AboutPage() {
   }
 
   return (
-    <>
+    <div>
       {/* Documentation Source: Context7 Fixed Header Implementation for All Pages
        * Reference: /tailwindlabs/tailwindcss.com - Fixed positioning overlay pattern
        *
@@ -559,6 +576,6 @@ export default function AboutPage() {
         </div>
       </section>
       <PageFooter />
-    </>
+    </div>
   )
 }

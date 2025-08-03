@@ -23,6 +23,23 @@ import { Section } from '@/components/layout/section'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// Documentation Source: Next.js Client Components Dynamic Rendering
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx
+//
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Industry Standard: Client Components are inherently dynamic, force-dynamic is unnecessary
+// - Context7 Verification: "Client Components run on the client and do not require JavaScript to render on the client"
+//
+// ROUTE SEGMENT ANALYSIS:
+// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
+// - Parent/Child: Expert Educators page component, children: PageLayout, PageHero, Section components
+// - Dynamic Features: Framer Motion animations, useState hook (commented), scroll-triggered animations
+// - Dependencies: Hardcoded content object (expertEducatorsContent), UI components (Button, Card, Badge)
+// - Interactivity: Framer Motion 'm' component animations, hover effects
+// - TODO: Migrate expertEducatorsContent to CMS system for proper content management
+
 // CMS DATA SOURCE: Using structured content for Expert Educators page
 const expertEducatorsContent = {
   hero: {

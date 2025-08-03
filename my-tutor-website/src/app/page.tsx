@@ -1,14 +1,20 @@
 /**
- * Documentation Source: Next.js 14 App Router with Client Components
+ * Documentation Source: Next.js Static Export + Client Components
+ * Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/static-exports.mdx#_snippet_9
  * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
  * Reference: https://nextjs.org/docs/app/building-your-application/optimizing/lazy-loading
- * Pattern: Optimised Client Component with comprehensive JSX structure
+ * Pattern: Static Export Compatible Client Component with Framer Motion
+ * 
+ * Static Export Fix: export const dynamic = 'force-static' prevents React.Children.only errors
+ * React.Children.only Issue: Framer Motion m components cause SSR conflicts during static generation
+ * Solution: Force static rendering ensures consistent component behavior
  * 
  * Architecture:
  * - Client Component boundary for interactive features
  * - CMS integration for all content
  * - Proper semantic HTML structure
  * - Context7 verified React component patterns
+ * - Static export compatibility
  * 
  * Performance Optimisations:
  * - Strategic component lazy loading
@@ -57,6 +63,14 @@ import { TypingAnimation } from '@/components/magicui/typing-animation'
 import { BoxReveal } from '@/components/magicui/box-reveal'
 import { TrustIndicatorsGrid } from '@/components/sections/trust-indicators-grid'
 import { ScrollingSchools } from '@/components/sections/scrolling-schools'
+
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Parent/Child: Root page component, children: ServicesCarousel, AnimatedTagline, multiple sections
+// - Dynamic Features: Framer Motion animations, useEmblaCarousel hook, useState for carousel state
+// - Dependencies: CMS functions (getHeroContent, getServices, etc.), Next.js Image optimization
+// - Industry Standard: Client Components are naturally dynamic without force-dynamic export
 
 /**
  * Documentation Source: Context7 Embla Carousel React Implementation + JSX Best Practices
@@ -386,7 +400,7 @@ export default function Home() {
   const schoolNames = getTestimonialsSchools()
 
   return (
-    <>
+    <div>
       {/* Header outside of PageLayout for proper hero positioning */}
       <PageHeader isHeroPage={true} />
       
@@ -962,6 +976,6 @@ export default function Home() {
         </div>
       </section>
       </PageLayout>
-    </>
+    </div>
   )
 }

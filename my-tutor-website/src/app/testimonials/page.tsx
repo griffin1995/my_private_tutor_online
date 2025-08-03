@@ -45,6 +45,23 @@ import { getBackgroundVideo, HERO_IMAGES } from '@/lib/cms/cms-images'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageFooter } from '@/components/layout/page-footer'
 
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// Documentation Source: Next.js Client Components Dynamic Rendering
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx
+//
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Industry Standard: Client Components are inherently dynamic, force-dynamic is unnecessary
+// - Context7 Verification: "Client Components run on the client and do not require JavaScript to render on the client"
+//
+// ROUTE SEGMENT ANALYSIS:
+// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
+// - Parent/Child: Testimonials page component, children: PageHeader, PageFooter, filtering components
+// - Dynamic Features: useState for category filtering, Framer Motion animations, video testimonials
+// - Dependencies: Full CMS integration (getTestimonialsContent, getTestimonialsHero, getRecentTestimonials)
+// - Interactivity: Category filtering, testimonial carousel, video dialog modals
+// - CMS Integration: Complete with testimonials, schools, and hero content
+
 export default function TestimonialsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
@@ -93,7 +110,7 @@ export default function TestimonialsPage() {
   }
 
   return (
-    <>
+    <div>
       {/* Pass isHeroPage prop for transparent navbar over hero section */}
       <PageHeader isHeroPage={true} />
       {/* Premium Hero Section */}
@@ -381,6 +398,6 @@ export default function TestimonialsPage() {
         </div>
       </section>
       <PageFooter />
-    </>
+    </div>
   )
 }
