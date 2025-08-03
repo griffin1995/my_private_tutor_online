@@ -25,6 +25,24 @@ import { LazyMotionProvider } from "@/components/providers/LazyMotionProvider";
 // Performance monitoring disabled for now
 
 /**
+ * Vercel Analytics and Speed Insights Integration
+ * Documentation Source: Official Vercel Analytics Documentation
+ * Reference: https://vercel.com/docs/analytics
+ * Reference: https://vercel.com/docs/speed-insights
+ * 
+ * Pattern: Analytics components added per Vercel deployment requirements
+ * Architecture: Components render client-side tracking scripts
+ * 
+ * Implementation Notes:
+ * - Analytics tracks page views and custom events
+ * - SpeedInsights monitors Core Web Vitals
+ * - Both components are zero-config on Vercel platform
+ * - Data visible in Vercel Dashboard
+ */
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
+/**
  * Lato Font Family Implementation
  * Documentation Source: Next.js Font Optimization + Google Fonts Official Documentation
  * Reference: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
@@ -152,6 +170,23 @@ export default function RootLayout({
           {children}
         </LazyMotionProvider>
         {/* <PerformanceMonitor /> */}
+        
+        {/* 
+         * Vercel Analytics Components
+         * Documentation Source: Official Vercel Documentation
+         * Reference: https://vercel.com/docs/analytics/quickstart
+         * 
+         * Pattern: Analytics components placed before closing body tag
+         * Architecture: Zero-config analytics for Vercel deployments
+         * 
+         * Features:
+         * - Automatic page view tracking
+         * - Web Vitals monitoring
+         * - Real User Monitoring (RUM)
+         * - Privacy-compliant by default
+         */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
