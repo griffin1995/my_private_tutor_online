@@ -22,7 +22,7 @@
  */
 
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
+import { Root as Slot, Slottable } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
@@ -116,7 +116,11 @@ function Button({
           Loading...
         </span>
       )}
-      {props.children}
+      {asChild ? (
+        <Slottable>{props.children}</Slottable>
+      ) : (
+        props.children
+      )}
     </Comp>
   )
 }
