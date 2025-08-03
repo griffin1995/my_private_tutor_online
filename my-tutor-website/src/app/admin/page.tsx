@@ -23,6 +23,12 @@
 
 'use client';
 
+// RENDERING ANALYSIS:
+// - Component Type: Client Component ("use client") - automatically dynamic
+// - Next.js automatically makes this dynamic due to "use client" directive
+// - Admin functionality will naturally require dynamic rendering for authentication
+// - TODO: Integrate with TinaCMS backend, authentication, content management
+
 function AdminInterface() {
   return (
     <div className="min-h-screen bg-gray-100 p-8">

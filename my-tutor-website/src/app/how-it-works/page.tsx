@@ -45,6 +45,12 @@ import {
 } from '@/lib/cms/cms-content'
 import { HERO_IMAGES } from '@/lib/cms/cms-images'
 
+// RENDERING ANALYSIS:
+// - Component Type: Client Component ("use client") - automatically dynamic
+// - Next.js automatically makes this dynamic due to "use client" directive
+// - No explicit dynamic export needed - this is industry standard
+// - CMS Integration: Complete with hero, steps, tiers, and benefits content
+
 // Map icon names to actual icon components
 const iconMap = {
   MessageSquare,

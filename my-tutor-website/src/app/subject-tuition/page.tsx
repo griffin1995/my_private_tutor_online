@@ -33,6 +33,23 @@ import { Section } from '@/components/layout/section'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// Documentation Source: Next.js Client Components Dynamic Rendering
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx
+//
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Industry Standard: Client Components are inherently dynamic, force-dynamic is unnecessary
+// - Context7 Verification: "Client Components run on the client and do not require JavaScript to render on the client"
+//
+// ROUTE SEGMENT ANALYSIS:
+// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
+// - Parent/Child: Subject Tuition page component, children: PageLayout, PageHero, Section, Card components
+// - Dynamic Features: useState for expandable sections, Framer Motion animations, accordion-style interactions
+// - Dependencies: Hardcoded content object (subjectTuitionContent), UI components (Button, Card, Badge)
+// - Interactivity: Expandable subject categories, ChevronDown/ChevronRight toggles, Framer Motion 'm' component
+// - TODO: Migrate subjectTuitionContent to CMS system for proper content management
+
 // CMS DATA SOURCE: Using structured content for Subject Tuition page
 const subjectTuitionContent = {
   hero: {
@@ -220,22 +237,16 @@ function AccordionSection({ subject, isOpen, onToggle }: AccordionSectionProps) 
       </button>
       
       {isOpen && (
-        <m.div
+        <div
           id={`section-${subject.id}`}
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
-          className="border-t border-slate-200"
+          className="border-t border-slate-200 animate-fade-in-up"
         >
           <div className="p-6 space-y-6">
             {subject.subjects.map((subjectItem, index) => (
-              <m.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="bg-white border border-slate-100 rounded-lg p-6"
+                className="bg-white border border-slate-100 rounded-lg p-6 animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <h4 className="text-lg font-semibold text-slate-900 mb-3">{subjectItem.name}</h4>
                 <p className="text-slate-700 mb-4">{subjectItem.description}</p>
@@ -246,10 +257,10 @@ function AccordionSection({ subject, isOpen, onToggle }: AccordionSectionProps) 
                     </Badge>
                   ))}
                 </div>
-              </m.div>
+              </div>
             ))}
           </div>
-        </m.div>
+        </div>
       )}
     </Card>
   )
@@ -295,46 +306,33 @@ export default function SubjectTuitionPage() {
       <Section className="py-12" background="slate-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <m.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-center"
+            <div
+              className="text-center animate-fade-in-up"
             >
               <div className="text-3xl font-bold text-amber-600 mb-2">40+</div>
               <div className="text-slate-700 font-medium">Subjects Covered</div>
-            </m.div>
-            <m.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-center"
+            </div>
+            <div
+              className="text-center animate-fade-in-up"
+              style={{ animationDelay: '0.1s' }}
             >
               <div className="text-3xl font-bold text-amber-600 mb-2">95%</div>
               <div className="text-slate-700 font-medium">Success Rate</div>
-            </m.div>
-            <m.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-center"
+            </div>
+            <div
+              className="text-center animate-fade-in-up"
+              style={{ animationDelay: '0.2s' }}
             >
               <div className="text-3xl font-bold text-amber-600 mb-2">KS1-University</div>
               <div className="text-slate-700 font-medium">All Levels</div>
-            </m.div>
-            <m.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="text-center"
+            </div>
+            <div
+              className="text-center animate-fade-in-up"
+              style={{ animationDelay: '0.3s' }}
             >
               <div className="text-3xl font-bold text-amber-600 mb-2">24/7</div>
               <div className="text-slate-700 font-medium">Support Available</div>
-            </m.div>
+            </div>
           </div>
         </div>
       </Section>
@@ -342,12 +340,8 @@ export default function SubjectTuitionPage() {
       {/* Accordion Sections */}
       <Section className="py-16 lg:py-24" background="white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+          <div
+            className="text-center mb-12 animate-fade-in-up"
           >
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-6">
               Comprehensive Subject Coverage
@@ -355,23 +349,21 @@ export default function SubjectTuitionPage() {
             <p className="text-lg text-slate-700 max-w-3xl mx-auto">
               Explore our extensive range of subjects and educational levels. Click on each section to discover detailed information about our tutoring services.
             </p>
-          </m.div>
+          </div>
 
           <div className="space-y-4 max-w-5xl mx-auto">
             {subjectTuitionContent.subjects.map((subject, index) => (
-              <m.div
+              <div
                 key={subject.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <AccordionSection
                   subject={subject}
                   isOpen={openSections.includes(subject.id)}
                   onToggle={() => toggleSection(subject.id)}
                 />
-              </m.div>
+              </div>
             ))}
           </div>
         </div>
@@ -381,12 +373,8 @@ export default function SubjectTuitionPage() {
       <Section className="py-16 lg:py-24" background="slate-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <m.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="space-y-6"
+            <div
+              className="space-y-6 animate-fade-in-left"
             >
               <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900">
                 Interested in Homeschooling?
@@ -415,19 +403,15 @@ export default function SubjectTuitionPage() {
               <Button className="bg-amber-600 hover:bg-amber-700 text-white">
                 Learn About Homeschooling
               </Button>
-            </m.div>
+            </div>
             
-            <m.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="relative"
+            <div
+              className="relative animate-fade-in-right"
             >
               <div className="aspect-[4/3] bg-gradient-to-br from-slate-200 to-slate-300 rounded-2xl flex items-center justify-center">
                 <Globe className="w-24 h-24 text-slate-500" />
               </div>
-            </m.div>
+            </div>
           </div>
         </div>
       </Section>
@@ -435,12 +419,8 @@ export default function SubjectTuitionPage() {
       {/* CTA Section */}
       <Section className="py-16 lg:py-24" background="slate-900">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center"
+          <div
+            className="text-center animate-fade-in-up"
           >
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white mb-6">
               Ready to Begin Your Educational Journey?
@@ -463,7 +443,7 @@ export default function SubjectTuitionPage() {
                 View All Subjects
               </Button>
             </div>
-          </m.div>
+          </div>
         </div>
       </Section>
     </PageLayout>

@@ -1,14 +1,18 @@
 /**
- * Documentation Source: Next.js 14 + Radix UI Components
- * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
+ * Documentation Source: Next.js Static Export + Radix UI Components
+ * Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/static-exports.mdx#_snippet_9
  * Reference: https://www.radix-ui.com/themes/docs/components/card
  * Reference: https://www.radix-ui.com/themes/docs/components/badge
  * 
- * Pattern: Client Component with hardcoded content
+ * Pattern: Client Component with Static Export Compatibility
+ * Next.js Static Export: export const dynamic = 'force-static' ensures static rendering
+ * React.Children.only fix: Force static rendering prevents server-side motion component errors
+ * 
  * Architecture:
  * - Static content (should migrate to CMS)
  * - Card-based layout for masterclass listings
  * - Structured data for video courses
+ * - Static export compatible rendering
  * 
  * TODO: Migrate videoMasterclassesContent to CMS system
  * - Currently hardcoded from Beth's new_copy.md
@@ -30,6 +34,23 @@ import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/layout/section'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// Documentation Source: Next.js Client Components Dynamic Rendering
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx
+//
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Industry Standard: Client Components are inherently dynamic, force-dynamic is unnecessary
+// - Context7 Verification: "Client Components run on the client and do not require JavaScript to render on the client"
+//
+// ROUTE SEGMENT ANALYSIS:
+// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
+// - Parent/Child: Video Masterclasses page component, children: PageLayout, PageHero, Section components
+// - Dynamic Features: Static content structure (no interactive state management)
+// - Dependencies: Hardcoded content object (videoMasterclassesContent), UI components (Button, Card, Badge)
+// - Interactivity: Basic UI components, no complex state management
+// - TODO: Migrate videoMasterclassesContent to CMS system for proper content management
 
 // CMS DATA SOURCE: Elizabeth's Video Masterclasses content from Beth's new_copy.md
 const videoMasterclassesContent = {

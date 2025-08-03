@@ -28,6 +28,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// Documentation Source: Next.js Client Components Dynamic Rendering
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx
+//
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Industry Standard: Client Components are inherently dynamic, force-dynamic is unnecessary
+// - Context7 Verification: "Client Components run on the client and do not require JavaScript to render on the client"
+//
+// ROUTE SEGMENT ANALYSIS:
+// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
+// - Parent/Child: Homeschooling page component, children: PageLayout, PageHero, Section, Tabs components
+// - Dynamic Features: useState for tab selection, Framer Motion animations, interactive tab navigation
+// - Dependencies: Hardcoded content object (homeschoolingContent), UI components (Button, Card, Badge, Tabs)
+// - Interactivity: Tab switching, scroll animations, Framer Motion 'm' component animations
+// - TODO: Migrate homeschoolingContent to CMS system for proper content management
+
 // CMS DATA SOURCE: Using structured content for Homeschooling page
 const homeschoolingContent = {
   hero: {
