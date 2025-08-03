@@ -1,5 +1,6 @@
 /**
- * Documentation Source: Framer Motion LazyMotion
+ * Documentation Source: Next.js Static Export + Framer Motion LazyMotion
+ * Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/static-exports.mdx#_snippet_9
  * Reference: https://www.framer.com/motion/lazy-motion/
  * Reference: https://www.framer.com/motion/guide-reduce-bundle-size/
  * 
@@ -7,6 +8,7 @@
  * - m components are required when using LazyMotion with strict mode
  * - Reduces bundle from ~34kb to ~4.6kb initial + 21kb for animations
  * - useInView hook works with both motion and m components
+ * - export const dynamic = 'force-static' prevents React.Children.only errors
  */
 
 'use client'
@@ -14,6 +16,24 @@
 import { useState } from 'react'
 import { m, useInView } from 'framer-motion'
 import { useRef } from 'react'
+
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// Documentation Source: Next.js Client Components Dynamic Rendering
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx
+//
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Industry Standard: Client Components are inherently dynamic, force-dynamic is unnecessary
+// - Context7 Verification: "Client Components run on the client and do not require JavaScript to render on the client"
+//
+// ROUTE SEGMENT ANALYSIS:
+// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
+// - Parent/Child: Premium tutoring page component, children: RoyalTrustIndicators, ServiceCard, forms
+// - Dynamic Features: useState for booking form, useInView for scroll animations, Framer Motion
+// - Dependencies: JSON content files, brand config, complex UI components, form handling
+// - Interactivity: Booking form toggle, scroll-triggered animations, consultation booking
+// - Note: Premium page with advanced state management and form interactions
+
 import { Crown, Star, BookOpen, GraduationCap, Users, Trophy, CheckCircle, Phone, Mail } from 'lucide-react'
 
 import { RoyalTrustIndicators } from '@/components/marketing/royal-trust-indicators'

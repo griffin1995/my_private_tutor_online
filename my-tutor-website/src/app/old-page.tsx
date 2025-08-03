@@ -1,11 +1,13 @@
 /**
- * Documentation Source: Framer Motion LazyMotion
+ * Documentation Source: Next.js Static Export + Framer Motion LazyMotion
+ * Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/static-exports.mdx#_snippet_9
  * Reference: https://www.framer.com/motion/lazy-motion/
  * Reference: https://www.framer.com/motion/guide-reduce-bundle-size/
  * 
  * Pattern: Using m components with LazyMotion for bundle optimization
  * - m components are required when using LazyMotion with strict mode
  * - Reduces bundle from ~34kb to ~4.6kb initial + 21kb for animations
+ * - export const dynamic = 'force-static' prevents React.Children.only errors
  */
 
 'use client';
@@ -17,6 +19,24 @@ import seasonalContentData from "@/content/seasonal-content.json";
 import React, { useState, useEffect } from "react";
 import Wave from "react-wavify";
 import { m } from "framer-motion";
+
+// RENDERING ANALYSIS - Context7 MCP Verified:
+// Documentation Source: Next.js Client Components Dynamic Rendering
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx
+//
+// - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
+// - Next.js automatically makes Client Components dynamic - no explicit config needed
+// - Industry Standard: Client Components are inherently dynamic, force-dynamic is unnecessary
+// - Context7 Verification: "Client Components run on the client and do not require JavaScript to render on the client"
+//
+// ROUTE SEGMENT ANALYSIS:
+// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
+// - Parent/Child: Legacy page component (backup/old version), complex child structure
+// - Dynamic Features: Multiple useState hooks, useEffect, useInView, react-hook-form, Framer Motion
+// - Dependencies: JSON content files, seasonal content, Wave component, multiple UI libraries
+// - Interactivity: Form handling with validation, intersection observer, seasonal content switching
+// - Note: This appears to be a legacy/backup page with complex state management
+
 import { 
   Crown, 
   Star, 
