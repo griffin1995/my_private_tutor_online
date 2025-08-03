@@ -11,7 +11,7 @@
  * Bundle Impact: Reduces from ~34kb to ~4.6kb initial + 21kb for domAnimation
  * 
  * Implementation Notes:
- * - strict mode ensures only m components are used (not motion)
+ * - Removed strict mode to prevent React.Children.only errors in complex layouts
  * - domAnimation includes all DOM animation features
  * - For even smaller bundles, could use domMax (complete) or custom feature sets
  * - WCAG 2.1 AA compliance handled via useReducedMotion hook
@@ -47,7 +47,7 @@ export function LazyMotionProvider({ children }: LazyMotionProviderProps) {
    * - Maintains full functionality without motion
    */
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion features={domAnimation}>
       {children}
     </LazyMotion>
   )
