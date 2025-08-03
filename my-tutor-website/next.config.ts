@@ -22,9 +22,11 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
   
-  // Image optimization disabled for static export
+  // Image optimization enabled for dynamic deployment on Vercel
   images: {
-    unoptimized: true,
+    deviceSizes: [320, 420, 768, 1024, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/webp', 'image/avif'],
   },
 
   // Compression and optimization
@@ -52,7 +54,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
 
-  // Headers disabled for static export - configured via Cloudflare Pages
+  // Security headers configuration for Vercel deployment
 };
 
 export default withBundleAnalyzer(nextConfig);
