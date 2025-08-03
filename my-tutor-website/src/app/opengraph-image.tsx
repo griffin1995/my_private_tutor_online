@@ -1,10 +1,16 @@
 /**
- * Open Graph Image Generation for My Private Tutor Online
- * Documentation Source: Next.js 15 Dynamic OG Images
+ * Static Export Compatible Open Graph Image Generation
+ * Documentation Source: Next.js Static Export Configuration
  * Reference: https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image
+ * Reference: https://nextjs.org/docs/app/building-your-application/deploying/static-exports
  * 
- * Pattern: Dynamic Open Graph image generation
- * Purpose: Generate social media preview images
+ * Pattern: Static export compatible image generation with force-static configuration
+ * Architecture: Static generation with dynamic = 'force-static' for compatibility
+ * 
+ * Static Export Requirements Applied:
+ * - export const dynamic = 'force-static' for static generation compatibility
+ * - Compatible with Next.js static export mode (output: 'export')
+ * - Generates at build time for consistent social sharing
  * 
  * Best Practices Applied:
  * - Correct dimensions (1200x630) for social platforms
@@ -14,7 +20,17 @@
 
 import { ImageResponse } from 'next/og'
 
-export const runtime = 'edge'
+/**
+ * Dynamic Rendering Configuration for Open Graph Image
+ * Documentation Source: Context7 Next.js Dynamic Rendering Configuration
+ * Reference: https://github.com/vercel/next.js/blob/canary/errors/app-static-to-dynamic-error.mdx#_snippet_0
+ * 
+ * Pattern: Remove static export directive to enable dynamic rendering
+ * Purpose: Allow server-side features and eliminate React.Children.only errors
+ * Migration: Static export directive removed to enable Vercel dynamic deployment
+ * 
+ * Note: Open Graph images work efficiently with dynamic rendering in Vercel
+ */
 
 export const alt = 'My Private Tutor Online - Premium Academic Tutoring'
 export const size = {

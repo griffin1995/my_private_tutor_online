@@ -150,6 +150,14 @@ export const metadata: Metadata = {
   category: "Education",
 };
 
+// Documentation Source: Context7 MCP - Next.js Dynamic Rendering Configuration
+// Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/03-api-reference/04-functions/use-search-params.mdx#_snippet_5
+// Pattern: Force dynamic rendering globally to prevent React.Children.only errors with Framer Motion
+// Purpose: Enable server-side features and eliminate React.Children.only errors across all pages
+// Context: Required for Framer Motion components which are incompatible with static prerendering
+// Result: All routes marked as ƒ (Dynamic) server-rendered on demand
+export const dynamic = 'force-dynamic'
+
 export default function RootLayout({
   children,
 }: Readonly<{
