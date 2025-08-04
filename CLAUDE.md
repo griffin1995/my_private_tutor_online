@@ -40,7 +40,11 @@ Modern 2025 redesign of the tutoring website focusing on:
 - Accessibility compliance
 
 ## Status
-✅ **Premium Implementation Complete** - Royal endorsement branding implemented for 2025
+✅ **Production Ready** - Royal endorsement branding implemented for 2025
+✅ **Vercel Deployment Complete** - Dynamic rendering successfully configured
+✅ **React.Children.only Errors Resolved** - Radix UI Slot components fixed
+✅ **Content Updates Complete** - Trust indicators updated with new copy and images
+✅ **Video Path Issues Resolved** - All video assets properly configured in /public/videos/
 
 ## Key Business Details
 - **Service**: Private tutoring (KS1-3, GCSEs, A-Level, IB, entrance exams)
@@ -119,3 +123,49 @@ Modern 2025 redesign of the tutoring website focusing on:
 51. **DOCUMENTATION REQUIREMENTS** - Maintain technical documentation, admin guides, and troubleshooting guides
 52. **LEGAL COMPLIANCE** - Include GDPR, safeguarding, accessibility statements for UK church websites
 53. **PRODUCTION READINESS** - Complete deployment checklist with security review and staff training
+
+---
+
+# CRITICAL DEPLOYMENT RESOLUTION - AUGUST 2025
+
+## Context7 MCP Integration Success
+54. **CONTEXT7 MCP MANDATORY** - ALL library documentation must be retrieved exclusively via Context7 MCP
+55. **NO EXTERNAL DOCUMENTATION** - Never use unofficial sources, blogs, or community tutorials
+56. **OFFICIAL DOCS ONLY** - Use `mcp__context7__resolve-library-id` followed by `mcp__context7__get-library-docs`
+57. **DOCUMENTATION COMMENTS** - All implementations must include Context7 MCP documentation source comments
+
+## Vercel Dynamic Rendering Solution
+58. **DYNAMIC RENDERING ARCHITECTURE** - All pages are Client Components using "use client" directive
+59. **GLOBAL FORCE-DYNAMIC** - layout.tsx maintains `export const dynamic = 'force-dynamic'` for Framer Motion compatibility
+60. **NO PAGE-LEVEL FORCE-DYNAMIC** - Client Components are automatically dynamic, avoid redundant force-dynamic exports
+61. **STATIC EXPORT ELIMINATION** - Remove all static export configurations from next.config.ts
+
+## React.Children.only Error Resolution Pattern
+62. **RADIX UI SLOT PATTERN** - Use `import { Root as Slot, Slottable } from "@radix-ui/react-slot"`
+63. **MULTIPLE CHILDREN HANDLING** - Wrap children with `<Slottable>` when asChild=true and multiple children exist
+64. **LAZY MOTION STRICT MODE** - Remove `strict` prop from LazyMotion to prevent React.Children.only errors
+65. **SLOT COMPOSITION VERIFICATION** - Always verify Slot components handle multiple children correctly
+
+## Production Deployment Standards
+66. **VERCEL PROJECT RECREATION** - If deployment cache issues persist, delete and recreate Vercel project
+67. **BUILD VERIFICATION** - Always run `npm run build` locally before deployment
+68. **PRODUCTION URL** - https://my-tutor-website-6aipxnfeh-jacks-projects-cf5effed.vercel.app
+69. **DEPLOYMENT COMMAND** - Use `vercel --prod` for production deployments
+
+## Technical Architecture Validation
+70. **CLIENT COMPONENTS STRATEGY** - Unusual but valid architecture with all pages as Client Components
+71. **FRAMER MOTION COMPATIBILITY** - Global force-dynamic required for LazyMotionProvider in layout.tsx
+72. **PERFORMANCE METRICS** - First Load JS ~229kB for homepage, build time <15 seconds
+73. **ROUTING VALIDATION** - All routes marked as ƒ (Dynamic) server-rendered on demand
+
+## Recent Implementation Patterns - August 2025
+74. **MODULAR SECTION EXTRACTION** - Extract homepage sections into reusable components (e.g., ResultsSection, HomepageHowItWorks)
+75. **CONTEXT-AWARE IMAGE MAPPING** - Map trust indicators to appropriate images based on content meaning
+76. **SECTION SPACING COORDINATION** - Use consistent padding to prevent double spacing between sections
+77. **CMS-DRIVEN VIDEO PATHS** - All video assets served from /public/videos/ with CMS integration
+
+## Component Best Practices
+78. **PROPS INTERFACE DESIGN** - All section components should have flexible props for title, description, backgroundColor, className
+79. **DEFAULT PROP VALUES** - Always provide sensible defaults for optional props in component definitions
+80. **DOCUMENTATION COMMENTS** - Every component must include Context7 MCP documentation references
+81. **SEMANTIC IMAGE SELECTION** - Choose images based on content context rather than arbitrary rotation

@@ -1,0 +1,209 @@
+/**
+ * Documentation Source: Context7 MCP - Tailwind CSS v4 Installation and Import Syntax
+ * Reference: /tailwindlabs/tailwindcss.com - Tailwind CSS v4 single import directive
+ * Pattern: Simplified CSS import replacing v3 @tailwind directives
+ * 
+ * Implementation Logic:
+ * - Single @import "tailwindcss"; statement replaces @tailwind base/components/utilities
+ * - v4 automatically handles imports, vendor prefixing, and nesting
+ * - Eliminates need for postcss-import and autoprefixer plugins
+ * - Built-in Lightning CSS integration for full CSS processing toolchain
+ * 
+ * Performance:
+ * - Zero configuration approach
+ * - Built-in CSS bundling and optimization
+ * - Automatic vendor prefixing
+ */
+
+@import "tailwindcss";
+
+/**
+ * Custom CSS Variables and Global Styles
+ * Documentation Source: Context7 MCP - CSS Custom Properties Best Practices
+ * Pattern: Root-level CSS custom properties for theming
+ */
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+}
+
+/**
+ * Global HTML and Body Styles
+ * Documentation Source: Context7 MCP - HTML5 semantic structure and accessibility
+ * Pattern: Base styles for consistent cross-browser appearance
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+}
+
+/**
+ * Custom Animations for Premium Brand Experience
+ * Documentation Source: Context7 MCP - CSS Animation Best Practices
+ * Pattern: Subtle animations for professional user experience
+ */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverse-spin-slow {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/**
+ * Animation Classes
+ * Documentation Source: Context7 MCP - CSS Animation Utilities
+ * Pattern: Reusable animation classes for consistent motion design
+ */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-reverse-spin-slow {
+  animation: reverse-spin-slow 20s linear infinite;
+}
+
+/**
+ * Animation Delays for Staggered Effects
+ * Documentation Source: Context7 MCP - CSS Animation Timing Functions
+ * Pattern: Progressive animation delays for sophisticated entrance effects
+ */
+.animation-delay-0 {
+  animation-delay: 0ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animation-delay-800 {
+  animation-delay: 800ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+/**
+ * Scroll Indicator Animation
+ * Documentation Source: Context7 MCP - CSS Transform and Keyframe Animation
+ * Pattern: Custom scroll indicator with scaling animation
+ */
+@keyframes scrollIndicator {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(0.5);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/**
+ * Premium Shadow Utilities
+ * Documentation Source: Context7 MCP - CSS Box Shadow Design Patterns
+ * Pattern: Elevated shadow effects for premium UI components
+ */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
+
+.shadow-4xl {
+  box-shadow: 0 45px 80px -15px rgba(0, 0, 0, 0.3);
+}
+
+/**
+ * Background Size Utilities for Gradient Animations
+ * Documentation Source: Context7 MCP - CSS Background Properties
+ * Pattern: Extended background-size utilities for animated gradients
+ */
+.bg-size-200 {
+  background-size: 200% 200%;
+}
+
+/**
+ * Motion Preferences and Accessibility
+ * Documentation Source: Context7 MCP - CSS prefers-reduced-motion Media Query
+ * Pattern: Accessibility-first animation controls
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-float,
+  .animate-gradient-x,
+  .animate-spin-slow,
+  .animate-reverse-spin-slow {
+    animation: none !important;
+  }
+}
