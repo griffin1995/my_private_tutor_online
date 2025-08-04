@@ -17,9 +17,17 @@ const nextConfig: NextConfig = {
   // - Removed: trailingSlash: true (not required for dynamic mode)
   // - Configuration verified against Context7 MCP Next.js documentation
   
-  // Performance optimizations
+  // Performance optimizations - Enhanced for bundle size reduction
   experimental: {
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    optimizePackageImports: [
+      'lucide-react', 
+      '@radix-ui/react-icons',
+      'framer-motion',
+      'react-hook-form',
+      'date-fns',
+      'lodash-es'
+    ],
+    // Other optimizations can be added here as needed
   },
   
   // Image optimization enabled for dynamic deployment on Vercel
@@ -34,7 +42,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
 
-  // Bundle optimization
+  // Bundle optimization - Enhanced for tree shaking
   modularizeImports: {
     'lucide-react': {
       transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
@@ -42,6 +50,44 @@ const nextConfig: NextConfig = {
     '@radix-ui/react-icons': {
       transform: '@radix-ui/react-icons/dist/{{member}}.js',
     },
+    'framer-motion': {
+      transform: 'framer-motion/dist/es/{{member}}',
+    },
+    'date-fns': {
+      transform: 'date-fns/{{member}}',
+    },
+    'lodash-es': {
+      transform: 'lodash-es/{{member}}',
+    },
+  },
+
+  // Webpack optimizations for bundle size reduction
+  webpack: (config, { isServer }) => {
+    // Optimize for production builds
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+              maxSize: 200000, // 200KB max chunk size
+            },
+            common: {
+              name: 'common',
+              minChunks: 2,
+              chunks: 'all',
+              maxSize: 150000, // 150KB max chunk size
+            },
+          },
+        },
+      };
+    }
+    
+    return config;
   },
 
   // TypeScript configuration - Strict mode enabled for production safety

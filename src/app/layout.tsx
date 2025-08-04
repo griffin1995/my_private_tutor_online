@@ -22,7 +22,9 @@ import type { Metadata } from "next";
 import { Source_Serif_4, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { LazyMotionProvider } from "@/components/providers/LazyMotionProvider";
-// Performance monitoring disabled for now
+
+// Import performance components directly for server components
+import ResourcePreloader from '@/components/performance/resource-preloader';
 
 /**
  * Vercel Analytics and Speed Insights Integration
@@ -192,10 +194,11 @@ export default function RootLayout({
       <body
         className={`${sourceSerif4.variable} ${playfairDisplay.variable} font-serif antialiased min-h-screen bg-transparent text-foreground`}
       >
+        <ResourcePreloader page="homepage" preloadCriticalImages={true} />
         <LazyMotionProvider>
           {children}
         </LazyMotionProvider>
-        {/* <PerformanceMonitor /> */}
+        {/* Performance Monitor loaded client-side only */}
         
         {/* 
          * Vercel Analytics Components
