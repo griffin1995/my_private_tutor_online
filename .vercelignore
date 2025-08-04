@@ -1,0 +1,36 @@
+# Large video files - served via CDN
+public/videos/*.mp4
+
+# Development files
+node_modules
+.next
+.git
+*.log
+.env*
+.DS_Store
+
+# Build artifacts
+dist
+build
+
+# Documentation
+docs/
+*.md
+README*
+
+# Test files
+tests/
+__tests__/
+*.test.*
+*.spec.*
+
+# Development tools
+.vscode/
+.idea/
+
+# Python virtual environment
+venv/
+__pycache__/
+
+# Temporary files
+temp-videos/
