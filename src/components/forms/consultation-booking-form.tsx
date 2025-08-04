@@ -219,7 +219,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Label className="text-sm font-medium text-primary-800">Academic Level *</Label>
-              <Select onValueChange={(value) => setValue('academicLevel', value)}>
+              <Select onValueChange={(value) => setValue('academicLevel', value as ConsultationFormData['academicLevel'])}>
                 <SelectTrigger className="mt-1" aria-label="Select academic level">
                   <SelectValue placeholder="Select level" />
                 </SelectTrigger>
@@ -243,7 +243,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
                 <Clock className="h-4 w-4" />
                 Timescale
               </Label>
-              <Select onValueChange={(value) => setValue('urgency', value as any)}>
+              <Select onValueChange={(value) => setValue('urgency', value as ConsultationFormData['urgency'])}>
                 <SelectTrigger className="mt-1" aria-label="Select timescale for tutoring support">
                   <SelectValue placeholder="When do you need support?" />
                 </SelectTrigger>
@@ -291,7 +291,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Label className="text-sm font-medium text-primary-800">Preferred Contact Method</Label>
-              <Select onValueChange={(value) => setValue('preferredContact', value as any)}>
+              <Select onValueChange={(value) => setValue('preferredContact', value as ConsultationFormData['preferredContact'])}>
                 <SelectTrigger className="mt-1" aria-label="Select preferred contact method">
                   <SelectValue placeholder="How should we contact you?" />
                 </SelectTrigger>
@@ -305,7 +305,7 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
 
             <div>
               <Label className="text-sm font-medium text-primary-800">Service Level</Label>
-              <Select onValueChange={(value) => setValue('budget', value as any)}>
+              <Select onValueChange={(value) => setValue('budget', value as ConsultationFormData['budget'])}>
                 <SelectTrigger className="mt-1" aria-label="Select service level and budget">
                   <SelectValue placeholder="Select service level" />
                 </SelectTrigger>

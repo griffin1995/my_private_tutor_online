@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 interface InteractiveHoverButtonProps {
   text: string
   className?: string
+  onClick?: () => void
 }
 
 const InteractiveHoverButton = React.forwardRef<

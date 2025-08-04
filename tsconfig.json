@@ -1,28 +1,52 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    // Context7 MCP Documentation Source: /microsoft/typescript
+    // Reference: TypeScript 5.8+ strict mode configuration for production readiness
+    // Purpose: Enable comprehensive type safety for premium tutoring service
+    
+    // Target and Module Configuration
+    "target": "ES2022", // Updated from ES2017 for better performance and modern features
     "lib": [
       "dom",
-      "dom.iterable",
-      "esnext"
+      "dom.iterable", 
+      "ES2022" // Updated to match target for consistency
     ],
+    "module": "esnext",
+    "moduleResolution": "bundler", // Updated for Next.js App Router compatibility
+    
+    // Strict Type Checking - CRITICAL FOR PRODUCTION
+    "strict": true, // ENABLED: Comprehensive type safety for royal clients
+    "noImplicitAny": true, // Explicit - included in strict but listed for clarity
+    "strictNullChecks": true, // Explicit - included in strict but listed for clarity
+    "strictFunctionTypes": true, // Explicit - enables faster variance checks
+    "noImplicitReturns": true, // Ensure all code paths return a value
+    "noImplicitThis": true, // Prevent implicit 'this' type issues
+    "noUncheckedIndexedAccess": true, // Prevent undefined array/object access
+    
+    // Code Quality and Safety
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
     "noEmit": true,
     "incremental": true,
-    "module": "esnext",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "verbatimModuleSyntax": false, // Disabled for Next.js compatibility
+    
+    // JSX Configuration
     "jsx": "preserve",
+    "jsxImportSource": "react",
+    
+    // Path Resolution  
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
       ]
     },
+    
+    // Next.js Plugin
     "plugins": [
       {
         "name": "next"
@@ -31,12 +55,13 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",
+    "**/*.tsx", 
     "next-env.d.ts",
-    "out/types/**/*.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "out/**/*", // Exclude old static export artifacts
+    ".next/cache/**/*"
   ]
 }

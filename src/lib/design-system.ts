@@ -197,20 +197,22 @@ export const zIndex = {
 } as const
 
 // Design Token Utilities
-export const getColor = (colorPath: string) => {
+export const getColor = (colorPath: string): string => {
   const keys = colorPath.split('.')
-  let current: any = colors
+  let current: Record<string, unknown> = colors as Record<string, unknown>
   
   for (const key of keys) {
-    if (current && current[key]) {
-      current = current[key]
+    if (current && typeof current[key] === 'object' && current[key] !== null) {
+      current = current[key] as Record<string, unknown>
+    } else if (current && typeof current[key] === 'string') {
+      return current[key] as string
     } else {
       // Color lookup fallback applied
       return colors.primary[900] // Fallback to primary
     }
   }
   
-  return current
+  return typeof current === 'string' ? current : colors.primary[900]
 }
 
 export const getSpacing = (size: keyof typeof spacing) => {
@@ -295,8 +297,10 @@ export const createVariants = <T extends Record<string, string>>(variants: T) =>
   }
 }
 
-// Export everything as default for easy import
-export default {
+// Context7 MCP Documentation Source: /microsoft/typescript
+// Reference: ESLint import/no-anonymous-default-export rule
+// Purpose: Export named object instead of anonymous object for better debugging
+const DesignSystem = {
   colors,
   typography,
   spacing,
@@ -312,3 +316,5 @@ export default {
   generateUtilityClasses,
   createVariants
 }
+
+export default DesignSystem

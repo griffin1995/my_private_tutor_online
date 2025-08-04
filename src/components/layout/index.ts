@@ -9,7 +9,7 @@ export type {
 } from './page-layout'
 
 export { PageHeader } from './page-header'
-export type { PageHeaderVariant } from './page-header'
+export type { PageHeaderProps } from './page-header'
 
 export { PageFooter } from './page-footer'
 export type { PageFooterVariant } from './page-footer'

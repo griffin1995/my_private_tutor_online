@@ -18,13 +18,13 @@ export function TypingAnimation({
   className,
   duration = 100,
   delay = 0,
-  as: Component = "div",
+  as: _Component = "div",
   startOnView = false,
   ...props
 }: TypingAnimationProps) {
   const [displayedText, setDisplayedText] = useState<string>("");
   const [started, setStarted] = useState(false);
-  const elementRef = useRef<HTMLElement | null>(null);
+  const elementRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!startOnView) {
@@ -36,7 +36,7 @@ export function TypingAnimation({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry && entry.isIntersecting) {
           setTimeout(() => {
             setStarted(true);
           }, delay);

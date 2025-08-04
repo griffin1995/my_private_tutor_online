@@ -173,7 +173,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
           } else {
             // Fallback to rotation for any new indicators
             const imageKeys = Object.keys(studentImages)
-            imageKey = imageKeys[index % imageKeys.length]
+            imageKey = imageKeys[index % imageKeys.length] || 'student-teacher-inside-comfortable'
           }
           
           const studentImage = studentImages[imageKey]

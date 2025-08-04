@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
 // Screen reader only text component for accessibility
@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 interface ScreenReaderOnlyProps {
   children: ReactNode
   className?: string
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 export function ScreenReaderOnly({ 

@@ -152,6 +152,7 @@ export function HeroVideoDialog({
       }
     } else {
       document.body.style.overflow = 'unset'
+      return undefined
     }
   }, [isOpen])
 

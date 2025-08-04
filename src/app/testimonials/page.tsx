@@ -75,7 +75,7 @@ export default function TestimonialsPage() {
   // CMS DATA SOURCE: Using getTestimonialsSchools for school shields
   const schools = getTestimonialsSchools()
   // CMS DATA SOURCE: Using getBackgroundVideo for testimonials video
-  const testimonialsVideo = getBackgroundVideo('testimonialsVideo')
+  const testimonialsVideo = getBackgroundVideo('brandStatement')
   // Hero background image
   const heroBackgroundImage = HERO_IMAGES.childWithLaptop
 
@@ -103,8 +103,7 @@ export default function TestimonialsPage() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.6
       }
     }
   }
@@ -201,7 +200,7 @@ export default function TestimonialsPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-8">
-              {testimonialsContent.video.title}
+              What Families Are Saying
             </h2>
             <p className="text-lg text-primary-600 max-w-2xl mx-auto">
               Hear directly from families about their transformative experiences with My Private Tutor Online
@@ -219,8 +218,8 @@ export default function TestimonialsPage() {
               <HeroVideoDialog
                 animationStyle="from-center"
                 videoSrc={testimonialsVideo?.src || "/testimonials-july-2025-mpto.mp4"}
-                thumbnailSrc={testimonialsVideo?.thumbnail || "/images/video-placeholders/testimonials-video-placeholder.png"}
-                thumbnailAlt={testimonialsContent.video.description}
+                thumbnailSrc={testimonialsVideo?.poster || "/images/video-placeholders/testimonials-video-placeholder.png"}
+                thumbnailAlt="Families sharing their experiences with My Private Tutor Online"
                 className="w-full aspect-video rounded-3xl shadow-2xl overflow-hidden border-4 border-white"
               />
               
@@ -326,7 +325,7 @@ export default function TestimonialsPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4 uppercase tracking-wide">
-              {testimonialsContent.schoolsTitle}
+              Prestigious Schools & Universities
             </h2>
             <p className="text-primary-600 max-w-2xl mx-auto">
               Our students have secured places at the most prestigious educational institutions worldwide

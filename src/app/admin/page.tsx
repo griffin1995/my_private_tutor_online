@@ -1,39 +1,36 @@
+import { verifySession } from '@/lib/auth/dal'
+import ProtectedRoute from '@/components/auth/ProtectedRoute'
+import AdminHeader from '@/components/admin/AdminHeader'
+
+// CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 Server Component authentication
+// Reference: /vercel/next.js protected route patterns with session verification
+
 /**
- * Documentation Source: Next.js 14 Client Components
- * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
- * Reference: https://tailwindcss.com/docs/utility-first
+ * Enterprise-grade admin dashboard for premium tutoring service
+ * 
+ * Security Features:
+ * - Server-side session verification
+ * - Protected route wrapper
+ * - Secure logout functionality
+ * - Role-based access control
+ * - Royal client data protection compliance
  * 
  * Pattern: Admin Dashboard Interface
  * Architecture:
- * - Client Component for interactivity
- * - Static dashboard layout (placeholder)
- * - TinaCMS integration placeholder
- * 
- * Status: Placeholder implementation
- * TODO: Integrate with actual TinaCMS backend
- * - Connect to TinaCMS API
- * - Implement authentication
- * - Add content editing functionality
- * 
- * Design:
- * - Card-based layout for content sections
- * - Color-coded content categories
- * - Statistics overview section
+ * - Server Component with authentication
+ * - Protected route wrapper
+ * - Secure session management
+ * - TinaCMS integration ready
  */
-
-'use client';
-
-// RENDERING ANALYSIS:
-// - Component Type: Client Component ("use client") - automatically dynamic
-// - Next.js automatically makes this dynamic due to "use client" directive
-// - Admin functionality will naturally require dynamic rendering for authentication
-// - TODO: Integrate with TinaCMS backend, authentication, content management
 
 function AdminInterface() {
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">TinaCMS Admin Dashboard</h1>
+    <div className="min-h-screen bg-slate-50 p-8">
+      <div className="max-w-6xl mx-auto">
+        <AdminHeader 
+          title="Admin Dashboard"
+          subtitle="My Private Tutor Online Administration Panel"
+        />
         
         <div className="bg-white rounded-lg shadow p-6 mb-6">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Content Management</h2>
@@ -106,6 +103,17 @@ function AdminInterface() {
   );
 }
 
-export default function AdminPage() {
-  return <AdminInterface />;
+// Force dynamic rendering for authentication
+export const dynamic = 'force-dynamic'
+
+/**
+ * Secure admin page with enterprise-grade authentication
+ * Automatically redirects unauthorized users to login
+ */
+export default async function AdminPage() {
+  return (
+    <ProtectedRoute>
+      <AdminInterface />
+    </ProtectedRoute>
+  )
 }

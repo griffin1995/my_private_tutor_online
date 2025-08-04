@@ -47,6 +47,19 @@ export function PerformanceMonitor({
     'bottom-right': 'bottom-4 right-4'
   }
 
+  // Utility functions for formatting metric values
+  const formatValue = (name: string, value: number): string => {
+    if (name === 'CLS') {
+      return value.toFixed(3)
+    }
+    return Math.round(value).toString()
+  }
+
+  const getUnit = (name: string): string => {
+    if (name === 'CLS') return ''
+    return 'ms'
+  }
+
   const getRatingColor = (rating: 'good' | 'needs-improvement' | 'poor') => {
     switch (rating) {
       case 'good': return 'text-green-600 bg-green-50'
@@ -54,18 +67,6 @@ export function PerformanceMonitor({
       case 'poor': return 'text-red-600 bg-red-50'
       default: return 'text-gray-600 bg-gray-50'
     }
-  }
-
-  const formatValue = (name: string, value: number) => {
-    if (name === 'CLS') {
-      return value.toFixed(3)
-    }
-    return Math.round(value).toString()
-  }
-
-  const getUnit = (name: string) => {
-    if (name === 'CLS') return ''
-    return 'ms'
   }
 
   return (
@@ -174,9 +175,11 @@ export function PerformanceWarning({
               Performance Warning
             </div>
             <div className="text-red-600 text-sm">
-              {poorMetrics.map(metric => 
-                `${metric.name}: ${formatValue(metric.name, metric.value)}${getUnit(metric.name)} (${metric.rating})`
-              ).join(', ')}
+              {poorMetrics.map(metric => {
+                const value = metric.name === 'CLS' ? metric.value.toFixed(3) : Math.round(metric.value).toString()
+                const unit = metric.name === 'CLS' ? '' : 'ms'
+                return `${metric.name}: ${value}${unit} (${metric.rating})`
+              }).join(', ')}
             </div>
           </div>
         </div>

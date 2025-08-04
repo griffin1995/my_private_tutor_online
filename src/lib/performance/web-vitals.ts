@@ -47,14 +47,20 @@ function rateMetric(name: MetricName, value: number): 'good' | 'needs-improvemen
 }
 
 // Convert Web Vitals metric to our format
+// Extended Metric interface to include navigation type
+interface ExtendedMetric extends Omit<Metric, 'navigationType'> {
+  navigationType?: string
+}
+
 function formatMetric(metric: Metric): WebVitalsData {
+  const extendedMetric = metric as ExtendedMetric
   return {
     name: metric.name as MetricName,
     value: metric.value,
     rating: rateMetric(metric.name as MetricName, metric.value),
     delta: metric.delta,
     id: metric.id,
-    navigationType: (metric as any).navigationType || 'navigate',
+    navigationType: extendedMetric.navigationType || 'navigate',
     timestamp: Date.now(),
     url: window.location.href,
     userAgent: navigator.userAgent
@@ -64,24 +70,29 @@ function formatMetric(metric: Metric): WebVitalsData {
 // Analytics integration interface
 export interface AnalyticsProvider {
   trackWebVital: (data: WebVitalsData) => void
-  trackPerformanceMetric: (name: string, value: number, attributes?: Record<string, any>) => void
+  trackPerformanceMetric: (name: string, value: number, attributes?: Record<string, string | number | boolean>) => void
 }
 
 // Console logger for development
 const consoleAnalytics: AnalyticsProvider = {
-  trackWebVital: (data) => {
+  trackWebVital: (_data) => {
     // Web vitals data captured for monitoring
   },
-  trackPerformanceMetric: (name, value, attributes) => {
+  trackPerformanceMetric: (_name, _value, _attributes) => {
     // Performance metric captured for monitoring
   }
+}
+
+// Vercel Analytics window interface
+interface VercelAnalytics {
+  va: (action: string, event: string, data: Record<string, unknown>) => void
 }
 
 // Vercel Analytics integration
 const vercelAnalytics: AnalyticsProvider = {
   trackWebVital: (data) => {
-    if (typeof window !== 'undefined' && (window as any).va) {
-      (window as any).va('track', 'Web Vital', {
+    if (typeof window !== 'undefined' && (window as VercelAnalytics & Window).va) {
+      (window as VercelAnalytics & Window).va('track', 'Web Vital', {
         name: data.name,
         value: data.value,
         rating: data.rating
@@ -89,8 +100,8 @@ const vercelAnalytics: AnalyticsProvider = {
     }
   },
   trackPerformanceMetric: (name, value, attributes) => {
-    if (typeof window !== 'undefined' && (window as any).va) {
-      (window as any).va('track', 'Performance', {
+    if (typeof window !== 'undefined' && (window as VercelAnalytics & Window).va) {
+      (window as VercelAnalytics & Window).va('track', 'Performance', {
         metric: name,
         value,
         ...attributes
@@ -99,11 +110,24 @@ const vercelAnalytics: AnalyticsProvider = {
   }
 }
 
+// Sentry window interface
+interface SentryWindow {
+  Sentry: {
+    addBreadcrumb: (breadcrumb: {
+      category: string
+      message: string
+      level?: 'info' | 'warning' | 'error'
+      data?: Record<string, unknown>
+    }) => void
+    captureMessage: (message: string, level: 'info' | 'warning' | 'error') => void
+  }
+}
+
 // Sentry performance integration
 const sentryAnalytics: AnalyticsProvider = {
   trackWebVital: (data) => {
-    if (typeof window !== 'undefined' && (window as any).Sentry) {
-      (window as any).Sentry.addBreadcrumb({
+    if (typeof window !== 'undefined' && (window as unknown as SentryWindow & Window).Sentry) {
+      (window as unknown as SentryWindow & Window).Sentry.addBreadcrumb({
         category: 'web-vitals',
         message: `${data.name}: ${data.value}`,
         level: data.rating === 'poor' ? 'error' : data.rating === 'needs-improvement' ? 'warning' : 'info',
@@ -116,13 +140,13 @@ const sentryAnalytics: AnalyticsProvider = {
       })
       
       if (data.rating === 'poor') {
-        (window as any).Sentry.captureMessage(`Poor ${data.name} performance: ${data.value}`, 'warning')
+        (window as unknown as SentryWindow & Window).Sentry.captureMessage(`Poor ${data.name} performance: ${data.value}`, 'warning')
       }
     }
   },
   trackPerformanceMetric: (name, value, attributes) => {
-    if (typeof window !== 'undefined' && (window as any).Sentry) {
-      (window as any).Sentry.addBreadcrumb({
+    if (typeof window !== 'undefined' && (window as unknown as SentryWindow & Window).Sentry) {
+      (window as unknown as SentryWindow & Window).Sentry.addBreadcrumb({
         category: 'performance',
         message: `${name}: ${value}`,
         data: { name, value, ...attributes }
@@ -247,10 +271,16 @@ class WebVitalsTracker {
   }
 
   private trackMemoryUsage() {
-    if (typeof window === 'undefined' || !(performance as any).memory) return
+    if (typeof window === 'undefined' || !('memory' in performance)) return
 
     const trackMemory = () => {
-      const memory = (performance as any).memory
+      const memory = (performance as Performance & {
+        memory: {
+          usedJSHeapSize: number
+          totalJSHeapSize: number
+          jsHeapSizeLimit: number
+        }
+      }).memory
       
       this.providers.forEach(provider => {
         provider.trackPerformanceMetric('Memory Usage', memory.usedJSHeapSize, {

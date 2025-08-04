@@ -3,7 +3,7 @@ export { webVitalsTracker, PERFORMANCE_THRESHOLDS } from './web-vitals'
 export type { WebVitalsData, MetricName, AnalyticsProvider } from './web-vitals'
 
 // Re-export web-vitals library for direct usage
-export { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals'
+export { onCLS, onFCP, onLCP, onTTFB } from 'web-vitals'
 export type { Metric } from 'web-vitals'
 
 // Performance utilities

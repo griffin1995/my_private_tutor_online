@@ -125,11 +125,7 @@ export default function AboutPage() {
     hidden: { opacity: 0, y: 30 }, // Start below and transparent
     visible: {
       opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut" // Smooth deceleration for natural motion
-      }
+      y: 0
     }
   }
 
@@ -187,7 +183,7 @@ export default function AboutPage() {
             className="max-w-6xl mx-auto text-center"
             initial={{ opacity: 0, y: 40 }} // Start invisible and below
             animate={{ opacity: 1, y: 0 }}   // Animate to visible position
-            transition={{ duration: 1, ease: "easeOut" }} // Smooth entrance
+            transition={{ duration: 1 }} // Smooth entrance
           >
             <h1 className="text-5xl lg:text-7xl font-serif font-bold text-white leading-tight mb-8">
               {aboutContent.hero.title}
@@ -294,7 +290,7 @@ export default function AboutPage() {
               variants={containerVariants}
             >
               {aboutContent.ourEthos.sections.map((section, index) => {
-                const Icon = ethosIcons[index]
+                const Icon = ethosIcons[index] || Globe
                 return (
                   <m.div 
                     key={index} 

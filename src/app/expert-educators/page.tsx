@@ -106,22 +106,46 @@ export default function ExpertEducatorsPage() {
 
   return (
     <PageLayout
-      title="Expert Educators - My Private Tutor Online"
-      description="Meet our exceptional team of Oxford and Cambridge graduate tutors. Less than 10% acceptance rate ensures educational excellence."
-      keywords="expert tutors, Oxford Cambridge graduates, premium tutoring, educational excellence"
       background="white"
     >
       <PageHero
-        title={expertEducatorsContent.hero.title}
-        subtitle={expertEducatorsContent.hero.subtitle}
-        description={expertEducatorsContent.hero.description}
+        background="image"
         backgroundImage={expertEducatorsContent.hero.backgroundImage}
-        height="large"
-        overlay="medium"
-      />
+        size="lg"
+        overlay={true}
+      >
+        <div className="space-y-6">
+          <m.h1 
+            className="text-4xl lg:text-5xl font-serif font-bold text-white"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            {expertEducatorsContent.hero.title}
+          </m.h1>
+          
+          <m.div 
+            className="text-xl text-accent-300 font-semibold"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {expertEducatorsContent.hero.subtitle}
+          </m.div>
+          
+          <m.p 
+            className="text-lg text-white/90 max-w-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {expertEducatorsContent.hero.description}
+          </m.p>
+        </div>
+      </PageHero>
 
       {/* Founder Story Section */}
-      <Section className="py-16 lg:py-24" background="slate-50">
+      <Section className="py-16 lg:py-24" background="grey">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <m.div
@@ -220,7 +244,7 @@ export default function ExpertEducatorsPage() {
       </Section>
 
       {/* Comprehensive Tier Comparison Table */}
-      <Section className="py-16 lg:py-24" background="slate-50">
+      <Section className="py-16 lg:py-24" background="grey">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <m.div
             initial={{ opacity: 0, y: 30 }}
@@ -464,7 +488,7 @@ export default function ExpertEducatorsPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-16 lg:py-24" background="slate-900">
+      <Section className="py-16 lg:py-24" background="primary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <m.div
             initial={{ opacity: 0, y: 30 }}

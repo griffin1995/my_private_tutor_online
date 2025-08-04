@@ -800,11 +800,13 @@ export const getCriticalImages = (): ImageAsset[] => {
     ...Object.values(HERO_IMAGES)
   ]
   
-  return allImages.filter(image => image.priority === true)
+  return allImages.filter(image => 'priority' in image && image.priority === true)
 }
 
-// Export default images object for direct access - Updated with 2025 assets
-export default {
+// Context7 MCP Documentation Source: /microsoft/typescript
+// Reference: ESLint import/no-anonymous-default-export rule
+// Purpose: Export named object instead of anonymous object for better debugging
+const CMSImages = {
   logos: LOGOS,
   institutions: INSTITUTION_LOGOS,
   hero: HERO_IMAGES,
@@ -842,3 +844,5 @@ export default {
   validateImageAccessibility,
   getCriticalImages
 }
+
+export default CMSImages

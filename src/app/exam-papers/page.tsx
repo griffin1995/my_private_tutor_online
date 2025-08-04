@@ -77,7 +77,7 @@ export default function ExamPapersPage() {
       
       <PageHero 
         background="gradient" 
-        size="medium"
+        size="md"
         className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700"
       >
         <div className="text-center space-y-6">

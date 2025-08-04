@@ -17,12 +17,12 @@
 
 "use client"
 
-import { Crown, Award, Trophy, BookOpen, Heart, Globe, Star, Calendar, Users, Target, ChevronRight, Play } from 'lucide-react'
+import { Crown, Award, Trophy, BookOpen, Heart, Globe, Star, ChevronRight } from 'lucide-react'
 import { m } from 'framer-motion'
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
 import { PageHeader } from '@/components/layout/page-header'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { HeroVideoDialog } from '@/components/magicui/hero-video-dialog'
@@ -102,7 +102,7 @@ export default function AboutUsPage() {
       
       <PageHero 
         background="gradient" 
-        size="medium"
+        size="md"
         className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700"
       >
         <div className="text-center space-y-6">

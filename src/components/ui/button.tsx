@@ -77,7 +77,7 @@ function Button({
   size,
   asChild = false,
   loading = false,
-  "aria-label": ariaLabel,
+  "aria-label": _ariaLabel,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {

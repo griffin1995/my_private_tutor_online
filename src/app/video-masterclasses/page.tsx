@@ -194,15 +194,15 @@ export default function VideoMasterclassesPage() {
                 </div>
               </div>
               <CardTitle className="text-xl font-serif text-primary-900">
-                {videoMasterclassesContent.masterclasses[0].title}
+                {videoMasterclassesContent.masterclasses[0]?.title || 'Video Masterclass'}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-primary-700 mb-4">
-                {videoMasterclassesContent.masterclasses[0].content}
+                {videoMasterclassesContent.masterclasses[0]?.content || 'Comprehensive video masterclass content'}
               </p>
               <p className="text-sm text-primary-600 mb-6">
-                {videoMasterclassesContent.masterclasses[0].description}
+                {videoMasterclassesContent.masterclasses[0]?.description || 'Expert guidance and practical insights'}
               </p>
               <Button className="w-full bg-accent-600 hover:bg-accent-700">
                 <Play className="w-4 h-4 mr-2" />
@@ -216,26 +216,26 @@ export default function VideoMasterclassesPage() {
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
                 <Badge variant="outline" className="border-primary-300 text-primary-700">
-                  {videoMasterclassesContent.masterclasses[1].price}
+                  {videoMasterclassesContent.masterclasses[1]?.price || '£300'}
                 </Badge>
                 <div className="flex items-center gap-2 text-sm text-primary-600">
                   <Clock className="w-4 h-4" />
-                  {videoMasterclassesContent.masterclasses[1].duration}
+                  {videoMasterclassesContent.masterclasses[1]?.duration || '2 hours'}
                 </div>
               </div>
               <CardTitle className="text-xl font-serif text-primary-900">
-                {videoMasterclassesContent.masterclasses[1].title}
+                {videoMasterclassesContent.masterclasses[1]?.title || 'Advanced Masterclass'}
               </CardTitle>
               <p className="text-sm text-primary-600 italic">
-                {videoMasterclassesContent.masterclasses[1].venue}
+                {videoMasterclassesContent.masterclasses[1]?.venue || 'Online'}
               </p>
             </CardHeader>
             <CardContent>
               <p className="text-primary-700 mb-4">
-                {videoMasterclassesContent.masterclasses[1].content}
+                {videoMasterclassesContent.masterclasses[1]?.content || 'Advanced masterclass content'}
               </p>
               <Button className="w-full">
-                Purchase Masterclass - {videoMasterclassesContent.masterclasses[1].price}
+                Purchase Masterclass - {videoMasterclassesContent.masterclasses[1]?.price || '£300'}
               </Button>
             </CardContent>
           </Card>
@@ -246,32 +246,32 @@ export default function VideoMasterclassesPage() {
           <CardHeader>
             <div className="flex items-center justify-between mb-2">
               <Badge className="bg-primary-900 text-white">
-                {videoMasterclassesContent.masterclasses[2].price}
+                {videoMasterclassesContent.masterclasses[2]?.price || '£500'}
               </Badge>
               <div className="flex items-center gap-2 text-sm text-primary-600">
                 <Clock className="w-4 h-4" />
-                {videoMasterclassesContent.masterclasses[2].duration}
+                {videoMasterclassesContent.masterclasses[2]?.duration || '3 hours'}
               </div>
             </div>
             <CardTitle className="text-xl font-serif text-primary-900">
-              {videoMasterclassesContent.masterclasses[2].title}
+              {videoMasterclassesContent.masterclasses[2]?.title || 'Premium Masterclass'}
             </CardTitle>
             <p className="text-sm text-primary-600 italic">
-              {videoMasterclassesContent.masterclasses[2].venue}
+              {videoMasterclassesContent.masterclasses[2]?.venue || 'Online'}
             </p>
           </CardHeader>
           <CardContent>
             <p className="text-primary-700 mb-4">
-              {videoMasterclassesContent.masterclasses[2].description}
+              {videoMasterclassesContent.masterclasses[2]?.description || 'Premium masterclass experience'}
             </p>
             <p className="text-primary-700 mb-4">
-              {videoMasterclassesContent.masterclasses[2].content}
+              {videoMasterclassesContent.masterclasses[2]?.content || 'Premium content and expert guidance'}
             </p>
             <p className="text-sm text-primary-600 italic mb-6">
-              {videoMasterclassesContent.masterclasses[2].note}
+              {videoMasterclassesContent.masterclasses[2]?.note || 'Exclusive premium content'}
             </p>
             <Button className="w-full">
-              Purchase Masterclass - {videoMasterclassesContent.masterclasses[2].price}
+              Purchase Masterclass - {videoMasterclassesContent.masterclasses[2]?.price || '£500'}
             </Button>
           </CardContent>
         </Card>
@@ -294,28 +294,28 @@ export default function VideoMasterclassesPage() {
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
                 <Badge variant="outline" className="border-accent-300 text-accent-700">
-                  {videoMasterclassesContent.masterclasses[3].price}
+                  {videoMasterclassesContent.masterclasses[3]?.price || '£19.99'}
                 </Badge>
                 <div className="flex items-center gap-2 text-sm text-primary-600">
                   <Clock className="w-4 h-4" />
-                  {videoMasterclassesContent.masterclasses[3].duration}
+                  {videoMasterclassesContent.masterclasses[3]?.duration || '60 minutes'}
                 </div>
               </div>
               <CardTitle className="text-xl font-serif text-primary-900">
-                {videoMasterclassesContent.masterclasses[3].title}
+                {videoMasterclassesContent.masterclasses[3]?.title || 'British Literary Classics'}
               </CardTitle>
               <p className="text-sm text-primary-600 font-medium">
-                {videoMasterclassesContent.masterclasses[3].subtitle}
+                {videoMasterclassesContent.masterclasses[3]?.subtitle || 'Cultural Masterclass'}
               </p>
             </CardHeader>
             <CardContent>
               <p className="text-primary-700 mb-4">
-                {videoMasterclassesContent.masterclasses[3].description}
+                {videoMasterclassesContent.masterclasses[3]?.description || 'Explore British cultural heritage and literary traditions'}
               </p>
               <div className="mb-4">
                 <h4 className="font-semibold text-primary-900 mb-2">Topics covered:</h4>
                 <ul className="space-y-1">
-                  {videoMasterclassesContent.masterclasses[3].topics.map((topic, index) => (
+                  {videoMasterclassesContent.masterclasses[3]?.topics?.map((topic, index) => (
                     <li key={index} className="flex items-center gap-2 text-sm text-primary-700">
                       <CheckCircle className="w-4 h-4 text-accent-600" />
                       {topic}
@@ -324,10 +324,10 @@ export default function VideoMasterclassesPage() {
                 </ul>
               </div>
               <p className="text-sm text-primary-600 mb-4">
-                <strong>{videoMasterclassesContent.masterclasses[3].targetAge}</strong>
+                <strong>{videoMasterclassesContent.masterclasses[3]?.targetAge || 'Ages 8-14'}</strong>
               </p>
               <Button className="w-full">
-                Purchase - {videoMasterclassesContent.masterclasses[3].price}
+                Purchase - {videoMasterclassesContent.masterclasses[3]?.price || '£19.99'}
               </Button>
             </CardContent>
           </Card>
@@ -337,31 +337,31 @@ export default function VideoMasterclassesPage() {
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
                 <Badge variant="outline" className="border-accent-300 text-accent-700">
-                  {videoMasterclassesContent.masterclasses[4].price}
+                  {videoMasterclassesContent.masterclasses[4]?.price || '£19.99'}
                 </Badge>
                 <div className="flex items-center gap-2 text-sm text-primary-600">
                   <Clock className="w-4 h-4" />
-                  {videoMasterclassesContent.masterclasses[4].duration}
+                  {videoMasterclassesContent.masterclasses[4]?.duration || '60 minutes'}
                 </div>
               </div>
               <CardTitle className="text-xl font-serif text-primary-900">
-                {videoMasterclassesContent.masterclasses[4].title}
+                {videoMasterclassesContent.masterclasses[4]?.title || 'British Etiquette Masterclass'}
               </CardTitle>
               <p className="text-sm text-primary-600 font-medium">
-                {videoMasterclassesContent.masterclasses[4].subtitle}
+                {videoMasterclassesContent.masterclasses[4]?.subtitle || 'Cultural Etiquette Guide'}
               </p>
             </CardHeader>
             <CardContent>
               <p className="text-primary-700 mb-4">
-                {videoMasterclassesContent.masterclasses[4].description}
+                {videoMasterclassesContent.masterclasses[4]?.description || 'Learn British social customs and etiquette'}
               </p>
               <p className="text-primary-700 mb-4">
-                {videoMasterclassesContent.masterclasses[4].questions}
+                {videoMasterclassesContent.masterclasses[4]?.questions || 'Comprehensive etiquette guidance'}
               </p>
               <div className="mb-4">
                 <h4 className="font-semibold text-primary-900 mb-2">Students will learn:</h4>
                 <ul className="space-y-1">
-                  {videoMasterclassesContent.masterclasses[4].learning.map((item, index) => (
+                  {videoMasterclassesContent.masterclasses[4]?.learning?.map((item, index) => (
                     <li key={index} className="flex items-center gap-2 text-sm text-primary-700">
                       <CheckCircle className="w-4 h-4 text-accent-600" />
                       {item}
@@ -370,7 +370,7 @@ export default function VideoMasterclassesPage() {
                 </ul>
               </div>
               <Button className="w-full">
-                Purchase - {videoMasterclassesContent.masterclasses[4].price}
+                Purchase - {videoMasterclassesContent.masterclasses[4]?.price || '£19.99'}
               </Button>
             </CardContent>
           </Card>
@@ -378,7 +378,7 @@ export default function VideoMasterclassesPage() {
       </Section>
 
       {/* Ideal For Section */}
-      <Section background="navy" className="py-16">
+      <Section background="primary" className="py-16">
         <div className="text-center max-w-4xl mx-auto">
           <p className="text-xl text-white leading-relaxed">
             {videoMasterclassesContent.ideal.text}

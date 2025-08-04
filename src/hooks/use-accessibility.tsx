@@ -157,7 +157,10 @@ export const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
       case ' ':
         event.preventDefault()
         if (focusedIndex >= 0 && focusedIndex < items.length) {
-          onSelect?.(items[focusedIndex], focusedIndex)
+          const item = items[focusedIndex]
+          if (item) {
+            onSelect?.(item, focusedIndex)
+          }
         }
         break
     }

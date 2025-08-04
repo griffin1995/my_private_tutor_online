@@ -75,12 +75,15 @@ export function getCurrentSeason(): 'spring' | 'summer' | 'autumn' | 'winter' | 
 export function getCurrentSeasonalContent(): SeasonalContent {
   const season = getCurrentSeason();
   // Default to autumn for consistent SSR behavior
-  return seasonalContent[season || 'autumn'];
+  if (season && season in seasonalContent) {
+    return seasonalContent[season as keyof typeof seasonalContent]!;
+  }
+  return seasonalContent.autumn!;
 }
 
 /**
  * Gets content for specific season
  */
 export function getSeasonalContent(season: 'spring' | 'summer' | 'autumn' | 'winter'): SeasonalContent {
-  return seasonalContent[season];
+  return seasonalContent[season] || seasonalContent.autumn!;
 }

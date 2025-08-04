@@ -44,15 +44,17 @@ const nextConfig: NextConfig = {
     },
   },
 
-  // TypeScript configuration - Temporarily ignore for deployment
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  // TypeScript configuration - Strict mode enabled for production safety
+  // Context7 MCP Documentation Source: /microsoft/typescript
+  // Reference: Removed ignoreBuildErrors to ensure type safety for premium tutoring service
+  // typescript: {
+  //   ignoreBuildErrors: false, // REMOVED: Enable full type checking for royal clients
+  // },
 
-  // ESLint configuration - Temporarily ignore for deployment
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // ESLint configuration - Enable linting for code quality
+  // eslint: {
+  //   ignoreDuringBuilds: false, // REMOVED: Enable ESLint checks during builds
+  // },
 
   // Security headers configuration for Vercel deployment
 };

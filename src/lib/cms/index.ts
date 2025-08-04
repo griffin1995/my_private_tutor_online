@@ -9,10 +9,12 @@ export * from './cms-images'
 export { default as CMS } from './cms-content'
 export { default as Images } from './cms-images'
 
+// Import validateContentStructure explicitly
+import { validateContentStructure } from './cms-content'
+
 // CMS validation and setup utilities
 export const initializeCMS = () => {
   // Validate content structure on app initialization
-  const { validateContentStructure } = require('./cms-content')
   const isValid = validateContentStructure()
   
   if (!isValid) {

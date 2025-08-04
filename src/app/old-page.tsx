@@ -1421,13 +1421,13 @@ export default function Home() {
                       Primary Metric
                     </div>
                     <div className="text-7xl lg:text-8xl font-black bg-gradient-to-r from-blue-800 via-blue-600 to-blue-700 bg-clip-text text-transparent mb-4 leading-none">
-                      {data.results.statistics[0].number}
+                      {data.results.statistics[0]?.number || '0'}
                     </div>
                     <CardTitle className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-                      {data.results.statistics[0].label}
+                      {data.results.statistics[0]?.label || 'Statistic'}
                     </CardTitle>
                     <CardDescription className="text-gray-600 text-lg leading-relaxed">
-                      {data.results.statistics[0].description}
+                      {data.results.statistics[0]?.description || 'Description not available'}
                     </CardDescription>
                   </div>
                   
@@ -1443,7 +1443,7 @@ export default function Home() {
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-500">
                           <div className="text-white">
-                            {getIconComponent(data.results.statistics[0].icon, "w-12 h-12")}
+                            {getIconComponent(data.results.statistics[0]?.icon || 'TrendingUp', "w-12 h-12")}
                           </div>
                         </div>
                       </div>

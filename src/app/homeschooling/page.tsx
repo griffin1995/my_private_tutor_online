@@ -178,19 +178,44 @@ export default function HomeschoolingPage() {
 
   return (
     <PageLayout
-      title="Homeschooling Support - My Private Tutor Online"
-      description="Comprehensive homeschooling programmes with expert tutors. Complete curriculum coverage, flexible scheduling, and parent support for successful home education."
-      keywords="homeschooling, home education, curriculum support, flexible learning, family education"
       background="white"
     >
       <PageHero
-        title={homeschoolingContent.hero.title}
-        subtitle={homeschoolingContent.hero.subtitle}
-        description={homeschoolingContent.hero.description}
+        background="image"
         backgroundImage={homeschoolingContent.hero.backgroundImage}
-        height="large"
-        overlay="medium"
-      />
+        size="lg"
+        overlay={true}
+        overlayOpacity="medium"
+      >
+        <div className="space-y-6">
+          <m.h1 
+            className="text-4xl lg:text-5xl font-serif font-bold text-white"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            {homeschoolingContent.hero.title}
+          </m.h1>
+          
+          <m.div 
+            className="text-xl text-accent-300 font-semibold"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {homeschoolingContent.hero.subtitle}
+          </m.div>
+          
+          <m.p 
+            className="text-lg text-white/90 max-w-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {homeschoolingContent.hero.description}
+          </m.p>
+        </div>
+      </PageHero>
 
       {/* Benefits Section */}
       <Section className="py-16 lg:py-24" background="white">
@@ -235,7 +260,7 @@ export default function HomeschoolingPage() {
       </Section>
 
       {/* Programmes Section */}
-      <Section className="py-16 lg:py-24" background="slate-50">
+      <Section className="py-16 lg:py-24" background="grey">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <m.div
             initial={{ opacity: 0, y: 30 }}
@@ -429,7 +454,7 @@ export default function HomeschoolingPage() {
       </Section>
 
       {/* Statistics Section */}
-      <Section className="py-16 lg:py-24" background="slate-50">
+      <Section className="py-16 lg:py-24" background="grey">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <m.div
@@ -473,7 +498,7 @@ export default function HomeschoolingPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-16 lg:py-24" background="slate-900">
+      <Section className="py-16 lg:py-24" background="primary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <m.div
             initial={{ opacity: 0, y: 30 }}

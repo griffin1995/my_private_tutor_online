@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { cn } from "@/lib/utils"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { m, AnimatePresence } from "framer-motion"
@@ -32,6 +32,17 @@ export function Carousel({
   const [currentIndex, setCurrentIndex] = useState(1)
   const [isHovered, setIsHovered] = useState(false)
 
+  // Context7 MCP Documentation Source: /microsoft/typescript
+  // Reference: React hooks best practices - useCallback for stable references
+  // Purpose: Memoize handler functions to prevent unnecessary re-renders and satisfy hook dependencies
+  const handlePrevious = useCallback(() => {
+    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1))
+  }, [items.length])
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1))
+  }, [items.length])
+
   useEffect(() => {
     if (!autoPlay || isHovered) return
 
@@ -40,15 +51,7 @@ export function Carousel({
     }, autoPlayInterval)
 
     return () => clearInterval(interval)
-  }, [currentIndex, autoPlay, autoPlayInterval, isHovered])
-
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1))
-  }
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1))
-  }
+  }, [autoPlay, autoPlayInterval, isHovered, handleNext])
 
   const getItemStyle = (index: number) => {
     if (!centerMode) return {}
@@ -119,7 +122,7 @@ export function Carousel({
                 transition={{ duration: 0.5 }}
                 className="w-full"
               >
-                {items[currentIndex].content}
+                {items[currentIndex]?.content}
               </m.div>
             </AnimatePresence>
           )}

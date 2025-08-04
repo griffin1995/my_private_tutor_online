@@ -105,7 +105,7 @@ export function ScrollingSchools({
           {/* Documentation Source: Context7 MCP - Next.js Image Component Lazy Loading Pattern */}
           {/* Reference: Context7 MCP /context7/nextjs - Image optimization with loading="lazy" and sizes */}
           {schoolNames.map((school, index) => {
-            const logoAsset = schoolLogos[school]
+            const logoAsset = schoolLogos[school as keyof typeof schoolLogos]
             if (!logoAsset) return null // Skip schools without logo assets
             
             return (
@@ -132,7 +132,7 @@ export function ScrollingSchools({
           {/* Documentation Source: Context7 MCP - Framer Motion Infinite Loop Duplication Pattern */}
           {/* Reference: Context7 MCP /grx7/framer-motion - Content duplication for seamless marquee */}
           {schoolNames.map((school, index) => {
-            const logoAsset = schoolLogos[school]
+            const logoAsset = schoolLogos[school as keyof typeof schoolLogos]
             if (!logoAsset) return null // Skip schools without logo assets
             
             return (

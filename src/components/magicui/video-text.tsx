@@ -22,7 +22,7 @@ interface VideoTextProps {
   as?: React.ElementType
   text?: string
   duration?: number
-  framerProps?: any
+  framerProps?: Record<string, unknown>
 }
 
 export function VideoText({
@@ -40,8 +40,8 @@ export function VideoText({
   fontFamily = "sans-serif",
   as: Component = "div",
   text,
-  duration,
-  framerProps,
+  duration: _duration,
+  framerProps: _framerProps,
 }: VideoTextProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isClient, setIsClient] = useState(false)

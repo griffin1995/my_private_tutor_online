@@ -76,6 +76,22 @@ import { ScrollingSchools } from '@/components/sections/scrolling-schools'
 // - Industry Standard: Client Components are naturally dynamic without force-dynamic export
 
 /**
+ * Documentation Source: Context7 MCP - TypeScript Utility Functions
+ * Reference: Official TypeScript documentation - Utility functions for type safety
+ */
+function getTargetAudienceFromTitle(title: string): string {
+  const audienceMap: Record<string, string> = {
+    'Primary': 'Ages 5-11: Foundation building and early exam preparation',
+    'Secondary': 'Ages 11-18: GCSE, A-Level and IB excellence',
+    'University': 'Undergraduate and postgraduate academic support',
+    'Oxbridge': 'Elite university entrance preparation',
+    'Professional': 'Adult learners and career development'
+  }
+  
+  return audienceMap[title] || `Specialised ${title.toLowerCase()} education support`
+}
+
+/**
  * Documentation Source: Context7 Embla Carousel React Implementation + JSX Best Practices
  * Reference: /davidjerleke/embla-carousel - Official React carousel with navigation and autoplay
  * Reference: /jsx-eslint/eslint-plugin-react - JSX syntax and component patterns
@@ -195,6 +211,9 @@ function ServicesCarousel({ services, studentImages }: {
         autoplay.stop()
       }
     }
+    
+    // Ensure consistent return behavior
+    return undefined
   }, [emblaApi, inView])
 
   return (
@@ -484,7 +503,6 @@ export default function Home() {
       <PageHero 
         background="video" 
         backgroundVideo="/videos/background-video-2025.mp4"
-        popupVideoSrc="/videos/elizabeth-introduction.mp4"
         size="full"
         overlay
         overlayOpacity="medium"
@@ -842,7 +860,14 @@ export default function Home() {
               We work with a wide range of learners, offering guidance and transformation at every level:
             </p>
             
-            <ServicesCarousel services={services} studentImages={studentImages} />
+            <ServicesCarousel 
+              services={services.map(service => ({
+                ...service,
+                features: service.features.map(f => f.feature),
+                targetAudience: getTargetAudienceFromTitle(service.title)
+              }))} 
+              studentImages={studentImages} 
+            />
           </div>
         </div>
       </section>

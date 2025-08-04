@@ -47,7 +47,7 @@ import Link from 'next/link'
 // Documentation Source: Lucide React icons library
 // Reference: https://lucide.dev/guide/packages/lucide-react
 // Pattern: Consistent iconography with tree-shaking support
-import { Menu, X } from 'lucide-react'
+import { Menu } from 'lucide-react'
 
 // Documentation Source: Radix UI Navigation Menu primitives
 // Reference: https://www.radix-ui.com/docs/primitives/components/navigation-menu
@@ -77,7 +77,7 @@ import { cn } from '@/lib/utils'
 // CMS DATA SOURCE: Using getSiteHeader and getMainNavigation for all header content
 // Documentation Source: Centralized CMS pattern for content management
 // Reference: Project CLAUDE.md rules 22-25 for CMS requirements
-import { getSiteHeader, getMainNavigation, getContactInfo } from '@/lib/cms/cms-content'
+import { getSiteHeader, getMainNavigation } from '@/lib/cms/cms-content'
 
 // Documentation Source: Context7 MCP - Next.js Image Conditional Rendering for Logo Switching
 // Reference: /vercel/next.js - Scroll-based image switching patterns
@@ -109,7 +109,6 @@ export function PageHeader({
   // Pattern: Centralized content management for all header data
   const headerContent = getSiteHeader()
   const navigation = getMainNavigation()
-  const contactInfo = getContactInfo()
   
   // Documentation Source: Context7 MCP - Next.js Image Component Conditional Rendering
   // Reference: /vercel/next.js - Logo switching based on scroll state for navbar transparency
@@ -222,16 +221,6 @@ export function PageHeader({
   }
   
   
-  // Documentation Source: Dynamic logo styling based on navbar state
-  // Reference: https://tailwindcss.com/docs/background-clip
-  // Pattern: Default white gradient, dark gradient when scrolled
-  const getLogoClasses = () => {
-    // All pages start with white gradient text
-    // Only becomes dark when scrolled
-    return !isScrolled
-      ? 'bg-gradient-to-r from-white to-accent-200 bg-clip-text text-transparent hover:from-accent-200 hover:to-white'
-      : 'bg-gradient-to-r from-primary-900 to-primary-700 bg-clip-text text-transparent hover:from-primary-700 hover:to-accent-600'
-  }
   
   return (
     <header 
@@ -616,7 +605,4 @@ export function PageHeader({
 }
 
 // Export types for documentation and reuse
-export type PageHeaderProps = {
-  className?: string
-  isHeroPage?: boolean
-}
+export type { PageHeaderProps }

@@ -254,8 +254,37 @@ export const getAboutContent = () => {
   } catch (error) {
     // About content fallback used
     return {
-      title: 'About My Private Tutor Online',
-      description: 'Excellence in private tutoring since 2010'
+      hero: {
+        title: 'About My Private Tutor Online',
+        subtitle: 'Excellence in private tutoring since 2010',
+        description: 'Professional tutoring services with personalised approach',
+        image: '/images/placeholder.svg',
+        imageAlt: 'About My Private Tutor Online'
+      },
+      ourEthos: {
+        title: 'Our Ethos',
+        subtitle: 'Excellence in Education',
+        description: 'Personalised tutoring approach',
+        mainContent: {
+          introduction: 'We provide exceptional tutoring services',
+          philosophy: 'Every student deserves personalised attention'
+        },
+        sections: [],
+        results: {
+          title: 'Our Results',
+          statistics: []
+        },
+        conclusion: 'Excellence in private tutoring since 2010'
+      },
+      story: {
+        title: 'Our Story',
+        sections: []
+      },
+      team: {
+        title: 'Our Team',
+        description: 'Meet our expert educators',
+        members: []
+      }
     }
   }
 }
@@ -452,14 +481,14 @@ export const validateContentStructure = () => {
   
   requiredFields.forEach(field => {
     const keys = field.split('.')
-    let current: any = landingPageContent
+    let current: Record<string, unknown> = landingPageContent as Record<string, unknown>
     
     for (const key of keys) {
       if (!current || !current[key]) {
         missingFields.push(field)
         break
       }
-      current = current[key]
+      current = current[key] as Record<string, unknown>
     }
   })
   
@@ -543,8 +572,10 @@ export const getTestimonialsSchools = () => {
   return testimonialsContent.schools
 }
 
-// Export default content object for direct access if needed
-export default {
+// Context7 MCP Documentation Source: /microsoft/typescript
+// Reference: ESLint import/no-anonymous-default-export rule
+// Purpose: Export named object instead of anonymous object for better debugging
+const CMSContent = {
   landing: landingPageContent,
   getSiteHeader,
   getHeroContent,
@@ -586,3 +617,5 @@ export default {
   getFounderQuote,
   getRoyalTestimonial
 }
+
+export default CMSContent

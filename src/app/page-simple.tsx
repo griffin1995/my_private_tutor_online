@@ -11,7 +11,7 @@ export default function Home() {
   const siteBranding = getSiteBranding()
 
   return (
-    <PageLayout background="white" showHeader showFooter containerSize="full" verticalSpacing="none" headerProps={{ isHeroPage: true }}>
+    <PageLayout background="white" showHeader showFooter containerSize="full" verticalSpacing="none">
       {/* Hero Section */}
       <PageHero 
         background="gradient" 

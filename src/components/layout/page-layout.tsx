@@ -31,14 +31,30 @@ import { PageFooter } from './page-footer'
 // CLAUDE.md rule 42: PageLayout → PageHero → Section structure
 // CLAUDE.md rule 43: Always specify background='white' explicitly
 
+// Context7 MCP Documentation Source: /microsoft/typescript
+// Reference: TypeScript strict mode - proper interface definitions instead of Record<string, any>
+// Purpose: Type safety for header and footer component props
+interface PageHeaderProps {
+  className?: string
+  variant?: 'transparent' | 'solid' | 'glass'
+  showCTA?: boolean
+  fixed?: boolean
+}
+
+interface PageFooterProps {
+  className?: string
+  variant?: 'default' | 'minimal' | 'premium'
+  showBackToTop?: boolean
+}
+
 interface PageLayoutProps {
   children: ReactNode
   className?: string
   background?: 'white' | 'gradient' | 'pattern' | 'dark' | 'transparent'
   showHeader?: boolean
   showFooter?: boolean
-  headerProps?: Record<string, any>
-  footerProps?: Record<string, any>
+  headerProps?: PageHeaderProps
+  footerProps?: PageFooterProps
   containerSize?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full'
   verticalSpacing?: 'none' | 'sm' | 'md' | 'lg' | 'xl'
 }

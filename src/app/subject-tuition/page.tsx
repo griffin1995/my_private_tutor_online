@@ -274,9 +274,6 @@ export default function SubjectTuitionPage() {
 
   return (
     <PageLayout
-      title="Subject Tuition - My Private Tutor Online"
-      description="Comprehensive tuition across all subjects and educational levels. From entrance exams to university preparation with expert Oxford and Cambridge graduate tutors."
-      keywords="subject tuition, entrance exams, GCSE tutoring, A-level coaching, university preparation, specialist tutoring"
       background="white"
     >
       <PageHero
@@ -298,7 +295,7 @@ export default function SubjectTuitionPage() {
       </PageHero>
 
       {/* Quick Stats Section */}
-      <Section className="py-12" background="slate-50">
+      <Section className="py-12" background="grey">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div
@@ -365,7 +362,7 @@ export default function SubjectTuitionPage() {
       </Section>
 
       {/* Homeschooling Preview Section */}
-      <Section className="py-16 lg:py-24" background="slate-50">
+      <Section className="py-16 lg:py-24" background="grey">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div
@@ -412,7 +409,7 @@ export default function SubjectTuitionPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-16 lg:py-24" background="slate-900">
+      <Section className="py-16 lg:py-24" background="primary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="text-center animate-fade-in-up"

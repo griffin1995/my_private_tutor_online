@@ -1,8 +1,6 @@
 "use client"
 
 import { Quote, Star } from 'lucide-react'
-import Image from 'next/image'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { getAvatarPlaceholder } from '@/lib/cms'
 import { cn } from '@/lib/utils'
 
@@ -148,20 +146,27 @@ export function RoyalTestimonialCard({
       <div className={cn(authorSectionClasses[variant])}>
         
         {/* Avatar */}
-        <Avatar className={cn(avatarSizeClasses[variant])}>
-          <AvatarImage 
-            src={avatar || placeholderAvatar.src} 
-            alt={`${author} avatar`}
-          />
-          <AvatarFallback className={cn(
-            'font-semibold',
-            variant === 'royal' ? 'bg-royal-100 text-royal-700' :
-            variant === 'premium' ? 'bg-accent-100 text-accent-700' :
-            'bg-primary-100 text-primary-700'
-          )}>
-            {getInitials(author)}
-          </AvatarFallback>
-        </Avatar>
+        <div className={cn(
+          'rounded-full flex items-center justify-center overflow-hidden bg-primary-100',
+          avatarSizeClasses[variant]
+        )}>
+          {avatar ? (
+            <img 
+              src={avatar || placeholderAvatar.src} 
+              alt={`${author} avatar`}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <span className={cn(
+              'font-semibold text-xs',
+              variant === 'royal' ? 'bg-royal-100 text-royal-700' :
+              variant === 'premium' ? 'bg-accent-100 text-accent-700' :
+              'bg-primary-100 text-primary-700'
+            )}>
+              {getInitials(author)}
+            </span>
+          )}
+        </div>
 
         {/* Author Info */}
         <div className="flex-1 min-w-0">

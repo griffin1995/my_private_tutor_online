@@ -4,7 +4,7 @@ import { forwardRef, ButtonHTMLAttributes, ReactNode } from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
-import { handleKeyboardNavigation, KEYBOARD_KEYS } from '@/lib/accessibility'
+import { handleKeyboardNavigation } from '@/lib/accessibility'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 // WCAG 2.1 AA compliant button component with proper ARIA support
@@ -126,12 +126,92 @@ const AccessibleButton = forwardRef<HTMLButtonElement, AccessibleButtonProps>(
       handleKeyboardNavigation(event.nativeEvent, {
         onSpace: () => {
           if (onClick) {
-            onClick(event as any)
+            // Create a proper MouseEvent from the KeyboardEvent for accessibility
+            // Use unknown first to satisfy TypeScript strict mode requirements
+            const syntheticMouseEvent = {
+              ...event,
+              button: 0,
+              buttons: 1,
+              clientX: 0,
+              clientY: 0,
+              detail: 1,
+              movementX: 0,
+              movementY: 0,
+              offsetX: 0,
+              offsetY: 0,
+              pageX: 0,
+              pageY: 0,
+              relatedTarget: null,
+              screenX: 0,
+              screenY: 0,
+              x: 0,
+              y: 0,
+              nativeEvent: {
+                ...event.nativeEvent,
+                button: 0,
+                buttons: 1,
+                clientX: 0,
+                clientY: 0,
+                detail: 1,
+                movementX: 0,
+                movementY: 0,
+                offsetX: 0,
+                offsetY: 0,
+                pageX: 0,
+                pageY: 0,
+                relatedTarget: null,
+                screenX: 0,
+                screenY: 0,
+                x: 0,
+                y: 0,
+              } as unknown as MouseEvent,
+            } as React.MouseEvent<HTMLButtonElement>
+            onClick(syntheticMouseEvent)
           }
         },
         onEnter: () => {
           if (onClick) {
-            onClick(event as any)
+            // Create a proper MouseEvent from the KeyboardEvent for accessibility
+            // Use unknown first to satisfy TypeScript strict mode requirements
+            const syntheticMouseEvent = {
+              ...event,
+              button: 0,
+              buttons: 1,
+              clientX: 0,
+              clientY: 0,
+              detail: 1,
+              movementX: 0,
+              movementY: 0,
+              offsetX: 0,
+              offsetY: 0,
+              pageX: 0,
+              pageY: 0,
+              relatedTarget: null,
+              screenX: 0,
+              screenY: 0,
+              x: 0,
+              y: 0,
+              nativeEvent: {
+                ...event.nativeEvent,
+                button: 0,
+                buttons: 1,
+                clientX: 0,
+                clientY: 0,
+                detail: 1,
+                movementX: 0,
+                movementY: 0,
+                offsetX: 0,
+                offsetY: 0,
+                pageX: 0,
+                pageY: 0,
+                relatedTarget: null,
+                screenX: 0,
+                screenY: 0,
+                x: 0,
+                y: 0,
+              } as unknown as MouseEvent,
+            } as React.MouseEvent<HTMLButtonElement>
+            onClick(syntheticMouseEvent)
           }
         }
       })
@@ -186,4 +266,3 @@ const AccessibleButton = forwardRef<HTMLButtonElement, AccessibleButtonProps>(
 AccessibleButton.displayName = "AccessibleButton"
 
 export { AccessibleButton, buttonVariants }
-export type { AccessibleButtonProps }

@@ -118,7 +118,7 @@ export default function ElevenPlusBootcampsPage() {
       
       <PageHero 
         background="gradient" 
-        size="medium"
+        size="md"
         className="bg-gradient-to-br from-accent-600 via-accent-500 to-accent-400"
       >
         <div className="text-center space-y-6">
@@ -147,7 +147,7 @@ export default function ElevenPlusBootcampsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Accelerated preparation programmes designed to maximise your child's 11+ potential in focused, intensive sessions
+            Accelerated preparation programmes designed to maximise your child&apos;s 11+ potential in focused, intensive sessions
           </m.p>
           
           <m.div
@@ -199,7 +199,7 @@ export default function ElevenPlusBootcampsPage() {
                 Choose Your Bootcamp Programme
               </h2>
               <p className="text-xl text-primary-700 max-w-3xl mx-auto">
-                Tailored intensive courses to match your child's preparation needs and target schools
+                Tailored intensive courses to match your child&apos;s preparation needs and target schools
               </p>
             </div>
 
@@ -350,7 +350,7 @@ export default function ElevenPlusBootcampsPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-primary-900 mb-2">Flexible Scheduling</h3>
-                      <p className="text-primary-600">Multiple dates available throughout the year to fit your family's schedule.</p>
+                      <p className="text-primary-600">Multiple dates available throughout the year to fit your family&apos;s schedule.</p>
                     </div>
                   </div>
                 </div>
@@ -364,7 +364,7 @@ export default function ElevenPlusBootcampsPage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white mb-6">
-                Secure Your Child's Place Today
+                Secure Your Child&apos;s Place Today
               </h2>
               <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8">
                 Places fill quickly for our intensive bootcamp programmes. Book early to ensure your preferred dates.

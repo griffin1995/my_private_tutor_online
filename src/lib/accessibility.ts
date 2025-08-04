@@ -62,13 +62,13 @@ export class FocusManager {
       // Shift + Tab (backwards)
       if (document.activeElement === firstElement) {
         event.preventDefault()
-        lastElement.focus()
+        lastElement?.focus()
       }
     } else {
       // Tab (forwards)
       if (document.activeElement === lastElement) {
         event.preventDefault()
-        firstElement.focus()
+        firstElement?.focus()
       }
     }
   }
@@ -157,7 +157,7 @@ export const getContrastRatio = (foreground: string, background: string): number
     const rgb = color.match(/\d+/g)
     if (!rgb || rgb.length < 3) return 0
 
-    const [r, g, b] = rgb.map(c => {
+    const [r = 0, g = 0, b = 0] = rgb.map(c => {
       const channel = parseInt(c) / 255
       return channel <= 0.03928
         ? channel / 12.92
@@ -363,8 +363,10 @@ export const validateImageAlt = (alt: string, src: string): boolean => {
   return true
 }
 
-// Export default accessibility utilities
-export default {
+// Context7 MCP Documentation Source: /microsoft/typescript
+// Reference: ESLint import/no-anonymous-default-export rule
+// Purpose: Export named object instead of anonymous object for better debugging
+const AccessibilityUtils = {
   KEYBOARD_KEYS,
   focusManager,
   screenReader,
@@ -386,3 +388,5 @@ export default {
   getExternalLinkProps,
   validateImageAlt
 }
+
+export default AccessibilityUtils

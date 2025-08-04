@@ -24,12 +24,12 @@
 
 "use client"
 
-import { useEffect, useRef, RefObject } from 'react'
+import React, { useEffect, useRef, RefObject } from 'react'
 import { cn } from '@/lib/utils'
 
 export interface FocusIndicatorProps {
   /** Element to apply focus management to */
-  children: React.ReactElement
+  children: React.ReactElement<any, any>
   /** Custom focus ring styling */
   focusRingClass?: string
   /** Whether to show focus ring only on keyboard navigation */
@@ -75,7 +75,7 @@ export function FocusIndicator({
   )
 
   return React.cloneElement(children, {
-    className: cn(children.props.className, focusClasses)
+    className: cn((children.props as any).className, focusClasses)
   })
 }
 
