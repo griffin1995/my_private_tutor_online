@@ -39,44 +39,65 @@ const config: Config = {
   
   theme: {
     extend: {
-      // Design System Colors - CLAUDE.md rule 26
+      // Client Brand Colors - Luxury Gold & Blue Scheme
+      // Documentation Source: Context7 MCP - Tailwind CSS Color Palette Configuration
+      // Reference: /tailwindlabs/tailwindcss.com - Custom color definitions
+      // Reference: https://www.schemecolor.com/luxury-gold-blue.php (CLIENT SPECIFICATION)
       colors: {
-        // Primary brand colors
+        // Luxury Gold & Blue Brand Palette (CLIENT REQUIRED)
+        // Primary: Metallic Blue (#3F4A7E) - WCAG AA Enhanced for Accessibility
+        // Documentation Source: WCAG 2.1 AA Contrast Requirements (4.5:1 normal text, 3:1 large text)
         primary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a', // Navy/Slate-900
-          950: '#020617',
+          50: '#f8f9fc',   // Lightest blue tint for backgrounds
+          100: '#f1f3f8',   // Very light blue tint 
+          200: '#e3e7f0',   // Light blue-grey
+          300: '#c6d0e8',   // Medium light blue-grey
+          400: '#8fa2d4',   // Medium blue
+          500: '#5b6bb3',   // Mid-tone blue
+          600: '#4a5a97',   // Darker blue
+          700: '#3f4a7e',   // CLIENT BRAND: Metallic Blue (primary)
+          800: '#2f3960',   // WCAG Enhanced: Darker for better contrast (calculated for 4.5:1)
+          900: '#252a4d',   // WCAG Enhanced: Deep navy for maximum contrast
+          950: '#1a1e3a',   // Darkest navy - excellent contrast with white text
         },
-        // Gold accent color
+        // Accent: Aztec Gold (#CA9E5B) - WCAG AA Enhanced for Accessibility  
+        // Note: Original Aztec Gold may not meet WCAG AA (4.5:1) on white backgrounds
         accent: {
-          50: '#fefce8',
-          100: '#fef9c3',
-          200: '#fef08a',
-          300: '#fde047',
-          400: '#facc15',
-          500: '#eab308', // Gold accent
-          600: '#ca8a04',
-          700: '#a16207',
-          800: '#854d0e',
-          900: '#713f12',
-          950: '#422006',
+          50: '#fefcf7',   // Lightest gold tint
+          100: '#fdf8eb',   // Very light gold
+          200: '#faf0d2',   // Light gold cream
+          300: '#f5e4a9',   // Medium light gold
+          400: '#eed480',   // Medium gold
+          500: '#e5c457',   // Mid-tone gold
+          600: '#ca9e5b',   // CLIENT BRAND: Aztec Gold (accent) - use with dark text only
+          700: '#a67234',   // WCAG Enhanced: Darker gold for better contrast
+          800: '#8a5e2a',   // WCAG Enhanced: Deep bronze for 4.5:1 contrast
+          900: '#6d4a21',   // WCAG Enhanced: Dark bronze for maximum contrast
+          950: '#4a3318',   // Darkest bronze - excellent contrast with white text
         },
-        // Royal theme colors
+        // Supporting Luxury Palette
+        // Neutral greys for balance and sophistication
+        neutral: {
+          50: '#fafafa',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          900: '#171717',
+          950: '#0a0a0a',
+        },
+        // Royal complementary colours (maintaining existing for gradual transition)
         royal: {
           50: '#f8f9ff',
           100: '#f0f2ff',
           200: '#e3e8ff',
           300: '#cdd5ff',
           400: '#a5b4ff',
-          500: '#7c3aed', // Royal purple
+          500: '#7c3aed',
           600: '#6d28d9',
           700: '#5b21b6',
           800: '#4c1d95',
@@ -85,58 +106,67 @@ const config: Config = {
         }
       },
       
-      // Typography - CLAUDE.md rule 27
-      // Source Serif 4 & Playfair Display Integration
+      // Premium Typography System - CLIENT BRAND REQUIREMENTS
+      // Documentation Source: Context7 MCP - Next.js Font Optimization + Google Fonts
+      // Reference: /vercel/next.js - Multiple Google Font Configuration with CSS Variables
+      // CLIENT SPECIFICATION: Playfair Display (headers) + Source Serif 4 (body)
       fontFamily: {
         /**
-         * Source Serif 4 Primary Serif Font Family
-         * Documentation Source: Context7 MCP - Google Fonts + Next.js Font Variables
-         * Reference: /vercel/next.js - Google Fonts integration patterns
+         * Source Serif 4 - Primary Body Font (CLIENT REQUIREMENT)
+         * Documentation Source: Context7 MCP - Google Fonts Variable Font Implementation
+         * Reference: /vercel/next.js - CSS Variable Integration Pattern
          * Reference: https://fonts.google.com/specimen/Source+Serif+4
          * 
          * Font Characteristics:
-         * - Variable serif font designed by Frank Grießhammer
-         * - Excellent readability for extended reading
-         * - Contemporary take on transitional serif design
-         * - Variable weight range: 200-900
-         * - Supports both normal and italic styles
-         * - Optimized for both print and digital media
+         * - Variable serif font designed by Frank Grießhammer at Adobe
+         * - Exceptional readability for extended reading sessions
+         * - Contemporary interpretation of transitional serif design
+         * - Variable weight range: 200-900 (dynamic weight scaling)
+         * - Full italic support with optical corrections
+         * - Optimized for both digital screens and print media
          * 
-         * Usage Guidelines:
-         * - Primary font for all body text and content
-         * - Excellent for long-form reading and editorial content
-         * - Professional appearance suitable for academic/tutoring context
-         * - Maintains readability at various sizes
+         * Brand Usage Guidelines (MY PRIVATE TUTOR ONLINE):
+         * - PRIMARY font for all body text, paragraphs, and content
+         * - Academic content, course descriptions, testimonials
+         * - Professional correspondence and formal communications
+         * - Maintains excellent legibility at 14px+ for web accessibility
+         * - Conveys scholarly authority and educational excellence
          */
         serif: [
           'var(--font-source-serif-4)',
           'Georgia',
+          'Cambria',
           'Times New Roman',
           'serif',
         ],
         /**
-         * Playfair Display Heading Font Family
-         * Documentation Source: Context7 MCP - Google Fonts + Next.js Font Variables
-         * Reference: /vercel/next.js - Multiple font configuration
+         * Playfair Display - Premium Display Font (CLIENT REQUIREMENT)
+         * Documentation Source: Context7 MCP - Next.js Google Font CSS Variables
+         * Reference: /vercel/next.js - Font Display Strategy Configuration
          * Reference: https://fonts.google.com/specimen/Playfair+Display
          * 
          * Font Characteristics:
-         * - High-contrast serif font designed by Claus Eggers Sørensen
-         * - Elegant and sophisticated display typeface
-         * - Inspired by 18th-century European typography
-         * - Variable weight range: 400-900
-         * - Strong personality perfect for premium branding
+         * - High-contrast serif display font by Claus Eggers Sørensen
+         * - Sophisticated, elegant aesthetic inspired by 18th-century typography
+         * - Sharp serifs with dramatic thick/thin stroke contrast
+         * - Variable weight range: 400-900 (Regular to Black)
+         * - Distinctive italic variants with calligraphic elements
+         * - Perfect for luxury branding and premium positioning
          * 
-         * Usage Guidelines:
-         * - Reserved for headings and display text
-         * - Creates visual hierarchy and brand distinction
-         * - Conveys premium quality and academic excellence
-         * - Not recommended for body text due to high contrast
+         * Brand Usage Guidelines (MY PRIVATE TUTOR ONLINE):
+         * - EXCLUSIVE use for page headings (H1, H2, H3)
+         * - Hero section titles and main call-to-action headers
+         * - Service titles and premium feature highlights
+         * - Brand taglines and marketing copy headers
+         * - Creates strong visual hierarchy and luxury brand identity
+         * - Reinforces royal endorsement and elite positioning
          */
         display: [
           'var(--font-playfair-display)',
           'Playfair Display',
           'Georgia',
+          'Didot',
+          'Times New Roman',
           'serif',
         ],
         /**

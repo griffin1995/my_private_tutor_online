@@ -18,13 +18,38 @@
 @import "tailwindcss";
 
 /**
- * Custom CSS Variables and Global Styles
- * Documentation Source: Context7 MCP - CSS Custom Properties Best Practices
- * Pattern: Root-level CSS custom properties for theming
+ * Brand CSS Variables and Global Styles
+ * Documentation Source: Context7 MCP - CSS Custom Properties for Design Systems
+ * Reference: /tailwindlabs/tailwindcss.com - Custom Color Palette Implementation
+ * CLIENT BRAND SPECIFICATION: Luxury Gold & Blue Color Scheme
  */
 :root {
+  /* Brand Color System - CLIENT SPECIFICATION */
+  /* Documentation Source: https://www.schemecolor.com/luxury-gold-blue.php */
+  
+  /* Primary Colors - Metallic Blue (#3F4A7E) */
+  --color-primary: #3f4a7e;
+  --color-primary-dark: #353d68;
+  --color-primary-light: #5b6bb3;
+  
+  /* Accent Colors - Aztec Gold (#CA9E5B) */
+  --color-accent: #ca9e5b;
+  --color-accent-dark: #b5853e;
+  --color-accent-light: #e5c457;
+  
+  /* Semantic Color Variables */
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #3f4a7e;  /* Updated to use brand primary */
+  --muted: #f8f9fc;       /* Lightest brand tint */
+  --muted-foreground: #737373;
+  --border: #e3e7f0;      /* Light brand tint */
+  --input: #ffffff;
+  --ring: #ca9e5b;        /* Brand accent for focus states */
+  
+  /* Premium Brand Gradients */
+  --gradient-brand: linear-gradient(135deg, #3f4a7e 0%, #ca9e5b 100%);
+  --gradient-brand-subtle: linear-gradient(135deg, #f8f9fc 0%, #fefcf7 100%);
+  --gradient-luxury: linear-gradient(135deg, #ca9e5b 0%, #b5853e 50%, #3f4a7e 100%);
 }
 
 /**
@@ -41,6 +66,76 @@ body {
   background: var(--background);
   font-synthesis-weight: none;
   text-rendering: optimizeLegibility;
+}
+
+/**
+ * Premium Typography Hierarchy - CLIENT BRAND SYSTEM
+ * Documentation Source: Context7 MCP - Typography Design Systems
+ * CLIENT SPECIFICATION: Playfair Display (headings) + Source Serif 4 (body)
+ * Pattern: Semantic heading hierarchy with brand font implementation
+ */
+
+/* Primary Headings - Playfair Display (CLIENT REQUIREMENT) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair-display), 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-primary);
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+/* Body Text - Source Serif 4 (CLIENT REQUIREMENT) */
+p, li, td, th, div, span {
+  font-family: var(--font-source-serif-4), Georgia, serif;
+  line-height: 1.7;
+  color: var(--foreground);
+}
+
+/* Enhanced Readability for Academic Content */
+p {
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+/* Premium Link Styling with Brand Colors */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+/* Focus States for Accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /**
