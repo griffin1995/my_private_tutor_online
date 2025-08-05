@@ -340,74 +340,78 @@ export function PageHeader({
                           // Each NavigationMenuItem manages its own hover state completely independently
                           // This prevents hover effects from affecting all navigation links simultaneously
                           
+                          // CLIENT REQUIREMENTS: Scroll-based colour transition implementation
+                          // Initial state (no scrolling): ALL navbar text WHITE
+                          // After scrolling: ALL navbar text BLUE (#3F4A7E = primary-700)
+                          
                           // Transparent Navbar State: Default state when at top of page
                           !isScrolled && [
-                            // Documentation Source: Context7 Tailwind CSS - High Contrast Text on Transparent Backgrounds
-                            // Reference: /tailwindlabs/tailwindcss.com - Accessibility color contrast requirements
-                            // Base text color: Pure white for maximum visibility over hero backgrounds
+                            // Documentation Source: Context7 MCP - React Scroll Event Handler Implementation
+                            // Reference: /react-hook-form/documentation - useEffect scroll event patterns
+                            // CLIENT REQUIREMENT: Initial state text must be WHITE for visibility over hero content
                             "text-white",
                             
-                            // Documentation Source: Context7 Tailwind CSS - Consistent White Text on Hover
-                            // Reference: /tailwindlabs/tailwindcss.com - Maintaining text color consistency for transparent states
-                            // Hover text color: Keep white text white on hover (no color change)
+                            // Documentation Source: Context7 Tailwind CSS - Maintaining Text Color Consistency
+                            // Reference: /tailwindlabs/tailwindcss.com - Hover state text color preservation
+                            // CLIENT REQUIREMENT: Keep white text white on hover (no color change)
                             "hover:text-white",
                             
-                            // Documentation Source: Context7 Tailwind CSS - ::after Gradient Backgrounds for Transparent State
-                            // Reference: /tailwindlabs/tailwindcss.com - Gradient utilities with ::after pseudo-elements
-                            // Underline gradient: White to light accent for transparent navbar state
+                            // Documentation Source: Context7 Tailwind CSS - ::after Pseudo-element Underline Effects
+                            // Reference: /tailwindlabs/tailwindcss.com - Gradient utilities with ::after variants
+                            // Underline gradient: White to light accent maintains visibility on transparent state
                             "after:bg-gradient-to-r after:from-white after:to-accent-200",
                             
-                            // Documentation Source: Context7 Tailwind CSS - Subtle Interactive Feedback
-                            // Reference: /tailwindlabs/tailwindcss.com - Semi-transparent overlays for visual hierarchy
+                            // Documentation Source: Context7 Tailwind CSS - Semi-transparent Overlay Effects
+                            // Reference: /tailwindlabs/tailwindcss.com - Background opacity utilities for hover feedback
                             // Hover background: Subtle white overlay provides tactile feedback
                             "hover:bg-white/10",
                             
                             // Documentation Source: Context7 Tailwind CSS - Keyboard Navigation Accessibility
-                            // Reference: /tailwindlabs/tailwindcss.com - :focus pseudo-class for accessibility compliance
+                            // Reference: /tailwindlabs/tailwindcss.com - :focus pseudo-class for WCAG 2.1 AA compliance
                             // Focus background: Enhanced visibility for keyboard users
                             "focus:bg-white/15",
                             
                             // Documentation Source: Context7 Tailwind CSS - Premium Visual Effects
-                            // Reference: /tailwindlabs/tailwindcss.com - box-shadow utilities for depth perception
-                            // Premium shadow effects: Elevated visual hierarchy for luxury brand feel
+                            // Reference: /tailwindlabs/tailwindcss.com - box-shadow utilities for depth and hierarchy
+                            // Premium shadow effects: Elevated visual hierarchy for luxury brand positioning
                             "hover:shadow-lg hover:shadow-white/20",
                             
-                            // Documentation Source: Context7 Tailwind CSS - Micro-interaction Animations
-                            // Reference: /tailwindlabs/tailwindcss.com - transform: scale() for engaging user feedback
+                            // Documentation Source: Context7 Tailwind CSS - Transform Scale Micro-interactions
+                            // Reference: /tailwindlabs/tailwindcss.com - Scale transform for engaging user feedback
                             // Scale animation: Subtle interaction feedback maintaining professional aesthetic
                             "hover:scale-105 focus:scale-105"
                           ].join(' '),
                           
-                          // Scrolled Navbar State: Opaque state when scrolled down page
+                          // Scrolled Navbar State: When user has scrolled down the page
                           isScrolled && [
-                            // Documentation Source: Context7 Tailwind CSS - Dark Text for Light Backgrounds
-                            // Reference: /tailwindlabs/tailwindcss.com - Color contrast for readability on light backgrounds
-                            // Base text color: Dark primary for optimal contrast on light navbar
-                            "text-primary-900",
+                            // Documentation Source: Context7 MCP - Client Brand Color Implementation
+                            // Reference: Tailwind Config - primary-700: '#3f4a7e' (CLIENT BRAND BLUE)
+                            // CLIENT REQUIREMENT: Scrolled state text must be BLUE (#3F4A7E)
+                            "text-primary-700",
                             
-                            // Documentation Source: Context7 Tailwind CSS - Consistent Dark Text on Hover
-                            // Reference: /tailwindlabs/tailwindcss.com - Maintaining text color consistency for scrolled states
-                            // Hover text color: Keep dark text dark on hover (no color change)
-                            "hover:text-primary-900",
+                            // Documentation Source: Context7 Tailwind CSS - Consistent Brand Color Application
+                            // Reference: /tailwindlabs/tailwindcss.com - Hover state color consistency patterns
+                            // CLIENT REQUIREMENT: Keep blue text blue on hover (no color change)
+                            "hover:text-primary-700",
                             
-                            // Documentation Source: Context7 Tailwind CSS - ::after Gradient Backgrounds for Scrolled State
-                            // Reference: /tailwindlabs/tailwindcss.com - Accent color gradients for brand consistency
-                            // Underline gradient: Accent colors for scrolled navbar state
-                            "after:bg-gradient-to-r after:from-accent-500 after:to-accent-600",
+                            // Documentation Source: Context7 Tailwind CSS - Brand Color Gradients
+                            // Reference: /tailwindlabs/tailwindcss.com - Primary color gradient utilities
+                            // Underline gradient: Primary blue gradient maintains brand consistency
+                            "after:bg-gradient-to-r after:from-primary-700 after:to-primary-600",
                             
-                            // Documentation Source: Context7 Tailwind CSS - Light Hover Background States
-                            // Reference: /tailwindlabs/tailwindcss.com - Subtle feedback on light backgrounds
+                            // Documentation Source: Context7 Tailwind CSS - Light Background Hover States
+                            // Reference: /tailwindlabs/tailwindcss.com - Primary color tint utilities for feedback
                             // Hover background: Light primary tint provides gentle visual feedback
                             "hover:bg-primary-50",
                             
-                            // Documentation Source: Context7 Tailwind CSS - Focus State Contrast Enhancement
-                            // Reference: /tailwindlabs/tailwindcss.com - Enhanced focus visibility for keyboard navigation
-                            // Focus background: Slightly darker for improved keyboard navigation visibility
+                            // Documentation Source: Context7 Tailwind CSS - Focus State Enhancement
+                            // Reference: /tailwindlabs/tailwindcss.com - Enhanced focus visibility for accessibility
+                            // Focus background: Slightly darker primary for improved keyboard navigation
                             "focus:bg-primary-100",
                             
-                            // Documentation Source: Context7 Tailwind CSS - Consistent Animation Patterns
-                            // Reference: /tailwindlabs/tailwindcss.com - Uniform interaction patterns across states
-                            // Scale animation: Consistent micro-interactions regardless of navbar state
+                            // Documentation Source: Context7 Tailwind CSS - Consistent Interactive Animations
+                            // Reference: /tailwindlabs/tailwindcss.com - Transform utilities for uniform interactions
+                            // Scale animation: Consistent micro-interactions across all navbar states
                             "hover:scale-105 focus:scale-105"
                           ].join(' ')
                         )}
@@ -434,10 +438,36 @@ export function PageHeader({
               <Button
                 size="default"
                 className={cn(
+                  // Documentation Source: Context7 MCP - Client Brand Color Requirements Implementation
+                  // Reference: /tailwindlabs/tailwindcss.com - Button component conditional styling patterns
+                  // CLIENT REQUIREMENTS: CTA button text follows same color pattern as navigation
                   "relative overflow-hidden font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 focus:scale-105 active:scale-95",
-                  isHeroPage && !isScrolled
-                    ? 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary-900'
-                    : 'bg-accent-600 hover:bg-accent-700 text-white'
+                  
+                  // Initial State (No Scrolling): CTA button with white text
+                  !isScrolled 
+                    ? [
+                        // Documentation Source: Context7 Tailwind CSS - Transparent Button with Border
+                        // Reference: /tailwindlabs/tailwindcss.com - Border utilities and background transparency
+                        // CLIENT REQUIREMENT: Initial state uses white text (transparent background with white border)
+                        'bg-transparent border-2 border-white text-white',
+                        
+                        // Documentation Source: Context7 Tailwind CSS - Button Hover State Transitions
+                        // Reference: /tailwindlabs/tailwindcss.com - Hover state background and text color changes
+                        // Hover state: Background becomes white, text becomes brand blue
+                        'hover:bg-white hover:text-primary-700'
+                      ].join(' ')
+                    : [
+                        // Scrolled State: CTA button with brand blue text
+                        // Documentation Source: Context7 MCP - Accent Color Implementation
+                        // Reference: Tailwind Config - accent-600 background with primary-700 text override
+                        // CLIENT REQUIREMENT: Scrolled state uses blue text on accent background
+                        'bg-accent-600 hover:bg-accent-700',
+                        
+                        // Documentation Source: Context7 MCP - Text Color Override for Client Requirements
+                        // Reference: /tailwindlabs/tailwindcss.com - Text color utilities for brand consistency
+                        // CLIENT REQUIREMENT: CTA button text must be blue when scrolled (overrides default white)
+                        'text-primary-700 hover:text-primary-700'
+                      ].join(' ')
                 )}
                 asChild
               >
@@ -482,26 +512,30 @@ export function PageHeader({
                       // Reference: /tailwindlabs/tailwindcss.com - Clean conditional styling patterns
                       // Pattern: State-based styling that mirrors navigation link behavior
                       //
+                      // CLIENT REQUIREMENTS: Mobile menu button follows same color pattern
+                      // Initial state (no scrolling): Icon WHITE
+                      // After scrolling: Icon BLUE (#3F4A7E = primary-700)
+                      
                       // Transparent State (Default - when !isScrolled):
                       // Applied when navbar is transparent at top of page
                       !isScrolled && [
-                        // Documentation Source: Context7 Tailwind CSS - Text Color for Icons
-                        // Reference: /tailwindlabs/tailwindcss.com - Using text-* utilities for SVG icon colors
-                        // Default icon color: Pure white for visibility over hero backgrounds
+                        // Documentation Source: Context7 MCP - SVG Icon Color Implementation
+                        // Reference: /tailwindlabs/tailwindcss.com - text-* utilities for SVG fill color
+                        // CLIENT REQUIREMENT: Initial state icon must be WHITE
                         'text-white',
                         
-                        // Documentation Source: Context7 Tailwind CSS - Hover State Variants for Icons
-                        // Reference: /tailwindlabs/tailwindcss.com - hover: prefix for SVG color changes
-                        // Hover icon color: Light accent for consistent brand experience
-                        'hover:text-accent-200',
+                        // Documentation Source: Context7 Tailwind CSS - Consistent White Icon on Hover
+                        // Reference: /tailwindlabs/tailwindcss.com - Maintaining icon color consistency
+                        // CLIENT REQUIREMENT: Keep white icon white on hover (matches navigation pattern)
+                        'hover:text-white',
                         
-                        // Documentation Source: Context7 Tailwind CSS - Semi-transparent Backgrounds
-                        // Reference: /tailwindlabs/tailwindcss.com - Background opacity utilities
+                        // Documentation Source: Context7 Tailwind CSS - Semi-transparent Background Hover
+                        // Reference: /tailwindlabs/tailwindcss.com - Background opacity utilities for feedback
                         // Hover background: Subtle white overlay matching navigation links
                         'hover:bg-white/10',
                         
-                        // Documentation Source: Context7 Tailwind CSS - Focus State for Accessibility
-                        // Reference: /tailwindlabs/tailwindcss.com - focus: prefix for keyboard navigation
+                        // Documentation Source: Context7 Tailwind CSS - Keyboard Navigation Focus State
+                        // Reference: /tailwindlabs/tailwindcss.com - focus: prefix for accessibility compliance
                         // Focus background: Enhanced visibility for keyboard users
                         'focus:bg-white/15'
                       ].join(' '),
@@ -509,24 +543,24 @@ export function PageHeader({
                       // Scrolled State (when isScrolled):
                       // Applied when navbar becomes opaque after scrolling
                       isScrolled && [
-                        // Documentation Source: Context7 Tailwind CSS - Dark Text Colors
-                        // Reference: /tailwindlabs/tailwindcss.com - Primary color utilities for readability
-                        // Default icon color: Dark primary for contrast on light background
-                        'text-primary-900',
+                        // Documentation Source: Context7 MCP - Client Brand Color Implementation
+                        // Reference: Tailwind Config - primary-700: '#3f4a7e' (CLIENT BRAND BLUE)
+                        // CLIENT REQUIREMENT: Scrolled state icon must be BLUE (#3F4A7E)
+                        'text-primary-700',
                         
-                        // Documentation Source: Context7 Tailwind CSS - Hover State Consistency
-                        // Reference: /tailwindlabs/tailwindcss.com - Maintaining brand colors across states
-                        // Hover icon color: Accent color matching navigation link behavior
-                        'hover:text-accent-600',
+                        // Documentation Source: Context7 Tailwind CSS - Consistent Brand Color on Hover
+                        // Reference: /tailwindlabs/tailwindcss.com - Maintaining brand color consistency
+                        // CLIENT REQUIREMENT: Keep blue icon blue on hover (matches navigation pattern)
+                        'hover:text-primary-700',
                         
                         // Documentation Source: Context7 Tailwind CSS - Light Background Hover States
-                        // Reference: /tailwindlabs/tailwindcss.com - Subtle background color changes
-                        // Hover background: Light primary tint for visual feedback
+                        // Reference: /tailwindlabs/tailwindcss.com - Primary color tint utilities for feedback
+                        // Hover background: Light primary tint matching navigation link behavior
                         'hover:bg-primary-50',
                         
-                        // Documentation Source: Context7 Tailwind CSS - Focus State Contrast
-                        // Reference: /tailwindlabs/tailwindcss.com - Accessible focus indication
-                        // Focus background: Darker tint for clear focus visibility
+                        // Documentation Source: Context7 Tailwind CSS - Focus State for Mobile Accessibility
+                        // Reference: /tailwindlabs/tailwindcss.com - Enhanced focus visibility for touch devices
+                        // Focus background: Darker primary tint for clear focus indication
                         'focus:bg-primary-100'
                       ].join(' ')
                     )}
