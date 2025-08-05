@@ -2,7 +2,9 @@
 
 import { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
-import { HeroVideoDialog } from '@/components/magicui/hero-video-dialog'
+// CMS DATA SOURCE: Context7 MCP - Removed HeroVideoDialog import
+// Reference: Custom video modal implementation in individual components
+// Pattern: Simplified PageHero without automatic video dialog
 
 // CLAUDE.md rule 42: PageLayout → PageHero → Section structure
 // Documentation Source: Context7 verified - CSS video backgrounds and HTML5 video best practices
@@ -176,86 +178,12 @@ export function PageHero({
             size === 'full' ? 'max-w-7xl mx-auto' : 'max-w-4xl mx-auto',
             alignmentClasses[alignment]
           )}>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-              {/* Left content area */}
-              <div className="lg:col-span-2">
-                {children}
-              </div>
-              
-              {/* Right side video dialog */}
-              {background === 'video' && backgroundVideo && (
-                <div className="lg:col-span-1 flex justify-center lg:justify-end">
-                  <div className="w-full max-w-sm">
-                    {/* Documentation Source: Context7 verified Magic UI HeroVideoDialog implementation patterns
-                     * Reference: Magic UI component library - HeroVideoDialog best practices
-                     * Pattern: Custom thumbnail overlay with HeroVideoDialog component integration
-                     * 
-                     * Implementation Strategy:
-                     * - Create custom thumbnail with "Watch Introduction" text overlay
-                     * - Use HeroVideoDialog for proper modal functionality and accessibility
-                     * - Same video source as background for consistency
-                     * - Glass morphism design matching premium branding
-                     */}
-                    <div className="relative">
-                      {/* Custom thumbnail with video background preview */}
-                      <div className="aspect-video bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 relative">
-                        {/* Video thumbnail background */}
-                        <video 
-                          className="absolute inset-0 w-full h-full object-cover"
-                          muted
-                          loop
-                          playsInline
-                          style={{ filter: 'brightness(0.6)' }}
-                        >
-                          <source src={backgroundVideo} type="video/mp4" />
-                        </video>
-                        
-                        {/* Documentation Source: Context7 Tailwind CSS - Gradient overlay patterns and text positioning
-                         * Reference: /tailwindlabs/tailwindcss.com - bg-gradient-to-t and absolute positioning best practices
-                         * Pattern: Gradient overlay with bottom-left positioned text for video thumbnails
-                         * 
-                         * Implementation Strategy:
-                         * - bg-gradient-to-t: Creates top-to-bottom gradient for readability over video
-                         * - from-primary-900/70: Dark starting colour at 70% opacity for text contrast
-                         * - to-transparent: Fades to transparent at top allowing video to show through
-                         * - absolute positioning with inset-0: Full coverage overlay
-                         * - bottom-4 left-4: Standard spacing from bottom-left corner (1rem each)
-                         * - text-white with opacity variants: Ensures WCAG 2.1 AA contrast compliance
-                         */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-primary-900/70 to-transparent" />
-                        <div className="absolute bottom-4 left-4 text-white">
-                          <p className="text-sm font-medium opacity-90 leading-tight m-0">Watch Introduction</p>
-                          <p className="text-xs opacity-70 leading-tight m-0">Elizabeth Burrows, Founder</p>
-                        </div>
-                      </div>
-                      
-                      {/* HeroVideoDialog positioned over the thumbnail */}
-                      {/* 
-                       * Documentation Source: Context7 MCP - Magic UI HeroVideoDialog Official Implementation
-                       * Reference: /magicuidesign/magicui - HeroVideoDialog component API documentation and requirements
-                       * Pattern: Proper Magic UI HeroVideoDialog with dedicated video thumbnail image
-                       * 
-                       * Implementation Logic:
-                       * - Uses elizabeth-introduction.mp4 for video playback as requested by user
-                       * - thumbnailSrc requires proper image file (not video) per Magic UI docs
-                       * - Uses dedicated placeholder_for_introductionary_video.png as landscape thumbnail
-                       * - HeroVideoDialog component handles modal functionality and accessibility per Magic UI standards
-                       * - from-center animation provides polished user experience
-                       * - Proper image thumbnail provides correct aspect ratio and professional appearance
-                       */}
-                      <div className="absolute inset-0">
-                        <HeroVideoDialog
-                          videoSrc="/videos/elizabeth-introduction.mp4"
-                          thumbnailSrc="/images/video-placeholders/placeholder_for_introductionary_video.png"
-                          thumbnailAlt="Watch Introduction - Elizabeth Burrows, Founder"
-                          className="w-full h-full"
-                          animationStyle="from-center"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
+            {/* Single column content layout - no automatic video dialog */}
+            {/* CMS DATA SOURCE: Context7 MCP - Simplified PageHero layout */}
+            {/* Reference: Single column design for custom video modal implementations */}
+            {/* Pattern: Clean content container without automatic video components */}
+            <div className="w-full">
+              {children}
             </div>
           </div>
         </div>
