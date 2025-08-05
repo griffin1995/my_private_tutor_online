@@ -106,7 +106,7 @@ export function PageLayout({
   return (
     <div 
       className={cn(
-        'min-h-screen flex flex-col',
+        'min-h-screen flex flex-col overflow-x-hidden',
         backgroundClasses[background],
         className
       )}
