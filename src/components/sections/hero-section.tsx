@@ -41,6 +41,11 @@ import { Play, X } from 'lucide-react'
 import { PageHero } from '@/components/layout/page-hero'
 import { PageHeader } from '@/components/layout/page-header'
 
+// CMS DATA SOURCE: Context7 MCP - CMS Image System Integration
+// Reference: /tailwindlabs/tailwindcss.com - CMS-driven asset management
+// Pattern: Centralized video asset management with getIntroVideo function
+import { getIntroVideo } from '@/lib/cms/cms-images'
+
 /**
  * CMS DATA SOURCE: Context7 MCP - TypeScript Interface Design Patterns
  * Reference: /microsoft/typescript - Interface definitions for component props
@@ -51,7 +56,7 @@ interface HeroSectionProps {
   className?: string
   /** Background video URL for the hero background */
   backgroundVideo?: string
-  /** Video URL for the popup dialog (defaults to background video) */
+  /** Video URL for the popup dialog (defaults to CMS intro video) */
   dialogVideo?: string
   /** Show header within hero section (default: true) */
   showHeader?: boolean
@@ -75,7 +80,7 @@ interface HeroSectionProps {
 export function HeroSection({ 
   className = "",
   backgroundVideo = "/videos/background-video-2025.mp4",
-  dialogVideo = "/videos/elizabeth-introduction.mp4",
+  dialogVideo,
   showHeader = true
 }: HeroSectionProps) {
   
@@ -84,6 +89,12 @@ export function HeroSection({
   // Pattern: Simple boolean state for video modal visibility
   const [isVideoOpen, setIsVideoOpen] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  
+  // CMS DATA SOURCE: Context7 MCP - CMS Video Asset Integration
+  // Reference: /tailwindlabs/tailwindcss.com - CMS-driven video management
+  // Pattern: Use CMS system to get introduction video asset
+  const introVideoAsset = getIntroVideo()
+  const finalDialogVideo = dialogVideo || introVideoAsset.src
   
   // CMS DATA SOURCE: Context7 MCP - Video modal open handler
   // Reference: /reactjs/react.dev - Event handler functions
@@ -162,12 +173,15 @@ export function HeroSection({
             {/* Pattern: Professional circular play button with accessibility features */}
             <button
               onClick={handleVideoOpen}
-              className="relative w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 bg-white/90 backdrop-blur-sm rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center border-4 border-white/20 hover:border-white/40"
+              className="relative w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 bg-white/70 backdrop-blur-sm rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center border-4 border-white/20 hover:border-white/40"
               aria-label="Play introduction video"
               type="button"
             >
-              {/* Gradient background overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/95 to-white/85 rounded-full group-hover:from-white group-hover:to-white/95 transition-all duration-300" />
+              {/* Gradient background overlay with 70% transparency */}
+              {/* CMS DATA SOURCE: Context7 MCP - Tailwind CSS opacity classes */}
+              {/* Reference: /tailwindlabs/tailwindcss.com - Background color opacity modifiers */}
+              {/* Pattern: 70% transparency with hover state at 80% for better interaction feedback */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/70 to-white/60 rounded-full group-hover:from-white/80 group-hover:to-white/70 transition-all duration-300" />
               
               {/* Play Icon */}
               {/* CMS DATA SOURCE: Context7 MCP - Lucide React icon sizing and styling */}
@@ -219,9 +233,9 @@ export function HeroSection({
             {/* CMS DATA SOURCE: Context7 MCP - HTML5 video element with accessibility */}
             {/* Reference: Video element best practices for autoplay and controls */}
             {/* Pattern: Responsive video player with proper controls */}
-            {dialogVideo.includes('youtube.com') || dialogVideo.includes('youtu.be') ? (
+            {finalDialogVideo.includes('youtube.com') || finalDialogVideo.includes('youtu.be') ? (
               <iframe
-                src={dialogVideo}
+                src={finalDialogVideo}
                 className="w-full h-full rounded-lg shadow-2xl"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -230,7 +244,7 @@ export function HeroSection({
             ) : (
               <video
                 ref={videoRef}
-                src={dialogVideo}
+                src={finalDialogVideo}
                 className="w-full h-full rounded-lg shadow-2xl object-cover"
                 controls
                 autoPlay
