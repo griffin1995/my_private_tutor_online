@@ -349,12 +349,12 @@ export function PageHeader({
                             // Documentation Source: Context7 MCP - React Scroll Event Handler Implementation
                             // Reference: /react-hook-form/documentation - useEffect scroll event patterns
                             // CLIENT REQUIREMENT: Initial state text must be WHITE for visibility over hero content
-                            "text-white",
+                            "!text-white",
                             
                             // Documentation Source: Context7 Tailwind CSS - Maintaining Text Color Consistency
                             // Reference: /tailwindlabs/tailwindcss.com - Hover state text color preservation
                             // CLIENT REQUIREMENT: Keep white text white on hover (no color change)
-                            "hover:text-white",
+                            "hover:!text-white",
                             
                             // Documentation Source: Context7 Tailwind CSS - ::after Pseudo-element Underline Effects
                             // Reference: /tailwindlabs/tailwindcss.com - Gradient utilities with ::after variants
@@ -387,12 +387,12 @@ export function PageHeader({
                             // Documentation Source: Context7 MCP - Client Brand Color Implementation
                             // Reference: Tailwind Config - primary-700: '#3f4a7e' (CLIENT BRAND BLUE)
                             // CLIENT REQUIREMENT: Scrolled state text must be BLUE (#3F4A7E)
-                            "text-primary-700",
+                            "!text-primary-700",
                             
                             // Documentation Source: Context7 Tailwind CSS - Consistent Brand Color Application
                             // Reference: /tailwindlabs/tailwindcss.com - Hover state color consistency patterns
                             // CLIENT REQUIREMENT: Keep blue text blue on hover (no color change)
-                            "hover:text-primary-700",
+                            "hover:!text-primary-700",
                             
                             // Documentation Source: Context7 Tailwind CSS - Brand Color Gradients
                             // Reference: /tailwindlabs/tailwindcss.com - Primary color gradient utilities
@@ -449,12 +449,12 @@ export function PageHeader({
                         // Documentation Source: Context7 Tailwind CSS - Transparent Button with Border
                         // Reference: /tailwindlabs/tailwindcss.com - Border utilities and background transparency
                         // CLIENT REQUIREMENT: Initial state uses white text (transparent background with white border)
-                        'bg-transparent border-2 border-white text-white',
+                        'bg-transparent border-2 border-white !text-white',
                         
                         // Documentation Source: Context7 Tailwind CSS - Button Hover State Transitions
                         // Reference: /tailwindlabs/tailwindcss.com - Hover state background and text color changes
                         // Hover state: Background becomes white, text becomes brand blue
-                        'hover:bg-white hover:text-primary-700'
+                        'hover:bg-white hover:!text-primary-700'
                       ].join(' ')
                     : [
                         // Scrolled State: CTA button with brand blue text
@@ -466,7 +466,7 @@ export function PageHeader({
                         // Documentation Source: Context7 MCP - Text Color Override for Client Requirements
                         // Reference: /tailwindlabs/tailwindcss.com - Text color utilities for brand consistency
                         // CLIENT REQUIREMENT: CTA button text must be blue when scrolled (overrides default white)
-                        'text-primary-700 hover:text-primary-700'
+                        '!text-primary-700 hover:!text-primary-700'
                       ].join(' ')
                 )}
                 asChild
@@ -522,12 +522,12 @@ export function PageHeader({
                         // Documentation Source: Context7 MCP - SVG Icon Color Implementation
                         // Reference: /tailwindlabs/tailwindcss.com - text-* utilities for SVG fill color
                         // CLIENT REQUIREMENT: Initial state icon must be WHITE
-                        'text-white',
+                        '!text-white',
                         
                         // Documentation Source: Context7 Tailwind CSS - Consistent White Icon on Hover
                         // Reference: /tailwindlabs/tailwindcss.com - Maintaining icon color consistency
                         // CLIENT REQUIREMENT: Keep white icon white on hover (matches navigation pattern)
-                        'hover:text-white',
+                        'hover:!text-white',
                         
                         // Documentation Source: Context7 Tailwind CSS - Semi-transparent Background Hover
                         // Reference: /tailwindlabs/tailwindcss.com - Background opacity utilities for feedback
@@ -546,12 +546,12 @@ export function PageHeader({
                         // Documentation Source: Context7 MCP - Client Brand Color Implementation
                         // Reference: Tailwind Config - primary-700: '#3f4a7e' (CLIENT BRAND BLUE)
                         // CLIENT REQUIREMENT: Scrolled state icon must be BLUE (#3F4A7E)
-                        'text-primary-700',
+                        '!text-primary-700',
                         
                         // Documentation Source: Context7 Tailwind CSS - Consistent Brand Color on Hover
                         // Reference: /tailwindlabs/tailwindcss.com - Maintaining brand color consistency
                         // CLIENT REQUIREMENT: Keep blue icon blue on hover (matches navigation pattern)
-                        'hover:text-primary-700',
+                        'hover:!text-primary-700',
                         
                         // Documentation Source: Context7 Tailwind CSS - Light Background Hover States
                         // Reference: /tailwindlabs/tailwindcss.com - Primary color tint utilities for feedback
