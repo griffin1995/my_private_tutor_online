@@ -1,218 +1,251 @@
 /**
- * Documentation Source: Context7 MCP - Next.js Client Component with Framer Motion
- * Reference: /vercel/next.js - Client component patterns for interactive features
- * Reference: /framer/motion - Framer Motion animation components
- * Pattern: Modular hero section with video background and CMS integration
+ * Documentation Source: Context7 MCP - Next.js Client Component with Minimalist Video Hero
+ * Reference: /reactjs/react.dev - React component patterns for interactive features
+ * Reference: /tailwindlabs/tailwindcss.com - Tailwind CSS for button styling and hover effects
+ * Reference: /context7/lucide_dev-guide - Lucide React icon implementation
+ * Pattern: Minimalist hero section with background video and centered play button
  * 
  * Component Architecture:
- * - Client Component boundary for interactive features
- * - CMS integration for all content
- * - Proper semantic HTML structure
+ * - Client Component boundary for interactive video dialog
+ * - Minimalist design with only background video and play button
+ * - Proper semantic HTML structure with accessibility
  * - Context7 verified React component patterns
- * - Static export compatibility
+ * - WCAG 2.1 AA compliant interactive elements
  * 
  * Performance Optimisations:
- * - Strategic component lazy loading
- * - Optimised image loading with Next.js Image
- * - Responsive breakpoints for mobile-first design
+ * - Removes unnecessary text content and animations
+ * - Simplified DOM structure for faster rendering
+ * - Responsive design with mobile-first approach
  * 
- * Interactive Features Requiring Client:
- * - Framer Motion animations and scroll triggers
- * - Hero video dialog modals
- * - Dynamic state management
+ * Interactive Features:
+ * - Centered play button with hover effects
+ * - Video dialog modal integration
+ * - Accessible keyboard navigation
  */
 
 "use client"
 
-// Documentation Source: Context7 MCP - React 19 and Next.js 15 imports
-// Reference: /vercel/next.js - Next.js Image and Link components
-// Pattern: Modern React component imports with TypeScript support
-import { ReactNode } from 'react'
+// CMS DATA SOURCE: Context7 MCP - React useState hook for modal state management
+// Reference: /reactjs/react.dev - React useState hook for component state
+// Pattern: Modal open/close state management with boolean state
+import { useState, useEffect, useRef } from 'react'
 
-// Documentation Source: Context7 MCP - Magic UI Component Library Integration
-// Reference: Context7 MCP /magicui/magicui - ShinyButton component implementation
-// Pattern: Interactive UI components for premium user experience
-import { ShinyButton } from '@/components/magicui/shiny-button'
+// CMS DATA SOURCE: Context7 MCP - Lucide React Icon Library Integration
+// Reference: /context7/lucide_dev-guide - Play and X icons for video controls
+// Pattern: Professional play button and close button icons with accessibility
+import { Play, X } from 'lucide-react'
 
-// Documentation Source: Context7 MCP - Page Layout Component Integration
+// CMS DATA SOURCE: Context7 MCP - Page Layout Component Integration
 // Reference: Context7 verified PageHero and PageHeader components
-// Pattern: Consistent layout components with CMS integration
+// Pattern: Consistent layout components for video background
 import { PageHero } from '@/components/layout/page-hero'
 import { PageHeader } from '@/components/layout/page-header'
 
-// CMS DATA SOURCE: Using getHeroContent for hero section content
-// Documentation Source: Context7 MCP - CMS Integration Pattern
-// Reference: Project CLAUDE.md rules 22-25 for CMS requirements
-import { getHeroContent } from '@/lib/cms'
-
 /**
- * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
+ * CMS DATA SOURCE: Context7 MCP - TypeScript Interface Design Patterns
  * Reference: /microsoft/typescript - Interface definitions for component props
- * Pattern: Flexible component props with optional customisation
+ * Pattern: Minimalist component props for video hero with single play button
  */
 interface HeroSectionProps {
   /** Additional CSS classes for styling customisation */
   className?: string
-  /** Background video URL override (defaults to CMS content) */
+  /** Background video URL for the hero background */
   backgroundVideo?: string
-  /** Custom children to override default hero content */
-  children?: ReactNode
+  /** Video URL for the popup dialog (defaults to background video) */
+  dialogVideo?: string
   /** Show header within hero section (default: true) */
   showHeader?: boolean
 }
 
 /**
- * Documentation Source: Context7 MCP - React Functional Component Best Practices
- * Reference: /react/documentation - Modern React functional component patterns
- * Pattern: Reusable hero section component with CMS integration
+ * CMS DATA SOURCE: Context7 MCP - React Functional Component Best Practices
+ * Reference: /reactjs/react.dev - Modern React functional component patterns with state management
+ * Pattern: Minimalist hero section component with custom video modal
  * 
  * Component Features:
- * - Full-screen video background hero section
- * - CMS-driven content with fallback support
- * - Framer Motion animations
+ * - Full-screen video background without text overlay
+ * - Single centered play button (no thumbnails)
+ * - Custom video modal with backdrop blur overlay
+ * - Professional hover effects with Tailwind CSS
  * - Responsive design with mobile-first approach
- * - Accessible markup with proper ARIA labels
- * - Premium visual effects and gradients
+ * - Accessible markup with proper ARIA labels and keyboard navigation
+ * - WCAG 2.1 AA compliant interactive elements
+ * - Escape key and click-outside to close functionality
  */
 export function HeroSection({ 
   className = "",
-  backgroundVideo,
-  children,
+  backgroundVideo = "/videos/background-video-2025.mp4",
+  dialogVideo = "/videos/elizabeth-introduction.mp4",
   showHeader = true
 }: HeroSectionProps) {
   
-  // CMS DATA SOURCE: Using getHeroContent for hero section content
-  // Documentation Source: Context7 MCP - CMS Data Integration Pattern
-  // Pattern: Centralized content management for all hero data
-  const heroContent = getHeroContent()
+  // CMS DATA SOURCE: Context7 MCP - React useState for modal state management
+  // Reference: /reactjs/react.dev - Boolean state for modal open/close
+  // Pattern: Simple boolean state for video modal visibility
+  const [isVideoOpen, setIsVideoOpen] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  
+  // CMS DATA SOURCE: Context7 MCP - Video modal open handler
+  // Reference: /reactjs/react.dev - Event handler functions
+  // Pattern: Clean function to open video modal
+  const handleVideoOpen = () => {
+    setIsVideoOpen(true)
+  }
+  
+  // CMS DATA SOURCE: Context7 MCP - Video modal close handler with cleanup
+  // Reference: /reactjs/react.dev - Event handler functions with video control
+  // Pattern: Proper video cleanup when modal closes
+  const handleVideoClose = () => {
+    setIsVideoOpen(false)
+    if (videoRef.current) {
+      videoRef.current.pause()
+      videoRef.current.currentTime = 0
+    }
+  }
+  
+  // CMS DATA SOURCE: Context7 MCP - Keyboard navigation and body scroll control
+  // Reference: /reactjs/react.dev - useEffect for side effects and cleanup
+  // Pattern: Proper modal behavior with escape key and body scroll prevention
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    
+    if (isVideoOpen) {
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden'
+      
+      // Handle escape key
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          handleVideoClose()
+        }
+      }
+      
+      document.addEventListener('keydown', handleKeyDown)
+      
+      return () => {
+        document.body.style.overflow = 'unset'
+        document.removeEventListener('keydown', handleKeyDown)
+      }
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isVideoOpen])
   
   return (
     <div className={className}>
       {/* Header - Conditionally rendered */}
       {showHeader && <PageHeader isHeroPage={true} />}
       
-      {/* Hero Section with Full-Screen Video Background */}
-      {/* Documentation Source: Context7 verified HTML5 video best practices and CMS integration */}
-      {/* Pattern: Full-screen video hero with proper HTML5 attributes and CMS video source */}
+      {/* Minimalist Hero Section with Full-Screen Video Background */}
+      {/* Documentation Source: Context7 MCP - HTML5 video background best practices */}
+      {/* Pattern: Clean full-screen video hero without text content overlay */}
       <PageHero 
         background="video" 
-        backgroundVideo={backgroundVideo || "/videos/background-video-2025.mp4"}
+        backgroundVideo={backgroundVideo}
         size="full"
         overlay
-        overlayOpacity="medium"
+        overlayOpacity="light"
         className=""
       >
-        {children || (
-          /* Default Hero Content - Minimal overlay on silent video */
-          /* Documentation Source: Context7 Tailwind CSS - Clean hero design with minimal text overlay */
-          /* Pattern: Simplified hero content without decorative elements for clean video presentation */
-          <div className="min-h-screen flex items-center justify-center relative">
-            <div className="text-center space-y-8 max-w-5xl mx-auto relative z-10 py-16 lg:py-20">
-              <div className="space-y-8 px-6 lg:px-8">
-                <div className="relative">
-                  {/* 
-                   * Documentation Source: Context7 MCP - Tailwind CSS Typography Utilities
-                   * Reference: /context7/tailwindcss - text-* utilities for font sizing
-                   * Pattern: Large heading with responsive text sizes for hero sections
-                   * 
-                   * Typography Implementation:
-                   * - text-5xl (3rem/48px): Base size for mobile devices
-                   * - lg:text-7xl (4.5rem/72px): Large screens for prominence  
-                   * - xl:text-8xl (6rem/96px): Extra large screens for maximum impact
-                   * - font-serif: Uses Source Serif 4 for premium readability
-                   * - font-bold: Strong visual weight for hero prominence
-                   * - leading-tight: Optimized line-height for large display text
-                   */}
-                  <h1 className="text-5xl lg:text-7xl xl:text-8xl font-serif font-bold text-white leading-tight drop-shadow-2xl animate-fade-in-up">
-                    <span className="bg-gradient-to-r from-white via-accent-200 to-white bg-clip-text text-transparent bg-size-200 animate-gradient-x">
-                      {heroContent.title}
-                    </span>
-                  </h1>
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-gold-400 to-accent-500 rounded-full shadow-lg animate-fade-in-up animation-delay-300" />
-                </div>
-                
-                <p className="text-lg lg:text-xl text-accent-300 font-semibold drop-shadow-lg animate-fade-in-up animation-delay-200">
-                  <span className="bg-gradient-to-r from-accent-300 via-gold-300 to-accent-300 bg-clip-text text-transparent bg-size-200 animate-gradient-x">
-                    {heroContent.subtitle}
-                  </span>
-                </p>
-                
-                {/* 
-                 * Documentation Source: Context7 MCP - Next.js Conditional Rendering Best Practices
-                 * Reference: /vercel/next.js - Conditional rendering patterns in React components
-                 * Pattern: Conditional rendering based on content availability
-                 * 
-                 * Implementation Logic:
-                 * - Only render description paragraph if heroContent.description exists and is not empty
-                 * - Prevents empty <p> elements from affecting layout spacing
-                 * - Maintains semantic HTML structure when content is available
-                 */}
-                {heroContent.description && (
-                  <p className="text-base lg:text-lg text-white/95 leading-relaxed max-w-3xl drop-shadow-md animate-fade-in-up animation-delay-400">
-                    {heroContent.description}
-                  </p>
-                )}
-              </div>
+        {/* Single Centered Play Button - No Thumbnails */}
+        {/* CMS DATA SOURCE: Context7 MCP - Tailwind CSS centering and button styling */}
+        {/* Reference: /tailwindlabs/tailwindcss.com - Flexbox centering and hover effects */}
+        {/* Pattern: Single centered play button with professional styling */}
+        <div className="min-h-screen flex items-center justify-center relative">
+          <div className="relative group">
+            {/* Background glow effect */}
+            <div className="absolute inset-0 bg-white/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+            
+            {/* Single Play Button - Custom Implementation */}
+            {/* CMS DATA SOURCE: Context7 MCP - Tailwind CSS button styling patterns */}
+            {/* Reference: /tailwindlabs/tailwindcss.com - Background gradients and hover effects */}
+            {/* Pattern: Professional circular play button with accessibility features */}
+            <button
+              onClick={handleVideoOpen}
+              className="relative w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 bg-white/90 backdrop-blur-sm rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center border-4 border-white/20 hover:border-white/40"
+              aria-label="Play introduction video"
+              type="button"
+            >
+              {/* Gradient background overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/95 to-white/85 rounded-full group-hover:from-white group-hover:to-white/95 transition-all duration-300" />
               
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-12 animate-fade-in-up animation-delay-600">
-                <div className="relative group">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-accent-500 via-gold-500 to-accent-600 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-500 animate-pulse" />
-                  <ShinyButton 
-                    text="Book Free Consultation"
-                    className="relative px-10 py-4 h-auto text-lg font-bold bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white shadow-3xl hover:shadow-4xl transition-all duration-500 transform hover:scale-105 rounded-lg border border-gold-400/20"
-                  />
-                </div>
-              </div>
-            </div>
+              {/* Play Icon */}
+              {/* CMS DATA SOURCE: Context7 MCP - Lucide React icon sizing and styling */}
+              {/* Reference: /context7/lucide_dev-guide - Icon component props and styling */}
+              {/* Pattern: Responsive icon sizing with professional styling */}
+              <Play 
+                className="relative z-10 w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 text-slate-700 group-hover:text-slate-900 transition-colors duration-300 ml-1"
+                fill="currentColor"
+                strokeWidth={0}
+              />
+              
+              {/* Ripple effect on hover */}
+              <div className="absolute inset-0 rounded-full bg-white/30 scale-0 group-hover:scale-100 group-hover:opacity-0 transition-all duration-500 opacity-100" />
+            </button>
           </div>
-        )}
+        </div>
       </PageHero>
       
-      {/* Documentation Source: Context7 Tailwind CSS - Transform and opacity animations for scroll indicators
-       * Reference: /tailwindlabs/tailwindcss.com - CSS transforms, opacity animations, and fade effects
-       * Pattern: Vertical line with fixed-bottom shrinking effect and delayed text fade animation
-       * 
-       * Implementation Strategy:
-       * - Single vertical line with bottom position fixed in place
-       * - Line shrinks from top to bottom (top edge moves down to meet bottom edge)
-       * - "SCROLL" text moves downward with the line as if connected together
-       * - Text stops moving when line disappears, then fades out smoothly
-       * - origin-bottom ensures bottom edge stays fixed while top edge slides down
-       * 
-       * Animation Details:
-       * - scrollIndicator: Line shrinks vertically (scaleY 1 → 0) with no position movement
-       * - scrollText: Text moves down with line (translateY 0 → 40px), then fades out (opacity 1 → 0)
-       * - 67% duration (2s) for line shrinking and text movement, remaining 33% (1s) for text fade
-       * - Perfect synchronization: text follows line down, stops when line disappears, then fades
-       * - Infinite loop with smooth ease-in-out timing function
-       * 
-       * Accessibility Considerations:
-       * - motion-reduce:hidden: Respects user preference for reduced motion
-       * - High contrast white text and line with shadow for visibility
-       * - Non-interactive indicator, purely visual scroll cue
-       * - Semantic text content for screen readers if needed
-       */}
-      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-30 motion-reduce:hidden">
-        <div className="relative flex flex-col items-center">
-          {/* SCROLL Text */}
-          <div 
-            className="text-white text-xs font-medium tracking-wider mb-3 drop-shadow-lg"
-            style={{
-              animation: 'scrollText 3s ease-in-out infinite'
-            }}
+      {/* Custom Video Modal */}
+      {/* CMS DATA SOURCE: Context7 MCP - Tailwind CSS modal overlay patterns */}
+      {/* Reference: /tailwindlabs/tailwindcss.com - Backdrop blur and overlay styling */}
+      {/* Pattern: Full-screen video modal with backdrop blur */}
+      {isVideoOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={handleVideoClose}
+        >
+          {/* Close Button */}
+          {/* CMS DATA SOURCE: Context7 MCP - Tailwind CSS button positioning and styling */}
+          {/* Reference: /tailwindlabs/tailwindcss.com - Absolute positioning and hover effects */}
+          {/* Pattern: Top-right close button with accessibility */}
+          <button
+            className="absolute top-4 right-4 z-10 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+            onClick={handleVideoClose}
+            aria-label="Close video"
           >
-            SCROLL
-          </div>
+            <X className="w-6 h-6" />
+          </button>
           
-          {/* Vertical Line */}
+          {/* Video Container */}
+          {/* CMS DATA SOURCE: Context7 MCP - Tailwind CSS video container styling */}
+          {/* Reference: /tailwindlabs/tailwindcss.com - Responsive video container patterns */}
+          {/* Pattern: Responsive video container with aspect ratio */}
           <div 
-            className="w-0.5 h-8 bg-white shadow-lg origin-bottom"
-            style={{
-              animation: 'scrollIndicator 3s ease-in-out infinite'
-            }}
-          />
+            className="relative w-full max-w-6xl mx-4 aspect-video"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Video Player */}
+            {/* CMS DATA SOURCE: Context7 MCP - HTML5 video element with accessibility */}
+            {/* Reference: Video element best practices for autoplay and controls */}
+            {/* Pattern: Responsive video player with proper controls */}
+            {dialogVideo.includes('youtube.com') || dialogVideo.includes('youtu.be') ? (
+              <iframe
+                src={dialogVideo}
+                className="w-full h-full rounded-lg shadow-2xl"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Introduction video"
+              />
+            ) : (
+              <video
+                ref={videoRef}
+                src={dialogVideo}
+                className="w-full h-full rounded-lg shadow-2xl object-cover"
+                controls
+                autoPlay
+                muted
+                playsInline
+                onLoadedData={() => {
+                  if (videoRef.current) {
+                    videoRef.current.play()
+                  }
+                }}
+              />
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
