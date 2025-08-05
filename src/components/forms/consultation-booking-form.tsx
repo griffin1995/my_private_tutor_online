@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, Clock, Crown } from 'lucide-react'
+import { CheckCircle, Clock, Crown, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const consultationSchema = z.object({
@@ -62,6 +62,7 @@ interface ConsultationBookingFormProps {
 
 export function ConsultationBookingForm({ className, compact = false }: ConsultationBookingFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [csrfToken, setCsrfToken] = useState<string | null>(null)
   
   const {
     register,
@@ -74,15 +75,34 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
     resolver: zodResolver(consultationSchema),
   })
 
+  // Fetch CSRF token on component mount
+  useEffect(() => {
+    const fetchCSRFToken = async () => {
+      try {
+        const response = await fetch('/api/csrf-token')
+        const data = await response.json()
+        setCsrfToken(data.token)
+      } catch (error) {
+        console.error('Failed to fetch CSRF token:', error)
+      }
+    }
+    fetchCSRFToken()
+  }, [])
+
   const onSubmit = async (data: ConsultationFormData) => {
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Ensure CSRF token is available
+      if (!csrfToken) {
+        throw new Error('Security token not available. Please refresh the page.')
+      }
       
-      // Handle form submission - send to API endpoint
-      const response = await fetch('/api/consultations', {
+      // Handle form submission - send to API endpoint with CSRF protection
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken
+        },
         body: JSON.stringify(data),
       })
       

@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { decrypt } from '@/lib/auth/session'
 import { cookies } from 'next/headers'
+import { securityMiddleware, applySecurityHeaders } from '@/src/middleware/security'
 
 // CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 authentication middleware
-// Reference: /vercel/next.js middleware patterns for protected routes
+// Reference: /vercel/next.js middleware patterns for protected routes and security
 
 /**
  * Protected admin routes that require authentication
@@ -28,13 +29,20 @@ const publicRoutes = ['/admin/login']
  * - Royal client data protection compliance
  */
 export default async function middleware(req: NextRequest) {
+  // Apply security middleware first
+  const securityResponse = await securityMiddleware(req)
+  if (securityResponse) {
+    return applySecurityHeaders(securityResponse)
+  }
+
   const path = req.nextUrl.pathname
   const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route))
   const isPublicRoute = publicRoutes.includes(path)
 
-  // Skip middleware for non-admin routes
+  // Skip auth middleware for non-admin routes
   if (!isProtectedRoute && !isPublicRoute) {
-    return NextResponse.next()
+    const response = NextResponse.next()
+    return applySecurityHeaders(response)
   }
 
   try {
@@ -47,24 +55,29 @@ export default async function middleware(req: NextRequest) {
     if (isProtectedRoute && (!session || session.role !== 'admin')) {
       const loginUrl = new URL('/admin/login', req.url)
       loginUrl.searchParams.set('from', path) // Preserve original destination
-      return NextResponse.redirect(loginUrl)
+      const response = NextResponse.redirect(loginUrl)
+      return applySecurityHeaders(response)
     }
 
     // Redirect authenticated admin away from login page
     if (isPublicRoute && session?.role === 'admin') {
-      return NextResponse.redirect(new URL('/admin', req.url))
+      const response = NextResponse.redirect(new URL('/admin', req.url))
+      return applySecurityHeaders(response)
     }
 
-    return NextResponse.next()
+    const response = NextResponse.next()
+    return applySecurityHeaders(response)
   } catch (error) {
     console.error('Admin authentication middleware error:', error)
     
     // On authentication error, redirect to login for security
     if (isProtectedRoute) {
-      return NextResponse.redirect(new URL('/admin/login', req.url))
+      const response = NextResponse.redirect(new URL('/admin/login', req.url))
+      return applySecurityHeaders(response)
     }
     
-    return NextResponse.next()
+    const response = NextResponse.next()
+    return applySecurityHeaders(response)
   }
 }
 

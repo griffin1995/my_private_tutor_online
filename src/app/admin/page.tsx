@@ -1,6 +1,7 @@
 import { verifySession } from '@/lib/auth/dal'
 import ProtectedRoute from '@/components/auth/ProtectedRoute'
 import AdminHeader from '@/components/admin/AdminHeader'
+import { SecurityMonitor } from '@/components/admin/SecurityMonitor'
 
 // CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 Server Component authentication
 // Reference: /vercel/next.js protected route patterns with session verification
@@ -97,6 +98,15 @@ function AdminInterface() {
               <div className="text-gray-600 text-sm">Brand Assets</div>
             </div>
           </div>
+        </div>
+
+        {/* Security Monitoring Section */}
+        <div className="bg-white rounded-lg shadow p-6">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">Security Monitoring</h2>
+          <p className="text-gray-600 mb-6">
+            Real-time security monitoring and threat detection for royal client data protection.
+          </p>
+          <SecurityMonitor />
         </div>
       </div>
     </div>

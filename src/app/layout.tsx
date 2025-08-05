@@ -43,6 +43,7 @@ import ResourcePreloader from '@/components/performance/resource-preloader';
  */
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { CookieConsentManager } from '@/components/legal/CookieConsent';
 
 /**
  * Source Serif 4 & Playfair Display Font Family Implementation
@@ -216,6 +217,7 @@ export default function RootLayout({
          */}
         <Analytics />
         <SpeedInsights />
+        <CookieConsentManager />
       </body>
     </html>
   );
