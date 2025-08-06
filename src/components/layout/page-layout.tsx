@@ -118,6 +118,9 @@ export function PageLayout({
       )}
 
       {/* Main Content Area */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container padding control patterns */}
+      {/* LAYOUT FIX REASON: Official Tailwind CSS documentation shows conditional padding application */}
+      {/* Container width 'full' should not have horizontal padding to allow edge-to-edge sections */}
       <main 
         className="flex-1"
         role="main"
@@ -126,7 +129,8 @@ export function PageLayout({
       >
         <div 
           className={cn(
-            'mx-auto px-4 sm:px-6 lg:px-8',
+            'mx-auto',
+            containerSize !== 'full' && 'px-4 sm:px-6 lg:px-8',
             containerSizeClasses[containerSize],
             verticalSpacingClasses[verticalSpacing]
           )}

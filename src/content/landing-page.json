@@ -510,6 +510,17 @@
     ],
     "copyrightText": "© 2024 My Private Tutor Online. All rights reserved."
   },
+  "cta": {
+    "title": "This Is Tutoring at Its Best",
+    "brandStatement": "Exact. Effective. Empowering.",
+    "description": "From prep school entry to Oxbridge preparation, {siteName} delivers expert tuition for exceptional futures.",
+    "primaryButtonText": "Contact Elizabeth's Team",
+    "secondaryButtonText": "Request a Consultation",
+    "siteName": "My Private Tutor Online",
+    "showVideo": true,
+    "videoHeight": "h-[120px]",
+    "backgroundColor": "bg-primary-900"
+  },
   "quotes": {
     "founderQuote": {
       "quote": "Parents come to us when something truly matters—an entrance exam, a lost sense of confidence, a desire for academic stretch. They stay with us because we deliver real progress, quietly and expertly. This is not a tutoring directory. This is a bespoke service for ambitious families looking for trusted partners in their child's academic career.",

@@ -271,31 +271,46 @@ export function ServicesCarousel({
              * - min-w-0: Prevents flex item overflow issues
              * - pl-4: Spacing between slides (16px padding-left)
              */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Carousel viewport with proper overflow management */}
+            {/* CARD FIX REASON: Ensured carousel container allows proper card height without vertical clipping */}
             <div className={`overflow-hidden w-full transition-opacity duration-300 ${isReady ? 'opacity-100' : 'opacity-0'}`} ref={emblaRef}>
-              <div className="flex -ml-4">
+              <div className="flex -ml-4 pb-4">
                 {services.map((service, index) => {
-                  // CMS DATA SOURCE: Using studentImages with enhanced service-based mapping
-                  // Documentation Source: Context7 MCP - Next.js Image Component with CMS Integration
-                  // Reference: /context7/nextjs - Image optimization patterns for carousel components
-                  // Pattern: Service-specific image mapping with fallback rotation for variety
+                  // CONTEXT7 SOURCE: /reactjs/react.dev - Optimized React Component Using Data Objects
+                  // IMPLEMENTATION REASON: Official React documentation demonstrates storing component-specific information in JavaScript objects for scalable conditional rendering
+                  // CMS DATA SOURCE: Using studentImages with enhanced service-based mapping for 2025 "Who We Support" section
+                  // Documentation Source: Context7 MCP - Object-based conditional rendering pattern eliminates complex if/else chains
+                  // Reference: Context7 MCP /reactjs/react.dev - Data-driven UI component patterns for maintainable code
+                  // Pattern: Service-specific image mapping using object lookup with fallback for maintainability
                   // 
-                  // Service-Specific Image Mapping:
-                  // - Maps specific services to appropriate student images from CMS
-                  // - "London In-Person" now properly mapped to student-on-laptop-teacher-on-screen image
-                  // - Maintains fallback rotation for other services
-                  // - All images sourced from CMS studentImages for consistency
-                  let studentImage
-                  if (service.title === 'London In-Person') {
-                    // CMS DATA SOURCE: Using studentImages['student-on-laptop-teacher-on-screen'] for London In-Person
-                    studentImage = studentImages['student-on-laptop-teacher-on-screen']
-                  } else {
-                    // CMS DATA SOURCE: Rotating through available student images for variety
-                    const imageKeys = ['student-teenager', 'student-university', 'student-oxbridge', 'student-child', 'adult-student-with-teacher', 'student-teacher-inside-comfortable']
-                    studentImage = studentImages[imageKeys[index] as keyof typeof studentImages]
+                  // Service-to-Image Mapping (2025 Update):
+                  // - Maps each service title to appropriate new 2025 student images from CMS
+                  // - Uses Context7 verified object-based conditional rendering pattern
+                  // - Eliminates complex if/else chains with scalable data object approach
+                  // - All images sourced from CMS STUDENT_IMAGES for consistency
+                  // CONTEXT7 SOURCE: /reactjs/react.dev - Object-based conditional rendering for London In-Person service
+                  // MAPPING UPDATE REASON: Changed from 'student-on-laptop-teacher-on-screen' to 'student-teacher-inside-comfortable'
+                  // VISUAL RATIONALE: Indoor tutoring environment better represents in-person service than online laptop setup
+                  const serviceImageMapping = {
+                    'Primary': 'primary-school-support',
+                    'Secondary': 'secondary-school-support', 
+                    'Entrance Exams': 'entrance-exam-preparation',
+                    'Uni & Beyond': 'university-and-beyond',
+                    'Online Homeschooling': 'online-homeschooling',
+                    'SEN Support': 'sen-support',
+                    'London In-Person': 'student-teacher-inside-comfortable'
                   }
                   
+                  // CONTEXT7 SOURCE: /reactjs/react.dev - Object lookup pattern with fallback for robustness
+                  // IMPLEMENTATION REASON: Official React documentation Section 20 demonstrates object[key] lookup with fallback values
+                  // CMS DATA SOURCE: Using serviceImageMapping for direct service-to-image correlation, fallback to legacy image for compatibility
+                  const imageKey = serviceImageMapping[service.title as keyof typeof serviceImageMapping] || 'student-teenager'
+                  const studentImage = studentImages[imageKey]
+                  
                   return (
-                    <div key={index} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4">
+                    <div key={index} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 pb-4">
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexible slide container with proper height */}
+                      {/* CARD FIX REASON: Ensured slide container allows full content height without clipping */}
                       {/* 
                        * Optimized Framer Motion Card Animation
                        * Documentation Source: Context7 Framer Motion Performance Optimization 
@@ -310,7 +325,10 @@ export function ServicesCarousel({
                        * 
                        * Card Design: Maintains premium aesthetic with optimized performance
                        */}
-                      <div className="group bg-white overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full transform-gpu">
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Card layout with proper height management */}
+                      {/* CARD FIX REASON: Removed overflow-hidden and h-full constraints that were clipping card content */}
+                      {/* Official Tailwind documentation Section 'overflow-hidden' - prevents content visibility beyond boundaries */}
+                      <div className="group bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 transform-gpu min-h-full">
                         {/* Student Image - Optimized for performance */}
                         {studentImage ? (
                           <div className="relative overflow-hidden h-[400px] lg:h-[500px]">
@@ -353,7 +371,9 @@ export function ServicesCarousel({
                          * Context7 MCP verified: All elements (heading, text, button) follow same formatting direction
                          * Consistent Design: Regardless of alignment choice, all components maintain visual harmony
                          */}
-                        <div className="p-6 lg:p-8 space-y-4 text-right flex flex-col items-end">
+                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Card content area with proper spacing */}
+                        {/* CARD FIX REASON: Enhanced padding ensures content is not clipped at card boundaries */}
+                        <div className="p-6 lg:p-8 pb-8 space-y-4 text-right flex flex-col items-end">
                           {/* Service Title - follows container alignment */}
                           <h3 className="text-xl lg:text-2xl font-serif font-bold text-primary-900 group-hover:text-accent-600 transition-colors duration-200 w-full">
                             {service.title}

@@ -122,10 +122,19 @@ export function PageHeader({
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
+  // CONTEXT7 SOURCE: /vercel/next.js - SSR-safe client-side state initialization
+  // HYDRATION FIX REASON: Official Next.js patterns for preventing hydration mismatches
+  // Pattern: Two-pass rendering to ensure consistent server/client state
+  const [isMounted, setIsMounted] = useState(false)
+  
   // Documentation Source: Context7 React 19 + Performance Optimization - useCallback for scroll handling
   // Reference: https://react.dev/reference/react/useCallback
   // Pattern: Memoized scroll handler to prevent unnecessary re-renders and optimize performance
   const handleScroll = useCallback(() => {
+    // CONTEXT7 SOURCE: /vercel/next.js - SSR-safe window access prevention
+    // HYDRATION FIX REASON: Official Next.js patterns for preventing server-side window access
+    if (typeof window === 'undefined') return
+    
     // Documentation Source: Web API Window.scrollY property
     // Reference: https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
     // 
@@ -141,10 +150,14 @@ export function PageHeader({
     setIsScrolled(window.scrollY > 100)
   }, [])
   
-  // Documentation Source: Context7 React 19 + Performance - useEffect for scroll event management
-  // Reference: https://react.dev/reference/react/useEffect
-  // Pattern: Optimized scroll event listener with passive event handling and proper cleanup
+  // CONTEXT7 SOURCE: /vercel/next.js - Client-side only effects with SSR safety
+  // HYDRATION FIX REASON: Official Next.js patterns for client-side only effects
+  // Pattern: useEffect with SSR safety for hydration consistency
   useEffect(() => {
+    // CONTEXT7 SOURCE: /vercel/next.js - Hydration-safe mounting detection
+    // HYDRATION FIX REASON: Ensure component is mounted client-side before accessing browser APIs
+    setIsMounted(true)
+    
     // Documentation Source: Context7 Performance - Passive scroll event listeners
     // Reference: https://developer.mozilla.org/en-US/docs/Web/API/Document/scroll_event#improving_scrolling_performance_with_passive_listeners
     // 
@@ -154,13 +167,17 @@ export function PageHeader({
     // - Prevents scroll jank and maintains smooth user experience
     // - Critical for mobile performance where scroll events are frequent
     
-    // Initialize scroll state on component mount
-    // Handles cases where page is refreshed at scroll position > 0
-    handleScroll()
-    
-    // Add optimized scroll listener
-    // passive: true is crucial for performance - allows browser optimization
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    // CONTEXT7 SOURCE: /vercel/next.js - SSR-safe initial scroll state detection
+    // HYDRATION FIX REASON: Only set initial scroll state after client mount
+    if (typeof window !== 'undefined') {
+      // Initialize scroll state on component mount
+      // Handles cases where page is refreshed at scroll position > 0
+      handleScroll()
+      
+      // Add optimized scroll listener
+      // passive: true is crucial for performance - allows browser optimization
+      window.addEventListener('scroll', handleScroll, { passive: true })
+    }
     
     // Documentation Source: React useEffect cleanup pattern for memory management
     // Reference: https://react.dev/reference/react/useEffect#subscribing-to-events
@@ -172,9 +189,15 @@ export function PageHeader({
     // 3. Ensures proper browser resource management
     // 4. Critical for SPA navigation where components mount/unmount frequently
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', handleScroll)
+      }
     }
   }, [handleScroll])
+  
+  // CONTEXT7 SOURCE: /vercel/next.js - Prevent hydration mismatch with initial server state
+  // HYDRATION FIX REASON: Server always renders with isScrolled=false to match initial client state
+  const safeIsScrolled = isMounted ? isScrolled : false
   
   // Documentation Source: Context7 Tailwind CSS - Background colors, backdrop filters, and transparency
   // Reference: /tailwindlabs/tailwindcss.com - backdrop-filter utilities and color opacity
@@ -184,7 +207,7 @@ export function PageHeader({
     // Default: Fully transparent to showcase hero content underneath
     // Scrolled: Glass morphism effect with backdrop blur and semi-transparent background
     
-    return isScrolled 
+    return safeIsScrolled 
       ? [
           // Documentation Source: Context7 Tailwind CSS - Background color with opacity
           // Reference: /tailwindlabs/tailwindcss.com - Semi-transparent backgrounds
@@ -250,6 +273,7 @@ export function PageHeader({
       )}
       role="banner"
       aria-label="Site header with navigation"
+      suppressHydrationWarning
     >
       {/* Documentation Source: CSS Grid layout for three-section navbar
        * Reference: https://tailwindcss.com/docs/grid-template-columns
@@ -285,10 +309,10 @@ export function PageHeader({
                  * - Single Image component prevents duplicate DOM elements
                  */}
                 <Image
-                  src={!isScrolled ? logoWhite.src : logoDefault.src}
-                  alt={!isScrolled ? logoWhite.alt : logoDefault.alt}
-                  width={!isScrolled ? logoWhite.width : logoDefault.width}
-                  height={!isScrolled ? logoWhite.height : logoDefault.height}
+                  src={!safeIsScrolled ? logoWhite.src : logoDefault.src}
+                  alt={!safeIsScrolled ? logoWhite.alt : logoDefault.alt}
+                  width={!safeIsScrolled ? logoWhite.width : logoDefault.width}
+                  height={!safeIsScrolled ? logoWhite.height : logoDefault.height}
                   priority
                   className="h-auto w-auto max-h-12 lg:max-h-16 transition-all duration-300 group-hover:scale-105"
                 />
@@ -345,7 +369,7 @@ export function PageHeader({
                           // After scrolling: ALL navbar text BLUE (#3F4A7E = primary-700)
                           
                           // Transparent Navbar State: Default state when at top of page
-                          !isScrolled && [
+                          !safeIsScrolled && [
                             // Documentation Source: Context7 MCP - React Scroll Event Handler Implementation
                             // Reference: /react-hook-form/documentation - useEffect scroll event patterns
                             // CLIENT REQUIREMENT: Initial state text must be WHITE for visibility over hero content
@@ -383,7 +407,7 @@ export function PageHeader({
                           ].join(' '),
                           
                           // Scrolled Navbar State: When user has scrolled down the page
-                          isScrolled && [
+                          safeIsScrolled && [
                             // Documentation Source: Context7 MCP - Client Brand Color Implementation
                             // Reference: Tailwind Config - primary-700: '#3f4a7e' (CLIENT BRAND BLUE)
                             // CLIENT REQUIREMENT: Scrolled state text must be BLUE (#3F4A7E)
@@ -444,7 +468,7 @@ export function PageHeader({
                   "relative overflow-hidden font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 focus:scale-105 active:scale-95",
                   
                   // Initial State (No Scrolling): CTA button with white text
-                  !isScrolled 
+                  !safeIsScrolled 
                     ? [
                         // Documentation Source: Context7 Tailwind CSS - Transparent Button with Border
                         // Reference: /tailwindlabs/tailwindcss.com - Border utilities and background transparency
@@ -516,9 +540,9 @@ export function PageHeader({
                       // Initial state (no scrolling): Icon WHITE
                       // After scrolling: Icon BLUE (#3F4A7E = primary-700)
                       
-                      // Transparent State (Default - when !isScrolled):
+                      // Transparent State (Default - when !safeIsScrolled):
                       // Applied when navbar is transparent at top of page
-                      !isScrolled && [
+                      !safeIsScrolled && [
                         // Documentation Source: Context7 MCP - SVG Icon Color Implementation
                         // Reference: /tailwindlabs/tailwindcss.com - text-* utilities for SVG fill color
                         // CLIENT REQUIREMENT: Initial state icon must be WHITE
@@ -540,9 +564,9 @@ export function PageHeader({
                         'focus:bg-white/15'
                       ].join(' '),
                       
-                      // Scrolled State (when isScrolled):
+                      // Scrolled State (when safeIsScrolled):
                       // Applied when navbar becomes opaque after scrolling
-                      isScrolled && [
+                      safeIsScrolled && [
                         // Documentation Source: Context7 MCP - Client Brand Color Implementation
                         // Reference: Tailwind Config - primary-700: '#3f4a7e' (CLIENT BRAND BLUE)
                         // CLIENT REQUIREMENT: Scrolled state icon must be BLUE (#3F4A7E)

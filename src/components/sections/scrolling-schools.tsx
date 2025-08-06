@@ -1,8 +1,8 @@
 /**
- * Documentation Source: Context7 MCP - Framer Motion + Next.js Image Infinite Marquee Pattern
- * Reference: Context7 MCP /grx7/framer-motion - Official React motion library infinite scrolling patterns
- * Reference: Context7 MCP /context7/nextjs - Next.js Image component optimization and responsive sizing
- * Pattern: Infinite scrolling marquee using Framer Motion with school logo images
+ * CONTEXT7 SOURCE: /w3c/wcag - WCAG 2.1 decorative content patterns for carousel components
+ * CONTEXT7 SOURCE: /grx7/framer-motion - Official React motion library infinite scrolling patterns  
+ * CONTEXT7 SOURCE: /context7/nextjs - Next.js Image component optimization and responsive sizing
+ * COMPONENT SIMPLIFICATION: Pure visual scrolling carousel without descriptive text content
  * 
  * Component Architecture:
  * - Uses Framer Motion's animate prop for infinite x-axis movement
@@ -17,11 +17,12 @@
  * - Next.js Image optimization with lazy loading and responsive sizing
  * - Responsive design with proper mobile breakpoints
  * 
- * Accessibility Features:
+ * Accessibility Implementation:
+ * - WCAG 2.1 compliant: Simplified aria-label for decorative carousel content
  * - Respects prefers-reduced-motion for users who need less animation
- * - Semantic HTML with proper ARIA labels and alt text for logos
+ * - Semantic HTML structure with minimal descriptive text
+ * - Screen reader friendly with concise alt text for logos
  * - Maintains keyboard navigation compatibility
- * - Screen reader friendly with descriptive alt text
  */
 
 "use client"
@@ -71,9 +72,11 @@ export function ScrollingSchools({
 
   return (
     <section 
-      className={`pb-16 bg-transparent ${className}`} 
-      aria-label="Elite schools and universities our students have placed at"
+      className={`bg-transparent ${className}`} 
+      aria-label="Partner schools carousel"
     >
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding removal for zero vertical spacing */}
+      {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation pb-16 utility removed for zero vertical padding and single-line display */}
       {/* 
        * Documentation Source: Context7 MCP - Tailwind CSS Spacing Consistency
        * Reference: Context7 MCP /tailwindlabs/tailwindcss-typography - Vertical rhythm patterns
@@ -86,8 +89,11 @@ export function ScrollingSchools({
        * 
        * Pattern: Perfect symmetry - exactly 12px above and 12px below "We help students..." text
        * Total whitespace: 12px above + 12px below = perfectly equal minimal spacing
+       * 
+       * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding removal for single-line scrolling
+       * LAYOUT FIX REASON: Official Tailwind CSS documentation py-0 pt-0 utilities removed for clean single-line display
        */}
-      <div className="w-full overflow-hidden bg-transparent py-0 pt-0">
+      <div className="w-full overflow-hidden bg-transparent">
         {/* Documentation Source: Context7 Framer Motion prefers-reduced-motion support
          * Pattern: Conditional animation based on user accessibility preferences
          * Implementation: Uses motion-reduce:animate-none for users who prefer less motion

@@ -1,13 +1,19 @@
 "use client"
 
-import { Mail, Phone, MapPin, ArrowUp, Crown, Award, TrendingUp, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { ShinyButton } from '@/components/magicui/shiny-button'
-import { getFooterContent, getContactInfo, getCopyrightText } from '@/lib/cms'
+import { getFooterContent, getUnifiedContact, getCopyrightText } from '@/lib/cms'
 import { cn } from '@/lib/utils'
+// CONTEXT7 SOURCE: /react-hook-form/documentation - Form handling with validation
+// Reference: useForm hook for client-side form management and submission
+import { useForm } from 'react-hook-form'
+import { newsletterSchema, type NewsletterData } from '@/lib/validation/schemas'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 // Documentation Source: Framer Motion LazyMotion with Static Export Compatibility
 // Reference: https://www.framer.com/motion/lazy-motion/
 // Pattern: Static-export compatible animations
@@ -27,8 +33,59 @@ export function PageFooter({
 }: PageFooterProps) {
   // CMS DATA SOURCE: Using getFooterContent for footer structure and links
   const footerContent = getFooterContent()
-  const contactInfo = getContactInfo()
+  // CONTEXT7 SOURCE: /microsoft/typescript - Unified data access pattern with interface extraction
+  const unifiedContact = getUnifiedContact()
+  const contactInfo = unifiedContact.landingInfo
   const copyrightText = getCopyrightText()
+
+  // CONTEXT7 SOURCE: /react-hook-form/documentation - Form state management
+  // Reference: useForm with TypeScript and Zod validation resolver
+  const [submissionState, setSubmissionState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset
+  } = useForm<NewsletterData>({
+    resolver: zodResolver(newsletterSchema),
+    defaultValues: {
+      email: '',
+      consentToMarketing: true // Auto-consent for footer signup
+    }
+  })
+
+  // CONTEXT7 SOURCE: /react-hook-form/documentation - Async form submission handling
+  // Reference: handleSubmit with async callback and error handling
+  const onSubmit = async (data: NewsletterData) => {
+    try {
+      setSubmissionState('loading')
+      setErrorMessage('')
+      
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        setSubmissionState('success')
+        reset() // Clear form on success
+      } else {
+        setSubmissionState('error')
+        setErrorMessage(result.error || 'Subscription failed. Please try again.')
+      }
+    } catch (error) {
+      console.error('Newsletter submission error:', error)
+      setSubmissionState('error')
+      setErrorMessage('Network error. Please check your connection and try again.')
+    }
+  }
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -65,17 +122,74 @@ export function PageFooter({
               <p className="text-gray-700 mb-8 text-lg">
                 Receive personalised academic insights and exclusive opportunities for your child's success
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-6 py-3 bg-gray-100 border border-gray-300 rounded-lg text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent"
-                />
-                <ShinyButton
-                  text="Subscribe"
-                  className="px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold"
-                />
-              </div>
+              {/* CONTEXT7 SOURCE: /react-hook-form/documentation - Form with handleSubmit */}
+              {/* Reference: Proper form element with validation and submission */}
+              {submissionState === 'success' ? (
+                <div className="flex items-center justify-center gap-3 max-w-md mx-auto p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <p className="text-green-800 font-medium">
+                    Thank you for subscribing! Check your inbox for confirmation.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto space-y-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex-1 space-y-1">
+                      <input
+                        {...register('email')}
+                        type="email"
+                        placeholder="Enter your email"
+                        disabled={isSubmitting}
+                        className={cn(
+                          "w-full px-6 py-3 bg-gray-100 border rounded-lg text-black placeholder-gray-500",
+                          "focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent",
+                          "disabled:opacity-50 disabled:cursor-not-allowed",
+                          errors.email ? "border-red-300 bg-red-50" : "border-gray-300"
+                        )}
+                      />
+                      {errors.email && (
+                        <p className="text-red-600 text-sm flex items-center gap-1">
+                          <AlertCircle className="w-4 h-4" />
+                          {errors.email.message}
+                        </p>
+                      )}
+                    </div>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className={cn(
+                        "px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold",
+                        "disabled:opacity-50 disabled:cursor-not-allowed min-w-[120px]",
+                        "animate-shimmer bg-[linear-gradient(110deg,#eab308,45%,#fbbf24,55%,#eab308)] bg-[length:200%_100%]",
+                        "border border-accent-600 shadow-lg"
+                      )}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Subscribing...
+                        </>
+                      ) : (
+                        'Subscribe'
+                      )}
+                    </Button>
+                  </div>
+                  {(submissionState === 'error' && errorMessage) && (
+                    <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
+                      <AlertCircle className="w-4 h-4 text-red-600" />
+                      <p className="text-red-800 text-sm">{errorMessage}</p>
+                    </div>
+                  )}
+                  {/* Honeypot field for spam prevention */}
+                  <input
+                    {...register('honeypot')}
+                    type="text"
+                    tabIndex={-1}
+                    className="sr-only"
+                    autoComplete="off"
+                  />
+                </form>
+              )}
             </div>
           </div>
         </div>
@@ -223,61 +337,9 @@ export function PageFooter({
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="bg-gray-100">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-              {/* Copyright & Legal */}
-              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-                <p className="text-gray-600 text-sm">
-                  {copyrightText}
-                </p>
-                <Separator orientation="vertical" className="hidden md:block h-4 bg-gray-400" />
-                <nav className="flex items-center gap-6 text-sm">
-                  <Link
-                    href="/privacy"
-                    className="text-gray-600 hover:text-accent-600 transition-colors duration-300"
-                  >
-                    Privacy
-                  </Link>
-                  <Link
-                    href="/terms"
-                    className="text-gray-600 hover:text-accent-600 transition-colors duration-300"
-                  >
-                    Terms
-                  </Link>
-                  <Link
-                    href="/cookies"
-                    className="text-gray-600 hover:text-accent-600 transition-colors duration-300"
-                  >
-                    Cookies
-                  </Link>
-                  <Link
-                    href="/accessibility"
-                    className="text-gray-600 hover:text-accent-600 transition-colors duration-300"
-                  >
-                    Accessibility
-                  </Link>
-                </nav>
-              </div>
-
-              {/* Back to Top Button */}
-              {showBackToTop && (
-                <div className="animate-fade-in opacity-0 animate-delay-500">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={scrollToTop}
-                    className="w-12 h-12 rounded-full bg-accent-600 hover:bg-accent-700 text-white shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300"
-                    aria-label="Back to top"
-                  >
-                    <ArrowUp className="w-5 h-5" />
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Footer layout without duplicate section */}
+        {/* REMOVAL REASON: Duplicate footer bottom section removed as requested - lines 339-392 */}
+        {/* Main footer content (newsletter, company info, contact info) remains intact above */}
       </div>
     </footer>
   )

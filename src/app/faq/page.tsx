@@ -36,7 +36,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { getFAQHero, getFAQCategories, getFAQContact, getContactDetails } from '@/lib/cms/cms-content'
+import { getFAQHero, getFAQCategories, getUnifiedContact } from '@/lib/cms/cms-content'
 import { HERO_IMAGES } from '@/lib/cms/cms-images'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageFooter } from '@/components/layout/page-footer'
@@ -54,7 +54,7 @@ import { PageFooter } from '@/components/layout/page-footer'
 // - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
 // - Parent/Child: FAQ page component, children: PageHeader, PageFooter, search/filter components
 // - Dynamic Features: useState for search filtering, interactive accordion components, form handling
-// - Dependencies: CMS functions (getFAQHero, getFAQCategories, getFAQContact, getContactDetails), UI components
+// - Dependencies: CMS functions (getFAQHero, getFAQCategories, getUnifiedContact), UI components
 // - Interactivity: Search functionality, accordion expand/collapse, contact form interactions
 // - CMS Integration: Complete with FAQ hero, categories, contact details
 
@@ -65,10 +65,10 @@ export default function FAQPage() {
   const heroContent = getFAQHero()
   // CMS DATA SOURCE: Using getFAQCategories for FAQ questions and categories  
   const faqCategories = getFAQCategories()
-  // CMS DATA SOURCE: Using getFAQContact for contact CTA section
-  const contactContent = getFAQContact()
-  // CMS DATA SOURCE: Using getContactDetails for contact information
-  const contactDetails = getContactDetails()
+  // CONTEXT7 SOURCE: /microsoft/typescript - Unified contact data access with interface extraction
+  const unifiedContact = getUnifiedContact()
+  const contactContent = unifiedContact.faq
+  const contactDetails = unifiedContact.primary
   
   // CMS DATA SOURCE: Using HERO_IMAGES for background image via backgroundImageKey
   const heroBackgroundImage = HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES]

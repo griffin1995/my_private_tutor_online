@@ -19,6 +19,7 @@
 "use client"
 
 import React from 'react'
+import Link from 'next/link'
 
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Definition for React Props
@@ -31,6 +32,7 @@ import React from 'react'
  * - role: Author's title or role description (optional)
  * - backgroundColor: Tailwind CSS background class for section theming
  * - className: Additional CSS classes for custom styling
+ * - button: Optional button text for call-to-action functionality
  */
 interface QuoteSectionProps {
   /** The main quote or testimonial text content */
@@ -43,6 +45,8 @@ interface QuoteSectionProps {
   backgroundColor?: string
   /** Additional CSS classes for custom styling */
   className?: string
+  /** Optional button text for call-to-action - links to testimonials page */
+  button?: string
 }
 
 /**
@@ -69,7 +73,8 @@ export function QuoteSection({
   author, 
   role, 
   backgroundColor = "bg-primary-50", 
-  className = "" 
+  className = "",
+  button
 }: QuoteSectionProps) {
   /**
    * Documentation Source: Context7 MCP - Tailwind CSS Dynamic Class Composition
@@ -124,6 +129,30 @@ export function QuoteSection({
             <cite className="text-lg font-semibold text-primary-900 not-italic">
               &mdash; {author}{role && `, ${role}`}
             </cite>
+          )}
+
+          {/* 
+           * CONTEXT7 SOURCE: /vercel/next.js - Link component for client-side navigation  
+           * IMPLEMENTATION REASON: Official Next.js documentation demonstrates Link usage for internal routing
+           * CONTEXT7 SOURCE: /reactjs/react.dev - Conditional JSX rendering with optional props
+           * BUTTON FEATURE REASON: React patterns show conditional component rendering based on prop existence
+           * 
+           * Optional Button Implementation:
+           * - Conditional rendering: Only displays when button prop is provided
+           * - Next.js Link: Client-side navigation to testimonials page
+           * - Premium styling: Gold accent colors matching royal branding
+           * - Responsive design: Appropriate sizing and hover states
+           * - Accessibility: Proper focus states and semantic button styling
+           */}
+          {button && (
+            <div className="mt-8">
+              <Link 
+                href="/testimonials"
+                className="inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white bg-accent-600 border border-transparent rounded-md shadow-sm hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-500 transition-colors duration-200"
+              >
+                {button}
+              </Link>
+            </div>
           )}
         </div>
       </div>

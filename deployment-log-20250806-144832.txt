@@ -1,0 +1,21 @@
+2025-08-06 14:48:32 - === AUTO-DEPLOY AND SHUTDOWN SCRIPT STARTED ===
+2025-08-06 14:48:32 - Working directory: /home/jack/Documents/my_private_tutor_online
+2025-08-06 14:48:32 - Log file: deployment-log-20250806-144832.txt
+2025-08-06 14:48:32 - Wait time: 5400 seconds (90 minutes)
+2025-08-06 14:48:32 - === PHASE 1: WAITING 90 MINUTES FOR OTHER PROCESSES ===
+2025-08-06 14:48:32 - Waiting for 90 minutes to allow other Claude processes to complete...
+2025-08-06 14:48:32 - Current time: Wed Aug  6 02:48:32 PM BST 2025
+2025-08-06 14:48:32 - Expected completion time: Wed Aug  6 04:18:32 PM BST 2025
+2025-08-06 14:48:32 - Waiting... 90 minutes remaining
+2025-08-06 14:48:33 - Waiting... 80 minutes remaining
+2025-08-06 14:48:34 - Waiting... 70 minutes remaining
+2025-08-06 14:48:35 - Waiting... 60 minutes remaining
+2025-08-06 14:48:36 - Waiting... 50 minutes remaining
+2025-08-06 14:48:37 - Waiting... 40 minutes remaining
+2025-08-06 14:48:38 - Waiting... 30 minutes remaining
+2025-08-06 14:48:39 - Waiting... 20 minutes remaining
+2025-08-06 14:48:40 - Waiting... 10 minutes remaining
+2025-08-06 14:48:41 - === PHASE 2: GIT OPERATIONS ===
+2025-08-06 14:48:41 - 90-minute wait completed. Starting git operations...
+2025-08-06 14:48:41 - Checking git status...
+2025-08-06 14:48:41 - Adding all changes to git...

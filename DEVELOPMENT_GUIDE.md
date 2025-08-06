@@ -1,22 +1,111 @@
-# Development Guide - My Private Tutor Online
+# Git Worktrees with Agent Coordination - Quick Start Guide
+## My Private Tutor Online Project
 
-## Quick Start
+### Implementation Summary
 
+This guide provides the essential steps to set up and use the advanced git worktrees workflow with specialized agent coordination for parallel development.
+
+---
+
+## Phase 1: Initial Setup (5 minutes)
+
+### Step 1: Verify Setup
 ```bash
-# Install dependencies
-npm install
+cd /home/jack/Documents/my_private_tutor_online
 
-# Run development server
-npm run dev
+# Check that context infrastructure is ready
+ls -la .claude/context/
+ls -la .claude/scripts/
 
-# Build for production
-npm run build
-
-# Run tests
-npm test
+# Test the workflow
+./.claude/scripts/worktree-status.sh
+node ./.claude/scripts/update-context.js status
 ```
 
-## Project Structure
+### Step 2: Create Worktree Directory
+```bash
+mkdir -p /home/jack/Documents/mpto-worktrees
+```
+
+---
+
+## Phase 2: Create Your First Worktree (5 minutes)
+
+### Recommended: CMS Enhancement
+Perfect for testing the workflow - self-contained with clear deliverables.
+
+```bash
+# Create the worktree with agent assignment
+./.claude/scripts/create-worktree.sh feature-cms-enhancement content-specialist "Improve CMS admin interface for non-technical users"
+
+# Verify creation
+./.claude/scripts/worktree-status.sh
+```
+
+### Navigate and Review
+```bash
+cd /home/jack/Documents/mpto-worktrees/feature-cms-enhancement
+
+# Review agent briefing
+cat .agent-briefing.md
+
+# Check worktree context
+cat .worktree-context
+```
+
+---
+
+## Phase 3: Agent Coordination Pattern
+
+### Context Manager Session
+**Location**: `/home/jack/Documents/my_private_tutor_online` (main repo)
+
+**Role**: 
+- Monitor all worktrees
+- Coordinate between agents
+- Plan integration strategy
+- Manage dependencies
+
+```bash
+# Monitor progress
+./.claude/scripts/worktree-status.sh
+node ./.claude/scripts/update-context.js status
+```
+
+### Specialized Agent Session
+**Location**: `/home/jack/Documents/mpto-worktrees/[worktree-name]`
+
+**Brief the agent**:
+```markdown
+I'm acting as the [agent-type] for the [worktree-name] worktree.
+
+Please review the .agent-briefing.md file and begin working on the assigned task.
+
+Key constraints:
+- Follow all CLAUDE.md guidelines  
+- Use Context7 MCP for library documentation
+- Update CUSTOM_DOCS.md with proven patterns
+- British English spelling throughout
+- Production-ready solutions only
+```
+
+---
+
+## Phase 4: Parallel Development
+
+### Create Multiple Worktrees
+```bash
+# Performance optimization
+./.claude/scripts/create-worktree.sh opt-performance performance-engineer "Optimize Core Web Vitals and loading times"
+
+# Bug fix
+./.claude/scripts/create-worktree.sh bugfix-safari-video frontend-developer "Fix Safari video playback issues"
+
+# New feature
+./.claude/scripts/create-worktree.sh feature-booking-system backend-developer "Implement online booking integration"
+```
+
+## Project Structure (Reference)
 
 ```
 my-tutor-website/
@@ -40,7 +129,120 @@ my-tutor-website/
 └── tests/                 # Test files
 ```
 
-## Key Development Patterns
+### Agent Specialization Map
+- **content-specialist** → CMS improvements, content modeling
+- **performance-engineer** → Core Web Vitals, bundle optimization  
+- **frontend-developer** → React components, UI implementation
+- **backend-developer** → API development, integrations
+- **ui-ux-designer** → Design system, accessibility
+- **accessibility-specialist** → WCAG compliance, testing
+
+---
+
+## Phase 5: Integration Workflow
+
+### Ready for Integration
+```bash
+# From worktree directory
+cd /home/jack/Documents/mpto-worktrees/[worktree-name]
+
+# Ensure everything is ready
+npm run build
+npm run test
+npm run lint
+
+# Sync with main
+git fetch origin
+git rebase origin/master
+
+# Return to main repo for integration
+cd /home/jack/Documents/my_private_tutor_online
+git checkout master
+git merge [worktree-name]
+
+# Update context
+node ./.claude/scripts/update-context.js update-status [worktree-name] completed "Feature merged to main"
+```
+
+---
+
+## Essential Commands Reference
+
+```bash
+# Create worktree with agent
+./.claude/scripts/create-worktree.sh <name> <agent> "<description>"
+
+# Check all worktrees status
+./.claude/scripts/worktree-status.sh
+
+# Update project context
+node ./.claude/scripts/update-context.js status
+
+# Remove completed worktree
+git worktree remove ../mpto-worktrees/<name>
+node ./.claude/scripts/update-context.js remove-worktree <name>
+
+# Sync worktree with main
+cd ../mpto-worktrees/<name>
+git fetch origin && git rebase origin/master
+```
+
+---
+
+## Best Practices
+
+### Context Manager Discipline
+- Maintain project-wide view across all worktrees
+- Regular status checks and conflict detection
+- Coordinate integration timing
+- Document architectural decisions
+
+### Agent Focus
+- Stay within assigned worktree and expertise
+- Follow CLAUDE.md rules consistently  
+- Use Context7 MCP for documentation
+- Update CUSTOM_DOCS.md with patterns
+
+### Worktree Hygiene
+- One feature/fix per worktree
+- Clean up completed worktrees promptly
+- Regular sync with main branch
+- Comprehensive testing before integration
+
+---
+
+## Recommended Worktrees for MPTO Project
+
+Based on the current codebase, these worktrees would be most valuable:
+
+1. **feature-cms-enhancement** (content-specialist)
+   - Enhance admin interface usability
+   - Improve content validation
+   - Better image management
+
+2. **opt-performance** (performance-engineer)
+   - Meet Core Web Vitals targets
+   - Optimize bundle size
+   - Improve loading times
+
+3. **feature-booking-system** (backend-developer)
+   - Calendly integration
+   - Consultation booking flow
+   - Payment processing
+
+4. **opt-accessibility** (accessibility-specialist)
+   - WCAG 2.1 AA compliance audit
+   - Screen reader optimization
+   - Keyboard navigation
+
+5. **bugfix-safari-compatibility** (frontend-developer)
+   - Safari video playback issues
+   - Cross-browser compatibility
+   - Mobile Safari optimizations
+
+---
+
+## Key Development Patterns (for Agent Reference)
 
 ### 1. CMS Integration (MANDATORY)
 All content must use the centralised CMS system:
@@ -76,29 +278,9 @@ export function SectionComponent({
 }
 ```
 
-### 3. Section Spacing Coordination
-Prevent double spacing between adjacent sections:
+---
 
-```typescript
-// Section with full spacing
-<SectionA className="pt-16 lg:pt-24 pb-16 lg:pb-24" />
-
-// Next section with no top padding
-<SectionB className="pt-0 pb-16 lg:pb-24" />
-```
-
-### 4. Context-Aware Image Selection
-Map content to appropriate images based on meaning:
-
-```typescript
-if (content.includes('discretion')) {
-  imageKey = 'private-consultation'
-} else if (content.includes('global')) {
-  imageKey = 'online-connection'
-}
-```
-
-## Technology Stack
+## Technology Stack (Reference)
 
 - **Framework**: Next.js 15.3.4 (App Router)
 - **React**: 19.0.0
@@ -110,122 +292,49 @@ if (content.includes('discretion')) {
 - **State**: Zustand
 - **Testing**: Vitest + Playwright
 
-## Critical Rules
+## Critical Rules for All Agents
 
 1. **ALWAYS use Context7 MCP** for documentation
 2. **NEVER hardcode content** - use CMS
 3. **ALWAYS use British English** spelling
 4. **NEVER mention AI assistance** in code
 5. **ALWAYS implement production-ready** solutions
+6. **FOLLOW CLAUDE.md** guidelines consistently
 
-## Common Tasks
+## Success Metrics
 
-### Adding a New Page
-1. Create page in `src/app/[page-name]/page.tsx`
-2. Use "use client" directive for interactive pages
-3. Import and use PageLayout component
-4. Add CMS content in `src/content/`
+Track these metrics to ensure the workflow is effective:
 
-### Creating a Section Component
-1. Create in `src/components/sections/`
-2. Add flexible props interface
-3. Include CMS integration
-4. Export from sections index
+- **Parallel Development**: Multiple features progressing simultaneously
+- **Reduced Conflicts**: Fewer merge conflicts due to isolation
+- **Faster Iteration**: Quick feature switching without stashing/committing
+- **Better Context**: Maintained project coherence across sessions
+- **Agent Efficiency**: Specialized agents working in their expertise areas
 
-### Updating Content
-1. Edit JSON files in `src/content/`
-2. Use appropriate CMS getter function
-3. Add Context7 MCP documentation comments
-
-## Deployment
-
-### Vercel Deployment
-```bash
-# Deploy to production
-vercel --prod
-
-# Check deployment
-vercel ls
-```
-
-### Configuration
-- Dynamic rendering enabled globally
-- All pages are Client Components
-- Framer Motion compatibility maintained
-
-## Troubleshooting
-
-### React.Children.only Error
-- Use Radix UI Slot pattern with Slottable
-- Remove strict prop from LazyMotion
-- Wrap multiple children properly
-
-### Video 404 Errors
-- Ensure videos in `/public/videos/`
-- Update CMS paths to match
-- Check file extensions
-
-### Spacing Issues
-- Review section padding classes
-- Coordinate adjacent sections
-- Use consistent spacing scale
-
-## MCP Configuration
-
-Context7 MCP is configured for official documentation retrieval:
-- Resolve library IDs: `mcp__context7__resolve-library-id`
-- Get documentation: `mcp__context7__get-library-docs`
-
-## Testing Commands
+## Quick Reference for Context Manager
 
 ```bash
-# Unit tests
-npm run test
+# Monitor all worktrees
+./.claude/scripts/worktree-status.sh
 
-# E2E tests
-npm run test:e2e
+# Check project context
+node ./.claude/scripts/update-context.js status
 
-# Type checking
-npm run typecheck
+# Create new worktree
+./.claude/scripts/create-worktree.sh <name> <agent> "<description>"
 
-# Linting
-npm run lint
+# Standard development commands
+npm run dev      # Development server
+npm run build    # Production build
+npm run test     # Run tests
+vercel --prod    # Deploy to production
 ```
 
-## Git Workflow
+---
 
-```bash
-# Feature branch
-git checkout -b feature/your-feature
+**Start with the CMS enhancement worktree to validate the workflow, then expand to multiple parallel workstreams as you become comfortable with the coordination patterns.**
 
-# Commit with conventional format
-git commit -m "feat: add new component"
-
-# Push and create PR
-git push -u origin feature/your-feature
-gh pr create
-```
-
-## Performance Targets
-
-- **LCP**: < 2.5s
-- **FID**: < 100ms
-- **CLS**: < 0.1
-- **Bundle**: < 150kB gzipped
-
-## Accessibility Requirements
-
-- WCAG 2.1 AA compliance
-- Keyboard navigation support
-- Screen reader compatibility
-- Reduced motion support
-
-## Need Help?
-
-1. Check CLAUDE.md for rules
-2. Review CUSTOM_DOCS.md for patterns
-3. Use Context7 MCP for documentation
-4. Report issues on GitHub
+For complete details, see: [GIT_WORKTREES_AGENT_WORKFLOW.md](./GIT_WORKTREES_AGENT_WORKFLOW.md)
 
 ---
 

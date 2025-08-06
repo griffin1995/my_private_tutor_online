@@ -1,15 +1,127 @@
 // CMS DATA SOURCE: Centralised image management for My Private Tutor Online
 // MANDATORY: All images must use this CMS system - CLAUDE.md rule 23
 
-// Image asset paths and metadata
+// CONTEXT7 SOURCE: /reactjs/react.dev - React cache function for memoizing data requests
+// CONTEXT7 SOURCE: /vercel/next.js - Server Components caching patterns for performance optimization
+// PERFORMANCE OPTIMIZATION: React cache() implementation for most-used CMS image functions
+import { cache } from 'react'
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for media asset management
+// CONTEXT7 SOURCE: /microsoft/typescript - Readonly properties for immutable data structures
+// COMPREHENSIVE IMAGE TYPE SYSTEM - All image assets with type safety
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Type export patterns for external consumption
+// TYPE EXPORTS: All image interfaces available for external components and libraries
+export type {
+  ImageAsset,
+  VideoAsset,
+  BackgroundVideoAsset,
+  DocumentAsset,
+  ResponsiveImageSizes,
+  InstitutionLogo,
+  TeamMemberImage,
+  MediaLogo
+}
+
+/**
+ * Base interface for all image assets with comprehensive metadata
+ * CONTEXT7 SOURCE: /microsoft/typescript - Optional properties and union types
+ */
 export interface ImageAsset {
-  src: string
-  alt: string
-  width?: number
-  height?: number
-  title?: string
-  loading?: 'lazy' | 'eager'
-  priority?: boolean
+  readonly src: string
+  readonly alt: string
+  readonly width?: number
+  readonly height?: number
+  readonly title?: string
+  readonly loading?: 'lazy' | 'eager'
+  readonly priority?: boolean
+  readonly sizes?: string
+  readonly quality?: number
+}
+
+/**
+ * Extended video asset interface for multimedia content
+ * CONTEXT7 SOURCE: /microsoft/typescript - Interface extension patterns
+ */
+export interface VideoAsset {
+  readonly src: string
+  readonly poster?: string
+  readonly alt: string
+  readonly title: string
+  readonly description: string
+  readonly width?: number
+  readonly height?: number
+  readonly autoplay?: boolean
+  readonly muted?: boolean
+  readonly loop?: boolean
+}
+
+/**
+ * Background video asset for video-text effects
+ * CONTEXT7 SOURCE: /microsoft/typescript - Specialized interface patterns
+ */
+export interface BackgroundVideoAsset {
+  readonly src: string
+  readonly fallback: string
+  readonly poster: string
+  readonly alt: string
+  readonly title: string
+  readonly description: string
+}
+
+/**
+ * Marketing document and PDF asset interface
+ * CONTEXT7 SOURCE: /microsoft/typescript - Document asset type patterns
+ */
+export interface DocumentAsset {
+  readonly src: string
+  readonly alt: string
+  readonly title: string
+  readonly description: string
+  readonly type?: 'pdf' | 'image'
+  readonly downloadable?: boolean
+}
+
+/**
+ * Responsive image sizes configuration
+ * CONTEXT7 SOURCE: /microsoft/typescript - Configuration object patterns
+ */
+export interface ResponsiveImageSizes {
+  readonly mobile: number
+  readonly tablet: number
+  readonly desktop: number
+  readonly xl: number
+}
+
+/**
+ * Institution logo with metadata
+ * CONTEXT7 SOURCE: /microsoft/typescript - Specialized content interfaces
+ */
+export interface InstitutionLogo extends ImageAsset {
+  readonly institution: string
+  readonly category: 'university' | 'school' | 'college'
+  readonly prestige: 'high' | 'medium' | 'standard'
+}
+
+/**
+ * Team member image with role information
+ * CONTEXT7 SOURCE: /microsoft/typescript - Role-based image interfaces
+ */
+export interface TeamMemberImage extends ImageAsset {
+  readonly name: string
+  readonly role: string
+  readonly department?: string
+}
+
+/**
+ * Media recognition logo with credibility data
+ * CONTEXT7 SOURCE: /microsoft/typescript - Credibility and recognition interfaces
+ */
+export interface MediaLogo extends ImageAsset {
+  readonly publication: string
+  readonly recognition: string
+  readonly year?: number
+  readonly verified: boolean
 }
 
 /**
@@ -537,18 +649,75 @@ export const STUDENT_IMAGES = {
     height: 300,
     title: 'Flexible Learning Locations',
     loading: 'lazy' as const
+  },
+  // CONTEXT7 SOURCE: /microsoft/typescript - Interface extension patterns for CMS image assets
+  // IMPLEMENTATION REASON: Adding new "Who We Support" section images following official TypeScript interface patterns
+  // New 2025 "Who We Support" section images
+  'entrance-exam-preparation': {
+    src: '/images/students/entrance-exam-preparation.png',
+    alt: 'Professional student preparing for entrance examinations with expert tutoring support',
+    width: 600,
+    height: 400,
+    title: 'Entrance Exam Preparation',
+    loading: 'lazy' as const
+  },
+  'online-homeschooling': {
+    src: '/images/students/online-homeschooling.jpg',
+    alt: 'Student engaged in comprehensive online homeschooling programme with qualified educators',
+    width: 600,
+    height: 400,
+    title: 'Online Homeschooling Support',
+    loading: 'lazy' as const
+  },
+  'primary-school-support': {
+    src: '/images/students/primary-school-support.jpg',
+    alt: 'Young primary school student receiving personalised educational support and guidance',
+    width: 600,
+    height: 400,
+    title: 'Primary School Learning Support',
+    loading: 'lazy' as const
+  },
+  'secondary-school-support': {
+    src: '/images/students/secondary-school-support.jpg',
+    alt: 'Secondary school student in focused tutoring session improving academic performance',
+    width: 600,
+    height: 400,
+    title: 'Secondary School Academic Support',
+    loading: 'lazy' as const
+  },
+  'sen-support': {
+    src: '/images/students/sen-support.jpg',
+    alt: 'Student with special educational needs receiving specialist tailored learning support',
+    width: 600,
+    height: 400,
+    title: 'Special Educational Needs Support',
+    loading: 'lazy' as const
+  },
+  'university-and-beyond': {
+    src: '/images/students/university-and-beyond.webp',
+    alt: 'University-aged student or graduate achieving academic excellence with ongoing educational support',
+    width: 600,
+    height: 400,
+    title: 'University and Beyond Support',
+    loading: 'lazy' as const
   }
 } as const
 
 // CMS Functions for image retrieval
 
+// ========================================================================================
+// CMS IMAGE RETRIEVAL FUNCTIONS - Type-safe image access with explicit return types
+// ========================================================================================
+
 /**
- * Get main site logo
+ * Get main site logo (CACHED - #4 most used: 6 times)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() memoizes return values for consistent results
+ * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for cached functions
  * CMS DATA SOURCE: Using LOGOS.main for header logo
  */
-export const getMainLogo = (): ImageAsset => {
+export const getMainLogo = cache((): ImageAsset => {
   return LOGOS.main
-}
+})
 
 /**
  * Documentation Source: Context7 MCP - Next.js Image Component Conditional Rendering
@@ -577,21 +746,22 @@ export const getInstitutionLogos = () => {
 }
 
 /**
+ * Get school logos for scrolling carousel display (CACHED - #8 most used: 4 times)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() prevents redundant object-to-array transformations
  * Documentation Source: Context7 MCP - Next.js Image Component for School Logo Carousel
  * Reference: Context7 MCP /context7/nextjs - Image optimization and responsive sizing patterns
  * Reference: Context7 MCP /grx7/framer-motion - Infinite scrolling marquee animation patterns
  * 
- * Get school logos for scrolling carousel display
  * CMS DATA SOURCE: Using INSTITUTION_LOGOS for scrolling schools component
  * 
  * Pattern: Converts institution logo data into format suitable for ScrollingSchools component
  * Architecture: Maps school names from testimonials.json to corresponding logo assets
  * Performance: Lazy loading with optimized Next.js Image component integration
  */
-export const getScrollingSchoolLogos = () => {
+export const getScrollingSchoolLogos = cache((): Record<string, ImageAsset> => {
   // CMS DATA SOURCE: Mapping school names to logo assets for visual carousel
   // Context7 MCP verified pattern: Object-to-array transformation for component consumption
-  const schoolLogoMapping = {
+  const schoolLogoMapping: Record<string, ImageAsset> = {
     'Eton College': INSTITUTION_LOGOS.eton,
     'Westminster School': INSTITUTION_LOGOS.westminster,
     'St Paul\'s School': INSTITUTION_LOGOS.stPauls,
@@ -611,42 +781,47 @@ export const getScrollingSchoolLogos = () => {
   }
   
   return schoolLogoMapping
-}
+})
 
 /**
  * Get media recognition images
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
  * CMS DATA SOURCE: Using MEDIA_IMAGES for press and media logos
  */
-export const getMediaImages = () => {
+export const getMediaImages = (): typeof MEDIA_IMAGES => {
   return MEDIA_IMAGES
 }
 
 /**
  * Get tutor profile images
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
  * CMS DATA SOURCE: Using TUTOR_IMAGES for tutor profile photos
  */
-export const getTutorImages = () => {
+export const getTutorImages = (): typeof TUTOR_IMAGES => {
   return TUTOR_IMAGES
 }
 
 /**
  * Get video testimonial content
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for video assets
  * CMS DATA SOURCE: Using VIDEO_CONTENT for testimonial videos
  */
-export const getVideoContent = () => {
+export const getVideoContent = (): typeof VIDEO_CONTENT => {
   return VIDEO_CONTENT
 }
 
 /**
  * Get marketing assets and materials
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for marketing assets
  * CMS DATA SOURCE: Using MARKETING_ASSETS for promotional materials
  */
-export const getMarketingAssets = () => {
+export const getMarketingAssets = (): typeof MARKETING_ASSETS => {
   return MARKETING_ASSETS
 }
 
 /**
  * Get hero section image
+ * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using HERO_IMAGES.childWithLaptop for hero image
  */
 export const getHeroImage = (): ImageAsset => {
@@ -655,6 +830,7 @@ export const getHeroImage = (): ImageAsset => {
 
 /**
  * Get intro video asset
+ * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for video assets
  * CMS DATA SOURCE: Using HERO_IMAGES.introVideo for introduction video
  */
 export const getIntroVideo = (): ImageAsset => {
@@ -663,41 +839,46 @@ export const getIntroVideo = (): ImageAsset => {
 
 /**
  * Get team member images
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
  * CMS DATA SOURCE: Using TEAM_IMAGES for team member photos
  */
-export const getTeamImages = () => {
+export const getTeamImages = (): typeof TEAM_IMAGES => {
   return TEAM_IMAGES
 }
 
 /**
  * Get testimonial images
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
  * CMS DATA SOURCE: Using TESTIMONIAL_IMAGES for testimonial photos
  */
-export const getTestimonialImages = () => {
+export const getTestimonialImages = (): typeof TESTIMONIAL_IMAGES => {
   return TESTIMONIAL_IMAGES
 }
 
 /**
  * Get video placeholder images
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
  * CMS DATA SOURCE: Using VIDEO_PLACEHOLDERS for video thumbnails
  */
-export const getVideoPlaceholders = () => {
+export const getVideoPlaceholders = (): typeof VIDEO_PLACEHOLDERS => {
   return VIDEO_PLACEHOLDERS
 }
 
 /**
  * Get background video for video-text effects
+ * CONTEXT7 SOURCE: /microsoft/typescript - Generic keyof operator and return type annotations
  * CMS DATA SOURCE: Using BACKGROUND_VIDEOS for video-text component backgrounds
  */
-export const getBackgroundVideo = (videoKey: keyof typeof BACKGROUND_VIDEOS) => {
+export const getBackgroundVideo = (videoKey: keyof typeof BACKGROUND_VIDEOS): BackgroundVideoAsset => {
   return BACKGROUND_VIDEOS[videoKey]
 }
 
 /**
  * Get all background videos
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
  * CMS DATA SOURCE: Using BACKGROUND_VIDEOS for complete video inventory
  */
-export const getBackgroundVideos = () => {
+export const getBackgroundVideos = (): typeof BACKGROUND_VIDEOS => {
   return BACKGROUND_VIDEOS
 }
 
@@ -719,9 +900,10 @@ export const getAvatarPlaceholder = (): ImageAsset => {
 
 /**
  * Get student images for results section
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
  * CMS DATA SOURCE: Using STUDENT_IMAGES for results section photos
  */
-export const getStudentImages = () => {
+export const getStudentImages = (): typeof STUDENT_IMAGES => {
   return STUDENT_IMAGES
 }
 
@@ -729,8 +911,11 @@ export const getStudentImages = () => {
 
 /**
  * Generate responsive image sizes for different breakpoints
+ * CONTEXT7 SOURCE: /microsoft/typescript - Function parameter and return type annotations
+ * @param baseWidth - The base width in pixels for desktop size
+ * @returns ResponsiveImageSizes object with breakpoint-specific widths
  */
-export const generateResponsiveSizes = (baseWidth: number) => {
+export const generateResponsiveSizes = (baseWidth: number): ResponsiveImageSizes => {
   return {
     mobile: Math.round(baseWidth * 0.5),
     tablet: Math.round(baseWidth * 0.75),
@@ -741,8 +926,12 @@ export const generateResponsiveSizes = (baseWidth: number) => {
 
 /**
  * Generate srcset for responsive images
+ * CONTEXT7 SOURCE: /microsoft/typescript - Function parameter and return type annotations
+ * @param src - The source URL of the image
+ * @param sizes - Object mapping breakpoint names to pixel widths
+ * @returns Formatted srcset string for responsive images
  */
-export const generateSrcSet = (src: string, sizes: Record<string, number>) => {
+export const generateSrcSet = (src: string, sizes: Record<string, number>): string => {
   return Object.entries(sizes)
     .map(([_, width]) => `${src}?w=${width} ${width}w`)
     .join(', ')
@@ -750,11 +939,24 @@ export const generateSrcSet = (src: string, sizes: Record<string, number>) => {
 
 /**
  * Get optimized image props for Next.js Image component
+ * CONTEXT7 SOURCE: /microsoft/typescript - Function parameter and return type annotations
+ * @param image - ImageAsset containing all image metadata
+ * @param customSizes - Optional custom sizes string for responsive behavior
+ * @returns Object with properties optimized for Next.js Image component
  */
 export const getOptimizedImageProps = (
   image: ImageAsset,
   customSizes?: string
-) => {
+): {
+  readonly src: string
+  readonly alt: string
+  readonly width?: number
+  readonly height?: number
+  readonly title?: string
+  readonly loading?: 'lazy' | 'eager'
+  readonly priority?: boolean
+  readonly sizes: string
+} => {
   return {
     src: image.src,
     alt: image.alt,
@@ -793,14 +995,16 @@ export const validateImageAccessibility = (image: ImageAsset): boolean => {
 
 /**
  * Get all image assets for preloading critical images
+ * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations and filtering
+ * @returns Array of critical ImageAsset objects that should be preloaded
  */
-export const getCriticalImages = (): ImageAsset[] => {
-  const allImages = [
+export const getCriticalImages = (): readonly ImageAsset[] => {
+  const allImages: readonly ImageAsset[] = [
     ...Object.values(LOGOS),
     ...Object.values(HERO_IMAGES)
   ]
   
-  return allImages.filter(image => 'priority' in image && image.priority === true)
+  return allImages.filter((image): image is ImageAsset => 'priority' in image && image.priority === true)
 }
 
 // Context7 MCP Documentation Source: /microsoft/typescript

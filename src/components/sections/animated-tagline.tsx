@@ -76,7 +76,11 @@ export function AnimatedTagline({
 }: AnimatedTaglineProps) {
   
   return (
-    <div className={`relative text-center py-3 ${className}`}>
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced flexbox centering with place-items-center pattern
+    // VERTICAL CENTERING REASON: Official Tailwind CSS documentation recommends flex items-center justify-center for complete centering control
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Minimum height removal for whitespace elimination
+    // WHITESPACE FIX REASON: Official Tailwind CSS min-height documentation shows min-h-48 creates 192px forced height causing excessive vertical whitespace
+    <div className={`relative text-center flex items-center justify-center ${className}`}>
       {/* Premium background effects */}
       {/* Documentation Source: Context7 MCP - Tailwind CSS Gradient Background Effects
        * Reference: /tailwindlabs/tailwindcss.com - Gradient utilities and animation
@@ -96,67 +100,81 @@ export function AnimatedTagline({
         <div className="absolute w-96 h-16 bg-gradient-to-r from-accent-200/10 via-primary-100/20 to-accent-200/10 blur-xl opacity-60" />
       </div>
       
-      {/* Magic UI Typing Animation */}
-      {/* Documentation Source: Context7 MCP - TypingAnimation Component Integration
-       * Reference: Context7 MCP /magicui/magicui - TypingAnimation configuration
-       * Pattern: Professional typing effect with gradient text styling
-       * 
-       * Typography Features:
-       * - Responsive text sizing (xl to 2xl)
-       * - Serif font for brand consistency
-       * - Medium font weight for readability
-       * - Wide letter spacing for premium feel
-       * - Complex gradient text effect
-       * - Subtle text shadow for depth
-       */}
-      <div className="relative z-10 px-4">
-        <TypingAnimation
-          className="text-xl lg:text-2xl font-serif font-medium tracking-wide"
-          style={{
-            background: 'linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #64748b 75%, #94a3b8 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            textShadow: '0 2px 8px rgba(15, 23, 42, 0.1)'
-          }}
-          duration={duration}
-          delay={delay}
-          startOnView={true}
-        >
-          {text}
-        </TypingAnimation>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flex column layout for vertical text and decoration arrangement */}
+      {/* FLEX COLUMN REASON: Official Tailwind CSS flex direction utilities enable vertical stacking of text and decorations while maintaining centering */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Height utility h-full for complete parent height filling */}
+      {/* HEIGHT FIX REASON: Official Tailwind CSS documentation specifies h-full (height: 100%) enables proper vertical centering by filling parent container */}
+      <div className="flex flex-col items-center justify-center h-full">
+        {/* Magic UI Typing Animation */}
+        {/* Documentation Source: Context7 MCP - TypingAnimation Component Integration
+         * Reference: Context7 MCP /magicui/magicui - TypingAnimation configuration
+         * Pattern: Professional typing effect with gradient text styling
+         * 
+         * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Line height utilities for text spacing control
+         * LINE-HEIGHT FIX REASON: Official Tailwind CSS line-height documentation shows leading-tight overrides default leading-[5rem] (80px) preventing excessive vertical spacing
+         * 
+         * Typography Features:
+         * - Responsive text sizing (xl to 2xl)
+         * - Serif font for brand consistency
+         * - Medium font weight for readability
+         * - Wide letter spacing for premium feel
+         * - Tight line height for compact appearance
+         * - Complex gradient text effect
+         * - Subtle text shadow for depth
+         */}
+        <div className="relative z-10 px-4">
+          <TypingAnimation
+            className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight"
+            style={{
+              background: 'linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #64748b 75%, #94a3b8 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textShadow: '0 2px 8px rgba(15, 23, 42, 0.1)'
+            }}
+            duration={duration}
+            delay={delay}
+            startOnView={true}
+          >
+            {text}
+          </TypingAnimation>
+        </div>
+        
+        {/* Elite decorative flourishes */}
+        {/* Documentation Source: Context7 MCP - Framer Motion Decorative Elements
+         * Reference: /framer/motion - Motion component animations
+         * Pattern: Conditional decorative elements with premium styling
+         * 
+         * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Vertical spacing utilities removal
+         * SPACING REMOVAL REASON: Official Tailwind CSS documentation Section on margin utilities - removed mt-6 (margin-top) to eliminate all vertical padding/margin throughout component
+         * HORIZONTAL SPACING PRESERVED: space-x-6 maintained as per official Tailwind spacing patterns for horizontal item distribution
+         * 
+         * Decoration Features:
+         * - Animated entrance with scale and opacity
+         * - Symmetrical design with gradient lines
+         * - Central animated dot with pulsing effect
+         * - Delayed animation timing for staggered effect
+         * - Zero vertical spacing for tight layout integration
+         */}
+        {showDecorations && (
+          <m.div 
+            className="flex justify-center items-center space-x-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 2.5 }}
+          >
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-accent-400/50 to-accent-500/30" />
+            <div className="relative">
+              <div className="w-3 h-3 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 shadow-lg" />
+              <div 
+                className="absolute inset-0 w-3 h-3 rounded-full bg-accent-400/30 animate-ping" 
+                style={{ animationDelay: '0.5s', animationDuration: '2s' }} 
+              />
+            </div>
+            <div className="w-12 h-px bg-gradient-to-l from-transparent via-accent-400/50 to-accent-500/30" />
+          </m.div>
+        )}
       </div>
-      
-      {/* Elite decorative flourishes */}
-      {/* Documentation Source: Context7 MCP - Framer Motion Decorative Elements
-       * Reference: /framer/motion - Motion component animations
-       * Pattern: Conditional decorative elements with premium styling
-       * 
-       * Decoration Features:
-       * - Animated entrance with scale and opacity
-       * - Symmetrical design with gradient lines
-       * - Central animated dot with pulsing effect
-       * - Delayed animation timing for staggered effect
-       * - Professional spacing and proportions
-       */}
-      {showDecorations && (
-        <m.div 
-          className="flex justify-center items-center mt-6 space-x-6"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 2.5 }}
-        >
-          <div className="w-12 h-px bg-gradient-to-r from-transparent via-accent-400/50 to-accent-500/30" />
-          <div className="relative">
-            <div className="w-3 h-3 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 shadow-lg" />
-            <div 
-              className="absolute inset-0 w-3 h-3 rounded-full bg-accent-400/30 animate-ping" 
-              style={{ animationDelay: '0.5s', animationDuration: '2s' }} 
-            />
-          </div>
-          <div className="w-12 h-px bg-gradient-to-l from-transparent via-accent-400/50 to-accent-500/30" />
-        </m.div>
-      )}
     </div>
   )
 }

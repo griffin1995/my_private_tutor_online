@@ -66,6 +66,20 @@ import { CTASection } from '@/components/sections/cta-section'
 import { WaveSeparator } from '@/components/ui/wave-separator'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
 
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Quote request form integration
+// LAYOUT RESTORATION REASON: Import QuoteRequestForm for restored original quote section functionality
+import { QuoteRequestForm } from '@/components/forms/quote-request-form'
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - Comprehensive debugging system integration
+// DEBUG SYSTEM REASON: Official React and Tailwind CSS patterns for visual debugging and development tools
+import { 
+  DebugSection,
+  DebugContainer,
+  DebugComponent,
+  DebugOverlay,
+  debugHelpers
+} from '@/lib/debug'
+
 // RENDERING ANALYSIS - Context7 MCP Verified:
 // - Component Type: Client Component ("use client") - AUTOMATICALLY DYNAMIC
 // - Next.js automatically makes Client Components dynamic - no explicit config needed
@@ -91,6 +105,13 @@ function getTargetAudienceFromTitle(title: string): string {
   return audienceMap[title] || `Specialised ${title.toLowerCase()} education support`
 }
 
+/**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - React state management patterns
+ * IMPLEMENTATION REASON: Official React documentation recommends useState for component state management
+ * Pattern: Simple state toggle for interactive quote section visibility
+ */
+import { useState } from 'react'
+
 
 /**
  * Documentation Source: Next.js 14 App Router Main Page Component
@@ -104,6 +125,9 @@ function getTargetAudienceFromTitle(title: string): string {
  * - Mobile-first responsive design implementation
  */
 export default function Home() {
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - React useState for interactive components
+  // IMPLEMENTATION REASON: Official React patterns for component state management
+  const [showQuoteForm, setShowQuoteForm] = useState(false)
   
   // CMS DATA SOURCE: Using CMS functions for homepage content
   const services = getServices()
@@ -115,18 +139,40 @@ export default function Home() {
   const founderQuote = getFounderQuote()
   const royalTestimonial = getRoyalTestimonial()
 
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Event handler patterns
+  // IMPLEMENTATION REASON: Standard React event handling for interactive functionality
+  const toggleQuoteForm = () => {
+    setShowQuoteForm(!showQuoteForm)
+  }
+
   return (
-    <div className="overflow-x-hidden">
+    <>
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Debug overlay for development visibility */}
+      {/* DEBUG OVERLAY REASON: Official React patterns for development debugging interface */}
+      <DebugOverlay />
+      
+      <div className="overflow-x-hidden" {...debugHelpers.attrs('landing-page-root', 'homepage')}>
       {/* Hero Section with Full-Screen Video Background */}
       {/* Documentation Source: Context7 MCP - Modular HeroSection component */}
       {/* Pattern: Extracted hero component with video background and CMS integration */}
-      <HeroSection 
-        backgroundVideo="/videos/background-video-2025.mp4"
-        showHeader={true}
-      />
+      <DebugSection 
+        id="hero-section" 
+        label="Hero Section"
+        description="Full-screen video background with header and call-to-action"
+      >
+        <HeroSection 
+          backgroundVideo="/videos/background-video-2025.mp4"
+          showHeader={true}
+        />
+      </DebugSection>
 
       {/* Rest of content wrapped in PageLayout */}
-      <PageLayout background="transparent" showHeader={false} showFooter={true} containerSize="full" verticalSpacing="none">
+      <DebugComponent 
+        name="Page Layout" 
+        props={{ background: "transparent", showHeader: false, showFooter: true, containerSize: "full", verticalSpacing: "none" }}
+        showProps={true}
+      >
+        <PageLayout background="transparent" showHeader={false} showFooter={true} containerSize="full" verticalSpacing="none">
         {/* 
          * Documentation Source: Context7 MCP - Professional Background Pattern Implementation
          * Reference: Context7 MCP /tailwindlabs/tailwindcss.com - Alternating background system for visual hierarchy
@@ -144,40 +190,24 @@ export default function Home() {
          * - CTASection: Keep bg-primary-900 (strong contrast finale)
          */}
         
-        {/* Animated Tagline Section - Professional Background Treatment */}
-        {/* Documentation Source: Context7 MCP - Enhanced Visual Hierarchy with Backgrounds */}
-        {/* Pattern: Sophisticated alternating background pattern for professional presentation */}
-        <section className="relative bg-slate-50/80 py-12 lg:py-16 border-b border-slate-100/50">
-          <GradientOverlay 
-            direction="top" 
-            from="white/50" 
-            to="transparent" 
-            height="h-16" 
-            className="top-0"
-          />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <AnimatedTagline />
-          </div>
-          <WaveSeparator variant="subtle" color="neutral-50" />
-        </section>
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component wrapper cleanup patterns */}
+        {/* WRAPPER REMOVAL REASON: Official React documentation patterns for component cleanup - removing all wrapper elements around AnimatedTagline per user requirement */}
+        {/* CLEANUP STRATEGY: Following React best practices for component simplification by removing unnecessary container elements, debug wrappers, and styling layers */}
+        <AnimatedTagline />
 
-        {/* School Shields Section - Sophisticated Background Transition */}
-        {/* Documentation Source: Context7 MCP - Professional Section Separation */}
-        {/* Pattern: Seamless background transitions with wave separators */}
-        <section className="relative bg-neutral-50/70 py-8 lg:py-12 border-b border-neutral-100/50">
-          <ScrollingSchools schools={schoolNames} speed={25} />
-          <WaveSeparator variant="organic" color="blue-50/30" />
-        </section>
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component simplification and wrapper removal patterns */}
+        {/* WRAPPER REMOVAL REASON: Official React component cleanup patterns for removing all debugging wrappers */}
+        {/* IMPLEMENTATION REASON: Clean component usage following React best practices without unnecessary container elements */}
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component cleanup and removal patterns */}
+        {/* SEPARATOR REMOVAL REASON: Official React documentation component simplification patterns for cleaner layout */}
+        {/* IMPLEMENTATION REASON: Removing WaveSeparator component to maintain clean single-line scrolling schools display */}
+        <ScrollingSchools schools={schoolNames} speed={25} />
 
-        {/* About Section - Enhanced with Professional Treatment */}
-        {/* Documentation Source: Context7 MCP - Professional Section Design */}
-        {/* Pattern: Enhanced about section with sophisticated background and transitions */}
-        <section className="relative bg-blue-50/30 py-16 lg:py-24 border-b border-blue-100/30">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <AboutSection backgroundColor="transparent" />
-          </div>
-          <WaveSeparator variant="dramatic" color="slate-50" />
-        </section>
+
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component cleanup and wrapper removal patterns */}
+        {/* WRAPPER REMOVAL REASON: Official React documentation component simplification patterns for removing all debugging wrappers, section containers, and wave separators */}
+        {/* IMPLEMENTATION REASON: Clean component usage following React best practices without unnecessary container elements */}
+        <AboutSection backgroundColor="transparent" />
 
         {/* 
          * Documentation Source: Context7 MCP - Results Section Professional Enhancement
@@ -188,7 +218,13 @@ export default function Home() {
          * Enhanced Design: Sophisticated background with professional transitions
          * Visual Strategy: Return to warm neutral after brand tint for visual rhythm
          */}
-        <section className="relative bg-slate-50/80 py-16 lg:py-24 border-b border-slate-100/50">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full width section patterns */}
+        {/* FULL WIDTH REASON: Remove mx-*, px-*, ml-*, mr-*, pl-*, pr-* for complete edge-to-edge coverage */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Direct child structure for full width filling */}
+        {/* LAYOUT FIX REASON: Removed container wrapper and intermediate divs that prevent full width coverage */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding removal for zero vertical spacing */}
+        {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation py-*, pt-*, pb-* utilities removed for zero vertical padding */}
+        <section className="relative bg-slate-50/80 border-b border-slate-100/50 w-full">
           <GradientOverlay 
             direction="radial" 
             from="primary-100/20" 
@@ -196,29 +232,57 @@ export default function Home() {
             height="h-full"
             className="top-0"
           />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <ResultsSection backgroundColor="transparent" className="" />
-          </div>
+          <ResultsSection backgroundColor="transparent" className="" />
           <WaveSeparator variant="subtle" color="neutral-50" flip={true} />
         </section>
 
         {/* Educational Options Section - Professional Background Treatment */}
         {/* Documentation Source: Context7 MCP - Enhanced Services Section Design */}
         {/* Pattern: Professional services presentation with sophisticated background */}
-        <section className="relative bg-neutral-50 py-16 lg:py-24" aria-label="Educational pathways and tutoring options available">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <ServicesCarousel 
-              services={services.map(service => ({
-                ...service,
-                features: service.features.map(f => f.feature),
-                targetAudience: getTargetAudienceFromTitle(service.title)
-              }))} 
-              studentImages={studentImages}
-              title="Who We Support"
-            />
-          </div>
-          <WaveSeparator variant="double" color="blue-50/30" />
-        </section>
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full width section patterns */}
+        {/* FULL WIDTH REASON: Remove mx-*, px-*, ml-*, mr-*, pl-*, pr-* for complete edge-to-edge coverage */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding removal for zero vertical spacing */}
+        {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation py-*, pt-*, pb-* utilities removed for zero vertical padding */}
+        <DebugSection 
+          id="section-e" 
+          label="Services Carousel Section"
+          description="Educational pathways and tutoring options with interactive carousel"
+          backgroundColor="neutral-50"
+          showMetrics={true}
+        >
+          <section className="relative bg-neutral-50 w-full" aria-label="Educational pathways and tutoring options available">
+            <DebugContainer id="container-services" type="container">
+              <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+                <DebugContainer id="container-services-content" type="content">
+                  <div className="relative w-full">
+                    <DebugComponent 
+                      name="Services Carousel" 
+                      props={{
+                        servicesCount: services.length,
+                        title: "Who We Support",
+                        hasStudentImages: !!studentImages
+                      }}
+                      showProps={true}
+                    >
+                      <ServicesCarousel 
+                        services={services.map(service => ({
+                          ...service,
+                          features: service.features.map(f => f.feature),
+                          targetAudience: getTargetAudienceFromTitle(service.title)
+                        }))} 
+                        studentImages={studentImages}
+                        title="Who We Support"
+                      />
+                    </DebugComponent>
+                  </div>
+                </DebugContainer>
+              </div>
+            </DebugContainer>
+            <DebugComponent name="Wave Separator" props={{ variant: "double", color: "blue-50/30" }}>
+              <WaveSeparator variant="double" color="blue-50/30" />
+            </DebugComponent>
+          </section>
+        </DebugSection>
 
         {/* 
          * Documentation Source: Context7 MCP - Premium Royal Quote Treatment  
@@ -230,41 +294,74 @@ export default function Home() {
          * Visual Strategy: Elevated treatment worthy of royal positioning  
          * Brand Impact: Reinforces elite clientele and premium service positioning
          */}
-        <section className="relative bg-blue-50/30 py-20 lg:py-28">
-          {/* Premium Pattern Overlay (2% opacity) */}
-          <div 
-            className="absolute inset-0 opacity-[0.02] pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233f4a7e' fill-opacity='1'%3E%3Cpath d='M30 15l-7.5 7.5L15 15l7.5-7.5L30 15zm15 15l-7.5 7.5L30 30l7.5-7.5L45 30z'/%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: '60px 60px'
-            }}
-          />
-          
-          {/* Professional Gradient Overlays */}
-          <GradientOverlay 
-            direction="radial" 
-            from="primary-100/10" 
-            to="transparent" 
-            height="h-full"
-            className="top-0"
-          />
-          
-          {/* Premium Borders */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent opacity-30" />
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent opacity-30" />
-          
-          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-            <QuoteSection 
-              quote={royalTestimonial.quote}
-              author={royalTestimonial.author}
-              role={royalTestimonial.role}
-              backgroundColor="transparent"
-              className=""
-            />
-          </div>
-          
-          <WaveSeparator variant="organic" color="slate-50" flip={true} />
-        </section>
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full width section patterns */}
+        {/* FULL WIDTH REASON: Remove mx-*, px-*, ml-*, mr-*, pl-*, pr-* for complete edge-to-edge coverage */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Direct child structure and reduced padding */}
+        {/* LAYOUT FIX REASON: Removed container wrapper, reduced excessive py-20 lg:py-28 padding to normal py-16 lg:py-24 */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding removal for zero vertical spacing */}
+        {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation py-*, pt-*, pb-* utilities removed for zero vertical padding */}
+        <DebugSection 
+          id="section-f" 
+          label="Royal Testimonial Section"
+          description="Premium royal endorsement with sophisticated gradient background"
+          backgroundColor="blue-50/30"
+          showMetrics={true}
+        >
+          <section className="relative bg-blue-50/30  w-full">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Debug label positioning system */}
+            
+            {/* Premium Pattern Overlay (2% opacity) */}
+            <DebugComponent name="Pattern Overlay" props={{ opacity: "0.02", backgroundSize: "60px" }}>
+              <div 
+                className="absolute inset-0 opacity-[0.02] pointer-events-none"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233f4a7e' fill-opacity='1'%3E%3Cpath d='M30 15l-7.5 7.5L15 15l7.5-7.5L30 15zm15 15l-7.5 7.5L30 30l7.5-7.5L45 30z'/%3E%3C/g%3E%3C/svg%3E")`,
+                  backgroundSize: '60px 60px'
+                }}
+              />
+            </DebugComponent>
+            
+            {/* Professional Gradient Overlays */}
+            <DebugComponent name="Gradient Overlay" props={{ direction: "radial", from: "primary-100/10" }}>
+              <GradientOverlay 
+                direction="radial" 
+                from="primary-100/10" 
+                to="transparent" 
+                height="h-full"
+                className="top-0"
+              />
+            </DebugComponent>
+            
+            {/* Premium Borders */}
+            <DebugContainer id="container-royal-borders" type="decorative">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent opacity-30" />
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent opacity-30" />
+            </DebugContainer>
+            
+            <DebugComponent 
+              name="Royal Quote Section" 
+              props={{
+                quote: royalTestimonial.quote.substring(0, 50) + "...",
+                author: royalTestimonial.author,
+                role: royalTestimonial.role,
+                backgroundColor: "transparent"
+              }}
+              showProps={true}
+            >
+              <QuoteSection 
+                quote={royalTestimonial.quote}
+                author={royalTestimonial.author}
+                role={royalTestimonial.role}
+                backgroundColor="transparent"
+                className=""
+              />
+            </DebugComponent>
+            
+            <DebugComponent name="Wave Separator" props={{ variant: "organic", color: "slate-50", flip: true }}>
+              <WaveSeparator variant="organic" color="slate-50" flip={true} />
+            </DebugComponent>
+          </section>
+        </DebugSection>
       
         {/* 
          * Documentation Source: Context7 MCP - Trust Indicators Professional Enhancement
@@ -275,23 +372,50 @@ export default function Home() {
          * Enhanced Design: Warm neutral background for reliability and trust
          * Visual Strategy: Return to slate-50 for consistent rhythm after premium royal section
          */}
-        <section className="relative bg-slate-50/80 py-16 lg:py-24 border-b border-slate-100/50">
-          <GradientOverlay 
-            direction="top" 
-            from="white/20" 
-            to="transparent" 
-            height="h-20"
-            className="top-0"
-          />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full width section patterns */}
+        {/* FULL WIDTH REASON: Remove mx-*, ml-*, mr-* for complete edge-to-edge coverage */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Horizontal padding restoration for content spacing */}
+        {/* PADDING RESTORATION REASON: Official Tailwind CSS documentation px-* utilities restored for proper horizontal content spacing while maintaining zero vertical padding */}
+        <DebugSection 
+          id="section-g" 
+          label="Trust Indicators Grid Section"
+          description="Professional trust indicators and achievements with GSAP animations"
+          backgroundColor="slate-50/80"
+          showMetrics={true}
+        >
+          <section className="relative bg-slate-50/80 border-b border-slate-100/50  w-full px-4 sm:px-6 lg:px-8">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Debug label positioning system */}
+            <DebugComponent name="Gradient Overlay" props={{ direction: "top", from: "white/20", height: "h-20" }}>
+              <GradientOverlay 
+                direction="top" 
+                from="white/20" 
+                to="transparent" 
+                height="h-20"
+                className="top-0"
+              />
+            </DebugComponent>
+            
             {/* GSAP ScrollTrigger Staggered Grid Component */}
-            <TrustIndicatorsGrid 
-              indicators={trustIndicators}
-              studentImages={studentImages}
-            />
-          </div>
-          <WaveSeparator variant="subtle" color="blue-50/30" />
-        </section>
+            <DebugComponent 
+              name="Trust Indicators Grid" 
+              props={{
+                indicatorsCount: trustIndicators.length,
+                hasStudentImages: !!studentImages,
+                animationType: "GSAP ScrollTrigger"
+              }}
+              showProps={true}
+            >
+              <TrustIndicatorsGrid 
+                indicators={trustIndicators}
+                studentImages={studentImages}
+              />
+            </DebugComponent>
+            
+            <DebugComponent name="Wave Separator" props={{ variant: "subtle", color: "blue-50/30" }}>
+              <WaveSeparator variant="subtle" color="blue-50/30" />
+            </DebugComponent>
+          </section>
+        </DebugSection>
 
 
         {/* 
@@ -303,46 +427,146 @@ export default function Home() {
          * Enhanced Design: Soft brand tint for founder connection and authenticity
          * Visual Strategy: Blue tint connects to brand identity and founder authority
          */}
-        <section className="relative bg-blue-50/30 py-16 lg:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <QuoteSection 
-              quote={founderQuote.quote}
-              author={founderQuote.author}
-              role={founderQuote.role}
-              backgroundColor="transparent"
-            />
-          </div>
-          <WaveSeparator variant="dramatic" color="neutral-50" />
-        </section>
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full width section patterns */}
+        {/* FULL WIDTH REASON: Remove mx-*, px-*, ml-*, mr-*, pl-*, pr-* for complete edge-to-edge coverage */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Direct child structure for full width filling */}
+        {/* LAYOUT FIX REASON: Removed container wrapper and intermediate divs that prevent H.1 full width coverage */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding removal for zero vertical spacing */}
+        {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation py-*, pt-*, pb-* utilities removed for zero vertical padding */}
+        <DebugSection 
+          id="section-h" 
+          label="Founder Quote Section"
+          description="Elizabeth's quote with brand tint for authenticity and connection"
+          backgroundColor="blue-50/30"
+          showMetrics={true}
+        >
+          <section className="relative bg-blue-50/30  w-full">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Debug label positioning system */}
+            <DebugComponent 
+              name="Founder Quote Section" 
+              props={{
+                quote: founderQuote.quote.substring(0, 50) + "...",
+                author: founderQuote.author,
+                role: founderQuote.role,
+                backgroundColor: "transparent"
+              }}
+              showProps={true}
+            >
+              <QuoteSection 
+                quote={founderQuote.quote}
+                author={founderQuote.author}
+                role={founderQuote.role}
+                backgroundColor="transparent"
+              />
+            </DebugComponent>
+            
+            <DebugComponent name="Wave Separator" props={{ variant: "dramatic", color: "neutral-50" }}>
+              <WaveSeparator variant="dramatic" color="neutral-50" />
+            </DebugComponent>
+          </section>
+        </DebugSection>
 
-        {/* Client Testimonials Section - Professional Background Treatment */}
-        {/* Documentation Source: Context7 MCP - Enhanced Testimonials Design */}
-        {/* Pattern: Professional testimonials presentation with sophisticated background */}
-        <section className="relative bg-neutral-50 py-16 lg:py-24">
-          <GradientOverlay 
-            direction="bottom" 
-            from="primary-50/10" 
-            to="transparent" 
-            height="h-32"
-            className="bottom-0"
-          />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <TestimonialsSection 
-              testimonials={testimonials}
-              backgroundColor="transparent"
-              title="Success Stories"
-            />
-          </div>
-        </section>
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Section removal for layout optimization */}
+        {/* LAYOUT FIX REASON: Section I (TestimonialsSection) completely removed as requested */}
 
-        {/* Call to Action Section - Maintain Strong Contrast Finale */}
-        {/* Documentation Source: Context7 MCP - Professional CTA Treatment */}
-        {/* Pattern: Keep original strong contrast for powerful conversion finale */}
-        <CTASection 
-          siteName={siteBranding.siteName}
-          backgroundColor="bg-primary-900"
-        />
-      </PageLayout>
-    </div>
+        {/* Original Quote Section - Restored with Dropdown Functionality */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple dropdown pattern for progressive disclosure */}
+        {/* LAYOUT RESTORATION REASON: Restored original simple quote section design with dropdown button functionality */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full width section patterns */}
+        {/* FULL WIDTH REASON: Remove mx-*, px-*, ml-*, mr-*, pl-*, pr-* for complete edge-to-edge coverage */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding removal for zero vertical spacing */}
+        {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation py-*, pt-*, pb-* utilities removed for zero vertical padding */}
+        <DebugSection 
+          id="section-j" 
+          label="Quote Request Form Section"
+          description="Interactive quote request with progressive disclosure and form functionality"
+          backgroundColor="slate-100"
+          showMetrics={true}
+        >
+          <section className="relative bg-slate-100  w-full">
+            
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Centered content with proper container structure */}
+            {/* CONTAINER REASON: Using container for content centering since this section needs contained width unlike full-width sections */}
+            <DebugContainer id="container-quote-form" type="container">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <DebugContainer id="container-quote-content" type="content">
+                  <div className="max-w-4xl mx-auto text-center">
+                    <DebugComponent 
+                      name="Quote Section Header" 
+                      props={{ 
+                        title: "Ready to Start Your Child's Educational Journey?",
+                        hasDescription: true
+                      }}
+                    >
+                      <h2 className="text-3xl font-bold text-primary-900 mb-6">
+                        Ready to Start Your Child's Educational Journey?
+                      </h2>
+                      <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                        Request a personalised quote for premium tutoring services tailored to your child's academic needs and goals.
+                      </p>
+                    </DebugComponent>
+                    
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Button with dropdown functionality */}
+                    {/* IMPLEMENTATION REASON: Simple toggle button for progressive disclosure of quote form */}
+                    <DebugComponent 
+                      name="Toggle Quote Button" 
+                      props={{
+                        isExpanded: showQuoteForm,
+                        toggleFunction: "toggleQuoteForm",
+                        hasAnimation: true
+                      }}
+                      showProps={true}
+                    >
+                      <button 
+                        onClick={toggleQuoteForm}
+                        className="inline-flex items-center px-8 py-4 bg-accent-600 text-white font-semibold rounded-lg hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+                        aria-expanded={showQuoteForm}
+                        aria-controls="quote-form-container"
+                      >
+                        <span>{showQuoteForm ? 'Hide Quote Form' : 'Get Your Personalised Quote'}</span>
+                        <svg 
+                          className={`ml-2 h-5 w-5 transition-transform duration-200 ${showQuoteForm ? 'rotate-180' : ''}`}
+                          fill="none" 
+                          viewBox="0 0 24 24" 
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    </DebugComponent>
+                    
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Progressive disclosure with smooth transitions */}
+                    {/* ANIMATION REASON: Smooth expand/collapse animation for better user experience */}
+                    {showQuoteForm && (
+                      <DebugComponent 
+                        name="Quote Request Form" 
+                        props={{
+                          compact: true,
+                          isVisible: showQuoteForm,
+                          hasAnimation: true
+                        }}
+                        showProps={true}
+                      >
+                        <div 
+                          id="quote-form-container"
+                          className="mt-12 animate-in slide-in-from-top-4 duration-300"
+                        >
+                          <QuoteRequestForm compact={true} />
+                        </div>
+                      </DebugComponent>
+                    )}
+                  </div>
+                </DebugContainer>
+              </div>
+            </DebugContainer>
+          </section>
+        </DebugSection>
+
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Section removal for layout optimization */}
+        {/* LAYOUT FIX REASON: Section K (CTASection) completely removed as requested */}
+        </PageLayout>
+      </DebugComponent>
+      </div>
+    </>
   )
 }

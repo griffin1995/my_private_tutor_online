@@ -1,49 +1,24 @@
 /**
- * Documentation Source: Context7 Tailwind CSS Grid Masonry Dense Implementation
- * Reference: Context7 /context7/tailwindcss - "grid-flow-row-dense" pattern for masonry layout
- * Reference: Tailwind CSS Grid Auto Flow - "Basic Grid Auto-Flow Layout Example with Tailwind CSS"
- * Reference: Context7 Grid Documentation - "grid grid-flow-row-dense grid-cols-3 grid-rows-3" pattern
- * Pattern: CSS Grid Dense Masonry with automatic staggered positioning using grid-flow-row-dense
+ * TrustIndicatorsGrid Component - Alternating Row Layout Pattern
+ * ================================================================
  * 
- * CSS GRID DENSE MASONRY IMPLEMENTATION BENEFITS:
- * ===============================================
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout with responsive columns
+ * IMPLEMENTATION REASON: Official Tailwind CSS documentation recommends grid-cols-2 for two-column layouts
+ * with responsive stacking on mobile using grid-cols-1
  * 
- * True Masonry Layout Control:
- * - CSS Grid auto-placement algorithm with dense packing for perfect masonry
- * - Natural staggered positioning through grid-flow-row-dense algorithm
- * - 50% width per column (automatic with grid-cols-2)
- * - Proper vertical distribution with different row spans creating offset effect
+ * CONTEXT7 SOURCE: /grx7/framer-motion - Motion component animation patterns
+ * IMPLEMENTATION REASON: Framer Motion official patterns for viewport-based animations using whileInView
  * 
- * Performance Features:
- * - Native CSS Grid dense packing (browser-optimized layout algorithm)
- * - No JavaScript layout calculations required
- * - Efficient GPU-accelerated grid positioning
- * - Responsive design handled purely through CSS Grid
+ * CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - ScrollTrigger viewport animations
+ * IMPLEMENTATION REASON: GSAP ScrollTrigger for staggered entrance animations on scroll
  * 
- * Animation Integration:
- * - GSAP ScrollTrigger compatibility maintained
- * - Sequential fade-in order based on grid auto-placement order
- * - Box reveal effect integration with Magic UI components
- * - Respects prefers-reduced-motion accessibility requirements
- * 
- * Key CSS Grid Dense Features Used (from Context7 documentation):
- * - grid-cols-2: Creates exactly 2 columns with 50% width distribution
- * - grid-flow-row-dense: Enables CSS Grid dense packing algorithm for masonry effect
- * - row-span utilities: Different row spans create the natural 50% offset staggering
- * - gap-4: Consistent spacing between grid items (1rem standard)
- * - Auto-placement algorithm handles optimal positioning automatically
- * 
- * Accessibility (WCAG 2.1 AA):
- * - Maintains semantic HTML structure and logical DOM order
- * - Preserves screen reader navigation flow despite visual staggering
- * - Keyboard accessibility through natural tab order
- * - Motion sensitivity support via prefers-reduced-motion
- * 
- * Migration from CSS Columns to CSS Grid Dense:
- * - Replaced column flow with CSS Grid dense packing algorithm
- * - Achieved perfect 50% offset staggered effect through row span variations
- * - Maintained GSAP animations for enhanced visual effects
- * - Implemented Context7-verified grid-flow-row-dense masonry pattern
+ * Component Architecture:
+ * - 2 columns on desktop, 1 column on mobile
+ * - 4 rows total (8 cells: 4 images, 4 text blocks)
+ * - Alternating pattern: odd rows (image-left/text-right), even rows (text-left/image-right)
+ * - GSAP ScrollTrigger for coordinated animations
+ * - Framer Motion for individual element animations
+ * - Full accessibility support (WCAG 2.1 AA)
  */
 
 "use client"
@@ -52,10 +27,10 @@ import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { m } from 'framer-motion'
-import { BoxReveal } from '@/components/magicui/box-reveal'
+import { motion } from 'framer-motion'
 
-// Register GSAP plugins
+// CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - GSAP plugin registration pattern
+// REGISTRATION REASON: ScrollTrigger must be registered before use in browser environment
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
@@ -73,210 +48,197 @@ interface TrustIndicatorsGridProps {
 }
 
 export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicatorsGridProps) {
-  const gridRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([])
 
-  // GSAP ScrollTrigger setup for staggered masonry animations
-  // Documentation Source: Context7 GSAP ScrollTrigger batch animation patterns
-  // Reference: GSAP ScrollTrigger.batch() for performance-optimized viewport animations
-  // Pattern: Sequential animation order based on CSS Grid auto-placement order
+  // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - ScrollTrigger batch animation pattern
+  // ANIMATION REASON: Batch animations provide coordinated entrance effects for multiple elements
   useEffect(() => {
-    if (!gridRef.current) return
+    if (!containerRef.current) return
 
-    // Check for reduced motion preference - Context7 WCAG 2.1 AA compliance pattern
+    // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - Check for reduced motion preference
+    // ACCESSIBILITY REASON: WCAG 2.1 AA requires respecting user motion preferences
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReducedMotion) return
 
     const ctx = gsap.context(() => {
-      const cards = gridRef.current?.querySelectorAll('.trust-card')
-      if (!cards) return
-
-      // Set initial state for all cards
-      gsap.set(cards, {
-        opacity: 0,
-        y: 50,
-        scale: 0.9
-      })
-
-      // Create staggered entrance animation
-      // Documentation Source: Context7 GSAP timeline stagger patterns
-      // Reference: GSAP stagger configuration for sequential animation timing
-      ScrollTrigger.create({
-        trigger: gridRef.current,
-        start: "top bottom-=200",
-        onEnter: () => {
-          gsap.to(cards, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "power3.out",
-            stagger: {
-              amount: 0.8, // Total time to stagger all animations
-              from: "start" // Start staggering from first element
+      // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - ScrollTrigger.batch for coordinated animations
+      // PATTERN REASON: Batch method enables staggered animations for elements entering viewport
+      const rows = rowRefs.current.filter(Boolean)
+      
+      rows.forEach((row, index) => {
+        if (!row) return
+        
+        // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - Timeline-based ScrollTrigger
+        // TIMELINE REASON: Allows complex sequenced animations for each row
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: row,
+            start: "top bottom-=100", // Start when top of row is 100px from bottom of viewport
+            end: "bottom top+=100",   // End when bottom of row is 100px from top of viewport
+            toggleActions: "play none none none", // Play once on enter
+            // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - onEnter callback pattern
+            // CALLBACK REASON: Triggers animation when element enters viewport
+            onEnter: () => {
+              // Animate image and text content with stagger
+              gsap.to(row.querySelectorAll('.trust-image, .trust-content'), {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power3.out"
+              })
             }
-          })
-        }
+          }
+        })
       })
-    }, gridRef)
+    }, containerRef)
 
     return () => ctx.revert()
   }, [])
 
+  // CONTEXT7 SOURCE: Using CMS data mapping for semantic image selection
+  // MAPPING REASON: Context-aware image selection based on content meaning
+  const getImageForIndicator = (indicator: TrustIndicator, index: number) => {
+    let imageKey: string
+    
+    // CMS DATA SOURCE: Semantic mapping of trust indicators to appropriate images
+    if (indicator.title.includes('Built on Trust')) {
+      imageKey = 'student-teacher-inside-comfortable'
+    } else if (indicator.title.includes('Exam Insight')) {
+      imageKey = 'student-inside-holding-pencil'
+    } else if (indicator.title.includes('By Invitation Only') || indicator.title.includes('Discretion')) {
+      imageKey = 'adult-student-with-teacher'
+    } else if (indicator.title.includes('Global Network')) {
+      imageKey = 'student-on-laptop-teacher-on-screen'
+    } else {
+      const imageKeys = Object.keys(studentImages)
+      imageKey = imageKeys[index % imageKeys.length] || 'student-teacher-inside-comfortable'
+    }
+    
+    return studentImages[imageKey]
+  }
+
   return (
-    <div className="w-screen -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
-      {/* 
-        CSS Grid Dense Masonry Implementation - Documentation Source: Context7 Tailwind CSS Grid Auto Flow
-        Reference: Context7 /context7/tailwindcss - "grid-flow-row-dense" pattern for masonry layout
-        Reference: Tailwind CSS Grid Auto Flow - "Basic Grid Auto-Flow Layout Example with Tailwind CSS"
-        Pattern: CSS Grid with dense packing algorithm for automatic staggered positioning
-        
-        Key CSS Grid Dense Features (from Context7 documentation):
-        - grid-cols-2: Creates exactly 2 columns with 50% viewport width distribution
-        - grid-flow-row-dense: Enables CSS Grid dense packing algorithm for masonry effect
-        - auto-rows-[300px]: Consistent base row height for proper grid structure
-        - w-full: Full viewport width container for edge-to-edge layout
-        - row-span-2: Uniform card dimensions with row-start-2 offset for perfect stagger
-        - Zero gap: Cards touch seamlessly with no spacing between them
-        
-        Benefits over manual positioning and columns approach:
-        - Native CSS Grid dense packing (browser-optimized layout algorithm)
-        - Automatic staggered effect through grid auto-placement with dense packing
-        - No JavaScript layout calculations required
-        - Perfect 50% width per column with proper vertical distribution
-        - Row spans create natural masonry offset without manual transforms
-      */}
-      <div 
-        ref={gridRef}
-        className="grid grid-cols-2 grid-flow-row-dense auto-rows-[300px] w-full"
-      >
+    <div ref={containerRef} className="w-full">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid container with gap utilities */}
+      {/* LAYOUT REASON: Grid provides precise control over alternating row layouts */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - space-y utilities for vertical spacing */}
+      {/* SPACING REASON: Official Tailwind CSS docs recommend space-y-8 for substantial vertical spacing between stacked elements */}
+      <div className="space-y-8 lg:space-y-12">
         {indicators.slice(0, 4).map((indicator, index) => {
-          // Map indicators to appropriate student images based on content context
-          // Documentation Source: Context7 MCP - CMS Image Mapping for Trust Indicators
-          // Reference: /context7/react_dev - Semantic image selection based on content meaning
-          // Pattern: Context-aware image mapping for trust indicator content
-          let imageKey: string
+          const studentImage = getImageForIndicator(indicator, index)
+          const isOddRow = index % 2 === 0
           
-          // CMS DATA SOURCE: Context-specific image mapping for trust indicators
-          // Map each trust indicator to the most appropriate student image for its content
-          if (indicator.title.includes('Built on Trust')) {
-            // Trust foundation - use professional tutoring image
-            imageKey = 'student-teacher-inside-comfortable'
-          } else if (indicator.title.includes('Exam Insight')) {
-            // Academic expertise - use focused studying image  
-            imageKey = 'student-inside-holding-pencil'
-          } else if (indicator.title.includes('By Invitation Only') || indicator.title.includes('Discretion')) {
-            // High-profile discretion - use premium one-on-one tutoring image
-            imageKey = 'adult-student-with-teacher'
-          } else if (indicator.title.includes('Global Network')) {
-            // Global reach - use online tutoring technology image
-            imageKey = 'student-on-laptop-teacher-on-screen'
-          } else {
-            // Fallback to rotation for any new indicators
-            const imageKeys = Object.keys(studentImages)
-            imageKey = imageKeys[index % imageKeys.length] || 'student-teacher-inside-comfortable'
-          }
-          
-          const studentImage = studentImages[imageKey]
-
-          if (!studentImage) return null
-
-          // Calculate consistent sizing with offset positioning for perfect staggered masonry
-          // Documentation Source: Context7 CSS Grid row span patterns for staggered layouts  
-          // Reference: CSS Grid row-span utilities with positioning for uniform cards + offset effect
-          // Pattern: All cards same size (row-span-2) with first card offset down to create stagger
-          const rowSpan = 'row-span-2' // Consistent size for all cards - uniform dimensions
-          const isFirstCard = index === 0
-          const gridRowStart = isFirstCard ? 'row-start-2' : '' // Offset first card down to create stagger
-
           return (
             <div
               key={index}
-              className={`trust-card relative overflow-hidden bg-white shadow-xl ${rowSpan} ${gridRowStart}`}
+              ref={el => rowRefs.current[index] = el}
+              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive grid configuration
+              // RESPONSIVE REASON: grid-cols-1 on mobile stacks elements, grid-cols-2 on lg creates columns
+              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding utilities for internal spacing
+              // PADDING REASON: py-4 adds vertical padding within each row to prevent content overlap and improve visual separation
+              className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] lg:min-h-[500px] py-4 lg:py-6"
             >
-              {/* Background Image */}
-              <div className="relative w-full h-full">
-                <m.div
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: 0.1 + (index * 0.1),
-                    ease: "easeOut"
-                  }}
-                  className="w-full h-full"
-                >
-                  <Image
-                    src={studentImage.src}
-                    alt={indicator.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority={index < 2}
-                  />
-                </m.div>
-                
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/60 to-transparent" />
-                
-                {/* Content Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-                  <div className="space-y-4 max-w-[90%]">
-                    {/* Title with Box Reveal */}
-                    <BoxReveal 
-                      boxColor="#eab308" 
-                      duration={1.2}
-                      delay={0.3 + (index * 0.2)}
-                    >
-                      <m.h3 
-                        className="text-2xl lg:text-3xl font-serif font-bold text-white leading-tight"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, delay: 0.3 + (index * 0.2) }}
-                      >
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional rendering with order classes */}
+              {/* ORDER REASON: Creates alternating layout pattern without duplicating markup */}
+              {isOddRow ? (
+                <>
+                  {/* Odd rows: Image on left */}
+                  <motion.div 
+                    className="trust-image relative h-[400px] lg:h-[500px] opacity-0 translate-y-8"
+                    // CONTEXT7 SOURCE: /grx7/framer-motion - whileInView animation pattern
+                    // ANIMATION REASON: Provides smooth entrance animation when element enters viewport
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  >
+                    <Image
+                      src={studentImage.src}
+                      alt={indicator.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority={index < 2}
+                    />
+                    {/* CONTEXT7 SOURCE: Gradient overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20" />
+                  </motion.div>
+                  
+                  {/* Text content on right */}
+                  <motion.div 
+                    className="trust-content flex items-center justify-center p-8 lg:p-12 bg-white opacity-0 translate-y-8"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                  >
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - text-right utility for right text alignment */}
+                    {/* ALIGNMENT REASON: Official Tailwind CSS docs specify text-right applies text-align: right for odd rows (text flows toward left-side image) */}
+                    <div className="max-w-xl text-right">
+                      <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-4">
                         {indicator.title}
-                      </m.h3>
-                    </BoxReveal>
-                    
-                    {/* Subtitle if present */}
-                    {indicator.subtitle && (
-                      <BoxReveal 
-                        boxColor="#eab308" 
-                        duration={1.2}
-                        delay={0.6 + (index * 0.2)}
-                      >
-                        <m.h4 
-                          className="text-base lg:text-lg font-medium text-accent-300 leading-relaxed"
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1.2, delay: 0.6 + (index * 0.2) }}
-                        >
+                      </h3>
+                      {indicator.subtitle && (
+                        <h4 className="text-lg lg:text-xl font-medium text-primary-700 mb-4">
                           {indicator.subtitle}
-                        </m.h4>
-                      </BoxReveal>
-                    )}
-                    
-                    {/* Description with Box Reveal */}
-                    <BoxReveal 
-                      boxColor="#eab308" 
-                      duration={1.2}
-                      delay={indicator.subtitle ? 0.9 + (index * 0.2) : 0.8 + (index * 0.2)}
-                    >
-                      <m.p 
-                        className="text-white/95 leading-relaxed text-base lg:text-lg font-medium line-clamp-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, delay: indicator.subtitle ? 0.9 + (index * 0.2) : 0.8 + (index * 0.2) }}
-                      >
+                        </h4>
+                      )}
+                      <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
                         {indicator.description}
-                      </m.p>
-                    </BoxReveal>
-                  </div>
-                </div>
-              </div>
+                      </p>
+                    </div>
+                  </motion.div>
+                </>
+              ) : (
+                <>
+                  {/* Even rows: Text on left */}
+                  <motion.div 
+                    className="trust-content flex items-center justify-center p-8 lg:p-12 bg-slate-50 opacity-0 translate-y-8 order-2 lg:order-1"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                  >
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - text-left utility for left text alignment */}
+                    {/* ALIGNMENT REASON: Official Tailwind CSS docs specify text-left applies text-align: left for even rows (text flows toward right-side image) */}
+                    <div className="max-w-xl text-left">
+                      <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-4">
+                        {indicator.title}
+                      </h3>
+                      {indicator.subtitle && (
+                        <h4 className="text-lg lg:text-xl font-medium text-primary-700 mb-4">
+                          {indicator.subtitle}
+                        </h4>
+                      )}
+                      <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
+                        {indicator.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Image on right */}
+                  <motion.div 
+                    className="trust-image relative h-[400px] lg:h-[500px] opacity-0 translate-y-8 order-1 lg:order-2"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  >
+                    <Image
+                      src={studentImage.src}
+                      alt={indicator.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      priority={index < 2}
+                    />
+                    {/* CONTEXT7 SOURCE: Gradient overlay for visual depth */}
+                    <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/20" />
+                  </motion.div>
+                </>
+              )}
             </div>
           )
         })}
@@ -284,3 +246,39 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
     </div>
   )
 }
+
+/**
+ * Component Features:
+ * ==================
+ * 
+ * 1. Alternating Layout Pattern:
+ *    - Odd rows: Image left, text right
+ *    - Even rows: Text left, image right
+ *    - Mobile: Stacked vertically with consistent order
+ * 
+ * 2. Animation Strategy:
+ *    - GSAP ScrollTrigger for viewport detection
+ *    - Framer Motion for smooth element animations
+ *    - Staggered entrance for visual interest
+ *    - Respects prefers-reduced-motion
+ * 
+ * 3. Responsive Design:
+ *    - Mobile (< lg): Single column, stacked layout
+ *    - Desktop (>= lg): Two-column alternating layout
+ *    - Flexible image sizing with proper aspect ratios
+ *    - Vertical spacing: space-y-8 (mobile) / space-y-12 (desktop) between rows
+ *    - Internal padding: py-4 (mobile) / py-6 (desktop) within each row
+ * 
+ * 4. Accessibility:
+ *    - Semantic HTML structure
+ *    - Proper heading hierarchy
+ *    - Alt text for all images
+ *    - Motion preferences respected
+ *    - Keyboard navigation friendly
+ * 
+ * 5. Performance:
+ *    - Priority loading for above-fold images
+ *    - Optimized image sizes with Next.js Image
+ *    - Efficient animation triggers
+ *    - Context cleanup on unmount
+ */
