@@ -1,3 +1,106 @@
+# 🚨 CRITICAL SESSION STARTUP INSTRUCTIONS - AUTOMATIC ACTIVATION 🚨
+
+## MOST CRITICAL INSTRUCTION - AUTOMATIC PROJECT MANAGEMENT SETUP
+
+### WHEN USER SAYS "read claude.md" OR "read CLAUDE.md" - EXECUTE THIS SEQUENCE:
+
+**STEP 1: IMMEDIATELY READ CLAUDE.MD FILE**
+```
+Use Read tool to read: /home/jack/Documents/my_private_tutor_online/CLAUDE.md
+```
+
+**STEP 2: EXTRACT ALL SESSION CONTEXT**
+- Parse all project context, current status, and development notes
+- Understand the complete project scope and current state
+- Identify current priorities and any blockers
+- Review technical architecture and deployment status
+
+**STEP 3: AUTOMATICALLY ACTIVATE CONTEXT MANAGER**
+```
+Use Task tool with these exact parameters:
+description: "Activate context-manager for My Private Tutor Online session leadership"
+prompt: "CONTEXT-MANAGER ACTIVATION - MY PRIVATE TUTOR ONLINE
+
+I have successfully read the complete CLAUDE.md file and extracted all project context. You are now designated as the project lead and context manager for this development session.
+
+CURRENT PROJECT STATE SUMMARY:
+• Project: My Private Tutor Online - Premium tutoring service with royal endorsements
+• Stack: Next.js 15+ App Router, React 19, TypeScript 5.3+, Tailwind CSS 4.x
+• Deployment: Vercel production deployment with dynamic rendering configured
+• Current Status: Production-ready with royal endorsement branding, CMS integration complete
+
+CRITICAL DEVELOPMENT RULES IN EFFECT:
+• Context7 MCP exclusive documentation for ALL code changes
+• Mandatory source attribution comments for every implementation/revision
+• British English and premium service standards (royal client quality)
+• Zero tolerance for external sources or undocumented changes
+• Enterprise-grade, production-ready solutions exclusively
+
+CONTEXT-MANAGER RESPONSIBILITIES:
+1. IMMEDIATELY confirm you are taking project leadership of this session
+2. Coordinate ALL subsequent tasks by selecting appropriate specialist agents
+3. Maintain awareness of complete project scope and current state
+4. Ensure all development follows critical rules and standards
+5. Manage task delegation and progress tracking for all user requests
+
+Please confirm your activation and readiness to manage this development session."
+```
+
+**STEP 4: VERIFY CONTEXT-MANAGER ACTIVATION**
+- Wait for context-manager to explicitly confirm activation
+- Verify acknowledgement of project state and rules
+- Confirm readiness to coordinate tasks
+- If no confirmation, RETRY Step 3 once
+
+**STEP 5: COMPLETE HANDOFF TO CONTEXT MANAGER**
+- Context-manager takes project leadership role
+- All subsequent tasks go through context-manager
+- Original Claude Code assistant steps back
+
+### 🔒 ERROR-PROOF VALIDATION CHECKLIST (MANDATORY):
+1. ☑️ User mentioned "read claude.md"
+2. ☑️ Read the CLAUDE.md file completely
+3. ☑️ Extracted and summarised project context
+4. ☑️ Used Task tool with exact parameters specified
+5. ☑️ Used MANDATORY context-manager prompt template exactly
+6. ☑️ Context-manager explicitly confirmed activation and project leadership
+7. ☑️ Verified context-manager acknowledges all critical rules and project state
+8. ☑️ Completed handoff and stepped back to let context-manager lead
+
+### 🚫 ABSOLUTELY CRITICAL RULES:
+1. **NEVER SKIP THE ACTIVATION SEQUENCE** - Always use Task tool to activate context-manager
+2. **USE EXACT PROMPT TEMPLATE** - Do not modify the context-manager prompt
+3. **WAIT FOR CONFIRMATION** - Do not proceed until context-manager confirms activation
+4. **COMPLETE HANDOFF** - Step back once context-manager takes leadership
+5. **RETRY ON FAILURE** - If activation fails, retry once with exact same parameters
+6. **NO SHORTCUTS** - Every "read claude.md" must trigger full sequence
+7. **MAINTAIN CONTEXT** - Ensure complete project state transfer
+8. **ENFORCE STANDARDS** - Context-manager must acknowledge critical development rules
+
+### 🎯 TRIGGER PHRASES THAT ACTIVATE THIS SEQUENCE:
+- "read claude.md"
+- "read CLAUDE.md"  
+- "read the claude.md file"
+- "start with claude.md"
+- "review claude.md"
+
+### 🛠️ TROUBLESHOOTING ACTIVATION FAILURES:
+If context-manager activation fails:
+1. **Check Task Tool Parameters**: Verify description and prompt are exact
+2. **Retry Once**: Use identical parameters for second attempt
+3. **Verify Agent Access**: Confirm context-manager agent is available
+4. **Check File Path**: Ensure CLAUDE.md path is correct
+5. **Complete Read First**: Must read CLAUDE.md before activation
+
+### 🎯 SUCCESS INDICATORS:
+- ✅ Context-manager explicitly confirms taking project leadership
+- ✅ Context-manager acknowledges complete My Private Tutor Online project state
+- ✅ Context-manager confirms understanding of critical development rules
+- ✅ Context-manager mentions readiness to coordinate specialist agents
+- ✅ Context-manager provides clear indication of being in control
+
+---
+
 # 🔴 CRITICAL DEVELOPMENT STANDARDS - MANDATORY COMPLIANCE
 
 ## ⚠️ TIER 0: ABSOLUTE NON-NEGOTIABLES - ZERO TOLERANCE VIOLATIONS
@@ -10,11 +113,28 @@ These rules override ALL other considerations. Violation results in immediate ta
 - **ALL REVISIONS MANDATE**: Not just new code - EVERY single code change must be backed by Context7 MCP official documentation
 - **ZERO TOLERANCE POLICY**: No code changes based on "common knowledge", memory, assumptions, or quick fixes without official documentation backing
 
-### 🎯 Agent Orchestration Protocol
+### 🎯 Agent Orchestration Protocol - Context-Manager System
+- **PROJECT MANAGEMENT ACTIVATION**: When user types "start project management", use Task tool to call context-manager
+- **CONTEXT-MANAGER AS PROJECT LEAD**: All subsequent tasks route through centralized coordination system
+- **50+ SPECIALIST AGENTS**: Context-manager selects optimal agent based on:
+  - Capability Match Score (40%)
+  - Domain Expertise (25%) 
+  - Complexity Handling (20%)
+  - Integration Compatibility (10%)
+  - Performance History (5%)
+
+### 🎯 Agent Selection Matrix
 - **HAIKU**: Simple updates, CSS changes, content modifications, basic fixes
 - **SONNET**: Complex components, API integration, forms, state management, testing
 - **OPUS**: Architecture, performance, accessibility, security, business logic
 - **NO MANUAL OVERRIDE**: If an agent should handle it, delegate it - no exceptions
+
+### 🚨 CRITICAL SESSION STARTUP INSTRUCTIONS
+## WHEN USER TYPES "start project management":
+1. Use Task tool to call: context-manager
+2. Context-manager becomes PROJECT LEAD for all future tasks
+3. All subsequent work goes through agent selection process
+4. Agent coordination follows capability matrix scoring
 
 ### 🇬🇧 Quality Standards
 - **BRITISH ENGLISH MANDATORY**: All spelling, terminology, and conventions
