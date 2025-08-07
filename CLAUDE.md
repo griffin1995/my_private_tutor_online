@@ -270,7 +270,7 @@ import { Root as Slot, Slottable } from "@radix-ui/react-slot"
 - **Build Verification**: `npm run build` locally before deployment
 - **Production Deploy**: `vercel --prod` for production releases
 - **Cache Issues**: Delete/recreate Vercel project if persistent problems
-- **Production URL**: https://my-tutor-website-6aipxnfeh-jacks-projects-cf5effed.vercel.app
+- **Production URL**: https://myprivatetutoronline-991oq6we4-jacks-projects-cf5effed.vercel.app
 
 ---
 
