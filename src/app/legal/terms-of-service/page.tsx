@@ -1,28 +1,97 @@
 "use client"
 
+import { m } from 'framer-motion'
 import { PageLayout } from "@/components/layout/page-layout"
 import { PageHero } from "@/components/layout/page-hero"
 import { Section } from "@/components/layout/section"
 import { Card } from "@/components/ui/card"
+import { WaveSeparator } from '@/components/ui/wave-separator'
+import { GradientOverlay } from '@/components/ui/gradient-overlay'
+import { Scale, Crown, FileText, CheckCircle, AlertTriangle, DollarSign } from 'lucide-react'
+
+// CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced legal page design with professional animations
+// LEGAL DESIGN ENHANCEMENT: Formal terms of service styling with premium branding for royal clients
+// IMPLEMENTATION REASON: Consistent visual standards while maintaining legal document accessibility
 
 export default function TermsOfServicePage() {
   return (
     <PageLayout background="white">
       <PageHero
-        title="Terms of Service"
-        subtitle="Terms and conditions for tutoring services"
-        description="These terms govern your use of My Private Tutor Online services. Please read them carefully before booking sessions."
-        className="bg-slate-50"
+        background="gradient"
+        size="lg"
+        className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900"
+        overlay={true}
+        overlayOpacity="light"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <m.div
+            className="flex items-center justify-center mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-white/10 backdrop-blur-sm rounded-full p-4">
+              <Scale className="w-12 h-12 text-amber-400" />
+            </div>
+          </m.div>
+          <m.h1 
+            className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            Terms of Service
+          </m.h1>
+          <m.p 
+            className="text-xl text-amber-400 font-semibold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Terms and conditions for tutoring services
+          </m.p>
+          <m.p 
+            className="text-lg text-white/90 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            These terms govern your use of My Private Tutor Online services. Please read them carefully before booking sessions.
+          </m.p>
+        </div>
+      </PageHero>
+      
+      <WaveSeparator 
+        variant="subtle" 
+        className="text-white" 
       />
       
-      <Section className="py-16">
-        <div className="max-w-4xl mx-auto prose prose-lg">
-          <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-lg">
-            <p className="text-sm text-blue-800 mb-2 font-semibold">Last Updated: 4 August 2025</p>
-            <p className="text-blue-700 text-sm">
-              These terms comply with UK consumer protection law, educational services regulations, and international service standards.
-            </p>
-          </div>
+      <Section className="py-20 relative" background="white">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            
+            <m.div 
+              className="mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 rounded-r-2xl shadow-lg"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <FileText className="w-6 h-6 text-blue-600" />
+                <p className="text-lg text-blue-800 font-bold">Last Updated: 4 August 2025</p>
+              </div>
+              <p className="text-blue-700">
+                These terms comply with UK consumer protection law, educational services regulations, and international service standards.
+              </p>
+            </m.div>
+            
+            <div className="prose prose-lg prose-slate max-w-none">
 
           <h2>1. About These Terms</h2>
           <p>
@@ -30,14 +99,26 @@ export default function TermsOfServicePage() {
             and My Private Tutor Online Limited ("MPTO", "we", "us", "our") regarding your use of our tutoring services.
           </p>
           
-          <Card className="p-6 my-8 bg-amber-50 border-amber-200">
-            <h3 className="text-lg font-semibold text-amber-800 mb-2">Premium Service Notice</h3>
-            <p className="text-amber-700 text-sm">
-              Our services are designed for discerning families who value excellence in education. 
-              We maintain the highest standards of professionalism, discretion, and academic achievement 
-              befitting our prestigious clientele.
-            </p>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <Crown className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-amber-800 mb-4">Premium Service Notice</h3>
+                  <p className="text-amber-800 text-lg leading-relaxed">
+                    Our services are designed for discerning families who value excellence in education. 
+                    We maintain the highest standards of professionalism, discretion, and academic achievement 
+                    befitting our prestigious clientele.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <h2>2. Company Information</h2>
           
@@ -94,16 +175,43 @@ export default function TermsOfServicePage() {
 
           <h3>4.3 Cancellation Policy</h3>
           
-          <Card className="p-6 my-8 bg-red-50 border-red-200">
-            <h3 className="text-lg font-semibold text-red-800 mb-2">Cancellation Terms</h3>
-            <div className="text-red-700 text-sm space-y-2">
-              <p><strong>24+ hours notice:</strong> Full refund or rescheduling</p>
-              <p><strong>12-24 hours notice:</strong> 50% charge applies</p>
-              <p><strong>Less than 12 hours:</strong> Full session charge</p>
-              <p><strong>No-show:</strong> Full session charge plus administrative fee</p>
-              <p><strong>Emergency cancellations:</strong> Medical or family emergencies considered case-by-case</p>
-            </div>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <AlertTriangle className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-red-800 mb-4">Cancellation Terms</h3>
+                  <div className="text-red-800 space-y-3">
+                    <p className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>24+ hours notice:</strong> Full refund or rescheduling</span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>12-24 hours notice:</strong> 50% charge applies</span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Less than 12 hours:</strong> Full session charge</span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <DollarSign className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>No-show:</strong> Full session charge plus administrative fee</span>
+                    </p>
+                    <p className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Emergency cancellations:</strong> Medical or family emergencies considered case-by-case</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <h2>5. Fees and Payment</h2>
           
@@ -166,14 +274,26 @@ export default function TermsOfServicePage() {
 
           <h3>7.2 Safeguarding Commitment</h3>
           
-          <Card className="p-6 my-8 bg-green-50 border-green-200">
-            <h3 className="text-lg font-semibold text-green-800 mb-2">Child Protection</h3>
-            <p className="text-green-700 text-sm">
-              All our tutors undergo enhanced DBS checks and safeguarding training. 
-              We follow strict child protection policies and maintain detailed safeguarding procedures. 
-              Any concerns are immediately escalated to designated safeguarding officers.
-            </p>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <CheckCircle className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-green-800 mb-4">Child Protection</h3>
+                  <p className="text-green-800 text-lg leading-relaxed">
+                    All our tutors undergo enhanced DBS checks and safeguarding training. 
+                    We follow strict child protection policies and maintain detailed safeguarding procedures. 
+                    Any concerns are immediately escalated to designated safeguarding officers.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <h2>8. Technology and Online Sessions</h2>
           
@@ -232,14 +352,26 @@ export default function TermsOfServicePage() {
 
           <h2>11. Limitation of Liability</h2>
           
-          <Card className="p-6 my-8 bg-yellow-50 border-yellow-200">
-            <h3 className="text-lg font-semibold text-yellow-800 mb-2">Important Legal Notice</h3>
-            <p className="text-yellow-700 text-sm">
-              While we strive for excellent outcomes, academic success depends on many factors including 
-              student effort, attendance, and external circumstances. We cannot guarantee specific results 
-              but commit to providing the highest quality teaching and support.
-            </p>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <AlertTriangle className="w-8 h-8 text-yellow-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-yellow-800 mb-4">Important Legal Notice</h3>
+                  <p className="text-yellow-800 text-lg leading-relaxed">
+                    While we strive for excellent outcomes, academic success depends on many factors including 
+                    student effort, attendance, and external circumstances. We cannot guarantee specific results 
+                    but commit to providing the highest quality teaching and support.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <h3>11.1 Service Limitations</h3>
           <ul>
@@ -371,6 +503,8 @@ export default function TermsOfServicePage() {
 
           <div className="border-t pt-8 mt-12 text-sm text-gray-600">
             <p><em>This is a template for informational purposes. Consult with a qualified attorney for legal advice specific to your situation.</em></p>
+          </div>
+            </div>
           </div>
         </div>
       </Section>

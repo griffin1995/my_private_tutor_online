@@ -1,29 +1,98 @@
 "use client"
 
+import { m } from 'framer-motion'
 import { PageLayout } from "@/components/layout/page-layout"
 import { PageHero } from "@/components/layout/page-hero"
 import { Section } from "@/components/layout/section"
 import { Card } from "@/components/ui/card"
+import { WaveSeparator } from '@/components/ui/wave-separator'
+import { GradientOverlay } from '@/components/ui/gradient-overlay'
+import { Cookie, Settings, FileText, CheckCircle, AlertTriangle, Eye } from 'lucide-react'
+
+// CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced legal page design with professional animations
+// LEGAL DESIGN ENHANCEMENT: Cookie policy with premium styling while maintaining compliance readability
+// IMPLEMENTATION REASON: Consistent visual standards with formal legal document accessibility
 
 export default function CookiePolicyPage() {
   return (
     <PageLayout background="white">
       <PageHero
-        title="Cookie Policy"
-        subtitle="How we use cookies and similar technologies"
-        description="This policy explains how My Private Tutor Online uses cookies and similar technologies to improve your website experience."
-        className="bg-slate-50"
+        background="gradient"
+        size="lg"
+        className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900"
+        overlay={true}
+        overlayOpacity="light"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <m.div
+            className="flex items-center justify-center mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-white/10 backdrop-blur-sm rounded-full p-4">
+              <Cookie className="w-12 h-12 text-amber-400" />
+            </div>
+          </m.div>
+          <m.h1 
+            className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            Cookie Policy
+          </m.h1>
+          <m.p 
+            className="text-xl text-amber-400 font-semibold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            How we use cookies and similar technologies
+          </m.p>
+          <m.p 
+            className="text-lg text-white/90 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            This policy explains how My Private Tutor Online uses cookies and similar technologies to improve your website experience.
+          </m.p>
+        </div>
+      </PageHero>
+      
+      <WaveSeparator 
+        variant="subtle" 
+        className="text-white" 
       />
       
-      <Section className="py-16">
-        <div className="max-w-4xl mx-auto prose prose-lg">
-          <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-lg">
-            <p className="text-sm text-blue-800 mb-2 font-semibold">Last Updated: 4 August 2025</p>
-            <p className="text-blue-700 text-sm">
-              This cookie policy complies with UK Privacy and Electronic Communications Regulations (PECR), 
-              EU ePrivacy Directive, and GDPR requirements.
-            </p>
-          </div>
+      <Section className="py-20 relative" background="white">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            
+            <m.div 
+              className="mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 rounded-r-2xl shadow-lg"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <FileText className="w-6 h-6 text-blue-600" />
+                <p className="text-lg text-blue-800 font-bold">Last Updated: 4 August 2025</p>
+              </div>
+              <p className="text-blue-700">
+                This cookie policy complies with UK Privacy and Electronic Communications Regulations (PECR), 
+                EU ePrivacy Directive, and GDPR requirements.
+              </p>
+            </m.div>
+            
+            <div className="prose prose-lg prose-slate max-w-none">
 
           <h2>1. What Are Cookies?</h2>
           <p>
@@ -32,14 +101,26 @@ export default function CookiePolicyPage() {
             and enabling certain website functionalities.
           </p>
           
-          <Card className="p-6 my-8 bg-green-50 border-green-200">
-            <h3 className="text-lg font-semibold text-green-800 mb-2">Your Control</h3>
-            <p className="text-green-700 text-sm">
-              You have full control over non-essential cookies. You can manage your preferences using 
-              our cookie consent banner or through your browser settings. Essential cookies cannot 
-              be disabled as they are necessary for basic website functionality.
-            </p>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <Settings className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-green-800 mb-4">Your Control</h3>
+                  <p className="text-green-800 text-lg leading-relaxed">
+                    You have full control over non-essential cookies. You can manage your preferences using 
+                    our cookie consent banner or through your browser settings. Essential cookies cannot 
+                    be disabled as they are necessary for basic website functionality.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <h2>2. Types of Cookies We Use</h2>
           
@@ -227,18 +308,30 @@ export default function CookiePolicyPage() {
 
           <h2>4. Cookie Consent Management</h2>
           
-          <Card className="p-6 my-8 bg-blue-50 border-blue-200">
-            <h3 className="text-lg font-semibold text-blue-800 mb-2">Managing Your Preferences</h3>
-            <p className="text-blue-700 text-sm mb-3">
-              You can update your cookie preferences at any time using the options below:
-            </p>
-            <div className="space-y-2 text-sm">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
-                Update Cookie Preferences
-              </button>
-              <p className="text-blue-600">Click here to modify your cookie settings</p>
-            </div>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <Eye className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-blue-800 mb-4">Managing Your Preferences</h3>
+                  <p className="text-blue-800 text-lg mb-6 leading-relaxed">
+                    You can update your cookie preferences at any time using the options below:
+                  </p>
+                  <div className="space-y-4">
+                    <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                      Update Cookie Preferences
+                    </button>
+                    <p className="text-blue-700 text-lg">Click here to modify your cookie settings</p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <h3>4.1 Consent Options</h3>
           <ul>
@@ -326,12 +419,24 @@ export default function CookiePolicyPage() {
 
           <h2>8. Impact of Disabling Cookies</h2>
           
-          <Card className="p-6 my-8 bg-yellow-50 border-yellow-200">
-            <h3 className="text-lg font-semibold text-yellow-800 mb-2">Functionality Impact</h3>
-            <p className="text-yellow-700 text-sm">
-              Disabling certain cookies may affect your website experience:
-            </p>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <AlertTriangle className="w-8 h-8 text-yellow-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-yellow-800 mb-4">Functionality Impact</h3>
+                  <p className="text-yellow-800 text-lg leading-relaxed">
+                    Disabling certain cookies may affect your website experience:
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <h3>8.1 Essential Cookies Disabled</h3>
           <ul>
@@ -429,6 +534,8 @@ export default function CookiePolicyPage() {
 
           <div className="border-t pt-8 mt-12 text-sm text-gray-600">
             <p><em>This is a template for informational purposes. Consult with a qualified attorney for legal advice specific to your situation.</em></p>
+          </div>
+            </div>
           </div>
         </div>
       </Section>

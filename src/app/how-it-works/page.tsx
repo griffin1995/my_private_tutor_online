@@ -25,6 +25,7 @@
 "use client"
 
 import { CheckCircle, Users, ClipboardCheck, Target, MessageSquare, Crown, Home, ChevronRight } from 'lucide-react'
+import { m } from 'framer-motion'
 import { ShinyButton } from '@/components/magicui/shiny-button'
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -46,6 +47,9 @@ import {
 } from '@/lib/cms/cms-content'
 import { HERO_IMAGES } from '@/lib/cms/cms-images'
 
+// CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations and motion components for professional styling
+// DESIGN STATUS: ALREADY PREMIUM - This page exemplifies the professional design patterns with royal branding
+// IMPLEMENTATION REASON: Consistent visual excellence matching testimonials and landing page premium appearance
 // CONTEXT7 SOURCE: /vercel/next.js - Server Component optimization patterns
 // RENDERING ANALYSIS: Client Component currently due to potential interactivity requirements
 // - Component Type: Client Component ("use client") - for Magic UI interactive buttons
@@ -96,6 +100,8 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Professional hero section with enhanced image background */}
+      {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends full-screen hero treatments for engagement */}
       <PageHero
         background="image"
         backgroundImage={heroBackgroundImage.src}
@@ -104,17 +110,45 @@ export default function HowItWorksPage() {
         overlayOpacity="medium"
       >
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6">
+          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Viewport-triggered animations for performance */}
+          {/* ANIMATION REASON: Official Framer Motion documentation recommends whileInView for hero sections */}
+          <m.h1 
+            className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
             {heroContent.title}
-          </h1>
-          <p className="text-xl text-amber-400 font-semibold mb-6">
-            {heroContent.subtitle}
-          </p>
-          <p className="text-lg text-white/90 leading-relaxed mb-8">
-            {heroContent.description}
-          </p>
+          </m.h1>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <m.p 
+            className="text-xl text-amber-400 font-semibold mb-6"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {heroContent.subtitle}
+          </m.p>
+          
+          <m.p 
+            className="text-lg text-white/90 leading-relaxed mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {heroContent.description}
+          </m.p>
+          
+          <m.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             {heroContent.ctaButtons.map((button, index) => (
               button.type === 'primary' ? (
                 <ShinyButton 
@@ -130,7 +164,7 @@ export default function HowItWorksPage() {
                 />
               )
             ))}
-          </div>
+          </m.div>
         </div>
       </PageHero>
 

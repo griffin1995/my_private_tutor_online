@@ -1,28 +1,97 @@
 "use client"
 
+import { m } from 'framer-motion'
 import { PageLayout } from "@/components/layout/page-layout"
 import { PageHero } from "@/components/layout/page-hero"
 import { Section } from "@/components/layout/section"
 import { Card } from "@/components/ui/card"
+import { WaveSeparator } from '@/components/ui/wave-separator'
+import { GradientOverlay } from '@/components/ui/gradient-overlay'
+import { Shield, Lock, FileText, CheckCircle, AlertTriangle, Crown } from 'lucide-react'
+
+// CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced legal page design with professional animations
+// LEGAL DESIGN ENHANCEMENT: Formal legal-appropriate styling with premium branding for royal clients
+// IMPLEMENTATION REASON: Consistent visual standards while maintaining legal document accessibility
 
 export default function PrivacyPolicyPage() {
   return (
     <PageLayout background="white">
       <PageHero
-        title="Privacy Policy"
-        subtitle="How we protect and handle your personal information"
-        description="My Private Tutor Online is committed to protecting your privacy and handling your data responsibly. This policy explains how we collect, use, and safeguard your information."
-        className="bg-slate-50"
+        background="gradient"
+        size="lg"
+        className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900"
+        overlay={true}
+        overlayOpacity="light"
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          <m.div
+            className="flex items-center justify-center mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-white/10 backdrop-blur-sm rounded-full p-4">
+              <Shield className="w-12 h-12 text-amber-400" />
+            </div>
+          </m.div>
+          <m.h1 
+            className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            Privacy Policy
+          </m.h1>
+          <m.p 
+            className="text-xl text-amber-400 font-semibold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            How we protect and handle your personal information
+          </m.p>
+          <m.p 
+            className="text-lg text-white/90 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            My Private Tutor Online is committed to protecting your privacy and handling your data responsibly. This policy explains how we collect, use, and safeguard your information.
+          </m.p>
+        </div>
+      </PageHero>
+      
+      <WaveSeparator 
+        variant="subtle" 
+        className="text-white" 
       />
       
-      <Section className="py-16">
-        <div className="max-w-4xl mx-auto prose prose-lg">
-          <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded-r-lg">
-            <p className="text-sm text-blue-800 mb-2 font-semibold">Last Updated: 4 August 2025</p>
-            <p className="text-blue-700 text-sm">
-              This privacy policy complies with UK GDPR, Data Protection Act 2018, and international privacy regulations.
-            </p>
-          </div>
+      <Section className="py-20 relative" background="white">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            
+            <m.div 
+              className="mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 rounded-r-2xl shadow-lg"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <FileText className="w-6 h-6 text-blue-600" />
+                <p className="text-lg text-blue-800 font-bold">Last Updated: 4 August 2025</p>
+              </div>
+              <p className="text-blue-700">
+                This privacy policy complies with UK GDPR, Data Protection Act 2018, and international privacy regulations.
+              </p>
+            </m.div>
+            
+            <div className="prose prose-lg prose-slate max-w-none">
 
           <h2>1. About This Policy</h2>
           <p>
@@ -30,14 +99,26 @@ export default function PrivacyPolicyPage() {
             This privacy policy explains how we look after your personal data when you visit our website and tells you about your privacy rights.
           </p>
           
-          <Card className="p-6 my-8 bg-amber-50 border-amber-200">
-            <h3 className="text-lg font-semibold text-amber-800 mb-2">Important Notice</h3>
-            <p className="text-amber-700 text-sm">
-              Given our prestigious clientele, including members of royal families and high-profile individuals, 
-              we maintain the highest standards of confidentiality and data protection. All staff sign comprehensive 
-              non-disclosure agreements and undergo enhanced security vetting.
-            </p>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <Crown className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-amber-800 mb-4">Important Notice</h3>
+                  <p className="text-amber-800 text-lg leading-relaxed">
+                    Given our prestigious clientele, including members of royal families and high-profile individuals, 
+                    we maintain the highest standards of confidentiality and data protection. All staff sign comprehensive 
+                    non-disclosure agreements and undergo enhanced security vetting.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <h2>2. Who We Are</h2>
           <p>
@@ -116,18 +197,42 @@ export default function PrivacyPolicyPage() {
 
           <h2>5. How We Use Your Personal Data</h2>
           
-          <Card className="p-6 my-8 bg-green-50 border-green-200">
-            <h3 className="text-lg font-semibold text-green-800 mb-2">Lawful Basis for Processing</h3>
-            <p className="text-green-700 text-sm">
-              We will only use your personal data when the law allows us to. Most commonly under:
-            </p>
-            <ul className="text-green-700 text-sm mt-2 space-y-1">
-              <li>• <strong>Contract:</strong> To perform our tutoring services</li>
-              <li>• <strong>Legitimate interests:</strong> For business administration and marketing</li>
-              <li>• <strong>Consent:</strong> For special category data and marketing communications</li>
-              <li>• <strong>Legal obligation:</strong> For safeguarding and compliance requirements</li>
-            </ul>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <CheckCircle className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-green-800 mb-4">Lawful Basis for Processing</h3>
+                  <p className="text-green-800 text-lg mb-6 leading-relaxed">
+                    We will only use your personal data when the law allows us to. Most commonly under:
+                  </p>
+                  <ul className="text-green-800 space-y-3">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Contract:</strong> To perform our tutoring services</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Legitimate interests:</strong> For business administration and marketing</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Consent:</strong> For special category data and marketing communications</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span><strong>Legal obligation:</strong> For safeguarding and compliance requirements</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <h3>5.1 Service Delivery</h3>
           <ul>
@@ -184,13 +289,25 @@ export default function PrivacyPolicyPage() {
 
           <h2>7. International Transfers</h2>
           
-          <Card className="p-6 my-8 bg-purple-50 border-purple-200">
-            <h3 className="text-lg font-semibold text-purple-800 mb-2">Cross-Border Data Protection</h3>
-            <p className="text-purple-700 text-sm">
-              We serve clients internationally and may transfer data outside the UK/EEA. 
-              All transfers are protected by appropriate safeguards including adequacy decisions or standard contractual clauses.
-            </p>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <Lock className="w-8 h-8 text-purple-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-purple-800 mb-4">Cross-Border Data Protection</h3>
+                  <p className="text-purple-800 text-lg leading-relaxed">
+                    We serve clients internationally and may transfer data outside the UK/EEA. 
+                    All transfers are protected by appropriate safeguards including adequacy decisions or standard contractual clauses.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <p>
             When we transfer your data outside the UK/EEA, we ensure appropriate safeguards including:
@@ -283,13 +400,25 @@ export default function PrivacyPolicyPage() {
 
           <h2>12. Children's Privacy</h2>
           
-          <Card className="p-6 my-8 bg-blue-50 border-blue-200">
-            <h3 className="text-lg font-semibold text-blue-800 mb-2">Special Protection for Children</h3>
-            <p className="text-blue-700 text-sm">
-              As an educational service provider, we take special care with children's data. 
-              We require parental consent for students under 13 and maintain enhanced safeguarding procedures.
-            </p>
-          </Card>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="p-8 my-12 bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200 shadow-xl rounded-2xl">
+              <div className="flex items-start gap-4">
+                <AlertTriangle className="w-8 h-8 text-blue-600 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-2xl font-serif font-bold text-blue-800 mb-4">Special Protection for Children</h3>
+                  <p className="text-blue-800 text-lg leading-relaxed">
+                    As an educational service provider, we take special care with children's data. 
+                    We require parental consent for students under 13 and maintain enhanced safeguarding procedures.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </m.div>
 
           <p>
             We take children's privacy seriously and comply with additional regulations:
@@ -348,6 +477,8 @@ export default function PrivacyPolicyPage() {
 
           <div className="border-t pt-8 mt-12 text-sm text-gray-600">
             <p><em>This is a template for informational purposes. Consult with a qualified attorney for legal advice specific to your situation.</em></p>
+          </div>
+            </div>
           </div>
         </div>
       </Section>

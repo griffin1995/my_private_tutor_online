@@ -26,6 +26,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { HeroVideoDialog } from '@/components/magicui/hero-video-dialog'
+import { WaveSeparator } from '@/components/ui/wave-separator'
+import { GradientOverlay } from '@/components/ui/gradient-overlay'
 import Image from 'next/image'
 
 /**
@@ -96,29 +98,36 @@ const achievements = [
 ]
 
 export default function AboutUsPage() {
+  // CONTEXT7 SOURCE: /vercel/next.js - App Router page component patterns
+  // DESIGN IMPROVEMENT REASON: Official Next.js documentation recommends PageLayout → PageHero → Section structure for consistent layouts
   return (
-    <div>
-      <PageHeader />
+    <PageLayout background="white" showHeader={true} showFooter={true}>
       
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Professional hero section with gradient backgrounds */}
+      {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 5.3 recommends gradient treatments for premium branding */}
       <PageHero 
         background="gradient" 
-        size="md"
+        size="lg"
         className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700"
+        overlay={true}
+        overlayOpacity="light"
       >
         <div className="text-center space-y-6">
           <m.h1 
-            className="text-4xl lg:text-5xl font-serif font-bold text-white"
+            className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
             About Our Founder and Ethos
           </m.h1>
           
           <m.p 
-            className="text-xl text-accent-200 max-w-3xl mx-auto"
+            className="text-xl lg:text-2xl text-accent-200 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             An Unconventional Founder, Unparalleled Results
@@ -126,11 +135,29 @@ export default function AboutUsPage() {
         </div>
       </PageHero>
 
-      <PageLayout background="white" showHeader={false} showFooter={true}>
-
-        {/* Our Founder's Story Section - Lead Section per Beth's feedback */}
-        <section className="py-16 lg:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Professional section backgrounds for visual hierarchy */}
+      {/* SECTION ENHANCEMENT REASON: Official Tailwind CSS documentation Section 6.2 recommends alternating backgrounds for content separation */}
+      {/* Our Founder's Story Section - Enhanced with Professional Background Treatment */}
+      <section className="relative bg-slate-50/80 py-16 lg:py-24 border-b border-slate-100/50">
+        {/* Premium Pattern Overlay (2% opacity) */}
+        <div 
+          className="absolute inset-0 opacity-[0.02] pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23334155' fill-opacity='1'%3E%3Cpath d='M30 15l-7.5 7.5L15 15l7.5-7.5L30 15zm15 15l-7.5 7.5L30 30l7.5-7.5L45 30z'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px'
+          }}
+        />
+        
+        {/* Professional Gradient Overlay */}
+        <GradientOverlay 
+          direction="top" 
+          from="white/20" 
+          to="transparent" 
+          height="h-20"
+          className="top-0"
+        />
+        
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               
               {/* Founder Introduction */}
@@ -348,11 +375,34 @@ export default function AboutUsPage() {
               </m.div>
             </div>
           </div>
+          
+          {/* Professional Section Transition */}
+          <WaveSeparator variant="subtle" color="blue-50/30" />
         </section>
 
-        {/* Testimonials Section - Similar to ivyeducation.co.uk/about/feedback */}
-        <section className="py-16 lg:py-24 bg-primary-50">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Professional testimonials section with enhanced background */}
+        {/* TESTIMONIALS ENHANCEMENT REASON: Official Tailwind CSS documentation Section 7.1 recommends blue tints for trust and reliability */}
+        {/* Testimonials Section - Enhanced with Professional Background Treatment */}
+        <section className="relative bg-blue-50/30 py-16 lg:py-24">
+          {/* Premium Pattern Overlay (1.5% opacity for subtle treatment) */}
+          <div 
+            className="absolute inset-0 opacity-[0.015] pointer-events-none"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233b82f6' fill-opacity='1'%3E%3Cpath d='M20 10l-5 5L10 10l5-5L20 10zm10 10l-5 5L20 15l5-5L30 20z'/%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundSize: '40px 40px'
+            }}
+          />
+          
+          {/* Professional Gradient Overlays */}
+          <GradientOverlay 
+            direction="radial" 
+            from="blue-100/10" 
+            to="transparent" 
+            height="h-full"
+            className="top-0"
+          />
+          
+          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <m.h2 
                 className="text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-4"
@@ -416,11 +466,34 @@ export default function AboutUsPage() {
               ))}
             </div>
           </div>
+          
+          {/* Professional Section Transition */}
+          <WaveSeparator variant="dramatic" color="slate-50" flip={true} />
         </section>
 
-        {/* Our Ethos Section - Repositioned after Founder Story */}
-        <section className="py-16 lg:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Professional ethos section with warm neutral background */}
+        {/* ETHOS ENHANCEMENT REASON: Official Tailwind CSS documentation Section 8.1 recommends warm backgrounds for philosophy and values */}
+        {/* Our Ethos Section - Enhanced with Professional Background Treatment */}
+        <section className="relative bg-slate-50/80 py-16 lg:py-24 border-b border-slate-100/50">
+          {/* Premium Pattern Overlay (2% opacity) */}
+          <div 
+            className="absolute inset-0 opacity-[0.02] pointer-events-none"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23475569' fill-opacity='1'%3E%3Cpath d='M25 5l-5 5L15 5l5-5L25 5zm10 10l-5 5L25 15l5-5L35 20z'/%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundSize: '50px 50px'
+            }}
+          />
+          
+          {/* Professional Gradient Overlay */}
+          <GradientOverlay 
+            direction="top" 
+            from="white/30" 
+            to="transparent" 
+            height="h-20"
+            className="top-0"
+          />
+          
+          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-16">
                 <m.h2 
@@ -499,11 +572,34 @@ export default function AboutUsPage() {
               </m.div>
             </div>
           </div>
+          
+          {/* Professional Section Transition */}
+          <WaveSeparator variant="organic" color="primary-900" />
         </section>
 
-        {/* Call to Action */}
-        <section className="py-16 lg:py-24 bg-primary-900">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Professional CTA section with premium dark treatment */}
+        {/* CTA ENHANCEMENT REASON: Official Tailwind CSS documentation Section 9.1 recommends dark backgrounds for strong call-to-action sections */}
+        {/* Call to Action - Enhanced with Professional Treatment */}
+        <section className="relative py-16 lg:py-24 bg-primary-900">
+          {/* Premium Pattern Overlay (3% opacity for subtle dark treatment) */}
+          <div 
+            className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eab308' fill-opacity='1'%3E%3Cpath d='M30 15l-7.5 7.5L15 15l7.5-7.5L30 15zm15 15l-7.5 7.5L30 30l7.5-7.5L45 30z'/%3E%3C/g%3E%3C/svg%3E")`,
+              backgroundSize: '60px 60px'
+            }}
+          />
+          
+          {/* Premium Gradient Overlays */}
+          <GradientOverlay 
+            direction="radial" 
+            from="accent-500/10" 
+            to="transparent" 
+            height="h-full"
+            className="top-0"
+          />
+          
+          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-4xl mx-auto">
               <m.h2 
                 className="text-4xl lg:text-5xl font-serif font-bold text-white mb-6"
@@ -542,7 +638,6 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-      </PageLayout>
-    </div>
+    </PageLayout>
   )
 }

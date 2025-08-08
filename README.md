@@ -47,10 +47,19 @@ npm run test         # Run test suite
 
 ## 📚 Documentation
 
-- **[Development Guide](docs/DEVELOPMENT.md)** - Complete development standards and Context7 integration
-- **[Deployment Guide](docs/DEPLOYMENT.md)** - Production deployment and troubleshooting
-- **[Architecture](docs/ARCHITECTURE.md)** - Technical decisions and patterns
-- **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Common issues and solutions
+### Core Documentation
+- **[CLAUDE.md](CLAUDE.md)** - Critical development standards and Context7 MCP requirements
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Complete deployment guide and troubleshooting
+- **[SECURITY.md](SECURITY.md)** - Security implementation and compliance
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Technical architecture and design decisions
+- **[IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md)** - Current project status and roadmap
+
+### Guides & References
+- **[CMS Guide](docs/guides/CMS_GUIDE.md)** - Content management system usage
+- **[Performance Guide](docs/guides/PERFORMANCE_GUIDE.md)** - Performance optimisation strategies
+- **[Debugging Guide](docs/guides/DEBUGGING_GUIDE.md)** - Debugging strategies and tools
+- **[Component Patterns](docs/technical/COMPONENT_PATTERNS.md)** - Reusable component implementations
+- **[Agent Workflow](docs/technical/AGENT_WORKFLOW.md)** - Agent orchestration patterns
 
 ## 🎯 Performance Metrics
 

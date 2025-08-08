@@ -27,6 +27,8 @@ import { Section } from '@/components/layout/section'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { GradientOverlay } from '@/components/ui/gradient-overlay'
+import { WaveSeparator } from '@/components/ui/wave-separator'
 
 // RENDERING ANALYSIS - Context7 MCP Verified:
 // Documentation Source: Next.js Client Components Dynamic Rendering
@@ -179,63 +181,99 @@ export default function HomeschoolingPage() {
   return (
     <PageLayout
       background="white"
+      showHeader={true}
+      showFooter={true}
     >
       <PageHero
-        background="image"
-        backgroundImage={homeschoolingContent.hero.backgroundImage}
-        size="lg"
-        overlay={true}
-        overlayOpacity="medium"
+        background="gradient"
+        size="xl"
+        className="bg-gradient-to-br from-emerald-700 via-emerald-600 to-accent-600 relative overflow-hidden"
       >
-        <div className="space-y-6">
-          <m.h1 
-            className="text-4xl lg:text-5xl font-serif font-bold text-white"
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Professional pattern overlay for homeschooling presentation */}
+        <div 
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}
+        />
+        <GradientOverlay direction="br" className="from-emerald-800/30 via-transparent to-transparent" />
+        <div className="relative z-10 text-center space-y-8">
+          <m.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            <Badge className="bg-white/20 text-white border-white/30 mb-4">
+              {homeschoolingContent.hero.subtitle}
+            </Badge>
+          </m.div>
+          
+          <m.h1 
+            className="text-4xl lg:text-6xl font-serif font-bold text-white drop-shadow-sm"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             {homeschoolingContent.hero.title}
           </m.h1>
           
-          <m.div 
-            className="text-xl text-accent-300 font-semibold"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {homeschoolingContent.hero.subtitle}
-          </m.div>
-          
           <m.p 
-            className="text-lg text-white/90 max-w-2xl"
+            className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed drop-shadow-sm"
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             {homeschoolingContent.hero.description}
           </m.p>
-        </div>
-      </PageHero>
-
-      {/* Benefits Section */}
-      <Section className="py-16 lg:py-24" background="white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          
           <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-6">
+            <Button size="lg" variant="secondary" className="bg-white text-emerald-700 hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300">
+              Start Your Journey
+            </Button>
+            <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 backdrop-blur-sm">
+              Learn More
+            </Button>
+          </m.div>
+        </div>
+      </PageHero>
+      
+      <WaveSeparator variant="light" className="text-white" />
+
+      {/* Benefits Section */}
+      <Section className="py-20 lg:py-28 bg-slate-50/80 relative">
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Professional pattern overlay for benefits presentation */}
+        <div 
+          className="absolute inset-0 opacity-[0.01]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='1'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243L8.2 0H5.373zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657l1.415 1.414L13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM6.686 0L0.2 6.485 1.616 7.9l7.9-7.9H6.686zM22.343 0L31.657 9.314 30.243 10.728 18.515 0h3.828zM37.657 0L28.343 9.314l1.414 1.414L41.485 0h-3.828z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}
+        />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <m.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-5xl font-serif font-bold text-primary-900 mb-6">
               Why Choose Homeschooling?
             </h2>
-            <p className="text-lg text-slate-700 max-w-3xl mx-auto">
+            <p className="text-lg lg:text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
               Discover the advantages of home education with professional support and guidance from our expert tutors.
             </p>
           </m.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {homeschoolingContent.benefits.map((benefit, index) => (
               <m.div
                 key={index}
@@ -244,13 +282,15 @@ export default function HomeschoolingPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="text-center h-full border-slate-200 hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className="bg-amber-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center text-amber-600">
-                      {benefit.icon}
+                <Card className="text-center h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white/90 backdrop-blur-sm group">
+                  <CardContent className="p-8">
+                    <div className="bg-emerald-100 rounded-full p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-200 transition-colors duration-300">
+                      <div className="group-hover:scale-110 transition-transform duration-300">
+                        {benefit.icon}
+                      </div>
                     </div>
-                    <h3 className="text-lg font-semibold text-slate-900 mb-3">{benefit.title}</h3>
-                    <p className="text-slate-600">{benefit.description}</p>
+                    <h3 className="text-xl font-semibold text-primary-900 mb-4 group-hover:text-emerald-700 transition-colors duration-300">{benefit.title}</h3>
+                    <p className="text-slate-600 leading-relaxed">{benefit.description}</p>
                   </CardContent>
                 </Card>
               </m.div>

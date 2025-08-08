@@ -32,6 +32,8 @@ import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/layout/section'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { WaveSeparator } from '@/components/ui/wave-separator'
+import { GradientOverlay } from '@/components/ui/gradient-overlay'
 
 // RENDERING ANALYSIS - Context7 MCP Verified:
 // Documentation Source: Next.js Client Components Dynamic Rendering
@@ -49,6 +51,12 @@ import { Badge } from '@/components/ui/badge'
 // - Dependencies: Hardcoded content object (subjectTuitionContent), UI components (Button, Card, Badge)
 // - Interactivity: Expandable subject categories, ChevronDown/ChevronRight toggles, Framer Motion 'm' component
 // - TODO: Migrate subjectTuitionContent to CMS system for proper content management
+
+// CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations and motion components
+// DESIGN ENHANCEMENT: Professional patterns with WaveSeparator, GradientOverlay, and enhanced styling
+// IMPLEMENTATION REASON: Consistent visual branding matching landing page and testimonials premium design
+// CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll-triggered animations
+// ACCESSIBILITY: Enhanced contrast and readability with backdrop-blur and gradient overlays
 
 // CMS DATA SOURCE: Using structured content for Subject Tuition page
 const subjectTuitionContent = {
@@ -210,15 +218,15 @@ interface AccordionSectionProps {
 
 function AccordionSection({ subject, isOpen, onToggle }: AccordionSectionProps) {
   return (
-    <Card className="border-slate-200 overflow-hidden">
+    <Card className="border-slate-200 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
       <button
         onClick={onToggle}
-        className="w-full p-6 flex items-center justify-between hover:bg-primary-50 transition-colours duration-200"
+        className="w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-all duration-300"
         aria-expanded={isOpen}
         aria-controls={`section-${subject.id}`}
       >
         <div className="flex items-center gap-4">
-          <div className="bg-amber-100 rounded-full p-3 text-amber-600">
+          <div className="bg-gradient-to-br from-amber-100 to-amber-200 rounded-full p-3 text-amber-700 shadow-sm">
             {subject.icon}
           </div>
           <div className="text-left">
@@ -226,36 +234,43 @@ function AccordionSection({ subject, isOpen, onToggle }: AccordionSectionProps) 
             <p className="text-slate-600 mt-1">{subject.description}</p>
           </div>
         </div>
-        <div className="text-slate-400">
+        <div className="text-slate-400 transition-transform duration-200">
           {isOpen ? <ChevronDown className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
         </div>
       </button>
       
       {isOpen && (
-        <div
+        <m.div
           id={`section-${subject.id}`}
-          className="border-t border-slate-200 animate-fade-in-up"
+          className="border-t border-slate-200 bg-gradient-to-b from-slate-50 to-white"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
           <div className="p-6 space-y-6">
             {subject.subjects.map((subjectItem, index) => (
-              <div
+              <m.div
                 key={index}
-                className="bg-white border border-slate-100 rounded-lg p-6 animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                <h4 className="text-lg font-semibold text-slate-900 mb-3">{subjectItem.name}</h4>
-                <p className="text-slate-700 mb-4">{subjectItem.description}</p>
+                <h4 className="text-lg font-serif font-bold text-slate-900 mb-3">{subjectItem.name}</h4>
+                <p className="text-slate-700 mb-4 leading-relaxed">{subjectItem.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {subjectItem.keyFeatures.map((feature, featureIndex) => (
-                    <Badge key={featureIndex} variant="secondary" className="bg-amber-50 text-amber-700 border-amber-200">
+                    <Badge key={featureIndex} variant="secondary" className="bg-gradient-to-r from-amber-50 to-yellow-50 text-amber-800 border-amber-200 font-medium">
                       {feature}
                     </Badge>
                   ))}
                 </div>
-              </div>
+              </m.div>
             ))}
           </div>
-        </div>
+        </m.div>
       )}
     </Card>
   )
@@ -294,148 +309,248 @@ export default function SubjectTuitionPage() {
         </div>
       </PageHero>
 
+      <WaveSeparator 
+        variant="subtle" 
+        className="text-slate-100" 
+      />
+
       {/* Quick Stats Section */}
-      <Section className="py-12" background="grey">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div
-              className="text-center animate-fade-in-up"
+      <Section className="py-16 lg:py-20 relative" background="slate">
+        <GradientOverlay variant="subtle" className="opacity-30" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <m.div 
+            className="grid grid-cols-1 md:grid-cols-4 gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <m.div
+              className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0 }}
+              viewport={{ once: true }}
             >
-              <div className="text-3xl font-bold text-amber-600 mb-2">40+</div>
-              <div className="text-slate-700 font-medium">Subjects Covered</div>
-            </div>
-            <div
-              className="text-center animate-fade-in-up"
-              style={{ animationDelay: '0.1s' }}
+              <div className="text-4xl font-bold text-amber-600 mb-3">40+</div>
+              <div className="text-slate-700 font-semibold">Subjects Covered</div>
+            </m.div>
+            <m.div
+              className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
             >
-              <div className="text-3xl font-bold text-amber-600 mb-2">95%</div>
-              <div className="text-slate-700 font-medium">Schools Application Success Rate</div>
-            </div>
-            <div
-              className="text-center animate-fade-in-up"
-              style={{ animationDelay: '0.2s' }}
+              <div className="text-4xl font-bold text-amber-600 mb-3">95%</div>
+              <div className="text-slate-700 font-semibold">Schools Application Success Rate</div>
+            </m.div>
+            <m.div
+              className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
             >
-              <div className="text-3xl font-bold text-amber-600 mb-2">KS1-University</div>
-              <div className="text-slate-700 font-medium">All Levels</div>
-            </div>
-            <div
-              className="text-center animate-fade-in-up"
-              style={{ animationDelay: '0.3s' }}
+              <div className="text-4xl font-bold text-amber-600 mb-3">KS1-University</div>
+              <div className="text-slate-700 font-semibold">All Levels</div>
+            </m.div>
+            <m.div
+              className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
             >
-              <div className="text-3xl font-bold text-amber-600 mb-2">3 Tiers</div>
-              <div className="text-slate-700 font-medium">Specialist Support</div>
-            </div>
-          </div>
+              <div className="text-4xl font-bold text-amber-600 mb-3">3 Tiers</div>
+              <div className="text-slate-700 font-semibold">Specialist Support</div>
+            </m.div>
+          </m.div>
         </div>
       </Section>
 
+      <WaveSeparator 
+        variant="wave" 
+        className="text-white" 
+      />
+
       {/* Accordion Sections */}
-      <Section className="py-16 lg:py-24" background="white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="text-center mb-12 animate-fade-in-up"
+      <Section className="py-16 lg:py-24 relative" background="white">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <m.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-6">
+            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6">
               Comprehensive Subject Coverage
             </h2>
-            <p className="text-lg text-slate-700 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
               Explore our extensive range of subjects and educational levels. Click on each section to discover detailed information about our tutoring services.
             </p>
-          </div>
+          </m.div>
 
-          <div className="space-y-4 max-w-5xl mx-auto">
+          <div className="space-y-6 max-w-6xl mx-auto">
             {subjectTuitionContent.subjects.map((subject, index) => (
-              <div
+              <m.div
                 key={subject.id}
-                className="animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
                 <AccordionSection
                   subject={subject}
                   isOpen={openSections.includes(subject.id)}
                   onToggle={() => toggleSection(subject.id)}
                 />
-              </div>
+              </m.div>
             ))}
           </div>
         </div>
       </Section>
 
+      <WaveSeparator 
+        variant="subtle" 
+        className="text-slate-100" 
+      />
+
       {/* Homeschooling Preview Section */}
-      <Section className="py-16 lg:py-24" background="grey">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div
-              className="space-y-6 animate-fade-in-left"
+      <Section className="py-16 lg:py-24 relative" background="blue">
+        <GradientOverlay variant="subtle" className="opacity-20" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <m.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900">
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900">
                 Interested in Homeschooling?
               </h2>
-              <p className="text-lg text-slate-700 leading-relaxed">
+              <p className="text-xl text-slate-700 leading-relaxed">
                 Discover our comprehensive homeschooling programmes designed to provide complete educational support for families choosing to educate at home.
               </p>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                  <span className="text-slate-700">Complete curriculum coverage</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                  <span className="text-slate-700">Flexible scheduling options</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                  <span className="text-slate-700">Expert educational guidance</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full"></div>
-                  <span className="text-slate-700">Parent support and training</span>
-                </li>
+              <ul className="space-y-4">
+                <m.li 
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                  <span className="text-slate-700 text-lg">Complete curriculum coverage</span>
+                </m.li>
+                <m.li 
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                  <span className="text-slate-700 text-lg">Flexible scheduling options</span>
+                </m.li>
+                <m.li 
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                  <span className="text-slate-700 text-lg">Expert educational guidance</span>
+                </m.li>
+                <m.li 
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                  <span className="text-slate-700 text-lg">Parent support and training</span>
+                </m.li>
               </ul>
-              <Button className="bg-amber-600 hover:bg-amber-700 text-white">
-                Learn About Homeschooling
-              </Button>
-            </div>
+              <m.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <Button className="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg">
+                  Learn About Homeschooling
+                </Button>
+              </m.div>
+            </m.div>
             
-            <div
-              className="relative animate-fade-in-right"
+            <m.div
+              className="relative"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
             >
-              <div className="aspect-[4/3] bg-gradient-to-br from-slate-200 to-slate-300 rounded-2xl flex items-center justify-center">
-                <Globe className="w-24 h-24 text-slate-500" />
+              <div className="aspect-[4/3] bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 rounded-3xl flex items-center justify-center shadow-2xl border border-amber-200">
+                <Globe className="w-32 h-32 text-amber-600" />
               </div>
-            </div>
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
+            </m.div>
           </div>
         </div>
       </Section>
 
+      <WaveSeparator 
+        variant="wave" 
+        className="text-slate-900" 
+      />
+
       {/* CTA Section */}
-      <Section className="py-16 lg:py-24" background="primary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="text-center animate-fade-in-up"
+      <Section className="py-20 lg:py-28 relative" background="slate">
+        <GradientOverlay variant="primary" className="opacity-90" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <m.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-white mb-6">
+            <h2 className="text-4xl lg:text-6xl font-serif font-bold text-white mb-8">
               Ready to Begin Your Educational Journey?
             </h2>
-            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl lg:text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed">
               Book a free consultation to discuss your educational needs and find the perfect subject tuition for your goals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <m.div 
+              className="flex flex-col sm:flex-row gap-6 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
               <Button 
                 size="lg"
-                className="bg-amber-600 hover:bg-amber-700 text-white font-semibold px-8 py-3"
+                className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-900 font-bold px-10 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-amber-400"
               >
                 Book Free Consultation
               </Button>
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-slate-900 font-semibold px-8 py-3"
+                className="border-2 border-white text-white hover:bg-white hover:text-slate-900 font-bold px-10 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 View All Subjects
               </Button>
-            </div>
-          </div>
+            </m.div>
+          </m.div>
         </div>
       </Section>
     </PageLayout>
