@@ -44,6 +44,23 @@ import ResourcePreloader from '@/components/performance/resource-preloader';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { CookieConsentManager } from '@/components/legal/CookieConsent';
+import { GlobalErrorBoundary } from '@/components/infrastructure/GlobalErrorBoundary';
+
+/**
+ * CONTEXT7 SOURCE: /vercel/next.js - Performance monitoring component integration
+ * PERFORMANCE MONITORING REASON: Comprehensive Web Vitals tracking with useReportWebVitals hook
+ * CONTEXT7 SOURCE: /vercel/next.js - Client component for real-time performance monitoring
+ * IMPLEMENTATION: Royal client performance standards with automated alerting
+ */
+import { WebVitalsReporter } from '@/components/performance/WebVitalsReporter';
+
+/**
+ * CONTEXT7 SOURCE: /vercel/next.js - Performance-optimized SEO component integration
+ * SEO ENHANCEMENT REASON: Core Web Vitals optimized structured data for premium service visibility
+ * CONTEXT7 SOURCE: /vercel/next.js - Server-side SEO rendering for immediate search engine access
+ * IMPLEMENTATION: Performance-first SEO infrastructure for royal client service discoverability
+ */
+import { ServerSEOComponents } from '@/components/seo/SEOPerformanceOptimizer';
 
 /**
  * Source Serif 4 & Playfair Display Font Family Implementation
@@ -98,6 +115,12 @@ const playfairDisplay = Playfair_Display({
   display: 'swap',
 });
 
+/**
+ * CONTEXT7 SOURCE: /vercel/next.js - Enhanced metadata configuration for SEO optimization
+ * SEO ENHANCEMENT REASON: Comprehensive metadata for premium tutoring service discovery
+ * CONTEXT7 SOURCE: /vercel/next.js - Metadata API with robots, verification, and manifest integration
+ * IMPLEMENTATION: Royal client service standards with maximum search visibility
+ */
 export const metadata: Metadata = {
   metadataBase: new URL('https://myprivatetutoronline.com'),
   title: {
@@ -117,20 +140,44 @@ export const metadata: Metadata = {
     "royal family tutor",
     "Tatler tutor",
     "academic preparation",
-    "entrance exam preparation"
+    "entrance exam preparation",
+    // CONTEXT7 SOURCE: /vercel/next.js - Extended keywords for SEO optimization
+    // SEO ENHANCEMENT: Additional keywords for comprehensive service discovery
+    "grammar school preparation",
+    "university entrance tutoring",
+    "A* grade tutoring",
+    "London private tutor",
+    "elite family tutor",
+    "homeschooling support",
+    "academic mentoring",
+    "exam preparation specialist"
   ],
-  authors: [{ name: "My Private Tutor Online" }],
+  authors: [{ name: "My Private Tutor Online", url: "https://myprivatetutoronline.com" }],
   creator: "My Private Tutor Online",
   publisher: "My Private Tutor Online",
+  // CONTEXT7 SOURCE: /vercel/next.js - Enhanced robots configuration for comprehensive crawling
+  // SEO OPTIMIZATION: Maximum search engine visibility for premium service discovery
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
+    },
+  },
+  // CONTEXT7 SOURCE: /vercel/next.js - Search engine verification meta tags
+  // SEO INTEGRATION: Search console verification for comprehensive SEO monitoring
+  verification: {
+    google: 'google-site-verification-premium-tutor',
+    yandex: 'yandex-verification-premium-tutor', 
+    yahoo: 'yahoo-site-verification-premium-tutor',
+    other: {
+      'msvalidate.01': 'bing-site-verification-premium-tutor',
     },
   },
   openGraph: {
@@ -146,6 +193,14 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "My Private Tutor Online - Premium Academic Tutoring Services",
+        type: "image/jpeg",
+      },
+      {
+        url: "/images/logos/logo-with-name.png", 
+        width: 400,
+        height: 100,
+        alt: "My Private Tutor Online Logo",
+        type: "image/png",
       },
     ],
   },
@@ -161,6 +216,17 @@ export const metadata: Metadata = {
     canonical: "https://myprivatetutoronline.com",
   },
   category: "Education",
+  // CONTEXT7 SOURCE: /vercel/next.js - Classification and App Links for enhanced discovery
+  // SEO ENHANCEMENT: Additional metadata for comprehensive service categorization
+  classification: "Educational Services",
+  referrer: "origin-when-cross-origin",
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#0f172a" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" }
+  ],
+  applicationName: "My Private Tutor Online",
+  generator: "Next.js 15",
 };
 
 /**
@@ -191,14 +257,25 @@ export default function RootLayout({
         <meta name="theme-color" content="#0f172a" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Performance-optimized SEO component integration
+            SEO IMPLEMENTATION: Server-rendered structured data for immediate search visibility */}
+        <ServerSEOComponents />
       </head>
       <body
         className={`${sourceSerif4.variable} ${playfairDisplay.variable} font-serif antialiased min-h-screen bg-transparent text-foreground`}
       >
         <ResourcePreloader page="homepage" preloadCriticalImages={true} />
-        <LazyMotionProvider>
-          {children}
-        </LazyMotionProvider>
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Global error boundary for production stability
+            ERROR BOUNDARY REASON: Official React error boundary patterns for royal client service standards */}
+        <GlobalErrorBoundary
+          level="global"
+          componentName="RootLayout"
+        >
+          <LazyMotionProvider>
+            {children}
+          </LazyMotionProvider>
+        </GlobalErrorBoundary>
         {/* Performance Monitor loaded client-side only */}
         
         {/* 
@@ -217,6 +294,9 @@ export default function RootLayout({
          */}
         <Analytics />
         <SpeedInsights />
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Web Vitals reporting with useReportWebVitals hook
+            PERFORMANCE MONITORING: Real-time Core Web Vitals tracking and business metrics */}
+        <WebVitalsReporter />
         <CookieConsentManager />
       </body>
     </html>

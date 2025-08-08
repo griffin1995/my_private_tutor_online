@@ -27,7 +27,20 @@
     "tina:build": "tinacms build",
     "pre-commit": "lint-staged",
     "quality": "npm run typecheck && npm run lint && npm run format:check && npm run test",
-    "quality:fix": "npm run typecheck && npm run lint:fix && npm run format"
+    "quality:fix": "npm run typecheck && npm run lint:fix && npm run format",
+    "infrastructure:init": "node scripts/infrastructure-init.js",
+    "infrastructure:backup": "node -e \"require('./src/lib/infrastructure/database-backup').defaultBackupManager.createFullBackup().then(m => console.log('Backup completed:', m)).catch(console.error)\"",
+    "infrastructure:health": "curl -s http://localhost:3000/api/infrastructure/health | jq '.'",
+    "infrastructure:test": "npm run infrastructure:backup && npm run infrastructure:health",
+    "emergency:backup": "node -e \"require('./src/lib/infrastructure/database-backup').defaultBackupManager.createFullBackup().then(() => console.log('✅ Emergency backup completed')).catch(err => { console.error('❌ Emergency backup failed:', err); process.exit(1); })\"",
+    "emergency:health": "curl -s http://localhost:3000/api/infrastructure/health || echo '❌ Health check failed'",
+    "monitoring:start": "node -e \"require('./src/lib/infrastructure/monitoring').createInfrastructureMonitor().startContinuousMonitoring(5); console.log('Monitoring started'); setInterval(() => {}, 1000)\"",
+    "logs:errors": "tail -f logs/errors/errors-$(date +%Y-%m-%d).jsonl || echo 'No error logs found'",
+    "logs:monitoring": "tail -f logs/monitoring/monitoring-$(date +%Y-%m-%d).log || echo 'No monitoring logs found'",
+    "performance:audit": "lhci autorun",
+    "performance:budget": "lhci assert --budgetsFile=./performance-budget.json",
+    "performance:monitor": "lhci collect --config=.lighthouserc.js",
+    "ci:performance": "npm run build && npm run performance:audit && npm run performance:budget"
   },
   "overrides": {
     "@visx/axis": {
@@ -219,6 +232,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/eslintrc": "^3",

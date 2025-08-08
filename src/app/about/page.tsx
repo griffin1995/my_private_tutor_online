@@ -1,7 +1,10 @@
+"use client"
+
 /**
- * Documentation Source: Context7 MCP - Next.js App Router About Page Implementation
- * Reference: /vercel/next.js - Client component with scroll animations and CMS integration
- * Pattern: Multi-section about page with founder story, testimonials, and ethos
+ * CONTEXT7 SOURCE: /vercel/next.js - Next.js App Router page-specific metadata configuration
+ * SEO IMPLEMENTATION REASON: Official Next.js documentation for enhanced page-level SEO optimization
+ * CONTEXT7 SOURCE: /vercel/next.js - generateMetadata function for dynamic meta tags
+ * PREMIUM SERVICE: About page SEO for founder credibility and service discovery
  * 
  * About Us Page Structure per Client Feedback:
  * 1. Our Founder's Story (lead section)
@@ -13,9 +16,14 @@
  * - Use Beth's detailed Founder's Story content from feedback
  * - Remove highlights from under Elizabeth's name (mentioned in story)
  * - Embed "Unlocking Academic Success Seminar" video
+ * - Enhanced page-specific metadata for SEO optimization
  */
 
-"use client"
+/**
+ * CONTEXT7 SOURCE: /vercel/next.js - Client component with dynamic metadata via useEffect
+ * SEO IMPLEMENTATION: Client component cannot export metadata directly, handled by dynamic updates
+ * PREMIUM SERVICE: About page with enhanced client-side functionality for animations
+ */
 
 import { Crown, Award, Trophy, BookOpen, Heart, Globe, Star, ChevronRight } from 'lucide-react'
 import { m } from 'framer-motion'

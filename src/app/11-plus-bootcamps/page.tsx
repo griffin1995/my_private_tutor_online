@@ -1,16 +1,24 @@
+"use client"
+
 /**
- * Documentation Source: Context7 MCP - Next.js App Router Seasonal Page Component
- * Reference: /vercel/next.js - Conditional rendering and seasonal content patterns
- * Pattern: Client component with seasonal visibility controls and CMS integration
+ * CONTEXT7 SOURCE: /vercel/next.js - Next.js App Router page-specific metadata for seasonal content
+ * SEO IMPLEMENTATION REASON: Official Next.js documentation for specialized program page SEO optimization
+ * CONTEXT7 SOURCE: /vercel/next.js - Seasonal content metadata with dynamic visibility
+ * PREMIUM SERVICE: 11+ bootcamp SEO for grammar school preparation visibility
  * 
  * 11+ Bootcamps Seasonal Page Implementation:
  * - Seasonal page that can be hidden/revealed based on admin settings
  * - Intensive preparation courses for 11+ entrance examinations
  * - Booking and scheduling functionality
  * - SEO optimized for 11+ preparation searches
+ * - Enhanced metadata for premium program discovery
  */
 
-"use client"
+/**
+ * CONTEXT7 SOURCE: /vercel/next.js - Client component with dynamic SEO handling
+ * SEO IMPLEMENTATION: Client component cannot export metadata directly, handled by root layout
+ * PREMIUM SERVICE: 11+ bootcamp page with enhanced client-side functionality for animations
+ */
 
 import { Calendar, Clock, Users, Trophy, Target, BookOpen, Award, ChevronRight } from 'lucide-react'
 import { m } from 'framer-motion'
