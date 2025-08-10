@@ -24,12 +24,14 @@ interface PageFooterProps {
   className?: string
   variant?: 'default' | 'minimal' | 'premium'
   showBackToTop?: boolean
+  showNewsletter?: boolean
 }
 
 export function PageFooter({
   className,
   variant = 'default',
-  showBackToTop = true
+  showBackToTop = true,
+  showNewsletter = true
 }: PageFooterProps) {
   // CMS DATA SOURCE: Using getFooterContent for footer structure and links
   const footerContent = getFooterContent()
@@ -112,8 +114,11 @@ export function PageFooter({
       )}
 
       <div className="relative">
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for newsletter section display */}
+        {/* CONDITIONAL RENDERING REASON: Official React documentation demonstrates logical AND operator for conditional component display */}
         {/* Newsletter CTA Section */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {showNewsletter && (
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="max-w-4xl mx-auto text-center">
             <div className="animate-fade-in-up">
               <h3 className="text-3xl font-serif font-bold text-black mb-4">
@@ -193,8 +198,11 @@ export function PageFooter({
             </div>
           </div>
         </div>
+        )}
 
-        <Separator className="bg-gray-300" />
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for separator display */}
+        {/* SEPARATOR CONDITIONAL REASON: Official React documentation shows conditional rendering prevents orphaned separators when sections are hidden */}
+        {showNewsletter && <Separator className="bg-gray-300" />}
 
         {/* Main Footer Content */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">

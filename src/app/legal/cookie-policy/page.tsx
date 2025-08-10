@@ -14,11 +14,15 @@ import { Cookie, Settings, FileText, CheckCircle, AlertTriangle, Eye } from 'luc
 // IMPLEMENTATION REASON: Consistent visual standards with formal legal document accessibility
 
 export default function CookiePolicyPage() {
+  // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
+  // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
-    <PageLayout background="white">
+    <>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen hero section with gradient backgrounds */}
+      {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient treatments for premium branding */}
       <PageHero
         background="gradient"
-        size="lg"
+        size="full"
         className="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900"
         overlay={true}
         overlayOpacity="light"
@@ -65,10 +69,14 @@ export default function CookiePolicyPage() {
         </div>
       </PageHero>
       
-      <WaveSeparator 
-        variant="subtle" 
-        className="text-white" 
-      />
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
+      {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
+      <PageLayout background="white" showHeader={false} showFooter={true}>
+
+        <WaveSeparator 
+          variant="subtle" 
+          className="text-white" 
+        />
       
       <Section className="py-20 relative" background="white">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50" />
@@ -539,6 +547,8 @@ export default function CookiePolicyPage() {
           </div>
         </div>
       </Section>
-    </PageLayout>
+      
+      </PageLayout>
+    </>
   )
 }

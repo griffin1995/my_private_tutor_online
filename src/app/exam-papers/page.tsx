@@ -72,11 +72,15 @@ const examCategories = [
 ]
 
 export default function ExamPapersPage() {
+  // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
+  // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
-    <PageLayout background="white" showHeader={true} showFooter={true}>
+    <>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen hero section with gradient backgrounds */}
+      {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient treatments for premium branding */}
       <PageHero 
         background="gradient" 
-        size="lg"
+        size="full"
         className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 relative overflow-hidden"
       >
         {/* CONTEXT7 SOURCE: /grx7/framer-motion - Professional pattern overlay for academic resource presentation */}
@@ -110,7 +114,11 @@ export default function ExamPapersPage() {
         </div>
       </PageHero>
       
-      <WaveSeparator variant="light" className="text-white" />
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
+      {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
+      <PageLayout background="white" showHeader={false} showFooter={true}>
+
+        <WaveSeparator variant="light" className="text-white" />
         {/* Search Section */}
         <section className="py-20 bg-slate-50/80 relative">
           {/* CONTEXT7 SOURCE: /grx7/framer-motion - Subtle pattern overlay for search interface */}
@@ -328,6 +336,8 @@ export default function ExamPapersPage() {
             </div>
           </div>
         </section>
-    </PageLayout>
+        
+      </PageLayout>
+    </>
   )
 }

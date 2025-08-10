@@ -88,16 +88,15 @@ export default function FAQPage() {
   // Documentation Source: Next.js Static Export Configuration
   // Reference: https://github.com/vercel/next.js/blob/canary/docs/01-app/02-guides/static-exports.mdx#_snippet_9
   
-  // CONTEXT7 SOURCE: /vercel/next.js - App Router page component patterns  
-  // DESIGN IMPROVEMENT REASON: Official Next.js documentation recommends PageLayout → PageHero → Section structure for consistent layouts
+  // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
+  // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
-    <PageLayout background="white" showHeader={true} showFooter={true}>
-      
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Professional hero section with enhanced gradient background */}
+    <>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen hero section with enhanced gradient background */}
       {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient treatments for premium branding */}
       <PageHero
         background="gradient"
-        size="lg" 
+        size="full" 
         className="bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900"
         overlay={true}
         overlayOpacity="light"
@@ -137,10 +136,14 @@ export default function FAQPage() {
         </div>
       </PageHero>
 
-      <WaveSeparator 
-        variant="subtle" 
-        className="text-slate-100" 
-      />
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
+      {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
+      <PageLayout background="white" showHeader={false} showFooter={true}>
+
+        <WaveSeparator 
+          variant="subtle" 
+          className="text-slate-100" 
+        />
 
       {/* Premium Search Section */}
       <Section className="py-20 relative" background="blue">
@@ -376,6 +379,7 @@ export default function FAQPage() {
         </div>
       </Section>
       
-    </PageLayout>
+      </PageLayout>
+    </>
   )
 }

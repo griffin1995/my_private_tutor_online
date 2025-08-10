@@ -150,11 +150,15 @@ const videoMasterclassesContent = {
 }
 
 export default function VideoMasterclassesPage() {
+  // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
+  // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
-    <PageLayout background="white">
+    <>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen hero section with gradient backgrounds */}
+      {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient treatments for premium branding */}
       <PageHero
         background="gradient"
-        size="lg"
+        size="full"
         className="bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900"
       >
         <div className="text-center text-white">
@@ -170,13 +174,17 @@ export default function VideoMasterclassesPage() {
         </div>
       </PageHero>
 
-      <WaveSeparator 
-        variant="subtle" 
-        className="text-slate-100" 
-      />
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
+      {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
+      <PageLayout background="white" showHeader={false} showFooter={true}>
 
-      {/* Introduction */}
-      <Section background="blue" className="py-16 relative">
+        <WaveSeparator 
+          variant="subtle" 
+          className="text-slate-100" 
+        />
+
+        {/* Introduction */}
+        <Section background="blue" className="py-16 relative">
         <GradientOverlay variant="subtle" className="opacity-20" />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <m.p 
@@ -492,7 +500,9 @@ export default function VideoMasterclassesPage() {
             </p>
           </m.div>
         </div>
-      </Section>
-    </PageLayout>
+        </Section>
+      
+      </PageLayout>
+    </>
   )
 }

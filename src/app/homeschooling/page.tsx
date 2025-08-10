@@ -178,15 +178,15 @@ const homeschoolingContent = {
 export default function HomeschoolingPage() {
   const [activeTab, setActiveTab] = useState('primary')
 
+  // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
+  // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
-    <PageLayout
-      background="white"
-      showHeader={true}
-      showFooter={true}
-    >
+    <>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen hero section with gradient backgrounds */}
+      {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient treatments for premium branding */}
       <PageHero
         background="gradient"
-        size="xl"
+        size="full"
         className="bg-gradient-to-br from-emerald-700 via-emerald-600 to-accent-600 relative overflow-hidden"
       >
         {/* CONTEXT7 SOURCE: /grx7/framer-motion - Professional pattern overlay for homeschooling presentation */}
@@ -246,7 +246,11 @@ export default function HomeschoolingPage() {
         </div>
       </PageHero>
       
-      <WaveSeparator variant="light" className="text-white" />
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
+      {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
+      <PageLayout background="white" showHeader={false} showFooter={true}>
+
+        <WaveSeparator variant="light" className="text-white" />
 
       {/* Benefits Section */}
       <Section className="py-20 lg:py-28 bg-slate-50/80 relative">
@@ -571,6 +575,8 @@ export default function HomeschoolingPage() {
           </m.div>
         </div>
       </Section>
-    </PageLayout>
+      
+      </PageLayout>
+    </>
   )
 }

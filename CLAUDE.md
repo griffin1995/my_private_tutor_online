@@ -1,5 +1,11 @@
 # 🚨 CRITICAL SESSION STARTUP INSTRUCTIONS - AUTOMATIC ACTIVATION 🚨
 
+## 📍 CURRENT WORK IN PROGRESS
+**CHECK ABOUT_PAGE_PROGRESS.md** - About Us page enhancement is 25% complete. We left off at Phase 2 (CMS Migration), Task 34.
+- Read full progress: `/home/jack/Documents/my_private_tutor_online/ABOUT_PAGE_PROGRESS.md`
+- Component extraction complete, CMS migration in progress
+- Next: Complete testimonials CMS migration, then premium UI enhancements
+
 ## MOST CRITICAL INSTRUCTION - AUTOMATIC PROJECT MANAGEMENT SETUP
 
 ### WHEN USER SAYS "read claude.md" OR "read CLAUDE.md" - EXECUTE THIS SEQUENCE:

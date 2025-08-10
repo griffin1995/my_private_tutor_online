@@ -335,6 +335,17 @@ export const HERO_IMAGES = {
     loading: 'eager' as const,
     priority: true
   },
+  // CONTEXT7 SOURCE: /vercel/next.js - Static asset serving patterns for image optimization
+  // IMPLEMENTATION REASON: Adding new hero image for How It Works page following official Next.js static asset patterns
+  onlineTutoringSession: {
+    src: '/images/students/student-on-laptop-teacher-on-screen.jpg',
+    alt: 'Student engaged in high-quality online tutoring session with expert tutor - demonstrating our proven process',
+    width: 800,
+    height: 600,
+    title: 'Online Tutoring Excellence - How It Works',
+    loading: 'eager' as const,
+    priority: true
+  },
   introVideo: {
     // Documentation Source: Context7 MCP - Next.js Static File Serving from Public Directory
     // Reference: /vercel/next.js - Static assets served from /public folder
