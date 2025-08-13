@@ -108,7 +108,7 @@ export const getBusinessInfo = (): BusinessInfo => {
     
     // CONTEXT7 SOURCE: /schemaorg/schemaorg - Contact information for LocalBusiness
     // CONTACT DETAILS: Professional contact information for premium services
-    telephone: "+44 20 7946 0958",
+    telephone: "+44 7513 550278",
     email: "enquiries@myprivatetutoronline.com",
     website: "https://myprivatetutoronline.com",
     

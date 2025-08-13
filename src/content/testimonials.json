@@ -210,6 +210,20 @@
       "result": "Maths Student, Churchill College, Cambridge University",
       "verified": true,
       "date": "2024-07-10"
+    },
+    {
+      "quote": "The world of tutoring is a minefield but your tutors are next level.",
+      "author": "Mr & Mrs Li",
+      "role": "Parents of GCSE student",
+      "rating": 5,
+      "category": "gcse",
+      "subject": "GCSE Support",
+      "grade": "Grade 9s",
+      "location": "Hong Kong",
+      "year": 2024,
+      "result": "All 9s Achieved at GCSE",
+      "verified": true,
+      "date": "2024-06-15"
     }
   ],
   "aboutTestimonials": [

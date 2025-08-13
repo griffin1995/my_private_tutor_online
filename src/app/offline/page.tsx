@@ -273,7 +273,7 @@ export default function OfflinePage({
                   <div className="text-center p-4 bg-slate-50 rounded-lg">
                     <Phone className="w-6 h-6 text-slate-600 mx-auto mb-2" />
                     <h4 className="font-medium text-slate-900 mb-1">Phone</h4>
-                    <p className="text-sm text-slate-600">+44 20 7123 4567</p>
+                    <p className="text-sm text-slate-600">+44 7513 550278</p>
                     <p className="text-xs text-slate-500 mt-1">24/7 Support</p>
                   </div>
                   

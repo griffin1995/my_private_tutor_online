@@ -42,7 +42,7 @@ describe('Booking System Integration', () => {
         childAge: 16,
         subject: 'A-Level Mathematics',
         email: 'lady.smith@example.com',
-        phone: '+44 20 7123 4567'
+        phone: '+44 7513 550278'
       }
       
       const validResult = validateBookingForm(validForm)

@@ -438,11 +438,15 @@ export function PageHeader({
                       // Transparent Navbar State: Default state when at top of page
                       !safeIsScrolled && !(activeDropdown === item.name) && [
                         "!text-white",
-                        "hover:!text-white",
-                        "after:bg-gradient-to-r after:from-white after:to-accent-200",
-                        "hover:bg-white/10",
-                        "focus:bg-white/15",
-                        "hover:shadow-lg hover:shadow-white/20",
+                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Hover state color overrides for transparent navbar
+                        // HOVER FIX REASON: Official Tailwind documentation for hover:text-* utilities with !important override
+                        // CONTEXT7 SOURCE: /context7/tailwind_dev - Blue hover state for transparent navbar visibility
+                        // BLUE HOVER REASON: Client requirement for blue hover text on transparent navbar background
+                        "hover:!text-blue-400",
+                        "after:bg-gradient-to-r after:from-blue-400 after:to-blue-300",
+                        "hover:bg-blue-400/10",
+                        "focus:bg-blue-400/15",
+                        "hover:shadow-lg hover:shadow-blue-400/20",
                         "hover:scale-105 focus:scale-105"
                       ].join(' '),
                       

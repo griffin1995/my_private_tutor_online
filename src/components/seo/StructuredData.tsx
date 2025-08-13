@@ -63,7 +63,7 @@ export const OrganizationStructuredData: FC = () => {
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+44-20-7123-4567',
+      telephone: '+44-7513-550278',
       contactType: 'Customer Service',
       availableLanguage: ['English'],
       areaServed: ['GB', 'United Kingdom'],
@@ -137,7 +137,7 @@ export const LocalBusinessStructuredData: FC = () => {
       latitude: '51.5074',
       longitude: '-0.1278',
     },
-    telephone: '+44-20-7123-4567',
+    telephone: '+44-7513-550278',
     email: 'contact@myprivatetutoronline.com',
     url: 'https://myprivatetutoronline.com',
     priceRange: '££££',

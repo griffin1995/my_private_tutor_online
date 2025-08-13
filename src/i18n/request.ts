@@ -37,7 +37,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
         // PREMIUM BRANDING: Brand name consistency across all languages
         brandName: 'My Private Tutor Online',
         supportEmail: 'support@myprivatetutoronline.co.uk',
-        phoneNumber: '+44 (0) 207 193 7303'
+        phoneNumber: '+44 7513 550278'
       }
     };
   } catch (error) {
@@ -55,7 +55,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
         direction: 'ltr',
         brandName: 'My Private Tutor Online',
         supportEmail: 'support@myprivatetutoronline.co.uk',
-        phoneNumber: '+44 (0) 207 193 7303'
+        phoneNumber: '+44 7513 550278'
       }
     };
   }

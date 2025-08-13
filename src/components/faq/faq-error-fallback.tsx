@@ -466,7 +466,7 @@ export function FAQErrorFallback({
                     Speak directly with our education consultants
                   </p>
                   <Button 
-                    onClick={() => window.location.href = 'tel:+442071234567'}
+                    onClick={() => window.location.href = 'tel:+447513550278'}
                     variant="outline"
                     className="w-full"
                   >

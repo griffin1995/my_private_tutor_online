@@ -319,7 +319,7 @@ export const FAQLocalSEO: React.FC<FAQLocalSEOProps> = ({
       postalCode: "SW1A 1AA",
       addressCountry: "GB"
     },
-    telephone: "+44 20 7946 0958",
+    telephone: "+44 7513 550278",
     email: "enquiries@myprivatetutoronline.com",
     url: "https://myprivatetutoronline.com",
     priceRange: competitorAnalysis?.averagePrice || "£40-80",

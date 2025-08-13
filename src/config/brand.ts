@@ -10,7 +10,7 @@ export const brandConfig = {
   // Contact Information (CMS manageable)
   contact: {
     email: "hello@myprivatetutoronline.com",
-    phone: "+44 (0) 20 7XXX XXXX", // To be updated with real number
+    phone: "+44 7513 550278", // Updated with correct number
     address: {
       line1: "London, United Kingdom",
       postcode: "",

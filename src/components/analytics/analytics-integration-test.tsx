@@ -207,7 +207,7 @@ export function AnalyticsIntegrationTest({
           await analytics.trackFAQToContact('phone', ['question1', 'question2'])
           
           // Test phone click tracking
-          await analytics.trackPhoneClick('+44 20 1234 5678', 'faq-pricing-section')
+          await analytics.trackPhoneClick('+44 7513 550278', 'faq-pricing-section')
           
           return {
             success: true,

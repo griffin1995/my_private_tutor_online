@@ -106,7 +106,7 @@ export const FAQMetaOptimization: React.FC<FAQMetaOptimizationProps> = ({
   twitterImageAlt,
   twitterCard = "summary_large_image",
   businessName = "My Private Tutor Online",
-  businessPhone = "+44 20 7946 0958",
+  businessPhone = "+44 7513 550278",
   businessEmail = "enquiries@myprivatetutoronline.com",
   customMeta = [],
   enableSchemaIntegration = true,

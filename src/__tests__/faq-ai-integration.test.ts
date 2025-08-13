@@ -107,7 +107,7 @@ jest.mock('@/lib/cms/cms-faq', () => ({
     contact: {
       title: 'Still Have Questions?',
       description: 'Contact us',
-      phone: '+44 20 7123 4567',
+      phone: '+44 7513 550278',
       email: 'info@myprivatetutoronline.com',
       buttons: []
     }

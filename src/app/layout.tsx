@@ -189,18 +189,36 @@ export const metadata: Metadata = {
     description: "Premium private tutoring with royal endorsements. 15+ years experience in Oxbridge prep, 11+ entry, GCSE & A-levels. Featured in Tatler Address Book.",
     images: [
       {
-        url: "/images/hero/premium-tutoring-og.jpg",
+        // CONTEXT7 SOURCE: /vercel/next.js - Primary Open Graph image for premium service
+        url: "/images/graphics/feature-royal-endorsement.jpg",
         width: 1200,
         height: 630,
-        alt: "My Private Tutor Online - Premium Academic Tutoring Services",
+        alt: "My Private Tutor Online - Premium Academic Tutoring with Royal Endorsements",
         type: "image/jpeg",
       },
       {
+        // CONTEXT7 SOURCE: /vercel/next.js - Logo for Open Graph secondary image
         url: "/images/logos/logo-with-name.png", 
         width: 400,
         height: 100,
         alt: "My Private Tutor Online Logo",
         type: "image/png",
+      },
+      {
+        // CONTEXT7 SOURCE: /vercel/next.js - Hero image for premium service showcase
+        url: "/images/hero/child_book_and_laptop.avif",
+        width: 800,
+        height: 600,
+        alt: "Premium Tutoring - Child Learning with Expert Support",
+        type: "image/avif",
+      },
+      {
+        // CONTEXT7 SOURCE: /vercel/next.js - Trust indicator image for social proof
+        url: "/images/graphics/feature-built-on-trust.jpeg",
+        width: 800,
+        height: 600,
+        alt: "Trusted by Elite Families - 15+ Years of Premium Tutoring Excellence",
+        type: "image/jpeg",
       },
     ],
   },
@@ -208,7 +226,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "My Private Tutor Online | Premium Academic Tutoring",
     description: "Royal family endorsed private tutoring. Oxbridge preparation, 11+ entry, GCSE & A-levels. 15+ years experience.",
-    images: ["/images/hero/premium-tutoring-og.jpg"],
+    // CONTEXT7 SOURCE: /vercel/next.js - Enhanced Twitter Card images for premium service
+    images: [
+      "/images/graphics/feature-royal-endorsement.jpg",
+      "/images/hero/child_book_and_laptop.avif",
+      "/images/graphics/feature-built-on-trust.jpeg"
+    ],
     creator: "@MyPrivateTutorUK",
     site: "@MyPrivateTutorUK",
   },
@@ -222,6 +245,23 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   applicationName: "My Private Tutor Online",
   generator: "Next.js 15",
+  
+  // CONTEXT7 SOURCE: /vercel/next.js - Enhanced metadata for premium service discovery
+  // PREMIUM SERVICE: Additional metadata for royal client service standards
+  formatDetection: {
+    telephone: true,
+    date: true,
+    address: true,
+    email: true,
+    url: true,
+  },
+  appleWebApp: {
+    capable: true,
+    title: "My Private Tutor",
+    statusBarStyle: "black-translucent",
+  },
+  // CONTEXT7 SOURCE: /vercel/next.js - Manifest link for PWA functionality
+  manifest: "/manifest.json",
 };
 
 // CONTEXT7 SOURCE: /vercel/next.js - Viewport configuration for Next.js 15+ compatibility
@@ -260,6 +300,40 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0f172a" />
+        
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Favicon and icon configuration for Next.js App Router */}
+        {/* FAVICON IMPLEMENTATION: Comprehensive favicon setup for royal client browser compatibility */}
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/icons/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/icons/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/icons/favicon-48x48.png" sizes="48x48" type="image/png" />
+        <link rel="icon" href="/icons/favicon-96x96.png" sizes="96x96" type="image/png" />
+        <link rel="icon" href="/icons/favicon-128x128.png" sizes="128x128" type="image/png" />
+        <link rel="icon" href="/icons/favicon-192x192.png" sizes="192x192" type="image/png" />
+        <link rel="icon" href="/icons/favicon-256x256.png" sizes="256x256" type="image/png" />
+        <link rel="icon" href="/icons/favicon-512x512.png" sizes="512x512" type="image/png" />
+        
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Apple Touch Icon configuration for iOS devices */}
+        {/* APPLE ICONS: iOS-specific icon sizes for premium service mobile experience */}
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon-60x60.png" sizes="60x60" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon-76x76.png" sizes="76x76" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon-120x120.png" sizes="120x120" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png" sizes="152x152" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon-167x167.png" sizes="167x167" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon-180x180.png" sizes="180x180" />
+        
+        {/* CONTEXT7 SOURCE: /vercel/next.js - PWA manifest configuration for Next.js */}
+        {/* PWA MANIFEST: Progressive Web App support for premium tutoring service */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="My Private Tutor" />
+        <meta name="application-name" content="My Private Tutor" />
+        <meta name="msapplication-TileColor" content="#0f172a" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         

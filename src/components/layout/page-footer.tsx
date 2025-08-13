@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, Phone, MapPin, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { Mail, Phone, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -288,62 +288,30 @@ export function PageFooter({
                   </nav>
                 </div>
               ))}
+              
+              {/* Contact Information - positioned at the end of footer links */}
+              <div className="col-span-2 md:col-span-4 mt-8 pt-6 border-t border-gray-300">
+                <p className="text-sm text-gray-600">
+                  <a 
+                    href={`tel:${contactInfo.phone}`}
+                    className="hover:text-accent-600 transition-colors duration-300"
+                  >
+                    Call us: {contactInfo.phone}
+                  </a>
+                  {" | "}
+                  <a 
+                    href={`mailto:${contactInfo.email}`}
+                    className="hover:text-accent-600 transition-colors duration-300"
+                  >
+                    Email: {contactInfo.email}
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         <Separator className="bg-gray-300" />
-
-        {/* Contact Information Section */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto animate-fade-in-up">
-            {/* Phone */}
-            <div className="group text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Phone className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="font-serif text-lg font-bold text-black mb-2">Call Us</h4>
-              <a 
-                href={`tel:${contactInfo.phone}`}
-                className="text-gray-700 hover:text-accent-600 transition-colors duration-300 text-lg"
-              >
-                {contactInfo.phone}
-              </a>
-              <p className="text-sm text-gray-600 mt-1">Mon-Fri 9am-6pm</p>
-            </div>
-
-            {/* Email */}
-            <div className="group text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <Mail className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="font-serif text-lg font-bold text-black mb-2">Email Us</h4>
-              <a 
-                href={`mailto:${contactInfo.email}`}
-                className="text-gray-700 hover:text-accent-600 transition-colors duration-300 text-lg"
-              >
-                {contactInfo.email}
-              </a>
-              <p className="text-sm text-gray-600 mt-1">24/7 Response Time</p>
-            </div>
-
-            {/* Address */}
-            <div className="group text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                <MapPin className="w-8 h-8 text-white" />
-              </div>
-              <h4 className="font-serif text-lg font-bold text-black mb-2">Visit Us</h4>
-              <address className="text-gray-700 not-italic leading-relaxed">
-                {contactInfo.address.split('\n').map((line, index) => (
-                  <span key={index}>
-                    {line}
-                    {index < contactInfo.address.split('\n').length - 1 && <br />}
-                  </span>
-                ))}
-              </address>
-            </div>
-          </div>
-        </div>
 
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Footer layout without duplicate section */}
         {/* REMOVAL REASON: Duplicate footer bottom section removed as requested - lines 339-392 */}
