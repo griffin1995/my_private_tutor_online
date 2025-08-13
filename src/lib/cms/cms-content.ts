@@ -2765,14 +2765,96 @@ export const getServicesContent = cache((): ServicesPageContent => {
       }
     ],
     subjectCategories: [
+      // CONTEXT7 SOURCE: /microsoft/typescript - Array reordering following official TypeScript data structure patterns
+      // REORGANISATION REASON: Official TypeScript patterns for immutable data structure modification via array recreation
+      // CMS REORGANISATION: Updated subject categories order per client requirements
+      // 1. PRIMARY (separated from primary-secondary)
+      {
+        id: "primary",
+        title: "Primary",
+        icon: "BookOpen",
+        description: "Foundation curriculum support from Reception through Year 6",
+        popularityRank: 1,
+        pricing: { basePriceFrom: "£60", currency: "GBP" },
+        subjects: [
+          {
+            name: "Primary Mathematics",
+            description: "Building strong mathematical foundations from basic numeracy to Year 6 SATs preparation.",
+            keyFeatures: ["Number and place value", "Arithmetic operations", "Fractions and decimals", "SATs preparation"],
+            level: "Reception-Year 6",
+            pricing: { from: "£60", to: "£100", currency: "GBP" }
+          },
+          {
+            name: "Primary English",
+            description: "Developing reading, writing, and communication skills from phonics to creative writing.",
+            keyFeatures: ["Phonics and reading", "Creative writing", "Grammar and spelling", "Comprehension skills"],
+            level: "Reception-Year 6",
+            pricing: { from: "£60", to: "£100", currency: "GBP" }
+          },
+          {
+            name: "Primary Science",
+            description: "Engaging science exploration covering plants, animals, materials, and forces.",
+            keyFeatures: ["Scientific enquiry", "Plants and animals", "Materials and properties", "Forces and motion"],
+            level: "Year 1-6",
+            pricing: { from: "£65", to: "£105", currency: "GBP" }
+          }
+        ]
+      },
+      // 2. SECONDARY (separated from primary-secondary)
+      {
+        id: "secondary",
+        title: "Secondary",
+        icon: "BookOpen",
+        description: "Core curriculum support from Year 7 through to GCSE level",
+        popularityRank: 2,
+        pricing: { basePriceFrom: "£70", currency: "GBP" },
+        subjects: [
+          {
+            name: "Secondary Mathematics",
+            description: "Advanced mathematical concepts from algebra to statistics for GCSE success.",
+            keyFeatures: ["Algebra and equations", "Geometry and trigonometry", "Statistics and probability", "GCSE preparation"],
+            level: "Year 7-11",
+            pricing: { from: "£70", to: "£130", currency: "GBP" }
+          },
+          {
+            name: "English Language & Literature",
+            description: "Developing analytical and writing skills across both language and literature components.",
+            keyFeatures: ["Literary analysis", "Creative and analytical writing", "Language techniques", "GCSE exam skills"],
+            level: "Year 7-11",
+            pricing: { from: "£70", to: "£130", currency: "GBP" }
+          },
+          {
+            name: "Sciences (Biology, Chemistry, Physics)",
+            description: "Comprehensive coverage of all three sciences from KS3 through to GCSE level.",
+            keyFeatures: ["Practical experiments", "Theory understanding", "Scientific method", "Exam preparation"],
+            level: "Year 7-11",
+            pricing: { from: "£75", to: "£135", currency: "GBP" }
+          },
+          {
+            name: "Modern Foreign Languages",
+            description: "French, Spanish, and German tuition focusing on all four language skills.",
+            keyFeatures: ["Conversational practice", "Grammar foundations", "Cultural context", "GCSE techniques"],
+            level: "Year 7-11",
+            pricing: { from: "£75", to: "£135", currency: "GBP" }
+          }
+        ]
+      },
+      // 3. ENTRANCE EXAMS (7+, 8+, 11+, 13+, 16+, UKiset, CAT4)
       {
         id: "entrance-exams",
-        title: "Entrance Exams",
+        title: "Entrance Exams (7+, 8+, 11+, 13+, 16+, UKiset, CAT4)",
         icon: "Target",
-        description: "Specialised preparation for competitive entrance examinations",
-        popularityRank: 1,
+        description: "Specialised preparation for competitive entrance examinations across all age groups",
+        popularityRank: 3,
         pricing: { basePriceFrom: "£85", currency: "GBP" },
         subjects: [
+          {
+            name: "7+ & 8+ Preparation",
+            description: "Early years entrance exam preparation with gentle, confidence-building approaches.",
+            keyFeatures: ["Age-appropriate materials", "Confidence building", "Basic reasoning skills", "Interview preparation"],
+            level: "Year 2-3",
+            pricing: { from: "£85", to: "£140", currency: "GBP" }
+          },
           {
             name: "11+ Preparation",
             description: "Comprehensive preparation for grammar school entrance exams including verbal reasoning, non-verbal reasoning, English, and mathematics.",
@@ -2788,6 +2870,27 @@ export const getServicesContent = cache((): ServicesPageContent => {
             pricing: { from: "£95", to: "£160", currency: "GBP" }
           },
           {
+            name: "16+ Sixth Form Entry",
+            description: "Advanced preparation for competitive sixth form entrance including academic interviews.",
+            keyFeatures: ["Subject specialisation", "Interview coaching", "Academic portfolio", "Scholarship preparation"],
+            level: "Year 10-11",
+            pricing: { from: "£100", to: "£170", currency: "GBP" }
+          },
+          {
+            name: "UKiset Preparation",
+            description: "UK Independent Schools' Entrance Test coaching for international students.",
+            keyFeatures: ["Reasoning skills", "English proficiency", "Cultural adaptation", "School matching"],
+            level: "International",
+            pricing: { from: "£110", to: "£190", currency: "GBP" }
+          },
+          {
+            name: "CAT4 Preparation",
+            description: "Cognitive Ability Tests preparation focusing on verbal, non-verbal, quantitative, and spatial reasoning.",
+            keyFeatures: ["Cognitive assessment", "Reasoning development", "Test familiarity", "Performance optimisation"],
+            level: "Year 6-9",
+            pricing: { from: "£90", to: "£155", currency: "GBP" }
+          },
+          {
             name: "ISEB Pre-Tests",
             description: "Targeted preparation for computerised pre-tests used by leading independent schools.",
             keyFeatures: ["Computer-based practice", "Adaptive learning", "Time management", "Stress reduction techniques"],
@@ -2796,50 +2899,13 @@ export const getServicesContent = cache((): ServicesPageContent => {
           }
         ]
       },
-      {
-        id: "primary-secondary",
-        title: "Primary and Secondary Subjects",
-        icon: "BookOpen",
-        description: "Core curriculum support from KS1 through to GCSE level",
-        popularityRank: 2,
-        pricing: { basePriceFrom: "£65", currency: "GBP" },
-        subjects: [
-          {
-            name: "Mathematics",
-            description: "Building strong mathematical foundations from basic numeracy to advanced GCSE topics.",
-            keyFeatures: ["Number and algebra", "Geometry and measures", "Statistics and probability", "Problem-solving techniques"],
-            level: "KS1-GCSE",
-            pricing: { from: "£65", to: "£120", currency: "GBP" }
-          },
-          {
-            name: "English Language & Literature",
-            description: "Developing reading, writing, and analytical skills across both language and literature components.",
-            keyFeatures: ["Creative writing", "Literary analysis", "Grammar and punctuation", "Exam technique"],
-            level: "KS1-GCSE",
-            pricing: { from: "£65", to: "£120", currency: "GBP" }
-          },
-          {
-            name: "Sciences",
-            description: "Comprehensive coverage of Biology, Chemistry, and Physics from KS3 through to GCSE.",
-            keyFeatures: ["Practical experiments", "Theory understanding", "Scientific method", "Exam preparation"],
-            level: "KS3-GCSE",
-            pricing: { from: "£70", to: "£125", currency: "GBP" }
-          },
-          {
-            name: "Modern Foreign Languages",
-            description: "French, Spanish, and German tuition focusing on speaking, listening, reading, and writing skills.",
-            keyFeatures: ["Conversational practice", "Grammar foundations", "Cultural context", "Exam techniques"],
-            level: "KS2-GCSE",
-            pricing: { from: "£70", to: "£125", currency: "GBP" }
-          }
-        ]
-      },
+      // 4. UNIVERSITY AND BEYOND
       {
         id: "university-beyond",
         title: "University and Beyond",
         icon: "GraduationCap",
         description: "Advanced level support and university preparation",
-        popularityRank: 3,
+        popularityRank: 4,
         pricing: { basePriceFrom: "£95", currency: "GBP" },
         subjects: [
           {
@@ -2869,74 +2935,108 @@ export const getServicesContent = cache((): ServicesPageContent => {
             keyFeatures: ["Entrance exam prep", "Interview coaching", "Subject-specific guidance", "Application strategy"],
             level: "Year 13+",
             pricing: { from: "£150", to: "£250", currency: "GBP" }
+          },
+          {
+            name: "Professional Qualifications",
+            description: "Support for professional qualification exams including ACCA, CFA, and other industry certifications.",
+            keyFeatures: ["Professional exam prep", "Industry insights", "Career guidance", "Flexible scheduling"],
+            level: "Graduate+",
+            pricing: { from: "£120", to: "£200", currency: "GBP" }
           }
         ]
       },
+      // 5. ONLINE HOMESCHOOLING
       {
-        id: "specialist-tutoring",
-        title: "Specialist Tutoring",
+        id: "online-homeschooling",
+        title: "Online Homeschooling",
+        icon: "Globe",
+        description: "Comprehensive online education programmes for families choosing to educate at home",
+        popularityRank: 5,
+        pricing: { basePriceFrom: "£80", currency: "GBP" },
+        subjects: [
+          {
+            name: "Full Curriculum Support",
+            description: "Complete educational support covering all core subjects with structured learning paths.",
+            keyFeatures: ["Complete curriculum coverage", "Structured learning paths", "Progress tracking", "Parent guidance"],
+            level: "Reception-GCSE",
+            pricing: { from: "£80", to: "£160", currency: "GBP" }
+          },
+          {
+            name: "Flexible Subject Packages",
+            description: "Customisable subject combinations allowing families to tailor their child's education.",
+            keyFeatures: ["Subject flexibility", "Custom timetables", "Family-centred approach", "Regular assessments"],
+            level: "All Levels",
+            pricing: { from: "£70", to: "£140", currency: "GBP" }
+          },
+          {
+            name: "IGCSE Preparation",
+            description: "International GCSE preparation ideal for homeschooling families seeking recognised qualifications.",
+            keyFeatures: ["IGCSE curriculum", "Exam registration support", "Coursework guidance", "Revision programmes"],
+            level: "Year 9-11",
+            pricing: { from: "£90", to: "£170", currency: "GBP" }
+          },
+          {
+            name: "Parent Training & Support",
+            description: "Educational support and training for parents undertaking homeschooling responsibilities.",
+            keyFeatures: ["Parent workshops", "Educational resources", "Support networks", "Progress monitoring tools"],
+            level: "Parent Support",
+            pricing: { from: "£60", to: "£120", currency: "GBP" }
+          }
+        ]
+      },
+      // 6. SEN SUPPORT & NEURODIVERSE LEARNING
+      {
+        id: "sen-neurodiverse",
+        title: "SEN Support & Neurodiverse Learning",
         icon: "Award",
-        description: "Specialised support for specific examinations and circumstances",
-        popularityRank: 4,
+        description: "Specialised educational support for students with Special Educational Needs and neurodiverse learners",
+        popularityRank: 6,
         pricing: { basePriceFrom: "£100", currency: "GBP" },
         subjects: [
           {
-            name: "TMUA & MAT",
-            description: "Targeted preparation for mathematics admissions tests for top universities.",
-            keyFeatures: ["Problem-solving techniques", "Mathematical reasoning", "Time management", "Past paper practice"],
-            level: "Year 13",
-            pricing: { from: "£120", to: "£200", currency: "GBP" }
-          },
-          {
-            name: "LNAT Preparation",
-            description: "Comprehensive coaching for the Law National Aptitude Test including multiple choice and essay sections.",
-            keyFeatures: ["Critical thinking", "Essay writing", "Time management", "Practice tests"],
-            level: "Year 13",
-            pricing: { from: "£120", to: "£200", currency: "GBP" }
-          },
-          {
-            name: "SAT/ACT Coaching",
-            description: "American standardised test preparation for students applying to US universities.",
-            keyFeatures: ["Test strategies", "Subject review", "Practice tests", "Score optimisation"],
-            level: "Year 12-13",
-            pricing: { from: "£100", to: "£180", currency: "GBP" }
-          },
-          {
-            name: "BMAT/UCAT",
-            description: "Medical school entrance exam preparation covering both BMAT and UCAT requirements.",
-            keyFeatures: ["Scientific knowledge", "Critical thinking", "Decision making", "Mock exams"],
-            level: "Year 13",
-            pricing: { from: "£130", to: "£210", currency: "GBP" }
-          },
-          {
-            name: "UKISET Preparation",
-            description: "UK Independent Schools' Entrance Test coaching for international students.",
-            keyFeatures: ["Reasoning skills", "English proficiency", "Cultural adaptation", "School matching"],
-            level: "International",
-            pricing: { from: "£110", to: "£190", currency: "GBP" }
-          },
-          {
-            name: "IELTS Coaching",
-            description: "International English Language Testing System preparation for non-native speakers.",
-            keyFeatures: ["All four skills", "Test strategies", "Band score improvement", "Academic English"],
-            level: "International",
-            pricing: { from: "£90", to: "£160", currency: "GBP" }
-          },
-          {
-            name: "SEN Support",
-            description: "Specialised tutoring for students with Special Educational Needs including dyslexia and ADHD.",
-            keyFeatures: ["Individual learning plans", "Multi-sensory approaches", "Confidence building", "Parent support"],
+            name: "Dyslexia Support",
+            description: "Specialised tutoring using multi-sensory approaches for students with dyslexia.",
+            keyFeatures: ["Multi-sensory learning", "Orton-Gillingham methods", "Reading confidence", "Assistive technology"],
             level: "All Ages",
             pricing: { from: "£100", to: "£170", currency: "GBP" }
+          },
+          {
+            name: "ADHD & Executive Function",
+            description: "Supporting students with ADHD through structured learning and executive function development.",
+            keyFeatures: ["Focus strategies", "Organisation skills", "Time management", "Behaviour support"],
+            level: "All Ages",
+            pricing: { from: "£100", to: "£170", currency: "GBP" }
+          },
+          {
+            name: "Autism Spectrum Support",
+            description: "Tailored educational support for students on the autism spectrum with sensory considerations.",
+            keyFeatures: ["Sensory-friendly approaches", "Visual learning aids", "Social skills development", "Routine establishment"],
+            level: "All Ages",
+            pricing: { from: "£110", to: "£180", currency: "GBP" }
+          },
+          {
+            name: "Dyscalculia Support",
+            description: "Mathematical learning support for students with dyscalculia using concrete learning methods.",
+            keyFeatures: ["Concrete learning", "Visual mathematics", "Number sense development", "Confidence building"],
+            level: "All Ages",
+            pricing: { from: "£100", to: "£170", currency: "GBP" }
+          },
+          {
+            name: "Speech & Language Support",
+            description: "Educational support complementing speech and language therapy within academic contexts.",
+            keyFeatures: ["Communication development", "Vocabulary building", "Reading comprehension", "Academic language"],
+            level: "All Ages",
+            pricing: { from: "£105", to: "£175", currency: "GBP" }
           }
         ]
       },
+      // 7. LONDON IN-PERSON TUTORING
       {
-        id: "in-person-tutoring",
-        title: "In-Person Tutoring",
+        id: "london-in-person",
+        title: "London In-Person Tutoring",
         icon: "Users",
-        description: "Face-to-face tutoring services in London and surrounding areas",
-        popularityRank: 5,
+        description: "Premium face-to-face tutoring services across London and surrounding areas",
+        popularityRank: 7,
         pricing: { basePriceFrom: "£120", currency: "GBP" },
         subjects: [
           {
@@ -2947,11 +3047,25 @@ export const getServicesContent = cache((): ServicesPageContent => {
             pricing: { from: "£120", to: "£300", currency: "GBP" }
           },
           {
-            name: "Intensive Courses",
+            name: "Intensive Holiday Courses",
             description: "Concentrated learning programmes during school holidays for rapid progress.",
             keyFeatures: ["Holiday programmes", "Rapid progress", "Small groups", "Expert instruction"],
             level: "All Levels",
             pricing: { from: "£150", to: "£350", currency: "GBP" }
+          },
+          {
+            name: "Central London Sessions",
+            description: "Professional tutoring sessions in premium central London locations.",
+            keyFeatures: ["Central locations", "Professional environment", "Flexible timing", "Transport accessibility"],
+            level: "All Levels",
+            pricing: { from: "£140", to: "£320", currency: "GBP" }
+          },
+          {
+            name: "Group Tutoring Sessions",
+            description: "Small group sessions combining personalised attention with peer learning benefits.",
+            keyFeatures: ["Small groups (2-4 students)", "Peer interaction", "Collaborative learning", "Cost-effective"],
+            level: "All Levels",
+            pricing: { from: "£80", to: "£200", currency: "GBP" }
           }
         ]
       }
