@@ -183,7 +183,7 @@ We offer a unique flexible tiered tutoring system, so you can choose the level o
 
 Whether your child needs light-touch guidance or elite-level preparation, our model allows you to choose the level of support that fits your child’s current needs - and your budget - with the ability to adjust as goals and circumstances change.
 
-**Specialist tutoring begins at just £47.50 per hour.** Unlike many other providers, **we don’t charge registration or administrative fees**—you pay solely for your time with a carefully matched, dedicated tutor.
+**Specialist tutoring begins at just £45 per hour.** Unlike many other providers, **we don’t charge registration or administrative fees**—you pay solely for your time with a carefully matched, dedicated tutor.
 
 ### **4\. Insightful Progress Reports & Seamless Scheduling**
 
@@ -598,7 +598,7 @@ A fun, practical, and confidence-building introduction to navigating British lif
 - **Tier 2: Qualified teachers with 5+ years of classroom experience; often Heads of Department**
 - **Tier 3: Graduate subject specialists; ideal for mentoring, confidence building, and foundational support**
 
-**Specialist tutoring begins at just £47.50 per hour.** Unlike many other providers, **we don’t charge registration or administrative fees**—you pay solely for your time with a carefully matched, dedicated tutor.
+**Specialist tutoring begins at just £45 per hour.** Unlike many other providers, **we don’t charge registration or administrative fees**—you pay solely for your time with a carefully matched, dedicated tutor.
 
 ### **6\. Which tutor tier is right for me or my child?**
 
@@ -699,7 +699,7 @@ A fun, practical, and confidence-building introduction to navigating British lif
 
 ### **19\. How much does tutoring cost?**
 
-**Specialist tutoring begins at just £47.50 per hour.** Unlike many other providers, **we don’t charge registration or administrative fees**—you pay solely for your time with a carefully matched, dedicated tutor. **For a bespoke quote, please complete our enquiry form.**
+**Specialist tutoring begins at just £45 per hour.** Unlike many other providers, **we don’t charge registration or administrative fees**—you pay solely for your time with a carefully matched, dedicated tutor. **For a bespoke quote, please complete our enquiry form.**
 
 ### **20\. How do we pay and when?**
 

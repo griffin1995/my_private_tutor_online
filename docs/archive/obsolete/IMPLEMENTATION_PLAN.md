@@ -151,7 +151,7 @@ Based on client feedback from Beth (feedback.md dated July 30th, 2025), this pla
 ### How It Works Page Updates:
 - New consultation copy
 - Updated tutor matching description
-- Revised pricing (£45/hour, not £47.50)
+- Revised pricing (£45/hour, not £45)
 - 3-tier tutor profile examples needed
 
 ---

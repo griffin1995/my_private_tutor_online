@@ -1,0 +1,588 @@
+/**
+ * CONTEXT7 SOURCE: /kajabi/pine - CSS custom properties theming system for comprehensive theme variants
+ * THEMING ARCHITECTURE: Official Pine design system CSS custom property patterns for multi-theme support
+ * IMPLEMENTATION REASON: CSS custom properties enable smooth theme transitions with system preference detection
+ * 
+ * FAQ Premium Theme Variants - Final Phase 3 Task
+ * Features comprehensive theming system with multiple variants:
+ * - Royal Light Theme (Default): Navy primary with gold accents
+ * - Royal Dark Theme: Deep navy backgrounds with gold highlights  
+ * - High Contrast Accessibility: Maximum contrast ratios for visual accessibility
+ * - Seasonal/Promotional Themes: Optional Christmas and academic year themes
+ * 
+ * CONTEXT7 SOURCE: /context7/tailwindcss - Dark mode theming CSS custom properties with system preference detection
+ * THEME SWITCHING: Official Tailwind CSS dark mode patterns with custom data attribute support
+ */
+
+/* ===================================================================
+   ROOT THEME VARIABLES - Core Design System Foundation
+   =================================================================== */
+
+:root {
+  /* CONTEXT7 SOURCE: /kajabi/pine - Core design token CSS custom properties structure */
+  /* CORE DESIGN TOKENS: Foundational design system variables for consistency */
+  
+  /* Color System - Royal Brand Palette */
+  --faq-color-navy-50: #f8fafc;
+  --faq-color-navy-100: #f1f5f9;
+  --faq-color-navy-200: #e2e8f0;
+  --faq-color-navy-300: #cbd5e1;
+  --faq-color-navy-400: #94a3b8;
+  --faq-color-navy-500: #64748b;
+  --faq-color-navy-600: #475569;
+  --faq-color-navy-700: #334155;
+  --faq-color-navy-800: #1e293b;
+  --faq-color-navy-900: #0f172a;
+  --faq-color-navy-950: #020617;
+
+  /* Gold Accent System */
+  --faq-color-gold-50: #fefce8;
+  --faq-color-gold-100: #fef9c3;
+  --faq-color-gold-200: #fef08a;
+  --faq-color-gold-300: #fde047;
+  --faq-color-gold-400: #facc15;
+  --faq-color-gold-500: #eab308;
+  --faq-color-gold-600: #ca8a04;
+  --faq-color-gold-700: #a16207;
+  --faq-color-gold-800: #854d0e;
+  --faq-color-gold-900: #713f12;
+  --faq-color-gold-950: #422006;
+
+  /* Semantic Color System */
+  --faq-color-success: #10b981;
+  --faq-color-warning: #f59e0b;
+  --faq-color-error: #ef4444;
+  --faq-color-info: #3b82f6;
+
+  /* Typography Scale */
+  --faq-font-size-xs: 0.75rem;
+  --faq-font-size-sm: 0.875rem;
+  --faq-font-size-base: 1rem;
+  --faq-font-size-lg: 1.125rem;
+  --faq-font-size-xl: 1.25rem;
+  --faq-font-size-2xl: 1.5rem;
+  --faq-font-size-3xl: 1.875rem;
+  --faq-font-size-4xl: 2.25rem;
+
+  /* Spacing System */
+  --faq-spacing-xs: 0.25rem;
+  --faq-spacing-sm: 0.5rem;
+  --faq-spacing-md: 1rem;
+  --faq-spacing-lg: 1.5rem;
+  --faq-spacing-xl: 2rem;
+  --faq-spacing-2xl: 3rem;
+  --faq-spacing-3xl: 4rem;
+
+  /* Border Radius System */
+  --faq-radius-sm: 0.25rem;
+  --faq-radius-md: 0.5rem;
+  --faq-radius-lg: 0.75rem;
+  --faq-radius-xl: 1rem;
+  --faq-radius-2xl: 1.5rem;
+  --faq-radius-full: 9999px;
+
+  /* Shadow System */
+  --faq-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --faq-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --faq-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --faq-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Animation System */
+  --faq-transition-duration: 300ms;
+  --faq-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --faq-transition-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ===================================================================
+   ROYAL LIGHT THEME (Default) - Premium Professional Appearance
+   =================================================================== */
+
+:root,
+[data-faq-theme="light"] {
+  /* CONTEXT7 SOURCE: /kajabi/pine - Default light theme semantic color mappings */
+  /* ROYAL LIGHT THEME: Navy primary with gold accents, white backgrounds */
+  
+  /* Background Colors */
+  --faq-bg-primary: #ffffff;
+  --faq-bg-secondary: var(--faq-color-navy-50);
+  --faq-bg-tertiary: var(--faq-color-navy-100);
+  --faq-bg-accent: var(--faq-color-gold-50);
+  --faq-bg-muted: var(--faq-color-navy-100);
+
+  /* Text Colors */
+  --faq-text-primary: var(--faq-color-navy-900);
+  --faq-text-secondary: var(--faq-color-navy-700);
+  --faq-text-muted: var(--faq-color-navy-500);
+  --faq-text-accent: var(--faq-color-gold-600);
+  --faq-text-inverse: #ffffff;
+
+  /* Border Colors */
+  --faq-border-primary: var(--faq-color-navy-200);
+  --faq-border-secondary: var(--faq-color-navy-300);
+  --faq-border-accent: var(--faq-color-gold-300);
+  --faq-border-focus: var(--faq-color-gold-500);
+
+  /* Interactive States */
+  --faq-hover-bg: var(--faq-color-navy-50);
+  --faq-active-bg: var(--faq-color-navy-100);
+  --faq-focus-ring: var(--faq-color-gold-400);
+
+  /* Component-Specific Colors */
+  --faq-card-bg: #ffffff;
+  --faq-card-border: var(--faq-color-navy-200);
+  --faq-card-shadow: var(--faq-shadow-lg);
+  
+  --faq-button-primary-bg: var(--faq-color-navy-900);
+  --faq-button-primary-text: #ffffff;
+  --faq-button-primary-hover: var(--faq-color-navy-800);
+  
+  --faq-button-secondary-bg: var(--faq-color-gold-500);
+  --faq-button-secondary-text: #ffffff;
+  --faq-button-secondary-hover: var(--faq-color-gold-600);
+
+  /* Glass Morphism Effects */
+  --faq-glass-bg: rgba(255, 255, 255, 0.9);
+  --faq-glass-border: rgba(15, 23, 42, 0.1);
+  --faq-glass-blur: blur(12px);
+
+  /* Status Colors */
+  --faq-status-success: var(--faq-color-success);
+  --faq-status-warning: var(--faq-color-warning);
+  --faq-status-error: var(--faq-color-error);
+  --faq-status-info: var(--faq-color-info);
+}
+
+/* ===================================================================
+   ROYAL DARK THEME - Sophisticated Dark Mode Implementation
+   =================================================================== */
+
+[data-faq-theme="dark"] {
+  /* CONTEXT7 SOURCE: /context7/tailwindcss - Dark mode theming patterns with system preference support */
+  /* ROYAL DARK THEME: Deep navy backgrounds with gold highlights for reduced eye strain */
+  
+  /* Background Colors */
+  --faq-bg-primary: var(--faq-color-navy-950);
+  --faq-bg-secondary: var(--faq-color-navy-900);
+  --faq-bg-tertiary: var(--faq-color-navy-800);
+  --faq-bg-accent: var(--faq-color-gold-950);
+  --faq-bg-muted: var(--faq-color-navy-800);
+
+  /* Text Colors */
+  --faq-text-primary: var(--faq-color-navy-50);
+  --faq-text-secondary: var(--faq-color-navy-200);
+  --faq-text-muted: var(--faq-color-navy-400);
+  --faq-text-accent: var(--faq-color-gold-400);
+  --faq-text-inverse: var(--faq-color-navy-900);
+
+  /* Border Colors */
+  --faq-border-primary: var(--faq-color-navy-700);
+  --faq-border-secondary: var(--faq-color-navy-600);
+  --faq-border-accent: var(--faq-color-gold-600);
+  --faq-border-focus: var(--faq-color-gold-400);
+
+  /* Interactive States */
+  --faq-hover-bg: var(--faq-color-navy-800);
+  --faq-active-bg: var(--faq-color-navy-700);
+  --faq-focus-ring: var(--faq-color-gold-500);
+
+  /* Component-Specific Colors */
+  --faq-card-bg: var(--faq-color-navy-900);
+  --faq-card-border: var(--faq-color-navy-700);
+  --faq-card-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+  
+  --faq-button-primary-bg: var(--faq-color-gold-500);
+  --faq-button-primary-text: var(--faq-color-navy-900);
+  --faq-button-primary-hover: var(--faq-color-gold-400);
+  
+  --faq-button-secondary-bg: var(--faq-color-navy-700);
+  --faq-button-secondary-text: var(--faq-color-navy-50);
+  --faq-button-secondary-hover: var(--faq-color-navy-600);
+
+  /* Glass Morphism Effects */
+  --faq-glass-bg: rgba(15, 23, 42, 0.9);
+  --faq-glass-border: rgba(234, 179, 8, 0.2);
+  --faq-glass-blur: blur(16px);
+
+  /* Status Colors - Adjusted for dark mode */
+  --faq-status-success: #34d399;
+  --faq-status-warning: #fbbf24;
+  --faq-status-error: #f87171;
+  --faq-status-info: #60a5fa;
+}
+
+/* ===================================================================
+   HIGH CONTRAST ACCESSIBILITY MODE - WCAG 2.1 AAA Compliance
+   =================================================================== */
+
+[data-faq-theme="high-contrast"] {
+  /* CONTEXT7 SOURCE: /kajabi/pine - High contrast accessibility patterns for visual accessibility */
+  /* HIGH CONTRAST ACCESSIBILITY: Maximum contrast ratios for visual impairment support */
+  
+  /* Background Colors */
+  --faq-bg-primary: #ffffff;
+  --faq-bg-secondary: #f0f0f0;
+  --faq-bg-tertiary: #e0e0e0;
+  --faq-bg-accent: #ffff00;
+  --faq-bg-muted: #f5f5f5;
+
+  /* Text Colors - Maximum Contrast */
+  --faq-text-primary: #000000;
+  --faq-text-secondary: #000000;
+  --faq-text-muted: #333333;
+  --faq-text-accent: #000000;
+  --faq-text-inverse: #ffffff;
+
+  /* Border Colors - High Contrast */
+  --faq-border-primary: #000000;
+  --faq-border-secondary: #333333;
+  --faq-border-accent: #ffff00;
+  --faq-border-focus: #ff0000;
+
+  /* Interactive States */
+  --faq-hover-bg: #ffff00;
+  --faq-active-bg: #ff0000;
+  --faq-focus-ring: #ff0000;
+
+  /* Component-Specific Colors */
+  --faq-card-bg: #ffffff;
+  --faq-card-border: #000000;
+  --faq-card-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  
+  --faq-button-primary-bg: #000000;
+  --faq-button-primary-text: #ffffff;
+  --faq-button-primary-hover: #333333;
+  
+  --faq-button-secondary-bg: #ffff00;
+  --faq-button-secondary-text: #000000;
+  --faq-button-secondary-hover: #cccc00;
+
+  /* Glass Morphism Effects - Disabled for accessibility */
+  --faq-glass-bg: #ffffff;
+  --faq-glass-border: #000000;
+  --faq-glass-blur: none;
+
+  /* Status Colors - High Contrast */
+  --faq-status-success: #008000;
+  --faq-status-warning: #ff8c00;
+  --faq-status-error: #ff0000;
+  --faq-status-info: #0000ff;
+
+  /* Enhanced Focus Indicators */
+  --faq-focus-width: 3px;
+  --faq-focus-offset: 2px;
+}
+
+/* ===================================================================
+   SEASONAL/PROMOTIONAL THEMES - Optional Theme Variants
+   =================================================================== */
+
+/* Christmas Holiday Theme */
+[data-faq-theme="christmas"] {
+  /* CONTEXT7 SOURCE: /kajabi/pine - Seasonal theme variant patterns for promotional periods */
+  /* CHRISTMAS THEME: Festive red and green color scheme with gold accents */
+  
+  --faq-bg-primary: #ffffff;
+  --faq-bg-secondary: #fef2f2;
+  --faq-bg-tertiary: #f0fdf4;
+  --faq-bg-accent: #fef3c7;
+  
+  --faq-text-primary: #1f2937;
+  --faq-text-secondary: #374151;
+  --faq-text-muted: #6b7280;
+  --faq-text-accent: #dc2626;
+  
+  --faq-border-primary: #fca5a5;
+  --faq-border-secondary: #86efac;
+  --faq-border-accent: #fbbf24;
+  
+  --faq-button-primary-bg: #dc2626;
+  --faq-button-secondary-bg: #16a34a;
+  
+  --faq-status-success: #16a34a;
+  --faq-status-warning: #d97706;
+  --faq-status-error: #dc2626;
+  --faq-status-info: #2563eb;
+}
+
+/* Academic Year Theme */
+[data-faq-theme="academic"] {
+  /* CONTEXT7 SOURCE: /kajabi/pine - Academic theme variant for educational contexts */
+  /* ACADEMIC THEME: Professional blue and cream color scheme for educational periods */
+  
+  --faq-bg-primary: #fefce8;
+  --faq-bg-secondary: #f0f9ff;
+  --faq-bg-tertiary: #e0f2fe;
+  --faq-bg-accent: #fff7ed;
+  
+  --faq-text-primary: #0c4a6e;
+  --faq-text-secondary: #075985;
+  --faq-text-muted: #0369a1;
+  --faq-text-accent: #ea580c;
+  
+  --faq-border-primary: #bae6fd;
+  --faq-border-secondary: #7dd3fc;
+  --faq-border-accent: #fed7aa;
+  
+  --faq-button-primary-bg: #0ea5e9;
+  --faq-button-secondary-bg: #ea580c;
+}
+
+/* ===================================================================
+   THEME TRANSITION SYSTEM - Smooth Animation Support
+   =================================================================== */
+
+/* CONTEXT7 SOURCE: /kajabi/pine - Smooth theme transition patterns with animation coordination */
+/* THEME TRANSITIONS: 300ms transitions for all theme changes with performance optimization */
+
+* {
+  transition: 
+    background-color var(--faq-transition-duration) var(--faq-transition-timing),
+    border-color var(--faq-transition-duration) var(--faq-transition-timing),
+    color var(--faq-transition-duration) var(--faq-transition-timing),
+    box-shadow var(--faq-transition-duration) var(--faq-transition-timing),
+    backdrop-filter var(--faq-transition-duration) var(--faq-transition-timing);
+}
+
+/* Disable transitions during theme switching to prevent visual glitches */
+.faq-theme-transitioning * {
+  transition: none !important;
+}
+
+/* ===================================================================
+   SYSTEM PREFERENCE DETECTION - Automatic Theme Selection
+   =================================================================== */
+
+/* CONTEXT7 SOURCE: /context7/tailwindcss - System preference detection patterns for automatic theme selection */
+/* SYSTEM INTEGRATION: Respect user's OS theme preference with automatic detection */
+
+/* Default to system preference when no explicit theme is set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-faq-theme]) {
+    /* Apply dark theme variables when system prefers dark mode */
+    --faq-bg-primary: var(--faq-color-navy-950);
+    --faq-bg-secondary: var(--faq-color-navy-900);
+    --faq-bg-tertiary: var(--faq-color-navy-800);
+    --faq-bg-accent: var(--faq-color-gold-950);
+    --faq-bg-muted: var(--faq-color-navy-800);
+
+    --faq-text-primary: var(--faq-color-navy-50);
+    --faq-text-secondary: var(--faq-color-navy-200);
+    --faq-text-muted: var(--faq-color-navy-400);
+    --faq-text-accent: var(--faq-color-gold-400);
+    --faq-text-inverse: var(--faq-color-navy-900);
+
+    --faq-border-primary: var(--faq-color-navy-700);
+    --faq-border-secondary: var(--faq-color-navy-600);
+    --faq-border-accent: var(--faq-color-gold-600);
+    --faq-border-focus: var(--faq-color-gold-400);
+
+    --faq-hover-bg: var(--faq-color-navy-800);
+    --faq-active-bg: var(--faq-color-navy-700);
+    --faq-focus-ring: var(--faq-color-gold-500);
+
+    --faq-card-bg: var(--faq-color-navy-900);
+    --faq-card-border: var(--faq-color-navy-700);
+    --faq-card-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+
+    --faq-button-primary-bg: var(--faq-color-gold-500);
+    --faq-button-primary-text: var(--faq-color-navy-900);
+    --faq-button-primary-hover: var(--faq-color-gold-400);
+
+    --faq-button-secondary-bg: var(--faq-color-navy-700);
+    --faq-button-secondary-text: var(--faq-color-navy-50);
+    --faq-button-secondary-hover: var(--faq-color-navy-600);
+
+    --faq-glass-bg: rgba(15, 23, 42, 0.9);
+    --faq-glass-border: rgba(234, 179, 8, 0.2);
+    --faq-glass-blur: blur(16px);
+
+    --faq-status-success: #34d399;
+    --faq-status-warning: #fbbf24;
+    --faq-status-error: #f87171;
+    --faq-status-info: #60a5fa;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  --faq-transition-duration: 0ms;
+  --faq-glass-blur: none;
+}
+
+/* High contrast media query support */
+@media (prefers-contrast: high) {
+  :root:not([data-faq-theme="high-contrast"]) {
+    /* Apply high contrast adjustments */
+    --faq-border-primary: var(--faq-text-primary);
+    --faq-card-border: var(--faq-text-primary);
+    --faq-focus-ring: #ff0000;
+    --faq-focus-width: 3px;
+  }
+}
+
+/* ===================================================================
+   FAQ COMPONENT INTEGRATION - Apply Theme Variables
+   =================================================================== */
+
+/* FAQ Container Theming */
+.faq-container {
+  background-color: var(--faq-bg-primary);
+  color: var(--faq-text-primary);
+  transition: all var(--faq-transition-duration) var(--faq-transition-timing);
+}
+
+/* FAQ Card Theming */
+.faq-card {
+  background-color: var(--faq-card-bg);
+  border: 1px solid var(--faq-card-border);
+  box-shadow: var(--faq-card-shadow);
+  color: var(--faq-text-primary);
+}
+
+.faq-card:hover {
+  background-color: var(--faq-hover-bg);
+  transform: translateY(-2px);
+}
+
+/* FAQ Button Theming */
+.faq-button-primary {
+  background-color: var(--faq-button-primary-bg);
+  color: var(--faq-button-primary-text);
+  border: none;
+}
+
+.faq-button-primary:hover {
+  background-color: var(--faq-button-primary-hover);
+}
+
+.faq-button-secondary {
+  background-color: var(--faq-button-secondary-bg);
+  color: var(--faq-button-secondary-text);
+  border: 1px solid var(--faq-border-accent);
+}
+
+.faq-button-secondary:hover {
+  background-color: var(--faq-button-secondary-hover);
+}
+
+/* FAQ Search Theming */
+.faq-search-input {
+  background-color: var(--faq-bg-primary);
+  border: 2px solid var(--faq-border-primary);
+  color: var(--faq-text-primary);
+}
+
+.faq-search-input:focus {
+  border-color: var(--faq-border-focus);
+  box-shadow: 0 0 0 3px var(--faq-focus-ring);
+}
+
+/* FAQ Glass Morphism Effects */
+.faq-glass {
+  background: var(--faq-glass-bg);
+  border: 1px solid var(--faq-glass-border);
+  backdrop-filter: var(--faq-glass-blur);
+  -webkit-backdrop-filter: var(--faq-glass-blur);
+}
+
+/* FAQ Status Indicators */
+.faq-status-success { color: var(--faq-status-success); }
+.faq-status-warning { color: var(--faq-status-warning); }
+.faq-status-error { color: var(--faq-status-error); }
+.faq-status-info { color: var(--faq-status-info); }
+
+/* FAQ Typography Theming */
+.faq-heading { color: var(--faq-text-primary); }
+.faq-subheading { color: var(--faq-text-secondary); }
+.faq-body-text { color: var(--faq-text-muted); }
+.faq-accent-text { color: var(--faq-text-accent); }
+
+/* FAQ Interactive Elements */
+.faq-link {
+  color: var(--faq-text-accent);
+  text-decoration-color: var(--faq-border-accent);
+}
+
+.faq-link:hover {
+  color: var(--faq-button-primary-bg);
+  text-decoration-color: var(--faq-button-primary-bg);
+}
+
+/* FAQ Focus Management */
+.faq-focusable:focus {
+  outline: var(--faq-focus-width, 2px) solid var(--faq-focus-ring);
+  outline-offset: var(--faq-focus-offset, 1px);
+}
+
+/* High Contrast Mode Enhancements */
+[data-faq-theme="high-contrast"] .faq-focusable:focus {
+  outline-width: 3px;
+  outline-offset: 2px;
+  background-color: var(--faq-hover-bg);
+}
+
+/* ===================================================================
+   PRINT STYLES - Theme-Agnostic Print Optimization
+   =================================================================== */
+
+@media print {
+  /* CONTEXT7 SOURCE: /kajabi/pine - Print optimization patterns for theme-agnostic output */
+  /* PRINT OPTIMIZATION: Theme-agnostic print styles for professional documentation */
+  
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  .faq-card {
+    border: 1px solid black !important;
+    page-break-inside: avoid;
+  }
+  
+  .faq-glass {
+    background: white !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Hide interactive elements in print */
+  .faq-theme-switcher,
+  .faq-interactive-only {
+    display: none !important;
+  }
+}
+
+/* ===================================================================
+   PERFORMANCE OPTIMIZATION - Theme Loading Strategy
+   =================================================================== */
+
+/* CONTEXT7 SOURCE: /kajabi/pine - Performance optimization patterns for theme loading */
+/* PERFORMANCE OPTIMIZATION: Optimize theme loading and reduce layout shifts */
+
+/* Prevent flash of unstyled content during theme loading */
+.faq-theme-loading {
+  visibility: hidden;
+}
+
+.faq-theme-loaded {
+  visibility: visible;
+}
+
+/* GPU acceleration for smooth transitions */
+.faq-card,
+.faq-button,
+.faq-glass {
+  will-change: transform, background-color, box-shadow;
+}
+
+/* Contain style recalculations */
+.faq-theme-container {
+  contain: style layout paint;
+}

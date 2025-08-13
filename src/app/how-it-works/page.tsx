@@ -246,6 +246,7 @@ export default function HowItWorksPage() {
       {/* NEWSLETTER REMOVAL REASON: Official React documentation demonstrates prop-based conditional rendering to customize component display */}
       <PageLayout 
         background="white"
+        containerSize="full"
         footerProps={{
           showNewsletter: false
         }}
@@ -415,13 +416,13 @@ export default function HowItWorksPage() {
             </div>
             
             <h2 className="text-4xl lg:text-5xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
-              Our Proven 4-Step Process
+              How It Works
             </h2>
             
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6"></div>
             
             <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
-              Discover the sophisticated methodology that has guided thousands of students to academic excellence over 15 years
+              Our bespoke consultation and pairing process ensures an exceptional fit — and seamless support throughout the entire journey.
             </p>
           </div>
 
@@ -636,7 +637,7 @@ export default function HowItWorksPage() {
                 From essential support to premium elite guidance
               </p>
               <p className="text-lg text-slate-600 text-center group-hover:text-slate-500 transition-colors duration-300">
-                All starting at just <span className="font-bold text-amber-600 bg-amber-100/50 px-3 py-2 rounded-lg shadow-sm border border-amber-200/30">£47.50 per hour</span>
+                All starting at just <span className="font-bold text-amber-600 bg-amber-100/50 px-3 py-2 rounded-lg shadow-sm border border-amber-200/30">£45 per hour</span>
               </p>
               
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium accent lines with gradient utilities */}
@@ -918,10 +919,10 @@ export default function HowItWorksPage() {
           <div className="text-center mt-12">
             <div className="rounded-2xl p-8 max-w-2xl mx-auto">
               <p className="text-lg text-slate-700 mb-6">
-                Specialist tutoring begins at just <span className="font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">£47.50 per hour</span>
+                Bespoke 1-2-1 tutoring starts from just <span className="font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">£45 per hour</span>
               </p>
               <p className="text-slate-600">
-                Unlike many other providers, we don't charge registration or administrative fees
+                Unlike many other providers, we don&apos;t charge registration, placement or administrative fees.
               </p>
             </div>
           </div>

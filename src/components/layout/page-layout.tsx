@@ -67,7 +67,7 @@ export function PageLayout({
   showFooter = true,
   headerProps,
   footerProps,
-  containerSize = 'xl',
+  containerSize = 'full',
   verticalSpacing = 'lg'
 }: PageLayoutProps) {
 

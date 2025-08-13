@@ -170,10 +170,14 @@ export function EthosSection({
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <blockquote className="text-2xl font-serif text-primary-800 italic text-center leading-relaxed">
-                "{quote.text}"
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - Safe object property access for React rendering */}
+                {/* SAFE RENDERING: Ensure quote properties are strings before rendering */}
+                "{typeof quote === 'object' && quote && 'text' in quote ? quote.text : String(quote || '')}"
               </blockquote>
               <p className="text-center text-primary-600 mt-6 font-medium">
-                — {quote.author}, {quote.role}
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - Safe object rendering with fallback values */}
+                {/* DEFENSIVE RENDERING: Handle potential object structure mismatches */}
+                — {typeof quote === 'object' && quote && 'author' in quote ? quote.author : 'Unknown'}, {typeof quote === 'object' && quote && 'role' in quote ? quote.role : 'Unknown'}
               </p>
             </m.div>
           )}

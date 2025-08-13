@@ -1,0 +1,114 @@
+{
+  "Common": {
+    "loading": "加载中...",
+    "error": "发生错误",
+    "search": "搜索",
+    "cancel": "取消",
+    "save": "保存",
+    "edit": "编辑",
+    "delete": "删除",
+    "close": "关闭",
+    "back": "返回",
+    "next": "下一个",
+    "previous": "上一个",
+    "submit": "提交",
+    "reset": "重置"
+  },
+  "Navigation": {
+    "home": "首页",
+    "about": "关于我们",
+    "services": "服务",
+    "faq": "常见问题",
+    "contact": "联系我们",
+    "menu": "菜单",
+    "closeMenu": "关闭菜单",
+    "skipToContent": "跳转到主要内容"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "选择语言",
+    "currentLanguage": "当前语言",
+    "switchTo": "切换到{language}",
+    "languages": "语言"
+  },
+  "FAQ": {
+    "title": "常见问题",
+    "subtitle": "学术之路的专业指导",
+    "description": "查找有关我们优质辅导服务的常见问题答案，从录取支持到个性化学习计划。",
+    "searchPlaceholder": "搜索常见问题...",
+    "searchResults": "搜索结果",
+    "noResults": "没有找到关于\"{query}\"的结果",
+    "noResultsDescription": "请尝试调整您的搜索关键词或浏览下面的分类。",
+    "categories": "分类",
+    "quickSearch": "快速搜索",
+    "backToTop": "回到顶部",
+    "printFAQ": "打印常见问题",
+    "contactUs": "联系我们",
+    "showAll": "显示所有问题",
+    "hideAll": "隐藏所有问题",
+    "readMore": "阅读更多",
+    "readLess": "收起",
+    "lastUpdated": "最后更新：{date}",
+    "helpfulQuestion": "这对您有帮助吗？",
+    "yes": "是",
+    "no": "否",
+    "thankYou": "感谢您的反馈！",
+    "relatedQuestions": "相关问题",
+    "popularQuestions": "热门问题",
+    "recentlyUpdated": "最近更新"
+  },
+  "FAQCategories": {
+    "general": "一般信息",
+    "generalDescription": "关于我们服务和方法的基本信息",
+    "tutoring": "辅导服务",
+    "tutoringDescription": "关于我们辅导计划和方法的问题",
+    "admissions": "录取支持",
+    "admissionsDescription": "大学和学校录取指导",
+    "pricing": "价格和套餐",
+    "pricingDescription": "关于我们费用和服务套餐的信息",
+    "technical": "技术支持",
+    "technicalDescription": "我们在线平台和技术问题的帮助",
+    "booking": "预订和调度",
+    "bookingDescription": "如何预订课程和管理您的时间表"
+  },
+  "FAQQuestions": {
+    "whatIsTutoring": "你们的辅导与其他机构有什么不同？",
+    "whatIsTutoringAnswer": "我们的辅导以皇室推荐、15年卓越成绩和个性化方法而著称。我们将学生与专家教育者匹配，这些教育者专门针对他们的具体需求，无论是牛津剑桥准备、11+支持还是A-Level优秀成绩。",
+    
+    "howBookSession": "如何预订辅导课程？",
+    "howBookSessionAnswer": "通过我们的在线平台预订很简单。您可以选择您偏好的导师，选择可用的时间段，并即时预订。我们还提供免费咨询，以讨论您的具体要求。",
+    
+    "whatSubjects": "你们涵盖哪些科目？",
+    "whatSubjectsAnswer": "我们涵盖所有主要学术科目，包括数学、英语、科学（生物、化学、物理）、语言、历史、地理，以及经济学和心理学等专业领域。",
+    
+    "onlineInPerson": "你们提供在线和面对面辅导吗？",
+    "onlineInPersonAnswer": "是的，我们通过先进的虚拟教室平台提供灵活的在线辅导，并为伦敦及周边地区的客户提供面对面辅导。我们的在线课程同样有效。",
+    
+    "tutorQualifications": "你们导师的资质如何？",
+    "tutorQualificationsAnswer": "我们所有的导师都拥有知名大学的相关学位，许多人还有研究生资格。他们经过严格筛选，包括学术验证和背景调查。",
+    
+    "pricingStructure": "你们的定价结构是怎样的？",
+    "pricingStructureAnswer": "我们的定价反映了我们服务的优质质量，标准辅导从每小时60英镑开始。我们为常规课程提供套餐优惠。请联系我们获取个性化报价。",
+    
+    "cancellationPolicy": "你们的取消政策是什么？",
+    "cancellationPolicyAnswer": "我们要求提前24小时通知取消以避免费用。对于因真正紧急情况而临时取消的情况，我们会根据具体情况处理。",
+    
+    "progressTracking": "你们如何跟踪学生进度？",
+    "progressTrackingAnswer": "我们在每次课程后提供详细的进度报告，包括涵盖的领域、识别的优势和改进建议。家长会收到定期更新。",
+    
+    "groupSessions": "你们提供小组辅导课程吗？",
+    "groupSessionsAnswer": "是的，我们提供小组课程（2-4名学生），每名学生的费用会有所降低。这对考试准备特别有效。",
+    
+    "emergencySupport": "我可以获得临时辅导支持吗？",
+    "emergencySupportAnswer": "根据导师可用性，我们可以安排紧急辅导课程。我们理解学术需求可能会意外出现，特别是在考试期间。"
+  },
+  "ContactSection": {
+    "title": "仍需要帮助？",
+    "description": "找不到您要寻找的答案？我们的专家团队随时为您的学术之路提供个性化指导。",
+    "getInTouch": "联系我们",
+    "phone": "电话",
+    "email": "邮箱",
+    "consultationButton": "预约免费咨询",
+    "consultationDescription": "安排15分钟的免费咨询，讨论您的具体需求。",
+    "responseTime": "我们通常在工作时间内2小时内回复。"
+  }
+}

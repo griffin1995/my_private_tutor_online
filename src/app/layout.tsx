@@ -220,13 +220,18 @@ export const metadata: Metadata = {
   // SEO ENHANCEMENT: Additional metadata for comprehensive service categorization
   classification: "Educational Services",
   referrer: "origin-when-cross-origin",
+  applicationName: "My Private Tutor Online",
+  generator: "Next.js 15",
+};
+
+// CONTEXT7 SOURCE: /vercel/next.js - Viewport configuration for Next.js 15+ compatibility
+// VIEWPORT EXPORT REASON: Next.js 15+ requires colorScheme and themeColor in viewport export instead of metadata
+export const viewport = {
   colorScheme: "light dark",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#0f172a" },
     { media: "(prefers-color-scheme: dark)", color: "#0f172a" }
   ],
-  applicationName: "My Private Tutor Online",
-  generator: "Next.js 15",
 };
 
 /**

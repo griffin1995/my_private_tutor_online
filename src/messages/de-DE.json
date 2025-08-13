@@ -1,0 +1,114 @@
+{
+  "Common": {
+    "loading": "Wird geladen...",
+    "error": "Ein Fehler ist aufgetreten",
+    "search": "Suchen",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "submit": "Absenden",
+    "reset": "Zurücksetzen"
+  },
+  "Navigation": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "services": "Dienstleistungen",
+    "faq": "Häufig gestellte Fragen",
+    "contact": "Kontakt",
+    "menu": "Menü",
+    "closeMenu": "Menü schließen",
+    "skipToContent": "Zum Hauptinhalt springen"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Sprache auswählen",
+    "currentLanguage": "Aktuelle Sprache",
+    "switchTo": "Wechseln zu {language}",
+    "languages": "Sprachen"
+  },
+  "FAQ": {
+    "title": "Häufig gestellte Fragen",
+    "subtitle": "Expertenberatung für Ihren akademischen Weg",
+    "description": "Finden Sie Antworten auf häufige Fragen zu unseren Premium-Nachhilfediensten, von Aufnahmeunterstützung bis hin zu personalisierten Lernprogrammen.",
+    "searchPlaceholder": "FAQ-Fragen durchsuchen...",
+    "searchResults": "Suchergebnisse",
+    "noResults": "Keine Ergebnisse gefunden für \"{query}\"",
+    "noResultsDescription": "Versuchen Sie, Ihre Suchbegriffe anzupassen oder durchsuchen Sie unsere Kategorien unten.",
+    "categories": "Kategorien",
+    "quickSearch": "Schnellsuche",
+    "backToTop": "Nach oben",
+    "printFAQ": "FAQ drucken",
+    "contactUs": "Kontaktieren Sie uns",
+    "showAll": "Alle Fragen anzeigen",
+    "hideAll": "Alle Fragen ausblenden",
+    "readMore": "Mehr lesen",
+    "readLess": "Weniger lesen",
+    "lastUpdated": "Zuletzt aktualisiert: {date}",
+    "helpfulQuestion": "War das hilfreich?",
+    "yes": "Ja",
+    "no": "Nein",
+    "thankYou": "Vielen Dank für Ihr Feedback!",
+    "relatedQuestions": "Verwandte Fragen",
+    "popularQuestions": "Beliebte Fragen",
+    "recentlyUpdated": "Kürzlich aktualisiert"
+  },
+  "FAQCategories": {
+    "general": "Allgemeine Informationen",
+    "generalDescription": "Grundlegende Informationen über unsere Dienstleistungen und Ansatz",
+    "tutoring": "Nachhilfedienste",
+    "tutoringDescription": "Fragen zu unseren Nachhilfeprogrammen und -methoden",
+    "admissions": "Zulassungsunterstützung",
+    "admissionsDescription": "Universitäts- und Schulzulassungsberatung",
+    "pricing": "Preise & Pakete",
+    "pricingDescription": "Informationen über unsere Gebühren und Servicepakete",
+    "technical": "Technischer Support",
+    "technicalDescription": "Hilfe bei unserer Online-Plattform und technischen Problemen",
+    "booking": "Buchung & Terminplanung",
+    "bookingDescription": "Wie Sie Sitzungen buchen und Ihren Zeitplan verwalten"
+  },
+  "FAQQuestions": {
+    "whatIsTutoring": "Was macht Ihre Nachhilfe anders als andere?",
+    "whatIsTutoringAnswer": "Unsere Nachhilfe zeichnet sich durch unsere königlichen Empfehlungen, 15 Jahre Exzellenz und einen personalisierten Ansatz aus. Wir verbinden Schüler mit Expertenlehrer, die sich auf ihre spezifischen Bedürfnisse spezialisieren, sei es Oxbridge-Vorbereitung, 11+-Unterstützung oder A-Level-Exzellenz.",
+    
+    "howBookSession": "Wie buche ich eine Nachhilfestunde?",
+    "howBookSessionAnswer": "Die Buchung ist einfach über unsere Online-Plattform. Sie können Ihren bevorzugten Tutor auswählen, verfügbare Zeitfenster wählen und sofort buchen. Wir bieten auch eine kostenlose Beratung an, um Ihre spezifischen Anforderungen zu besprechen.",
+    
+    "whatSubjects": "Welche Fächer decken Sie ab?",
+    "whatSubjectsAnswer": "Wir decken alle wichtigen akademischen Fächer ab, einschließlich Mathematik, Englisch, Naturwissenschaften (Biologie, Chemie, Physik), Sprachen, Geschichte, Geografie und spezialisierte Bereiche wie Wirtschaft und Psychologie.",
+    
+    "onlineInPerson": "Bieten Sie sowohl Online- als auch Präsenz-Nachhilfe an?",
+    "onlineInPersonAnswer": "Ja, wir bieten flexible Online-Nachhilfe über unsere erweiterte virtuelle Klassenraumplattform und Präsenz-Nachhilfe für Kunden in London und Umgebung an. Unsere Online-Sitzungen sind genauso effektiv.",
+    
+    "tutorQualifications": "Welche Qualifikationen haben Ihre Tutoren?",
+    "tutorQualificationsAnswer": "Alle unsere Tutoren haben relevante Abschlüsse von renommierten Universitäten, viele mit postgradualen Qualifikationen. Sie durchlaufen eine rigorose Überprüfung einschließlich akademischer Verifikation und Hintergrundprüfungen.",
+    
+    "pricingStructure": "Wie ist Ihre Preisstruktur aufgebaut?",
+    "pricingStructureAnswer": "Unsere Preisgestaltung spiegelt die Premium-Qualität unseres Services wider, beginnend ab £60 pro Stunde für Standard-Nachhilfe. Wir bieten Paketangebote für regelmäßige Sitzungen an. Kontaktieren Sie uns für ein personalisiertes Angebot.",
+    
+    "cancellationPolicy": "Wie lautet Ihre Stornierungsrichtlinie?",
+    "cancellationPolicyAnswer": "Wir benötigen 24 Stunden Vorlaufzeit für Stornierungen, um Gebühren zu vermeiden. Für kurzfristige Stornierungen aufgrund echter Notfälle handhaben wir diese von Fall zu Fall.",
+    
+    "progressTracking": "Wie verfolgen Sie den Fortschritt der Schüler?",
+    "progressTrackingAnswer": "Wir stellen detaillierte Fortschrittsberichte nach jeder Sitzung bereit, einschließlich abgedeckter Bereiche, identifizierter Stärken und Verbesserungsempfehlungen. Eltern erhalten regelmäßige Updates.",
+    
+    "groupSessions": "Bieten Sie Gruppennachhilfestunden an?",
+    "groupSessionsAnswer": "Ja, wir bieten kleine Gruppensitzungen (2-4 Schüler) zu reduzierten Preisen pro Schüler an. Diese funktionieren besonders gut für die Prüfungsvorbereitung.",
+    
+    "emergencySupport": "Kann ich kurzfristige Nachhilfeunterstützung erhalten?",
+    "emergencySupportAnswer": "Vorbehaltlich der Verfügbarkeit des Tutors können wir dringende Nachhilfestunden arrangieren. Wir verstehen, dass akademische Bedürfnisse unerwartet auftreten können, besonders während Prüfungszeiten."
+  },
+  "ContactSection": {
+    "title": "Brauchen Sie noch Hilfe?",
+    "description": "Können Sie die Antwort, die Sie suchen, nicht finden? Unser Expertenteam ist da, um mit personalisierter Beratung für Ihren akademischen Weg zu helfen.",
+    "getInTouch": "Kontakt aufnehmen",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "consultationButton": "Kostenlose Beratung buchen",
+    "consultationDescription": "Planen Sie eine kostenlose 15-minütige Beratung, um Ihre spezifischen Anforderungen zu besprechen.",
+    "responseTime": "Wir antworten normalerweise innerhalb von 2 Stunden während der Geschäftszeiten."
+  }
+}

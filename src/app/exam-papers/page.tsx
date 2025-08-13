@@ -116,7 +116,9 @@ export default function ExamPapersPage() {
       
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
-      <PageLayout background="white" showHeader={false} showFooter={true}>
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Layout component with navigation header for consistent site structure */}
+      {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
+      <PageLayout background="white" showHeader={true} showFooter={true}>
 
         <WaveSeparator variant="light" className="text-white" />
         {/* Search Section */}

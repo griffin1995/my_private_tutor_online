@@ -17,6 +17,27 @@ export {
   type PerformanceMetrics
 } from './cms-service'
 
+// PHASE 1 TASK 8: Export comprehensive CMS integration system
+export * from './testimonials-cms-manager'
+export * from './cms-validation'
+export * from './cms-performance'
+export * from './cms-analytics'
+
+// Configuration and types
+export * from '../../config/testimonials-cms.config'
+export * from '../../types/testimonials-cms.types'
+
+// Primary manager instances - import them first before using
+export { testimonialsCMSManager } from './testimonials-cms-manager'
+export { cmsPerformanceManager } from './cms-performance'
+export { cmsAnalyticsManager } from './cms-analytics'
+export { getTestimonialsCMSConfig } from '../../config/testimonials-cms.config'
+
+// Import for convenience exports
+import { testimonialsCMSManager } from './testimonials-cms-manager'
+import { cmsPerformanceManager } from './cms-performance'  
+import { cmsAnalyticsManager } from './cms-analytics'
+
 // Export all existing content management functions (LEGACY SUPPORT)
 export * from './cms-content'
 export * from './cms-images'
@@ -71,7 +92,25 @@ export const getCMSHealth = () => {
 }
 
 // Export version for cache busting
-export const CMS_VERSION = '2.0.0'
+export const CMS_VERSION = '2.1.0' // Updated for comprehensive CMS integration
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Export organization for complex APIs
+// Export testimonials CMS utilities as individual exports
+export { useTestimonialsCMS } from './testimonials-cms-manager'
+export { useCMSPerformance } from './cms-performance'
+export { useCMSAnalytics } from './cms-analytics'
+
+// Export additional configuration utilities (getTestimonialsCMSConfig already exported above)
+export { 
+  validateCMSConfig,
+  CMSConfigUtils
+} from '../../config/testimonials-cms.config'
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Convenience exports for common patterns  
+// NOTE: Using imported variables to avoid ReferenceError
+export const TestimonialsManager = testimonialsCMSManager
+export const PerformanceManager = cmsPerformanceManager  
+export const AnalyticsManager = cmsAnalyticsManager
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Default export patterns for primary service
 // Export service as default for clean imports

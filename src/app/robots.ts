@@ -42,7 +42,9 @@ export default function robots(): MetadataRoute.Robots {
           '/video-masterclasses/', // Educational content
           '/exam-papers/',        // Resources
           '/homeschooling/',      // Service offerings
-          '/faq/',               // Frequently asked questions
+          '/faq/',               // Frequently asked questions - enhanced SEO
+          '/faq/search/',        // FAQ search functionality
+          '/faq/*/',             // All FAQ category pages
           '/legal/',             // Legal pages - transparency
         ],
         // Protect private and administrative areas

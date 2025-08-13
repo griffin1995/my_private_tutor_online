@@ -305,7 +305,29 @@ export function ServicesCarousel({
                   // IMPLEMENTATION REASON: Official React documentation Section 20 demonstrates object[key] lookup with fallback values
                   // CMS DATA SOURCE: Using serviceImageMapping for direct service-to-image correlation, fallback to legacy image for compatibility
                   const imageKey = serviceImageMapping[service.title as keyof typeof serviceImageMapping] || 'student-teenager'
-                  const studentImage = studentImages[imageKey]
+                  
+                  // CONTEXT7 SOURCE: /context7/react_dev - Defensive programming with object property checks
+                  // ERROR HANDLING REASON: React error handling patterns recommend checking for undefined object properties before access
+                  const selectedImage = studentImages[imageKey]
+                  let studentImage
+                  if (!selectedImage) {
+                    console.warn(`ServicesCarousel: Image key '${imageKey}' not found in studentImages, using fallback`)
+                    // Try to get first available image as fallback
+                    const availableKeys = Object.keys(studentImages)
+                    if (availableKeys.length > 0) {
+                      studentImage = studentImages[availableKeys[0]]
+                    } else {
+                      // Final fallback if no images available
+                      studentImage = {
+                        src: '/images/placeholder.svg',
+                        alt: 'Placeholder image for service',
+                        width: 400,
+                        height: 300
+                      }
+                    }
+                  } else {
+                    studentImage = selectedImage
+                  }
                   
                   return (
                     <div key={index} className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 pb-4">

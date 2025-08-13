@@ -106,6 +106,7 @@ import {
   getMediaImages,
   getTutorImages,
   getVideoContent,
+  getTestimonialVideos,
   getMarketingAssets,
   getHeroImage,
   getIntroVideo,
@@ -663,6 +664,14 @@ export class CMSService {
    */
   public getVideoContent = cache(() => {
     return this.getContent('video-content', getVideoContent, {})
+  })
+
+  /**
+   * Get testimonial videos for video gallery component
+   * CMS DATA SOURCE: Using getTestimonialVideos for VideoTestimonials component
+   */
+  public getTestimonialVideos = cache(() => {
+    return this.getContent('testimonial-videos', getTestimonialVideos, [])
   })
 
   /**

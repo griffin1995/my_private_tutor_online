@@ -119,7 +119,7 @@ KEYWORD OPPORTUNITIES:
 
 - Copy after ‘How It Works’: ‘Our bespoke consultation and pairing process ensures an exceptional fit — and seamless support throughout the entire journey.’  
 - 02\. Expert Tutor Matching copy: ‘Elizabeth has personally worked alongside the majority of tutors during her international career. New educators join us almost exclusively through trusted recommendations from existing team members. She interviews each tutor personally and accepts less than 10% of candidates.’   
-- 3\. Tiered Tutoring Options. I’ve added a column with prices \- please can you include (also change £47.50/hour to £45/hour).   
+- 3\. Tiered Tutoring Options. I’ve added a column with prices \- please can you include (also change £45/hour to £45/hour).   
 - ‘Why Families Choose Our Approach’ section. 3rd tick point change to ‘Tutors have hundreds to thousands of hours teaching experience’. Final tick point change to ‘Remarkable results. Our tutees secure top marks year in, year out’  
 - Will ‘book consultation’ button lead to Calendly meeting booking option?   
 - Are you okay to add the three lines/sections of sample Tier 1, 2 and 3 tutors please? I am gathering photos of each of them and will send across as soon as I have all. 

@@ -1,0 +1,114 @@
+{
+  "Common": {
+    "loading": "Cargando...",
+    "error": "Ha ocurrido un error",
+    "search": "Buscar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "reset": "Restablecer"
+  },
+  "Navigation": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "services": "Servicios",
+    "faq": "Preguntas frecuentes",
+    "contact": "Contacto",
+    "menu": "Menú",
+    "closeMenu": "Cerrar menú",
+    "skipToContent": "Ir al contenido principal"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Seleccionar idioma",
+    "currentLanguage": "Idioma actual",
+    "switchTo": "Cambiar a {language}",
+    "languages": "Idiomas"
+  },
+  "FAQ": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Orientación Experta para tu Trayectoria Académica",
+    "description": "Encuentra respuestas a preguntas comunes sobre nuestros servicios premium de tutoría, desde apoyo en admisiones hasta programas de aprendizaje personalizados.",
+    "searchPlaceholder": "Buscar preguntas frecuentes...",
+    "searchResults": "Resultados de búsqueda",
+    "noResults": "No se encontraron resultados para \"{query}\"",
+    "noResultsDescription": "Intenta ajustar tus términos de búsqueda o navega por nuestras categorías a continuación.",
+    "categories": "Categorías",
+    "quickSearch": "Búsqueda rápida",
+    "backToTop": "Volver arriba",
+    "printFAQ": "Imprimir FAQ",
+    "contactUs": "Contáctanos",
+    "showAll": "Mostrar todas las preguntas",
+    "hideAll": "Ocultar todas las preguntas",
+    "readMore": "Leer más",
+    "readLess": "Leer menos",
+    "lastUpdated": "Última actualización: {date}",
+    "helpfulQuestion": "¿Te fue útil esto?",
+    "yes": "Sí",
+    "no": "No",
+    "thankYou": "¡Gracias por tu comentario!",
+    "relatedQuestions": "Preguntas relacionadas",
+    "popularQuestions": "Preguntas populares",
+    "recentlyUpdated": "Actualizadas recientemente"
+  },
+  "FAQCategories": {
+    "general": "Información general",
+    "generalDescription": "Información básica sobre nuestros servicios y enfoque",
+    "tutoring": "Servicios de tutoría",
+    "tutoringDescription": "Preguntas sobre nuestros programas y métodos de tutoría",
+    "admissions": "Apoyo en admisiones",
+    "admissionsDescription": "Orientación para admisiones universitarias y escolares",
+    "pricing": "Precios y paquetes",
+    "pricingDescription": "Información sobre nuestras tarifas y paquetes de servicios",
+    "technical": "Soporte técnico",
+    "technicalDescription": "Ayuda con nuestra plataforma online y problemas técnicos",
+    "booking": "Reservas y programación",
+    "bookingDescription": "Cómo reservar sesiones y gestionar tu horario"
+  },
+  "FAQQuestions": {
+    "whatIsTutoring": "¿Qué hace diferente vuestra tutoría de las demás?",
+    "whatIsTutoringAnswer": "Nuestra tutoría se distingue por nuestros respaldos reales, 15 años de excelencia y un enfoque personalizado. Emparejamos estudiantes con educadores expertos que se especializan en sus necesidades específicas, ya sea preparación para Oxbridge, apoyo 11+ o excelencia A-Level.",
+    
+    "howBookSession": "¿Cómo reservo una sesión de tutoría?",
+    "howBookSessionAnswer": "Reservar es simple a través de nuestra plataforma online. Puedes seleccionar tu tutor preferido, elegir horarios disponibles y reservar al instante. También ofrecemos una consulta gratuita para discutir tus requisitos específicos.",
+    
+    "whatSubjects": "¿Qué materias cubren?",
+    "whatSubjectsAnswer": "Cubrimos todas las materias académicas principales incluyendo matemáticas, inglés, ciencias (biología, química, física), idiomas, historia, geografía, y áreas especializadas como economía y psicología.",
+    
+    "onlineInPerson": "¿Ofrecen tutoría tanto online como presencial?",
+    "onlineInPersonAnswer": "Sí, ofrecemos tutoría online flexible a través de nuestra plataforma avanzada de aula virtual y tutoría presencial para clientes en Londres y áreas circundantes. Nuestras sesiones online son igual de efectivas.",
+    
+    "tutorQualifications": "¿Cuáles son las cualificaciones de vuestros tutores?",
+    "tutorQualificationsAnswer": "Todos nuestros tutores poseen títulos relevantes de universidades prestigiosas, muchos con cualificaciones de posgrado. Pasan por una selección rigurosa incluyendo verificación académica y verificación de antecedentes.",
+    
+    "pricingStructure": "¿Cómo está estructurada vuestra tarificación?",
+    "pricingStructureAnswer": "Nuestra tarificación refleja la calidad premium de nuestro servicio, comenzando desde £60 por hora para tutoría estándar. Ofrecemos ofertas de paquetes para sesiones regulares. Contáctanos para una cotización personalizada.",
+    
+    "cancellationPolicy": "¿Cuál es vuestra política de cancelación?",
+    "cancellationPolicyAnswer": "Requerimos aviso de 24 horas para cancelaciones para evitar cargos. Para cancelaciones de último minuto debido a emergencias genuinas, las manejamos caso por caso.",
+    
+    "progressTracking": "¿Cómo hacen seguimiento del progreso del estudiante?",
+    "progressTrackingAnswer": "Proporcionamos informes detallados de progreso después de cada sesión, incluyendo áreas cubiertas, fortalezas identificadas y recomendaciones de mejora. Los padres reciben actualizaciones regulares.",
+    
+    "groupSessions": "¿Ofrecen sesiones de tutoría grupal?",
+    "groupSessionsAnswer": "Sí, ofrecemos sesiones en grupos pequeños (2-4 estudiantes) con tarifas reducidas por estudiante. Estas funcionan particularmente bien para preparación de exámenes.",
+    
+    "emergencySupport": "¿Puedo obtener apoyo de tutoría de último minuto?",
+    "emergencySupportAnswer": "Sujeto a disponibilidad del tutor, podemos organizar sesiones urgentes de tutoría. Entendemos que las necesidades académicas pueden surgir inesperadamente, especialmente durante períodos de exámenes."
+  },
+  "ContactSection": {
+    "title": "¿Aún necesitas ayuda?",
+    "description": "¿No encuentras la respuesta que buscas? Nuestro equipo experto está aquí para ayudar con orientación personalizada para tu trayectoria académica.",
+    "getInTouch": "Ponte en contacto",
+    "phone": "Teléfono",
+    "email": "Correo electrónico",
+    "consultationButton": "Reservar consulta gratuita",
+    "consultationDescription": "Programa una consulta gratuita de 15 minutos para discutir tus requisitos específicos.",
+    "responseTime": "Típicamente respondemos dentro de 2 horas durante horario comercial."
+  }
+}

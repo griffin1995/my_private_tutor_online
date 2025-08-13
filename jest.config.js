@@ -15,6 +15,8 @@ const customJestConfig = {
     // CONTEXT7 SOURCE: /jestjs/jest - Static asset mocking patterns for webpack-style imports
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '\\.(jpg|jpeg|png|gif|webp|avif|ico|bmp|svg)$/i': '<rootDir>/__mocks__/fileMock.js',
+    // CONTEXT7 SOURCE: /jestjs/jest - Lucide React icon mocking for testing environment
+    '^lucide-react$': '<rootDir>/__mocks__/lucide-react.js',
   },
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
@@ -37,9 +39,30 @@ const customJestConfig = {
   testMatch: ['**/__tests__/**/*.(ts|tsx|js)', '**/*.(test|spec).(ts|tsx|js)'],
   // CONTEXT7 SOURCE: /jestjs/jest - Transform ignore patterns for ES modules in node_modules
   // CONTEXT7 SOURCE: /context7/nextjs - Next.js transform ignore patterns for modern packages
+  // CONTEXT7 SOURCE: /jestjs/jest - Enhanced ES module handling for modern packages
   transformIgnorePatterns: [
-    'node_modules/(?!(react-spring|framer-motion|lucide-react|@radix-ui|@testing-library|@tanstack|@hookform|@headlessui)/)',
+    'node_modules/(?!(' +
+    'lucide-react|' +
+    '@lucide/icons|' +
+    'react-spring|' +
+    'framer-motion|' +
+    '@radix-ui|' +
+    '@testing-library|' +
+    '@tanstack|' +
+    '@hookform|' +
+    '@headlessui|' +
+    'nanoid|' +
+    '@react-spring|' +
+    'use-gesture' +
+    ')/)'
   ],
+  // CONTEXT7 SOURCE: /jestjs/jest - ES modules configuration for modern JavaScript
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  globals: {
+    'ts-jest': {
+      useESM: true
+    }
+  },
 }
 
 module.exports = createJestConfig(customJestConfig)

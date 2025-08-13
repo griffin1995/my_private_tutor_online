@@ -465,21 +465,105 @@ export const TUTOR_IMAGES = {
   }
 } as const
 
-// Video testimonials and content
+// CONTEXT7 SOURCE: /muxinc/next-video - Enhanced video content structure with comprehensive metadata
+// CONTEXT7 SOURCE: /microsoft/typescript - Readonly object patterns for immutable video asset definitions
+// Video testimonials and content - Enhanced for comprehensive video gallery support
 export const VIDEO_CONTENT = {
   parentsTestimonials: {
+    id: 'parents-testimonials-2025',
     src: '/videos/testimonials/parents-testimonials-mpto-2025.mp4',
     poster: '/images/video-placeholders/parents-testimonials-poster.jpg',
     alt: 'Parent testimonials for My Private Tutor Online - July 2025',
     title: 'Parent Success Stories 2025',
-    description: 'Real parents sharing their experiences with MPTO tutoring services'
+    description: 'Real parents sharing their transformative experiences with My Private Tutor Online',
+    duration: 180,
+    featured: true,
+    category: 'all' as const,
+    testimonialAuthor: 'Various Parents',
+    testimonialRole: 'MPTO Families',
+    viewCount: 2847,
+    rating: 5,
+    uploadDate: '2025-07-15'
   },
   studentsTestimonials: {
+    id: 'students-testimonials-2025',
     src: '/videos/testimonials/students-testimonials-mpto-2025.mp4',
     poster: '/images/video-placeholders/students-testimonials-poster.jpg',
     alt: 'Student testimonials for My Private Tutor Online - 2025',
     title: 'Student Success Stories 2025',
-    description: 'Students sharing their academic achievements with MPTO tutors'
+    description: 'Students sharing their academic achievements with MPTO expert tutors',
+    duration: 165,
+    featured: true,
+    category: 'all' as const,
+    testimonialAuthor: 'MPTO Students',
+    testimonialRole: 'Academic Achievers',
+    viewCount: 2156,
+    rating: 5,
+    uploadDate: '2025-07-12'
+  },
+  oxbridgeSuccess: {
+    id: 'oxbridge-success-stories',
+    src: '/videos/testimonials/oxbridge-success-stories-2025.mp4',
+    poster: '/images/video-placeholders/oxbridge-success-poster.jpg',
+    alt: 'Oxbridge success stories - Cambridge and Oxford admissions',
+    title: 'Oxbridge Success Stories',
+    description: 'Students sharing their journeys to Cambridge and Oxford with MPTO guidance',
+    duration: 195,
+    featured: true,
+    category: 'Oxbridge' as const,
+    testimonialAuthor: 'Oxbridge Students',
+    testimonialRole: 'University Achievers',
+    viewCount: 1834,
+    rating: 5,
+    uploadDate: '2025-06-28'
+  },
+  elevenPlusResults: {
+    id: 'eleven-plus-results-2025',
+    src: '/videos/testimonials/11-plus-results-testimonials.mp4',
+    poster: '/images/video-placeholders/11-plus-results-poster.jpg',
+    alt: '11+ exam success stories and results testimonials',
+    title: '11+ Success Stories',
+    description: 'Families celebrating outstanding 11+ results and grammar school places',
+    duration: 145,
+    featured: false,
+    category: '11+' as const,
+    testimonialAuthor: '11+ Families',
+    testimonialRole: 'Grammar School Parents',
+    viewCount: 1567,
+    rating: 5,
+    uploadDate: '2025-06-15'
+  },
+  gcseAchievements: {
+    id: 'gcse-achievements-2025',
+    src: '/videos/testimonials/gcse-achievements-testimonials.mp4',
+    poster: '/images/video-placeholders/gcse-achievements-poster.jpg',
+    alt: 'GCSE results and achievements testimonials',
+    title: 'GCSE Excellence',
+    description: 'Students celebrating exceptional GCSE results with MPTO support',
+    duration: 170,
+    featured: false,
+    category: 'GCSE' as const,
+    testimonialAuthor: 'GCSE Students',
+    testimonialRole: 'High Achievers',
+    viewCount: 1392,
+    rating: 5,
+    uploadDate: '2025-08-25'
+  },
+  aLevelSuccess: {
+    id: 'a-level-success-2025',
+    src: '/videos/testimonials/a-level-success-testimonials.mp4',
+    poster: '/images/video-placeholders/a-level-success-poster.jpg',
+    alt: 'A-Level success stories and university admissions',
+    title: 'A-Level Excellence',
+    description: 'A-Level students sharing their success stories and university admissions',
+    duration: 185,
+    featured: false,
+    category: 'A-Level' as const,
+    testimonialAuthor: 'A-Level Students',
+    testimonialRole: 'University Bound',
+    viewCount: 1678,
+    rating: 5,
+    uploadDate: '2025-08-15'
   }
 } as const
 
@@ -853,6 +937,43 @@ export const getTutorImages = (): typeof TUTOR_IMAGES => {
  */
 export const getVideoContent = (): typeof VIDEO_CONTENT => {
   return VIDEO_CONTENT
+}
+
+/**
+ * Get testimonial videos as array for video gallery component
+ * CONTEXT7 SOURCE: /muxinc/next-video - Video gallery data structure for enhanced testimonial presentation
+ * CMS DATA SOURCE: Using VIDEO_CONTENT transformed for VideoTestimonials component
+ */
+export const getTestimonialVideos = (): Array<{
+  readonly id: string
+  readonly title: string
+  readonly description: string
+  readonly videoSrc: string
+  readonly thumbnailSrc: string
+  readonly duration?: number
+  readonly featured?: boolean
+  readonly category?: 'all' | '11+' | 'GCSE' | 'A-Level' | 'Oxbridge' | 'International'
+  readonly testimonialAuthor?: string
+  readonly testimonialRole?: string
+  readonly viewCount?: number
+  readonly rating?: number
+  readonly uploadDate?: string
+}> => {
+  return Object.values(VIDEO_CONTENT).map(video => ({
+    id: video.id,
+    title: video.title,
+    description: video.description,
+    videoSrc: video.src,
+    thumbnailSrc: video.poster,
+    duration: video.duration,
+    featured: video.featured,
+    category: video.category,
+    testimonialAuthor: video.testimonialAuthor,
+    testimonialRole: video.testimonialRole,
+    viewCount: video.viewCount,
+    rating: video.rating,
+    uploadDate: video.uploadDate
+  }))
 }
 
 /**

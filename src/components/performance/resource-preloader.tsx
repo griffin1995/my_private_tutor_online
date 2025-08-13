@@ -64,19 +64,71 @@ export function ResourcePreloader({
       })
     }
 
-    // Add critical CSS
+    // CONTEXT7 SOURCE: /vercel/next.js - Critical CSS injection for LCP optimization
+    // PERFORMANCE OPTIMIZATION REASON: Inline critical styles to prevent FOUC and improve LCP
     const addCriticalCSS = () => {
       const style = document.createElement('style')
       style.textContent = `
-        /* Critical above-the-fold styles - inline to prevent FOUC */
-        .hero-section { min-height: 60vh; }
-        .trust-indicators { opacity: 0; animation: fadeIn 0.5s ease-out 0.2s forwards; }
+        /* CONTEXT7 SOURCE: /vercel/next.js - Critical above-the-fold styles for LCP optimization */
+        .hero-section { 
+          min-height: 60vh; 
+          contain: layout style;
+        }
+        .trust-indicators { 
+          opacity: 0; 
+          animation: fadeIn 0.5s ease-out 0.2s forwards; 
+          will-change: opacity;
+        }
         @keyframes fadeIn { to { opacity: 1; } }
         
-        /* Loading states to prevent CLS */
-        .testimonial-card { min-height: 200px; }
-        .service-card { min-height: 250px; }
-        .logo-grid img { aspect-ratio: 16/9; object-fit: contain; }
+        /* CONTEXT7 SOURCE: /vercel/next.js - CLS prevention with aspect ratio containers */
+        .testimonial-card { 
+          min-height: 200px; 
+          contain: layout;
+        }
+        .service-card { 
+          min-height: 250px; 
+          contain: layout;
+        }
+        .logo-grid img { 
+          aspect-ratio: 16/9; 
+          object-fit: contain;
+          loading: eager;
+        }
+        
+        /* CONTEXT7 SOURCE: /vercel/next.js - Performance-optimized layout containers */
+        .page-container {
+          contain: layout style;
+        }
+        .card-grid {
+          contain: layout;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 1.5rem;
+        }
+        
+        /* CONTEXT7 SOURCE: /vercel/next.js - Motion optimization for reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+          .trust-indicators {
+            animation: none;
+            opacity: 1;
+          }
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
+        
+        /* CONTEXT7 SOURCE: /vercel/next.js - Font optimization to prevent FOIT/FOUT */
+        @font-face {
+          font-family: 'Source Serif 4';
+          font-display: swap;
+        }
+        @font-face {
+          font-family: 'Playfair Display';
+          font-display: swap;
+        }
       `
       document.head.appendChild(style)
     }

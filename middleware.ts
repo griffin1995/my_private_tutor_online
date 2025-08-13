@@ -2,9 +2,20 @@ import { NextRequest, NextResponse } from 'next/server'
 import { decrypt } from '@/lib/auth/session'
 import { cookies } from 'next/headers'
 import { securityMiddleware, applySecurityHeaders } from '@/src/middleware/security'
+// CONTEXT7 SOURCE: /amannn/next-intl - Internationalization middleware integration
+// I18N INTEGRATION REASON: Official next-intl documentation supports middleware composition
+import createIntlMiddleware from 'next-intl/middleware'
+import { routing } from './src/i18n/routing'
+// CONTEXT7 SOURCE: /llfbandit/app_links - Deep link middleware for mobile app integration
+// DEEP LINKING INTEGRATION: Official app_links documentation supports middleware-based URL handling
+import { parseDeepLinkURL, validateDeepLink, detectPlatform } from '@/lib/deep-linking/url-patterns'
 
 // CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 authentication middleware
 // Reference: /vercel/next.js middleware patterns for protected routes and security
+
+// CONTEXT7 SOURCE: /amannn/next-intl - Create internationalization middleware
+// MULTILINGUAL SUPPORT: Official next-intl documentation enables automatic locale detection
+const intlMiddleware = createIntlMiddleware(routing)
 
 /**
  * Protected admin routes that require authentication
@@ -19,23 +30,52 @@ const protectedRoutes = ['/admin']
 const publicRoutes = ['/admin/login']
 
 /**
- * Enterprise-grade authentication middleware for premium tutoring service
- * Protects admin routes with JWT session verification
+ * Enterprise-grade middleware for premium tutoring service
+ * Handles authentication, deep linking, and security
  * 
- * Security Features:
+ * Features:
  * - HTTP-only cookie-based session management
  * - JWT token verification with expiration checks
- * - Automatic redirection for unauthorized access
+ * - Mobile app deep link processing for FAQ system
+ * - iOS Universal Links and Android App Links support
  * - Royal client data protection compliance
  */
 export default async function middleware(req: NextRequest) {
-  // Apply security middleware first
+  const path = req.nextUrl.pathname
+  const url = req.url
+  
+  // CONTEXT7 SOURCE: /llfbandit/app_links - Deep link detection and processing
+  // DEEP LINK PROCESSING: Handle mobile app deep links before other middleware
+  const deepLinkResult = handleDeepLinks(req)
+  if (deepLinkResult) {
+    return applySecurityHeaders(deepLinkResult)
+  }
+  
+  // CONTEXT7 SOURCE: /amannn/next-intl - Skip i18n for admin, API, and static routes
+  // EXCLUSION REASON: Official next-intl documentation recommends excluding admin and API routes from i18n
+  const shouldSkipI18n = path.startsWith('/admin') || 
+                        path.startsWith('/api') || 
+                        path.startsWith('/_next') || 
+                        path.startsWith('/_vercel') ||
+                        /\.(ico|png|jpg|jpeg|svg|css|js)$/.test(path)
+  
+  // Apply security middleware first for all routes
   const securityResponse = await securityMiddleware(req)
   if (securityResponse) {
     return applySecurityHeaders(securityResponse)
   }
-
-  const path = req.nextUrl.pathname
+  
+  // Handle internationalization for public routes
+  if (!shouldSkipI18n) {
+    // CONTEXT7 SOURCE: /amannn/next-intl - Apply i18n middleware for public routes
+    // I18N ROUTING REASON: Official next-intl documentation handles locale detection and routing
+    const intlResponse = intlMiddleware(req)
+    if (intlResponse) {
+      return applySecurityHeaders(intlResponse)
+    }
+  }
+  
+  // Handle admin authentication for protected routes
   const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route))
   const isPublicRoute = publicRoutes.includes(path)
 
@@ -82,20 +122,102 @@ export default async function middleware(req: NextRequest) {
 }
 
 /**
+ * CONTEXT7 SOURCE: /llfbandit/app_links - Deep link processing for mobile app integration
+ * DEEP LINK HANDLER: Process Universal Links, App Links, and PWA deep links for FAQ system
+ */
+function handleDeepLinks(req: NextRequest): NextResponse | null {
+  const url = req.url
+  const pathname = req.nextUrl.pathname
+  const searchParams = req.nextUrl.searchParams
+  
+  // Check if this is a deep link (has source parameters or FAQ-specific patterns)
+  const isDeepLink = searchParams.has('source') ||
+                     searchParams.has('utm_source') ||
+                     pathname.startsWith('/faq/') ||
+                     searchParams.has('q') ||
+                     req.headers.get('user-agent')?.includes('Mobile')
+
+  if (!isDeepLink) {
+    return null
+  }
+
+  try {
+    // Validate the deep link
+    const validation = validateDeepLink(url)
+    if (!validation.isValid) {
+      // Redirect invalid deep links to FAQ home with error tracking
+      const faqUrl = new URL('/faq', req.url)
+      faqUrl.searchParams.set('error', 'invalid_deep_link')
+      faqUrl.searchParams.set('source', 'deep_link_error')
+      return NextResponse.redirect(faqUrl)
+    }
+
+    // Parse the deep link
+    const parseResult = parseDeepLinkURL(url)
+    if (parseResult.isValid && parseResult.pattern) {
+      // Add deep link metadata to headers for client-side processing
+      const response = NextResponse.next()
+      response.headers.set('X-Deep-Link-Pattern', parseResult.pattern)
+      response.headers.set('X-Deep-Link-Platform', detectPlatform().toString())
+      response.headers.set('X-Deep-Link-Timestamp', Date.now().toString())
+      
+      // Add analytics parameters if they exist
+      if (parseResult.params.categoryId) {
+        response.headers.set('X-Deep-Link-Category', parseResult.params.categoryId)
+      }
+      if (parseResult.params.questionId) {
+        response.headers.set('X-Deep-Link-Question', parseResult.params.questionId)
+      }
+      if (parseResult.params.searchQuery) {
+        response.headers.set('X-Deep-Link-Search', parseResult.params.searchQuery)
+      }
+      
+      return response
+    }
+
+    // If parsing failed but validation passed, allow normal processing
+    return null
+  } catch (error) {
+    // Log error and allow normal processing
+    console.warn('Deep link processing error:', error)
+    return null
+  }
+}
+
+/**
  * Middleware configuration for optimal performance
+ * Includes deep link processing, admin authentication, and internationalization
  * Excludes API routes, static files, and Next.js internals
- * Focuses on admin route protection only
  */
 export const config = {
   matcher: [
-    /*
-     * Match admin routes while excluding:
-     * - API routes (/api/*)
-     * - Static files (_next/static/*)
-     * - Image optimization (_next/image/*)
-     * - Metadata files (favicon.ico, sitemap.xml, robots.txt)
-     * - Public assets (/public/*)
-     */
+    // CONTEXT7 SOURCE: /amannn/next-intl - Comprehensive middleware matcher for i18n and admin routes
+    // MATCHER REASON: Official next-intl documentation excludes API routes, static files, and internal paths
+    
+    // Match all pathnames for i18n except excluded patterns
+    '/((?!api|trpc|_next|_vercel|.*\..*|favicon.ico|robots.txt|sitemap.xml|manifest.json|.well-known).*)',
+    
+    // Admin routes for authentication (with exclusions)
     '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|public/).*)admin(.*)',
+    
+    // CONTEXT7 SOURCE: /llfbandit/app_links - Deep link patterns for FAQ mobile app integration
+    // DEEP LINK ROUTES: Comprehensive FAQ deep linking patterns for Universal Links and App Links
+    
+    // FAQ deep link routes with source parameters
+    '/faq/:path*',
+    
+    // Root path for locale detection and deep links
+    '/',
+    
+    // FAQ localized routes with deep link support
+    '/(aide|preguntas-frecuentes|haeufig-gestellte-fragen|常见问题|faq)/:path*',
+    
+    // Dynamic locale segments with deep link support
+    '/(en-GB|fr-FR|es-ES|de-DE|zh-CN)/:path*',
+    
+    // Deep link detection patterns
+    '/(.*\\?.*source=.*)',
+    '/(.*\\?.*utm_source=.*)',
+    '/(.*\\?.*q=.*)',
   ],
 }

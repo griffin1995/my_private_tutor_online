@@ -1,21 +1,96 @@
 /**
- * Documentation Source: Context7 MCP - Tailwind CSS v4 Installation and Import Syntax
- * Reference: /tailwindlabs/tailwindcss.com - Tailwind CSS v4 single import directive
- * Pattern: Simplified CSS import replacing v3 @tailwind directives
- * 
- * Implementation Logic:
- * - Single @import "tailwindcss"; statement replaces @tailwind base/components/utilities
- * - v4 automatically handles imports, vendor prefixing, and nesting
- * - Eliminates need for postcss-import and autoprefixer plugins
- * - Built-in Lightning CSS integration for full CSS processing toolchain
- * 
- * Performance:
- * - Zero configuration approach
- * - Built-in CSS bundling and optimization
- * - Automatic vendor prefixing
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Tailwind CSS v3 directives for utility-first CSS
+ * TAILWIND V3 REASON: Using standard Tailwind v3 directives for compatibility with installed version
+ * IMPLEMENTATION: Base styles, component classes, and utility classes integration
  */
 
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * CONTEXT7 SOURCE: /amannn/next-intl - RTL language support styles
+ * RTL SUPPORT REASON: Official next-intl documentation enables right-to-left text direction for Arabic/Hebrew
+ * IMPLEMENTATION: Comprehensive RTL layout support for international client expansion
+ */
+ 
+/* RTL Direction Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* RTL-specific spacing and margins */
+[dir="rtl"] .ml-auto {
+  margin-left: unset;
+  margin-right: auto;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: unset;
+  margin-left: auto;
+}
+
+/* RTL flex positioning */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+/* RTL navigation and menu positioning */
+[dir="rtl"] .dropdown-menu {
+  left: unset;
+  right: 0;
+}
+
+/* RTL text input alignment */
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="search"],
+[dir="rtl"] textarea {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL button and link alignment */
+[dir="rtl"] .btn-group {
+  flex-direction: row-reverse;
+}
+
+/* RTL FAQ specific styles */
+[dir="rtl"] .faq-accordion-trigger {
+  text-align: right;
+  padding-right: 1rem;
+  padding-left: 3rem;
+}
+
+[dir="rtl"] .faq-accordion-icon {
+  left: 1rem;
+  right: unset;
+}
+
+/* RTL breadcrumb navigation */
+[dir="rtl"] .breadcrumb {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .breadcrumb-separator {
+  transform: scaleX(-1);
+}
+
+/* RTL language switcher positioning */
+[dir="rtl"] .language-switcher {
+  left: 1.5rem;
+  right: unset;
+}
+
+/* RTL floating action buttons */
+[dir="rtl"] .floating-actions {
+  left: 1.5rem;
+  right: unset;
+}
 
 /**
  * Brand CSS Variables and Global Styles
@@ -300,5 +375,62 @@ textarea:focus-visible {
   .animate-spin-slow,
   .animate-reverse-spin-slow {
     animation: none !important;
+  }
+}
+
+/**
+ * Print Styles for FAQ Accordion
+ * CONTEXT7 SOURCE: /w3c/css-print - Print optimization for professional documentation
+ * PRINT OPTIMIZATION: Enhanced readability and professional formatting for printed FAQs
+ */
+@media print {
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000000 !important;
+    background: white !important;
+  }
+
+  .prose-print {
+    font-size: 11pt;
+    line-height: 1.3;
+  }
+
+  .prose-print p {
+    margin: 0.5em 0;
+    orphans: 2;
+    widows: 2;
+  }
+
+  .prose-print h2, .prose-print h3 {
+    page-break-after: avoid;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  /* Hide interactive elements in print */
+  .print\\:hidden {
+    display: none !important;
+  }
+
+  /* Ensure accordion content is visible in print */
+  [data-state="closed"] {
+    display: block !important;
+    height: auto !important;
+  }
+
+  /* Remove shadows and decorative elements */
+  .shadow-xl, .shadow-2xl, .shadow-3xl {
+    box-shadow: none !important;
+  }
+
+  /* Simplify borders for print */
+  .border-2 {
+    border-width: 1pt !important;
+  }
+
+  .rounded-3xl, .rounded-2xl {
+    border-radius: 3pt !important;
   }
 }

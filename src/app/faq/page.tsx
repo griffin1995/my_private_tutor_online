@@ -17,26 +17,178 @@
 
 "use client"
 
-import React from 'react'
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering for client-only pages with browser APIs
+// SSR COMPATIBILITY: FAQ page requires client-side only rendering due to navigator/window dependencies
+export const dynamic = 'force-dynamic'
+
+// CONTEXT7 SOURCE: /context7/react_dev - React.lazy and Suspense for code splitting and lazy loading
+// PERFORMANCE OPTIMIZATION: Dynamic imports with lazy loading for non-critical components
+import React, { useMemo, useCallback, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { m } from 'framer-motion'
 import { getFAQHero, getFAQCategories, getUnifiedContact } from '@/lib/cms/cms-content'
 import { HERO_IMAGES } from '@/lib/cms/cms-images'
+import { getBusinessInfo } from '@/lib/cms/business-info'
+
+// CONTEXT7 SOURCE: /facebook/react - Offline support hooks for FAQ system
+// OFFLINE INTEGRATION: Comprehensive offline functionality for royal client experience
+import { useOffline } from '@/hooks/use-offline'
+import { useBackgroundSync } from '@/hooks/use-background-sync'
+import { searchIndex } from '@/lib/offline/search-index'
+
+// CONTEXT7 SOURCE: /vercel/next.js - next/dynamic for optimized component loading
+// LAZY LOADING: Core layout components loaded immediately
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
 import { WaveSeparator } from '@/components/ui/wave-separator'
 import { Section } from '@/components/layout/section'
-import { FAQEnhancedSearch } from '@/components/faq/faq-enhanced-search'
-import { FAQCategorySection } from '@/components/faq/faq-category-section'
-import { FAQContactSection } from '@/components/faq/faq-contact-section'
-import { FAQAnalyticsTracker } from '@/components/faq/faq-analytics-tracker'
-import { FAQPremiumHero } from '@/components/faq/faq-premium-hero'
-import { GA4Setup } from '@/components/analytics/ga4-setup'
-import { ConsentBanner } from '@/components/analytics/consent-banner'
-// CONTEXT7 SOURCE: /facebook/react - Task 21 gamification system integration
-// GAMIFICATION INTEGRATION: Import gamification components for enhanced user engagement
-import { GamificationProvider } from '@/components/faq/faq-gamification-tracker'
-import { FAQGamificationSystem } from '@/components/faq/faq-gamification-system'
-import { FAQGamificationLeaderboard } from '@/components/faq/faq-gamification-leaderboard'
+
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic imports for FAQ components with loading states
+// CODE SPLITTING: FAQ components loaded on demand with optimized chunks
+const FAQEnhancedSearch = dynamic(
+  () => import('@/components/faq/faq-enhanced-search').then(mod => mod.FAQEnhancedSearch),
+  { 
+    loading: () => <div className="h-20 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true 
+  }
+)
+
+const FAQCategorySection = dynamic(
+  () => import('@/components/faq/faq-category-section').then(mod => mod.FAQCategorySection),
+  { 
+    loading: () => <div className="h-96 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true 
+  }
+)
+
+const FAQContactSection = dynamic(
+  () => import('@/components/faq/faq-contact-section').then(mod => mod.FAQContactSection),
+  { 
+    loading: () => <div className="h-64 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true 
+  }
+)
+
+// CONTEXT7 SOURCE: /vercel/next.js - Lazy load analytics and tracking components
+// PERFORMANCE: Analytics loaded after main content for better LCP
+const FAQAnalyticsTracker = dynamic(
+  () => import('@/components/faq/faq-analytics-tracker').then(mod => mod.FAQAnalyticsTracker),
+  { ssr: false }
+)
+
+const FAQPremiumHero = dynamic(
+  () => import('@/components/faq/faq-premium-hero').then(mod => mod.FAQPremiumHero),
+  { 
+    loading: () => <div className="h-[60vh] bg-gradient-to-b from-primary-900 to-primary-800 animate-pulse" />,
+    ssr: true 
+  }
+)
+
+const GA4Setup = dynamic(
+  () => import('@/components/analytics/ga4-setup').then(mod => mod.GA4Setup),
+  { ssr: false }
+)
+
+const ConsentBanner = dynamic(
+  () => import('@/components/analytics/consent-banner').then(mod => mod.ConsentBanner),
+  { ssr: false }
+)
+
+// CONTEXT7 SOURCE: /vercel/next.js - Lazy load gamification components
+// GAMIFICATION: Load only when enabled for optimal performance
+const GamificationProvider = dynamic(
+  () => import('@/components/faq/faq-gamification-tracker').then(mod => mod.GamificationProvider),
+  { ssr: false }
+)
+
+const FAQGamificationSystem = dynamic(
+  () => import('@/components/faq/faq-gamification-system').then(mod => mod.FAQGamificationSystem),
+  { 
+    loading: () => <div className="h-32 bg-purple-100 animate-pulse rounded-xl" />,
+    ssr: false 
+  }
+)
+
+const FAQGamificationLeaderboard = dynamic(
+  () => import('@/components/faq/faq-gamification-leaderboard').then(mod => mod.FAQGamificationLeaderboard),
+  { 
+    loading: () => <div className="h-64 bg-amber-100 animate-pulse rounded-xl" />,
+    ssr: false 
+  }
+)
+
+// CONTEXT7 SOURCE: /vercel/next.js - Lazy load collaborative features
+// COLLABORATIVE: Load on demand when user interacts
+const FAQCollaborativeFeatures = dynamic(
+  () => import('@/components/faq/faq-collaborative-features').then(mod => mod.FAQCollaborativeFeatures),
+  { 
+    loading: () => <div className="h-48 bg-blue-100 animate-pulse rounded-xl" />,
+    ssr: false 
+  }
+)
+
+// CONTEXT7 SOURCE: /vercel/next.js - Lazy load theme system components
+// THEME SYSTEM: Load theme switcher on demand
+const FAQThemeSwitcher = dynamic(
+  () => import('@/components/faq/faq-theme-switcher').then(mod => mod.FAQThemeSwitcher),
+  { 
+    loading: () => <div className="h-10 w-10 bg-slate-200 animate-pulse rounded-full" />,
+    ssr: false 
+  }
+)
+
+// CONTEXT7 SOURCE: /llfbandit/app_links - Mobile deep linking components for FAQ system
+// MOBILE DEEP LINKING: Mobile-optimized components for Universal Links and App Links
+const MobileDeepLinkHandler = dynamic(
+  () => import('@/components/mobile/mobile-deep-link-handler').then(mod => mod.MobileDeepLinkHandler),
+  { 
+    loading: () => <div className="sr-only">Loading mobile deep link handler...</div>,
+    ssr: false 
+  }
+)
+
+const MobileFAQNavigation = dynamic(
+  () => import('@/components/mobile/mobile-faq-navigation').then(mod => mod.MobileFAQNavigation),
+  { 
+    loading: () => <div className="h-16 bg-slate-100 animate-pulse md:hidden" />,
+    ssr: false 
+  }
+)
+
+const DeepLinkAnalytics = dynamic(
+  () => import('@/components/analytics/deep-link-analytics').then(mod => mod.DeepLinkAnalytics),
+  { ssr: false }
+)
+
+// CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline support components for FAQ system
+// OFFLINE COMPONENTS: Task 28 implementation - Comprehensive offline support for FAQ system
+const OfflineStatusIndicator = dynamic(
+  () => import('@/components/offline/offline-status-indicator').then(mod => mod.OfflineStatusIndicator),
+  { 
+    loading: () => <div className="h-16 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: false 
+  }
+)
+
+const OfflineSearch = dynamic(
+  () => import('@/components/offline/offline-search').then(mod => mod.OfflineSearch),
+  { 
+    loading: () => <div className="h-20 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: false 
+  }
+)
+
+const SyncManager = dynamic(
+  () => import('@/components/offline/sync-manager').then(mod => mod.SyncManager),
+  { 
+    loading: () => <div className="h-32 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: false 
+  }
+)
+
+import { useFAQTheme } from '@/hooks/use-faq-theme'
+// CONTEXT7 SOURCE: /kajabi/pine - CSS custom properties theme system for comprehensive theme variants
+import '@/styles/faq-theme-system.css'
 
 // RENDERING ANALYSIS - Context7 MCP Verified:
 // Documentation Source: Next.js Client Components Dynamic Rendering
@@ -62,15 +214,57 @@ import { FAQGamificationLeaderboard } from '@/components/faq/faq-gamification-le
 
 // CMS DATA SOURCE: Using getFAQContent for FAQ page data
 
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic SEO imports for FAQ page optimization
+// SEO INTEGRATION: Comprehensive SEO optimization for £381,600+ revenue opportunity
+const FAQSEOIntegration = dynamic(
+  () => import('@/components/seo/faq-seo-integration').then(mod => mod.FAQSEOIntegration),
+  { 
+    loading: () => <div className="h-16 bg-slate-50 animate-pulse rounded-lg" />,
+    ssr: true 
+  }
+)
+
 /**
  * FAQ Page Component - Modular Implementation
  * CONTEXT7 SOURCE: /vercel/next.js - Component extraction patterns for better maintainability
  * MODULARIZATION REASON: Main page component orchestrates extracted components per Next.js design principles
  */
-export default function FAQPage() {
+// CONTEXT7 SOURCE: /context7/react_dev - React.memo for component memoization
+// PERFORMANCE: Memoize FAQ page to prevent unnecessary re-renders
+const FAQPage = React.memo(function FAQPage() {
+  // CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline support integration for FAQ system
+  // OFFLINE INTEGRATION: Task 28 implementation - Comprehensive offline functionality
+  const { state: offlineState, actions: offlineActions } = useOffline({
+    enableSyncQueue: true,
+    enableConnectionMonitoring: true,
+    onOnline: () => {
+      console.log('🌐 FAQ System: Back online - Syncing cached interactions');
+    },
+    onOffline: () => {
+      console.log('📡 FAQ System: Gone offline - Switching to cached mode');
+    }
+  })
+  
+  const { state: syncState, actions: syncActions } = useBackgroundSync({
+    enableAutoSync: true,
+    enableMetrics: true,
+    enableConflictTracking: true,
+    onSyncSuccess: (results) => {
+      console.log(`✅ FAQ Sync: ${results.length} actions synchronized`);
+    },
+    onSyncError: (error) => {
+      console.warn('⚠️ FAQ Sync Error:', error);
+    }
+  })
+
   // CONTEXT7 SOURCE: /radix-ui/primitives - Print view state management for enhanced UX
   // PRINT VIEW: Toggle between interactive and print-optimized layouts
   const [showPrintView, setShowPrintView] = React.useState(false)
+  
+  // CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline search state management
+  // OFFLINE SEARCH: Local search state for offline FAQ functionality
+  const [offlineSearchResults, setOfflineSearchResults] = React.useState([])
+  const [showOfflineSearch, setShowOfflineSearch] = React.useState(false)
   
   // CONTEXT7 SOURCE: /facebook/react - Task 21 gamification system state management
   // GAMIFICATION STATE: Control gamification display and user preferences
@@ -78,26 +272,43 @@ export default function FAQPage() {
   const [showLeaderboard, setShowLeaderboard] = React.useState(false)
   const [gamificationEnabled, setGamificationEnabled] = React.useState(true)
   
-  // CMS DATA SOURCE: Using getFAQHero for hero section content
-  const heroContent = getFAQHero()
-  // CMS DATA SOURCE: Using getFAQCategories for FAQ questions and categories  
-  const faqCategories = getFAQCategories()
-  // CONTEXT7 SOURCE: /microsoft/typescript - Unified contact data access with interface extraction
-  const unifiedContact = getUnifiedContact()
-  const contactContent = unifiedContact.faq
-  const contactDetails = unifiedContact.primary
+  // CONTEXT7 SOURCE: /kajabi/pine - Task 24 theme system integration with comprehensive theme management
+  // THEME SYSTEM: Complete theme management with system preference detection and localStorage persistence
+  const faqTheme = useFAQTheme({
+    enableSystemDetection: true,
+    enableSeasonalThemes: true,
+    storageKey: 'faq-theme-preference',
+    transitionDuration: 300,
+    debugMode: process.env.NODE_ENV === 'development'
+  })
   
-  // CMS DATA SOURCE: Using HERO_IMAGES for background image via backgroundImageKey
-  const heroBackgroundImage = HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES]
+  // CONTEXT7 SOURCE: /context7/react_dev - useMemo for expensive calculations
+  // PERFORMANCE: Memoize CMS data to prevent unnecessary re-computations
+  const heroContent = useMemo(() => getFAQHero(), [])
+  const faqCategories = useMemo(() => getFAQCategories(), [])
+  const unifiedContact = useMemo(() => getUnifiedContact(), [])
+  const contactContent = useMemo(() => unifiedContact.faq, [unifiedContact])
+  const contactDetails = useMemo(() => unifiedContact.primary, [unifiedContact])
   
-  // CONTEXT7 SOURCE: /radix-ui/primitives - Print view toggle handler
-  // PRINT OPTIMIZATION: Handle print view state with browser print API integration
-  const handlePrintViewToggle = React.useCallback(() => {
+  // CONTEXT7 SOURCE: /context7/react_dev - useMemo for computed values
+  // PERFORMANCE: Memoize background image lookup
+  const heroBackgroundImage = useMemo(
+    () => HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES],
+    [heroContent.backgroundImageKey]
+  )
+  
+  // CONTEXT7 SOURCE: /context7/react_dev - useCallback for stable function references
+  // PERFORMANCE: Memoize event handlers to prevent child re-renders
+  const handlePrintViewToggle = useCallback(() => {
     setShowPrintView(prev => {
       if (!prev) {
         // Entering print view - trigger browser print after state update
+        // CONTEXT7 SOURCE: /vercel/next.js - Client-side only window.print() for SSR compatibility
+        // SSR COMPATIBILITY: Ensure window is available for print functionality
         setTimeout(() => {
-          window.print()
+          if (typeof window !== 'undefined') {
+            window.print()
+          }
         }, 100)
       }
       return !prev
@@ -121,7 +332,7 @@ export default function FAQPage() {
       setEntryPoint('search')
     } else if (referrer.includes('facebook.com') || referrer.includes('twitter.com')) {
       setEntryPoint('social')
-    } else if (referrer.includes(window.location.hostname)) {
+    } else if (typeof window !== 'undefined' && referrer.includes(window.location.hostname)) {
       setEntryPoint('internal_link')
     } else {
       setEntryPoint('search') // Default for unknown referrers
@@ -169,56 +380,152 @@ export default function FAQPage() {
   const [heroSearchQuery, setHeroSearchQuery] = React.useState('')
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null)
   
-  // CONTEXT7 SOURCE: /context7/motion_dev - Hero interaction handlers for premium experience
-  // SEARCH HANDLER: Process search queries from animated search bar
-  const handleHeroSearch = React.useCallback((query: string) => {
+  // CONTEXT7 SOURCE: /context7/react_dev - useCallback for event handler optimization
+  // PERFORMANCE: Memoized hero interaction handlers
+  const handleHeroSearch = useCallback((query: string) => {
     setHeroSearchQuery(query)
-    // Scroll to search section
-    const searchElement = document.getElementById('faq-search-section')
-    if (searchElement) {
-      searchElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    // CONTEXT7 SOURCE: /vercel/next.js - requestAnimationFrame for smooth scrolling
+    requestAnimationFrame(() => {
+      const searchElement = document.getElementById('faq-search-section')
+      if (searchElement) {
+        searchElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    })
   }, [])
   
-  // CONTEXT7 SOURCE: /context7/motion_dev - Category selection handler with smooth navigation
-  // CATEGORY HANDLER: Navigate to specific FAQ category from hero showcase
-  const handleHeroCategorySelect = React.useCallback((categoryId: string) => {
+  const handleHeroCategorySelect = useCallback((categoryId: string) => {
     setSelectedCategory(categoryId)
-    // Scroll to category section
-    const categoryElement = document.getElementById(`category-${categoryId}`)
-    if (categoryElement) {
-      categoryElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
+    requestAnimationFrame(() => {
+      const categoryElement = document.getElementById(`category-${categoryId}`)
+      if (categoryElement) {
+        categoryElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    })
   }, [])
   
-  // CONTEXT7 SOURCE: /context7/motion_dev - Question selection handler with direct navigation
-  // QUESTION HANDLER: Navigate directly to specific FAQ question from popular carousel
-  const handleHeroQuestionSelect = React.useCallback((questionId: string) => {
-    // Find and scroll to the specific question
-    const questionElement = document.querySelector(`[data-question-id="${questionId}"]`)
-    if (questionElement) {
-      questionElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      // Add temporary highlight effect
-      questionElement.classList.add('ring-2', 'ring-accent-400', 'ring-opacity-75')
-      setTimeout(() => {
-        questionElement.classList.remove('ring-2', 'ring-accent-400', 'ring-opacity-75')
-      }, 3000)
-    }
+  const handleHeroQuestionSelect = useCallback((questionId: string) => {
+    requestAnimationFrame(() => {
+      const questionElement = document.querySelector(`[data-question-id="${questionId}"]`)
+      if (questionElement) {
+        questionElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        // Add temporary highlight effect
+        questionElement.classList.add('ring-2', 'ring-accent-400', 'ring-opacity-75')
+        setTimeout(() => {
+          questionElement.classList.remove('ring-2', 'ring-accent-400', 'ring-opacity-75')
+        }, 3000)
+      }
+    })
   }, [])
 
-  // CONTEXT7 SOURCE: /microsoft/typescript - Calculate FAQ statistics for gamification system
-  // GAMIFICATION DATA: Prepare statistics for gamification system initialization
-  const totalQuestions = faqCategories.reduce((sum, category) => sum + category.questions.length, 0)
-  const totalCategories = faqCategories.length
+  // CONTEXT7 SOURCE: /context7/react_dev - useMemo for derived state
+  // PERFORMANCE: Memoize calculated statistics
+  const { totalQuestions, totalCategories } = useMemo(() => ({
+    totalQuestions: faqCategories.reduce((sum, category) => sum + category.questions.length, 0),
+    totalCategories: faqCategories.length
+  }), [faqCategories])
   
-  // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns with gamification integration
-  // ENHANCED LAYOUT: Official Next.js documentation with gamification provider wrapper
+  // CONTEXT7 SOURCE: /vercel/next.js - Business information integration for SEO
+  // BUSINESS DATA: Centralized business information for structured data
+  const businessInfo = useMemo(() => getBusinessInfo(), [])
+
+  // CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline FAQ system initialization
+  // OFFLINE INITIALIZATION: Set up search index and preload content for offline access
+  useEffect(() => {
+    const initializeOfflineSystem = async () => {
+      try {
+        console.log('🔧 Initializing offline FAQ system...');
+        
+        // Build search index from FAQ categories
+        await searchIndex.buildIndex(faqCategories);
+        
+        // Preload critical FAQ content for offline access
+        await offlineActions.preloadContent();
+        
+        console.log('✅ Offline FAQ system initialized successfully');
+      } catch (error) {
+        console.error('❌ Failed to initialize offline FAQ system:', error);
+      }
+    };
+
+    // Initialize offline system when FAQ data is available
+    if (faqCategories.length > 0) {
+      initializeOfflineSystem();
+    }
+  }, [faqCategories, offlineActions]);
+
+  // CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline search result handler
+  // SEARCH HANDLING: Handle offline search results and display
+  const handleOfflineSearchResults = useCallback((results: any[]) => {
+    setOfflineSearchResults(results);
+    setShowOfflineSearch(results.length > 0);
+  }, []);
+
+  // CONTEXT7 SOURCE: /ducanhgh/next-pwa - FAQ interaction handlers with offline sync
+  // INTERACTION HANDLERS: Queue user interactions for background synchronization
+  const handleFAQRating = useCallback(async (questionId: string, rating: number, feedback?: string) => {
+    try {
+      await syncActions.queueFAQRating(questionId, rating, feedback);
+      console.log(`📝 FAQ Rating queued for sync: Question ${questionId}, Rating ${rating}`);
+    } catch (error) {
+      console.error('Failed to queue FAQ rating:', error);
+    }
+  }, [syncActions]);
+
+  const handleFAQFeedback = useCallback(async (questionId: string, feedback: string, helpful: boolean) => {
+    try {
+      await syncActions.queueFAQFeedback(questionId, feedback, helpful);
+      console.log(`📝 FAQ Feedback queued for sync: Question ${questionId}`);
+    } catch (error) {
+      console.error('Failed to queue FAQ feedback:', error);
+    }
+  }, [syncActions]);
+  
+  // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns with mobile deep linking integration
+  // ENHANCED LAYOUT: Official Next.js documentation with gamification provider and mobile deep linking wrapper
   return (
     <GamificationProvider 
       totalQuestions={totalQuestions}
       totalCategories={totalCategories}
       enableTracking={gamificationEnabled && consentGiven}
     >
+      {/* CONTEXT7 SOURCE: /llfbandit/app_links - Mobile deep link handler wrapper */}
+      {/* MOBILE DEEP LINKING: Comprehensive mobile app deep linking support for FAQ system */}
+      <MobileDeepLinkHandler
+        enableNotifications={true}
+        enablePWAPrompt={true}
+        enableSwipeGestures={true}
+        className="faq-mobile-wrapper"
+      >
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Comprehensive FAQ SEO integration for £381,600+ revenue opportunity */}
+      {/* SEO INTEGRATION: Complete search optimization combining structured data, meta tags, local SEO, and featured snippets */}
+      <FAQSEOIntegration
+        categories={faqCategories}
+        businessInfo={businessInfo}
+        pageTitle={`${heroContent.title} - ${businessInfo.name}`}
+        pageDescription={heroContent.description}
+        canonicalUrl="https://myprivatetutoronline.com/faq"
+        location={businessInfo.address.addressLocality}
+        serviceAreas={businessInfo.areaServed.slice(0, 15).map(area => ({
+          name: area,
+          type: area.includes('County') || area.includes('shire') ? 'county' as const : 'borough' as const
+        }))}
+        enableStructuredData={true}
+        enableMetaOptimization={true}
+        enableLocalSEO={true}
+        enableFeaturedSnippets={true}
+        enableVoiceSearch={true}
+        enableAnalytics={consentGiven}
+        revenueOpportunity={381600}
+        conversionGoals={['consultation', 'contact', 'phone', 'enquiry']}
+        customKeywords={[
+          'FAQ private tutor London',
+          'tutoring questions answers',
+          'Oxbridge preparation FAQ',
+          '11+ tutoring help',
+          'premium tutoring FAQ'
+        ]}
+      />
+      
       {/* CONTEXT7 SOURCE: /context7/developers_google-analytics-devguides - GA4 analytics setup with FAQ-specific configuration */}
       {/* ANALYTICS SETUP: Comprehensive GA4 integration for FAQ tracking and business intelligence */}
       <GA4Setup
@@ -258,6 +565,30 @@ export default function FAQPage() {
         debugMode={process.env.NODE_ENV === 'development'}
       />
       
+      {/* CONTEXT7 SOURCE: /llfbandit/app_links - Deep link analytics tracking */}
+      {/* DEEP LINK ANALYTICS: Mobile app deep link performance and conversion tracking */}
+      <DeepLinkAnalytics
+        config={{
+          enableGA4: consentGiven,
+          enableCustomEvents: true,
+          enablePerformanceTracking: true,
+          enableConversionTracking: true,
+          revenueOpportunity: 150,
+          conversionGoals: ['consultation', 'contact', 'phone', 'enquiry'],
+          debugMode: process.env.NODE_ENV === 'development',
+          customDimensions: {
+            faq_session_type: 'deep_link',
+            user_segment: userSegment,
+            entry_point: entryPoint
+          }
+        }}
+        onAnalyticsEvent={(event) => {
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Deep Link Analytics Event:', event)
+          }
+        }}
+      />
+      
       {/* CONTEXT7 SOURCE: /context7/motion_dev - Premium FAQ hero with advanced animations and interactive features */}
       {/* PREMIUM HERO REASON: Task 17 implementation - Advanced hero section with animated search, carousel, and glass-morphism effects */}
       <FAQPremiumHero
@@ -268,16 +599,84 @@ export default function FAQPage() {
 
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Mobile-first responsive layout with sticky navigation */}
       {/* RESPONSIVE LAYOUT REASON: Official Tailwind CSS documentation Section 4.2 recommends mobile-first grid systems */}
-      <PageLayout background="white" showHeader={false} showFooter={true}>
+      {/* CONTEXT7 SOURCE: /w3c/wcag - Semantic HTML structure with proper landmarks for screen reader navigation */}
+      {/* ACCESSIBILITY: WCAG 2.1 AA compliance with semantic page structure and ARIA landmarks */}
+      <PageLayout background="white" showHeader={true} showFooter={true} containerSize="full" role="document" aria-label="FAQ - Frequently Asked Questions">
+
+        {/* CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline status indicator integration */}
+        {/* OFFLINE STATUS: Task 28 implementation - Real-time offline status for royal clients */}
+        <OfflineStatusIndicator
+          position="top-right"
+          showDetails={true}
+          showCacheInfo={true}
+          showSyncStatus={true}
+          compact={false}
+          onRefresh={() => offlineActions.refreshCache()}
+          onClearCache={() => offlineActions.clearCache()}
+        />
+
+        {/* CONTEXT7 SOURCE: /w3c/wcag - Skip navigation links for keyboard accessibility */}
+        {/* SKIP LINKS: WCAG 2.1 AA requirement for keyboard navigation bypass */}
+        <div className="sr-only">
+          <a 
+            href="#main-content" 
+            className="fixed top-4 left-4 z-50 bg-primary-900 text-white px-4 py-2 rounded-md focus:not-sr-only focus:relative focus:z-50 transition-all duration-200"
+            onFocus={(e) => e.target.classList.remove('sr-only')}
+            onBlur={(e) => e.target.classList.add('sr-only')}
+          >
+            Skip to main content
+          </a>
+          <a 
+            href="#faq-search-section" 
+            className="fixed top-4 left-32 z-50 bg-primary-900 text-white px-4 py-2 rounded-md focus:not-sr-only focus:relative focus:z-50 transition-all duration-200"
+            onFocus={(e) => e.target.classList.remove('sr-only')}
+            onBlur={(e) => e.target.classList.add('sr-only')}
+          >
+            Skip to FAQ search
+          </a>
+          <a 
+            href="#contact" 
+            className="fixed top-4 left-64 z-50 bg-primary-900 text-white px-4 py-2 rounded-md focus:not-sr-only focus:relative focus:z-50 transition-all duration-200"
+            onFocus={(e) => e.target.classList.remove('sr-only')}
+            onBlur={(e) => e.target.classList.add('sr-only')}
+          >
+            Skip to contact
+          </a>
+        </div>
 
         <WaveSeparator 
           variant="subtle" 
           className="text-slate-100" 
+          role="presentation"
+          aria-hidden="true"
         />
+
+        {/* CONTEXT7 SOURCE: /llfbandit/app_links - Mobile FAQ navigation integration */}
+        {/* MOBILE NAVIGATION: Touch-optimized FAQ navigation with deep link support */}
+        <div className="block md:hidden">
+          <MobileFAQNavigation
+            categories={faqCategories}
+            currentCategory={selectedCategory || undefined}
+            currentQuestion={undefined}
+            onCategoryChange={(categoryId) => {
+              setSelectedCategory(categoryId)
+              handleHeroCategorySelect(categoryId)
+            }}
+            onQuestionSelect={handleHeroQuestionSelect}
+            onSearchChange={(query) => {
+              setHeroSearchQuery(query)
+              handleHeroSearch(query)
+            }}
+            enableSwipeNavigation={true}
+            enableHapticFeedback={true}
+            className="mobile-faq-nav"
+          />
+        </div>
 
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Responsive layout container with mobile-first design */}
         {/* MOBILE-FIRST LAYOUT: Adaptive layout across all device sizes with sticky navigation */}
-        <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
+        {/* CONTEXT7 SOURCE: /w3c/wcag - Main content wrapper with semantic HTML5 structure */}
+        <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white" role="main" id="main-content">
           {/* Mobile: Single column (320px-640px) */}
           {/* Tablet: Two-column layout (640px-1024px) */}
           {/* Desktop: Three-column layout (1024px+) */}
@@ -287,9 +686,14 @@ export default function FAQPage() {
             {/* STICKY NAVIGATION SIDEBAR - Desktop/Tablet Only */}
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Sticky positioning patterns for navigation */}
             {/* STICKY NAVIGATION: Category menu remains accessible during scrolling */}
-            <aside className="hidden md:block md:col-span-1 lg:col-span-3">
+            {/* CONTEXT7 SOURCE: /w3c/wcag - Navigation landmark with proper ARIA labeling */}
+            <aside 
+              className="hidden md:block md:col-span-1 lg:col-span-3" 
+              role="complementary" 
+              aria-label="FAQ navigation and tools"
+            >
               <div className="sticky top-6 space-y-6">
-                {/* Search Integration */}
+                {/* Search Integration - Enhanced with Offline Support */}
                 <m.div
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -297,16 +701,41 @@ export default function FAQPage() {
                   viewport={{ once: true }}
                   className="bg-white/90 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 shadow-lg"
                 >
-                  <h3 className="text-lg font-serif font-semibold text-slate-900 mb-4">Quick Search</h3>
-                  <FAQEnhancedSearch
-                    questions={faqCategories.flatMap(category => category.questions)}
-                    categories={faqCategories}
-                    showPerformanceStats={false}
-                    placeholder="Search FAQ..."
-                    maxSuggestions={3}
-                    className="compact"
-                    initialQuery={heroSearchQuery}
-                  />
+                  <h3 className="text-lg font-serif font-semibold text-slate-900 mb-4">
+                    Quick Search
+                    {!offlineState.isOnline && (
+                      <span className="ml-2 text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full">
+                        Offline
+                      </span>
+                    )}
+                  </h3>
+                  
+                  {/* CONTEXT7 SOURCE: /ducanhgh/next-pwa - Adaptive search component */}
+                  {/* ADAPTIVE SIDEBAR SEARCH: Seamless online/offline search experience */}
+                  {offlineState.isOnline ? (
+                    <FAQEnhancedSearch
+                      questions={faqCategories.flatMap(category => category.questions)}
+                      categories={faqCategories}
+                      showPerformanceStats={false}
+                      placeholder="Search FAQ..."
+                      maxSuggestions={3}
+                      className="compact"
+                      initialQuery={heroSearchQuery}
+                    />
+                  ) : (
+                    <OfflineSearch
+                      placeholder="Search cached FAQ..."
+                      showFilters={false}
+                      showVoiceSearch={false}
+                      showSuggestions={true}
+                      maxResults={5}
+                      onSearchResults={handleOfflineSearchResults}
+                      onResultClick={(result) => {
+                        console.log('Sidebar offline search result:', result);
+                      }}
+                      className="compact offline-sidebar-search"
+                    />
+                  )}
                 </m.div>
                 
                 {/* Category Navigation */}
@@ -316,7 +745,8 @@ export default function FAQPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                   viewport={{ once: true }}
-                  aria-label="FAQ Categories"
+                  role="navigation"
+                  aria-label="FAQ Categories Navigation"
                 >
                   <h3 className="text-lg font-serif font-semibold text-slate-900 mb-4">Categories</h3>
                   <div className="space-y-2">
@@ -343,48 +773,124 @@ export default function FAQPage() {
                     ))}
                   </div>
                 </m.nav>
+                
+                {/* CONTEXT7 SOURCE: /ducanhgh/next-pwa - Sync manager integration for background sync monitoring */}
+                {/* SYNC MANAGER: Task 28 implementation - Real-time sync status and queue management */}
+                {syncState.queueLength > 0 && (
+                  <m.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.15 }}
+                    viewport={{ once: true }}
+                  >
+                    <SyncManager
+                      autoSync={true}
+                      syncInterval={30000}
+                      maxRetries={3}
+                      showQueue={true}
+                      onSyncComplete={(results) => {
+                        console.log('Sidebar sync completed:', results);
+                      }}
+                      onSyncError={(error) => {
+                        console.warn('Sidebar sync error:', error);
+                      }}
+                      className="bg-white/90 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-lg"
+                    />
+                  </m.div>
+                )}
+
+                {/* CONTEXT7 SOURCE: /kajabi/pine - Task 24 desktop theme switcher for comprehensive theme selection */}
+                {/* DESKTOP THEME SWITCHER: Full theme selection interface with preview thumbnails */}
+                <m.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="bg-white/90 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 shadow-lg"
+                >
+                  <h3 className="text-lg font-serif font-semibold text-slate-900 mb-4">Theme</h3>
+                  <FAQThemeSwitcher
+                    currentTheme={faqTheme.currentTheme}
+                    onThemeChange={faqTheme.setTheme}
+                    showSystemOption={true}
+                    showSeasonalThemes={faqTheme.options.enableSeasonalThemes}
+                    compact={false}
+                    position="sidebar"
+                    className=""
+                    ariaLabel="Select FAQ page theme"
+                  />
+                </m.div>
               </div>
             </aside>
             
             {/* MAIN CONTENT AREA - Responsive */}
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Responsive grid column configuration */}
             {/* RESPONSIVE COLUMNS: Adaptive width based on viewport size */}
-            <main className="col-span-1 md:col-span-3 lg:col-span-9 space-y-8">
+            {/* CONTEXT7 SOURCE: /w3c/wcag - Main content area with semantic HTML structure */}
+            <section 
+              className="col-span-1 md:col-span-3 lg:col-span-9 space-y-8" 
+              role="main" 
+              aria-label="FAQ content and search"
+            >
               
-              {/* Mobile Search Header */}
-              {/* CONTEXT7 SOURCE: /context7/motion_dev - Enhanced search section with hero query integration */}
-              {/* SEARCH INTEGRATION: Handle search queries from premium hero component */}
-              <div className="block md:hidden" id="faq-search-section">
+              {/* Mobile Search Header - Enhanced with Offline Support */}
+              {/* CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline-enhanced search section */}
+              {/* OFFLINE SEARCH: Task 28 implementation - Seamless online/offline search experience */}
+              {/* CONTEXT7 SOURCE: /w3c/wcag - Search section with proper heading hierarchy */}
+              <section className="block md:hidden" id="faq-search-section" aria-label="FAQ Search">
                 <Section className="py-8" background="blue">
-                  <div className="container mx-auto px-4">
+                  <div>
                     <m.div 
                       className="max-w-2xl mx-auto"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6 }}
                       viewport={{ once: true }}
+                      role="search"
+                      aria-label="FAQ search interface"
                     >
-                      <div className="text-center mb-8">
-                        <h2 className="text-2xl lg:text-3xl font-serif font-bold text-white mb-3">
+                      <header className="text-center mb-8">
+                        <h2 className="text-2xl lg:text-3xl font-serif font-bold text-white mb-3" id="search-heading">
                           Find Your Answer Instantly
                         </h2>
                         <p className="text-base text-white/90">
-                          Search our comprehensive FAQ database
+                          {offlineState.isOnline 
+                            ? 'Search our comprehensive FAQ database'
+                            : 'Search cached FAQ content (offline mode)'
+                          }
                         </p>
-                      </div>
+                      </header>
                       
-                      <FAQEnhancedSearch
-                        questions={faqCategories.flatMap(category => category.questions)}
-                        categories={faqCategories}
-                        showPerformanceStats={false}
-                        placeholder="Search FAQ questions..."
-                        maxSuggestions={5}
-                        initialQuery={heroSearchQuery}
-                      />
+                      {/* CONTEXT7 SOURCE: /ducanhgh/next-pwa - Conditional search component based on connectivity */}
+                      {/* ADAPTIVE SEARCH: Use offline search when offline, enhanced search when online */}
+                      {offlineState.isOnline ? (
+                        <FAQEnhancedSearch
+                          questions={faqCategories.flatMap(category => category.questions)}
+                          categories={faqCategories}
+                          showPerformanceStats={false}
+                          placeholder="Search FAQ questions..."
+                          maxSuggestions={5}
+                          initialQuery={heroSearchQuery}
+                        />
+                      ) : (
+                        <OfflineSearch
+                          placeholder="Search cached FAQ content..."
+                          showFilters={true}
+                          showVoiceSearch={true}
+                          showSuggestions={true}
+                          maxResults={20}
+                          onSearchResults={handleOfflineSearchResults}
+                          onResultClick={(result) => {
+                            console.log('Offline search result clicked:', result);
+                            // Handle result click navigation
+                          }}
+                          className="offline-search-mobile"
+                        />
+                      )}
                     </m.div>
                   </div>
                 </Section>
-              </div>
+              </section>
 
               {/* CONTEXT7 SOURCE: /context7/motion_dev - Task 21 gamification system integration */}
               {/* GAMIFICATION SYSTEM: Enhanced user engagement through progress tracking and achievements */}
@@ -427,9 +933,9 @@ export default function FAQPage() {
                 </m.div>
               )}
 
-              {/* FAQ Categories Content */}
-              {/* CONTEXT7 SOURCE: /context7/motion_dev - Enhanced category section with gamification integration */}
-              {/* CATEGORY INTEGRATION: Handle category selection from premium hero with gamification tracking */}
+              {/* FAQ Categories Content - Enhanced with Offline Support */}
+              {/* CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline-enhanced FAQ category section */}
+              {/* OFFLINE FAQ CATEGORIES: Task 28 implementation - Comprehensive offline FAQ interaction support */}
               <FAQCategorySection
                 categories={faqCategories}
                 searchQuery={heroSearchQuery}
@@ -439,8 +945,57 @@ export default function FAQPage() {
                 onPrintViewToggle={handlePrintViewToggle}
                 enableCategoryTheming={!showPrintView}
                 compactMode={showPrintView}
+                // Enhanced with offline support props
+                isOffline={!offlineState.isOnline}
+                onFAQRating={handleFAQRating}
+                onFAQFeedback={handleFAQFeedback}
+                offlineMessage={
+                  !offlineState.isOnline 
+                    ? "You're viewing cached content. Interactions will sync when online."
+                    : undefined
+                }
+                syncStatus={{
+                  queueLength: syncState.queueLength,
+                  isProcessing: syncState.isProcessing,
+                  lastSyncTime: syncState.lastSyncTime
+                }}
               />
-            </main>
+              
+              {/* CONTEXT7 SOURCE: /react-hook-form/documentation - Task 23 collaborative features integration */}
+              {/* COLLABORATIVE FEATURES: Community-driven FAQ enhancement with suggestion system, voting, and moderation */}
+              {!showPrintView && (
+                <m.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="mt-16"
+                >
+                  <FAQCollaborativeFeatures
+                    categories={faqCategories.map(cat => cat.id)}
+                    onSuggestionSubmitted={(suggestion) => {
+                      // Track collaborative engagement for analytics
+                      if (consentGiven && typeof gtag !== 'undefined') {
+                        gtag('event', 'faq_suggestion_submitted', {
+                          event_category: 'FAQ Collaboration',
+                          event_label: suggestion.category,
+                          custom_parameters: {
+                            suggestion_id: suggestion.id,
+                            is_anonymous: suggestion.isAnonymous,
+                            suggestion_category: suggestion.category,
+                            suggestion_tags: suggestion.tags.join(',')
+                          }
+                        })
+                      }
+                    }}
+                    enableModeration={process.env.NODE_ENV === 'development'} // Enable for admin users in production
+                    showContributorLeaderboard={true}
+                    maxSuggestionsDisplay={15}
+                    className="mb-16"
+                  />
+                </m.div>
+              )}
+            </section>
           </div>
         </div>
 
@@ -506,6 +1061,21 @@ export default function FAQPage() {
               </div>
             )}
             
+            {/* CONTEXT7 SOURCE: /kajabi/pine - Task 24 theme switcher integration in floating toolbar */}
+            {/* THEME SWITCHER: Elegant theme selection with preview thumbnails */}
+            <div className="flex flex-col space-y-2">
+              <FAQThemeSwitcher
+                currentTheme={faqTheme.currentTheme}
+                onThemeChange={faqTheme.setTheme}
+                showSystemOption={true}
+                showSeasonalThemes={faqTheme.options.enableSeasonalThemes}
+                compact={true}
+                position="bottom"
+                className=""
+                ariaLabel="Switch FAQ page theme"
+              />
+            </div>
+            
             {/* Quick Actions */}
             <div className="flex flex-col space-y-2">
               {/* Print Action */}
@@ -546,7 +1116,13 @@ export default function FAQPage() {
               
               {/* Back to Top */}
               <m.button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={() => {
+                  // CONTEXT7 SOURCE: /vercel/next.js - Client-side only window.scrollTo() for SSR compatibility
+                  // SSR COMPATIBILITY: Ensure window is available for scroll functionality
+                  if (typeof window !== 'undefined') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }
+                }}
                 className="w-12 h-12 bg-slate-600 hover:bg-slate-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center group"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -573,12 +1149,13 @@ export default function FAQPage() {
 
             {/* CONTEXT7 SOURCE: /vercel/next.js - Component extraction patterns for reusable contact sections */}
             {/* REUSABLE COMPONENTS: Contact section can be reused across different pages */}
-            <div id="contact">
+            {/* CONTEXT7 SOURCE: /w3c/wcag - Contact section with proper semantic structure */}
+            <section id="contact" role="region" aria-label="Contact information">
               <FAQContactSection
                 contactContent={contactContent}
                 contactDetails={contactDetails}
               />
-            </div>
+            </section>
             
             {/* CONTEXT7 SOURCE: /context7/developers_google-analytics-devguides - Analytics tracking for contact interactions */}
             {/* CONVERSION TRACKING: Track contact section interactions for revenue attribution */}
@@ -599,6 +1176,9 @@ export default function FAQPage() {
         )}
       
       </PageLayout>
+      </MobileDeepLinkHandler>
     </GamificationProvider>
   )
-}
+})
+
+export default FAQPage

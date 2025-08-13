@@ -115,13 +115,67 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     
-    // SUPPORT AND INFORMATION PAGES
+    // SUPPORT AND INFORMATION PAGES - Enhanced FAQ SEO
     {
       url: `${baseUrl}/faq`,
       lastModified,
+      changeFrequency: 'weekly',
+      // CONTEXT7 SOURCE: /vercel/next.js - Increased priority for FAQ SEO targeting
+      // SEO ENHANCEMENT: Higher priority for comprehensive FAQ system with structured data
+      priority: 0.8,
+    },
+    
+    // FAQ CATEGORY PAGES - Individual category targeting
+    {
+      url: `${baseUrl}/faq/getting-started`,
+      lastModified,
       changeFrequency: 'monthly',
-      // Medium priority for client support information
+      // High priority for new client onboarding information
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/faq/tutoring-services`,
+      lastModified,
+      changeFrequency: 'monthly',
+      // High priority for service-specific FAQ content
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/faq/pricing-payments`,
+      lastModified,
+      changeFrequency: 'monthly',
+      // High priority for pricing transparency
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/faq/scheduling-booking`,
+      lastModified,
+      changeFrequency: 'monthly',
+      // High priority for booking process information
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/faq/academic-support`,
+      lastModified,
+      changeFrequency: 'monthly',
+      // High priority for academic service information
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/faq/technical-support`,
+      lastModified,
+      changeFrequency: 'monthly',
+      // Medium priority for technical assistance
       priority: 0.6,
+    },
+    
+    // FAQ SEARCH PAGE - Search functionality visibility
+    {
+      url: `${baseUrl}/faq/search`,
+      lastModified,
+      changeFrequency: 'weekly',
+      // Medium priority for search functionality
+      priority: 0.5,
     },
     
     // LEGAL AND COMPLIANCE PAGES - Required for premium service transparency

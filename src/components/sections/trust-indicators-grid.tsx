@@ -97,9 +97,21 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
     return () => ctx.revert()
   }, [])
 
-  // CONTEXT7 SOURCE: Using CMS data mapping for semantic image selection
-  // MAPPING REASON: Context-aware image selection based on content meaning
+  // CONTEXT7 SOURCE: /context7/react_dev - Error handling defensive programming patterns
+  // DEFENSIVE PROGRAMMING REASON: Official React documentation recommends defensive programming to handle undefined or missing data gracefully
   const getImageForIndicator = (indicator: TrustIndicator, index: number) => {
+    // CONTEXT7 SOURCE: /context7/react_dev - Defensive programming with null checks
+    // ERROR HANDLING REASON: React official documentation pattern for graceful error handling when props are missing or undefined
+    if (!studentImages || Object.keys(studentImages).length === 0) {
+      console.warn('TrustIndicatorsGrid: studentImages prop is undefined or empty, using fallback image')
+      return {
+        src: '/images/placeholder.svg',
+        alt: 'Placeholder image for trust indicator',
+        width: 400,
+        height: 300
+      }
+    }
+
     let imageKey: string
     
     // CMS DATA SOURCE: Semantic mapping of trust indicators to appropriate images
@@ -112,11 +124,32 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
     } else if (indicator.title.includes('Global Network')) {
       imageKey = 'student-on-laptop-teacher-on-screen'
     } else {
+      // CONTEXT7 SOURCE: /context7/react_dev - Safe array access patterns with fallbacks
+      // FALLBACK REASON: Official React documentation demonstrates safe object key access with fallback values
       const imageKeys = Object.keys(studentImages)
       imageKey = imageKeys[index % imageKeys.length] || 'student-teacher-inside-comfortable'
     }
     
-    return studentImages[imageKey]
+    // CONTEXT7 SOURCE: /context7/react_dev - Defensive programming with object property checks
+    // ERROR HANDLING REASON: React error handling patterns recommend checking for undefined object properties before access
+    const selectedImage = studentImages[imageKey]
+    if (!selectedImage) {
+      console.warn(`TrustIndicatorsGrid: Image key '${imageKey}' not found in studentImages, using fallback`)
+      // Try to get first available image as fallback
+      const availableKeys = Object.keys(studentImages)
+      if (availableKeys.length > 0) {
+        return studentImages[availableKeys[0]]
+      }
+      // Final fallback if no images available
+      return {
+        src: '/images/placeholder.svg',
+        alt: 'Placeholder image for trust indicator',
+        width: 400,
+        height: 300
+      }
+    }
+    
+    return selectedImage
   }
 
   return (

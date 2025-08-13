@@ -13,7 +13,8 @@ module.exports = {
         'http://localhost:3000/about',
         'http://localhost:3000/subject-tuition',
         'http://localhost:3000/testimonials',
-        'http://localhost:3000/how-it-works'
+        'http://localhost:3000/how-it-works',
+        'http://localhost:3000/faq' // CONTEXT7 SOURCE: /vercel/next.js - FAQ page performance monitoring
       ],
       settings: {
         preset: 'desktop',

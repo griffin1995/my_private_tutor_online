@@ -179,12 +179,19 @@ export function HeroVideoDialog({
            * - Uses Next.js Image component for optimized image loading
            * - Standard Magic UI component behavior maintained
            */}
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Image optimization with lazy loading and blur placeholder */}
+          {/* PERFORMANCE ENHANCEMENT REASON: Official Next.js documentation recommends lazy loading and blur placeholders for video thumbnails */}
           <Image
             src={thumbnailSrc}
             alt={thumbnailAlt}
             width={800}
             height={450}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+            loading="lazy"
+            quality={80}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
           />
           
           {/* Play Button Overlay */}
@@ -248,7 +255,9 @@ export function HeroVideoDialog({
                   title="Video player"
                 />
               ) : (
-                /* Standard Video */
+                // Standard Video
+                // CONTEXT7 SOURCE: /vercel/next.js - Video optimization with preload metadata for performance
+                // VIDEO OPTIMIZATION REASON: Official browser documentation recommends preload="metadata" for better performance
                 <video
                   ref={videoRef}
                   src={videoSrc}
@@ -257,6 +266,8 @@ export function HeroVideoDialog({
                   autoPlay
                   muted
                   playsInline
+                  preload="metadata"
+                  loading="lazy"
                   onLoadedData={() => {
                     if (videoRef.current) {
                       videoRef.current.play()

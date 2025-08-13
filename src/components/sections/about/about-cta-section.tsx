@@ -17,30 +17,38 @@ import { Button } from '@/components/ui/button'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
 
 /**
- * CONTEXT7 SOURCE: /context7/radix-ui-primitives - Button component API for accessible CTA buttons
- * INTERFACE DESIGN REASON: Official Radix UI documentation Section 3.1 recommends structured props for button accessibility
+ * CONTEXT7 SOURCE: /context7/radix-ui-primitives - Button component API for accessible CTA buttons with hierarchy support
+ * INTERFACE DESIGN REASON: Official Radix UI documentation demonstrates AlertDialog.Action and AlertDialog.Cancel patterns for button hierarchy
  */
 interface CtaButton {
   text: string
   href?: string
   onClick?: () => void
-  variant?: 'primary' | 'secondary' | 'outline'
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link'
   size?: 'sm' | 'md' | 'lg'
   className?: string
+  'aria-label'?: string
+  disabled?: boolean
 }
 
 /**
- * CONTEXT7 SOURCE: /reactjs/react.dev - Component props interface patterns for reusable UI components
- * PROPS DESIGN REASON: Official React documentation Section 2.3 recommends flexible props with sensible defaults
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Component props interface patterns for multi-tier CTA systems
+ * MULTI-TIER CTA REASON: Official Radix UI AlertDialog patterns demonstrate primary action, cancel, and additional button hierarchies
  */
 interface AboutCtaSectionProps {
   title?: string
   subtitle?: string
   backgroundColor?: string
   className?: string
+  // Primary CTA: High intent actions (Book Consultation)
   primaryCta?: CtaButton
+  // Secondary CTA: Medium intent actions (Download Prospectus)
   secondaryCta?: CtaButton
+  // Tertiary CTA: Low intent actions (Join Newsletter)
+  tertiaryCta?: CtaButton
   showSecondaryButton?: boolean
+  showTertiaryButton?: boolean
+  ctaLayout?: 'stacked' | 'inline' | 'grid'
 }
 
 /**
@@ -59,12 +67,20 @@ export const AboutCtaSection: React.FC<AboutCtaSectionProps> = ({
     className: "bg-accent-600 hover:bg-accent-700 text-white px-8 py-3"
   },
   secondaryCta = {
-    text: "Learn How We Work",
-    variant: "outline", 
+    text: "Download Our Prospectus",
+    variant: "secondary", 
     size: "lg",
-    className: "border-white text-white hover:bg-white hover:text-primary-900 px-8 py-3"
+    className: "bg-accent-100 text-primary-900 hover:bg-accent-200 px-8 py-3"
   },
-  showSecondaryButton = true
+  tertiaryCta = {
+    text: "Join Our Newsletter",
+    variant: "ghost",
+    size: "md",
+    className: "text-accent-200 hover:text-white hover:bg-primary-800 px-6 py-2"
+  },
+  showSecondaryButton = true,
+  showTertiaryButton = true,
+  ctaLayout = 'stacked'
 }) => {
   return (
     <section className={`relative py-16 lg:py-24 ${backgroundColor} ${className}`}>
@@ -116,38 +132,61 @@ export const AboutCtaSection: React.FC<AboutCtaSectionProps> = ({
             {subtitle}
           </m.p>
           
-          {/* CONTEXT7 SOURCE: /context7/motion-dev-docs - Button container animation with extended delay for professional timing */}
-          {/* CTA BUTTONS ANIMATION REASON: Official Motion documentation specifies progressive reveal timing for call-to-action elements */}
+          {/* CONTEXT7 SOURCE: /context7/motion-dev-docs - Multi-tier CTA container animation with extended delay for professional timing */}
+          {/* MULTI-TIER CTA REASON: Official Motion documentation specifies progressive reveal timing for hierarchical call-to-action elements */}
           <m.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className={`gap-4 justify-center ${
+              ctaLayout === 'stacked' 
+                ? 'flex flex-col items-center max-w-sm mx-auto' 
+                : ctaLayout === 'inline'
+                ? 'flex flex-col sm:flex-row items-center'
+                : 'grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto'
+            }`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* CONTEXT7 SOURCE: /context7/radix-ui-primitives - Button component accessibility with keyboard navigation support */}
-            {/* PRIMARY CTA REASON: Official Radix UI documentation Section 4.1 ensures proper focus management and ARIA attributes */}
+            {/* CONTEXT7 SOURCE: /context7/radix-ui-primitives - AlertDialog.Action pattern for primary CTA button */}
+            {/* PRIMARY CTA REASON: Official Radix UI AlertDialog.Action documentation ensures primary action accessibility and focus management */}
             <Button 
               size={primaryCta.size}
               variant={primaryCta.variant}
-              className={primaryCta.className}
+              className={`${primaryCta.className} ${ctaLayout === 'stacked' ? 'w-full' : ''}`}
               onClick={primaryCta.onClick}
-              aria-label={primaryCta.text}
+              aria-label={primaryCta['aria-label'] || primaryCta.text}
+              disabled={primaryCta.disabled}
             >
               {primaryCta.text}
             </Button>
             
-            {/* CONTEXT7 SOURCE: /context7/radix-ui-primitives - Secondary button patterns with outline variant for visual hierarchy */}
-            {/* SECONDARY CTA REASON: Official Radix UI documentation Section 4.2 recommends visually distinct secondary actions */}
+            {/* CONTEXT7 SOURCE: /context7/radix-ui-primitives - AlertDialog.Cancel pattern for secondary CTA button */}
+            {/* SECONDARY CTA REASON: Official Radix UI AlertDialog.Cancel documentation recommends visually distinct secondary actions */}
             {showSecondaryButton && (
               <Button 
                 size={secondaryCta.size}
                 variant={secondaryCta.variant}
-                className={secondaryCta.className}
+                className={`${secondaryCta.className} ${ctaLayout === 'stacked' ? 'w-full' : ''}`}
                 onClick={secondaryCta.onClick}
-                aria-label={secondaryCta.text}
+                aria-label={secondaryCta['aria-label'] || secondaryCta.text}
+                disabled={secondaryCta.disabled}
               >
                 {secondaryCta.text}
+              </Button>
+            )}
+
+            {/* CONTEXT7 SOURCE: /context7/radix-ui-primitives - Button ghost variant pattern for tertiary low-intent actions */}
+            {/* TERTIARY CTA REASON: Official Radix UI button variants documentation demonstrates ghost variant for subtle, low-priority actions */}
+            {showTertiaryButton && (
+              <Button 
+                size={tertiaryCta.size}
+                variant={tertiaryCta.variant}
+                className={`${tertiaryCta.className} ${ctaLayout === 'stacked' ? 'w-full' : ''}`}
+                onClick={tertiaryCta.onClick}
+                aria-label={tertiaryCta['aria-label'] || tertiaryCta.text}
+                disabled={tertiaryCta.disabled}
+              >
+                {tertiaryCta.text}
               </Button>
             )}
           </m.div>
@@ -160,43 +199,80 @@ export const AboutCtaSection: React.FC<AboutCtaSectionProps> = ({
 /**
  * Component Usage Examples:
  * 
- * // Basic usage with defaults
+ * // Basic usage with defaults (all three CTAs)
  * <AboutCtaSection />
  * 
- * // Custom title and subtitle
+ * // Multi-tier CTA system with conversion funnel
  * <AboutCtaSection 
- *   title="Start Your Academic Journey"
- *   subtitle="Discover personalised tutoring that transforms results"
+ *   title="Transform Your Academic Future"
+ *   subtitle="Choose your engagement level - from consultation to ongoing updates"
+ *   ctaLayout="stacked"
+ *   primaryCta={{
+ *     text: "Book Free Consultation",
+ *     onClick: () => router.push('/contact'),
+ *     'aria-label': "Schedule a free tutoring consultation"
+ *   }}
+ *   secondaryCta={{
+ *     text: "Download Prospectus",
+ *     onClick: () => downloadPdf('/prospectus.pdf'),
+ *     'aria-label': "Download our comprehensive tutoring prospectus"
+ *   }}
+ *   tertiaryCta={{
+ *     text: "Subscribe to Newsletter",
+ *     onClick: () => openNewsletterModal(),
+ *     'aria-label': "Subscribe for tutoring tips and success stories"
+ *   }}
  * />
  * 
- * // Custom buttons with callbacks
+ * // Grid layout for equal emphasis
  * <AboutCtaSection 
+ *   ctaLayout="grid"
+ *   primaryCta={{
+ *     text: "Start Today",
+ *     className: "bg-accent-600 hover:bg-accent-700 text-white"
+ *   }}
+ *   secondaryCta={{
+ *     text: "Learn More",
+ *     className: "bg-accent-100 text-primary-900 hover:bg-accent-200"
+ *   }}
+ *   tertiaryCta={{
+ *     text: "Get Updates",
+ *     className: "text-accent-200 hover:text-white"
+ *   }}
+ * />
+ * 
+ * // Inline layout with selective display
+ * <AboutCtaSection 
+ *   ctaLayout="inline"
+ *   showTertiaryButton={false}
  *   primaryCta={{
  *     text: "Schedule Consultation",
- *     onClick: () => router.push('/contact'),
  *     variant: "primary",
  *     size: "lg"
  *   }}
  *   secondaryCta={{
- *     text: "View Our Services", 
- *     onClick: () => router.push('/services'),
- *     variant: "outline",
+ *     text: "View Success Stories",
+ *     variant: "secondary",
  *     size: "lg"
  *   }}
  * />
  * 
- * // Single button configuration
+ * // Single button configuration (high-intent only)
  * <AboutCtaSection 
  *   showSecondaryButton={false}
+ *   showTertiaryButton={false}
  *   primaryCta={{
- *     text: "Get Started Today",
- *     className: "bg-accent-500 hover:bg-accent-600 text-white px-12 py-4"
+ *     text: "Book Now - Limited Availability",
+ *     className: "bg-red-600 hover:bg-red-700 text-white px-12 py-4",
+ *     'aria-label': "Book consultation now - limited availability this term"
  *   }}
  * />
  * 
- * // Custom styling and background
+ * // Custom styling with royal theme
  * <AboutCtaSection 
- *   backgroundColor="bg-slate-900"
- *   className="border-t-2 border-accent-500"
+ *   backgroundColor="bg-primary-900"
+ *   className="border-t-4 border-accent-500"
+ *   title="Royal Standard Tutoring"
+ *   subtitle="Approved by elite families across Britain"
  * />
  */
