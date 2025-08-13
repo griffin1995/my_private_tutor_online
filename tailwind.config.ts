@@ -28,7 +28,7 @@ const config: Config = {
   // Enable dark mode via class
   darkMode: 'class',
   
-  // Content paths for Tailwind CSS 4.x
+  // Content paths for Tailwind CSS 3.x
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -241,8 +241,6 @@ const config: Config = {
         'scroll': 'scroll 30s linear infinite',
         'accordion-down': 'accordion-down 0.3s ease-out',
         'accordion-up': 'accordion-up 0.3s ease-out',
-        'fade-in': 'fade-in 0.4s ease-out',
-        'fade-in-up': 'fade-in-up 0.5s ease-out',
       },
       
       keyframes: {
@@ -289,20 +287,6 @@ const config: Config = {
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
-        },
-        'fade-in': {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        'fade-in-up': {
-          '0%': { 
-            opacity: '0',
-            transform: 'translateY(10px)' 
-          },
-          '100%': { 
-            opacity: '1',
-            transform: 'translateY(0)' 
-          },
         },
       },
       
