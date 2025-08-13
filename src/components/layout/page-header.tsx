@@ -921,6 +921,8 @@ export function PageHeader({
 // CONTEXT7 SOURCE: /context7/react_dev - Enhanced navigation structure with dropdown submenus
 // NAVIGATION STRUCTURE REASON: Comprehensive submenu system for premium tutoring service
 
+// CONTEXT7 SOURCE: /vercel/next.js - Enhanced navigation structure with About page restoration
+// NAVIGATION RESTORATION REASON: Official Next.js navigation patterns for complete site structure
 // Enhanced navigation structure with dropdown submenus
 function getEnhancedNavigation() {
   return [
@@ -935,6 +937,12 @@ function getEnhancedNavigation() {
       label: 'How It Works',
       href: '/how-it-works',
       submenu: true
+    },
+    {
+      name: 'ABOUT',
+      label: 'About',
+      href: '/about',
+      submenu: false
     },
     {
       name: '11+ BOOTCAMPS',

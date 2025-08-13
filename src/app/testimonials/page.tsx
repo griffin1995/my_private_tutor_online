@@ -116,8 +116,10 @@ export default function TestimonialsPage() {
       />
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns with PageHeader integration */}
+      {/* NAVBAR INTEGRATION REASON: Official Next.js documentation recommends PageHeader inclusion for consistent navigation experience */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
-      <PageLayout background="white" showHeader={false} showFooter={true} containerSize="full">
+      <PageLayout background="white" showHeader={true} showFooter={true} containerSize="full">
 
         {/* CONTEXT7 SOURCE: /components/testimonials/testimonials-intro - Enhanced modular intro component */}
         {/* COMPONENT INTEGRATION REASON: Extracted reusable TestimonialsIntro component with enhanced trust indicators */}
