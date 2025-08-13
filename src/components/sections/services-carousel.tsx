@@ -62,6 +62,8 @@ interface ServiceData {
   features: string[]
   targetAudience: string
   icon: string
+  featureImageUrl?: string
+  featureImageAlt?: string
 }
 
 interface StudentImageData {
@@ -306,27 +308,38 @@ export function ServicesCarousel({
                   // CMS DATA SOURCE: Using serviceImageMapping for direct service-to-image correlation, fallback to legacy image for compatibility
                   const imageKey = serviceImageMapping[service.title as keyof typeof serviceImageMapping] || 'student-teenager'
                   
-                  // CONTEXT7 SOURCE: /context7/react_dev - Defensive programming with object property checks
-                  // ERROR HANDLING REASON: React error handling patterns recommend checking for undefined object properties before access
-                  const selectedImage = studentImages[imageKey]
+                  // CONTEXT7 SOURCE: /vercel/next.js - Prioritize service feature image over fallback logic
+                  // FEATURE IMAGE PRIORITY REASON: Official Next.js documentation prioritizes explicit image sources over dynamic selection
                   let studentImage
-                  if (!selectedImage) {
-                    console.warn(`ServicesCarousel: Image key '${imageKey}' not found in studentImages, using fallback`)
-                    // Try to get first available image as fallback
-                    const availableKeys = Object.keys(studentImages)
-                    if (availableKeys.length > 0) {
-                      studentImage = studentImages[availableKeys[0]]
-                    } else {
-                      // Final fallback if no images available
-                      studentImage = {
-                        src: '/images/placeholder.svg',
-                        alt: 'Placeholder image for service',
-                        width: 400,
-                        height: 300
-                      }
+                  if (service.featureImageUrl && service.featureImageAlt) {
+                    studentImage = {
+                      src: service.featureImageUrl,
+                      alt: service.featureImageAlt,
+                      width: 600,
+                      height: 400
                     }
                   } else {
-                    studentImage = selectedImage
+                    // CONTEXT7 SOURCE: /context7/react_dev - Defensive programming with object property checks
+                    // ERROR HANDLING REASON: React error handling patterns recommend checking for undefined object properties before access
+                    const selectedImage = studentImages[imageKey]
+                    if (!selectedImage) {
+                      console.warn(`ServicesCarousel: Image key '${imageKey}' not found in studentImages, using fallback`)
+                      // Try to get first available image as fallback
+                      const availableKeys = Object.keys(studentImages)
+                      if (availableKeys.length > 0) {
+                        studentImage = studentImages[availableKeys[0]]
+                      } else {
+                        // Final fallback if no images available
+                        studentImage = {
+                          src: '/images/placeholder.svg',
+                          alt: 'Placeholder image for service',
+                          width: 400,
+                          height: 300
+                        }
+                      }
+                    } else {
+                      studentImage = selectedImage
+                    }
                   }
                   
                   return (

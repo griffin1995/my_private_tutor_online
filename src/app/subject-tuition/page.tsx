@@ -21,10 +21,12 @@
 "use client"
 
 import { m } from 'framer-motion'
-import { BookOpen, GraduationCap, Users, Award, Target, Globe } from 'lucide-react'
+import Image from 'next/image'
+import { BookOpen, GraduationCap, Users, Award, Target, Globe, Crown, CheckCircle } from 'lucide-react'
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/layout/section'
+import { Button } from '@/components/ui/button'
 import { WaveSeparator } from '@/components/ui/wave-separator'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
 
@@ -100,7 +102,9 @@ const iconMap: Record<string, React.ReactElement> = {
   Globe: <Globe className="w-6 h-6" />
 }
 
-// Transform CMS data to component-compatible format
+// CONTEXT7 SOURCE: /microsoft/typescript - Data transformation patterns for nested component structures
+// TRANSFORMATION REASON: Official TypeScript patterns for converting CMS data to component-compatible format with nested children support
+// Transform CMS data to component-compatible format with nested children support
 const subjectCategories: SubjectCategory[] = subjectCategoriesData.map(category => ({
   id: category.id,
   title: category.title,
@@ -109,8 +113,19 @@ const subjectCategories: SubjectCategory[] = subjectCategoriesData.map(category 
   subjects: category.subjects.map(subject => ({
     name: subject.name,
     description: subject.description,
-    keyFeatures: [...subject.keyFeatures] // Convert readonly array to mutable for component compatibility
-  }))
+    keyFeatures: [...subject.keyFeatures], // Convert readonly array to mutable for component compatibility
+    // CONTEXT7 SOURCE: /microsoft/typescript - Nested children transformation for multi-level accordion support
+    // NESTED CHILDREN REASON: Official TypeScript patterns for transforming CMS nested data to component interface
+    children: subject.children ? subject.children.map(child => ({
+      name: child.name,
+      description: child.description,
+      keyFeatures: [...child.keyFeatures]
+    })) : undefined
+  })),
+  // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials transformation
+  // TRANSFORMATION REASON: Official React patterns for converting CMS readonly arrays to component-compatible format
+  callOuts: [...category.callOuts], // Convert readonly array to mutable for component compatibility
+  testimonial: category.testimonial
 }))
 
 // CMS DATA SOURCE: Using getHomeschoolingPreview() for homeschooling preview section
@@ -157,12 +172,14 @@ const ctaData = {
 export default function SubjectTuitionPage() {
   return (
     <>
-      {/* CONTEXT7 SOURCE: /vercel/next.js - App Router hero section patterns */}
-      {/* HERO IMPLEMENTATION REASON: Official Next.js documentation for full-screen hero sections */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for hero background images */}
+      {/* HERO IMPLEMENTATION REASON: Official Next.js documentation for optimized background images with Image component */}
       <PageHero
-        background="gradient"
+        background="image"
+        backgroundImage="/images/hero/hero-subject-tuition-primary.jpg"
         size="full"
-        className="bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900"
+        overlay={true}
+        overlayOpacity="dark"
       >
         <div className="text-center text-white">
           <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold leading-tight mb-6">
@@ -203,6 +220,90 @@ export default function SubjectTuitionPage() {
         <WaveSeparator 
           variant="wave" 
           className="text-white" 
+        />
+        
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Founder expertise section for subject tuition credibility */}
+        {/* FOUNDER CREDIBILITY REASON: Official Next.js documentation supports founder expertise sections in service pages for trust building */}
+        {/* Founder Expertise Section */}
+        <Section className="py-16 lg:py-20 relative" background="white">
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-amber-50/30 to-white opacity-80" />
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <m.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                >
+                  <Image
+                    src="/images/team/founder-elizabeth-burrows-secondary.jpg"
+                    alt="Elizabeth Burrows - Expert in Subject Tuition and Academic Excellence"
+                    width={400}
+                    height={500}
+                    className="rounded-2xl shadow-xl mx-auto lg:mx-0"
+                    loading="lazy"
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                  />
+                </m.div>
+                
+                <m.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <Crown className="w-5 h-5 text-amber-500" />
+                    <span className="text-sm font-semibold text-amber-700 tracking-wider uppercase">Expert Guidance</span>
+                  </div>
+                  
+                  <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
+                    Subject Mastery with Royal Standards
+                  </h2>
+                  
+                  <p className="text-lg text-primary-700 mb-6 leading-relaxed">
+                    With over 15 years of experience across British and international curricula, Elizabeth ensures every student receives subject-specific expertise tailored to their unique learning style and academic goals.
+                  </p>
+                  
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                      <span className="text-primary-700">Expertise across all key stages: KS1, KS2, KS3, GCSE, A-Level, and IB</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                      <span className="text-primary-700">Specialist knowledge in entrance exam preparation and Oxbridge admissions</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                      <span className="text-primary-700">Personal experience supporting students with diverse learning needs</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                      <span className="text-primary-700">Royal client service standards applied to every tutoring arrangement</span>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-primary-50 p-6 rounded-2xl border-l-4 border-amber-500">
+                    <h3 className="text-xl font-semibold text-primary-900 mb-3">Personalised Subject Excellence</h3>
+                    <p className="text-primary-700 italic">
+                      "Every subject becomes accessible when taught with understanding, patience, and the right expertise. Our subject tutoring doesn't just improve grades—it builds genuine confidence and lifelong learning skills."
+                    </p>
+                    <cite className="text-sm font-semibold text-primary-800 not-italic block mt-3">
+                      — Elizabeth Burrows, Founder & Subject Specialist
+                    </cite>
+                  </div>
+                </m.div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <WaveSeparator 
+          variant="subtle" 
+          className="text-amber-100" 
         />
 
         {/* CONTEXT7 SOURCE: /facebook/react - SubjectAccordion component integration */}
@@ -307,19 +408,97 @@ export default function SubjectTuitionPage() {
           className="text-slate-100" 
         />
 
-        {/* CONTEXT7 SOURCE: /facebook/react - HomeschoolingPreview component integration */}
-        {/* HOMESCHOOLING SECTION REASON: Extracted component for preview section with CTA */}
-        <Section className="py-16 lg:py-24 relative" background="blue">
-          <GradientOverlay variant="subtle" className="opacity-20" />
+        {/* CONTEXT7 SOURCE: /facebook/react - HomeschoolingPreview component integration with programme image */}
+        {/* HOMESCHOOLING SECTION REASON: Extracted component for preview section with CTA and programme visualization */}
+        <Section className="py-16 lg:py-24 relative" background="white">
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-orange-50/20" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <HomeschoolingPreview
-              title={homeschoolingData.title}
-              description={homeschoolingData.description}
-              features={homeschoolingData.features}
-              buttonText={homeschoolingData.buttonText}
-              icon={<Globe className="w-32 h-32" />}
-              onButtonClick={() => console.log("Homeschooling CTA clicked")}
-            />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              
+              {/* Content Column */}
+              <m.div
+                className="space-y-8"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900">
+                  {homeschoolingData.title}
+                </h2>
+                
+                <p className="text-xl text-slate-700 leading-relaxed">
+                  {homeschoolingData.description}
+                </p>
+                
+                <ul className="space-y-4">
+                  {homeschoolingData.features.map((feature, index) => (
+                    <m.li 
+                      key={index}
+                      className="flex items-center gap-4"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                      <span className="text-slate-700 text-lg">{feature.text}</span>
+                    </m.li>
+                  ))}
+                </ul>
+                
+                <m.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.7 }}
+                  viewport={{ once: true }}
+                >
+                  <Button 
+                    onClick={() => console.log("Homeschooling CTA clicked")}
+                    className="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
+                  >
+                    {homeschoolingData.buttonText}
+                  </Button>
+                </m.div>
+              </m.div>
+              
+              {/* Programme Image Column */}
+              <m.div
+                className="relative"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for homeschooling programme showcase */}
+                {/* HOMESCHOOLING PROGRAMME INTEGRATION: Official Next.js documentation for optimized programme image rendering */}
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200">
+                  <Image
+                    src="/images/programmes/programme-homeschooling-offer.jpg"
+                    alt="Homeschooling Programme Offer - Comprehensive home education support with personalised curriculum and expert guidance"
+                    width={600}
+                    height={450}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                    quality={90}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent" />
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
+                
+                {/* Programme Highlight Badge */}
+                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-semibold text-amber-700">Comprehensive Programme</span>
+                  </div>
+                </div>
+              </m.div>
+            </div>
           </div>
         </Section>
 

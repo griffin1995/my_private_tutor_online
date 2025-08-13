@@ -74,19 +74,19 @@
       "tier": "Tier 3",
       "description": "Tutors from top UK universities (including Oxbridge), teaching their specialist subject",
       "bestFor": "Mentoring, subject confidence",
-      "pricePoint": "Affordable"
+      "pricePoint": "From £45/hour"
     },
     {
       "tier": "Tier 2", 
       "description": "Qualified, experienced classroom teachers",
       "bestFor": "Curriculum mastery, consistency",
-      "pricePoint": "Mid-range"
+      "pricePoint": "From £65/hour"
     },
     {
       "tier": "Tier 1",
       "description": "Official examiners and senior educators with extensive track records",
       "bestFor": "Top grades, exam strategy", 
-      "pricePoint": "Premium"
+      "pricePoint": "From £85/hour"
     }
   ],
 

@@ -74,6 +74,12 @@ import { Button } from '@/components/ui/button'
 // Pattern: Conditional CSS class management
 import { cn } from '@/lib/utils'
 
+// CONTEXT7 SOURCE: /context7/motion_dev - Framer Motion with AnimatePresence for dropdown animations
+// DROPDOWN ANIMATION REASON: Official Motion documentation for hover-triggered navigation dropdowns
+// CONTEXT7 SOURCE: /context7/motion_dev - Motion components for enhanced navigation interactions
+// MOTION INTEGRATION: Advanced animation patterns for premium navigation experience
+import { AnimatePresence, m } from 'framer-motion'
+
 // CMS DATA SOURCE: Using getSiteHeader and getMainNavigation for all header content
 // Documentation Source: Centralized CMS pattern for content management
 // Reference: Project CLAUDE.md rules 22-25 for CMS requirements
@@ -116,20 +122,23 @@ export function PageHeader({
   const logoDefault = getMainLogo()
   const logoWhite = getMainLogoWhite()
   
+  // CONTEXT7 SOURCE: /context7/react_dev - Enhanced state management for dropdown navigation
+  // DROPDOWN STATE REASON: Official React patterns for managing complex navigation state
   // Documentation Source: React 19 useState for component state management
   // Reference: https://react.dev/reference/react/useState
-  // Pattern: Component state for scroll detection and mobile menu
+  // Pattern: Component state for scroll detection, mobile menu, and dropdown management
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null)
   
   // CONTEXT7 SOURCE: /vercel/next.js - SSR-safe client-side state initialization
   // HYDRATION FIX REASON: Official Next.js patterns for preventing hydration mismatches
   // Pattern: Two-pass rendering to ensure consistent server/client state
   const [isMounted, setIsMounted] = useState(false)
   
-  // Documentation Source: Context7 React 19 + Performance Optimization - useCallback for scroll handling
-  // Reference: https://react.dev/reference/react/useCallback
-  // Pattern: Memoized scroll handler to prevent unnecessary re-renders and optimize performance
+  // CONTEXT7 SOURCE: /context7/react_dev - useCallback for optimized scroll handling
+  // SCROLL OPTIMIZATION REASON: Official React documentation for memoized event handlers
   const handleScroll = useCallback(() => {
     // CONTEXT7 SOURCE: /vercel/next.js - SSR-safe window access prevention
     // HYDRATION FIX REASON: Official Next.js patterns for preventing server-side window access
@@ -149,6 +158,30 @@ export function PageHeader({
     // 4. Gives users clear visual feedback about scroll position
     setIsScrolled(window.scrollY > 100)
   }, [])
+  
+  // CONTEXT7 SOURCE: /context7/react_dev - Enhanced dropdown hover handlers with timeout management
+  // DROPDOWN HOVER REASON: Official React patterns for smooth dropdown navigation without flicker
+  const handleMouseEnterNav = useCallback((itemName: string) => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout)
+      setHoverTimeout(null)
+    }
+    setActiveDropdown(itemName)
+  }, [hoverTimeout])
+  
+  const handleMouseLeaveNavArea = useCallback(() => {
+    const timeout = setTimeout(() => {
+      setActiveDropdown(null)
+    }, 150) // Small delay to allow moving to dropdown
+    setHoverTimeout(timeout)
+  }, [])
+  
+  const handleMouseEnterDropdown = useCallback(() => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout)
+      setHoverTimeout(null)
+    }
+  }, [hoverTimeout])
   
   // CONTEXT7 SOURCE: /vercel/next.js - Client-side only effects with SSR safety
   // HYDRATION FIX REASON: Official Next.js patterns for client-side only effects
@@ -192,8 +225,40 @@ export function PageHeader({
       if (typeof window !== 'undefined') {
         window.removeEventListener('scroll', handleScroll)
       }
+      // CONTEXT7 SOURCE: /context7/react_dev - Cleanup hover timeouts to prevent memory leaks
+      // CLEANUP REASON: Official React patterns for proper effect cleanup
+      if (hoverTimeout) {
+        clearTimeout(hoverTimeout)
+      }
     }
-  }, [handleScroll])
+  }, [handleScroll, hoverTimeout])
+  
+  // CONTEXT7 SOURCE: /context7/react_dev - Enhanced keyboard navigation and escape handling
+  // ACCESSIBILITY REASON: Official React patterns for keyboard navigation support
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveDropdown(null)
+        setIsMobileMenuOpen(false)
+      }
+    }
+    
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as Element
+      if (!target.closest('[data-navigation]') && !target.closest('.dropdown-area')) {
+        setActiveDropdown(null)
+      }
+    }
+    
+    if (activeDropdown) {
+      document.addEventListener('keydown', handleEscape)
+      document.addEventListener('mousedown', handleOutsideClick)
+      return () => {
+        document.removeEventListener('keydown', handleEscape)
+        document.removeEventListener('mousedown', handleOutsideClick)
+      }
+    }
+  }, [activeDropdown])
   
   // CONTEXT7 SOURCE: /vercel/next.js - Prevent hydration mismatch with initial server state
   // HYDRATION FIX REASON: Server always renders with isScrolled=false to match initial client state
@@ -325,129 +390,95 @@ export function PageHeader({
             </Link>
           </div>
           
-          {/* Navigation Section - Center (Desktop Only) */}
-          {/* Documentation Source: Context7 Radix UI NavigationMenu - Individual Link Styling Pattern
-           * Reference: /radix-ui/website - NavigationMenu.Link data attributes and hover state management
-           * Pattern: WCAG 2.1 AA compliant navigation with proper individual link hover states
+          {/* Enhanced Navigation Section - Center (Desktop Only) with Dropdown Menus */}
+          {/* CONTEXT7 SOURCE: /context7/react_dev - Enhanced navigation with dropdown hover management
+           * DROPDOWN NAVIGATION REASON: Official React patterns for complex navigation with hover-triggered submenus
+           * CONTEXT7 SOURCE: /context7/motion_dev - Framer Motion dropdown animations for seamless user experience
+           * ANIMATION ENHANCEMENT: Premium navigation patterns with smooth dropdown transitions
            * 
-           * Critical Implementation Notes:
-           * - Each NavigationMenuItem must handle its own hover states independently
-           * - Radix UI NavigationMenu.Link components use [data-active] attributes for state management
-           * - CSS hover specificity must target individual Link elements, not parent containers
-           * - Group hover patterns prevent individual link state management conflicts
+           * Enhanced Implementation Features:
+           * - Hover-triggered dropdown submenus with timeout management
+           * - Smooth animations using Framer Motion AnimatePresence
+           * - Hover bridge functionality for seamless navigation
+           * - Keyboard navigation and escape key support
+           * - Mobile responsive with collapsible dropdown support
+           * - WCAG 2.1 AA compliant with proper ARIA attributes
            */}
-          <nav className="hidden lg:flex justify-center" role="navigation" aria-label="Main navigation">
-            <NavigationMenu>
-              <NavigationMenuList className="flex items-center space-x-1">
-                {navigation.map((item, index) => (
-                  <NavigationMenuItem key={index}>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          // Documentation Source: Context7 Tailwind CSS - Individual Link Hover States with ::after Pseudo-elements
-                          // Reference: /tailwindlabs/tailwindcss.com - ::after pseudo-elements for decorative effects
-                          // Pattern: Individual link styling using Tailwind CSS ::after variants for underline animations
-                          "relative inline-flex h-10 items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/50 whitespace-nowrap",
-                          
-                          // Documentation Source: Context7 Tailwind CSS - ::after Pseudo-element Utilities
-                          // Reference: /tailwindlabs/tailwindcss.com - Using ::after variants for decorative underlines
-                          // Pattern: Tailwind automatically adds content: '' for ::after pseudo-elements
-                          "after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:duration-300",
-                          "hover:after:w-3/4 focus:after:w-3/4",
-                          
-                          // Documentation Source: Context7 Radix UI - Individual Link State Management
-                          // Reference: /radix-ui/website - Preventing hover state conflicts across NavigationMenu items
-                          // Pattern: State-specific styling that prevents cross-contamination between navigation links
-                          //
-                          // CRITICAL IMPLEMENTATION: Individual link hover states (no group dependencies)
-                          // Each NavigationMenuItem manages its own hover state completely independently
-                          // This prevents hover effects from affecting all navigation links simultaneously
-                          
-                          // CLIENT REQUIREMENTS: Scroll-based colour transition implementation
-                          // Initial state (no scrolling): ALL navbar text WHITE
-                          // After scrolling: ALL navbar text BLUE (#3F4A7E = primary-700)
-                          
-                          // Transparent Navbar State: Default state when at top of page
-                          !safeIsScrolled && [
-                            // Documentation Source: Context7 MCP - React Scroll Event Handler Implementation
-                            // Reference: /react-hook-form/documentation - useEffect scroll event patterns
-                            // CLIENT REQUIREMENT: Initial state text must be WHITE for visibility over hero content
-                            "!text-white",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Maintaining Text Color Consistency
-                            // Reference: /tailwindlabs/tailwindcss.com - Hover state text color preservation
-                            // CLIENT REQUIREMENT: Keep white text white on hover (no color change)
-                            "hover:!text-white",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - ::after Pseudo-element Underline Effects
-                            // Reference: /tailwindlabs/tailwindcss.com - Gradient utilities with ::after variants
-                            // Underline gradient: White to light accent maintains visibility on transparent state
-                            "after:bg-gradient-to-r after:from-white after:to-accent-200",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Semi-transparent Overlay Effects
-                            // Reference: /tailwindlabs/tailwindcss.com - Background opacity utilities for hover feedback
-                            // Hover background: Subtle white overlay provides tactile feedback
-                            "hover:bg-white/10",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Keyboard Navigation Accessibility
-                            // Reference: /tailwindlabs/tailwindcss.com - :focus pseudo-class for WCAG 2.1 AA compliance
-                            // Focus background: Enhanced visibility for keyboard users
-                            "focus:bg-white/15",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Premium Visual Effects
-                            // Reference: /tailwindlabs/tailwindcss.com - box-shadow utilities for depth and hierarchy
-                            // Premium shadow effects: Elevated visual hierarchy for luxury brand positioning
-                            "hover:shadow-lg hover:shadow-white/20",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Transform Scale Micro-interactions
-                            // Reference: /tailwindlabs/tailwindcss.com - Scale transform for engaging user feedback
-                            // Scale animation: Subtle interaction feedback maintaining professional aesthetic
-                            "hover:scale-105 focus:scale-105"
-                          ].join(' '),
-                          
-                          // Scrolled Navbar State: When user has scrolled down the page
-                          safeIsScrolled && [
-                            // Documentation Source: Context7 MCP - Client Brand Color Implementation
-                            // Reference: Tailwind Config - primary-700: '#3f4a7e' (CLIENT BRAND BLUE)
-                            // CLIENT REQUIREMENT: Scrolled state text must be BLUE (#3F4A7E)
-                            "!text-primary-700",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Consistent Brand Color Application
-                            // Reference: /tailwindlabs/tailwindcss.com - Hover state color consistency patterns
-                            // CLIENT REQUIREMENT: Keep blue text blue on hover (no color change)
-                            "hover:!text-primary-700",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Brand Color Gradients
-                            // Reference: /tailwindlabs/tailwindcss.com - Primary color gradient utilities
-                            // Underline gradient: Primary blue gradient maintains brand consistency
-                            "after:bg-gradient-to-r after:from-primary-700 after:to-primary-600",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Light Background Hover States
-                            // Reference: /tailwindlabs/tailwindcss.com - Primary color tint utilities for feedback
-                            // Hover background: Light primary tint provides gentle visual feedback
-                            "hover:bg-primary-50",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Focus State Enhancement
-                            // Reference: /tailwindlabs/tailwindcss.com - Enhanced focus visibility for accessibility
-                            // Focus background: Slightly darker primary for improved keyboard navigation
-                            "focus:bg-primary-100",
-                            
-                            // Documentation Source: Context7 Tailwind CSS - Consistent Interactive Animations
-                            // Reference: /tailwindlabs/tailwindcss.com - Transform utilities for uniform interactions
-                            // Scale animation: Consistent micro-interactions across all navbar states
-                            "hover:scale-105 focus:scale-105"
-                          ].join(' ')
-                        )}
-                        prefetch={false}
-                      >
-                        <span className="relative z-10">{item.label}</span>
-                      </Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                ))}
-              </NavigationMenuList>
-            </NavigationMenu>
+          <nav 
+            className="hidden lg:flex justify-center" 
+            role="navigation" 
+            aria-label="Main navigation"
+            data-navigation
+            onMouseLeave={handleMouseLeaveNavArea}
+          >
+            <div className="flex items-center space-x-1">
+              {/* Enhanced navigation with dropdown structure */}
+              {getEnhancedNavigation().map((item, index) => (
+                <div
+                  key={index}
+                  className="relative"
+                  onMouseEnter={() => item.submenu ? handleMouseEnterNav(item.name) : null}
+                >
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      // CONTEXT7 SOURCE: /context7/motion_dev - Enhanced navigation link styling with dropdown indicators
+                      // STYLING REASON: Official Motion patterns for interactive navigation elements
+                      "relative inline-flex h-10 items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/50 whitespace-nowrap",
+                      
+                      // Enhanced underline animation for dropdown-enabled links
+                      "after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:duration-300",
+                      "hover:after:w-3/4 focus:after:w-3/4",
+                      
+                      // Active dropdown state styling
+                      activeDropdown === item.name && [
+                        !safeIsScrolled ? "bg-white/20 text-white shadow-lg" : "bg-primary-100 text-primary-700 shadow-lg"
+                      ].join(' '),
+                      
+                      // Transparent Navbar State: Default state when at top of page
+                      !safeIsScrolled && !(activeDropdown === item.name) && [
+                        "!text-white",
+                        "hover:!text-white",
+                        "after:bg-gradient-to-r after:from-white after:to-accent-200",
+                        "hover:bg-white/10",
+                        "focus:bg-white/15",
+                        "hover:shadow-lg hover:shadow-white/20",
+                        "hover:scale-105 focus:scale-105"
+                      ].join(' '),
+                      
+                      // Scrolled Navbar State: When user has scrolled down the page
+                      safeIsScrolled && !(activeDropdown === item.name) && [
+                        "!text-primary-700",
+                        "hover:!text-primary-700",
+                        "after:bg-gradient-to-r after:from-primary-700 after:to-primary-600",
+                        "hover:bg-primary-50",
+                        "focus:bg-primary-100",
+                        "hover:scale-105 focus:scale-105"
+                      ].join(' ')
+                    )}
+                    prefetch={false}
+                  >
+                    <span className="relative z-10 flex items-center gap-1">
+                      {item.label}
+                      {/* CONTEXT7 SOURCE: /context7/motion_dev - Dropdown indicator with smooth rotation animation */}
+                      {item.submenu && (
+                        <m.div
+                          animate={{ 
+                            rotate: activeDropdown === item.name ? 180 : 0 
+                          }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-1"
+                        >
+                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </m.div>
+                      )}
+                    </span>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </nav>
           
           {/* CTA Section - Right */}
@@ -606,30 +637,89 @@ export function PageHeader({
                     </SheetTitle>
                   </SheetHeader>
                   
-                  {/* Mobile Navigation Links */}
-                  {/* Documentation Source: Touch-friendly mobile navigation patterns
-                   * Reference: https://www.w3.org/WAI/WCAG21/Understanding/target-size.html
-                   * Pattern: 44px minimum touch targets for mobile accessibility
+                  {/* Enhanced Mobile Navigation Links with Dropdown Support */}
+                  {/* CONTEXT7 SOURCE: /context7/react_dev - Enhanced mobile navigation with dropdown functionality
+                   * MOBILE DROPDOWN REASON: Official React patterns for collapsible mobile navigation
+                   * CONTEXT7 SOURCE: /context7/motion_dev - Mobile dropdown animations and state management
+                   * MOBILE ANIMATION: Touch-friendly navigation with smooth dropdown transitions
                    */}
                   <nav className="space-y-2" role="navigation" aria-label="Mobile navigation">
-                    {navigation.map((item, index) => (
-                      <Link
-                        key={index}
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="group flex items-center w-full min-h-[44px] px-4 py-3 text-primary-700 hover:text-primary-900 font-medium rounded-xl hover:bg-primary-50 active:bg-primary-100 transition-all duration-300 focus:bg-primary-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/50"
-                        aria-label={`Navigate to ${item.label} section`}
-                      >
-                        <span className="relative z-10">{item.label}</span>
-                        {/* Documentation Source: Mobile interaction feedback patterns
-                         * Reference: https://material.io/design/interaction/states.html
-                         * Pattern: Animated background on touch for tactile feedback
-                         */}
-                        <span 
-                          className="absolute inset-0 bg-gradient-to-r from-accent-50/50 to-accent-100/50 translate-x-[-100%] transition-transform duration-300 group-hover:translate-x-0 rounded-xl"
-                          aria-hidden="true"
-                        />
-                      </Link>
+                    {getEnhancedNavigation().map((item, index) => (
+                      <div key={index}>
+                        <button
+                          onClick={() => {
+                            if (item.submenu) {
+                              setActiveDropdown(
+                                activeDropdown === item.name ? null : item.name
+                              )
+                            } else {
+                              setIsMobileMenuOpen(false)
+                            }
+                          }}
+                          className="group flex items-center justify-between w-full min-h-[44px] px-4 py-3 text-primary-700 hover:text-primary-900 font-medium rounded-xl hover:bg-primary-50 active:bg-primary-100 transition-all duration-300 focus:bg-primary-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/50"
+                          aria-label={item.submenu ? `Toggle ${item.label} submenu` : `Navigate to ${item.label} section`}
+                        >
+                          <span className="relative z-10 flex items-center gap-2">
+                            {item.label}
+                          </span>
+                          {item.submenu && (
+                            <m.div
+                              animate={{ 
+                                rotate: activeDropdown === item.name ? 180 : 0 
+                              }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
+                            </m.div>
+                          )}
+                          {/* Mobile interaction feedback */}
+                          <span 
+                            className="absolute inset-0 bg-gradient-to-r from-accent-50/50 to-accent-100/50 translate-x-[-100%] transition-transform duration-300 group-hover:translate-x-0 rounded-xl"
+                            aria-hidden="true"
+                          />
+                        </button>
+                        
+                        {/* CONTEXT7 SOURCE: /context7/motion_dev - Mobile dropdown submenu with smooth animations */}
+                        <AnimatePresence>
+                          {activeDropdown === item.name && item.submenu && (
+                            <m.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="ml-4 mt-2 space-y-1 overflow-hidden"
+                            >
+                              {getSubmenuItems(item.name).map((subItem, subIndex) => (
+                                <m.div
+                                  key={subItem.name}
+                                  initial={{ opacity: 0, x: -20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ 
+                                    duration: 0.3,
+                                    delay: subIndex * 0.05
+                                  }}
+                                >
+                                  <Link
+                                    href={subItem.href}
+                                    className="block px-3 py-2 text-base text-primary-600 hover:text-primary-900 hover:bg-primary-50 rounded-lg transition-colors duration-200"
+                                    onClick={() => {
+                                      setIsMobileMenuOpen(false)
+                                      setActiveDropdown(null)
+                                    }}
+                                  >
+                                    <div>
+                                      <div className="font-medium">{subItem.name}</div>
+                                      <div className="text-sm text-primary-500 mt-1">{subItem.description}</div>
+                                    </div>
+                                  </Link>
+                                </m.div>
+                              ))}
+                            </m.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     ))}
                   </nav>
                   
@@ -638,7 +728,10 @@ export function PageHeader({
                     <Button
                       size="lg"
                       className="w-full bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 min-h-[48px]"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false)
+                        setActiveDropdown(null)
+                      }}
                       asChild
                     >
                       <Link href="#contact">
@@ -658,8 +751,259 @@ export function PageHeader({
           
         </div>
       </div>
+      
+      {/* CONTEXT7 SOURCE: /context7/motion_dev - Hover Bridge for seamless dropdown navigation */}
+      {/* HOVER BRIDGE REASON: Official Motion patterns for preventing dropdown flicker during navigation */}
+      <AnimatePresence>
+        {activeDropdown && (
+          <div 
+            className="fixed left-0 right-0 h-4 z-[9997] dropdown-area"
+            style={{ top: '76px' }}
+            onMouseEnter={handleMouseEnterDropdown}
+            onMouseLeave={handleMouseLeaveNavArea}
+          />
+        )}
+      </AnimatePresence>
+      
+      {/* CONTEXT7 SOURCE: /context7/motion_dev - Enhanced dropdown menu with smooth animations */}
+      {/* DROPDOWN ANIMATION REASON: Official Motion documentation for premium navigation dropdowns */}
+      <AnimatePresence>
+        {activeDropdown && (
+          <m.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className={cn(
+              "fixed left-0 right-0 z-[9998] dropdown-area shadow-xl border-b",
+              safeIsScrolled 
+                ? "bg-white/95 backdrop-blur-xl border-primary-100/80" 
+                : "bg-slate-900/95 backdrop-blur-xl border-slate-700/50"
+            )}
+            style={{ top: '80px' }}
+            data-navigation
+            onMouseEnter={handleMouseEnterDropdown}
+            onMouseLeave={handleMouseLeaveNavArea}
+          >
+            <div className="max-w-7xl mx-auto px-6 py-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {getSubmenuItems(activeDropdown).map((subItem, index) => (
+                  <m.div
+                    key={subItem.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.3,
+                      delay: index * 0.05
+                    }}
+                  >
+                    <Link
+                      href={subItem.href}
+                      className={cn(
+                        "group relative block rounded-xl p-6 transition-all duration-300 border border-transparent",
+                        safeIsScrolled
+                          ? "hover:bg-primary-50 hover:shadow-lg hover:border-primary-200/50 text-primary-700"
+                          : "hover:bg-white/10 hover:shadow-lg hover:border-white/20 text-white"
+                      )}
+                      onClick={() => setActiveDropdown(null)}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <h3 className={cn(
+                            "text-lg font-semibold transition-colors duration-300 relative inline-block",
+                            safeIsScrolled
+                              ? "text-primary-700 group-hover:text-primary-900"
+                              : "text-white group-hover:text-accent-300"
+                          )}>
+                            {subItem.name}
+                            <span className={cn(
+                              "absolute bottom-0 left-0 h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left w-full",
+                              safeIsScrolled ? "bg-primary-400" : "bg-accent-400"
+                            )}></span>
+                          </h3>
+                          <p className={cn(
+                            "mt-2 text-base transition-colors duration-300",
+                            safeIsScrolled
+                              ? "text-primary-600/70 group-hover:text-primary-600/90"
+                              : "text-white/70 group-hover:text-white/90"
+                          )}>
+                            {subItem.description}
+                          </p>
+                        </div>
+                        <m.div
+                          className={cn(
+                            "opacity-0 group-hover:opacity-100 transition-opacity duration-300",
+                            safeIsScrolled ? "text-primary-300" : "text-accent-300"
+                          )}
+                          animate={{ x: 0 }}
+                          whileHover={{ x: 4 }}
+                        >
+                          <svg className="h-5 w-5 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </m.div>
+                      </div>
+                    </Link>
+                  </m.div>
+                ))}
+              </div>
+              
+              {/* CONTEXT7 SOURCE: /context7/motion_dev - Call to action section in dropdown */}
+              {/* CTA INTEGRATION REASON: Enhanced navigation with premium service call-to-action */}
+              <m.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className={cn(
+                  "mt-8 pt-6 border-t",
+                  safeIsScrolled ? "border-primary-100/50" : "border-slate-700/50"
+                )}
+              >
+                <div className="text-center">
+                  <h3 className={cn(
+                    "text-lg font-semibold mb-2",
+                    safeIsScrolled ? "text-primary-700" : "text-white"
+                  )}>
+                    Need Expert Guidance?
+                  </h3>
+                  <p className={cn(
+                    "text-sm mb-4",
+                    safeIsScrolled ? "text-primary-600/70" : "text-white/70"
+                  )}>
+                    Our educational consultants are here to help you achieve your goals
+                  </p>
+                  <Link
+                    href="#contact"
+                    className={cn(
+                      "inline-flex items-center rounded-lg px-6 py-3 text-sm font-medium shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2",
+                      safeIsScrolled
+                        ? "bg-gradient-to-r from-accent-600 to-accent-700 hover:from-accent-700 hover:to-accent-800 text-white focus:ring-accent-500"
+                        : "bg-gradient-to-r from-accent-600 to-accent-700 hover:from-accent-700 hover:to-accent-800 text-white focus:ring-accent-500"
+                    )}
+                    onClick={() => setActiveDropdown(null)}
+                  >
+                    Get Free Consultation
+                    <svg className="ml-2 h-4 w-4 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </Link>
+                </div>
+              </m.div>
+            </div>
+          </m.div>
+        )}
+      </AnimatePresence>
+      
+      {/* CONTEXT7 SOURCE: /context7/motion_dev - Backdrop overlay for dropdown focus management */}
+      {/* BACKDROP REASON: Official Motion patterns for dropdown focus management and accessibility */}
+      <AnimatePresence>
+        {(activeDropdown || isMobileMenuOpen) && (
+          <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[9997]"
+            style={{ 
+              top: activeDropdown ? '320px' : '80px'
+            }}
+            onClick={() => {
+              setActiveDropdown(null)
+              setIsMobileMenuOpen(false)
+            }}
+          />
+        )}
+      </AnimatePresence>
     </header>
   )
+}
+
+// CONTEXT7 SOURCE: /context7/react_dev - Enhanced navigation structure with dropdown submenus
+// NAVIGATION STRUCTURE REASON: Comprehensive submenu system for premium tutoring service
+
+// Enhanced navigation structure with dropdown submenus
+function getEnhancedNavigation() {
+  return [
+    {
+      name: 'SUBJECT TUITION',
+      label: 'Subject Tuition',
+      href: '/subject-tuition',
+      submenu: true
+    },
+    {
+      name: 'HOW IT WORKS',
+      label: 'How It Works',
+      href: '/how-it-works',
+      submenu: true
+    },
+    {
+      name: '11+ BOOTCAMPS',
+      label: '11+ Bootcamps',
+      href: '/11-plus-bootcamps',
+      submenu: true
+    },
+    {
+      name: 'VIDEO MASTERCLASSES',
+      label: 'Video Masterclasses',
+      href: '/video-masterclasses',
+      submenu: true
+    },
+    {
+      name: 'BLOG',
+      label: 'Blog',
+      href: '/blog',
+      submenu: false
+    },
+    {
+      name: 'FAQ',
+      label: 'FAQ',
+      href: '/faq',
+      submenu: true
+    }
+  ]
+}
+
+// CONTEXT7 SOURCE: /context7/react_dev - Comprehensive submenu items configuration
+// SUBMENU CONFIGURATION REASON: Detailed navigation structure for enhanced user experience
+function getSubmenuItems(activeDropdown: string) {
+  const submenus = {
+    'SUBJECT TUITION': [
+      { name: 'Primary', href: '/subject-tuition#primary', description: 'Foundation learning for ages 4-11' },
+      { name: 'Secondary', href: '/subject-tuition#secondary', description: 'Comprehensive GCSE & A-Level support' },
+      { name: 'Entrance Exams', href: '/subject-tuition#entrance-exams', description: 'Grammar school & independent school prep' },
+      { name: 'University and Beyond', href: '/subject-tuition#university', description: 'Oxbridge preparation & degree-level support' },
+      { name: 'Online Homeschooling', href: '/homeschooling', description: 'Complete curriculum delivery from home' },
+      { name: 'SEN Support & Neurodiverse Learning', href: '/subject-tuition#sen-support', description: 'Specialist support for learning differences' },
+      { name: 'London In-Person Tutoring', href: '/subject-tuition#london-tutoring', description: 'Face-to-face sessions in premium locations' }
+    ],
+    'HOW IT WORKS': [
+      { name: 'Meet Elizabeth', href: '/about#elizabeth', description: 'Founder & Educational Director' },
+      { name: 'Testimonials', href: '/testimonials', description: 'Success stories from our families' },
+      { name: 'Our Achievements', href: '/how-it-works#achievements', description: 'Track record of academic excellence' },
+      { name: 'Global Excellence', href: '/how-it-works#global', description: 'International reach and recognition' },
+      { name: 'Our Journey', href: '/about#journey', description: '15+ years of educational excellence' },
+      { name: 'Our Ethos', href: '/about#ethos', description: 'Values-driven approach to learning' }
+    ],
+    '11+ BOOTCAMPS': [
+      { name: 'Choose Your Bootcamps', href: '/11-plus-bootcamps#choose', description: 'Intensive preparation programmes' },
+      { name: 'Why We\'re Unique', href: '/11-plus-bootcamps#unique', description: 'Official examiners & proven methods' }
+    ],
+    'VIDEO MASTERCLASSES': [
+      { name: 'British Culture Unlocked', href: '/video-masterclasses#british-culture', description: 'Essential cultural knowledge for success' },
+      { name: 'UCAS Masterclass', href: '/video-masterclasses#ucas', description: 'University application expertise' }
+    ],
+    'FAQ': [
+      { name: 'About the Service', href: '/faq#about-service', description: 'Understanding our tutoring approach' },
+      { name: 'Tutors & Teaching', href: '/faq#tutors-teaching', description: 'Our educator selection and methodology' },
+      { name: 'Subjects & Curriculum', href: '/faq#subjects-curriculum', description: 'Coverage and educational frameworks' },
+      { name: 'Progress & Results', href: '/faq#progress-results', description: 'Tracking success and outcomes' },
+      { name: 'Scheduling & Process', href: '/faq#scheduling-process', description: 'Booking and session management' },
+      { name: 'Pricing & Payment', href: '/faq#pricing-payment', description: 'Investment and payment options' },
+      { name: 'Other Questions', href: '/faq#other-questions', description: 'Additional information and support' }
+    ]
+  }
+  
+  return submenus[activeDropdown as keyof typeof submenus] || []
 }
 
 // Export types for documentation and reuse

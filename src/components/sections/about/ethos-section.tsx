@@ -11,6 +11,7 @@
 
 import { Heart, Globe } from 'lucide-react'
 import { m } from 'framer-motion'
+import Image from 'next/image'
 import { WaveSeparator } from '@/components/ui/wave-separator'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
 
@@ -157,6 +158,70 @@ export function EthosSection({
               )
             })}
           </div>
+
+          {/* Company Ethos Visual Section */}
+          <m.div
+            className="mt-16 mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <h3 className="text-3xl font-serif font-bold text-primary-900 mb-6">
+                  Values in Action
+                </h3>
+                <p className="text-lg text-primary-700 leading-relaxed mb-6">
+                  Our ethos goes beyond words—it's embedded in every interaction, every lesson plan, and every milestone we celebrate with our students. We believe that education should nurture both academic excellence and personal character.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-accent-600 rounded-full"></div>
+                    <span className="text-primary-700">Individual attention that honours each child's unique learning style</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-accent-600 rounded-full"></div>
+                    <span className="text-primary-700">Confidence building alongside academic achievement</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-accent-600 rounded-full"></div>
+                    <span className="text-primary-700">Excellence without compromise, delivered with genuine care</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="order-1 lg:order-2">
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for company ethos visualization */}
+                {/* COMPANY ETHOS IMAGE INTEGRATION: Official Next.js documentation for optimized about company ethos image rendering */}
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/about/about-company-ethos.png"
+                    alt="Company Ethos and Values - Visual representation of My Private Tutor Online's educational philosophy and commitment to excellence"
+                    width={600}
+                    height={450}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                    quality={90}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 via-transparent to-transparent" />
+                  
+                  {/* Ethos Highlight Badge */}
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+                    <div className="flex items-center gap-2">
+                      <Heart className="w-4 h-4 text-accent-600" />
+                      <span className="text-sm font-semibold text-primary-800">Our Values</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full opacity-20" />
+                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full opacity-15" />
+              </div>
+            </div>
+          </m.div>
 
           {/* Quote Section */}
           {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns */}

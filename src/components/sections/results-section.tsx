@@ -31,6 +31,7 @@
 
 "use client"
 
+import Image from 'next/image'
 import { Award, Crown } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
@@ -190,17 +191,35 @@ export function ResultsSection({
                 {/* Premium Background Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent-50/30 via-transparent to-blue-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                {/* Premium Icon Container with Multi-layer Design */}
-                {/* Documentation Source: Context7 MCP - Award icons for premium institutional branding */}
-                {/* Reference: /context7/lucide_dev-guide - Icon customization with luxury styling */}
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with premium statistics imagery */}
+                {/* IMAGE INTEGRATION REASON: Official Next.js Image optimization for statistics visual enhancement */}
                 <div className="relative mb-6 lg:mb-8">
-                  {/* Outer Glow Ring */}
-                  <div className="absolute inset-0 w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-accent-100 to-accent-200 blur-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Main Icon Container */}
-                  <div className="relative w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-accent-400 via-accent-500 to-accent-600 flex items-center justify-center shadow-lg shadow-accent-500/25 group-hover:shadow-xl group-hover:shadow-accent-500/40 transition-all duration-500 mx-auto">
-                    <Award className="w-10 h-10 lg:w-12 lg:h-12 text-white drop-shadow-sm" />
-                  </div>
+                  {stat.imageUrl ? (
+                    /* Premium Statistics Image Container with fallback to icon */
+                    <div className="relative w-20 h-20 lg:w-24 lg:h-24 mx-auto group-hover:scale-105 transition-transform duration-500">
+                      {/* Image with optimized loading */}
+                      <Image
+                        src={stat.imageUrl}
+                        alt={stat.imageAlt || `${stat.label} - ${stat.description}`}
+                        fill
+                        className="rounded-full object-cover shadow-lg shadow-accent-500/25 group-hover:shadow-xl group-hover:shadow-accent-500/40 transition-all duration-500"
+                        sizes="(max-width: 768px) 80px, 96px"
+                      />
+                      {/* Premium Image Overlay */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent-400/20 via-transparent to-accent-600/20 group-hover:from-accent-400/30 group-hover:to-accent-600/30 transition-all duration-500" />
+                    </div>
+                  ) : (
+                    /* Fallback Icon Container for backwards compatibility */
+                    <>
+                      {/* Outer Glow Ring */}
+                      <div className="absolute inset-0 w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-accent-100 to-accent-200 blur-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                      
+                      {/* Main Icon Container */}
+                      <div className="relative w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-accent-400 via-accent-500 to-accent-600 flex items-center justify-center shadow-lg shadow-accent-500/25 group-hover:shadow-xl group-hover:shadow-accent-500/40 transition-all duration-500 mx-auto">
+                        <Award className="w-10 h-10 lg:w-12 lg:h-12 text-white drop-shadow-sm" />
+                      </div>
+                    </>
+                  )}
                   
                   {/* Connecting Element for Visual Flow */}
                   <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gradient-to-b from-accent-300 to-transparent opacity-30" />

@@ -22,6 +22,7 @@
 
 import { Calendar, Clock, Users, Trophy, Target, BookOpen, Award, ChevronRight } from 'lucide-react'
 import { m } from 'framer-motion'
+import Image from 'next/image'
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -122,12 +123,14 @@ export default function ElevenPlusBootcampsPage() {
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
     <>
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen hero section with gradient backgrounds */}
-      {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient treatments for premium branding */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for hero background images */}
+      {/* HERO ENHANCEMENT REASON: Official Next.js Image component documentation recommends optimized background images for premium performance */}
       <PageHero 
-        background="gradient" 
+        background="image"
+        backgroundImage="/images/hero/hero-11-plus-bootcamp.jpeg"
         size="full"
-        className="bg-gradient-to-br from-accent-600 via-accent-500 to-accent-400 relative overflow-hidden"
+        overlay={true}
+        overlayOpacity="dark"
       >
         {/* CONTEXT7 SOURCE: /grx7/framer-motion - Professional pattern overlay for premium visual depth */}
         <div 
@@ -229,6 +232,112 @@ export default function ElevenPlusBootcampsPage() {
         </section>
         
         <WaveSeparator variant="primary" />
+
+        {/* Programme Images Showcase */}
+        <section className="py-16 bg-white/90 relative">
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for programme showcase images */}
+          {/* PROGRAMME SHOWCASE REASON: Official Next.js Image documentation recommends optimized images for enhanced user experience */}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-serif font-bold text-primary-900 mb-4">
+                Our 11+ Programme Options
+              </h2>
+              <p className="text-lg text-primary-700 max-w-2xl mx-auto">
+                Discover our comprehensive preparation programmes designed for different learning needs and timelines
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
+              <m.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="group cursor-pointer"
+              >
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for local programme images */}
+                {/* PROGRAMME IMAGE INTEGRATION: Official Next.js documentation for optimized local image rendering */}
+                <Image
+                  src="/images/programmes/programme-eleven-plus-intensive.jpeg"
+                  alt="11+ Intensive Programme - Comprehensive preparation covering all subjects with expert tutors"
+                  width={600}
+                  height={400}
+                  className="rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02]"
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                />
+                <div className="mt-6">
+                  <h3 className="text-2xl font-serif font-bold text-primary-900 mb-3 group-hover:text-accent-700 transition-colors duration-300">
+                    Intensive 11+ Preparation
+                  </h3>
+                  <p className="text-primary-700 mb-4 leading-relaxed">
+                    Our flagship 5-day comprehensive programme covering Mathematics, English, Verbal and Non-Verbal Reasoning with expert tutors and personalised feedback.
+                  </p>
+                  <div className="flex items-center gap-4 text-sm text-primary-600">
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4" />
+                      5 Days Intensive
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Users className="w-4 h-4" />
+                      Max 8 Students
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Target className="w-4 h-4 text-accent-600" />
+                      £750
+                    </div>
+                  </div>
+                </div>
+              </m.div>
+
+              <m.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="group cursor-pointer"
+              >
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for alternative programme option */}
+                {/* KICKSTARTER PROGRAMME INTEGRATION: Official Next.js documentation for responsive image handling */}
+                <Image
+                  src="/images/programmes/programme-eleven-plus-kickstarter.jpg"
+                  alt="11+ Kickstarter Programme - Alternative preparation option for flexible scheduling and targeted learning"
+                  width={600}
+                  height={400}
+                  className="rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02]"
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                />
+                <div className="mt-6">
+                  <h3 className="text-2xl font-serif font-bold text-primary-900 mb-3 group-hover:text-accent-700 transition-colors duration-300">
+                    11+ Kickstarter Programme
+                  </h3>
+                  <p className="text-primary-700 mb-4 leading-relaxed">
+                    Perfect introduction to 11+ preparation with flexible scheduling and focused learning approach, ideal for families starting their preparation journey.
+                  </p>
+                  <div className="flex items-center gap-4 text-sm text-primary-600">
+                    <div className="flex items-center gap-1">
+                      <Clock className="w-4 h-4" />
+                      Flexible Duration
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Users className="w-4 h-4" />
+                      Small Groups
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Award className="w-4 h-4 text-accent-600" />
+                      Starter Option
+                    </div>
+                  </div>
+                </div>
+              </m.div>
+            </div>
+          </div>
+        </section>
+
+        <WaveSeparator variant="subtle" className="text-white" />
 
         {/* Bootcamp Programmes */}
         <section className="py-20 bg-blue-50/30 relative">

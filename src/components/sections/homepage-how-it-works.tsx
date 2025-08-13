@@ -18,6 +18,7 @@
 
 "use client"
 
+import Image from 'next/image'
 import { Phone, Calendar, BookOpen, Trophy } from 'lucide-react'
 import { Timeline } from '@/components/ui/timeline'
 import { getHowItWorksSteps } from '@/lib/cms/cms-content'
@@ -68,6 +69,42 @@ export function HomepageHowItWorks({
           </p>
         </div>
         
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Family choice approach feature image integration */}
+        {/* FEATURE IMAGE REASON: Official Next.js Image optimization for visual process explanation */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Family Choice Approach Image */}
+            <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl">
+              <Image
+                src="/images/graphics/feature-family-choice-approach.avif"
+                alt="Why families choose our approach - Personalised tutoring service methodology"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+              />
+              {/* Overlay for visual enhancement */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-900/20 to-transparent" />
+            </div>
+            
+            {/* Family Choice Content */}
+            <div className="space-y-6">
+              <h3 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900">
+                Why Families Choose Our Approach
+              </h3>
+              <p className="text-lg text-primary-700 leading-relaxed">
+                Every family that comes to us has a unique story and specific academic goals. Our personalised approach 
+                ensures that each student receives exactly the support they need, whether it's preparation for entrance 
+                exams, improving confidence, or stretching towards academic excellence.
+              </p>
+              <p className="text-lg text-primary-700 leading-relaxed">
+                We believe that the right tutor-student match, combined with our proven methodology, creates the 
+                foundation for lasting academic success and personal growth.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="max-w-4xl mx-auto">
           {/* 
            * Documentation Source: Context7 MCP - Timeline Component Integration

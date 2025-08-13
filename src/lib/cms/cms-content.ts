@@ -189,6 +189,8 @@ export interface TrustIndicator {
   readonly title: string
   readonly subtitle?: string
   readonly description: string
+  readonly imageUrl?: string
+  readonly imageAlt?: string
 }
 
 export interface TrustIndicatorsSection {
@@ -268,6 +270,8 @@ export interface Statistic {
   readonly description: string
   readonly icon: string
   readonly imageKey?: string
+  readonly imageUrl?: string
+  readonly imageAlt?: string
   readonly trend?: 'up' | 'down' | 'stable'
   readonly period?: string
 }
@@ -2568,6 +2572,7 @@ export interface ServiceSubjectItem {
     readonly currency: string
   }
   readonly level?: string  // e.g., "KS1-KS4", "A-Level", "University"
+  readonly children?: readonly ServiceSubjectItem[]  // CONTEXT7 SOURCE: /microsoft/typescript - Nested children support for dropdown within dropdown functionality
 }
 
 export interface ServiceSubjectCategory {
@@ -2581,6 +2586,12 @@ export interface ServiceSubjectCategory {
     readonly currency: string
   }
   readonly popularityRank?: number  // For ordering display
+  // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
+  // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
+  readonly callOuts: readonly string[]
+  // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for testimonial content structure
+  // TESTIMONIAL REASON: Official React patterns for string field containing client testimonial quote for social proof
+  readonly testimonial: string
 }
 
 export interface ServiceStatisticItem {
@@ -2768,76 +2779,132 @@ export const getServicesContent = cache((): ServicesPageContent => {
       // CONTEXT7 SOURCE: /microsoft/typescript - Array reordering following official TypeScript data structure patterns
       // REORGANISATION REASON: Official TypeScript patterns for immutable data structure modification via array recreation
       // CMS REORGANISATION: Updated subject categories order per client requirements
+      // CONTEXT7 SOURCE: /microsoft/typescript - Updated PRIMARY section with comprehensive opening and detailed sub-sections
+      // CONTENT UPDATE REASON: Official TypeScript data structure patterns for enhanced CMS content management
       // 1. PRIMARY (separated from primary-secondary)
       {
         id: "primary",
-        title: "Primary",
+        title: "PRIMARY",
         icon: "BookOpen",
-        description: "Foundation curriculum support from Reception through Year 6",
+        description: "The primary curriculum is the scaffolding upon which secondary success plays out; we're passionate about plugging gaps and getting it right. We understand that early education experiences are formative, so we prioritise curiosity, resilience, and a love of learning.",
         popularityRank: 1,
         pricing: { basePriceFrom: "£60", currency: "GBP" },
         subjects: [
           {
-            name: "Primary Mathematics",
-            description: "Building strong mathematical foundations from basic numeracy to Year 6 SATs preparation.",
-            keyFeatures: ["Number and place value", "Arithmetic operations", "Fractions and decimals", "SATs preparation"],
+            name: "Confidence-building lessons designed for early learners",
+            description: "Our primary tutoring focuses on nurturing natural curiosity whilst building essential academic foundations. We understand that young learners need encouragement and support to develop confidence in their abilities, creating positive associations with learning that will serve them throughout their educational journey.",
+            keyFeatures: ["Age-appropriate teaching methods", "Confidence building activities", "Positive reinforcement techniques", "Play-based learning integration"],
             level: "Reception-Year 6",
             pricing: { from: "£60", to: "£100", currency: "GBP" }
           },
           {
-            name: "Primary English",
-            description: "Developing reading, writing, and communication skills from phonics to creative writing.",
-            keyFeatures: ["Phonics and reading", "Creative writing", "Grammar and spelling", "Comprehension skills"],
-            level: "Reception-Year 6",
-            pricing: { from: "£60", to: "£100", currency: "GBP" }
+            name: "7+, 8+ and 11+ specialists with a track record of top school offers",
+            description: "Our experienced tutors specialise in preparing young students for competitive entrance examinations. With proven success rates at leading preparatory and grammar schools, we provide targeted preparation that builds both academic competence and examination confidence.",
+            keyFeatures: ["Entrance exam specialists", "Proven track record", "School-specific preparation", "Examination technique coaching"],
+            level: "Year 2-6",
+            pricing: { from: "£85", to: "£150", currency: "GBP" }
           },
           {
-            name: "Primary Science",
-            description: "Engaging science exploration covering plants, animals, materials, and forces.",
-            keyFeatures: ["Scientific enquiry", "Plants and animals", "Materials and properties", "Forces and motion"],
-            level: "Year 1-6",
-            pricing: { from: "£65", to: "£105", currency: "GBP" }
+            name: "Individual learning plans shaped by expert assessment",
+            description: "Every primary student receives a comprehensive initial assessment to identify their unique learning style, strengths, and areas for development. Our expert tutors then create personalised learning plans that adapt to each child's pace and preferred learning methods.",
+            keyFeatures: ["Comprehensive initial assessment", "Personalised learning plans", "Regular progress monitoring", "Adaptive teaching methods"],
+            level: "Reception-Year 6",
+            pricing: { from: "£65", to: "£120", currency: "GBP" }
           }
-        ]
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
+        // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
+        callOuts: [
+          "Confidence-building lessons designed for early learners",
+          "7+, 8+ and 11+ specialists with a track record of top school offers",
+          "Individual learning plans shaped by expert assessment"
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for testimonial content structure  
+        // TESTIMONIAL REASON: Official React patterns for string field containing client testimonial quote for social proof
+        testimonial: "Our daughter was so shy and unsure at the start. Now she's thriving, and her 7+ offers speak for themselves. We couldn't be more grateful."
       },
+      // CONTEXT7 SOURCE: /microsoft/typescript - Updated SECONDARY section with comprehensive opening and detailed sub-sections
+      // CONTENT UPDATE REASON: Official TypeScript data structure patterns for enhanced CMS content management
       // 2. SECONDARY (separated from primary-secondary)
       {
         id: "secondary",
-        title: "Secondary",
+        title: "SECONDARY",
         icon: "BookOpen",
-        description: "Core curriculum support from Year 7 through to GCSE level",
+        description: "One-to-one tutoring for KS3, GCSE, A-Level and IB, delivered by experienced subject specialists and examiners. Our support goes beyond the syllabus, equipping students with effective revision strategies, time management skills and structured study plans. 94% of our GCSE students improved by two or more grades.",
         popularityRank: 2,
         pricing: { basePriceFrom: "£70", currency: "GBP" },
         subjects: [
           {
-            name: "Secondary Mathematics",
-            description: "Advanced mathematical concepts from algebra to statistics for GCSE success.",
-            keyFeatures: ["Algebra and equations", "Geometry and trigonometry", "Statistics and probability", "GCSE preparation"],
-            level: "Year 7-11",
-            pricing: { from: "£70", to: "£130", currency: "GBP" }
+            name: "Tutoring Today for Success Tomorrow",
+            description: "GCSEs, A-Levels and IB exams mark crucial academic transition points. As subjects become more complex, results in these qualifications play a defining role in shaping university pathways. A minimum requirement of 7s at GCSE is now standard at many top-tier universities. Personalised, one-to-one tuition can make a significant difference at both GCSE and A Level, helping students strengthen their academic record, ready to present a dynamite profile when it matters most.",
+            keyFeatures: ["GCSE & A-Level expertise", "University pathway planning", "Grade improvement strategies", "Profile strengthening"],
+            level: "Year 7-13",
+            pricing: { from: "£70", to: "£150", currency: "GBP" }
           },
           {
-            name: "English Language & Literature",
-            description: "Developing analytical and writing skills across both language and literature components.",
-            keyFeatures: ["Literary analysis", "Creative and analytical writing", "Language techniques", "GCSE exam skills"],
-            level: "Year 7-11",
-            pricing: { from: "£70", to: "£130", currency: "GBP" }
+            name: "Personalised Plans to Ensure Maximum Progress",
+            description: "Each student is initially assessed to identify their individual strengths, learning style and areas for growth. Regular progress check-ins and measurable academic outcomes ensure students stay on track for success.",
+            keyFeatures: ["Individual assessment", "Learning style identification", "Progress monitoring", "Measurable outcomes"],
+            level: "Year 7-13",
+            pricing: { from: "£75", to: "£140", currency: "GBP" }
           },
           {
-            name: "Sciences (Biology, Chemistry, Physics)",
-            description: "Comprehensive coverage of all three sciences from KS3 through to GCSE level.",
-            keyFeatures: ["Practical experiments", "Theory understanding", "Scientific method", "Exam preparation"],
-            level: "Year 7-11",
-            pricing: { from: "£75", to: "£135", currency: "GBP" }
-          },
-          {
-            name: "Modern Foreign Languages",
-            description: "French, Spanish, and German tuition focusing on all four language skills.",
-            keyFeatures: ["Conversational practice", "Grammar foundations", "Cultural context", "GCSE techniques"],
-            level: "Year 7-11",
-            pricing: { from: "£75", to: "£135", currency: "GBP" }
+            name: "Subjects We Tutor",
+            description: "Comprehensive subject coverage across all key academic areas including STEM subjects, humanities, languages, and creative disciplines. Our tutors are subject specialists with extensive examination experience.",
+            keyFeatures: ["Comprehensive subject coverage", "Subject specialists", "Examination experience", "Personalised approach"],
+            level: "Year 7-13",
+            pricing: { from: "£70", to: "£180", currency: "GBP" },
+            // CONTEXT7 SOURCE: /microsoft/typescript - Nested children structure for dropdown within dropdown functionality
+            // NESTED DROPDOWN REASON: Official TypeScript patterns for hierarchical data structures supporting multi-level accordion interfaces
+            children: [
+              {
+                name: "STEM & Mathematical Subjects",
+                description: "Advanced mathematics and scientific disciplines taught by specialists with extensive examination board experience.",
+                keyFeatures: ["Mathematics & Further Mathematics", "Biology", "Chemistry", "Physics", "Combined Science (GCSE)", "Computer Science", "Design and Technology"],
+                level: "Year 7-13",
+                pricing: { from: "£75", to: "£180", currency: "GBP" }
+              },
+              {
+                name: "Humanities & Social Sciences",
+                description: "Comprehensive humanities education covering literature, history, politics, and social sciences with expert guidance.",
+                keyFeatures: ["English Language & Literature", "History", "Politics", "Geography", "Economics and Business Studies", "Religious Studies", "Philosophy", "Sociology", "Psychology"],
+                level: "Year 7-13",
+                pricing: { from: "£70", to: "£160", currency: "GBP" }
+              },
+              {
+                name: "Languages",
+                description: "Modern and classical language tuition with native speakers and qualified language specialists.",
+                keyFeatures: ["French", "Spanish", "Italian", "German", "Mandarin", "Portuguese", "Latin", "Ancient Greek", "Other languages available"],
+                level: "Year 7-13",
+                pricing: { from: "£75", to: "£170", currency: "GBP" }
+              },
+              {
+                name: "Creative & Arts-Based Subjects",
+                description: "Creative disciplines taught by practising professionals and experienced arts educators.",
+                keyFeatures: ["Fine Art and History of Art", "Art and Visual Studies", "Drama and Theatre Studies", "Media Studies", "Creative portfolio development"],
+                level: "Year 7-13",
+                pricing: { from: "£70", to: "£150", currency: "GBP" }
+              },
+              {
+                name: "Additional Academic Support",
+                description: "Specialised academic skills and examination preparation beyond core curriculum subjects.",
+                keyFeatures: ["Extended Project Qualification (EPQ)", "Mentoring and Study Skills", "Critical Thinking", "Interview Technique", "Public Speaking and Debating"],
+                level: "Year 7-13",
+                pricing: { from: "£80", to: "£160", currency: "GBP" }
+              }
+            ]
           }
-        ]
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
+        // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
+        callOuts: [
+          "GCSE and A-level examiners as tutors",
+          "Support across all major exam boards: AQA, Edexcel, OCR, IB",
+          "Support with GCSE, A Level and IB retakes"
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for testimonial content structure  
+        // TESTIMONIAL REASON: Official React patterns for string field containing client testimonial quote for social proof
+        testimonial: "Annika scored a 7 in her GCSE retake. We are THRILLED. It's such an improvement on the 4 she got in the summer!"
       },
       // 3. ENTRANCE EXAMS (7+, 8+, 11+, 13+, 16+, UKiset, CAT4)
       {
@@ -2849,225 +2916,314 @@ export const getServicesContent = cache((): ServicesPageContent => {
         pricing: { basePriceFrom: "£85", currency: "GBP" },
         subjects: [
           {
-            name: "7+ & 8+ Preparation",
-            description: "Early years entrance exam preparation with gentle, confidence-building approaches.",
-            keyFeatures: ["Age-appropriate materials", "Confidence building", "Basic reasoning skills", "Interview preparation"],
-            level: "Year 2-3",
-            pricing: { from: "£85", to: "£140", currency: "GBP" }
+            name: "Aligned With Every Major Exam Board",
+            description: "Our team works with GL, CEM, ISEB, CAT4, and internal papers set by individual schools.",
+            keyFeatures: ["GL Assessment expertise", "CEM preparation", "ISEB Common Entrance", "School-specific papers"],
+            level: "Year 2-8",
+            pricing: { from: "£85", to: "£160", currency: "GBP" }
           },
           {
-            name: "11+ Preparation",
-            description: "Comprehensive preparation for grammar school entrance exams including verbal reasoning, non-verbal reasoning, English, and mathematics.",
-            keyFeatures: ["Practice papers", "Mock exams", "Technique coaching", "Confidence building"],
-            level: "Year 5-6",
+            name: "Expert Tutor Matching",
+            description: "Paired with a specialist tutor—often a former school examiner or prep school teacher—carefully chosen to meet the family's school ambitions.",
+            keyFeatures: ["Former examiners", "Prep school teachers", "School-specific expertise", "Personalised matching"],
+            level: "All Levels",
+            pricing: { from: "£100", to: "£180", currency: "GBP" }
+          },
+          {
+            name: "Tailored, Flexible Programmes",
+            description: "Each programme is personalised to the target schools, exam formats and the student's pace—ensuring effective progress without overwhelm.",
+            keyFeatures: ["Target school focus", "Exam format preparation", "Individual pacing", "Stress management"],
+            level: "All Levels",
             pricing: { from: "£85", to: "£150", currency: "GBP" }
           },
           {
-            name: "13+ Common Entrance",
-            description: "Thorough preparation for independent school entrance covering all required subjects with expert guidance.",
-            keyFeatures: ["Subject-specific coaching", "Past paper practice", "Interview preparation", "School-specific guidance"],
-            level: "Year 7-8",
-            pricing: { from: "£95", to: "£160", currency: "GBP" }
+            name: "Parent Guidance & School Selection",
+            description: "We support families throughout—from helping create a shortlist of schools through to preparing for interviews.",
+            keyFeatures: ["School selection advice", "Application guidance", "Timeline planning", "Interview preparation"],
+            level: "Parent Support",
+            pricing: { from: "£80", to: "£140", currency: "GBP" }
           },
           {
-            name: "16+ Sixth Form Entry",
-            description: "Advanced preparation for competitive sixth form entrance including academic interviews.",
-            keyFeatures: ["Subject specialisation", "Interview coaching", "Academic portfolio", "Scholarship preparation"],
-            level: "Year 10-11",
-            pricing: { from: "£100", to: "£170", currency: "GBP" }
+            name: "Mock Exams & Interview Practice",
+            description: "Students gain confidence through realistic mock tests and 1-2-1 interview rehearsals, with detailed feedback to improve performance.",
+            keyFeatures: ["Realistic mock exams", "Interview rehearsals", "Detailed feedback", "Performance analysis"],
+            level: "All Levels",
+            pricing: { from: "£120", to: "£200", currency: "GBP" }
           },
           {
-            name: "UKiset Preparation",
-            description: "UK Independent Schools' Entrance Test coaching for international students.",
-            keyFeatures: ["Reasoning skills", "English proficiency", "Cultural adaptation", "School matching"],
-            level: "International",
-            pricing: { from: "£110", to: "£190", currency: "GBP" }
-          },
-          {
-            name: "CAT4 Preparation",
-            description: "Cognitive Ability Tests preparation focusing on verbal, non-verbal, quantitative, and spatial reasoning.",
-            keyFeatures: ["Cognitive assessment", "Reasoning development", "Test familiarity", "Performance optimisation"],
-            level: "Year 6-9",
-            pricing: { from: "£90", to: "£155", currency: "GBP" }
-          },
-          {
-            name: "ISEB Pre-Tests",
-            description: "Targeted preparation for computerised pre-tests used by leading independent schools.",
-            keyFeatures: ["Computer-based practice", "Adaptive learning", "Time management", "Stress reduction techniques"],
-            level: "Year 6-7",
-            pricing: { from: "£90", to: "£155", currency: "GBP" }
+            name: "Deep Expertise From Selective Schools",
+            description: "Our team includes qualified teachers at top 10 London grammar schools and leading UK boarding schools. Many have written and marked real entrance exam papers.",
+            keyFeatures: ["Grammar school teachers", "Boarding school expertise", "Exam paper writers", "Marking experience"],
+            level: "All Levels",
+            pricing: { from: "£150", to: "£250", currency: "GBP" }
           }
-        ]
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
+        // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
+        callOuts: [
+          "95%+ of students receive offers from at least one of their top-choice schools",
+          "Tutors include former entrance exam markers and interview panellists",
+          "Mock exams, real-time feedback and school selection support"
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for testimonial content structure  
+        // TESTIMONIAL REASON: Official React patterns for string field containing client testimonial quote for social proof
+        testimonial: "David did extremely well and received offers from Westminster, St Paul's, Sussex House, Kings and Wetherby. Thank you for your help in getting us this far - now for the interviews (his favourite bit)!"
       },
+      // CONTEXT7 SOURCE: /microsoft/typescript - Updated UNIVERSITY AND BEYOND section with comprehensive opening and detailed sub-sections
+      // CONTENT UPDATE REASON: Official TypeScript data structure patterns for enhanced CMS content management
       // 4. UNIVERSITY AND BEYOND
       {
         id: "university-beyond",
-        title: "University and Beyond",
+        title: "UNIVERSITY AND BEYOND",
         icon: "GraduationCap",
-        description: "Advanced level support and university preparation",
+        description: "Expert academic support for undergraduates and postgraduates, including essay coaching, dissertations, and subject-specific tutoring. University admissions guidance for UK, US, Oxbridge and other global institutions—personal statements, interview prep, admissions tests.",
         popularityRank: 4,
         pricing: { basePriceFrom: "£95", currency: "GBP" },
         subjects: [
           {
-            name: "A-Level Subjects",
-            description: "Expert tuition across all A-Level subjects with focus on achieving top grades for university applications.",
-            keyFeatures: ["Subject mastery", "Exam technique", "University preparation", "Grade optimisation"],
-            level: "A-Level",
-            pricing: { from: "£95", to: "£180", currency: "GBP" }
-          },
-          {
-            name: "IB Programme",
-            description: "Comprehensive support for International Baccalaureate students including Extended Essay and Theory of Knowledge.",
-            keyFeatures: ["All subject groups", "Extended Essay support", "Theory of Knowledge", "CAS guidance"],
-            level: "IB Diploma",
-            pricing: { from: "£100", to: "£190", currency: "GBP" }
-          },
-          {
-            name: "University Applications",
-            description: "Expert guidance through UCAS applications, personal statements, and interview preparation.",
-            keyFeatures: ["UCAS guidance", "Personal statement coaching", "Interview preparation", "Course selection advice"],
+            name: "UCAS Insight from Elizabeth",
+            description: "Expert Advice for Standout Applications - Gain insider access to Elizabeth's Essential UCAS Guide — two video masterclasses based on her live seminars at University College London. Learn how to craft a standout personal statement and build a smart UCAS strategy, with rare insights usually reserved for her private clients.",
+            keyFeatures: ["Video masterclasses", "UCL seminar content", "Personal statement guidance", "UCAS strategy"],
             level: "Year 13+",
             pricing: { from: "£120", to: "£200", currency: "GBP" }
           },
           {
-            name: "Oxbridge Preparation",
-            description: "Specialised coaching for Oxford and Cambridge applications including entrance exams and interviews.",
-            keyFeatures: ["Entrance exam prep", "Interview coaching", "Subject-specific guidance", "Application strategy"],
+            name: "Elizabeth's Top 10 Tips for Sculpting an Outstanding Personal Statement",
+            description: "Elizabeth knows what sets a personal statement apart. Here she distills 15 years of expertise into her Top 10 Tips, helping UCAS applicants defy the odds and secure spots at prestigious universities. These aren't recycled clichés — they're proven techniques you won't find anywhere else.",
+            keyFeatures: ["15 years expertise", "Proven techniques", "University-specific insights", "Premium guidance"],
             level: "Year 13+",
             pricing: { from: "£150", to: "£250", currency: "GBP" }
           },
           {
-            name: "Professional Qualifications",
-            description: "Support for professional qualification exams including ACCA, CFA, and other industry certifications.",
-            keyFeatures: ["Professional exam prep", "Industry insights", "Career guidance", "Flexible scheduling"],
-            level: "Graduate+",
-            pricing: { from: "£120", to: "£200", currency: "GBP" }
+            name: "Subject-Specific University Admissions Tests",
+            description: "Targeted preparation for high-stakes exams that form a crucial part of university and course-specific admissions. Our experienced tutors offer intensive, focused tuition that sharpens core skills and exam-specific techniques.",
+            keyFeatures: ["High-stakes exam preparation", "Intensive focused tuition", "Core skills development", "Exam-specific techniques"],
+            level: "Year 13+",
+            pricing: { from: "£120", to: "£220", currency: "GBP" },
+            // CONTEXT7 SOURCE: /microsoft/typescript - Nested children structure for university admissions test categorisation
+            // NESTED DROPDOWN REASON: Official TypeScript patterns for hierarchical categorisation of university entrance examinations
+            children: [
+              {
+                name: "TMUA",
+                description: "Test of Mathematics for University Admission - for mathematics-based university courses in the UK including Mathematics, Computer Science, and Engineering degrees.",
+                keyFeatures: ["Mathematics-based courses", "UK university admissions", "Computer Science applications", "Engineering degree requirements"],
+                level: "Year 13+",
+                pricing: { from: "£130", to: "£200", currency: "GBP" }
+              },
+              {
+                name: "LNAT",
+                description: "National Admissions Test for Law - required for law courses at top UK universities including Oxford, Cambridge, UCL, and other leading institutions.",
+                keyFeatures: ["Law course applications", "Top UK universities", "Critical reasoning skills", "Essay writing assessment"],
+                level: "Year 13+",
+                pricing: { from: "£140", to: "£220", currency: "GBP" }
+              },
+              {
+                name: "SAT/ACT",
+                description: "Standardised tests used for US university admissions, covering mathematics, English, and reasoning skills essential for American higher education applications.",
+                keyFeatures: ["US university admissions", "Mathematics assessment", "English proficiency", "Critical reasoning"],
+                level: "Year 13+",
+                pricing: { from: "£120", to: "£200", currency: "GBP" }
+              },
+              {
+                name: "BMAT/UCAT",
+                description: "BioMedical Admissions Test and University Clinical Aptitude Test - required for medical and dental school applications in the UK and internationally.",
+                keyFeatures: ["Medical school applications", "Dental school requirements", "Scientific aptitude", "Critical thinking skills"],
+                level: "Year 13+",
+                pricing: { from: "£150", to: "£220", currency: "GBP" }
+              },
+              {
+                name: "IELTS/TOEFL",
+                description: "International English Language Testing System and Test of English as a Foreign Language - English proficiency exams required by universities for non-native speakers.",
+                keyFeatures: ["English proficiency certification", "International university requirements", "CELTA certified tutors", "TEFL qualified instruction"],
+                level: "Year 13+",
+                pricing: { from: "£100", to: "£180", currency: "GBP" }
+              },
+              {
+                name: "TSA",
+                description: "Thinking Skills Assessment for courses at Oxford, Cambridge, and UCL requiring advanced critical thinking and problem-solving abilities.",
+                keyFeatures: ["Oxford applications", "Cambridge requirements", "UCL admissions", "Critical thinking assessment"],
+                level: "Year 13+",
+                pricing: { from: "£140", to: "£200", currency: "GBP" }
+              },
+              {
+                name: "ELAT",
+                description: "English Literature Admissions Test for Oxford applicants studying English Language and Literature, requiring advanced literary analysis skills.",
+                keyFeatures: ["Oxford English applications", "Literary analysis skills", "Close reading techniques", "Critical essay writing"],
+                level: "Year 13+",
+                pricing: { from: "£130", to: "£190", currency: "GBP" }
+              }
+            ]
           }
-        ]
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
+        // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
+        callOuts: [
+          "Matched with Cambridge and Oxford alumni",
+          "Insider insight on how to stand out in Oxbridge applications",
+          "Step-by-step support with personal statements, admissions tests and mock interviews"
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for testimonial content structure  
+        // TESTIMONIAL REASON: Official React patterns for string field containing client testimonial quote for social proof
+        testimonial: "My tutor had studied at Cambridge and gave me so many practical insights I wouldn't have found anywhere else. I felt prepared, confident—and I got my offer!"
       },
+      // CONTEXT7 SOURCE: /microsoft/typescript - Updated ONLINE HOMESCHOOLING section with comprehensive opening and detailed structure
+      // CONTENT UPDATE REASON: Official TypeScript data structure patterns for enhanced CMS content management
       // 5. ONLINE HOMESCHOOLING
       {
         id: "online-homeschooling",
-        title: "Online Homeschooling",
+        title: "ONLINE HOMESCHOOLING",
         icon: "Globe",
-        description: "Comprehensive online education programmes for families choosing to educate at home",
+        description: "Comprehensive one-to-one homeschooling for families seeking both academic structure and flexibility.",
         popularityRank: 5,
         pricing: { basePriceFrom: "£80", currency: "GBP" },
         subjects: [
           {
-            name: "Full Curriculum Support",
-            description: "Complete educational support covering all core subjects with structured learning paths.",
-            keyFeatures: ["Complete curriculum coverage", "Structured learning paths", "Progress tracking", "Parent guidance"],
+            name: "Why Choose Homeschooling with Us",
+            description: "Private‑School Standard, Delivered Virtually: We deliver bespoke online programmes that rival independent schools in quality. Fully Personalised Curriculum & Timetabling: Lessons are crafted around each child's strengths, interests and pace. Consistent Tutor Teams & Academic Continuity: Students benefit from a stable team of expert tutors—subject specialists with years of experience and often examiner credentials. Progress Tracking & Motivation-Focused Design: Regular assessments, achievable goals, and work reviewed in real time ensure the programme adapts to each student's growth. Expert Support for SEN Needs: Our SEN-aligned homeschooling incorporates specially tailored pathways for students with dyslexia, ADHD, processing differences or related needs—delivered with empathy and structure.",
+            keyFeatures: ["Private school standard", "Personalised curriculum", "Expert tutor teams", "Progress tracking", "SEN support"],
             level: "Reception-GCSE",
             pricing: { from: "£80", to: "£160", currency: "GBP" }
           },
           {
-            name: "Flexible Subject Packages",
-            description: "Customisable subject combinations allowing families to tailor their child's education.",
-            keyFeatures: ["Subject flexibility", "Custom timetables", "Family-centred approach", "Regular assessments"],
+            name: "A Unique Pathway for Global & Gifted Learners",
+            description: "Academic excellence without the need for physical classrooms. Personal schedules built around elite sports, arts commitments or world experiences. A supportive, curated tutor programme that encourages curiosity, autonomy, and confidence.",
+            keyFeatures: ["Global accessibility", "Elite sports compatibility", "Arts-focused schedules", "Curated tutoring"],
             level: "All Levels",
-            pricing: { from: "£70", to: "£140", currency: "GBP" }
+            pricing: { from: "£90", to: "£180", currency: "GBP" }
           },
           {
-            name: "IGCSE Preparation",
-            description: "International GCSE preparation ideal for homeschooling families seeking recognised qualifications.",
-            keyFeatures: ["IGCSE curriculum", "Exam registration support", "Coursework guidance", "Revision programmes"],
-            level: "Year 9-11",
-            pricing: { from: "£90", to: "£170", currency: "GBP" }
+            name: "How We Work",
+            description: "Individual Onboarding: We begin with a comprehensive academic and interests profile. Goal Setting & Curriculum Design: Tutors build flexible lesson plans aligned with national standards or bespoke learning aims. Structured Delivery: Students engage in live online sessions, maintain daily routines, and receive regular tutoring feedback. Ongoing Review: Progress is tracked, objectives reset, and adjustments made with parental involvement.",
+            keyFeatures: ["Individual onboarding", "Goal setting", "Structured delivery", "Ongoing review"],
+            level: "All Levels",
+            pricing: { from: "£80", to: "£170", currency: "GBP" }
           },
           {
-            name: "Parent Training & Support",
-            description: "Educational support and training for parents undertaking homeschooling responsibilities.",
-            keyFeatures: ["Parent workshops", "Educational resources", "Support networks", "Progress monitoring tools"],
-            level: "Parent Support",
-            pricing: { from: "£60", to: "£120", currency: "GBP" }
+            name: "Why It Works",
+            description: "Our programmes blend flexible schedules, engaging pedagogy, and specialist expertise to deliver transformative education—regardless of geography. Students develop strong academic habits, enjoy tailored attention, and experience significant progress. If you're considering online homeschooling, our expert-led structure ensures both confidence and credibility every step of the way.",
+            keyFeatures: ["Flexible schedules", "Engaging pedagogy", "Specialist expertise", "Academic habits"],
+            level: "All Levels",
+            pricing: { from: "£75", to: "£150", currency: "GBP" }
           }
-        ]
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
+        // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
+        callOuts: [
+          "Full academic programmes delivered remotely, accommodating your time zone",
+          "Curriculum design, teaching, and assessment all included"
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for testimonial content structure  
+        // TESTIMONIAL REASON: Official React patterns for string field containing client testimonial quote for social proof
+        testimonial: "We relocated mid-year and chose to homeschool. I couldn't believe how much better the structure, care, and quality of teaching were than my son's old school."
       },
+      // CONTEXT7 SOURCE: /microsoft/typescript - Updated SEN SUPPORT & NEURODIVERSE LEARNING section with comprehensive opening and detailed structure
+      // CONTENT UPDATE REASON: Official TypeScript data structure patterns for enhanced CMS content management
       // 6. SEN SUPPORT & NEURODIVERSE LEARNING
       {
         id: "sen-neurodiverse",
-        title: "SEN Support & Neurodiverse Learning",
+        title: "SEN SUPPORT & NEURODIVERSE LEARNING",
         icon: "Award",
-        description: "Specialised educational support for students with Special Educational Needs and neurodiverse learners",
+        description: "Our Founder Elizabeth's own neurodiversity (dyspraxia) means she's especially passionate about equipping students with gamechanging SEN support. Our work is tailored to empower students with dyslexia, dyspraxia, ADHD, autism spectrum conditions, speech or processing differences, and related profiles. We create a focused learning environment where individual strengths are championed and confidence is rebuilt.",
         popularityRank: 6,
         pricing: { basePriceFrom: "£100", currency: "GBP" },
         subjects: [
           {
-            name: "Dyslexia Support",
-            description: "Specialised tutoring using multi-sensory approaches for students with dyslexia.",
-            keyFeatures: ["Multi-sensory learning", "Orton-Gillingham methods", "Reading confidence", "Assistive technology"],
+            name: "Individualised Learning",
+            description: "Tutors conduct detailed assessments to identify strengths, challenges, and personal learning styles.",
+            keyFeatures: ["Detailed assessments", "Strength identification", "Learning style analysis", "Personal approach"],
             level: "All Ages",
             pricing: { from: "£100", to: "£170", currency: "GBP" }
           },
           {
-            name: "ADHD & Executive Function",
-            description: "Supporting students with ADHD through structured learning and executive function development.",
-            keyFeatures: ["Focus strategies", "Organisation skills", "Time management", "Behaviour support"],
-            level: "All Ages",
-            pricing: { from: "£100", to: "£170", currency: "GBP" }
-          },
-          {
-            name: "Autism Spectrum Support",
-            description: "Tailored educational support for students on the autism spectrum with sensory considerations.",
-            keyFeatures: ["Sensory-friendly approaches", "Visual learning aids", "Social skills development", "Routine establishment"],
+            name: "Expert SEN Tutor Teams",
+            description: "Every student is supported by highly experienced tutors trained in neurodiversity-aware pedagogy.",
+            keyFeatures: ["Experienced tutors", "Neurodiversity training", "Specialist knowledge", "SEN expertise"],
             level: "All Ages",
             pricing: { from: "£110", to: "£180", currency: "GBP" }
           },
           {
-            name: "Dyscalculia Support",
-            description: "Mathematical learning support for students with dyscalculia using concrete learning methods.",
-            keyFeatures: ["Concrete learning", "Visual mathematics", "Number sense development", "Confidence building"],
+            name: "Exam Access Advice",
+            description: "We guide families through exam access arrangements and make recommendations to improve fairness and outcomes.",
+            keyFeatures: ["Access arrangements", "Exam guidance", "Fairness improvements", "Outcome optimisation"],
             level: "All Ages",
-            pricing: { from: "£100", to: "£170", currency: "GBP" }
+            pricing: { from: "£90", to: "£150", currency: "GBP" }
           },
           {
-            name: "Speech & Language Support",
-            description: "Educational support complementing speech and language therapy within academic contexts.",
-            keyFeatures: ["Communication development", "Vocabulary building", "Reading comprehension", "Academic language"],
+            name: "Full Coordination & Professional Oversight",
+            description: "Our homeschooling clients benefit from a dedicated tutor team, tailored learning schedules, and education consultancy to manage continuity—especially vital for SEN learners and families working across time zones.",
+            keyFeatures: ["Dedicated tutor teams", "Tailored schedules", "Education consultancy", "Continuity management"],
             level: "All Ages",
-            pricing: { from: "£105", to: "£175", currency: "GBP" }
+            pricing: { from: "£120", to: "£200", currency: "GBP" }
+          },
+          {
+            name: "Online Homeschooling for SEN & Complex Needs",
+            description: "Whether families are travelling, transitioning between schools, or prioritising personalised learning, our homeschooling programme delivers full academic support entirely online—without any in-person tutoring. Curriculum Built Around the Student: We design bespoke programmes around each child's strengths, interests, and pace—seamlessly blending academics with creative and practical learning. Holistic Academic & Emotional Support: We understand daily routines and tutor consistency are especially important for SEN learners. Our tutees are supported by program management and ongoing progress reviews to nurture both academic growth and personal well-being. Why It Works: Both SEN tutoring and full-online homeschooling emphasise individual strength, flexible pacing, and sustained mentorship. This approach enables students to flourish academically while nurturing autonomy, individualism, and confidence—delivered through expert-led, evidence-based practice.",
+            keyFeatures: ["Bespoke programmes", "Holistic support", "Routine consistency", "Evidence-based practice"],
+            level: "All Ages",
+            pricing: { from: "£100", to: "£180", currency: "GBP" }
           }
-        ]
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
+        // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
+        callOuts: [
+          "Specialist tutors trained in dyslexia, ADHD, and autism support strategies",
+          "Multi-sensory teaching approaches and assistive technology integration", 
+          "Individual learning profiles and tailored assessment accommodations"
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for testimonial content structure  
+        // TESTIMONIAL REASON: Official React patterns for string field containing client testimonial quote for social proof
+        testimonial: "After years of struggle, my son finally found his confidence. The tutors understood his dyslexia completely and adapted everything to his learning style. His grades improved dramatically, but more importantly, he enjoys learning again."
       },
+      // CONTEXT7 SOURCE: /microsoft/typescript - Updated LONDON IN-PERSON TUTORING section with comprehensive opening and detailed structure
+      // CONTENT UPDATE REASON: Official TypeScript data structure patterns for enhanced CMS content management
       // 7. LONDON IN-PERSON TUTORING
       {
         id: "london-in-person",
-        title: "London In-Person Tutoring",
+        title: "LONDON IN‑PERSON TUTORING",
         icon: "Users",
-        description: "Premium face-to-face tutoring services across London and surrounding areas",
+        description: "In-person tutoring typically available across Zones 1–5, depending on student location and tutor availability.",
         popularityRank: 7,
         pricing: { basePriceFrom: "£120", currency: "GBP" },
         subjects: [
           {
-            name: "London Home Visits",
-            description: "Premium in-person tutoring in the comfort of your own home across London.",
-            keyFeatures: ["Convenient scheduling", "Familiar environment", "Personalised attention", "Progress monitoring"],
+            name: "DBS-Checked Specialist Tutors",
+            description: "Sessions delivered by DBS-checked, specialist tutors with experience of the London independent and state school sectors.",
+            keyFeatures: ["DBS-checked tutors", "Specialist expertise", "London school experience", "Independent sector knowledge"],
             level: "All Levels",
             pricing: { from: "£120", to: "£300", currency: "GBP" }
           },
           {
-            name: "Intensive Holiday Courses",
-            description: "Concentrated learning programmes during school holidays for rapid progress.",
-            keyFeatures: ["Holiday programmes", "Rapid progress", "Small groups", "Expert instruction"],
-            level: "All Levels",
-            pricing: { from: "£150", to: "£350", currency: "GBP" }
-          },
-          {
-            name: "Central London Sessions",
-            description: "Professional tutoring sessions in premium central London locations.",
-            keyFeatures: ["Central locations", "Professional environment", "Flexible timing", "Transport accessibility"],
+            name: "Entrance Exam & Subject-Specific Support",
+            description: "Ideal for entrance exam preparation, subject-specific tuition, or ongoing academic support.",
+            keyFeatures: ["Entrance exam prep", "Subject specialisation", "Ongoing support", "Academic excellence"],
             level: "All Levels",
             pricing: { from: "£140", to: "£320", currency: "GBP" }
           },
           {
-            name: "Group Tutoring Sessions",
-            description: "Small group sessions combining personalised attention with peer learning benefits.",
-            keyFeatures: ["Small groups (2-4 students)", "Peer interaction", "Collaborative learning", "Cost-effective"],
+            name: "Continuity & Trust",
+            description: "We prioritise continuity—families typically work with the same tutor throughout for consistency and trust.",
+            keyFeatures: ["Same tutor continuity", "Trust building", "Consistency", "Long-term relationships"],
             level: "All Levels",
-            pricing: { from: "£80", to: "£200", currency: "GBP" }
+            pricing: { from: "£130", to: "£290", currency: "GBP" }
+          },
+          {
+            name: "Limited Availability & Best Matching",
+            description: "In-person availability is limited and arranged on a case-by-case basis to ensure the best possible match.",
+            keyFeatures: ["Limited availability", "Case-by-case basis", "Best matching", "Quality over quantity"],
+            level: "All Levels",
+            pricing: { from: "£150", to: "£350", currency: "GBP" }
           }
-        ]
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
+        // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
+        callOuts: [
+          "Face-to-face lessons in your home",
+          "Tutors familiar with the London school landscape",
+          "Consistent, high-calibre tutors matched carefully to each family"
+        ],
+        // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for testimonial content structure  
+        // TESTIMONIAL REASON: Official React patterns for string field containing client testimonial quote for social proof
+        testimonial: "Having the tutor come to our home made such a difference. My daughter felt comfortable in her own environment, and the tutor quickly understood her learning style. The convenience and quality were exceptional."
       }
     ],
     homeschoolingPreview: {

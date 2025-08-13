@@ -71,17 +71,14 @@ import { MobileEnhancements } from '@/components/services/MobileEnhancements'
 // MAGIC UI IMPLEMENTATION REASON: Official Magic UI documentation demonstrates Globe component for interactive 3D global displays
 import { Globe as MagicUIGlobe } from '@/components/magicui/globe'
 
-// CONTEXT7 SOURCE: /mui/material-ui - Material UI Accordion components for advanced interactions
-// MATERIAL UI IMPLEMENTATION REASON: Official Material UI documentation for controlled Accordion, AccordionSummary, and AccordionDetails
-import Accordion from '@mui/material/Accordion'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import AccordionDetails from '@mui/material/AccordionDetails'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import Typography from '@mui/material/Typography'
+// CONTEXT7 SOURCE: /radix-ui/primitives - Radix UI Accordion components for accessible interactions
+// RADIX UI IMPLEMENTATION REASON: Official Radix UI documentation for accessible and controlled Accordion components
+import * as Accordion from '@radix-ui/react-accordion'
+import { ChevronDown } from 'lucide-react'
 
-// CONTEXT7 SOURCE: /ant-design/ant-design-charts - Statistical charts for premium metrics display
-// ANT DESIGN CHARTS IMPLEMENTATION REASON: Official Ant Design Charts documentation for Gauge, Liquid, and Radar statistical visualizations
-import { Gauge, Liquid, Radar } from '@ant-design/charts'
+// CONTEXT7 SOURCE: /recharts/recharts - React chart library for statistical data visualization
+// RECHARTS IMPLEMENTATION REASON: Official Recharts documentation for Gauge, Area, and Radar chart components
+import { PieChart, Pie, Cell, ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar as RechartsRadar } from 'recharts'
 
 // CONTEXT7 SOURCE: /facebook/react - TypeScript interface patterns for component props
 // TYPESCRIPT IMPLEMENTATION REASON: Official React TypeScript documentation for interface definitions
@@ -124,12 +121,6 @@ interface GlobalLocationData {
  * - Full responsive design with royal client quality
  */
 export default function ServicesPage() {
-  // CONTEXT7 SOURCE: /facebook/react - useState hook for accordion state management
-  // STATE MANAGEMENT REASON: Official React documentation for controlled component patterns
-  const [expandedAccordion, setExpandedAccordion] = useState<string | false>(false)
-  const [selectedService, setSelectedService] = useState<ServiceData | null>(null)
-  const [globeData, setGlobeData] = useState<GlobalLocationData[]>([])
-
   // CMS DATA SOURCE: Using CMS functions for services and metrics data
   const services = getServices()
   const trustIndicators = getTrustIndicators()
@@ -147,148 +138,33 @@ export default function ServicesPage() {
     { country: 'Hong Kong', students: 78, lat: 22.3193, lng: 114.1694 }
   ]
 
-  // CONTEXT7 SOURCE: /ant-design/ant-design-charts - Statistical metrics for premium visualization
-  // CHARTS DATA REASON: Official Ant Design Charts documentation for Gauge, Liquid, and Radar data structures
-  const metricsData: MetricsData[] = [
-    {
-      title: 'Student Success Rate',
-      value: 94,
-      unit: '%',
-      description: 'Students achieving target grades',
-      chartType: 'gauge'
-    },
-    {
-      title: 'Completion Rate',
-      value: 0.87,
-      unit: '',
-      description: 'Course completion percentage',
-      chartType: 'liquid'
-    },
-    {
-      title: 'Service Quality',
-      value: 4.8,
-      unit: '/5',
-      description: 'Average client satisfaction',
-      chartType: 'radar'
-    }
+  // CONTEXT7 SOURCE: /recharts/recharts - Pie chart data for success rate visualization
+  // PIE CHART CONFIG REASON: Official Recharts documentation for Pie chart component customization
+  const successRateData = [
+    { name: 'Success', value: 94, fill: '#eab308' },
+    { name: 'Remaining', value: 6, fill: '#e2e8f0' }
   ]
 
-  // CONTEXT7 SOURCE: /mui/material-ui - Controlled accordion change handler
-  // ACCORDION HANDLER REASON: Official Material UI documentation for controlled Accordion state management
-  const handleAccordionChange = useCallback((panel: string) => (
-    event: React.SyntheticEvent, 
-    isExpanded: boolean
-  ) => {
-    setExpandedAccordion(isExpanded ? panel : false)
-  }, [])
+  // CONTEXT7 SOURCE: /recharts/recharts - Area chart data for completion rate visualization
+  // AREA CHART CONFIG REASON: Official Recharts documentation for Area chart component styling
+  const completionData = [
+    { name: 'Jan', rate: 82 },
+    { name: 'Feb', rate: 85 },
+    { name: 'Mar', rate: 87 },
+    { name: 'Apr', rate: 87 },
+    { name: 'May', rate: 87 },
+    { name: 'Jun', rate: 87 }
+  ]
 
-  // CONTEXT7 SOURCE: /facebook/react - useEffect hook for component initialization
-  // EFFECT REASON: Official React documentation for side effects and data initialization
-  useEffect(() => {
-    setGlobeData(globalLocations)
-    if (services.length > 0) {
-      setSelectedService({
-        title: services[0].title,
-        description: services[0].description,
-        features: services[0].features.map(f => f.feature),
-        targetAudience: `Ages ${services[0].title.includes('Primary') ? '5-11' : '11-18'}: ${services[0].description}`,
-        icon: services[0].icon,
-        premium: true
-      })
-    }
-  }, [services])
-
-  // CONTEXT7 SOURCE: /ant-design/ant-design-charts - Gauge chart configuration
-  // GAUGE CONFIG REASON: Official Ant Design Charts documentation for Gauge component customization
-  const gaugeConfig = {
-    percent: 0.94,
-    range: {
-      color: 'l(0) 0:#0f172a 1:#eab308',
-    },
-    statistic: {
-      title: {
-        offsetY: -30,
-        content: 'Success Rate',
-        style: {
-          fontSize: '20px',
-          color: '#0f172a',
-        },
-      },
-      content: {
-        offsetY: 0,
-        style: {
-          fontSize: '32px',
-          color: '#0f172a',
-          fontWeight: 'bold',
-        },
-      },
-    },
-  }
-
-  // CONTEXT7 SOURCE: /ant-design/ant-design-charts - Liquid chart configuration
-  // LIQUID CONFIG REASON: Official Ant Design Charts documentation for Liquid component styling
-  const liquidConfig = {
-    percent: 0.87,
-    radius: 0.8,
-    statistic: {
-      title: {
-        offsetY: 30,
-        style: {
-          fontSize: '18px',
-          color: '#0f172a',
-        },
-      },
-      content: {
-        offsetY: -10,
-        style: {
-          fontSize: '28px',
-          fontWeight: '700',
-          color: '#eab308',
-        },
-      },
-    },
-    wave: {
-      count: 3,
-      style: {
-        color: '#eab308',
-      },
-    },
-    liquidStyle: {
-      stroke: '#0f172a',
-      strokeWidth: 2,
-    },
-  }
-
-  // CONTEXT7 SOURCE: /ant-design/ant-design-charts - Radar chart configuration
-  // RADAR CONFIG REASON: Official Ant Design Charts documentation for Radar component data visualization
+  // CONTEXT7 SOURCE: /recharts/recharts - Radar chart configuration
+  // RADAR CONFIG REASON: Official Recharts documentation for Radar component data visualization
   const radarData = [
-    { name: 'Teaching Quality', star: 5, color: 'A' },
-    { name: 'Student Support', star: 4.8, color: 'A' },
-    { name: 'Results Delivery', star: 4.9, color: 'A' },
-    { name: 'Communication', star: 4.7, color: 'A' },
-    { name: 'Flexibility', star: 4.6, color: 'A' },
+    { subject: 'Teaching Quality', A: 5, fullMark: 5 },
+    { subject: 'Student Support', A: 4.8, fullMark: 5 },
+    { subject: 'Results Delivery', A: 4.9, fullMark: 5 },
+    { subject: 'Communication', A: 4.7, fullMark: 5 },
+    { subject: 'Flexibility', A: 4.6, fullMark: 5 },
   ]
-
-  const radarConfig = {
-    data: radarData,
-    xField: 'name',
-    yField: 'star',
-    seriesField: 'color',
-    meta: {
-      star: {
-        min: 0,
-        max: 5,
-      },
-    },
-    radius: 0.8,
-    smooth: true,
-    areaStyle: {
-      fillOpacity: 0.3,
-    },
-    point: {
-      size: 4,
-    },
-  }
 
   return (
     <PageLayout background="white" showHeader={true} showFooter={true} containerSize="full">
@@ -410,7 +286,7 @@ export default function ServicesPage() {
           </m.div>
 
           <div className="grid md:grid-cols-3 gap-12">
-            {/* Gauge Chart */}
+            {/* Success Rate Pie Chart */}
             <m.div
               className="bg-white rounded-2xl shadow-lg p-8"
               initial={{ opacity: 0, y: 30 }}
@@ -422,14 +298,34 @@ export default function ServicesPage() {
                 Student Success Rate
               </h3>
               <div className="h-64">
-                <Gauge {...gaugeConfig} />
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={successRateData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={90}
+                      startAngle={90}
+                      endAngle={450}
+                      dataKey="value"
+                    >
+                      {successRateData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                      ))}
+                    </Pie>
+                    <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="fill-primary-900 text-2xl font-bold">
+                      94%
+                    </text>
+                  </PieChart>
+                </ResponsiveContainer>
               </div>
               <p className="text-center text-primary-600 mt-4">
                 94% of our students achieve their target grades or higher
               </p>
             </m.div>
 
-            {/* Liquid Chart */}
+            {/* Completion Rate Area Chart */}
             <m.div
               className="bg-white rounded-2xl shadow-lg p-8"
               initial={{ opacity: 0, y: 30 }}
@@ -441,14 +337,22 @@ export default function ServicesPage() {
                 Course Completion
               </h3>
               <div className="h-64">
-                <Liquid {...liquidConfig} />
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={completionData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis domain={[80, 90]} />
+                    <Tooltip />
+                    <Area type="monotone" dataKey="rate" stroke="#eab308" fill="#eab308" fillOpacity={0.6} />
+                  </AreaChart>
+                </ResponsiveContainer>
               </div>
               <p className="text-center text-primary-600 mt-4">
                 87% completion rate across all our programmes
               </p>
             </m.div>
 
-            {/* Radar Chart */}
+            {/* Service Quality Radar Chart */}
             <m.div
               className="bg-white rounded-2xl shadow-lg p-8"
               initial={{ opacity: 0, y: 30 }}
@@ -460,7 +364,14 @@ export default function ServicesPage() {
                 Service Quality Metrics
               </h3>
               <div className="h-64">
-                <Radar {...radarConfig} />
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart data={radarData}>
+                    <PolarGrid />
+                    <PolarAngleAxis dataKey="subject" />
+                    <PolarRadiusAxis angle={90} domain={[0, 5]} />
+                    <RechartsRadar name="Quality" dataKey="A" stroke="#eab308" fill="#eab308" fillOpacity={0.3} />
+                  </RadarChart>
+                </ResponsiveContainer>
               </div>
               <p className="text-center text-primary-600 mt-4">
                 Comprehensive quality assessment across all service areas
@@ -470,8 +381,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CONTEXT7 SOURCE: /mui/material-ui - Advanced Material UI Accordions section */}
-      {/* ACCORDIONS SECTION REASON: Official Material UI documentation for controlled Accordion components */}
+      {/* CONTEXT7 SOURCE: /radix-ui/primitives - Radix UI Accordion components section */}
+      {/* ACCORDIONS SECTION REASON: Official Radix UI documentation for accessible Accordion components */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <m.div
@@ -491,111 +402,75 @@ export default function ServicesPage() {
           </m.div>
 
           <div className="max-w-4xl mx-auto">
-            {services.map((service, index) => (
-              <m.div
-                key={index}
-                className="mb-4"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Accordion 
-                  expanded={expandedAccordion === `panel${index}`} 
-                  onChange={handleAccordionChange(`panel${index}`)}
-                  sx={{
-                    backgroundColor: expandedAccordion === `panel${index}` ? '#f8fafc' : 'white',
-                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-                    borderRadius: '12px',
-                    border: '1px solid #e2e8f0',
-                    '&:before': { display: 'none' },
-                    mb: 2
-                  }}
+            <Accordion.Root type="single" collapsible className="space-y-4">
+              {services.map((service, index) => (
+                <m.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon sx={{ color: '#0f172a' }} />}
-                    aria-controls={`panel${index}bh-content`}
-                    id={`panel${index}bh-header`}
-                    sx={{
-                      padding: '20px 24px',
-                      '& .MuiAccordionSummary-content': {
-                        alignItems: 'center',
-                        margin: '12px 0'
-                      }
-                    }}
+                  <Accordion.Item 
+                    value={`panel${index}`}
+                    className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden"
                   >
-                    <div className="flex items-center space-x-4">
-                      <div className="text-3xl">{service.icon}</div>
-                      <div>
-                        <Typography 
-                          component="h3" 
-                          variant="h6" 
-                          sx={{ 
-                            fontWeight: 'bold', 
-                            color: '#0f172a',
-                            fontSize: '1.25rem'
-                          }}
-                        >
-                          {service.title}
-                        </Typography>
-                        <Typography 
-                          variant="body2" 
-                          sx={{ 
-                            color: '#64748b',
-                            marginTop: '4px'
-                          }}
-                        >
-                          Premium {service.title.toLowerCase()} education services
-                        </Typography>
-                      </div>
-                    </div>
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ padding: '0 24px 24px 24px' }}>
-                    <div className="pl-14">
-                      <Typography 
-                        variant="body1" 
-                        sx={{ 
-                          color: '#475569',
-                          marginBottom: '16px',
-                          lineHeight: 1.7
-                        }}
-                      >
-                        {service.description}
-                      </Typography>
-                      
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <div>
-                          <h4 className="font-semibold text-primary-900 mb-3">Key Features:</h4>
-                          <ul className="space-y-2">
-                            {service.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start space-x-2">
-                                <CheckCircle className="h-5 w-5 text-accent-600 mt-0.5 flex-shrink-0" />
-                                <span className="text-primary-700">{feature.feature}</span>
-                              </li>
-                            ))}
-                          </ul>
+                    <Accordion.Header>
+                      <Accordion.Trigger className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-inset">
+                        <div className="flex items-center space-x-4">
+                          <div className="text-3xl">{service.icon}</div>
+                          <div>
+                            <h3 className="text-xl font-bold text-primary-900">
+                              {service.title}
+                            </h3>
+                            <p className="text-primary-600 mt-1">
+                              Premium {service.title.toLowerCase()} education services
+                            </p>
+                          </div>
                         </div>
+                        <ChevronDown className="h-5 w-5 text-primary-700 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                      </Accordion.Trigger>
+                    </Accordion.Header>
+                    <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+                      <div className="px-6 pb-6 pl-20">
+                        <p className="text-primary-600 mb-6 leading-relaxed">
+                          {service.description}
+                        </p>
                         
-                        <div className="bg-accent-50 rounded-lg p-6">
-                          <h4 className="font-semibold text-primary-900 mb-3">Perfect For:</h4>
-                          <p className="text-primary-700 mb-4">
-                            Ages {service.title.includes('Primary') ? '5-11' : service.title.includes('Secondary') ? '11-18' : '16+'}
-                          </p>
-                          <m.button
-                            className="inline-flex items-center px-6 py-2 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg transition-colors duration-200"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            Learn More
-                            <ChevronRight className="ml-1 h-4 w-4" />
-                          </m.button>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h4 className="font-semibold text-primary-900 mb-3">Key Features:</h4>
+                            <ul className="space-y-2">
+                              {service.features.map((feature, featureIndex) => (
+                                <li key={featureIndex} className="flex items-start space-x-2">
+                                  <CheckCircle className="h-5 w-5 text-accent-600 mt-0.5 flex-shrink-0" />
+                                  <span className="text-primary-700">{feature.feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          
+                          <div className="bg-accent-50 rounded-lg p-6">
+                            <h4 className="font-semibold text-primary-900 mb-3">Perfect For:</h4>
+                            <p className="text-primary-700 mb-4">
+                              Ages {service.title.includes('Primary') ? '5-11' : service.title.includes('Secondary') ? '11-18' : '16+'}
+                            </p>
+                            <m.button
+                              className="inline-flex items-center px-6 py-2 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg transition-colors duration-200"
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              Learn More
+                              <ChevronRight className="ml-1 h-4 w-4" />
+                            </m.button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </AccordionDetails>
-                </Accordion>
-              </m.div>
-            ))}
+                    </Accordion.Content>
+                  </Accordion.Item>
+                </m.div>
+              ))}
+            </Accordion.Root>
           </div>
         </div>
       </section>

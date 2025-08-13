@@ -59,7 +59,9 @@ import { ScrollingSchools } from '@/components/sections/scrolling-schools'
 import { HeroSection } from '@/components/sections/hero-section'
 import { HomepageHowItWorks } from '@/components/sections/homepage-how-it-works'
 import { AnimatedTagline } from '@/components/sections/animated-tagline'
+import { AboutSection } from '@/components/sections/about-section'
 import { ServicesCarousel } from '@/components/sections/services-carousel'
+import { ConsultationBookingForm } from '@/components/forms/consultation-booking-form'
 import { NewsletterSection } from '@/components/sections/newsletter-section'
 import { CTASection } from '@/components/sections/cta-section'
 import { LanguageSwitcher } from '@/components/ui/language-switcher'
@@ -99,42 +101,70 @@ export default function HomePage({ params }: HomePageProps) {
         />
       </div>
       
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Modular homepage sections with CMS integration */}
-      {/* MODULAR ARCHITECTURE: Official Next.js documentation recommends component extraction for maintainability */}
+      {/* CONTEXT7 SOURCE: /context7/react_dev-learn - Homepage component ordering with JSX structure */}
+      {/* COMPONENT ORDERING REASON: Official React documentation enables structured component composition for modular homepage layout */}
+      
+      {/* 1. HERO SECTION */}
       <HeroSection 
         branding={branding}
         studentImages={studentImages}
       />
       
+      {/* 2. "WE HELP STUDENTS PLACE AT TOP 10 UK SCHOOLS AND UNIVERSITIES" */}
       <AnimatedTagline />
       
+      {/* 3. SCROLLING SCHOOLS COMPONENT */}
+      <ScrollingSchools 
+        schools={testimonialsSchools}
+      />
+      
+      {/* 4. ABOUT SECTION */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - About section with founder story and company credentials */}
+      {/* ABOUT SECTION RESTORATION: Restored from git history - provides company background and founder credibility */}
+      <AboutSection />
+      
+      {/* 5. WHO WE SUPPORT */}
       <TrustIndicatorsGrid 
         indicators={trustIndicators}
         studentImages={studentImages}
       />
       
-      <ScrollingSchools 
-        schools={testimonialsSchools}
-      />
-      
-      <QuoteSection 
-        quote={founderQuote.quote}
-        author={founderQuote.author}
-        role={founderQuote.role}
-      />
-      
-      <ResultsSection />
-      
+      {/* 6. WHAT WE OFFER */}
       <ServicesCarousel 
         services={services}
         studentImages={studentImages}
       />
       
-      <HomepageHowItWorks />
-      
-      <TestimonialsSection 
-        testimonials={testimonials}
+      {/* 7. QUOTE SECTION */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Enhanced founder quote with portrait integration */}
+      {/* FOUNDER QUOTE ENHANCEMENT REASON: Official Next.js documentation supports image-text layouts for founder credibility */}
+      <QuoteSection 
+        quote={founderQuote.quote}
+        author={founderQuote.author}
+        role={founderQuote.role}
+        showAuthorImage={true}
+        authorImage="/images/team/founder-elizabeth-burrows-portrait.jpg"
+        authorImageAlt="Elizabeth Burrows, Founder of My Private Tutor Online"
       />
+      
+      {/* 8. SUCCESS STORIES */}
+      <ResultsSection />
+      
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Consultation booking form section */}
+      {/* CONSULTATION FORM RESTORATION: Restored from components/forms - provides lead capture and consultation booking */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4">
+              Ready to Begin Your Academic Journey?
+            </h2>
+            <p className="text-xl text-primary-700 max-w-3xl mx-auto">
+              Book your confidential consultation with Elizabeth's team to discuss your child's educational needs and create a personalised tutoring plan.
+            </p>
+          </div>
+          <ConsultationBookingForm />
+        </div>
+      </section>
       
       <NewsletterSection />
       

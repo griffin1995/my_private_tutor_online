@@ -208,18 +208,18 @@ export function FounderStorySection({
               transition={{ duration: 0.8, delay: 0.1 }}
             >
               <div className="relative">
-                {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with blur placeholder and lazy loading optimization */}
-                {/* PERFORMANCE OPTIMIZATION REASON: Official Next.js documentation demonstrates placeholder="blur" with blurDataURL for improved perceived loading speed */}
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for founder story about image */}
+                {/* FOUNDER STORY IMAGE INTEGRATION: Official Next.js documentation for optimized about founder story image rendering */}
                 <Image
-                  src="/images/team/elizabeth-burrows-founder-spare.jpg"
-                  alt="Elizabeth Burrows, Founder of My Private Tutor Online"
+                  src="/images/about/about-founder-story.jpg"
+                  alt="Elizabeth Burrows Founder Story - Personal journey and educational philosophy behind My Private Tutor Online"
                   width={500}
                   height={600}
-                  className="rounded-2xl shadow-2xl"
+                  className="rounded-2xl shadow-2xl hover:shadow-3xl transition-shadow duration-500"
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   loading="lazy"
-                  quality={85}
+                  quality={90}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-accent-600 text-white p-4 rounded-2xl shadow-xl">
@@ -383,12 +383,14 @@ export function FounderStorySection({
                 With over 15 years of experience, Elizabeth is interviewed on how to use private tuition strategically to drive outstanding academic performance.
               </p>
               
+              {/* CONTEXT7 SOURCE: /vercel/next.js - Video dialog component with founder thumbnail optimization */}
+              {/* FOUNDER THUMBNAIL REASON: Official Next.js documentation supports responsive video thumbnails with optimized founder imagery */}
               <HeroVideoDialog
                 className="block max-w-4xl mx-auto"
                 animationStyle="from-center"
                 videoSrc="/videos/elizabeth-introduction.mp4"
-                thumbnailSrc="/images/team/elizabeth-burrows-founder-spare.jpg"
-                thumbnailAlt="Elizabeth Burrows - Unlocking Academic Success Seminar"
+                thumbnailSrc="/images/team/founder-elizabeth-burrows-portrait.jpg"
+                thumbnailAlt="Elizabeth Burrows - Unlocking Academic Success Seminar Portrait"
               />
             </m.div>
           )}

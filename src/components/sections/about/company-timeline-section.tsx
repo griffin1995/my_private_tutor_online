@@ -1,25 +1,18 @@
 "use client"
 
 /**
- * CONTEXT7 SOURCE: /mui/material-ui - Timeline component with alternating layout patterns
- * IMPLEMENTATION REASON: Official Material UI documentation for Timeline with TimelineOppositeContent for dates
- * CONTEXT7 SOURCE: /mui/material-ui - TimelineOppositeContent for dates, customized Timeline with styled components
- * COMPONENT ARCHITECTURE REASON: Material UI Timeline Section 3.2 alternating layout for company milestones
+ * CONTEXT7 SOURCE: /framer/motion - Custom Timeline component with alternating layout patterns
+ * IMPLEMENTATION REASON: Custom timeline implementation using Framer Motion for premium animations
+ * CONTEXT7 SOURCE: /lucide-react/lucide - Icon components for timeline milestones
+ * COMPONENT ARCHITECTURE REASON: Custom timeline with alternating layout for company milestones
  *
  * Company Timeline Section Component
- * Displays My Private Tutor Online's key milestones using Material UI Timeline
+ * Displays My Private Tutor Online's key milestones using custom timeline
  * with alternating layout and premium styling for About Us page
  */
 
 import React from 'react'
 import { m } from 'framer-motion'
-import Timeline from '@mui/lab/Timeline'
-import TimelineItem from '@mui/lab/TimelineItem'
-import TimelineSeparator from '@mui/lab/TimelineSeparator'
-import TimelineDot from '@mui/lab/TimelineDot'
-import TimelineConnector from '@mui/lab/TimelineConnector'
-import TimelineContent from '@mui/lab/TimelineContent'
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent'
 import { 
   Rocket, 
   Globe, 
@@ -33,8 +26,8 @@ import {
 import { cn } from '@/lib/utils'
 import { getCompanyTimeline } from '@/lib/cms/cms-content'
 
-// CONTEXT7 SOURCE: /mui/material-ui - Material UI Timeline icon mapping patterns
-// PREMIUM DESIGN REASON: Official Material UI documentation recommends custom icon mapping for branded timeline components
+// CONTEXT7 SOURCE: /lucide-react/lucide - Lucide React icon mapping patterns
+// PREMIUM DESIGN REASON: Custom icon mapping for branded timeline components
 const getTimelineIcon = (iconName: string) => {
   const iconMap = {
     rocket: Rocket,
@@ -50,11 +43,18 @@ const getTimelineIcon = (iconName: string) => {
   return iconMap[iconName as keyof typeof iconMap] || Star
 }
 
-// CONTEXT7 SOURCE: /mui/material-ui - Timeline color customisation patterns
-// PREMIUM STYLING REASON: Official Material UI documentation Section 4.1 for custom timeline dot colors
-const getTimelineColor = (color: string): "inherit" | "primary" | "secondary" | "success" | "info" | "warning" | "error" => {
-  const validColors = ["primary", "secondary", "success", "info", "warning", "error"] as const
-  return validColors.includes(color as any) ? (color as any) : "primary"
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Tailwind color mapping patterns
+// PREMIUM STYLING REASON: Custom color mapping for timeline dot styling
+const getTimelineColor = (color: string): string => {
+  const colorMap: Record<string, string> = {
+    primary: 'bg-blue-600',
+    secondary: 'bg-purple-600',
+    success: 'bg-green-600',
+    info: 'bg-cyan-600',
+    warning: 'bg-amber-600',
+    error: 'bg-red-600'
+  }
+  return colorMap[color] || 'bg-accent-600'
 }
 
 export function CompanyTimelineSection() {
@@ -99,9 +99,9 @@ export function CompanyTimelineSection() {
           )}
         </div>
 
-        {/* Material UI Timeline */}
-        {/* CONTEXT7 SOURCE: /mui/material-ui - Alternating Timeline with TimelineOppositeContent */}
-        {/* ALTERNATING LAYOUT REASON: Official Material UI Timeline documentation Section 3.2 for professional timeline display */}
+        {/* Custom Timeline */}
+        {/* CONTEXT7 SOURCE: /framer/motion - Custom Alternating Timeline with motion animations */}
+        {/* ALTERNATING LAYOUT REASON: Custom timeline implementation for professional timeline display */}
         <m.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -109,65 +109,43 @@ export function CompanyTimelineSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="max-w-4xl mx-auto"
         >
-          <Timeline position="alternate" className="px-0">
+          <div className="relative">
+            {/* Central Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-slate-300 h-full" />
+            
             {timelineData.milestones.map((milestone, index) => {
               const IconComponent = getTimelineIcon(milestone.icon || 'star')
-              const timelineColor = getTimelineColor(milestone.color || 'primary')
+              const timelineColorClass = getTimelineColor(milestone.color || 'primary')
+              const isEven = index % 2 === 0
               
               return (
-                <TimelineItem key={`${milestone.year}-${index}`}>
-                  {/* CONTEXT7 SOURCE: /mui/material-ui - TimelineOppositeContent for dates */}
-                  {/* DATE DISPLAY REASON: Official Material UI documentation recommends TimelineOppositeContent for date/time information */}
-                  <TimelineOppositeContent
-                    sx={{
-                      fontSize: '1.125rem',
-                      fontWeight: 600,
-                      color: '#1e293b',
-                      flex: '0 1 120px',
-                      textAlign: index % 2 === 0 ? 'right' : 'left'
-                    }}
-                  >
-                    {milestone.year}
-                  </TimelineOppositeContent>
-                  
-                  {/* CONTEXT7 SOURCE: /mui/material-ui - TimelineSeparator with customized TimelineDot */}
-                  {/* SEPARATOR STYLING REASON: Official Material UI Timeline documentation Section 4.1 for premium dot styling */}
-                  <TimelineSeparator>
-                    <TimelineDot 
-                      color={timelineColor}
-                      variant="filled"
-                      sx={{
-                        width: 56,
-                        height: 56,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-                        border: '3px solid white'
-                      }}
-                    >
-                      <IconComponent size={24} className="text-white" />
-                    </TimelineDot>
-                    {index < timelineData.milestones.length - 1 && (
-                      <TimelineConnector 
-                        sx={{ 
-                          height: 80,
-                          backgroundColor: '#e2e8f0'
-                        }}
-                      />
-                    )}
-                  </TimelineSeparator>
-                  
-                  {/* CONTEXT7 SOURCE: /mui/material-ui - TimelineContent for main content */}
-                  {/* CONTENT LAYOUT REASON: Official Material UI Timeline documentation Section 2.1 for content structure */}
-                  <TimelineContent>
-                    <div 
-                      className={cn(
-                        "bg-white rounded-xl p-6 shadow-lg border border-slate-100",
-                        "hover:shadow-xl transition-all duration-300",
-                        index % 2 === 0 ? "mr-4" : "ml-4"
-                      )}
-                    >
+                <m.div 
+                  key={`${milestone.year}-${index}`}
+                  className="relative flex items-center mb-12 last:mb-0"
+                  initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  {/* Timeline Content - Alternating Layout */}
+                  <div className={cn(
+                    "flex-1",
+                    isEven ? "pr-8 text-right" : "pl-8 order-3"
+                  )}>
+                    {/* Year Display */}
+                    <div className={cn(
+                      "text-lg font-semibold text-slate-900 mb-2",
+                      isEven ? "text-right" : "text-left"
+                    )}>
+                      {milestone.year}
+                    </div>
+                    
+                    {/* Content Card */}
+                    <div className={cn(
+                      "bg-white rounded-xl p-6 shadow-lg border border-slate-100",
+                      "hover:shadow-xl transition-all duration-300",
+                      isEven ? "mr-0" : "ml-0"
+                    )}>
                       <h3 className="text-xl font-semibold text-slate-900 mb-3">
                         {milestone.title}
                       </h3>
@@ -175,11 +153,27 @@ export function CompanyTimelineSection() {
                         {milestone.description}
                       </p>
                     </div>
-                  </TimelineContent>
-                </TimelineItem>
+                  </div>
+                  
+                  {/* Timeline Dot with Icon */}
+                  <div className={cn(
+                    "relative z-10 w-14 h-14 rounded-full border-4 border-white shadow-lg",
+                    "flex items-center justify-center",
+                    timelineColorClass,
+                    isEven ? "order-2" : "order-2"
+                  )}>
+                    <IconComponent size={24} className="text-white" />
+                  </div>
+                  
+                  {/* Empty space for alternating layout */}
+                  <div className={cn(
+                    "flex-1",
+                    isEven ? "order-3" : "pr-8"
+                  )} />
+                </m.div>
               )
             })}
-          </Timeline>
+          </div>
         </m.div>
       </div>
     </section>

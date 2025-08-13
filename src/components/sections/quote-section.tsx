@@ -20,6 +20,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Definition for React Props
@@ -33,6 +34,8 @@ import Link from 'next/link'
  * - backgroundColor: Tailwind CSS background class for section theming
  * - className: Additional CSS classes for custom styling
  * - button: Optional button text for call-to-action functionality
+ * - authorImage: Optional author photo for founder quotes with attribution
+ * - showAuthorImage: Boolean to control author image display
  */
 interface QuoteSectionProps {
   /** The main quote or testimonial text content */
@@ -47,6 +50,12 @@ interface QuoteSectionProps {
   className?: string
   /** Optional button text for call-to-action - links to testimonials page */
   button?: string
+  /** Optional author photo source path for founder quotes */
+  authorImage?: string
+  /** Optional author photo alt text */
+  authorImageAlt?: string
+  /** Whether to display the author image alongside the quote */
+  showAuthorImage?: boolean
 }
 
 /**
@@ -74,7 +83,10 @@ export function QuoteSection({
   role, 
   backgroundColor = "bg-primary-50", 
   className = "",
-  button
+  button,
+  authorImage,
+  authorImageAlt,
+  showAuthorImage = false
 }: QuoteSectionProps) {
   /**
    * Documentation Source: Context7 MCP - Tailwind CSS Dynamic Class Composition
@@ -94,41 +106,101 @@ export function QuoteSection({
   return (
     <section className={`${spacingClasses} ${backgroundColor} ${className}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* 
-           * Documentation Source: Context7 MCP - Semantic HTML Quote Structure
-           * Reference: /context7/react_dev - blockquote element with proper attributes
-           * Pattern: Semantic blockquote with responsive typography and consistent styling
-           * 
-           * Typography Implementation:
-           * - text-xl lg:text-2xl: Responsive text scaling for readability
-           * - font-serif: Consistent with site typography hierarchy
-           * - text-primary-700: Primary color scheme integration
-           * - italic: Visual distinction for quoted content
-           * - leading-relaxed: Enhanced line height for readability
-           * - mb-8: Consistent spacing to citation
-           */}
-          <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed mb-8">
-            &ldquo;{quote}&rdquo;
-          </blockquote>
-          
-          {/* 
-           * Documentation Source: Context7 MCP - Conditional Rendering Pattern
-           * Reference: /context7/react_dev - Conditional JSX rendering with logical AND operator
-           * Pattern: Optional citation rendering when author is provided
-           * 
-           * Citation Implementation:
-           * - Conditional rendering: Only shows when author is provided
-           * - cite element: Semantically correct HTML for attribution
-           * - text-lg: Appropriate size relationship to main quote
-           * - font-semibold: Visual hierarchy for attribution
-           * - text-primary-900: Stronger color for author emphasis
-           * - not-italic: Visual distinction from italic quote text
-           */}
-          {author && (
-            <cite className="text-lg font-semibold text-primary-900 not-italic">
-              &mdash; {author}{role && `, ${role}`}
-            </cite>
+        <div className="max-w-4xl mx-auto">
+          {showAuthorImage && authorImage ? (
+            /* 
+             * CONTEXT7 SOURCE: /vercel/next.js - Image component with responsive layout patterns
+             * FOUNDER IMAGE LAYOUT REASON: Official Next.js documentation supports grid layouts with image-text combinations
+             */
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <Image
+                  src={authorImage}
+                  alt={authorImageAlt || `${author || 'Author'} portrait`}
+                  width={400}
+                  height={500}
+                  className="rounded-2xl shadow-xl mx-auto"
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                />
+              </div>
+              <div className="order-1 lg:order-2">
+                {/* 
+                 * Documentation Source: Context7 MCP - Semantic HTML Quote Structure
+                 * Reference: /context7/react_dev - blockquote element with proper attributes
+                 * Pattern: Semantic blockquote with responsive typography and consistent styling
+                 * 
+                 * Typography Implementation:
+                 * - text-xl lg:text-2xl: Responsive text scaling for readability
+                 * - font-serif: Consistent with site typography hierarchy
+                 * - text-primary-700: Primary color scheme integration
+                 * - italic: Visual distinction for quoted content
+                 * - leading-relaxed: Enhanced line height for readability
+                 * - mb-8: Consistent spacing to citation
+                 */}
+                <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed mb-8">
+                  &ldquo;{quote}&rdquo;
+                </blockquote>
+                
+                {/* 
+                 * Documentation Source: Context7 MCP - Conditional Rendering Pattern
+                 * Reference: /context7/react_dev - Conditional JSX rendering with logical AND operator
+                 * Pattern: Optional citation rendering when author is provided
+                 * 
+                 * Citation Implementation:
+                 * - Conditional rendering: Only shows when author is provided
+                 * - cite element: Semantically correct HTML for attribution
+                 * - text-lg: Appropriate size relationship to main quote
+                 * - font-semibold: Visual hierarchy for attribution
+                 * - text-primary-900: Stronger color for author emphasis
+                 * - not-italic: Visual distinction from italic quote text
+                 */}
+                {author && (
+                  <cite className="text-lg font-semibold text-primary-900 not-italic">
+                    &mdash; {author}{role && `, ${role}`}
+                  </cite>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="text-center">
+              {/* 
+               * Documentation Source: Context7 MCP - Semantic HTML Quote Structure
+               * Reference: /context7/react_dev - blockquote element with proper attributes
+               * Pattern: Semantic blockquote with responsive typography and consistent styling
+               * 
+               * Typography Implementation:
+               * - text-xl lg:text-2xl: Responsive text scaling for readability
+               * - font-serif: Consistent with site typography hierarchy
+               * - text-primary-700: Primary color scheme integration
+               * - italic: Visual distinction for quoted content
+               * - leading-relaxed: Enhanced line height for readability
+               * - mb-8: Consistent spacing to citation
+               */}
+              <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed mb-8">
+                &ldquo;{quote}&rdquo;
+              </blockquote>
+              
+              {/* 
+               * Documentation Source: Context7 MCP - Conditional Rendering Pattern
+               * Reference: /context7/react_dev - Conditional JSX rendering with logical AND operator
+               * Pattern: Optional citation rendering when author is provided
+               * 
+               * Citation Implementation:
+               * - Conditional rendering: Only shows when author is provided
+               * - cite element: Semantically correct HTML for attribution
+               * - text-lg: Appropriate size relationship to main quote
+               * - font-semibold: Visual hierarchy for attribution
+               * - text-primary-900: Stronger color for author emphasis
+               * - not-italic: Visual distinction from italic quote text
+               */}
+              {author && (
+                <cite className="text-lg font-semibold text-primary-900 not-italic">
+                  &mdash; {author}{role && `, ${role}`}
+                </cite>
+              )}
+            </div>
           )}
 
           {/* 

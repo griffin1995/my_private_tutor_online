@@ -17,14 +17,14 @@
 
 "use client"
 
-// CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering for client-only pages with browser APIs
-// SSR COMPATIBILITY: FAQ page requires client-side only rendering due to navigator/window dependencies
-export const dynamic = 'force-dynamic'
-
 // CONTEXT7 SOURCE: /context7/react_dev - React.lazy and Suspense for code splitting and lazy loading
 // PERFORMANCE OPTIMIZATION: Dynamic imports with lazy loading for non-critical components
 import React, { useMemo, useCallback, useEffect } from 'react'
-import dynamic from 'next/dynamic'
+import nextDynamic from 'next/dynamic'
+
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering for client-only pages with browser APIs
+// SSR COMPATIBILITY: FAQ page requires client-side only rendering due to navigator/window dependencies  
+export const dynamic = 'force-dynamic'
 import { m } from 'framer-motion'
 import { getFAQHero, getFAQCategories, getUnifiedContact } from '@/lib/cms/cms-content'
 import { HERO_IMAGES } from '@/lib/cms/cms-images'
@@ -45,7 +45,7 @@ import { Section } from '@/components/layout/section'
 
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic imports for FAQ components with loading states
 // CODE SPLITTING: FAQ components loaded on demand with optimized chunks
-const FAQEnhancedSearch = dynamic(
+const FAQEnhancedSearch = nextDynamic(
   () => import('@/components/faq/faq-enhanced-search').then(mod => mod.FAQEnhancedSearch),
   { 
     loading: () => <div className="h-20 bg-slate-100 animate-pulse rounded-xl" />,
@@ -53,7 +53,7 @@ const FAQEnhancedSearch = dynamic(
   }
 )
 
-const FAQCategorySection = dynamic(
+const FAQCategorySection = nextDynamic(
   () => import('@/components/faq/faq-category-section').then(mod => mod.FAQCategorySection),
   { 
     loading: () => <div className="h-96 bg-slate-100 animate-pulse rounded-xl" />,
@@ -61,7 +61,7 @@ const FAQCategorySection = dynamic(
   }
 )
 
-const FAQContactSection = dynamic(
+const FAQContactSection = nextDynamic(
   () => import('@/components/faq/faq-contact-section').then(mod => mod.FAQContactSection),
   { 
     loading: () => <div className="h-64 bg-slate-100 animate-pulse rounded-xl" />,
@@ -71,12 +71,12 @@ const FAQContactSection = dynamic(
 
 // CONTEXT7 SOURCE: /vercel/next.js - Lazy load analytics and tracking components
 // PERFORMANCE: Analytics loaded after main content for better LCP
-const FAQAnalyticsTracker = dynamic(
+const FAQAnalyticsTracker = nextDynamic(
   () => import('@/components/faq/faq-analytics-tracker').then(mod => mod.FAQAnalyticsTracker),
   { ssr: false }
 )
 
-const FAQPremiumHero = dynamic(
+const FAQPremiumHero = nextDynamic(
   () => import('@/components/faq/faq-premium-hero').then(mod => mod.FAQPremiumHero),
   { 
     loading: () => <div className="h-[60vh] bg-gradient-to-b from-primary-900 to-primary-800 animate-pulse" />,
@@ -84,24 +84,24 @@ const FAQPremiumHero = dynamic(
   }
 )
 
-const GA4Setup = dynamic(
+const GA4Setup = nextDynamic(
   () => import('@/components/analytics/ga4-setup').then(mod => mod.GA4Setup),
   { ssr: false }
 )
 
-const ConsentBanner = dynamic(
+const ConsentBanner = nextDynamic(
   () => import('@/components/analytics/consent-banner').then(mod => mod.ConsentBanner),
   { ssr: false }
 )
 
 // CONTEXT7 SOURCE: /vercel/next.js - Lazy load gamification components
 // GAMIFICATION: Load only when enabled for optimal performance
-const GamificationProvider = dynamic(
+const GamificationProvider = nextDynamic(
   () => import('@/components/faq/faq-gamification-tracker').then(mod => mod.GamificationProvider),
   { ssr: false }
 )
 
-const FAQGamificationSystem = dynamic(
+const FAQGamificationSystem = nextDynamic(
   () => import('@/components/faq/faq-gamification-system').then(mod => mod.FAQGamificationSystem),
   { 
     loading: () => <div className="h-32 bg-purple-100 animate-pulse rounded-xl" />,
@@ -109,7 +109,7 @@ const FAQGamificationSystem = dynamic(
   }
 )
 
-const FAQGamificationLeaderboard = dynamic(
+const FAQGamificationLeaderboard = nextDynamic(
   () => import('@/components/faq/faq-gamification-leaderboard').then(mod => mod.FAQGamificationLeaderboard),
   { 
     loading: () => <div className="h-64 bg-amber-100 animate-pulse rounded-xl" />,
@@ -119,7 +119,7 @@ const FAQGamificationLeaderboard = dynamic(
 
 // CONTEXT7 SOURCE: /vercel/next.js - Lazy load collaborative features
 // COLLABORATIVE: Load on demand when user interacts
-const FAQCollaborativeFeatures = dynamic(
+const FAQCollaborativeFeatures = nextDynamic(
   () => import('@/components/faq/faq-collaborative-features').then(mod => mod.FAQCollaborativeFeatures),
   { 
     loading: () => <div className="h-48 bg-blue-100 animate-pulse rounded-xl" />,
@@ -129,7 +129,7 @@ const FAQCollaborativeFeatures = dynamic(
 
 // CONTEXT7 SOURCE: /vercel/next.js - Lazy load theme system components
 // THEME SYSTEM: Load theme switcher on demand
-const FAQThemeSwitcher = dynamic(
+const FAQThemeSwitcher = nextDynamic(
   () => import('@/components/faq/faq-theme-switcher').then(mod => mod.FAQThemeSwitcher),
   { 
     loading: () => <div className="h-10 w-10 bg-slate-200 animate-pulse rounded-full" />,
@@ -139,7 +139,7 @@ const FAQThemeSwitcher = dynamic(
 
 // CONTEXT7 SOURCE: /llfbandit/app_links - Mobile deep linking components for FAQ system
 // MOBILE DEEP LINKING: Mobile-optimized components for Universal Links and App Links
-const MobileDeepLinkHandler = dynamic(
+const MobileDeepLinkHandler = nextDynamic(
   () => import('@/components/mobile/mobile-deep-link-handler').then(mod => mod.MobileDeepLinkHandler),
   { 
     loading: () => <div className="sr-only">Loading mobile deep link handler...</div>,
@@ -147,7 +147,7 @@ const MobileDeepLinkHandler = dynamic(
   }
 )
 
-const MobileFAQNavigation = dynamic(
+const MobileFAQNavigation = nextDynamic(
   () => import('@/components/mobile/mobile-faq-navigation').then(mod => mod.MobileFAQNavigation),
   { 
     loading: () => <div className="h-16 bg-slate-100 animate-pulse md:hidden" />,
@@ -155,14 +155,14 @@ const MobileFAQNavigation = dynamic(
   }
 )
 
-const DeepLinkAnalytics = dynamic(
+const DeepLinkAnalytics = nextDynamic(
   () => import('@/components/analytics/deep-link-analytics').then(mod => mod.DeepLinkAnalytics),
   { ssr: false }
 )
 
 // CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline support components for FAQ system
 // OFFLINE COMPONENTS: Task 28 implementation - Comprehensive offline support for FAQ system
-const OfflineStatusIndicator = dynamic(
+const OfflineStatusIndicator = nextDynamic(
   () => import('@/components/offline/offline-status-indicator').then(mod => mod.OfflineStatusIndicator),
   { 
     loading: () => <div className="h-16 bg-slate-100 animate-pulse rounded-xl" />,
@@ -170,7 +170,7 @@ const OfflineStatusIndicator = dynamic(
   }
 )
 
-const OfflineSearch = dynamic(
+const OfflineSearch = nextDynamic(
   () => import('@/components/offline/offline-search').then(mod => mod.OfflineSearch),
   { 
     loading: () => <div className="h-20 bg-slate-100 animate-pulse rounded-xl" />,
@@ -178,7 +178,7 @@ const OfflineSearch = dynamic(
   }
 )
 
-const SyncManager = dynamic(
+const SyncManager = nextDynamic(
   () => import('@/components/offline/sync-manager').then(mod => mod.SyncManager),
   { 
     loading: () => <div className="h-32 bg-slate-100 animate-pulse rounded-xl" />,
@@ -216,7 +216,7 @@ import '@/styles/faq-theme-system.css'
 
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic SEO imports for FAQ page optimization
 // SEO INTEGRATION: Comprehensive SEO optimization for £381,600+ revenue opportunity
-const FAQSEOIntegration = dynamic(
+const FAQSEOIntegration = nextDynamic(
   () => import('@/components/seo/faq-seo-integration').then(mod => mod.FAQSEOIntegration),
   { 
     loading: () => <div className="h-16 bg-slate-50 animate-pulse rounded-lg" />,
@@ -290,11 +290,11 @@ const FAQPage = React.memo(function FAQPage() {
   const contactContent = useMemo(() => unifiedContact.faq, [unifiedContact])
   const contactDetails = useMemo(() => unifiedContact.primary, [unifiedContact])
   
-  // CONTEXT7 SOURCE: /context7/react_dev - useMemo for computed values
-  // PERFORMANCE: Memoize background image lookup
+  // CONTEXT7 SOURCE: /vercel/next.js - Direct hero background image path for optimized loading
+  // IMAGE OPTIMIZATION: Use direct path for new client photo integration
   const heroBackgroundImage = useMemo(
-    () => HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES],
-    [heroContent.backgroundImageKey]
+    () => ({ src: "/images/hero/hero-exam-papers.jpg", alt: "FAQ hero - Student with exam papers" }),
+    []
   )
   
   // CONTEXT7 SOURCE: /context7/react_dev - useCallback for stable function references
@@ -975,7 +975,8 @@ const FAQPage = React.memo(function FAQPage() {
                     categories={faqCategories.map(cat => cat.id)}
                     onSuggestionSubmitted={(suggestion) => {
                       // Track collaborative engagement for analytics
-                      if (consentGiven && typeof gtag !== 'undefined') {
+                      if (consentGiven && typeof window !== 'undefined' && 'gtag' in window) {
+                        const gtag = (window as any).gtag;
                         gtag('event', 'faq_suggestion_submitted', {
                           event_category: 'FAQ Collaboration',
                           event_label: suggestion.category,
@@ -1079,23 +1080,21 @@ const FAQPage = React.memo(function FAQPage() {
             {/* Quick Actions */}
             <div className="flex flex-col space-y-2">
               {/* Print Action */}
-              {onPrintViewToggle && (
-                <m.button
-                  onClick={onPrintViewToggle}
-                  className="w-12 h-12 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center group"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  title="Print FAQ"
-                  aria-label="Print FAQ"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                  </svg>
-                  <span className="absolute right-16 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-                    Print FAQ
-                  </span>
-                </m.button>
-              )}
+              <m.button
+                onClick={handlePrintViewToggle}
+                className="w-12 h-12 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center group"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                title="Print FAQ"
+                aria-label="Print FAQ"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                <span className="absolute right-16 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                  Print FAQ
+                </span>
+              </m.button>
               
               {/* Contact Action */}
               <m.a

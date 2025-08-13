@@ -1,12 +1,12 @@
 "use client"
 
 /**
- * CONTEXT7 SOURCE: /ant-design/ant-design - Statistic component with animated counters and premium card layouts
- * IMPLEMENTATION REASON: Official Ant Design documentation Section 2.4 recommends Statistic with Card components for data presentation
- * CONTEXT7 SOURCE: /ant-design/ant-design - Grid system with responsive breakpoints for mobile-first design
- * RESPONSIVE DESIGN REASON: Official Ant Design Grid documentation for responsive layouts with gutter spacing
- * CONTEXT7 SOURCE: /ant-design/ant-design - Component tokens and theming for consistent design integration
- * THEMING INTEGRATION REASON: Official Ant Design documentation for custom styling with existing design systems
+ * CONTEXT7 SOURCE: /react-countup/react-countup - Animated counter component with premium card layouts
+ * IMPLEMENTATION REASON: Custom statistic cards with CountUp animation for engaging data presentation
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Grid system with responsive breakpoints for mobile-first design
+ * RESPONSIVE DESIGN REASON: Tailwind CSS Grid documentation for responsive layouts with consistent spacing
+ * CONTEXT7 SOURCE: /framer/motion - Motion animations for enhanced user experience
+ * ANIMATION INTEGRATION REASON: Framer Motion documentation for scroll-triggered animations
  * 
  * About Us Statistics Section Component
  * Features:
@@ -19,13 +19,13 @@
  */
 
 import React from 'react'
-import { Statistic, Card, Row, Col } from 'antd'
+import CountUp from 'react-countup'
 import { Trophy, Users, Award, BookOpen, Target, TrendingUp } from 'lucide-react'
 import { m } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-// CONTEXT7 SOURCE: /ant-design/ant-design - StatisticProps interface for custom configuration
-// TYPE SAFETY REASON: Official TypeScript patterns for component props with Ant Design integration
+// CONTEXT7 SOURCE: /react-countup/react-countup - StatisticProps interface for custom configuration
+// TYPE SAFETY REASON: TypeScript patterns for component props with CountUp integration
 interface StatisticItemProps {
   title: string
   value: string | number
@@ -45,8 +45,8 @@ interface StatisticsSectionProps {
   backgroundColor?: string
 }
 
-// CONTEXT7 SOURCE: /ant-design/ant-design - Statistic component animated counter configuration
-// ANIMATION REASON: Official Ant Design documentation for animated value transitions and user engagement
+// CONTEXT7 SOURCE: /react-countup/react-countup - CountUp component animated counter configuration
+// ANIMATION REASON: CountUp documentation for animated value transitions and user engagement
 const StatisticItem: React.FC<StatisticItemProps> = ({
   title,
   value,
@@ -57,6 +57,8 @@ const StatisticItem: React.FC<StatisticItemProps> = ({
   precision = 0,
   delay = 0
 }) => {
+  const numericValue = typeof value === 'string' ? parseFloat(value) || 0 : value
+  
   return (
     <m.div
       initial={{ opacity: 0, y: 30 }}
@@ -65,18 +67,14 @@ const StatisticItem: React.FC<StatisticItemProps> = ({
       transition={{ duration: 0.6, delay }}
       className="h-full"
     >
-      {/* CONTEXT7 SOURCE: /ant-design/ant-design - Card component with hoverable and bordered properties */}
-      {/* PREMIUM DESIGN REASON: Official Ant Design Card documentation for elevated content presentation */}
-      <Card
-        hoverable
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Custom card component with hover effects */}
+      {/* PREMIUM DESIGN REASON: Tailwind CSS documentation for elevated content presentation with hover states */}
+      <div
         className={cn(
-          "h-full text-center transition-all duration-300",
-          "border-slate-200 hover:border-accent-300 hover:shadow-lg",
-          "bg-white"
+          "h-full text-center transition-all duration-300 p-8",
+          "border border-slate-200 hover:border-accent-300 hover:shadow-lg",
+          "bg-white rounded-xl shadow-md hover:shadow-xl"
         )}
-        styles={{
-          body: { padding: '2rem 1.5rem' }
-        }}
       >
         {/* Icon Display */}
         {icon && (
@@ -87,25 +85,26 @@ const StatisticItem: React.FC<StatisticItemProps> = ({
           </div>
         )}
 
-        {/* CONTEXT7 SOURCE: /ant-design/ant-design - Statistic component with value formatting and styling */}
-        {/* COUNTER ANIMATION REASON: Official Ant Design Statistic documentation for animated number displays */}
-        <Statistic
-          title={
-            <div className="text-slate-600 font-medium text-sm mb-2 uppercase tracking-wide">
-              {title}
-            </div>
-          }
-          value={value}
-          precision={precision}
-          prefix={prefix}
-          suffix={suffix}
-          valueStyle={{
-            fontSize: '2.5rem',
-            fontWeight: '700',
-            color: '#0f172a', // Navy primary colour
-            fontFamily: 'var(--font-serif, serif)'
-          }}
-        />
+        {/* Title */}
+        <div className="text-slate-600 font-medium text-sm mb-2 uppercase tracking-wide">
+          {title}
+        </div>
+
+        {/* CONTEXT7 SOURCE: /react-countup/react-countup - CountUp component with value formatting and styling */}
+        {/* COUNTER ANIMATION REASON: CountUp documentation for animated number displays */}
+        <div className="text-4xl font-bold text-primary-900 font-serif mb-3">
+          {prefix}
+          <CountUp
+            start={0}
+            end={numericValue}
+            duration={2.5}
+            delay={delay}
+            decimals={precision}
+            enableScrollSpy
+            scrollSpyOnce
+          />
+          {suffix}
+        </div>
 
         {/* Description */}
         {description && (
@@ -113,15 +112,15 @@ const StatisticItem: React.FC<StatisticItemProps> = ({
             {description}
           </p>
         )}
-      </Card>
+      </div>
     </m.div>
   )
 }
 
 /**
  * Statistics Section Component for About Us Page
- * CONTEXT7 SOURCE: /ant-design/ant-design - Grid system with responsive columns and gutter spacing
- * RESPONSIVE IMPLEMENTATION REASON: Official Ant Design Grid documentation for mobile-first responsive layouts
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Grid system with responsive columns and consistent spacing
+ * RESPONSIVE IMPLEMENTATION REASON: Tailwind CSS Grid documentation for mobile-first responsive layouts
  * CMS DATA SOURCE: Using achievement statistics for My Private Tutor Online company metrics
  */
 export const StatisticsSection: React.FC<StatisticsSectionProps> = ({
@@ -213,21 +212,15 @@ export const StatisticsSection: React.FC<StatisticsSectionProps> = ({
           </m.p>
         </div>
 
-        {/* CONTEXT7 SOURCE: /ant-design/ant-design - Row and Col components for responsive grid layouts */}
-        {/* GRID SYSTEM REASON: Official Ant Design Grid documentation for consistent spacing and responsive behaviour */}
-        <Row gutter={[32, 32]} className="justify-center">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Responsive grid system for consistent layouts */}
+        {/* GRID SYSTEM REASON: Tailwind CSS Grid documentation for consistent spacing and responsive behaviour */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
           {statisticsData.map((stat, index) => (
-            <Col
-              key={index}
-              xs={24}   // Full width on mobile
-              sm={12}   // Half width on small screens
-              lg={8}    // Third width on large screens
-              className="flex"
-            >
+            <div key={index} className="flex">
               <StatisticItem {...stat} />
-            </Col>
+            </div>
           ))}
-        </Row>
+        </div>
 
         {/* Additional Context */}
         <m.div

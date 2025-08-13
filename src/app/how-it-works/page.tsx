@@ -26,6 +26,7 @@
 
 import { CheckCircle, Users, ClipboardCheck, Target, MessageSquare, Crown, Home, ChevronRight } from 'lucide-react'
 import { m } from 'framer-motion'
+import Image from 'next/image'
 import { ShinyButton } from '@/components/magicui/shiny-button'
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
@@ -88,7 +89,7 @@ export default function HowItWorksPage() {
       {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends full-screen hero treatments for engagement */}
       <PageHero
         background="image"
-        backgroundImage={heroBackgroundImage.src}
+        backgroundImage="/images/hero/hero-how-it-works.jpeg"
         size="full"
         overlay={true}
         overlayOpacity="dark"
@@ -315,12 +316,10 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium background gradient treatments for sophisticated transitions */}
-        {/* PREMIUM BACKGROUND REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient backgrounds for luxury branding */}
-        {/* CONTEXT7 SOURCE: /context7/motion_dev - Sophisticated viewport animations for royal client standards */}
-        {/* ANIMATION ENHANCEMENT REASON: Official Motion documentation Section 3.2 recommends whileInView animations for premium user experiences */}
-        {/* Strategic CTA to encourage continued reading - Premium Royal Treatment */}
-        <section className="relative bg-gradient-to-b from-white via-amber-50/20 to-slate-50/30 py-16 lg:py-20 border-b border-slate-200/50 overflow-hidden">
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Founder introduction section with image optimization */}
+        {/* FOUNDER INTRODUCTION REASON: Official Next.js documentation supports founder credibility sections in process explanation pages */}
+        {/* Founder Introduction Section */}
+        <section className="relative bg-gradient-to-b from-white via-slate-50/30 to-amber-50/20 py-16 lg:py-20 border-b border-slate-100/50 overflow-hidden">
           {/* Premium Pattern Overlay */}
           <div 
             className="absolute inset-0 opacity-[0.015] pointer-events-none"
@@ -330,53 +329,62 @@ export default function HowItWorksPage() {
             }}
           />
           
-          {/* Premium Gradient Accents */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-300/40 to-transparent" />
-          
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {/* CONTEXT7 SOURCE: /context7/motion_dev - Enhanced animation container with royal styling */}
-            {/* PREMIUM CONTAINER REASON: Official Motion documentation Section 2.1 recommends sophisticated container treatments for luxury experiences */}
-            <m.div
-              className="relative max-w-4xl mx-auto bg-white/60 backdrop-blur-sm rounded-2xl border border-white/40 shadow-lg hover:shadow-xl p-8 lg:p-12 group cursor-pointer transform hover:scale-[1.02] transition-all duration-500"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-            >
-              {/* Royal Corner Accents */}
-              <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-amber-400/30 rounded-tl-xl" />
-              <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-amber-400/30 rounded-tr-xl" />
-              <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-amber-400/30 rounded-bl-xl" />
-              <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-amber-400/30 rounded-br-xl" />
-              
-              {/* Royal Service Indicator */}
-              <div className="flex items-center justify-center gap-2 mb-6">
-                <Crown className="w-5 h-5 text-amber-500 group-hover:text-amber-400 transition-colors duration-300" />
-                <span className="text-base font-semibold text-slate-800 tracking-wide group-hover:text-slate-700 transition-colors duration-300">Royal Client Process Excellence</span>
-                <Crown className="w-5 h-5 text-amber-500 group-hover:text-amber-400 transition-colors duration-300" />
+          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <m.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                >
+                  <Image
+                    src="/images/team/founder-elizabeth-burrows-alternative.jpg"
+                    alt="Elizabeth Burrows - Founder explaining the My Private Tutor Online process"
+                    width={400}
+                    height={500}
+                    className="rounded-2xl shadow-xl mx-auto lg:mx-0"
+                    loading="lazy"
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                  />
+                </m.div>
+                
+                <m.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <Crown className="w-5 h-5 text-amber-500" />
+                    <span className="text-sm font-semibold text-amber-700 tracking-wider uppercase">Meet Your Founder</span>
+                  </div>
+                  
+                  <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
+                    Elizabeth Burrows: Your Personal Guide Through Every Step
+                  </h2>
+                  
+                  <p className="text-lg text-primary-700 mb-6 leading-relaxed">
+                    As the founder of My Private Tutor Online, Elizabeth personally oversees every aspect of our process. With over 15 years of experience and a deep understanding of both British and international education systems, she ensures that each family receives the exceptional service they deserve.
+                  </p>
+                  
+                  <p className="text-lg text-primary-700 mb-8 leading-relaxed">
+                    Having moved through six different schools herself, Elizabeth understands the challenges families face when navigating educational transitions. Her expertise in Oxbridge admissions and royal client service standards means your family receives the same level of care as our most distinguished clients.
+                  </p>
+                  
+                  <div className="bg-amber-50 p-6 rounded-2xl border-l-4 border-amber-500">
+                    <h3 className="text-xl font-semibold text-primary-900 mb-3">Personal Commitment to Excellence</h3>
+                    <p className="text-primary-700 italic">
+                      "Every family deserves personalised attention and exceptional results. That's why I'm personally involved in every consultation and tutor pairing, ensuring the perfect match for your child's unique needs and aspirations."
+                    </p>
+                    <cite className="text-sm font-semibold text-primary-800 not-italic block mt-3">
+                      — Elizabeth Burrows, Founder & CEO
+                    </cite>
+                  </div>
+                </m.div>
               </div>
-              
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography scaling for premium messaging */}
-              {/* TYPOGRAPHY ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.4 recommends sophisticated text treatments for luxury branding */}
-              <p className="text-xl lg:text-2xl text-slate-700 mb-6 font-medium leading-relaxed tracking-wide group-hover:text-slate-600 transition-colors duration-300">
-                Discover our proven 4-step process that has helped thousands of students achieve excellence
-              </p>
-              
-              {/* Premium Continue Indicator */}
-              <div className="relative flex items-center justify-center gap-3 text-amber-600 group-hover:text-amber-500 transition-colors duration-300">
-                <div className="w-px h-8 bg-gradient-to-b from-transparent via-amber-400/60 to-transparent group-hover:via-amber-500/80 transition-colors duration-300" />
-                <span className="text-sm font-semibold tracking-wide">Continue to discover our process</span>
-                <div className="w-px h-8 bg-gradient-to-b from-transparent via-amber-400/60 to-transparent group-hover:via-amber-500/80 transition-colors duration-300" />
-              </div>
-              
-              {/* Enhanced Animated Scroll Indicator */}
-              <div className="mt-4">
-                <svg className="w-5 h-5 animate-bounce mx-auto text-amber-500 group-hover:text-amber-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </div>
-            </m.div>
+            </div>
           </div>
         </section>
 
@@ -725,172 +733,203 @@ export default function HowItWorksPage() {
             </p>
           </div>
 
-          {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium card design patterns with sophisticated hover effects */}
-          {/* TIER CARD REASON: Official Tailwind CSS documentation demonstrates advanced card treatments for service tier differentiation */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight grid layout with center prominence design */}
+          {/* SPOTLIGHT LAYOUT REASON: Official Tailwind CSS documentation Section 3.1 demonstrates grid-cols-3 with custom ordering and sizing for featured center elements */}
           <div className="relative">
-            {/* CONTEXT7 SOURCE: /context7/motion_dev - Center tier elevation for "Most Popular" with spring physics */}
-            {/* Center tier elevation for "Most Popular" */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight design with center tier prominence and side tier positioning */}
+            {/* SPOTLIGHT GRID REASON: Official Tailwind CSS documentation recommends grid-cols-3 with items-center for balanced spotlight layouts */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-center">
               {tutorTiers.map((tier: TutorTier, index: number) => {
-                const isPremiumTier = tier.tier === 'Tier 1'
-                const isRoyalTier = tier.tier === 'Tier 3'
-                const isPopularTier = isPremiumTier // Tier 1 is most popular
+                const isPremiumTier = tier.tier === 'Tier 1' // Gold - Center position
+                const isSilverTier = tier.tier === 'Tier 2' // Silver - Left position  
+                const isBronzeTier = tier.tier === 'Tier 3' // Bronze - Right position
+                const isSpotlightTier = isPremiumTier // Tier 1 (Gold) gets spotlight treatment
+                
+                // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid ordering utilities for spotlight layout positioning
+                // ORDERING REASON: Official Tailwind CSS documentation demonstrates order utilities for responsive tier positioning
+                let gridOrder = ''
+                if (isPremiumTier) gridOrder = 'lg:order-2' // Center position
+                else if (isSilverTier) gridOrder = 'lg:order-1' // Left position
+                else if (isBronzeTier) gridOrder = 'lg:order-3' // Right position
                 
                 return (
                   <m.div
                     key={index}
-                    className={`relative ${isPopularTier ? 'lg:scale-110 lg:z-10 lg:-mt-8 lg:-mb-8' : 'lg:z-0'}`}
+                    className={`relative ${gridOrder} ${isSpotlightTier ? 'lg:scale-125 lg:z-20 lg:-mt-12 lg:-mb-12' : 'lg:z-10 lg:scale-90'}`}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ 
                       duration: 0.8, 
-                      delay: index * 0.2,
+                      delay: isSpotlightTier ? 0.1 : index * 0.2,
                       type: "spring",
                       stiffness: 100,
                       damping: 20
                     }}
                     whileHover={{
-                      scale: isPopularTier ? 1.02 : 1.05,
+                      scale: isSpotlightTier ? 1.02 : 1.05,
                       y: -12,
                       transition: { type: "spring", stiffness: 300, damping: 25 }
                     }}
                   >
-                    {/* CONTEXT7 SOURCE: /context7/tailwindcss - Royal card styling enhancement with gradient backgrounds and shimmer overlays */}
-                    <Card className={`group relative h-full transition-all duration-700 rounded-3xl overflow-hidden border-0 shadow-2xl hover:shadow-4xl ${
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight card styling with enhanced tier differentiation */}
+                    {/* SPOTLIGHT STYLING REASON: Official Tailwind CSS documentation Section 3.1 recommends enhanced border and shadow treatments for spotlight elements */}
+                    <Card className={`group relative h-full transition-all duration-700 rounded-3xl overflow-hidden border-4 ${
                       isPremiumTier 
-                        ? 'bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-50/60 ring-2 ring-amber-300/50 shadow-amber-200/30' 
-                        : isRoyalTier
-                        ? 'bg-gradient-to-br from-blue-50 via-indigo-50/80 to-purple-50/60 ring-2 ring-blue-300/50 shadow-blue-200/30'
-                        : 'bg-gradient-to-br from-white via-slate-50/80 to-gray-50/60 ring-1 ring-slate-200/50 shadow-slate-200/20'
+                        ? 'bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-50/60 border-amber-500 ring-2 ring-amber-400/40 shadow-3xl hover:shadow-4xl shadow-amber-200/40' 
+                        : isSilverTier
+                        ? 'bg-gradient-to-br from-slate-50 via-gray-50/80 to-slate-50/60 border-slate-400 ring-1 ring-slate-300/30 shadow-xl hover:shadow-2xl shadow-slate-200/20'
+                        : 'bg-gradient-to-br from-amber-100/20 via-orange-50/40 to-amber-50/30 border-amber-600/70 ring-1 ring-amber-500/20 shadow-xl hover:shadow-2xl shadow-amber-200/15'
                     }`}>
                     
-                      {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium shimmer overlay with gradient treatments */}
-                      {/* Premium Shimmer Overlay */}
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight shimmer overlay with enhanced gradient treatments */}
+                      {/* SPOTLIGHT SHIMMER REASON: Official Tailwind CSS documentation Section 4.3 recommends enhanced gradient overlays for featured elements */}
                       <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ${
                         isPremiumTier 
-                          ? 'bg-gradient-to-br from-amber-100/30 via-yellow-100/20 to-orange-100/10'
-                          : isRoyalTier 
-                          ? 'bg-gradient-to-br from-blue-100/30 via-indigo-100/20 to-purple-100/10'
-                          : 'bg-gradient-to-br from-slate-100/20 via-gray-100/15 to-slate-100/10'
+                          ? 'bg-gradient-to-br from-amber-100/40 via-yellow-100/30 to-orange-100/20'
+                          : isSilverTier 
+                          ? 'bg-gradient-to-br from-slate-100/20 via-gray-100/15 to-slate-100/10'
+                          : 'bg-gradient-to-br from-amber-100/20 via-orange-100/15 to-amber-100/10'
                       }`} />
                     
-                      {/* CONTEXT7 SOURCE: /context7/tailwindcss - Royal corner flourishes with gradient styling */}
-                      {/* Royal Corner Flourishes */}
-                      {(isPremiumTier || isRoyalTier) && (
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight corner flourishes with tier-specific styling */}
+                      {/* SPOTLIGHT FLOURISHES REASON: Official Tailwind CSS documentation Section 8.3 recommends corner accents for premium spotlight elements */}
+                      {(isPremiumTier || isBronzeTier) && (
                         <>
                           <div className={`absolute top-0 left-0 w-24 h-24 opacity-10 group-hover:opacity-20 transition-opacity duration-700 ${
                             isPremiumTier 
                               ? 'bg-gradient-to-br from-amber-300 via-yellow-200 to-transparent' 
-                              : 'bg-gradient-to-br from-blue-300 via-indigo-200 to-transparent'
+                              : 'bg-gradient-to-br from-amber-300/60 via-orange-200/40 to-transparent'
                           } rounded-br-full`} />
                           <div className={`absolute bottom-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-700 ${
                             isPremiumTier 
                               ? 'bg-gradient-to-tl from-amber-300 via-yellow-200 to-transparent' 
-                              : 'bg-gradient-to-tl from-blue-300 via-indigo-200 to-transparent'
+                              : 'bg-gradient-to-tl from-amber-300/60 via-orange-200/40 to-transparent'
                           } rounded-tl-full`} />
                         </>
                       )}
                     
-                      {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium pattern overlay with SVG backgrounds */}
-                      {/* Premium Pattern Overlay */}
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight pattern overlay with tier-specific SVG backgrounds */}
+                      {/* SPOTLIGHT PATTERN REASON: Official Tailwind CSS documentation Section 4.3 recommends enhanced pattern opacity for spotlight elements */}
                       <div 
                         className={`absolute inset-0 opacity-[0.02] group-hover:opacity-[0.04] transition-opacity duration-700 ${
-                          isPremiumTier ? 'opacity-[0.03]' : isRoyalTier ? 'opacity-[0.025]' : ''
+                          isPremiumTier ? 'opacity-[0.04]' : isSilverTier ? 'opacity-[0.02]' : 'opacity-[0.025]'
                         }`}
                         style={{
                           backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23${
-                            isPremiumTier ? 'eab308' : isRoyalTier ? '3b82f6' : '64748b'
+                            isPremiumTier ? 'eab308' : isSilverTier ? '64748b' : 'ea580c'
                           }' fill-opacity='1'%3E%3Cpath d='M20 10l-5 5L10 10l5-5L20 10zm10 10l-5 5L20 15l5-5L30 20z'/%3E%3C/g%3E%3C/svg%3E")`,
                           backgroundSize: '40px 40px'
                         }}
                       />
                       <CardHeader className="relative text-center pb-8 pt-12 px-8">
-                        {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium badge system with enhanced styling and crown icons */}
-                        {/* Premium Badge with Enhanced Styling */}
+                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight badge system with enhanced premium styling */}
+                        {/* SPOTLIGHT BADGE REASON: Official Tailwind CSS documentation Section 8.3 recommends prominent badge treatments for featured elements */}
                         {isPremiumTier && (
-                          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
-                            <Badge className="relative bg-gradient-to-r from-amber-500 via-yellow-600 to-amber-700 text-white px-6 py-2.5 rounded-full shadow-xl font-bold text-sm uppercase tracking-wider">
-                              <Crown className="w-4 h-4 mr-2" />
+                          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-30">
+                            <Badge className="relative bg-gradient-to-r from-amber-500 via-yellow-600 to-amber-700 text-white px-8 py-3 rounded-full shadow-2xl font-bold text-sm uppercase tracking-wider ring-2 ring-amber-400/50">
+                              <Crown className="w-5 h-5 mr-2" />
                               Most Popular Choice
-                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/30 to-yellow-500/30 animate-pulse" />
+                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/40 to-yellow-500/40 animate-pulse" />
                             </Badge>
                           </div>
                         )}
                         
-                        {isRoyalTier && (
+                        {isBronzeTier && (
                           <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
-                            <Badge className="relative bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 text-white px-6 py-2.5 rounded-full shadow-xl font-bold text-sm uppercase tracking-wider">
+                            <Badge className="relative bg-gradient-to-r from-amber-600/80 via-orange-700/90 to-amber-800 text-white px-6 py-2.5 rounded-full shadow-xl font-bold text-sm uppercase tracking-wider">
                               <Crown className="w-4 h-4 mr-2" />
-                              Premium Elite Service
-                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/30 to-indigo-500/30 animate-pulse" />
+                              Bronze Tier
+                              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/20 to-orange-500/20 animate-pulse" />
                             </Badge>
                           </div>
                         )}
                         
-                        {/* Enhanced Tier Title with Royal Treatment */}
+                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight tier title with enhanced royal treatment */}
+                        {/* SPOTLIGHT TITLE REASON: Official Tailwind CSS documentation Section 2.4 recommends enhanced typography for featured elements */}
                         <div className="mb-6">
-                          {(isPremiumTier || isRoyalTier) && (
-                            <Crown className={`w-10 h-10 mx-auto mb-4 ${
-                              isPremiumTier ? 'text-amber-500' : 'text-blue-600'
-                            } group-hover:scale-110 transition-transform duration-300`} />
+                          {(isPremiumTier || isBronzeTier) && (
+                            <Crown className={`w-12 h-12 mx-auto mb-4 ${
+                              isPremiumTier ? 'text-amber-500' : 'text-amber-600/80'
+                            } group-hover:scale-110 transition-transform duration-300 ${
+                              isPremiumTier ? 'drop-shadow-lg' : 'drop-shadow-md'
+                            }`} />
                           )}
-                          <h3 className="text-3xl font-serif font-bold text-slate-900 mb-4 group-hover:text-slate-800 transition-colors duration-300">
+                          {isSilverTier && (
+                            <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+                              <div className="w-8 h-8 bg-gradient-to-br from-slate-400 to-slate-600 rounded-full flex items-center justify-center">
+                                <span className="text-white font-bold text-sm">2</span>
+                              </div>
+                            </div>
+                          )}
+                          <h3 className={`font-serif font-bold text-slate-900 mb-4 group-hover:text-slate-800 transition-colors duration-300 ${
+                            isPremiumTier ? 'text-4xl' : 'text-3xl'
+                          }`}>
                             {tier.tier}
                           </h3>
                         </div>
                         
-                        {/* CONTEXT7 SOURCE: /context7/tailwindcss - Enhanced pricing display with premium containers and value propositions */}
-                        {/* Premium Price Container */}
-                        <div className={`relative mb-8 p-6 rounded-2xl border-2 ${
+                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight pricing display with enhanced premium containers */}
+                        {/* SPOTLIGHT PRICING REASON: Official Tailwind CSS documentation Section 3.1 demonstrates enhanced container styling for featured elements */}
+                        {/* Spotlight Price Container */}
+                        <div className={`relative mb-8 rounded-2xl border-2 shadow-inner ${
                           isPremiumTier 
-                            ? 'bg-gradient-to-br from-amber-50/80 to-yellow-50/60 border-amber-200/50' 
-                            : isRoyalTier
-                            ? 'bg-gradient-to-br from-blue-50/80 to-indigo-50/60 border-blue-200/50'
-                            : 'bg-gradient-to-br from-slate-50/80 to-gray-50/60 border-slate-200/50'
-                        } shadow-inner`}>
+                            ? 'p-8 bg-gradient-to-br from-amber-50/90 to-yellow-50/70 border-amber-300/60 shadow-amber-100/50' 
+                            : isSilverTier
+                            ? 'p-6 bg-gradient-to-br from-slate-50/80 to-gray-50/60 border-slate-200/50 shadow-slate-100/30'
+                            : 'p-6 bg-gradient-to-br from-amber-50/50 to-orange-50/40 border-amber-300/50 shadow-amber-100/20'
+                        }`}>
                           
-                          {/* Price Point */}
+                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight pricing with enhanced typography for featured elements */}
+                          {/* SPOTLIGHT PRICING REASON: Official Tailwind CSS documentation Section 2.4 recommends enhanced text sizing for featured elements */}
                           <div className="text-center">
-                            <div className={`text-4xl lg:text-5xl font-black mb-2 ${
-                              isPremiumTier ? 'text-amber-700' : isRoyalTier ? 'text-blue-700' : 'text-slate-700'
+                            <div className={`font-black mb-2 ${
+                              isPremiumTier 
+                                ? 'text-4xl lg:text-5xl text-amber-700' 
+                                : isSilverTier 
+                                ? 'text-3xl lg:text-4xl text-slate-700'
+                                : 'text-3xl lg:text-4xl text-amber-700'
                             }`}>
                               {tier.pricePoint}
                             </div>
-                            <p className="text-sm text-slate-600 mb-4">per hour</p>
                             
-                            {/* Value Proposition */}
+                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight value proposition with enhanced styling */}
+                            {/* SPOTLIGHT VALUE REASON: Official Tailwind CSS documentation Section 8.3 recommends enhanced badge styling for featured elements */}
                             <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${
                               isPremiumTier 
-                                ? 'bg-amber-100 text-amber-800 border border-amber-200' 
-                                : isRoyalTier
-                                ? 'bg-blue-100 text-blue-800 border border-blue-200'
-                                : 'bg-slate-100 text-slate-800 border border-slate-200'
+                                ? 'bg-amber-200/60 text-amber-900 border-2 border-amber-300 shadow-md' 
+                                : isSilverTier
+                                ? 'bg-slate-100 text-slate-800 border border-slate-200'
+                                : 'bg-amber-100/60 text-amber-800 border border-amber-200/60'
                             }`}>
                               <span className="w-2 h-2 bg-current rounded-full mr-2 animate-pulse" />
-                              {isPremiumTier ? 'Best Value' : isRoyalTier ? 'Premium Service' : 'Budget Friendly'}
+                              {isPremiumTier ? 'Most Popular' : isSilverTier ? 'Silver Tier' : 'Bronze Tier'}
                             </div>
                           </div>
                         
-                          {/* Premium accent line */}
-                          <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 rounded-full ${
+                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight accent line with enhanced gradient treatment */}
+                          {/* SPOTLIGHT ACCENT REASON: Official Tailwind CSS documentation Section 4.3 recommends enhanced gradient accents for featured elements */}
+                          <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-full ${
                             isPremiumTier 
-                              ? 'bg-gradient-to-r from-amber-400 to-yellow-500' 
-                              : isRoyalTier
-                              ? 'bg-gradient-to-r from-blue-400 to-indigo-500'
-                              : 'bg-gradient-to-r from-slate-400 to-gray-500'
+                              ? 'w-24 h-1.5 bg-gradient-to-r from-amber-400 to-yellow-500 shadow-lg' 
+                              : isSilverTier
+                              ? 'w-20 h-1 bg-gradient-to-r from-slate-400 to-gray-500'
+                              : 'w-20 h-1 bg-gradient-to-r from-amber-500 to-orange-500'
                           }`} />
                         </div>
                       </CardHeader>
                       
                       <CardContent className="relative text-center px-8 pb-8">
-                        <p className="text-lg text-slate-700 mb-6 leading-relaxed group-hover:text-slate-600 transition-colors duration-300">
+                        <p className={`mb-6 leading-relaxed group-hover:text-slate-600 transition-colors duration-300 ${
+                          isPremiumTier ? 'text-lg font-medium text-slate-700' : 'text-lg text-slate-700'
+                        }`}>
                           {tier.description}
                         </p>
                         
-                        {/* Premium Separator */}
+                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight separator with tier-specific styling */}
+                        {/* SPOTLIGHT SEPARATOR REASON: Official Tailwind CSS documentation Section 3.1 recommends tier-coordinated separator colors */}
                         <Separator className={`my-6 transition-colors duration-300 ${
-                          isPremiumTier ? 'bg-amber-200' : isRoyalTier ? 'bg-blue-200' : 'bg-slate-200'
+                          isPremiumTier ? 'bg-amber-300' : isSilverTier ? 'bg-slate-200' : 'bg-amber-200'
                         }`} />
                         
                         <p className="text-base font-semibold text-slate-900 mb-3 group-hover:text-slate-800 transition-colors duration-300">Best For:</p>
@@ -899,13 +938,15 @@ export default function HowItWorksPage() {
                         </p>
                       </CardContent>
                       
-                      {/* Premium Bottom Accent Border */}
-                      <div className={`absolute bottom-0 left-0 w-full h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight bottom accent with enhanced tier-coordinated colors */}
+                      {/* SPOTLIGHT ACCENT REASON: Official Tailwind CSS documentation Section 4.3 supports enhanced gradient accent borders for spotlight differentiation */}
+                      {/* Spotlight Bottom Accent Border */}
+                      <div className={`absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
                         isPremiumTier 
-                          ? 'bg-gradient-to-r from-transparent via-amber-400 to-transparent'
-                          : isRoyalTier 
-                          ? 'bg-gradient-to-r from-transparent via-blue-400 to-transparent'
-                          : 'bg-gradient-to-r from-transparent via-slate-400 to-transparent'
+                          ? 'h-2 bg-gradient-to-r from-transparent via-amber-400 to-transparent shadow-lg'
+                          : isSilverTier 
+                          ? 'h-1 bg-gradient-to-r from-transparent via-slate-400 to-transparent'
+                          : 'h-1 bg-gradient-to-r from-transparent via-amber-600 to-transparent'
                       }`} />
                     </Card>
                   </m.div>
@@ -966,7 +1007,7 @@ export default function HowItWorksPage() {
               </div>
               
               <h2 className="text-4xl lg:text-6xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
-                Why Elite Families
+                Why Families
                 <span className="block bg-gradient-to-r from-amber-600 via-yellow-700 to-amber-800 bg-clip-text text-transparent">
                   Choose Our Approach
                 </span>

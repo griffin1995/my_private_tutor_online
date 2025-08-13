@@ -27,8 +27,9 @@
 
 "use client"
 
-import { Play, Clock, Users, Star, CheckCircle } from 'lucide-react'
+import { Play, Clock, Users, Star, CheckCircle, Crown } from 'lucide-react'
 import { m } from 'framer-motion'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
@@ -76,8 +77,8 @@ const videoMasterclassesContent = {
       id: "unlocking-academic-success",
       title: "Unlocking Academic Success",
       price: "Free Access",
-      duration: "90 minutes",
-      description: "Elizabeth was invited to speak at the 2024 UCAS Summit, where she was called upon to share her expert guidance for parents on navigating the world of private tutoring. In this insightful session, she explores how to recognise when one-to-one support is needed, identify truly exceptional tutors and manage the tutor–student–parent relationship to ensure outstanding academic outcomes.",
+      duration: "30 minutes",
+      description: "Elizabeth Burrows was invited to speak at the GCSE Summit 2024, where she addressed parents of GCSE-aged students on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition. In this masterclass Elizabeth shares practical strategies and insights into the most common challenges families face when considering tutoring — from framing tutoring in a positive light for reluctant tutees to determining your child’s true potential. Her session offers clear, reassuring guidance to help parents feel more confident in supporting their teens through GCSEs, IBs and A Levels.",
       content: "Practical strategies to help students develop independence, confidence and academic resilience.",
       isFree: true
     },
@@ -154,12 +155,14 @@ export default function VideoMasterclassesPage() {
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
     <>
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen hero section with gradient backgrounds */}
-      {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient treatments for premium branding */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for hero background images */}
+      {/* HERO ENHANCEMENT REASON: Official Next.js Image component documentation recommends optimized background images for premium performance */}
       <PageHero
-        background="gradient"
+        background="image"
+        backgroundImage="/images/hero/hero-video-masterclasses.jpg"
         size="full"
-        className="bg-gradient-to-br from-primary-900 via-primary-800 to-slate-900"
+        overlay={true}
+        overlayOpacity="dark"
       >
         <div className="text-center text-white">
           <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold leading-tight mb-6">
@@ -213,6 +216,89 @@ export default function VideoMasterclassesPage() {
       <WaveSeparator 
         variant="wave" 
         className="text-slate-50" 
+      />
+
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Instructor introduction section with founder photo as credibility indicator */}
+      {/* INSTRUCTOR SECTION REASON: Official Next.js documentation supports instructor credibility sections in educational video pages */}
+      {/* Meet Your Instructor - Elizabeth Burrows */}
+      <Section background="white" className="py-20 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <m.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+              >
+                <Image
+                  src="/images/team/founder-elizabeth-burrows-spare.jpg"
+                  alt="Elizabeth Burrows - Video Masterclass Instructor and Founder of My Private Tutor Online"
+                  width={400}
+                  height={500}
+                  className="rounded-2xl shadow-xl mx-auto lg:mx-0"
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                />
+              </m.div>
+              
+              <m.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <Crown className="w-5 h-5 text-amber-500" />
+                  <span className="text-sm font-semibold text-amber-700 tracking-wider uppercase">Your Expert Instructor</span>
+                </div>
+                
+                <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
+                  Learn Directly from Elizabeth Burrows
+                </h2>
+                
+                <p className="text-lg text-primary-700 mb-6 leading-relaxed">
+                  With over 15 years of experience in British and international education, Elizabeth brings unparalleled expertise to these exclusive video masterclasses. As the founder of My Private Tutor Online, she has guided hundreds of students to academic success.
+                </p>
+                
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                    <span className="text-primary-700">Cambridge University graduate with expertise in Oxbridge admissions</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                    <span className="text-primary-700">Featured speaker at the GCSE Summit 2024 and London School of Economics</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                    <span className="text-primary-700">Trusted by royal families and elite international clients</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
+                    <span className="text-primary-700">Specialises in British cultural fluency and academic excellence</span>
+                  </div>
+                </div>
+                
+                <div className="bg-amber-50 p-6 rounded-2xl border-l-4 border-amber-500">
+                  <h3 className="text-xl font-semibold text-primary-900 mb-3">Expert Teaching Philosophy</h3>
+                  <p className="text-primary-700 italic">
+                    "Every student has unique potential waiting to be unlocked. These masterclasses distil 15 years of teaching excellence into accessible, practical sessions that empower families to achieve extraordinary results."
+                  </p>
+                  <cite className="text-sm font-semibold text-primary-800 not-italic block mt-3">
+                    — Elizabeth Burrows, Founder & Lead Instructor
+                  </cite>
+                </div>
+              </m.div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <WaveSeparator 
+        variant="subtle" 
+        className="text-slate-100" 
       />
 
       {/* Featured Masterclasses */}

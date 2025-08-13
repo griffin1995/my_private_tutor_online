@@ -362,27 +362,45 @@ export const HERO_IMAGES = {
 
 // Team member images - Updated with new 2025 photos
 export const TEAM_IMAGES = {
+  // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component optimization with proper file paths
+  // FOUNDER PHOTO UPDATE REASON: Official Next.js documentation recommends accurate src paths for optimal image optimization
   founder: {
-    src: '/images/team/elizabeth-burrows-founder-main.jpg',
-    alt: 'Elizabeth Burrows - Founder of My Private Tutor Online',
-    width: 400,
-    height: 400,
-    title: 'Elizabeth Burrows - Founder',
+    src: '/images/team/founder-elizabeth-burrows-professional.jpg',
+    alt: 'Elizabeth Burrows - Founder of My Private Tutor Online, Professional Portrait',
+    width: 500,
+    height: 600,
+    title: 'Elizabeth Burrows - Founder Professional Portrait',
     loading: 'lazy' as const
   },
-  founderAlt: {
-    src: '/images/team/elizabeth-burrows-founder-alt.jpg',
-    alt: 'Elizabeth Burrows - My Private Tutor Online Founder Alternative Photo',
+  founderPortrait: {
+    src: '/images/team/founder-elizabeth-burrows-portrait.jpg',
+    alt: 'Elizabeth Burrows - My Private Tutor Online Founder Portrait Photo',
     width: 400,
-    height: 400,
-    title: 'Elizabeth Burrows - Founder Alternative',
+    height: 500,
+    title: 'Elizabeth Burrows - Founder Portrait',
+    loading: 'lazy' as const
+  },
+  founderAlternative: {
+    src: '/images/team/founder-elizabeth-burrows-alternative.jpg',
+    alt: 'Elizabeth Burrows - MPTO 2025 Alternative Founder Photo',
+    width: 400,
+    height: 500,
+    title: 'Elizabeth Burrows - Alternative Photo',
+    loading: 'lazy' as const
+  },
+  founderSecondary: {
+    src: '/images/team/founder-elizabeth-burrows-secondary.jpg',
+    alt: 'Elizabeth Burrows - Founder Secondary Professional Photo',
+    width: 400,
+    height: 500,
+    title: 'Elizabeth Burrows - Secondary Professional',
     loading: 'lazy' as const
   },
   founderSpare: {
-    src: '/images/team/elizabeth-burrows-founder-spare.jpg',
-    alt: 'Elizabeth Burrows - MPTO 2025 Additional Photo',
+    src: '/images/team/founder-elizabeth-burrows-spare.jpg',
+    alt: 'Elizabeth Burrows - MPTO 2025 Additional Founder Photo',
     width: 400,
-    height: 400,
+    height: 500,
     title: 'Elizabeth Burrows - Additional Photo',
     loading: 'lazy' as const
   },

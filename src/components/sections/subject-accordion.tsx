@@ -29,6 +29,7 @@ export interface SubjectItem {
   name: string
   description: string
   keyFeatures: string[]
+  children?: SubjectItem[]  // CONTEXT7 SOURCE: /radix-ui/primitives - Nested accordion pattern support for multi-level dropdowns
 }
 
 export interface SubjectCategory {
@@ -37,6 +38,12 @@ export interface SubjectCategory {
   icon: React.ReactElement<LucideIcon>
   description: string
   subjects: SubjectItem[]
+  // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
+  // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
+  callOuts: string[]
+  // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for testimonial content structure
+  // TESTIMONIAL REASON: Official React patterns for string field containing client testimonial quote for social proof
+  testimonial: string
 }
 
 export interface SubjectAccordionProps {
@@ -54,6 +61,119 @@ interface AccordionSectionProps {
   category: SubjectCategory
   isOpen: boolean
   onToggle: () => void
+}
+
+interface NestedSubjectItemProps {
+  subjectItem: SubjectItem
+  index: number
+  parentId: string
+}
+
+// CONTEXT7 SOURCE: /radix-ui/primitives - Nested accordion component for child dropdowns
+// NESTED ACCORDION REASON: Official Radix UI patterns for nested accordions supporting multi-level dropdown functionality
+function NestedSubjectItem({ subjectItem, index, parentId }: NestedSubjectItemProps) {
+  const [isNestedOpen, setIsNestedOpen] = useState(false)
+  const hasChildren = subjectItem.children && subjectItem.children.length > 0
+
+  // CONTEXT7 SOURCE: /grx7/framer-motion - Reduced motion support for accessibility compliance
+  // ACCESSIBILITY REASON: Official Framer Motion patterns for respecting user's motion preferences
+  const reduceMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (!hasChildren) {
+    // Regular subject item without children
+    return (
+      <m.div
+        className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
+        initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={reduceMotion ? { duration: 0 } : { duration: 0.5, delay: index * 0.1 }}
+        viewport={{ once: true }}
+      >
+        <h4 className="text-lg font-serif font-bold text-slate-900 mb-3">{subjectItem.name}</h4>
+        <p className="text-slate-700 mb-4 leading-relaxed">{subjectItem.description}</p>
+        <div className="flex flex-wrap gap-2">
+          {subjectItem.keyFeatures.map((feature, featureIndex) => (
+            <Badge 
+              key={featureIndex} 
+              variant="secondary" 
+              className="bg-gradient-to-r from-amber-50 to-yellow-50 text-amber-800 border-amber-200 font-medium"
+            >
+              {feature}
+            </Badge>
+          ))}
+        </div>
+      </m.div>
+    )
+  }
+
+  // Subject item with nested children - creates another accordion
+  return (
+    <Card className="border-slate-200 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 mb-4">
+      <button
+        onClick={() => setIsNestedOpen(!isNestedOpen)}
+        className="w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 rounded-t-xl"
+        aria-expanded={isNestedOpen}
+        aria-controls={`nested-${parentId}-${index}`}
+        aria-label={`${isNestedOpen ? 'Collapse' : 'Expand'} ${subjectItem.name} section`}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setIsNestedOpen(!isNestedOpen)
+          }
+        }}
+      >
+        <div className="text-left">
+          <h4 id={`nested-header-${parentId}-${index}`} className="text-lg font-serif font-bold text-slate-900">{subjectItem.name}</h4>
+          <p className="text-slate-600 mt-1">{subjectItem.description}</p>
+        </div>
+        <div className="text-slate-400 transition-transform duration-200" aria-hidden="true">
+          {isNestedOpen ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+        </div>
+      </button>
+      
+      {isNestedOpen && (
+        <m.div
+          id={`nested-${parentId}-${index}`}
+          className="border-t border-slate-200 bg-gradient-to-b from-slate-25 to-white"
+          initial={reduceMotion ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={reduceMotion ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 0.3, ease: 'easeInOut' }}
+          role="region"
+          aria-labelledby={`nested-header-${parentId}-${index}`}
+        >
+          <div className="p-6 space-y-4">
+            {subjectItem.children!.map((childItem, childIndex) => (
+              <m.div
+                key={childIndex}
+                className="bg-gradient-to-r from-white to-slate-50 border border-slate-150 rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-300"
+                initial={reduceMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={reduceMotion ? { duration: 0 } : { duration: 0.4, delay: childIndex * 0.08 }}
+                viewport={{ once: true }}
+              >
+                <h5 className="text-md font-serif font-semibold text-slate-900 mb-2">{childItem.name}</h5>
+                <p className="text-slate-700 mb-3 text-sm leading-relaxed">{childItem.description}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {childItem.keyFeatures.map((feature, featureIndex) => (
+                    <Badge 
+                      key={featureIndex} 
+                      variant="outline" 
+                      className="bg-white text-slate-700 border-slate-300 text-xs font-medium"
+                    >
+                      {feature}
+                    </Badge>
+                  ))}
+                </div>
+              </m.div>
+            ))}
+          </div>
+        </m.div>
+      )}
+    </Card>
+  )
 }
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - AccordionSection component with motion.div animations
@@ -92,29 +212,47 @@ function AccordionSection({ category, isOpen, onToggle }: AccordionSectionProps)
         >
           <div className="p-6 space-y-6">
             {category.subjects.map((subjectItem, index) => (
-              <m.div
+              <NestedSubjectItem
                 key={index}
-                className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-lg font-serif font-bold text-slate-900 mb-3">{subjectItem.name}</h4>
-                <p className="text-slate-700 mb-4 leading-relaxed">{subjectItem.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {subjectItem.keyFeatures.map((feature, featureIndex) => (
-                    <Badge 
-                      key={featureIndex} 
-                      variant="secondary" 
-                      className="bg-gradient-to-r from-amber-50 to-yellow-50 text-amber-800 border-amber-200 font-medium"
+                subjectItem={subjectItem}
+                index={index}
+                parentId={category.id}
+              />
+            ))}
+            
+            {/* CONTEXT7 SOURCE: /context7/tailwindcss - Responsive grid layout patterns for call outs and testimonials */}
+            {/* LAYOUT REASON: Official Tailwind CSS patterns for responsive column layouts with proper spacing */}
+            <div className="mt-8 pt-6 border-t border-slate-200 space-y-6">
+              
+              {/* Call Outs Section */}
+              <div className="space-y-4">
+                <h4 className="text-lg font-serif font-bold text-slate-900">Key Benefits</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {category.callOuts.map((callOut, index) => (
+                    <div 
+                      key={index} 
+                      className="flex items-start gap-2 text-slate-700"
                     >
-                      {feature}
-                    </Badge>
+                      <div className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
+                      <span className="text-sm leading-relaxed">{callOut}</span>
+                    </div>
                   ))}
                 </div>
-              </m.div>
-            ))}
+              </div>
+
+              {/* Testimonial Section */}
+              <div className="bg-gradient-to-r from-slate-50 to-white border border-slate-200 rounded-lg p-5">
+                <div className="flex items-start gap-3">
+                  <div className="text-amber-500 text-2xl font-serif leading-none">"</div>
+                  <div className="flex-1">
+                    <p className="text-slate-700 italic leading-relaxed text-sm">
+                      {category.testimonial}
+                    </p>
+                    <div className="text-amber-500 text-2xl font-serif leading-none text-right mt-2">"</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </m.div>
       )}

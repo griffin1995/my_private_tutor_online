@@ -40,6 +40,8 @@ interface TrustIndicator {
   title: string
   subtitle?: string
   description: string
+  imageUrl?: string
+  imageAlt?: string
 }
 
 interface TrustIndicatorsGridProps {
@@ -100,6 +102,17 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
   // CONTEXT7 SOURCE: /context7/react_dev - Error handling defensive programming patterns
   // DEFENSIVE PROGRAMMING REASON: Official React documentation recommends defensive programming to handle undefined or missing data gracefully
   const getImageForIndicator = (indicator: TrustIndicator, index: number) => {
+    // CONTEXT7 SOURCE: /vercel/next.js - Prioritize CMS imageUrl over fallback logic
+    // FEATURE IMAGE PRIORITY REASON: Official Next.js documentation prioritizes explicit image sources over dynamic selection
+    if (indicator.imageUrl && indicator.imageAlt) {
+      return {
+        src: indicator.imageUrl,
+        alt: indicator.imageAlt,
+        width: 600,
+        height: 400
+      }
+    }
+    
     // CONTEXT7 SOURCE: /context7/react_dev - Defensive programming with null checks
     // ERROR HANDLING REASON: React official documentation pattern for graceful error handling when props are missing or undefined
     if (!studentImages || Object.keys(studentImages).length === 0) {
@@ -114,7 +127,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
 
     let imageKey: string
     
-    // CMS DATA SOURCE: Semantic mapping of trust indicators to appropriate images
+    // CMS DATA SOURCE: Semantic mapping of trust indicators to appropriate images (fallback)
     if (indicator.title.includes('Built on Trust')) {
       imageKey = 'student-teacher-inside-comfortable'
     } else if (indicator.title.includes('Exam Insight')) {
