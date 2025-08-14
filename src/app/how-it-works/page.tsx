@@ -43,6 +43,8 @@ import {
   getTutorTiers, 
   getHowItWorksBenefits, 
   getHowItWorksCTA,
+  getPromotionalPricing,
+  getBaseRate,
   type HowItWorksStep,
   type TutorTier
 } from '@/lib/cms/cms-content'
@@ -642,10 +644,10 @@ export default function HowItWorksPage() {
             <div className="relative bg-gradient-to-r from-amber-50/50 via-amber-50/70 to-amber-50/50 rounded-xl p-6 mb-8 border border-amber-200/30 shadow-sm group-hover:shadow-md transition-shadow duration-300">
               <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-amber-400/10 group-hover:ring-amber-400/20 transition-colors duration-300" />
               <p className="text-xl lg:text-2xl text-slate-700 mb-2 text-center group-hover:text-slate-600 transition-colors duration-300">
-                From essential support to premium elite guidance
+                {getPromotionalPricing().tagline.split(' — ')[0]}
               </p>
               <p className="text-lg text-slate-600 text-center group-hover:text-slate-500 transition-colors duration-300">
-                All starting at just <span className="font-bold text-amber-600 bg-amber-100/50 px-3 py-2 rounded-lg shadow-sm border border-amber-200/30">£45 per hour</span>
+                All starting at just <span className="font-bold text-amber-600 bg-amber-100/50 px-3 py-2 rounded-lg shadow-sm border border-amber-200/30">{getBaseRate().display} per hour</span>
               </p>
               
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium accent lines with gradient utilities */}
@@ -960,10 +962,10 @@ export default function HowItWorksPage() {
           <div className="text-center mt-12">
             <div className="rounded-2xl p-8 max-w-2xl mx-auto">
               <p className="text-lg text-slate-700 mb-6">
-                Bespoke 1-2-1 tutoring starts from just <span className="font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">£45 per hour</span>
+                Bespoke 1-2-1 tutoring starts from just <span className="font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">{getBaseRate().display} per hour</span>
               </p>
               <p className="text-slate-600">
-                Unlike many other providers, we don&apos;t charge registration, placement or administrative fees.
+                {getPromotionalPricing().feeDisclaimer}
               </p>
             </div>
           </div>

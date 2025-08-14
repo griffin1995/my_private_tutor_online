@@ -459,7 +459,7 @@ export const HeritageAuthority: React.FC<{
       default:
         return {
           title: 'Heritage of Educational Excellence',
-          subtitle: 'Established 2010 - serving Britain\'s most discerning families for over a decade',
+          subtitle: 'Established 2010 - serving Britain\'s most discerning families for 15+ years of experience',
           highlight: 'Proven track record across multiple academic cycles and generations'
         }
     }

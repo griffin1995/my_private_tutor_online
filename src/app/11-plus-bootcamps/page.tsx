@@ -88,7 +88,7 @@ const bootcampProgrammes = [
 ]
 
 const successStats = [
-  { number: "98%", label: "Success Rate", description: "of bootcamp attendees receive offers from their target schools" },
+  { number: "95%", label: "Success Rate", description: "of candidates receive offers from at least one of their top choices" },
   { number: "15+", label: "Years Experience", description: "delivering intensive 11+ preparation programmes" },
   { number: "500+", label: "Students Prepared", description: "successfully guided through 11+ examinations" },
   { number: "Top 10", label: "School Placements", description: "consistent placements at prestigious independent schools" }

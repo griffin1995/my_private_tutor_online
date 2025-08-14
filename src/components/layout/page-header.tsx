@@ -345,7 +345,14 @@ export function PageHeader({
        * Pattern: Responsive grid with logo left, nav center, CTA right
        */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-3 items-center h-16 lg:h-20">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced header container height for larger logo accommodation
+         * HEADER HEIGHT ENHANCEMENT REASON: Official Tailwind responsive height patterns for improved visual hierarchy
+         * CLIENT REQUIREMENT: Accommodate increased logo size while maintaining navigation balance
+         * HEIGHT STRATEGY: Progressive scaling - 80px mobile → 96px desktop → 112px large screens
+         * RESPONSIVE PATTERN: h-20 (80px) → lg:h-24 (96px) → xl:h-28 (112px)
+         * VISUAL BALANCE: Maintains proper spacing ratio with enhanced logo prominence
+         */}
+        <div className="grid grid-cols-3 items-center h-20 lg:h-24 xl:h-28">
           
           {/* Logo Section - Left */}
           {/* Documentation Source: Context7 MCP - Next.js Image Conditional Rendering for Logo Switching
@@ -373,13 +380,19 @@ export function PageHeader({
                  * - Shared dimensions prevent layout shift during state transitions
                  * - Single Image component prevents duplicate DOM elements
                  */}
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced responsive logo sizing for increased brand visibility
+                 * LOGO ENHANCEMENT REASON: Official Tailwind responsive sizing patterns for prominent brand presentation
+                 * CLIENT REQUIREMENT: Increase navigation panel logo size while maintaining responsive behavior
+                 * SIZING STRATEGY: Progressive scaling - 64px mobile → 80px desktop → 96px large screens
+                 * RESPONSIVE PATTERN: max-h-16 (64px) → lg:max-h-20 (80px) → xl:max-h-24 (96px)
+                 */}
                 <Image
                   src={!safeIsScrolled ? logoWhite.src : logoDefault.src}
                   alt={!safeIsScrolled ? logoWhite.alt : logoDefault.alt}
                   width={!safeIsScrolled ? logoWhite.width : logoDefault.width}
                   height={!safeIsScrolled ? logoWhite.height : logoDefault.height}
                   priority
-                  className="h-auto w-auto max-h-12 lg:max-h-16 transition-all duration-300 group-hover:scale-105"
+                  className="h-auto w-auto max-h-16 lg:max-h-20 xl:max-h-24 transition-all duration-300 group-hover:scale-105"
                 />
                 {/* Documentation Source: Context7 MCP - CSS Transform Effects for Premium Branding
                  * Reference: /tailwindcss/tailwindcss - Transform utilities and hover state management
@@ -758,11 +771,16 @@ export function PageHeader({
       
       {/* CONTEXT7 SOURCE: /context7/motion_dev - Hover Bridge for seamless dropdown navigation */}
       {/* HOVER BRIDGE REASON: Official Motion patterns for preventing dropdown flicker during navigation */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Adjusted dropdown positioning for enhanced header height
+       * DROPDOWN POSITIONING REASON: Official positioning patterns for responsive header accommodation
+       * CLIENT REQUIREMENT: Maintain dropdown alignment with increased header size
+       * POSITION ADJUSTMENT: top: 76px → 84px to accommodate taller header container
+       */}
       <AnimatePresence>
         {activeDropdown && (
           <div 
             className="fixed left-0 right-0 h-4 z-[9997] dropdown-area"
-            style={{ top: '76px' }}
+            style={{ top: '84px' }}
             onMouseEnter={handleMouseEnterDropdown}
             onMouseLeave={handleMouseLeaveNavArea}
           />
@@ -771,6 +789,10 @@ export function PageHeader({
       
       {/* CONTEXT7 SOURCE: /context7/motion_dev - Enhanced dropdown menu with smooth animations */}
       {/* DROPDOWN ANIMATION REASON: Official Motion documentation for premium navigation dropdowns */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced dropdown positioning for larger header accommodation
+       * DROPDOWN POSITIONING ADJUSTMENT: Official positioning patterns for responsive navigation menus
+       * POSITION ENHANCEMENT: top: 80px → 88px to align with increased header height
+       */}
       <AnimatePresence>
         {activeDropdown && (
           <m.div
@@ -784,7 +806,7 @@ export function PageHeader({
                 ? "bg-white/95 backdrop-blur-xl border-primary-100/80" 
                 : "bg-slate-900/95 backdrop-blur-xl border-slate-700/50"
             )}
-            style={{ top: '80px' }}
+            style={{ top: '88px' }}
             data-navigation
             onMouseEnter={handleMouseEnterDropdown}
             onMouseLeave={handleMouseLeaveNavArea}
@@ -909,7 +931,7 @@ export function PageHeader({
             transition={{ duration: 0.3 }}
             className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[9997]"
             style={{ 
-              top: activeDropdown ? '320px' : '80px'
+              top: activeDropdown ? '320px' : '88px'
             }}
             onClick={() => {
               setActiveDropdown(null)
@@ -927,9 +949,17 @@ export function PageHeader({
 
 // CONTEXT7 SOURCE: /vercel/next.js - Enhanced navigation structure with About page restoration
 // NAVIGATION RESTORATION REASON: Official Next.js navigation patterns for complete site structure
-// Enhanced navigation structure with dropdown submenus
+// CONTEXT7 SOURCE: /context7/headlessui_com - Enhanced navigation structure with client-specified dropdown submenus
+// NAVIGATION REQUIREMENTS REASON: Official Headless UI navigation menu patterns for complex dropdown structures
+// Enhanced navigation structure with dropdown submenus per client requirements
 function getEnhancedNavigation() {
   return [
+    {
+      name: 'ABOUT US',
+      label: 'About Us',
+      href: '/about',
+      submenu: true
+    },
     {
       name: 'SUBJECT TUITION',
       label: 'Subject Tuition',
@@ -941,12 +971,6 @@ function getEnhancedNavigation() {
       label: 'How It Works',
       href: '/how-it-works',
       submenu: true
-    },
-    {
-      name: 'ABOUT',
-      label: 'About',
-      href: '/about',
-      submenu: false
     },
     {
       name: '11+ BOOTCAMPS',
@@ -975,26 +999,31 @@ function getEnhancedNavigation() {
   ]
 }
 
-// CONTEXT7 SOURCE: /context7/react_dev - Comprehensive submenu items configuration
-// SUBMENU CONFIGURATION REASON: Detailed navigation structure for enhanced user experience
+// CONTEXT7 SOURCE: /context7/headlessui_com - Client-specified submenu items configuration per exact requirements
+// SUBMENU CONFIGURATION REASON: Official Headless UI Menu component patterns for hierarchical navigation structures
+// CLIENT REQUIREMENTS: Dropdown submenus implemented exactly as specified in feedback
 function getSubmenuItems(activeDropdown: string) {
   const submenus = {
+    'ABOUT US': [
+      { name: 'Meet Elizabeth', href: '/about#elizabeth', description: 'Founder & Educational Director' },
+      { name: 'Testimonials', href: '/testimonials', description: 'Success stories from our families' },
+      { name: 'Our Ethos', href: '/about#ethos', description: 'Values-driven approach to learning' }
+    ],
     'SUBJECT TUITION': [
       { name: 'Primary', href: '/subject-tuition#primary', description: 'Foundation learning for ages 4-11' },
       { name: 'Secondary', href: '/subject-tuition#secondary', description: 'Comprehensive GCSE & A-Level support' },
       { name: 'Entrance Exams', href: '/subject-tuition#entrance-exams', description: 'Grammar school & independent school prep' },
-      { name: 'University and Beyond', href: '/subject-tuition#university', description: 'Oxbridge preparation & degree-level support' },
+      { name: 'University & Beyond', href: '/subject-tuition#university', description: 'Oxbridge preparation & degree-level support' },
       { name: 'Online Homeschooling', href: '/homeschooling', description: 'Complete curriculum delivery from home' },
       { name: 'SEN Support & Neurodiverse Learning', href: '/subject-tuition#sen-support', description: 'Specialist support for learning differences' },
       { name: 'London In-Person Tutoring', href: '/subject-tuition#london-tutoring', description: 'Face-to-face sessions in premium locations' }
     ],
     'HOW IT WORKS': [
-      { name: 'Meet Elizabeth', href: '/about#elizabeth', description: 'Founder & Educational Director' },
-      { name: 'Testimonials', href: '/testimonials', description: 'Success stories from our families' },
+      { name: 'Our Three-Tier System', href: '/how-it-works#tier-system', description: 'Structured approach to educational excellence' },
+      { name: 'Assessment & Matching', href: '/how-it-works#assessment', description: 'Finding the perfect tutor fit' },
+      { name: 'Progress Tracking', href: '/how-it-works#progress', description: 'Monitoring and measuring success' },
       { name: 'Our Achievements', href: '/how-it-works#achievements', description: 'Track record of academic excellence' },
-      { name: 'Global Excellence', href: '/how-it-works#global', description: 'International reach and recognition' },
-      { name: 'Our Journey', href: '/about#journey', description: '15+ years of educational excellence' },
-      { name: 'Our Ethos', href: '/about#ethos', description: 'Values-driven approach to learning' }
+      { name: 'Global Excellence', href: '/how-it-works#global', description: 'International reach and recognition' }
     ],
     '11+ BOOTCAMPS': [
       { name: 'Choose Your Bootcamps', href: '/11-plus-bootcamps#choose', description: 'Intensive preparation programmes' },

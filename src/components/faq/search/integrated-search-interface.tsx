@@ -13,6 +13,7 @@ import SearchResultsOverlay from './search-results-overlay';
 
 // Import search functionality
 import { useFAQSearchHistory } from '@/hooks/use-faq-search-history';
+import { getBaseRate, getPromotionalPricing } from '@/lib/cms/cms-content';
 
 // CONTEXT7 SOURCE: /context7/motion_dev - Integrated component animations and state management
 // IMPLEMENTATION REASON: Motion documentation Section 13.1 recommends centralized animation state for complex interfaces
@@ -51,11 +52,11 @@ const MOCK_SEARCH_RESULTS: SearchResult[] = [
   {
     id: '1',
     question: 'How much does tutoring cost?',
-    answer: 'Bespoke 1-2-1 tutoring starts from just £45 per hour. Unlike many other providers, we don\'t charge registration, placement or administrative fees.',
+    answer: `Bespoke 1-2-1 tutoring starts from just ${getBaseRate().display} per hour. ${getPromotionalPricing().feeDisclaimer}`,
     category: 'Pricing & Payment',
     categoryIcon: '💰',
     relevanceScore: 95,
-    snippet: 'Bespoke 1-2-1 tutoring starts from just £45 per hour...',
+    snippet: `Bespoke 1-2-1 tutoring starts from just ${getBaseRate().display} per hour...`,
     tags: ['pricing', 'cost', 'fees', 'payment'],
     views: 2847,
     helpful: 94,

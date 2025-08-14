@@ -386,6 +386,7 @@
         "label": "Families Guided",
         "description": "families we've successfully guided to academic excellence",
         "icon": "👥",
+        "lucideIcon": "Users",
         "imageKey": "child",
         "imageUrl": "/images/graphics/stat-families-served.jpg",
         "imageAlt": "Families served by My Private Tutor Online - 500+ families guided to academic excellence"
@@ -395,6 +396,7 @@
         "label": "11+ Success Rate", 
         "description": "of 11+ candidates receive an offer from at least one of their top choices, with some students scoring in the top 2% of test takers",
         "icon": "🎯",
+        "lucideIcon": "School",
         "imageKey": "teenager",
         "imageUrl": "/images/graphics/stat-eleven-plus-success.jpg",
         "imageAlt": "11+ Success Rate - 95% of students receive offers from top choice schools"
@@ -404,6 +406,7 @@
         "label": "GCSE Grade Improvement",
         "description": "of students improved by at least 2 grades at GCSE",
         "icon": "📈",
+        "lucideIcon": "TrendingUp",
         "imageKey": "aLevel",
         "imageUrl": "/images/graphics/stat-student-success.jpg",
         "imageAlt": "Student success rate - 94% of students improved by at least 2 grades at GCSE"
@@ -413,6 +416,7 @@
         "label": "Tutor Acceptance Rate",
         "description": "Elizabeth accepts less than 10% of tutors looking to work with us",
         "icon": "🏆",
+        "lucideIcon": "Shield",
         "imageKey": "oxbridge",
         "imageUrl": "/images/graphics/stat-selective-tutors.jpg",
         "imageAlt": "Selective tutor acceptance - Less than 10% of tutors accepted for our premium service"

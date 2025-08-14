@@ -313,6 +313,53 @@ export function PageFooter({
 
         <Separator className="bg-gray-300" />
 
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Image component for optimized loading with external links */}
+        {/* IMPLEMENTATION REASON: Official Next.js documentation shows Link wrapper around Image for clickable images */}
+        {/* Bizstim Form Section */}
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-gray-300">
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-2xl font-serif font-bold text-black mb-4">
+              Alternative Enquiry Form
+            </h3>
+            <p className="text-gray-700 mb-6">
+              Prefer a different form experience? Access our secure Bizstim enquiry portal
+            </p>
+            {/* CONTEXT7 SOURCE: /vercel/next.js - Link component wrapping Image for external navigation */}
+            {/* ACCESSIBILITY REASON: Official React documentation emphasizes proper external link handling with target and rel attributes */}
+            <Link 
+              href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block group"
+              aria-label="Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online"
+            >
+              <div className="relative overflow-hidden rounded-lg border-2 border-gray-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with proper width, height and alt for accessibility */}
+                {/* IMAGE OPTIMIZATION REASON: Official Next.js documentation requires explicit dimensions for local images */}
+                <Image
+                  src="/images/graphics/enquiry-form-screenshot-footer.png"
+                  alt="Screenshot of My Private Tutor Online enquiry form on Bizstim platform showing student details form with fields for first name, last name, email and phone number"
+                  width={750}
+                  height={400}
+                  className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
+                  priority={false}
+                />
+                {/* Overlay for interaction feedback */}
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                {/* Call-to-action overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                  <p className="text-white font-medium text-sm">
+                    Click to access secure Bizstim form →
+                  </p>
+                </div>
+              </div>
+            </Link>
+            <p className="text-xs text-gray-500 mt-3">
+              Opens in new window • Secure encrypted connection • Same trusted service
+            </p>
+          </div>
+        </div>
+
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Footer layout without duplicate section */}
         {/* REMOVAL REASON: Duplicate footer bottom section removed as requested - lines 339-392 */}
         {/* Main footer content (newsletter, company info, contact info) remains intact above */}

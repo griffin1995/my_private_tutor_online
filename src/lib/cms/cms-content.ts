@@ -126,7 +126,8 @@ export type {
   CaseStudyItem,
   CompetitiveAnalysisData,
   ROICalculationData,
-  BusinessAnalyticsData
+  BusinessAnalyticsData,
+  TierPricingInfo
 }
 
 /**
@@ -269,6 +270,7 @@ export interface Statistic {
   readonly label: string
   readonly description: string
   readonly icon: string
+  readonly lucideIcon?: string  // CONTEXT7 SOURCE: /context7/lucide_dev-guide - Icon names for varied visual representation
   readonly imageKey?: string
   readonly imageUrl?: string
   readonly imageAlt?: string
@@ -894,23 +896,61 @@ export interface TestimonialVideo {
   readonly dateRecorded: string
 }
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for complex data structures
+// PRICING SYSTEM REASON: Comprehensive pricing interface for dynamic tier-based pricing system 
 export interface PricingInfo {
   readonly currency: string
-  readonly vatIncluded: boolean
-  readonly tiers: readonly {
+  readonly baseRate: {
+    readonly amount: number
+    readonly display: string
+    readonly unit: string
+  }
+  readonly tiers: {
+    readonly tier1: TierPricingInfo
+    readonly tier2: TierPricingInfo
+    readonly tier3: TierPricingInfo
+  }
+  readonly noRegistrationFees: boolean
+  readonly noAdminFees: boolean
+  readonly creditBalance: {
+    readonly amount: number
+    readonly display: string
+    readonly description: string
+  }
+  readonly discounts: {
+    readonly blockBookings: boolean
+    readonly siblingEnrolment: boolean
+    readonly minimumLessonsForDiscount: number
+  }
+  readonly promotional: {
+    readonly tagline: string
+    readonly feeDisclaimer: string
+  }
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Detailed interface definitions for reusable component structures
+// TIER PRICING REASON: Individual tier configuration for visual and functional consistency
+export interface TierPricingInfo {
+  readonly name: string
+  readonly level: 'premium' | 'mid' | 'standard'
+  readonly description: string
+  readonly bestFor: string
+  readonly hourlyRate: {
+    readonly amount: number
+    readonly display: string
+    readonly fromDisplay: string
+  }
+  readonly colour: {
     readonly name: string
-    readonly hourlyRate: {
-      readonly from: number
-      readonly to?: number
-    }
-    readonly description: string
-    readonly includes: readonly string[]
-  }[]
-  readonly discounts?: readonly {
-    readonly type: string
-    readonly percentage: number
-    readonly description: string
-  }[]
+    readonly primary: string
+    readonly secondary: string
+    readonly border: string
+    readonly background: string
+    readonly text: string
+  }
+  readonly features: readonly string[]
+  readonly hasAccent: boolean
+  readonly hasCrown: boolean
 }
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for form configuration
@@ -2739,7 +2779,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
       },
       { 
         value: "95%", 
-        label: "School Application Success Rate", 
+        label: "95% of candidates receive offers from at least one of their top choices", 
         description: "Including prestigious grammar schools, independent schools, and Oxbridge",
         category: 'success', 
         highlighted: true,
@@ -2830,7 +2870,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
         id: "secondary",
         title: "SECONDARY",
         icon: "BookOpen",
-        description: "One-to-one tutoring for KS3, GCSE, A-Level and IB, delivered by experienced subject specialists and examiners. Our support goes beyond the syllabus, equipping students with effective revision strategies, time management skills and structured study plans. 94% of our GCSE students improved by two or more grades.",
+        description: "One-to-one tutoring for KS3, GCSE, A-Level and IB, delivered by experienced subject specialists and examiners. Our support goes beyond the syllabus, equipping students with effective revision strategies, time management skills and structured study plans. 94% of students improve by at least two grades at GCSE.",
         popularityRank: 2,
         pricing: { basePriceFrom: "£70", currency: "GBP" },
         subjects: [
@@ -2961,7 +3001,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
         // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials display
         // CALLOUTS REASON: Official React patterns for array of strings representing bullet points for premium service highlights
         callOuts: [
-          "95%+ of students receive offers from at least one of their top-choice schools",
+          "95% of candidates receive offers from at least one of their top choices",
           "Tutors include former entrance exam markers and interview panellists",
           "Mock exams, real-time feedback and school selection support"
         ],
@@ -3755,6 +3795,106 @@ export const getFeaturedCaseStudies = cache((): readonly CaseStudyItem[] => {
  */
 export const getCompetitiveAdvantagesBySegment = cache((segment: CompetitiveAnalysisData['clientSegment']): readonly CompetitiveAnalysisData[] => {
   return businessAnalyticsContent.competitiveAnalysis.filter(item => item.clientSegment === segment || item.clientSegment === 'all')
+})
+
+// ========================================================================================
+// PRICING SYSTEM FUNCTIONS - Dynamic CMS-Based Pricing Management
+// ========================================================================================
+
+/**
+ * Get complete pricing configuration (CACHED - Site-wide pricing access)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing pricing configuration access
+ * CONTEXT7 SOURCE: /microsoft/typescript - Type safety for pricing data structures
+ * CMS DATA SOURCE: Using siteSettings.pricing for centralised pricing management
+ * PURPOSE: Provides type-safe access to complete pricing configuration including tiers, base rates, and promotional content
+ */
+export const getPricingConfig = cache((): PricingInfo => {
+  return siteSettings.pricing as PricingInfo
+})
+
+/**
+ * Get specific tier pricing information (CACHED - Individual tier access)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing individual tier data
+ * CONTEXT7 SOURCE: /microsoft/typescript - Union types for tier selection
+ * CMS DATA SOURCE: Using siteSettings.pricing.tiers with tier key lookup
+ * PURPOSE: Provides type-safe access to individual tier pricing and configuration data
+ */
+export const getTierPricing = cache((tierKey: 'tier1' | 'tier2' | 'tier3'): TierPricingInfo => {
+  const pricing = siteSettings.pricing as PricingInfo
+  return pricing.tiers[tierKey]
+})
+
+/**
+ * Get base hourly rate configuration (CACHED - Base rate access)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing base rate data
+ * CONTEXT7 SOURCE: /microsoft/typescript - Interface destructuring patterns
+ * CMS DATA SOURCE: Using siteSettings.pricing.baseRate for standardised base pricing
+ * PURPOSE: Provides centralised access to base hourly rate for pricing displays and calculations
+ */
+export const getBaseRate = cache((): { amount: number; display: string; unit: string } => {
+  const pricing = siteSettings.pricing as PricingInfo
+  return pricing.baseRate
+})
+
+/**
+ * Get all tier pricing in display order (CACHED - Ordered tier display)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing ordered tier data
+ * CONTEXT7 SOURCE: /microsoft/typescript - Array processing and type mapping
+ * CMS DATA SOURCE: Using siteSettings.pricing.tiers in reverse order (Tier 3, Tier 2, Tier 1)
+ * PURPOSE: Provides tiers in appropriate display order for tier selection components and pricing tables
+ */
+export const getTiersInOrder = cache((): readonly TierPricingInfo[] => {
+  const pricing = siteSettings.pricing as PricingInfo
+  return [pricing.tiers.tier3, pricing.tiers.tier2, pricing.tiers.tier1]
+})
+
+/**
+ * Get promotional pricing content (CACHED - Marketing content access)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing promotional data
+ * CONTEXT7 SOURCE: /microsoft/typescript - String literal types for promotional content
+ * CMS DATA SOURCE: Using siteSettings.pricing.promotional for marketing copy
+ * PURPOSE: Provides centralised promotional taglines and fee disclaimers for consistent messaging
+ */
+export const getPromotionalPricing = cache((): { tagline: string; feeDisclaimer: string } => {
+  const pricing = siteSettings.pricing as PricingInfo
+  return pricing.promotional
+})
+
+/**
+ * Get credit balance configuration (CACHED - Credit system access)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing credit data
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object property access patterns
+ * CMS DATA SOURCE: Using siteSettings.pricing.creditBalance for payment system integration
+ * PURPOSE: Provides credit balance information for FAQ and payment system displays
+ */
+export const getCreditBalance = cache((): { amount: number; display: string; description: string } => {
+  const pricing = siteSettings.pricing as PricingInfo
+  return pricing.creditBalance
+})
+
+/**
+ * Get tier by pricing level (CACHED - Level-based tier lookup)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing level-based lookups
+ * CONTEXT7 SOURCE: /microsoft/typescript - Find method with type predicate patterns
+ * CMS DATA SOURCE: Using siteSettings.pricing.tiers filtered by level property
+ * PURPOSE: Provides tier lookup by service level for component filtering and display logic
+ */
+export const getTierByLevel = cache((level: 'premium' | 'mid' | 'standard'): TierPricingInfo | undefined => {
+  const pricing = siteSettings.pricing as PricingInfo
+  const tierEntries = Object.values(pricing.tiers)
+  return tierEntries.find(tier => tier.level === level)
+})
+
+/**
+ * Format price display with consistency (CACHED - Price formatting utility)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing price formatting
+ * CONTEXT7 SOURCE: /microsoft/typescript - Template literal types for string formatting
+ * CMS DATA SOURCE: Using pricing display patterns for consistent formatting
+ * PURPOSE: Provides consistent price formatting across all components and pages
+ */
+export const formatPriceDisplay = cache((amount: number, includeFrom: boolean = false): string => {
+  const formatted = `£${amount}`
+  return includeFrom ? `From ${formatted}/hour` : formatted
 })
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Re-export pattern for centralized CMS API

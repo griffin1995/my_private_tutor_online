@@ -321,7 +321,7 @@ export default function ServicesPage() {
                 </ResponsiveContainer>
               </div>
               <p className="text-center text-primary-600 mt-4">
-                94% of our students achieve their target grades or higher
+                94% of students improve by at least two grades at GCSE
               </p>
             </m.div>
 

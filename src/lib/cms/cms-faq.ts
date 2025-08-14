@@ -880,7 +880,7 @@ if __name__ == "__main__":
       id: "pricing",
       title: "Pricing & Payment",
       name: "Investment & Payment",
-      description: "Transparent pricing from £45/hour, payment methods, discounts, and our no-registration-fee policy.",
+      description: "Complete three-tier pricing structure from £45-£85/hour, payment methods, discounts, and our no-registration-fee policy.",
       icon: "Banknote",
       color: "#ca8a04",
       order: 6,
@@ -894,22 +894,25 @@ if __name__ == "__main__":
       },
       questions: [
         {
+          // CONTEXT7 SOURCE: /vercel/next.js - Content management patterns for FAQ enhancement
+          // CONTENT ENHANCEMENT: Integration of complete tier structure from How It Works page
+          // CLIENT REQUIREMENT: Add complete tier/pricing table to FAQ answer for comprehensive pricing info
           id: "pricing-cost",
           question: "How much does tutoring cost?",
-          answer: "Bespoke 1-2-1 tutoring starts from just £45 per hour. Unlike many other providers, we don't charge registration, placement or administrative fees.",
+          answer: "Our tiered pricing structure ensures you receive the exact level of expertise your child needs:\n\n**Tier 3 (Bronze) - From £45/hour**\nGraduate specialists from top UK universities (including Oxbridge) teaching their specialist subject. Best for: Mentoring and building subject confidence.\n\n**Tier 2 (Silver) - From £65/hour**\nQualified, experienced classroom teachers with extensive curriculum knowledge. Best for: Curriculum mastery and consistency.\n\n**Tier 1 (Gold) - From £85/hour**\nOfficial examiners and senior educators with extensive track records. Best for: Top grades and exam strategy.\n\nUnlike many other providers, we don't charge registration, placement or administrative fees—you pay solely for your time with a carefully matched, dedicated tutor.",
           category: "pricing",
           subcategory: "rates",
-          tags: generateContentTags("How much does tutoring cost?", "Bespoke 1-2-1 tutoring starts from just £45 per hour...", "pricing"),
-          priority: calculatePriorityScore("How much does tutoring cost?", "Bespoke 1-2-1 tutoring starts from just £45 per hour...", "pricing"),
-          searchKeywords: generateSearchKeywords("How much does tutoring cost?", "Bespoke 1-2-1 tutoring starts from just £45 per hour..."),
+          tags: generateContentTags("How much does tutoring cost?", "Our tiered pricing structure ensures you receive the exact level of expertise your child needs...", "pricing"),
+          priority: calculatePriorityScore("How much does tutoring cost?", "Our tiered pricing structure ensures you receive the exact level of expertise your child needs...", "pricing"),
+          searchKeywords: generateSearchKeywords("How much does tutoring cost?", "Our tiered pricing structure ensures you receive the exact level of expertise your child needs..."),
           relatedFAQs: ["pricing-payments", "pricing-discounts"] as readonly string[],
           lastUpdated: "2025-08-11T00:00:00.000Z",
           createdDate: "2010-01-01T00:00:00.000Z",
           featured: true,
           analytics: createInitialAnalytics(),
-          clientSegment: determineClientSegment("How much does tutoring cost?", "Bespoke 1-2-1 tutoring starts from just £45 per hour..."),
-          difficulty: "basic" as const,
-          estimatedReadTime: 1
+          clientSegment: determineClientSegment("How much does tutoring cost?", "Our tiered pricing structure ensures you receive the exact level of expertise your child needs..."),
+          difficulty: "intermediate" as const,
+          estimatedReadTime: 2
         },
         {
           id: "pricing-payments",
@@ -985,7 +988,7 @@ if __name__ == "__main__":
         }
       ],
       subcategories: [
-        { id: "rates", name: "Hourly Rates", description: "Transparent pricing from £45/hour", order: 1, questionCount: 1 },
+        { id: "rates", name: "Hourly Rates", description: "Complete tier structure: Bronze £45/hr, Silver £65/hr, Gold £85/hr", order: 1, questionCount: 1 },
         { id: "payment", name: "Payment Process", description: "Invoicing and credit balance system", order: 2, questionCount: 1 },
         { id: "tracking", name: "Payment Tracking", description: "Dashboard transparency for payments", order: 3, questionCount: 1 },
         { id: "discounts", name: "Discounts", description: "Block booking and sibling discounts", order: 4, questionCount: 1 },
@@ -1012,7 +1015,7 @@ if __name__ == "__main__":
         {
           id: "other-verification",
           question: "How are tutors selected and verified?",
-          answer: "All our tutors come from the highest academic backgrounds, specialising in a full array of subjects at all levels. We work with a small group of highly trusted tutors from Elizabeth's personal network and only actively seek out new tutors when our clients have specific needs. When we do look to introduce new educators to the pool they are carefully screened, DBS checked and personally interviewed by Elizabeth. Our recruitment process is in-depth; less than 10% of tutors who apply to our exclusive network are accepted.",
+          answer: "All our tutors come from the highest academic backgrounds, specialising in a full array of subjects at all levels. We work with a small group of highly trusted tutors from Elizabeth's personal network and only actively seek out new tutors when our clients have specific needs. When we do look to introduce new educators to the pool they are carefully screened, DBS checked and personally interviewed by Elizabeth. Our recruitment process is in-depth; Elizabeth accepts less than 10% of tutors who apply to our exclusive network.",
           category: "other",
           subcategory: "verification",
           tags: generateContentTags("How are tutors selected and verified?", "All our tutors come from the highest academic backgrounds...", "other"),

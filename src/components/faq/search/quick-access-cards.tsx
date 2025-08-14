@@ -13,6 +13,7 @@ import {
   Heart,
   Users
 } from 'lucide-react';
+import { getBaseRate, getPromotionalPricing } from '@/lib/cms/cms-content';
 
 // CONTEXT7 SOURCE: /context7/motion_dev - Card hover animations and layout transitions
 // IMPLEMENTATION REASON: Motion documentation Section 6.1 recommends layoutId for smooth card animations
@@ -48,7 +49,7 @@ const defaultCards: FAQCard[] = [
   {
     id: '1',
     question: 'How much does tutoring cost?',
-    answer: 'Bespoke 1-2-1 tutoring starts from just £45 per hour. Unlike many other providers, we don\'t charge registration, placement or administrative fees.',
+    answer: `Bespoke 1-2-1 tutoring starts from just ${getBaseRate().display} per hour. ${getPromotionalPricing().feeDisclaimer}`,
     category: 'Pricing & Payment',
     categoryIcon: '💰',
     popularity: 98,

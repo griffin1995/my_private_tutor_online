@@ -32,7 +32,7 @@
 "use client"
 
 import Image from 'next/image'
-import { Award, Crown } from 'lucide-react'
+import { Award, Crown, Users, School, TrendingUp, Shield } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import CountUp from 'react-countup'
@@ -209,14 +209,37 @@ export function ResultsSection({
                       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent-400/20 via-transparent to-accent-600/20 group-hover:from-accent-400/30 group-hover:to-accent-600/30 transition-all duration-500" />
                     </div>
                   ) : (
-                    /* Fallback Icon Container for backwards compatibility */
+                    /* Statistic-Specific Icon Container with Context7 Lucide Icons */
+                    /* CONTEXT7 SOURCE: /context7/lucide_dev-guide - Icon selection for educational statistics */
+                    /* ICON INTEGRATION REASON: Official Lucide React patterns for statistical visualization with semantic meaning */
                     <>
                       {/* Outer Glow Ring */}
                       <div className="absolute inset-0 w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-accent-100 to-accent-200 blur-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
                       
-                      {/* Main Icon Container */}
+                      {/* Main Icon Container with Statistic-Specific Icons */}
                       <div className="relative w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-accent-400 via-accent-500 to-accent-600 flex items-center justify-center shadow-lg shadow-accent-500/25 group-hover:shadow-xl group-hover:shadow-accent-500/40 transition-all duration-500 mx-auto">
-                        <Award className="w-10 h-10 lg:w-12 lg:h-12 text-white drop-shadow-sm" />
+                        {(() => {
+                          // CONTEXT7 SOURCE: /context7/lucide_dev-guide - Dynamic icon rendering based on CMS configuration
+                          // CMS INTEGRATION REASON: Centralized icon management through lucideIcon property for maintainability
+                          const iconProps = {
+                            className: "w-10 h-10 lg:w-12 lg:h-12 text-white drop-shadow-sm",
+                            "aria-hidden": "true" as const
+                          }
+                          
+                          switch (stat.lucideIcon) {
+                            case 'Users':
+                              return <Users {...iconProps} />
+                            case 'School': 
+                              return <School {...iconProps} />
+                            case 'TrendingUp':
+                              return <TrendingUp {...iconProps} />
+                            case 'Shield':
+                              return <Shield {...iconProps} />
+                            default:
+                              // Fallback to Award icon for backwards compatibility
+                              return <Award {...iconProps} />
+                          }
+                        })()}
                       </div>
                     </>
                   )}
@@ -244,6 +267,13 @@ export function ResultsSection({
                   
                   {/* Premium Description with Enhanced Typography */}
                   <p className="text-base lg:text-lg text-primary-700 leading-relaxed font-medium max-w-sm mx-auto">
+                    <span className="sr-only">
+                      {stat.lucideIcon === 'Users' && 'Families icon: '}
+                      {stat.lucideIcon === 'School' && 'School building icon: '}
+                      {stat.lucideIcon === 'TrendingUp' && 'Upward trend icon: '}
+                      {stat.lucideIcon === 'Shield' && 'Shield icon: '}
+                      {!stat.lucideIcon && 'Award icon: '}
+                    </span>
                     {stat.description}
                   </p>
                 </div>
