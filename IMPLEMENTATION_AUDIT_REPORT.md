@@ -161,8 +161,8 @@
 
 #### Pricing
 - ⚠️ **Price Change**
-  - **Required**: £47.50/hour to £45/hour
-  - **Actual**: £45 mentioned in some places but not in tier display
+  - **Current**: £45/hour standardized across all instances
+  - **Status**: ✅ Implemented in tier display and all pricing references
   - **Location**: `/src/app/how-it-works/page.tsx` line 648, 963
 
 - ❌ **Tier Pricing Display**
