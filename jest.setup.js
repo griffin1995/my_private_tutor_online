@@ -20,26 +20,10 @@ jest.mock('next/navigation', () => ({
   usePathname: () => '/mock-pathname',
 }))
 
-// Mock framer-motion
-jest.mock('framer-motion', () => ({
-  motion: {
-    div: 'div',
-    button: 'button',
-    span: 'span',
-    h1: 'h1',
-    h2: 'h2',
-    h3: 'h3',
-    p: 'p',
-    section: 'section',
-    article: 'article',
-  },
-  AnimatePresence: ({ children }) => children,
-  useAnimation: () => ({
-    start: jest.fn(),
-    stop: jest.fn(),
-    set: jest.fn(),
-  }),
-}))
+// CONTEXT7 SOURCE: /websites/motion_dev - Framer Motion Jest testing setup
+// TESTING REASON: Enhanced framer-motion mocking is handled via moduleNameMapper for better compatibility
+// Mock additional motion utilities not covered in main mock
+jest.mock('framer-motion/dist/es/motion', () => require('./__mocks__/framer-motion.js'))
 
 // Mock react-intersection-observer
 jest.mock('react-intersection-observer', () => ({

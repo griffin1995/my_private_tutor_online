@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+# CONTEXT7 SOURCE: /vercel/next.js - Enhanced pre-commit hooks for development velocity
+# CODE QUALITY REASON: Official Next.js and TypeScript quality automation patterns
+
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🚀 Running pre-commit quality checks..."
+
+# CONTEXT7 SOURCE: /microsoft/typescript - Fast TypeScript checking with skip optimizations
+echo "📝 TypeScript type checking..."
+npm run typecheck:trace
+
+# Run lint-staged for optimized file processing
+echo "🔍 Running ESLint and Prettier on staged files..."
+npx lint-staged
+
+# CONTEXT7 SOURCE: /vercel/next.js - Build verification for critical changes
+echo "🏗️  Verifying build integrity..."
+npm run build > /dev/null 2>&1 || {
+  echo "❌ Build failed! Please fix build errors before committing."
+  exit 1
+}
+
+echo "✅ All pre-commit checks passed!"

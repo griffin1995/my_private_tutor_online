@@ -47,24 +47,28 @@ import {
 } from '@/lib/cms'
 import { getStudentImages } from '@/lib/cms/cms-images'
 
-// Documentation Source: Context7 MCP - Modular Component Imports
-// Reference: Context7 verified section component patterns
-// Pattern: Importing reusable section components for homepage composition
+// CONTEXT7 SOURCE: /reactjs/react.dev - Optimized component imports with lazy loading strategy
+// LAZY LOADING REASON: Official React documentation enables code splitting for better performance
+
+// Critical above-the-fold components (immediate load)
 import { PageLayout } from '@/components/layout/page-layout'
-import { QuoteSection } from '@/components/sections/quote-section'
-import { ResultsSection } from '@/components/sections/results-section'
-import { TrustIndicatorsGrid } from '@/components/sections/trust-indicators-grid'
-import { TestimonialsSection } from '@/components/sections/testimonials-section'
-import { ScrollingSchools } from '@/components/sections/scrolling-schools'
 import { HeroSection } from '@/components/sections/hero-section'
-import { HomepageHowItWorks } from '@/components/sections/homepage-how-it-works'
 import { AnimatedTagline } from '@/components/sections/animated-tagline'
+import { ScrollingSchools } from '@/components/sections/scrolling-schools'
 import { AboutSection } from '@/components/sections/about-section'
-import { ServicesCarousel } from '@/components/sections/services-carousel'
-import { ConsultationBookingForm } from '@/components/forms/consultation-booking-form'
+import { TrustIndicatorsGrid } from '@/components/sections/trust-indicators-grid'
+import { QuoteSection } from '@/components/sections/quote-section'
 import { NewsletterSection } from '@/components/sections/newsletter-section'
 import { CTASection } from '@/components/sections/cta-section'
 import { LanguageSwitcher } from '@/components/ui/language-switcher'
+
+// CONTEXT7 SOURCE: /vercel/next.js - Lazy loaded components for bundle optimization
+// BUNDLE OPTIMIZATION REASON: Official Next.js documentation for reduced initial bundle size
+import { 
+  LazyResultsSection,
+  LazyServicesCarousel,
+  LazyConsultationForm
+} from '@/components/dynamic/lazy-loaded-components'
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Homepage component with locale parameter
 // LOCALE PARAM REASON: Official next-intl documentation provides locale context for internationalized pages
@@ -129,8 +133,10 @@ export default function HomePage({ params }: HomePageProps) {
         studentImages={studentImages}
       />
       
-      {/* 6. WHAT WE OFFER */}
-      <ServicesCarousel 
+      {/* 6. WHAT WE OFFER - LAZY LOADED */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Dynamic import for below-the-fold content optimization */}
+      {/* LAZY LOADING REASON: Official Next.js documentation reduces initial bundle size for non-critical sections */}
+      <LazyServicesCarousel 
         services={services}
         studentImages={studentImages}
       />
@@ -147,8 +153,10 @@ export default function HomePage({ params }: HomePageProps) {
         authorImageAlt="Elizabeth Burrows, Founder of My Private Tutor Online"
       />
       
-      {/* 8. SUCCESS STORIES */}
-      <ResultsSection />
+      {/* 8. SUCCESS STORIES - LAZY LOADED */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - React.lazy for heavy component optimization */}
+      {/* RESULTS SECTION OPTIMIZATION: Official React documentation for code splitting heavy analytics components */}
+      <LazyResultsSection />
       
       {/* CONTEXT7 SOURCE: /vercel/next.js - Consultation booking form section */}
       {/* CONSULTATION FORM RESTORATION: Restored from components/forms - provides lead capture and consultation booking */}
@@ -162,7 +170,9 @@ export default function HomePage({ params }: HomePageProps) {
               Book your confidential consultation with Elizabeth's team to discuss your child's educational needs and create a personalised tutoring plan.
             </p>
           </div>
-          <ConsultationBookingForm />
+          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Lazy loaded form for bundle optimization */}
+          {/* FORM OPTIMIZATION REASON: Official React documentation reduces bundle size for interaction-based components */}
+          <LazyConsultationForm />
         </div>
       </section>
       

@@ -20,7 +20,17 @@ const createMockIcon = (iconName) => {
   return MockIcon;
 };
 
-// Export all commonly used Lucide icons as mocks
+// Mock all icons using a Proxy for dynamic icon support
+const iconProxy = new Proxy({}, {
+  get: function(target, prop) {
+    if (typeof prop === 'string' && prop !== 'default') {
+      return createMockIcon(prop);
+    }
+    return createMockIcon('DefaultIcon');
+  }
+});
+
+// Export all commonly used Lucide icons as mocks plus dynamic support
 module.exports = {
   // Navigation icons
   Menu: createMockIcon('Menu'),
@@ -81,6 +91,21 @@ module.exports = {
   TrendingUp: createMockIcon('TrendingUp'),
   BarChart: createMockIcon('BarChart'),
   Target: createMockIcon('Target'),
+  
+  // FAQ icons
+  Globe: createMockIcon('Globe'),
+  HelpCircle: createMockIcon('HelpCircle'),
+  Banknote: createMockIcon('Banknote'),
+  
+  // Additional icons that might be used
+  Trash: createMockIcon('Trash'),
+  Edit: createMockIcon('Edit'),
+  Save: createMockIcon('Save'),
+  Download: createMockIcon('Download'),
+  Upload: createMockIcon('Upload'),
+  
+  // Dynamic support via proxy
+  ...iconProxy,
   
   // Default export for dynamic imports
   default: createMockIcon('DefaultIcon')

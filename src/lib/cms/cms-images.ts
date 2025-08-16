@@ -381,7 +381,7 @@ export const TEAM_IMAGES = {
     loading: 'lazy' as const
   },
   founderAlternative: {
-    src: '/images/team/founder-elizabeth-burrows-alternative.jpg',
+    src: '/images/team/about-founder-story.jpg',
     alt: 'Elizabeth Burrows - MPTO 2025 Alternative Founder Photo',
     width: 400,
     height: 500,
@@ -397,7 +397,7 @@ export const TEAM_IMAGES = {
     loading: 'lazy' as const
   },
   founderSpare: {
-    src: '/images/team/founder-elizabeth-burrows-spare.jpg',
+    src: '/images/team/elizabeth-burrows-founder-spare.jpg',
     alt: 'Elizabeth Burrows - MPTO 2025 Additional Founder Photo',
     width: 400,
     height: 500,

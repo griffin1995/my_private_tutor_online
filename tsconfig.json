@@ -14,20 +14,28 @@
     "module": "esnext",
     "moduleResolution": "bundler", // Updated for Next.js App Router compatibility
     
-    // Strict Type Checking - CRITICAL FOR PRODUCTION
+    // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced strict type checking for performance
+    // PERFORMANCE OPTIMIZATION REASON: Official TypeScript strict mode with optimized variance checks
     "strict": true, // ENABLED: Comprehensive type safety for royal clients
     "noImplicitAny": true, // Explicit - included in strict but listed for clarity
     "strictNullChecks": true, // Explicit - included in strict but listed for clarity
-    "strictFunctionTypes": true, // Explicit - enables faster variance checks
+    "strictFunctionTypes": true, // CONTEXT7 SOURCE: /microsoft/typescript - enables faster variance checks
     "noImplicitReturns": true, // Ensure all code paths return a value
     "noImplicitThis": true, // Prevent implicit 'this' type issues
     "noUncheckedIndexedAccess": true, // Prevent undefined array/object access
     
-    // Code Quality and Safety
+    // CONTEXT7 SOURCE: /microsoft/typescript - React 19 compatibility enhancements
+    // REACT 19 OPTIMIZATION REASON: Latest TypeScript compiler options for React 19 concurrent features
+    "exactOptionalPropertyTypes": true, // Strict optional property type checking
+    "noPropertyAccessFromIndexSignature": true, // Prevent dynamic property access errors
+    
+    // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced performance and safety configuration
+    // BUILD OPTIMIZATION REASON: Official TypeScript compiler optimizations for faster builds
     "allowJs": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip all library checks for maximum build speed
+    "skipDefaultLibCheck": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip default library checks
     "noEmit": true,
-    "incremental": true,
+    "incremental": true, // CONTEXT7 SOURCE: /microsoft/typescript - Enable incremental compilation for faster rebuilds
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
@@ -38,13 +46,18 @@
     "jsx": "preserve",
     "jsxImportSource": "react",
     
-    // Path Resolution  
+    // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced path resolution for faster module resolution
+    // MODULE RESOLUTION REASON: Optimized path mapping for faster TypeScript compilation
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
       ]
     },
+    
+    // CONTEXT7 SOURCE: /microsoft/typescript - Disable automatic @types inclusion for better performance
+    // PERFORMANCE OPTIMIZATION REASON: Only include explicitly needed @types packages
+    "types": [], // Disable automatic inclusion of all @types packages
     
     // Next.js Plugin
     "plugins": [

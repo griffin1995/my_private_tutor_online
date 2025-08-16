@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
+    "dev:trace": "NEXT_TURBOPACK_TRACING=1 next dev --turbopack",
+    "dev:fast": "next dev --turbopack --experimental-debug-memory-usage",
+    "dev:profile": "NODE_OPTIONS=--inspect next dev --turbopack",
     "clean": "rm -rf .next cache node_modules/.cache",
+    "clean:full": "rm -rf .next cache node_modules/.cache .tsbuildinfo coverage playwright-report test-results",
     "build": "next build",
+    "build:trace": "NEXT_TURBOPACK_TRACING=1 next build --turbopack",
+    "build:analyze": "ANALYZE=true next build",
+    "build:profile": "NODE_OPTIONS=--heap-prof next build",
+    "build:clean": "npm run clean:full && next build",
     "clean-cache": "rm -rf .next/cache cache",
     "start": "next start",
     "lint": "next lint",
@@ -13,11 +21,17 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "typecheck": "tsc --noEmit",
+    "typecheck:trace": "tsc --noEmit --extendedDiagnostics",
+    "typecheck:watch": "tsc --noEmit --watch",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "optimize:duplicates": "node scripts/cleanup-duplicates.mjs",
+    "optimize:remove-duplicates": "node scripts/remove-duplicates.mjs",
+    "optimize:all": "npm run optimize:images && npm run optimize:remove-duplicates",
     "test:accessibility": "playwright test tests/e2e/accessibility.spec.ts",
     "test:performance": "playwright test tests/integration/performance.test.ts",
     "test:all": "npm run test && npm run test:e2e",
@@ -28,6 +42,15 @@
     "pre-commit": "lint-staged",
     "quality": "npm run typecheck && npm run lint && npm run format:check && npm run test",
     "quality:fix": "npm run typecheck && npm run lint:fix && npm run format",
+    "quality:fast": "npm run typecheck:trace && npm run lint:fix && npm run format",
+    "dev:debug": "npm run clean-cache && npm run dev:profile",
+    "dev:full-clean": "npm run clean:full && npm install && npm run dev",
+    "dev:fresh": "npm run clean:full && npm run dev:fast",
+    "dev:analyze-trace": "node scripts/dev-utils.mjs trace",
+    "dev:analyze-typescript": "node scripts/dev-utils.mjs typescript",
+    "dev:analyze-bundle": "node scripts/dev-utils.mjs bundle",
+    "dev:profile-build": "node scripts/dev-utils.mjs profile",
+    "dev:health": "node scripts/dev-utils.mjs health",
     "infrastructure:init": "node scripts/infrastructure-init.js",
     "infrastructure:backup": "node -e \"require('./src/lib/infrastructure/database-backup').defaultBackupManager.createFullBackup().then(m => console.log('Backup completed:', m)).catch(console.error)\"",
     "infrastructure:health": "curl -s http://localhost:3000/api/infrastructure/health | jq '.'",
@@ -40,7 +63,13 @@
     "performance:audit": "lhci autorun",
     "performance:budget": "lhci assert --budgetsFile=./performance-budget.json",
     "performance:monitor": "lhci collect --config=.lighthouserc.js",
-    "ci:performance": "npm run build && npm run performance:audit && npm run performance:budget"
+    "ci:performance": "npm run build && npm run performance:audit && npm run performance:budget",
+    "monitoring:enterprise": "node -e \"require('./src/lib/monitoring/enterprise-monitoring').getEnterpriseMonitoring().getSystemStatus().then(console.log).catch(console.error)\"",
+    "monitoring:dashboard": "node -e \"require('./src/lib/monitoring/real-time-dashboard').getRealTimeMonitoringDashboard().getCurrentMetrics().then(console.log).catch(console.error)\"",
+    "monitoring:alerts": "node -e \"require('./src/lib/monitoring/performance-alerts').getPerformanceAlertingSystem().getAlertStatistics().then ? console.log : console.log\"",
+    "monitoring:test-alert": "node -e \"require('./src/lib/monitoring/enterprise-monitoring').getEnterpriseMonitoring().triggerAlert('test_alert', 'warning', { test: true, timestamp: new Date() })\"",
+    "monitoring:health-check": "curl -s http://localhost:3000/api/infrastructure/health | jq '.' || echo 'Health check endpoint not available'",
+    "monitoring:comprehensive": "npm run monitoring:enterprise && npm run monitoring:dashboard && npm run monitoring:alerts"
   },
   "overrides": {
     "@visx/axis": {
@@ -213,7 +242,6 @@
     "react-use-gesture": "^9.1.3",
     "react-wavify": "^1.11.1",
     "recharts": "^3.1.2",
-    "sharp": "^0.34.2",
     "shortid": "^2.2.17",
     "sonner": "^2.0.6",
     "swiper": "^11.2.10",
@@ -243,7 +271,7 @@
     "@next/eslint-plugin-next": "^15.3.5",
     "@playwright/test": "^1.53.2",
     "@svgr/webpack": "^8.1.0",
-    "postcss": "^8.4.35",
+    "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -264,22 +292,33 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-testing-library": "^7.5.3",
     "husky": "^9.1.7",
+    "identity-obj-proxy": "^3.0.0",
+    "imagemin": "^9.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "imagemin-webp": "^8.0.0",
     "jest": "^30.0.4",
     "jest-environment-jsdom": "^30.0.4",
     "lint-staged": "^16.1.2",
+    "postcss": "^8.4.35",
     "prettier-plugin-tailwindcss": "^0.6.13",
     "react-devtools": "^1.0.5",
+    "sharp": "^0.34.3",
     "tailwindcss": "^3.4.1",
     "tw-animate-css": "^1.3.4",
     "typescript": "^5"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "eslint --fix --max-warnings 0",
+      "prettier --write",
+      "tsc --noEmit --skipLibCheck"
     ],
     "*.{json,css,md}": [
       "prettier --write"
+    ],
+    "package.json": [
+      "npm audit --audit-level moderate"
     ]
   },
   "husky": {
@@ -287,5 +326,17 @@
       "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  }
+  },
+  "sideEffects": [
+    "*.css",
+    "*.scss",
+    "*.sass",
+    "*.less",
+    "**/*.css",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.less",
+    "./src/styles/**/*",
+    "./src/app/globals.css"
+  ]
 }

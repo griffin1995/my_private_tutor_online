@@ -21,6 +21,11 @@
 
 import type { MetadataRoute } from 'next'
 
+// CONTEXT7 SOURCE: /vercel/next.js - Static generation for sitemap performance optimization
+// STATIC GENERATION REASON: Official Next.js pattern for static sitemap generation to avoid dynamic server usage
+export const dynamic = 'force-static'
+export const revalidate = 86400 // 24 hours
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // CONTEXT7 SOURCE: /vercel/next.js - MetadataRoute.Sitemap return type with required url field
   // PREMIUM SERVICE REASON: Comprehensive page discovery for elite tutoring service visibility

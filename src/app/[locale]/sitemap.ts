@@ -4,6 +4,11 @@
 import { MetadataRoute } from 'next';
 import { routing } from '@/i18n/routing';
 
+// CONTEXT7 SOURCE: /vercel/next.js - Static generation for localized sitemap performance optimization
+// STATIC GENERATION REASON: Official Next.js pattern for static sitemap generation to avoid dynamic server usage
+export const dynamic = 'force-static'
+export const revalidate = 86400 // 24 hours
+
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic sitemap generation with internationalization
 // SEO OPTIMIZATION REASON: Official Next.js documentation Section 6.1 enables dynamic sitemap generation for multi-language sites
 export default function sitemap(): MetadataRoute.Sitemap {
