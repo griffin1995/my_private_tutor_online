@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { decrypt } from '@/lib/auth/session'
 import { cookies } from 'next/headers'
-import { securityMiddleware, applySecurityHeaders } from '@/src/middleware/security'
+// CONTEXT7 SOURCE: /vercel/next.js - Middleware import path patterns for Next.js 15
+// BUG FIX REASON: Official Next.js middleware documentation specifies @/ alias resolves to src/, requiring @/middleware/security path
+import { securityMiddleware, applySecurityHeaders } from '@/middleware/security'
 // CONTEXT7 SOURCE: /amannn/next-intl - Internationalization middleware integration
 // I18N INTEGRATION REASON: Official next-intl documentation supports middleware composition
 import createIntlMiddleware from 'next-intl/middleware'
