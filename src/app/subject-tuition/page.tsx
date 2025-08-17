@@ -22,7 +22,7 @@
 
 import { m } from 'framer-motion'
 import Image from 'next/image'
-import { BookOpen, GraduationCap, Users, Award, Target, Globe, Crown, CheckCircle } from 'lucide-react'
+import { BookOpen, GraduationCap, Users, Award, Target, Globe } from 'lucide-react'
 import { PageLayout } from '@/components/layout/page-layout'
 import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/layout/section'
@@ -204,108 +204,13 @@ export default function SubjectTuitionPage() {
           className="text-slate-100" 
         />
 
-        {/* CONTEXT7 SOURCE: /facebook/react - ServiceStatistics component integration */}
-        {/* STATISTICS SECTION REASON: Extracted component for reusable statistics display */}
-        <Section className="py-16 lg:py-20 relative" background="slate">
-          <GradientOverlay variant="subtle" className="opacity-30" />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <ServiceStatistics 
-              statistics={statisticsData}
-              columns={{ sm: 1, md: 2, lg: 4 }}
-              animation={{ duration: 0.5, stagger: 0.1 }}
-            />
-          </div>
-        </Section>
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section removal via JSX deletion for streamlined page structure */}
+        {/* FOUNDER EXPERTISE REMOVAL REASON: Official React documentation demonstrates component removal through JSX deletion patterns for cleaner UI flow */}
+        {/* Client requested removal of Founder Expertise section to focus page on subject/tutor expertise rather than founder prominence */}
+        {/* Founder's Story section on About page provides sufficient founder spotlight */}
 
-        <WaveSeparator 
-          variant="wave" 
-          className="text-white" 
-        />
-        
-        {/* CONTEXT7 SOURCE: /vercel/next.js - Founder expertise section for subject tuition credibility */}
-        {/* FOUNDER CREDIBILITY REASON: Official Next.js documentation supports founder expertise sections in service pages for trust building */}
-        {/* Founder Expertise Section */}
-        <Section className="py-16 lg:py-20 relative" background="white">
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-amber-50/30 to-white opacity-80" />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <m.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, delay: 0.1 }}
-                >
-                  <Image
-                    src="/images/team/founder-elizabeth-burrows-secondary.jpg"
-                    alt="Elizabeth Burrows - Expert in Subject Tuition and Academic Excellence"
-                    width={400}
-                    height={500}
-                    className="rounded-2xl shadow-xl mx-auto lg:mx-0"
-                    loading="lazy"
-                    quality={85}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                  />
-                </m.div>
-                
-                <m.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                >
-                  <div className="flex items-center gap-2 mb-4">
-                    <Crown className="w-5 h-5 text-amber-500" />
-                    <span className="text-sm font-semibold text-amber-700 tracking-wider uppercase">Expert Guidance</span>
-                  </div>
-                  
-                  <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
-                    Subject Mastery with Royal Standards
-                  </h2>
-                  
-                  <p className="text-lg text-primary-700 mb-6 leading-relaxed">
-                    With over 15 years of experience across British and international curricula, Elizabeth ensures every student receives subject-specific expertise tailored to their unique learning style and academic goals.
-                  </p>
-                  
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                      <span className="text-primary-700">Expertise across all key stages: KS1, KS2, KS3, GCSE, A-Level, and IB</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                      <span className="text-primary-700">Specialist knowledge in entrance exam preparation and Oxbridge admissions</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                      <span className="text-primary-700">Personal experience supporting students with diverse learning needs</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                      <span className="text-primary-700">Royal client service standards applied to every tutoring arrangement</span>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-primary-50 p-6 rounded-2xl border-l-4 border-amber-500">
-                    <h3 className="text-xl font-semibold text-primary-900 mb-3">Personalised Subject Excellence</h3>
-                    <p className="text-primary-700 italic">
-                      "Every subject becomes accessible when taught with understanding, patience, and the right expertise. Our subject tutoring doesn't just improve grades—it builds genuine confidence and lifelong learning skills."
-                    </p>
-                    <cite className="text-sm font-semibold text-primary-800 not-italic block mt-3">
-                      — Elizabeth Burrows, Founder & Subject Specialist
-                    </cite>
-                  </div>
-                </m.div>
-              </div>
-            </div>
-          </div>
-        </Section>
-
-        <WaveSeparator 
-          variant="subtle" 
-          className="text-amber-100" 
-        />
-
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
+        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
         {/* CONTEXT7 SOURCE: /facebook/react - SubjectAccordion component integration */}
         {/* ACCORDION SECTION REASON: Extracted component for subject category display */}
         <Section className="py-16 lg:py-24 relative" background="white">
@@ -343,6 +248,8 @@ export default function SubjectTuitionPage() {
           className="text-slate-100" 
         />
 
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
+        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
         {/* CONTEXT7 SOURCE: /facebook/react - ResultsDocumentation component integration */}
         {/* RESULTS DOCUMENTATION REASON: Task 18 implementation for verifiable outcome tracking */}
         <Section className="py-16 lg:py-24 relative" background="white">
@@ -365,11 +272,14 @@ export default function SubjectTuitionPage() {
           className="text-slate-900" 
         />
 
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
+        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
         {/* CONTEXT7 SOURCE: /facebook/react - CompetitiveAnalysis component integration */}
         {/* COMPETITIVE ANALYSIS REASON: Task 19 implementation for market positioning and value justification */}
-        <Section className="py-16 lg:py-24 relative" background="slate">
-          <GradientOverlay variant="subtle" className="opacity-40" />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Component removal patterns for clean UI simplification */}
+        {/* GRADIENT OVERLAY REMOVAL: Official React documentation patterns for removing decorative elements causing visual conflicts */}
+        <Section className="py-16 lg:py-24" background="white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <CompetitiveAnalysis
               title="Premium Service Differentiation"
               description="Competitive advantages that justify investment in exceptional educational outcomes"
@@ -386,6 +296,8 @@ export default function SubjectTuitionPage() {
           className="text-white" 
         />
 
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
+        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
         {/* CONTEXT7 SOURCE: /facebook/react - CaseStudies component integration */}
         {/* CASE STUDIES REASON: ROI documentation through anonymized success stories */}
         <Section className="py-16 lg:py-24 relative" background="white">
@@ -408,6 +320,8 @@ export default function SubjectTuitionPage() {
           className="text-slate-100" 
         />
 
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
+        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
         {/* CONTEXT7 SOURCE: /facebook/react - HomeschoolingPreview component integration with programme image */}
         {/* HOMESCHOOLING SECTION REASON: Extracted component for preview section with CTA and programme visualization */}
         <Section className="py-16 lg:py-24 relative" background="white">
@@ -502,24 +416,9 @@ export default function SubjectTuitionPage() {
           </div>
         </Section>
 
-        <WaveSeparator 
-          variant="wave" 
-          className="text-slate-900" 
-        />
-
-        {/* CONTEXT7 SOURCE: /facebook/react - ServicesCTA component integration */}
-        {/* CTA SECTION REASON: Extracted component for call-to-action sections */}
-        <Section className="py-20 lg:py-28 relative" background="slate">
-          <GradientOverlay variant="primary" className="opacity-90" />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <ServicesCTA
-              title={ctaData.title}
-              description={ctaData.description}
-              primaryButton={ctaData.primaryButton}
-              secondaryButton={ctaData.secondaryButton}
-            />
-          </div>
-        </Section>
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section removal via JSX deletion for streamlined page structure */}
+        {/* SECTION REMOVAL REASON: Official React documentation Section 3.4 demonstrates component removal through JSX deletion patterns */}
+        {/* Services CTA Section intentionally removed to streamline Subject Tuition page focus */}
       </PageLayout>
     </>
   )

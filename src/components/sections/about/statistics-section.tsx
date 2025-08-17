@@ -183,6 +183,7 @@ export const StatisticsSection: React.FC<StatisticsSectionProps> = ({
 
   return (
     <section 
+      id="statistics"
       className={cn(
         "py-16 lg:py-24",
         backgroundColor === "white" ? "bg-white" : backgroundColor === "grey" ? "bg-slate-50" : backgroundColor,

@@ -137,8 +137,10 @@ export function CompetitiveAnalysis({
     .filter(item => highlightedCategories.length === 0 || highlightedCategories.includes(item.category))
     .sort((a, b) => a.priority - b.priority)
 
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color inheritance for uniform styling
+  // BACKGROUND FIX REASON: Official Tailwind CSS documentation demonstrates background inheritance to prevent hardcoded overrides
   return (
-    <Section className={`py-16 lg:py-24 bg-slate-50 ${className}`}>
+    <Section className={`py-16 lg:py-24 ${className}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <m.div

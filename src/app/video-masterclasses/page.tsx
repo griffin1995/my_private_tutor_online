@@ -37,7 +37,6 @@ import { Section } from '@/components/layout/section'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { WaveSeparator } from '@/components/ui/wave-separator'
-import { GradientOverlay } from '@/components/ui/gradient-overlay'
 
 // RENDERING ANALYSIS - Context7 MCP Verified:
 // Documentation Source: Next.js Client Components Dynamic Rendering
@@ -57,9 +56,13 @@ import { GradientOverlay } from '@/components/ui/gradient-overlay'
 // - TODO: Migrate videoMasterclassesContent to CMS system for proper content management
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations and motion components for professional styling
-// DESIGN ENHANCEMENT: Consistent visual branding with WaveSeparator, GradientOverlay, and premium card designs
+// DESIGN ENHANCEMENT: Clean visual branding with WaveSeparator and premium card designs without gradient overlays
 // IMPLEMENTATION REASON: Matching testimonials and landing page professional appearance standards
 // CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll animations
+
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Background color utilities for solid color implementations
+// GRADIENT REMOVAL REASON: Official Tailwind CSS documentation recommends solid color backgrounds for clean, professional educational content pages
+// IMPLEMENTATION REASON: Removing bg-gradient-to-* classes replaced with single bg-color-* utilities for cleaner appearance
 
 // CMS DATA SOURCE: Elizabeth's Video Masterclasses content from Beth's new_copy.md
 const videoMasterclassesContent = {
@@ -190,7 +193,6 @@ export default function VideoMasterclassesPage() {
 
         {/* Introduction */}
         <Section background="blue" className="py-16 relative">
-        <GradientOverlay variant="subtle" className="opacity-20" />
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <m.p 
             className="text-xl lg:text-2xl text-slate-800 leading-relaxed mb-6 font-medium"
@@ -303,7 +305,6 @@ export default function VideoMasterclassesPage() {
 
       {/* Featured Masterclasses */}
       <Section background="slate" className="py-20 relative">
-        <GradientOverlay variant="subtle" className="opacity-30" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <m.div 
             className="text-center mb-16"
@@ -315,7 +316,7 @@ export default function VideoMasterclassesPage() {
             <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6">
               Featured Masterclasses
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-yellow-500 mx-auto rounded-full" />
+            <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
           </m.div>
         
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto mb-20">
@@ -326,10 +327,10 @@ export default function VideoMasterclassesPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
-                <CardHeader className="bg-gradient-to-r from-amber-100 to-yellow-100 rounded-t-lg">
+              <Card className="bg-amber-50 border-amber-200 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                <CardHeader className="bg-amber-100 rounded-t-lg">
                   <div className="flex items-center justify-between mb-4">
-                    <Badge className="bg-gradient-to-r from-amber-600 to-yellow-600 text-white shadow-md px-4 py-2 text-sm font-bold">
+                    <Badge className="bg-amber-600 text-white shadow-md px-4 py-2 text-sm font-bold">
                       Free Access
                     </Badge>
                     <div className="flex items-center gap-2 text-sm text-slate-700 bg-white/80 rounded-full px-3 py-1">
@@ -348,7 +349,7 @@ export default function VideoMasterclassesPage() {
                   <p className="text-slate-700 mb-8 leading-relaxed">
                     {videoMasterclassesContent.masterclasses[0]?.description || 'Expert guidance and practical insights'}
                   </p>
-                  <Button className="w-full bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-3 text-lg font-semibold">
+                  <Button className="w-full bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-3 text-lg font-semibold">
                     <Play className="w-5 h-5 mr-3" />
                     Watch Free Masterclass
                   </Button>
@@ -364,7 +365,7 @@ export default function VideoMasterclassesPage() {
               viewport={{ once: true }}
             >
               <Card className="bg-white border-slate-300 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
-                <CardHeader className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-t-lg">
+                <CardHeader className="bg-slate-50 rounded-t-lg">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="outline" className="border-slate-400 text-slate-800 bg-white shadow-sm px-4 py-2 text-sm font-bold">
                       {videoMasterclassesContent.masterclasses[1]?.price || '£300'}
@@ -385,7 +386,7 @@ export default function VideoMasterclassesPage() {
                   <p className="text-slate-800 mb-8 leading-relaxed text-lg">
                     {videoMasterclassesContent.masterclasses[1]?.content || 'Advanced masterclass content'}
                   </p>
-                  <Button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-800 hover:to-slate-900 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-3 text-lg font-semibold">
+                  <Button className="w-full bg-slate-700 hover:bg-slate-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-3 text-lg font-semibold">
                     Purchase Masterclass - {videoMasterclassesContent.masterclasses[1]?.price || '£300'}
                   </Button>
                 </CardContent>
@@ -401,10 +402,10 @@ export default function VideoMasterclassesPage() {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-gradient-to-br from-slate-900 to-slate-800 border-slate-700 shadow-2xl text-white">
-              <CardHeader className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-t-lg">
+            <Card className="bg-slate-900 border-slate-700 shadow-2xl text-white">
+              <CardHeader className="bg-slate-800 rounded-t-lg">
                 <div className="flex items-center justify-between mb-4">
-                  <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-900 shadow-md px-4 py-2 text-sm font-bold">
+                  <Badge className="bg-amber-500 text-slate-900 shadow-md px-4 py-2 text-sm font-bold">
                     {videoMasterclassesContent.masterclasses[2]?.price || '£500'}
                   </Badge>
                   <div className="flex items-center gap-2 text-sm text-white bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
@@ -429,7 +430,7 @@ export default function VideoMasterclassesPage() {
                 <p className="text-amber-300 italic mb-8 bg-white/10 backdrop-blur-sm rounded-lg p-4">
                   {videoMasterclassesContent.masterclasses[2]?.note || 'Exclusive premium content'}
                 </p>
-                <Button className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-900 shadow-lg hover:shadow-xl transition-all duration-300 py-4 text-lg font-bold">
+                <Button className="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 shadow-lg hover:shadow-xl transition-all duration-300 py-4 text-lg font-bold">
                   Purchase Masterclass - {videoMasterclassesContent.masterclasses[2]?.price || '£500'}
                 </Button>
               </CardContent>
@@ -445,7 +446,7 @@ export default function VideoMasterclassesPage() {
 
       {/* Cultural Masterclasses */}
       <Section background="white" className="py-20 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50 to-white opacity-60" />
+        <div className="absolute inset-0 bg-blue-50 opacity-60" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <m.div 
             className="text-center mb-16"
@@ -457,7 +458,7 @@ export default function VideoMasterclassesPage() {
             <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6">
               Get Confident with British Culture
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-yellow-500 mx-auto rounded-full mb-8" />
+            <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full mb-8" />
             <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
               From literary classics to social customs—everything your child needs to feel at home in a British classroom
             </p>
@@ -471,8 +472,8 @@ export default function VideoMasterclassesPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Card className="border-slate-300 shadow-xl hover:shadow-2xl transition-all duration-300 h-full bg-gradient-to-br from-white to-blue-50">
-                <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">
+              <Card className="border-slate-300 shadow-xl hover:shadow-2xl transition-all duration-300 h-full bg-blue-50">
+                <CardHeader className="bg-blue-50 rounded-t-lg">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="outline" className="border-amber-400 text-amber-700 bg-amber-50 shadow-sm px-4 py-2 text-sm font-bold">
                       {videoMasterclassesContent.masterclasses[3]?.price || '£19.99'}
@@ -507,7 +508,7 @@ export default function VideoMasterclassesPage() {
                   <p className="text-slate-700 mb-6 font-semibold bg-blue-50 px-4 py-2 rounded-lg">
                     <strong>{videoMasterclassesContent.masterclasses[3]?.targetAge || 'Ages 8-14'}</strong>
                   </p>
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-3 text-lg font-semibold">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-3 text-lg font-semibold">
                     Purchase - {videoMasterclassesContent.masterclasses[3]?.price || '£19.99'}
                   </Button>
                 </CardContent>
@@ -521,8 +522,8 @@ export default function VideoMasterclassesPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <Card className="border-slate-300 shadow-xl hover:shadow-2xl transition-all duration-300 h-full bg-gradient-to-br from-white to-amber-50">
-                <CardHeader className="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-t-lg">
+              <Card className="border-slate-300 shadow-xl hover:shadow-2xl transition-all duration-300 h-full bg-amber-50">
+                <CardHeader className="bg-amber-50 rounded-t-lg">
                   <div className="flex items-center justify-between mb-4">
                     <Badge variant="outline" className="border-amber-400 text-amber-700 bg-amber-50 shadow-sm px-4 py-2 text-sm font-bold">
                       {videoMasterclassesContent.masterclasses[4]?.price || '£19.99'}
@@ -557,7 +558,7 @@ export default function VideoMasterclassesPage() {
                       ))}
                     </ul>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-3 text-lg font-semibold">
+                  <Button className="w-full bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 py-3 text-lg font-semibold">
                     Purchase - {videoMasterclassesContent.masterclasses[4]?.price || '£19.99'}
                   </Button>
                 </CardContent>
@@ -574,7 +575,6 @@ export default function VideoMasterclassesPage() {
 
       {/* Ideal For Section */}
       <Section background="slate" className="py-20 relative">
-        <GradientOverlay variant="primary" className="opacity-90" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <m.div 
             className="text-center max-w-5xl mx-auto"

@@ -357,6 +357,17 @@ export const HERO_IMAGES = {
     title: 'Introduction to My Private Tutor Online',
     loading: 'eager' as const,
     priority: true
+  },
+  // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization with proper about page hero background implementation
+  // IMPLEMENTATION REASON: Official Next.js documentation recommends centralized asset management via CMS for maintainability
+  aboutFounderStory: {
+    src: '/images/about/about-founder-story.jpg',
+    alt: 'Elizabeth Burrows founder story hero background - premium tutoring service heritage',
+    width: 1920,
+    height: 1080,
+    title: 'About Our Founder - Heritage and Excellence',
+    loading: 'eager' as const,
+    priority: true
   }
 } as const
 
@@ -381,7 +392,7 @@ export const TEAM_IMAGES = {
     loading: 'lazy' as const
   },
   founderAlternative: {
-    src: '/images/team/about-founder-story.jpg',
+    src: '/images/about/about-founder-story.jpg',
     alt: 'Elizabeth Burrows - MPTO 2025 Alternative Founder Photo',
     width: 400,
     height: 500,
@@ -1019,6 +1030,15 @@ export const getHeroImage = (): ImageAsset => {
  */
 export const getIntroVideo = (): ImageAsset => {
   return HERO_IMAGES.introVideo
+}
+
+/**
+ * Get about page hero background image
+ * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for about hero background
+ * CMS DATA SOURCE: Using HERO_IMAGES.aboutFounderStory for about page hero background
+ */
+export const getAboutHeroImage = (): ImageAsset => {
+  return HERO_IMAGES.aboutFounderStory
 }
 
 /**

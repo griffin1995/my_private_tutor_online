@@ -181,6 +181,7 @@ export function HeroVideoDialog({
            */}
           {/* CONTEXT7 SOURCE: /vercel/next.js - Image optimization with lazy loading and blur placeholder */}
           {/* PERFORMANCE ENHANCEMENT REASON: Official Next.js documentation recommends lazy loading and blur placeholders for video thumbnails */}
+          {/* QUALITY FIX REASON: Changed quality from 80 to 75 to match next.config.js qualities array [25, 35, 50, 65, 75, 85, 90, 95] */}
           <Image
             src={thumbnailSrc}
             alt={thumbnailAlt}
@@ -190,7 +191,7 @@ export function HeroVideoDialog({
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
             loading="lazy"
-            quality={80}
+            quality={75}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
           />
           

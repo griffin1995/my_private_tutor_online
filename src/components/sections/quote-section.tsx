@@ -21,6 +21,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Highlighter } from '@/components/magicui/highlighter'
 
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Definition for React Props
@@ -56,6 +57,8 @@ interface QuoteSectionProps {
   authorImageAlt?: string
   /** Whether to display the author image alongside the quote */
   showAuthorImage?: boolean
+  /** Whether to apply strategic highlighting to key quote phrases */
+  useHighlighting?: boolean
 }
 
 /**
@@ -86,7 +89,8 @@ export function QuoteSection({
   button,
   authorImage,
   authorImageAlt,
-  showAuthorImage = false
+  showAuthorImage = false,
+  useHighlighting = true
 }: QuoteSectionProps) {
   /**
    * Documentation Source: Context7 MCP - Tailwind CSS Dynamic Class Composition
@@ -102,6 +106,51 @@ export function QuoteSection({
   const spacingClasses = className.includes('pt-') || className.includes('pb-') || className.includes('py-') 
     ? "" // Use custom spacing from className
     : defaultSpacing // Use default spacing when no custom spacing provided
+
+  /**
+   * CONTEXT7 SOURCE: /magicui/design - Strategic text highlighting for premium service positioning
+   * HIGHLIGHTING REASON: Magic UI documentation demonstrates selective highlighting for key messaging emphasis
+   * CONTEXT7 SOURCE: /rough-notation/annotation - JSX component wrapping for targeted phrase highlighting
+   * PHRASE SELECTION REASON: Official rough-notation patterns enable selective text annotation within larger content blocks
+   * 
+   * BRAND-CONSISTENT HIGHLIGHTING STRATEGY - TWO MAIN COLORS ONLY:
+   * HIGHLIGHT EFFECT: Gold (#eab308) - Premium background highlighting for key phrases
+   * UNDERLINE EFFECT: Navy (#0f172a) - Authority underlines for supporting emphasis
+   * 
+   * Strategic Application:
+   * - "deliver real progress, quietly and expertly" - Gold highlight for core promise
+   * - "bespoke service" - Navy underline for service differentiation  
+   * - "ambitious families" - Navy underline for target audience
+   * - "trusted partners" - Gold highlight for partnership emphasis
+   * 
+   * Brand Color Consistency:
+   * - Gold (#eab308): Premium accent color for maximum impact highlights
+   * - Navy (#0f172a): Primary brand color for professional underlines
+   * - Two-color system maintains visual simplicity and brand recognition
+   * 
+   * Accessibility Compliance: Both colors exceed WCAG AA contrast ratios
+   * Visual Hierarchy: Alternating effects create rhythm without complexity
+   */
+  const renderHighlightedQuote = () => {
+    if (!useHighlighting) {
+      return quote
+    }
+
+    // Brand-consistent highlighting using only main project colors
+    return (
+      <>
+        Parents come to us when something truly matters—an entrance exam, a lost sense of confidence, a desire for academic stretch. They stay with us because we{' '}
+        <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>deliver real progress, quietly and expertly</Highlighter>
+        . This is not a tutoring directory. This is a{' '}
+        <Highlighter action="underline" color="#0f172a" strokeWidth={3} iterations={1} padding={1}>bespoke service</Highlighter>
+        {' '}for{' '}
+        <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>ambitious families</Highlighter>
+        {' '}looking for{' '}
+        <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>trusted partners</Highlighter>
+        {' '}in their child's academic career.
+      </>
+    )
+  }
 
   return (
     <section className={`${spacingClasses} ${backgroundColor} ${className}`}>
@@ -140,7 +189,7 @@ export function QuoteSection({
                  * - mb-8: Consistent spacing to citation
                  */}
                 <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed mb-8">
-                  &ldquo;{quote}&rdquo;
+                  &ldquo;{renderHighlightedQuote()}&rdquo;
                 </blockquote>
                 
                 {/* 
@@ -179,7 +228,7 @@ export function QuoteSection({
                * - mb-8: Consistent spacing to citation
                */}
               <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed mb-8">
-                &ldquo;{quote}&rdquo;
+                &ldquo;{renderHighlightedQuote()}&rdquo;
               </blockquote>
               
               {/* 

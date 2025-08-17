@@ -942,7 +942,6 @@ const FAQPage = React.memo(function FAQPage() {
                 selectedCategory={selectedCategory}
                 enableBulkActions={true}
                 showPrintView={showPrintView}
-                onPrintViewToggle={handlePrintViewToggle}
                 enableCategoryTheming={!showPrintView}
                 compactMode={showPrintView}
                 // Enhanced with offline support props

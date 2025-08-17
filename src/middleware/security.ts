@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { z } from 'zod'
-import crypto from 'crypto'
+// CONTEXT7 SOURCE: /colinhacks/zod - Standard import pattern for Zod schema validation
+// IMPORT FIX REASON: Official Zod documentation specifies standard import, not modularized subpath
+import * as z from 'zod'
 
 // CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 security middleware
 // Reference: /vercel/next.js security patterns and OWASP compliance
@@ -25,21 +26,36 @@ const RATE_LIMITS = {
 const csrfTokens = new Map<string, { token: string; expires: number }>()
 
 /**
- * Generate secure CSRF token
+ * Generate secure CSRF token using Web Crypto API
+ * CONTEXT7 SOURCE: /vercel/next.js - Edge Runtime compatible crypto functions
  */
 export function generateCSRFToken(): string {
-  return crypto.randomBytes(32).toString('hex')
+  const array = new Uint8Array(32)
+  crypto.getRandomValues(array)
+  return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('')
 }
 
 /**
- * Verify CSRF token validity
+ * Verify CSRF token validity using Edge Runtime compatible comparison
+ * CONTEXT7 SOURCE: /vercel/next.js - Edge Runtime timing-safe comparison
  */
 export function verifyCSRFToken(sessionId: string, token: string): boolean {
   const stored = csrfTokens.get(sessionId)
   if (!stored || stored.expires < Date.now()) {
     return false
   }
-  return crypto.timingSafeEqual(Buffer.from(stored.token), Buffer.from(token))
+  
+  // Simple timing-safe comparison for Edge Runtime
+  if (stored.token.length !== token.length) {
+    return false
+  }
+  
+  let result = 0
+  for (let i = 0; i < stored.token.length; i++) {
+    result |= stored.token.charCodeAt(i) ^ token.charCodeAt(i)
+  }
+  
+  return result === 0
 }
 
 /**
@@ -126,11 +142,19 @@ export function sanitiseInput<T>(
  * Security headers middleware
  */
 export function applySecurityHeaders(response: NextResponse): NextResponse {
-  // Apply nonce for inline scripts if needed
-  const nonce = crypto.randomBytes(16).toString('base64')
+  // Apply nonce for inline scripts using Web Crypto API
+  // CONTEXT7 SOURCE: /vercel/next.js - Edge Runtime compatible random generation
+  const array = new Uint8Array(16)
+  crypto.getRandomValues(array)
+  const nonce = btoa(String.fromCharCode(...array))
+  
+  // Generate request ID using Web Crypto API
+  const requestIdArray = new Uint8Array(16)
+  crypto.getRandomValues(requestIdArray)
+  const requestId = Array.from(requestIdArray, byte => byte.toString(16).padStart(2, '0')).join('')
   
   // Additional security headers not in vercel.json
-  response.headers.set('X-Request-ID', crypto.randomUUID())
+  response.headers.set('X-Request-ID', requestId)
   response.headers.set('X-Content-Security-Policy-Nonce', nonce)
   
   return response

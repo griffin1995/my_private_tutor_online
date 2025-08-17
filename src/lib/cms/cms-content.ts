@@ -3278,7 +3278,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
       buttonText: "Learn About Homeschooling"
     },
     cta: {
-      title: "Ready to Begin Your Educational Journey?",
+      title: "Ready to Start the Conversation?",
       description: "Book a free consultation to discuss your educational needs and find the perfect subject tuition for your goals.",
       primaryButton: {
         text: "Book Free Consultation",

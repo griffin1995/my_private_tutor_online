@@ -51,6 +51,15 @@ interface PageLayoutProps {
   children: ReactNode
   className?: string
   background?: 'white' | 'gradient' | 'pattern' | 'dark' | 'transparent'
+  /** 
+   * CRITICAL NAVBAR CONTROL: showHeader controls the main site NAVIGATION/NAVBAR visibility
+   * - showHeader={true}: Renders the main navigation bar (default) - REQUIRED for users to access other pages
+   * - showHeader={false}: Completely hides the navbar - USE WITH EXTREME CAUTION as users lose navigation
+   * 
+   * CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for UI component visibility
+   * TERMINOLOGY CLARIFICATION: "Header" in this context means NAVBAR/NAVIGATION, not page header content
+   * RELATIONSHIP: This controls PageHeader component rendering, which contains the main site navigation
+   */
   showHeader?: boolean
   showFooter?: boolean
   headerProps?: PageHeaderProps
@@ -112,7 +121,11 @@ export function PageLayout({
       )}
     >
       
-      {/* Header */}
+      {/* SITE NAVIGATION BAR - CRITICAL FOR USER ACCESS */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering with logical AND operator for component visibility */}
+      {/* NAVBAR RENDERING LOGIC: Official React documentation shows {condition && <Component />} pattern for conditional rendering */}
+      {/* NAVIGATION CONTROL: showHeader controls main site NAVBAR - when true, users can navigate between pages */}
+      {/* ACCESSIBILITY IMPACT: Without navbar (showHeader=false), users lose primary navigation method */}
       {showHeader && (
         <PageHeader {...headerProps} />
       )}

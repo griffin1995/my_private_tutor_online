@@ -12,7 +12,6 @@
 import { Heart, Globe } from 'lucide-react'
 import { m } from 'framer-motion'
 import Image from 'next/image'
-import { WaveSeparator } from '@/components/ui/wave-separator'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - TypeScript interface patterns for component props
@@ -23,20 +22,12 @@ interface Philosophy {
   description: string
 }
 
-interface QuoteContent {
-  text: string
-  author: string
-  role: string
-}
-
 interface EthosSectionProps {
   title?: string
   subtitle?: string
   backgroundColor?: string
   className?: string
   philosophies?: Philosophy[]
-  quote?: QuoteContent
-  showQuote?: boolean
 }
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component with flexible props and sensible defaults
@@ -58,12 +49,6 @@ export function EthosSection({
       description: "Our international experience brings a global perspective to education, helping students not just excel academically but develop the confidence and adaptability needed for success in an interconnected world."
     }
   ],
-  quote = {
-    text: "Work as hard as you can to give yourself the luxury of choice, then have the confidence to pick what's right for you — even if it's not what's expected.",
-    author: "Elizabeth Burrows",
-    role: "Founder"
-  },
-  showQuote = true
 }: EthosSectionProps) {
 
   // CONTEXT7 SOURCE: /lucide-icons/lucide - Icon component mapping for dynamic rendering
@@ -77,7 +62,10 @@ export function EthosSection({
   }
 
   return (
-    <section className={`relative ${backgroundColor} py-16 lg:py-24 border-b border-slate-100/50 ${className}`}>
+    <section 
+      id="ethos"
+      className={`relative ${backgroundColor} py-16 lg:py-24 border-b border-slate-100/50 ${className}`}
+    >
       {/* Premium Pattern Overlay (2% opacity) */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Inline styles with dynamic background patterns */}
       {/* PATTERN ENHANCEMENT REASON: React documentation supports inline styles for dynamic SVG pattern overlays */}
@@ -159,100 +147,12 @@ export function EthosSection({
             })}
           </div>
 
-          {/* Company Ethos Visual Section */}
-          <m.div
-            className="mt-16 mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1">
-                <h3 className="text-3xl font-serif font-bold text-primary-900 mb-6">
-                  Values in Action
-                </h3>
-                <p className="text-lg text-primary-700 leading-relaxed mb-6">
-                  Our ethos goes beyond words—it's embedded in every interaction, every lesson plan, and every milestone we celebrate with our students. We believe that education should nurture both academic excellence and personal character.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-accent-600 rounded-full"></div>
-                    <span className="text-primary-700">Individual attention that honours each child's unique learning style</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-accent-600 rounded-full"></div>
-                    <span className="text-primary-700">Confidence building alongside academic achievement</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-accent-600 rounded-full"></div>
-                    <span className="text-primary-700">Excellence without compromise, delivered with genuine care</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="order-1 lg:order-2">
-                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for company ethos visualization */}
-                {/* COMPANY ETHOS IMAGE INTEGRATION: Official Next.js documentation for optimized about company ethos image rendering */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                  <Image
-                    src="/images/about/about-company-ethos.png"
-                    alt="Company Ethos and Values - Visual representation of My Private Tutor Online's educational philosophy and commitment to excellence"
-                    width={600}
-                    height={450}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                    quality={90}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 via-transparent to-transparent" />
-                  
-                  {/* Ethos Highlight Badge */}
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
-                    <div className="flex items-center gap-2">
-                      <Heart className="w-4 h-4 text-accent-600" />
-                      <span className="text-sm font-semibold text-primary-800">Our Values</span>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full opacity-20" />
-                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full opacity-15" />
-              </div>
-            </div>
-          </m.div>
+          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component simplification for streamlined user experience */}
+          {/* CLIENT SIMPLIFICATION REASON: Official React documentation supports removing complex subsections to achieve "less is more" design philosophy */}
+          {/* VALUES IN ACTION SECTION REMOVED: Per client feedback to focus on core ethos messaging rather than detailed implementation */}
 
-          {/* Quote Section */}
-          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns */}
-          {/* CONDITIONAL DISPLAY REASON: Official React documentation for conditional component rendering based on props */}
-          {showQuote && (
-            <m.div
-              className="mt-16 bg-gradient-to-br from-accent-50 to-primary-50 p-8 lg:p-12 rounded-3xl"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              <blockquote className="text-2xl font-serif text-primary-800 italic text-center leading-relaxed">
-                {/* CONTEXT7 SOURCE: /reactjs/react.dev - Safe object property access for React rendering */}
-                {/* SAFE RENDERING: Ensure quote properties are strings before rendering */}
-                "{typeof quote === 'object' && quote && 'text' in quote ? quote.text : String(quote || '')}"
-              </blockquote>
-              <p className="text-center text-primary-600 mt-6 font-medium">
-                {/* CONTEXT7 SOURCE: /reactjs/react.dev - Safe object rendering with fallback values */}
-                {/* DEFENSIVE RENDERING: Handle potential object structure mismatches */}
-                — {typeof quote === 'object' && quote && 'author' in quote ? quote.author : 'Unknown'}, {typeof quote === 'object' && quote && 'role' in quote ? quote.role : 'Unknown'}
-              </p>
-            </m.div>
-          )}
         </div>
       </div>
-      
-      {/* Professional Section Transition */}
-      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component composition and reusable UI patterns */}
-      {/* SECTION SEPARATOR REASON: React documentation recommends component composition for consistent UI elements */}
-      <WaveSeparator variant="organic" color="primary-900" />
     </section>
   )
 }

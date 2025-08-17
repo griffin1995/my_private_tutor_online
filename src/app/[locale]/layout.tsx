@@ -2,7 +2,7 @@
 // LOCALE LAYOUT REASON: Official next-intl documentation Section 4.1 requires [locale] dynamic segment layout
 
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { isRTLLocale } from '@/i18n/navigation';
@@ -30,6 +30,10 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  // CONTEXT7 SOURCE: /amannn/next-intl - Enable static rendering for server components
+  // HYDRATION FIX REASON: Official next-intl documentation requires setRequestLocale in server components for static rendering
+  setRequestLocale(locale);
+
   // CONTEXT7 SOURCE: /amannn/next-intl - Message loading for locale-specific translations
   // INTERNATIONALIZATION REASON: Official next-intl documentation loads messages dynamically per locale
   const messages = await getMessages();
@@ -40,14 +44,23 @@ export default async function LocaleLayout({
   const direction = isRTL ? 'rtl' : 'ltr';
 
   return (
-    <html lang={locale} dir={direction} className="scroll-smooth">
-      <body>
-        {/* CONTEXT7 SOURCE: /amannn/next-intl - Client provider for internationalization context */}
-        {/* I18N CONTEXT REASON: Official next-intl documentation provides translations to client components */}
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      {/* CONTEXT7 SOURCE: /amannn/next-intl - Client provider for internationalization context */}
+      {/* I18N CONTEXT REASON: Official next-intl documentation provides translations to client components */}
+      {/* HYDRATION FIX: Removed duplicate html tag to prevent nested html elements causing hydration errors */}
+      <NextIntlClientProvider messages={messages}>
+        {/* CONTEXT7 SOURCE: /amannn/next-intl - Client-side locale attribute setting */}
+        {/* LOCALE ATTRIBUTES: Set lang and dir on html element via useEffect to avoid SSR mismatch */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.documentElement.lang = '${locale}';
+              document.documentElement.dir = '${direction}';
+            `,
+          }}
+        />
+        {children}
+      </NextIntlClientProvider>
+    </>
   );
 }

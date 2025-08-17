@@ -410,8 +410,11 @@
     animation: none !important;
   }
   
-  --faq-transition-duration: 0ms;
-  --faq-glass-blur: none;
+  
+  :root {
+    --faq-transition-duration: 0ms;
+    --faq-glass-blur: none;
+  }
 }
 
 /* High contrast media query support */

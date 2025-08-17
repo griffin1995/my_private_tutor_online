@@ -41,15 +41,16 @@ import { Play, X } from 'lucide-react'
 import { PageHero } from '@/components/layout/page-hero'
 import { PageHeader } from '@/components/layout/page-header'
 
-// CMS DATA SOURCE: Context7 MCP - CMS Image System Integration
+// CMS DATA SOURCE: Context7 MCP - CMS Image and Content System Integration
 // Reference: /tailwindlabs/tailwindcss.com - CMS-driven asset management
 // Pattern: Centralized video asset management with getIntroVideo function
 import { getIntroVideo } from '@/lib/cms/cms-images'
+import { getHeroContent } from '@/lib/cms/cms-content'
 
 /**
  * CMS DATA SOURCE: Context7 MCP - TypeScript Interface Design Patterns
  * Reference: /microsoft/typescript - Interface definitions for component props
- * Pattern: Minimalist component props for video hero with single play button
+ * Pattern: Hero component props with CMS branding and content integration
  */
 interface HeroSectionProps {
   /** Additional CSS classes for styling customisation */
@@ -58,8 +59,25 @@ interface HeroSectionProps {
   backgroundVideo?: string
   /** Video URL for the popup dialog (defaults to CMS intro video) */
   dialogVideo?: string
-  /** Show header within hero section (default: true) */
+  /** 
+   * HERO SECTION HEADER CONTROL: Controls duplicate header prevention within hero
+   * - showHeader={true}: Renders header inside hero section (default)
+   * - showHeader={false}: Prevents duplicate header rendering when PageLayout already has showHeader={true}
+   * 
+   * CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering to prevent duplicate component instances
+   * RELATIONSHIP: Independent from PageLayout.showHeader - this prevents DUPLICATE headers, not main navbar
+   * TYPICAL USAGE: Set to false when PageLayout.showHeader=true to avoid double headers
+   */
   showHeader?: boolean
+  /** Site branding information from CMS */
+  branding?: {
+    readonly siteName: string
+    readonly logo: string
+    readonly companyName: string
+    readonly description: string
+  }
+  /** Student images for visual context */
+  studentImages?: any
 }
 
 /**
@@ -81,7 +99,9 @@ export function HeroSection({
   className = "",
   backgroundVideo = "/videos/background-video-2025.mp4",
   dialogVideo,
-  showHeader = true
+  showHeader = true,
+  branding,
+  studentImages
 }: HeroSectionProps) {
   
   // CMS DATA SOURCE: Context7 MCP - React useState for modal state management
@@ -90,10 +110,11 @@ export function HeroSection({
   const [isVideoOpen, setIsVideoOpen] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   
-  // CMS DATA SOURCE: Context7 MCP - CMS Video Asset Integration
+  // CMS DATA SOURCE: Context7 MCP - CMS Video and Content Asset Integration
   // Reference: /tailwindlabs/tailwindcss.com - CMS-driven video management
-  // Pattern: Use CMS system to get introduction video asset
+  // Pattern: Use CMS system to get introduction video asset and hero content
   const introVideoAsset = getIntroVideo()
+  const heroContent = getHeroContent()
   const finalDialogVideo = dialogVideo || introVideoAsset.src
   
   // CMS DATA SOURCE: Context7 MCP - Video modal open handler
@@ -144,7 +165,11 @@ export function HeroSection({
   
   return (
     <div className={className}>
-      {/* Header - Conditionally rendered */}
+      {/* HERO SECTION HEADER - DUPLICATE PREVENTION */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering to prevent duplicate components */}
+      {/* DUPLICATE PREVENTION: This header is separate from PageLayout navbar - prevents double headers */}
+      {/* CURRENT STATE: showHeader={false} prevents duplicate when PageLayout.showHeader={true} renders main navbar */}
+      {/* COMPONENT RELATIONSHIP: PageLayout navbar + HeroSection header would create duplicates if both enabled */}
       {showHeader && <PageHeader isHeroPage={true} />}
       
       {/* Minimalist Hero Section with Full-Screen Video Background */}
@@ -158,11 +183,29 @@ export function HeroSection({
         overlayOpacity="light"
         className=""
       >
-        {/* Single Centered Play Button - No Thumbnails */}
-        {/* CMS DATA SOURCE: Context7 MCP - Tailwind CSS centering and button styling */}
-        {/* Reference: /tailwindlabs/tailwindcss.com - Flexbox centering and hover effects */}
-        {/* Pattern: Single centered play button with professional styling */}
-        <div className="min-h-screen flex items-center justify-center relative">
+        {/* Hero Content with Text Overlay and Play Button */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text overlay on background video patterns */}
+        {/* HEADLINE IMPLEMENTATION: Official Tailwind CSS documentation supports text overlay with backdrop blur and opacity for readability */}
+        <div className="min-h-screen flex flex-col items-center justify-center relative text-center px-6 sm:px-8 lg:px-12">
+          
+          {/* Main Headline - From CMS Hero Content */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text shadow and backdrop patterns for video overlays */}
+          {/* TEXT OVERLAY REASON: Official Tailwind CSS docs recommend text-shadow and backdrop-blur for text readability over video backgrounds */}
+          <div className="mb-8 md:mb-12">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-bold text-white mb-4 md:mb-6 text-shadow-lg backdrop-blur-sm">
+              {heroContent.title}
+            </h1>
+            
+            {/* Subtitle */}
+            <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-light mb-8 md:mb-12 max-w-4xl mx-auto text-shadow-md backdrop-blur-sm">
+              {heroContent.subtitle}
+            </p>
+          </div>
+
+          {/* Single Play Button */}
+          {/* CMS DATA SOURCE: Context7 MCP - Tailwind CSS centering and button styling */}
+          {/* Reference: /tailwindlabs/tailwindcss.com - Flexbox centering and hover effects */}
+          {/* Pattern: Professional circular play button with accessibility features */}
           <div className="relative group">
             {/* Background glow effect */}
             <div className="absolute inset-0 bg-white/20 rounded-full blur-xl scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500" />
@@ -173,7 +216,7 @@ export function HeroSection({
             {/* Pattern: Professional circular play button with accessibility features */}
             <button
               onClick={handleVideoOpen}
-              className="relative w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 bg-white/70 backdrop-blur-sm rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center border-4 border-white/20 hover:border-white/40"
+              className="relative w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-white/70 backdrop-blur-sm rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center border-4 border-white/20 hover:border-white/40"
               aria-label="Play introduction video"
               type="button"
             >
@@ -188,7 +231,7 @@ export function HeroSection({
               {/* Reference: /context7/lucide_dev-guide - Icon component props and styling */}
               {/* Pattern: Responsive icon sizing with professional styling */}
               <Play 
-                className="relative z-10 w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 text-slate-700 group-hover:text-slate-900 transition-colors duration-300 ml-1"
+                className="relative z-10 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-slate-700 group-hover:text-slate-900 transition-colors duration-300 ml-1"
                 fill="currentColor"
                 strokeWidth={0}
               />

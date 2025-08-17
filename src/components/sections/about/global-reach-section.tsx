@@ -102,7 +102,10 @@ export function GlobalReachSection({
   }
 
   return (
-    <section className={`relative py-20 lg:py-28 overflow-hidden ${className}`}>
+    <section 
+      id="global-reach"
+      className={`relative py-20 lg:py-28 overflow-hidden ${className}`}
+    >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background gradient patterns for premium sections */}
       {/* PREMIUM BACKGROUND REASON: Official Tailwind CSS documentation Section 5.1 for subtle gradient backgrounds */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-accent-50 opacity-60" />

@@ -1,4 +1,15 @@
 {
+  "_comments": {
+    "lastUpdated": "2025-01-16",
+    "recentChanges": [
+      {
+        "change": "Updated aboutSection.title to 'World-Class Education, At Your Fingertips'",
+        "reason": "CONTEXT7 SOURCE: /vercel/next.js - Consistent headline strategy across homepage components",
+        "date": "2025-01-16",
+        "source": "Homepage audit findings - critical UX improvement"
+      }
+    ]
+  },
   "header": {
     "siteName": "My Private Tutor Online",
     "logo": {
@@ -63,7 +74,7 @@
     ]
   },
   "aboutSection": {
-    "title": "Expert Private Tutoring, Personally Curated by Elizabeth Burrows",
+    "title": "World-Class Education, At Your Fingertips",
     "subtitle": "Founded on trust. Built on results. Delivered by experts.",
     "description": "At the heart of My Private Tutor Online is a singular vision: academic support that is both exceptional and deeply personal. Founded in 2010 by Elizabeth Burrows—a Cambridge-accepted educator and former Forbes journalist—the company began not as a business, but as a trusted network of elite colleagues she met throughout her international tutoring career.",
     "continuedDescription": "What started as a circle of personal recommendations has since evolved—organically and exclusively—into one of the UK's most respected names in specialist private tutoring. As testament, My Private Tutor Online is honoured to be featured in Tatler's Address Book and recognised as School Guide UK's 'Top Pick' for private tuition.",

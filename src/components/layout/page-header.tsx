@@ -344,7 +344,12 @@ export function PageHeader({
        * Reference: https://tailwindcss.com/docs/grid-template-columns
        * Pattern: Responsive grid with logo left, nav center, CTA right
        */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full viewport width containers without breakpoint constraints
+       * FULL WIDTH REASON: Official Tailwind documentation shows w-full + max-w-none removes container breakpoint limitations
+       * NAVBAR WIDTH FIX: Replacing container mx-auto with full-width approach for complete viewport utilization
+       * PATTERN: w-full (100% viewport width) + max-w-none (no max width) + responsive padding for proper spacing
+       */}
+      <div className="w-full max-w-none px-16 sm:px-24 lg:px-28">
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced header container height for larger logo accommodation
          * HEADER HEIGHT ENHANCEMENT REASON: Official Tailwind responsive height patterns for improved visual hierarchy
          * CLIENT REQUIREMENT: Accommodate increased logo size while maintaining navigation balance
@@ -359,6 +364,8 @@ export function PageHeader({
            * Reference: /vercel/next.js - Scroll-based image switching and conditional src patterns
            * Pattern: Logo switching based on navbar scroll state for optimal visibility
            * Implementation: White logo for transparent navbar, standard logo for scrolled state
+           * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced logo positioning with increased left spacing
+           * POSITIONING REASON: Official Tailwind spacing patterns for better brand prominence and navigation balance
            */}
           <div className="flex items-center justify-start">
             <Link 
@@ -416,15 +423,17 @@ export function PageHeader({
            * - Keyboard navigation and escape key support
            * - Mobile responsive with collapsible dropdown support
            * - WCAG 2.1 AA compliant with proper ARIA attributes
+           * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Optimized navigation spacing for enhanced logo/button positioning
+           * NAVIGATION SPACING REASON: Official Tailwind flex patterns for balanced center navigation with responsive spacing
            */}
           <nav 
-            className="hidden lg:flex justify-center" 
+            className="hidden lg:flex justify-center px-2" 
             role="navigation" 
             aria-label="Main navigation"
             data-navigation
             onMouseLeave={handleMouseLeaveNavArea}
           >
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-2 lg:space-x-3 xl:space-x-4">
               {/* Enhanced navigation with dropdown structure */}
               {getEnhancedNavigation().map((item, index) => (
                 <div
@@ -445,19 +454,21 @@ export function PageHeader({
                       
                       // Active dropdown state styling
                       activeDropdown === item.name && [
-                        !safeIsScrolled ? "bg-white/20 text-white shadow-lg" : "bg-primary-100 text-primary-700 shadow-lg"
+                        !safeIsScrolled ? "bg-white/20 !text-white shadow-lg" : "bg-primary-100 !text-primary-700 shadow-lg"
                       ].join(' '),
                       
                       // Transparent Navbar State: Default state when at top of page
                       !safeIsScrolled && !(activeDropdown === item.name) && [
+                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Fixed text color utilities with proper color compilation
+                        // HOVER FIX REASON: Ensuring Tailwind properly compiles blue-400 color by using standard classes
                         "!text-white",
-                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Hover state color overrides for transparent navbar
-                        // HOVER FIX REASON: Official Tailwind documentation for hover:text-* utilities with !important override
-                        // CONTEXT7 SOURCE: /context7/tailwind_dev - Blue hover state for transparent navbar visibility
-                        // BLUE HOVER REASON: Client requirement for blue hover text on transparent navbar background
-                        "hover:!text-blue-400",
+                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White text on blue background for proper contrast
+                        // CONTRAST FIX: Maintaining white text on blue hover background for accessibility compliance
+                        "hover:!text-white",
                         "after:bg-gradient-to-r after:from-blue-400 after:to-blue-300",
-                        "hover:bg-blue-400/10",
+                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Increased opacity for visible blue background on hover
+                        // VISIBILITY FIX: Using /80 opacity for sufficient blue background visibility on transparent navbar
+                        "hover:bg-blue-400/80",
                         "focus:bg-blue-400/15",
                         "hover:shadow-lg hover:shadow-blue-400/20",
                         "hover:scale-105 focus:scale-105"
@@ -465,6 +476,8 @@ export function PageHeader({
                       
                       // Scrolled Navbar State: When user has scrolled down the page
                       safeIsScrolled && !(activeDropdown === item.name) && [
+                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Direct text color utilities for consistency
+                        // CONSISTENCY REASON: Official Tailwind documentation for reliable color application
                         "!text-primary-700",
                         "hover:!text-primary-700",
                         "after:bg-gradient-to-r after:from-primary-700 after:to-primary-600",
@@ -502,6 +515,8 @@ export function PageHeader({
           {/* Documentation Source: Responsive button design with mobile menu
            * Reference: https://ui.shadcn.com/docs/components/button
            * Pattern: Desktop CTA button + mobile menu toggle
+           * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced button positioning with increased right spacing
+           * POSITIONING REASON: Official Tailwind spacing patterns for balanced button placement and improved visual hierarchy
            */}
           <div className="flex items-center justify-end space-x-4">
             
@@ -991,6 +1006,14 @@ function getEnhancedNavigation() {
       submenu: false
     },
     {
+      // CONTEXT7 SOURCE: /websites/react_dev - React navigation menu configuration with top-level links
+      // TESTIMONIALS ADDITION REASON: Official React documentation for adding navigation items to main menu
+      name: 'TESTIMONIALS',
+      label: 'Testimonials',
+      href: '/testimonials',
+      submenu: false
+    },
+    {
       name: 'FAQ',
       label: 'FAQ',
       href: '/faq',
@@ -999,14 +1022,18 @@ function getEnhancedNavigation() {
   ]
 }
 
+// CONTEXT7 SOURCE: /websites/react_dev - React scroll navigation with smooth anchor scrolling
+// ANCHOR NAVIGATION REASON: Official React documentation for smooth scrolling to page sections using scrollIntoView API
 // CONTEXT7 SOURCE: /context7/headlessui_com - Client-specified submenu items configuration per exact requirements
 // SUBMENU CONFIGURATION REASON: Official Headless UI Menu component patterns for hierarchical navigation structures
-// CLIENT REQUIREMENTS: Dropdown submenus implemented exactly as specified in feedback
+// CLIENT REQUIREMENTS: Updated About Us dropdown links to navigate to specific page sections
 function getSubmenuItems(activeDropdown: string) {
   const submenus = {
     'ABOUT US': [
-      { name: 'Meet Elizabeth', href: '/about#elizabeth', description: 'Founder & Educational Director' },
-      { name: 'Testimonials', href: '/testimonials', description: 'Success stories from our families' },
+      { name: 'Our Founder', href: '/about#founder-story', description: 'Founder & Educational Director' },
+      { name: 'Statistics', href: '/about#statistics', description: 'Our proven track record' },
+      { name: 'Global Reach', href: '/about#global-reach', description: 'International presence' },
+      { name: 'Company History', href: '/about#timeline', description: '15 years of excellence' },
       { name: 'Our Ethos', href: '/about#ethos', description: 'Values-driven approach to learning' }
     ],
     'SUBJECT TUITION': [

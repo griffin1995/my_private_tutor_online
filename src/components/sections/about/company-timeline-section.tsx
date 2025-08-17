@@ -62,7 +62,10 @@ export function CompanyTimelineSection() {
   const timelineData = getCompanyTimeline()
 
   return (
-    <section className="py-16 lg:py-24 bg-slate-50">
+    <section 
+      id="timeline"
+      className="py-16 lg:py-24 bg-slate-50"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Section Header */}
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component composition patterns for reusable UI */}

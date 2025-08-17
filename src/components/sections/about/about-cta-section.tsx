@@ -56,7 +56,7 @@ interface AboutCtaSectionProps {
  * CTA SECTION REASON: Official Motion documentation demonstrates whileInView patterns for professional call-to-action animations
  */
 export const AboutCtaSection: React.FC<AboutCtaSectionProps> = ({
-  title = "Ready to Begin Your Journey?",
+  title = "Ready to Start the Conversation?",
   subtitle = "Join hundreds of families who have discovered the difference personalised tutoring can make",
   backgroundColor = "bg-primary-900",
   className = "",

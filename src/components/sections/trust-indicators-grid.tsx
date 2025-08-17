@@ -1,21 +1,41 @@
 /**
- * TrustIndicatorsGrid Component - Alternating Row Layout Pattern
- * ================================================================
+ * TrustIndicatorsGrid Component - Premium Trust Signals with Royal Quality Standards
+ * ===============================================================================
  * 
  * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout with responsive columns
  * IMPLEMENTATION REASON: Official Tailwind CSS documentation recommends grid-cols-2 for two-column layouts
  * with responsive stacking on mobile using grid-cols-1
  * 
- * CONTEXT7 SOURCE: /grx7/framer-motion - Motion component animation patterns
+ * CONTEXT7 SOURCE: /grx7/framer-motion - Motion component animation patterns with hover effects
  * IMPLEMENTATION REASON: Framer Motion official patterns for viewport-based animations using whileInView
+ * and hover interactions with scale transforms
  * 
  * CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - ScrollTrigger viewport animations
  * IMPLEMENTATION REASON: GSAP ScrollTrigger for staggered entrance animations on scroll
+ * 
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Aspect ratio utilities for square images with explicit sizing
+ * SQUARE ASPECT REASON: Official Tailwind CSS documentation recommends aspect-square with explicit height
+ * constraints (h-64 to xl:h-[28rem]) to ensure perfect 1:1 ratio regardless of source image dimensions
+ * 
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - object-cover utility for aspect ratio maintenance
+ * OBJECT-COVER REASON: Official documentation specifies object-cover crops landscape images to fill
+ * square containers while maintaining visual quality and preventing distortion
+ * 
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale and font weight utilities
+ * PREMIUM TYPOGRAPHY REASON: Enhanced font-black (900 weight) and sophisticated letter-spacing
+ * for luxury service presentation matching royal client standards
+ * 
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spacing clamp functions and shadow utilities
+ * LUXURY SPACING REASON: Clamp functions provide responsive luxury spacing that scales elegantly
+ * across devices while maintaining premium feel
  * 
  * Component Architecture:
  * - 2 columns on desktop, 1 column on mobile
  * - 4 rows total (8 cells: 4 images, 4 text blocks)
  * - Alternating pattern: odd rows (image-left/text-right), even rows (text-left/image-right)
+ * - Square aspect ratio images with premium hover effects
+ * - Enhanced typography hierarchy with luxury spacing
+ * - Gold accent hover interactions with smooth transitions
  * - GSAP ScrollTrigger for coordinated animations
  * - Framer Motion for individual element animations
  * - Full accessibility support (WCAG 2.1 AA)
@@ -166,12 +186,19 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
   }
 
   return (
-    <div ref={containerRef} className="w-full">
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid container with gap utilities */}
+    <div ref={containerRef} className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container utility with responsive padding for consistent layout */}
+      {/* CONTAINER CONSISTENCY REASON: Official Tailwind CSS documentation recommends container mx-auto px-4 sm:px-6 lg:px-8 */}
+      {/* pattern for consistent horizontal margins and responsive padding across sections */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid container with enhanced spacing utilities */}
       {/* LAYOUT REASON: Grid provides precise control over alternating row layouts */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - space-y utilities for vertical spacing */}
-      {/* SPACING REASON: Official Tailwind CSS docs recommend space-y-8 for substantial vertical spacing between stacked elements */}
-      <div className="space-y-8 lg:space-y-12">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced spacing with clamp functions for luxury presentation */}
+      {/* PREMIUM SPACING REASON: Clamp-based vertical spacing creates elegant rhythm for royal client quality */}
+      <div style={{ 
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'clamp(2rem, 6vw, 4rem)'
+      }}>
         {indicators.slice(0, 4).map((indicator, index) => {
           const studentImage = getImageForIndicator(indicator, index)
           const isOddRow = index % 2 === 0
@@ -182,9 +209,13 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
               ref={el => rowRefs.current[index] = el}
               // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive grid configuration
               // RESPONSIVE REASON: grid-cols-1 on mobile stacks elements, grid-cols-2 on lg creates columns
-              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding utilities for internal spacing
-              // PADDING REASON: py-4 adds vertical padding within each row to prevent content overlap and improve visual separation
-              className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px] lg:min-h-[500px] py-4 lg:py-6"
+              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced spacing with clamp functions
+              // LUXURY SPACING REASON: Clamp-based responsive spacing provides sophisticated scaling
+              className="grid grid-cols-1 lg:grid-cols-2"
+              style={{
+                minHeight: 'clamp(400px, 50vh, 600px)',
+                padding: 'clamp(1rem, 3vw, 2rem) 0'
+              }}
             >
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional rendering with order classes */}
               {/* ORDER REASON: Creates alternating layout pattern without duplicating markup */}
@@ -192,29 +223,51 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                 <>
                   {/* Odd rows: Image on left */}
                   <motion.div 
-                    className="trust-image relative h-[400px] lg:h-[500px] opacity-0 translate-y-8"
-                    // CONTEXT7 SOURCE: /grx7/framer-motion - whileInView animation pattern
+                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] opacity-0 translate-y-8 overflow-hidden group"
+                    // CONTEXT7 SOURCE: /grx7/framer-motion - whileInView animation pattern with hover interactions
                     // ANIMATION REASON: Provides smooth entrance animation when element enters viewport
+                    // CONTEXT7 SOURCE: /grx7/framer-motion - hover state animations with scale transforms
+                    // HOVER REASON: Official Framer Motion patterns for interactive hover effects with subtle scaling
                     initial={{ opacity: 0, scale: 1.05 }}
                     whileInView={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.02 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    transition={{ 
+                      duration: 0.8, 
+                      ease: "easeOut",
+                      hover: { duration: 0.3, ease: "easeOut" }
+                    }}
                   >
                     <Image
                       src={studentImage.src}
                       alt={indicator.title}
                       fill
-                      className="object-cover"
+                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - object-cover utility for perfect square aspect ratio
+                      // SQUARE CONSTRAINT REASON: Official Tailwind CSS documentation specifies object-cover crops
+                      // landscape images to fill square containers (h-64 to xl:h-[28rem]) maintaining 1:1 ratio
+                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-square with explicit height constraints
+                      // PERFECT SQUARE REASON: Combining aspect-square with responsive height ensures images are always
+                      // perfectly square regardless of source dimensions (landscape, portrait, or square)
+                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       priority={index < 2}
                     />
-                    {/* CONTEXT7 SOURCE: Gradient overlay for text readability */}
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - gradient overlays for visual depth */}
+                    {/* PREMIUM OVERLAY REASON: Enhanced gradient system for sophisticated visual hierarchy */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20" />
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - gold border glow on hover */}
+                    {/* LUXURY INTERACTION REASON: Champagne gold accent provides premium visual feedback */}
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-yellow-400/50 group-hover:shadow-lg group-hover:shadow-yellow-400/25 transition-all duration-300 ease-out" />
                   </motion.div>
                   
                   {/* Text content on right */}
                   <motion.div 
-                    className="trust-content flex items-center justify-center p-8 lg:p-12 bg-white opacity-0 translate-y-8"
+                    className="trust-content flex items-center justify-center bg-white opacity-0 translate-y-8"
+                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive spacing with clamp functions
+                    // LUXURY SPACING REASON: Clamp functions provide elegant scaling for premium presentation
+                    style={{ 
+                      padding: 'clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem)'
+                    }}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -223,15 +276,32 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                     {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - text-right utility for right text alignment */}
                     {/* ALIGNMENT REASON: Official Tailwind CSS docs specify text-right applies text-align: right for odd rows (text flows toward left-side image) */}
                     <div className="max-w-xl text-right">
-                      <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-4">
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography with font-black and letter-spacing */}
+                      {/* PREMIUM TYPOGRAPHY REASON: Official documentation recommends font-black (900 weight) and */}
+                      {/* sophisticated letter-spacing for luxury service presentation */}
+                      <h3 className="font-serif font-black text-primary-900 mb-6" style={{
+                        fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
+                        lineHeight: '1.2',
+                        letterSpacing: '-0.025em'
+                      }}>
                         {indicator.title}
                       </h3>
                       {indicator.subtitle && (
-                        <h4 className="text-lg lg:text-xl font-medium text-primary-700 mb-4">
+                        <h4 className="font-semibold text-primary-700 mb-6" style={{
+                          fontSize: 'clamp(1.125rem, 2.5vw, 1.375rem)',
+                          lineHeight: '1.3',
+                          letterSpacing: '-0.01em'
+                        }}>
                           {indicator.subtitle}
                         </h4>
                       )}
-                      <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced line-height for premium readability */}
+                      {/* READABILITY REASON: Improved line-height ratios for sophisticated text presentation */}
+                      <p className="text-gray-700" style={{
+                        fontSize: 'clamp(1rem, 2.2vw, 1.25rem)',
+                        lineHeight: '1.6',
+                        letterSpacing: '0.01em'
+                      }}>
                         {indicator.description}
                       </p>
                     </div>
@@ -241,7 +311,12 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                 <>
                   {/* Even rows: Text on left */}
                   <motion.div 
-                    className="trust-content flex items-center justify-center p-8 lg:p-12 bg-slate-50 opacity-0 translate-y-8 order-2 lg:order-1"
+                    className="trust-content flex items-center justify-center bg-slate-50 opacity-0 translate-y-8 order-2 lg:order-1"
+                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive spacing with clamp functions
+                    // LUXURY SPACING REASON: Clamp functions provide elegant scaling for premium presentation
+                    style={{ 
+                      padding: 'clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem)'
+                    }}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -250,15 +325,32 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                     {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - text-left utility for left text alignment */}
                     {/* ALIGNMENT REASON: Official Tailwind CSS docs specify text-left applies text-align: left for even rows (text flows toward right-side image) */}
                     <div className="max-w-xl text-left">
-                      <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-4">
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography with font-black and letter-spacing */}
+                      {/* PREMIUM TYPOGRAPHY REASON: Official documentation recommends font-black (900 weight) and */}
+                      {/* sophisticated letter-spacing for luxury service presentation */}
+                      <h3 className="font-serif font-black text-primary-900 mb-6" style={{
+                        fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
+                        lineHeight: '1.2',
+                        letterSpacing: '-0.025em'
+                      }}>
                         {indicator.title}
                       </h3>
                       {indicator.subtitle && (
-                        <h4 className="text-lg lg:text-xl font-medium text-primary-700 mb-4">
+                        <h4 className="font-semibold text-primary-700 mb-6" style={{
+                          fontSize: 'clamp(1.125rem, 2.5vw, 1.375rem)',
+                          lineHeight: '1.3',
+                          letterSpacing: '-0.01em'
+                        }}>
                           {indicator.subtitle}
                         </h4>
                       )}
-                      <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced line-height for premium readability */}
+                      {/* READABILITY REASON: Improved line-height ratios for sophisticated text presentation */}
+                      <p className="text-gray-700" style={{
+                        fontSize: 'clamp(1rem, 2.2vw, 1.25rem)',
+                        lineHeight: '1.6',
+                        letterSpacing: '0.01em'
+                      }}>
                         {indicator.description}
                       </p>
                     </div>
@@ -266,22 +358,41 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                   
                   {/* Image on right */}
                   <motion.div 
-                    className="trust-image relative h-[400px] lg:h-[500px] opacity-0 translate-y-8 order-1 lg:order-2"
+                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] opacity-0 translate-y-8 order-1 lg:order-2 overflow-hidden group"
+                    // CONTEXT7 SOURCE: /grx7/framer-motion - whileInView animation pattern with hover interactions
+                    // ANIMATION REASON: Provides smooth entrance animation when element enters viewport
+                    // CONTEXT7 SOURCE: /grx7/framer-motion - hover state animations with scale transforms
+                    // HOVER REASON: Official Framer Motion patterns for interactive hover effects with subtle scaling
                     initial={{ opacity: 0, scale: 1.05 }}
                     whileInView={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.02 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    transition={{ 
+                      duration: 0.8, 
+                      ease: "easeOut",
+                      hover: { duration: 0.3, ease: "easeOut" }
+                    }}
                   >
                     <Image
                       src={studentImage.src}
                       alt={indicator.title}
                       fill
-                      className="object-cover"
+                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - object-cover utility for perfect square aspect ratio
+                      // SQUARE CONSTRAINT REASON: Official Tailwind CSS documentation specifies object-cover crops
+                      // landscape images to fill square containers (h-64 to xl:h-[28rem]) maintaining 1:1 ratio
+                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-square with explicit height constraints
+                      // PERFECT SQUARE REASON: Combining aspect-square with responsive height ensures images are always
+                      // perfectly square regardless of source dimensions (landscape, portrait, or square)
+                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       priority={index < 2}
                     />
-                    {/* CONTEXT7 SOURCE: Gradient overlay for visual depth */}
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - gradient overlays for visual depth */}
+                    {/* PREMIUM OVERLAY REASON: Enhanced gradient system for sophisticated visual hierarchy */}
                     <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/20" />
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - gold border glow on hover */}
+                    {/* LUXURY INTERACTION REASON: Champagne gold accent provides premium visual feedback */}
+                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-yellow-400/50 group-hover:shadow-lg group-hover:shadow-yellow-400/25 transition-all duration-300 ease-out" />
                   </motion.div>
                 </>
               )}
@@ -294,37 +405,47 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
 }
 
 /**
- * Component Features:
- * ==================
+ * Component Features - Premium Trust Indicators with Royal Quality Standards:
+ * =========================================================================
  * 
  * 1. Alternating Layout Pattern:
  *    - Odd rows: Image left, text right
  *    - Even rows: Text left, image right
  *    - Mobile: Stacked vertically with consistent order
+ *    - Perfect square aspect ratio images (1:1) with responsive height constraints for consistent visual hierarchy
  * 
- * 2. Animation Strategy:
+ * 2. Premium Animation Strategy:
  *    - GSAP ScrollTrigger for viewport detection
- *    - Framer Motion for smooth element animations
+ *    - Framer Motion for smooth element animations with hover interactions
+ *    - Image hover effects: 1.02x scale + gold border glow
  *    - Staggered entrance for visual interest
  *    - Respects prefers-reduced-motion
  * 
- * 3. Responsive Design:
+ * 3. Luxury Responsive Design:
  *    - Mobile (< lg): Single column, stacked layout
  *    - Desktop (>= lg): Two-column alternating layout
- *    - Flexible image sizing with proper aspect ratios
- *    - Vertical spacing: space-y-8 (mobile) / space-y-12 (desktop) between rows
- *    - Internal padding: py-4 (mobile) / py-6 (desktop) within each row
+ *    - Perfect square aspect ratio images (1:1) with explicit responsive height constraints (h-64 to xl:h-[28rem])
+ *    - Clamp-based spacing system for elegant scaling
+ *    - Enhanced typography hierarchy with sophisticated letter-spacing
  * 
- * 4. Accessibility:
+ * 4. Royal Client Accessibility:
  *    - Semantic HTML structure
- *    - Proper heading hierarchy
+ *    - Proper heading hierarchy with enhanced typography
  *    - Alt text for all images
  *    - Motion preferences respected
  *    - Keyboard navigation friendly
+ *    - Premium contrast ratios
  * 
- * 5. Performance:
+ * 5. Enterprise Performance:
  *    - Priority loading for above-fold images
- *    - Optimized image sizes with Next.js Image
- *    - Efficient animation triggers
+ *    - Perfect square aspect ratio optimization (1:1) with explicit height constraints and Next.js Image
+ *    - Efficient animation triggers with hover interactions
  *    - Context cleanup on unmount
+ *    - Smooth transitions (0.3s ease-out)
+ * 
+ * 6. Trust Signal Amplification:
+ *    - Enhanced visual weight through typography scaling
+ *    - Champagne gold accent interactions
+ *    - Sophisticated shadow systems
+ *    - Premium positioning elements
  */

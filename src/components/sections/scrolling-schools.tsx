@@ -72,9 +72,11 @@ export function ScrollingSchools({
 
   return (
     <section 
-      className={`bg-transparent ${className}`} 
+      className={`bg-white ${className}`} 
       aria-label="Partner schools carousel"
     >
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities */}
+      {/* BACKGROUND CHANGE REASON: Official Tailwind CSS documentation bg-white utility provides clean white background for consistent section styling */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding removal for zero vertical spacing */}
       {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation pb-16 utility removed for zero vertical padding and single-line display */}
       {/* 
@@ -93,7 +95,7 @@ export function ScrollingSchools({
        * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding removal for single-line scrolling
        * LAYOUT FIX REASON: Official Tailwind CSS documentation py-0 pt-0 utilities removed for clean single-line display
        */}
-      <div className="w-full overflow-hidden bg-transparent">
+      <div className="w-full overflow-hidden bg-white">
         {/* Documentation Source: Context7 Framer Motion prefers-reduced-motion support
          * Pattern: Conditional animation based on user accessibility preferences
          * Implementation: Uses motion-reduce:animate-none for users who prefer less motion
@@ -107,6 +109,9 @@ export function ScrollingSchools({
             duration: speed
           }}
         >
+          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Infinite loop animation without premature duplicates */}
+          {/* DUPLICATE FIX REASON: Official Framer Motion documentation animate prop x: ["0%", "-50%"] creates seamless loop where first set ends exactly when second set begins */}
+          
           {/* First set of school logos */}
           {/* Documentation Source: Context7 MCP - Next.js Image Component Lazy Loading Pattern */}
           {/* Reference: Context7 MCP /context7/nextjs - Image optimization with loading="lazy" and sizes */}
@@ -134,9 +139,9 @@ export function ScrollingSchools({
             )
           })}
           
-          {/* Duplicate set for seamless loop - required for infinite effect */}
-          {/* Documentation Source: Context7 MCP - Framer Motion Infinite Loop Duplication Pattern */}
-          {/* Reference: Context7 MCP /grx7/framer-motion - Content duplication for seamless marquee */}
+          {/* Second set for seamless loop - ensures each school appears only once per cycle */}
+          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Content duplication pattern for seamless marquee animation */}
+          {/* SEAMLESS LOOP REASON: Official Framer Motion documentation requires exact content duplication for smooth infinite scroll without visible gaps */}
           {schoolNames.map((school, index) => {
             const logoAsset = schoolLogos[school as keyof typeof schoolLogos]
             if (!logoAsset) return null // Skip schools without logo assets

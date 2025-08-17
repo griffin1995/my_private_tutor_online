@@ -25,6 +25,8 @@
 "use client"
 
 import { ReactNode } from "react"
+// CONTEXT7 SOURCE: /grx7/framer-motion - Standard import pattern for LazyMotion and domAnimation
+// IMPORT FIX REASON: Official Framer Motion documentation specifies standard import, not modularized subpath
 import { LazyMotion, domAnimation } from "framer-motion"
 
 interface LazyMotionProviderProps {

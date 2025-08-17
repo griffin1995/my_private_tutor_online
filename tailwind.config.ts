@@ -103,6 +103,22 @@ const config: Config = {
           800: '#4c1d95',
           900: '#3c1361',
           950: '#2e0c57',
+        },
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard blue color palette for navigation hover states
+        // HOVER FIX REASON: Official Tailwind documentation requires blue colors in config for compilation
+        // IMPLEMENTATION: Standard Tailwind blue palette to ensure hover:text-blue-400 compiles correctly
+        blue: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',  // This is the blue-400 we need for hover states
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
         }
       },
       

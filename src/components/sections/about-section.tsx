@@ -36,6 +36,11 @@ import Image from 'next/image'
 // Pattern: Consistent iconography with tree-shaking support
 import { Crown } from 'lucide-react'
 
+// CONTEXT7 SOURCE: /magicuidesign/magicui - Aurora Text component import
+// MAGIC UI INTEGRATION: Premium aurora text effect for enhanced visual appeal
+// BRAND ENHANCEMENT: Royal client-worthy text animations matching luxury standards
+import { AuroraText } from '@/components/magicui/aurora-text'
+
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
  * Reference: /microsoft/typescript - Interface definitions for component props
@@ -70,7 +75,7 @@ interface AboutSectionProps {
 export function AboutSection({ 
   className = "",
   backgroundColor = "bg-primary-50",
-  title = "Expert Private Tutoring, Personally Curated by Elizabeth Burrows",
+  title = "World-Class Education, At Your Fingertips",
   founderImageUrl = "/images/team/elizabeth-burrows-founder-spare.jpg",
   founderImageAlt = "Elizabeth Burrows, Founder of My Private Tutor Online"
 }: AboutSectionProps) {
@@ -82,8 +87,17 @@ export function AboutSection({
           
           {/* Text Content - Left Side */}
           <div className="space-y-6 min-h-0">
+            {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Aurora Text with mixed text styling */}
+            {/* ENHANCEMENT: Split Aurora Text for specific words only while maintaining animation */}
+            {/* PATTERN: Mixed normal and aurora text within single semantic h2 element */}
+            {/* REVISION REASON: Apply aurora effect only to "Education" and "Fingertips" words per requirements */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive font sizing optimization for preventing line wrapping */}
+            {/* TEXT SIZE REDUCTION: Reduced from text-4xl lg:text-5xl xl:text-6xl to text-3xl lg:text-4xl xl:text-5xl */}
+            {/* SIZING RATIONALE: Following Tailwind CSS font size progression (text-3xl=1.875rem/30px, text-4xl=2.25rem/36px, text-5xl=3rem/48px) */}
+            {/* LINE WRAPPING PREVENTION: Ensures "World-Class Education," stays on single line at all breakpoints */}
+            {/* RESPONSIVE BREAKPOINTS: Mobile 30px → Large (1024px+) 36px → XL (1280px+) 48px */}
             <m.h2 
-              className="text-3xl lg:text-4xl font-serif font-bold text-primary-900"
+              className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -93,7 +107,23 @@ export function AboutSection({
                 delay: 0.1
               }}
             >
-              {title}
+              <span className="text-primary-900">World-Class </span>
+              <AuroraText 
+                className="text-primary-900"
+                speed={0.8}
+              >
+                Education
+              </AuroraText>
+              <span className="text-primary-900">,</span>
+              <br />
+              <span className="text-primary-900">At Your </span>
+              <AuroraText 
+                className="text-primary-900"
+                speed={0.8}
+              >
+                Fingertips
+              </AuroraText>
+              <span className="text-primary-900">.</span>
             </m.h2>
             
             {/* 
@@ -108,7 +138,9 @@ export function AboutSection({
              * - Improves page reading flow by removing repetitive content
              */}
             
-            <div className="space-y-4 text-lg text-primary-700 leading-relaxed">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scaling for visual hierarchy */}
+            {/* TEXT SIZE UPDATE: Increased paragraph size from text-lg to text-xl for consistency with larger heading */}
+            <div className="space-y-4 text-xl text-primary-700 leading-relaxed">
               <m.p
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}

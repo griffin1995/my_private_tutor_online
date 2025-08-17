@@ -134,6 +134,36 @@
  */
 html {
   scroll-behavior: smooth;
+  /* CONTEXT7 SOURCE: /w3c/css-scroll-snap - CSS scroll-padding-top for fixed header anchor offset
+   * ANCHOR SCROLL FIX REASON: Official W3C CSS spec for scroll-padding-top prevents fixed headers from overlapping anchor content
+   * RESPONSIVE HEADER FIX: Accounts for navbar height variations across breakpoints (80px mobile → 96px lg → 112px xl)
+   * IMPLEMENTATION: Progressive scroll padding to match header heights in page-header.tsx
+   * - Mobile (default): 80px (h-20)
+   * - Large screens: 96px (lg:h-24) 
+   * - Extra large: 112px (xl:h-28)
+   * - Additional 16px buffer for visual spacing below fixed navbar
+   */
+  scroll-padding-top: 96px; /* Mobile: 80px + 16px buffer */
+}
+
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Responsive scroll-padding-top for larger viewports
+ * RESPONSIVE SCROLL PADDING REASON: Official Tailwind documentation for responsive CSS properties
+ * LARGE SCREENS: Matches lg:h-24 navbar height (96px) + 16px buffer = 112px
+ */
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 112px; /* Large: 96px + 16px buffer */
+  }
+}
+
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Extra large viewport scroll padding adjustment
+ * XL RESPONSIVE REASON: Official Tailwind breakpoint system for xl:h-28 navbar height
+ * EXTRA LARGE SCREENS: Matches xl:h-28 navbar height (112px) + 16px buffer = 128px
+ */
+@media (min-width: 1280px) {
+  html {
+    scroll-padding-top: 128px; /* Extra Large: 112px + 16px buffer */
+  }
 }
 
 body {
@@ -191,17 +221,49 @@ p {
   font-weight: 400;
 }
 
-/* Premium Link Styling with Brand Colors */
-a {
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Scoped link styling to exclude navigation elements
+ * SCOPE FIX REASON: Official CSS selector specificity patterns to prevent conflicts with Tailwind utilities
+ * NAVIGATION EXCLUSION: Global link styles must not override navbar Tailwind classes
+ * PATTERN: :not() pseudo-selector excludes navigation from global link styling
+ */
+
+/* Premium Link Styling with Brand Colors - Excludes Navigation */
+a:not(nav a):not([data-navigation] a) {
   color: var(--color-accent);
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }
 
-a:hover {
+a:not(nav a):not([data-navigation] a):hover {
   color: var(--color-accent-dark);
   text-decoration: underline;
 }
+
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Minimal navbar link styling to prevent global link conflicts
+ * NAVBAR FIX REASON: Official CSS specificity documentation recommends minimal global overrides for component libraries
+ * TAILWIND COMPATIBILITY: Allowing Tailwind utility classes to control all navbar styling without CSS conflicts
+ */
+nav a, [data-navigation] a {
+  text-decoration: none;
+  /* Removed color: inherit !important to allow Tailwind color utilities to work */
+  /* Removed !important flags to prevent Tailwind class conflicts */
+}
+
+nav a:hover, [data-navigation] a:hover {
+  text-decoration: none;
+}
+
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Removed navbar link override for hover state compatibility
+ * HOVER FIX REASON: Official Tailwind CSS documentation recommends using utility classes over custom CSS
+ * Eliminates CSS specificity conflicts by letting Tailwind handle all navbar styling
+ * Allows hover:!text-blue-400 and other Tailwind hover states to work properly
+ */
+
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Removed conflicting navbar classes
+ * HOVER FIX REASON: Official Tailwind CSS documentation recommends using utility classes over custom CSS
+ * Eliminates CSS specificity conflicts by letting Tailwind handle all navbar styling
+ * navbar-link-white and navbar-link-blue classes removed to prevent !important conflicts
+ */
 
 /* Focus States for Accessibility */
 a:focus-visible,
@@ -255,6 +317,34 @@ textarea:focus-visible {
 }
 
 /**
+ * CONTEXT7 SOURCE: /magicuidesign/magicui - Aurora Text animation keyframes
+ * AURORA ANIMATION: Northern lights gradient effect with dynamic positioning and scaling
+ * MAGIC UI REFERENCE: Official Magic UI aurora-text component animation
+ */
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+  }
+  25% {
+    background-position: 50% 100%;
+    transform: rotate(5deg) scale(1.1);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: rotate(-3deg) scale(0.95);
+  }
+  75% {
+    background-position: 50% 0%;
+    transform: rotate(3deg) scale(1.05);
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+  }
+}
+
+/**
  * Animation Classes
  * Documentation Source: Context7 MCP - CSS Animation Utilities
  * Pattern: Reusable animation classes for consistent motion design
@@ -274,6 +364,14 @@ textarea:focus-visible {
 
 .animate-reverse-spin-slow {
   animation: reverse-spin-slow 20s linear infinite;
+}
+
+/**
+ * CONTEXT7 SOURCE: /magicuidesign/magicui - Aurora Text animation utility class
+ * AURORA CLASS: Applies aurora animation with ease-in-out timing and infinite alternate
+ */
+.animate-aurora {
+  animation: aurora 8s ease-in-out infinite alternate;
 }
 
 /**
@@ -373,7 +471,8 @@ textarea:focus-visible {
   .animate-float,
   .animate-gradient-x,
   .animate-spin-slow,
-  .animate-reverse-spin-slow {
+  .animate-reverse-spin-slow,
+  .animate-aurora {
     animation: none !important;
   }
 }
@@ -410,7 +509,7 @@ textarea:focus-visible {
   }
 
   /* Hide interactive elements in print */
-  .print\\:hidden {
+  .print\:hidden {
     display: none !important;
   }
 

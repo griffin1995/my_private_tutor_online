@@ -122,18 +122,24 @@ const nextConfig: NextConfig = {
   // CONTEXT7 SOURCE: /webpack/webpack - Advanced modularize imports for maximum tree shaking
   // Bundle optimization - Enhanced for tree shaking
   modularizeImports: {
-    'lucide-react': {
-      transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
-      preventFullImport: true,
-    },
+    // CONTEXT7 SOURCE: /lucide-icons/lucide - Disabled modularization for lucide-react due to Turbopack compatibility
+    // LUCIDE IMPORT FIX: Official Lucide documentation supports standard imports, modularization causes naming conflicts in Turbopack
+    // Standard imports like import { CheckIcon, PlusIcon } from 'lucide-react' work without transformation
+    // Turbopack compatibility issue: kebabCase transform creates check-icon.js paths but files are check.js
+    // 'lucide-react': {
+    //   transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
+    //   preventFullImport: true,
+    // },
     '@radix-ui/react-icons': {
       transform: '@radix-ui/react-icons/dist/{{member}}.js',
       preventFullImport: true,
     },
-    'framer-motion': {
-      transform: 'framer-motion/dist/es/{{member}}',
-      skipDefaultConversion: true,
-    },
+    // CONTEXT7 SOURCE: /grx7/framer-motion - Standard imports for animations (removed modularization due to Turbopack incompatibility)
+    // FRAMER-MOTION IMPORT FIX: Official Framer Motion documentation shows standard imports, modularization causes LazyMotion import errors in Turbopack
+    // 'framer-motion': {
+    //   transform: 'framer-motion/{{member}}',
+    //   skipDefaultConversion: true,
+    // },
     'date-fns': {
       transform: 'date-fns/{{member}}',
       preventFullImport: true,
@@ -160,14 +166,15 @@ const nextConfig: NextConfig = {
       transform: 'react-use/lib/{{member}}',
       preventFullImport: true,
     },
-    // CONTEXT7 SOURCE: /webpack/webpack - Zod selective imports for validation
-    'zod': {
-      transform: 'zod/lib/{{member}}',
-      skipDefaultConversion: true,
-    },
+    // CONTEXT7 SOURCE: /colinhacks/zod - Standard imports for validation (removed modularization due to Turbopack incompatibility)
+    // ZOD IMPORT FIX: Official Zod documentation shows standard imports, modularization causes 'zod/z' import errors in Turbopack
+    // 'zod': {
+    //   transform: 'zod/{{member}}',
+    //   skipDefaultConversion: true,
+    // },
     // CONTEXT7 SOURCE: /webpack/webpack - Tailwind merge optimization
     'tailwind-merge': {
-      transform: 'tailwind-merge/dist/{{member}}',
+      transform: 'tailwind-merge',
       skipDefaultConversion: true,
     },
     // CONTEXT7 SOURCE: /webpack/webpack - Zustand selective imports
