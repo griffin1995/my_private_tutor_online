@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { RoyalTrustIndicators } from '@/components/marketing/royal-trust-indicators'
 import { RoyalTestimonialCard } from '@/components/marketing/royal-testimonial-card'
-import { PremiumServiceCard } from '@/components/marketing/premium-service-card'
+import { VideoThumbnailMidCard } from '@/components/marketing/video-thumbnail-mid-card'
 
 // Mock CMS data
 jest.mock('@/lib/cms', () => ({
@@ -156,7 +156,7 @@ describe('Marketing Components', () => {
     })
   })
 
-  describe('PremiumServiceCard', () => {
+  describe('VideoThumbnailMidCard', () => {
     const mockService = {
       title: 'GCSE Excellence Programme',
       description: 'Comprehensive GCSE preparation with expert tutors',
@@ -171,7 +171,7 @@ describe('Marketing Components', () => {
     }
 
     test('renders service content correctly', () => {
-      render(<PremiumServiceCard {...mockService} />)
+      render(<VideoThumbnailMidCard {...mockService} />)
       
       expect(screen.getByText(mockService.title)).toBeInTheDocument()
       expect(screen.getByText(mockService.description)).toBeInTheDocument()
@@ -179,7 +179,7 @@ describe('Marketing Components', () => {
     })
 
     test('renders all features with checkmarks', () => {
-      render(<PremiumServiceCard {...mockService} />)
+      render(<VideoThumbnailMidCard {...mockService} />)
       
       mockService.features.forEach(feature => {
         expect(screen.getByText(feature.feature)).toBeInTheDocument()
@@ -191,26 +191,26 @@ describe('Marketing Components', () => {
     })
 
     test('shows popular badge when popular prop is true', () => {
-      render(<PremiumServiceCard {...mockService} popular={true} />)
+      render(<VideoThumbnailMidCard {...mockService} popular={true} />)
       
       expect(screen.getByText('Most Popular')).toBeInTheDocument()
     })
 
     test('displays price range when provided', () => {
-      render(<PremiumServiceCard {...mockService} priceRange="£50/hour" />)
+      render(<VideoThumbnailMidCard {...mockService} priceRange="£50/hour" />)
       
       expect(screen.getByText('£50/hour')).toBeInTheDocument()
     })
 
     test('displays duration when provided', () => {
-      render(<PremiumServiceCard {...mockService} duration="12 weeks" />)
+      render(<VideoThumbnailMidCard {...mockService} duration="12 weeks" />)
       
       expect(screen.getByText('12 weeks')).toBeInTheDocument()
     })
 
     test('calls onCTAClick when CTA button is clicked', () => {
       const mockOnClick = jest.fn()
-      render(<PremiumServiceCard {...mockService} onCTAClick={mockOnClick} />)
+      render(<VideoThumbnailMidCard {...mockService} onCTAClick={mockOnClick} />)
       
       const ctaButton = screen.getByRole('button', { name: `${mockService.ctaText} for ${mockService.title}` })
       fireEvent.click(ctaButton)
@@ -219,7 +219,7 @@ describe('Marketing Components', () => {
     })
 
     test('applies correct variant styling', () => {
-      const { container } = render(<PremiumServiceCard {...mockService} variant="royal" />)
+      const { container } = render(<VideoThumbnailMidCard {...mockService} variant="royal" />)
       
       const card = container.firstChild as Element
       expect(card).toHaveClass('bg-gradient-to-br')
@@ -228,7 +228,7 @@ describe('Marketing Components', () => {
     })
 
     test('has proper accessibility structure', () => {
-      render(<PremiumServiceCard {...mockService} />)
+      render(<VideoThumbnailMidCard {...mockService} />)
       
       const article = screen.getByRole('article')
       expect(article).toBeInTheDocument()
@@ -238,7 +238,7 @@ describe('Marketing Components', () => {
     })
 
     test('icon has proper accessibility attributes', () => {
-      render(<PremiumServiceCard {...mockService} />)
+      render(<VideoThumbnailMidCard {...mockService} />)
       
       const icon = screen.getByRole('img', { name: `${mockService.title} service icon` })
       expect(icon).toBeInTheDocument()
@@ -256,7 +256,7 @@ describe('Marketing Components', () => {
     })
 
     test('service cards maintain proper spacing on mobile', () => {
-      const { container } = render(<PremiumServiceCard {...mockService} />)
+      const { container } = render(<VideoThumbnailMidCard {...mockService} />)
       
       const card = container.firstChild as Element
       expect(card).toHaveClass('rounded-2xl')

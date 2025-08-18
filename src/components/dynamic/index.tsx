@@ -129,8 +129,16 @@ export const PremiumHeroSection = dynamic(
   }
 )
 
-export const PremiumServiceCard = dynamic(
-  () => import('@/components/marketing/premium-service-card'),
+export const VideoThumbnailTopCard = dynamic(
+  () => import('@/components/marketing/video-thumbnail-top-card'),
+  {
+    loading: LoadingCard,
+    ssr: true,
+  }
+)
+
+export const VideoThumbnailMidCard = dynamic(
+  () => import('@/components/marketing/video-thumbnail-mid-card'),
   {
     loading: LoadingCard,
     ssr: true,
@@ -169,7 +177,8 @@ export default {
   QuoteSection,
   AdminHeader,
   PremiumHeroSection,
-  PremiumServiceCard,
+  VideoThumbnailTopCard,
+  VideoThumbnailMidCard,
   PerformanceMonitor,
   withSuspense,
 }

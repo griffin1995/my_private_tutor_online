@@ -1,9 +1,31 @@
+/**
+ * CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with aspect-video for video thumbnails
+ * VIDEO THUMBNAIL FEATURE: Official Next.js documentation recommends explicit width/height for remote images
+ * 
+ * CONTEXT7 SOURCE: /lucide-icons/lucide - Play and CreditCard icons for video thumbnail functionality
+ * VIDEO BUTTON LOGIC: Official Lucide documentation recommends semantic icon usage for user actions
+ *
+ * VideoThumbnailTopCard Component - Video Thumbnail Positioned at Top
+ * This component displays video thumbnails at the TOP of the card before any content,
+ * providing immediate visual engagement perfect for UCAS styling and video-first content.
+ * 
+ * Key Features:
+ * - Video thumbnail at TOP with 16:9 aspect ratio (TOP positioning)
+ * - Interactive play button overlay with hover effects
+ * - Smart button behavior for free/paid content
+ * - Duration and price badges positioned on thumbnail
+ * - "Most Popular" badge at optimal top-5 position
+ * - Perfect spacing and visual hierarchy preserved
+ * - Full rounded corners (rounded-t-2xl) for top positioning
+ */
+
 "use client"
 
-import { ArrowRight, Check, Star } from 'lucide-react'
+import { ArrowRight, Check, Star, Play, CreditCard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 // CMS DATA SOURCE: Service data will be provided via props from CMS
 
@@ -12,7 +34,7 @@ interface ServiceFeature {
   included?: boolean
 }
 
-interface PremiumServiceCardProps {
+interface VideoThumbnailTopCardProps {
   title: string
   description: string
   icon: string
@@ -25,9 +47,14 @@ interface PremiumServiceCardProps {
   priceRange?: string
   duration?: string
   onCTAClick?: () => void
+  // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with aspect-video for video thumbnails
+  // VIDEO THUMBNAIL FEATURE: Official Next.js documentation recommends explicit width/height for remote images
+  thumbnailUrl: string // Required for this component
+  videoUrl?: string
+  paymentUrl?: string
 }
 
-export function PremiumServiceCard({
+export function VideoThumbnailTopCard({
   title,
   description,
   icon,
@@ -39,8 +66,11 @@ export function PremiumServiceCard({
   popular = false,
   priceRange,
   duration,
-  onCTAClick
-}: PremiumServiceCardProps) {
+  onCTAClick,
+  thumbnailUrl,
+  videoUrl,
+  paymentUrl
+}: VideoThumbnailTopCardProps) {
 
   const containerClasses = {
     standard: 'bg-white rounded-2xl shadow-md hover:shadow-lg border border-primary-100 overflow-hidden group transition-all duration-300 h-full flex flex-col',
@@ -104,11 +134,80 @@ export function PremiumServiceCard({
     )
   }
 
+  // CONTEXT7 SOURCE: /lucide-icons/lucide - Play and CreditCard icons for video thumbnail functionality
+  // VIDEO BUTTON LOGIC: Official Lucide documentation recommends semantic icon usage for user actions
+  const isVideoFree = Boolean(videoUrl && !paymentUrl)
+  const handleVideoClick = () => {
+    if (isVideoFree && videoUrl) {
+      // Handle free video playbook
+      window.open(videoUrl, '_blank')
+    } else if (paymentUrl) {
+      // Handle payment flow
+      window.open(paymentUrl, '_blank')
+    }
+  }
+
   return (
     <div className={cn(containerClasses[variant], className)} role="article">
       
-      {/* Badge Area - Always present for consistent spacing */}
-      <div className="absolute top-5 left-1/2 transform -translate-x-1/2 z-10 h-8">
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with aspect-video ratio for professional video thumbnails */}
+      {/* VIDEO THUMBNAIL SECTION: Official Next.js Image documentation for responsive video thumbnail display */}
+      {/* POSITIONING: Thumbnail at TOP of card - this is the defining feature of VideoThumbnailTopCard */}
+      <div className="relative group cursor-pointer" onClick={handleVideoClick}>
+        <div className="aspect-video relative overflow-hidden rounded-t-2xl">
+          <Image
+            src={thumbnailUrl}
+            alt={`${title} video thumbnail`}
+            width={400}
+            height={225}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+          />
+          
+          {/* Video Overlay */}
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
+          
+          {/* Play Button */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              {isVideoFree ? (
+                <>
+                  <Play className="w-6 h-6 text-primary-900 fill-current" />
+                  <span className="sr-only">Watch Free Video</span>
+                </>
+              ) : (
+                <>
+                  <CreditCard className="w-6 h-6 text-primary-900" />
+                  <span className="sr-only">Purchase to Watch</span>
+                </>
+              )}
+            </div>
+          </div>
+          
+          {/* Duration Badge - Top Right */}
+          {duration && (
+            <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm text-white px-2 py-1 rounded text-sm font-medium">
+              {duration}
+            </div>
+          )}
+          
+          {/* Free/Paid Badge - Top Left */}
+          <div className="absolute top-4 left-4">
+            {isVideoFree ? (
+              <Badge className="bg-green-600 text-white border-0 shadow-lg">
+                Free
+              </Badge>
+            ) : (
+              <Badge className="bg-accent-500 text-white border-0 shadow-lg">
+                {priceRange || 'Premium'}
+              </Badge>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* "Most Popular" Badge - Positioned at top-5 for optimal display (CLIENT APPROVED) */}
+      <div className="absolute top-5 left-1/2 transform -translate-x-1/2 z-10">
         {popular && (
           <Badge className="bg-gradient-to-r from-accent-500 to-accent-600 text-white border-0 shadow-lg">
             <Star className="w-3 h-3 mr-1" />
@@ -195,4 +294,4 @@ export function PremiumServiceCard({
 }
 
 // Component variants for storybook/documentation
-export type PremiumServiceCardVariant = 'standard' | 'premium' | 'royal'
+export type VideoThumbnailTopCardVariant = 'standard' | 'premium' | 'royal'
