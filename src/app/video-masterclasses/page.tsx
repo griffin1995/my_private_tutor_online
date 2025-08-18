@@ -36,7 +36,7 @@ import { PageHero } from '@/components/layout/page-hero'
 import { Section } from '@/components/layout/section'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { WaveSeparator } from '@/components/ui/wave-separator'
+import { PremiumServiceCard } from '@/components/marketing/premium-service-card'
 
 // RENDERING ANALYSIS - Context7 MCP Verified:
 // Documentation Source: Next.js Client Components Dynamic Rendering
@@ -186,124 +186,99 @@ export default function VideoMasterclassesPage() {
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
 
-        <WaveSeparator 
-          variant="subtle" 
-          className="text-slate-100" 
-        />
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll animations */}
+        {/* PREMIUM SERVICE CARD EXAMPLE: Demonstration section showcasing PremiumServiceCard component variants */}
+        {/* IMPLEMENTATION REASON: Official Framer Motion documentation recommends whileInView for scroll-triggered animations */}
+        <Section background="white" className="py-20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <m.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6">
+                Example: Premium Service Card Component
+              </h2>
+              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
+            </m.div>
 
-        {/* Introduction */}
-        <Section background="blue" className="py-16 relative">
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <m.p 
-            className="text-xl lg:text-2xl text-slate-800 leading-relaxed mb-6 font-medium"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            {videoMasterclassesContent.intro.bridge}
-          </m.p>
-          <m.p 
-            className="text-xl lg:text-2xl font-bold text-amber-700 bg-white/80 backdrop-blur-sm rounded-2xl px-8 py-4 inline-block shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            {videoMasterclassesContent.intro.access}
-          </m.p>
-        </div>
-      </Section>
-
-      <WaveSeparator 
-        variant="wave" 
-        className="text-slate-50" 
-      />
-
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Instructor introduction section with founder photo as credibility indicator */}
-      {/* INSTRUCTOR SECTION REASON: Official Next.js documentation supports instructor credibility sections in educational video pages */}
-      {/* Meet Your Instructor - Elizabeth Burrows */}
-      <Section background="white" className="py-20 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Staggered animations for grid layout components */}
+            {/* GRID LAYOUT REASON: Official Framer Motion documentation recommends staggered animations for multiple components */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+              {/* UCAS Guide Card - Premium variant with Most Popular badge */}
               <m.div
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: 0.1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
               >
-                <Image
-                  src="/images/team/founder-elizabeth-burrows-spare.jpg"
-                  alt="Elizabeth Burrows - Video Masterclass Instructor and Founder of My Private Tutor Online"
-                  width={400}
-                  height={500}
-                  className="rounded-2xl shadow-xl mx-auto lg:mx-0"
-                  loading="lazy"
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                <PremiumServiceCard
+                  title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
+                  description="Demystifying UCAS: A Clear Path to UK University Success"
+                  icon="🎓"
+                  variant="premium"
+                  popular={true}
+                  priceRange="£49.99"
+                  duration="90 minutes"
+                  features={[
+                    { feature: "Complete UCAS application timeline breakdown" },
+                    { feature: "University selection strategies for international students" },
+                    { feature: "Personal statement foundation and planning" },
+                    { feature: "Reference letter guidance and timeline management" },
+                    { feature: "UCAS Hub navigation and technical requirements" },
+                    { feature: "Common application mistakes and how to avoid them" }
+                  ]}
+                  ctaText="Scroll to UCAS Section"
+                  ctaLink="#ucas-guide-part-1"
+                  onCTAClick={() => {
+                    const ucasSection = document.getElementById('ucas-guide-part-1');
+                    if (ucasSection) {
+                      ucasSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                 />
               </m.div>
-              
+
+              {/* British Etiquette Card - Standard variant */}
               <m.div
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
               >
-                <div className="flex items-center gap-2 mb-4">
-                  <Crown className="w-5 h-5 text-amber-500" />
-                  <span className="text-sm font-semibold text-amber-700 tracking-wider uppercase">Your Expert Instructor</span>
-                </div>
-                
-                <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
-                  Learn Directly from Elizabeth Burrows
-                </h2>
-                
-                <p className="text-lg text-primary-700 mb-6 leading-relaxed">
-                  With over 15 years of experience in British and international education, Elizabeth brings unparalleled expertise to these exclusive video masterclasses. As the founder of My Private Tutor Online, she has guided hundreds of students to academic success.
-                </p>
-                
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                    <span className="text-primary-700">Cambridge University graduate with expertise in Oxbridge admissions</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                    <span className="text-primary-700">Featured speaker at the GCSE Summit 2024 and London School of Economics</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                    <span className="text-primary-700">Trusted by royal families and elite international clients</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
-                    <span className="text-primary-700">Specialises in British cultural fluency and academic excellence</span>
-                  </div>
-                </div>
-                
-                <div className="bg-amber-50 p-6 rounded-2xl border-l-4 border-amber-500">
-                  <h3 className="text-xl font-semibold text-primary-900 mb-3">Expert Teaching Philosophy</h3>
-                  <p className="text-primary-700 italic">
-                    "Every student has unique potential waiting to be unlocked. These masterclasses distil 15 years of teaching excellence into accessible, practical sessions that empower families to achieve extraordinary results."
-                  </p>
-                  <cite className="text-sm font-semibold text-primary-800 not-italic block mt-3">
-                    — Elizabeth Burrows, Founder & Lead Instructor
-                  </cite>
-                </div>
+                <PremiumServiceCard
+                  title="Understanding British Etiquette"
+                  description="A masterclass on polished manners and cultural awareness"
+                  icon="🇬🇧"
+                  variant="standard"
+                  popular={false}
+                  priceRange="£19.99"
+                  duration="60 minutes"
+                  features={[
+                    { feature: "Essential British social customs and traditions" },
+                    { feature: "Proper dining etiquette for formal occasions" },
+                    { feature: "Greeting and introduction protocols" },
+                    { feature: "Cultural awareness for school and university settings" },
+                    { feature: "Common social faux pas and how to avoid them" },
+                    { feature: "Building confidence in British social situations" }
+                  ]}
+                  ctaText="Scroll to Culture Section"
+                  ctaLink="#british-etiquette"
+                  onCTAClick={() => {
+                    const cultureSection = document.getElementById('british-etiquette');
+                    if (cultureSection) {
+                      cultureSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                />
               </m.div>
             </div>
           </div>
-        </div>
-      </Section>
+        </Section>
 
-      <WaveSeparator 
-        variant="subtle" 
-        className="text-slate-100" 
-      />
-
-      {/* Featured Masterclasses */}
+        {/* Featured Masterclasses */}
       <Section background="slate" className="py-20 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <m.div 
@@ -359,6 +334,7 @@ export default function VideoMasterclassesPage() {
 
             {/* UCAS Guide Part 1 */}
             <m.div
+              id="ucas-guide-part-1"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -439,10 +415,6 @@ export default function VideoMasterclassesPage() {
         </div>
       </Section>
 
-      <WaveSeparator 
-        variant="subtle" 
-        className="text-white" 
-      />
 
       {/* Cultural Masterclasses */}
       <Section background="white" className="py-20 relative">
@@ -517,6 +489,7 @@ export default function VideoMasterclassesPage() {
 
             {/* British Etiquette */}
             <m.div
+              id="british-etiquette"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -568,10 +541,6 @@ export default function VideoMasterclassesPage() {
         </div>
       </Section>
 
-      <WaveSeparator 
-        variant="wave" 
-        className="text-slate-900" 
-      />
 
       {/* Ideal For Section */}
       <Section background="slate" className="py-20 relative">

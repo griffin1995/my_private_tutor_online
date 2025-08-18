@@ -43,15 +43,15 @@ export function PremiumServiceCard({
 }: PremiumServiceCardProps) {
 
   const containerClasses = {
-    standard: 'bg-white rounded-2xl shadow-md hover:shadow-lg border border-primary-100 overflow-hidden group transition-all duration-300',
-    premium: 'bg-gradient-to-br from-white to-accent-50 rounded-2xl shadow-premium hover:shadow-gold border border-accent-200 overflow-hidden group transition-all duration-500 transform hover:-translate-y-1',
-    royal: 'bg-gradient-to-br from-white via-royal-50 to-royal-100 rounded-2xl shadow-royal hover:shadow-2xl border-2 border-royal-200 overflow-hidden group transition-all duration-500 transform hover:-translate-y-2 relative'
+    standard: 'bg-white rounded-2xl shadow-md hover:shadow-lg border border-primary-100 overflow-hidden group transition-all duration-300 h-full flex flex-col',
+    premium: 'bg-gradient-to-br from-white to-accent-50 rounded-2xl shadow-premium hover:shadow-gold border border-accent-200 overflow-hidden group transition-all duration-500 transform hover:-translate-y-1 h-full flex flex-col',
+    royal: 'bg-gradient-to-br from-white via-royal-50 to-royal-100 rounded-2xl shadow-royal hover:shadow-2xl border-2 border-royal-200 overflow-hidden group transition-all duration-500 transform hover:-translate-y-2 relative h-full flex flex-col'
   }
 
   const headerClasses = {
-    standard: 'p-6 pb-4',
-    premium: 'p-8 pb-6 relative',
-    royal: 'p-8 pb-6 relative'
+    standard: 'pt-12 px-6 pb-4 relative',
+    premium: 'pt-12 px-8 pb-6 relative',
+    royal: 'pt-12 px-8 pb-6 relative'
   }
 
   const iconContainerClasses = {
@@ -73,15 +73,15 @@ export function PremiumServiceCard({
   }
 
   const featureListClasses = {
-    standard: 'px-6 pb-6 space-y-3',
-    premium: 'px-8 pb-8 space-y-4',
-    royal: 'px-8 pb-8 space-y-4'
+    standard: 'px-6 pb-6 space-y-3 flex-grow',
+    premium: 'px-8 pb-8 space-y-4 flex-grow',
+    royal: 'px-8 pb-8 space-y-4 flex-grow'
   }
 
   const footerClasses = {
-    standard: 'px-6 pb-6 pt-4 border-t border-primary-100',
-    premium: 'px-8 pb-8 pt-6 border-t border-accent-200',
-    royal: 'px-8 pb-8 pt-6 border-t border-royal-200'
+    standard: 'px-6 pb-6 pt-4 border-t border-primary-100 mt-auto',
+    premium: 'px-8 pb-8 pt-6 border-t border-accent-200 mt-auto',
+    royal: 'px-8 pb-8 pt-6 border-t border-royal-200 mt-auto'
   }
 
   const buttonVariants = {
@@ -107,28 +107,30 @@ export function PremiumServiceCard({
   return (
     <div className={cn(containerClasses[variant], className)} role="article">
       
-      {/* Popular Badge */}
-      {popular && (
-        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+      {/* Badge Area - Always present for consistent spacing */}
+      <div className="absolute top-5 left-1/2 transform -translate-x-1/2 z-10 h-8">
+        {popular && (
           <Badge className="bg-gradient-to-r from-accent-500 to-accent-600 text-white border-0 shadow-lg">
             <Star className="w-3 h-3 mr-1" />
             Most Popular
           </Badge>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Header */}
       <div className={cn(headerClasses[variant])}>
         
-        {/* Price Range */}
-        {priceRange && (
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-primary-500 text-sm font-medium">From</span>
-            <span className="font-serif text-2xl font-bold text-primary-900">
-              {priceRange}
-            </span>
-          </div>
-        )}
+        {/* Price Range - Always takes space for alignment */}
+        <div className="flex justify-between items-center mb-4 h-8">
+          {priceRange && (
+            <>
+              <span className="text-primary-500 text-sm font-medium">From</span>
+              <span className="font-serif text-2xl font-bold text-primary-900">
+                {priceRange}
+              </span>
+            </>
+          )}
+        </div>
 
         {/* Icon */}
         <div className={cn(iconContainerClasses[variant])}>
@@ -145,13 +147,15 @@ export function PremiumServiceCard({
           {description}
         </p>
 
-        {/* Duration */}
-        {duration && (
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-100 rounded-full text-primary-700 text-sm font-medium">
-            <span className="w-2 h-2 bg-primary-500 rounded-full" />
-            {duration}
-          </div>
-        )}
+        {/* Duration - Always takes space for alignment */}
+        <div className="min-h-[28px] mb-2">
+          {duration && (
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary-100 rounded-full text-primary-700 text-sm font-medium">
+              <span className="w-2 h-2 bg-primary-500 rounded-full" />
+              {duration}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Features List */}
