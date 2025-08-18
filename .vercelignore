@@ -10,6 +10,7 @@ public/videos/masterclasses/gcse-summit-2024.mp4
 # Large compressed video files that exceed Vercel limits
 public/videos/masterclasses/gcse-summit-2024-compressed.mp4
 public/videos/compressed/
+public/videos/originals/
 
 # Git LFS objects and repository data
 .git/
@@ -52,9 +53,25 @@ __tests__/
 # Python virtual environment and large libraries
 venv/
 __pycache__/
+rota_env/
+formula_audit_env/
+ob_rota_env/
+*.so
+*.dylib
 
 # Additional exclusions for deployment size optimization
 temp-videos/
+ALL_AUDITS/
+**/performance_validation_results/
+
+# Large files and directories that should be excluded from deployment
+**/*.csv
+**/*.xlsx
+**/*.json
+**/scripts/
+*.py
+*.txt
+*.vba
 
 # Temporary files
 temp-videos/
