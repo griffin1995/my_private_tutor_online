@@ -200,3 +200,6 @@ public/mockServiceWorker.js
 **/public/sw.js
 **/public/worker-*.js
 **/public/precache.*.js
+
+# Temporary documentation files
+PERFORMANCE_*.md
