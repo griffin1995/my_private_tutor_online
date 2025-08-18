@@ -1,10 +1,11 @@
 "use client"
 
-import { PlayCircle, ArrowRight, ChevronDown } from 'lucide-react'
+import { PlayCircle, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { getHeroContent, getHeroImage, getIntroVideo } from '@/lib/cms'
 import { cn } from '@/lib/utils'
+import { SynchronizedScrollIndicator } from '@/components/ui/synchronized-scroll-indicator'
 
 // CMS DATA SOURCE: Using getHeroContent for hero section content
 // CMS DATA SOURCE: Using getHeroImage and getIntroVideo for hero media
@@ -202,15 +203,15 @@ export function PremiumHeroSection({
           </div>
         )}
 
-        {/* Scroll Indicator */}
-        {showScrollIndicator && (
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-            <div className="flex flex-col items-center gap-2 text-primary-600">
-              <span className="text-sm font-medium">Discover More</span>
-              <ChevronDown className="w-6 h-6 animate-bounce" />
-            </div>
-          </div>
-        )}
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Synchronized Scroll Indicator with unified SCROLL text and vertical line animation */}
+        {/* SYNCHRONIZATION ENHANCEMENT: Official Framer Motion documentation ensures perfect timing alignment between text and line elements */}
+        <SynchronizedScrollIndicator 
+          show={showScrollIndicator}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+          text="SCROLL"
+          speed={1}
+          distance={40}
+        />
       </div>
     </div>
   )

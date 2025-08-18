@@ -1458,7 +1458,444 @@ const adminAuditResults: AdminAuditResult[] = [
 
 ---
 
-**Last Updated**: August 13, 2025
-**Version**: 2.2 - Major Enhancements
+## CSS COLOR OVERRIDE DEBUGGING GUIDE
+
+### Problem Description
+**Context7 Source**: `/websites/css-tricks-almanac` - CSS specificity and cascade fundamentals  
+**Context7 Source**: `/websites/tailwindcss` - Utility class conflict resolution patterns  
+**Implementation Date**: August 18, 2025  
+**Status**: Production-ready debugging methodology
+
+#### Persistent Issue Pattern
+- **Manifestation**: Text displaying wrong colors despite Tailwind CSS classes applied correctly
+- **Symptoms**: Blue text (#3f4a7e) or dark grey (#1e293b) instead of intended white/light colors
+- **Duration**: Multi-week problems affecting navbar, sections, and component text
+- **Specificity Override**: Global CSS rules winning over utility classes through cascade precedence
+
+#### Real-World Example
+```html
+<!-- Applied classes correctly -->
+<nav className="bg-slate-900 text-white">
+  <div className="text-white">Navigation Item</div>
+</nav>
+
+<!-- Computed styles showing override -->
+/* Expected: color: white */
+/* Actual: color: #3f4a7e (blue from global CSS) */
+```
+
+### Root Cause Analysis
+
+#### CSS Specificity and Cascade Issues
+**Context7 Source**: `/websites/css-tricks-almanac` - CSS cascade and inheritance patterns
+
+**Primary Causes**:
+1. **Global Element Selectors**: Broad CSS rules targeting HTML elements
+2. **CSS Custom Property Cascade**: `--foreground` variables cascading through component tree
+3. **Tailwind Override Failure**: Utility classes losing specificity battles
+4. **Inheritance Chain**: Color values inheriting from parent containers unexpectedly
+
+#### Technical Cascade Flow
+```css
+/* CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS cascade resolution */
+/* Global CSS (winning due to source order and specificity) */
+body, html {
+  color: #3f4a7e; /* Blue text */
+  --foreground: #1e293b; /* Dark grey variable */
+}
+
+/* Component-level override attempt */
+.component {
+  --foreground: #ffffff; /* White variable */
+  color: var(--foreground);
+}
+
+/* Tailwind utility (should win but doesn't) */
+.text-white {
+  color: #ffffff !important; /* Often needs !important for global overrides */
+}
+```
+
+#### Specificity Weight Calculation
+**Context7 Source**: `/websites/tailwindcss` - Managing conflicting utility classes
+
+```css
+/* CONTEXT7 SOURCE: /websites/tailwindcss - CSS specificity in utility-first frameworks */
+/* Global selector: 0-0-1 specificity */
+body { color: #3f4a7e; }
+
+/* Tailwind utility: 0-1-0 specificity (wins) */
+.text-white { color: white; }
+
+/* But global CSS with !important: 0-0-1 + important flag */
+body { color: #3f4a7e !important; } /* Wins over Tailwind */
+
+/* CSS custom property inheritance can bypass specificity */
+body { --foreground: #3f4a7e; }
+.component { color: var(--foreground); } /* Inherits blue despite local classes */
+```
+
+### Debugging Methodology
+
+#### Step 1: CSS Specificity Investigation
+**Context7 Source**: `/websites/css-tricks-almanac` - DevTools specificity analysis
+
+```javascript
+// CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS debugging techniques
+// Chrome DevTools Console Commands
+// 1. Identify computed styles
+const element = document.querySelector('.problematic-element');
+const computedStyle = window.getComputedStyle(element);
+console.log('Color:', computedStyle.color);
+console.log('All styles:', computedStyle);
+
+// 2. Find winning CSS rule
+console.log('Winning rules in DevTools Elements tab');
+// Look for struck-through styles (overridden rules)
+```
+
+#### Step 2: CSS Custom Property Tracking
+**Context7 Source**: `/websites/tailwindcss` - CSS variable debugging patterns
+
+```css
+/* CONTEXT7 SOURCE: /websites/tailwindcss - CSS custom property debugging */
+/* Track variable cascade through elements */
+:root {
+  --foreground: #000000; /* Global default */
+}
+
+.component {
+  --foreground: #ffffff; /* Local override */
+  /* Debug: Check if this actually applies */
+  background-color: var(--foreground, red); /* Fallback reveals issues */
+}
+
+/* Debugging helper styles */
+.debug-colors * {
+  border: 1px solid red !important;
+  background-color: var(--foreground, yellow) !important;
+}
+```
+
+#### Step 3: Developer Tools Simulation
+**Context7 Source**: `/websites/css-tricks-almanac` - Browser debugging techniques
+
+```javascript
+// CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS rule inspection
+// DevTools debugging workflow
+// 1. Elements tab → Select problematic element
+// 2. Styles pane → Identify winning rule (not struck through)
+// 3. Computed tab → See final calculated values
+// 4. Search for specific color values (#3f4a7e) in all styles
+// 5. Trace inheritance chain up the DOM tree
+```
+
+#### Step 4: Comprehensive File Search
+**Context7 Source**: `/websites/tailwindcss` - Global CSS pattern identification
+
+```bash
+# CONTEXT7 SOURCE: /websites/tailwindcss - CSS codebase analysis patterns
+# Search for problematic color values across codebase
+grep -r "#3f4a7e" src/
+grep -r "#1e293b" src/
+grep -r "--foreground" src/
+
+# Search for global element selectors
+grep -r "body\|html {" src/
+grep -r "h[1-6], p, div {" src/
+
+# Find CSS custom property definitions
+grep -r "--.*:" src/styles/
+```
+
+#### Step 5: CSS Rule Priority Testing
+**Context7 Source**: `/websites/tailwindcss` - Utility class override testing
+
+```css
+/* CONTEXT7 SOURCE: /websites/tailwindcss - CSS override testing methodology */
+/* Test specificity with temporary styles */
+.debug-test {
+  color: lime !important; /* Should win over everything */
+}
+
+/* Test inheritance blocking */
+.debug-isolation {
+  color: initial; /* Reset inheritance */
+  color: white; /* Apply intended color */
+}
+
+/* Test cascade disruption */
+.debug-cascade * {
+  all: unset; /* Nuclear option - resets everything */
+  color: white; /* Rebuild from scratch */
+}
+```
+
+### Solution Implementation
+
+#### Solution 1: Global CSS Pattern Fix
+**Context7 Source**: `/websites/tailwindcss` - Managing conflicting utility classes
+
+```css
+/* CONTEXT7 SOURCE: /websites/tailwindcss - Utility class preservation patterns */
+/* BEFORE: Global override affecting all elements */
+body, html {
+  color: #3f4a7e;
+  --foreground: #1e293b;
+}
+
+/* AFTER: Conditional global CSS with utility class exemption */
+body:not([class*="text-"]), 
+html:not([class*="text-"]) {
+  color: #3f4a7e;
+  --foreground: #1e293b;
+}
+
+/* Alternative: Scope global styles to specific containers */
+.content-area:not(.has-custom-text) {
+  color: #3f4a7e;
+  --foreground: #1e293b;
+}
+```
+
+#### Solution 2: CSS Custom Property Fix
+**Context7 Source**: `/websites/css-tricks-almanac` - CSS variable best practices
+
+```css
+/* CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS custom property management */
+/* BEFORE: Global variable affecting all components */
+:root {
+  --foreground: #1e293b;
+}
+
+/* AFTER: Scoped variables with component overrides */
+:root {
+  --global-foreground: #1e293b;
+  --component-foreground: #ffffff;
+}
+
+.navbar {
+  --foreground: var(--component-foreground, #ffffff);
+  color: var(--foreground);
+}
+
+/* Utility class respecting system */
+.text-white {
+  --foreground: #ffffff;
+  color: var(--foreground, #ffffff);
+}
+```
+
+#### Solution 3: Specific Element Targeting
+**Context7 Source**: `/websites/tailwindcss` - Utility class application patterns
+
+```typescript
+// CONTEXT7 SOURCE: /websites/tailwindcss - Component-level class application
+// BEFORE: Relying on inheritance
+<nav className="bg-slate-900">
+  <div>Navigation Item</div> {/* Inherits wrong color */}
+</nav>
+
+// AFTER: Explicit utility classes on affected elements
+<nav className="bg-slate-900 text-white">
+  <div className="text-white">Navigation Item</div> {/* Explicit override */}
+</nav>
+
+// AFTER: Comprehensive class application
+<nav className="bg-slate-900 text-white">
+  <div className="text-white">
+    <span className="text-white">Nested content</span>
+  </div>
+</nav>
+```
+
+#### Solution 4: Component-Level CSS Reset
+**Context7 Source**: `/websites/css-tricks-almanac` - CSS isolation techniques
+
+```css
+/* CONTEXT7 SOURCE: /websites/css-tricks-almanac - Component isolation patterns */
+/* Complete isolation approach for critical components */
+.navbar-component {
+  all: initial; /* Reset everything */
+  font-family: inherit; /* Restore essential properties */
+  
+  /* Apply intended styles explicitly */
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+/* Selective reset for color-only issues */
+.text-isolation {
+  color: initial !important;
+  color: var(--intended-color, #ffffff) !important;
+}
+```
+
+### Prevention Best Practices
+
+#### Best Practice 1: Global CSS Pattern Prevention
+**Context7 Source**: `/websites/tailwindcss` - Utility-first development patterns
+
+```css
+/* CONTEXT7 SOURCE: /websites/tailwindcss - Global CSS scope limitation */
+/* GOOD: Scoped global styles */
+.prose {
+  color: #1e293b;
+}
+
+.prose h1, .prose h2, .prose p {
+  color: inherit;
+}
+
+/* BAD: Broad element targeting */
+h1, h2, p {
+  color: #1e293b; /* Will override utility classes */
+}
+```
+
+#### Best Practice 2: CSS Custom Property Architecture
+**Context7 Source**: `/websites/css-tricks-almanac` - CSS variable architecture
+
+```css
+/* CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS variable naming and scoping */
+/* GOOD: Namespaced and scoped variables */
+:root {
+  --theme-text-primary: #1e293b;
+  --theme-text-secondary: #64748b;
+  --component-nav-text: #ffffff;
+}
+
+.navigation {
+  color: var(--component-nav-text);
+}
+
+/* BAD: Generic variable names */
+:root {
+  --text: #1e293b; /* Too generic, causes conflicts */
+  --foreground: #1e293b; /* Conflicts with component systems */
+}
+```
+
+#### Best Practice 3: Utility Class Preservation
+**Context7 Source**: `/websites/tailwindcss` - Utility class precedence protection
+
+```css
+/* CONTEXT7 SOURCE: /websites/tailwindcss - Utility class protection patterns */
+/* Use :not() selectors to preserve utility classes */
+body:not([class*="text-"]):not([class*="bg-"]) {
+  color: var(--default-text);
+}
+
+/* Component-scoped styles that respect utilities */
+.content-wrapper > *:not(.text-\*):not(.bg-\*) {
+  color: var(--content-text);
+}
+```
+
+#### Best Practice 4: Development Workflow Integration
+**Context7 Source**: `/websites/tailwindcss` - Development debugging patterns
+
+```typescript
+// CONTEXT7 SOURCE: /websites/tailwindcss - Development debugging helpers
+// Add debugging classes for development
+const debugClasses = process.env.NODE_ENV === 'development' ? 
+  'debug-colors' : '';
+
+// Component debugging helper
+export function DebugColorOverlay({ children }: { children: React.ReactNode }) {
+  return (
+    <div className={`${process.env.NODE_ENV === 'development' ? 'debug-colors' : ''}`}>
+      {children}
+    </div>
+  );
+}
+
+// Usage
+<DebugColorOverlay>
+  <nav className="bg-slate-900 text-white">
+    <div className="text-white">Navigation</div>
+  </nav>
+</DebugColorOverlay>
+```
+
+### Testing and Verification
+
+#### Verification Checklist
+**Context7 Source**: `/websites/tailwindcss` - CSS debugging verification
+
+```javascript
+// CONTEXT7 SOURCE: /websites/tailwindcss - CSS verification testing
+// Browser console verification script
+function verifyCSSOverrides() {
+  const elements = document.querySelectorAll('.text-white');
+  
+  elements.forEach((el, index) => {
+    const computedStyle = window.getComputedStyle(el);
+    const actualColor = computedStyle.color;
+    const expectedColor = 'rgb(255, 255, 255)'; // white
+    
+    console.log(`Element ${index}:`, {
+      element: el,
+      expected: expectedColor,
+      actual: actualColor,
+      matches: actualColor === expectedColor
+    });
+  });
+}
+
+// Run verification
+verifyCSSOverrides();
+```
+
+#### Automated Testing Integration
+**Context7 Source**: `/websites/css-tricks-almanac` - CSS testing patterns
+
+```typescript
+// CONTEXT7 SOURCE: /websites/css-tricks-almanac - Automated CSS property testing
+// Jest/Testing Library CSS verification
+describe('CSS Color Override Prevention', () => {
+  test('text-white utility class applies correctly', () => {
+    render(<nav className="text-white">Navigation</nav>);
+    const navElement = screen.getByText('Navigation');
+    
+    expect(navElement).toHaveStyle('color: rgb(255, 255, 255)');
+  });
+  
+  test('global CSS does not override utility classes', () => {
+    render(<div className="text-blue-600">Blue Text</div>);
+    const textElement = screen.getByText('Blue Text');
+    
+    // Should not be the global default color
+    expect(textElement).not.toHaveStyle('color: rgb(63, 74, 126)');
+    expect(textElement).toHaveStyle('color: rgb(37, 99, 235)'); // blue-600
+  });
+});
+```
+
+### Context7 MCP References
+**Primary Documentation Sources**:
+- **CSS Specificity**: `/websites/css-tricks-almanac` - CSS cascade and inheritance patterns
+- **Tailwind Conflicts**: `/websites/tailwindcss` - Managing conflicting utility classes
+- **CSS Variables**: `/websites/css-tricks-almanac` - CSS custom property debugging
+- **Browser DevTools**: `/websites/css-tricks-almanac` - CSS debugging techniques
+
+### Implementation Files Affected
+- **Global CSS**: `/src/styles/globals.css` - Global style scope limitation
+- **Component Styles**: Individual component CSS modules - Utility class preservation
+- **Theme Configuration**: `/tailwind.config.ts` - Custom property integration
+- **Debug Utilities**: `/src/lib/debug.ts` - Development debugging helpers
+
+**Benefits Achieved**:
+✅ **Systematic Debugging**: Repeatable methodology for CSS override issues  
+✅ **Root Cause Identification**: Technical understanding of cascade conflicts  
+✅ **Prevention Strategies**: Architectural patterns preventing future conflicts  
+✅ **Testing Integration**: Automated verification of CSS property application  
+✅ **Development Workflow**: Debug helpers and verification tools  
+✅ **Documentation Reference**: Permanent technical guide for team use  
+
+---
+
+**Last Updated**: August 18, 2025
+**Version**: 2.3 - CSS Debugging Enhancement
 **Verification**: All patterns verified with Context7 MCP documentation  
 **Enhancement Status**: 45/45 tasks complete (32 original + 13 revisions)

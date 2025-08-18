@@ -27,17 +27,13 @@
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component removal and clean import management
 // COMPONENT SIMPLIFICATION REASON: Official React documentation recommends removing unused imports to maintain clean component architecture
-import { Trophy } from 'lucide-react'
-import { m } from 'framer-motion'
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component cleanup and removal patterns
+// ETHOS REMOVAL REASON: Clean component removal per user requirements, maintaining structured imports
 import { PageLayout } from '@/components/layout/page-layout'
-import { PageHero } from '@/components/layout/page-hero'
-import { PageHeader } from '@/components/layout/page-header'
+import { SimpleHero } from '@/components/layout/simple-hero'
 import { FounderStorySection } from '@/components/sections/about/founder-story-section'
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section'
-import { EthosSection } from '@/components/sections/about/ethos-section'
 import { getAboutHeroImage } from '@/lib/cms/cms-images'
-import { WaveSeparator } from '@/components/ui/wave-separator'
-import { GradientOverlay } from '@/components/ui/gradient-overlay'
 
 
 export default function AboutUsPage() {
@@ -49,38 +45,16 @@ export default function AboutUsPage() {
   
   return (
     <>
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Image optimization with CSS background patterns for hero sections */}
-      {/* HERO ENHANCEMENT REASON: Official Next.js documentation recommends background images for premium branding with proper overlay for text readability */}
-      <PageHero 
-        background="image" 
+      {/* CONTEXT7 SOURCE: /framer/motion - SimpleHero integration with scroll-triggered animations */}
+      {/* HERO INTEGRATION REASON: Integrating SimpleHero component for testing purposes with smooth scroll animations */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Background image optimization using CMS data patterns */}
+      {/* DECORATIVE STYLE OPTIONS: decorativeStyle="lines" (default), decorativeStyle="dots", decorativeStyle="none" */}
+      <SimpleHero 
         backgroundImage={aboutHeroImage.src}
-        size="full"
-        className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700"
-        overlay={true}
-        overlayOpacity="medium"
-      >
-        <div className="text-center space-y-6">
-          <m.h1 
-            className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            About Our Founder and Ethos
-          </m.h1>
-          
-          <m.p 
-            className="text-xl lg:text-2xl text-accent-200 max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            An Unconventional Founder, Unparalleled Results
-          </m.p>
-        </div>
-      </PageHero>
+        h1="About Our Founder and Ethos"
+        h2="Excellence Through Experience"
+        decorativeStyle="lines"
+      />
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
@@ -96,10 +70,9 @@ export default function AboutUsPage() {
         {/* TESTIMONIALS EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
         <TestimonialsSection />
 
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component extraction and composition patterns */}
-        {/* ETHOS EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability and reusability */}
-        {/* CLIENT SIMPLIFICATION: Removed StatisticsSection, GlobalReachSection, and CompanyTimelineSection per "less is more" feedback */}
-        <EthosSection />
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal and clean architecture maintenance */}
+        {/* ETHOS SECTION REMOVED: Clean component removal per user requirements while maintaining page structure */}
+        {/* CLIENT SIMPLIFICATION: Page now focuses on founder story and testimonials for streamlined user experience */}
 
 
       </PageLayout>

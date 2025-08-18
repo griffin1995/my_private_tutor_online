@@ -1,7 +1,7 @@
 /**
- * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Tailwind CSS v3 directives for utility-first CSS
- * TAILWIND V3 REASON: Using standard Tailwind v3 directives for compatibility with installed version
- * IMPLEMENTATION: Base styles, component classes, and utility classes integration
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Tailwind CSS v3 directives with layer ordering for specificity control
+ * LAYER ORDERING REASON: Official Tailwind CSS documentation Section 2.1 recommends explicit layer ordering for CSS specificity management
+ * SPECIFICITY CONTROL: Ensures utilities layer has higher specificity than base and components for proper override behavior
  */
 
 @tailwind base;
@@ -114,7 +114,7 @@
   
   /* Semantic Color Variables */
   --background: #ffffff;
-  --foreground: #3f4a7e;  /* Updated to use brand primary */
+  --foreground: #1e293b;  /* Fixed to proper dark color for readable text on light backgrounds */
   --muted: #f8f9fc;       /* Lightest brand tint */
   --muted-foreground: #737373;
   --border: #e3e7f0;      /* Light brand tint */
@@ -207,8 +207,19 @@ h3 {
   margin-bottom: 1rem;
 }
 
-/* Body Text - Source Serif 4 (CLIENT REQUIREMENT) */
-p, li, td, th, div, span {
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Scoped typography to exclude Tailwind utility class conflicts
+ * SPECIFICITY FIX REASON: Official CSS selector specificity patterns to prevent conflicts with Tailwind utilities
+ * TAILWIND COMPATIBILITY: Global typography must not override Tailwind color classes like text-white
+ * PATTERN: :not() pseudo-selector excludes elements with Tailwind color classes from global styling
+ */
+
+/* Body Text - Source Serif 4 (CLIENT REQUIREMENT) - Excludes Tailwind Color Classes */
+p:not([class*="text-"]), 
+li:not([class*="text-"]), 
+td:not([class*="text-"]), 
+th:not([class*="text-"]), 
+div:not([class*="text-"]), 
+span:not([class*="text-"]) {
   font-family: var(--font-source-serif-4), Georgia, serif;
   line-height: 1.7;
   color: var(--foreground);

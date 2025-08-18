@@ -295,8 +295,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // CONTEXT7 SOURCE: /vercel/next.js - Hydration error fix for HTML dir attribute
+  // HYDRATION FIX REASON: Browsers automatically add dir="ltr" to HTML element client-side causing hydration mismatch
+  // CONTEXT7 SOURCE: /vercel/next.js - Text content does not match server-rendered HTML error prevention
+  // IMPLEMENTATION: Explicitly set dir="ltr" server-side to match browser client-side rendering behavior
   return (
-    <html lang="en-GB" className="scroll-smooth">
+    <html lang="en-GB" dir="ltr" className="scroll-smooth">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0f172a" />
