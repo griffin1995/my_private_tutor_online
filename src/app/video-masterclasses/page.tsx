@@ -31,6 +31,7 @@ import { PageHero } from "@/components/layout/page-hero";
 import { PageLayout } from "@/components/layout/page-layout";
 import { Section } from "@/components/layout/section";
 import { VideoThumbnailMidCard } from "@/components/marketing/video-thumbnail-mid-card";
+import { VideoThumbnailTopCard } from "@/components/marketing/video-thumbnail-top-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -202,121 +203,7 @@ export default function VideoMasterclassesPage() {
       {/* CONTEXT7 SOURCE: /vercel/next.js - Layout component with navigation header for consistent site structure */}
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll animations */}
-        {/* VIDEO THUMBNAIL MID CARD EXAMPLE: Demonstration section showcasing VideoThumbnailMidCard component variants */}
-        {/* IMPLEMENTATION REASON: Official Framer Motion documentation recommends whileInView for scroll-triggered animations */}
-        <Section background="white" className="py-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <m.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6">
-                Example: Premium Service Card Component
-              </h2>
-              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
-            </m.div>
-
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Staggered animations for grid layout components */}
-            {/* GRID LAYOUT REASON: Official Framer Motion documentation recommends staggered animations for multiple components */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-              {/* UCAS Guide Card - Premium variant with Most Popular badge */}
-              <m.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <VideoThumbnailMidCard
-                  title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
-                  description="Demystifying UCAS: A Clear Path to UK University Success"
-                  icon="🎓"
-                  variant="premium"
-                  popular={true}
-                  priceRange="£49.99"
-                  duration="90 minutes"
-                  features={[
-                    { feature: "Complete UCAS application timeline breakdown" },
-                    {
-                      feature:
-                        "University selection strategies for international students",
-                    },
-                    { feature: "Personal statement foundation and planning" },
-                    {
-                      feature:
-                        "Reference letter guidance and timeline management",
-                    },
-                    {
-                      feature: "UCAS Hub navigation and technical requirements",
-                    },
-                    {
-                      feature:
-                        "Common application mistakes and how to avoid them",
-                    },
-                  ]}
-                  ctaText="Scroll to UCAS Section"
-                  ctaLink="#ucas-guide-part-1"
-                  onCTAClick={() => {
-                    const ucasSection =
-                      document.getElementById("ucas-guide-part-1");
-                    if (ucasSection) {
-                      ucasSection.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                  thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
-                  paymentUrl="#"
-                />
-              </m.div>
-
-              {/* British Etiquette Card - Standard variant */}
-              <m.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <VideoThumbnailMidCard
-                  title="Understanding British Etiquette"
-                  description="A masterclass on polished manners and cultural awareness"
-                  icon="🇬🇧"
-                  variant="standard"
-                  popular={false}
-                  priceRange="£19.99"
-                  duration="60 minutes"
-                  features={[
-                    {
-                      feature:
-                        "Essential British social customs and traditions",
-                    },
-                    { feature: "Proper dining etiquette for formal occasions" },
-                    { feature: "Greeting and introduction protocols" },
-                    {
-                      feature:
-                        "Cultural awareness for school and university settings",
-                    },
-                    { feature: "Common social faux pas and how to avoid them" },
-                    {
-                      feature:
-                        "Building confidence in British social situations",
-                    },
-                  ]}
-                  ctaText="Scroll to Culture Section"
-                  ctaLink="#british-etiquette"
-                  onCTAClick={() => {
-                    const cultureSection =
-                      document.getElementById("british-etiquette");
-                    if (cultureSection) {
-                      cultureSection.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                />
-              </m.div>
-            </div>
-          </div>
-        </Section>
+        {/* Featured Masterclasses - moved example section to bottom */}
 
         {/* Featured Masterclasses */}
         <Section background="slate" className="py-20 relative">
@@ -657,6 +544,444 @@ export default function VideoMasterclassesPage() {
               <p className="text-2xl lg:text-3xl text-white leading-relaxed font-light">
                 {videoMasterclassesContent.ideal.text}
               </p>
+            </m.div>
+          </div>
+        </Section>
+
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll animations */}
+        {/* DESIGN COMPARISON SECTION: Professional showcase of thumbnail positioning options for client review */}
+        {/* IMPLEMENTATION REASON: Official Framer Motion documentation recommends whileInView for scroll-triggered animations */}
+        <Section background="slate-100" className="py-20 border-t border-slate-200">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <m.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-4">
+                Design Variations: Video Thumbnail Placement Options
+              </h2>
+              <p className="text-lg text-slate-600 mb-6 max-w-3xl mx-auto">
+                Compare different card layout options with thumbnail positioning for optimal visual impact
+              </p>
+              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
+            </m.div>
+
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Staggered animations for grid layout components */}
+            {/* GRID LAYOUT REASON: Official Framer Motion documentation recommends staggered animations for multiple components */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+              {/* UCAS Guide Card - VideoThumbnailMidCard variant (thumbnail in middle) */}
+              <m.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="relative">
+                  <div className="absolute -top-4 left-4 bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
+                    Thumbnail Mid Position
+                  </div>
+                  <VideoThumbnailMidCard
+                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
+                    description="Demystifying UCAS: A Clear Path to UK University Success"
+                    variant="premium"
+                    popular={true}
+                    priceRange="£49.99"
+                    duration="90 minutes"
+                    features={[
+                      { feature: "Complete UCAS application timeline breakdown" },
+                      {
+                        feature:
+                          "University selection strategies for international students",
+                      },
+                      { feature: "Personal statement foundation and planning" },
+                      {
+                        feature:
+                          "Reference letter guidance and timeline management",
+                      },
+                      {
+                        feature: "UCAS Hub navigation and technical requirements",
+                      },
+                      {
+                        feature:
+                          "Common application mistakes and how to avoid them",
+                      },
+                    ]}
+                    ctaText="Scroll to UCAS Section"
+                    ctaLink="#ucas-guide-part-1"
+                    onCTAClick={() => {
+                      const ucasSection =
+                        document.getElementById("ucas-guide-part-1");
+                      if (ucasSection) {
+                        ucasSection.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
+                    paymentUrl="#"
+                  />
+                </div>
+              </m.div>
+
+              {/* UCAS Guide Card - VideoThumbnailTopCard variant (thumbnail at top) */}
+              <m.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <div className="relative">
+                  <div className="absolute -top-4 left-4 bg-amber-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
+                    Thumbnail Top Position
+                  </div>
+                  <VideoThumbnailTopCard
+                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
+                    description="Demystifying UCAS: A Clear Path to UK University Success"
+                    variant="premium"
+                    popular={true}
+                    priceRange="£49.99"
+                    duration="90 minutes"
+                    features={[
+                      { feature: "Complete UCAS application timeline breakdown" },
+                      {
+                        feature:
+                          "University selection strategies for international students",
+                      },
+                      { feature: "Personal statement foundation and planning" },
+                      {
+                        feature:
+                          "Reference letter guidance and timeline management",
+                      },
+                      {
+                        feature: "UCAS Hub navigation and technical requirements",
+                      },
+                      {
+                        feature:
+                          "Common application mistakes and how to avoid them",
+                      },
+                    ]}
+                    ctaText="Scroll to UCAS Section"
+                    ctaLink="#ucas-guide-part-1"
+                    onCTAClick={() => {
+                      const ucasSection =
+                        document.getElementById("ucas-guide-part-1");
+                      if (ucasSection) {
+                        ucasSection.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
+                    paymentUrl="#"
+                  />
+                </div>
+              </m.div>
+            </div>
+
+            {/* Layout comparison explanation */}
+            <m.div
+              className="text-center mt-12 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-white rounded-lg shadow-md p-6 border border-slate-200">
+                <p className="text-slate-700 leading-relaxed">
+                  <strong className="text-slate-900">Layout Comparison:</strong> The left card demonstrates thumbnail positioning within the content area, while the right card showcases thumbnail placement at the header. Both maintain identical content and functionality with different visual emphasis for your review.
+                </p>
+              </div>
+            </m.div>
+          </div>
+        </Section>
+
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll animations */}
+        {/* FULL-WIDTH SINGLE CARD SECTION: Professional showcase of single card presentation for client review */}
+        {/* IMPLEMENTATION REASON: Official Framer Motion documentation recommends whileInView for scroll-triggered animations */}
+        <Section background="white" className="py-20 border-t border-slate-200">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <m.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-4">
+                Single Card Layout: Full-Width Presentation
+              </h2>
+              <p className="text-lg text-slate-600 mb-6 max-w-3xl mx-auto">
+                Maximize impact with a centered, full-width card design for featured content
+              </p>
+              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
+            </m.div>
+
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Single element animation for full-width layout component */}
+            {/* SINGLE CARD LAYOUT REASON: Official Framer Motion documentation recommends viewport-triggered animations for single component showcase */}
+            <div className="max-w-4xl mx-auto">
+              {/* UCAS Guide Card - VideoThumbnailMidCard variant (full-width single card) */}
+              <m.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="relative">
+                  <div className="absolute -top-4 left-4 bg-green-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
+                    Full-Width Layout
+                  </div>
+                  <VideoThumbnailMidCard
+                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
+                    description="Demystifying UCAS: A Clear Path to UK University Success"
+                    variant="premium"
+                    popular={true}
+                    priceRange="£49.99"
+                    duration="90 minutes"
+                    features={[
+                      { feature: "Complete UCAS application timeline breakdown" },
+                      {
+                        feature:
+                          "University selection strategies for international students",
+                      },
+                      { feature: "Personal statement foundation and planning" },
+                      {
+                        feature:
+                          "Reference letter guidance and timeline management",
+                      },
+                      {
+                        feature: "UCAS Hub navigation and technical requirements",
+                      },
+                      {
+                        feature:
+                          "Common application mistakes and how to avoid them",
+                      },
+                    ]}
+                    ctaText="Scroll to UCAS Section"
+                    ctaLink="#ucas-guide-part-1"
+                    onCTAClick={() => {
+                      const ucasSection =
+                        document.getElementById("ucas-guide-part-1");
+                      if (ucasSection) {
+                        ucasSection.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
+                    paymentUrl="#"
+                  />
+                </div>
+              </m.div>
+            </div>
+
+            {/* Layout description explanation */}
+            <m.div
+              className="text-center mt-12 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-slate-50 rounded-lg shadow-md p-6 border border-slate-200">
+                <p className="text-slate-700 leading-relaxed">
+                  <strong className="text-slate-900">Full-Width Layout:</strong> This presentation style maximizes visual impact by centering a single card with generous whitespace. Ideal for featured content that requires maximum attention and detailed information display.
+                </p>
+              </div>
+            </m.div>
+          </div>
+        </Section>
+
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for grid layout animations */}
+        {/* THREE-COLUMN GRID SECTION: Professional showcase of multiple card grid layout for client review */}
+        {/* IMPLEMENTATION REASON: Official Framer Motion documentation recommends staggered animations for multiple grid components */}
+        <Section background="slate-100" className="py-20 border-t border-slate-200">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <m.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-4">
+                Multi-Card Layout: Three-Column Grid
+              </h2>
+              <p className="text-lg text-slate-600 mb-6 max-w-3xl mx-auto">
+                Display multiple masterclasses in a compact three-column grid layout
+              </p>
+              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
+            </m.div>
+
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Staggered animations for three-column grid layout components */}
+            {/* THREE-COLUMN GRID REASON: Official Framer Motion documentation recommends staggered animations with delay for multiple components */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {/* First UCAS Guide Card */}
+              <m.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="relative">
+                  <div className="absolute -top-4 left-4 bg-purple-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
+                    Card 1
+                  </div>
+                  <VideoThumbnailMidCard
+                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
+                    description="Demystifying UCAS: A Clear Path to UK University Success"
+                    variant="premium"
+                    popular={true}
+                    priceRange="£49.99"
+                    duration="90 minutes"
+                    features={[
+                      { feature: "Complete UCAS application timeline breakdown" },
+                      {
+                        feature:
+                          "University selection strategies for international students",
+                      },
+                      { feature: "Personal statement foundation and planning" },
+                      {
+                        feature:
+                          "Reference letter guidance and timeline management",
+                      },
+                      {
+                        feature: "UCAS Hub navigation and technical requirements",
+                      },
+                      {
+                        feature:
+                          "Common application mistakes and how to avoid them",
+                      },
+                    ]}
+                    ctaText="Scroll to UCAS Section"
+                    ctaLink="#ucas-guide-part-1"
+                    onCTAClick={() => {
+                      const ucasSection =
+                        document.getElementById("ucas-guide-part-1");
+                      if (ucasSection) {
+                        ucasSection.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
+                    paymentUrl="#"
+                  />
+                </div>
+              </m.div>
+
+              {/* Second UCAS Guide Card */}
+              <m.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="relative">
+                  <div className="absolute -top-4 left-4 bg-purple-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
+                    Card 2
+                  </div>
+                  <VideoThumbnailMidCard
+                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
+                    description="Demystifying UCAS: A Clear Path to UK University Success"
+                    variant="premium"
+                    popular={true}
+                    priceRange="£49.99"
+                    duration="90 minutes"
+                    features={[
+                      { feature: "Complete UCAS application timeline breakdown" },
+                      {
+                        feature:
+                          "University selection strategies for international students",
+                      },
+                      { feature: "Personal statement foundation and planning" },
+                      {
+                        feature:
+                          "Reference letter guidance and timeline management",
+                      },
+                      {
+                        feature: "UCAS Hub navigation and technical requirements",
+                      },
+                      {
+                        feature:
+                          "Common application mistakes and how to avoid them",
+                      },
+                    ]}
+                    ctaText="Scroll to UCAS Section"
+                    ctaLink="#ucas-guide-part-1"
+                    onCTAClick={() => {
+                      const ucasSection =
+                        document.getElementById("ucas-guide-part-1");
+                      if (ucasSection) {
+                        ucasSection.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
+                    paymentUrl="#"
+                  />
+                </div>
+              </m.div>
+
+              {/* Third UCAS Guide Card */}
+              <m.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <div className="relative">
+                  <div className="absolute -top-4 left-4 bg-purple-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
+                    Card 3
+                  </div>
+                  <VideoThumbnailMidCard
+                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
+                    description="Demystifying UCAS: A Clear Path to UK University Success"
+                    variant="premium"
+                    popular={true}
+                    priceRange="£49.99"
+                    duration="90 minutes"
+                    features={[
+                      { feature: "Complete UCAS application timeline breakdown" },
+                      {
+                        feature:
+                          "University selection strategies for international students",
+                      },
+                      { feature: "Personal statement foundation and planning" },
+                      {
+                        feature:
+                          "Reference letter guidance and timeline management",
+                      },
+                      {
+                        feature: "UCAS Hub navigation and technical requirements",
+                      },
+                      {
+                        feature:
+                          "Common application mistakes and how to avoid them",
+                      },
+                    ]}
+                    ctaText="Scroll to UCAS Section"
+                    ctaLink="#ucas-guide-part-1"
+                    onCTAClick={() => {
+                      const ucasSection =
+                        document.getElementById("ucas-guide-part-1");
+                      if (ucasSection) {
+                        ucasSection.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
+                    paymentUrl="#"
+                  />
+                </div>
+              </m.div>
+            </div>
+
+            {/* Grid layout explanation */}
+            <m.div
+              className="text-center mt-12 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-white rounded-lg shadow-md p-6 border border-slate-200">
+                <p className="text-slate-700 leading-relaxed">
+                  <strong className="text-slate-900">Three-Column Grid Layout:</strong> This compact presentation style allows multiple masterclasses to be displayed efficiently with staggered animations. Cards automatically stack on mobile devices for optimal responsive behaviour across all screen sizes.
+                </p>
+              </div>
             </m.div>
           </div>
         </Section>
