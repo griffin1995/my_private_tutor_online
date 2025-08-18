@@ -1056,9 +1056,14 @@ function getSubmenuItems(activeDropdown: string) {
       { name: 'Choose Your Bootcamps', href: '/11-plus-bootcamps#choose', description: 'Intensive preparation programmes' },
       { name: 'Why We\'re Unique', href: '/11-plus-bootcamps#unique', description: 'Official examiners & proven methods' }
     ],
+    // CONTEXT7 SOURCE: /websites/reactrouter - Enhanced scroll navigation with anchor fragment identifiers
+    // NAVIGATION ENHANCEMENT REASON: Official React Router documentation recommends hash-based navigation for same-page section scrolling
+    // IMPLEMENTATION: Updated video masterclasses submenu to include all page sections with proper scroll anchor targets
     'VIDEO MASTERCLASSES': [
-      { name: 'British Culture Unlocked', href: '/video-masterclasses#british-culture', description: 'Essential cultural knowledge for success' },
-      { name: 'UCAS Masterclass', href: '/video-masterclasses#ucas', description: 'University application expertise' }
+      { name: 'Featured Masterclasses', href: '/video-masterclasses#section-3', description: 'Premium video content and exclusive sessions' },
+      { name: 'Elizabeth\'s Essential UCAS Guide', href: '/video-masterclasses#ucas-guide-section', description: 'University application expertise and guidance' },
+      { name: 'Get Confident with British Culture', href: '/video-masterclasses#british-culture-section', description: 'Essential cultural knowledge for success' },
+      { name: 'Free Resources', href: '/video-masterclasses#section-2', description: 'Complimentary masterclasses and educational content' }
     ],
     'FAQ': [
       { name: 'About the Service', href: '/faq#about-service', description: 'Understanding our tutoring approach' },
