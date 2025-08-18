@@ -149,63 +149,132 @@
   "founderStory": {
     "title": "Meet Elizabeth, A Different Kind of Educator",
     "introduction": "Our Founder Elizabeth did not follow the usual path and her company does not get the usual results. It surpasses them. With over 15 years of experience and a tutoring network that spans the globe, Elizabeth leads a team that helps students thrive — not just by raising grades, but by cultivating confidence, sharpening clarity and championing individual choice.",
-    "unconventionalPath": "Considering how unconventional my own schooling was, I often find myself chuckling that I'm in my second decade of a career in education. My path through school wasn't linear; I think that's one of the reasons families trust me. I'm motivated by helping children when it feels like there are no straight lines, only a confusing jumble of squiggles. That's when my team and I can make a real impact.",
+    "personalIntroduction": {
+      "heading": "Meet Elizabeth, A Different Kind of Educator",
+      "content": "Considering how unconventional my own schooling was, I often find myself chuckling that I'm in my second decade of a career in education. My path through school wasn't linear; I think that's one of the reasons families trust me. I'm motivated by helping children when it feels like there are no straight lines, only a confusing jumble of squiggles. That's when my team and I can make a real impact. I moved through six different schools growing up, across private, state, faith, co-educational and single-sex systems (including a boys' school run by monks — yes, really). My learning could have easily suffered, especially since I have Dyspraxia, but one constant made a huge difference: my tutor. She not only gave me academic consistency but something far more valuable — a quiet confidence and the belief that excellence was achievable, even in turbulent times."
+    },
     "goingAgainstTheGrain": {
       "title": "Going Against the Grain",
-      "content": [
-        "By Sixth Form, I was achieving top grades. I hadn't planned to apply to Oxbridge, but when my headmistress pulled me aside to ask if I'd considered it, something inside me switched on. I loved a challenge, and applying to Cambridge to read English and Theatre with Education Studies was certainly that.",
-        "But my offer letter was as much cause for agitation as celebration. You see, I had already fallen in love with another course and city: Bristol. My elder sister was studying languages there and although I had doggedly courted a Cambridge offer, I hadn't considered a world in which I would actually receive one. What to do? Who turns down *Cambridge*? 17 year-old me. It was an agonizing decision, but even then I knew the right one. Looking back, I realise that dilemma helped define my ethos towards education: **work as hard as you can to give yourself the luxury of choice, then have the confidence to pick what's right for you — even if it's not what's expected.**"
-      ]
+      "content": "By Sixth Form, I was achieving top grades. I hadn't planned to apply to Oxbridge, but when my headmistress pulled me aside to ask if I'd considered it, something inside me switched on. I loved a challenge, and applying to Cambridge to read English and Theatre with Education Studies was certainly that. But my offer letter was as much cause for agitation as celebration. You see, I had already fallen in love with another course and city: Bristol. My elder sister was studying languages there and although I had doggedly courted a Cambridge offer, I hadn't considered a world in which I would actually receive one. What to do? Who turns down Cambridge? 17 year-old me. It was an agonizing decision, but even then I knew the right one. Looking back, I realise that dilemma helped define my ethos towards education: work as hard as you can to give yourself the luxury of choice, then have the confidence to pick what's right for you — even if it's not what's expected."
     },
-    "firstLessonToSeventhContinent": {
-      "title": "First Lesson to Seventh Continent",
-      "content": [
-        "I started tutoring at Bristol; it was love at first lesson. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family.",
-        "What followed was a series of international placements and the opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents. Along the way, I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now."
-      ]
+    "careerMilestones": {
+      "title": "Career Milestones",
+      "firstLesson": {
+        "heading": "First Lesson",
+        "content": "I started tutoring at Bristol; it was love at first lesson. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family."
+      },
+      "seventhContinent": {
+        "heading": "to Seventh Continent",
+        "content": "What followed was a series of international placements and the opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents. Along the way, I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now."
+      }
     },
-    "globalView": {
+    "globalExperience": {
       "title": "A Global View of What Education Can Do",
-      "content": "Keen to put my English degree to good use, during this time I also worked at *Forbes Middle East as Online Editor*. I covered a range of subjects, including education. Conducting interviews with business moguls through Forbes reinforced that the right educational support doesn't just help people ace exams — it shapes their choices, their confidence and their future. These leaders had turned their fortunes around through education. What could be more exciting and important?"
+      "content": "Keen to put my English degree to good use, during this time I also worked at Forbes Middle East as Online Editor. I covered a range of subjects, including education. Conducting interviews with business moguls and CEOs reinforced what I already knew: the right educational support doesn't just help people ace exams — it shapes their choices, their confidence and their future. These leaders had turned their fortunes around through education. What could be more exciting and important?"
     },
     "resultsThatMatter": {
       "title": "Results That Matter",
-      "content": [
-        "Since founding **My Private Tutor Online** more than 15 years ago, I've helped hundreds of families through key academic transitions — from early entrance exams to Oxbridge interviews, international moves to last-minute GCSE turnarounds."
-      ],
+      "content": "Since founding My Private Tutor Online more than 15 years ago, I've helped hundreds of families through key academic transitions — from early entrance exams to Oxbridge interviews, international moves to last-minute GCSE turnarounds. Each year, our students go on to achieve outstanding results: Offers from Oxford and Cambridge. Placing in the top 2% of candidates at top five UK independent schools, including Eton, St. Paul's, and Westminster. 94% of GCSE students improve by two grades or more. Tutoring isn't just about good grades. It's about having someone in your corner who sees what you're capable of, even before you do. That's the kind of guidance I had growing up, and it's what I aim to offer every family who works with us. If you're looking for more than a tutor — if you're seeking a trusted partner to help navigate the terrain, whether calm or chaotic — I'd love to hear from you. Elizabeth Burrows, Founder & CEO",
       "resultsList": [
-        "Offers from **Oxford and Cambridge**",
-        "Placing in the top 2% of candidates at **top five UK independent schools**, including Eton, St. Paul's, and Westminster",
-        "**94% of GCSE students** improve by two grades or more"
-      ],
-      "closingMessage": "Tutoring isn't just about good grades. It's about having someone in your corner who sees what you're capable of, even before you do. That's the kind of guidance I had growing up, and it's what I aim to offer every family who works with us.",
-      "finalQuote": "If you're looking for more than a tutor — if you're seeking a trusted partner to help navigate the terrain, whether calm or chaotic — I'd love to hear from you.",
-      "signature": "Elizabeth Burrows, Founder & CEO"
+        "Offers from Oxford and Cambridge",
+        "Placing in the top 2% of candidates at top five UK independent schools, including Eton, St. Paul's, and Westminster",
+        "94% of GCSE students improve by two grades or more"
+      ]
     },
+    "timeline": [
+      {
+        "year": "2010",
+        "title": "Company Founded",
+        "description": "Elizabeth Burrows founded My Private Tutor Online with a vision for personalised, world-class tutoring",
+        "location": "Bristol, UK"
+      },
+      {
+        "year": "2015",
+        "title": "Global Expansion",
+        "description": "Extended tutoring services internationally, working with families across multiple continents",
+        "location": "International"
+      },
+      {
+        "year": "2017",
+        "title": "Seven Continents Achieved",
+        "description": "Completed teaching and consulting across all seven continents, building global network",
+        "location": "Worldwide"
+      },
+      {
+        "year": "2018",
+        "title": "Royal Recognition",
+        "description": "Achieved royal family endorsement, establishing credibility among elite British families",
+        "location": "London, UK"
+      },
+      {
+        "year": "2020",
+        "title": "Digital Excellence",
+        "description": "Enhanced online platform to deliver world-class remote tutoring during global challenges",
+        "location": "Remote Global"
+      },
+      {
+        "year": "2025",
+        "title": "Tatler Address Book",
+        "description": "Featured in Tatler Address Book 2025, recognised as a premium tutoring service",
+        "location": "UK"
+      }
+    ],
+    "photoGallery": [
+      {
+        "src": "/images/team/founder-elizabeth-burrows-professional.jpg",
+        "alt": "Elizabeth Burrows Professional Portrait",
+        "caption": "Elizabeth Burrows, Founder & CEO",
+        "location": "London Office"
+      },
+      {
+        "src": "/images/team/founder-elizabeth-burrows-portrait.jpg",
+        "alt": "Elizabeth Burrows Portrait",
+        "caption": "Leadership Portrait",
+        "location": "Studio"
+      },
+      {
+        "src": "/images/team/founder-elizabeth-burrows-alternative.jpg",
+        "alt": "Elizabeth Burrows Alternative Portrait",
+        "caption": "Executive Portrait",
+        "location": "Corporate Setting"
+      },
+      {
+        "src": "/images/team/founder-elizabeth-burrows-secondary.jpg",
+        "alt": "Elizabeth Burrows Secondary Portrait",
+        "caption": "Educational Leadership",
+        "location": "University Setting"
+      }
+    ],
     "achievements": [
       {
         "icon": "Award",
-        "text": "Featured in Tatler Address Book"
+        "text": "Featured in Tatler Address Book 2025",
+        "stat": "2025"
       },
       {
-        "icon": "Crown",
-        "text": "Royal Family Endorsed"
-      },
-      {
-        "icon": "Trophy",
-        "text": "School Guide UK 'Top Pick'"
+        "icon": "Crown", 
+        "text": "Royal Family Endorsed",
+        "stat": "2018"
       },
       {
         "icon": "Globe",
-        "text": "Seven Continents Experience"
+        "text": "Seven Continents Experience",
+        "stat": "2017"
       },
       {
         "icon": "BookOpen",
-        "text": "Forbes Middle East Editor"
+        "text": "Forbes Middle East Editor",
+        "stat": "Former"
       },
       {
-        "icon": "Star",
-        "text": "Cambridge-Accepted Educator"
+        "icon": "GraduationCap",
+        "text": "Cambridge Offer Recipient",
+        "stat": "Education"
+      },
+      {
+        "icon": "TrendingUp",
+        "text": "94% Student Grade Improvement",
+        "stat": "94%"
       }
     ]
   }

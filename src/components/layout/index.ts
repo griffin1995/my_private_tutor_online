@@ -30,3 +30,6 @@ export type {
   SectionContainerSize,
   SectionAlignment
 } from './section'
+
+export { TemplateHero } from './template-hero'
+export type { TemplateHeroProps } from './template-hero'

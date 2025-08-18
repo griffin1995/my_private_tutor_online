@@ -1509,6 +1509,7 @@ export const getHowItWorksHero = (): {
   readonly subtitle: string
   readonly description: string
   readonly backgroundImage?: string
+  readonly backgroundImageKey?: string
 } => {
   return howItWorksContent.hero
 }
