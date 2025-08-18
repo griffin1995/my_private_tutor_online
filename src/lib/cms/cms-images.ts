@@ -350,7 +350,7 @@ export const HERO_IMAGES = {
     // Documentation Source: Context7 MCP - Next.js Static File Serving from Public Directory
     // Reference: /vercel/next.js - Static assets served from /public folder
     // Pattern: Video files served from /public/videos/ directory for proper Next.js asset management
-    src: "/videos/elizabeth-introduction.mp4",
+    src: "/videos/elizabeth-introduction-compressed.mp4",
     alt: "Elizabeth Burrows introduces My Private Tutor Online",
     width: 800,
     height: 450,
@@ -500,7 +500,7 @@ export const TUTOR_IMAGES = {
 export const VIDEO_CONTENT = {
   parentsTestimonials: {
     id: "parents-testimonials-2025",
-    src: "/videos/testimonials/parents-testimonials-mpto-2025.mp4",
+    src: "/videos/testimonials-parents-2025-compressed.mp4",
     poster: "/images/video-placeholders/parents-testimonials-poster.jpg",
     alt: "Parent testimonials for My Private Tutor Online - July 2025",
     title: "Parent Success Stories 2025",
@@ -517,7 +517,7 @@ export const VIDEO_CONTENT = {
   },
   studentsTestimonials: {
     id: "students-testimonials-2025",
-    src: "/videos/testimonials/students-testimonials-mpto-2025.mp4",
+    src: "/videos/testimonials-students-2025-compressed.mp4",
     poster: "/images/video-placeholders/students-testimonials-poster.jpg",
     alt: "Student testimonials for My Private Tutor Online - 2025",
     title: "Student Success Stories 2025",
@@ -654,7 +654,7 @@ export const VIDEO_PLACEHOLDERS = {
 export const MASTERCLASS_VIDEOS = {
   unlockingAcademicSuccess: {
     id: "unlocking-academic-success",
-    src: "/videos/masterclasses/gcse-summit-2024.mp4",
+    src: "/videos/masterclasses/gcse-summit-2024-compressed.mp4",
     poster: "/images/masterclass-thumbnails/unlocking-success.png",
     alt: "Unlocking Academic Success - GCSE Summit 2024 Masterclass by Elizabeth Burrows",
     title: "Unlocking Academic Success (Free Access)",
@@ -667,7 +667,7 @@ export const MASTERCLASS_VIDEOS = {
     masterclassRole: "Founder, My Private Tutor Online",
     isFree: true,
     thumbnailUrl: "/images/masterclass-thumbnails/gcse-summit.png",
-    videoUrl: "/videos/masterclasses/gcse-summit-2024.mp4",
+    videoUrl: "/videos/masterclasses/gcse-summit-2024-compressed.mp4",
   },
 } as const;
 
@@ -675,8 +675,8 @@ export const MASTERCLASS_VIDEOS = {
 // CMS DATA SOURCE: Using existing video content for video-text component backgrounds
 export const BACKGROUND_VIDEOS = {
   brandStatement: {
-    src: "/videos/elizabeth-introduction.mp4",
-    fallback: "/videos/elizabeth-introduction.mp4",
+    src: "/videos/elizabeth-introduction-compressed.mp4",
+    fallback: "/videos/elizabeth-introduction-compressed.mp4",
     poster:
       "/images/video-placeholders/placeholder_for_introductionary_video.png",
     alt: "Elizabeth Burrows introduces My Private Tutor Online - brand statement background",
@@ -685,8 +685,8 @@ export const BACKGROUND_VIDEOS = {
       "Founder introduction video used as background for brand statement text effects",
   },
   tutoring: {
-    src: "/videos/elizabeth-introduction.mp4",
-    fallback: "/videos/elizabeth-introduction.mp4",
+    src: "/videos/elizabeth-introduction-compressed.mp4",
+    fallback: "/videos/elizabeth-introduction-compressed.mp4",
     poster:
       "/images/video-placeholders/placeholder_for_introductionary_video.png",
     alt: "Professional tutoring introduction video background",
@@ -695,8 +695,8 @@ export const BACKGROUND_VIDEOS = {
       "Professional introduction video for tutoring-focused video-text effects",
   },
   oxbridge: {
-    src: "/videos/elizabeth-introduction.mp4",
-    fallback: "/videos/elizabeth-introduction.mp4",
+    src: "/videos/elizabeth-introduction-compressed.mp4",
+    fallback: "/videos/elizabeth-introduction-compressed.mp4",
     poster:
       "/images/video-placeholders/placeholder_for_introductionary_video.png",
     alt: "Oxford Cambridge preparation introduction video background",

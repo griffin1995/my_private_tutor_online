@@ -61,7 +61,7 @@ export function IntroVideoSection({
   backgroundColor = "bg-white",
   title = "Meet Elizabeth Burrows",
   description = "Watch our founder introduce My Private Tutor Online and discover how we provide world-class education at your fingertips.",
-  videoSrc = "/videos/elizabeth-introduction.mp4",
+  videoSrc = "/videos/elizabeth-introduction-compressed.mp4",
   posterSrc = "/images/video-placeholders/placeholder_for_introductionary_video.png",
   videoTitle = "Elizabeth Burrows introduces My Private Tutor Online"
 }: IntroVideoSectionProps) {

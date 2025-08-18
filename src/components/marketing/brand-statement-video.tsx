@@ -48,7 +48,7 @@ export function BrandStatementVideo({
   const backgroundVideo = getBackgroundVideo(videoKey)
   
   // Fallback to existing video if CMS video not available
-  const videoSrc = backgroundVideo?.src || '/videos/elizabeth-introduction.mp4'
+  const videoSrc = backgroundVideo?.src || '/videos/elizabeth-introduction-compressed.mp4'
   
   return (
     <div className={cn(

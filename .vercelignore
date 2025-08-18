@@ -1,5 +1,16 @@
 # Large video files - served via CDN
+public/videos/**/*.mp4
 public/videos/*.mp4
+public/videos/
+public/**/*.mp4
+**/*.mp4
+
+# Large files that should be excluded
+**/*.mov
+**/*.avi
+**/*.mkv
+**/*.webm
+**/tsconfig.tsbuildinfo
 
 # Development files
 node_modules

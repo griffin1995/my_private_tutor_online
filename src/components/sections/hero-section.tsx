@@ -97,7 +97,7 @@ interface HeroSectionProps {
  */
 export function HeroSection({ 
   className = "",
-  backgroundVideo = "/videos/background-video-2025.mp4",
+  backgroundVideo = "/videos/background-video-2025-compressed.mp4",
   dialogVideo,
   showHeader = true,
   branding,

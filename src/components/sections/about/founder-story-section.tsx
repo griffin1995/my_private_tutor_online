@@ -432,7 +432,7 @@ export function FounderStorySection({
               <HeroVideoDialog
                 className="block max-w-4xl mx-auto"
                 animationStyle="from-center"
-                videoSrc="/videos/elizabeth-introduction.mp4"
+                videoSrc="/videos/elizabeth-introduction-compressed.mp4"
                 thumbnailSrc="/videos/posters/elizabeth-introduction-poster.jpg"
                 thumbnailAlt="Elizabeth Burrows Introduction Video - Unlocking Academic Success Seminar"
               />
