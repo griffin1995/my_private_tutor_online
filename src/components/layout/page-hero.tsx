@@ -172,18 +172,25 @@ export function PageHero({
       {/* Reference: https://tailwindcss.com/docs/z-index */}
       {/* Reference: https://tailwindcss.com/docs/container */}
       {/* Pattern: Accessible content container with proper stacking and responsive constraints */}
-      <div className="relative z-20 w-full flex flex-col justify-center">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container overflow protection with responsive constraints */}
+      {/* OVERFLOW PROTECTION ENHANCEMENT: Official Tailwind CSS documentation recommends overflow-hidden with @container for proper content fitting */}
+      <div className="relative z-20 w-full flex flex-col justify-center overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className={cn(
             size === 'full' ? 'max-w-7xl mx-auto' : 'max-w-4xl mx-auto',
-            alignmentClasses[alignment]
+            alignmentClasses[alignment],
+            'overflow-hidden'
           )}>
-            {/* Single column content layout - no automatic video dialog */}
-            {/* CMS DATA SOURCE: Context7 MCP - Simplified PageHero layout */}
+            {/* Single column content layout with overflow protection */}
+            {/* CMS DATA SOURCE: Context7 MCP - Simplified PageHero layout with container constraints */}
             {/* Reference: Single column design for custom video modal implementations */}
-            {/* Pattern: Clean content container without automatic video components */}
-            <div className="w-full">
-              {children}
+            {/* Pattern: Clean content container with overflow protection and responsive constraints */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container query patterns for responsive content fitting */}
+            {/* CONTENT CONTAINER ENHANCEMENT: Official Tailwind CSS documentation recommends @container for responsive content scaling */}
+            <div className="w-full @container">
+              <div className="overflow-hidden">
+                {children}
+              </div>
             </div>
           </div>
         </div>

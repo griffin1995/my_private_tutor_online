@@ -1,7 +1,13 @@
 {
   "_comments": {
-    "lastUpdated": "2025-01-16",
+    "lastUpdated": "2025-08-18",
     "recentChanges": [
+      {
+        "change": "Optimized resultsDocumentation to best 3 cards only (A-Level Grade Improvement, Russell Group Acceptance, Oxbridge Success)",
+        "reason": "CONTEXT7 SOURCE: /websites/react_dev - Component removal patterns for streamlined page structure",
+        "date": "2025-08-18",
+        "source": "Subject tuition page cleanup - focus on most impactful outcomes"
+      },
       {
         "change": "Removed '24/7 educational support coordination' from keyInterventions",
         "reason": "CONTEXT7 SOURCE: /vercel/next.js - Content audit removal per user requirements",
@@ -46,42 +52,6 @@
       "confidenceInterval": "±12% (90% confidence)",
       "icon": "Crown",
       "priority": 1
-    },
-    {
-      "category": "exam_success",
-      "metric": "11+ Grammar School Success",
-      "value": "94% pass rate",
-      "description": "Students achieving offers from their preferred grammar schools. Includes comprehensive preparation for VR, NVR, English, and Mathematics components.",
-      "sampleSize": 127,
-      "timeframe": "September 2024 intake",
-      "verificationLevel": "verified",
-      "confidenceInterval": "±4% (95% confidence)",
-      "icon": "Target",
-      "priority": 2
-    },
-    {
-      "category": "grade_improvement",
-      "metric": "GCSE Grade Enhancement",
-      "value": "96% achieve Grade 7+",
-      "description": "Students achieving Grade 7 or above in targeted GCSE subjects after 6+ months of tutoring. Particularly strong in Mathematics and Sciences.",
-      "sampleSize": 198,
-      "timeframe": "Summer 2024 exam session",
-      "verificationLevel": "verified",
-      "confidenceInterval": "±3% (95% confidence)",
-      "icon": "BookOpen",
-      "priority": 2
-    },
-    {
-      "category": "roi_analysis",
-      "metric": "Client Satisfaction NPS Score",
-      "value": "96% promoter rating",
-      "description": "Net Promoter Score based on comprehensive client surveys. Exceptional score compared to education industry average of 31%.",
-      "sampleSize": 245,
-      "timeframe": "2024 client survey",
-      "verificationLevel": "verified",
-      "confidenceInterval": "±2% (95% confidence)",
-      "icon": "Heart",
-      "priority": 3
     }
   ],
   "caseStudies": [
@@ -339,6 +309,6 @@
       "confidenceLevel": "Exceptional confidence based on elite client outcomes"
     }
   ],
-  "lastUpdated": "2025-01-11",
+  "lastUpdated": "2025-08-18",
   "dataVerificationDate": "2024-12-15"
 }

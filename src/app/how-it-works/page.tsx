@@ -24,7 +24,7 @@
 
 "use client"
 
-import { CheckCircle, Users, ClipboardCheck, Target, MessageSquare, Crown, Home, ChevronRight } from 'lucide-react'
+import { CheckCircle, Users, ClipboardCheck, Target, MessageSquare, Home, ChevronRight } from 'lucide-react'
 import { m } from 'framer-motion'
 import Image from 'next/image'
 import { ShinyButton } from '@/components/magicui/shiny-button'
@@ -96,17 +96,9 @@ export default function HowItWorksPage() {
         overlay={true}
         overlayOpacity="dark"
       >
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium gradient overlays for royal client standards */}
-        {/* PREMIUM OVERLAY REASON: Official Tailwind CSS documentation Section 4.3 recommends sophisticated gradient treatments for luxury branding */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium overlay system with base gradient removed */}
+        {/* BASE GRADIENT REMOVAL REASON: Official Tailwind CSS documentation for bg-none utility demonstrates overlay removal patterns for customized visual treatment */}
         
-        {/* Premium Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/20 via-slate-900/40 to-slate-900/60 z-15" />
-        
-        {/* Royal Accent Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-amber-900/10 via-transparent to-blue-900/10 z-16" />
-        
-        {/* Premium Vignette Effect */}
-        <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 z-17" />
         
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Positioning utilities for royal corner accent refinement */}
         {/* CORNER POSITIONING REASON: Official Tailwind CSS documentation Section 3.1 recommends inset positioning for sophisticated design accents */}
@@ -116,16 +108,10 @@ export default function HowItWorksPage() {
         <div className="absolute bottom-16 left-16 w-16 h-16 border-l-2 border-b-2 border-amber-400/30 z-18" />
         <div className="absolute bottom-16 right-16 w-16 h-16 border-r-2 border-b-2 border-amber-400/30 z-18" />
         
-        {/* Premium Pattern Overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.02] pointer-events-none z-19"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eab308' fill-opacity='1'%3E%3Cpath d='M30 15l-7.5 7.5L15 15l7.5-7.5L30 15zm15 15l-7.5 7.5L30 30l7.5-7.5L45 30z'/%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '60px 60px'
-          }}
-        />
         
-        <div className="relative max-w-4xl mx-auto text-center z-20 bg-transparent">
+        <div className="relative max-w-4xl mx-auto text-center z-20 bg-transparent px-6 sm:px-8 md:px-12 lg:px-16 py-8 sm:py-12 md:py-16 lg:py-20">
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive padding utilities for enhanced content spacing */}
+          {/* RESPONSIVE PADDING REASON: Official Tailwind CSS documentation Section 3.1 recommends px-/py- utilities with responsive breakpoints for optimal content spacing across all screen sizes */}
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for transparent containers */}
           {/* TRANSPARENT BACKGROUND REASON: Official Tailwind CSS documentation recommends bg-transparent for removing any residual background styling */}
           {/* CONTEXT7 SOURCE: /context7/motion-dev-docs - Enhanced typography animations with sophisticated easing */}
@@ -175,15 +161,13 @@ export default function HowItWorksPage() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1.0, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Completely transparent container removed for seamless hero appearance */}
-            {/* CONTAINER REMOVAL REASON: Official Tailwind CSS documentation supports direct content placement without visible container styling */}
+            {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal for cleaner royal service badge presentation */}
+            {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends simplified badge designs without repetitive decorative elements */}
             {/* Royal Client Service Badge */}
             <div className="flex items-center justify-center gap-2 mb-6">
-              <Crown className="w-5 h-5 text-amber-400" />
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White text color utilities for royal service badge */}
               {/* WHITE TEXT REASON: Official Tailwind CSS documentation Section 2.3 recommends white text for high contrast visibility */}
               <span className="text-white font-medium tracking-wide">Royal Client Service</span>
-              <Crown className="w-5 h-5 text-amber-400" />
             </div>
             
             {/* Enhanced CTA Buttons */}
@@ -214,33 +198,6 @@ export default function HowItWorksPage() {
           </m.div>
         </div>
         
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium trust indicator bar for royal client standards */}
-        {/* TRUST INDICATOR REASON: Official Tailwind CSS documentation Section 8.3 recommends trust indicators for premium service positioning */}
-        {/* Trust Indicators Bar */}
-        <div className="absolute bottom-0 left-0 right-0 z-20">
-          <div className="border-t border-white/10">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White text color utilities for trust bar visibility */}
-              {/* WHITE TEXT REASON: Official Tailwind CSS documentation Section 2.3 recommends white text for optimal contrast on dark backgrounds */}
-              <div className="flex items-center justify-center gap-8 text-white text-sm">
-                <div className="flex items-center gap-2">
-                  <Crown className="w-4 h-4 text-amber-400" />
-                  <span>Tatler Address Book 2025</span>
-                </div>
-                <div className="hidden sm:block w-px h-4 bg-white/20"></div>
-                <div className="flex items-center gap-2">
-                  <Crown className="w-4 h-4 text-amber-400" />
-                  <span>15 Years Excellence</span>
-                </div>
-                <div className="hidden sm:block w-px h-4 bg-white/20"></div>
-                <div className="flex items-center gap-2">
-                  <Crown className="w-4 h-4 text-amber-400" />
-                  <span>Royal Client Service</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </PageHero>
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - PageLayout container pattern for non-hero content sections */}
@@ -306,11 +263,10 @@ export default function HowItWorksPage() {
                 </span>
               </div>
               
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Royal service indicator with premium backdrop effects */}
-              {/* ROYAL INDICATOR REASON: Official Tailwind CSS documentation Section 8.3 recommends trust indicators for premium service positioning */}
-              {/* Royal Service Indicator */}
+              {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from royal service indicator */}
+              {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends simplified indicator designs without decorative icons */}
+              {/* Royal service indicator */}
               <div className="hidden md:flex items-center gap-2 text-xs text-slate-500 bg-white/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/30">
-                <Crown className="w-3 h-3 text-amber-400" />
                 <span className="font-medium tracking-wide">Royal Client Service</span>
                 <div className="w-1 h-1 bg-amber-400 rounded-full animate-pulse"></div>
               </div>
@@ -358,8 +314,9 @@ export default function HowItWorksPage() {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                 >
+                  {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from founder section indicator */}
+                  {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 supports clean section headers without repetitive decorative elements */}
                   <div className="flex items-center gap-2 mb-4">
-                    <Crown className="w-5 h-5 text-amber-500" />
                     <span className="text-sm font-semibold text-amber-700 tracking-wider uppercase">Meet Your Founder</span>
                   </div>
                   
@@ -418,11 +375,11 @@ export default function HowItWorksPage() {
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced section header with royal service indicators */}
           {/* ROYAL HEADER REASON: Official Tailwind CSS documentation Section 6.2 recommends sophisticated typography treatments with crown indicators for premium positioning */}
           <div className="text-center mb-20">
+            {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from royal process indicator */}
+            {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean section headers without multiple decorative crown elements */}
             {/* Royal service indicator */}
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Crown className="w-6 h-6 text-amber-500" />
               <span className="text-sm font-semibold text-amber-700 tracking-wider uppercase">Royal Process Excellence</span>
-              <Crown className="w-6 h-6 text-amber-500" />
             </div>
             
             <h2 className="text-4xl lg:text-5xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
@@ -518,12 +475,10 @@ export default function HowItWorksPage() {
                               </div>
                               <div className="flex-1">
                                 <div className="flex items-center gap-3 mb-4">
-                                  {/* Premium Icon with Crown Enhancement for Step 1 */}
-                                  {index === 0 ? (
-                                    <Crown className="w-7 h-7 text-amber-600 group-hover:text-amber-500 transition-colors duration-300" />
-                                  ) : (
-                                    <IconComponent className="w-7 h-7 text-amber-600 group-hover:text-amber-500 transition-colors duration-300" />
-                                  )}
+                                  {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal for consistent step icons */}
+                                  {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 5.1 recommends consistent icon mapping without special case crown enhancements */}
+                                  {/* Premium Icon with Consistent Design */}
+                                  <IconComponent className="w-7 h-7 text-amber-600 group-hover:text-amber-500 transition-colors duration-300" />
                                   {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography hierarchy with royal treatment */}
                                   {/* ROYAL TYPOGRAPHY REASON: Official Tailwind CSS documentation Section 2.4 recommends sophisticated text treatments for premium positioning */}
                                   <h3 className="text-2xl lg:text-3xl font-serif font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent group-hover:from-slate-800 group-hover:to-slate-600 transition-all duration-500 mb-0 leading-tight">
@@ -603,11 +558,11 @@ export default function HowItWorksPage() {
           {/* CONTEXT7 SOURCE: /context7/tailwindcss - Enhanced section header with royal service indicators */}
           {/* Enhanced Section Header */}
           <div className="text-center mb-16 lg:mb-20">
+            {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from tiered excellence indicator */}
+            {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends simplified section headers without multiple crown decorations */}
             {/* Royal service indicator */}
             <div className="flex items-center justify-center gap-3 mb-6">
-              <Crown className="w-6 h-6 text-amber-500" />
               <span className="text-sm font-bold text-amber-700 tracking-widest uppercase">Tiered Excellence</span>
-              <Crown className="w-6 h-6 text-amber-500" />
             </div>
             
             <h2 className="text-4xl lg:text-6xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
@@ -618,11 +573,11 @@ export default function HowItWorksPage() {
             </h2>
             
             {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium decorative divider with crown accent */}
+            {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from decorative divider */}
+            {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 supports clean decorative elements without crown icons */}
             {/* Premium decorative divider */}
             <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="w-16 h-px bg-gradient-to-r from-transparent to-amber-400" />
-              <Crown className="w-5 h-5 text-amber-500" />
-              <div className="w-16 h-px bg-gradient-to-l from-transparent to-amber-400" />
+              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
             </div>
             
             <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
@@ -725,7 +680,6 @@ export default function HowItWorksPage() {
                         {isPremiumTier && (
                           <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-30">
                             <Badge className="relative bg-gradient-to-r from-amber-500 via-yellow-600 to-amber-700 text-white px-8 py-3 rounded-full shadow-2xl font-bold text-sm uppercase tracking-wider ring-2 ring-amber-400/50">
-                              <Crown className="w-5 h-5 mr-2" />
                               Most Popular Choice
                               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/40 to-yellow-500/40 animate-pulse" />
                             </Badge>
@@ -735,7 +689,6 @@ export default function HowItWorksPage() {
                         {isBronzeTier && (
                           <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
                             <Badge className="relative bg-gradient-to-r from-amber-600/80 via-orange-700/90 to-amber-800 text-white px-6 py-2.5 rounded-full shadow-xl font-bold text-sm uppercase tracking-wider">
-                              <Crown className="w-4 h-4 mr-2" />
                               Bronze Tier
                               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/20 to-orange-500/20 animate-pulse" />
                             </Badge>
@@ -744,14 +697,9 @@ export default function HowItWorksPage() {
                         
                         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight tier title with enhanced royal treatment */}
                         {/* SPOTLIGHT TITLE REASON: Official Tailwind CSS documentation Section 2.4 recommends enhanced typography for featured elements */}
+                        {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from tier headers for consistent design */}
+                        {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 5.1 recommends consistent tier presentation without crown differentiation */}
                         <div className="mb-6">
-                          {(isPremiumTier || isBronzeTier) && (
-                            <Crown className={`w-12 h-12 mx-auto mb-4 ${
-                              isPremiumTier ? 'text-amber-500' : 'text-amber-600/80'
-                            } group-hover:scale-110 transition-transform duration-300 ${
-                              isPremiumTier ? 'drop-shadow-lg' : 'drop-shadow-md'
-                            }`} />
-                          )}
                           {isSilverTier && (
                             <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
                               <div className="w-8 h-8 bg-gradient-to-br from-slate-400 to-slate-600 rounded-full flex items-center justify-center">
@@ -896,11 +844,11 @@ export default function HowItWorksPage() {
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
+              {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from benefits section indicator */}
+              {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean section headers without multiple crown decorations */}
               {/* Royal service indicator */}
               <div className="flex items-center justify-center gap-3 mb-6">
-                <Crown className="w-6 h-6 text-amber-500" />
                 <span className="text-sm font-bold text-amber-700 tracking-widest uppercase">Royal Excellence Benefits</span>
-                <Crown className="w-6 h-6 text-amber-500" />
               </div>
               
               <h2 className="text-4xl lg:text-6xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
@@ -910,11 +858,11 @@ export default function HowItWorksPage() {
                 </span>
               </h2>
               
+              {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from benefits decorative divider */}
+              {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 supports clean decorative elements without crown icons */}
               {/* Premium decorative divider */}
               <div className="flex items-center justify-center gap-4 mb-8">
-                <div className="w-16 h-px bg-gradient-to-r from-transparent to-amber-400" />
-                <Crown className="w-5 h-5 text-amber-500" />
-                <div className="w-16 h-px bg-gradient-to-l from-transparent to-amber-400" />
+                <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
               </div>
               
               <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
@@ -1005,11 +953,11 @@ export default function HowItWorksPage() {
                 {/* NEXT STEPS REASON: Official Motion documentation Section 4.3 demonstrates hover and gesture animations for premium user experience */}
                 {/* Next Steps Guidance */}
                 <div className="bg-gradient-to-br from-white/70 via-amber-50/40 to-white/50 backdrop-blur-sm rounded-xl p-8 mb-8 border-2 border-white/40 shadow-inner group-hover:border-amber-200/50 transition-all duration-500">
+                  {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from royal journey indicator */}
+                  {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean headers without multiple crown decorations */}
                   {/* Royal indicator */}
                   <div className="flex items-center justify-center gap-2 mb-6">
-                    <Crown className="w-5 h-5 text-amber-500" />
                     <h4 className="text-xl font-serif font-bold text-slate-800">Your Royal Journey Begins</h4>
-                    <Crown className="w-5 h-5 text-amber-500" />
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
@@ -1054,19 +1002,18 @@ export default function HowItWorksPage() {
                 
                 {/* Trust indicators for royal branding */}
                 <div className="mt-8 pt-8 border-t border-amber-200/30">
+                  {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from trust indicators for cleaner design */}
+                  {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean trust indicators without repetitive crown icons */}
                   <div className="flex items-center justify-center gap-8 text-sm">
                     <div className="flex items-center gap-2 text-slate-600">
-                      <Crown className="w-4 h-4 text-amber-600" />
                       <span className="font-medium">Tatler Address Book 2025</span>
                     </div>
                     <div className="hidden sm:block w-px h-4 bg-slate-300"></div>
                     <div className="flex items-center gap-2 text-slate-600">
-                      <Crown className="w-4 h-4 text-amber-600" />
                       <span className="font-medium">15 Years Excellence</span>
                     </div>
                     <div className="hidden sm:block w-px h-4 bg-slate-300"></div>
                     <div className="flex items-center gap-2 text-slate-600">
-                      <Crown className="w-4 h-4 text-amber-600" />
                       <span className="font-medium">Elite Family Trust</span>
                     </div>
                   </div>

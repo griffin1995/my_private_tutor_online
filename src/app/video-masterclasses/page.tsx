@@ -239,27 +239,33 @@ export default function VideoMasterclassesPage() {
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for white text on dark backgrounds */}
         {/* HERO STYLING ENHANCEMENT: Updated hero text colors to white for optimal contrast with background image overlay */}
         {/* TEXT COLOR FIX REASON: Official Tailwind CSS documentation recommends text-white for maximum contrast on dark overlay backgrounds */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center text-white">
-          {/* Left Column - Headings */}
-          <div className="text-center lg:text-left">
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold leading-tight mb-6 text-white">
-              {videoMasterclassesContent.hero.title}
-            </h1>
-            <h2 className="text-xl lg:text-2xl font-semibold text-white">
-              {videoMasterclassesContent.hero.subtitle} (trying to find optimal styling for all hero sections still, ignore text size etc in hero section)
-            </h2>
-          </div>
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container overflow protection and responsive constraints */}
+        {/* OVERFLOW PROTECTION REASON: Official Tailwind CSS documentation recommends @container with overflow-hidden to prevent content clipping and ensure proper content fitting */}
+        <div className="@container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center text-white overflow-hidden">
+            {/* Left Column - Headings */}
+            <div className="text-center lg:text-left @lg:max-w-lg">
+              <h1 className="text-3xl sm:text-4xl @lg:text-4xl @xl:text-5xl font-serif font-bold leading-tight mb-6 text-white break-words">
+                {videoMasterclassesContent.hero.title}
+              </h1>
+              <h2 className="text-lg @lg:text-xl @xl:text-2xl font-semibold text-white break-words">
+                {videoMasterclassesContent.hero.subtitle} (trying to find optimal styling for all hero sections still, ignore text size etc in hero section)
+              </h2>
+            </div>
 
-          {/* Right Column - Descriptive Text */}
-          <div className="text-center lg:text-left">
-            <div className="text-lg leading-relaxed text-white/90">
-              {/* CONTEXT7 SOURCE: /websites/react_dev-learn - JSX text rendering with proper paragraph breaks */}
-              {/* PARAGRAPH FORMATTING REASON: Official React documentation recommends splitting text with \n into separate paragraph elements for proper semantic structure */}
-              {videoMasterclassesContent.hero.description.split('\n\n').map((paragraph, index) => (
-                <p key={index} className={index > 0 ? "mt-6" : ""}>
-                  {paragraph}
-                </p>
-              ))}
+            {/* Right Column - Descriptive Text */}
+            <div className="text-center lg:text-left @lg:max-w-lg">
+              <div className="text-base @lg:text-lg leading-relaxed text-white/90">
+                {/* CONTEXT7 SOURCE: /websites/react_dev-learn - JSX text rendering with proper paragraph breaks */}
+                {/* PARAGRAPH FORMATTING REASON: Official React documentation recommends splitting text with \n into separate paragraph elements for proper semantic structure */}
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Break-words utility for overflow protection */}
+                {/* TEXT OVERFLOW PROTECTION REASON: Official Tailwind CSS documentation recommends break-words to prevent text overflow and ensure proper wrapping within containers */}
+                {videoMasterclassesContent.hero.description.split('\n\n').map((paragraph, index) => (
+                  <p key={index} className={`break-words ${index > 0 ? "mt-4 @lg:mt-6" : ""}`}>
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>

@@ -46,6 +46,14 @@ export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname
   const url = req.url
   
+  // CRITICAL: Skip ALL middleware processing for static assets including videos
+  // This ensures videos and other assets are served without any authentication checks
+  if (path.match(/\.(ico|png|jpg|jpeg|svg|gif|webp|css|js|woff|woff2|ttf|otf|mp4|webm|mov|avi)$/) || 
+      path.startsWith('/videos/') || 
+      path.startsWith('/public/videos/')) {
+    return NextResponse.next()
+  }
+  
   // CONTEXT7 SOURCE: /llfbandit/app_links - Deep link detection and processing
   // DEEP LINK PROCESSING: Handle mobile app deep links before other middleware
   const deepLinkResult = handleDeepLinks(req)
@@ -59,7 +67,9 @@ export default async function middleware(req: NextRequest) {
                         path.startsWith('/api') || 
                         path.startsWith('/_next') || 
                         path.startsWith('/_vercel') ||
-                        /\.(ico|png|jpg|jpeg|svg|css|js)$/.test(path)
+                        path.startsWith('/videos/') ||
+                        path.startsWith('/public/videos/') ||
+                        /\.(ico|png|jpg|jpeg|svg|gif|webp|css|js|woff|woff2|ttf|otf|mp4|webm|mov|avi)$/.test(path)
   
   // Apply security middleware first for all routes
   const securityResponse = await securityMiddleware(req)
@@ -77,50 +87,58 @@ export default async function middleware(req: NextRequest) {
     }
   }
   
-  // Handle admin authentication for protected routes
+  // Handle admin authentication for protected routes ONLY
   const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route))
   const isPublicRoute = publicRoutes.includes(path)
 
-  // Skip auth middleware for non-admin routes
+  // Skip auth middleware entirely for non-admin routes - allow public access
   if (!isProtectedRoute && !isPublicRoute) {
     const response = NextResponse.next()
     return applySecurityHeaders(response)
   }
 
-  try {
-    // Decrypt the admin session from secure HTTP-only cookie
-    const cookieStore = await cookies()
-    const sessionCookie = cookieStore.get('admin_session')?.value
-    const session = await decrypt(sessionCookie)
+  // Only perform authentication checks for admin routes
+  if (isProtectedRoute || isPublicRoute) {
+    try {
+      // Decrypt the admin session from secure HTTP-only cookie
+      const cookieStore = await cookies()
+      const sessionCookie = cookieStore.get('admin_session')?.value
+      const session = await decrypt(sessionCookie)
 
-    // Redirect to login if accessing protected route without valid session
-    if (isProtectedRoute && (!session || session.role !== 'admin')) {
-      const loginUrl = new URL('/admin/login', req.url)
-      loginUrl.searchParams.set('from', path) // Preserve original destination
-      const response = NextResponse.redirect(loginUrl)
+      // Redirect to login if accessing protected route without valid session
+      if (isProtectedRoute && (!session || session.role !== 'admin')) {
+        const loginUrl = new URL('/admin/login', req.url)
+        loginUrl.searchParams.set('from', path) // Preserve original destination
+        const response = NextResponse.redirect(loginUrl)
+        return applySecurityHeaders(response)
+      }
+
+      // Redirect authenticated admin away from login page
+      if (isPublicRoute && session?.role === 'admin') {
+        const response = NextResponse.redirect(new URL('/admin', req.url))
+        return applySecurityHeaders(response)
+      }
+
+      const response = NextResponse.next()
+      return applySecurityHeaders(response)
+    } catch (error) {
+      console.error('Admin authentication middleware error:', error)
+      
+      // On authentication error, redirect to login for admin routes only
+      if (isProtectedRoute) {
+        const response = NextResponse.redirect(new URL('/admin/login', req.url))
+        return applySecurityHeaders(response)
+      }
+      
+      // For public routes, continue normally even if session decryption fails
+      const response = NextResponse.next()
       return applySecurityHeaders(response)
     }
-
-    // Redirect authenticated admin away from login page
-    if (isPublicRoute && session?.role === 'admin') {
-      const response = NextResponse.redirect(new URL('/admin', req.url))
-      return applySecurityHeaders(response)
-    }
-
-    const response = NextResponse.next()
-    return applySecurityHeaders(response)
-  } catch (error) {
-    console.error('Admin authentication middleware error:', error)
-    
-    // On authentication error, redirect to login for security
-    if (isProtectedRoute) {
-      const response = NextResponse.redirect(new URL('/admin/login', req.url))
-      return applySecurityHeaders(response)
-    }
-    
-    const response = NextResponse.next()
-    return applySecurityHeaders(response)
   }
+
+  // Default: allow access with security headers
+  const response = NextResponse.next()
+  return applySecurityHeaders(response)
 }
 
 /**

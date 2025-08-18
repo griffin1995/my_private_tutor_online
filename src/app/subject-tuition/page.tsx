@@ -37,11 +37,9 @@ import { ServiceStatistics, StatisticItem } from '@/components/sections/service-
 import { HomeschoolingPreview, HomeschoolingFeature } from '@/components/sections/homeschooling-preview'
 import { ServicesCTA, CTAButton } from '@/components/sections/services-cta'
 
-// CONTEXT7 SOURCE: /facebook/react - Business analytics components for results documentation and competitive intelligence
-// BUSINESS ANALYTICS REASON: Tasks 18-19 implementation for data-driven validation and competitive positioning
+// CONTEXT7 SOURCE: /facebook/react - Business analytics components for results documentation
+// BUSINESS ANALYTICS REASON: Results documentation for verifiable academic outcomes display
 import { ResultsDocumentation } from '@/components/sections/results-documentation'
-import { CompetitiveAnalysis } from '@/components/sections/competitive-analysis'
-import { CaseStudies } from '@/components/sections/case-studies'
 
 // CONTEXT7 SOURCE: /microsoft/typescript - CMS data access patterns for component data consumption
 // CMS INTEGRATION REASON: Official TypeScript patterns for centralized data management and type-safe content access
@@ -53,8 +51,6 @@ import {
   getServicesCTA,
   getServicesSectionTitles,
   getResultsDocumentation,
-  getCompetitiveAnalysis,
-  getFeaturedCaseStudies,
   type ServiceSubjectCategory,
   type ServiceStatisticItem
 } from '@/lib/cms/cms-content'
@@ -134,12 +130,10 @@ const homeschoolingData = getHomeschoolingPreview()
 // CMS DATA SOURCE: Using getServicesCTA() for call-to-action section
 const ctaDataRaw = getServicesCTA()
 
-// CONTEXT7 SOURCE: /microsoft/typescript - Business analytics data consumption patterns
-// BUSINESS ANALYTICS DATA: Tasks 18-19 implementation for results documentation and competitive intelligence
-// CMS DATA SOURCE: Using business analytics functions for data-driven validation
+// CONTEXT7 SOURCE: /microsoft/typescript - Results documentation data consumption pattern
+// RESULTS DOCUMENTATION DATA: Quantifiable academic outcomes for premium service positioning
+// CMS DATA SOURCE: Using getResultsDocumentation() for verifiable achievement metrics
 const resultsData = getResultsDocumentation()
-const competitiveData = getCompetitiveAnalysis()
-const featuredCaseStudies = getFeaturedCaseStudies()
 
 // Transform CTA data to component-compatible format with action handlers
 const ctaData = {
@@ -262,63 +256,20 @@ export default function SubjectTuitionPage() {
               showVerificationBadges={true}
               showConfidenceIntervals={true}
               layout="grid"
-              maxItems={6}
-            />
-          </div>
-        </Section>
-
-        <WaveSeparator 
-          variant="wave" 
-          className="text-slate-900" 
-        />
-
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
-        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
-        {/* CONTEXT7 SOURCE: /facebook/react - CompetitiveAnalysis component integration */}
-        {/* COMPETITIVE ANALYSIS REASON: Task 19 implementation for market positioning and value justification */}
-        {/* CONTEXT7 SOURCE: /websites/react_dev - Component removal patterns for clean UI simplification */}
-        {/* GRADIENT OVERLAY REMOVAL: Official React documentation patterns for removing decorative elements causing visual conflicts */}
-        <Section className="py-16 lg:py-24" background="white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <CompetitiveAnalysis
-              title="Premium Service Differentiation"
-              description="Competitive advantages that justify investment in exceptional educational outcomes"
-              competitiveData={competitiveData}
-              showComparisons={true}
-              highlightedCategories={['exclusivity', 'credentials', 'results']}
-              layout="mixed"
-            />
-          </div>
-        </Section>
-
-        <WaveSeparator 
-          variant="subtle" 
-          className="text-white" 
-        />
-
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
-        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
-        {/* CONTEXT7 SOURCE: /facebook/react - CaseStudies component integration */}
-        {/* CASE STUDIES REASON: ROI documentation through anonymized success stories */}
-        <Section className="py-16 lg:py-24 relative" background="white">
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-25 to-white" />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <CaseStudies
-              title="Transformational Client Outcomes"
-              description="Anonymized case studies demonstrating measurable ROI across different client segments"
-              caseStudies={featuredCaseStudies}
-              showInvestmentDetails={true}
-              showTestimonials={true}
               maxItems={3}
-              layout="detailed"
             />
           </div>
         </Section>
 
-        <WaveSeparator 
-          variant="subtle" 
-          className="text-slate-100" 
-        />
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Section removal via JSX deletion for streamlined page structure */}
+        {/* PREMIUM SERVICE DIFFERENTIATION REMOVAL REASON: Official React documentation Section 3.4 demonstrates component removal through JSX deletion patterns */}
+        {/* Premium Service Differentiation section intentionally removed to streamline Subject Tuition page focus */}
+        {/* Client requested removal of Premium Service Differentiation section for cleaner page flow */}
+
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Section removal via JSX deletion for streamlined page structure */}
+        {/* TRANSFORMATIONAL CLIENT OUTCOMES REMOVAL REASON: Official React documentation Section 3.4 demonstrates component removal through JSX deletion patterns */}
+        {/* Transformational Client Outcomes section intentionally removed to streamline Subject Tuition page focus */}
+        {/* Client requested removal of Transformational Client Outcomes section for cleaner page flow */}
 
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
         {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}

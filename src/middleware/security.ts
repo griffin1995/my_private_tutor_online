@@ -168,8 +168,8 @@ export async function securityMiddleware(request: NextRequest): Promise<NextResp
   const method = request.method
   const clientIp = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
 
-  // Skip security checks for static assets
-  if (path.match(/\.(ico|png|jpg|jpeg|svg|gif|webp|css|js|woff|woff2|ttf|otf)$/)) {
+  // Skip security checks for static assets including videos
+  if (path.match(/\.(ico|png|jpg|jpeg|svg|gif|webp|css|js|woff|woff2|ttf|otf|mp4|webm|mov|avi)$/)) {
     return null
   }
 

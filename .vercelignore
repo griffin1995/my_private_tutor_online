@@ -1,9 +1,19 @@
-# Large video files - served via CDN
-public/videos/**/*.mp4
-public/videos/*.mp4
-public/videos/
-public/**/*.mp4
-**/*.mp4
+# Large original video files - exclude from deployment, keep compressed versions
+public/videos/testimonials-parents.mp4
+public/videos/testimonials-students.mp4
+public/videos/testimonials-parents-2025.mp4
+public/videos/testimonials-students-2025.mp4
+public/videos/elizabeth-introduction.mp4
+public/videos/background-video-2025.mp4
+public/videos/masterclasses/gcse-summit-2024.mp4
+
+# Large compressed video files that exceed Vercel limits
+public/videos/masterclasses/gcse-summit-2024-compressed.mp4
+public/videos/compressed/
+
+# Git LFS objects and repository data
+.git/
+**/.git/
 
 # Large files that should be excluded
 **/*.mov
@@ -39,9 +49,12 @@ __tests__/
 .vscode/
 .idea/
 
-# Python virtual environment
+# Python virtual environment and large libraries
 venv/
 __pycache__/
+
+# Additional exclusions for deployment size optimization
+temp-videos/
 
 # Temporary files
 temp-videos/
