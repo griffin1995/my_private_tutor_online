@@ -38,6 +38,10 @@ interface ScrollingSchoolsProps {
 }
 
 /**
+ * CONTEXT7 SOURCE: /websites/motion_dev - Animation duration performance optimization patterns
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Keys for unique rendering in loops and arrays
+ * TASK 3 IMPLEMENTATION: School shields animation speed optimization (50% faster)
+ * 
  * Documentation Source: Context7 MCP - Framer Motion Marquee + Next.js Image Implementation
  * Reference: Context7 MCP /grx7/framer-motion - Infinite loop animation patterns
  * Reference: Context7 MCP /context7/nextjs - Image component responsive sizing patterns
@@ -47,6 +51,7 @@ interface ScrollingSchoolsProps {
  * - x: ["0%", "-50%"] moves from start to halfway point
  * - repeat: Infinity creates continuous loop
  * - ease: "linear" ensures consistent speed
+ * - Default speed reduced from 30s to 15s (50% faster) for improved user engagement
  * - Duplicated content creates seamless transition when first set exits view
  * 
  * CMS Integration:
@@ -54,11 +59,16 @@ interface ScrollingSchoolsProps {
  * - Maps school names to logo assets via getScrollingSchoolLogos()
  * - Context7 MCP verified: Next.js Image with proper alt text and lazy loading
  * - No hardcoded school names - all content from CMS
+ * 
+ * React Keys Implementation:
+ * - Context7 MCP verified: Unique keys for first and second sets to prevent rendering conflicts
+ * - Key pattern: 'first-{index}' and 'second-{index}' ensures React can track each element properly
+ * - No duplicate key issues as each rendered element has a truly unique identifier
  */
 export function ScrollingSchools({ 
   schools, 
   className = "", 
-  speed = 30 
+  speed = 15 
 }: ScrollingSchoolsProps) {
   // CONTEXT7 SOURCE: /reactjs/react.dev - Defensive programming patterns for data validation
   // DATA VALIDATION REASON: Official React documentation shows early return patterns for invalid data

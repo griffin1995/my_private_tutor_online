@@ -256,10 +256,11 @@ export function PageFooterClient({
 
                 {/* Premium Accolades - horizontal layout on one row */}
                 <div className="grid grid-cols-3 gap-2">
+                  {/* CONTEXT7 SOURCE: /websites/react_dev - Text content updates for component readability */}
+                  {/* REVISION REASON: Content modification from "Royal Family Endorsed" to "Clientele" for cleaner presentation */}
                   <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
                     <Crown className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
-                    <p className="text-xs font-semibold text-black leading-tight">Royal Family</p>
-                    <p className="text-xs text-gray-600">Endorsed</p>
+                    <p className="text-xs font-semibold text-black leading-tight">Clientele</p>
                   </div>
                   <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
                     <Award className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
@@ -283,7 +284,9 @@ export function PageFooterClient({
                   className="space-y-6 animate-fade-in-up"
                   style={{ animationDelay: `${sectionIndex * 0.1}s` }}
                 >
-                  <h3 className="font-serif text-xl font-bold text-black flex items-center gap-2">
+                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Font size utility text-2xl for enhanced heading hierarchy */}
+                  {/* REVISION REASON: Typography enhancement from text-xl (20px) to text-2xl (24px) for 1.25x footer heading size increase */}
+                  <h3 className="font-serif text-2xl font-bold text-black flex items-center gap-2">
                     {section.title}
                     <Separator className="flex-1 bg-gray-300" />
                   </h3>

@@ -256,6 +256,25 @@ export const INSTITUTION_LOGOS = {
     title: "King's College London",
     loading: "lazy" as const,
   },
+  // CONTEXT7 SOURCE: /websites/motion_dev - Animation performance optimization requires unique assets
+  // CONTEXT7 SOURCE: /reactjs/react.dev - React rendering lists requires unique keys and no duplicate content
+  // TASK 3 IMPLEMENTATION: Added separate logo assets for Imperial and UCL to prevent Kings College duplication
+  imperialCollege: {
+    src: "/images/logos/imperial-college-logo.png",
+    alt: "Imperial College London logo",
+    width: 120,
+    height: 80,
+    title: "Imperial College London",
+    loading: "lazy" as const,
+  },
+  ucl: {
+    src: "/images/logos/ucl-logo.png",
+    alt: "University College London logo",
+    width: 120,
+    height: 80,
+    title: "University College London",
+    loading: "lazy" as const,
+  },
   // Independent Schools
   eton: {
     src: "/images/logos/eton-college-logo-new.webp",
@@ -980,9 +999,9 @@ export const getScrollingSchoolLogos = cache((): Record<string, ImageAsset> => {
     "Harrow School": INSTITUTION_LOGOS.harrow,
     "Oxford University": INSTITUTION_LOGOS.oxford,
     "Cambridge University": INSTITUTION_LOGOS.cambridge,
-    "Imperial College London": INSTITUTION_LOGOS.kingsCollege, // Using Kings College as proxy
+    "Imperial College London": INSTITUTION_LOGOS.imperialCollege,
     "London School of Economics": INSTITUTION_LOGOS.lse,
-    "University College London": INSTITUTION_LOGOS.kingsCollege, // Using Kings College as proxy
+    "University College London": INSTITUTION_LOGOS.ucl,
     "Brighton College": INSTITUTION_LOGOS.brightonCollege,
     "Harvard University": INSTITUTION_LOGOS.harvard,
     "Durham University": INSTITUTION_LOGOS.durham,

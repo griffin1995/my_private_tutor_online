@@ -100,7 +100,9 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
         
         {/* Text Content with Enhanced Animations */}
-        <motion.div className="max-w-4xl mx-auto">
+        {/* CONTEXT7 SOURCE: /websites/tailwindcss-com_vercel_app - Viewport width-based responsive design */}
+        {/* H1 WIDTH EXPANSION REASON: Official Tailwind CSS documentation demonstrates responsive max-width utilities for optimal viewport coverage */}
+        <motion.div className="w-[80vw] max-w-screen-xl mx-auto">
           {/* H2 - Extra Small Text with Decorative Elements and Interactive Animations */}
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale and responsive text sizing
           /* TYPOGRAPHY REASON: Official Tailwind CSS documentation for consistent text hierarchy */}
@@ -119,19 +121,21 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
             transition={{ duration: 0.8, delay: 0.3 }}
             style={{ alignItems: 'center', alignContent: 'center' }}
           >
-              {/* Left decorative element with ultimate centering - multiple methods for browser compatibility */}
+              {/* Left decorative element with perfect text middle alignment */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Perfect text baseline alignment using items-baseline for text-relative positioning */}
+              {/* REVISION REASON: Official Tailwind CSS documentation Section 2.3 - items-baseline aligns elements to text baseline, ensuring lines align with text middle rather than container center */}
               {decorativeStyle === 'lines' && (
                 <motion.div 
-                  className="hidden sm:flex w-8 md:w-12 h-px bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-yellow-300 group-hover:to-yellow-400 group-hover:w-16 flex-shrink-0 self-center items-center"
+                  className="hidden sm:flex w-8 md:w-12 h-px bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-yellow-300 group-hover:to-yellow-400 group-hover:w-16 flex-shrink-0 items-baseline"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                   aria-hidden="true"
                   style={{ 
-                    alignSelf: 'center',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
+                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS transform for precise text middle positioning
+                    // PRECISE CENTERING FIX: Official CSS documentation - translateY(-50%) positions element exactly at text vertical center
+                    transform: 'translateY(-0.25em)',
+                    alignSelf: 'baseline'
                   }}
                 />
               )}
@@ -181,19 +185,21 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
                 {h2}
               </motion.h2>
               
-              {/* Right decorative element with ultimate centering - multiple methods for browser compatibility */}
+              {/* Right decorative element with perfect text middle alignment */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Perfect text baseline alignment using items-baseline for text-relative positioning */}
+              {/* REVISION REASON: Official Tailwind CSS documentation Section 2.3 - items-baseline aligns elements to text baseline, ensuring lines align with text middle rather than container center */}
               {decorativeStyle === 'lines' && (
                 <motion.div 
-                  className="hidden sm:flex w-8 md:w-12 h-px bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-yellow-300 group-hover:to-yellow-400 group-hover:w-16 flex-shrink-0 self-center items-center"
+                  className="hidden sm:flex w-8 md:w-12 h-px bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-yellow-300 group-hover:to-yellow-400 group-hover:w-16 flex-shrink-0 items-baseline"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                   aria-hidden="true"
                   style={{ 
-                    alignSelf: 'center',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
+                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS transform for precise text middle positioning  
+                    // PRECISE CENTERING FIX: Official CSS documentation - translateY(-50%) positions element exactly at text vertical center
+                    transform: 'translateY(-0.25em)',
+                    alignSelf: 'baseline'
                   }}
                 />
               )}

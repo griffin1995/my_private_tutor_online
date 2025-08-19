@@ -39,10 +39,9 @@ import Image from 'next/image'
 // Pattern: Consistent iconography with tree-shaking support
 import { Crown } from 'lucide-react'
 
-// CONTEXT7 SOURCE: /magicuidesign/magicui - Aurora Text component import
-// MAGIC UI INTEGRATION: Premium aurora text effect for enhanced visual appeal
-// BRAND ENHANCEMENT: Royal client-worthy text animations matching luxury standards
-import { AuroraText } from '@/components/magicui/aurora-text'
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard text styling approach
+// AURORA REMOVAL: Removed AuroraText import per Task 4 requirements for default heading colours
+// BRAND SIMPLIFICATION: Using standard Tailwind CSS text utilities for consistent styling
 
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
@@ -94,17 +93,17 @@ export function AboutSection({
           
           {/* Text Content - Left Side */}
           <div className="space-y-6 min-h-0">
-            {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Aurora Text with mixed text styling */}
-            {/* ENHANCEMENT: Split Aurora Text for specific words only while maintaining animation */}
-            {/* PATTERN: Mixed normal and aurora text within single semantic h2 element */}
-            {/* REVISION REASON: Apply aurora effect only to "Education" and "Fingertips" words per requirements */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for consistent heading styling */}
+            {/* AURORA REMOVAL: Removed aurora gradient effects per Task 4 requirements */}
+            {/* PATTERN: Standard Tailwind CSS text color utility for default heading styling */}
+            {/* REVISION REASON: Apply default heading colour by removing AuroraText components */}
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive font sizing optimization for preventing line wrapping */}
             {/* TEXT SIZE REDUCTION: Reduced from text-4xl lg:text-5xl xl:text-6xl to text-3xl lg:text-4xl xl:text-5xl */}
             {/* SIZING RATIONALE: Following Tailwind CSS font size progression (text-3xl=1.875rem/30px, text-4xl=2.25rem/36px, text-5xl=3rem/48px) */}
             {/* LINE WRAPPING PREVENTION: Ensures "World-Class Education," stays on single line at all breakpoints */}
             {/* RESPONSIVE BREAKPOINTS: Mobile 30px → Large (1024px+) 36px → XL (1280px+) 48px */}
             <m.h2 
-              className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold"
+              className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -114,23 +113,9 @@ export function AboutSection({
                 delay: 0.1
               }}
             >
-              <span className="text-primary-900">World-Class </span>
-              <AuroraText 
-                className="text-primary-900"
-                speed={0.8}
-              >
-                Education
-              </AuroraText>
-              <span className="text-primary-900">,</span>
+              World-Class Education,
               <br />
-              <span className="text-primary-900">At Your </span>
-              <AuroraText 
-                className="text-primary-900"
-                speed={0.8}
-              >
-                Fingertips
-              </AuroraText>
-              <span className="text-primary-900">.</span>
+              At Your Fingertips.
             </m.h2>
             
             {/* 

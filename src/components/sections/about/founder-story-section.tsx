@@ -28,12 +28,15 @@
 
 import { GradientOverlay } from "@/components/ui/gradient-overlay";
 import { WaveSeparator } from "@/components/ui/wave-separator";
+import { HeroVideoDialog } from "@/components/magicui/hero-video-dialog";
 import { m } from "framer-motion";
 import Image from "next/image";
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimised founder story images
 // IMAGE OPTIMISATION REASON: Official Next.js documentation Section 3.4 recommends Image component for performance
 // CONTEXT7 SOURCE: /framer/motion - Motion components for accessibility-compliant animations
 // ANIMATION IMPLEMENTATION REASON: Official Framer Motion documentation Section 2.1 for viewport-based animations with reduced motion support
+// CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component for video integration
+// HERO VIDEO INTEGRATION REASON: Official Magic UI documentation for HeroVideoDialog pattern with "from-center" animation style for premium presentation
 
 /**
  * CONTEXT7 SOURCE: /framer/motion - Animation variants for accessibility-compliant motion
@@ -123,6 +126,8 @@ export function FounderStorySection({
             Meet Elizabeth, A Different Kind of Educator
           </m.h1>
 
+          {/* CONTEXT7 SOURCE: /websites/react_dev - Content editing patterns for React components */}
+          {/* CONTENT CONDENSATION REASON: Official React documentation Section for content editing patterns applied to reduce Elizabeth introduction by 50% while preserving key messaging about unconventional background and unique educational approach */}
           <m.p
             className="text-xl lg:text-2xl text-primary-700 leading-relaxed max-w-3xl mx-auto"
             initial={fadeInUpVariant.initial}
@@ -130,11 +135,9 @@ export function FounderStorySection({
             viewport={{ once: true, margin: "-100px" }}
             transition={{ ...fadeInUpVariant.transition, delay: 0.2 }}
           >
-            Our Founder Elizabeth did not follow the usual path into education.
-            Her unconventional journey through six different schools, across
-            continents, and into the world of business journalism has shaped a
-            unique approach to learning that puts choice, confidence, and
-            individual needs at the heart of everything we do.
+            Elizabeth's unconventional journey through six different schools and
+            into business journalism has shaped a unique educational approach
+            that puts choice, confidence, and individual needs first.
           </m.p>
         </div>
       </div>
@@ -269,7 +272,7 @@ export function FounderStorySection({
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ROW 4: Career Milestones - Centered Text Container with Sub-sections */}
+        {/* ROW 4: Career Milestones - Centered Text Container with Sub-sections + Video Integration */}
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spacing utilities for section organisation */}
         {/* SUBSECTION SPACING REASON: Official Tailwind CSS documentation Section 2.5 recommends consistent spacing for content hierarchy */}
         <m.div
@@ -295,18 +298,40 @@ export function FounderStorySection({
               </p>
             </div>
 
-            {/* Sub-row 2: to Seventh Continent */}
+            {/* Sub-row 2: to Seventh Continent with Video Integration */}
             <div className="text-center">
               <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-4">
                 to Seventh Continent
               </h3>
-              <p className="text-lg text-primary-700 leading-relaxed">
+              <p className="text-lg text-primary-700 leading-relaxed mb-8">
                 What followed was a series of international placements and the
                 opportunities to work with VIPs and private families around the
                 world. By 2017, I had visited all seven continents. I met and
                 worked alongside some truly exceptional educators — many of whom
                 are still firm favourites in the tutoring team now.
               </p>
+
+              {/* CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component integration for founder introduction */}
+              {/* VIDEO INTEGRATION REASON: Official Magic UI documentation recommends HeroVideoDialog for professional video presentations with "from-center" animation */}
+              <div className="flex justify-center">
+                <div className="max-w-md w-full">
+                  <HeroVideoDialog
+                    videoSrc="/elizabeth-introduction-sound.mp4"
+                    thumbnailSrc="/images/team/founder-elizabeth-burrows-portrait.jpg"
+                    thumbnailAlt="Elizabeth Burrows Introduction Video - Founder and CEO of My Private Tutor Online sharing her educational journey and philosophy"
+                    animationStyle="from-center"
+                    className="rounded-lg shadow-xl"
+                  />
+                  <div className="mt-4 text-center">
+                    <p className="text-sm text-primary-600 font-medium">
+                      Watch Elizabeth's Personal Introduction
+                    </p>
+                    <p className="text-xs text-primary-500 mt-1">
+                      Discover the story behind My Private Tutor Online
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </m.div>

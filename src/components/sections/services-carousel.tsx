@@ -428,10 +428,12 @@ export function ServicesCarousel({
                            * - Button visually aligns with heading and description text
                            * - Creates cohesive visual flow throughout card content
                            */}
+                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color styling with hex values */}
+                          {/* BUTTON STYLING REVISION: Updated Who We Support button to project secondary gold (#ca9e5b) for brand consistency */}
                           <div className="flex justify-end w-full">
                             <AnimatedSubscribeButton
                               key={`button-${index}`}
-                              buttonColor="#0f172a"
+                              buttonColor="#ca9e5b"
                               buttonTextColor="#ffffff"
                               subscribeStatus={false}
                               initialText="Learn More"
