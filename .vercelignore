@@ -11,14 +11,19 @@ coverage
 .nyc_output
 
 # Large files and development assets
-*.mp4.bak
+*.mp4
+*.webm
 *.mov
 *.avi
 *.mkv
+!/public/videos/*compressed*.mp4
+!/public/videos/*compressed*.webm
 introduction-video-with-sound.mp4
 /public/videos/compressed/
 /public/videos/temp/
 /public/videos/originals/
+/venv/
+__pycache__/
 
 # Documentation and development files
 PREMIUM_MICRO_INTERACTIONS_GUIDE.md

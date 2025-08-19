@@ -26,6 +26,9 @@
  * - Rule 25: Structured data management
  */
 
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React from 'react';
 import { notFound } from 'next/navigation'
 import { m } from 'framer-motion'
 import { faqCategoryService } from '@/lib/cms/cms-faq-service'

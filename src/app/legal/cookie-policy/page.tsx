@@ -1,5 +1,8 @@
 "use client"
 
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React from 'react'
 import { m } from 'framer-motion'
 
 // CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility

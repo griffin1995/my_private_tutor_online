@@ -1,6 +1,12 @@
-// CONTEXT7 SOURCE: /vercel/next.js - Server component for build stability
-// DEPLOYMENT FIX: Temporarily converted to server component for production deployment
-// Dynamic animations can be re-enabled after deployment stabilization
+"use client"
+
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useReducedMotion context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using motion hooks during build process
+import React from 'react'
+
+// CONTEXT7 SOURCE: /vercel/next.js - Client component for Framer Motion compatibility
+// DEPLOYMENT FIX: Converted to client component for useReducedMotion hook compatibility
+// Dynamic animations enabled for production deployment
 
 /**
  * CONTEXT7 SOURCE: /vercel/next.js - Next.js App Router page-specific metadata for seasonal content

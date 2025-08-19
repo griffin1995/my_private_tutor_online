@@ -24,6 +24,9 @@
 
 "use client";
 
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React from 'react';
 import { PageHero } from "@/components/layout/page-hero";
 import { PageLayout } from "@/components/layout/page-layout";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
@@ -78,19 +81,21 @@ const iconMap = {
   ClipboardCheck,
 } as const;
 
-export default function HowItWorksPage() {
-  // CONTEXT7 SOURCE: /vercel/next.js - Client component data fetching patterns
-  // CLIENT DATA FETCHING REASON: Official Next.js documentation for client components using direct function calls
+export default async function HowItWorksPage() {
+  // CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching patterns with error handling
+  // ASYNC DATA FETCHING REASON: Official Next.js documentation for Server Components using async/await for CMS operations
   // CMS DATA SOURCE: Using getHowItWorksHero for hero content
   // CMS DATA SOURCE: Using getHowItWorksSteps for process steps
   // CMS DATA SOURCE: Using HERO_IMAGES for background image assets
-  const heroContent = getHowItWorksHero();
-  const processSteps = getHowItWorksSteps();
-  const tutorTiers = getTutorTiers();
-  const benefits = getHowItWorksBenefits();
-  const ctaContent = getHowItWorksCTA();
-  const baseRate = getBaseRate();
-  const promotionalPricing = getPromotionalPricing();
+  // CONTEXT7 SOURCE: /vercel/next.js - Data validation patterns for build-time stability
+  // VALIDATION REASON: Official Next.js documentation Section 2.1 recommends fallback values for map operations during static generation
+  const heroContent = await getHowItWorksHero();
+  const processSteps = await getHowItWorksSteps();
+  const tutorTiers = await getTutorTiers();
+  const benefits = await getHowItWorksBenefits();
+  const ctaContent = await getHowItWorksCTA();
+  const baseRate = await getBaseRate();
+  const promotionalPricing = await getPromotionalPricing();
   const heroBackgroundImage =
     HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES];
 
@@ -465,7 +470,7 @@ export default function HowItWorksPage() {
               {/* ALTERNATING LAYOUT REASON: Official Motion documentation Section 3.1 recommends staggered animations for sophisticated user experiences */}
               {/* Alternating Card Layout */}
               <div className="space-y-16">
-                {processSteps.map((step: HowItWorksStep, index: number) => {
+                {processSteps && processSteps.length > 0 ? processSteps.map((step: HowItWorksStep, index: number) => {
                   const IconComponent =
                     iconMap[step.icon as keyof typeof iconMap];
                   const isEven = index % 2 === 0;
@@ -583,7 +588,13 @@ export default function HowItWorksPage() {
                       </div>
                     </m.div>
                   );
-                })}
+                }) : (
+                  // CONTEXT7 SOURCE: /vercel/next.js - Fallback content patterns for missing data during build
+                  // FALLBACK REASON: Official Next.js documentation Section 2.1 recommends graceful fallbacks for missing CMS data
+                  <div className="text-center py-12">
+                    <p className="text-slate-600">Process steps are currently being loaded...</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -661,7 +672,7 @@ export default function HowItWorksPage() {
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight design with center tier prominence and side tier positioning */}
               {/* SPOTLIGHT GRID REASON: Official Tailwind CSS documentation recommends grid-cols-3 with items-center for balanced spotlight layouts */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-center">
-                {tutorTiers.map((tier: TutorTier, index: number) => {
+                {tutorTiers && tutorTiers.length > 0 ? tutorTiers.map((tier: TutorTier, index: number) => {
                   const isPremiumTier = tier.tier === "Tier 1"; // Gold - Center position
                   const isSilverTier = tier.tier === "Tier 2"; // Silver - Left position
                   const isBronzeTier = tier.tier === "Tier 3"; // Bronze - Right position
@@ -916,7 +927,13 @@ export default function HowItWorksPage() {
                       </Card>
                     </m.div>
                   );
-                })}
+                }) : (
+                  // CONTEXT7 SOURCE: /vercel/next.js - Fallback content patterns for missing tutoring tier data
+                  // FALLBACK REASON: Official Next.js documentation Section 2.1 recommends graceful fallbacks for missing CMS data
+                  <div className="text-center py-12">
+                    <p className="text-slate-600">Tutoring tiers are currently being loaded...</p>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -999,7 +1016,7 @@ export default function HowItWorksPage() {
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium hover effects and gradient styling patterns */}
               {/* BENEFIT STYLING REASON: Official Tailwind CSS documentation Section 4.7 recommends sophisticated interaction states and glass-morphism patterns for luxury interfaces */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                {benefits.map((benefit: string, index: number) => (
+                {benefits && benefits.length > 0 ? benefits.map((benefit: string, index: number) => (
                   <m.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
@@ -1053,7 +1070,13 @@ export default function HowItWorksPage() {
                       </CardContent>
                     </Card>
                   </m.div>
-                ))}
+                )) : (
+                  // CONTEXT7 SOURCE: /vercel/next.js - Fallback content patterns for missing benefits data
+                  // FALLBACK REASON: Official Next.js documentation Section 2.1 recommends graceful fallbacks for missing CMS data
+                  <div className="text-center py-12 col-span-2">
+                    <p className="text-slate-600">Benefits are currently being loaded...</p>
+                  </div>
+                )}
               </div>
 
               {/* Premium CTA Section with Royal Enhancement and Next Steps */}

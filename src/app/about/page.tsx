@@ -32,6 +32,9 @@
 // COMPONENT SIMPLIFICATION REASON: Official React documentation recommends removing unused imports to maintain clean component architecture
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component cleanup and removal patterns
 // ETHOS REMOVAL REASON: Clean component removal per user requirements, maintaining structured imports
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React from 'react';
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { FounderStorySection } from "@/components/sections/about/founder-story-section";

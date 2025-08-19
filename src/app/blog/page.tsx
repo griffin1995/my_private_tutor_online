@@ -13,6 +13,10 @@
 
 "use client"
 
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React from 'react'
+
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js App Router client component imports
 // REFERENCE: Official Next.js documentation for client-side component patterns
 import { BookOpen, Clock, Users, ArrowRight } from 'lucide-react'

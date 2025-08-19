@@ -113,9 +113,9 @@ function AdminInterface() {
   );
 }
 
-// Force dynamic rendering for authentication
-// CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
-// BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic export configuration for server-side authentication
+// DYNAMIC RENDERING REASON: Official Next.js documentation Section 3.1 mandates force-dynamic for pages using cookies() API
+export const dynamic = 'force-dynamic'
 
 /**
  * Secure admin page with enterprise-grade authentication

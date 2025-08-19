@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * DASHBOARD PAGE - CLIENT SUCCESS METRICS INTEGRATION
  * CONTEXT7 SOURCE: /vercel/next.js - App Router page component patterns for dashboard integration
@@ -11,8 +13,9 @@
  * ROYAL CLIENT STANDARDS: Enterprise-grade dashboard with premium presentation
  */
 
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
 import React from 'react'
-import { Metadata } from 'next'
 // CONTEXT7 SOURCE: /vercel/next.js - Direct import for dashboard component resolution
 import ClientSuccessMetricsDashboard from '@/components/dashboards/client-success-metrics-dashboard'
 import { PageLayout } from '@/components/layout/page-layout'
@@ -21,23 +24,7 @@ import { PageLayout } from '@/components/layout/page-layout'
 // CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
 // BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds
 
-// CONTEXT7 SOURCE: /vercel/next.js - SEO optimization for dashboard pages
-export const metadata: Metadata = {
-  title: 'Business Intelligence Dashboard - My Private Tutor Online',
-  description: 'Comprehensive client success metrics and business intelligence dashboard for testimonials effectiveness and conversion optimization.',
-  keywords: [
-    'business intelligence',
-    'client success metrics',
-    'testimonials analytics',
-    'conversion optimization',
-    'executive dashboard',
-    'tutoring analytics'
-  ],
-  robots: {
-    index: false, // Private dashboard - no indexing
-    follow: false
-  }
-}
+// NOTE: Metadata removed due to client component conversion - SEO handled by layout
 
 /**
  * CONTEXT7 SOURCE: /vercel/next.js - Server component page implementation

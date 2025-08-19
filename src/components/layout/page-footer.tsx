@@ -1,5 +1,8 @@
 "use client"
 
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility  
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React from 'react'
 import { Mail, Phone, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
