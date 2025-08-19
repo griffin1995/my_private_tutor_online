@@ -331,7 +331,7 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
             >
               <SynchronizedScrollIndicator 
                 text="SCROLL"
-                className="!relative !left-0 !bottom-0 !transform-none [&_span]:!text-white/90 [&_span]:!tracking-widest [&_span]:!uppercase [&_span]:!bg-gradient-to-r [&_span]:!from-yellow-400 [&_span]:!to-yellow-300 [&_span]:!bg-clip-text [&_span]:!text-transparent [&_span]:transition-all [&_span]:duration-300"
+                className="!relative !left-0 !bottom-0 !transform-none [&_span]:!text-white/90 [&_span]:!tracking-widest [&_span]:!uppercase [&_span]:!bg-gradient-to-r [&_span]:!from-yellow-400 [&_span]:!to-yellow-300 [&_span]:!bg-clip-text [&_span]:!text-transparent [&_span]:transition-all [&_span]:duration-300 [&_div.w-px]:!bg-yellow-400"
                 show={true}
                 speed={0.6}
                 distance={25}

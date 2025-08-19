@@ -163,11 +163,6 @@ export function SynchronizedScrollIndicator({
         />
         
       </motion.div>
-      
-      {/* Static "Discover More" text below the animated elements */}
-      <span className="text-sm text-primary-500 mt-2">
-        Discover More
-      </span>
     </div>
   )
 }

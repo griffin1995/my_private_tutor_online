@@ -226,15 +226,19 @@ export function PageFooterClient({
 
         {/* Main Footer Content */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          {/* CONTEXT7 SOURCE: /websites/tailwindcss - CSS Grid items-stretch for equal height sections */}
+          {/* HEIGHT BALANCE REVISION: Apply items-stretch to grid container for automatic height matching between left and right sections */}
           {/* Footer Grid - 1/3 for company info, 2/3 for links */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-stretch">
             {/* Company Information - 1/3 width */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 flex flex-col justify-center">
               <div className="animate-fade-in-left">
+                {/* CONTEXT7 SOURCE: /websites/react_dev - Component simplification pattern */}
+                {/* REVISION REASON: Remove marketing text, keep only square logo as per Task 11 requirements */}
                 <div className="mb-8">
                   <Link 
                     href="/" 
-                    className="inline-flex items-center space-x-3 group"
+                    className="inline-block group"
                     aria-label={`${footerContent.companyName} homepage`}
                   >
                     <Image
@@ -242,17 +246,10 @@ export function PageFooterClient({
                       alt={footerContent.logo.alt}
                       width={footerContent.logo.width}
                       height={footerContent.logo.height}
-                      className="h-10 w-auto group-hover:scale-110 transition-transform duration-300"
+                      className="h-16 w-auto group-hover:scale-110 transition-transform duration-300"
                     />
-                    <span className="font-serif text-xl font-bold text-black">
-                      {footerContent.companyName}
-                    </span>
                   </Link>
                 </div>
-                
-                <p className="text-gray-700 leading-relaxed mb-8 text-base">
-                  {footerContent.description}
-                </p>
 
                 {/* Premium Accolades - horizontal layout on one row */}
                 <div className="grid grid-cols-3 gap-2">
@@ -277,7 +274,7 @@ export function PageFooterClient({
             </div>
 
             {/* Footer Links Sections - 2/3 width */}
-            <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8 items-stretch min-h-full">
               {footerContent.footerSections.map((section, sectionIndex) => (
                 <div 
                   key={sectionIndex} 
@@ -312,11 +309,13 @@ export function PageFooterClient({
                 </div>
               ))}
               
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Footer contact section with right alignment */}
+              {/* REVISION REASON: Task 13 implementation - redesigned contact section with default text color and right positioning */}
               {/* Contact Information - positioned at the end of footer links */}
               <div className="col-span-2 md:col-span-4 mt-8 pt-6 border-t border-gray-300">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                  {/* Contact links */}
-                  <div className="text-sm text-gray-600">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4">
+                  {/* Contact links - using default text color (removed custom gray-600) */}
+                  <div className="text-sm flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                     <a 
                       href={`tel:${contactInfo.phone}`}
                       className="hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
@@ -324,7 +323,7 @@ export function PageFooterClient({
                       <Phone className="w-4 h-4" />
                       Call us: {contactInfo.phone}
                     </a>
-                    {" | "}
+                    <span className="hidden sm:inline">|</span>
                     <a 
                       href={`mailto:${contactInfo.email}`}
                       className="hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
@@ -332,21 +331,20 @@ export function PageFooterClient({
                       <Mail className="w-4 h-4" />
                       Email: {contactInfo.email}
                     </a>
+                    <span className="hidden sm:inline">|</span>
+                    {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - MessageCircle icon for WhatsApp functionality */}
+                    {/* WHATSAPP REDESIGN: Text with icon to the right, no green background, matching text color */}
+                    <a
+                      href={`https://wa.me/447513550278?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20private%20tutoring%20services%20for%20my%20child.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
+                      aria-label="Contact us on WhatsApp - opens in new window"
+                    >
+                      WhatsApp Us
+                      <MessageCircle className="w-4 h-4" />
+                    </a>
                   </div>
-                  
-                  {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - WhatsApp integration with MessageCircle icon */}
-                  {/* WHATSAPP INTEGRATION REASON: Official Lucide React documentation demonstrates icon components for messaging functionality */}
-                  {/* WhatsApp Contact Button */}
-                  <a
-                    href={`https://wa.me/447513550278?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20private%20tutoring%20services%20for%20my%20child.`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-xl transform hover:scale-105"
-                    aria-label="Contact us on WhatsApp - opens in new window"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    WhatsApp Us
-                  </a>
                 </div>
               </div>
             </div>

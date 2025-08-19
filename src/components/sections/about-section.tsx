@@ -43,6 +43,10 @@ import { Crown } from 'lucide-react'
 // AURORA REMOVAL: Removed AuroraText import per Task 4 requirements for default heading colours
 // BRAND SIMPLIFICATION: Using standard Tailwind CSS text utilities for consistent styling
 
+// CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component for video integration
+// INTEGRATION REASON: Official Magic UI HeroVideoDialog component for video modal functionality
+import { HeroVideoDialog } from '../magicui/hero-video-dialog'
+
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
  * Reference: /microsoft/typescript - Interface definitions for component props
@@ -214,8 +218,9 @@ export function AboutSection({
             </m.div>
           </div>
           
-          {/* Image - Right Side */}
-          <div className="relative min-h-0 flex items-start">
+          {/* Image and Video - Right Side Stacked Layout */}
+          <div className="relative min-h-0 flex flex-col space-y-6">
+            {/* Founder Image - Top Position */}
             <m.div 
               className="relative w-full flex items-center justify-center bg-transparent"
               initial={{ opacity: 0, x: 100 }}
@@ -237,36 +242,71 @@ export function AboutSection({
                 style={{ 
                   filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))',
                   backgroundColor: 'transparent',
-                  maxHeight: '600px'
+                  maxHeight: '400px'
                 }}
                 priority
               />
               
+              {/* Animated Decorative elements for image */}
+              <m.div 
+                className="absolute -top-4 -right-4 w-24 h-24 bg-accent-200/30 rounded-full blur-xl"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-150px" }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: 0.9
+                }}
+              />
             </m.div>
             
-            {/* Animated Decorative elements */}
+            {/* Video Component - Bottom Position */}
+            {/* 
+             * CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog stacked layout integration
+             * IMPLEMENTATION REASON: Official Magic UI documentation shows HeroVideoDialog component for video modal functionality
+             * LAYOUT PATTERN: Vertical stack layout with founder image on top, video component below
+             * ANIMATION STYLE: "from-center" for royal client presentation quality
+             * RESPONSIVE DESIGN: Maintains aspect ratio and scaling across all breakpoints
+             * 
+             * CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog thumbnailSrc property configuration
+             * THUMBNAIL UPDATE REASON: Official Magic UI documentation Section 3 shows thumbnailSrc prop for video thumbnail image
+             * CHANGE TYPE: Update thumbnailSrc from founder portrait to actual video first frame
+             * IMPLEMENTATION: Using extracted first frame from elizabeth-introduction-sound.mp4 via ffmpeg
+             * FILE PATH: /images/video-thumbnails/elizabeth-introduction-thumbnail.jpg
+             */}
             <m.div 
-              className="absolute -top-4 -right-4 w-24 h-24 bg-accent-200/30 rounded-full blur-xl"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-150px" }}
+              className="relative w-full"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ 
-                duration: 0.8, 
+                duration: 1.0, 
                 ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.9
+                delay: 0.5
               }}
-            />
-            <m.div 
-              className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-200/20 rounded-full blur-xl"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-150px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 1.1
-              }}
-            />
+            >
+              <HeroVideoDialog
+                videoSrc="/elizabeth-introduction-sound.mp4"
+                thumbnailSrc="/images/video-thumbnails/elizabeth-introduction-thumbnail.jpg"
+                thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
+                animationStyle="from-center"
+                className="w-full max-w-md mx-auto"
+              />
+              
+              {/* Animated Decorative elements for video */}
+              <m.div 
+                className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-200/20 rounded-full blur-xl"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-150px" }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: 1.3
+                }}
+              />
+            </m.div>
           </div>
         </div>
       </div>

@@ -28,15 +28,12 @@
 
 import { GradientOverlay } from "@/components/ui/gradient-overlay";
 import { WaveSeparator } from "@/components/ui/wave-separator";
-import { HeroVideoDialog } from "@/components/magicui/hero-video-dialog";
 import { m } from "framer-motion";
 import Image from "next/image";
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimised founder story images
 // IMAGE OPTIMISATION REASON: Official Next.js documentation Section 3.4 recommends Image component for performance
 // CONTEXT7 SOURCE: /framer/motion - Motion components for accessibility-compliant animations
 // ANIMATION IMPLEMENTATION REASON: Official Framer Motion documentation Section 2.1 for viewport-based animations with reduced motion support
-// CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component for video integration
-// HERO VIDEO INTEGRATION REASON: Official Magic UI documentation for HeroVideoDialog pattern with "from-center" animation style for premium presentation
 
 /**
  * CONTEXT7 SOURCE: /framer/motion - Animation variants for accessibility-compliant motion
@@ -143,10 +140,10 @@ export function FounderStorySection({
       </div>
 
       {/* ROW 2: Personal Introduction - Full-Width Edge-to-Edge Split 50/50 */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Negative margin utilities for breaking out of container constraints */}
-      {/* EDGE-TO-EDGE REASON: Official Tailwind CSS documentation Section 2.3 recommends negative margins to break container bounds for full-width layouts */}
+      {/* CONTEXT7 SOURCE: /websites/tailwindcss - Dynamic height matching with CSS Grid auto-sizing patterns */}
+      {/* DYNAMIC HEIGHT REASON: Official Tailwind CSS documentation for grid-auto-rows and min-height responsive scaling for proportional column synchronization */}
       <div className="w-full mb-0">
-        <div className="grid lg:grid-cols-2 gap-0 items-center">
+        <div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
           <m.div
             initial={fadeInLeftVariant.initial}
             whileInView={fadeInLeftVariant.animate}
@@ -154,9 +151,11 @@ export function FounderStorySection({
             transition={fadeInLeftVariant.transition}
             className="order-2 lg:order-1"
           >
-            <div className="relative h-[600px] w-full">
-              {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with fill prop for edge-to-edge container optimization */}
-              {/* EDGE-TO-EDGE IMAGE REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for full container filling without rounded corners */}
+            {/* CONTEXT7 SOURCE: /websites/tailwindcss - Aspect ratio utilities with min-height constraints for responsive scaling */}
+            {/* ASPECT RATIO SCALING REASON: Official Tailwind CSS documentation recommends aspect-ratio with min-height for proportional scaling based on content */}
+            <div className="relative w-full min-h-[400px] lg:min-h-[500px] aspect-[4/5] lg:aspect-auto lg:h-full">
+              {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with fill prop for dynamic container optimization */}
+              {/* DYNAMIC IMAGE SCALING REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for proportional container filling */}
               <Image
                 src="/images/team/founder-elizabeth-burrows-portrait.jpg"
                 alt="Elizabeth Burrows - Founder and CEO of My Private Tutor Online, personal portrait showcasing her approachable and professional demeanour"
@@ -176,7 +175,7 @@ export function FounderStorySection({
             whileInView={fadeInRightVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={fadeInRightVariant.transition}
-            className="order-1 lg:order-2 px-6 lg:px-8 py-12 lg:py-16"
+            className="order-1 lg:order-2 px-6 lg:px-8 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
           >
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
               Meet Elizabeth, A Different Kind of Educator
@@ -199,16 +198,16 @@ export function FounderStorySection({
       </div>
 
       {/* ROW 3: Going Against the Grain - Full-Width Edge-to-Edge Split 50/50 */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout full width breakout patterns */}
-      {/* EDGE-TO-EDGE REASON: Official Tailwind CSS documentation recommends grid layouts for magazine-style full-width sections */}
+      {/* CONTEXT7 SOURCE: /websites/tailwindcss - Dynamic height matching with CSS Grid proportional scaling */}
+      {/* PROPORTIONAL SCALING REASON: Official Tailwind CSS documentation for grid-rows-1 and auto-rows-fr for synchronized column height matching */}
       <div className="w-full mb-20">
-        <div className="grid lg:grid-cols-2 gap-0 items-center">
+        <div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
           <m.div
             initial={fadeInLeftVariant.initial}
             whileInView={fadeInLeftVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={fadeInLeftVariant.transition}
-            className="px-6 lg:px-8 py-12 lg:py-16"
+            className="px-6 lg:px-8 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
           >
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
               Going Against the Grain
@@ -252,9 +251,11 @@ export function FounderStorySection({
             transition={fadeInRightVariant.transition}
             className="order-1 lg:order-2"
           >
-            <div className="relative h-[600px] w-full">
-              {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with fill prop for edge-to-edge container optimization */}
-              {/* EDGE-TO-EDGE IMAGE REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for full container filling without rounded corners */}
+            {/* CONTEXT7 SOURCE: /websites/tailwindcss - Responsive aspect ratio with proportional height scaling */}
+            {/* PROPORTIONAL IMAGE SCALING REASON: Official Tailwind CSS documentation for aspect-ratio utilities with min-height for content-driven scaling */}
+            <div className="relative w-full min-h-[450px] lg:min-h-[550px] aspect-[4/5] lg:aspect-auto lg:h-full">
+              {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with fill prop for proportional container optimization */}
+              {/* PROPORTIONAL IMAGE FITTING REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for responsive proportional scaling */}
               <Image
                 src="/images/team/founder-elizabeth-burrows-secondary.jpg"
                 alt="Elizabeth Burrows Making Educational Choices - Founder of My Private Tutor Online, representing the confidence to choose what's right rather than what's expected"
@@ -311,27 +312,6 @@ export function FounderStorySection({
                 are still firm favourites in the tutoring team now.
               </p>
 
-              {/* CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component integration for founder introduction */}
-              {/* VIDEO INTEGRATION REASON: Official Magic UI documentation recommends HeroVideoDialog for professional video presentations with "from-center" animation */}
-              <div className="flex justify-center">
-                <div className="max-w-md w-full">
-                  <HeroVideoDialog
-                    videoSrc="/elizabeth-introduction-sound.mp4"
-                    thumbnailSrc="/images/team/founder-elizabeth-burrows-portrait.jpg"
-                    thumbnailAlt="Elizabeth Burrows Introduction Video - Founder and CEO of My Private Tutor Online sharing her educational journey and philosophy"
-                    animationStyle="from-center"
-                    className="rounded-lg shadow-xl"
-                  />
-                  <div className="mt-4 text-center">
-                    <p className="text-sm text-primary-600 font-medium">
-                      Watch Elizabeth's Personal Introduction
-                    </p>
-                    <p className="text-xs text-primary-500 mt-1">
-                      Discover the story behind My Private Tutor Online
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </m.div>
