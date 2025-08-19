@@ -1,8 +1,6 @@
-// CONTEXT7 SOURCE: /vercel/next.js - Static rendering for FAQ layout build compatibility
-// BUILD FIX REASON: Official Next.js documentation recommends force-static for layouts during static builds
-
-export const dynamic = 'force-static'
-export const revalidate = 300
+// CONTEXT7 SOURCE: /vercel/next.js - Layout inheritance from root dynamic configuration
+// LAYOUT INHERITANCE: Official Next.js documentation states child layouts inherit parent dynamic config
+// DYNAMIC CONFIG REMOVAL: Per CLAUDE.md documentation - avoid redundant page-level dynamic exports
 
 export default function FAQLayout({
   children,

@@ -63,12 +63,9 @@ import { TrustIndicatorsGrid } from '../../components/sections/trust-indicators-
 import { QuoteSection } from '../../components/sections/quote-section'
 import { LanguageSwitcher } from '../../components/ui/language-switcher'
 
-// CONTEXT7 SOURCE: /vercel/next.js - Lazy loaded components for bundle optimization
-// BUNDLE OPTIMIZATION REASON: Official Next.js documentation for reduced initial bundle size
-import { 
-  LazyServicesCarousel,
-  LazyConsultationForm
-} from '../../components/dynamic/lazy-loaded-components'
+// CONTEXT7 SOURCE: /vercel/next.js - Client component wrapper for homepage sections
+// CLIENT WRAPPER REASON: Official Next.js documentation prohibits client components in server components
+import { HomepageSections } from '../../components/homepage/homepage-sections'
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage without server-side locale parameters
 // CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations without setRequestLocale in client components
@@ -154,10 +151,10 @@ export default async function HomePage() {
         studentImages={studentImages}
       />
       
-      {/* 6. WHAT WE OFFER - LAZY LOADED */}
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Dynamic import for below-the-fold content optimization */}
-      {/* LAZY LOADING REASON: Official Next.js documentation reduces initial bundle size for non-critical sections */}
-      <LazyServicesCarousel 
+      {/* 6. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
+      {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
+      <HomepageSections 
         services={services}
         studentImages={studentImages}
       />
