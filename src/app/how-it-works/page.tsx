@@ -81,21 +81,21 @@ const iconMap = {
   ClipboardCheck,
 } as const;
 
-export default async function HowItWorksPage() {
-  // CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching patterns with error handling
-  // ASYNC DATA FETCHING REASON: Official Next.js documentation for Server Components using async/await for CMS operations
+export default function HowItWorksPage() {
+  // CONTEXT7 SOURCE: /vercel/next.js - Client Component synchronous data patterns with CMS integration
+  // CLIENT COMPONENT DATA REASON: Official Next.js documentation for Client Components using synchronous CMS function calls
   // CMS DATA SOURCE: Using getHowItWorksHero for hero content
   // CMS DATA SOURCE: Using getHowItWorksSteps for process steps
   // CMS DATA SOURCE: Using HERO_IMAGES for background image assets
   // CONTEXT7 SOURCE: /vercel/next.js - Data validation patterns for build-time stability
   // VALIDATION REASON: Official Next.js documentation Section 2.1 recommends fallback values for map operations during static generation
-  const heroContent = await getHowItWorksHero();
-  const processSteps = await getHowItWorksSteps();
-  const tutorTiers = await getTutorTiers();
-  const benefits = await getHowItWorksBenefits();
-  const ctaContent = await getHowItWorksCTA();
-  const baseRate = await getBaseRate();
-  const promotionalPricing = await getPromotionalPricing();
+  const heroContent = getHowItWorksHero();
+  const processSteps = getHowItWorksSteps();
+  const tutorTiers = getTutorTiers();
+  const benefits = getHowItWorksBenefits();
+  const ctaContent = getHowItWorksCTA();
+  const baseRate = getBaseRate();
+  const promotionalPricing = getPromotionalPricing();
   const heroBackgroundImage =
     HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES];
 

@@ -372,7 +372,7 @@ export function TestimonialCard({
                     whileTap={{ scale: 0.95 }}
                   >
                     <ThumbsUp className="w-4 h-4" />
-                    <span>{testimonial.helpfulVotes + (hasVoted ? 1 : 0)}</span>
+                    <span>{testimonial.helpfulVotes}</span>
                   </m.button>
                 )}
 

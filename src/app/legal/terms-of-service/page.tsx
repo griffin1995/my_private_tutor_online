@@ -14,7 +14,7 @@ import { Section } from "@/components/layout/section"
 import { Card } from "@/components/ui/card"
 import { WaveSeparator } from '@/components/ui/wave-separator'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
-import { Scale, Crown, FileText, CheckCircle, AlertTriangle, DollarSign } from 'lucide-react'
+import { Scale, Star, FileText, CheckCircle, AlertTriangle, DollarSign } from 'lucide-react'
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced legal page design with professional animations
 // LEGAL DESIGN ENHANCEMENT: Formal terms of service styling with premium branding for royal clients
@@ -122,7 +122,8 @@ export default function TermsOfServicePage() {
           >
             <Card className="p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl rounded-2xl">
               <div className="flex items-start gap-4">
-                <Crown className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
+                {/* CONTEXT7 SOURCE: /lucide-react - Star icon replacement for premium service indication */}
+                <Star className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-2xl font-serif font-bold text-amber-800 mb-4">Premium Service Notice</h3>
                   <p className="text-amber-800 text-lg leading-relaxed">

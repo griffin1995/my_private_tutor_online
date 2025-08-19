@@ -16,6 +16,8 @@ interface SchoolCardProps {
   showMetadata?: boolean
   onCardClick?: (school: EliteSchool) => void
   className?: string
+  // TESTIMONIALS OVERHAUL: Configurable hover statistics display
+  showHoverStats?: boolean  // Default: true
 }
 
 // CONTEXT7 SOURCE: /context7/motion_dev - Animation Variants for Sophisticated Card Interactions
@@ -98,7 +100,9 @@ export function SchoolCard({
   interactive = true,
   showMetadata = false,
   onCardClick,
-  className = ""
+  className = "",
+  // TESTIMONIALS OVERHAUL: Configurable hover statistics display
+  showHoverStats = true
 }: SchoolCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
@@ -268,7 +272,8 @@ export function SchoolCard({
 
       {/* CONTEXT7 SOURCE: /context7/motion_dev - AnimatePresence for conditional content display */}
       {/* METADATA OVERLAY REASON: Professional information overlay with sophisticated animations */}
-      {isHovered && showMetadata && interactive && (
+      {/* TESTIMONIALS OVERHAUL: Conditional rendering based on showHoverStats prop */}
+      {isHovered && showMetadata && interactive && showHoverStats && (
         <m.div
           className="absolute inset-x-0 bottom-0 bg-white/95 backdrop-blur-sm border-t border-primary-100 p-3"
           variants={contentVariants}

@@ -132,8 +132,6 @@ export default function HomePage() {
       {/* CRITICAL UNDERSTANDING: These control DIFFERENT headers - navbar vs hero header */}
       {/* ACCESSIBILITY: PageLayout navbar is ESSENTIAL for users to navigate between pages */}
       <HeroSection 
-        branding={branding}
-        studentImages={studentImages}
         showHeader={false}
       />
       

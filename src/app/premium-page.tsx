@@ -34,7 +34,7 @@ import { useRef } from 'react'
 // - Interactivity: Booking form toggle, scroll-triggered animations, consultation booking
 // - Note: Premium page with advanced state management and form interactions
 
-import { Crown, Star, BookOpen, GraduationCap, Users, Trophy, CheckCircle, Phone, Mail } from 'lucide-react'
+import { Star, Award, BookOpen, GraduationCap, Users, Trophy, CheckCircle, Phone, Mail } from 'lucide-react'
 
 import { RoyalTrustIndicators } from '@/components/marketing/royal-trust-indicators'
 import { ServiceCard } from '@/components/marketing/service-card'
@@ -106,7 +106,8 @@ export default function PremiumTutoringPage() {
                   onClick={() => setShowBookingForm(true)}
                   className="bg-accent-600 hover:bg-accent-700 text-white px-8 py-4 text-lg"
                 >
-                  <Crown className="h-5 w-5 mr-2" />
+                  {/* CONTEXT7 SOURCE: /lucide-react - Star icon replacement for premium service indication */}
+                  <Star className="h-5 w-5 mr-2" />
                   Book Confidential Consultation
                 </Button>
                 
@@ -158,7 +159,8 @@ export default function PremiumTutoringPage() {
               {/* Floating Royal Endorsement Card */}
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-2xl max-w-xs">
                 <div className="flex items-center gap-3 mb-2">
-                  <Crown className="h-6 w-6 text-accent-500" />
+                  {/* CONTEXT7 SOURCE: /lucide-react - Award icon replacement for premium service indication */}
+                  <Award className="h-6 w-6 text-accent-500" />
                   <Badge variant="gold" className="text-xs">Royal Family Endorsed</Badge>
                 </div>
                 <p className="text-sm text-gray-600 leading-relaxed">
@@ -240,7 +242,8 @@ export default function PremiumTutoringPage() {
                     <div className="flex items-center gap-2 mb-4">
                       {testimonial.verified && (
                         <>
-                          <Crown className="h-5 w-5 text-accent-500" />
+                          {/* CONTEXT7 SOURCE: /lucide-react - Star icon replacement for premium service indication */}
+                          <Star className="h-5 w-5 text-accent-500" />
                           <Badge variant="gold" className="text-xs">Verified Client</Badge>
                         </>
                       )}
@@ -287,7 +290,8 @@ export default function PremiumTutoringPage() {
                 onClick={() => setShowBookingForm(true)}
                 className="bg-accent-600 hover:bg-accent-700 text-white px-8 py-4 text-lg"
               >
-                <Crown className="h-5 w-5 mr-2" />
+                {/* CONTEXT7 SOURCE: /lucide-react - Award icon replacement for premium service indication */}
+                <Award className="h-5 w-5 mr-2" />
                 Book Confidential Consultation
               </Button>
               
