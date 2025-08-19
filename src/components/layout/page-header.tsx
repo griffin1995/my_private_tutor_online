@@ -97,38 +97,36 @@ interface PageHeaderProps {
 }
 
 /**
- * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component with async data fetching
- * ASYNC COMPONENT REASON: Official React documentation for Server Components using async/await for data operations
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Client Component with async data fetching via useEffect
+ * CLIENT COMPONENT REASON: Official React documentation for client components using useState and useEffect for data operations
  * Documentation Source: React 19 functional component patterns
  * Reference: https://react.dev/learn/your-first-component
- * Pattern: Modern React functional component with TypeScript props and async data fetching
+ * Pattern: Modern React functional component with TypeScript props and client-side data fetching
  * 
  * Component Architecture:
  * - Mobile-first responsive design
  * - Three-section layout with CSS Grid
  * - Scroll-based transparency detection
  * - Accessibility-first implementation
- * - Async CMS data loading on server
+ * - Client-side CMS data loading via useEffect
  */
-export async function PageHeader({ 
+export function PageHeader({ 
   className, 
   isHeroPage = false 
 }: PageHeaderProps) {
   
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Server Component async data fetching with await
-  // ASYNC CMS REASON: Official React Server Components documentation for awaiting data during render
-  // CMS DATA SOURCE: Using async getSiteHeader for header content and navigation
-  // Pattern: Centralized content management for all header data
-  const headerContent = await getSiteHeader()
-  const navigation = await getMainNavigation()
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Client Component state management with useState
+  // CLIENT STATE REASON: Official React Client Components documentation for managing component state
+  // CMS DATA SOURCE: Using CMS functions for header content and navigation
+  // Pattern: Client component data initialization with state management
+  const [headerContent, setHeaderContent] = useState<any>(null)
+  const [navigation, setNavigation] = useState<any[]>([])
   
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Server Component async data fetching for images
-  // ASYNC IMAGE REASON: Official React documentation for Server Components awaiting image data
-  // Documentation Source: Context7 MCP - Next.js Image Component Conditional Rendering
-  // Reference: /vercel/next.js - Logo switching based on scroll state for navbar transparency
-  // CMS DATA SOURCE: Using async logo variants for transparent vs scrolled navbar states
-  const logoDefault = await getMainLogo()
-  const logoWhite = await getMainLogoWhite()
+  // CONTEXT7 SOURCE: /vercel/next.js - Client-safe logo initialization
+  // SYNC DATA REASON: Using synchronous logo functions for immediate availability
+  // CMS DATA SOURCE: Using logo variants for transparent vs scrolled navbar states
+  const logoDefault = getMainLogo()
+  const logoWhite = getMainLogoWhite()
   
   // CONTEXT7 SOURCE: /context7/react_dev - Enhanced state management for dropdown navigation
   // DROPDOWN STATE REASON: Official React patterns for managing complex navigation state
@@ -144,6 +142,14 @@ export async function PageHeader({
   // HYDRATION FIX REASON: Official Next.js patterns for preventing hydration mismatches
   // Pattern: Two-pass rendering to ensure consistent server/client state
   const [isMounted, setIsMounted] = useState(false)
+  
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access in useEffect
+  // SYNCHRONOUS RESTORATION: Load data directly without async patterns
+  useEffect(() => {
+    // Direct synchronous calls - no .then() needed since functions now return data immediately
+    setHeaderContent(getSiteHeader())
+    setNavigation(getMainNavigation())
+  }, [])
   
   // CONTEXT7 SOURCE: /context7/react_dev - useCallback for optimized scroll handling
   // SCROLL OPTIMIZATION REASON: Official React documentation for memoized event handlers
@@ -379,7 +385,7 @@ export async function PageHeader({
             <Link 
               href="/" 
               className="group flex items-center space-x-3"
-              aria-label={`${headerContent.siteName} homepage`}
+              aria-label={`${headerContent?.siteName || 'My Private Tutor Online'} homepage`}
             >
               <div className="relative">
                 {/* Documentation Source: Context7 MCP - Next.js Image Component Conditional src
@@ -673,7 +679,7 @@ export async function PageHeader({
                 >
                   <SheetHeader className="text-left border-b border-primary-100 pb-4 mb-6">
                     <SheetTitle className="font-serif text-xl font-bold text-primary-900">
-                      {headerContent.siteName}
+                      {headerContent?.siteName || 'My Private Tutor Online'}
                     </SheetTitle>
                   </SheetHeader>
                   

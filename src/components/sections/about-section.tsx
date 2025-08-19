@@ -24,6 +24,9 @@
 
 "use client"
 
+// CONTEXT7 SOURCE: /reactjs/react.dev - Simplified React imports for client component
+// SIMPLIFICATION REASON: Official React documentation shows simple client component patterns without complex fallback logic
+
 // Documentation Source: Context7 MCP - React 19 and Framer Motion imports
 // Reference: /vercel/next.js - Next.js Image component
 // Reference: /framer/motion - Motion components for animations
@@ -79,9 +82,13 @@ export function AboutSection({
   founderImageUrl = "/images/team/elizabeth-burrows-founder-spare.jpg",
   founderImageAlt = "Elizabeth Burrows, Founder of My Private Tutor Online"
 }: AboutSectionProps) {
+  // CONTEXT7 SOURCE: /framer/motion - Simple client component animation patterns
+  // SIMPLIFICATION REASON: Official Framer Motion documentation shows simple whileInView animations without complex state management
   
   return (
-    <section className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
+    <section 
+      className={`py-16 lg:py-24 ${backgroundColor} ${className}`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:grid-rows-1">
           

@@ -60,6 +60,16 @@ export function ScrollingSchools({
   className = "", 
   speed = 30 
 }: ScrollingSchoolsProps) {
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Defensive programming patterns for data validation
+  // DATA VALIDATION REASON: Official React documentation shows early return patterns for invalid data
+  console.log('[DEBUG-ScrollingSchools] Received schools data:', schools, typeof schools)
+  
+  // Early return if schools is not a valid array
+  if (!schools || !Array.isArray(schools) || schools.length === 0) {
+    console.warn('[DEBUG-ScrollingSchools] Invalid schools data - not an array or empty:', schools)
+    return null
+  }
+  
   // CMS DATA SOURCE: Using provided schools array for elite institution logo display
   // Context7 MCP pattern: Map school names to logo assets for visual representation
   const schoolNames = schools.map(school => 

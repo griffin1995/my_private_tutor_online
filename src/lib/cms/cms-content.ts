@@ -25,13 +25,26 @@
 // CMS DATA SOURCE: Centralised content management for My Private Tutor Online
 // MANDATORY: All content must use this CMS system - CLAUDE.md rule 22-25
 
-// CONTEXT7 SOURCE: /reactjs/react.dev - React cache function for memoizing data requests
-// CONTEXT7 SOURCE: /vercel/next.js - Server Components caching patterns for performance optimization
-// CONTEXT7 SOURCE: /vercel/next.js - Public directory fetch patterns for static asset access
-// CONTEXT7 SOURCE: /vercel/next.js - Build-time error handling patterns for static generation
-// VERCEL COMPATIBILITY: Dynamic JSON loading using fetch() for production deployment reliability
-// BUILD STABILITY REASON: Official Next.js documentation Section 2.1 recommends error handling for build-time data loading
+// CONTEXT7 SOURCE: /reactjs/react.dev - React cache function for synchronous data memoization
+// SYNCHRONOUS ARCHITECTURE RESTORATION: Return to working pattern from August 14, 2025
+// WORKING PATTERN REASON: Direct JSON imports eliminate async complexity and loading states
 import { cache } from 'react'
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON imports for synchronous data access
+// ARCHITECTURAL RECOVERY: Restore proven working pattern with direct static imports
+import landingPageContent from '../../content/landing-page.json'
+import businessContent from '../../content/business-content.json'
+import aboutContent from '../../content/about.json'
+import testimonialsContent from '../../content/testimonials.json'
+import howItWorksContent from '../../content/how-it-works.json'
+import faqContentJSON from '../../content/faq.json'
+import quoteFormContent from '../../content/quote-form.json'
+import formContent from '../../content/form-content.json'
+import settingsContent from '../../content/settings.json'
+import businessAnalyticsContent from '../../content/business-analytics.json'
+import uiContent from '../../content/ui-content.json'
+import metadataContent from '../../content/metadata.json'
+import seasonalContent from '../../content/seasonal-content.json'
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Module re-export patterns for centralized API
 // CMS DATA SOURCE: Re-exporting getTestimonialVideos from cms-images for centralized access
@@ -40,62 +53,6 @@ import { getTestimonialVideos } from './cms-images'
 // CONTEXT7 SOURCE: /microsoft/typescript - FAQ content import for centralized FAQ data management
 // CMS DATA SOURCE: Importing faqContent from cms-faq for FAQ page functionality
 import faqContent from './cms-faq'
-
-// CONTEXT7 SOURCE: /nodejs/node - File system operations for build-time compatibility
-// VERCEL COMPATIBILITY: Dynamic JSON content loading function using fs for build-time and fetch for runtime
-async function loadContentFile<T>(filename: string): Promise<T> {
-  try {
-    // Use different loading strategies for build vs runtime
-    if (typeof window === 'undefined') {
-      // Server-side: Try direct import for Vercel build compatibility
-      try {
-        // VERCEL BUILD FIX: Use dynamic imports for JSON files during build
-        const content = await import(`../../../public/data/${filename.replace('.json', '')}.json`)
-        return content.default as T
-      } catch (importError) {
-        // Fallback to file system for local development
-        const fs = await import('fs/promises')
-        const path = await import('path')
-        const filePath = path.join(process.cwd(), 'public', 'data', filename)
-        const content = await fs.readFile(filePath, 'utf-8')
-        return JSON.parse(content) as T
-      }
-    } else {
-      // Client-side: Use fetch API
-      const response = await fetch(`/data/${filename}`, {
-        cache: 'force-cache' // Enable caching for performance
-      })
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      
-      const content = await response.json()
-      return content as T
-    }
-  } catch (error) {
-    // CONTEXT7 SOURCE: /vercel/next.js - Build-time error handling with fallback values
-    // BUILD STABILITY REASON: Official Next.js documentation Section 2.1 recommends graceful error handling during static generation
-    console.error(`Failed to load content file ${filename}:`, error)
-    
-    // Return empty fallback data to prevent build failures
-    if (filename.includes('how-it-works-steps')) {
-      return [] as unknown as T
-    }
-    if (filename.includes('tutor-tiers')) {
-      return [] as unknown as T
-    }
-    if (filename.includes('benefits')) {
-      return [] as unknown as T
-    }
-    
-    throw new Error(`Unable to load content file: ${filename}`)
-  }
-}
-
-// CONTEXT7 SOURCE: /reactjs/react.dev - React cache implementation for server component optimization
-// PERFORMANCE OPTIMIZATION: Cached content loading to prevent redundant file system access
-const loadCachedContent = cache(loadContentFile)
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for return type safety
 // CONTEXT7 SOURCE: /microsoft/typescript - Generic type constraints for reusable components
@@ -1093,9 +1050,8 @@ export interface QuoteFormContent {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.header for site header
  */
-export const getSiteHeader = cache(async (): Promise<SiteHeader> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.header
+export const getSiteHeader = cache((): SiteHeader => {
+  return landingPageContent.header
 })
 
 /**
@@ -1104,19 +1060,18 @@ export const getSiteHeader = cache(async (): Promise<SiteHeader> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.hero for hero section
  */
-export const getHeroContent = cache(async (): Promise<HeroContent> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.hero
+export const getHeroContent = cache((): HeroContent => {
+  return landingPageContent.hero
 })
 
 /**
  * Get trust indicators for credibility section (CACHED - #3 most used: 6 times)
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() memoizes return values for same inputs
  * CMS DATA SOURCE: Using landingPageContent.trustIndicators for social proof
+ * SYNCHRONOUS RESTORATION: Direct JSON access eliminates async complexity
  */
-export const getTrustIndicators = cache(async (): Promise<TrustIndicator[]> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.trustIndicators.indicators
+export const getTrustIndicators = cache((): TrustIndicator[] => {
+  return landingPageContent.trustIndicators.indicators
 })
 
 /**
@@ -1124,29 +1079,30 @@ export const getTrustIndicators = cache(async (): Promise<TrustIndicator[]> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.studentJourney for process steps
  */
-export const getStudentJourney = async (): Promise<StudentJourneySection> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.studentJourney
-}
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getStudentJourney = cache((): StudentJourneySection => {
+  return landingPageContent.studentJourney
+})
 
 /**
  * Get testimonials for social proof (CACHED - #1 most used: 13 times)
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing function results across component renders
  * CMS DATA SOURCE: Using landingPageContent.testimonials for customer testimonials
+ * SYNCHRONOUS RESTORATION: Direct JSON access eliminates async complexity
  */
-export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.testimonials.testimonials
+export const getTestimonials = cache((): Testimonial[] => {
+  return landingPageContent.testimonials.testimonials
 })
 
 /**
  * Get services offered by the tutoring company
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations
  * CMS DATA SOURCE: Using landingPageContent.services for service listings
+ * SYNCHRONOUS RESTORATION: Direct JSON access eliminates async complexity
  */
-export const getServices = async (): Promise<readonly Service[]> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.services.services
+export const getServices = (): readonly Service[] => {
+  return landingPageContent.services.services
 }
 
 /**
@@ -1154,7 +1110,9 @@ export const getServices = async (): Promise<readonly Service[]> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.whoWeSupport for support areas
  */
-export const getWhoWeSupport = async (): Promise<{
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getWhoWeSupport = cache((): {
   readonly title: string
   readonly subtitle: string
   readonly description: string
@@ -1164,19 +1122,19 @@ export const getWhoWeSupport = async (): Promise<{
     readonly icon: string
     readonly imageKey: string
   }[]
-}> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.whoWeSupport
-}
+} => {
+  return landingPageContent.whoWeSupport
+})
 
 /**
  * Get academic results statistics (CACHED - honorable mention: 3 times)
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() avoids redundant computations
  * CMS DATA SOURCE: Using landingPageContent.results for performance metrics
  */
-export const getResultsStatistics = cache(async (): Promise<Statistic[]> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.results.statistics
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getResultsStatistics = cache((): Statistic[] => {
+  return landingPageContent.results.statistics
 })
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface implementation patterns for data consolidation
@@ -1363,13 +1321,11 @@ export interface QuoteContent {
  * CMS DATA SOURCE: Consolidates contact data from settings, landing-page, faq, and quote-form
  * REPLACES: getContactContent, getContactInfo, getContactDetails, getFAQContact, getQuoteFormContact
  */
-export const getUnifiedContact = cache(async (): Promise<UnifiedContactData> => {
-  const [siteSettingsData, landingPageData, faqData, quoteFormData] = await Promise.all([
-    loadCachedContent<any>('settings.json'),
-    loadCachedContent<any>('landing-page.json'),
-    loadCachedContent<any>('faq.json'),
-    loadCachedContent<any>('quote-form.json')
-  ])
+export const getUnifiedContact = cache((): UnifiedContactData => {
+  const siteSettingsData = settingsContent
+  const landingPageData = landingPageContent
+  const faqData = faqContentJSON
+  const quoteFormData = quoteFormContent
   
   return {
     primary: siteSettingsData.contact,
@@ -1386,10 +1342,11 @@ export const getUnifiedContact = cache(async (): Promise<UnifiedContactData> => 
  * CMS DATA SOURCE: Using landingPageContent.contact for contact information
  * @deprecated Use getUnifiedContact().landing instead
  */
-export const getContactContent = async (): Promise<ContactSection> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.contact
-}
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getContactContent = cache((): ContactSection => {
+  return landingPageContent.contact
+})
 
 /**
  * Get footer content including links and company information (CACHED - #10 most used: 4 times)
@@ -1397,9 +1354,8 @@ export const getContactContent = async (): Promise<ContactSection> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for cached functions
  * CMS DATA SOURCE: Using landingPageContent.footer for site footer
  */
-export const getFooterContent = cache(async (): Promise<FooterContent> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.footer
+export const getFooterContent = cache((): FooterContent => {
+  return landingPageContent.footer
 })
 
 /**
@@ -1407,72 +1363,27 @@ export const getFooterContent = cache(async (): Promise<FooterContent> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Error handling with explicit return types
  * CMS DATA SOURCE: Using businessContent for company information
  */
-export const getBusinessContent = async (): Promise<{
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getBusinessContent = cache((): {
   readonly companyName: string
   readonly founded: string
   readonly heritage: string
   readonly [key: string]: unknown
-}> => {
-  try {
-    const content = await loadCachedContent<any>('business-content.json')
-    return content
-  } catch (error) {
-    // Business content fallback used
-    return {
-      companyName: 'My Private Tutor Online',
-      founded: '2010',
-      heritage: '15 years of educational excellence'
-    }
-  }
-}
+} => {
+  return businessContent
+})
 
 /**
  * Get about page content
  * CONTEXT7 SOURCE: /microsoft/typescript - Error handling with comprehensive return types
  * CMS DATA SOURCE: Using aboutContent for about page information
  */
-export const getAboutContent = async (): Promise<AboutContent> => {
-  try {
-    const content = await loadCachedContent<any>('about.json')
-    return content
-  } catch (error) {
-    // About content fallback used
-    return {
-      hero: {
-        title: 'About My Private Tutor Online',
-        subtitle: 'Excellence in private tutoring since 2010',
-        description: 'Professional tutoring services with personalised approach',
-        image: '/images/placeholder.svg',
-        imageAlt: 'About My Private Tutor Online'
-      },
-      ourEthos: {
-        title: 'Our Ethos',
-        subtitle: 'Excellence in Education',
-        description: 'Personalised tutoring approach',
-        mainContent: {
-          introduction: 'We provide exceptional tutoring services',
-          philosophy: 'Every student deserves personalised attention'
-        },
-        sections: [],
-        results: {
-          title: 'Our Results',
-          statistics: []
-        },
-        conclusion: 'Excellence in private tutoring since 2010'
-      },
-      story: {
-        title: 'Our Story',
-        content: 'Founded with a vision for excellence in education',
-        sections: []
-      },
-      team: {
-        title: 'Our Team',
-        description: 'Meet our expert educators',
-        members: []
-      }
-    }
-  }
-}
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getAboutContent = cache((): AboutContent => {
+  return aboutContent
+})
 
 /**
  * Get founder story content from About page (CACHED - About Us page specific)
@@ -1528,9 +1439,8 @@ export const getCompanyTimeline = cache((): CompanyTimelineSection => {
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() memoizes function return values
  * CMS DATA SOURCE: Using landingPageContent.header.navigation for main navigation
  */
-export const getMainNavigation = cache(async (): Promise<NavigationItem[]> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.header.navigation
+export const getMainNavigation = cache((): NavigationItem[] => {
+  return landingPageContent.header.navigation
 })
 
 /**
@@ -1539,18 +1449,17 @@ export const getMainNavigation = cache(async (): Promise<NavigationItem[]> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
  * CMS DATA SOURCE: Using landingPageContent.header for branding
  */
-export const getSiteBranding = cache(async (): Promise<{
+export const getSiteBranding = cache((): {
   readonly siteName: string
   readonly logo: string
   readonly companyName: string
   readonly description: string
-}> => {
-  const content = await loadCachedContent<any>('landing-page.json')
+} => {
   return {
-    siteName: content.header.siteName,
-    logo: content.header.logo,
-    companyName: content.footer.companyName,
-    description: content.footer.description
+    siteName: landingPageContent.header.siteName,
+    logo: landingPageContent.header.logo,
+    companyName: landingPageContent.footer.companyName,
+    description: landingPageContent.footer.description
   }
 })
 
@@ -1580,15 +1489,15 @@ export const getHowItWorksContent = async (): Promise<HowItWorksContent> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
  * CMS DATA SOURCE: Using howItWorksContent.hero for hero section
  */
-export const getHowItWorksHero = async (): Promise<{
+export const getHowItWorksHero = (): {
   readonly title: string
   readonly subtitle: string
   readonly description: string
   readonly backgroundImage?: string
   readonly backgroundImageKey?: string
-}> => {
-  const content = await loadCachedContent<any>('how-it-works.json')
-  return content.hero
+} => {
+  // SYNCHRONOUS RESTORATION: Direct JSON access eliminates async complexity
+  return howItWorksContent.hero
 }
 
 /**
@@ -1597,16 +1506,10 @@ export const getHowItWorksHero = async (): Promise<{
  * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CMS DATA SOURCE: Using async loadCachedContent for how-it-works steps
  */
-export const getHowItWorksSteps = cache(async (): Promise<HowItWorksStep[]> => {
-  try {
-    const content = await loadCachedContent<any>('how-it-works.json')
-    return content?.steps || []
-  } catch (error) {
-    // CONTEXT7 SOURCE: /vercel/next.js - Fallback patterns for build-time CMS errors
-    // BUILD STABILITY REASON: Official Next.js documentation Section 2.1 recommends fallback values during static generation
-    console.warn('Failed to load how-it-works steps, using empty array:', error)
-    return []
-  }
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getHowItWorksSteps = cache((): HowItWorksStep[] => {
+  return howItWorksContent?.steps || []
 })
 
 /**
@@ -1616,16 +1519,10 @@ export const getHowItWorksSteps = cache(async (): Promise<HowItWorksStep[]> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations with readonly
  * CMS DATA SOURCE: Using async loadCachedContent for how-it-works tutorTiers
  */
-export const getTutorTiers = cache(async (): Promise<readonly TutorTier[]> => {
-  try {
-    const content = await loadCachedContent<any>('how-it-works.json')
-    return content?.tutorTiers || []
-  } catch (error) {
-    // CONTEXT7 SOURCE: /vercel/next.js - Fallback patterns for build-time CMS errors
-    // BUILD STABILITY REASON: Official Next.js documentation Section 2.1 recommends fallback values during static generation
-    console.warn('Failed to load tutor tiers, using empty array:', error)
-    return []
-  }
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getTutorTiers = cache((): readonly TutorTier[] => {
+  return howItWorksContent?.tutorTiers || []
 })
 
 /**
@@ -1635,16 +1532,10 @@ export const getTutorTiers = cache(async (): Promise<readonly TutorTier[]> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations with readonly
  * CMS DATA SOURCE: Using async loadCachedContent for how-it-works benefits
  */
-export const getHowItWorksBenefits = cache(async (): Promise<readonly string[]> => {
-  try {
-    const content = await loadCachedContent<any>('how-it-works.json')
-    return content?.benefits || []
-  } catch (error) {
-    // CONTEXT7 SOURCE: /vercel/next.js - Fallback patterns for build-time CMS errors
-    // BUILD STABILITY REASON: Official Next.js documentation Section 2.1 recommends fallback values during static generation
-    console.warn('Failed to load how-it-works benefits, using empty array:', error)
-    return []
-  }
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getHowItWorksBenefits = cache((): readonly string[] => {
+  return howItWorksContent?.benefits || []
 })
 
 /**
@@ -1654,16 +1545,17 @@ export const getHowItWorksBenefits = cache(async (): Promise<readonly string[]> 
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
  * CMS DATA SOURCE: Using async loadCachedContent for how-it-works cta
  */
-export const getHowItWorksCTA = cache(async (): Promise<{
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getHowItWorksCTA = cache((): {
   readonly title: string
   readonly description: string
   readonly button: {
     readonly text: string
     readonly href: string
   }
-}> => {
-  const content = await loadCachedContent<any>('how-it-works.json')
-  return content.cta
+} => {
+  return howItWorksContent.cta
 })
 
 /**
@@ -1880,18 +1772,22 @@ export const getFAQContact = (): {
 
 // CONTEXT7 SOURCE: /nodejs/node - Dynamic JSON content loading using loadCachedContent for settings
 // SETTINGS LOADING REASON: Lazy-loaded settings configuration to avoid circular dependencies
-const getSiteSettings = cache(async () => {
-  return await loadCachedContent<any>('settings.json')
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+const getSiteSettings = cache(() => {
+  return settingsContent
 })
 
 /**
  * Get site configuration settings
  * CMS DATA SOURCE: Using siteSettings.siteConfig for site configuration
  */
-export const getSiteConfig = async (): Promise<SiteConfig> => {
-  const siteSettings = await getSiteSettings()
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getSiteConfig = cache((): SiteConfig => {
+  const siteSettings = getSiteSettings()
   return siteSettings.siteConfig
-}
+})
 
 /**
  * Get contact details from settings
@@ -1899,20 +1795,24 @@ export const getSiteConfig = async (): Promise<SiteConfig> => {
  * CMS DATA SOURCE: Using siteSettings.contact for contact information
  * @deprecated Use getUnifiedContact().primary instead
  */
-export const getContactDetails = async (): Promise<ContactDetails> => {
-  const siteSettings = await getSiteSettings()
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getContactDetails = cache((): ContactDetails => {
+  const siteSettings = getSiteSettings()
   return siteSettings.contact
-}
+})
 
 /**
  * Get business details and qualifications
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using siteSettings for business information
  */
-export const getBusinessDetails = async (): Promise<BusinessDetails> => {
-  const siteSettings = await getSiteSettings()
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getBusinessDetails = cache((): BusinessDetails => {
+  const siteSettings = getSiteSettings()
   return siteSettings.businessDetails
-}
+})
 
 /**
  * Get complete business information for structured data and SEO (CACHED - Business information specific)
@@ -1921,9 +1821,11 @@ export const getBusinessDetails = async (): Promise<BusinessDetails> => {
  * CMS DATA SOURCE: Using businessContent, siteSettings, and testimonialsContent for comprehensive business info
  * PURPOSE: Provides complete business information for structured data, SEO optimization, and Schema.org markup
  */
-export const getBusinessInfo = cache(async (): Promise<BusinessInfo> => {
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getBusinessInfo = cache((): BusinessInfo => {
   const business = businessContent.website || businessContent
-  const settings = await getSiteSettings()
+  const settings = getSiteSettings()
   const contact = settings.contact
   
   return {
@@ -2479,25 +2381,10 @@ export const validateContentStructure = async (): Promise<boolean> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Error handling with comprehensive return types
  * CMS DATA SOURCE: Using async loadCachedContent for testimonials data
  */
-export const getTestimonialsContent = cache(async (): Promise<TestimonialsContent> => {
-  try {
-    const content = await loadCachedContent<TestimonialsContent>('testimonials.json')
-    return content
-  } catch (error) {
-    // Testimonials content fallback used
-    return {
-      hero: {
-        title: 'Testimonials',
-        subtitle: 'What families say about us',
-        description: 'Read about our families\' experiences'
-      },
-      mainContent: {
-        intro: '',
-        callToAction: ''
-      },
-      recentTestimonials: []
-    }
-  }
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getTestimonialsContent = cache((): TestimonialsContent => {
+  return testimonialsContent
 })
 
 /**
@@ -2509,7 +2396,9 @@ export const getTestimonialsContent = cache(async (): Promise<TestimonialsConten
  * CMS DATA SOURCE: Using async loadCachedContent for testimonials hero data with extended support for hero variants
  * ENHANCEMENT REASON: Extended CMS integration to support TestimonialsHero component flexibility
  */
-export const getTestimonialsHero = cache(async (): Promise<{
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getTestimonialsHero = cache((): {
   readonly title: string
   readonly subtitle: string
   readonly description: string
@@ -2520,10 +2409,10 @@ export const getTestimonialsHero = cache(async (): Promise<{
     readonly icon: 'crown' | 'award' | 'star'
     readonly text: string
   }>
-}> => {
-  const testimonialsContent = await loadCachedContent<TestimonialsContent>('testimonials.json')
+} => {
+  const testimonialsContentData = testimonialsContent
   return {
-    ...testimonialsContent.hero,
+    ...testimonialsContentData.hero,
     // Enhanced hero configuration with sensible defaults for premium testimonials
     backgroundVariant: 'gradient' as const,
     size: 'full' as const, 
@@ -2632,15 +2521,14 @@ export const getQuotes = async (): Promise<QuoteContent> => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
  * CMS DATA SOURCE: Using landingPageContent.quotes.founderQuote
  */
-export const getFounderQuote = async (): Promise<{
+export const getFounderQuote = (): {
   readonly quote: string
   readonly author: string
   readonly role: string
   readonly image: string
   readonly signature?: string
-}> => {
-  const content = await loadCachedContent<any>('landing-page.json')
-  return content.quotes.founderQuote
+} => {
+  return landingPageContent.quotes.founderQuote
 }
 
 /**
@@ -2680,8 +2568,8 @@ export const getRecentTestimonials = cache(async (): Promise<readonly Testimonia
  * CMS DATA SOURCE: Using async loadCachedContent for testimonials aboutTestimonials
  * PURPOSE: Provides curated testimonials specifically for the About Us page with subject and result data
  */
-export const getAboutTestimonials = cache(async (): Promise<readonly Testimonial[]> => {
-  const testimonialsContent = await loadCachedContent<TestimonialsContent>('testimonials.json')
+export const getAboutTestimonials = cache((): readonly Testimonial[] => {
+  // SYNCHRONOUS RESTORATION: Direct JSON access eliminates async complexity
   // Return About Us testimonials if available, otherwise fall back to recent testimonials
   return testimonialsContent.aboutTestimonials || testimonialsContent.recentTestimonials
 })
@@ -2698,8 +2586,7 @@ export const getAboutTestimonials = cache(async (): Promise<readonly Testimonial
  * - Maintains backward compatibility with existing simple school names
  * - Enhanced carousel component uses full EliteSchool objects from schools-data.ts
  */
-export const getTestimonialsSchools = cache(async (): Promise<readonly string[]> => {
-  const testimonialsContent = await loadCachedContent<TestimonialsContent>('testimonials.json')
+export const getTestimonialsSchools = cache((): readonly string[] => {
   return testimonialsContent.schools
 })
 
@@ -3753,8 +3640,10 @@ export const getFooterFormContent = (): FooterFormContent => {
  * CMS DATA SOURCE: Using async loadCachedContent for business analytics data
  * PURPOSE: Provides all business analytics data including results, case studies, competitive analysis, and ROI
  */
-export const getBusinessAnalyticsData = cache(async (): Promise<BusinessAnalyticsData> => {
-  return await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
+// CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+// SYNCHRONOUS CONVERSION: Restore proven working pattern eliminating Promise complexity
+export const getBusinessAnalyticsData = cache((): BusinessAnalyticsData => {
+  return businessAnalyticsContent
 })
 
 /**
@@ -3765,9 +3654,9 @@ export const getBusinessAnalyticsData = cache(async (): Promise<BusinessAnalytic
  * CMS DATA SOURCE: Using async loadCachedContent for business analytics results documentation
  * PURPOSE: Provides results documentation for grade improvements, university placements, and ROI analysis
  */
-export const getResultsDocumentation = cache(async (): Promise<readonly ResultsDocumentationItem[]> => {
-  const businessAnalyticsData = await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
-  return businessAnalyticsData.resultsDocumentation
+export const getResultsDocumentation = cache((): readonly ResultsDocumentationItem[] => {
+  // SYNCHRONOUS RESTORATION: Direct JSON access eliminates async complexity
+  return businessAnalyticsContent.resultsDocumentation
 })
 
 /**

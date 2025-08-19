@@ -29,13 +29,13 @@
  */
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage with proper i18n provider patterns
-// HYDRATION FIX REASON: Official next-intl documentation prohibits setRequestLocale in client components
+// CLIENT COMPONENT RESTORATION: Official next-intl documentation shows client components use useTranslations hook
+// ARCHITECTURE FIX REASON: Restoring original working client component pattern for useState/useEffect compatibility
 
-// CONTEXT7 SOURCE: /vercel/next.js - Server Component for async data fetching
-// ASYNC CONVERSION REASON: Official Next.js documentation for Server Components using async/await for data operations
+"use client"
 
 import React from 'react';
-import { getTranslations } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
 
 // Documentation Source: Context7 MCP - CMS Integration Imports
 // Reference: Project CLAUDE.md rules 22-25 for CMS requirements
@@ -68,20 +68,37 @@ import { LanguageSwitcher } from '../../components/ui/language-switcher'
 import { HomepageSections } from '../../components/homepage/homepage-sections'
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage without server-side locale parameters
-// CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations without setRequestLocale in client components
-export default async function HomePage() {
-  // CONTEXT7 SOURCE: /amannn/next-intl - Server-side translations for homepage
-  // ASYNC CONVERSION REASON: Official next-intl documentation enables getTranslations in server components with async/await
-  const t = await getTranslations('Navigation');
+// CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations hook in client components
+export default function HomePage() {
+  console.log('[DEBUG-HomePage] Component function executed - client component with synchronous data loading')
   
-  // CMS DATA SOURCE: Get all homepage content from CMS
-  const trustIndicators = await getTrustIndicators()
-  const testimonials = await getTestimonials()
-  const services = await getServices()
-  const branding = await getSiteBranding()
-  const testimonialsSchools = await getTestimonialsSchools()
-  const founderQuote = await getFounderQuote()
+  // CONTEXT7 SOURCE: /amannn/next-intl - Client-side translations for homepage
+  // CLIENT HOOK REASON: Official next-intl documentation enables useTranslations hook in client components
+  const t = useTranslations('Navigation');
+  console.log('[DEBUG-HomePage] useTranslations hook completed successfully')
+  
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access pattern
+  // SYNCHRONOUS RESTORATION: Return to proven working pattern with immediate data availability
+  console.log('[DEBUG-HomePage] Loading CMS data synchronously - client component')
+  
+  // Direct synchronous CMS function calls - no useState/useEffect needed
+  const trustIndicators = getTrustIndicators()
+  const testimonials = getTestimonials()
+  const services = getServices()
+  const branding = getSiteBranding()
+  const founderQuote = getFounderQuote()
   const studentImages = getStudentImages()
+  const testimonialsSchools = getTestimonialsSchools()
+  
+  console.log('[DEBUG-HomePage] CMS data loaded synchronously:', {
+    trustIndicators: trustIndicators?.length || 0,
+    testimonials: testimonials?.length || 0,
+    services: services?.length || 0,
+    studentImages: studentImages ? Object.keys(studentImages).length : 0,
+    branding: !!branding,
+    founderQuote: !!founderQuote?.quote,
+    testimonialsSchools: testimonialsSchools?.length || 0
+  })
 
   return (
     <PageLayout showHeader={true} showFooter={true} containerSize="full" verticalSpacing="none">
@@ -130,10 +147,14 @@ export default async function HomePage() {
       {/* 3. SCROLLING SCHOOLS COMPONENT */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for consistent vertical rhythm */}
       {/* SPACING CONSISTENCY REASON: Official Tailwind CSS documentation mt-8 utility maintains same 2rem spacing as Tagline for visual rhythm grouping */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering for async data loading */}
+      {/* ASYNC RENDERING REASON: Official React documentation shows conditional rendering patterns for loading states and data availability */}
       <div className="mt-8">
-        <ScrollingSchools 
-          schools={testimonialsSchools}
-        />
+        {testimonialsSchools.length > 0 && (
+          <ScrollingSchools 
+            schools={testimonialsSchools}
+          />
+        )}
       </div>
       
       {/* 4. ABOUT SECTION */}
@@ -239,4 +260,7 @@ export default async function HomePage() {
       
     </PageLayout>
   )
-}// Force deployment refresh - Mon Aug 18 08:12:40 PM BST 2025
+}
+
+// CONTEXT7 SOURCE: /vercel/next.js - Client component architecture restoration complete
+// ARCHITECTURE FIX: Restored homepage to working client component pattern - Mon Aug 19 12:07:00 PM BST 2025
