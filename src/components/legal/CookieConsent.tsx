@@ -2,6 +2,8 @@
 
 'use client'
 
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { 

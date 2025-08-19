@@ -32,10 +32,9 @@
 
 "use client"
 
-// Documentation Source: React 19 hooks and TypeScript patterns
-// Reference: https://react.dev/reference/react/hooks
-// Pattern: Modern React hooks with TypeScript support
-import { useState, useEffect, useCallback } from 'react'
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React, { useState, useEffect, useCallback } from 'react'
 
 // Documentation Source: Next.js 15 App Router components
 // Reference: https://nextjs.org/docs/app/api-reference/components/image

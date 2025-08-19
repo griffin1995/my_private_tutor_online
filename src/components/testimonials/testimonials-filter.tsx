@@ -2,10 +2,10 @@
  * CONTEXT7 SOURCE: /context7/react_dev - Advanced React component with useState, useMemo, useCallback hooks
  * CONTEXT7 SOURCE: /krisk/fuse - Fuzzy search library for real-time testimonial filtering
  * CONTEXT7 SOURCE: /grx7/framer-motion - Professional animations for filter interactions
- * 
+ *
  * COMPONENT PURPOSE: Advanced testimonials filter system with multi-criteria filtering
  * ENHANCEMENT REASON: Task 4 implementation - replacing basic category filter with sophisticated filtering
- * 
+ *
  * Features:
  * - Multi-criteria filtering (category, subject, grade, location, year)
  * - Real-time fuzzy search with Fuse.js
@@ -13,66 +13,73 @@
  * - Mobile-optimized collapsible interface
  * - Filter analytics tracking
  * - Performance optimized with memoization
- * 
+ *
  * Revenue Impact: £400,000+ opportunity through enhanced user experience
  * Royal Standards: Premium filtering suitable for elite client expectations
  */
 
-"use client"
+"use client";
 
-import { useState, useMemo, useCallback, useEffect } from 'react'
-import { m, AnimatePresence } from 'framer-motion'
-import { Search, Filter, X, ChevronDown, ChevronUp, RotateCcw } from 'lucide-react'
-import Fuse from 'fuse.js'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { AnimatePresence, m } from "framer-motion";
+import Fuse from "fuse.js";
+import {
+  ChevronDown,
+  ChevronUp,
+  Filter,
+  RotateCcw,
+  Search,
+  X,
+} from "lucide-react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Advanced TypeScript interfaces for component props
 // INTERFACE DESIGN REASON: Following Context7 TypeScript patterns for type-safe component architecture
 export interface Testimonial {
-  readonly quote: string
-  readonly author: string
-  readonly role: string
-  readonly avatar?: string
-  readonly rating: number
-  readonly verified?: boolean
-  readonly date?: string
-  readonly location?: string
-  readonly subject?: string
-  readonly result?: string
-  readonly category?: string
-  readonly grade?: string
-  readonly year?: number
-  readonly featured?: boolean
+  readonly quote: string;
+  readonly author: string;
+  readonly role: string;
+  readonly avatar?: string;
+  readonly rating: number;
+  readonly verified?: boolean;
+  readonly date?: string;
+  readonly location?: string;
+  readonly subject?: string;
+  readonly result?: string;
+  readonly category?: string;
+  readonly grade?: string;
+  readonly year?: number;
+  readonly featured?: boolean;
 }
 
 export interface FilterConfiguration {
-  categories: string[]
-  subjects: string[]
-  gradeOptions: string[]
-  locationOptions: string[]
-  yearRange: { min: number; max: number }
+  categories: string[];
+  subjects: string[];
+  gradeOptions: string[];
+  locationOptions: string[];
+  yearRange: { min: number; max: number };
 }
 
 export interface FilterState {
-  category: string
-  subject: string
-  grade: string
-  location: string
-  year: string
-  searchQuery: string
+  category: string;
+  subject: string;
+  grade: string;
+  location: string;
+  year: string;
+  searchQuery: string;
 }
 
 export interface TestimonialsFilterProps {
-  testimonials: Testimonial[]
-  onFilterChange: (filteredTestimonials: Testimonial[]) => void
-  filterConfig?: FilterConfiguration
-  showSearch?: boolean
-  showAdvancedFilters?: boolean
-  enableAnalytics?: boolean
-  className?: string
+  testimonials: Testimonial[];
+  onFilterChange: (filteredTestimonials: Testimonial[]) => void;
+  filterConfig?: FilterConfiguration;
+  showSearch?: boolean;
+  showAdvancedFilters?: boolean;
+  enableAnalytics?: boolean;
+  className?: string;
 }
 
 // CONTEXT7 SOURCE: /krisk/fuse - Fuzzy search configuration for testimonials
@@ -82,21 +89,34 @@ const fuseOptions = {
   threshold: 0.4, // Balance between accuracy and flexibility
   ignoreLocation: true,
   keys: [
-    { name: 'quote', weight: 0.4 },
-    { name: 'author', weight: 0.3 },
-    { name: 'role', weight: 0.2 },
-    { name: 'subject', weight: 0.1 }
-  ]
-}
+    { name: "quote", weight: 0.4 },
+    { name: "author", weight: 0.3 },
+    { name: "role", weight: 0.2 },
+    { name: "subject", weight: 0.1 },
+  ],
+};
 
 // Default filter configuration
 const defaultFilterConfig: FilterConfiguration = {
-  categories: ['11+', 'GCSE', 'A-Level', 'Oxbridge', 'International', 'IB'],
-  subjects: ['Mathematics', 'English', 'Sciences', 'Languages', 'Humanities', 'Arts'],
-  gradeOptions: ['A*', 'A', 'B+', 'Significant Improvement', 'Grade Boundaries'],
-  locationOptions: ['London', 'South East', 'International', 'Worldwide'],
-  yearRange: { min: 2020, max: 2024 }
-}
+  categories: ["11+", "GCSE", "A-Level", "Oxbridge", "International", "IB"],
+  subjects: [
+    "Mathematics",
+    "English",
+    "Sciences",
+    "Languages",
+    "Humanities",
+    "Arts",
+  ],
+  gradeOptions: [
+    "A*",
+    "A",
+    "B+",
+    "Significant Improvement",
+    "Grade Boundaries",
+  ],
+  locationOptions: ["London", "South East", "International", "Worldwide"],
+  yearRange: { min: 2020, max: 2024 },
+};
 
 export function TestimonialsFilter({
   testimonials,
@@ -105,133 +125,152 @@ export function TestimonialsFilter({
   showSearch = true,
   showAdvancedFilters = true,
   enableAnalytics = false,
-  className = ""
+  className = "",
 }: TestimonialsFilterProps) {
   // CONTEXT7 SOURCE: /context7/react_dev - useState hook for filter state management
   // STATE MANAGEMENT REASON: Official React documentation recommends useState for complex form state
   const [filterState, setFilterState] = useState<FilterState>({
-    category: 'all',
-    subject: 'all',
-    grade: 'all',
-    location: 'all',
-    year: 'all',
-    searchQuery: ''
-  })
-  
-  const [isAdvancedOpen, setIsAdvancedOpen] = useState(false)
-  const [activeFilters, setActiveFilters] = useState<string[]>([])
+    category: "all",
+    subject: "all",
+    grade: "all",
+    location: "all",
+    year: "all",
+    searchQuery: "",
+  });
+
+  const [isAdvancedOpen, setIsAdvancedOpen] = useState(false);
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
   // CONTEXT7 SOURCE: /krisk/fuse - Initialize Fuse.js instance for fuzzy searching
   // FUZZY SEARCH REASON: Official Fuse.js documentation patterns for React component integration
-  const fuse = useMemo(() => new Fuse(testimonials, fuseOptions), [testimonials])
+  const fuse = useMemo(
+    () => new Fuse(testimonials, fuseOptions),
+    [testimonials]
+  );
 
   // CONTEXT7 SOURCE: /context7/react_dev - useMemo hook for expensive filtering calculations
   // PERFORMANCE OPTIMIZATION REASON: Official React documentation recommends memoizing expensive calculations
   const filteredTestimonials = useMemo(() => {
-    let filtered = [...testimonials]
-    
+    let filtered = [...testimonials];
+
     // Apply text search first using Fuse.js
     if (filterState.searchQuery.trim()) {
-      const searchResults = fuse.search(filterState.searchQuery.trim())
-      filtered = searchResults.map(result => result.item)
+      const searchResults = fuse.search(filterState.searchQuery.trim());
+      filtered = searchResults.map((result) => result.item);
     }
 
     // Apply category filter
-    if (filterState.category !== 'all') {
-      filtered = filtered.filter(testimonial => {
-        const category = testimonial.category || testimonial.role
-        return category.toLowerCase().includes(filterState.category.toLowerCase())
-      })
+    if (filterState.category !== "all") {
+      filtered = filtered.filter((testimonial) => {
+        const category = testimonial.category || testimonial.role;
+        return category
+          .toLowerCase()
+          .includes(filterState.category.toLowerCase());
+      });
     }
 
     // Apply subject filter
-    if (filterState.subject !== 'all') {
-      filtered = filtered.filter(testimonial =>
-        testimonial.subject?.toLowerCase().includes(filterState.subject.toLowerCase())
-      )
+    if (filterState.subject !== "all") {
+      filtered = filtered.filter((testimonial) =>
+        testimonial.subject
+          ?.toLowerCase()
+          .includes(filterState.subject.toLowerCase())
+      );
     }
 
     // Apply grade filter
-    if (filterState.grade !== 'all') {
-      filtered = filtered.filter(testimonial =>
-        testimonial.grade?.toLowerCase().includes(filterState.grade.toLowerCase()) ||
-        testimonial.result?.toLowerCase().includes(filterState.grade.toLowerCase())
-      )
+    if (filterState.grade !== "all") {
+      filtered = filtered.filter(
+        (testimonial) =>
+          testimonial.grade
+            ?.toLowerCase()
+            .includes(filterState.grade.toLowerCase()) ||
+          testimonial.result
+            ?.toLowerCase()
+            .includes(filterState.grade.toLowerCase())
+      );
     }
 
     // Apply location filter
-    if (filterState.location !== 'all') {
-      filtered = filtered.filter(testimonial =>
-        testimonial.location?.toLowerCase().includes(filterState.location.toLowerCase())
-      )
+    if (filterState.location !== "all") {
+      filtered = filtered.filter((testimonial) =>
+        testimonial.location
+          ?.toLowerCase()
+          .includes(filterState.location.toLowerCase())
+      );
     }
 
     // Apply year filter
-    if (filterState.year !== 'all') {
-      const targetYear = parseInt(filterState.year)
-      filtered = filtered.filter(testimonial =>
-        testimonial.year === targetYear ||
-        (testimonial.date && new Date(testimonial.date).getFullYear() === targetYear)
-      )
+    if (filterState.year !== "all") {
+      const targetYear = parseInt(filterState.year);
+      filtered = filtered.filter(
+        (testimonial) =>
+          testimonial.year === targetYear ||
+          (testimonial.date &&
+            new Date(testimonial.date).getFullYear() === targetYear)
+      );
     }
 
-    return filtered
-  }, [testimonials, filterState, fuse])
+    return filtered;
+  }, [testimonials, filterState, fuse]);
 
   // CONTEXT7 SOURCE: /context7/react_dev - useCallback hook for stable function references
   // CALLBACK OPTIMIZATION REASON: Official React documentation recommends useCallback for stable function identity
-  const handleFilterChange = useCallback((key: keyof FilterState, value: string) => {
-    setFilterState(prev => ({
-      ...prev,
-      [key]: value
-    }))
+  const handleFilterChange = useCallback(
+    (key: keyof FilterState, value: string) => {
+      setFilterState((prev) => ({
+        ...prev,
+        [key]: value,
+      }));
 
-    // Analytics tracking
-    if (enableAnalytics) {
-      // Track filter usage for optimization
-      console.log(`Filter used: ${key} = ${value}`)
-    }
-  }, [enableAnalytics])
+      // Analytics tracking
+      if (enableAnalytics) {
+        // Track filter usage for optimization
+        console.log(`Filter used: ${key} = ${value}`);
+      }
+    },
+    [enableAnalytics]
+  );
 
   // Update active filters array for UI display
   useEffect(() => {
-    const active: string[] = []
+    const active: string[] = [];
     Object.entries(filterState).forEach(([key, value]) => {
-      if (value && value !== 'all' && value.trim()) {
-        if (key === 'searchQuery') {
-          active.push(`Search: "${value}"`)
+      if (value && value !== "all" && value.trim()) {
+        if (key === "searchQuery") {
+          active.push(`Search: "${value}"`);
         } else {
-          active.push(`${key}: ${value}`)
+          active.push(`${key}: ${value}`);
         }
       }
-    })
-    setActiveFilters(active)
-  }, [filterState])
+    });
+    setActiveFilters(active);
+  }, [filterState]);
 
   // Notify parent component of filtered results
   useEffect(() => {
-    onFilterChange(filteredTestimonials)
-  }, [filteredTestimonials, onFilterChange])
+    onFilterChange(filteredTestimonials);
+  }, [filteredTestimonials, onFilterChange]);
 
   // Clear all filters
   const clearAllFilters = useCallback(() => {
     setFilterState({
-      category: 'all',
-      subject: 'all',
-      grade: 'all',
-      location: 'all',
-      year: 'all',
-      searchQuery: ''
-    })
-  }, [])
+      category: "all",
+      subject: "all",
+      grade: "all",
+      location: "all",
+      year: "all",
+      searchQuery: "",
+    });
+  }, []);
 
   // Remove individual filter
   const removeFilter = useCallback((key: keyof FilterState) => {
-    setFilterState(prev => ({
+    setFilterState((prev) => ({
       ...prev,
-      [key]: key === 'searchQuery' ? '' : 'all'
-    }))
-  }, [])
+      [key]: key === "searchQuery" ? "" : "all",
+    }));
+  }, []);
 
   // CONTEXT7 SOURCE: /grx7/framer-motion - Animation variants for filter interactions
   // ANIMATION REASON: Official Framer Motion documentation patterns for smooth UI transitions
@@ -242,15 +281,15 @@ export function TestimonialsFilter({
       y: 0,
       transition: {
         duration: 0.4,
-        staggerChildren: 0.1
-      }
-    }
-  }
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } }
-  }
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
+  };
 
   return (
     <m.section
@@ -261,14 +300,14 @@ export function TestimonialsFilter({
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <m.div className="max-w-6xl mx-auto" variants={itemVariants}>
-          
           {/* Filter Header */}
           <div className="text-center mb-8">
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4">
-              Find Your Perfect Success Story
+              Find Your Success Story
             </h2>
             <p className="text-lg text-primary-600 max-w-3xl mx-auto">
-              Discover testimonials from families with similar academic goals and backgrounds
+              Discover testimonials from families with similar academic goals
+              and backgrounds
             </p>
           </div>
 
@@ -281,7 +320,9 @@ export function TestimonialsFilter({
                   type="text"
                   placeholder="Search testimonials..."
                   value={filterState.searchQuery}
-                  onChange={(e) => handleFilterChange('searchQuery', e.target.value)}
+                  onChange={(e) =>
+                    handleFilterChange("searchQuery", e.target.value)
+                  }
                   className="pl-12 pr-4 py-3 w-full rounded-2xl border-2 border-primary-100 focus:border-accent-500 focus:ring-accent-500/20 text-base"
                 />
               </div>
@@ -292,8 +333,8 @@ export function TestimonialsFilter({
           <m.div className="mb-6" variants={itemVariants}>
             <div className="flex flex-wrap gap-3 justify-center mb-4">
               <Badge
-                variant={filterState.category === 'all' ? "default" : "outline"}
-                onClick={() => handleFilterChange('category', 'all')}
+                variant={filterState.category === "all" ? "default" : "outline"}
+                onClick={() => handleFilterChange("category", "all")}
                 className="cursor-pointer px-6 py-3 text-sm font-medium hover:scale-105 transition-all duration-200"
               >
                 All Stories
@@ -301,8 +342,14 @@ export function TestimonialsFilter({
               {filterConfig.categories.map((category) => (
                 <Badge
                   key={category}
-                  variant={filterState.category === category.toLowerCase() ? "default" : "outline"}
-                  onClick={() => handleFilterChange('category', category.toLowerCase())}
+                  variant={
+                    filterState.category === category.toLowerCase()
+                      ? "default"
+                      : "outline"
+                  }
+                  onClick={() =>
+                    handleFilterChange("category", category.toLowerCase())
+                  }
                   className="cursor-pointer px-6 py-3 text-sm font-medium hover:scale-105 transition-all duration-200"
                 >
                   {category}
@@ -337,7 +384,7 @@ export function TestimonialsFilter({
             {isAdvancedOpen && (
               <m.div
                 initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
+                animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.4 }}
                 className="mb-6"
@@ -345,7 +392,6 @@ export function TestimonialsFilter({
                 <Card className="bg-slate-50/50 border border-primary-100 rounded-2xl overflow-hidden">
                   <CardContent className="p-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                      
                       {/* Subject Filter */}
                       <div>
                         <label className="block text-sm font-semibold text-primary-700 mb-2">
@@ -353,7 +399,9 @@ export function TestimonialsFilter({
                         </label>
                         <select
                           value={filterState.subject}
-                          onChange={(e) => handleFilterChange('subject', e.target.value)}
+                          onChange={(e) =>
+                            handleFilterChange("subject", e.target.value)
+                          }
                           className="w-full px-4 py-2 rounded-xl border border-primary-200 focus:border-accent-500 focus:ring-accent-500/20 bg-white text-primary-900"
                         >
                           <option value="all">All Subjects</option>
@@ -372,7 +420,9 @@ export function TestimonialsFilter({
                         </label>
                         <select
                           value={filterState.grade}
-                          onChange={(e) => handleFilterChange('grade', e.target.value)}
+                          onChange={(e) =>
+                            handleFilterChange("grade", e.target.value)
+                          }
                           className="w-full px-4 py-2 rounded-xl border border-primary-200 focus:border-accent-500 focus:ring-accent-500/20 bg-white text-primary-900"
                         >
                           <option value="all">All Grades</option>
@@ -391,12 +441,17 @@ export function TestimonialsFilter({
                         </label>
                         <select
                           value={filterState.location}
-                          onChange={(e) => handleFilterChange('location', e.target.value)}
+                          onChange={(e) =>
+                            handleFilterChange("location", e.target.value)
+                          }
                           className="w-full px-4 py-2 rounded-xl border border-primary-200 focus:border-accent-500 focus:ring-accent-500/20 bg-white text-primary-900"
                         >
                           <option value="all">All Locations</option>
                           {filterConfig.locationOptions.map((location) => (
-                            <option key={location} value={location.toLowerCase()}>
+                            <option
+                              key={location}
+                              value={location.toLowerCase()}
+                            >
                               {location}
                             </option>
                           ))}
@@ -410,12 +465,19 @@ export function TestimonialsFilter({
                         </label>
                         <select
                           value={filterState.year}
-                          onChange={(e) => handleFilterChange('year', e.target.value)}
+                          onChange={(e) =>
+                            handleFilterChange("year", e.target.value)
+                          }
                           className="w-full px-4 py-2 rounded-xl border border-primary-200 focus:border-accent-500 focus:ring-accent-500/20 bg-white text-primary-900"
                         >
                           <option value="all">All Years</option>
                           {Array.from(
-                            { length: filterConfig.yearRange.max - filterConfig.yearRange.min + 1 },
+                            {
+                              length:
+                                filterConfig.yearRange.max -
+                                filterConfig.yearRange.min +
+                                1,
+                            },
                             (_, i) => filterConfig.yearRange.max - i
                           ).map((year) => (
                             <option key={year} value={year.toString()}>
@@ -424,7 +486,6 @@ export function TestimonialsFilter({
                           ))}
                         </select>
                       </div>
-
                     </div>
                   </CardContent>
                 </Card>
@@ -436,10 +497,14 @@ export function TestimonialsFilter({
           {activeFilters.length > 0 && (
             <m.div className="mb-6" variants={itemVariants}>
               <div className="flex flex-wrap items-center gap-3 justify-center">
-                <span className="text-sm font-medium text-primary-600">Active Filters:</span>
+                <span className="text-sm font-medium text-primary-600">
+                  Active Filters:
+                </span>
                 {activeFilters.map((filter, index) => {
-                  const [key] = filter.split(':')
-                  const filterKey = key.toLowerCase().replace(' ', '') as keyof FilterState
+                  const [key] = filter.split(":");
+                  const filterKey = key
+                    .toLowerCase()
+                    .replace(" ", "") as keyof FilterState;
                   return (
                     <Badge
                       key={index}
@@ -450,7 +515,7 @@ export function TestimonialsFilter({
                       {filter}
                       <X className="w-3 h-3 ml-1 group-hover:scale-110 transition-transform" />
                     </Badge>
-                  )
+                  );
                 })}
                 <Button
                   variant="ghost"
@@ -468,13 +533,19 @@ export function TestimonialsFilter({
           {/* Results Count */}
           <m.div className="text-center mb-4" variants={itemVariants}>
             <p className="text-sm text-primary-600">
-              Showing <span className="font-semibold text-primary-900">{filteredTestimonials.length}</span> of{' '}
-              <span className="font-semibold text-primary-900">{testimonials.length}</span> testimonials
+              Showing{" "}
+              <span className="font-semibold text-primary-900">
+                {filteredTestimonials.length}
+              </span>{" "}
+              of{" "}
+              <span className="font-semibold text-primary-900">
+                {testimonials.length}
+              </span>{" "}
+              testimonials
             </p>
           </m.div>
-
         </m.div>
       </div>
     </m.section>
-  )
+  );
 }

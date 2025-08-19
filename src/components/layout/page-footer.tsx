@@ -2,7 +2,7 @@
 
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility  
 // BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
-import React from 'react'
+import React, { useState } from 'react'
 import { Mail, Phone, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -18,7 +18,6 @@ import { cn } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
 import { newsletterSchema, type NewsletterData } from '@/lib/validation/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
 // Documentation Source: Framer Motion LazyMotion with Static Export Compatibility
 // Reference: https://www.framer.com/motion/lazy-motion/
 // Pattern: Static-export compatible animations

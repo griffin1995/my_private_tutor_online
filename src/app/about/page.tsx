@@ -34,20 +34,38 @@
 // ETHOS REMOVAL REASON: Clean component removal per user requirements, maintaining structured imports
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
 // BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { FounderStorySection } from "@/components/sections/about/founder-story-section";
 import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
 import { getAboutHeroImage } from "@/lib/cms/cms-images";
-import { getAboutTestimonials } from "@/lib/cms/cms-content";
+import { getAboutTestimonials, type Testimonial } from "@/lib/cms/cms-content";
 
 export default function AboutUsPage() {
-  // CONTEXT7 SOURCE: /vercel/next.js - Client Component data fetching patterns
-  // CLIENT DATA FETCHING REASON: Official Next.js documentation for client components using direct function calls
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useState hook for client-side data management
+  // CLIENT DATA STATE REASON: Official React documentation recommends useState for async data in client components
+  const [aboutTestimonials, setAboutTestimonials] = useState<readonly Testimonial[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   
-  // Fetch testimonials data for the testimonials section (synchronous in client component)
-  const aboutTestimonials = getAboutTestimonials()
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useEffect hook for async data fetching
+  // ASYNC DATA FETCHING REASON: Official React documentation recommends useEffect for side effects in client components
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        setIsLoading(true)
+        const testimonials = await getAboutTestimonials()
+        setAboutTestimonials(testimonials)
+      } catch (error) {
+        console.error('Failed to fetch about testimonials:', error)
+        setAboutTestimonials([]) // Fallback to empty array
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    
+    fetchTestimonials()
+  }, [])
   
   // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
@@ -87,7 +105,8 @@ export default function AboutUsPage() {
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
         {/* TESTIMONIALS EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
-        <TestimonialsSection testimonials={aboutTestimonials} />
+        {/* ASYNC DATA LOADING: Only render testimonials section when data is loaded to prevent filter errors */}
+        {!isLoading && <TestimonialsSection testimonials={aboutTestimonials} />}
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal and clean architecture maintenance */}
         {/* ETHOS SECTION REMOVED: Clean component removal per user requirements while maintaining page structure */}

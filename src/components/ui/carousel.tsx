@@ -1,6 +1,8 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React, { useState, useEffect, useCallback } from "react"
 import { cn } from "@/lib/utils"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { m, AnimatePresence } from "framer-motion"
