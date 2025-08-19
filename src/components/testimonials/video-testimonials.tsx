@@ -15,26 +15,16 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-// CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for comprehensive video component props
-// INTERFACE REASON: Official TypeScript documentation Section 3.1 recommends comprehensive interface definitions for reusable components
-export interface TestimonialVideo {
-  readonly id: string
-  readonly title: string
-  readonly description: string
-  readonly videoSrc: string
-  readonly thumbnailSrc: string
-  readonly duration?: number
-  readonly featured?: boolean
-  readonly category?: 'all' | '11+' | 'GCSE' | 'A-Level' | 'Oxbridge' | 'International'
-  readonly testimonialAuthor?: string
-  readonly testimonialRole?: string
-  readonly viewCount?: number
-  readonly rating?: number
-  readonly uploadDate?: string
-}
+// CONTEXT7 SOURCE: /lib/cms/cms-content - Unified testimonials CMS integration
+// CMS DATA SOURCE: Using getVideoTestimonials for real video testimonial data
+import { getVideoTestimonials, type Testimonial } from '@/lib/cms/cms-content'
+
+// CONTEXT7 SOURCE: /lib/cms/cms-content - Using unified Testimonial interface for video testimonials
+// TESTIMONIALS OVERHAUL: Removed duplicate TestimonialVideo interface, now using unified Testimonial type
+// INTERFACE REASON: Single source of truth for all testimonial data structures
 
 export interface VideoTestimonialsProps {
-  readonly videos?: TestimonialVideo[]
+  readonly videos?: Testimonial[]
   readonly layout?: 'single' | 'gallery' | 'carousel'
   readonly backgroundVariant?: 'blue' | 'white' | 'gradient' | 'transparent'
   readonly autoplay?: boolean
@@ -117,44 +107,11 @@ const backgroundClasses = {
   transparent: 'bg-transparent'
 }
 
-// Default video data with royal client testimonials
-// CONTEXT7 SOURCE: /muxinc/next-video - Default video asset structure with metadata
-// CMS DATA SOURCE: Enhanced with testimonial video gallery data for professional presentation
-const defaultVideos: TestimonialVideo[] = [
-  {
-    id: 'parents-testimonials-2025',
-    title: 'Parent Success Stories 2025',
-    description: 'Real parents sharing their transformative experiences with My Private Tutor Online',
-    videoSrc: '/videos/testimonials-parents-2025-compressed.mp4',
-    thumbnailSrc: '/images/video-placeholders/parents-testimonials-poster.jpg',
-    duration: 180,
-    featured: true,
-    category: 'all',
-    testimonialAuthor: 'Various Parents',
-    testimonialRole: 'MPTO Families',
-    viewCount: 2847,
-    rating: 5,
-    uploadDate: '2025-07-15'
-  },
-  {
-    id: 'students-testimonials-2025',
-    title: 'Student Success Stories 2025',
-    description: 'Students sharing their academic achievements with MPTO expert tutors',
-    videoSrc: '/videos/testimonials-students-2025-compressed.mp4',
-    thumbnailSrc: '/images/video-placeholders/students-testimonials-poster.jpg',
-    duration: 165,
-    featured: true,
-    category: 'all',
-    testimonialAuthor: 'MPTO Students',
-    testimonialRole: 'Academic Achievers',
-    viewCount: 2156,
-    rating: 5,
-    uploadDate: '2025-07-12'
-  }
-]
+// TESTIMONIALS OVERHAUL: Using CMS data instead of hardcoded defaults
+// CONTEXT7 SOURCE: /lib/cms/cms-content - Synchronous data access for video testimonials
 
 export function VideoTestimonials({
-  videos = defaultVideos,
+  videos,
   layout = 'gallery',
   backgroundVariant = 'blue',
   autoplay = false,
@@ -167,8 +124,11 @@ export function VideoTestimonials({
   description = 'Hear directly from families about their transformative experiences with My Private Tutor Online',
   animationDelay = 0
 }: VideoTestimonialsProps) {
+  // CMS DATA SOURCE: Using getVideoTestimonials for unified video testimonial data
+  // CONTEXT7 SOURCE: /lib/cms/cms-content - Synchronous testimonials data access
+  const videoTestimonials = videos || getVideoTestimonials()
   // State management for video gallery and player
-  const [selectedVideo, setSelectedVideo] = useState<TestimonialVideo | null>(null)
+  const [selectedVideo, setSelectedVideo] = useState<Testimonial | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [playerState, setPlayerState] = useState<VideoPlayerState>({
     playing: false,
@@ -187,16 +147,16 @@ export function VideoTestimonials({
   
   // Filter videos by category
   // CONTEXT7 SOURCE: /microsoft/typescript - Array filtering with type safety
-  const filteredVideos = videos.filter(video => 
+  const filteredVideos = videoTestimonials.filter(video => 
     selectedCategory === 'all' || video.category === selectedCategory
   )
   
   // Video categories for filtering
-  const categories = ['all', '11+', 'GCSE', 'A-Level', 'Oxbridge', 'International']
+  const categories = ['all', 'video', '11+', 'gcse', 'a-level', 'oxbridge', 'international']
   
   // Handle video selection and modal opening
   // CONTEXT7 SOURCE: /cookpete/react-player - Light mode thumbnail click handling for video gallery
-  const handleVideoSelect = useCallback((video: TestimonialVideo) => {
+  const handleVideoSelect = useCallback((video: Testimonial) => {
     setSelectedVideo(video)
     setPlayerState(prev => ({ ...prev, playing: autoplay }))
     
@@ -206,7 +166,7 @@ export function VideoTestimonials({
       // Track video selection event
       console.log('Video Analytics: Video Selected', {
         videoId: video.id,
-        title: video.title,
+        title: video.author, // Using author as title for testimonials
         category: video.category,
         timestamp: new Date().toISOString()
       })
@@ -328,7 +288,7 @@ export function VideoTestimonials({
   
   // Render video thumbnail card
   // CONTEXT7 SOURCE: /cookpete/react-player - Light mode thumbnail presentation with play overlay
-  const renderVideoThumbnail = (video: TestimonialVideo) => (
+  const renderVideoThumbnail = (video: Testimonial) => (
     <m.div
       key={video.id}
       variants={itemVariants}
@@ -337,11 +297,47 @@ export function VideoTestimonials({
     >
       <Card className="h-full bg-white/90 backdrop-blur-sm border border-primary-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group-hover:scale-[1.02]">
         <div className="relative aspect-video rounded-t-2xl overflow-hidden">
-          <img
-            src={video.thumbnailSrc}
-            alt={video.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+          {/* CONTEXT7 SOURCE: /html/video - Video thumbnail display using background-image for optimal loading */}
+          {/* VIDEO THUMBNAIL REASON: Display actual video thumbnails generated from video first frames */}
+          {/* BUG FIX: Use img element with proper error handling for reliable thumbnail display */}
+          {video.videoThumbnail && typeof video.videoThumbnail === 'string' && video.videoThumbnail.length > 0 ? (
+            <>
+              <img
+                src={video.videoThumbnail}
+                alt={`Video thumbnail for ${video.author}`}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  console.error('Thumbnail image failed to load:', video.videoThumbnail);
+                  // Hide the failed image and show placeholder
+                  e.currentTarget.style.display = 'none';
+                  const placeholder = e.currentTarget.nextElementSibling as HTMLElement;
+                  if (placeholder) {
+                    placeholder.style.display = 'flex';
+                  }
+                }}
+                onLoad={() => {
+                  console.log('Thumbnail loaded successfully:', video.videoThumbnail);
+                }}
+              />
+              <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center" style={{ display: 'none' }}>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mb-2">
+                    <Play className="w-8 h-8 text-primary-600 ml-1" fill="currentColor" />
+                  </div>
+                  <p className="text-primary-700 font-medium text-sm">Video Testimonial</p>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mb-2">
+                  <Play className="w-8 h-8 text-primary-600 ml-1" fill="currentColor" />
+                </div>
+                <p className="text-primary-700 font-medium text-sm">Video Testimonial</p>
+              </div>
+            </div>
+          )}
           
           {/* Play Overlay */}
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -357,29 +353,17 @@ export function VideoTestimonials({
                 Featured
               </Badge>
             )}
-            {video.duration && (
-              <Badge variant="outline" className="bg-black/50 text-white border-white/30 text-xs px-2 py-1">
-                <Clock className="w-3 h-3 mr-1" />
-                {formatTime(video.duration)}
-              </Badge>
-            )}
+            <Badge variant="outline" className="bg-black/50 text-white border-white/30 text-xs px-2 py-1">
+              <Eye className="w-3 h-3 mr-1" />
+              Video
+            </Badge>
           </div>
-          
-          {/* View Count */}
-          {video.viewCount && (
-            <div className="absolute bottom-3 right-3">
-              <Badge variant="outline" className="bg-black/50 text-white border-white/30 text-xs px-2 py-1">
-                <Eye className="w-3 h-3 mr-1" />
-                {video.viewCount.toLocaleString()}
-              </Badge>
-            </div>
-          )}
         </div>
         
         <CardContent className="p-6">
           <div className="flex items-start justify-between mb-3">
             <h3 className="font-serif font-semibold text-primary-900 text-lg leading-tight">
-              {video.title}
+              {video.author}
             </h3>
             {video.rating && (
               <div className="flex items-center gap-1 ml-2">
@@ -395,17 +379,16 @@ export function VideoTestimonials({
             WebkitLineClamp: 2, 
             WebkitBoxOrient: 'vertical' as const 
           }}>
-            {video.description}
+            {video.quote}
           </p>
           
-          {video.testimonialAuthor && (
-            <div className="border-t pt-3">
-              <p className="text-primary-800 font-medium text-sm">{video.testimonialAuthor}</p>
-              {video.testimonialRole && (
-                <p className="text-primary-500 text-xs mt-1">{video.testimonialRole}</p>
-              )}
-            </div>
-          )}
+          <div className="border-t pt-3">
+            <p className="text-primary-800 font-medium text-sm">{video.author}</p>
+            <p className="text-primary-500 text-xs mt-1">{video.role}</p>
+            {video.result && (
+              <p className="text-accent-600 text-xs mt-1 font-medium">{video.result}</p>
+            )}
+          </div>
         </CardContent>
       </Card>
     </m.div>
@@ -519,8 +502,7 @@ export function VideoTestimonials({
               {/* Video Player */}
               <video
                 ref={videoRef}
-                src={selectedVideo.videoSrc}
-                poster={selectedVideo.thumbnailSrc}
+                src={selectedVideo.videoUrl}
                 className="w-full h-full object-cover"
                 onTimeUpdate={handleTimeUpdate}
                 onEnded={handleVideoEnd}
@@ -549,10 +531,10 @@ export function VideoTestimonials({
                     {/* Video Info */}
                     <div className="absolute top-4 left-4 text-white z-10">
                       <h3 className="font-serif font-semibold text-xl mb-1">
-                        {selectedVideo.title}
+                        {selectedVideo.author}
                       </h3>
                       <p className="text-sm opacity-90">
-                        {selectedVideo.testimonialAuthor} • {selectedVideo.testimonialRole}
+                        {selectedVideo.role}
                       </p>
                     </div>
                     
