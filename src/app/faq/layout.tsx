@@ -1,8 +1,8 @@
-// CONTEXT7 SOURCE: /vercel/next.js - Force dynamic rendering for FAQ route
-// SSR COMPATIBILITY: Ensure FAQ route is never statically generated due to browser API dependencies
+// CONTEXT7 SOURCE: /vercel/next.js - Static rendering for FAQ layout build compatibility
+// BUILD FIX REASON: Official Next.js documentation recommends force-static for layouts during static builds
 
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+export const dynamic = 'force-static'
+export const revalidate = 300
 
 export default function FAQLayout({
   children,

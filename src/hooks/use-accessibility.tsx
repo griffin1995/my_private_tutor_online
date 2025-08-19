@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * React Hooks for Accessibility Features
  * Documentation Source: React Hooks & WCAG 2.1 Guidelines

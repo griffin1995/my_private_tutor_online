@@ -12,6 +12,9 @@
 
 "use client"
 
+// CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
+// BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds
+
 import { FileText, Download, BookOpen, Target, Award, Search } from 'lucide-react'
 import { m } from 'framer-motion'
 import { PageLayout } from '@/components/layout/page-layout'

@@ -80,14 +80,16 @@ import { cn } from '@/lib/utils'
 // MOTION INTEGRATION: Advanced animation patterns for premium navigation experience
 import { AnimatePresence, m } from 'framer-motion'
 
-// CMS DATA SOURCE: Using getSiteHeader and getMainNavigation for all header content
+// CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching patterns
+// ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
+// CMS DATA SOURCE: Using async CMS functions for all header content
 // Documentation Source: Centralized CMS pattern for content management
 // Reference: Project CLAUDE.md rules 22-25 for CMS requirements
 import { getSiteHeader, getMainNavigation } from '@/lib/cms/cms-content'
 
 // Documentation Source: Context7 MCP - Next.js Image Conditional Rendering for Logo Switching
 // Reference: /vercel/next.js - Scroll-based image switching patterns
-// CMS DATA SOURCE: Using getMainLogo and getMainLogoWhite for scroll-state logo variants
+// CMS DATA SOURCE: Using async getMainLogo and getMainLogoWhite for scroll-state logo variants
 import { getMainLogo, getMainLogoWhite } from '@/lib/cms/cms-images'
 
 interface PageHeaderProps {
@@ -96,31 +98,38 @@ interface PageHeaderProps {
 }
 
 /**
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component with async data fetching
+ * ASYNC COMPONENT REASON: Official React documentation for Server Components using async/await for data operations
  * Documentation Source: React 19 functional component patterns
  * Reference: https://react.dev/learn/your-first-component
- * Pattern: Modern React functional component with TypeScript props
+ * Pattern: Modern React functional component with TypeScript props and async data fetching
  * 
  * Component Architecture:
  * - Mobile-first responsive design
  * - Three-section layout with CSS Grid
  * - Scroll-based transparency detection
  * - Accessibility-first implementation
+ * - Async CMS data loading on server
  */
-export function PageHeader({ 
+export async function PageHeader({ 
   className, 
   isHeroPage = false 
 }: PageHeaderProps) {
   
-  // CMS DATA SOURCE: Using getSiteHeader for header content and navigation
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Server Component async data fetching with await
+  // ASYNC CMS REASON: Official React Server Components documentation for awaiting data during render
+  // CMS DATA SOURCE: Using async getSiteHeader for header content and navigation
   // Pattern: Centralized content management for all header data
-  const headerContent = getSiteHeader()
-  const navigation = getMainNavigation()
+  const headerContent = await getSiteHeader()
+  const navigation = await getMainNavigation()
   
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Server Component async data fetching for images
+  // ASYNC IMAGE REASON: Official React documentation for Server Components awaiting image data
   // Documentation Source: Context7 MCP - Next.js Image Component Conditional Rendering
   // Reference: /vercel/next.js - Logo switching based on scroll state for navbar transparency
-  // CMS DATA SOURCE: Using logo variants for transparent vs scrolled navbar states
-  const logoDefault = getMainLogo()
-  const logoWhite = getMainLogoWhite()
+  // CMS DATA SOURCE: Using async logo variants for transparent vs scrolled navbar states
+  const logoDefault = await getMainLogo()
+  const logoWhite = await getMainLogoWhite()
   
   // CONTEXT7 SOURCE: /context7/react_dev - Enhanced state management for dropdown navigation
   // DROPDOWN STATE REASON: Official React patterns for managing complex navigation state

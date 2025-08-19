@@ -4,6 +4,9 @@
  * SPECIFICITY CONTROL: Ensures utilities layer has higher specificity than base and components for proper override behavior
  */
 
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean CSS without premium micro-interactions
+   SIMPLIFICATION REASON: Surgical removal of premium micro-interactions system while preserving all existing Tailwind functionality */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

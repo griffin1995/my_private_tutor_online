@@ -68,24 +68,61 @@ export default function TestimonialsPage() {
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0)
   const [useSmartFiltering, setUseSmartFiltering] = useState(true)
   
-  // CMS DATA SOURCE: Using getTestimonialsContent for all testimonials page content
-  const testimonialsContent = getTestimonialsContent()
-  // CMS DATA SOURCE: Using getTestimonialsHero for hero section
-  const heroContent = getTestimonialsHero()
-  // CMS DATA SOURCE: Using getRecentTestimonials for testimonials display
-  const recentTestimonials = getRecentTestimonials()
-  // CMS DATA SOURCE: Using getTestimonialsSchools for school shields (legacy compatibility)
-  const schools = getTestimonialsSchools()
-  // CMS DATA SOURCE: Using getTestimonialsCarouselConfig for enhanced elite schools carousel
-  const carouselConfig = getTestimonialsCarouselConfig()
-  // CMS DATA SOURCE: Using getBackgroundVideo for testimonials video
-  const testimonialsVideo = getBackgroundVideo('brandStatement')
-  // CMS DATA SOURCE: Using getTestimonialsIntroConfig for enhanced intro section
-  const introConfig = getTestimonialsIntroConfig()
-  // CMS DATA SOURCE: Using cmsService.getTestimonialVideos for video gallery component
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useState hooks for async data management
+  // ASYNC DATA REASON: Official React documentation for managing server-fetched data in client components
+  const [testimonialsContent, setTestimonialsContent] = useState<any>(null)
+  const [heroContent, setHeroContent] = useState<any>(null)
+  const [recentTestimonials, setRecentTestimonials] = useState<any[]>([])
+  const [schools, setSchools] = useState<any[]>([])
+  const [carouselConfig, setCarouselConfig] = useState<any>(null)
+  const [testimonialsVideo, setTestimonialsVideo] = useState<any>(null)
+  const [introConfig, setIntroConfig] = useState<any>(null)
+  const [ctaContent, setCTAContent] = useState<any>(null)
+  
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useEffect hook for async data fetching in client components
+  // ASYNC DATA FETCHING REASON: Official React documentation for loading server data in client components
+  useEffect(() => {
+    async function loadData() {
+      try {
+        // Load all testimonials page data
+        const [
+          testimonialsData,
+          heroData,
+          testimonialsArray,
+          schoolsArray,
+          carouselData,
+          videoData,
+          introData,
+          ctaData
+        ] = await Promise.all([
+          getTestimonialsContent(),
+          getTestimonialsHero(),
+          getRecentTestimonials(),
+          getTestimonialsSchools(),
+          getTestimonialsCarouselConfig(),
+          getBackgroundVideo('brandStatement'),
+          getTestimonialsIntroConfig(),
+          getTestimonialsCTAContent()
+        ])
+        
+        setTestimonialsContent(testimonialsData)
+        setHeroContent(heroData)
+        setRecentTestimonials(testimonialsArray)
+        setSchools(schoolsArray)
+        setCarouselConfig(carouselData)
+        setTestimonialsVideo(videoData)
+        setIntroConfig(introData)
+        setCTAContent(ctaData)
+      } catch (error) {
+        console.error('Failed to load testimonials data:', error)
+      }
+    }
+    
+    loadData()
+  }, [])
+  
+  // CMS DATA SOURCE: Using cmsService.getTestimonialVideos for video gallery component (sync)
   const testimonialVideos = cmsService.getTestimonialVideos()
-  // CMS DATA SOURCE: Using getTestimonialsCTAContent for enhanced CTA section
-  const ctaContent = getTestimonialsCTAContent()
 
   // CONTEXT7 SOURCE: /context7/react_dev - useCallback for stable filter change handler
   // PERFORMANCE OPTIMIZATION REASON: Official React documentation recommends useCallback for component props
@@ -100,6 +137,12 @@ export default function TestimonialsPage() {
 
 
   // CONTEXT7 SOURCE: /reactjs/react.dev - Component Composition Patterns  
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Loading state handling for async data
+  // LOADING STATE REASON: Official React documentation recommends loading states for async data fetching
+  if (!testimonialsContent || !heroContent || !recentTestimonials) {
+    return <div>Loading...</div>
+  }
+  
   // CONTEXT7 SOURCE: Official React documentation for component composition and reusability
   // COMPONENT EXTRACTION REASON: Following React best practices for modular, reusable component architecture
   return (

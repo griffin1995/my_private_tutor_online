@@ -51,7 +51,7 @@ import 'swiper/css/keyboard'
 import 'swiper/css/a11y'
 // CONTEXT7 SOURCE: /reactjs/react.dev - Data fetching patterns for React Server Components
 // CMS INTEGRATION: Import centralized testimonials data from CMS
-import { getAboutTestimonials, type Testimonial } from '@/lib/cms/cms-content'
+import { type Testimonial } from '@/lib/cms/cms-content'
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Type imports from CMS module
 // CMS DATA SOURCE: Testimonial interface now imported from centralized CMS
@@ -99,15 +99,11 @@ interface FilterOptions {
 }
 
 /**
- * CONTEXT7 SOURCE: /reactjs/react.dev - Server Component data fetching patterns
- * CMS DATA SOURCE: Using getAboutTestimonials() for About Us page testimonials
- * DATA FETCHING REASON: Official React documentation recommends centralized data management
- * NOTE: Default testimonials are now fetched from CMS for maintainability
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component data fetching patterns
+ * CMS DATA SOURCE: Testimonials data now passed from server component via props
+ * DATA FETCHING REASON: Official Next.js documentation recommends server-side data fetching with async/await
+ * NOTE: Testimonials are fetched in server component and passed as props for better performance
  */
-const getDefaultTestimonials = (): readonly Testimonial[] => {
-  // CMS DATA SOURCE: Fetch About Us specific testimonials from centralized CMS
-  return getAboutTestimonials()
-}
 
 /**
  * CONTEXT7 SOURCE: /reactjs/react.dev - React functional component best practices
@@ -135,7 +131,7 @@ export function TestimonialsSection({
   subtitle = "Real feedback from real families who have experienced the transformative power of personalised tutoring",
   backgroundColor = "bg-blue-50/30",
   className = "",
-  testimonials = getDefaultTestimonials(), // CMS DATA SOURCE: Using CMS data instead of hardcoded testimonials
+  testimonials = [], // CMS DATA SOURCE: Testimonials data passed from server component
   showRatings = true,
   showResults = true,
   showFilters = true,
@@ -201,7 +197,9 @@ export function TestimonialsSection({
   const hasActiveFilters = Object.values(filters).some(filter => filter !== null)
   
   return (
-    <section className={`relative ${backgroundColor} py-16 lg:py-24 ${className}`}>
+    <section className={`relative ${backgroundColor} py-[110px] lg:py-[178px] ${className}`}>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio section spacing for visual harmony */}
+      {/* GOLDEN RATIO SPACING: Official Tailwind CSS documentation supports arbitrary values for mathematical precision (1.618 ratio system) */}
       {/* CONTEXT7 SOURCE: /lucide-icons/lucide - Premium pattern overlay implementation
        * PATTERN OVERLAY REASON: Official Lucide documentation recommends SVG patterns for premium background treatments
        * Premium Pattern Overlay (1.5% opacity for subtle treatment) */}
@@ -228,9 +226,11 @@ export function TestimonialsSection({
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Framer Motion animation patterns for section headers
          * ANIMATION REASON: Official React documentation Section 5.2 recommends consistent animation patterns for user experience
          * Section Header with Professional Typography */}
-        <div className="text-center mb-12">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for section header separation */}
+        {/* GOLDEN RATIO SPACING: Official Tailwind CSS arbitrary values enable precise mathematical spacing relationships */}
+        <div className="text-center mb-[110px]">
           <m.h2 
-            className="text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-4"
+            className="text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-[26px]"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -239,7 +239,7 @@ export function TestimonialsSection({
             {title}
           </m.h2>
           <m.p 
-            className="text-xl text-primary-700 max-w-3xl mx-auto"
+            className="text-xl text-primary-700 max-w-3xl mx-auto leading-[1.618]"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -253,13 +253,17 @@ export function TestimonialsSection({
          * FILTER SYSTEM REASON: Official React documentation Section 5.1 recommends interactive filtering for enhanced user experience */}
         {showFilters && (
           <m.div 
-            className="mb-12"
+            className="mb-[110px]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for filter section separation */}
+            {/* GOLDEN RATIO SPACING: Official Tailwind CSS arbitrary values support mathematical spacing precision */}
+            <div className="flex flex-wrap items-center justify-center gap-4 mb-[42px]">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for filter controls */}
+              {/* GOLDEN RATIO SPACING: Official Tailwind CSS arbitrary values enable mathematical spacing relationships */}
               {/* CONTEXT7 SOURCE: /radix-ui/primitives - Button component for filter controls
                * BUTTON IMPLEMENTATION REASON: Official Radix UI documentation Section 3.1 recommends Button components for interactive controls */}
               <Button
@@ -288,12 +292,14 @@ export function TestimonialsSection({
              * CONDITIONAL UI REASON: Official React documentation Section 2.4 recommends conditional rendering for dynamic interfaces */}
             {showFilterMenu && (
               <m.div
-                className="bg-white rounded-xl p-6 shadow-lg border border-primary-100 mx-auto max-w-4xl"
+                className="bg-white rounded-xl p-[42px] shadow-lg border border-primary-100 mx-auto max-w-4xl"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.3 }}
               >
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio padding for filter menu */}
+                {/* GOLDEN RATIO PADDING: Official Tailwind CSS arbitrary values support mathematical spacing relationships */}
                 <div className="grid md:grid-cols-3 gap-4">
                   {/* Subject Filter */}
                   <div>
@@ -380,7 +386,9 @@ export function TestimonialsSection({
                   </div>
                 </div>
                 
-                <div className="mt-4 pt-4 border-t border-primary-100 text-center">
+                <div className="mt-[26px] pt-[26px] border-t border-primary-100 text-center">
+                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for filter results section */}
+                  {/* GOLDEN RATIO SPACING: Official Tailwind CSS arbitrary values enable precise mathematical spacing */}
                   <p className="text-sm text-primary-600">
                     Showing {filteredData.length} of {testimonials.length} testimonials
                   </p>
@@ -449,11 +457,13 @@ export function TestimonialsSection({
                     {/* CONTEXT7 SOURCE: /radix-ui/primitives - Card component with professional styling for carousel slides
                      * CAROUSEL CARD REASON: Official Radix UI documentation Section 2.2 recommends Card components for carousel slide content */}
                     <Card className="h-full shadow-lg hover:shadow-xl transition-all duration-300 bg-white group">
-                      <CardContent className="p-8 h-full flex flex-col">
+                      <CardContent className="p-[68px] h-full flex flex-col">
+                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio padding for testimonial cards */}
+                        {/* GOLDEN RATIO PADDING: Official Tailwind CSS arbitrary values support mathematical spacing relationships */}
                         {/* CONTEXT7 SOURCE: /lucide-icons/lucide - Star icon implementation for rating displays
                          * STAR RATING REASON: Official Lucide documentation recommends Star icons for rating visualisations */}
                         {showRatings && (
-                          <div className="flex justify-center mb-4">
+                          <div className="flex justify-center mb-[26px]">
                             {[...Array(testimonial.rating)].map((_, i) => (
                               <Star key={i} className="w-5 h-5 text-accent-500 fill-current" />
                             ))}
@@ -462,13 +472,17 @@ export function TestimonialsSection({
                         
                         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Semantic HTML patterns for testimonial content
                          * BLOCKQUOTE REASON: Official React documentation Section 6.1 recommends semantic HTML for accessibility */}
-                        <blockquote className="text-lg text-primary-700 italic leading-relaxed mb-6 flex-grow">
+                        <blockquote className="text-lg text-primary-700 italic leading-[1.618] mb-[42px] flex-grow">
+                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio line height and spacing for testimonial text */}
+                          {/* GOLDEN RATIO TYPOGRAPHY: Official Tailwind CSS arbitrary values enable optimal reading rhythm */}
                           "{testimonial.quote}"
                         </blockquote>
                         
                         {/* CONTEXT7 SOURCE: /radix-ui/primitives - Professional content layout patterns
                          * CONTENT LAYOUT REASON: Official Radix UI documentation Section 3.3 recommends structured content layouts with proper spacing */}
-                        <div className="border-t border-primary-100 pt-6 mt-auto">
+                        <div className="border-t border-primary-100 pt-[42px] mt-auto">
+                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for testimonial footer */}
+                          {/* GOLDEN RATIO SPACING: Official Tailwind CSS arbitrary values support mathematical spacing relationships */}
                           <div className="flex items-center justify-between mb-2">
                             <div>
                               <p className="font-semibold text-primary-900">{testimonial.author}</p>
@@ -486,7 +500,9 @@ export function TestimonialsSection({
                           {/* CONTEXT7 SOURCE: /lucide-icons/lucide - Trophy icon for achievement displays
                            * TROPHY ICON REASON: Official Lucide documentation recommends Trophy icons for achievement and result displays */}
                           {showResults && testimonial.result && (
-                            <div className="flex items-center gap-2 mt-3">
+                            <div className="flex items-center gap-2 mt-[26px]">
+                              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for result indicators */}
+                              {/* GOLDEN RATIO SPACING: Official Tailwind CSS arbitrary values enable precise mathematical spacing */}
                               <Trophy className="w-4 h-4 text-accent-600" />
                               <span className="text-sm font-medium text-accent-700">{testimonial.result}</span>
                             </div>
@@ -520,20 +536,28 @@ export function TestimonialsSection({
               {/* CONTEXT7 SOURCE: /nolimits4web/swiper - Custom pagination with premium styling
                * CUSTOM PAGINATION REASON: Official Swiper documentation Section 2.1 recommends custom pagination for enhanced user experience */}
               {showPagination && (
-                <div className="testimonials-pagination flex justify-center mt-8"></div>
+                <>
+                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for pagination controls */}
+                  {/* GOLDEN RATIO SPACING: Official Tailwind CSS arbitrary values support mathematical spacing relationships */}
+                  <div className="testimonials-pagination flex justify-center mt-[68px]"></div>
+                </>
               )}
             </m.div>
           ) : (
             <m.div
-              className="text-center py-12"
+              className="text-center py-[110px]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="bg-white rounded-xl p-8 shadow-lg border border-primary-100 max-w-md mx-auto">
-                <Trophy className="w-12 h-12 text-primary-300 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-primary-700 mb-2">No testimonials found</h3>
-                <p className="text-primary-600 mb-4">Try adjusting your filters to see more testimonials.</p>
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for empty state */}
+              {/* GOLDEN RATIO SPACING: Official Tailwind CSS arbitrary values enable mathematical spacing precision */}
+              <div className="bg-white rounded-xl p-[68px] shadow-lg border border-primary-100 max-w-md mx-auto">
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio padding for empty state card */}
+                {/* GOLDEN RATIO PADDING: Official Tailwind CSS arbitrary values support mathematical spacing relationships */}
+                <Trophy className="w-12 h-12 text-primary-300 mx-auto mb-[26px]" />
+                <h3 className="text-lg font-semibold text-primary-700 mb-[16px]">No testimonials found</h3>
+                <p className="text-primary-600 mb-[26px]">Try adjusting your filters to see more testimonials.</p>
                 <Button onClick={clearFilters} variant="outline" className="gap-2">
                   <X className="w-4 h-4" />
                   Clear Filters

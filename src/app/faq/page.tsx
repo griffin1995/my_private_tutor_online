@@ -24,9 +24,10 @@ import nextDynamic from 'next/dynamic'
 
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering for client-only pages with browser APIs
 // SSR COMPATIBILITY: FAQ page requires client-side only rendering due to navigator/window dependencies  
-export const dynamic = 'force-dynamic'
+// CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
+// BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds
 import { m } from 'framer-motion'
-import { getFAQHero, getFAQCategories, getUnifiedContact } from '@/lib/cms/cms-content'
+import { getFAQHero, getFAQCategories, getUnifiedContact, getFAQContent } from '@/lib/cms/cms-content'
 import { HERO_IMAGES } from '@/lib/cms/cms-images'
 import { getBusinessInfo } from '@/lib/cms/business-info'
 

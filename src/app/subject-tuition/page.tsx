@@ -20,6 +20,7 @@
 
 "use client"
 
+import { useState, useEffect } from 'react'
 import { m } from 'framer-motion'
 import Image from 'next/image'
 import { BookOpen, GraduationCap, Users, Award, Target, Globe } from 'lucide-react'
@@ -133,7 +134,8 @@ const ctaDataRaw = getServicesCTA()
 // CONTEXT7 SOURCE: /microsoft/typescript - Results documentation data consumption pattern
 // RESULTS DOCUMENTATION DATA: Quantifiable academic outcomes for premium service positioning
 // CMS DATA SOURCE: Using getResultsDocumentation() for verifiable achievement metrics
-const resultsData = getResultsDocumentation()
+// Note: This will be loaded asynchronously in the component using useEffect
+let resultsData: any[] = [] // Default empty array for build time
 
 // Transform CTA data to component-compatible format with action handlers
 const ctaData = {
@@ -164,6 +166,23 @@ const ctaData = {
 // CONTEXT7 SOURCE: /facebook/react - Main page component using modular extracted components
 // REFACTORED ARCHITECTURE REASON: Official React patterns for component composition and maintainability
 export default function SubjectTuitionPage() {
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useState and useEffect for async data loading
+  // ASYNC DATA REASON: Official React documentation for managing server-fetched data in client components
+  const [asyncResultsData, setAsyncResultsData] = useState<any[]>([])
+  
+  useEffect(() => {
+    async function loadResultsData() {
+      try {
+        const data = await getResultsDocumentation()
+        setAsyncResultsData(data)
+      } catch (error) {
+        console.error('Failed to load results data:', error)
+      }
+    }
+    
+    loadResultsData()
+  }, [])
+  
   return (
     <>
       {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for hero background images */}
@@ -252,7 +271,7 @@ export default function SubjectTuitionPage() {
             <ResultsDocumentation
               title="Quantifiable Academic Outcomes"
               description="Verified results that demonstrate measurable ROI for logic-driven families and elite service positioning"
-              results={resultsData}
+              results={asyncResultsData}
               showVerificationBadges={true}
               showConfidenceIntervals={true}
               layout="grid"

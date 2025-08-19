@@ -120,10 +120,10 @@ interface GlobalLocationData {
  * - Interactive Service Cards with premium micro-interactions
  * - Full responsive design with royal client quality
  */
-export default function ServicesPage() {
+export default async function ServicesPage() {
   // CMS DATA SOURCE: Using CMS functions for services and metrics data
-  const services = getServices()
-  const trustIndicators = getTrustIndicators()
+  const services = await getServices()
+  const trustIndicators = await getTrustIndicators()
   const studentImages = getStudentImages()
 
   // CONTEXT7 SOURCE: /context7/magicui_design - Globe component data configuration

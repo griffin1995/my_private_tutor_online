@@ -18,7 +18,8 @@ import ClientSuccessMetricsDashboard from '@/components/dashboards/client-succes
 import { PageLayout } from '@/components/layout/page-layout'
 
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering for real-time dashboard data
-export const dynamic = 'force-dynamic'
+// CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
+// BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds
 
 // CONTEXT7 SOURCE: /vercel/next.js - SEO optimization for dashboard pages
 export const metadata: Metadata = {

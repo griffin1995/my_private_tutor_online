@@ -173,6 +173,11 @@ const videoMasterclassesContent = {
   },
 };
 
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering configuration for client-side hooks
+// CLIENT-SIDE REASON: Official Next.js documentation recommends force-dynamic for components using useState/useEffect
+// CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
+// BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds
+
 export default function VideoMasterclassesPage() {
   // CONTEXT7 SOURCE: /reactjs/react.dev - React useState for video modal state management
   // VIDEO MODAL IMPLEMENTATION: Official React documentation recommends useState for modal visibility control

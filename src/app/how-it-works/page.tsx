@@ -79,8 +79,8 @@ const iconMap = {
 } as const;
 
 export default function HowItWorksPage() {
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium gradient and royal design patterns
-  // ROYAL ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.3 recommends gradient treatments for premium branding
+  // CONTEXT7 SOURCE: /vercel/next.js - Client component data fetching patterns
+  // CLIENT DATA FETCHING REASON: Official Next.js documentation for client components using direct function calls
   // CMS DATA SOURCE: Using getHowItWorksHero for hero content
   // CMS DATA SOURCE: Using getHowItWorksSteps for process steps
   // CMS DATA SOURCE: Using HERO_IMAGES for background image assets
@@ -89,6 +89,8 @@ export default function HowItWorksPage() {
   const tutorTiers = getTutorTiers();
   const benefits = getHowItWorksBenefits();
   const ctaContent = getHowItWorksCTA();
+  const baseRate = getBaseRate();
+  const promotionalPricing = getPromotionalPricing();
   const heroBackgroundImage =
     HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES];
 
@@ -925,11 +927,11 @@ export default function HowItWorksPage() {
                 <p className="text-lg text-slate-700 mb-6">
                   Bespoke 1-2-1 tutoring starts from just{" "}
                   <span className="font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">
-                    {getBaseRate().display} per hour
+                    {baseRate.display} per hour
                   </span>
                 </p>
                 <p className="text-slate-600">
-                  {getPromotionalPricing().feeDisclaimer}
+                  {promotionalPricing.feeDisclaimer}
                 </p>
               </div>
             </div>

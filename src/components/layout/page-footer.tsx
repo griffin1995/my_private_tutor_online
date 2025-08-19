@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { ShinyButton } from '@/components/magicui/shiny-button'
+// CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching patterns
+// ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
 import { getFooterContent, getUnifiedContact, getCopyrightText } from '@/lib/cms'
 import { cn } from '@/lib/utils'
 // CONTEXT7 SOURCE: /react-hook-form/documentation - Form handling with validation
@@ -27,20 +29,24 @@ interface PageFooterProps {
   showNewsletter?: boolean
 }
 
+// CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component with async data fetching
+// ASYNC COMPONENT REASON: Official React documentation for Server Components using async/await for data operations
 // CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering prop default value modification
 // CONDITIONAL RENDERING REASON: Official React documentation Section 3.2 demonstrates component conditional display through props
-export function PageFooter({
+export async function PageFooter({
   className,
   variant = 'default',
   showBackToTop = true,
   showNewsletter = false
 }: PageFooterProps) {
-  // CMS DATA SOURCE: Using getFooterContent for footer structure and links
-  const footerContent = getFooterContent()
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Server Component async data fetching with await
+  // ASYNC CMS REASON: Official React Server Components documentation for awaiting data during render
+  // CMS DATA SOURCE: Using async getFooterContent for footer structure and links
+  const footerContent = await getFooterContent()
   // CONTEXT7 SOURCE: /microsoft/typescript - Unified data access pattern with interface extraction
-  const unifiedContact = getUnifiedContact()
+  const unifiedContact = await getUnifiedContact()
   const contactInfo = unifiedContact.landingInfo
-  const copyrightText = getCopyrightText()
+  const copyrightText = await getCopyrightText()
 
   // CONTEXT7 SOURCE: /react-hook-form/documentation - Form state management
   // Reference: useForm with TypeScript and Zod validation resolver

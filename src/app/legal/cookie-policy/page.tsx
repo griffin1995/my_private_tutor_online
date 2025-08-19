@@ -1,6 +1,9 @@
 "use client"
 
 import { m } from 'framer-motion'
+
+// CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
+// BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds
 import { PageLayout } from "@/components/layout/page-layout"
 import { PageHero } from "@/components/layout/page-hero"
 import { Section } from "@/components/layout/section"

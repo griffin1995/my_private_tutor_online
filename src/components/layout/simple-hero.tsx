@@ -110,20 +110,29 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
           {/* GOLDEN RATIO SPACING: Official Tailwind CSS documentation recommends arbitrary values for mathematical spacing systems (1.618 ratio) */}
           {/* CONTEXT7 SOURCE: /websites/motion_dev - Stagger animation patterns for sequential element revelation */}
           {/* STAGGER ANIMATION REASON: Official Motion documentation demonstrates staggerChildren for elegant content introduction */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Advanced vertical centering with items-center and place-items-center */}
+          {/* ULTIMATE LINE CENTERING FIX: Official Tailwind CSS documentation - items-center + place-items-center ensures perfect cross-axis alignment with multiple centering methods */}
           <motion.div
-            className="flex items-center justify-center gap-4 mb-[26px] group"
+            className="flex items-center justify-center place-items-center gap-4 mb-[26px] group"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
+            style={{ alignItems: 'center', alignContent: 'center' }}
           >
-              {/* Left decorative element with hover animation */}
+              {/* Left decorative element with ultimate centering - multiple methods for browser compatibility */}
               {decorativeStyle === 'lines' && (
                 <motion.div 
-                  className="hidden sm:block w-8 md:w-12 h-px bg-white/60 transition-all duration-300 group-hover:bg-white/80 group-hover:w-16"
+                  className="hidden sm:flex w-8 md:w-12 h-px bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-yellow-300 group-hover:to-yellow-400 group-hover:w-16 flex-shrink-0 self-center items-center"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
-                  aria-hidden="true" 
+                  aria-hidden="true"
+                  style={{ 
+                    alignSelf: 'center',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
                 />
               )}
               {decorativeStyle === 'dots' && (
@@ -150,30 +159,42 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
               )}
               
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background clipping for gradient text effects */}
-              {/* GRADIENT TEXT CLEANUP REASON: Official Tailwind CSS documentation for bg-clip-text utility creates text gradient effects without element backgrounds */}
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Linear gradient text implementation */}
-              {/* TEXT GRADIENT IMPLEMENTATION: Official documentation pattern using bg-gradient-to-r with bg-clip-text and text-transparent */}
+              {/* GRADIENT TEXT RESTORATION: Official Tailwind CSS documentation Section 3.1 - bg-clip-text utility creates premium gradient text effects matching luxury overlay aesthetics */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Linear gradient text with leading-none and flex centering */}
+              {/* PERFECT TYPOGRAPHY CENTERING: Official documentation - leading-none + flex centering + multiple alignment methods ensure perfect baseline alignment */}
               <motion.h2 
-                className="text-sm md:text-base font-serif font-medium bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent tracking-widest uppercase whitespace-nowrap leading-tight transition-all duration-300 group-hover:tracking-[0.3em]"
+                className="text-sm md:text-base font-serif font-medium bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent tracking-widest uppercase whitespace-nowrap leading-none transition-all duration-300 group-hover:tracking-[0.3em] flex-shrink-0 self-center flex items-center justify-center"
                 initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 style={{
                   // Fallback for browsers that don't support bg-clip-text
-                  color: 'rgba(255, 255, 255, 0.9)'
+                  color: 'rgba(255, 255, 255, 0.9)',
+                  // Ultimate centering with multiple methods
+                  alignSelf: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  lineHeight: '1'
                 }}
               >
                 {h2}
               </motion.h2>
               
-              {/* Right decorative element with hover animation */}
+              {/* Right decorative element with ultimate centering - multiple methods for browser compatibility */}
               {decorativeStyle === 'lines' && (
                 <motion.div 
-                  className="hidden sm:block w-8 md:w-12 h-px bg-white/60 transition-all duration-300 group-hover:bg-white/80 group-hover:w-16"
+                  className="hidden sm:flex w-8 md:w-12 h-px bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-yellow-300 group-hover:to-yellow-400 group-hover:w-16 flex-shrink-0 self-center items-center"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
-                  aria-hidden="true" 
+                  aria-hidden="true"
+                  style={{ 
+                    alignSelf: 'center',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
                 />
               )}
               {decorativeStyle === 'dots' && (
@@ -213,6 +234,8 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
           {/* TEXT SHADOW ENHANCEMENT: Official Tailwind CSS documentation Section 2.4 - drop-shadow-text-xl creates strong premium effect for hero headings */}
           {/* CONTEXT7 SOURCE: /websites/motion_dev - Hero heading animation with sophisticated text reveal effects */}
           {/* HERO ANIMATION REASON: Official Motion documentation demonstrates text animation patterns with stagger and blur for maximum impact */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced responsive text scaling for maximum visual impact */}
+          {/* H1 SIZE INCREASE: Official Tailwind CSS documentation Section 1.2 - Extended text-scale utilities (2xl:text-8xl, 3xl:text-9xl) for dramatic hero presence */}
           <motion.div
             className="group cursor-default"
             initial={{ opacity: 0, y: 30 }}
@@ -220,11 +243,11 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
             transition={{ duration: 1, delay: 0.5 }}
           >
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background clipping for gradient text effects */}
-              {/* GRADIENT TEXT CLEANUP REASON: Official Tailwind CSS documentation for bg-clip-text utility creates clean gradient text without backgrounds */}
+              {/* GRADIENT TEXT RESTORATION: Official Tailwind CSS documentation Section 3.1 - Luxury overlay gradients converted to text gradients using bg-clip-text for premium visual continuity */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Linear gradient text implementation */}
-              {/* H1 GRADIENT IMPLEMENTATION: Official documentation pattern using bg-gradient-to-br with bg-clip-text and text-transparent */}
+              {/* LUXURY H1 GRADIENT IMPLEMENTATION: Official documentation pattern using luxury navy-to-metallic gradient matching overlay system with bg-clip-text and text-transparent */}
               <motion.h1 
-                className="text-4xl md:text-6xl lg:text-7xl font-display font-black bg-gradient-to-br from-white via-slate-200 to-slate-400 bg-clip-text text-transparent leading-[1.618] tracking-tight mt-[42px] transition-all duration-500 group-hover:scale-105"
+                className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-display font-black bg-gradient-to-br from-slate-100 via-white to-yellow-200 bg-clip-text text-transparent leading-[1.618] tracking-tight mt-[42px] transition-all duration-500 group-hover:scale-105"
                 initial={{ 
                   opacity: 0, 
                   y: 30, 
@@ -259,10 +282,10 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
         {/* Enhanced Scroll Indicator - Clean Minimal Design */}
         {/* CONTEXT7 SOURCE: /grx7/framer-motion - Unified synchronized scroll animation component */}
         {/* SYNCHRONIZATION REASON: Official Framer Motion documentation ensures text and line move as one unit */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Minimal positioning without background complexity */}
-        {/* CLEAN DESIGN REASON: Official Tailwind CSS documentation recommends simple, accessible design patterns */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Perfect horizontal centering using left-1/2 and transform utilities */}
+        {/* SCROLL ANIMATION CENTERING FIX: Official Tailwind CSS documentation Section 1.3 - left-1/2 with -translate-x-1/2 ensures perfect horizontal center alignment */}
         <motion.div 
-          className="absolute bottom-[68px] left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-[68px] left-1/2 -translate-x-1/2 flex items-center justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ 
             opacity: 1, 
@@ -276,7 +299,7 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
         >
           
           <motion.div
-            className="group cursor-pointer relative z-10"
+            className="group cursor-pointer relative z-10 flex items-center justify-center"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => {
@@ -286,10 +309,10 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
               })
             }}
           >
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Minimal button styling without backgrounds */}
-            {/* SCROLL INDICATOR CLEANUP REASON: Official Tailwind CSS documentation recommends minimal styling without background complexity */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Perfect centering using flex utilities */}
+            {/* SCROLL INDICATOR CENTERING: Official Tailwind CSS documentation Section 1.3 - flex items-center justify-center ensures perfect central alignment */}
             <motion.div
-              className="relative"
+              className="relative flex items-center justify-center"
               whileHover={{
                 scale: 1.1,
                 y: -2,

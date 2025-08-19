@@ -27,22 +27,55 @@
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - React cache function for memoizing data requests
 // CONTEXT7 SOURCE: /vercel/next.js - Server Components caching patterns for performance optimization
-// PERFORMANCE OPTIMIZATION: React cache() implementation for top 10 most-used CMS functions
+// CONTEXT7 SOURCE: /vercel/next.js - Public directory fetch patterns for static asset access
+// VERCEL COMPATIBILITY: Dynamic JSON loading using fetch() for production deployment reliability
 import { cache } from 'react'
-import landingPageContent from '@/content/landing-page.json'
-import businessContent from '@/content/business-content.json'
-import aboutContent from '@/content/about.json'
-import testimonialsContent from '@/content/testimonials.json'
-import howItWorksContent from '@/content/how-it-works.json'
-import faqContent from '@/content/faq.json'
-import quoteFormContent from '@/content/quote-form.json'
-import formContent from '@/content/form-content.json'
-import siteSettings from '@/content/settings.json'
-import businessAnalyticsContent from '@/content/business-analytics.json'
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Module re-export patterns for centralized API
 // CMS DATA SOURCE: Re-exporting getTestimonialVideos from cms-images for centralized access
 import { getTestimonialVideos } from './cms-images'
+
+// CONTEXT7 SOURCE: /nodejs/node - File system operations for build-time compatibility
+// VERCEL COMPATIBILITY: Dynamic JSON content loading function using fs for build-time and fetch for runtime
+async function loadContentFile<T>(filename: string): Promise<T> {
+  try {
+    // Use different loading strategies for build vs runtime
+    if (typeof window === 'undefined') {
+      // Server-side: Try direct import for Vercel build compatibility
+      try {
+        // VERCEL BUILD FIX: Use dynamic imports for JSON files during build
+        const content = await import(`../../../public/data/${filename.replace('.json', '')}.json`)
+        return content.default as T
+      } catch (importError) {
+        // Fallback to file system for local development
+        const fs = await import('fs/promises')
+        const path = await import('path')
+        const filePath = path.join(process.cwd(), 'public', 'data', filename)
+        const content = await fs.readFile(filePath, 'utf-8')
+        return JSON.parse(content) as T
+      }
+    } else {
+      // Client-side: Use fetch API
+      const response = await fetch(`/data/${filename}`, {
+        cache: 'force-cache' // Enable caching for performance
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const content = await response.json()
+      return content as T
+    }
+  } catch (error) {
+    console.error(`Failed to load content file ${filename}:`, error)
+    throw new Error(`Unable to load content file: ${filename}`)
+  }
+}
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - React cache implementation for server component optimization
+// PERFORMANCE OPTIMIZATION: Cached content loading to prevent redundant file system access
+const loadCachedContent = cache(loadContentFile)
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for return type safety
 // CONTEXT7 SOURCE: /microsoft/typescript - Generic type constraints for reusable components
@@ -1040,8 +1073,9 @@ export interface QuoteFormContent {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.header for site header
  */
-export const getSiteHeader = cache((): SiteHeader => {
-  return landingPageContent.header
+export const getSiteHeader = cache(async (): Promise<SiteHeader> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.header
 })
 
 /**
@@ -1050,8 +1084,9 @@ export const getSiteHeader = cache((): SiteHeader => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.hero for hero section
  */
-export const getHeroContent = cache((): HeroContent => {
-  return landingPageContent.hero
+export const getHeroContent = cache(async (): Promise<HeroContent> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.hero
 })
 
 /**
@@ -1059,8 +1094,9 @@ export const getHeroContent = cache((): HeroContent => {
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() memoizes return values for same inputs
  * CMS DATA SOURCE: Using landingPageContent.trustIndicators for social proof
  */
-export const getTrustIndicators = cache((): TrustIndicator[] => {
-  return landingPageContent.trustIndicators.indicators
+export const getTrustIndicators = cache(async (): Promise<TrustIndicator[]> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.trustIndicators.indicators
 })
 
 /**
@@ -1068,8 +1104,9 @@ export const getTrustIndicators = cache((): TrustIndicator[] => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.studentJourney for process steps
  */
-export const getStudentJourney = (): StudentJourneySection => {
-  return landingPageContent.studentJourney
+export const getStudentJourney = async (): Promise<StudentJourneySection> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.studentJourney
 }
 
 /**
@@ -1077,8 +1114,9 @@ export const getStudentJourney = (): StudentJourneySection => {
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing function results across component renders
  * CMS DATA SOURCE: Using landingPageContent.testimonials for customer testimonials
  */
-export const getTestimonials = cache((): Testimonial[] => {
-  return landingPageContent.testimonials.testimonials
+export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.testimonials.testimonials
 })
 
 /**
@@ -1086,8 +1124,9 @@ export const getTestimonials = cache((): Testimonial[] => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations
  * CMS DATA SOURCE: Using landingPageContent.services for service listings
  */
-export const getServices = (): readonly Service[] => {
-  return landingPageContent.services.services
+export const getServices = async (): Promise<readonly Service[]> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.services.services
 }
 
 /**
@@ -1095,7 +1134,7 @@ export const getServices = (): readonly Service[] => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.whoWeSupport for support areas
  */
-export const getWhoWeSupport = (): {
+export const getWhoWeSupport = async (): Promise<{
   readonly title: string
   readonly subtitle: string
   readonly description: string
@@ -1105,8 +1144,9 @@ export const getWhoWeSupport = (): {
     readonly icon: string
     readonly imageKey: string
   }[]
-} => {
-  return landingPageContent.whoWeSupport
+}> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.whoWeSupport
 }
 
 /**
@@ -1114,8 +1154,9 @@ export const getWhoWeSupport = (): {
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() avoids redundant computations
  * CMS DATA SOURCE: Using landingPageContent.results for performance metrics
  */
-export const getResultsStatistics = cache((): Statistic[] => {
-  return landingPageContent.results.statistics
+export const getResultsStatistics = cache(async (): Promise<Statistic[]> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.results.statistics
 })
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface implementation patterns for data consolidation
@@ -1302,13 +1343,20 @@ export interface QuoteContent {
  * CMS DATA SOURCE: Consolidates contact data from settings, landing-page, faq, and quote-form
  * REPLACES: getContactContent, getContactInfo, getContactDetails, getFAQContact, getQuoteFormContact
  */
-export const getUnifiedContact = cache((): UnifiedContactData => {
+export const getUnifiedContact = cache(async (): Promise<UnifiedContactData> => {
+  const [siteSettingsData, landingPageData, faqData, quoteFormData] = await Promise.all([
+    loadCachedContent<any>('settings.json'),
+    loadCachedContent<any>('landing-page.json'),
+    loadCachedContent<any>('faq.json'),
+    loadCachedContent<any>('quote-form.json')
+  ])
+  
   return {
-    primary: siteSettings.contact,
-    landing: landingPageContent.contact,
-    landingInfo: landingPageContent.contact.contactInfo,
-    faq: faqContent.contact,
-    quoteForm: quoteFormContent.contact
+    primary: siteSettingsData.contact,
+    landing: landingPageData.contact,
+    landingInfo: landingPageData.contact.contactInfo,
+    faq: faqData.contact,
+    quoteForm: quoteFormData.contact
   }
 })
 
@@ -1318,8 +1366,9 @@ export const getUnifiedContact = cache((): UnifiedContactData => {
  * CMS DATA SOURCE: Using landingPageContent.contact for contact information
  * @deprecated Use getUnifiedContact().landing instead
  */
-export const getContactContent = (): ContactSection => {
-  return landingPageContent.contact
+export const getContactContent = async (): Promise<ContactSection> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.contact
 }
 
 /**
@@ -1328,8 +1377,9 @@ export const getContactContent = (): ContactSection => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for cached functions
  * CMS DATA SOURCE: Using landingPageContent.footer for site footer
  */
-export const getFooterContent = cache((): FooterContent => {
-  return landingPageContent.footer
+export const getFooterContent = cache(async (): Promise<FooterContent> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.footer
 })
 
 /**
@@ -1337,14 +1387,15 @@ export const getFooterContent = cache((): FooterContent => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Error handling with explicit return types
  * CMS DATA SOURCE: Using businessContent for company information
  */
-export const getBusinessContent = (): {
+export const getBusinessContent = async (): Promise<{
   readonly companyName: string
   readonly founded: string
   readonly heritage: string
   readonly [key: string]: unknown
-} => {
+}> => {
   try {
-    return businessContent
+    const content = await loadCachedContent<any>('business-content.json')
+    return content
   } catch (error) {
     // Business content fallback used
     return {
@@ -1360,9 +1411,10 @@ export const getBusinessContent = (): {
  * CONTEXT7 SOURCE: /microsoft/typescript - Error handling with comprehensive return types
  * CMS DATA SOURCE: Using aboutContent for about page information
  */
-export const getAboutContent = (): AboutContent => {
+export const getAboutContent = async (): Promise<AboutContent> => {
   try {
-    return aboutContent
+    const content = await loadCachedContent<any>('about.json')
+    return content
   } catch (error) {
     // About content fallback used
     return {
@@ -1456,8 +1508,9 @@ export const getCompanyTimeline = cache((): CompanyTimelineSection => {
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() memoizes function return values
  * CMS DATA SOURCE: Using landingPageContent.header.navigation for main navigation
  */
-export const getMainNavigation = cache((): NavigationItem[] => {
-  return landingPageContent.header.navigation
+export const getMainNavigation = cache(async (): Promise<NavigationItem[]> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.header.navigation
 })
 
 /**
@@ -1466,17 +1519,18 @@ export const getMainNavigation = cache((): NavigationItem[] => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
  * CMS DATA SOURCE: Using landingPageContent.header for branding
  */
-export const getSiteBranding = cache((): {
+export const getSiteBranding = cache(async (): Promise<{
   readonly siteName: string
   readonly logo: string
   readonly companyName: string
   readonly description: string
-} => {
+}> => {
+  const content = await loadCachedContent<any>('landing-page.json')
   return {
-    siteName: landingPageContent.header.siteName,
-    logo: landingPageContent.header.logo,
-    companyName: landingPageContent.footer.companyName,
-    description: landingPageContent.footer.description
+    siteName: content.header.siteName,
+    logo: content.header.logo,
+    companyName: content.footer.companyName,
+    description: content.footer.description
   }
 })
 
@@ -1486,8 +1540,9 @@ export const getSiteBranding = cache((): {
  * CMS DATA SOURCE: Using landingPageContent.contact.contactInfo for contact details
  * @deprecated Use getUnifiedContact().landingInfo instead
  */
-export const getContactInfo = (): ContactDetails => {
-  return landingPageContent.contact.contactInfo
+export const getContactInfo = async (): Promise<ContactDetails> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.contact.contactInfo
 }
 
 /**
@@ -1495,8 +1550,9 @@ export const getContactInfo = (): ContactDetails => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using howItWorksContent for how it works page information
  */
-export const getHowItWorksContent = (): HowItWorksContent => {
-  return howItWorksContent
+export const getHowItWorksContent = async (): Promise<HowItWorksContent> => {
+  const content = await loadCachedContent<any>('how-it-works.json')
+  return content
 }
 
 /**
@@ -1504,57 +1560,70 @@ export const getHowItWorksContent = (): HowItWorksContent => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
  * CMS DATA SOURCE: Using howItWorksContent.hero for hero section
  */
-export const getHowItWorksHero = (): {
+export const getHowItWorksHero = async (): Promise<{
   readonly title: string
   readonly subtitle: string
   readonly description: string
   readonly backgroundImage?: string
   readonly backgroundImageKey?: string
-} => {
-  return howItWorksContent.hero
+}> => {
+  const content = await loadCachedContent<any>('how-it-works.json')
+  return content.hero
 }
 
 /**
  * Get How It Works process steps
- * CMS DATA SOURCE: Using howItWorksContent.steps for process steps
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
+ * CMS DATA SOURCE: Using async loadCachedContent for how-it-works steps
  */
-export const getHowItWorksSteps = (): HowItWorksStep[] => {
-  return howItWorksContent.steps
-}
+export const getHowItWorksSteps = cache(async (): Promise<HowItWorksStep[]> => {
+  const content = await loadCachedContent<any>('how-it-works.json')
+  return content.steps
+})
 
 /**
  * Get tutor tier information
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations with readonly
- * CMS DATA SOURCE: Using howItWorksContent.tutorTiers for tutor tier details
+ * CMS DATA SOURCE: Using async loadCachedContent for how-it-works tutorTiers
  */
-export const getTutorTiers = (): readonly TutorTier[] => {
-  return howItWorksContent.tutorTiers
-}
+export const getTutorTiers = cache(async (): Promise<readonly TutorTier[]> => {
+  const content = await loadCachedContent<any>('how-it-works.json')
+  return content.tutorTiers
+})
 
 /**
  * Get How It Works benefits
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations with readonly
- * CMS DATA SOURCE: Using howItWorksContent.benefits for service benefits
+ * CMS DATA SOURCE: Using async loadCachedContent for how-it-works benefits
  */
-export const getHowItWorksBenefits = (): readonly string[] => {
-  return howItWorksContent.benefits
-}
+export const getHowItWorksBenefits = cache(async (): Promise<readonly string[]> => {
+  const content = await loadCachedContent<any>('how-it-works.json')
+  return content.benefits
+})
 
 /**
  * Get How It Works CTA section
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
- * CMS DATA SOURCE: Using howItWorksContent.cta for call to action
+ * CMS DATA SOURCE: Using async loadCachedContent for how-it-works cta
  */
-export const getHowItWorksCTA = (): {
+export const getHowItWorksCTA = cache(async (): Promise<{
   readonly title: string
   readonly description: string
   readonly button: {
     readonly text: string
     readonly href: string
   }
-} => {
-  return howItWorksContent.cta
-}
+}> => {
+  const content = await loadCachedContent<any>('how-it-works.json')
+  return content.cta
+})
 
 /**
  * Get FAQ page content
@@ -1768,11 +1837,18 @@ export const getFAQContact = (): {
   return faqContent.contact
 }
 
+// CONTEXT7 SOURCE: /nodejs/node - Dynamic JSON content loading using loadCachedContent for settings
+// SETTINGS LOADING REASON: Lazy-loaded settings configuration to avoid circular dependencies
+const getSiteSettings = cache(async () => {
+  return await loadCachedContent<any>('settings.json')
+})
+
 /**
  * Get site configuration settings
  * CMS DATA SOURCE: Using siteSettings.siteConfig for site configuration
  */
-export const getSiteConfig = (): SiteConfig => {
+export const getSiteConfig = async (): Promise<SiteConfig> => {
+  const siteSettings = await getSiteSettings()
   return siteSettings.siteConfig
 }
 
@@ -1782,7 +1858,8 @@ export const getSiteConfig = (): SiteConfig => {
  * CMS DATA SOURCE: Using siteSettings.contact for contact information
  * @deprecated Use getUnifiedContact().primary instead
  */
-export const getContactDetails = (): ContactDetails => {
+export const getContactDetails = async (): Promise<ContactDetails> => {
+  const siteSettings = await getSiteSettings()
   return siteSettings.contact
 }
 
@@ -1791,7 +1868,8 @@ export const getContactDetails = (): ContactDetails => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using siteSettings for business information
  */
-export const getBusinessDetails = (): BusinessDetails => {
+export const getBusinessDetails = async (): Promise<BusinessDetails> => {
+  const siteSettings = await getSiteSettings()
   return siteSettings.businessDetails
 }
 
@@ -1802,9 +1880,9 @@ export const getBusinessDetails = (): BusinessDetails => {
  * CMS DATA SOURCE: Using businessContent, siteSettings, and testimonialsContent for comprehensive business info
  * PURPOSE: Provides complete business information for structured data, SEO optimization, and Schema.org markup
  */
-export const getBusinessInfo = cache((): BusinessInfo => {
+export const getBusinessInfo = cache(async (): Promise<BusinessInfo> => {
   const business = businessContent.website || businessContent
-  const settings = siteSettings
+  const settings = await getSiteSettings()
   const contact = settings.contact
   
   return {
@@ -2031,7 +2109,8 @@ export const getDetailedTestimonialVideos = cache((): readonly TestimonialVideo[
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using siteSettings.pricing for pricing details
  */
-export const getPricingInfo = (): PricingInfo => {
+export const getPricingInfo = async (): Promise<PricingInfo> => {
+  const siteSettings = await getSiteSettings()
   return siteSettings.pricing
 }
 
@@ -2040,9 +2119,10 @@ export const getPricingInfo = (): PricingInfo => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
  * CMS DATA SOURCE: Using siteSettings.qualifications for credentials
  */
-export const getQualifications = (): {
+export const getQualifications = async (): Promise<{
   readonly [key: string]: unknown
-} => {
+}> => {
+  const siteSettings = await getSiteSettings()
   return siteSettings.qualifications
 }
 
@@ -2317,7 +2397,7 @@ export const getCopyrightText = (): string => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Function return type annotations for validation
  * @returns boolean indicating if all required fields are present
  */
-export const validateContentStructure = (): boolean => {
+export const validateContentStructure = async (): Promise<boolean> => {
   const requiredFields: readonly string[] = [
     'header.siteName',
     'hero.title',
@@ -2327,9 +2407,12 @@ export const validateContentStructure = (): boolean => {
   
   const missingFields: string[] = []
   
+  // Load content once at the beginning
+  const landingContent = await loadCachedContent<any>('landing-page.json')
+  
   requiredFields.forEach(field => {
     const keys = field.split('.')
-    let current: Record<string, unknown> = landingPageContent as Record<string, unknown>
+    let current: Record<string, unknown> = landingContent as Record<string, unknown>
     
     for (const key of keys) {
       if (!current || !current[key]) {
@@ -2350,12 +2433,15 @@ export const validateContentStructure = (): boolean => {
 
 /**
  * Get testimonials page content
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Error handling with comprehensive return types
- * CMS DATA SOURCE: Using testimonialsContent for testimonials page
+ * CMS DATA SOURCE: Using async loadCachedContent for testimonials data
  */
-export const getTestimonialsContent = (): TestimonialsContent => {
+export const getTestimonialsContent = cache(async (): Promise<TestimonialsContent> => {
   try {
-    return testimonialsContent
+    const content = await loadCachedContent<TestimonialsContent>('testimonials.json')
+    return content
   } catch (error) {
     // Testimonials content fallback used
     return {
@@ -2371,16 +2457,18 @@ export const getTestimonialsContent = (): TestimonialsContent => {
       recentTestimonials: []
     }
   }
-}
+})
 
 /**
  * Get testimonials page hero content with enhanced data structure
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Enhanced interface design for component flexibility
  * CONTEXT7 SOURCE: Official TypeScript documentation for readonly property patterns
- * CMS DATA SOURCE: Using testimonialsContent.hero with extended support for hero variants
+ * CMS DATA SOURCE: Using async loadCachedContent for testimonials hero data with extended support for hero variants
  * ENHANCEMENT REASON: Extended CMS integration to support TestimonialsHero component flexibility
  */
-export const getTestimonialsHero = (): {
+export const getTestimonialsHero = cache(async (): Promise<{
   readonly title: string
   readonly subtitle: string
   readonly description: string
@@ -2391,7 +2479,8 @@ export const getTestimonialsHero = (): {
     readonly icon: 'crown' | 'award' | 'star'
     readonly text: string
   }>
-} => {
+}> => {
+  const testimonialsContent = await loadCachedContent<TestimonialsContent>('testimonials.json')
   return {
     ...testimonialsContent.hero,
     // Enhanced hero configuration with sensible defaults for premium testimonials
@@ -2405,16 +2494,18 @@ export const getTestimonialsHero = (): {
       { icon: 'star' as const, text: '15+ Years Serving Elite Families' }
     ]
   }
-}
+})
 
 /**
  * Get enhanced testimonials intro configuration for TestimonialsIntro component (CACHED - Enhanced functionality)
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing enhanced intro data access
  * CONTEXT7 SOURCE: /microsoft/typescript - Advanced interface patterns for trust indicator management
- * CMS DATA SOURCE: Using testimonialsContent.mainContent with enhanced trust indicators
+ * CMS DATA SOURCE: Using async loadCachedContent for testimonials mainContent with enhanced trust indicators
  * PURPOSE: Provides comprehensive intro configuration for testimonials page with royal endorsements
  */
-export const getTestimonialsIntroConfig = cache((): {
+export const getTestimonialsIntroConfig = cache(async (): Promise<{
   readonly introContent: {
     readonly intro: string
     readonly callToAction: string
@@ -2429,7 +2520,8 @@ export const getTestimonialsIntroConfig = cache((): {
   }[]
   readonly backgroundVariant: 'slate' | 'white' | 'gradient' | 'transparent'
   readonly showWaveSeparator: boolean
-} => {
+}> => {
+  const testimonialsContent = await loadCachedContent<TestimonialsContent>('testimonials.json')
   return {
     introContent: testimonialsContent.mainContent,
     // Enhanced trust indicators for royal client credibility
@@ -2489,8 +2581,9 @@ export const getTestimonialsIntroConfig = cache((): {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.quotes for quote components
  */
-export const getQuotes = (): QuoteContent => {
-  return landingPageContent.quotes
+export const getQuotes = async (): Promise<QuoteContent> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.quotes
 }
 
 /**
@@ -2498,14 +2591,15 @@ export const getQuotes = (): QuoteContent => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
  * CMS DATA SOURCE: Using landingPageContent.quotes.founderQuote
  */
-export const getFounderQuote = (): {
+export const getFounderQuote = async (): Promise<{
   readonly quote: string
   readonly author: string
   readonly role: string
   readonly image: string
   readonly signature?: string
-} => {
-  return landingPageContent.quotes.founderQuote
+}> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.quotes.founderQuote
 }
 
 /**
@@ -2513,48 +2607,58 @@ export const getFounderQuote = (): {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object literal return type annotations
  * CMS DATA SOURCE: Using landingPageContent.quotes.royalTestimonial
  */
-export const getRoyalTestimonial = (): {
+export const getRoyalTestimonial = async (): Promise<{
   readonly quote: string
   readonly author: string
   readonly title: string
   readonly crest?: string
   readonly verified: boolean
-} => {
-  return landingPageContent.quotes.royalTestimonial
+}> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.quotes.royalTestimonial
 }
 
 /**
  * Get recent testimonials for display
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations with readonly
- * CMS DATA SOURCE: Using testimonialsContent.recentTestimonials for testimonials
+ * CMS DATA SOURCE: Using async loadCachedContent for testimonials recentTestimonials
  */
-export const getRecentTestimonials = (): readonly Testimonial[] => {
+export const getRecentTestimonials = cache(async (): Promise<readonly Testimonial[]> => {
+  const testimonialsContent = await loadCachedContent<TestimonialsContent>('testimonials.json')
   return testimonialsContent.recentTestimonials
-}
+})
 
 /**
  * Get About Us page testimonials (CACHED - About Us page specific)
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for preventing redundant data access
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations with readonly modifier
- * CMS DATA SOURCE: Using testimonialsContent.aboutTestimonials for About Us page testimonials
+ * CMS DATA SOURCE: Using async loadCachedContent for testimonials aboutTestimonials
  * PURPOSE: Provides curated testimonials specifically for the About Us page with subject and result data
  */
-export const getAboutTestimonials = cache((): readonly Testimonial[] => {
+export const getAboutTestimonials = cache(async (): Promise<readonly Testimonial[]> => {
+  const testimonialsContent = await loadCachedContent<TestimonialsContent>('testimonials.json')
   // Return About Us testimonials if available, otherwise fall back to recent testimonials
   return testimonialsContent.aboutTestimonials || testimonialsContent.recentTestimonials
 })
 
 /**
  * Get schools list for testimonials page (CACHED - #2 most used: 7 times)
+ * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for preventing redundant data access
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations for cached functions
- * CMS DATA SOURCE: Using testimonialsContent.schools for legacy compatibility and eliteSchoolsDatabase for enhanced carousel
+ * CMS DATA SOURCE: Using async loadCachedContent for testimonials schools for legacy compatibility and eliteSchoolsDatabase for enhanced carousel
  * 
  * ENHANCED TASK 6: Elite Schools Carousel Integration
  * - Maintains backward compatibility with existing simple school names
  * - Enhanced carousel component uses full EliteSchool objects from schools-data.ts
  */
-export const getTestimonialsSchools = cache((): readonly string[] => {
+export const getTestimonialsSchools = cache(async (): Promise<readonly string[]> => {
+  const testimonialsContent = await loadCachedContent<TestimonialsContent>('testimonials.json')
   return testimonialsContent.schools
 })
 
@@ -3472,8 +3576,9 @@ export const getHowDidYouHearOptions = (): readonly QuoteFormOption[] => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for type safety
  * CMS DATA SOURCE: Using landingPageContent.cta for call-to-action section content
  */
-export const getCTAContent = (): CTASection => {
-  return landingPageContent.cta
+export const getCTAContent = async (): Promise<CTASection> => {
+  const content = await loadCachedContent<any>('landing-page.json')
+  return content.cta
 }
 
 /**
@@ -3601,64 +3706,73 @@ export const getFooterFormContent = (): FooterFormContent => {
 
 /**
  * Get complete business analytics data (CACHED - Business analytics specific)
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for preventing redundant data access
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Interface return type for business analytics data
- * CMS DATA SOURCE: Using businessAnalyticsContent for complete analytics data
+ * CMS DATA SOURCE: Using async loadCachedContent for business analytics data
  * PURPOSE: Provides all business analytics data including results, case studies, competitive analysis, and ROI
  */
-export const getBusinessAnalyticsData = cache((): BusinessAnalyticsData => {
-  return businessAnalyticsContent as BusinessAnalyticsData
+export const getBusinessAnalyticsData = cache(async (): Promise<BusinessAnalyticsData> => {
+  return await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
 })
 
 /**
  * Get results documentation data (CACHED - Results tracking specific)
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing array return values
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type with readonly modifier
- * CMS DATA SOURCE: Using businessAnalyticsContent.resultsDocumentation for verifiable outcomes
+ * CMS DATA SOURCE: Using async loadCachedContent for business analytics results documentation
  * PURPOSE: Provides results documentation for grade improvements, university placements, and ROI analysis
  */
-export const getResultsDocumentation = cache((): readonly ResultsDocumentationItem[] => {
-  return businessAnalyticsContent.resultsDocumentation
+export const getResultsDocumentation = cache(async (): Promise<readonly ResultsDocumentationItem[]> => {
+  const businessAnalyticsData = await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
+  return businessAnalyticsData.resultsDocumentation
 })
 
 /**
  * Get case studies data (CACHED - Case studies specific)
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for preventing redundant data access
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type with readonly modifier
- * CMS DATA SOURCE: Using businessAnalyticsContent.caseStudies for anonymized success stories
+ * CMS DATA SOURCE: Using async loadCachedContent for business analytics case studies
  * PURPOSE: Provides case studies for different client segments with ROI documentation
  */
-export const getCaseStudies = cache((): readonly CaseStudyItem[] => {
-  return businessAnalyticsContent.caseStudies
+export const getCaseStudies = cache(async (): Promise<readonly CaseStudyItem[]> => {
+  const businessAnalyticsData = await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
+  return businessAnalyticsData.caseStudies
 })
 
 /**
  * Get competitive analysis data (CACHED - Competitive intelligence specific)
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing competitive data
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type with readonly modifier
- * CMS DATA SOURCE: Using businessAnalyticsContent.competitiveAnalysis for market positioning
+ * CMS DATA SOURCE: Using async loadCachedContent for business analytics competitive analysis
  * PURPOSE: Provides competitive analysis for differentiation and value justification
  */
-export const getCompetitiveAnalysis = cache((): readonly CompetitiveAnalysisData[] => {
-  return businessAnalyticsContent.competitiveAnalysis
+export const getCompetitiveAnalysis = cache(async (): Promise<readonly CompetitiveAnalysisData[]> => {
+  const businessAnalyticsData = await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
+  return businessAnalyticsData.competitiveAnalysis
 })
 
 /**
  * Get ROI calculations data (CACHED - ROI analysis specific)
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for preventing redundant calculations
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type with readonly modifier
- * CMS DATA SOURCE: Using businessAnalyticsContent.roiCalculations for investment justification
+ * CMS DATA SOURCE: Using async loadCachedContent for business analytics ROI calculations
  * PURPOSE: Provides ROI calculations for different service tiers with lifetime value analysis
  */
-export const getROICalculations = cache((): readonly ROICalculationData[] => {
-  return businessAnalyticsContent.roiCalculations
+export const getROICalculations = cache(async (): Promise<readonly ROICalculationData[]> => {
+  const businessAnalyticsData = await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
+  return businessAnalyticsData.roiCalculations
 })
 
 // Context7 MCP Documentation Source: /microsoft/typescript
 // Reference: ESLint import/no-anonymous-default-export rule
 // Purpose: Export named object instead of anonymous object for better debugging
 const CMSContent = {
-  landing: landingPageContent,
+  // Note: landing content removed - use async functions instead
   getSiteHeader,
   getHeroContent,
   getTrustIndicators,
@@ -3756,46 +3870,54 @@ const CMSContent = {
 
 /**
  * Get results documentation by category (CACHED - Filtered results)
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing filtered data
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Generic constraints for category filtering
- * CMS DATA SOURCE: Filtered businessAnalyticsContent.resultsDocumentation
+ * CMS DATA SOURCE: Filtered async loadCachedContent for business analytics results documentation
  * PURPOSE: Provides category-specific results for targeted display
  */
-export const getResultsByCategory = cache((category: ResultsDocumentationItem['category']): readonly ResultsDocumentationItem[] => {
-  return businessAnalyticsContent.resultsDocumentation.filter(item => item.category === category)
+export const getResultsByCategory = cache(async (category: ResultsDocumentationItem['category']): Promise<readonly ResultsDocumentationItem[]> => {
+  const businessAnalyticsData = await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
+  return businessAnalyticsData.resultsDocumentation.filter(item => item.category === category)
 })
 
 /**
  * Get case studies by client segment (CACHED - Segmented case studies)
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing segmented data
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Generic constraints for segment filtering
- * CMS DATA SOURCE: Filtered businessAnalyticsContent.caseStudies
+ * CMS DATA SOURCE: Filtered async loadCachedContent for business analytics case studies
  * PURPOSE: Provides segment-specific case studies for targeted marketing
  */
-export const getCaseStudiesBySegment = cache((segment: CaseStudyItem['category']): readonly CaseStudyItem[] => {
-  return businessAnalyticsContent.caseStudies.filter(study => study.category === segment)
+export const getCaseStudiesBySegment = cache(async (segment: CaseStudyItem['category']): Promise<readonly CaseStudyItem[]> => {
+  const businessAnalyticsData = await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
+  return businessAnalyticsData.caseStudies.filter(study => study.category === segment)
 })
 
 /**
  * Get featured case studies (CACHED - Premium positioning)
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing featured content
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type with readonly modifier
- * CMS DATA SOURCE: Filtered businessAnalyticsContent.caseStudies for featured items
+ * CMS DATA SOURCE: Filtered async loadCachedContent for business analytics featured case studies
  * PURPOSE: Provides featured case studies for premium service positioning
  */
-export const getFeaturedCaseStudies = cache((): readonly CaseStudyItem[] => {
-  return businessAnalyticsContent.caseStudies.filter(study => study.featured)
+export const getFeaturedCaseStudies = cache(async (): Promise<readonly CaseStudyItem[]> => {
+  const businessAnalyticsData = await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
+  return businessAnalyticsData.caseStudies.filter(study => study.featured)
 })
 
 /**
  * Get competitive advantages by client segment (CACHED - Targeted positioning)
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for memoizing competitive data
+ * CONTEXT7 SOURCE: /reactjs/react.dev - React Server Component async data fetching with cache
+ * ASYNC CMS REASON: Official React documentation for Server Components using async/await for data operations
  * CONTEXT7 SOURCE: /microsoft/typescript - Generic constraints for segment filtering
- * CMS DATA SOURCE: Filtered businessAnalyticsContent.competitiveAnalysis
+ * CMS DATA SOURCE: Filtered async loadCachedContent for business analytics competitive analysis
  * PURPOSE: Provides segment-specific competitive advantages for targeted messaging
  */
-export const getCompetitiveAdvantagesBySegment = cache((segment: CompetitiveAnalysisData['clientSegment']): readonly CompetitiveAnalysisData[] => {
-  return businessAnalyticsContent.competitiveAnalysis.filter(item => item.clientSegment === segment || item.clientSegment === 'all')
+export const getCompetitiveAdvantagesBySegment = cache(async (segment: CompetitiveAnalysisData['clientSegment']): Promise<readonly CompetitiveAnalysisData[]> => {
+  const businessAnalyticsData = await loadCachedContent<BusinessAnalyticsData>('business-analytics.json')
+  return businessAnalyticsData.competitiveAnalysis.filter(item => item.clientSegment === segment || item.clientSegment === 'all')
 })
 
 // ========================================================================================
@@ -3809,7 +3931,8 @@ export const getCompetitiveAdvantagesBySegment = cache((segment: CompetitiveAnal
  * CMS DATA SOURCE: Using siteSettings.pricing for centralised pricing management
  * PURPOSE: Provides type-safe access to complete pricing configuration including tiers, base rates, and promotional content
  */
-export const getPricingConfig = cache((): PricingInfo => {
+export const getPricingConfig = cache(async (): Promise<PricingInfo> => {
+  const siteSettings = await getSiteSettings()
   return siteSettings.pricing as PricingInfo
 })
 
@@ -3820,7 +3943,8 @@ export const getPricingConfig = cache((): PricingInfo => {
  * CMS DATA SOURCE: Using siteSettings.pricing.tiers with tier key lookup
  * PURPOSE: Provides type-safe access to individual tier pricing and configuration data
  */
-export const getTierPricing = cache((tierKey: 'tier1' | 'tier2' | 'tier3'): TierPricingInfo => {
+export const getTierPricing = cache(async (tierKey: 'tier1' | 'tier2' | 'tier3'): Promise<TierPricingInfo> => {
+  const siteSettings = await getSiteSettings()
   const pricing = siteSettings.pricing as PricingInfo
   return pricing.tiers[tierKey]
 })
@@ -3832,7 +3956,8 @@ export const getTierPricing = cache((tierKey: 'tier1' | 'tier2' | 'tier3'): Tier
  * CMS DATA SOURCE: Using siteSettings.pricing.baseRate for standardised base pricing
  * PURPOSE: Provides centralised access to base hourly rate for pricing displays and calculations
  */
-export const getBaseRate = cache((): { amount: number; display: string; unit: string } => {
+export const getBaseRate = cache(async (): Promise<{ amount: number; display: string; unit: string }> => {
+  const siteSettings = await getSiteSettings()
   const pricing = siteSettings.pricing as PricingInfo
   return pricing.baseRate
 })
@@ -3844,7 +3969,8 @@ export const getBaseRate = cache((): { amount: number; display: string; unit: st
  * CMS DATA SOURCE: Using siteSettings.pricing.tiers in reverse order (Tier 3, Tier 2, Tier 1)
  * PURPOSE: Provides tiers in appropriate display order for tier selection components and pricing tables
  */
-export const getTiersInOrder = cache((): readonly TierPricingInfo[] => {
+export const getTiersInOrder = cache(async (): Promise<readonly TierPricingInfo[]> => {
+  const siteSettings = await getSiteSettings()
   const pricing = siteSettings.pricing as PricingInfo
   return [pricing.tiers.tier3, pricing.tiers.tier2, pricing.tiers.tier1]
 })
@@ -3856,7 +3982,8 @@ export const getTiersInOrder = cache((): readonly TierPricingInfo[] => {
  * CMS DATA SOURCE: Using siteSettings.pricing.promotional for marketing copy
  * PURPOSE: Provides centralised promotional taglines and fee disclaimers for consistent messaging
  */
-export const getPromotionalPricing = cache((): { tagline: string; feeDisclaimer: string } => {
+export const getPromotionalPricing = cache(async (): Promise<{ tagline: string; feeDisclaimer: string }> => {
+  const siteSettings = await getSiteSettings()
   const pricing = siteSettings.pricing as PricingInfo
   return pricing.promotional
 })
@@ -3868,7 +3995,8 @@ export const getPromotionalPricing = cache((): { tagline: string; feeDisclaimer:
  * CMS DATA SOURCE: Using siteSettings.pricing.creditBalance for payment system integration
  * PURPOSE: Provides credit balance information for FAQ and payment system displays
  */
-export const getCreditBalance = cache((): { amount: number; display: string; description: string } => {
+export const getCreditBalance = cache(async (): Promise<{ amount: number; display: string; description: string }> => {
+  const siteSettings = await getSiteSettings()
   const pricing = siteSettings.pricing as PricingInfo
   return pricing.creditBalance
 })
@@ -3880,7 +4008,8 @@ export const getCreditBalance = cache((): { amount: number; display: string; des
  * CMS DATA SOURCE: Using siteSettings.pricing.tiers filtered by level property
  * PURPOSE: Provides tier lookup by service level for component filtering and display logic
  */
-export const getTierByLevel = cache((level: 'premium' | 'mid' | 'standard'): TierPricingInfo | undefined => {
+export const getTierByLevel = cache(async (level: 'premium' | 'mid' | 'standard'): Promise<TierPricingInfo | undefined> => {
+  const siteSettings = await getSiteSettings()
   const pricing = siteSettings.pricing as PricingInfo
   const tierEntries = Object.values(pricing.tiers)
   return tierEntries.find(tier => tier.level === level)
