@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import { useState, useCallback, useEffect, useMemo } from 'react'
 import { m } from 'framer-motion'
 import { Play, Pause, RotateCcw, RotateCw, Filter, Search, X } from 'lucide-react'
-import { SchoolCard } from './school-card'
-import { SchoolModal } from './school-modal'
+import SchoolCard from './school-card'
+import SchoolModal from './school-modal'
 import { 
   EliteSchool, 
   SchoolCategory, 
@@ -14,7 +14,7 @@ import {
   getTopSchoolsByPrestige,
   trackSchoolInteraction
 } from '@/lib/cms/schools-data'
-import { GradientOverlay } from '@/components/ui/gradient-overlay'
+import GradientOverlay from '@/components/ui/gradient-overlay'
 // TESTIMONIALS OVERHAUL: Removed WaveSeparator import for cleaner component boundaries
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component Props Interface Definition

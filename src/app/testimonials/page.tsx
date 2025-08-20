@@ -58,12 +58,12 @@
 
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
 // SYNCHRONOUS CMS PATTERN: Converting from async to synchronous CMS data access for immediate loading
-import { EliteSchoolsCarousel } from "@/components/testimonials/elite-schools-carousel";
+import EliteSchoolsCarousel from "@/components/testimonials/elite-schools-carousel";
 import { TestimonialsFilter } from "@/components/testimonials/testimonials-filter";
 import { TestimonialsGrid } from "@/components/testimonials/testimonials-grid";
 import { SimpleHero } from "@/components/layout/simple-hero";
-import { TestimonialsIntro } from "@/components/testimonials/testimonials-intro";
-import { VideoTestimonials } from "@/components/testimonials/video-testimonials";
+import TestimonialsIntro from "@/components/testimonials/testimonials-intro";
+import VideoTestimonials from "@/components/testimonials/video-testimonials";
 import { useCallback, useState } from "react";
 // TESTIMONIALS OVERHAUL: Removed TestimonialsCTA import for cleaner page boundaries
 import { PageLayout } from "@/components/layout/page-layout";

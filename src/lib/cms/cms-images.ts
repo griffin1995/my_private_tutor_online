@@ -256,25 +256,9 @@ export const INSTITUTION_LOGOS = {
     title: "King's College London",
     loading: "lazy" as const,
   },
-  // CONTEXT7 SOURCE: /websites/motion_dev - Animation performance optimization requires unique assets
-  // CONTEXT7 SOURCE: /reactjs/react.dev - React rendering lists requires unique keys and no duplicate content
-  // TASK 3 IMPLEMENTATION: Added separate logo assets for Imperial and UCL to prevent Kings College duplication
-  imperialCollege: {
-    src: "/images/logos/imperial-college-logo.png",
-    alt: "Imperial College London logo",
-    width: 120,
-    height: 80,
-    title: "Imperial College London",
-    loading: "lazy" as const,
-  },
-  ucl: {
-    src: "/images/logos/ucl-logo.png",
-    alt: "University College London logo",
-    width: 120,
-    height: 80,
-    title: "University College London",
-    loading: "lazy" as const,
-  },
+  // CONTEXT7 SOURCE: /vercel/next.js - Removed missing asset references to eliminate 404 errors
+  // CONTEXT7 SOURCE: /vercel/next.js - CMS data integrity maintenance by removing non-existent logo assets
+  // CLEANUP REASON: Imperial College and UCL logo files do not exist - removing references to prevent 404 errors
   // Independent Schools
   eton: {
     src: "/images/logos/eton-college-logo-new.webp",
@@ -308,14 +292,8 @@ export const INSTITUTION_LOGOS = {
     title: "Westminster School",
     loading: "lazy" as const,
   },
-  winchester: {
-    src: "/images/logos/winchester-college-logo.png",
-    alt: "Winchester College logo",
-    width: 100,
-    height: 80,
-    title: "Winchester College",
-    loading: "lazy" as const,
-  },
+  // CONTEXT7 SOURCE: /vercel/next.js - Removed Winchester College logo reference to eliminate 404 error
+  // CLEANUP REASON: winchester-college-logo.png file does not exist - removing reference
   stPauls: {
     src: "/images/logos/st-pauls-school-logo-new.jpg",
     alt: "St Paul's School logo",
@@ -1099,14 +1077,14 @@ export const getScrollingSchoolLogos = cache((): Record<string, ImageAsset> => {
   const schoolLogoMapping: Record<string, ImageAsset> = {
     "Eton College": INSTITUTION_LOGOS.eton,
     "Westminster School": INSTITUTION_LOGOS.westminster,
-    "Winchester College": INSTITUTION_LOGOS.winchester,
+    // "Winchester College": INSTITUTION_LOGOS.winchester, // REMOVED: Missing asset file
     "St Paul's School": INSTITUTION_LOGOS.stPauls,
     "Harrow School": INSTITUTION_LOGOS.harrow,
     "Oxford University": INSTITUTION_LOGOS.oxford,
     "Cambridge University": INSTITUTION_LOGOS.cambridge,
-    "Imperial College London": INSTITUTION_LOGOS.imperialCollege,
+    // "Imperial College London": INSTITUTION_LOGOS.imperialCollege, // REMOVED: Missing asset file
     "London School of Economics": INSTITUTION_LOGOS.lse,
-    "University College London": INSTITUTION_LOGOS.ucl,
+    // "University College London": INSTITUTION_LOGOS.ucl, // REMOVED: Missing asset file
     "Brighton College": INSTITUTION_LOGOS.brightonCollege,
     "Harvard University": INSTITUTION_LOGOS.harvard,
     "Durham University": INSTITUTION_LOGOS.durham,

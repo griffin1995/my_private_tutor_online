@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 // CONTEXT7 SOURCE: /facebook/react - React functional components with TypeScript interfaces
 // IMPLEMENTATION REASON: Official React documentation patterns for TypeScript component definitions

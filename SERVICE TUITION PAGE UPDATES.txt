@@ -1,0 +1,122 @@
+You are implementing critical improvements to the Subject Tuition page for My Private Tutor Online, a premium tutoring service with royal endorsements. This task requires three
+  focused enhancements: typography fixes, video integration, and lead generation form implementation.
+
+  PROJECT CONTEXT:
+  - Stack: Next.js 15.4.6 App Router, React 19, TypeScript 5.8.3+, Tailwind CSS 4.x
+  - Current page: /src/app/subject-tuition/page.tsx with nested dropdown navigation
+  - Standards: Royal client quality, British English, WCAG 2.1 AA accessibility
+  - Documentation: Context7 MCP exclusive (mandatory for ALL changes)
+
+  TASK 1: TYPOGRAPHY FIX - GOLD QUOTATION MARKS
+  Current Issue: Closing quotation marks in testimonials are being cut off or appearing on wrong lines
+  Required Actions:
+  1. Inspect the gold quotation mark implementation in subject-tuition page
+  2. Identify CSS/layout issues causing text wrapping problems
+  3. Fix positioning to ensure closing quotes appear at proper line height
+  4. Maintain existing gold color (#eab308) and visual styling
+  5. Test across viewport sizes to ensure consistent rendering
+
+  Implementation Requirements:
+  - Use Context7 documentation for CSS-in-JS patterns
+  - Add source comments: // CONTEXT7 SOURCE: [library] - Typography positioning fix
+  - Preserve existing testimonial content and structure
+  - Ensure quotes remain semantically correct (using proper UTF-8 characters)
+
+  TASK 2: VIDEO INTEGRATION - UCAS MASTERCLASS THUMBNAIL
+  Section: "University and Beyond" on Subject Tuition page
+  Required Actions:
+  1. Locate the UCAS masterclass video reference in the section
+  2. Add video thumbnail component with proper aspect ratio (16:9)
+  3. Implement click handler to navigate to masterclasses page UCAS section
+  4. Source thumbnail from /public/videos/ or appropriate CMS location
+  5. Add loading state and error handling for thumbnail
+
+  Implementation Pattern:
+  ```typescript
+  // CONTEXT7 SOURCE: /vercel/next.js - Image optimization with onClick navigation
+  <div className="relative aspect-video cursor-pointer group">
+    <Image
+      src={cmsImages.ucasMasterclassThumbnail}
+      alt="UCAS Masterclass Preview"
+      fill
+      className="object-cover rounded-lg"
+      onClick={() => router.push('/masterclasses#ucas-section')}
+    />
+    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors rounded-lg" />
+    <PlayCircleIcon className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-white opacity-90 group-hover:opacity-100 transition-opacity" />
+  </div>
+
+  TASK 3: LEAD GENERATION FORM - "TOP 10 TIPS" PDF
+  Position: Strategic placement on Subject Tuition page (suggest after testimonials section)
+  Required Components:
+
+  Form Structure:
+  // CONTEXT7 SOURCE: /react-hook-form/react-hook-form - Form validation with Zod
+  interface LeadFormData {
+    email: string;
+    firstName: string;
+    consentToMarketing: boolean;
+    acceptPrivacyPolicy: boolean;
+  }
+
+  const leadSchema = z.object({
+    email: z.string().email("Please enter a valid email address"),
+    firstName: z.string().min(2, "First name must be at least 2 characters"),
+    consentToMarketing: z.boolean(),
+    acceptPrivacyPolicy: z.boolean().refine(val => val === true, {
+      message: "You must accept the privacy policy"
+    })
+  });
+
+  Visual Design Requirements:
+  - Clean, modern card design with subtle shadow
+  - Navy (#0f172a) heading: "Get Your Free Guide"
+  - Subheading: "Download our 'Top 10 Tips for Academic Success' PDF"
+  - Gold accent (#eab308) for CTA button
+  - Include trust indicators: "Join 5,000+ parents" or similar
+  - Mobile-responsive with proper spacing
+
+  Legal Compliance (UK/EU GDPR):
+  - Explicit consent checkbox for marketing communications
+  - Link to privacy policy (mandatory acceptance)
+  - Clear data usage statement
+  - Option to unsubscribe messaging
+  - Data retention policy reference
+
+  Form Submission Flow:
+  1. Client-side validation using React Hook Form + Zod
+  2. Show loading state during submission
+  3. API endpoint: POST /api/lead-generation
+  4. Success: Show thank you message + trigger PDF download
+  5. Error: Display user-friendly error with retry option
+
+  IMPLEMENTATION SEQUENCE:
+  1. First, read current subject-tuition page implementation
+  2. Fix typography issues (Task 1) - quick CSS adjustments
+  3. Add video thumbnail integration (Task 2) - component addition
+  4. Implement lead generation form (Task 3) - new section creation
+  5. Test all changes together for visual cohesion
+
+  QUALITY CHECKLIST:
+  □ All changes include Context7 MCP source comments
+  □ British English spelling throughout (e.g., "optimise", "colour")
+  □ Accessibility: Form labels, ARIA attributes, keyboard navigation
+  □ Mobile-first responsive design verified
+  □ No console errors or warnings
+  □ Build passes without issues
+  □ Legal compliance verified for UK/EU standards
+
+  VALIDATION REQUIREMENTS:
+  - Typography: Quotation marks render correctly at all breakpoints
+  - Video: Thumbnail loads with proper navigation to masterclasses#ucas
+  - Form: Validates correctly, submits data, handles errors gracefully
+  - Performance: No degradation in page load times
+  - Accessibility: Passes axe-core automated testing
+
+  Expected Deliverables:
+  1. Updated /src/app/subject-tuition/page.tsx with all three improvements
+  2. New form component if extracted to separate file
+  3. API route for form submission (/api/lead-generation)
+  4. All Context7 documentation references in comments
+  5. Brief testing confirmation of all features
+

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 // CONTEXT7 SOURCE: /muxinc/next-video - Next Video component for video optimization and professional player controls
 // CONTEXT7 SOURCE: /cookpete/react-player - ReactPlayer component for video gallery thumbnails and multi-source support
