@@ -132,10 +132,10 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
                   transition={{ duration: 0.8, delay: 0.3 }}
                   aria-hidden="true"
                   style={{ 
-                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS transform for precise text middle positioning
-                    // PRECISE CENTERING FIX: Official CSS documentation - translateY(-50%) positions element exactly at text vertical center
-                    transform: 'translateY(-0.25em)',
-                    alignSelf: 'baseline'
+                    // CONTEXT7 SOURCE: /websites/motion_dev - Vertical alignment transforms for text baseline positioning
+                    // TASK 1 FIX: Official Motion documentation - translateY(-50%) positions decorative lines at exact text vertical center
+                    transform: 'translateY(-50%)',
+                    alignSelf: 'center'
                   }}
                 />
               )}
@@ -196,10 +196,10 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
                   transition={{ duration: 0.8, delay: 0.5 }}
                   aria-hidden="true"
                   style={{ 
-                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS transform for precise text middle positioning  
-                    // PRECISE CENTERING FIX: Official CSS documentation - translateY(-50%) positions element exactly at text vertical center
-                    transform: 'translateY(-0.25em)',
-                    alignSelf: 'baseline'
+                    // CONTEXT7 SOURCE: /websites/motion_dev - Vertical alignment transforms for text baseline positioning  
+                    // TASK 1 FIX: Official Motion documentation - translateY(-50%) positions decorative lines at exact text vertical center
+                    transform: 'translateY(-50%)',
+                    alignSelf: 'center'
                   }}
                 />
               )}

@@ -3,7 +3,7 @@
 // CONTEXT7 SOURCE: /reactjs/react.dev - Client Component for interactive functionality with hooks
 // CLIENT COMPONENT REASON: Official React documentation requires "use client" directive for components using useState, useForm, and browser APIs
 import React, { useState } from 'react'
-import { Mail, Phone, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2, MessageCircle } from 'lucide-react'
+import { Mail, Phone, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2, MessageCircle, BarChart3 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -234,11 +234,13 @@ export function PageFooterClient({
             <div className="lg:col-span-1 flex flex-col justify-center">
               <div className="animate-fade-in-left">
                 {/* CONTEXT7 SOURCE: /websites/react_dev - Component simplification pattern */}
-                {/* REVISION REASON: Remove marketing text, keep only square logo as per Task 11 requirements */}
+                {/* REVISION REASON: Task 2.1.1 - Replace logo with icon-only version and make full width */}
+                {/* CONTEXT7 SOURCE: /nextjs/docs - Next.js Image component with responsive sizing patterns */}
+                {/* LOGO UPDATE REASON: Replace logo-name-tagline.png with logo-icon-only.png and apply full container width styling */}
                 <div className="mb-8">
                   <Link 
                     href="/" 
-                    className="inline-block group"
+                    className="inline-block group w-full"
                     aria-label={`${footerContent.companyName} homepage`}
                   >
                     <Image
@@ -246,26 +248,32 @@ export function PageFooterClient({
                       alt={footerContent.logo.alt}
                       width={footerContent.logo.width}
                       height={footerContent.logo.height}
-                      className="h-16 w-auto group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-auto max-h-24 object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </Link>
                 </div>
 
                 {/* Premium Accolades - horizontal layout on one row */}
-                <div className="grid grid-cols-3 gap-2">
-                  {/* CONTEXT7 SOURCE: /websites/react_dev - Text content updates for component readability */}
-                  {/* REVISION REASON: Content modification from "Royal Family Endorsed" to "Clientele" for cleaner presentation */}
-                  <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
+                <div className="grid grid-cols-3 gap-3">
+                  {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - Crown icon and updated badge content */}
+                  {/* TASK 3 REVISION: Updated main text to "Royal Clientele" and added "Excellence" subtext for better presentation */}
+                  <div className="bg-gray-100 rounded-lg p-3 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
                     <Crown className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
-                    <p className="text-xs font-semibold text-black leading-tight">Clientele</p>
+                    <p className="text-xs font-semibold text-black leading-tight">Royal Clientele</p>
+                    <p className="text-xs text-gray-600">Excellence</p>
                   </div>
-                  <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
+                  {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - Award icon for Tatler achievement badge */}
+                  {/* TASK 4 REVISION: Enhanced padding from p-2 to p-3 for better visual positioning */}
+                  <div className="bg-gray-100 rounded-lg p-3 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
                     <Award className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
                     <p className="text-xs font-semibold text-black leading-tight">Tatler 2025</p>
                     <p className="text-xs text-gray-600">Featured</p>
                   </div>
-                  <div className="bg-gray-100 rounded-lg p-2 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
-                    <TrendingUp className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
+                  {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - BarChart3 icon for experience metrics */}
+                  {/* TASK 7 REVISION: Changed icon from TrendingUp to BarChart3 for bar graph representation of experience */}
+                  {/* TASK 4 REVISION: Enhanced padding from p-2 to p-3 for better visual positioning */}
+                  <div className="bg-gray-100 rounded-lg p-3 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
+                    <BarChart3 className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
                     <p className="text-xs font-semibold text-black leading-tight">15+ Years</p>
                     <p className="text-xs text-gray-600">Excellence</p>
                   </div>
@@ -281,9 +289,9 @@ export function PageFooterClient({
                   className="space-y-6 animate-fade-in-up"
                   style={{ animationDelay: `${sectionIndex * 0.1}s` }}
                 >
-                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Font size utility text-2xl for enhanced heading hierarchy */}
-                  {/* REVISION REASON: Typography enhancement from text-xl (20px) to text-2xl (24px) for 1.25x footer heading size increase */}
-                  <h3 className="font-serif text-2xl font-bold text-black flex items-center gap-2">
+                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Font size utility text-3xl for enhanced heading hierarchy */}
+                  {/* REVISION REASON: Task 5 - Footer Section 2.2.1.1 Header Size Increase - Typography enhancement from text-2xl (24px) to text-3xl (30px) for 30% footer heading size increase */}
+                  <h3 className="font-serif text-3xl font-bold text-black flex items-center gap-2">
                     {section.title}
                     <Separator className="flex-1 bg-gray-300" />
                   </h3>
@@ -309,10 +317,10 @@ export function PageFooterClient({
                 </div>
               ))}
               
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Footer contact section with right alignment */}
-              {/* REVISION REASON: Task 13 implementation - redesigned contact section with default text color and right positioning */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Footer contact section with subtle border styling */}
+              {/* REVISION REASON: Task Footer Section 2.2.2 - reduced border thickness and maintained default text styling */}
               {/* Contact Information - positioned at the end of footer links */}
-              <div className="col-span-2 md:col-span-4 mt-8 pt-6 border-t border-gray-300">
+              <div className="col-span-2 md:col-span-4 mt-8 pt-6 border-t border-gray-200">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4">
                   {/* Contact links - using default text color (removed custom gray-600) */}
                   <div className="text-sm flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">

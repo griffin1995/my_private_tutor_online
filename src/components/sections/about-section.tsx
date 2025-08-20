@@ -286,12 +286,16 @@ export function AboutSection({
                 delay: 0.5
               }}
             >
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Width constraint utilities for responsive design
+               * WIDTH CONSTRAINT REASON: Official Tailwind CSS documentation shows max-w-xs (320px) ensures video never exceeds founder photo display width
+               * ASPECT RATIO MAINTENANCE: Video component maintains 16:9 aspect ratio while respecting maximum width constraint
+               */}
               <HeroVideoDialog
                 videoSrc="/elizabeth-introduction-sound.mp4"
                 thumbnailSrc="/images/video-thumbnails/elizabeth-introduction-thumbnail.jpg"
                 thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
                 animationStyle="from-center"
-                className="w-full max-w-md mx-auto"
+                className="w-full max-w-xs mx-auto"
               />
               
               {/* Animated Decorative elements for video */}

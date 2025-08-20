@@ -421,16 +421,23 @@ export function VideoPerformanceLoader({
         videoSource = processedSources.mobile
       }
 
-      // Check cache first
-      const cachedVideo = await getCachedVideo(videoSource)
-      if (cachedVideo) {
-        reportProgress({ phase: 'ready', progress: 100 })
-        updatePerformanceMetrics({
-          loadTime: performance.now() - performanceStart.current,
-          cacheHits: loaderState.performanceMetrics.cacheHits + 1
-        })
-        setLoaderState(prev => ({ ...prev, loading: false, phase: 'ready' }))
-        return
+      // CONTEXT7 SOURCE: /websites/react_dev - Enhanced video loading with error handling
+      // VIDEO LOADING ENHANCEMENT: Improved cache checking and error recovery
+      // Check cache first with enhanced error handling
+      try {
+        const cachedVideo = await getCachedVideo(videoSource)
+        if (cachedVideo) {
+          reportProgress({ phase: 'ready', progress: 100 })
+          updatePerformanceMetrics({
+            loadTime: performance.now() - performanceStart.current,
+            cacheHits: loaderState.performanceMetrics.cacheHits + 1
+          })
+          setLoaderState(prev => ({ ...prev, loading: false, phase: 'ready' }))
+          return
+        }
+      } catch (cacheError) {
+        // Continue with normal loading if cache fails
+        console.warn('Cache check failed, continuing with normal loading:', cacheError)
       }
 
       // Progressive loading with progress tracking
@@ -515,12 +522,28 @@ export function VideoPerformanceLoader({
           className
         )}
       >
-        {/* Thumbnail preview */}
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Enhanced thumbnail loading with error handling
+        // THUMBNAIL ENHANCEMENT: Improved error handling and loading states for video thumbnails
+        // Thumbnail preview with enhanced error handling */}
         {processedSources.thumbnail && (
           <img
             src={processedSources.thumbnail}
             alt="Video thumbnail"
             className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => {
+              // Enhanced error handling for missing thumbnails
+              console.warn('Thumbnail failed to load:', processedSources.thumbnail)
+              const target = e.target as HTMLImageElement
+              target.style.display = 'none'
+              // Show fallback gradient background
+              const parent = target.parentElement
+              if (parent) {
+                parent.style.background = 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)'
+              }
+            }}
+            onLoad={() => {
+              console.log('Thumbnail loaded successfully:', processedSources.thumbnail)
+            }}
           />
         )}
 
@@ -617,6 +640,21 @@ export function VideoPerformanceLoader({
             src={processedSources.poster}
             alt="Video poster"
             className="absolute inset-0 w-full h-full object-cover"
+            onError={(e) => {
+              // CONTEXT7 SOURCE: /websites/react_dev - Enhanced poster error handling
+              // Enhanced error handling for missing poster images
+              console.warn('Poster failed to load:', processedSources.poster)
+              const target = e.target as HTMLImageElement
+              target.style.display = 'none'
+              // Show fallback background
+              const parent = target.parentElement
+              if (parent) {
+                parent.style.background = 'linear-gradient(135deg, #64748b 0%, #334155 100%)'
+              }
+            }}
+            onLoad={() => {
+              console.log('Poster loaded successfully:', processedSources.poster)
+            }}
           />
         )}
         

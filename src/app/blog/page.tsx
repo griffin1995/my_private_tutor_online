@@ -25,7 +25,7 @@ import { m } from 'framer-motion'
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js App Router layout component imports
 // REFERENCE: Established layout pattern used across all pages in the application
 import { PageLayout } from '@/components/layout/page-layout'
-import { PageHero } from '@/components/layout/page-hero'
+import { SimpleHero } from '@/components/layout/simple-hero'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
@@ -41,18 +41,14 @@ export default function BlogPage() {
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
     <>
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen hero section with gradient backgrounds */}
-      {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient treatments for premium branding */}
-      <div className="min-h-screen bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 flex items-center justify-center text-white">
-        <div className="text-center space-y-6 max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl lg:text-6xl font-serif font-bold drop-shadow-sm">
-            Educational Blog
-          </h1>
-          <p className="text-xl lg:text-2xl text-white/90 leading-relaxed">
-            Insights, tips, and educational guidance from our expert tutors - Coming Soon
-          </p>
-        </div>
-      </div>
+      {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
+      {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      <SimpleHero
+        backgroundImage="/images/hero/hero-exam-papers.jpg"
+        h1="Educational Blog & Resources"
+        h2="Coming Soon"
+        decorativeStyle="lines"
+      />
     </>
   )
 }

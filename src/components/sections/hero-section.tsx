@@ -60,6 +60,15 @@ interface HeroSectionProps {
    * TYPICAL USAGE: Set to false when PageLayout.showHeader=true to avoid double headers
    */
   showHeader?: boolean
+  /** 
+   * STATIC NAVBAR MODE: Controls hero height calculation when navbar is static positioned
+   * - hasStaticNavbar={true}: Uses calc(100vh - navbar-height) for remaining viewport height
+   * - hasStaticNavbar={false}: Uses full 100vh height for overlay layouts (default)
+   * 
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS calc() function for dynamic height calculations
+   * NAVBAR INTEGRATION REASON: Official Tailwind documentation enables viewport height adjustments for static positioned elements
+   */
+  hasStaticNavbar?: boolean
   /** CONTEXT7 SOURCE: /websites/react_dev - Simplified props interface for video-only hero component */
   /** TASK 1 SIMPLIFICATION: Removed branding, studentImages, dialogVideo props as no overlay content needed */
 }
@@ -80,7 +89,8 @@ interface HeroSectionProps {
 export function HeroSection({ 
   className = "",
   backgroundVideo = "/videos/background-video-2025-compressed.mp4",
-  showHeader = true
+  showHeader = true,
+  hasStaticNavbar = false
 }: HeroSectionProps) {
   
   // CONTEXT7 SOURCE: /websites/react_dev - Simplified functional component without state management
@@ -105,6 +115,7 @@ export function HeroSection({
         size="full"
         overlay={false}
         className=""
+        hasStaticNavbar={hasStaticNavbar}
       >
         {/* CONTEXT7 SOURCE: /websites/react_dev - Video background isolation pattern */}
         {/* SIMPLIFICATION IMPLEMENTATION: Official React documentation supports minimal component structure with video background only */}

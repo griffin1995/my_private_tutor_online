@@ -154,20 +154,42 @@ export function VideoTestimonials({
   // Video categories for filtering
   const categories = ['all', 'video', '11+', 'gcse', 'a-level', 'oxbridge', 'international']
   
-  // Handle video selection and modal opening
+  // CONTEXT7 SOURCE: /websites/react_dev - Enhanced video path verification and error handling
+  // VIDEO PATH VERIFICATION: Check video exists before attempting to play
+  // Handle video selection and modal opening with enhanced path verification
   // CONTEXT7 SOURCE: /cookpete/react-player - Light mode thumbnail click handling for video gallery
-  const handleVideoSelect = useCallback((video: Testimonial) => {
+  const handleVideoSelect = useCallback(async (video: Testimonial) => {
+    // Enhanced video path verification
+    if (!video.videoUrl) {
+      console.warn('No video URL provided for:', video.author)
+      return
+    }
+
+    // Verify video file exists before opening modal
+    try {
+      const response = await fetch(video.videoUrl, { method: 'HEAD' })
+      if (!response.ok) {
+        console.warn('Video file not accessible:', video.videoUrl, response.status)
+        // Still proceed but log the issue
+      }
+    } catch (error) {
+      console.warn('Video accessibility check failed:', video.videoUrl, error)
+      // Continue anyway for offline scenarios
+    }
+
     setSelectedVideo(video)
-    setPlayerState(prev => ({ ...prev, playing: autoplay }))
+    setPlayerState(prev => ({ ...prev, playing: autoplay, loaded: false }))
     
     // Analytics tracking if enabled
     // CONTEXT7 SOURCE: /muxinc/next-video - Built-in analytics for video engagement tracking
     if (enableAnalytics) {
-      // Track video selection event
+      // Track video selection event with enhanced metadata
       console.log('Video Analytics: Video Selected', {
         videoId: video.id,
         title: video.author, // Using author as title for testimonials
         category: video.category,
+        videoUrl: video.videoUrl,
+        hasVideoThumbnail: !!video.videoThumbnail,
         timestamp: new Date().toISOString()
       })
     }
@@ -184,29 +206,47 @@ export function VideoTestimonials({
     }))
   }, [])
   
-  // Toggle play/pause
+  // CONTEXT7 SOURCE: /websites/react_dev - Enhanced video play/pause with error handling
+  // VIDEO CONTROL ENHANCEMENT: Improved play/pause with better error recovery
+  // Toggle play/pause with enhanced error handling
   // CONTEXT7 SOURCE: /muxinc/next-video - Video player control methods for custom UI
-  const togglePlayPause = useCallback(() => {
-    if (!videoRef.current) return
-    
-    if (playerState.playing) {
-      videoRef.current.pause()
-    } else {
-      videoRef.current.play()
+  const togglePlayPause = useCallback(async () => {
+    if (!videoRef.current) {
+      console.warn('Video ref not available for play/pause')
+      return
     }
     
-    setPlayerState(prev => ({ ...prev, playing: !prev.playing }))
+    try {
+      if (playerState.playing) {
+        videoRef.current.pause()
+        console.log('Video paused successfully')
+      } else {
+        // Enhanced play with promise handling
+        const playPromise = videoRef.current.play()
+        if (playPromise !== undefined) {
+          await playPromise
+          console.log('Video playing successfully')
+        }
+      }
+      
+      setPlayerState(prev => ({ ...prev, playing: !prev.playing }))
+    } catch (error) {
+      console.error('Video play/pause error:', error)
+      // Reset player state on error
+      setPlayerState(prev => ({ ...prev, playing: false }))
+    }
     
-    // Analytics tracking
+    // Analytics tracking with enhanced error context
     if (enableAnalytics) {
       console.log('Video Analytics: Play/Pause Toggle', {
         videoId: selectedVideo?.id,
         action: playerState.playing ? 'pause' : 'play',
         currentTime: playerState.currentTime,
+        loaded: playerState.loaded,
         timestamp: new Date().toISOString()
       })
     }
-  }, [playerState.playing, enableAnalytics, selectedVideo?.id])
+  }, [playerState.playing, playerState.currentTime, playerState.loaded, enableAnalytics, selectedVideo?.id])
   
   // Toggle mute
   const toggleMute = useCallback(() => {
@@ -297,44 +337,61 @@ export function VideoTestimonials({
     >
       <Card className="h-full bg-white/90 backdrop-blur-sm border border-primary-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group-hover:scale-[1.02]">
         <div className="relative aspect-video rounded-t-2xl overflow-hidden">
+          {/* CONTEXT7 SOURCE: /websites/react_dev - Enhanced video thumbnail loading with improved error handling
+          // VIDEO LOADING ENHANCEMENT: Optimized thumbnail loading with better error recovery
+          // ACCESSIBILITY ENHANCEMENT: Improved alt text and loading states for video thumbnails */}
           {/* CONTEXT7 SOURCE: /html/video - Video thumbnail display using background-image for optimal loading */}
           {/* VIDEO THUMBNAIL REASON: Display actual video thumbnails generated from video first frames */}
-          {/* BUG FIX: Use img element with proper error handling for reliable thumbnail display */}
+          {/* ENHANCEMENT: Enhanced error handling and loading states for reliable thumbnail display */}
           {video.videoThumbnail && typeof video.videoThumbnail === 'string' && video.videoThumbnail.length > 0 ? (
             <>
               <img
                 src={video.videoThumbnail}
-                alt={`Video thumbnail for ${video.author}`}
-                className="w-full h-full object-cover"
+                alt={`Video testimonial thumbnail for ${video.author} - ${video.role}`}
+                className="w-full h-full object-cover transition-opacity duration-300"
+                loading="lazy"
                 onError={(e) => {
-                  console.error('Thumbnail image failed to load:', video.videoThumbnail);
-                  // Hide the failed image and show placeholder
-                  e.currentTarget.style.display = 'none';
-                  const placeholder = e.currentTarget.nextElementSibling as HTMLElement;
+                  // CONTEXT7 SOURCE: /websites/react_dev - Enhanced thumbnail error handling
+                  console.warn('Thumbnail image failed to load:', video.videoThumbnail);
+                  // Enhanced error handling with accessibility feedback
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.setAttribute('aria-hidden', 'true');
+                  const placeholder = target.nextElementSibling as HTMLElement;
                   if (placeholder) {
                     placeholder.style.display = 'flex';
+                    placeholder.style.animation = 'fadeIn 0.3s ease-in-out';
+                    placeholder.setAttribute('role', 'img');
+                    placeholder.setAttribute('aria-label', `Video testimonial from ${video.author}, thumbnail unavailable`);
                   }
                 }}
                 onLoad={() => {
                   console.log('Thumbnail loaded successfully:', video.videoThumbnail);
+                  // Enhanced loading success feedback with accessibility
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.style.opacity = '1';
+                  target.removeAttribute('aria-hidden');
                 }}
+                style={{ opacity: '0.7' }} // Initial loading state
               />
               <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center" style={{ display: 'none' }}>
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mb-2">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mb-2 shadow-lg">
                     <Play className="w-8 h-8 text-primary-600 ml-1" fill="currentColor" />
                   </div>
                   <p className="text-primary-700 font-medium text-sm">Video Testimonial</p>
+                  <p className="text-primary-500 text-xs mt-1">Click to play</p>
                 </div>
               </div>
             </>
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
               <div className="text-center">
-                <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mb-2">
+                <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mb-2 shadow-lg">
                   <Play className="w-8 h-8 text-primary-600 ml-1" fill="currentColor" />
                 </div>
                 <p className="text-primary-700 font-medium text-sm">Video Testimonial</p>
+                <p className="text-primary-500 text-xs mt-1">Click to play</p>
               </div>
             </div>
           )}
@@ -499,14 +556,51 @@ export function VideoTestimonials({
               onClick={(e) => e.stopPropagation()}
               onMouseMove={handleMouseMove}
             >
-              {/* Video Player */}
+              {/* CONTEXT7 SOURCE: /websites/react_dev - Enhanced video player with better error handling
+              // VIDEO PLAYER ENHANCEMENT: Improved video loading with error recovery and accessibility */}
+              {/* Video Player with Enhanced Error Handling */}
               <video
                 ref={videoRef}
                 src={selectedVideo.videoUrl}
                 className="w-full h-full object-cover"
                 onTimeUpdate={handleTimeUpdate}
                 onEnded={handleVideoEnd}
-                onLoadedData={() => setPlayerState(prev => ({ ...prev, loaded: true }))}
+                onLoadedData={() => {
+                  console.log('Video loaded successfully:', selectedVideo.videoUrl);
+                  setPlayerState(prev => ({ ...prev, loaded: true }));
+                }}
+                onError={(e) => {
+                  // CONTEXT7 SOURCE: /websites/react_dev - Video loading error handling
+                  console.error('Video failed to load:', selectedVideo.videoUrl, e);
+                  // Enhanced error handling for video loading failures
+                  setPlayerState(prev => ({ 
+                    ...prev, 
+                    loaded: false, 
+                    playing: false 
+                  }));
+                }}
+                onLoadStart={() => {
+                  console.log('Video loading started:', selectedVideo.videoUrl);
+                }}
+                onCanPlay={() => {
+                  console.log('Video can start playing:', selectedVideo.videoUrl);
+                }}
+                onWaiting={() => {
+                  console.log('Video buffering:', selectedVideo.videoUrl);
+                }}
+                onPlaying={() => {
+                  console.log('Video playing:', selectedVideo.videoUrl);
+                }}
+                onPause={() => {
+                  console.log('Video paused:', selectedVideo.videoUrl);
+                }}
+                preload="metadata"
+                playsInline
+                controls={false}
+                webkit-playsinline="true"
+                x5-playsinline="true"
+                x5-video-player-type="h5"
+                x5-video-player-fullscreen="true"
               />
               
               {/* Custom Video Controls */}
@@ -538,14 +632,19 @@ export function VideoTestimonials({
                       </p>
                     </div>
                     
-                    {/* Play/Pause Button */}
+                    {/* CONTEXT7 SOURCE: /websites/react_dev - Enhanced play/pause button with loading states
+                    // VIDEO CONTROL ENHANCEMENT: Improved play/pause button with loading feedback */}
+                    {/* Play/Pause Button with Enhanced Loading States */}
                     <Button
                       size="icon"
                       variant="ghost"
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-20 h-20 rounded-full bg-black/30"
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-20 h-20 rounded-full bg-black/30 transition-all duration-200"
                       onClick={togglePlayPause}
+                      disabled={!playerState.loaded}
                     >
-                      {playerState.playing ? (
+                      {!playerState.loaded ? (
+                        <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      ) : playerState.playing ? (
                         <Pause className="w-8 h-8" fill="currentColor" />
                       ) : (
                         <Play className="w-8 h-8 ml-1" fill="currentColor" />
@@ -564,9 +663,15 @@ export function VideoTestimonials({
                         />
                       </div>
                       
-                      {/* Time Display */}
+                      {/* CONTEXT7 SOURCE: /websites/react_dev - Enhanced time display with loading states
+                      // TIME DISPLAY ENHANCEMENT: Better formatting and loading feedback */}
+                      {/* Time Display with Enhanced Loading States */}
                       <span className="text-sm font-mono min-w-max">
-                        {formatTime(playerState.currentTime)} / {formatTime(playerState.duration)}
+                        {playerState.loaded ? (
+                          `${formatTime(playerState.currentTime)} / ${formatTime(playerState.duration)}`
+                        ) : (
+                          'Loading...'
+                        )}
                       </span>
                       
                       {/* Volume Control */}

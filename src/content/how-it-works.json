@@ -32,19 +32,7 @@
       "icon": "MessageSquare"
     },
     {
-      "number": "02", 
-      "title": "Expert Tutor Matching",
-      "description": "Elizabeth has worked alongside the majority of tutors. New educators join us almost exclusively through recommendations from trusted team members. Elizabeth interviews each tutor personally and accepts less than 10% of candidates.",
-      "features": [
-        "Oxbridge alumni",
-        "Heads of Department at top 10 UK schools",
-        "Accredited GCSE, A Level and IB examiners",
-        "PhD and Postdocs"
-      ],
-      "icon": "Users"
-    },
-    {
-      "number": "03",
+      "number": "02",
       "title": "Tiered Tutoring Options", 
       "description": "Choose the level of support that best fits your child's needs and goals with our flexible tiered system.",
       "features": [
@@ -54,6 +42,18 @@
         "Starting from just £45 per hour"
       ],
       "icon": "Target"
+    },
+    {
+      "number": "03", 
+      "title": "Expert Tutor Matching",
+      "description": "Elizabeth has worked alongside the majority of tutors. New educators join us almost exclusively through recommendations from trusted team members. Elizabeth interviews each tutor personally and accepts less than 10% of candidates.",
+      "features": [
+        "Oxbridge alumni",
+        "Heads of Department at top 10 UK schools",
+        "Accredited GCSE, A Level and IB examiners",
+        "PhD and Postdocs"
+      ],
+      "icon": "Users"
     },
     {
       "number": "04",
@@ -102,7 +102,8 @@
     "Rigorous vetting including enhanced DBS checks",
     "Hundreds of hours of teaching experience per tutor",
     "Ongoing consultative support throughout your journey",
-    "Remarkable results. Our tutees secure top marks year in, year out"
+    "Remarkable results. Our tutees secure top marks year in, year out",
+    "Automated lesson reminders 36 hours before tutorials and progress reports emailed the minute they're completed afterwards"
   ],
 
   "cta": {
@@ -112,13 +113,15 @@
       {
         "text": "Book Consultation",
         "type": "primary",
-        "href": "/consultation"
+        "href": "https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~",
+        "external": true
       },
       {
-        "text": "Contact Our Team",
+        "text": "View Subject Tuition",
         "type": "secondary",
-        "href": "/contact"
+        "href": "/subject-tuition"
       }
-    ]
+    ],
+    "trustText": "Opens in new window • Secure encrypted connection • Same trusted service"
   }
 }

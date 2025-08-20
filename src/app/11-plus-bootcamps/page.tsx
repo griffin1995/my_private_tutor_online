@@ -31,7 +31,7 @@ import React from 'react'
 import { Calendar, Clock, Users, Trophy, Target, BookOpen, Award, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { PageLayout } from '@/components/layout/page-layout'
-import { PageHero } from '@/components/layout/page-hero'
+import { SimpleHero } from '@/components/layout/simple-hero'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -130,71 +130,14 @@ export default function ElevenPlusBootcampsPage() {
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
     <>
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for hero background images */}
-      {/* HERO ENHANCEMENT REASON: Official Next.js Image component documentation recommends optimized background images for premium performance */}
-      <PageHero 
-        background="image"
+      {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
+      {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      <SimpleHero
         backgroundImage="/images/hero/hero-11-plus-bootcamp.jpeg"
-        size="full"
-        overlay={true}
-        overlayOpacity="dark"
-      >
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Professional pattern overlay for premium visual depth */}
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        />
-        <GradientOverlay direction="br" className="from-accent-800/20 via-transparent to-transparent" />
-        <div className="relative z-10 text-center space-y-6">
-          <div
-            // initial={{ opacity: 0, y: 30 }}
-            // whileInView={{ opacity: 1, y: 0 }}
-            // viewport={{ once: true, margin: "-50px" }}
-            // transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            <Badge className="bg-white/20 text-white border-white/30 mb-4">
-              Now Booking for 2025
-            </Badge>
-          </div>
-          
-          <h1 
-            className="text-4xl lg:text-6xl font-serif font-bold text-white drop-shadow-sm"
-            // initial={{ opacity: 0, y: 30 }}
-            // whileInView={{ opacity: 1, y: 0 }}
-            // viewport={{ once: true, margin: "-50px" }}
-            // transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            11+ Intensive Bootcamps
-          </h1>
-          
-          <p 
-            className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed drop-shadow-sm"
-            // initial={{ opacity: 0, y: 30 }}
-            // whileInView={{ opacity: 1, y: 0 }}
-            // viewport={{ once: true, margin: "-50px" }}
-            // transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Accelerated preparation programmes designed to maximise your child&apos;s 11+ potential in focused, intensive sessions
-          </p>
-          
-          <div
-            // initial={{ opacity: 0, y: 30 }}
-            // whileInView={{ opacity: 1, y: 0 }}
-            // viewport={{ once: true, margin: "-50px" }}
-            // transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
-            <Button size="lg" variant="secondary" className="bg-white text-accent-600 hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300">
-              Book Your Place Now
-            </Button>
-            <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 backdrop-blur-sm">
-              View Programme Details
-            </Button>
-          </div>
-        </div>
-      </PageHero>
+        h1="11+ Intensive Bootcamps"
+        h2="Elite Prep"
+        decorativeStyle="lines"
+      />
       
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}

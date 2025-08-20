@@ -308,6 +308,14 @@ export const INSTITUTION_LOGOS = {
     title: "Westminster School",
     loading: "lazy" as const,
   },
+  winchester: {
+    src: "/images/logos/winchester-college-logo.png",
+    alt: "Winchester College logo",
+    width: 100,
+    height: 80,
+    title: "Winchester College",
+    loading: "lazy" as const,
+  },
   stPauls: {
     src: "/images/logos/st-pauls-school-logo-new.jpg",
     alt: "St Paul's School logo",
@@ -638,11 +646,13 @@ export const MARKETING_ASSETS = {
     description: "Expert guidance for university applications",
   },
   enquiryFormScreenshot: {
-    src: "/images/graphics/enquiry-form-screenshot-footer.png",
-    alt: "Enquiry Form Screenshot - MPTO July 2025 for Website Footer",
+    // CONTEXT7 SOURCE: /vercel/next.js - Static image reference from public directory
+    // BIZSTIM FORM UPDATE: Updated to use new bizstim-form-preview.png for improved homepage presentation
+    src: "/images/graphics/bizstim-form-preview.png",
+    alt: "Bizstim form preview showing My Private Tutor Online enquiry form interface with student details fields",
     width: 400,
     height: 300,
-    title: "Enquiry Form Preview",
+    title: "Bizstim Enquiry Form Preview",
     loading: "lazy" as const,
   },
 } as const;
@@ -669,7 +679,8 @@ export const VIDEO_PLACEHOLDERS = {
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Video asset interface extensions for masterclass content
 // IMPLEMENTATION REASON: Adding masterclass video asset management following official TypeScript patterns
-// Masterclass video assets for educational content
+// TASK 2 & 3 IMPLEMENTATION: Extended masterclass video system with payment integration and proper video connections
+// Masterclass video assets for educational content with payment links integration
 export const MASTERCLASS_VIDEOS = {
   unlockingAcademicSuccess: {
     id: "unlocking-academic-success",
@@ -687,6 +698,99 @@ export const MASTERCLASS_VIDEOS = {
     isFree: true,
     thumbnailUrl: "/images/masterclass-thumbnails/gcse-summit.png",
     videoUrl: "/videos/masterclasses/gcse-summit-2024-compressed.mp4",
+  },
+  ucasSummit2024: {
+    id: "ucas-summit-2024",
+    src: "/videos/masterclasses/ucas-summit-2024-full.mp4",
+    poster: "/images/masterclass-thumbnails/ucas-summit.png",
+    alt: "UCAS Summit 2024 - Complete Recording by Elizabeth Burrows",
+    title: "UCAS Summit 2024 (Free Access)",
+    description:
+      "Complete recording from Elizabeth's presentation at the UCAS Summit, including audience Q&A and additional insights for parents navigating the tutoring landscape.",
+    duration: 45,
+    featured: false,
+    category: "free" as const,
+    masterclassAuthor: "Elizabeth Burrows",
+    masterclassRole: "Founder, My Private Tutor Online",
+    isFree: true,
+    thumbnailUrl: "/images/masterclass-thumbnails/ucas-summit.png",
+    videoUrl: "/videos/masterclasses/ucas-summit-2024-full.mp4",
+  },
+  elizabethsUcasGuide: {
+    id: "elizabeths-ucas-guide",
+    src: "/videos/masterclasses/ucas-guide-part-1.mp4",
+    poster: "/images/masterclass-thumbnails/ucas-guide.png",
+    alt: "Elizabeth's Essential UCAS Guide - Part 1 of 2",
+    title: "Elizabeth's Essential UCAS Guide - Part 1 of 2",
+    description:
+      "Widely recognised for her expertise in the British university admissions process, Elizabeth was invited to speak to international summer school students at LSE. In her session, she demystifies each stage of the UCAS application, offering clear, practical guidance to help students approach the process with confidence.",
+    duration: 90,
+    featured: true,
+    category: "paid" as const,
+    masterclassAuthor: "Elizabeth Burrows",
+    masterclassRole: "Founder, My Private Tutor Online",
+    isFree: false,
+    thumbnailUrl: "/images/masterclass-thumbnails/ucas-guide.png",
+    videoUrl: "/videos/masterclasses/ucas-guide-part-1.mp4",
+    paymentUrl: "https://buy.stripe.com/7sY6oGdj767tbtO1Zd38408",
+    price: "£49.99",
+  },
+  personalStatementsGuide: {
+    id: "personal-statements-guide",
+    src: "/videos/masterclasses/personal-statements-top-10.mp4",
+    poster: "/images/masterclass-thumbnails/top-10-tips.png",
+    alt: "Elizabeth's Top 10 Tips for Outstanding Personal Statements",
+    title: "Top 10 Tips for Outstanding Personal Statements - Part 2 of 2",
+    description:
+      "Elizabeth is renowned for her success in guiding ambitious students into Oxbridge and top UK universities. In this masterclass she reveals the 10 ingredients in her secret recipe for personal statement success.",
+    duration: 70,
+    featured: true,
+    category: "paid" as const,
+    masterclassAuthor: "Elizabeth Burrows",
+    masterclassRole: "Founder, My Private Tutor Online",
+    isFree: false,
+    thumbnailUrl: "/images/masterclass-thumbnails/top-10-tips.png",
+    videoUrl: "/videos/masterclasses/personal-statements-top-10.mp4",
+    paymentUrl: "https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409",
+    price: "£89.99",
+  },
+  britishLiteraryClassics: {
+    id: "british-literary-classics",
+    src: "/videos/masterclasses/literary-classics-readers.mp4",
+    poster: "/images/masterclass-thumbnails/british-literary-classics.png",
+    alt: "Exploring British Literary Classics - Masterclass for Curious Readers",
+    title: "Exploring British Literary Classics (Ages 8–14)",
+    description:
+      "From Wind in the Willows to The Lord of the Rings, this engaging masterclass introduces students to some of the most celebrated works in British literature. Led by Elizabeth Burrows, this session explores what defines a literary classic.",
+    duration: 60,
+    featured: false,
+    category: "paid" as const,
+    masterclassAuthor: "Elizabeth Burrows",
+    masterclassRole: "Founder, My Private Tutor Online",
+    isFree: false,
+    thumbnailUrl: "/images/masterclass-thumbnails/british-literary-classics.png",
+    videoUrl: "/videos/masterclasses/literary-classics-readers.mp4",
+    paymentUrl: "https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a",
+    price: "£19.99",
+  },
+  britishEtiquette: {
+    id: "british-etiquette",
+    src: "/videos/masterclasses/british-etiquette-guide.mp4",
+    poster: "/images/masterclass-thumbnails/british-etiquette.jpg",
+    alt: "Understanding British Etiquette - Cultural Awareness Masterclass",
+    title: "Understanding British Etiquette",
+    description:
+      "Drawing on her experience working with royalty and high-profile international families, Elizabeth demystifies the social codes that shape life in the UK's most prestigious schools and institutions.",
+    duration: 60,
+    featured: false,
+    category: "paid" as const,
+    masterclassAuthor: "Elizabeth Burrows",
+    masterclassRole: "Founder, My Private Tutor Online",
+    isFree: false,
+    thumbnailUrl: "/images/masterclass-thumbnails/british-etiquette.jpg",
+    videoUrl: "/videos/masterclasses/british-etiquette-guide.mp4",
+    paymentUrl: "https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b",
+    price: "£19.99",
   },
 } as const;
 
@@ -995,6 +1099,7 @@ export const getScrollingSchoolLogos = cache((): Record<string, ImageAsset> => {
   const schoolLogoMapping: Record<string, ImageAsset> = {
     "Eton College": INSTITUTION_LOGOS.eton,
     "Westminster School": INSTITUTION_LOGOS.westminster,
+    "Winchester College": INSTITUTION_LOGOS.winchester,
     "St Paul's School": INSTITUTION_LOGOS.stPauls,
     "Harrow School": INSTITUTION_LOGOS.harrow,
     "Oxford University": INSTITUTION_LOGOS.oxford,

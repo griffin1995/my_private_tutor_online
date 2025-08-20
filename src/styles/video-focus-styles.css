@@ -1,0 +1,181 @@
+/**
+ * CONTEXT7 SOURCE: /w3c/wcag - CSS focus-visible for keyboard focus indication
+ * FOCUS STYLES REASON: Official WCAG documentation recommends distinct focus styles for keyboard users
+ * 
+ * Enhanced Focus Styles for Video Thumbnail Navigation
+ * These styles provide clear visual feedback for keyboard navigation,
+ * ensuring WCAG 2.1 AA compliance and improved accessibility.
+ */
+
+/* CONTEXT7 SOURCE: /w3c/wcag - Focus-visible pseudo-class for keyboard focus */
+/* KEYBOARD FOCUS REASON: Official WCAG documentation recommends focus-visible for keyboard-only focus indication */
+
+/* Video thumbnail card focus styles */
+.video-thumbnail-card:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 1rem;
+  transition: outline 0.15s ease-in-out;
+}
+
+/* Enhanced focus for video play buttons */
+.video-play-button:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+/* Focus styles for video thumbnail images */
+.video-thumbnail-image:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+  border-radius: 0.75rem;
+}
+
+/* Focus styles for CTA buttons within video cards */
+.video-cta-button:focus-visible {
+  outline: 3px solid #8b5cf6;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.2);
+}
+
+/* CONTEXT7 SOURCE: /w3c/wcag - High contrast focus indicators for accessibility */
+/* HIGH CONTRAST REASON: Official WCAG documentation recommends high contrast ratios for focus indicators */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .video-thumbnail-card:focus-visible {
+    outline: 4px solid #000;
+    outline-offset: 3px;
+    background-color: #fff;
+  }
+  
+  .video-play-button:focus-visible {
+    outline: 4px solid #000;
+    outline-offset: 4px;
+    background-color: #fff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .video-thumbnail-card:focus-visible,
+  .video-play-button:focus-visible,
+  .video-thumbnail-image:focus-visible,
+  .video-cta-button:focus-visible {
+    transition: none;
+  }
+}
+
+/* CONTEXT7 SOURCE: /w3c/wcag - Screen reader only content for navigation announcements */
+/* SCREEN READER REASON: Official WCAG documentation recommends sr-only class for screen reader content */
+
+/* Screen reader only class for navigation announcements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus within - for container focus management */
+.video-grid-container:focus-within {
+  /* Add subtle container focus indication when any child has focus */
+  background-color: rgba(59, 130, 246, 0.05);
+  border-radius: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Loading state focus styles */
+.video-thumbnail-loading:focus-visible {
+  outline: 3px solid #6b7280;
+  outline-offset: 2px;
+  border-radius: 1rem;
+}
+
+/* Skeleton loading focus indication */
+.video-skeleton:focus-visible {
+  outline: 2px dashed #9ca3af;
+  outline-offset: 2px;
+  border-radius: 0.75rem;
+}
+
+/* CONTEXT7 SOURCE: /w3c/wcag - Focus trap styles for video modals */
+/* MODAL FOCUS REASON: Official WCAG documentation recommends focus management for modal dialogs */
+
+/* Video modal focus trap */
+.video-modal-overlay:focus {
+  outline: none;
+}
+
+.video-modal-content:focus {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Video modal close button focus */
+.video-modal-close:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+  border-radius: 50%;
+  background-color: rgba(245, 158, 11, 0.2);
+}
+
+/* Grid navigation focus indicators */
+.video-grid-item[data-navigation-focus="true"] {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-grid-item[data-navigation-focus="true"] {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Keyboard navigation instructions */
+.keyboard-navigation-hint {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .keyboard-navigation-hint {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+}
+
+/* CONTEXT7 SOURCE: /w3c/wcag - Skip link styles for keyboard navigation */
+/* SKIP LINK REASON: Official WCAG documentation recommends skip links for keyboard users */
+
+/* Skip to video content link */
+.skip-to-videos {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-to-videos:focus {
+  top: 6px;
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}

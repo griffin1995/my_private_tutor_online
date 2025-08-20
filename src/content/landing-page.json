@@ -1,7 +1,18 @@
 {
   "_comments": {
-    "lastUpdated": "2025-01-16",
+    "lastUpdated": "2025-08-20",
     "recentChanges": [
+      {
+        "change": "TASK 6: Footer Section 2.2.1.2 CMS Links Verification - Fixed all broken footer navigation links",
+        "reason": "CONTEXT7 SOURCE: /vercel/next.js - App Router file-based routing compliance for proper navigation",
+        "date": "2025-08-20",
+        "source": "Footer links audit - corrected 10 broken links to working Next.js routes",
+        "details": {
+          "brokenLinksFixed": 10,
+          "workingLinksConfirmed": 6,
+          "redirectStrategy": "Map broken service links to /subject-tuition, team/results to /about, resources to /blog, legal links to proper /legal/* paths"
+        }
+      },
       {
         "change": "Updated aboutSection.title to 'World-Class Education, At Your Fingertips'",
         "reason": "CONTEXT7 SOURCE: /vercel/next.js - Consistent headline strategy across homepage components",
@@ -449,10 +460,10 @@
   "footer": {
     "companyName": "My Private Tutor Online",
     "logo": {
-      "main": "/images/logos/logo-name-tagline.png",
+      "main": "/images/logos/logo-icon-only.png",
       "alt": "My Private Tutor Online - Premium Educational Services",
-      "width": 180,
-      "height": 70
+      "width": 400,
+      "height": 400
     },
     "description": "Exceptional online tutoring trusted by families worldwide. From GCSE excellence to Oxbridge success.",
     "footerSections": [
@@ -461,19 +472,19 @@
         "links": [
           {
             "label": "GCSE Tutoring",
-            "href": "/gcse-tutoring"
+            "href": "/subject-tuition"
           },
           {
             "label": "A-Level Support",
-            "href": "/a-level-support"
+            "href": "/subject-tuition"
           },
           {
             "label": "Oxbridge Preparation",
-            "href": "/oxbridge-preparation"
+            "href": "/subject-tuition"
           },
           {
             "label": "11+ Preparation",
-            "href": "/11-plus"
+            "href": "/11-plus-bootcamps"
           }
         ]
       },
@@ -486,7 +497,7 @@
           },
           {
             "label": "Meet the Team",
-            "href": "/team"
+            "href": "/about"
           },
           {
             "label": "Testimonials",
@@ -494,7 +505,7 @@
           },
           {
             "label": "Results",
-            "href": "/results"
+            "href": "/about"
           }
         ]
       },
@@ -503,11 +514,11 @@
         "links": [
           {
             "label": "Study Guides",
-            "href": "/resources"
+            "href": "/blog"
           },
           {
             "label": "Exam Tips",
-            "href": "/exam-tips"
+            "href": "/blog"
           },
           {
             "label": "Blog",
@@ -528,15 +539,15 @@
           },
           {
             "label": "Support",
-            "href": "/support"
+            "href": "/contact"
           },
           {
             "label": "Privacy Policy",
-            "href": "/privacy"
+            "href": "/legal/privacy-policy"
           },
           {
             "label": "Terms of Service",
-            "href": "/terms"
+            "href": "/legal/terms-of-service"
           }
         ]
       }

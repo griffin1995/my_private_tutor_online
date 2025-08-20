@@ -1642,10 +1642,13 @@ export const getHowItWorksBenefits = cache((): readonly string[] => {
 export const getHowItWorksCTA = cache((): {
   readonly title: string
   readonly description: string
-  readonly button: {
+  readonly buttons: readonly {
     readonly text: string
+    readonly type: string
     readonly href: string
-  }
+    readonly external?: boolean
+  }[]
+  readonly trustText?: string
 } => {
   return howItWorksContent.cta
 })
@@ -2671,17 +2674,30 @@ export const getRecentTestimonials = cache((): readonly Testimonial[] => {
 })
 
 /**
- * Get About Us page testimonials (CACHED - About Us page specific)
- * CONTEXT7 SOURCE: /vercel/next.js - Server Component async data fetching with cache
- * ASYNC CMS REASON: Official Next.js documentation for Server Components using async/await for data operations
- * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for preventing redundant data access
- * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations with readonly modifier
- * CMS DATA SOURCE: Using async loadCachedContent for testimonials aboutTestimonials
- * PURPOSE: Provides curated testimonials specifically for the About Us page with subject and result data
+ * Get About Us page testimonials (DEPRECATED - Use getTextTestimonials() instead)
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Direct data access patterns for static content
+ * SYNCHRONOUS CMS PATTERN: Official React documentation Section 4.2 recommends synchronous data access
+ * 
+ * @deprecated This function is deprecated in favor of getTextTestimonials() for better CMS integration
+ * 
+ * DEPRECATION REASON:
+ * - Uses separate aboutTestimonials array instead of unified CMS system
+ * - Does not automatically filter video testimonials 
+ * - Creates data inconsistency between About page and testimonials page
+ * 
+ * MIGRATION PATH:
+ * - Replace getAboutTestimonials() → getTextTestimonials()
+ * - getTextTestimonials() automatically excludes video testimonials
+ * - Uses single source of truth from recentTestimonials array
+ * - Maintains synchronous CMS architecture patterns
+ * 
+ * PURPOSE: Legacy compatibility - provides curated testimonials from aboutTestimonials JSON array
  */
 export const getAboutTestimonials = cache((): readonly Testimonial[] => {
-  // SYNCHRONOUS RESTORATION: Direct JSON access eliminates async complexity
-  // Return About Us testimonials if available, otherwise fall back to recent testimonials
+  // DEPRECATED FUNCTION: This function is deprecated - use getTextTestimonials() instead
+  // LEGACY PATTERN: Direct JSON access to separate aboutTestimonials array
+  // NOTE: New implementations should use getTextTestimonials() for video filtering and unified CMS
+  console.warn('[DEPRECATION WARNING] getAboutTestimonials() is deprecated. Use getTextTestimonials() instead for unified CMS and video filtering.')
   return testimonialsContent.aboutTestimonials || testimonialsContent.recentTestimonials
 })
 

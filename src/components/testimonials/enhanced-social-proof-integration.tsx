@@ -13,8 +13,7 @@ import {
   TrendingUp, 
   Users, 
   Star, 
-  Shield, 
-  Crown,
+  Shield,
   Award,
   Eye,
   MessageSquare,
@@ -389,7 +388,7 @@ export const EnhancedSocialProofIntegration: React.FC<EnhancedSocialProofIntegra
             {...commonProps}
             config={{
               format: isMobile ? 'compact' : 'card',
-              theme: 'royal',
+              theme: 'premium',
               maxTestimonials: isMobile ? 1 : 3,
               showRatings: true,
               showAvatars: !isMobile,

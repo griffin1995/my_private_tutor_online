@@ -101,7 +101,13 @@ export default function HomePage() {
   })
 
   return (
-    <PageLayout showHeader={true} showFooter={true} containerSize="full" verticalSpacing="none">
+    <PageLayout 
+      showHeader={true} 
+      showFooter={true} 
+      containerSize="full" 
+      verticalSpacing="none"
+      headerProps={{ isHomepage: true }}
+    >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - PageLayout spacing control with verticalSpacing="none" */}
       {/* WHITE SPACE FIX REASON: Official Tailwind CSS documentation shows py-12 utility creates 48px top/bottom padding - verticalSpacing="none" eliminates this padding to allow full-screen Hero section to start at viewport top */}
       {/* LAYOUT OPTIMIZATION: Prevents white space above Hero section by removing default PageLayout container padding for premium full-viewport design */}
@@ -133,6 +139,7 @@ export default function HomePage() {
       {/* ACCESSIBILITY: PageLayout navbar is ESSENTIAL for users to navigate between pages */}
       <HeroSection 
         showHeader={false}
+        hasStaticNavbar={true}
       />
       
       {/* 2. "WE HELP STUDENTS PLACE AT TOP 10 UK SCHOOLS AND UNIVERSITIES" */}
@@ -212,8 +219,9 @@ export default function HomePage() {
               <div className="relative overflow-hidden rounded-lg border-2 border-gray-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl">
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with proper width, height and alt for accessibility */}
                 {/* IMAGE OPTIMIZATION REASON: Official Next.js documentation requires explicit dimensions for local images */}
+                {/* BIZSTIM FORM UPDATE: Updated to use new bizstim-form-preview.png as per homepage CMS configuration */}
                 <img
-                  src="/images/graphics/enquiry-form-screenshot-footer.png"
+                  src="/images/graphics/bizstim-form-preview.png"
                   alt="Screenshot of My Private Tutor Online enquiry form on Bizstim platform showing student details form with fields for first name, last name, email and phone number"
                   className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"

@@ -143,7 +143,7 @@ export function TestimonialsABTestingProvider({
             configuration: {
               testimonialsHero: {
                 layout: 'centered',
-                headline: 'What Our Royal Families Say',
+                headline: 'What Our Elite Families Say',
                 ctaText: 'Book Your Consultation',
                 ctaVariant: 'primary'
               }

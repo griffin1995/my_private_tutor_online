@@ -39,6 +39,15 @@ interface PageHeaderProps {
   variant?: 'transparent' | 'solid' | 'glass'
   showCTA?: boolean
   fixed?: boolean
+  /** 
+   * HOMEPAGE STATIC MODE: Controls navbar behavior specifically for homepage
+   * - isHomepage={true}: Uses static positioning, white background, no scroll logic
+   * - isHomepage={false}: Uses normal fixed positioning with scroll behavior (default)
+   * 
+   * CONTEXT7 SOURCE: /reactjs/react.dev - Component prop interface patterns
+   * HOMEPAGE SPECIFIC REASON: Official React documentation enables prop-based component variants
+   */
+  isHomepage?: boolean
 }
 
 interface PageFooterProps {

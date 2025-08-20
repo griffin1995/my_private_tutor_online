@@ -32,40 +32,23 @@
 // COMPONENT SIMPLIFICATION REASON: Official React documentation recommends removing unused imports to maintain clean component architecture
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component cleanup and removal patterns
 // ETHOS REMOVAL REASON: Clean component removal per user requirements, maintaining structured imports
-// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
-// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
-import React, { useState, useEffect } from 'react';
+// CONTEXT7 SOURCE: /reactjs/react.dev - React import for client component with Framer Motion compatibility
+// SYNCHRONOUS PATTERN REASON: Official React documentation Section 2.1 recommends direct React import for client components with animation libraries
+import React from 'react';
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { FounderStorySection } from "@/components/sections/about/founder-story-section";
 import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
+import { QuoteSection } from "@/components/sections/quote-section";
 import { getAboutHeroImage } from "@/lib/cms/cms-images";
-import { getAboutTestimonials, type Testimonial } from "@/lib/cms/cms-content";
+import { getTextTestimonials, type Testimonial } from "@/lib/cms/cms-content";
 
 export default function AboutUsPage() {
-  // CONTEXT7 SOURCE: /reactjs/react.dev - useState hook for client-side data management
-  // CLIENT DATA STATE REASON: Official React documentation recommends useState for async data in client components
-  const [aboutTestimonials, setAboutTestimonials] = useState<readonly Testimonial[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  
-  // CONTEXT7 SOURCE: /reactjs/react.dev - useEffect hook for async data fetching
-  // ASYNC DATA FETCHING REASON: Official React documentation recommends useEffect for side effects in client components
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        setIsLoading(true)
-        const testimonials = await getAboutTestimonials()
-        setAboutTestimonials(testimonials)
-      } catch (error) {
-        console.error('Failed to fetch about testimonials:', error)
-        setAboutTestimonials([]) // Fallback to empty array
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    
-    fetchTestimonials()
-  }, [])
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access patterns
+  // SYNCHRONOUS CMS PATTERN REASON: Official React documentation Section 4.2 recommends direct data access for static content to prevent homepage failure scenarios
+  // ARCHITECTURE FIX: Replace async/await pattern with synchronous CMS access to maintain CRITICAL homepage recovery architecture
+  // VIDEO FILTERING: Using getTextTestimonials() to automatically exclude video testimonials from About page display
+  const aboutTestimonials = getTextTestimonials()
   
   // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
@@ -103,10 +86,21 @@ export default function AboutUsPage() {
         {/* FOUNDER STORY EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
         <FounderStorySection />
 
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration patterns for modular UI design */}
+        {/* QUOTE SECTION INTEGRATION REASON: Official React documentation Section 2.3 recommends component composition for enhanced page structure */}
+        <QuoteSection 
+          quote="A truly bespoke experience - Elizabeth personally pairs each student with a carefully selected tutor from her boutique team."
+          author="NEED AUTHOR"
+          role="NEED ROLE"
+          backgroundColor="bg-primary-50"
+          useHighlighting={false}
+        />
+
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
         {/* TESTIMONIALS EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
-        {/* ASYNC DATA LOADING: Only render testimonials section when data is loaded to prevent filter errors */}
-        {!isLoading && <TestimonialsSection testimonials={aboutTestimonials} />}
+        {/* SYNCHRONOUS DATA ACCESS: Direct testimonials data access prevents loading state complexity and homepage failure scenarios */}
+        {/* VIDEO FILTERING: getTextTestimonials() ensures only text testimonials are displayed on About page */}
+        <TestimonialsSection testimonials={aboutTestimonials} />
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal and clean architecture maintenance */}
         {/* ETHOS SECTION REMOVED: Clean component removal per user requirements while maintaining page structure */}

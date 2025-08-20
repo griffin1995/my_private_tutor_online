@@ -28,7 +28,7 @@ import { m } from 'framer-motion'
 import Image from 'next/image'
 import { BookOpen, GraduationCap, Users, Award, Target, Globe } from 'lucide-react'
 import { PageLayout } from '@/components/layout/page-layout'
-import { PageHero } from '@/components/layout/page-hero'
+import { SimpleHero } from '@/components/layout/simple-hero'
 import { Section } from '@/components/layout/section'
 import { Button } from '@/components/ui/button'
 import { WaveSeparator } from '@/components/ui/wave-separator'
@@ -188,27 +188,14 @@ export default function SubjectTuitionPage() {
   
   return (
     <>
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for hero background images */}
-      {/* HERO IMPLEMENTATION REASON: Official Next.js documentation for optimized background images with Image component */}
-      <PageHero
-        background="image"
+      {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
+      {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      <SimpleHero
         backgroundImage="/images/hero/hero-subject-tuition-primary.jpg"
-        size="full"
-        overlay={true}
-        overlayOpacity="dark"
-      >
-        <div className="text-center text-white">
-          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold leading-tight mb-6">
-            {heroContent.title}
-          </h1>
-          <p className="text-xl text-accent-400 font-semibold mb-6">
-            {heroContent.subtitle}
-          </p>
-          <p className="text-lg text-white/90 leading-relaxed max-w-3xl mx-auto">
-            {heroContent.description}
-          </p>
-        </div>
-      </PageHero>
+        h1="Subject Tutoring & Exam Preparation"
+        h2="Expert Tuition"
+        decorativeStyle="lines"
+      />
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout wrapper for content sections */}
       {/* LAYOUT REASON: Official Next.js patterns for content section organization */}

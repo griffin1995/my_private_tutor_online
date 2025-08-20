@@ -22,9 +22,9 @@
  * - Professional logo and crest management
  */
 
-// CONTEXT7 SOURCE: /microsoft/typescript - Interface definitions for comprehensive type safety
-// CONTEXT7 SOURCE: Official TypeScript handbook for advanced interface patterns
-// TYPE SYSTEM REASON: Following TypeScript best practices for robust data structures
+// CONTEXT7 SOURCE: /microsoft/typescript - Enhanced interface definitions for comprehensive type safety with statistics support
+// CONTEXT7 SOURCE: Official TypeScript handbook for advanced interface patterns and touch interaction support
+// TYPE SYSTEM REASON: Following TypeScript best practices for robust data structures with enhanced statistics tracking
 export interface EliteSchool {
   readonly id: string
   readonly name: string

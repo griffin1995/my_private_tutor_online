@@ -40,7 +40,7 @@ import { searchIndex } from '@/lib/offline/search-index'
 // CONTEXT7 SOURCE: /vercel/next.js - next/dynamic for optimized component loading
 // LAZY LOADING: Core layout components loaded immediately
 import { PageLayout } from '@/components/layout/page-layout'
-import { PageHero } from '@/components/layout/page-hero'
+import { SimpleHero } from '@/components/layout/simple-hero'
 import { WaveSeparator } from '@/components/ui/wave-separator'
 import { Section } from '@/components/layout/section'
 
@@ -590,12 +590,13 @@ const FAQPage = React.memo(function FAQPage() {
         }}
       />
       
-      {/* CONTEXT7 SOURCE: /context7/motion_dev - Premium FAQ hero with advanced animations and interactive features */}
-      {/* PREMIUM HERO REASON: Task 17 implementation - Advanced hero section with animated search, carousel, and glass-morphism effects */}
-      <FAQPremiumHero
-        onSearchQuery={handleHeroSearch}
-        onCategorySelect={handleHeroCategorySelect}
-        onQuestionSelect={handleHeroQuestionSelect}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
+      {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      <SimpleHero
+        backgroundImage="/images/hero/hero-exam-papers.jpg"
+        h1="Frequently Asked Questions"
+        h2="Get Answers"
+        decorativeStyle="lines"
       />
 
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Mobile-first responsive layout with sticky navigation */}

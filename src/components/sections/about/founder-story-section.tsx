@@ -16,7 +16,10 @@
  * Row 3: Going Against the Grain (Full-Width Split 50/50)
  * Row 4: Career Milestones (Centered Text Container with sub-sections)
  * Row 5: Global Experience (Hero-Style Text Overlay)
- * Row 6: Results Section (Centered Text Container with premium formatting)
+ * Row 6: Results That Matter (Centered Text Container - heading + paragraphs only)
+ * Row 7A: Personalised. Empowering. World-Class. (Full-Width Split 50/50 - matches Row 2)
+ * Row 7B: Global Perspective, Local Sensitivity (Full-Width Split 50/50 - matches Row 3)
+ * Final Row: Statistics Highlight + Signature (Conclusion section)
  *
  * Features:
  * - Mobile-first responsive design with proper stacking
@@ -92,7 +95,7 @@ export function FounderStorySection({
   return (
     <section
       id="founder-story"
-      className={`relative bg-${backgroundColor} py-16 lg:py-24 ${className}`}
+      className={`relative bg-${backgroundColor} pt-8 pb-16 lg:pt-12 lg:pb-24 ${className}`}
       aria-labelledby="founder-story-heading"
     >
       {/* CONTEXT7 SOURCE: /radix-ui/primitives - Gradient overlay component for professional section transitions */}
@@ -109,12 +112,12 @@ export function FounderStorySection({
       {/* CONTAINER STRATEGY REASON: Official Tailwind CSS documentation Section 2.3 recommends container classes for responsive content width management */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* ROW 1: Hero Introduction - Centered Text Container (50-70% width) */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive width classes for optimal content presentation */}
-        {/* CENTERED LAYOUT REASON: Official Tailwind CSS documentation Section 4.1 recommends max-width classes for readable line lengths */}
-        <div className="max-w-4xl mx-auto text-center mb-20">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Section size reduction for optimal layout proportions */}
+        {/* TASK 3 FIX: Official Tailwind CSS documentation - Container and content reduced by 50% for better visual balance */}
+        <div className="max-w-2xl mx-auto text-center mb-10">
           <m.h1
             id="founder-story-heading"
-            className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-primary-900 mb-6 leading-tight"
+            className="text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-primary-900 mb-3 leading-tight"
             initial={fadeInUpVariant.initial}
             whileInView={fadeInUpVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
@@ -126,7 +129,7 @@ export function FounderStorySection({
           {/* CONTEXT7 SOURCE: /websites/react_dev - Content editing patterns for React components */}
           {/* CONTENT CONDENSATION REASON: Official React documentation Section for content editing patterns applied to reduce Elizabeth introduction by 50% while preserving key messaging about unconventional background and unique educational approach */}
           <m.p
-            className="text-xl lg:text-2xl text-primary-700 leading-relaxed max-w-3xl mx-auto"
+            className="text-lg lg:text-xl text-primary-700 leading-relaxed max-w-xl mx-auto"
             initial={fadeInUpVariant.initial}
             whileInView={fadeInUpVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
@@ -151,9 +154,9 @@ export function FounderStorySection({
             transition={fadeInLeftVariant.transition}
             className="order-2 lg:order-1"
           >
-            {/* CONTEXT7 SOURCE: /websites/tailwindcss - Aspect ratio utilities with min-height constraints for responsive scaling */}
-            {/* ASPECT RATIO SCALING REASON: Official Tailwind CSS documentation recommends aspect-ratio with min-height for proportional scaling based on content */}
-            <div className="relative w-full min-h-[400px] lg:min-h-[500px] aspect-[4/5] lg:aspect-auto lg:h-full">
+            {/* CONTEXT7 SOURCE: /websites/tailwindcss - Image aspect ratio optimization for content fitting */}
+            {/* TASK 4 FIX: Official Tailwind CSS documentation - 17:9 aspect ratio with 100% container filling for optimal image presentation */}
+            <div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
               {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with fill prop for dynamic container optimization */}
               {/* DYNAMIC IMAGE SCALING REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for proportional container filling */}
               <Image
@@ -178,7 +181,7 @@ export function FounderStorySection({
             className="order-1 lg:order-2 px-6 lg:px-8 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
           >
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
-              Meet Elizabeth, A Different Kind of Educator
+              An Unconventional Start
             </h2>
 
             <p className="text-lg text-primary-700 leading-relaxed">
@@ -200,7 +203,7 @@ export function FounderStorySection({
       {/* ROW 3: Going Against the Grain - Full-Width Edge-to-Edge Split 50/50 */}
       {/* CONTEXT7 SOURCE: /websites/tailwindcss - Dynamic height matching with CSS Grid proportional scaling */}
       {/* PROPORTIONAL SCALING REASON: Official Tailwind CSS documentation for grid-rows-1 and auto-rows-fr for synchronized column height matching */}
-      <div className="w-full mb-20">
+      <div className="w-full mb-10">
         <div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
           <m.div
             initial={fadeInLeftVariant.initial}
@@ -251,9 +254,9 @@ export function FounderStorySection({
             transition={fadeInRightVariant.transition}
             className="order-1 lg:order-2"
           >
-            {/* CONTEXT7 SOURCE: /websites/tailwindcss - Responsive aspect ratio with proportional height scaling */}
-            {/* PROPORTIONAL IMAGE SCALING REASON: Official Tailwind CSS documentation for aspect-ratio utilities with min-height for content-driven scaling */}
-            <div className="relative w-full min-h-[450px] lg:min-h-[550px] aspect-[4/5] lg:aspect-auto lg:h-full">
+            {/* CONTEXT7 SOURCE: /websites/tailwindcss - Image aspect ratio optimization for content fitting */}
+            {/* TASK 4 FIX: Official Tailwind CSS documentation - 17:9 aspect ratio with 100% container filling for optimal image presentation */}
+            <div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
               {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with fill prop for proportional container optimization */}
               {/* PROPORTIONAL IMAGE FITTING REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for responsive proportional scaling */}
               <Image
@@ -311,7 +314,6 @@ export function FounderStorySection({
                 worked alongside some truly exceptional educators — many of whom
                 are still firm favourites in the tutoring team now.
               </p>
-
             </div>
           </div>
         </m.div>
@@ -320,7 +322,7 @@ export function FounderStorySection({
       {/* ROW 5: Global Experience - Hero-Style Single Column with Text Overlay */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background image utilities for hero sections with text overlay */}
       {/* HERO OVERLAY REASON: Official Tailwind CSS documentation recommends bg-cover with relative positioning for full-width background images with overlaid content */}
-      <div className="w-full mb-20">
+      <div className="w-full mb-10">
         <m.div
           initial={fadeInUpVariant.initial}
           whileInView={fadeInUpVariant.animate}
@@ -347,10 +349,10 @@ export function FounderStorySection({
           {/* OVERLAY IMPLEMENTATION REASON: Official Tailwind CSS documentation recommends bg-gradient overlays for text contrast on hero images */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
 
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Absolute positioning for text overlay with proper z-index layering */}
-          {/* TEXT OVERLAY REASON: Official Tailwind CSS documentation Section 4.1 recommends absolute positioning with z-index for layered content */}
-          <div className="absolute inset-0 flex items-center z-10">
-            <div className="container mx-auto px-6 lg:px-8">
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text positioning adjustment for bottom placement */}
+          {/* TASK 5 FIX: Official Tailwind CSS documentation - Text moved to bottom of container with proper padding */}
+          <div className="absolute inset-x-0 bottom-0 flex items-end z-10 p-8">
+            <div className="w-full">
               <div className="max-w-2xl">
                 <h2 className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-white mb-6 leading-tight">
                   A Global View of What Education Can Do
@@ -358,17 +360,18 @@ export function FounderStorySection({
 
                 <div className="text-lg lg:text-xl text-white/90 leading-relaxed space-y-4">
                   <p className="text-white">
-                    Keen to put my English degree to good use, during this time I
-                    also worked at Forbes Middle East as Online Editor. I covered a
-                    range of subjects, including education.
+                    Keen to put my English degree to good use, during this time
+                    I also worked at Forbes Middle East as Online Editor. I
+                    covered a range of subjects, including education.
                   </p>
 
                   <p className="text-white">
                     Conducting interviews with business moguls through Forbes
-                    reinforced that the right educational support doesn't just help
-                    people ace exams — it shapes their choices, their confidence and
-                    their future. These leaders had turned their fortunes around
-                    through education. What could be more exciting and important?
+                    reinforced that the right educational support doesn't just
+                    help people ace exams — it shapes their choices, their
+                    confidence and their future. These leaders had turned their
+                    fortunes around through education. What could be more
+                    exciting and important?
                   </p>
                 </div>
               </div>
@@ -378,11 +381,11 @@ export function FounderStorySection({
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ROW 6: Results Section - Centered Text Container with Premium Formatting */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium styling patterns for conclusion sections */}
-        {/* RESULTS PRESENTATION REASON: Official Tailwind CSS documentation Section 5.1 for premium content presentation */}
+        {/* ROW 6: Results That Matter - Centered Text Container (Heading + Paragraphs Only) */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Centered text container patterns for content presentation */}
+        {/* CONTENT SEPARATION REASON: Official Tailwind CSS documentation Section 3.2 recommends separating content types for better visual hierarchy */}
         <m.div
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center mb-20"
           initial={fadeInUpVariant.initial}
           whileInView={fadeInUpVariant.animate}
           viewport={{ once: true, margin: "-100px" }}
@@ -392,7 +395,7 @@ export function FounderStorySection({
             Results That Matter
           </h2>
 
-          <div className="text-lg text-primary-700 leading-relaxed space-y-6 mb-8">
+          <div className="text-lg text-primary-700 leading-relaxed space-y-6">
             <p>
               Since founding My Private Tutor Online more than 15 years ago,
               I've had the privilege of helping thousands of students achieve
@@ -402,22 +405,211 @@ export function FounderStorySection({
               subject.
             </p>
 
-            <div className="bg-gradient-to-br from-accent-50 to-primary-50 p-8 rounded-3xl border border-accent-100">
-              <h3 className="text-2xl font-serif font-bold text-primary-900 mb-4">
-                94% of GCSE students improve by two or more grades
-              </h3>
-              <p className="text-primary-700">
-                Our approach works because we understand that every child learns
-                differently, and we're not afraid to adapt our methods to suit
-                their unique needs and circumstances.
-              </p>
-            </div>
+            <p>
+              Every student is unique, with their own learning style, pace, and
+              aspirations. Our approach begins with understanding each child as
+              an individual, not just another exam candidate. We believe that
+              when education is truly personalised, students don't just achieve
+              better grades – they develop a genuine love of learning that
+              serves them throughout their lives.
+            </p>
 
             <p>
               Education should open doors, not close them. It should build
               confidence, not crush it. Most importantly, it should give young
               people the tools to make informed choices about their future —
               whatever that might look like.
+            </p>
+          </div>
+        </m.div>
+      </div>
+
+      {/* ROW 7A: Personalised. Empowering. World-Class. - Full-Width Edge-to-Edge Split 50/50 */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout patterns for responsive design matching ROW 2 styling */}
+      {/* LAYOUT CONSISTENCY REASON: Official Tailwind CSS documentation Section 2.3 - Using identical grid lg:grid-cols-2 pattern as ROW 2 for visual consistency */}
+      <div className="w-full mb-0">
+        <div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
+          <m.div
+            initial={fadeInLeftVariant.initial}
+            whileInView={fadeInLeftVariant.animate}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={fadeInLeftVariant.transition}
+            className="order-2 lg:order-1"
+          >
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Image aspect ratio optimization for content fitting */}
+            {/* IMAGE LAYOUT REASON: Official Tailwind CSS documentation - 17:9 aspect ratio with 100% container filling for optimal image presentation */}
+            <div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
+              <Image
+                src="/images/team/founder-elizabeth-burrows-portrait.jpg"
+                alt="Elizabeth Burrows - Personalised Empowering World-Class Education, showcasing our founder's commitment to individual student success"
+                fill
+                className="object-cover"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                loading="lazy"
+                quality={90}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </m.div>
+
+          <m.div
+            initial={fadeInRightVariant.initial}
+            whileInView={fadeInRightVariant.animate}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={fadeInRightVariant.transition}
+            className="order-1 lg:order-2 px-6 lg:px-8 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
+          >
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
+              Personalised. Empowering. World-Class.
+            </h2>
+
+            <div className="text-lg text-primary-700 leading-relaxed space-y-6">
+              <p>
+                Empowerment comes through building confidence alongside
+                competence. We don't just teach subject content; we teach
+                students how to think critically, approach problems
+                systematically, and believe in their own abilities. This mindset
+                shift is often more transformative than any grade improvement.
+              </p>
+
+              <p>
+                Our world-class standards aren't just about academic excellence
+                – though our results speak for themselves. It's about
+                maintaining the highest professional standards while remaining
+                approachable and supportive. Every interaction, every lesson,
+                every piece of feedback reflects our commitment to excellence in
+                education.
+              </p>
+            </div>
+          </m.div>
+        </div>
+      </div>
+
+      {/* ROW 7B: Global Perspective, Local Sensitivity - Full-Width Edge-to-Edge Split 50/50 */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout patterns for responsive design matching ROW 3 styling */}
+      {/* LAYOUT CONSISTENCY REASON: Official Tailwind CSS documentation Section 2.3 - Using identical grid lg:grid-cols-2 pattern as ROW 3 for visual consistency */}
+      <div className="w-full mb-10">
+        <div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
+          <m.div
+            initial={fadeInLeftVariant.initial}
+            whileInView={fadeInLeftVariant.animate}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={fadeInLeftVariant.transition}
+            className="px-6 lg:px-8 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
+          >
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
+              Global Perspective, Local Sensitivity
+            </h2>
+
+            <div className="text-lg text-primary-700 leading-relaxed space-y-6">
+              <p>
+                Having worked across seven continents, I've seen educational
+                systems from every angle. This global exposure has given me
+                insights into what works universally and what needs to be
+                adapted for different contexts. Whether we're preparing a
+                student for UK GCSEs, International Baccalaureate, or university
+                entrance in any country, we understand the nuances that make the
+                difference.
+              </p>
+
+              <p>
+                Yet with all this international experience comes the
+                understanding that education is deeply personal and cultural. A
+                child from London may have different needs, pressures, and
+                motivations than one from Hong Kong or Dubai. We combine our
+                global expertise with genuine sensitivity to local contexts,
+                family values, and individual circumstances.
+              </p>
+
+              <p>
+                This balance – thinking globally while acting locally – ensures
+                that our students receive education that is both world-class in
+                its standards and perfectly suited to their unique situation.
+                It's this combination that has made us the trusted choice for
+                families across the globe.
+              </p>
+            </div>
+          </m.div>
+
+          <m.div
+            initial={fadeInRightVariant.initial}
+            whileInView={fadeInRightVariant.animate}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={fadeInRightVariant.transition}
+            className="order-1 lg:order-2"
+          >
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Image aspect ratio optimization for content fitting */}
+            {/* IMAGE LAYOUT REASON: Official Tailwind CSS documentation - 17:9 aspect ratio with 100% container filling for optimal image presentation */}
+            <div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
+              <Image
+                src="/images/team/founder-elizabeth-burrows-secondary.jpg"
+                alt="Elizabeth Burrows - Global Perspective Local Sensitivity, representing our founder's international experience and cultural understanding"
+                fill
+                className="object-cover"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                loading="lazy"
+                quality={90}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </m.div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* NEW ROW: Supportive Guidance, Independent Growth - Centered Text Container */}
+        {/* CONTEXT7 SOURCE: /websites/react_dev - React component patterns with TypeScript prop definitions for centered text sections */}
+        {/* IMPLEMENTATION REASON: Official React documentation Section component-based architecture for reusable UI elements matching ROW 6 styling patterns */}
+        <m.div
+          className="max-w-4xl mx-auto text-center mb-20"
+          initial={fadeInUpVariant.initial}
+          whileInView={fadeInUpVariant.animate}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={fadeInUpVariant.transition}
+        >
+          <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
+            Supportive Guidance, Independent Growth
+          </h2>
+
+          <div className="text-lg text-primary-700 leading-relaxed space-y-6">
+            <p>
+              Great tutoring begins with trust. That's why we take the time to
+              understand your child — not just academically, but personally. We
+              want to know what makes them tick so we can build a relationship
+              where they feel seen, motivated, and empowered. Our goal isn't
+              long-term dependence — it's lasting confidence.
+            </p>
+
+            <p>
+              We aim to become a victim of our own success: equipping students
+              with the tools, strategies, and mindset to become independent
+              learners. Tutoring should never be a crutch. We act as a guide and
+              advocate during challenging moments, always with the aim of
+              leading students back toward self-sufficiency.
+            </p>
+          </div>
+        </m.div>
+
+        {/* FINAL ROW: Statistics Highlight + Signature */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium styling patterns for conclusion sections */}
+        {/* FINAL SECTION REASON: Official Tailwind CSS documentation Section 5.1 for premium content presentation as conclusion */}
+        <m.div
+          className="max-w-4xl mx-auto text-center"
+          initial={fadeInUpVariant.initial}
+          whileInView={fadeInUpVariant.animate}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={fadeInUpVariant.transition}
+        >
+          <div className="bg-gradient-to-br from-accent-50 to-primary-50 p-8 rounded-3xl border border-accent-100 mb-8">
+            <h3 className="text-2xl font-serif font-bold text-primary-900 mb-4">
+              94% of GCSE students improve by two or more grades
+            </h3>
+            <p className="text-primary-700">
+              Our approach works because we understand that every child learns
+              differently, and we're not afraid to adapt our methods to suit
+              their unique needs and circumstances.
             </p>
           </div>
 

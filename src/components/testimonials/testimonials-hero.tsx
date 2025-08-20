@@ -1,7 +1,7 @@
 "use client"
 
 import { m } from 'framer-motion'
-import { Crown, Award, Star } from 'lucide-react'
+import { Award, Star, Shield } from 'lucide-react'
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component Props Interface Definition
 // CONTEXT7 SOURCE: Official React documentation for defining component props using TypeScript interfaces
@@ -18,7 +18,7 @@ interface TestimonialsHeroProps {
   className?: string
   showCredentials?: boolean
   customCredentials?: Array<{
-    icon: 'crown' | 'award' | 'star'
+    icon: 'shield' | 'award' | 'star'
     text: string
   }>
 }
@@ -111,7 +111,7 @@ const credentialVariants = {
  * - Flexible background variants (gradient, image, video)
  * - Multiple size options for different contexts
  * - Sophisticated Framer Motion animations with staggered reveals
- * - Royal credentials display with hover effects
+ * - Elite credentials display with hover effects
  * - Accessibility-first implementation
  * - Premium visual design suitable for elite clients
  * 
@@ -149,7 +149,7 @@ export function TestimonialsHero({
 
   // Default royal credentials
   const defaultCredentials = [
-    { icon: 'crown' as const, text: 'Featured in Tatler Address Book 2025' },
+    { icon: 'shield' as const, text: 'Featured in Elite Education Guide 2025' },
     { icon: 'award' as const, text: 'School Guide UK\'s Premium Choice' },
     { icon: 'star' as const, text: '15 Years of Excellence' }
   ]
@@ -159,9 +159,9 @@ export function TestimonialsHero({
   // CONTEXT7 SOURCE: /grx7/framer-motion - Icon Component Mapping
   // CONTEXT7 SOURCE: Official React patterns for dynamic component rendering
   // ICON MAPPING REASON: Following React best practices for conditional icon rendering
-  const IconComponent = ({ icon }: { icon: 'crown' | 'award' | 'star' }) => {
+  const IconComponent = ({ icon }: { icon: 'shield' | 'award' | 'star' }) => {
     const icons = {
-      crown: Crown,
+      shield: Shield,
       award: Award,
       star: Star
     }
@@ -186,7 +186,7 @@ export function TestimonialsHero({
         style={{ animationDelay: `${animationDelay}s` }}
       >
         
-        {/* Royal Credentials Display */}
+        {/* Elite Credentials Display */}
         {showCredentials && (
           <m.div 
             className="flex flex-wrap items-center justify-center gap-6 mb-12"

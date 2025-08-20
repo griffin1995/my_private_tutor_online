@@ -14,7 +14,7 @@ import {
   Star, 
   TrendingUp, 
   Shield, 
-  Crown,
+  Check,
   MessageCircle,
   BookOpen,
   Award,
@@ -110,7 +110,7 @@ interface LiveEngagementData {
   activeConsultations: number
   totalStudents: number
   averageRating: number
-  royalEndorsements: number
+  eliteEndorsements: number
   eliteSchoolsServed: number
 }
 
@@ -161,7 +161,7 @@ export const RealTimeSocialProof: React.FC<RealTimeSocialProofProps> = ({
     activeConsultations: 7,
     totalStudents: 2847,
     averageRating: 4.9,
-    royalEndorsements: 6,
+    eliteEndorsements: 6,
     eliteSchoolsServed: 127
   })
   
@@ -277,11 +277,11 @@ export const RealTimeSocialProof: React.FC<RealTimeSocialProofProps> = ({
   // CONTEXT7 SOURCE: /context7/motion_dev - Memoized trust badges for performance
   const trustBadges = useMemo(() => [
     { 
-      icon: Crown, 
-      label: 'Royal Endorsements', 
-      value: engagementData.royalEndorsements,
-      color: 'text-yellow-600',
-      bgColor: 'bg-yellow-50'
+      icon: Check, 
+      label: 'Elite Endorsements', 
+      value: engagementData.eliteEndorsements,
+      color: 'text-green-600',
+      bgColor: 'bg-green-50'
     },
     { 
       icon: Shield, 

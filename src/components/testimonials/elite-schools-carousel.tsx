@@ -195,6 +195,9 @@ export function EliteSchoolsCarousel({
     setSelectedSchool(null)
   }, [])
 
+  // CONTEXT7 SOURCE: /facebook/react - Enhanced hover handlers with touch event considerations
+  // CONTEXT7 SOURCE: Official React documentation for mouse and touch event coordination
+  // INTERACTION ENHANCEMENT REASON: Professional hover/touch coordination for carousel pause functionality
   const handleMouseEnter = useCallback(() => {
     if (pauseOnHover) {
       setIsPaused(true)
@@ -204,6 +207,22 @@ export function EliteSchoolsCarousel({
   const handleMouseLeave = useCallback(() => {
     if (pauseOnHover) {
       setIsPaused(false)
+    }
+  }, [pauseOnHover])
+
+  // CONTEXT7 SOURCE: /facebook/react - Touch event handlers for carousel interaction
+  // CONTEXT7 SOURCE: Official React patterns for touch event management in carousel components
+  // MOBILE ENHANCEMENT REASON: Touch-friendly carousel controls for mobile device compatibility
+  const handleCarouselTouchStart = useCallback(() => {
+    if (pauseOnHover) {
+      setIsPaused(true)
+    }
+  }, [pauseOnHover])
+
+  const handleCarouselTouchEnd = useCallback(() => {
+    if (pauseOnHover) {
+      // Delay resume to allow for touch interactions with cards
+      setTimeout(() => setIsPaused(false), 300)
     }
   }, [pauseOnHover])
 
@@ -372,6 +391,8 @@ export function EliteSchoolsCarousel({
             viewport={{ once: true }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onTouchStart={handleCarouselTouchStart}
+            onTouchEnd={handleCarouselTouchEnd}
           >
             <m.div 
               className="flex gap-6 whitespace-nowrap py-8"

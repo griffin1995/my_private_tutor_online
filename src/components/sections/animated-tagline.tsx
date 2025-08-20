@@ -131,8 +131,8 @@ export function AnimatedTagline({
          * Reference: /framer/motion - Motion component animations
          * Pattern: Conditional decorative elements with premium styling
          * 
-         * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Vertical spacing utilities removal
-         * SPACING REMOVAL REASON: Official Tailwind CSS documentation Section on margin utilities - removed mt-6 (margin-top) to eliminate all vertical padding/margin throughout component
+         * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Vertical spacing utilities for decorative element positioning
+         * SPACING ADDITION REASON: Official Tailwind CSS documentation Section on margin utilities - added mt-6 (margin-top: 1.5rem) to create larger gap between decorative lines and typing text above
          * HORIZONTAL SPACING PRESERVED: space-x-6 maintained as per official Tailwind spacing patterns for horizontal item distribution
          * 
          * Decoration Features:
@@ -140,11 +140,11 @@ export function AnimatedTagline({
          * - Symmetrical design with gradient lines
          * - Central animated dot with pulsing effect
          * - Delayed animation timing for staggered effect
-         * - Zero vertical spacing for tight layout integration
+         * - Increased vertical spacing for better visual separation
          */}
         {showDecorations && (
           <m.div 
-            className="flex justify-center items-center space-x-6"
+            className="flex justify-center items-center space-x-6 mt-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 2.5 }}

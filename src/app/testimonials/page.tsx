@@ -61,7 +61,7 @@
 import { EliteSchoolsCarousel } from "@/components/testimonials/elite-schools-carousel";
 import { TestimonialsFilter } from "@/components/testimonials/testimonials-filter";
 import { TestimonialsGrid } from "@/components/testimonials/testimonials-grid";
-import { TestimonialsHero } from "@/components/testimonials/testimonials-hero";
+import { SimpleHero } from "@/components/layout/simple-hero";
 import { TestimonialsIntro } from "@/components/testimonials/testimonials-intro";
 import { VideoTestimonials } from "@/components/testimonials/video-testimonials";
 import { useCallback, useState } from "react";
@@ -165,15 +165,13 @@ export default function TestimonialsPage() {
   // COMPONENT EXTRACTION REASON: Following React best practices for modular, reusable component architecture
   return (
     <>
-      {/* CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced TestimonialsHero Component with Sophisticated Animations */}
-      {/* CONTEXT7 SOURCE: Official Framer Motion patterns for professional hero section animations */}
-      {/* HERO COMPONENT REASON: Extracted modular hero component with enhanced features and royal credentials */}
-      <TestimonialsHero
-        heroContent={heroContent}
-        backgroundVariant="gradient"
-        size="full"
-        showCredentials={true}
-        animationDelay={0.1}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
+      {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      <SimpleHero
+        backgroundImage="/images/hero/child_book_and_laptop.avif"
+        h1="Student & Parent Testimonials"
+        h2="Real Stories"
+        decorativeStyle="lines"
       />
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}

@@ -94,6 +94,15 @@ import { getMainLogo, getMainLogoWhite } from '@/lib/cms/cms-images'
 interface PageHeaderProps {
   className?: string
   isHeroPage?: boolean
+  /** 
+   * HOMEPAGE STATIC MODE: Controls navbar behavior specifically for homepage
+   * - isHomepage={true}: Uses static positioning, white background, no scroll logic
+   * - isHomepage={false}: Uses normal fixed positioning with scroll behavior (default)
+   * 
+   * CONTEXT7 SOURCE: /reactjs/react.dev - Conditional component behavior patterns
+   * HOMEPAGE SPECIFIC REASON: Official React documentation enables prop-based component variants for different page requirements
+   */
+  isHomepage?: boolean
 }
 
 /**
@@ -112,7 +121,8 @@ interface PageHeaderProps {
  */
 export function PageHeader({ 
   className, 
-  isHeroPage = false 
+  isHeroPage = false,
+  isHomepage = false
 }: PageHeaderProps) {
   
   // CONTEXT7 SOURCE: /reactjs/react.dev - Client Component state management with useState
@@ -153,7 +163,12 @@ export function PageHeader({
   
   // CONTEXT7 SOURCE: /context7/react_dev - useCallback for optimized scroll handling
   // SCROLL OPTIMIZATION REASON: Official React documentation for memoized event handlers
+  // HOMEPAGE MODIFICATION: Scroll logic disabled for homepage static navbar
   const handleScroll = useCallback(() => {
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Homepage static positioning prevents scroll logic
+    // HOMEPAGE STATIC REASON: Homepage navbar uses static positioning without scroll-based appearance changes
+    if (isHomepage) return
+    
     // CONTEXT7 SOURCE: /vercel/next.js - SSR-safe window access prevention
     // HYDRATION FIX REASON: Official Next.js patterns for preventing server-side window access
     if (typeof window === 'undefined') return
@@ -171,7 +186,7 @@ export function PageHeader({
     // 3. Aligns with modern web design patterns for fixed headers
     // 4. Gives users clear visual feedback about scroll position
     setIsScrolled(window.scrollY > 100)
-  }, [])
+  }, [isHomepage])
   
   // CONTEXT7 SOURCE: /context7/react_dev - Enhanced dropdown hover handlers with timeout management
   // DROPDOWN HOVER REASON: Official React patterns for smooth dropdown navigation without flicker
@@ -281,8 +296,22 @@ export function PageHeader({
   // Documentation Source: Context7 Tailwind CSS - Background colors, backdrop filters, and transparency
   // Reference: /tailwindlabs/tailwindcss.com - backdrop-filter utilities and color opacity
   // Pattern: Conditional styling based on scroll state for glass morphism effect
+  // HOMEPAGE MODIFICATION: Always use static white background for homepage
   const getHeaderClasses = () => {
-    // Dynamic header appearance based on scroll position
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Static white background for homepage navbar
+    // HOMEPAGE STATIC REASON: Homepage navbar always uses white background with no transparency or scroll effects
+    if (isHomepage) {
+      return [
+        // Static white background for homepage
+        'bg-white',
+        // Border for definition
+        'border-b border-primary-100',
+        // Shadow for depth
+        'shadow-sm'
+      ].join(' ')
+    }
+    
+    // Dynamic header appearance based on scroll position for non-homepage
     // Default: Fully transparent to showcase hero content underneath
     // Scrolled: Glass morphism effect with backdrop blur and semi-transparent background
     
@@ -327,26 +356,49 @@ export function PageHeader({
   return (
     <header 
       className={cn(
-        // Documentation Source: Context7 Tailwind CSS - Fixed positioning and z-index utilities
-        // Reference: /tailwindlabs/tailwindcss.com - position: fixed; z-index: 50;
-        // Pattern: Fixed overlay header that doesn't affect document flow
-        // 
-        // Key Implementation Details:
-        // - fixed: position: fixed - Positions header relative to viewport, not document flow
-        // - top-0: top: 0 - Anchors header to very top of viewport (y=0)
-        // - left-0: left: 0 - Anchors header to left edge of viewport (x=0) 
-        // - right-0: right: 0 - Anchors header to right edge of viewport (extends full width)
-        // - z-50: z-index: 50 - High stacking context to ensure header appears above all page content
-        // - w-full: width: 100% - Ensures header spans complete viewport width
-        // - transition-all: Smooth transitions for all animatable properties (background, backdrop-filter, etc.)
-        // - duration-300: 300ms transition timing for responsive feel without lag
-        // - ease-out: Deceleration curve for natural motion (fast start, slow end)
-        //
-        // Critical: This fixed positioning approach eliminates the white space gap issue because:
-        // 1. Header is removed from normal document flow (doesn't push content down)
-        // 2. Page content starts at viewport top (y=0) with header overlaying transparently
-        // 3. No layout shifts or content displacement when header changes appearance
-        'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-out',
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional positioning patterns for homepage vs other pages
+        // HOMEPAGE STATIC REASON: Homepage uses static positioning to take up actual space and push content down
+        isHomepage 
+          ? [
+              // Documentation Source: Context7 Tailwind CSS - Static positioning for normal document flow
+              // Reference: /tailwindlabs/tailwindcss.com - position: static (default positioning)
+              // Pattern: Static header that affects document flow and pushes content down
+              // 
+              // Key Implementation Details for Homepage:
+              // - static: position: static - Positions header in normal document flow
+              // - w-full: width: 100% - Ensures header spans complete viewport width
+              // - transition-all: Smooth transitions for consistency
+              // - duration-300: 300ms transition timing
+              // - ease-out: Deceleration curve for natural motion
+              //
+              // Homepage Benefits:
+              // 1. Header takes up actual space at top of page
+              // 2. Hero section pushed down by navbar height
+              // 3. No overlay behavior - header is part of normal layout
+              'static w-full transition-all duration-300 ease-out'
+            ].join(' ')
+          : [
+              // Documentation Source: Context7 Tailwind CSS - Fixed positioning and z-index utilities
+              // Reference: /tailwindlabs/tailwindcss.com - position: fixed; z-index: 50;
+              // Pattern: Fixed overlay header that doesn't affect document flow
+              // 
+              // Key Implementation Details for Non-Homepage:
+              // - fixed: position: fixed - Positions header relative to viewport, not document flow
+              // - top-0: top: 0 - Anchors header to very top of viewport (y=0)
+              // - left-0: left: 0 - Anchors header to left edge of viewport (x=0) 
+              // - right-0: right: 0 - Anchors header to right edge of viewport (extends full width)
+              // - z-50: z-index: 50 - High stacking context to ensure header appears above all page content
+              // - w-full: width: 100% - Ensures header spans complete viewport width
+              // - transition-all: Smooth transitions for all animatable properties (background, backdrop-filter, etc.)
+              // - duration-300: 300ms transition timing for responsive feel without lag
+              // - ease-out: Deceleration curve for natural motion (fast start, slow end)
+              //
+              // Critical: This fixed positioning approach eliminates the white space gap issue because:
+              // 1. Header is removed from normal document flow (doesn't push content down)
+              // 2. Page content starts at viewport top (y=0) with header overlaying transparently
+              // 3. No layout shifts or content displacement when header changes appearance
+              'fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-out'
+            ].join(' '),
         getHeaderClasses(),
         className
       )}
@@ -391,10 +443,12 @@ export function PageHeader({
                 {/* Documentation Source: Context7 MCP - Next.js Image Component Conditional src
                  * Reference: /vercel/next.js - Conditional image rendering patterns for state-based UI
                  * Pattern: Dynamic src switching based on scroll state
+                 * HOMEPAGE MODIFICATION: Always use normal logo for homepage
                  * 
                  * Logo State Logic:
-                 * - !isScrolled (transparent navbar): Use white logo variant for visibility over hero content
-                 * - isScrolled (opaque navbar): Use standard logo variant for contrast on light background
+                 * - Homepage: Always use normal logo (white background makes it visible)
+                 * - Non-Homepage !isScrolled (transparent navbar): Use white logo variant for visibility over hero content
+                 * - Non-Homepage isScrolled (opaque navbar): Use standard logo variant for contrast on light background
                  * 
                  * Performance Optimization:
                  * - Both logos use priority loading for above-the-fold content
@@ -408,10 +462,10 @@ export function PageHeader({
                  * RESPONSIVE PATTERN: max-h-16 (64px) → lg:max-h-20 (80px) → xl:max-h-24 (96px)
                  */}
                 <Image
-                  src={!safeIsScrolled ? logoWhite.src : logoDefault.src}
-                  alt={!safeIsScrolled ? logoWhite.alt : logoDefault.alt}
-                  width={!safeIsScrolled ? logoWhite.width : logoDefault.width}
-                  height={!safeIsScrolled ? logoWhite.height : logoDefault.height}
+                  src={isHomepage ? logoDefault.src : (!safeIsScrolled ? logoWhite.src : logoDefault.src)}
+                  alt={isHomepage ? logoDefault.alt : (!safeIsScrolled ? logoWhite.alt : logoDefault.alt)}
+                  width={isHomepage ? logoDefault.width : (!safeIsScrolled ? logoWhite.width : logoDefault.width)}
+                  height={isHomepage ? logoDefault.height : (!safeIsScrolled ? logoWhite.height : logoDefault.height)}
                   priority
                   className="h-auto w-auto max-h-16 lg:max-h-20 xl:max-h-24 transition-all duration-300 group-hover:scale-105"
                 />
@@ -466,39 +520,48 @@ export function PageHeader({
                       "after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:transition-all after:duration-300",
                       "hover:after:w-3/4 focus:after:w-3/4",
                       
-                      // Active dropdown state styling
-                      activeDropdown === item.name && [
-                        !safeIsScrolled ? "bg-white/20 !text-white shadow-lg" : "bg-primary-100 !text-primary-700 shadow-lg"
-                      ].join(' '),
-                      
-                      // Transparent Navbar State: Default state when at top of page
-                      !safeIsScrolled && !(activeDropdown === item.name) && [
-                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Fixed text color utilities with proper color compilation
-                        // HOVER FIX REASON: Ensuring Tailwind properly compiles blue-400 color by using standard classes
-                        "!text-white",
-                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White text on blue background for proper contrast
-                        // CONTRAST FIX: Maintaining white text on blue hover background for accessibility compliance
-                        "hover:!text-white",
-                        "after:bg-gradient-to-r after:from-blue-400 after:to-blue-300",
-                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Increased opacity for visible blue background on hover
-                        // VISIBILITY FIX: Using /80 opacity for sufficient blue background visibility on transparent navbar
-                        "hover:bg-blue-400/80",
-                        "focus:bg-blue-400/15",
-                        "hover:shadow-lg hover:shadow-blue-400/20",
-                        "hover:scale-105 focus:scale-105"
-                      ].join(' '),
-                      
-                      // Scrolled Navbar State: When user has scrolled down the page
-                      safeIsScrolled && !(activeDropdown === item.name) && [
-                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Direct text color utilities for consistency
-                        // CONSISTENCY REASON: Official Tailwind documentation for reliable color application
-                        "!text-primary-700",
-                        "hover:!text-primary-700",
-                        "after:bg-gradient-to-r after:from-primary-700 after:to-primary-600",
-                        "hover:bg-primary-50",
-                        "focus:bg-primary-100",
-                        "hover:scale-105 focus:scale-105"
-                      ].join(' ')
+                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Homepage static navbar styling patterns
+                      // HOMEPAGE STYLING REASON: Homepage always uses white background, so text should always be dark
+                      isHomepage ? [
+                        // Active dropdown state for homepage
+                        activeDropdown === item.name ? "bg-primary-100 !text-primary-700 shadow-lg" : 
+                        // Normal state for homepage - always dark text on white background
+                        "!text-primary-700 hover:!text-primary-700 after:bg-gradient-to-r after:from-primary-700 after:to-primary-600 hover:bg-primary-50 focus:bg-primary-100 hover:scale-105 focus:scale-105"
+                      ].join(' ') : [
+                        // Active dropdown state styling for non-homepage
+                        activeDropdown === item.name && [
+                          !safeIsScrolled ? "bg-white/20 !text-white shadow-lg" : "bg-primary-100 !text-primary-700 shadow-lg"
+                        ].join(' '),
+                        
+                        // Transparent Navbar State: Default state when at top of page (non-homepage)
+                        !safeIsScrolled && !(activeDropdown === item.name) && [
+                          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Fixed text color utilities with proper color compilation
+                          // HOVER FIX REASON: Ensuring Tailwind properly compiles blue-400 color by using standard classes
+                          "!text-white",
+                          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White text on blue background for proper contrast
+                          // CONTRAST FIX: Maintaining white text on blue hover background for accessibility compliance
+                          "hover:!text-white",
+                          "after:bg-gradient-to-r after:from-blue-400 after:to-blue-300",
+                          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Increased opacity for visible blue background on hover
+                          // VISIBILITY FIX: Using /80 opacity for sufficient blue background visibility on transparent navbar
+                          "hover:bg-blue-400/80",
+                          "focus:bg-blue-400/15",
+                          "hover:shadow-lg hover:shadow-blue-400/20",
+                          "hover:scale-105 focus:scale-105"
+                        ].join(' '),
+                        
+                        // Scrolled Navbar State: When user has scrolled down the page (non-homepage)
+                        safeIsScrolled && !(activeDropdown === item.name) && [
+                          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Direct text color utilities for consistency
+                          // CONSISTENCY REASON: Official Tailwind documentation for reliable color application
+                          "!text-primary-700",
+                          "hover:!text-primary-700",
+                          "after:bg-gradient-to-r after:from-primary-700 after:to-primary-600",
+                          "hover:bg-primary-50",
+                          "focus:bg-primary-100",
+                          "hover:scale-105 focus:scale-105"
+                        ].join(' ')
+                      ].filter(Boolean).join(' ')
                     )}
                     prefetch={false}
                   >
@@ -542,33 +605,42 @@ export function PageHeader({
                   // Documentation Source: Context7 MCP - Client Brand Color Requirements Implementation
                   // Reference: /tailwindlabs/tailwindcss.com - Button component conditional styling patterns
                   // CLIENT REQUIREMENTS: CTA button text follows same color pattern as navigation
+                  // HOMEPAGE MODIFICATION: Always use accent button style for homepage
                   "relative overflow-hidden font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 focus:scale-105 active:scale-95",
                   
-                  // Initial State (No Scrolling): CTA button with white text
-                  !safeIsScrolled 
+                  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Homepage static button styling patterns
+                  // HOMEPAGE STYLING REASON: Homepage always uses accent button with white text
+                  isHomepage 
                     ? [
-                        // Documentation Source: Context7 Tailwind CSS - Transparent Button with Border
-                        // Reference: /tailwindlabs/tailwindcss.com - Border utilities and background transparency
-                        // CLIENT REQUIREMENT: Initial state uses white text (transparent background with white border)
-                        'bg-transparent border-2 border-white !text-white',
-                        
-                        // Documentation Source: Context7 Tailwind CSS - Button Hover State Transitions
-                        // Reference: /tailwindlabs/tailwindcss.com - Hover state background and text color changes
-                        // Hover state: Background becomes white, text becomes brand blue
-                        'hover:bg-white hover:!text-primary-700'
-                      ].join(' ')
-                    : [
-                        // Scrolled State: CTA button with brand blue text
-                        // Documentation Source: Context7 MCP - Accent Color Implementation
-                        // Reference: Tailwind Config - accent-600 background with primary-700 text override
-                        // CLIENT REQUIREMENT: Scrolled state uses blue text on accent background
+                        // Homepage: Always use accent background with white text
                         'bg-accent-600 hover:bg-accent-700',
-                        
-                        // Documentation Source: Context7 MCP - Text Color Override for Client Requirements
-                        // Reference: /tailwindlabs/tailwindcss.com - Text color utilities for brand consistency
-                        // CLIENT REQUIREMENT: CTA button text must be blue when scrolled (overrides default white)
-                        '!text-primary-700 hover:!text-primary-700'
+                        '!text-white hover:!text-white'
                       ].join(' ')
+                    : !safeIsScrolled 
+                      ? [
+                          // Initial State (No Scrolling): CTA button with white text (non-homepage)
+                          // Documentation Source: Context7 Tailwind CSS - Transparent Button with Border
+                          // Reference: /tailwindlabs/tailwindcss.com - Border utilities and background transparency
+                          // CLIENT REQUIREMENT: Initial state uses white text (transparent background with white border)
+                          'bg-transparent border-2 border-white !text-white',
+                          
+                          // Documentation Source: Context7 Tailwind CSS - Button Hover State Transitions
+                          // Reference: /tailwindlabs/tailwindcss.com - Hover state background and text color changes
+                          // Hover state: Background becomes white, text becomes brand blue
+                          'hover:bg-white hover:!text-primary-700'
+                        ].join(' ')
+                      : [
+                          // Scrolled State: CTA button with brand blue text (non-homepage)
+                          // Documentation Source: Context7 MCP - Accent Color Implementation
+                          // Reference: Tailwind Config - accent-600 background with primary-700 text override
+                          // CLIENT REQUIREMENT: Scrolled state uses blue text on accent background
+                          'bg-accent-600 hover:bg-accent-700',
+                          
+                          // Documentation Source: Context7 MCP - Text Color Override for Client Requirements
+                          // Reference: /tailwindlabs/tailwindcss.com - Text color utilities for brand consistency
+                          // CLIENT REQUIREMENT: CTA button text must be blue when scrolled (overrides default white)
+                          '!text-primary-700 hover:!text-primary-700'
+                        ].join(' ')
                 )}
                 asChild
               >
@@ -617,53 +689,63 @@ export function PageHeader({
                       // Initial state (no scrolling): Icon WHITE
                       // After scrolling: Icon BLUE (#3F4A7E = primary-700)
                       
-                      // Transparent State (Default - when !safeIsScrolled):
-                      // Applied when navbar is transparent at top of page
-                      !safeIsScrolled && [
-                        // Documentation Source: Context7 MCP - SVG Icon Color Implementation
-                        // Reference: /tailwindlabs/tailwindcss.com - text-* utilities for SVG fill color
-                        // CLIENT REQUIREMENT: Initial state icon must be WHITE
-                        '!text-white',
-                        
-                        // Documentation Source: Context7 Tailwind CSS - Consistent White Icon on Hover
-                        // Reference: /tailwindlabs/tailwindcss.com - Maintaining icon color consistency
-                        // CLIENT REQUIREMENT: Keep white icon white on hover (matches navigation pattern)
-                        'hover:!text-white',
-                        
-                        // Documentation Source: Context7 Tailwind CSS - Semi-transparent Background Hover
-                        // Reference: /tailwindlabs/tailwindcss.com - Background opacity utilities for feedback
-                        // Hover background: Subtle white overlay matching navigation links
-                        'hover:bg-white/10',
-                        
-                        // Documentation Source: Context7 Tailwind CSS - Keyboard Navigation Focus State
-                        // Reference: /tailwindlabs/tailwindcss.com - focus: prefix for accessibility compliance
-                        // Focus background: Enhanced visibility for keyboard users
-                        'focus:bg-white/15'
-                      ].join(' '),
-                      
-                      // Scrolled State (when safeIsScrolled):
-                      // Applied when navbar becomes opaque after scrolling
-                      safeIsScrolled && [
-                        // Documentation Source: Context7 MCP - Client Brand Color Implementation
-                        // Reference: Tailwind Config - primary-700: '#3f4a7e' (CLIENT BRAND BLUE)
-                        // CLIENT REQUIREMENT: Scrolled state icon must be BLUE (#3F4A7E)
+                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Homepage static mobile button styling patterns
+                      // HOMEPAGE STYLING REASON: Homepage always uses white background, so mobile button should always be dark
+                      isHomepage ? [
+                        // Homepage: Always use dark icon on white background
                         '!text-primary-700',
-                        
-                        // Documentation Source: Context7 Tailwind CSS - Consistent Brand Color on Hover
-                        // Reference: /tailwindlabs/tailwindcss.com - Maintaining brand color consistency
-                        // CLIENT REQUIREMENT: Keep blue icon blue on hover (matches navigation pattern)
                         'hover:!text-primary-700',
-                        
-                        // Documentation Source: Context7 Tailwind CSS - Light Background Hover States
-                        // Reference: /tailwindlabs/tailwindcss.com - Primary color tint utilities for feedback
-                        // Hover background: Light primary tint matching navigation link behavior
                         'hover:bg-primary-50',
-                        
-                        // Documentation Source: Context7 Tailwind CSS - Focus State for Mobile Accessibility
-                        // Reference: /tailwindlabs/tailwindcss.com - Enhanced focus visibility for touch devices
-                        // Focus background: Darker primary tint for clear focus indication
                         'focus:bg-primary-100'
-                      ].join(' ')
+                      ].join(' ') : [
+                        // Transparent State (Default - when !safeIsScrolled) for non-homepage:
+                        // Applied when navbar is transparent at top of page
+                        !safeIsScrolled && [
+                          // Documentation Source: Context7 MCP - SVG Icon Color Implementation
+                          // Reference: /tailwindlabs/tailwindcss.com - text-* utilities for SVG fill color
+                          // CLIENT REQUIREMENT: Initial state icon must be WHITE
+                          '!text-white',
+                          
+                          // Documentation Source: Context7 Tailwind CSS - Consistent White Icon on Hover
+                          // Reference: /tailwindlabs/tailwindcss.com - Maintaining icon color consistency
+                          // CLIENT REQUIREMENT: Keep white icon white on hover (matches navigation pattern)
+                          'hover:!text-white',
+                          
+                          // Documentation Source: Context7 Tailwind CSS - Semi-transparent Background Hover
+                          // Reference: /tailwindlabs/tailwindcss.com - Background opacity utilities for feedback
+                          // Hover background: Subtle white overlay matching navigation links
+                          'hover:bg-white/10',
+                          
+                          // Documentation Source: Context7 Tailwind CSS - Keyboard Navigation Focus State
+                          // Reference: /tailwindlabs/tailwindcss.com - focus: prefix for accessibility compliance
+                          // Focus background: Enhanced visibility for keyboard users
+                          'focus:bg-white/15'
+                        ].join(' '),
+                        
+                        // Scrolled State (when safeIsScrolled) for non-homepage:
+                        // Applied when navbar becomes opaque after scrolling
+                        safeIsScrolled && [
+                          // Documentation Source: Context7 MCP - Client Brand Color Implementation
+                          // Reference: Tailwind Config - primary-700: '#3f4a7e' (CLIENT BRAND BLUE)
+                          // CLIENT REQUIREMENT: Scrolled state icon must be BLUE (#3F4A7E)
+                          '!text-primary-700',
+                          
+                          // Documentation Source: Context7 Tailwind CSS - Consistent Brand Color on Hover
+                          // Reference: /tailwindlabs/tailwindcss.com - Maintaining brand color consistency
+                          // CLIENT REQUIREMENT: Keep blue icon blue on hover (matches navigation pattern)
+                          'hover:!text-primary-700',
+                          
+                          // Documentation Source: Context7 Tailwind CSS - Light Background Hover States
+                          // Reference: /tailwindlabs/tailwindcss.com - Primary color tint utilities for feedback
+                          // Hover background: Light primary tint matching navigation link behavior
+                          'hover:bg-primary-50',
+                          
+                          // Documentation Source: Context7 Tailwind CSS - Focus State for Mobile Accessibility
+                          // Reference: /tailwindlabs/tailwindcss.com - Enhanced focus visibility for touch devices
+                          // Focus background: Darker primary tint for clear focus indication
+                          'focus:bg-primary-100'
+                        ].join(' ')
+                      ].filter(Boolean).join(' ')
                     )}
                     aria-label="Open mobile navigation menu"
                     aria-expanded={isMobileMenuOpen}

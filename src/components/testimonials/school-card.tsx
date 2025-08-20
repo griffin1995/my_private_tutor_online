@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { m } from 'framer-motion'
 import { ExternalLink, MapPin, Users, Star, Trophy, GraduationCap } from 'lucide-react'
 import { EliteSchool, trackSchoolInteraction } from '@/lib/cms/schools-data'
 
-// CONTEXT7 SOURCE: /reactjs/react.dev - Component Props Interface Definition
-// CONTEXT7 SOURCE: Official React documentation for defining component props using TypeScript interfaces
-// IMPLEMENTATION REASON: Following official React patterns for flexible, reusable component design
+// CONTEXT7 SOURCE: /microsoft/typescript - Enhanced Component Props Interface Definition with touch support
+// CONTEXT7 SOURCE: Official TypeScript documentation for defining component props using interfaces with event handling
+// IMPLEMENTATION REASON: Following TypeScript and React best practices for flexible, touch-enabled component design
 interface SchoolCardProps {
   school: EliteSchool
   displayMode?: 'logo' | 'text' | 'mixed'
@@ -16,8 +16,8 @@ interface SchoolCardProps {
   showMetadata?: boolean
   onCardClick?: (school: EliteSchool) => void
   className?: string
-  // TESTIMONIALS OVERHAUL: Configurable hover statistics display
-  showHoverStats?: boolean  // Default: true
+  // TESTIMONIALS OVERHAUL: Enhanced hover statistics display with mobile touch support
+  showHoverStats?: boolean  // Default: true - supports both hover and touch interactions
 }
 
 // CONTEXT7 SOURCE: /context7/motion_dev - Animation Variants for Sophisticated Card Interactions
@@ -51,9 +51,9 @@ const cardAnimationVariants = {
   }
 }
 
-// CONTEXT7 SOURCE: /context7/motion_dev - Content reveal animations for sophisticated information display
-// CONTEXT7 SOURCE: Official Motion patterns for staggered content animations
-// CONTENT ANIMATION REASON: Professional reveal animations for school information overlay
+// CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced content reveal animations for sophisticated information display
+// CONTEXT7 SOURCE: Official Framer Motion patterns for staggered content animations with touch support
+// CONTENT ANIMATION REASON: Professional reveal animations for school information overlay with mobile compatibility
 const contentVariants = {
   hidden: {
     opacity: 0,
@@ -66,10 +66,10 @@ const contentVariants = {
     scale: 1,
     transition: {
       type: "spring",
-      stiffness: 300,
-      damping: 30,
-      staggerChildren: 0.1,
-      delayChildren: 0.1
+      stiffness: 350,
+      damping: 25,
+      staggerChildren: 0.08,
+      delayChildren: 0.05
     }
   }
 }
@@ -106,6 +106,11 @@ export function SchoolCard({
 }: SchoolCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
+  // CONTEXT7 SOURCE: /facebook/react - Touch event state management for mobile compatibility
+  // CONTEXT7 SOURCE: Official React documentation for useState hook with touch interaction support
+  // ENHANCEMENT REASON: Adding mobile touch support for statistics display with auto-dismiss functionality
+  const [showTouchStats, setShowTouchStats] = useState(false)
+  const touchTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // CONTEXT7 SOURCE: /reactjs/react.dev - useCallback for stable event handlers
   // CONTEXT7 SOURCE: Official React documentation for performance optimization with useCallback
@@ -154,6 +159,48 @@ export function SchoolCard({
     setImageError(true)
   }, [])
 
+  // CONTEXT7 SOURCE: /facebook/react - Touch event handlers for mobile device compatibility
+  // CONTEXT7 SOURCE: Official React documentation for touch event handling patterns
+  // MOBILE ENHANCEMENT REASON: Professional touch support with 2-second auto-dismiss for statistics overlay
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    e.preventDefault()
+    if (!showHoverStats || !showMetadata || !interactive) return
+    
+    setShowTouchStats(true)
+    trackSchoolInteraction({
+      schoolId: school.id,
+      interactionType: 'hover',
+      timestamp: new Date(),
+      category: school.category,
+      metadata: { displayMode, size, interaction: 'touch' }
+    })
+    
+    // Clear existing timeout
+    if (touchTimeoutRef.current) {
+      clearTimeout(touchTimeoutRef.current)
+    }
+    
+    // Set 2-second auto-dismiss timer
+    touchTimeoutRef.current = setTimeout(() => {
+      setShowTouchStats(false)
+    }, 2000)
+  }, [school.id, school.category, displayMode, size, showHoverStats, showMetadata, interactive])
+
+  const handleTouchEnd = useCallback(() => {
+    // Touch end doesn't immediately hide stats - let timeout handle it
+  }, [])
+
+  // CONTEXT7 SOURCE: /facebook/react - useEffect cleanup for timeout management
+  // CONTEXT7 SOURCE: Official React documentation for effect cleanup patterns
+  // CLEANUP REASON: Preventing memory leaks by clearing timeouts on component unmount
+  useEffect(() => {
+    return () => {
+      if (touchTimeoutRef.current) {
+        clearTimeout(touchTimeoutRef.current)
+      }
+    }
+  }, [])
+
   // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Dynamic class composition patterns
   // CONTEXT7 SOURCE: Official Tailwind CSS documentation for responsive design utilities
   // STYLING REASON: Following Tailwind best practices for responsive, professional card design
@@ -189,6 +236,8 @@ export function SchoolCard({
       whileTap={interactive ? "tap" : "initial"}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       onClick={interactive ? handleCardClick : undefined}
     >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Absolute positioning for overlay elements */}
@@ -270,45 +319,78 @@ export function SchoolCard({
         </div>
       </div>
 
-      {/* CONTEXT7 SOURCE: /context7/motion_dev - AnimatePresence for conditional content display */}
-      {/* METADATA OVERLAY REASON: Professional information overlay with sophisticated animations */}
-      {/* TESTIMONIALS OVERHAUL: Conditional rendering based on showHoverStats prop */}
-      {isHovered && showMetadata && interactive && showHoverStats && (
+      {/* CONTEXT7 SOURCE: /grx7/framer-motion - AnimatePresence for conditional content display with touch support */}
+      {/* CONTEXT7 SOURCE: Official Framer Motion documentation for advanced conditional animations */}
+      {/* METADATA OVERLAY REASON: Professional information overlay with sophisticated animations and mobile touch compatibility */}
+      {/* TESTIMONIALS OVERHAUL: Enhanced conditional rendering with both hover and touch state support */}
+      {(isHovered || showTouchStats) && showMetadata && interactive && showHoverStats && (
         <m.div
-          className="absolute inset-x-0 bottom-0 bg-white/95 backdrop-blur-sm border-t border-primary-100 p-3"
+          className="absolute inset-x-0 bottom-0 bg-white/98 backdrop-blur-md border-t border-primary-100 p-3 shadow-lg"
           variants={contentVariants}
           initial="hidden"
           animate="visible"
         >
           <m.div className="space-y-2" variants={itemVariants}>
-            {/* Student Success Count */}
-            {school.studentCount && (
-              <m.div className="flex items-center text-xs text-primary-600" variants={itemVariants}>
-                <Users className="h-3 w-3 mr-1" />
-                <span>{school.studentCount} students placed</span>
-              </m.div>
-            )}
+            {/* Enhanced Statistics Display */}
+            <m.div className="grid grid-cols-2 gap-2 mb-2" variants={itemVariants}>
+              {/* Student Success Count */}
+              {school.studentCount && (
+                <m.div className="flex items-center text-xs text-primary-700 font-medium" variants={itemVariants}>
+                  <Users className="h-3 w-3 mr-1 text-accent-500" />
+                  <span>{school.studentCount} placed</span>
+                </m.div>
+              )}
 
-            {/* Prestige Score */}
+              {/* Success Rate Calculation */}
+              {school.successStories && school.successStories.length > 0 && (
+                <m.div className="flex items-center text-xs text-primary-700 font-medium" variants={itemVariants}>
+                  <Trophy className="h-3 w-3 mr-1 text-accent-500" />
+                  <span>{Math.round((school.successStories.reduce((acc, story) => acc + story.count, 0) / (school.studentCount || 1)) * 100)}% success</span>
+                </m.div>
+              )}
+            </m.div>
+
+            {/* Prestige Score with Visual Indicator */}
             {school.prestigeScore && (
-              <m.div className="flex items-center text-xs text-primary-600" variants={itemVariants}>
-                <Star className="h-3 w-3 mr-1" />
-                <span>Prestige Score: {school.prestigeScore}/100</span>
+              <m.div className="flex items-center justify-between text-xs text-primary-600" variants={itemVariants}>
+                <div className="flex items-center">
+                  <Star className="h-3 w-3 mr-1 text-yellow-500" />
+                  <span>Prestige: {school.prestigeScore}/100</span>
+                </div>
+                <div className="flex-1 mx-2 bg-primary-100 h-1 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-accent-400 to-accent-600 rounded-full transition-all duration-500"
+                    style={{ width: `${school.prestigeScore}%` }}
+                  />
+                </div>
               </m.div>
             )}
 
-            {/* Key Subjects */}
+            {/* Years of Experience */}
+            {school.established && (
+              <m.div className="flex items-center text-xs text-primary-600" variants={itemVariants}>
+                <GraduationCap className="h-3 w-3 mr-1 text-primary-500" />
+                <span>{new Date().getFullYear() - school.established} years heritage</span>
+              </m.div>
+            )}
+
+            {/* Key Subjects with Enhanced Design */}
             {school.specialisms && school.specialisms.length > 0 && (
               <m.div variants={itemVariants}>
                 <div className="flex flex-wrap gap-1 mt-1">
                   {school.specialisms.slice(0, 2).map((specialism, index) => (
                     <span
                       key={index}
-                      className="text-xs px-2 py-0.5 bg-accent-100 text-accent-700 rounded-full"
+                      className="text-xs px-2 py-0.5 bg-gradient-to-r from-accent-100 to-accent-50 text-accent-700 rounded-full border border-accent-200 font-medium"
                     >
                       {specialism}
                     </span>
                   ))}
+                  {school.specialisms.length > 2 && (
+                    <span className="text-xs px-2 py-0.5 bg-primary-100 text-primary-600 rounded-full border border-primary-200 font-medium">
+                      +{school.specialisms.length - 2} more
+                    </span>
+                  )}
                 </div>
               </m.div>
             )}

@@ -195,8 +195,9 @@ export default function HomePage() {
               <div className="relative overflow-hidden rounded-lg border-2 border-gray-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl">
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with proper width, height and alt for accessibility */}
                 {/* IMAGE OPTIMIZATION REASON: Official Next.js documentation requires explicit dimensions for local images */}
+                {/* BIZSTIM FORM UPDATE: Updated to use new bizstim-form-preview.png as per homepage CMS configuration */}
                 <img
-                  src="/images/graphics/enquiry-form-screenshot-footer.png"
+                  src="/images/graphics/bizstim-form-preview.png"
                   alt="Screenshot of My Private Tutor Online enquiry form on Bizstim platform showing student details form with fields for first name, last name, email and phone number"
                   className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"

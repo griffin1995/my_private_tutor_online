@@ -30,11 +30,12 @@
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
 // BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
 import React from 'react';
-import { PageHero } from "@/components/layout/page-hero";
+import { SimpleHero } from "@/components/layout/simple-hero";
 import { PageLayout } from "@/components/layout/page-layout";
 import { Section } from "@/components/layout/section";
 import { VideoThumbnailMidCard } from "@/components/marketing/video-thumbnail-mid-card";
 import { VideoThumbnailTopCard } from "@/components/marketing/video-thumbnail-top-card";
+import { useVideoGridNavigation } from "@/hooks/use-video-grid-navigation";
 import { getMasterclassVideo } from "@/lib/cms/cms-images";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -187,6 +188,17 @@ export default function VideoMasterclassesPage() {
   const [isVideoOpen, setIsVideoOpen] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   
+  // CONTEXT7 SOURCE: /w3c/wcag - Video grid navigation for accessibility
+  // KEYBOARD NAVIGATION REASON: Official WCAG documentation recommends keyboard navigation for grid-based content
+  const { handleKeyNavigation } = useVideoGridNavigation({
+    gridCols: 2, // Two columns in grid layout
+    totalItems: 8, // Total number of video cards across all sections
+    enableNavigation: true,
+    onNavigate: (fromIndex, toIndex, direction) => {
+      console.log(`Navigated from item ${fromIndex} to ${toIndex} via ${direction}`)
+    }
+  })
+  
   // CONTEXT7 SOURCE: /reactjs/react.dev - Video modal handler functions
   // MODAL CONTROL REASON: Official React documentation recommends separate functions for open/close actions
   const handleVideoOpen = () => {
@@ -232,62 +244,57 @@ export default function VideoMasterclassesPage() {
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
     <>
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for hero background images */}
-      {/* HERO ENHANCEMENT REASON: Official Next.js Image component documentation recommends optimized background images for premium performance */}
-      <PageHero
-        background="image"
+      {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
+      {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      <SimpleHero
         backgroundImage="/images/hero/hero-video-masterclasses.jpg"
-        size="full"
-        overlay={true}
-        overlayOpacity="dark"
-      >
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive grid layout patterns for two-column hero design */}
-        {/* TWO-COLUMN LAYOUT REASON: Official Tailwind CSS documentation recommends grid grid-cols-1 lg:grid-cols-2 for responsive column layouts */}
-        {/* RESPONSIVE HERO IMPLEMENTATION: Mobile-first approach stacking on small screens, side-by-side on desktop */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for white text on dark backgrounds */}
-        {/* HERO STYLING ENHANCEMENT: Updated hero text colors to white for optimal contrast with background image overlay */}
-        {/* TEXT COLOR FIX REASON: Official Tailwind CSS documentation recommends text-white for maximum contrast on dark overlay backgrounds */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container overflow protection and responsive constraints */}
-        {/* OVERFLOW PROTECTION REASON: Official Tailwind CSS documentation recommends @container with overflow-hidden to prevent content clipping and ensure proper content fitting */}
-        <div className="@container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center text-white overflow-hidden">
-            {/* Left Column - Headings */}
-            <div className="text-center lg:text-left @lg:max-w-lg">
-              <h1 className="text-3xl sm:text-4xl @lg:text-4xl @xl:text-5xl font-serif font-bold leading-tight mb-6 text-white break-words">
-                {videoMasterclassesContent.hero.title}
-              </h1>
-              <h2 className="text-lg @lg:text-xl @xl:text-2xl font-semibold text-white break-words">
-                {videoMasterclassesContent.hero.subtitle} (trying to find optimal styling for all hero sections still, ignore text size etc in hero section)
-              </h2>
-            </div>
-
-            {/* Right Column - Descriptive Text */}
-            <div className="text-center lg:text-left @lg:max-w-lg">
-              <div className="text-base @lg:text-lg leading-relaxed text-white/90">
-                {/* CONTEXT7 SOURCE: /websites/react_dev-learn - JSX text rendering with proper paragraph breaks */}
-                {/* PARAGRAPH FORMATTING REASON: Official React documentation recommends splitting text with \n into separate paragraph elements for proper semantic structure */}
-                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Break-words utility for overflow protection */}
-                {/* TEXT OVERFLOW PROTECTION REASON: Official Tailwind CSS documentation recommends break-words to prevent text overflow and ensure proper wrapping within containers */}
-                {videoMasterclassesContent.hero.description.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className={`break-words ${index > 0 ? "mt-4 @lg:mt-6" : ""}`}>
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </PageHero>
+        h1="Video Masterclasses & Educational Content"
+        h2="Learn Online"
+        decorativeStyle="lines"
+      />
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Layout component with navigation header for consistent site structure */}
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Intro section implementation using exact ROW 1 structure from About page FounderStorySection */}
+        {/* TASK 1 IMPLEMENTATION: Official Framer Motion documentation patterns for viewport-triggered animations with exact About page ROW 1 layout */}
+        {/* Elizabeth Introduction Section - After Hero (section 2) and before Featured Masterclasses (section 4) */}
+        <Section id="section-2" background="white" className="py-8 lg:py-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Centered text container with 50-70% width following About page exact structure */}
+            {/* LAYOUT CONSISTENCY REASON: Official Tailwind CSS documentation Section 2.3 recommends consistent container patterns across pages */}
+            <div className="max-w-2xl mx-auto text-center mb-10">
+              <m.h1
+                className="text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-primary-900 mb-3 leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+              >
+                Join Elizabeth Burrows, Trusted Educational Expert
+              </m.h1>
+
+              {/* CONTEXT7 SOURCE: /grx7/framer-motion - Content implementation with provided copy and exact About page animation patterns */}
+              {/* COPY SOURCE: User-provided exact copy for intro section implementation */}
+              <m.p
+                className="text-lg lg:text-xl text-primary-700 leading-relaxed max-w-xl mx-auto"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over 15 years of international education experience. These masterclasses, drawn from her live seminars, offer rare access to the knowledge and strategies typically reserved for her private clients. These sessions bridge the gap between international education and the expectations of British schools and universities. Access on demand, from anywhere in the world.
+              </m.p>
+            </div>
+          </div>
+        </Section>
+
         {/* Featured Masterclasses - moved example section to bottom */}
 
         {/* Featured Masterclasses */}
-        <Section id="section-3" background="slate" className="py-20 relative">
+        <Section id="section-4" background="slate" className="py-20 relative">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for professional scroll animations */}
             {/* FEATURED SECTION HEADER: Official Framer Motion documentation recommends whileInView for scroll-triggered animations in section headers */}
@@ -335,6 +342,9 @@ export default function VideoMasterclassesPage() {
                   onCTAClick={handleVideoOpen}
                   videoUrl={getMasterclassVideo('unlockingAcademicSuccess').videoUrl}
                   thumbnailUrl="/images/masterclass-thumbnails/unlocking-success.png"
+                  enableLazyLoading={true}
+                  gridIndex={0}
+                  onKeyNavigation={handleKeyNavigation}
                 />
               </m.div>
 
@@ -370,6 +380,9 @@ export default function VideoMasterclassesPage() {
                   }}
                   thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
                   paymentUrl="#"
+                  enableLazyLoading={true}
+                  gridIndex={1}
+                  onKeyNavigation={handleKeyNavigation}
                 />
               </m.div>
             </div>
@@ -377,7 +390,7 @@ export default function VideoMasterclassesPage() {
         </Section>
 
         {/* Free Resources Section */}
-        <Section id="section-2" background="white" className="py-20 relative">
+        <Section id="section-3" background="white" className="py-20 relative">
           <div className="absolute inset-0 bg-blue-50 opacity-60" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for professional scroll animations */}
@@ -439,17 +452,16 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailMidCard component with same video modal functionality */}
-                {/* UCAS SUMMIT IMPLEMENTATION: Using VideoThumbnailMidCard with same video content for free resources grouping */}
-                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Image path optimization for masterclass thumbnails */}
-                {/* IMAGE UPDATE REASON: Official Tailwind CSS documentation recommends specific image asset management for component thumbnails */}
+                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailMidCard component with proper video CMS connection */}
+                {/* TASK 2 FIX: Official Framer Motion documentation - Connected to proper ucasSummit2024 video instead of wrong video */}
+                {/* CMS DATA SOURCE: Using getMasterclassVideo('ucasSummit2024') for proper video asset management */}
                 <VideoThumbnailMidCard
-                  title="UCAS Summit 2024"
-                  description="Complete recording from Elizabeth's presentation at the UCAS Summit, including audience Q&A and additional insights for parents navigating the tutoring landscape."
+                  title={getMasterclassVideo('ucasSummit2024').title}
+                  description={getMasterclassVideo('ucasSummit2024').description}
                   variant="standard"
                   popular={false}
                   priceRange="Free Access"
-                  duration={`${getMasterclassVideo('unlockingAcademicSuccess').duration} minutes`}
+                  duration={`${getMasterclassVideo('ucasSummit2024').duration} minutes`}
                   features={[
                     { feature: "Complete UCAS Summit 2024 presentation" },
                     { feature: "Live audience Q&A session included" },
@@ -459,8 +471,8 @@ export default function VideoMasterclassesPage() {
                   ctaText="Watch Summit Recording"
                   ctaLink="#summit-recording"
                   onCTAClick={handleVideoOpen}
-                  videoUrl={getMasterclassVideo('unlockingAcademicSuccess').videoUrl}
-                  thumbnailUrl="/images/masterclass-thumbnails/gcse-summit.png"
+                  videoUrl={getMasterclassVideo('ucasSummit2024').videoUrl}
+                  thumbnailUrl={getMasterclassVideo('ucasSummit2024').thumbnailUrl}
                 />
               </m.div>
             </div>
@@ -504,12 +516,12 @@ export default function VideoMasterclassesPage() {
                 {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailMidCard component for UCAS masterclass content delivery at LSE */}
                 {/* UCAS PART 1 IMPLEMENTATION: Elizabeth's expertise delivered at London School of Economics with 90-minute seminar format */}
                 <VideoThumbnailMidCard
-                  title="Demystifying UCAS: A Clear Path to UK University Success"
-                  description="Widely recognised for her expertise in the British university admissions process, Elizabeth was invited to speak to international summer school students at LSE. In her session, she demystifies each stage of the UCAS application, offering clear, practical guidance to help students approach the process with confidence. This 90-minute seminar draws on Elizabeth's 15 years of experience, blending expert guidance, practical strategies, and real-world anecdotes to equip students for a successful UCAS application."
+                  title={getMasterclassVideo('elizabethsUcasGuide').title}
+                  description={getMasterclassVideo('elizabethsUcasGuide').description}
                   variant="premium"
                   popular={true}
-                  priceRange="£49.99"
-                  duration="90 minutes"
+                  priceRange={getMasterclassVideo('elizabethsUcasGuide').price}
+                  duration={`${getMasterclassVideo('elizabethsUcasGuide').duration} minutes`}
                   features={[
                     { feature: "Complete UCAS application timeline breakdown" },
                     { feature: "University selection strategies for international students" },
@@ -520,8 +532,8 @@ export default function VideoMasterclassesPage() {
                   ]}
                   ctaText="Purchase Masterclass"
                   ctaLink="#ucas-part-1-purchase"
-                  thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
-                  paymentUrl="#ucas-part-1-payment"
+                  thumbnailUrl={getMasterclassVideo('elizabethsUcasGuide').thumbnailUrl}
+                  paymentUrl={getMasterclassVideo('elizabethsUcasGuide').paymentUrl}
                 />
               </m.div>
 
@@ -535,12 +547,12 @@ export default function VideoMasterclassesPage() {
                 {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailMidCard component with Elizabeth's Oxbridge expertise and LSE delivery */}
                 {/* PERSONAL STATEMENTS IMPLEMENTATION: Elizabeth's proven track record with Oxbridge success and new UCAS format relevance */}
                 <VideoThumbnailMidCard
-                  title="Elizabeth's Top 10 Tips for Outstanding Personal Statements"
-                  description="Elizabeth is renowned for her success in guiding ambitious students into Oxbridge (she was offered a place at Cambridge herself) and top UK universities. Each year her private students secure places at the best British universities, including UCL, LSE, Imperial and Edinburgh. In this masterclass she reveals the 10 ingredients in her secret recipe for personal statement success. In this 70-minute masterclass, Elizabeth shares insider strategies and expert insights you won't find anywhere else. You'll also gain rare access to a Medicine personal statement that helped a student win a place at the University of Oxford. This masterclass is relevant for students applying from 2025 onwards via the new UCAS personal statement format, which requires applicants to respond to three structured questions."
+                  title={getMasterclassVideo('personalStatementsGuide').title}
+                  description={getMasterclassVideo('personalStatementsGuide').description}
                   variant="premium"
                   popular={false}
-                  priceRange="£89.99"
-                  duration="70 minutes"
+                  priceRange={getMasterclassVideo('personalStatementsGuide').price}
+                  duration={`${getMasterclassVideo('personalStatementsGuide').duration} minutes`}
                   features={[
                     { feature: "Elizabeth's secret 10-ingredient personal statement recipe" },
                     { feature: "Real Oxford Medicine personal statement case study" },
@@ -551,8 +563,8 @@ export default function VideoMasterclassesPage() {
                   ]}
                   ctaText="Purchase Masterclass"
                   ctaLink="#personal-statements-purchase"
-                  thumbnailUrl="/images/masterclass-thumbnails/top-10-tips.png"
-                  paymentUrl="#personal-statements-payment"
+                  thumbnailUrl={getMasterclassVideo('personalStatementsGuide').thumbnailUrl}
+                  paymentUrl={getMasterclassVideo('personalStatementsGuide').paymentUrl}
                 />
               </m.div>
             </div>
@@ -597,12 +609,12 @@ export default function VideoMasterclassesPage() {
                 {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailMidCard component with literary classics for young readers aged 8-14 */}
                 {/* LITERARY CLASSICS IMPLEMENTATION: Curious and aspiring readers masterclass with Mandarin subtitles and 60-minute format */}
                 <VideoThumbnailMidCard
-                  title="A Masterclass for Curious and Aspiring Readers (Ages 8–14)"
-                  description="From Wind in the Willows to The Lord of the Rings, this engaging masterclass introduces students to some of the most celebrated works in British literature. Led by Elizabeth Burrows, English Literature graduate and Founder of My Private Tutor Online, this session was originally delivered to an international audience and explores what defines a literary classic, key British literary genres, and the conventions and themes that shape them."
+                  title={getMasterclassVideo('britishLiteraryClassics').title}
+                  description={getMasterclassVideo('britishLiteraryClassics').description}
                   variant="standard"
                   popular={false}
-                  priceRange="£19.99"
-                  duration="60 minutes"
+                  priceRange={getMasterclassVideo('britishLiteraryClassics').price}
+                  duration={`${getMasterclassVideo('britishLiteraryClassics').duration} minutes`}
                   features={[
                     { feature: "What defines a literary classic explored" },
                     { feature: "Key British literary genres and conventions" },
@@ -613,8 +625,8 @@ export default function VideoMasterclassesPage() {
                   ]}
                   ctaText="Purchase Masterclass"
                   ctaLink="#literary-classics-purchase"
-                  thumbnailUrl="/images/masterclass-thumbnails/british-literary-classics.png"
-                  paymentUrl="#literary-classics-payment"
+                  thumbnailUrl={getMasterclassVideo('britishLiteraryClassics').thumbnailUrl}
+                  paymentUrl={getMasterclassVideo('britishLiteraryClassics').paymentUrl}
                 />
               </m.div>
 
@@ -628,12 +640,12 @@ export default function VideoMasterclassesPage() {
                 {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailMidCard component with Elizabeth's royal and high-profile family experience */}
                 {/* ETIQUETTE IMPLEMENTATION: 60-minute recorded masterclass with Mandarin subtitles and practical guidance from royal experience */}
                 <VideoThumbnailMidCard
-                  title="Understanding British Etiquette"
-                  description="Join our Founder, Elizabeth Burrows, for this engaging and insightful masterclass on British etiquette. Drawing on her experience working with royalty and high-profile international families, Elizabeth demystifies the social codes that shape life in the UK's most prestigious schools and institutions. What is etiquette? Why does it matter? And how can you improve your own presentation and confidence in formal settings? Elizabeth answers all this and more—offering practical guidance in a warm, approachable style."
+                  title={getMasterclassVideo('britishEtiquette').title}
+                  description={getMasterclassVideo('britishEtiquette').description}
                   variant="standard"
                   popular={false}
-                  priceRange="£19.99"
-                  duration="60 minutes"
+                  priceRange={getMasterclassVideo('britishEtiquette').price}
+                  duration={`${getMasterclassVideo('britishEtiquette').duration} minutes`}
                   features={[
                     { feature: "Greetings, introductions, and dining etiquette mastery" },
                     { feature: "Cross-cultural etiquette understanding and adaptation" },
@@ -644,8 +656,8 @@ export default function VideoMasterclassesPage() {
                   ]}
                   ctaText="Purchase Masterclass"
                   ctaLink="#british-etiquette-purchase"
-                  thumbnailUrl="/images/masterclass-thumbnails/british-etiquette.jpg"
-                  paymentUrl="#british-etiquette-payment"
+                  thumbnailUrl={getMasterclassVideo('britishEtiquette').thumbnailUrl}
+                  paymentUrl={getMasterclassVideo('britishEtiquette').paymentUrl}
                 />
               </m.div>
             </div>
