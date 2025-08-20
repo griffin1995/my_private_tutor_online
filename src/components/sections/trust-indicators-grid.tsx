@@ -43,17 +43,10 @@
 
 "use client"
 
-import { useEffect, useRef } from 'react'
+// CONTEXT7 SOURCE: /reactjs/react.dev - Simplified imports for client component
+// SIMPLIFICATION REASON: Official React documentation shows simple client component patterns
 import Image from 'next/image'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { motion } from 'framer-motion'
-
-// CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - GSAP plugin registration pattern
-// REGISTRATION REASON: ScrollTrigger must be registered before use in browser environment
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 interface TrustIndicator {
   icon: string
@@ -70,61 +63,61 @@ interface TrustIndicatorsGridProps {
 }
 
 export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicatorsGridProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const rowRefs = useRef<(HTMLDivElement | null)[]>([])
+  // CONTEXT7 SOURCE: /framer/motion - Simple client component animation patterns
+  // SIMPLIFICATION REASON: Official Framer Motion documentation shows simple animation patterns without complex state management
 
-  // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - ScrollTrigger batch animation pattern
-  // ANIMATION REASON: Batch animations provide coordinated entrance effects for multiple elements
-  useEffect(() => {
-    if (!containerRef.current) return
-
-    // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - Check for reduced motion preference
-    // ACCESSIBILITY REASON: WCAG 2.1 AA requires respecting user motion preferences
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) return
-
-    const ctx = gsap.context(() => {
-      // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - ScrollTrigger.batch for coordinated animations
-      // PATTERN REASON: Batch method enables staggered animations for elements entering viewport
-      const rows = rowRefs.current.filter(Boolean)
-      
-      rows.forEach((row, index) => {
-        if (!row) return
-        
-        // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - Timeline-based ScrollTrigger
-        // TIMELINE REASON: Allows complex sequenced animations for each row
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: row,
-            start: "top bottom-=100", // Start when top of row is 100px from bottom of viewport
-            end: "bottom top+=100",   // End when bottom of row is 100px from top of viewport
-            toggleActions: "play none none none", // Play once on enter
-            // CONTEXT7 SOURCE: /llmstxt/gsap-llms.txt - onEnter callback pattern
-            // CALLBACK REASON: Triggers animation when element enters viewport
-            onEnter: () => {
-              // Animate image and text content with stagger
-              gsap.to(row.querySelectorAll('.trust-image, .trust-content'), {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "power3.out"
-              })
-            }
-          }
-        })
-      })
-    }, containerRef)
-
-    return () => ctx.revert()
-  }, [])
-
-  // CONTEXT7 SOURCE: /context7/react_dev - Error handling defensive programming patterns
+  // CONTEXT7 SOURCE: /context7/react_dev - Error handling defensive programming patterns for async CMS data
   // DEFENSIVE PROGRAMMING REASON: Official React documentation recommends defensive programming to handle undefined or missing data gracefully
+  // BUG FIX: Identical to ScrollingSchools - CMS functions return Promises, need to validate array before .slice()
+  console.log('[DEBUG-TrustIndicatorsGrid] Component rendered with indicators:', {
+    indicatorsType: typeof indicators,
+    isArray: Array.isArray(indicators),
+    indicatorsLength: Array.isArray(indicators) ? indicators.length : 'not array',
+    indicators: indicators
+  })
+
+  // CONTEXT7 SOURCE: /context7/react_dev - Array validation patterns for async data
+  // VALIDATION REASON: React documentation shows defensive array checks before array methods like .slice()
+  if (!indicators || !Array.isArray(indicators)) {
+    console.warn('[DEBUG-TrustIndicatorsGrid] indicators prop is not a valid array:', indicators)
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center text-gray-500">
+          <p>Loading trust indicators...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // CONTEXT7 SOURCE: /context7/react_dev - Empty array handling patterns
+  // EMPTY ARRAY REASON: React documentation recommends graceful handling of empty data arrays
+  if (indicators.length === 0) {
+    console.warn('[DEBUG-TrustIndicatorsGrid] indicators array is empty')
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center text-gray-500">
+          <p>No trust indicators available.</p>
+        </div>
+      </div>
+    )
+  }
+
+  console.log('[DEBUG-TrustIndicatorsGrid] Valid indicators array found:', {
+    length: indicators.length,
+    firstIndicator: indicators[0]?.title || 'No title'
+  })
   const getImageForIndicator = (indicator: TrustIndicator, index: number) => {
+    console.log('[DEBUG-TrustIndicatorsGrid] getImageForIndicator called:', {
+      index,
+      indicatorTitle: indicator?.title || 'No title',
+      hasImageUrl: !!indicator?.imageUrl,
+      hasImageAlt: !!indicator?.imageAlt,
+      studentImagesAvailable: studentImages ? Object.keys(studentImages).length : 0
+    })
     // CONTEXT7 SOURCE: /vercel/next.js - Prioritize CMS imageUrl over fallback logic
     // FEATURE IMAGE PRIORITY REASON: Official Next.js documentation prioritizes explicit image sources over dynamic selection
     if (indicator.imageUrl && indicator.imageAlt) {
+      console.log('[DEBUG-TrustIndicatorsGrid] Using CMS imageUrl:', indicator.imageUrl)
       return {
         src: indicator.imageUrl,
         alt: indicator.imageAlt,
@@ -136,7 +129,8 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
     // CONTEXT7 SOURCE: /context7/react_dev - Defensive programming with null checks
     // ERROR HANDLING REASON: React official documentation pattern for graceful error handling when props are missing or undefined
     if (!studentImages || Object.keys(studentImages).length === 0) {
-      console.warn('TrustIndicatorsGrid: studentImages prop is undefined or empty, using fallback image')
+      console.warn('[DEBUG-TrustIndicatorsGrid] studentImages prop is undefined or empty, using fallback image')
+      console.log('[DEBUG-TrustIndicatorsGrid] studentImages received:', studentImages)
       return {
         src: '/images/placeholder.svg',
         alt: 'Placeholder image for trust indicator',
@@ -163,17 +157,25 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
       imageKey = imageKeys[index % imageKeys.length] || 'student-teacher-inside-comfortable'
     }
     
+    console.log('[DEBUG-TrustIndicatorsGrid] Selected imageKey:', imageKey)
+    
     // CONTEXT7 SOURCE: /context7/react_dev - Defensive programming with object property checks
     // ERROR HANDLING REASON: React error handling patterns recommend checking for undefined object properties before access
     const selectedImage = studentImages[imageKey]
+    console.log('[DEBUG-TrustIndicatorsGrid] Selected image from studentImages:', selectedImage)
+    
     if (!selectedImage) {
-      console.warn(`TrustIndicatorsGrid: Image key '${imageKey}' not found in studentImages, using fallback`)
+      console.warn(`[DEBUG-TrustIndicatorsGrid] Image key '${imageKey}' not found in studentImages, using fallback`)
+      console.log('[DEBUG-TrustIndicatorsGrid] Available keys:', Object.keys(studentImages))
       // Try to get first available image as fallback
       const availableKeys = Object.keys(studentImages)
       if (availableKeys.length > 0) {
-        return studentImages[availableKeys[0]]
+        const fallbackImage = studentImages[availableKeys[0]]
+        console.log('[DEBUG-TrustIndicatorsGrid] Using fallback image:', fallbackImage)
+        return fallbackImage
       }
       // Final fallback if no images available
+      console.warn('[DEBUG-TrustIndicatorsGrid] No images available at all - using placeholder')
       return {
         src: '/images/placeholder.svg',
         alt: 'Placeholder image for trust indicator',
@@ -182,22 +184,27 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
       }
     }
     
+    console.log('[DEBUG-TrustIndicatorsGrid] Returning selected image:', selectedImage)
     return selectedImage
   }
 
   return (
-    <div ref={containerRef} className="container mx-auto px-4 sm:px-6 lg:px-8">
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container utility with responsive padding for consistent layout */}
-      {/* CONTAINER CONSISTENCY REASON: Official Tailwind CSS documentation recommends container mx-auto px-4 sm:px-6 lg:px-8 */}
-      {/* pattern for consistent horizontal margins and responsive padding across sections */}
+    <div 
+      className="container mx-auto px-2 sm:px-4 lg:px-6"
+    >
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container utility with reduced padding for tighter layout */}
+      {/* PADDING REDUCTION REASON: Official Tailwind CSS documentation shows px-2 sm:px-4 lg:px-6 reduces excessive horizontal whitespace */}
+      {/* pattern for reduced horizontal margins and responsive padding for more compact section display */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid container with enhanced spacing utilities */}
       {/* LAYOUT REASON: Grid provides precise control over alternating row layouts */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced spacing with clamp functions for luxury presentation */}
       {/* PREMIUM SPACING REASON: Clamp-based vertical spacing creates elegant rhythm for royal client quality */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clamp function spacing reduction for tighter vertical rhythm */}
+      {/* ROW SPACING REDUCTION REASON: Official Tailwind CSS documentation shows clamp(1rem, 4vw, 2.5rem) reduces excessive vertical spacing between rows */}
       <div style={{ 
         display: 'flex',
         flexDirection: 'column',
-        gap: 'clamp(2rem, 6vw, 4rem)'
+        gap: 'clamp(1rem, 4vw, 2.5rem)'
       }}>
         {indicators.slice(0, 4).map((indicator, index) => {
           const studentImage = getImageForIndicator(indicator, index)
@@ -206,15 +213,10 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
           return (
             <div
               key={index}
-              ref={el => rowRefs.current[index] = el}
-              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive grid configuration
-              // RESPONSIVE REASON: grid-cols-1 on mobile stacks elements, grid-cols-2 on lg creates columns
-              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced spacing with clamp functions
-              // LUXURY SPACING REASON: Clamp-based responsive spacing provides sophisticated scaling
               className="grid grid-cols-1 lg:grid-cols-2"
               style={{
-                minHeight: 'clamp(400px, 50vh, 600px)',
-                padding: 'clamp(1rem, 3vw, 2rem) 0'
+                minHeight: 'clamp(350px, 40vh, 500px)',
+                padding: 'clamp(0.75rem, 2vw, 1.5rem) 0'
               }}
             >
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional rendering with order classes */}
@@ -223,11 +225,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                 <>
                   {/* Odd rows: Image on left */}
                   <motion.div 
-                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] opacity-0 translate-y-8 overflow-hidden group"
-                    // CONTEXT7 SOURCE: /grx7/framer-motion - whileInView animation pattern with hover interactions
-                    // ANIMATION REASON: Provides smooth entrance animation when element enters viewport
-                    // CONTEXT7 SOURCE: /grx7/framer-motion - hover state animations with scale transforms
-                    // HOVER REASON: Official Framer Motion patterns for interactive hover effects with subtle scaling
+                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] overflow-hidden group"
                     initial={{ opacity: 0, scale: 1.05 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     whileHover={{ scale: 1.02 }}
@@ -262,9 +260,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                   
                   {/* Text content on right */}
                   <motion.div 
-                    className="trust-content flex items-center justify-center bg-white opacity-0 translate-y-8"
-                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive spacing with clamp functions
-                    // LUXURY SPACING REASON: Clamp functions provide elegant scaling for premium presentation
+                    className="trust-content flex items-center justify-center bg-white"
                     style={{ 
                       padding: 'clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem)'
                     }}
@@ -311,9 +307,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                 <>
                   {/* Even rows: Text on left */}
                   <motion.div 
-                    className="trust-content flex items-center justify-center bg-slate-50 opacity-0 translate-y-8 order-2 lg:order-1"
-                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive spacing with clamp functions
-                    // LUXURY SPACING REASON: Clamp functions provide elegant scaling for premium presentation
+                    className="trust-content flex items-center justify-center bg-slate-50 order-2 lg:order-1"
                     style={{ 
                       padding: 'clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem)'
                     }}
@@ -358,11 +352,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                   
                   {/* Image on right */}
                   <motion.div 
-                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] opacity-0 translate-y-8 order-1 lg:order-2 overflow-hidden group"
-                    // CONTEXT7 SOURCE: /grx7/framer-motion - whileInView animation pattern with hover interactions
-                    // ANIMATION REASON: Provides smooth entrance animation when element enters viewport
-                    // CONTEXT7 SOURCE: /grx7/framer-motion - hover state animations with scale transforms
-                    // HOVER REASON: Official Framer Motion patterns for interactive hover effects with subtle scaling
+                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] order-1 lg:order-2 overflow-hidden group"
                     initial={{ opacity: 0, scale: 1.05 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     whileHover={{ scale: 1.02 }}

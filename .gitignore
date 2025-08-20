@@ -157,13 +157,22 @@ cython_debug/
 *.db
 *.sqlite3
 
-# Media files (large assets)
+# Media files (large assets) - exclude uncompressed files
 *.mp4
+!*compressed*.mp4
+!*compressed*.webm
 *.mov
 *.avi
 *.mkv
 *.webm
+!*compressed*.webm
 *.m4v
+
+# Specific large files to exclude
+introduction-video-with-sound.mp4
+**/videos/temp/
+**/videos/originals/
+**/videos/uncompressed/
 
 # Backup files
 *.bak

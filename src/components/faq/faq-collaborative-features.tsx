@@ -28,7 +28,7 @@
 
 import React from 'react'
 import { m, AnimatePresence } from 'framer-motion'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -276,6 +276,7 @@ export function FAQCollaborativeFeatures({
     handleSubmit,
     reset,
     watch,
+    control,
     formState: { errors, isSubmitting }
   } = useForm<SuggestionFormData>({
     defaultValues: {
@@ -531,23 +532,27 @@ export function FAQCollaborativeFeatures({
                         <label className="block text-sm font-semibold text-slate-700 mb-2">
                           Category *
                         </label>
-                        <Select
-                          {...register('category', { required: 'Please select a category' })}
-                          onValueChange={(value) => register('category').onChange({ target: { value } })}
-                        >
-                          <SelectTrigger className={`w-full rounded-xl border-2 p-4 ${
-                            errors.category ? 'border-red-300' : 'border-slate-200'
-                          }`}>
-                            <SelectValue placeholder="Choose the most relevant category" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {categories.map(category => (
-                              <SelectItem key={category} value={category}>
-                                {category.charAt(0).toUpperCase() + category.slice(1)}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <Controller
+                          name="category"
+                          control={control}
+                          rules={{ required: 'Please select a category' }}
+                          render={({ field }) => (
+                            <Select value={field.value} onValueChange={field.onChange}>
+                              <SelectTrigger className={`w-full rounded-xl border-2 p-4 ${
+                                errors.category ? 'border-red-300' : 'border-slate-200'
+                              }`}>
+                                <SelectValue placeholder="Choose the most relevant category" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {categories.map(category => (
+                                  <SelectItem key={category} value={category}>
+                                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          )}
+                        />
                         {errors.category && (
                           <p className="mt-2 text-sm text-red-600">{errors.category.message}</p>
                         )}
@@ -659,7 +664,7 @@ export function FAQCollaborativeFeatures({
                       </SelectContent>
                     </Select>
                     
-                    <Select value={sortBy} onValueChange={setSortBy}>
+                    <Select value={sortBy} onValueChange={(value) => setSortBy(value as 'newest' | 'votes' | 'helpful')}>
                       <SelectTrigger className="w-48">
                         <SelectValue />
                       </SelectTrigger>
@@ -675,7 +680,7 @@ export function FAQCollaborativeFeatures({
                     <Checkbox
                       id="show-anonymous"
                       checked={showAnonymous}
-                      onCheckedChange={setShowAnonymous}
+                      onCheckedChange={(checked) => setShowAnonymous(checked === true)}
                     />
                     <label htmlFor="show-anonymous" className="text-sm font-medium text-slate-700">
                       Show Anonymous

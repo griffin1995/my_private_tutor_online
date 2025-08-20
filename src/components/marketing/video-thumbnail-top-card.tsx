@@ -26,6 +26,12 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import { useInView } from 'react-intersection-observer'
+import { useState, useCallback, useRef, useEffect } from 'react'
+import '@/styles/video-focus-styles.css'
+
+// CONTEXT7 SOURCE: /thebuilder/react-intersection-observer - Intersection Observer for lazy loading and performance optimization
+// PERFORMANCE ENHANCEMENT: Official react-intersection-observer documentation recommends triggerOnce and rootMargin for optimal video thumbnail loading
 
 // CMS DATA SOURCE: Service data will be provided via props from CMS
 
@@ -51,6 +57,11 @@ interface VideoThumbnailTopCardProps {
   thumbnailUrl: string // Required for this component
   videoUrl?: string
   paymentUrl?: string
+  // CONTEXT7 SOURCE: /thebuilder/react-intersection-observer - Performance optimization props
+  // LAZY LOADING FEATURE: Official documentation recommends optional loading configuration for video thumbnails
+  enableLazyLoading?: boolean
+  gridIndex?: number // For keyboard navigation
+  onKeyNavigation?: (direction: 'left' | 'right' | 'up' | 'down', currentIndex: number) => void
 }
 
 export function VideoThumbnailTopCard({
@@ -67,8 +78,50 @@ export function VideoThumbnailTopCard({
   onCTAClick,
   thumbnailUrl,
   videoUrl,
-  paymentUrl
+  paymentUrl,
+  enableLazyLoading = true,
+  gridIndex,
+  onKeyNavigation
 }: VideoThumbnailTopCardProps) {
+
+  // CONTEXT7 SOURCE: /thebuilder/react-intersection-observer - useInView hook for performance optimization
+  // LAZY LOADING IMPLEMENTATION: Official documentation recommends triggerOnce and rootMargin for video thumbnails
+  const { ref: intersectionRef, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: '200px 0px',
+    skip: !enableLazyLoading
+  })
+
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useState for loading state management
+  // LOADING STATE REASON: Official React documentation recommends loading states for better user experience
+  const [isImageLoaded, setIsImageLoaded] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useRef for keyboard navigation focus management
+  // FOCUS MANAGEMENT REASON: Official React documentation recommends useRef for programmatic focus control
+  const cardRef = useRef<HTMLDivElement>(null)
+  
+  // CONTEXT7 SOURCE: /w3c/wcag - Focus management for keyboard navigation
+  // FOCUS ENHANCEMENT: Official WCAG documentation recommends programmatic focus for accessibility
+  useEffect(() => {
+    if (cardRef.current && gridIndex !== undefined) {
+      const handleFocus = () => {
+        cardRef.current?.setAttribute('data-navigation-focus', 'true')
+      }
+      
+      const handleBlur = () => {
+        cardRef.current?.setAttribute('data-navigation-focus', 'false')
+      }
+      
+      cardRef.current.addEventListener('focus', handleFocus)
+      cardRef.current.addEventListener('blur', handleBlur)
+      
+      return () => {
+        cardRef.current?.removeEventListener('focus', handleFocus)
+        cardRef.current?.removeEventListener('blur', handleBlur)
+      }
+    }
+  }, [gridIndex])
 
   const containerClasses = {
     standard: 'bg-white rounded-2xl shadow-md hover:shadow-lg border border-primary-100 overflow-hidden group transition-all duration-300 h-full flex flex-col',
@@ -117,48 +170,134 @@ export function VideoThumbnailTopCard({
   // CONTEXT7 SOURCE: /lucide-icons/lucide - Play and CreditCard icons for video thumbnail functionality
   // VIDEO BUTTON LOGIC: Official Lucide documentation recommends semantic icon usage for user actions
   const isVideoFree = Boolean(videoUrl && !paymentUrl)
-  const handleVideoClick = () => {
-    if (isVideoFree && videoUrl) {
-      // Handle free video playbook
-      window.open(videoUrl, '_blank')
-    } else if (paymentUrl) {
-      // Handle payment flow
-      window.open(paymentUrl, '_blank')
+  
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useCallback for performance optimization
+  // PERFORMANCE REASON: Official React documentation recommends useCallback for event handlers to prevent unnecessary re-renders
+  const handleVideoClick = useCallback(() => {
+    setIsLoading(true)
+    
+    setTimeout(() => {
+      if (isVideoFree && videoUrl) {
+        // Handle free video playback
+        window.open(videoUrl, '_blank')
+      } else if (paymentUrl) {
+        // Handle payment flow
+        window.open(paymentUrl, '_blank')
+      }
+      setIsLoading(false)
+    }, 300) // Brief loading state for user feedback
+  }, [isVideoFree, videoUrl, paymentUrl])
+
+  // CONTEXT7 SOURCE: /w3c/wcag - Keyboard navigation for accessibility compliance
+  // ACCESSIBILITY REASON: Official WCAG documentation recommends arrow key navigation for grid-based content
+  const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
+    if (!onKeyNavigation || gridIndex === undefined) return
+    
+    switch (event.key) {
+      case 'ArrowLeft':
+        event.preventDefault()
+        onKeyNavigation('left', gridIndex)
+        break
+      case 'ArrowRight':
+        event.preventDefault()
+        onKeyNavigation('right', gridIndex)
+        break
+      case 'ArrowUp':
+        event.preventDefault()
+        onKeyNavigation('up', gridIndex)
+        break
+      case 'ArrowDown':
+        event.preventDefault()
+        onKeyNavigation('down', gridIndex)
+        break
+      case 'Enter':
+      case ' ':
+        event.preventDefault()
+        handleVideoClick()
+        break
     }
-  }
+  }, [onKeyNavigation, gridIndex, handleVideoClick])
+
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Image loading handler for better UX
+  // LOADING HANDLER REASON: Official React documentation recommends onLoad handlers for image loading states
+  const handleImageLoad = useCallback(() => {
+    setIsImageLoaded(true)
+  }, [])
 
   return (
-    <div className={cn(containerClasses[variant], className)} role="article">
+    <div 
+      ref={cardRef}
+      className={cn(containerClasses[variant], className, 'video-thumbnail-card')} 
+      role="article"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      aria-label={`${title} video thumbnail. ${isVideoFree ? 'Free access' : priceRange || 'Premium content'}. Duration: ${duration || 'Not specified'}.`}
+      data-grid-index={gridIndex}
+    >
       
       {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with aspect-video ratio for professional video thumbnails */}
       {/* VIDEO THUMBNAIL SECTION: Official Next.js Image documentation for responsive video thumbnail display */}
       {/* POSITIONING: Thumbnail at TOP of card - this is the defining feature of VideoThumbnailTopCard */}
-      <div className="relative group cursor-pointer" onClick={handleVideoClick}>
+      <div 
+        ref={intersectionRef}
+        className="relative group cursor-pointer video-thumbnail-container" 
+        onClick={handleVideoClick}
+        role="button"
+        tabIndex={-1}
+        aria-label={`Play video: ${title}`}
+      >
         <div className="aspect-video relative overflow-hidden rounded-t-2xl">
-          <Image
-            src={thumbnailUrl}
-            alt={`${title} video thumbnail`}
-            width={400}
-            height={225}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-          />
+          {/* CONTEXT7 SOURCE: /thebuilder/react-intersection-observer - Lazy loading skeleton for performance */}
+          {/* SKELETON LOADING REASON: Official intersection observer documentation recommends skeleton states for better perceived performance */}
+          {enableLazyLoading && !inView ? (
+            <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 animate-pulse rounded-t-2xl" />
+          ) : (
+            <>
+              <Image
+                src={thumbnailUrl}
+                alt={`${title} video thumbnail`}
+                width={400}
+                height={225}
+                className={cn(
+                  "w-full h-full object-cover group-hover:scale-105 transition-all duration-300",
+                  !isImageLoaded && "opacity-0",
+                  isImageLoaded && "opacity-100"
+                )}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                priority={!enableLazyLoading}
+                onLoad={handleImageLoad}
+              />
+              
+              {/* Loading skeleton overlay */}
+              {!isImageLoaded && (
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-300 animate-pulse" />
+              )}
+            </>
+          )}
           
           {/* Video Overlay */}
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
           
-          {/* Play Button */}
+          {/* Play Button - Enhanced with loading state */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-              {isVideoFree ? (
+            <div className={cn(
+              "bg-white/90 backdrop-blur-sm rounded-full p-4 group-hover:scale-110 transition-all duration-300 shadow-lg video-play-button",
+              isLoading && "animate-pulse scale-95"
+            )}>
+              {isLoading ? (
+                <>
+                  <div className="w-6 h-6 border-2 border-primary-900 border-t-transparent rounded-full animate-spin" />
+                  <span className="sr-only">Loading video...</span>
+                </>
+              ) : isVideoFree ? (
                 <>
                   <Play className="w-6 h-6 text-primary-900 fill-current" />
-                  <span className="sr-only">Watch Free Video</span>
+                  <span className="sr-only">Watch Free Video - Press Enter or Space to play</span>
                 </>
               ) : (
                 <>
                   <CreditCard className="w-6 h-6 text-primary-900" />
-                  <span className="sr-only">Purchase to Watch</span>
+                  <span className="sr-only">Purchase to Watch - Press Enter or Space to continue</span>
                 </>
               )}
             </div>
@@ -256,12 +395,22 @@ export function VideoThumbnailTopCard({
       {/* Footer with CTA */}
       <div className={cn(footerClasses[variant])}>
         <Button
-          className={cn(buttonVariants[variant], 'group')}
+          className={cn(buttonVariants[variant], 'group video-cta-button')}
           onClick={onCTAClick}
           aria-label={`${ctaText} for ${title}`}
+          disabled={isLoading}
         >
-          {ctaText}
-          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+          {isLoading ? (
+            <>
+              <div className="w-4 h-4 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              Processing...
+            </>
+          ) : (
+            <>
+              {ctaText}
+              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </>
+          )}
         </Button>
       </div>
     </div>

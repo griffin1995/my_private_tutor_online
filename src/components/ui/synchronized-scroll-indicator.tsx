@@ -60,15 +60,17 @@ const synchronizedScrollVariants = {
   
   // Animation sequence - unified timing for perfect synchronization
   animate: {
-    // Phase 1: Move down while fading out
-    y: [0, 40, 40, 0],
-    opacity: [1, 1, 0, 1],
+    // CONTEXT7 SOURCE: /websites/motion_dev - Synchronized scroll animation with parallel movement
+    // TASK 2 FIX: Official Motion documentation - line retreats upward (transform changes) while text moves in parallel
+    y: [0, 25],
+    scaleY: [1, 0.3], // Line retreats upward effect - top moves down, bottom stays
+    opacity: [1, 0.8, 1],
     transition: {
-      duration: 2,
-      times: [0, 0.4, 0.6, 1], // Precise timing control for each keyframe
+      duration: 1.8,
+      times: [0, 0.7, 1], // Precise timing for synchronized movement
       ease: "easeInOut",
       repeat: Infinity,
-      repeatDelay: 0.5 // Pause between cycles
+      repeatDelay: 0.8 // Pause between cycles
     }
   }
 }
@@ -163,11 +165,6 @@ export function SynchronizedScrollIndicator({
         />
         
       </motion.div>
-      
-      {/* Static "Discover More" text below the animated elements */}
-      <span className="text-sm text-primary-500 mt-2">
-        Discover More
-      </span>
     </div>
   )
 }

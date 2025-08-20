@@ -27,7 +27,7 @@
 
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 
 // Documentation Source: Context7 MCP - TypeScript Interface Definitions

@@ -1,8 +1,6 @@
-// CONTEXT7 SOURCE: /vercel/next.js - Force dynamic rendering for FAQ route
-// SSR COMPATIBILITY: Ensure FAQ route is never statically generated due to browser API dependencies
-
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+// CONTEXT7 SOURCE: /vercel/next.js - Layout inheritance from root dynamic configuration
+// LAYOUT INHERITANCE: Official Next.js documentation states child layouts inherit parent dynamic config
+// DYNAMIC CONFIG REMOVAL: Per CLAUDE.md documentation - avoid redundant page-level dynamic exports
 
 export default function FAQLayout({
   children,

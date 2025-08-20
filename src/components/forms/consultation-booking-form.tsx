@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, Clock, Crown, Shield } from 'lucide-react'
+import { CheckCircle, Clock, Star, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const consultationSchema = z.object({
@@ -132,8 +132,9 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
           
           <div className="bg-accent-50 rounded-lg p-4 mb-6">
             <div className="flex items-center justify-center gap-2 text-accent-700 font-medium text-sm">
-              <Crown className="h-4 w-4" />
-              Royal Family Endorsed Service
+              {/* CONTEXT7 SOURCE: /lucide-react - Star icon replacement for premium service indication */}
+              <Star className="h-4 w-4" />
+              Distinguished Family Service
             </div>
           </div>
           
@@ -153,8 +154,9 @@ export function ConsultationBookingForm({ className, compact = false }: Consulta
     <Card className={cn("w-full max-w-2xl mx-auto", className)}>
       <CardHeader className={cn(compact ? "pb-4" : "pb-6")}>
         <div className="flex items-center gap-3 mb-2">
-          <Crown className="h-6 w-6 text-accent-500" />
-          <Badge variant="gold" className="text-xs">Royal Family Endorsed</Badge>
+          {/* CONTEXT7 SOURCE: /lucide-react - Star icon replacement for premium service indication */}
+          <Star className="h-6 w-6 text-accent-500" />
+          <Badge variant="gold" className="text-xs">Distinguished Family Service</Badge>
         </div>
         <CardTitle className="text-primary-900 text-xl">
           Book Your Confidential Consultation

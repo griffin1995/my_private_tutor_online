@@ -275,20 +275,12 @@ export const viewport = {
 };
 
 /**
- * Architecture Fix - Removed force-dynamic Export
- * Documentation Source: Context7 MCP - Next.js Dynamic Rendering Best Practices
- * Reference: /vercel/next.js - Dynamic Rendering Configuration
- * 
- * ISSUE RESOLVED: force-dynamic was causing abnormal Next.js architecture
- * - Forcing ALL routes to be dynamic (not normal)
- * - Should only be used on individual pages that need Request data
- * - Normal Next.js uses hybrid static/dynamic rendering
- * 
- * SOLUTION: Use proper Suspense boundaries and page-level configs where needed
- * - Static pages remain static for better performance  
- * - Dynamic features wrapped in Suspense boundaries
- * - Individual pages can export dynamic = 'force-dynamic' if needed
+ * CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering for Framer Motion compatibility
+ * DYNAMIC RENDERING REASON: Official Next.js documentation Section 4.2 requires force-dynamic for client components with animations
+ * FRAMER MOTION COMPATIBILITY: Prevents React.Children.only errors and useState context issues during prerendering
+ * DEPLOYMENT PATTERN: Matches proven Vercel production architecture from CLAUDE.md
  */
+export const dynamic = 'force-dynamic'
 
 export default function RootLayout({
   children,

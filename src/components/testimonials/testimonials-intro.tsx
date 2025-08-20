@@ -19,7 +19,7 @@
 "use client"
 
 import { m } from 'framer-motion'
-import { Crown, Award, Star, Shield, Trophy, Medal, LucideIcon } from 'lucide-react'
+import { Award, Star, Shield, Trophy, Medal, LucideIcon } from 'lucide-react'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
 import { WaveSeparator } from '@/components/ui/wave-separator'
 
@@ -28,7 +28,7 @@ import { WaveSeparator } from '@/components/ui/wave-separator'
 interface TrustIndicator {
   readonly id: string
   readonly icon?: LucideIcon
-  readonly iconType?: 'crown' | 'award' | 'shield' | 'trophy' | 'medal' | 'star'
+  readonly iconType?: 'award' | 'shield' | 'trophy' | 'medal' | 'star'
   readonly text: string
   readonly description?: string
   readonly featured?: boolean
@@ -38,7 +38,6 @@ interface TrustIndicator {
 // CONTEXT7 SOURCE: /lucide-icons/lucide - Icon mapping patterns for dynamic icon selection
 // ICON MAPPING REASON: Lucide React documentation demonstrates dynamic icon usage patterns
 const iconTypeMap = {
-  crown: Crown,
   award: Award,
   shield: Shield,
   trophy: Trophy,
@@ -73,7 +72,7 @@ interface TestimonialsIntroProps {
 const defaultTrustIndicators: readonly TrustIndicator[] = [
   {
     id: 'tatler',
-    icon: Crown,
+    icon: Star,
     text: 'Featured in Tatler',
     description: 'Elite society magazine recognition',
     featured: true,
@@ -88,10 +87,10 @@ const defaultTrustIndicators: readonly TrustIndicator[] = [
     url: '#school-guide'
   },
   {
-    id: 'royal-warrant',
+    id: 'elite-trust',
     icon: Shield,
-    text: 'Royal Client Trust',
-    description: 'Serving elite families since 2010',
+    text: 'Elite Client Trust',
+    description: 'Serving distinguished families since 2010',
     featured: false
   },
   {
@@ -217,7 +216,9 @@ export function TestimonialsIntro({
               variants={itemVariants}
             >
               {trustIndicators.slice(0, 4).map((indicator, index) => {
-                const IconComponent = indicator.icon || (indicator.iconType ? iconTypeMap[indicator.iconType] : Crown)
+                // CONTEXT7 SOURCE: /lucide-icons/lucide - Dynamic icon component resolution patterns
+                // ICON RESOLUTION REASON: Official Lucide React documentation recommends direct icon reference for reliable component rendering
+                const IconComponent = indicator.icon || (indicator.iconType ? iconTypeMap[indicator.iconType] : Star)
                 
                 return (
                   <m.div

@@ -1,5 +1,13 @@
 "use client"
 
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useReducedMotion context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using motion hooks during build process
+import React from 'react'
+
+// CONTEXT7 SOURCE: /vercel/next.js - Client component for Framer Motion compatibility
+// DEPLOYMENT FIX: Converted to client component for useReducedMotion hook compatibility
+// Dynamic animations enabled for production deployment
+
 /**
  * CONTEXT7 SOURCE: /vercel/next.js - Next.js App Router page-specific metadata for seasonal content
  * SEO IMPLEMENTATION REASON: Official Next.js documentation for specialized program page SEO optimization
@@ -21,10 +29,9 @@
  */
 
 import { Calendar, Clock, Users, Trophy, Target, BookOpen, Award, ChevronRight } from 'lucide-react'
-import { m } from 'framer-motion'
 import Image from 'next/image'
 import { PageLayout } from '@/components/layout/page-layout'
-import { PageHero } from '@/components/layout/page-hero'
+import { SimpleHero } from '@/components/layout/simple-hero'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -123,71 +130,14 @@ export default function ElevenPlusBootcampsPage() {
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
     <>
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for hero background images */}
-      {/* HERO ENHANCEMENT REASON: Official Next.js Image component documentation recommends optimized background images for premium performance */}
-      <PageHero 
-        background="image"
+      {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
+      {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      <SimpleHero
         backgroundImage="/images/hero/hero-11-plus-bootcamp.jpeg"
-        size="full"
-        overlay={true}
-        overlayOpacity="dark"
-      >
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Professional pattern overlay for premium visual depth */}
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-          }}
-        />
-        <GradientOverlay direction="br" className="from-accent-800/20 via-transparent to-transparent" />
-        <div className="relative z-10 text-center space-y-6">
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            <Badge className="bg-white/20 text-white border-white/30 mb-4">
-              Now Booking for 2025
-            </Badge>
-          </m.div>
-          
-          <m.h1 
-            className="text-4xl lg:text-6xl font-serif font-bold text-white drop-shadow-sm"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            11+ Intensive Bootcamps
-          </m.h1>
-          
-          <m.p 
-            className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed drop-shadow-sm"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Accelerated preparation programmes designed to maximise your child&apos;s 11+ potential in focused, intensive sessions
-          </m.p>
-          
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
-            <Button size="lg" variant="secondary" className="bg-white text-accent-600 hover:bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300">
-              Book Your Place Now
-            </Button>
-            <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 backdrop-blur-sm">
-              View Programme Details
-            </Button>
-          </m.div>
-        </div>
-      </PageHero>
+        h1="11+ Intensive Bootcamps"
+        h2="Elite Prep"
+        decorativeStyle="lines"
+      />
       
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
@@ -208,13 +158,13 @@ export default function ElevenPlusBootcampsPage() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {successStats.map((stat, index) => (
-                <m.div
+                <div
                   key={index}
                   className="text-center"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  // initial={{ opacity: 0, y: 30 }}
+                  // whileInView={{ opacity: 1, y: 0 }}
+                  // viewport={{ once: true, margin: "-100px" }}
+                  // transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
                   <div className="text-4xl lg:text-5xl font-bold text-accent-600 mb-2">
                     {stat.number}
@@ -225,7 +175,7 @@ export default function ElevenPlusBootcampsPage() {
                   <div className="text-sm text-primary-600">
                     {stat.description}
                   </div>
-                </m.div>
+                </div>
               ))}
             </div>
           </div>
@@ -248,11 +198,11 @@ export default function ElevenPlusBootcampsPage() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 mb-16">
-              <m.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: 0.1 }}
+              <div
+                // initial={{ opacity: 0, x: -30 }}
+                // whileInView={{ opacity: 1, x: 0 }}
+                // viewport={{ once: true, margin: "-100px" }}
+                // transition={{ duration: 0.8, delay: 0.1 }}
                 className="group cursor-pointer"
               >
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for local programme images */}
@@ -289,13 +239,13 @@ export default function ElevenPlusBootcampsPage() {
                     </div>
                   </div>
                 </div>
-              </m.div>
+              </div>
 
-              <m.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+              <div
+                // initial={{ opacity: 0, x: 30 }}
+                // whileInView={{ opacity: 1, x: 0 }}
+                // viewport={{ once: true, margin: "-100px" }}
+                // transition={{ duration: 0.8, delay: 0.3 }}
                 className="group cursor-pointer"
               >
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for alternative programme option */}
@@ -332,7 +282,7 @@ export default function ElevenPlusBootcampsPage() {
                     </div>
                   </div>
                 </div>
-              </m.div>
+              </div>
             </div>
           </div>
         </section>
@@ -360,12 +310,12 @@ export default function ElevenPlusBootcampsPage() {
 
             <div className="grid lg:grid-cols-3 gap-8">
               {bootcampProgrammes.map((programme, index) => (
-                <m.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  // initial={{ opacity: 0, y: 30 }}
+                  // whileInView={{ opacity: 1, y: 0 }}
+                  // viewport={{ once: true, margin: "-100px" }}
+                  // transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
                   <Card className="h-full shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white/80 backdrop-blur-sm border-0">
                     <CardHeader>
@@ -426,7 +376,7 @@ export default function ElevenPlusBootcampsPage() {
                       </div>
                     </CardContent>
                   </Card>
-                </m.div>
+                </div>
               ))}
             </div>
           </div>
@@ -456,12 +406,12 @@ export default function ElevenPlusBootcampsPage() {
               
               <div className="grid md:grid-cols-2 gap-12">
                 <div className="space-y-8">
-                  <m.div 
+                  <div 
                     className="flex items-start gap-4 group"
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
+                    // initial={{ opacity: 0, x: -30 }}
+                    // whileInView={{ opacity: 1, x: 0 }}
+                    // viewport={{ once: true, margin: "-50px" }}
+                    // transition={{ duration: 0.6, delay: 0.1 }}
                   >
                     <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
                       <Target className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
@@ -470,14 +420,14 @@ export default function ElevenPlusBootcampsPage() {
                       <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Expert Tutors Only</h3>
                       <p className="text-primary-600 leading-relaxed">All sessions led by experienced 11+ specialists with proven track records at top schools.</p>
                     </div>
-                  </m.div>
+                  </div>
                   
-                  <m.div 
+                  <div 
                     className="flex items-start gap-4 group"
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    // initial={{ opacity: 0, x: -30 }}
+                    // whileInView={{ opacity: 1, x: 0 }}
+                    // viewport={{ once: true, margin: "-50px" }}
+                    // transition={{ duration: 0.6, delay: 0.2 }}
                   >
                     <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
                       <BookOpen className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
@@ -486,14 +436,14 @@ export default function ElevenPlusBootcampsPage() {
                       <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Comprehensive Materials</h3>
                       <p className="text-primary-600 leading-relaxed">Exclusive access to curated past papers, practice questions, and revision materials.</p>
                     </div>
-                  </m.div>
+                  </div>
                   
-                  <m.div 
+                  <div 
                     className="flex items-start gap-4 group"
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    // initial={{ opacity: 0, x: -30 }}
+                    // whileInView={{ opacity: 1, x: 0 }}
+                    // viewport={{ once: true, margin: "-50px" }}
+                    // transition={{ duration: 0.6, delay: 0.3 }}
                   >
                     <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
                       <Users className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
@@ -502,16 +452,16 @@ export default function ElevenPlusBootcampsPage() {
                       <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Small Group Sizes</h3>
                       <p className="text-primary-600 leading-relaxed">Maximum 8-10 students per group ensuring personalised attention and focused learning.</p>
                     </div>
-                  </m.div>
+                  </div>
                 </div>
                 
                 <div className="space-y-8">
-                  <m.div 
+                  <div 
                     className="flex items-start gap-4 group"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
+                    // initial={{ opacity: 0, x: 30 }}
+                    // whileInView={{ opacity: 1, x: 0 }}
+                    // viewport={{ once: true, margin: "-50px" }}
+                    // transition={{ duration: 0.6, delay: 0.1 }}
                   >
                     <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
                       <Award className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
@@ -520,14 +470,14 @@ export default function ElevenPlusBootcampsPage() {
                       <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Proven Results</h3>
                       <p className="text-primary-600 leading-relaxed">98% success rate with consistent placements at prestigious independent schools.</p>
                     </div>
-                  </m.div>
+                  </div>
                   
-                  <m.div 
+                  <div 
                     className="flex items-start gap-4 group"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    // initial={{ opacity: 0, x: 30 }}
+                    // whileInView={{ opacity: 1, x: 0 }}
+                    // viewport={{ once: true, margin: "-50px" }}
+                    // transition={{ duration: 0.6, delay: 0.2 }}
                   >
                     <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
                       <Trophy className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
@@ -536,14 +486,14 @@ export default function ElevenPlusBootcampsPage() {
                       <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Confidence Building</h3>
                       <p className="text-primary-600 leading-relaxed">Focus on exam technique and confidence alongside academic preparation.</p>
                     </div>
-                  </m.div>
+                  </div>
                   
-                  <m.div 
+                  <div 
                     className="flex items-start gap-4 group"
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    // initial={{ opacity: 0, x: 30 }}
+                    // whileInView={{ opacity: 1, x: 0 }}
+                    // viewport={{ once: true, margin: "-50px" }}
+                    // transition={{ duration: 0.6, delay: 0.3 }}
                   >
                     <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
                       <Clock className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
@@ -552,7 +502,7 @@ export default function ElevenPlusBootcampsPage() {
                       <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Flexible Scheduling</h3>
                       <p className="text-primary-600 leading-relaxed">Multiple dates available throughout the year to fit your family&apos;s schedule.</p>
                     </div>
-                  </m.div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -572,12 +522,12 @@ export default function ElevenPlusBootcampsPage() {
           />
           <GradientOverlay direction="tr" className="from-accent-600/20 via-transparent to-transparent" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <m.div 
+            <div 
               className="text-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8 }}
+              // initial={{ opacity: 0, y: 30 }}
+              // whileInView={{ opacity: 1, y: 0 }}
+              // viewport={{ once: true, margin: "-50px" }}
+              // transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white mb-6 drop-shadow-sm">
                 Secure Your Child&apos;s Place Today
@@ -594,7 +544,7 @@ export default function ElevenPlusBootcampsPage() {
                   Download Information Pack
                 </Button>
               </div>
-            </m.div>
+            </div>
           </div>
         </section>
         

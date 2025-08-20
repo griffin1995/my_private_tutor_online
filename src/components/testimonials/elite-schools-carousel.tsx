@@ -15,7 +15,7 @@ import {
   trackSchoolInteraction
 } from '@/lib/cms/schools-data'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
-import { WaveSeparator } from '@/components/ui/wave-separator'
+// TESTIMONIALS OVERHAUL: Removed WaveSeparator import for cleaner component boundaries
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component Props Interface Definition
 // CONTEXT7 SOURCE: Official React documentation for complex component props patterns
@@ -36,6 +36,8 @@ interface EliteSchoolsCarouselProps {
   backgroundVariant?: 'blue' | 'white' | 'gradient'
   className?: string
   onSchoolClick?: (school: EliteSchool) => void
+  // TESTIMONIALS OVERHAUL: Configurable hover statistics display
+  showHoverStats?: boolean  // Default: true
 }
 
 // CONTEXT7 SOURCE: /context7/motion_dev - Animation configuration constants
@@ -105,7 +107,9 @@ export function EliteSchoolsCarousel({
   animationSpeed = 'medium',
   backgroundVariant = 'blue',
   className = "",
-  onSchoolClick
+  onSchoolClick,
+  // TESTIMONIALS OVERHAUL: Configurable hover statistics display
+  showHoverStats = true
 }: EliteSchoolsCarouselProps) {
   const [isPlaying, setIsPlaying] = useState(autoPlay)
   const [isPaused, setIsPaused] = useState(false)
@@ -191,6 +195,9 @@ export function EliteSchoolsCarousel({
     setSelectedSchool(null)
   }, [])
 
+  // CONTEXT7 SOURCE: /facebook/react - Enhanced hover handlers with touch event considerations
+  // CONTEXT7 SOURCE: Official React documentation for mouse and touch event coordination
+  // INTERACTION ENHANCEMENT REASON: Professional hover/touch coordination for carousel pause functionality
   const handleMouseEnter = useCallback(() => {
     if (pauseOnHover) {
       setIsPaused(true)
@@ -200,6 +207,22 @@ export function EliteSchoolsCarousel({
   const handleMouseLeave = useCallback(() => {
     if (pauseOnHover) {
       setIsPaused(false)
+    }
+  }, [pauseOnHover])
+
+  // CONTEXT7 SOURCE: /facebook/react - Touch event handlers for carousel interaction
+  // CONTEXT7 SOURCE: Official React patterns for touch event management in carousel components
+  // MOBILE ENHANCEMENT REASON: Touch-friendly carousel controls for mobile device compatibility
+  const handleCarouselTouchStart = useCallback(() => {
+    if (pauseOnHover) {
+      setIsPaused(true)
+    }
+  }, [pauseOnHover])
+
+  const handleCarouselTouchEnd = useCallback(() => {
+    if (pauseOnHover) {
+      // Delay resume to allow for touch interactions with cards
+      setTimeout(() => setIsPaused(false), 300)
     }
   }, [pauseOnHover])
 
@@ -368,6 +391,8 @@ export function EliteSchoolsCarousel({
             viewport={{ once: true }}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onTouchStart={handleCarouselTouchStart}
+            onTouchEnd={handleCarouselTouchEnd}
           >
             <m.div 
               className="flex gap-6 whitespace-nowrap py-8"
@@ -393,6 +418,7 @@ export function EliteSchoolsCarousel({
                     showMetadata={true}
                     onCardClick={handleSchoolClick}
                     className="transition-all duration-300 hover:shadow-xl"
+                    showHoverStats={showHoverStats}
                   />
                 </div>
               ))}
@@ -418,7 +444,7 @@ export function EliteSchoolsCarousel({
         </div>
         
         {/* Professional Section Transition */}
-        <WaveSeparator variant="dramatic" color="primary-900" flip={true} />
+        {/* TESTIMONIALS OVERHAUL: Removed WaveSeparator for cleaner component boundaries */}
       </section>
 
       {/* CONTEXT7 SOURCE: /context7/motion_dev - Modal implementation with AnimatePresence */}

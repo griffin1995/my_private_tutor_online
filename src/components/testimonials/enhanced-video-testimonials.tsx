@@ -104,11 +104,20 @@ export interface EnhancedVideoTestimonialsProps {
   readonly onAnalytics?: (event: VideoAnalyticsEvent) => void
 }
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Enhanced video analytics interface for comprehensive tracking
 interface VideoAnalyticsEvent {
-  readonly type: 'view' | 'play' | 'complete' | 'share' | 'filter' | 'search'
+  readonly type: 'view' | 'play' | 'complete' | 'share' | 'filter' | 'search' | 'error' | 'loading'
   readonly videoId?: string
   readonly category?: string
   readonly query?: string
+  readonly errorType?: 'network' | 'format' | 'permission' | 'timeout' | 'unknown'
+  readonly loadingDuration?: number
+  readonly videoQuality?: string
+  readonly networkConditions?: {
+    readonly effectiveType: string
+    readonly downlink?: number
+    readonly rtt?: number
+  }
   readonly metadata?: Record<string, unknown>
   readonly timestamp: number
 }
@@ -128,16 +137,19 @@ interface SortOption {
   readonly icon?: React.ComponentType<{ className?: string }>
 }
 
-// Enhanced testimonials data with comprehensive metadata
-// CONTEXT7 SOURCE: /muxinc/next-video - Rich testimonials video data structure
+// CONTEXT7 SOURCE: /websites/react_dev - Video path optimization for enhanced testimonials
+// VIDEO PATH OPTIMIZATION: Real video paths pointing to actual testimonial videos in public/videos/
+// THUMBNAIL ENHANCEMENT: Improved error handling and fallback for video thumbnails
+// Enhanced testimonials data with verified video paths
+// CONTEXT7 SOURCE: /muxinc/next-video - Rich testimonials video data structure with real video assets
 const enhancedTestimonialsData: EnhancedTestimonialVideo[] = [
   {
     id: 'oxbridge-success-2025',
     title: 'From Struggling Student to Oxford Medicine',
     description: 'Emily shares her incredible journey from failing A-Level Chemistry to securing a place at Oxford Medical School through personalised tutoring.',
-    videoSrc: '/videos/testimonials/enhanced/emily-oxford-medicine-success.mp4',
-    thumbnailSrc: '/images/testimonials/enhanced/emily-oxford-thumb.jpg',
-    posterSrc: '/images/testimonials/enhanced/emily-oxford-poster.jpg',
+    videoSrc: '/videos/parent-testimonials-compilation.mp4',
+    thumbnailSrc: '/images/testimonials/parent-testimonials-thumbnail.jpg',
+    posterSrc: '/images/testimonials/parent-testimonials-thumbnail.jpg',
     duration: 285, // 4:45
     featured: true,
     category: 'Oxbridge',
@@ -261,9 +273,9 @@ const enhancedTestimonialsData: EnhancedTestimonialVideo[] = [
     id: 'gcse-transformation-2025',
     title: '11+ to GCSE Success Journey',
     description: 'Jack\'s complete academic transformation from 11+ preparation through to outstanding GCSE results.',
-    videoSrc: '/videos/testimonials/enhanced/jack-gcse-transformation.mp4',
-    thumbnailSrc: '/images/testimonials/enhanced/jack-gcse-thumb.jpg',
-    posterSrc: '/images/testimonials/enhanced/jack-gcse-poster.jpg',
+    videoSrc: '/videos/student-testimonials-compilation.mp4',
+    thumbnailSrc: '/images/testimonials/student-testimonials-thumbnail.jpg',
+    posterSrc: '/images/testimonials/student-testimonials-thumbnail.jpg',
     duration: 195, // 3:15
     featured: true,
     category: 'GCSE',

@@ -24,6 +24,9 @@
 
 "use client"
 
+// CONTEXT7 SOURCE: /reactjs/react.dev - Simplified React imports for client component
+// SIMPLIFICATION REASON: Official React documentation shows simple client component patterns without complex fallback logic
+
 // Documentation Source: Context7 MCP - React 19 and Framer Motion imports
 // Reference: /vercel/next.js - Next.js Image component
 // Reference: /framer/motion - Motion components for animations
@@ -36,10 +39,13 @@ import Image from 'next/image'
 // Pattern: Consistent iconography with tree-shaking support
 import { Crown } from 'lucide-react'
 
-// CONTEXT7 SOURCE: /magicuidesign/magicui - Aurora Text component import
-// MAGIC UI INTEGRATION: Premium aurora text effect for enhanced visual appeal
-// BRAND ENHANCEMENT: Royal client-worthy text animations matching luxury standards
-import { AuroraText } from '@/components/magicui/aurora-text'
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard text styling approach
+// AURORA REMOVAL: Removed AuroraText import per Task 4 requirements for default heading colours
+// BRAND SIMPLIFICATION: Using standard Tailwind CSS text utilities for consistent styling
+
+// CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component for video integration
+// INTEGRATION REASON: Official Magic UI HeroVideoDialog component for video modal functionality
+import { HeroVideoDialog } from '../magicui/hero-video-dialog'
 
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
@@ -79,25 +85,29 @@ export function AboutSection({
   founderImageUrl = "/images/team/elizabeth-burrows-founder-spare.jpg",
   founderImageAlt = "Elizabeth Burrows, Founder of My Private Tutor Online"
 }: AboutSectionProps) {
+  // CONTEXT7 SOURCE: /framer/motion - Simple client component animation patterns
+  // SIMPLIFICATION REASON: Official Framer Motion documentation shows simple whileInView animations without complex state management
   
   return (
-    <section className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
+    <section 
+      className={`py-16 lg:py-24 ${backgroundColor} ${className}`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:grid-rows-1">
           
           {/* Text Content - Left Side */}
           <div className="space-y-6 min-h-0">
-            {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Aurora Text with mixed text styling */}
-            {/* ENHANCEMENT: Split Aurora Text for specific words only while maintaining animation */}
-            {/* PATTERN: Mixed normal and aurora text within single semantic h2 element */}
-            {/* REVISION REASON: Apply aurora effect only to "Education" and "Fingertips" words per requirements */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for consistent heading styling */}
+            {/* AURORA REMOVAL: Removed aurora gradient effects per Task 4 requirements */}
+            {/* PATTERN: Standard Tailwind CSS text color utility for default heading styling */}
+            {/* REVISION REASON: Apply default heading colour by removing AuroraText components */}
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive font sizing optimization for preventing line wrapping */}
             {/* TEXT SIZE REDUCTION: Reduced from text-4xl lg:text-5xl xl:text-6xl to text-3xl lg:text-4xl xl:text-5xl */}
             {/* SIZING RATIONALE: Following Tailwind CSS font size progression (text-3xl=1.875rem/30px, text-4xl=2.25rem/36px, text-5xl=3rem/48px) */}
             {/* LINE WRAPPING PREVENTION: Ensures "World-Class Education," stays on single line at all breakpoints */}
             {/* RESPONSIVE BREAKPOINTS: Mobile 30px → Large (1024px+) 36px → XL (1280px+) 48px */}
             <m.h2 
-              className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold"
+              className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -107,23 +117,9 @@ export function AboutSection({
                 delay: 0.1
               }}
             >
-              <span className="text-primary-900">World-Class </span>
-              <AuroraText 
-                className="text-primary-900"
-                speed={0.8}
-              >
-                Education
-              </AuroraText>
-              <span className="text-primary-900">,</span>
+              World-Class Education,
               <br />
-              <span className="text-primary-900">At Your </span>
-              <AuroraText 
-                className="text-primary-900"
-                speed={0.8}
-              >
-                Fingertips
-              </AuroraText>
-              <span className="text-primary-900">.</span>
+              At Your Fingertips.
             </m.h2>
             
             {/* 
@@ -222,8 +218,9 @@ export function AboutSection({
             </m.div>
           </div>
           
-          {/* Image - Right Side */}
-          <div className="relative min-h-0 flex items-start">
+          {/* Image and Video - Right Side Stacked Layout */}
+          <div className="relative min-h-0 flex flex-col space-y-6">
+            {/* Founder Image - Top Position */}
             <m.div 
               className="relative w-full flex items-center justify-center bg-transparent"
               initial={{ opacity: 0, x: 100 }}
@@ -245,36 +242,75 @@ export function AboutSection({
                 style={{ 
                   filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))',
                   backgroundColor: 'transparent',
-                  maxHeight: '600px'
+                  maxHeight: '400px'
                 }}
                 priority
               />
               
+              {/* Animated Decorative elements for image */}
+              <m.div 
+                className="absolute -top-4 -right-4 w-24 h-24 bg-accent-200/30 rounded-full blur-xl"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-150px" }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: 0.9
+                }}
+              />
             </m.div>
             
-            {/* Animated Decorative elements */}
+            {/* Video Component - Bottom Position */}
+            {/* 
+             * CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog stacked layout integration
+             * IMPLEMENTATION REASON: Official Magic UI documentation shows HeroVideoDialog component for video modal functionality
+             * LAYOUT PATTERN: Vertical stack layout with founder image on top, video component below
+             * ANIMATION STYLE: "from-center" for royal client presentation quality
+             * RESPONSIVE DESIGN: Maintains aspect ratio and scaling across all breakpoints
+             * 
+             * CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog thumbnailSrc property configuration
+             * THUMBNAIL UPDATE REASON: Official Magic UI documentation Section 3 shows thumbnailSrc prop for video thumbnail image
+             * CHANGE TYPE: Update thumbnailSrc from founder portrait to actual video first frame
+             * IMPLEMENTATION: Using extracted first frame from elizabeth-introduction-sound.mp4 via ffmpeg
+             * FILE PATH: /images/video-thumbnails/elizabeth-introduction-thumbnail.jpg
+             */}
             <m.div 
-              className="absolute -top-4 -right-4 w-24 h-24 bg-accent-200/30 rounded-full blur-xl"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-150px" }}
+              className="relative w-full"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ 
-                duration: 0.8, 
+                duration: 1.0, 
                 ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.9
+                delay: 0.5
               }}
-            />
-            <m.div 
-              className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-200/20 rounded-full blur-xl"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-150px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 1.1
-              }}
-            />
+            >
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Width constraint utilities for responsive design
+               * WIDTH CONSTRAINT REASON: Official Tailwind CSS documentation shows max-w-xs (320px) ensures video never exceeds founder photo display width
+               * ASPECT RATIO MAINTENANCE: Video component maintains 16:9 aspect ratio while respecting maximum width constraint
+               */}
+              <HeroVideoDialog
+                videoSrc="/elizabeth-introduction-sound.mp4"
+                thumbnailSrc="/images/video-thumbnails/elizabeth-introduction-thumbnail.jpg"
+                thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
+                animationStyle="from-center"
+                className="w-full max-w-xs mx-auto"
+              />
+              
+              {/* Animated Decorative elements for video */}
+              <m.div 
+                className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-200/20 rounded-full blur-xl"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-150px" }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: 1.3
+                }}
+              />
+            </m.div>
           </div>
         </div>
       </div>

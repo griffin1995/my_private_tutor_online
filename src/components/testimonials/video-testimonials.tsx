@@ -15,26 +15,16 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-// CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for comprehensive video component props
-// INTERFACE REASON: Official TypeScript documentation Section 3.1 recommends comprehensive interface definitions for reusable components
-export interface TestimonialVideo {
-  readonly id: string
-  readonly title: string
-  readonly description: string
-  readonly videoSrc: string
-  readonly thumbnailSrc: string
-  readonly duration?: number
-  readonly featured?: boolean
-  readonly category?: 'all' | '11+' | 'GCSE' | 'A-Level' | 'Oxbridge' | 'International'
-  readonly testimonialAuthor?: string
-  readonly testimonialRole?: string
-  readonly viewCount?: number
-  readonly rating?: number
-  readonly uploadDate?: string
-}
+// CONTEXT7 SOURCE: /lib/cms/cms-content - Unified testimonials CMS integration
+// CMS DATA SOURCE: Using getVideoTestimonials for real video testimonial data
+import { getVideoTestimonials, type Testimonial } from '@/lib/cms/cms-content'
+
+// CONTEXT7 SOURCE: /lib/cms/cms-content - Using unified Testimonial interface for video testimonials
+// TESTIMONIALS OVERHAUL: Removed duplicate TestimonialVideo interface, now using unified Testimonial type
+// INTERFACE REASON: Single source of truth for all testimonial data structures
 
 export interface VideoTestimonialsProps {
-  readonly videos?: TestimonialVideo[]
+  readonly videos?: Testimonial[]
   readonly layout?: 'single' | 'gallery' | 'carousel'
   readonly backgroundVariant?: 'blue' | 'white' | 'gradient' | 'transparent'
   readonly autoplay?: boolean
@@ -117,44 +107,11 @@ const backgroundClasses = {
   transparent: 'bg-transparent'
 }
 
-// Default video data with royal client testimonials
-// CONTEXT7 SOURCE: /muxinc/next-video - Default video asset structure with metadata
-// CMS DATA SOURCE: Enhanced with testimonial video gallery data for professional presentation
-const defaultVideos: TestimonialVideo[] = [
-  {
-    id: 'parents-testimonials-2025',
-    title: 'Parent Success Stories 2025',
-    description: 'Real parents sharing their transformative experiences with My Private Tutor Online',
-    videoSrc: '/videos/testimonials-parents-2025-compressed.mp4',
-    thumbnailSrc: '/images/video-placeholders/parents-testimonials-poster.jpg',
-    duration: 180,
-    featured: true,
-    category: 'all',
-    testimonialAuthor: 'Various Parents',
-    testimonialRole: 'MPTO Families',
-    viewCount: 2847,
-    rating: 5,
-    uploadDate: '2025-07-15'
-  },
-  {
-    id: 'students-testimonials-2025',
-    title: 'Student Success Stories 2025',
-    description: 'Students sharing their academic achievements with MPTO expert tutors',
-    videoSrc: '/videos/testimonials-students-2025-compressed.mp4',
-    thumbnailSrc: '/images/video-placeholders/students-testimonials-poster.jpg',
-    duration: 165,
-    featured: true,
-    category: 'all',
-    testimonialAuthor: 'MPTO Students',
-    testimonialRole: 'Academic Achievers',
-    viewCount: 2156,
-    rating: 5,
-    uploadDate: '2025-07-12'
-  }
-]
+// TESTIMONIALS OVERHAUL: Using CMS data instead of hardcoded defaults
+// CONTEXT7 SOURCE: /lib/cms/cms-content - Synchronous data access for video testimonials
 
 export function VideoTestimonials({
-  videos = defaultVideos,
+  videos,
   layout = 'gallery',
   backgroundVariant = 'blue',
   autoplay = false,
@@ -167,8 +124,11 @@ export function VideoTestimonials({
   description = 'Hear directly from families about their transformative experiences with My Private Tutor Online',
   animationDelay = 0
 }: VideoTestimonialsProps) {
+  // CMS DATA SOURCE: Using getVideoTestimonials for unified video testimonial data
+  // CONTEXT7 SOURCE: /lib/cms/cms-content - Synchronous testimonials data access
+  const videoTestimonials = videos || getVideoTestimonials()
   // State management for video gallery and player
-  const [selectedVideo, setSelectedVideo] = useState<TestimonialVideo | null>(null)
+  const [selectedVideo, setSelectedVideo] = useState<Testimonial | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [playerState, setPlayerState] = useState<VideoPlayerState>({
     playing: false,
@@ -187,27 +147,49 @@ export function VideoTestimonials({
   
   // Filter videos by category
   // CONTEXT7 SOURCE: /microsoft/typescript - Array filtering with type safety
-  const filteredVideos = videos.filter(video => 
+  const filteredVideos = videoTestimonials.filter(video => 
     selectedCategory === 'all' || video.category === selectedCategory
   )
   
   // Video categories for filtering
-  const categories = ['all', '11+', 'GCSE', 'A-Level', 'Oxbridge', 'International']
+  const categories = ['all', 'video', '11+', 'gcse', 'a-level', 'oxbridge', 'international']
   
-  // Handle video selection and modal opening
+  // CONTEXT7 SOURCE: /websites/react_dev - Enhanced video path verification and error handling
+  // VIDEO PATH VERIFICATION: Check video exists before attempting to play
+  // Handle video selection and modal opening with enhanced path verification
   // CONTEXT7 SOURCE: /cookpete/react-player - Light mode thumbnail click handling for video gallery
-  const handleVideoSelect = useCallback((video: TestimonialVideo) => {
+  const handleVideoSelect = useCallback(async (video: Testimonial) => {
+    // Enhanced video path verification
+    if (!video.videoUrl) {
+      console.warn('No video URL provided for:', video.author)
+      return
+    }
+
+    // Verify video file exists before opening modal
+    try {
+      const response = await fetch(video.videoUrl, { method: 'HEAD' })
+      if (!response.ok) {
+        console.warn('Video file not accessible:', video.videoUrl, response.status)
+        // Still proceed but log the issue
+      }
+    } catch (error) {
+      console.warn('Video accessibility check failed:', video.videoUrl, error)
+      // Continue anyway for offline scenarios
+    }
+
     setSelectedVideo(video)
-    setPlayerState(prev => ({ ...prev, playing: autoplay }))
+    setPlayerState(prev => ({ ...prev, playing: autoplay, loaded: false }))
     
     // Analytics tracking if enabled
     // CONTEXT7 SOURCE: /muxinc/next-video - Built-in analytics for video engagement tracking
     if (enableAnalytics) {
-      // Track video selection event
+      // Track video selection event with enhanced metadata
       console.log('Video Analytics: Video Selected', {
         videoId: video.id,
-        title: video.title,
+        title: video.author, // Using author as title for testimonials
         category: video.category,
+        videoUrl: video.videoUrl,
+        hasVideoThumbnail: !!video.videoThumbnail,
         timestamp: new Date().toISOString()
       })
     }
@@ -224,29 +206,47 @@ export function VideoTestimonials({
     }))
   }, [])
   
-  // Toggle play/pause
+  // CONTEXT7 SOURCE: /websites/react_dev - Enhanced video play/pause with error handling
+  // VIDEO CONTROL ENHANCEMENT: Improved play/pause with better error recovery
+  // Toggle play/pause with enhanced error handling
   // CONTEXT7 SOURCE: /muxinc/next-video - Video player control methods for custom UI
-  const togglePlayPause = useCallback(() => {
-    if (!videoRef.current) return
-    
-    if (playerState.playing) {
-      videoRef.current.pause()
-    } else {
-      videoRef.current.play()
+  const togglePlayPause = useCallback(async () => {
+    if (!videoRef.current) {
+      console.warn('Video ref not available for play/pause')
+      return
     }
     
-    setPlayerState(prev => ({ ...prev, playing: !prev.playing }))
+    try {
+      if (playerState.playing) {
+        videoRef.current.pause()
+        console.log('Video paused successfully')
+      } else {
+        // Enhanced play with promise handling
+        const playPromise = videoRef.current.play()
+        if (playPromise !== undefined) {
+          await playPromise
+          console.log('Video playing successfully')
+        }
+      }
+      
+      setPlayerState(prev => ({ ...prev, playing: !prev.playing }))
+    } catch (error) {
+      console.error('Video play/pause error:', error)
+      // Reset player state on error
+      setPlayerState(prev => ({ ...prev, playing: false }))
+    }
     
-    // Analytics tracking
+    // Analytics tracking with enhanced error context
     if (enableAnalytics) {
       console.log('Video Analytics: Play/Pause Toggle', {
         videoId: selectedVideo?.id,
         action: playerState.playing ? 'pause' : 'play',
         currentTime: playerState.currentTime,
+        loaded: playerState.loaded,
         timestamp: new Date().toISOString()
       })
     }
-  }, [playerState.playing, enableAnalytics, selectedVideo?.id])
+  }, [playerState.playing, playerState.currentTime, playerState.loaded, enableAnalytics, selectedVideo?.id])
   
   // Toggle mute
   const toggleMute = useCallback(() => {
@@ -328,7 +328,7 @@ export function VideoTestimonials({
   
   // Render video thumbnail card
   // CONTEXT7 SOURCE: /cookpete/react-player - Light mode thumbnail presentation with play overlay
-  const renderVideoThumbnail = (video: TestimonialVideo) => (
+  const renderVideoThumbnail = (video: Testimonial) => (
     <m.div
       key={video.id}
       variants={itemVariants}
@@ -337,11 +337,64 @@ export function VideoTestimonials({
     >
       <Card className="h-full bg-white/90 backdrop-blur-sm border border-primary-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group-hover:scale-[1.02]">
         <div className="relative aspect-video rounded-t-2xl overflow-hidden">
-          <img
-            src={video.thumbnailSrc}
-            alt={video.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+          {/* CONTEXT7 SOURCE: /websites/react_dev - Enhanced video thumbnail loading with improved error handling
+          // VIDEO LOADING ENHANCEMENT: Optimized thumbnail loading with better error recovery
+          // ACCESSIBILITY ENHANCEMENT: Improved alt text and loading states for video thumbnails */}
+          {/* CONTEXT7 SOURCE: /html/video - Video thumbnail display using background-image for optimal loading */}
+          {/* VIDEO THUMBNAIL REASON: Display actual video thumbnails generated from video first frames */}
+          {/* ENHANCEMENT: Enhanced error handling and loading states for reliable thumbnail display */}
+          {video.videoThumbnail && typeof video.videoThumbnail === 'string' && video.videoThumbnail.length > 0 ? (
+            <>
+              <img
+                src={video.videoThumbnail}
+                alt={`Video testimonial thumbnail for ${video.author} - ${video.role}`}
+                className="w-full h-full object-cover transition-opacity duration-300"
+                loading="lazy"
+                onError={(e) => {
+                  // CONTEXT7 SOURCE: /websites/react_dev - Enhanced thumbnail error handling
+                  console.warn('Thumbnail image failed to load:', video.videoThumbnail);
+                  // Enhanced error handling with accessibility feedback
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.setAttribute('aria-hidden', 'true');
+                  const placeholder = target.nextElementSibling as HTMLElement;
+                  if (placeholder) {
+                    placeholder.style.display = 'flex';
+                    placeholder.style.animation = 'fadeIn 0.3s ease-in-out';
+                    placeholder.setAttribute('role', 'img');
+                    placeholder.setAttribute('aria-label', `Video testimonial from ${video.author}, thumbnail unavailable`);
+                  }
+                }}
+                onLoad={() => {
+                  console.log('Thumbnail loaded successfully:', video.videoThumbnail);
+                  // Enhanced loading success feedback with accessibility
+                  const target = e.currentTarget as HTMLImageElement;
+                  target.style.opacity = '1';
+                  target.removeAttribute('aria-hidden');
+                }}
+                style={{ opacity: '0.7' }} // Initial loading state
+              />
+              <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center" style={{ display: 'none' }}>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mb-2 shadow-lg">
+                    <Play className="w-8 h-8 text-primary-600 ml-1" fill="currentColor" />
+                  </div>
+                  <p className="text-primary-700 font-medium text-sm">Video Testimonial</p>
+                  <p className="text-primary-500 text-xs mt-1">Click to play</p>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mb-2 shadow-lg">
+                  <Play className="w-8 h-8 text-primary-600 ml-1" fill="currentColor" />
+                </div>
+                <p className="text-primary-700 font-medium text-sm">Video Testimonial</p>
+                <p className="text-primary-500 text-xs mt-1">Click to play</p>
+              </div>
+            </div>
+          )}
           
           {/* Play Overlay */}
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -357,29 +410,17 @@ export function VideoTestimonials({
                 Featured
               </Badge>
             )}
-            {video.duration && (
-              <Badge variant="outline" className="bg-black/50 text-white border-white/30 text-xs px-2 py-1">
-                <Clock className="w-3 h-3 mr-1" />
-                {formatTime(video.duration)}
-              </Badge>
-            )}
+            <Badge variant="outline" className="bg-black/50 text-white border-white/30 text-xs px-2 py-1">
+              <Eye className="w-3 h-3 mr-1" />
+              Video
+            </Badge>
           </div>
-          
-          {/* View Count */}
-          {video.viewCount && (
-            <div className="absolute bottom-3 right-3">
-              <Badge variant="outline" className="bg-black/50 text-white border-white/30 text-xs px-2 py-1">
-                <Eye className="w-3 h-3 mr-1" />
-                {video.viewCount.toLocaleString()}
-              </Badge>
-            </div>
-          )}
         </div>
         
         <CardContent className="p-6">
           <div className="flex items-start justify-between mb-3">
             <h3 className="font-serif font-semibold text-primary-900 text-lg leading-tight">
-              {video.title}
+              {video.author}
             </h3>
             {video.rating && (
               <div className="flex items-center gap-1 ml-2">
@@ -395,17 +436,16 @@ export function VideoTestimonials({
             WebkitLineClamp: 2, 
             WebkitBoxOrient: 'vertical' as const 
           }}>
-            {video.description}
+            {video.quote}
           </p>
           
-          {video.testimonialAuthor && (
-            <div className="border-t pt-3">
-              <p className="text-primary-800 font-medium text-sm">{video.testimonialAuthor}</p>
-              {video.testimonialRole && (
-                <p className="text-primary-500 text-xs mt-1">{video.testimonialRole}</p>
-              )}
-            </div>
-          )}
+          <div className="border-t pt-3">
+            <p className="text-primary-800 font-medium text-sm">{video.author}</p>
+            <p className="text-primary-500 text-xs mt-1">{video.role}</p>
+            {video.result && (
+              <p className="text-accent-600 text-xs mt-1 font-medium">{video.result}</p>
+            )}
+          </div>
         </CardContent>
       </Card>
     </m.div>
@@ -516,15 +556,51 @@ export function VideoTestimonials({
               onClick={(e) => e.stopPropagation()}
               onMouseMove={handleMouseMove}
             >
-              {/* Video Player */}
+              {/* CONTEXT7 SOURCE: /websites/react_dev - Enhanced video player with better error handling
+              // VIDEO PLAYER ENHANCEMENT: Improved video loading with error recovery and accessibility */}
+              {/* Video Player with Enhanced Error Handling */}
               <video
                 ref={videoRef}
-                src={selectedVideo.videoSrc}
-                poster={selectedVideo.thumbnailSrc}
+                src={selectedVideo.videoUrl}
                 className="w-full h-full object-cover"
                 onTimeUpdate={handleTimeUpdate}
                 onEnded={handleVideoEnd}
-                onLoadedData={() => setPlayerState(prev => ({ ...prev, loaded: true }))}
+                onLoadedData={() => {
+                  console.log('Video loaded successfully:', selectedVideo.videoUrl);
+                  setPlayerState(prev => ({ ...prev, loaded: true }));
+                }}
+                onError={(e) => {
+                  // CONTEXT7 SOURCE: /websites/react_dev - Video loading error handling
+                  console.error('Video failed to load:', selectedVideo.videoUrl, e);
+                  // Enhanced error handling for video loading failures
+                  setPlayerState(prev => ({ 
+                    ...prev, 
+                    loaded: false, 
+                    playing: false 
+                  }));
+                }}
+                onLoadStart={() => {
+                  console.log('Video loading started:', selectedVideo.videoUrl);
+                }}
+                onCanPlay={() => {
+                  console.log('Video can start playing:', selectedVideo.videoUrl);
+                }}
+                onWaiting={() => {
+                  console.log('Video buffering:', selectedVideo.videoUrl);
+                }}
+                onPlaying={() => {
+                  console.log('Video playing:', selectedVideo.videoUrl);
+                }}
+                onPause={() => {
+                  console.log('Video paused:', selectedVideo.videoUrl);
+                }}
+                preload="metadata"
+                playsInline
+                controls={false}
+                webkit-playsinline="true"
+                x5-playsinline="true"
+                x5-video-player-type="h5"
+                x5-video-player-fullscreen="true"
               />
               
               {/* Custom Video Controls */}
@@ -549,21 +625,26 @@ export function VideoTestimonials({
                     {/* Video Info */}
                     <div className="absolute top-4 left-4 text-white z-10">
                       <h3 className="font-serif font-semibold text-xl mb-1">
-                        {selectedVideo.title}
+                        {selectedVideo.author}
                       </h3>
                       <p className="text-sm opacity-90">
-                        {selectedVideo.testimonialAuthor} • {selectedVideo.testimonialRole}
+                        {selectedVideo.role}
                       </p>
                     </div>
                     
-                    {/* Play/Pause Button */}
+                    {/* CONTEXT7 SOURCE: /websites/react_dev - Enhanced play/pause button with loading states
+                    // VIDEO CONTROL ENHANCEMENT: Improved play/pause button with loading feedback */}
+                    {/* Play/Pause Button with Enhanced Loading States */}
                     <Button
                       size="icon"
                       variant="ghost"
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-20 h-20 rounded-full bg-black/30"
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white hover:bg-white/20 w-20 h-20 rounded-full bg-black/30 transition-all duration-200"
                       onClick={togglePlayPause}
+                      disabled={!playerState.loaded}
                     >
-                      {playerState.playing ? (
+                      {!playerState.loaded ? (
+                        <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      ) : playerState.playing ? (
                         <Pause className="w-8 h-8" fill="currentColor" />
                       ) : (
                         <Play className="w-8 h-8 ml-1" fill="currentColor" />
@@ -582,9 +663,15 @@ export function VideoTestimonials({
                         />
                       </div>
                       
-                      {/* Time Display */}
+                      {/* CONTEXT7 SOURCE: /websites/react_dev - Enhanced time display with loading states
+                      // TIME DISPLAY ENHANCEMENT: Better formatting and loading feedback */}
+                      {/* Time Display with Enhanced Loading States */}
                       <span className="text-sm font-mono min-w-max">
-                        {formatTime(playerState.currentTime)} / {formatTime(playerState.duration)}
+                        {playerState.loaded ? (
+                          `${formatTime(playerState.currentTime)} / ${formatTime(playerState.duration)}`
+                        ) : (
+                          'Loading...'
+                        )}
                       </span>
                       
                       {/* Volume Control */}

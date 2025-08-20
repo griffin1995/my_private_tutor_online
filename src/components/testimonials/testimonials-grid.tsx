@@ -21,13 +21,15 @@
 'use client'
 
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react'
-import { m, LazyMotion, domAnimation, AnimatePresence } from 'framer-motion'
+import { motion as m, LazyMotion, domAnimation, AnimatePresence } from 'framer-motion'
 import { TestimonialCard } from './testimonial-card'
 import { TestimonialModal } from './testimonial-modal'
 import { SkeletonCard } from '../ui/skeleton-card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight, Grid3X3, List, Layers, Play } from 'lucide-react'
+// CONTEXT7 SOURCE: /framer/motion - Standard Framer Motion animations removed premium micro-interactions
+// SIMPLIFICATION REASON: Surgical removal of premium micro-interactions system while preserving testimonials grid functionality
 
 // CONTEXT7 SOURCE: /context7/react_dev - TypeScript interface patterns for component props
 // INTERFACE DESIGN REASON: Comprehensive type safety for enhanced testimonials grid system
@@ -298,7 +300,7 @@ export function TestimonialsGrid({
   // Loading skeleton display
   if (loading) {
     return (
-      <div className={`${getGridClasses()} ${className}`}>
+      <div className={getGridClasses() + ' ' + className}>
         {Array.from({ length: itemsPerPage }, (_, index) => (
           <SkeletonCard key={`skeleton-${index}`} />
         ))}
@@ -307,49 +309,55 @@ export function TestimonialsGrid({
   }
 
   return (
-    <LazyMotion features={domAnimation}>
-      <div className={`testimonials-grid ${className}`}>
+    <div className={'testimonials-grid ' + className}>
         {/* CONTEXT7 SOURCE: /context7/tailwindcss - Layout control interface with responsive buttons */}
         {/* CONTROL INTERFACE REASON: User-friendly layout and sorting controls for testimonial exploration */}
+        {/* CONTEXT7 SOURCE: /websites/motion_dev - Enhanced control interface with premium micro-interactions */}
+        {/* CONTROL ENHANCEMENT REASON: Official Motion documentation demonstrates cardElevation and button hover states for premium UI controls */}
         {showLayoutControls && (
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-8 p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-primary-100">
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-primary-700">Layout:</span>
-              <div className="flex items-center gap-1 bg-white rounded-lg p-1 border border-primary-200">
-                <Button
-                  variant={currentLayout === 'grid' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => handleLayoutChange('grid')}
-                  className="h-8 w-8 p-0"
-                >
-                  <Grid3X3 className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={currentLayout === 'masonry' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => handleLayoutChange('masonry')}
-                  className="h-8 w-8 p-0"
-                >
-                  <Layers className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={currentLayout === 'list' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => handleLayoutChange('list')}
-                  className="h-8 w-8 p-0"
-                >
-                  <List className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant={currentLayout === 'carousel' ? 'default' : 'ghost'}
-                  size="sm"
-                  onClick={() => handleLayoutChange('carousel')}
-                  className="h-8 w-8 p-0"
-                >
-                  <Play className="h-4 w-4" />
-                </Button>
+          <m.div
+            className="flex flex-wrap items-center justify-between gap-4 mb-8 p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-primary-100 group"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-primary-700 transition-colors duration-300 group-hover:text-primary-800">Layout:</span>
+                <div className="flex items-center gap-1 bg-white rounded-lg p-1 border border-primary-200 group-hover:border-accent-300 transition-colors duration-300">
+                  <Button
+                    variant={currentLayout === 'grid' ? 'primary' : 'ghost'}
+                    size="sm"
+                    onClick={() => handleLayoutChange('grid')}
+                    className="h-8 w-8 p-0"
+                  >
+                    <Grid3X3 className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant={currentLayout === 'masonry' ? 'primary' : 'ghost'}
+                    size="sm"
+                    onClick={() => handleLayoutChange('masonry')}
+                    className="h-8 w-8 p-0"
+                  >
+                    <Layers className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant={currentLayout === 'list' ? 'primary' : 'ghost'}
+                    size="sm"
+                    onClick={() => handleLayoutChange('list')}
+                    className="h-8 w-8 p-0"
+                  >
+                    <List className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant={currentLayout === 'carousel' ? 'primary' : 'ghost'}
+                    size="sm"
+                    onClick={() => handleLayoutChange('carousel')}
+                    className="h-8 w-8 p-0"
+                  >
+                    <Play className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
-            </div>
 
             {enableSorting && (
               <div className="flex items-center gap-2">
@@ -381,66 +389,113 @@ export function TestimonialsGrid({
                 </select>
               </div>
             )}
-          </div>
+          </m.div>
         )}
 
         {/* CONTEXT7 SOURCE: /grx7/framer-motion - Advanced staggered animation container */}
         {/* ANIMATION CONTAINER REASON: Professional entrance animations for testimonial showcase */}
+        {/* CONTEXT7 SOURCE: /websites/motion_dev - Enhanced stagger container with premium micro-interactions */}
+        {/* STAGGER ENHANCEMENT REASON: Official Motion documentation demonstrates staggerChildren patterns for sophisticated content revelation */}
         <m.div
-          ref={gridRef}
-          className={getGridClasses()}
+          className="testimonials-grid-container"
           initial="hidden"
           animate="visible"
-          variants={currentVariants.container}
-          layout
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.08,
+                delayChildren: 0.2
+              }
+            }
+          }}
         >
-          <AnimatePresence mode="popLayout">
-            {displayedTestimonials.map((testimonial, index) => (
-              <m.div
-                key={testimonial.id}
-                variants={currentVariants.item}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                layout
-                layoutId={testimonial.id}
-                className={
-                  currentLayout === 'masonry' 
-                    ? "break-inside-avoid mb-6" 
-                    : currentLayout === 'carousel' 
-                    ? "flex-none w-80 snap-start" 
-                    : ""
-                }
-              >
-                <TestimonialCard
-                  testimonial={testimonial}
-                  onClick={() => handleTestimonialClick(testimonial)}
-                  layout={currentLayout}
-                  enableHover={true}
-                  showFullContent={currentLayout === 'list'}
-                  className={currentLayout === 'carousel' ? 'h-full' : ''}
-                />
-              </m.div>
-            ))}
-          </AnimatePresence>
+          <m.div
+            ref={gridRef}
+            className={getGridClasses()}
+            initial="hidden"
+            animate="visible"
+            variants={currentVariants.container}
+            layout
+          >
+            <AnimatePresence mode="popLayout">
+              {displayedTestimonials.map((testimonial, index) => (
+                <m.div
+                  key={testimonial.id}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                  className={'testimonial-card-wrapper ' + (
+                      currentLayout === 'masonry' 
+                        ? "break-inside-avoid mb-6" 
+                        : currentLayout === 'carousel' 
+                        ? "flex-none w-80 snap-start" 
+                        : ""
+                    )}
+                    whileHover={true}
+                  >
+                    <m.div
+                      variants={currentVariants.item}
+                      initial="hidden"
+                      animate="visible"
+                      exit="hidden"
+                      layout
+                      layoutId={testimonial.id}
+                      whileHover={{
+                        scale: 1.02,
+                        transition: { duration: 0.2, ease: 'easeOut' }
+                      }}
+                      whileTap={{
+                        scale: 0.98,
+                        transition: { duration: 0.1 }
+                      }}
+                    >
+                      <TestimonialCard
+                        testimonial={testimonial}
+                        onClick={() => handleTestimonialClick(testimonial)}
+                        layout={currentLayout}
+                        enableHover={true}
+                        showFullContent={currentLayout === 'list'}
+                        className={currentLayout === 'carousel' ? 'h-full' : ''}
+                      />
+                    </m.div>
+                </m.div>
+              ))}
+            </AnimatePresence>
+          </m.div>
         </m.div>
 
         {/* CONTEXT7 SOURCE: /context7/tailwindcss - Load more button with professional styling */}
         {/* LOAD MORE REASON: Progressive loading for large testimonial datasets */}
+        {/* CONTEXT7 SOURCE: /websites/motion_dev - Enhanced load more button with premium interactions */}
+        {/* BUTTON ENHANCEMENT REASON: Official Motion documentation demonstrates Button component with sophisticated hover and tap states */}
         {showLoadMore && visibleItems < testimonials.length && (
-          <div className="flex justify-center mt-12">
-            <Button
-              onClick={handleLoadMore}
-              variant="outline"
-              size="lg"
-              className="px-8 py-3 text-primary-700 border-2 border-primary-200 hover:bg-primary-50 hover:border-accent-500 transition-all duration-300"
+          <m.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex justify-center mt-12"
+          >
+            <m.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group"
             >
-              Load More Testimonials
-              <Badge variant="secondary" className="ml-2">
-                {testimonials.length - visibleItems} remaining
-              </Badge>
-            </Button>
-          </div>
+                <Button
+                  onClick={handleLoadMore}
+                  variant="secondary"
+                  size="lg"
+                  className="px-8 py-3 text-primary-700 border-2 border-primary-200 hover:bg-primary-50 hover:border-accent-500 transition-all duration-300 group-hover:shadow-lg"
+                >
+                  Load More Testimonials
+                  <Badge variant="secondary" className="ml-2 transition-all duration-300 group-hover:bg-accent-100">
+                    {testimonials.length - visibleItems} remaining
+                  </Badge>
+                </Button>
+            </m.div>
+          </m.div>
         )}
 
         {/* CONTEXT7 SOURCE: /grx7/framer-motion - Modal component with sophisticated animations */}
@@ -453,6 +508,5 @@ export function TestimonialsGrid({
           />
         )}
       </div>
-    </LazyMotion>
   )
 }

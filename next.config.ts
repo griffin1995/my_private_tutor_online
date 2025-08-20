@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import bundleAnalyzer from '@next/bundle-analyzer';
+import path from 'path';
 // CONTEXT7 SOURCE: /amannn/next-intl - Next.js plugin for i18n configuration
 // INTERNATIONALIZATION REASON: Official next-intl documentation requires plugin for request-specific i18n configuration
 import createNextIntlPlugin from 'next-intl/plugin';
@@ -417,6 +418,16 @@ const nextConfig: NextConfig = {
         symlinks: false, // Faster resolution by avoiding symlink resolution
       };
     }
+
+    // CONTEXT7 SOURCE: /webpack/webpack - Explicit alias resolution for @ path mapping
+    // PATH RESOLUTION REASON: Ensure @ alias resolves correctly in all build environments including Vercel
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        '@': path.resolve(process.cwd(), './src'),
+      },
+    };
     
     return config;
   },

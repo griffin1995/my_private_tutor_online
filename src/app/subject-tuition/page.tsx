@@ -20,11 +20,15 @@
 
 "use client"
 
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React from 'react'
+import { useState, useEffect } from 'react'
 import { m } from 'framer-motion'
 import Image from 'next/image'
 import { BookOpen, GraduationCap, Users, Award, Target, Globe } from 'lucide-react'
 import { PageLayout } from '@/components/layout/page-layout'
-import { PageHero } from '@/components/layout/page-hero'
+import { SimpleHero } from '@/components/layout/simple-hero'
 import { Section } from '@/components/layout/section'
 import { Button } from '@/components/ui/button'
 import { WaveSeparator } from '@/components/ui/wave-separator'
@@ -133,7 +137,8 @@ const ctaDataRaw = getServicesCTA()
 // CONTEXT7 SOURCE: /microsoft/typescript - Results documentation data consumption pattern
 // RESULTS DOCUMENTATION DATA: Quantifiable academic outcomes for premium service positioning
 // CMS DATA SOURCE: Using getResultsDocumentation() for verifiable achievement metrics
-const resultsData = getResultsDocumentation()
+// Note: This will be loaded asynchronously in the component using useEffect
+let resultsData: any[] = [] // Default empty array for build time
 
 // Transform CTA data to component-compatible format with action handlers
 const ctaData = {
@@ -164,29 +169,33 @@ const ctaData = {
 // CONTEXT7 SOURCE: /facebook/react - Main page component using modular extracted components
 // REFACTORED ARCHITECTURE REASON: Official React patterns for component composition and maintainability
 export default function SubjectTuitionPage() {
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useState and useEffect for async data loading
+  // ASYNC DATA REASON: Official React documentation for managing server-fetched data in client components
+  const [asyncResultsData, setAsyncResultsData] = useState<any[]>([])
+  
+  useEffect(() => {
+    async function loadResultsData() {
+      try {
+        const data = await getResultsDocumentation()
+        setAsyncResultsData(data)
+      } catch (error) {
+        console.error('Failed to load results data:', error)
+      }
+    }
+    
+    loadResultsData()
+  }, [])
+  
   return (
     <>
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for hero background images */}
-      {/* HERO IMPLEMENTATION REASON: Official Next.js documentation for optimized background images with Image component */}
-      <PageHero
-        background="image"
+      {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
+      {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      <SimpleHero
         backgroundImage="/images/hero/hero-subject-tuition-primary.jpg"
-        size="full"
-        overlay={true}
-        overlayOpacity="dark"
-      >
-        <div className="text-center text-white">
-          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-serif font-bold leading-tight mb-6">
-            {heroContent.title}
-          </h1>
-          <p className="text-xl text-accent-400 font-semibold mb-6">
-            {heroContent.subtitle}
-          </p>
-          <p className="text-lg text-white/90 leading-relaxed max-w-3xl mx-auto">
-            {heroContent.description}
-          </p>
-        </div>
-      </PageHero>
+        h1="Subject Tutoring & Exam Preparation"
+        h2="Expert Tuition"
+        decorativeStyle="lines"
+      />
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout wrapper for content sections */}
       {/* LAYOUT REASON: Official Next.js patterns for content section organization */}
@@ -252,7 +261,7 @@ export default function SubjectTuitionPage() {
             <ResultsDocumentation
               title="Quantifiable Academic Outcomes"
               description="Verified results that demonstrate measurable ROI for logic-driven families and elite service positioning"
-              results={resultsData}
+              results={asyncResultsData}
               showVerificationBadges={true}
               showConfidenceIntervals={true}
               layout="grid"

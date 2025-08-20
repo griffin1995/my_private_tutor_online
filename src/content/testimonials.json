@@ -5,8 +5,8 @@
     "description": "Since 2010, My Private Tutor Online has helped hundreds of students achieve their academic goals."
   },
   "mainContent": {
-    "intro": "We're proud to say we've never spent a penny on marketing or paid advertising — our tutors are consistently in demand through personal word-of-mouth referrals alone.",
-    "callToAction": "Here's what a selection of families have to say about their experience with us. We are always happy to share references for specific tutors upon request."
+    "intro": "Here's what a selection of families have to say about their experience with us. We are always happy to share references for specific tutors upon request.",
+    "callToAction": "Read testimonials from families who have achieved exceptional results with My Private Tutor Online."
   },
   "video": {
     "title": "TESTIMONIALS VIDEO JULY 2025 MPTO",
@@ -16,7 +16,7 @@
   "schoolsTitle": "WE HELP CLIENTS SECURE PLACES AT THE TOP EDUCATIONAL INSTITUTIONS IN THE WORLD",
   "schools": [
     "Eton College",
-    "Westminster School", 
+    "Westminster School",
     "St Paul's School",
     "Winchester College",
     "Harrow School",
@@ -28,91 +28,47 @@
   ],
   "recentTestimonials": [
     {
-      "quote": "Elizabeth's team was the only one that actually delivered what they promised. Our daughter secured her place at Westminster School with their expert guidance.",
-      "author": "Sarah M.",
-      "role": "Parent of 11+ student",
+      "id": "video-parents-compilation-2025",
+      "quote": "My Private Tutor Online transformed our experience with education. The support our children received for their exams was exceptional. The tutors were knowledgeable, patient, and really understood how to connect with the students.",
+      "author": "Multiple Parents",
+      "role": "Parents of MPTO Students", 
       "rating": 5,
       "featured": true,
-      "category": "11+",
-      "subject": "English & Mathematics",
-      "grade": "A*",
-      "location": "London",
-      "year": 2024,
-      "result": "Westminster School Place",
+      "category": "video",
+      "subject": "Comprehensive Support",
+      "grade": "Outstanding Results",
+      "location": "Various",
+      "year": 2025,
+      "result": "Multiple Success Stories",
       "verified": true,
-      "date": "2024-09-15"
+      "date": "2025-08-19",
+      "hasVideo": true,
+      "videoUrl": "/videos/parent-testimonials-compilation.mp4",
+      "videoThumbnail": "/images/testimonials/parent-testimonials-thumbnail.jpg",
+      "videoDuration": 300
     },
     {
-      "quote": "Your tutors are next level. We couldn't have done it without you. Both children achieved their Oxbridge offers!",
-      "author": "James & Victoria P.",
-      "role": "Parents of A-Level students",
+      "id": "video-students-compilation-2025", 
+      "quote": "The tutoring completely changed my approach to studying and helped me achieve results I never thought possible. The tutors made learning enjoyable and gave me confidence in subjects I previously struggled with.",
+      "author": "Multiple Students",
+      "role": "MPTO Students",
       "rating": 5,
-      "category": "oxbridge",
-      "subject": "Sciences & Mathematics",
-      "grade": "A*",
-      "location": "South East",
-      "year": 2024,
-      "result": "Oxford & Cambridge Places",
+      "featured": true,
+      "category": "video", 
+      "subject": "Academic Achievement",
+      "grade": "Excellent Progress",
+      "location": "Various",
+      "year": 2025,
+      "result": "Academic Success & Confidence",
       "verified": true,
-      "date": "2024-08-20"
+      "date": "2025-08-19",
+      "hasVideo": true,
+      "videoUrl": "/videos/student-testimonials-compilation.mp4",
+      "videoThumbnail": "/images/testimonials/student-testimonials-thumbnail.jpg",
+      "videoDuration": 280
     },
     {
-      "quote": "Annika scored a 7 in her GCSE retake. We are thrilled—it's such an improvement on the 4 she got in summer.",
-      "author": "Maria L.",
-      "role": "Parent of GCSE student",
-      "rating": 5,
-      "category": "gcse",
-      "subject": "Mathematics",
-      "grade": "Significant Improvement",
-      "location": "London",
-      "year": 2024,
-      "result": "Grade 7 Achievement",
-      "verified": true,
-      "date": "2024-11-10"
-    },
-    {
-      "quote": "Thank you for making my child believe in themselves again. The transformation in confidence has been remarkable.",
-      "author": "David K.",
-      "role": "Parent of Year 9 student",
-      "rating": 5,
-      "category": "gcse",
-      "subject": "English & Humanities",
-      "grade": "B+",
-      "location": "South East",
-      "year": 2024,
-      "result": "Confidence Transformation",
-      "verified": true,
-      "date": "2024-07-05"
-    },
-    {
-      "quote": "We were delighted to hear all three children were accepted into Le Rosey. Your preparation was absolutely invaluable.",
-      "author": "The Al-Rashid Family",
-      "role": "International clients",
-      "rating": 5,
-      "category": "international",
-      "subject": "Languages & Arts",
-      "grade": "A*",
-      "location": "International",
-      "year": 2024,
-      "result": "Le Rosey Acceptance",
-      "verified": true,
-      "date": "2024-06-30"
-    },
-    {
-      "quote": "The tutor you matched us with understood exactly what the Eton entrance exams required. Our son is now thriving there.",
-      "author": "Caroline W.",
-      "role": "Parent of 13+ student",
-      "rating": 5,
-      "category": "11+",
-      "subject": "English & Mathematics",
-      "grade": "A*",
-      "location": "London",
-      "year": 2023,
-      "result": "Eton College Place",
-      "verified": true,
-      "date": "2023-09-01"
-    },
-    {
+      "id": "hawthorne-11plus-2024",
       "quote": "It's a full house - offers from St Pauls, Westminster, Highgate and UCS. We can't believe it!",
       "author": "Mr & Mrs Hawthorne, Kensington",
       "role": "Parents of 11+ student",
@@ -125,7 +81,8 @@
       "year": 2024,
       "result": "Multiple School Placements",
       "verified": true,
-      "date": "2024-11-15"
+      "date": "2024-11-15",
+      "hasVideo": false
     },
     {
       "quote": "Brian and Gloria's teaching style is just right - not lecturing but engaging and really growing her enthusiasm for the subjects.",
@@ -139,7 +96,9 @@
       "year": 2024,
       "result": "Gifted & Talented Scholarship",
       "verified": true,
-      "date": "2024-10-20"
+      "date": "2024-10-20",
+      "id": "ms-adebayo-new-scholarship-2024",
+      "hasVideo": false
     },
     {
       "quote": "Newsflash! Thanks to you Jake has jumped from a U to two marks off a B - incredible progress in just a month and he really believes he's capable again.",
@@ -153,7 +112,9 @@
       "year": 2024,
       "result": "+5 grades at A Level",
       "verified": true,
-      "date": "2024-09-30"
+      "date": "2024-09-30",
+      "id": "mr-mrs-merittjones-a-level-2024",
+      "hasVideo": false
     },
     {
       "quote": "My twins have always struggled with Science and Maths. They also have ADHD and dyspraxia. I was determined that they would pass their GCSE exams and get at least a 5. Their tutors were unbelievable and the boys walked away with a 7 and an 8 grade respectively. We are thrilled!",
@@ -167,7 +128,9 @@
       "year": 2024,
       "result": "SEN specialist homeschooling",
       "verified": true,
-      "date": "2024-08-25"
+      "date": "2024-08-25",
+      "id": "mr-richardson-highgate-sen-2024",
+      "hasVideo": false
     },
     {
       "quote": "Annika scored a 7 in her GCSE retake. We are THRILLED. It's such an improvement on the 4 she got in the summer!",
@@ -181,7 +144,9 @@
       "year": 2024,
       "result": "+3 grades at GCSE",
       "verified": true,
-      "date": "2024-12-01"
+      "date": "2024-12-01",
+      "id": "mr-gupta-bath-gcse-2024",
+      "hasVideo": false
     },
     {
       "quote": "My tutor was amazing. He helped me craft a personal statement to stand out from the competition and also coached me for the interview - I got an offer from Oxford!",
@@ -195,7 +160,9 @@
       "year": 2024,
       "result": "Politics Student, Balliol College, Oxford University",
       "verified": true,
-      "date": "2024-08-15"
+      "date": "2024-08-15",
+      "id": "aryan-oxbridge-2024",
+      "hasVideo": false
     },
     {
       "quote": "The average score for Cambridge's TMUA test is 4.5. Our daughter scored 6.8, so we are delighted with that result! Huge thanks to you and Brandon for helping her achieve such an incredible result and secure her Cambridge offer!",
@@ -209,7 +176,9 @@
       "year": 2024,
       "result": "Maths Student, Churchill College, Cambridge University",
       "verified": true,
-      "date": "2024-07-10"
+      "date": "2024-07-10",
+      "id": "anonymous-parent-oxbridge-2024",
+      "hasVideo": false
     },
     {
       "quote": "The world of tutoring is a minefield but your tutors are next level.",
@@ -223,7 +192,9 @@
       "year": 2024,
       "result": "All 9s Achieved at GCSE",
       "verified": true,
-      "date": "2024-06-15"
+      "date": "2024-06-15",
+      "id": "mr-mrs-li-gcse-2024",
+      "hasVideo": false
     }
   ],
   "aboutTestimonials": [
@@ -240,7 +211,9 @@
       "grade": "A*",
       "location": "London",
       "year": 2024,
-      "date": "2024-03-15"
+      "date": "2024-03-15",
+      "id": "mrs-caroline-whitfield-11+-2024",
+      "hasVideo": false
     },
     {
       "quote": "As featured in Tatler, My Private Tutor Online represents the gold standard in educational excellence. The calibre of tutors and results speak for themselves.",
@@ -255,7 +228,9 @@
       "grade": "A*",
       "location": "London",
       "year": 2024,
-      "date": "2024-01-20"
+      "date": "2024-01-20",
+      "id": "the-hon-james-11+-2024",
+      "hasVideo": false
     },
     {
       "quote": "Our son went from predicted C grades to achieving A*A*A at A-Level. The Oxbridge preparation was exceptional - he's now reading Natural Sciences at Cambridge.",
@@ -270,7 +245,9 @@
       "grade": "A*",
       "location": "South East",
       "year": 2023,
-      "date": "2023-08-24"
+      "date": "2023-08-24",
+      "id": "mrs-sarah-fitzgerald-oxbridge-2023",
+      "hasVideo": false
     },
     {
       "quote": "Working with Elizabeth's team has been transformational. The tutors don't just teach - they inspire. Our children have developed a genuine love of learning.",
@@ -285,7 +262,9 @@
       "grade": "A*",
       "location": "London",
       "year": 2023,
-      "date": "2023-09-10"
+      "date": "2023-09-10",
+      "id": "lord-lady-ashworth-11+-2023",
+      "hasVideo": false
     },
     {
       "quote": "The level of personalisation and attention to detail is unmatched. Elizabeth personally ensures every match is perfect for the child's needs and learning style.",
@@ -300,7 +279,9 @@
       "grade": "A*",
       "location": "London",
       "year": 2024,
-      "date": "2024-08-15"
+      "date": "2024-08-15",
+      "id": "dr-amanda-chen-gcse-2024",
+      "hasVideo": false
     },
     {
       "quote": "After trying several tutoring companies, My Private Tutor Online was in a league of its own. The results exceeded our expectations completely.",
@@ -315,7 +296,9 @@
       "grade": "A*",
       "location": "International",
       "year": 2023,
-      "date": "2023-07-30"
+      "date": "2023-07-30",
+      "id": "mr-mrs-davidson-ib-2023",
+      "hasVideo": false
     }
   ]
 }

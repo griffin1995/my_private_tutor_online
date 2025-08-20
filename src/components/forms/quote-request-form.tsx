@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, Crown, Shield, Clock, MapPin, GraduationCap, Users, Phone } from 'lucide-react'
+import { CheckCircle, Star, Shield, Clock, MapPin, GraduationCap, Users, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 // CONTEXT7 SOURCE: /colinhacks/zod - String validation with email, phone, required fields, and custom error messages
@@ -228,8 +228,9 @@ export function QuoteRequestForm({ className, compact = false }: QuoteRequestFor
           
           <div className="bg-accent-50 rounded-lg p-4 mb-6 inline-block">
             <div className="flex items-center justify-center gap-2 text-accent-700 font-medium text-sm">
-              <Crown className="h-4 w-4" aria-hidden="true" />
-              <span>Royal Family Endorsed Service</span>
+              {/* CONTEXT7 SOURCE: /lucide-react - Star icon replacement for premium service indication */}
+              <Star className="h-4 w-4" aria-hidden="true" />
+              <span>Distinguished Family Service</span>
             </div>
           </div>
           
@@ -249,8 +250,9 @@ export function QuoteRequestForm({ className, compact = false }: QuoteRequestFor
     <Card className={cn("w-full max-w-4xl mx-auto", className)}>
       <CardHeader className={cn(compact ? "pb-4" : "pb-6")}>
         <div className="flex items-center gap-3 mb-2">
-          <Crown className="h-6 w-6 text-accent-500" aria-hidden="true" />
-          <Badge variant="gold" className="text-xs">Royal Family Endorsed</Badge>
+          {/* CONTEXT7 SOURCE: /lucide-react - Star icon replacement for premium service indication */}
+          <Star className="h-6 w-6 text-accent-500" aria-hidden="true" />
+          <Badge variant="gold" className="text-xs">Distinguished Family Service</Badge>
         </div>
         <CardTitle className="text-primary-900 text-2xl">
           Request a Personalised Quote
@@ -700,7 +702,8 @@ export function QuoteRequestForm({ className, compact = false }: QuoteRequestFor
                 </div>
               ) : (
                 <>
-                  <Crown className="h-5 w-5 mr-2" aria-hidden="true" />
+                  {/* CONTEXT7 SOURCE: /lucide-react - Star icon replacement for premium service indication */}
+                  <Star className="h-5 w-5 mr-2" aria-hidden="true" />
                   Request Personalised Quote
                 </>
               )}

@@ -9,7 +9,7 @@ The `TestimonialsHero` component is an enhanced, modular hero section specifical
 ### Core Functionality
 - **Flexible Background Options**: Supports gradient, image, or video backgrounds
 - **Multiple Size Variants**: Compact, standard, or full-screen hero layouts
-- **Royal Credentials Display**: Showcases premium endorsements and achievements
+- **Elite Credentials Display**: Showcases premium endorsements and achievements
 - **Sophisticated Animations**: Framer Motion-powered staggered reveals with professional timing
 - **CMS Integration**: Full content management system support
 - **Accessibility First**: WCAG 2.1 AA compliance with proper ARIA labels
@@ -51,7 +51,7 @@ export default function TestimonialsPage() {
   animationDelay={0.2}
   showCredentials={true}
   customCredentials={[
-    { icon: 'crown', text: 'Royal Warrant Holder' },
+    { icon: 'shield', text: 'Elite Certification Holder' },
     { icon: 'award', text: 'Educational Excellence Award 2025' }
   ]}
   className="custom-hero-styles"
@@ -73,7 +73,7 @@ interface TestimonialsHeroProps {
   className?: string
   showCredentials?: boolean
   customCredentials?: Array<{
-    icon: 'crown' | 'award' | 'star'
+    icon: 'shield' | 'award' | 'star'
     text: string
   }>
 }
@@ -88,7 +88,7 @@ interface TestimonialsHeroProps {
 | `size` | String | 'full' | Hero section size: compact, standard, or full |
 | `animationDelay` | Number | 0 | Delay in seconds before animations begin |
 | `className` | String | '' | Additional CSS classes for customisation |
-| `showCredentials` | Boolean | true | Whether to display royal credentials section |
+| `showCredentials` | Boolean | true | Whether to display elite credentials section |
 | `customCredentials` | Array | undefined | Custom credential items to override defaults |
 
 ## Animation System
@@ -170,12 +170,12 @@ const heroContent = getTestimonialsHero()
 3. Respect reduced motion preferences
 4. Test on low-performance devices
 
-## Royal Client Standards
+## Elite Client Standards
 
 This component meets premium service standards:
 
 - **Visual Excellence**: Professional animations and typography
-- **Brand Consistency**: Proper royal endorsement display
+- **Brand Consistency**: Proper elite endorsement display
 - **Performance**: Sub-3s load times maintained
 - **Accessibility**: WCAG 2.1 AA compliance
 - **Mobile Excellence**: Touch-friendly interactions

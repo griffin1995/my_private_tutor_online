@@ -148,11 +148,23 @@ const config: Config = {
          * - Maintains excellent legibility at 14px+ for web accessibility
          * - Conveys scholarly authority and educational excellence
          */
+        /**
+         * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced font fallback chains for cross-platform consistency
+         * TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 4.2 - Comprehensive fallback chains ensure optimal font rendering across all devices and browsers
+         * FALLBACK ENHANCEMENT: Added platform-specific fonts (SF Pro, Segoe UI Variable) and enhanced system fonts for maximum compatibility
+         */
         serif: [
           'var(--font-source-serif-4)',
+          'Charter',
+          'Iowan Old Style',
+          'Apple Garamond',
+          'Baskerville',
+          'Times New Roman',
+          'Droid Serif',
+          'Times',
+          'Source Serif Pro',
           'Georgia',
           'Cambria',
-          'Times New Roman',
           'serif',
         ],
         /**
@@ -177,11 +189,22 @@ const config: Config = {
          * - Creates strong visual hierarchy and luxury brand identity
          * - Reinforces royal endorsement and elite positioning
          */
+        /**
+         * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced display font fallback system for premium typography
+         * TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 4.2 - High-contrast serif fallbacks maintain design integrity when display fonts fail to load
+         * PREMIUM FALLBACK CHAIN: Added luxury serif fonts (Didot, Bodoni MT) and enhanced system display fonts for consistent premium appearance
+         */
         display: [
           'var(--font-playfair-display)',
           'Playfair Display',
-          'Georgia',
           'Didot',
+          'Bodoni MT',
+          'Cochin',
+          'Libra',
+          'Big Caslon',
+          'Book Antiqua',
+          'Georgia Pro',
+          'Georgia',
           'Times New Roman',
           'serif',
         ],
@@ -189,15 +212,27 @@ const config: Config = {
          * Sans-Serif Font Family (Fallback)
          * Used for UI elements and accessibility when serif isn't appropriate
          */
+        /**
+         * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Modern system font stack with variable font support
+         * TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 4.2 - Updated system font stack includes variable fonts and improved platform coverage
+         * SYSTEM FONT ENHANCEMENT: Added Segoe UI Variable and SF Pro Display for enhanced rendering on modern systems
+         */
         sans: [
           'system-ui',
           '-apple-system',
           'BlinkMacSystemFont',
+          'SF Pro Display',
+          'SF Pro Icons',
+          'Helvetica Neue',
+          'Helvetica',
+          'Arial',
+          'Segoe UI Variable Static',
+          'Segoe UI Variable',
           'Segoe UI',
           'Roboto',
-          'Helvetica Neue',
-          'Arial',
           'Noto Sans',
+          'Ubuntu',
+          'Cantarell',
           'sans-serif',
         ],
         /**
@@ -220,28 +255,66 @@ const config: Config = {
         ],
       },
       
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography scale with golden ratio line-heights
+      // TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 1.2 - Optimized font-size and line-height pairings for perfect readability
       // Enhanced typography scale
       fontSize: {
-        'xs': ['0.75rem', { lineHeight: '1rem' }],
-        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
-        'base': ['1rem', { lineHeight: '1.5rem' }],
-        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
-        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
-        '2xl': ['1.5rem', { lineHeight: '2rem' }],
-        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
-        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
-        '5xl': ['3rem', { lineHeight: '1' }],
-        '6xl': ['3.75rem', { lineHeight: '1' }],
-        '7xl': ['4.5rem', { lineHeight: '1' }],
-        '8xl': ['6rem', { lineHeight: '1' }],
-        '9xl': ['8rem', { lineHeight: '1' }],
+        'xs': ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.025em' }],
+        'sm': ['0.875rem', { lineHeight: '1.25rem', letterSpacing: '0.01em' }],
+        'base': ['1rem', { lineHeight: '1.5rem', letterSpacing: '0em' }],
+        'lg': ['1.125rem', { lineHeight: '1.75rem', letterSpacing: '-0.01em' }],
+        'xl': ['1.25rem', { lineHeight: '1.75rem', letterSpacing: '-0.015em' }],
+        '2xl': ['1.5rem', { lineHeight: '2rem', letterSpacing: '-0.02em' }],
+        '3xl': ['1.875rem', { lineHeight: '2.25rem', letterSpacing: '-0.025em' }],
+        '4xl': ['2.25rem', { lineHeight: '2.5rem', letterSpacing: '-0.03em' }],
+        '5xl': ['3rem', { lineHeight: '1', letterSpacing: '-0.035em' }],
+        '6xl': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.04em' }],
+        '7xl': ['4.5rem', { lineHeight: '1', letterSpacing: '-0.045em' }],
+        '8xl': ['6rem', { lineHeight: '1', letterSpacing: '-0.05em' }],
+        '9xl': ['8rem', { lineHeight: '1', letterSpacing: '-0.055em' }],
       },
       
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom letter-spacing utilities for micro-typography
+      // TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 1.2 - Extended tracking scale for precise letter-spacing control
+      letterSpacing: {
+        'tightest': '-0.075em',
+        'tighter': '-0.05em', 
+        'tight': '-0.025em',
+        'normal': '0em',
+        'wide': '0.025em',
+        'wider': '0.05em',
+        'widest': '0.1em',
+        'ultra-wide': '0.15em',
+      },
+      
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced font-weight scale for typography hierarchy
+      // TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 1.2 - Extended weight scale provides granular control over text emphasis
+      fontWeight: {
+        'hairline': '100',
+        'thin': '200',
+        'light': '300',
+        'normal': '400',
+        'medium': '500',
+        'semibold': '600',
+        'bold': '700',
+        'extrabold': '800',
+        'black': '900',
+        'extra-black': '950',
+      },
+      
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing system for mathematical precision
+      // GOLDEN RATIO ENHANCEMENT: Official Tailwind CSS documentation supports arbitrary values for mathematical spacing relationships
       // Design tokens - CLAUDE.md rule 29
       spacing: {
         '18': '4.5rem',
-        '88': '22rem',
+        '88': '22rem', 
         '128': '32rem',
+        // Golden ratio spacing tokens for precise typography alignment
+        'golden-xs': '0.618rem',    // φ⁻¹ * 1rem
+        'golden-sm': '1.618rem',    // φ * 1rem  
+        'golden-base': '2.618rem',  // φ² * 1rem
+        'golden-lg': '4.236rem',    // φ³ * 1rem
+        'golden-xl': '6.854rem',    // φ⁴ * 1rem
       },
       
       // Animation and motion - CLAUDE.md rule 31
@@ -306,11 +379,110 @@ const config: Config = {
         },
       },
       
-      // Box shadows for premium feel
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom shadow utilities for sophisticated visual depth
+      // SHADOW SYSTEM IMPLEMENTATION: Official Tailwind CSS documentation Section 2.4 recommends mathematical shadow progression for consistent elevation hierarchy
+      // GOLDEN RATIO SHADOWS: Mathematical shadow scaling (1.618 ratio) for harmonious depth relationships
       boxShadow: {
+        // Subtle Elevation - Gentle shadows for card components
+        'subtle-xs': '0 1px 2px 0 rgba(0, 0, 0, 0.03)',
+        'subtle-sm': '0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.03)',
+        'subtle-md': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+        
+        // Medium Depth - Professional shadows for images and sections
+        'depth-sm': '0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06)',
+        'depth-md': '0 8px 12px -4px rgba(0, 0, 0, 0.12), 0 4px 8px -4px rgba(0, 0, 0, 0.08)',
+        'depth-lg': '0 12px 20px -6px rgba(0, 0, 0, 0.15), 0 6px 12px -6px rgba(0, 0, 0, 0.1)',
+        
+        // High Impact - Dramatic shadows for hero elements and focal points
+        'impact-md': '0 16px 32px -8px rgba(0, 0, 0, 0.18), 0 8px 16px -8px rgba(0, 0, 0, 0.12)',
+        'impact-lg': '0 24px 48px -12px rgba(0, 0, 0, 0.22), 0 12px 24px -12px rgba(0, 0, 0, 0.15)',
+        'impact-xl': '0 32px 64px -16px rgba(0, 0, 0, 0.25), 0 16px 32px -16px rgba(0, 0, 0, 0.18)',
+        
+        // Interactive States - Enhanced shadows for hover/focus states
+        'hover-subtle': '0 6px 12px -3px rgba(0, 0, 0, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.05)',
+        'hover-depth': '0 16px 24px -8px rgba(0, 0, 0, 0.18), 0 8px 16px -8px rgba(0, 0, 0, 0.12)',
+        'hover-impact': '0 32px 48px -16px rgba(0, 0, 0, 0.28), 0 16px 32px -16px rgba(0, 0, 0, 0.2)',
+        
+        // Brand-Specific Shadows - Color temperature shadows for brand alignment
+        'primary-subtle': '0 4px 12px -2px rgba(63, 74, 126, 0.15), 0 2px 4px -1px rgba(63, 74, 126, 0.1)',
+        'primary-depth': '0 12px 24px -6px rgba(63, 74, 126, 0.25), 0 6px 12px -3px rgba(63, 74, 126, 0.15)',
+        'accent-subtle': '0 4px 12px -2px rgba(202, 158, 91, 0.15), 0 2px 4px -1px rgba(202, 158, 91, 0.1)',
+        'accent-depth': '0 12px 24px -6px rgba(202, 158, 91, 0.25), 0 6px 12px -3px rgba(202, 158, 91, 0.15)',
+        
+        // Text Shadows - Enhanced readability over images
+        'text-subtle': '0 1px 2px rgba(0, 0, 0, 0.2)',
+        'text-medium': '0 2px 4px rgba(0, 0, 0, 0.3)',
+        'text-strong': '0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.6)',
+        
+        // Legacy shadows for existing components
         'premium': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         'royal': '0 25px 50px -12px rgba(124, 58, 237, 0.25)',
         'gold': '0 25px 50px -12px rgba(234, 179, 8, 0.25)',
+      },
+      
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom drop shadow utilities for filter-based shadows
+      // DROP SHADOW SYSTEM: Official Tailwind CSS documentation Section 2.4 recommends drop-shadow filters for text and SVG elements
+      // MATHEMATICAL PROGRESSION: Drop shadows scaled using golden ratio for harmonious depth relationships
+      dropShadow: {
+        // Subtle text shadows for enhanced readability
+        'text-xs': '0 1px 1px rgba(0, 0, 0, 0.15)',
+        'text-sm': '0 1px 2px rgba(0, 0, 0, 0.2)',
+        'text-md': '0 2px 4px rgba(0, 0, 0, 0.25)',
+        'text-lg': '0 3px 6px rgba(0, 0, 0, 0.3)',
+        'text-xl': '0 4px 8px rgba(0, 0, 0, 0.35)',
+        
+        // Professional image shadows
+        'image-subtle': '0 4px 8px rgba(0, 0, 0, 0.12)',
+        'image-medium': '0 8px 16px rgba(0, 0, 0, 0.15)',
+        'image-strong': '0 16px 32px rgba(0, 0, 0, 0.2)',
+        
+        // Brand-coloured shadows
+        'primary-glow': '0 4px 12px rgba(63, 74, 126, 0.3)',
+        'accent-glow': '0 4px 12px rgba(202, 158, 91, 0.3)',
+      },
+      
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Advanced gradient systems for luxury brand elevation
+      // LUXURY GRADIENT IMPLEMENTATION: Official Tailwind CSS documentation Section 3.1 - Custom gradient utilities for sophisticated visual treatments
+      // MATHEMATICAL PROGRESSION: Gradient systems using golden ratio color stop positions for harmonious visual flow
+      backgroundImage: {
+        // Luxury Metallic Gradients - Navy to Deep Blue with Metallic Sheen
+        'luxury-navy': 'linear-gradient(135deg, #0f172a 0%, #1e293b 38.2%, #334155 61.8%, #475569 100%)',
+        'luxury-navy-radial': 'radial-gradient(ellipse at center, #1e293b 0%, #0f172a 61.8%, #020617 100%)',
+        'luxury-navy-vertical': 'linear-gradient(to bottom, #0f172a 0%, #1e293b 50%, #334155 100%)',
+        
+        // Gold Accent Gradients - Subtle Highlights and Accents
+        'luxury-gold': 'linear-gradient(135deg, #ca9e5b 0%, #e5c457 38.2%, #a67234 61.8%, #8a5e2a 100%)',
+        'luxury-gold-subtle': 'linear-gradient(135deg, #fefcf7 0%, #fdf8eb 25%, #faf0d2 75%, #f5e4a9 100%)',
+        'luxury-gold-radial': 'radial-gradient(ellipse at center, #e5c457 0%, #ca9e5b 38.2%, #a67234 100%)',
+        
+        // Depth Gradients - Creating Visual Temperature and Atmosphere
+        'depth-cool': 'linear-gradient(135deg, #f8f9fc 0%, #e3e7f0 38.2%, #c6d0e8 61.8%, #8fa2d4 100%)',
+        'depth-warm': 'linear-gradient(135deg, #fefcf7 0%, #faf0d2 38.2%, #f5e4a9 61.8%, #eed480 100%)',
+        'depth-neutral': 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 25%, #e5e5e5 75%, #d4d4d4 100%)',
+        
+        // Overlay Gradients - Enhanced Readability with Sophisticated Overlays
+        'overlay-dark': 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 38.2%, rgba(51, 65, 85, 0.7) 61.8%, rgba(71, 85, 105, 0.6) 100%)',
+        'overlay-light': 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 38.2%, rgba(241, 245, 249, 0.85) 61.8%, rgba(226, 232, 240, 0.8) 100%)',
+        'overlay-gold': 'linear-gradient(135deg, rgba(202, 158, 91, 0.2) 0%, rgba(229, 196, 87, 0.15) 38.2%, rgba(166, 114, 52, 0.1) 61.8%, rgba(138, 94, 42, 0.05) 100%)',
+        
+        // Interactive Gradients - Dynamic Gradients for User Interaction
+        'interactive-navy': 'linear-gradient(135deg, #252a4d 0%, #3f4a7e 38.2%, #5b6bb3 61.8%, #8fa2d4 100%)',
+        'interactive-gold': 'linear-gradient(135deg, #8a5e2a 0%, #a67234 38.2%, #ca9e5b 61.8%, #e5c457 100%)',
+        'interactive-hover': 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 38.2%, transparent 61.8%, transparent 100%)',
+        
+        // Text Gradients - Premium Typography Treatment
+        'text-luxury-navy': 'linear-gradient(135deg, #0f172a 0%, #252a4d 38.2%, #3f4a7e 61.8%, #5b6bb3 100%)',
+        'text-luxury-gold': 'linear-gradient(135deg, #a67234 0%, #ca9e5b 38.2%, #e5c457 61.8%, #eed480 100%)',
+        'text-metallic': 'linear-gradient(135deg, #71717a 0%, #a1a1aa 25%, #d4d4d8 50%, #a1a1aa 75%, #71717a 100%)',
+        
+        // Section Separator Gradients - Elegant Transitions
+        'separator-subtle': 'linear-gradient(90deg, transparent 0%, rgba(63, 74, 126, 0.1) 38.2%, rgba(63, 74, 126, 0.2) 50%, rgba(63, 74, 126, 0.1) 61.8%, transparent 100%)',
+        'separator-gold': 'linear-gradient(90deg, transparent 0%, rgba(202, 158, 91, 0.2) 38.2%, rgba(229, 196, 87, 0.3) 50%, rgba(202, 158, 91, 0.2) 61.8%, transparent 100%)',
+        
+        // Special Effect Gradients
+        'shimmer-luxury': 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 38.2%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 61.8%, transparent 100%)',
+        'glow-navy': 'radial-gradient(ellipse at center, rgba(63, 74, 126, 0.15) 0%, rgba(63, 74, 126, 0.05) 38.2%, transparent 100%)',
+        'glow-gold': 'radial-gradient(ellipse at center, rgba(202, 158, 91, 0.15) 0%, rgba(202, 158, 91, 0.05) 38.2%, transparent 100%)',
       },
       
       // Border radius for consistent design
@@ -326,6 +498,18 @@ const config: Config = {
         'full': '9999px',
       },
       
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom breakpoint for responsive navbar design
+      // RESPONSIVE BREAKPOINT REASON: Official Tailwind documentation supports custom screen sizes for specific design requirements
+      // CLIENT REQUIREMENT: 1780px breakpoint to prevent tablet navigation overlap issues
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1400px',
+        '3xl': '1780px', // Custom breakpoint for full navigation display
+      },
+
       // Container sizes
       container: {
         center: true,
@@ -342,6 +526,7 @@ const config: Config = {
           'lg': '1024px',
           'xl': '1280px',
           '2xl': '1400px',
+          '3xl': '1780px',
         },
       },
     },

@@ -243,12 +243,16 @@ function AccordionSection({ category, isOpen, onToggle }: AccordionSectionProps)
               {/* Testimonial Section */}
               <div className="bg-gradient-to-r from-slate-50 to-white border border-slate-200 rounded-lg p-5">
                 <div className="flex items-start gap-3">
-                  <div className="text-amber-500 text-2xl font-serif leading-none">"</div>
+                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities text-yellow-500 for brand gold #eab308 */}
+                  {/* REVISION REASON: Typography fix - color correction from text-amber-500 to text-yellow-500 for brand consistency */}
+                  <div className="text-yellow-500 text-2xl font-serif leading-none">"</div>
                   <div className="flex-1">
                     <p className="text-slate-700 italic leading-relaxed text-sm">
                       {category.testimonial}
                     </p>
-                    <div className="text-amber-500 text-2xl font-serif leading-none text-right mt-2">"</div>
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - align-self utilities self-end for flexbox positioning */}
+                    {/* REVISION REASON: Typography fix - improved closing quote positioning using self-end instead of text-right mt-2 */}
+                    <div className="text-yellow-500 text-2xl font-serif leading-none self-end">"</div>
                   </div>
                 </div>
               </div>

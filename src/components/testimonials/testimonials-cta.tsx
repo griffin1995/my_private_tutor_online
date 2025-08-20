@@ -50,11 +50,11 @@ interface TestimonialsCTAProps {
   variant?: 'consultation' | 'trial' | 'assessment' | 'callback'
   urgency?: 'none' | 'limited' | 'seasonal' | 'exclusive'
   socialProof?: CTASocialProofData
-  backgroundVariant?: 'dark' | 'gradient' | 'royal' | 'seasonal'
+  backgroundVariant?: 'dark' | 'gradient' | 'premium' | 'seasonal'
   showTestimonialStats?: boolean
   enableAnalytics?: boolean
   customMessage?: string
-  buttonStyle?: 'shiny' | 'interactive' | 'royal' | 'premium'
+  buttonStyle?: 'shiny' | 'interactive' | 'elite' | 'premium'
   className?: string
 }
 
@@ -105,7 +105,7 @@ const CTA_VARIANTS = {
 const BACKGROUND_VARIANTS = {
   dark: "bg-primary-900",
   gradient: "bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900",
-  royal: "bg-gradient-to-br from-primary-900 via-purple-900 to-primary-900",
+  premium: "bg-gradient-to-br from-primary-900 via-blue-900 to-primary-900",
   seasonal: "bg-gradient-to-br from-primary-900 via-accent-900 to-primary-800"
 }
 
@@ -211,11 +211,11 @@ export function TestimonialsCTA({
     switch (buttonStyle) {
       case 'interactive':
         return <InteractiveHoverButton {...buttonProps} />
-      case 'royal':
+      case 'elite':
         return (
           <ShinyButton 
             {...buttonProps}
-            className={cn(buttonProps.className, "bg-gradient-to-r from-purple-600 to-accent-500")}
+            className={cn(buttonProps.className, "bg-gradient-to-r from-blue-600 to-accent-500")}
           />
         )
       case 'premium':

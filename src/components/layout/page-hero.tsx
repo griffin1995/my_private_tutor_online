@@ -23,6 +23,15 @@ interface PageHeroProps {
   verticalAlignment?: 'top' | 'center' | 'bottom'
   overlay?: boolean
   overlayOpacity?: 'light' | 'medium' | 'dark'
+  /** 
+   * STATIC NAVBAR MODE: Controls hero height calculation when navbar is static positioned
+   * - hasStaticNavbar={true}: Uses calc(100vh - navbar-height) for remaining viewport height
+   * - hasStaticNavbar={false}: Uses full 100vh height for overlay layouts (default)
+   * 
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS calc() function for dynamic height calculations
+   * NAVBAR INTEGRATION REASON: Official Tailwind documentation enables viewport height adjustments for static positioned elements
+   */
+  hasStaticNavbar?: boolean
 }
 
 export function PageHero({
@@ -35,7 +44,8 @@ export function PageHero({
   alignment = 'center',
   verticalAlignment = 'center',
   overlay = false,
-  overlayOpacity = 'medium'
+  overlayOpacity = 'medium',
+  hasStaticNavbar = false
 }: PageHeroProps) {
 
   // Documentation Source: Context7 Tailwind CSS - Viewport units and full-screen layout patterns
@@ -46,25 +56,48 @@ export function PageHero({
     md: 'min-h-[500px] py-20',
     lg: 'min-h-[600px] py-24',
     xl: 'min-h-[700px] py-32',
-    // Documentation Source: Context7 Tailwind CSS - Full viewport hero with fixed header integration
-    // Reference: /tailwindlabs/tailwindcss.com - h-screen: height: 100vh
-    // 
-    // Critical Implementation for Fixed Header Layouts:
-    // - h-screen: height: 100vh - Takes full viewport height from top to bottom
-    // - w-full: width: 100% - Spans complete viewport width
-    // - overflow-hidden: Prevents content spillover and maintains clean edges
-    // 
-    // How it integrates with fixed header:
-    // 1. Hero starts at viewport top (y=0) - no gap above hero content  
-    // 2. Fixed header overlays transparently on top of hero
-    // 3. Hero content is positioned to be visible under transparent header
-    // 4. When user scrolls, header becomes opaque for readability
-    // 
-    // This eliminates the white space gap issue because:
-    // - No vertical offset or margin pushing hero down
-    // - Header doesn't affect document flow (position: fixed)
-    // - Hero immediately fills viewport from top edge
-    full: 'h-screen w-full overflow-hidden'
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Dynamic viewport height calculations with CSS calc() function
+    // STATIC NAVBAR MODIFICATION: Conditional height calculation based on navbar positioning
+    full: hasStaticNavbar 
+      ? [
+          // Documentation Source: Context7 Tailwind CSS - CSS calc() for dynamic height calculation
+          // Reference: /tailwindlabs/tailwindcss.com - calc(100vh - value) for remaining viewport height
+          // 
+          // Critical Implementation for Static Header Layouts:
+          // - h-[calc(100vh-6rem)]: height: calc(100vh - 96px) - Takes remaining viewport height after navbar
+          // - Navbar height: ~96px (h-20 lg:h-24 xl:h-28 = 80px → 96px → 112px)
+          // - Using 6rem (96px) as reasonable average for responsive navbar height
+          // - w-full: width: 100% - Spans complete viewport width
+          // - overflow-hidden: Prevents content spillover and maintains clean edges
+          // 
+          // How it integrates with static header:
+          // 1. Hero starts below navbar (navbar pushes content down)
+          // 2. Hero takes remaining viewport height after navbar space
+          // 3. No overlay behavior - navbar is part of normal layout
+          // 4. Total page height = navbar height + hero height = 100vh
+          'h-[calc(100vh-6rem)] w-full overflow-hidden'
+        ].join(' ')
+      : [
+          // Documentation Source: Context7 Tailwind CSS - Full viewport hero with fixed header integration
+          // Reference: /tailwindlabs/tailwindcss.com - h-screen: height: 100vh
+          // 
+          // Critical Implementation for Fixed Header Layouts:
+          // - h-screen: height: 100vh - Takes full viewport height from top to bottom
+          // - w-full: width: 100% - Spans complete viewport width
+          // - overflow-hidden: Prevents content spillover and maintains clean edges
+          // 
+          // How it integrates with fixed header:
+          // 1. Hero starts at viewport top (y=0) - no gap above hero content  
+          // 2. Fixed header overlays transparently on top of hero
+          // 3. Hero content is positioned to be visible under transparent header
+          // 4. When user scrolls, header becomes opaque for readability
+          // 
+          // This eliminates the white space gap issue because:
+          // - No vertical offset or margin pushing hero down
+          // - Header doesn't affect document flow (position: fixed)
+          // - Hero immediately fills viewport from top edge
+          'h-screen w-full overflow-hidden'
+        ].join(' ')
   }
 
   // Documentation Source: Tailwind CSS background utilities and video container patterns

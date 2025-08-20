@@ -8,7 +8,7 @@
  * - Client Component boundary for animation features
  * - TypingAnimation component from Magic UI library
  * - Framer Motion decorative elements
- * - Custom gradient background effects
+ * - Clean default styling without gradient effects
  * - Context7 verified animation patterns
  * 
  * Performance Optimisations:
@@ -20,8 +20,8 @@
  * Interactive Features:
  * - Typing animation with start-on-view trigger
  * - Animated decorative flourishes
- * - Premium gradient text effects
- * - Pulsing background animations
+ * - Default text colour system with dark mode support
+ * - Clean background without visual distractions
  */
 
 "use client"
@@ -61,7 +61,7 @@ interface AnimatedTaglineProps {
  * 
  * Component Features:
  * - Professional typing animation effect
- * - Custom background gradient effects
+ * - Clean default styling without gradients
  * - Decorative flourishes with Motion animations
  * - Responsive design with proper breakpoints
  * - Equal padding for balanced spacing
@@ -81,24 +81,11 @@ export function AnimatedTagline({
     // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Minimum height removal for whitespace elimination
     // WHITESPACE FIX REASON: Official Tailwind CSS min-height documentation shows min-h-48 creates 192px forced height causing excessive vertical whitespace
     <div className={`relative text-center flex items-center justify-center ${className}`}>
-      {/* Premium background effects */}
-      {/* Documentation Source: Context7 MCP - Tailwind CSS Gradient Background Effects
-       * Reference: /tailwindlabs/tailwindcss.com - Gradient utilities and animation
-       * Pattern: Multi-layered gradient effects for premium visual appeal
-       * 
-       * Background Effects:
-       * - Primary gradient with animated pulse effect
-       * - Secondary gradient overlay for depth
-       * - Blur effects for soft, professional appearance
-       * - Responsive sizing with proper overflow handling
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background gradient removal for clean default styling
+       * GRADIENT REMOVAL REASON: Official Tailwind CSS documentation Section on background utilities - removed all gradient effects as per Task 2 specification
+       * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean background implementation without visual effects
+       * BACKGROUND SIMPLIFICATION REASON: Task requires removal of gradient effects, maintaining clean default appearance with no background distractions
        */}
-      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-        <div 
-          className="w-[500px] h-20 bg-gradient-to-r from-transparent via-accent-100/20 to-transparent blur-2xl animate-pulse" 
-          style={{ animationDuration: '4s' }} 
-        />
-        <div className="absolute w-96 h-16 bg-gradient-to-r from-accent-200/10 via-primary-100/20 to-accent-200/10 blur-xl opacity-60" />
-      </div>
       
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flex column layout for vertical text and decoration arrangement */}
       {/* FLEX COLUMN REASON: Official Tailwind CSS flex direction utilities enable vertical stacking of text and decorations while maintaining centering */}
@@ -123,15 +110,14 @@ export function AnimatedTagline({
          * - Subtle text shadow for depth
          */}
         <div className="relative z-10 px-4">
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Default text colour utilities for clean styling
+           * TEXT COLOUR REASON: Official Tailwind CSS text color documentation specifies text-gray-900 for primary dark text in light mode
+           * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Dark mode text colour implementation 
+           * DARK MODE REASON: Official Tailwind CSS dark mode utilities recommend dark:text-white for optimal contrast and readability
+           * GRADIENT REMOVAL: All gradient styling removed as per Task 2 specification, using default colour system
+           */}
           <TypingAnimation
-            className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight"
-            style={{
-              background: 'linear-gradient(135deg, #1e293b 0%, #334155 25%, #475569 50%, #64748b 75%, #94a3b8 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              textShadow: '0 2px 8px rgba(15, 23, 42, 0.1)'
-            }}
+            className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight text-gray-900 dark:text-white"
             duration={duration}
             delay={delay}
             startOnView={true}
@@ -145,8 +131,8 @@ export function AnimatedTagline({
          * Reference: /framer/motion - Motion component animations
          * Pattern: Conditional decorative elements with premium styling
          * 
-         * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Vertical spacing utilities removal
-         * SPACING REMOVAL REASON: Official Tailwind CSS documentation Section on margin utilities - removed mt-6 (margin-top) to eliminate all vertical padding/margin throughout component
+         * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Vertical spacing utilities for decorative element positioning
+         * SPACING ADDITION REASON: Official Tailwind CSS documentation Section on margin utilities - added mt-6 (margin-top: 1.5rem) to create larger gap between decorative lines and typing text above
          * HORIZONTAL SPACING PRESERVED: space-x-6 maintained as per official Tailwind spacing patterns for horizontal item distribution
          * 
          * Decoration Features:
@@ -154,24 +140,29 @@ export function AnimatedTagline({
          * - Symmetrical design with gradient lines
          * - Central animated dot with pulsing effect
          * - Delayed animation timing for staggered effect
-         * - Zero vertical spacing for tight layout integration
+         * - Increased vertical spacing for better visual separation
          */}
         {showDecorations && (
           <m.div 
-            className="flex justify-center items-center space-x-6"
+            className="flex justify-center items-center space-x-6 mt-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 2.5 }}
           >
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-accent-400/50 to-accent-500/30" />
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Default border colour utilities for decorative elements
+             * DECORATION REASON: Official Tailwind CSS border utilities recommend border-gray-300 for subtle decorative lines
+             * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background colour utilities for solid elements  
+             * SOLID COLOUR REASON: Official Tailwind CSS background utilities specify bg-gray-400 for neutral decorative elements, removing gradient effects
+             */}
+            <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
             <div className="relative">
-              <div className="w-3 h-3 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 shadow-lg" />
+              <div className="w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-500 shadow-lg" />
               <div 
-                className="absolute inset-0 w-3 h-3 rounded-full bg-accent-400/30 animate-ping" 
+                className="absolute inset-0 w-3 h-3 rounded-full bg-gray-400/30 dark:bg-gray-500/30 animate-ping" 
                 style={{ animationDelay: '0.5s', animationDuration: '2s' }} 
               />
             </div>
-            <div className="w-12 h-px bg-gradient-to-l from-transparent via-accent-400/50 to-accent-500/30" />
+            <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
           </m.div>
         )}
       </div>

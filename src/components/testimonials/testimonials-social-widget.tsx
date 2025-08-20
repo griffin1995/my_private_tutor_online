@@ -28,7 +28,7 @@ export interface TestimonialWidget {
 
 export interface SocialWidgetConfig {
   format: 'compact' | 'card' | 'carousel' | 'testimonial-strip' | 'floating-badge'
-  theme: 'light' | 'dark' | 'royal' | 'minimal'
+  theme: 'light' | 'dark' | 'premium' | 'minimal'
   maxTestimonials: number
   showRatings: boolean
   showAvatars: boolean
@@ -76,11 +76,11 @@ const getThemeStyles = (config: SocialWidgetConfig): React.CSSProperties => {
       '--widget-accent': config.primaryColor || '#eab308',
       '--widget-rating': '#eab308'
     },
-    royal: {
+    premium: {
       '--widget-bg': config.backgroundColor || '#0f172a',
       '--widget-text': config.textColor || '#f8fafc',
       '--widget-border': '#1e293b',
-      '--widget-accent': config.primaryColor || '#eab308',
+      '--widget-accent': config.primaryColor || '#3b82f6',
       '--widget-rating': '#eab308'
     },
     minimal: {
@@ -550,7 +550,7 @@ export const defaultWidgetConfigs: Record<string, SocialWidgetConfig> = {
   },
   carousel: {
     format: 'carousel',
-    theme: 'royal',
+    theme: 'premium',
     maxTestimonials: 5,
     showRatings: true,
     showAvatars: true,

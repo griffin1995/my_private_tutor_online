@@ -29,7 +29,8 @@
  */
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage with proper i18n provider patterns
-// HYDRATION FIX REASON: Official next-intl documentation prohibits setRequestLocale in client components
+// CLIENT COMPONENT RESTORATION: Official next-intl documentation shows client components use useTranslations hook
+// ARCHITECTURE FIX REASON: Restoring original working client component pattern for useState/useEffect compatibility
 
 "use client"
 
@@ -46,47 +47,67 @@ import {
   getSiteBranding,
   getTestimonialsSchools,
   getFounderQuote,
-} from '@/lib/cms'
-import { getStudentImages } from '@/lib/cms/cms-images'
+} from '../../lib/cms'
+import { getStudentImages } from '../../lib/cms/cms-images'
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Optimized component imports with lazy loading strategy
 // LAZY LOADING REASON: Official React documentation enables code splitting for better performance
 
 // Critical above-the-fold components (immediate load)
-import { PageLayout } from '@/components/layout/page-layout'
-import { HeroSection } from '@/components/sections/hero-section'
-import { AnimatedTagline } from '@/components/sections/animated-tagline'
-import { ScrollingSchools } from '@/components/sections/scrolling-schools'
-import { AboutSection } from '@/components/sections/about-section'
-import { TrustIndicatorsGrid } from '@/components/sections/trust-indicators-grid'
-import { QuoteSection } from '@/components/sections/quote-section'
-import { LanguageSwitcher } from '@/components/ui/language-switcher'
+import { PageLayout } from '../../components/layout/page-layout'
+import { HeroSection } from '../../components/sections/hero-section'
+import { AnimatedTagline } from '../../components/sections/animated-tagline'
+import { ScrollingSchools } from '../../components/sections/scrolling-schools'
+import { AboutSection } from '../../components/sections/about-section'
+import { TrustIndicatorsGrid } from '../../components/sections/trust-indicators-grid'
+import { QuoteSection } from '../../components/sections/quote-section'
+import { LanguageSwitcher } from '../../components/ui/language-switcher'
 
-// CONTEXT7 SOURCE: /vercel/next.js - Lazy loaded components for bundle optimization
-// BUNDLE OPTIMIZATION REASON: Official Next.js documentation for reduced initial bundle size
-import { 
-  LazyServicesCarousel,
-  LazyConsultationForm
-} from '@/components/dynamic/lazy-loaded-components'
+// CONTEXT7 SOURCE: /vercel/next.js - Client component wrapper for homepage sections
+// CLIENT WRAPPER REASON: Official Next.js documentation prohibits client components in server components
+import { HomepageSections } from '../../components/homepage/homepage-sections'
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage without server-side locale parameters
-// CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations without setRequestLocale in client components
+// CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations hook in client components
 export default function HomePage() {
-  // CONTEXT7 SOURCE: /amannn/next-intl - Client-side translations for homepage
-  // HYDRATION FIX REASON: Official next-intl documentation enables useTranslations in client components with NextIntlClientProvider context
-  const t = useTranslations('Navigation');
+  console.log('[DEBUG-HomePage] Component function executed - client component with synchronous data loading')
   
-  // CMS DATA SOURCE: Get all homepage content from CMS
+  // CONTEXT7 SOURCE: /amannn/next-intl - Client-side translations for homepage
+  // CLIENT HOOK REASON: Official next-intl documentation enables useTranslations hook in client components
+  const t = useTranslations('Navigation');
+  console.log('[DEBUG-HomePage] useTranslations hook completed successfully')
+  
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access pattern
+  // SYNCHRONOUS RESTORATION: Return to proven working pattern with immediate data availability
+  console.log('[DEBUG-HomePage] Loading CMS data synchronously - client component')
+  
+  // Direct synchronous CMS function calls - no useState/useEffect needed
   const trustIndicators = getTrustIndicators()
   const testimonials = getTestimonials()
   const services = getServices()
   const branding = getSiteBranding()
-  const testimonialsSchools = getTestimonialsSchools()
   const founderQuote = getFounderQuote()
   const studentImages = getStudentImages()
+  const testimonialsSchools = getTestimonialsSchools()
+  
+  console.log('[DEBUG-HomePage] CMS data loaded synchronously:', {
+    trustIndicators: trustIndicators?.length || 0,
+    testimonials: testimonials?.length || 0,
+    services: services?.length || 0,
+    studentImages: studentImages ? Object.keys(studentImages).length : 0,
+    branding: !!branding,
+    founderQuote: !!founderQuote?.quote,
+    testimonialsSchools: testimonialsSchools?.length || 0
+  })
 
   return (
-    <PageLayout showHeader={true} showFooter={true} containerSize="full" verticalSpacing="none">
+    <PageLayout 
+      showHeader={true} 
+      showFooter={true} 
+      containerSize="full" 
+      verticalSpacing="none"
+      headerProps={{ isHomepage: true }}
+    >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - PageLayout spacing control with verticalSpacing="none" */}
       {/* WHITE SPACE FIX REASON: Official Tailwind CSS documentation shows py-12 utility creates 48px top/bottom padding - verticalSpacing="none" eliminates this padding to allow full-screen Hero section to start at viewport top */}
       {/* LAYOUT OPTIMIZATION: Prevents white space above Hero section by removing default PageLayout container padding for premium full-viewport design */}
@@ -117,9 +138,8 @@ export default function HomePage() {
       {/* CRITICAL UNDERSTANDING: These control DIFFERENT headers - navbar vs hero header */}
       {/* ACCESSIBILITY: PageLayout navbar is ESSENTIAL for users to navigate between pages */}
       <HeroSection 
-        branding={branding}
-        studentImages={studentImages}
         showHeader={false}
+        hasStaticNavbar={true}
       />
       
       {/* 2. "WE HELP STUDENTS PLACE AT TOP 10 UK SCHOOLS AND UNIVERSITIES" */}
@@ -132,10 +152,14 @@ export default function HomePage() {
       {/* 3. SCROLLING SCHOOLS COMPONENT */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for consistent vertical rhythm */}
       {/* SPACING CONSISTENCY REASON: Official Tailwind CSS documentation mt-8 utility maintains same 2rem spacing as Tagline for visual rhythm grouping */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering for async data loading */}
+      {/* ASYNC RENDERING REASON: Official React documentation shows conditional rendering patterns for loading states and data availability */}
       <div className="mt-8">
-        <ScrollingSchools 
-          schools={testimonialsSchools}
-        />
+        {testimonialsSchools.length > 0 && (
+          <ScrollingSchools 
+            schools={testimonialsSchools}
+          />
+        )}
       </div>
       
       {/* 4. ABOUT SECTION */}
@@ -153,10 +177,10 @@ export default function HomePage() {
         studentImages={studentImages}
       />
       
-      {/* 6. WHAT WE OFFER - LAZY LOADED */}
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Dynamic import for below-the-fold content optimization */}
-      {/* LAZY LOADING REASON: Official Next.js documentation reduces initial bundle size for non-critical sections */}
-      <LazyServicesCarousel 
+      {/* 6. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
+      {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
+      <HomepageSections 
         services={services}
         studentImages={studentImages}
       />
@@ -195,8 +219,9 @@ export default function HomePage() {
               <div className="relative overflow-hidden rounded-lg border-2 border-gray-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl">
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with proper width, height and alt for accessibility */}
                 {/* IMAGE OPTIMIZATION REASON: Official Next.js documentation requires explicit dimensions for local images */}
+                {/* BIZSTIM FORM UPDATE: Updated to use new bizstim-form-preview.png as per homepage CMS configuration */}
                 <img
-                  src="/images/graphics/enquiry-form-screenshot-footer.png"
+                  src="/images/graphics/bizstim-form-preview.png"
                   alt="Screenshot of My Private Tutor Online enquiry form on Bizstim platform showing student details form with fields for first name, last name, email and phone number"
                   className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"
@@ -241,4 +266,7 @@ export default function HomePage() {
       
     </PageLayout>
   )
-}// Force deployment refresh - Mon Aug 18 08:12:40 PM BST 2025
+}
+
+// CONTEXT7 SOURCE: /vercel/next.js - Client component architecture restoration complete
+// ARCHITECTURE FIX: Restored homepage to working client component pattern - Mon Aug 19 12:07:00 PM BST 2025

@@ -86,7 +86,7 @@ const layoutAnimations = {
 
 // CONTEXT7 SOURCE: /facebook/react - Main component with A/B testing integration
 export default function EnhancedTestimonialsHero({
-  defaultHeadline = 'What Our Royal Families Say',
+  defaultHeadline = 'What Our Elite Families Say',
   defaultSubheadline = 'Discover why elite families trust our expertise for their children\'s educational success',
   defaultCtaText = 'Book Your Consultation',
   defaultCtaVariant = 'primary',
@@ -204,7 +204,7 @@ export default function EnhancedTestimonialsHero({
             </Badge>
             <Badge className="bg-purple-100 text-purple-800 border-purple-200">
               <Award className="h-3 w-3 mr-1" />
-              Royal Endorsements
+              Elite Endorsements
             </Badge>
           </motion.div>
 

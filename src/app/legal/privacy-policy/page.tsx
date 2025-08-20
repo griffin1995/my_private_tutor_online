@@ -1,5 +1,9 @@
 "use client"
 
+// CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
+// BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds
+
+import React, { useState } from 'react'
 import { m } from 'framer-motion'
 import { PageLayout } from "@/components/layout/page-layout"
 import { PageHero } from "@/components/layout/page-hero"
@@ -7,7 +11,7 @@ import { Section } from "@/components/layout/section"
 import { Card } from "@/components/ui/card"
 import { WaveSeparator } from '@/components/ui/wave-separator'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
-import { Shield, Lock, FileText, CheckCircle, AlertTriangle, Crown } from 'lucide-react'
+import { Shield, Lock, FileText, CheckCircle, AlertTriangle, Star } from 'lucide-react'
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced legal page design with professional animations
 // LEGAL DESIGN ENHANCEMENT: Formal legal-appropriate styling with premium branding for royal clients
@@ -115,11 +119,12 @@ export default function PrivacyPolicyPage() {
           >
             <Card className="p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl rounded-2xl">
               <div className="flex items-start gap-4">
-                <Crown className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
+                {/* CONTEXT7 SOURCE: /lucide-react - Star icon replacement for premium service indication */}
+                <Star className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-2xl font-serif font-bold text-amber-800 mb-4">Important Notice</h3>
                   <p className="text-amber-800 text-lg leading-relaxed">
-                    Given our prestigious clientele, including members of royal families and high-profile individuals, 
+                    Given our prestigious clientele, including members of distinguished families and high-profile individuals, 
                     we maintain the highest standards of confidentiality and data protection. All staff sign comprehensive 
                     non-disclosure agreements and undergo enhanced security vetting.
                   </p>

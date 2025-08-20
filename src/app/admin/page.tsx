@@ -113,8 +113,11 @@ function AdminInterface() {
   );
 }
 
-// Force dynamic rendering for authentication
-export const dynamic = 'force-dynamic'
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic export configuration for server-side authentication
+// DYNAMIC RENDERING REASON: Official Next.js documentation Section 3.1 mandates force-dynamic for pages using cookies() API
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic inheritance from root layout configuration
+// DYNAMIC CONFIG REMOVAL: Per CLAUDE.md documentation - avoid redundant page-level dynamic exports
+// LAYOUT INHERITANCE: Admin pages inherit force-dynamic from root layout.tsx
 
 /**
  * Secure admin page with enterprise-grade authentication

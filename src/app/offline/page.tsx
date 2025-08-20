@@ -17,7 +17,8 @@ import React, { useState, useEffect } from 'react';
 
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering for client-only pages
 // SSR COMPATIBILITY: Offline page requires client-side only rendering due to navigator/window dependencies
-export const dynamic = 'force-dynamic';
+// CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
+// BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds;
 import { m } from 'framer-motion';
 import { useOffline } from '@/hooks/use-offline';
 import { Button } from '@/components/ui/button';

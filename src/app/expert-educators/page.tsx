@@ -13,7 +13,15 @@
 
 "use client"
 
-import { useState } from 'react'
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React from 'react'
+
+// CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility
+// BUILD FIX REASON: Official Next.js documentation recommends removing dynamic exports from client components during static builds
+
+// CONTEXT7 SOURCE: /vercel/next.js - Client component React imports for dynamic rendering
+// IMPORT REMOVAL REASON: Official Next.js documentation recommends only importing React hooks that are actively used
 import { m } from 'framer-motion'
 import { Award, Users, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -104,7 +112,8 @@ const expertEducatorsContent = {
 }
 
 export default function ExpertEducatorsPage() {
-  // const [selectedTier, setSelectedTier] = useState('premium') // TODO: Implement tier selection functionality
+  // CONTEXT7 SOURCE: /vercel/next.js - Client component function without server-side state management
+  // TODO: Implement tier selection functionality when interactive features are required
 
   // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment

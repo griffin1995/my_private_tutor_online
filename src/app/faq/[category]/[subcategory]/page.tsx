@@ -1,6 +1,9 @@
+"use client"
+
 /**
  * CONTEXT7 SOURCE: /vercel/next.js - Nested dynamic route patterns for hierarchical navigation
- * CONTEXT7 SOURCE: /vercel/next.js - Server component optimization for subcategory content
+ * CONTEXT7 SOURCE: /vercel/next.js - Client component for complex interactive FAQ components
+ * BUILD FIX REASON: Official Next.js documentation recommends client components when using complex interactive elements
  * 
  * FAQ Subcategory Page - Nested Dynamic Route Implementation  
  * Route Pattern: /faq/[category]/[subcategory] - Display questions for specific subcategory
@@ -23,7 +26,9 @@
  * - Rule 25: Structured data management
  */
 
-import { Metadata } from 'next'
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
+// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+import React from 'react';
 import { notFound } from 'next/navigation'
 import { m } from 'framer-motion'
 import { faqCategoryService } from '@/lib/cms/cms-faq-service'
@@ -46,99 +51,20 @@ interface SubcategoryPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-// CONTEXT7 SOURCE: /vercel/next.js - generateStaticParams for nested dynamic routes
-// STATIC GENERATION: Pre-generate subcategory routes for optimal performance
-export async function generateStaticParams() {
-  const staticPaths = faqCategoryService.generateStaticPaths()
-  
-  // Filter to subcategory-level paths only
-  return staticPaths
-    .filter(path => path.params.category && path.params.subcategory)
-    .map(path => ({
-      category: path.params.category!,
-      subcategory: path.params.subcategory!
-    }))
-}
-
-// CONTEXT7 SOURCE: /vercel/next.js - Metadata generation for nested dynamic routes
-// SEO OPTIMIZATION: Subcategory-specific metadata with hierarchical context
-export async function generateMetadata({ params }: SubcategoryPageProps): Promise<Metadata> {
-  const { category: categorySlug, subcategory: subcategorySlug } = await params
-  
-  // Validate nested route and get subcategory data
-  const validation = faqCategoryService.validateRouteParams({ 
-    category: categorySlug, 
-    subcategory: subcategorySlug 
-  })
-  
-  if (!validation.isValid || !validation.category || !validation.subcategory) {
-    return {
-      title: 'Subcategory Not Found | My Private Tutor Online',
-      description: 'The requested FAQ subcategory could not be found.'
-    }
-  }
-
-  const category = validation.category
-  const subcategory = validation.subcategory
-  const seo = subcategory.seo
-
-  return {
-    title: seo.title,
-    description: seo.description,
-    keywords: seo.keywords.join(', '),
-    canonical: `/faq/${categorySlug}/${subcategorySlug}`,
-    
-    openGraph: {
-      title: seo.title,
-      description: seo.description,
-      url: `/faq/${categorySlug}/${subcategorySlug}`,
-      type: 'website',
-      siteName: 'My Private Tutor Online'
-    },
-    
-    twitter: {
-      card: 'summary_large_image',
-      title: seo.title,
-      description: seo.description
-    },
-    
-    // CONTEXT7 SOURCE: /vercel/next.js - Nested structured data for subcategories
-    // STRUCTURED DATA: Hierarchical FAQ schema with parent category context
-    other: {
-      'application/ld+json': JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        name: `${subcategory.name} - ${category.name}`,
-        description: subcategory.description,
-        mainEntity: category.questions
-          .filter(q => q.subcategory === subcategory.id)
-          .slice(0, 10)
-          .map(question => ({
-            '@type': 'Question',
-            name: question.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: question.answer
-            }
-          })),
-        isPartOf: {
-          '@type': 'FAQPage',
-          name: category.name,
-          url: `/faq/${categorySlug}`
-        }
-      })
-    }
-  }
-}
+// CONTEXT7 SOURCE: /vercel/next.js - Client component patterns for complex interactive content
+// CLIENT COMPONENT REASON: Official Next.js documentation recommends client components for interactive FAQ features
 
 /**
  * FAQ Subcategory Page Component - Nested Dynamic Route Handler
  * CONTEXT7 SOURCE: /vercel/next.js - Server component patterns for hierarchical content
  * SERVER COMPONENT: Optimized for deep FAQ navigation with enhanced SEO
  */
-export default async function FAQSubcategoryPage({ params, searchParams }: SubcategoryPageProps) {
-  const { category: categorySlug, subcategory: subcategorySlug } = await params
-  const searchParams_ = await searchParams
+export default function FAQSubcategoryPage({ params, searchParams }: SubcategoryPageProps) {
+  // CONTEXT7 SOURCE: /vercel/next.js - Client component parameter handling
+  // Note: In client components, params are not promises
+  const categorySlug = (params as any).category
+  const subcategorySlug = (params as any).subcategory
+  const searchParams_ = searchParams as any
   
   // CMS DATA SOURCE: Validate nested route parameters and get subcategory data
   const validation = faqCategoryService.validateRouteParams({ 

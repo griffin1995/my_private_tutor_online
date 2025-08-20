@@ -1,7 +1,18 @@
 {
   "_comments": {
-    "lastUpdated": "2025-01-16",
+    "lastUpdated": "2025-08-20",
     "recentChanges": [
+      {
+        "change": "TASK 6: Footer Section 2.2.1.2 CMS Links Verification - Fixed all broken footer navigation links",
+        "reason": "CONTEXT7 SOURCE: /vercel/next.js - App Router file-based routing compliance for proper navigation",
+        "date": "2025-08-20",
+        "source": "Footer links audit - corrected 10 broken links to working Next.js routes",
+        "details": {
+          "brokenLinksFixed": 10,
+          "workingLinksConfirmed": 6,
+          "redirectStrategy": "Map broken service links to /subject-tuition, team/results to /about, resources to /blog, legal links to proper /legal/* paths"
+        }
+      },
       {
         "change": "Updated aboutSection.title to 'World-Class Education, At Your Fingertips'",
         "reason": "CONTEXT7 SOURCE: /vercel/next.js - Consistent headline strategy across homepage components",
@@ -96,17 +107,17 @@
     "indicators": [
       {
         "icon": "",
-        "title": "Built on Trust",
+        "title": "Fit For a King",
         "subtitle": "",
-        "description": "Elizabeth only works with educators she knows, has taught alongside, or has personally vetted. Every tutor has a proven track record and aligns with our values of discretion, integrity, and academic rigour.",
-        "imageUrl": "/images/graphics/feature-built-on-trust.jpeg",
-        "imageAlt": "Built on trust - Premium tutoring service with vetted educators and proven track record"
+        "description": "Our services are trusted by prominent families, including VIPs and royalty.",
+        "imageUrl": "/images/graphics/feature-royal-endorsement.jpg",
+        "imageAlt": "Royal endorsement - Invitation-only service trusted by royal families and high-profile clients"
       },
       {
         "icon": "",
-        "title": "Exam Insight from the Inside",
+        "title": "Exam Insight, from the Inside",
         "subtitle": "",
-        "description": "Our Tier 1 tutors are not just excellent teachers—they are the very examiners who actually write and/or mark the assessments your child will take. This insider perspective is rare and a distinct advantage in today's academic landscape.",
+        "description": "Our Tier 1 tutors actually write/mark the real tests your child takes. Such insider perspective is rare.",
         "imageUrl": "/images/graphics/feature-exam-insight.jpeg",
         "imageAlt": "Exam insight from inside - Tutors who are actual examiners providing unique academic advantage"
       },
@@ -115,14 +126,14 @@
         "title": "By Invitation Only",
         "subtitle": "",
         "description": "My Private Tutor Online is invitation-only and operates on a referral basis. Our families include members of the British Royal Family, prominent political figures, celebrities, and top executives from leading corporations. We pride ourselves on discretion and delivering exceptional results for high-profile clients who require the utmost privacy and personalised service.",
-        "imageUrl": "/images/graphics/feature-royal-endorsement.jpg",
-        "imageAlt": "Royal endorsement - Invitation-only service trusted by royal families and high-profile clients"
+        "imageUrl": "/images/graphics/feature-built-on-trust.jpeg",
+        "imageAlt": "Built on trust - Premium tutoring service with vetted educators and proven track record"
       },
       {
         "icon": "",
-        "title": "A Global Network, A Personal Touch",
+        "title": "Rooted in Britain, Appreciated Worldwide",
         "subtitle": "",
-        "description": "While our families are based in London, Geneva, Dubai, New York, and beyond, our approach is never distant. Whether preparing for UK independent school entry or GCSE exams, your child is known, understood, and championed.",
+        "description": "We know British education inside and out and bring that knowledge to families across the globe.",
         "imageUrl": "/images/graphics/feature-british-heritage.jpeg",
         "imageAlt": "British heritage and global network - Personal tutoring approach with international reach"
       }
@@ -449,10 +460,10 @@
   "footer": {
     "companyName": "My Private Tutor Online",
     "logo": {
-      "main": "/images/logos/logo-name-tagline.png",
+      "main": "/images/logos/logo-icon-only.png",
       "alt": "My Private Tutor Online - Premium Educational Services",
-      "width": 180,
-      "height": 70
+      "width": 400,
+      "height": 400
     },
     "description": "Exceptional online tutoring trusted by families worldwide. From GCSE excellence to Oxbridge success.",
     "footerSections": [
@@ -461,19 +472,19 @@
         "links": [
           {
             "label": "GCSE Tutoring",
-            "href": "/gcse-tutoring"
+            "href": "/subject-tuition"
           },
           {
             "label": "A-Level Support",
-            "href": "/a-level-support"
+            "href": "/subject-tuition"
           },
           {
             "label": "Oxbridge Preparation",
-            "href": "/oxbridge-preparation"
+            "href": "/subject-tuition"
           },
           {
             "label": "11+ Preparation",
-            "href": "/11-plus"
+            "href": "/11-plus-bootcamps"
           }
         ]
       },
@@ -486,7 +497,7 @@
           },
           {
             "label": "Meet the Team",
-            "href": "/team"
+            "href": "/about"
           },
           {
             "label": "Testimonials",
@@ -494,7 +505,7 @@
           },
           {
             "label": "Results",
-            "href": "/results"
+            "href": "/about"
           }
         ]
       },
@@ -503,11 +514,11 @@
         "links": [
           {
             "label": "Study Guides",
-            "href": "/resources"
+            "href": "/blog"
           },
           {
             "label": "Exam Tips",
-            "href": "/exam-tips"
+            "href": "/blog"
           },
           {
             "label": "Blog",
@@ -528,15 +539,15 @@
           },
           {
             "label": "Support",
-            "href": "/support"
+            "href": "/contact"
           },
           {
             "label": "Privacy Policy",
-            "href": "/privacy"
+            "href": "/legal/privacy-policy"
           },
           {
             "label": "Terms of Service",
-            "href": "/terms"
+            "href": "/legal/terms-of-service"
           }
         ]
       }
