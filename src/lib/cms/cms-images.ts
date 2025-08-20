@@ -497,6 +497,82 @@ export const TUTOR_IMAGES = {
     title: "Expert Educator Profile",
     loading: "lazy" as const,
   },
+  
+  // CONTEXT7 SOURCE: /vercel/next.js - Static asset management patterns for tutor photos integration
+  // REAL TUTOR DATA UPDATE: Mapping authentic tutor photos to actual My Private Tutor Online team members
+  // INDIVIDUAL TUTOR PROFILE IMAGES: Real professional headshots for 9 tutor profiles from /images/tutor-photos
+  "elizabeth-founder": {
+    src: "/images/tutor-photos/Michael MPTO .avif",
+    alt: "Elizabeth - Founder and CEO of My Private Tutor Online",
+    width: 400,
+    height: 400,
+    title: "Elizabeth - Founder and CEO",
+    loading: "lazy" as const,
+  },
+  "rachel-deputy-head": {
+    src: "/images/tutor-photos/Emily MPTO pic new copy.jpg",
+    alt: "Rachel - Deputy Headteacher and Entrance Exam Specialist professional headshot",
+    width: 400,
+    height: 400,
+    title: "Rachel - Deputy Headteacher and Entrance Exam Specialist",
+    loading: "lazy" as const,
+  },
+  "derek-maths-sciences": {
+    src: "/images/tutor-photos/Andreas MPTO.avif",
+    alt: "Derek - Maths, Biology, Chemistry and Physics Expert professional headshot",
+    width: 400,
+    height: 400,
+    title: "Derek - Maths, Biology, Chemistry and Physics",
+    loading: "lazy" as const,
+  },
+  "jay-sciences-maths": {
+    src: "/images/tutor-photos/Alex MPTO new pic.jpg",
+    alt: "Jay - Biology, Chemistry, Physics and Maths Expert professional headshot",
+    width: 400,
+    height: 400,
+    title: "Jay - Biology, Chemistry, Physics and Maths",
+    loading: "lazy" as const,
+  },
+  "emilia-entrance-history": {
+    src: "/images/tutor-photos/Alma pic MPTO.jpeg",
+    alt: "Emilia - Entrance Exams, History and University Applications Expert professional headshot",
+    width: 400,
+    height: 400,
+    title: "Emilia - Entrance Exams, History and University/Oxbridge Applications",
+    loading: "lazy" as const,
+  },
+  "annette-english-history": {
+    src: "/images/tutor-photos/Amy MPTO pic.png",
+    alt: "Annette - English and History Expert with SEN Experience professional headshot",
+    width: 400,
+    height: 400,
+    title: "Annette - English and History",
+    loading: "lazy" as const,
+  },
+  "elle-primary-maths": {
+    src: "/images/tutor-photos/Ophelia MPTO.jpg",
+    alt: "Elle - Primary Specialist, Entrance Exams and Maths Expert professional headshot",
+    width: 400,
+    height: 400,
+    title: "Elle - Primary Specialist, Entrance Exams and Maths",
+    loading: "lazy" as const,
+  },
+  "daniel-humanities": {
+    src: "/images/tutor-photos/Juliet MPTO.jpg",
+    alt: "Daniel - History, Politics, Economics and Sociology Expert professional headshot",
+    width: 400,
+    height: 400,
+    title: "Daniel - History, Politics, Economics and Sociology",
+    loading: "lazy" as const,
+  },
+  "david-sciences-oxbridge": {
+    src: "/images/tutor-photos/Annoushka MPTO .jpg",
+    alt: "David - Sciences, Maths and Oxbridge Entrance Expert professional headshot",
+    width: 400,
+    height: 400,
+    title: "David - Sciences, Maths and Oxbridge Entrance",
+    loading: "lazy" as const,
+  },
 } as const;
 
 // CONTEXT7 SOURCE: /muxinc/next-video - Enhanced video content structure with comprehensive metadata

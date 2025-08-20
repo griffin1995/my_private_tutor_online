@@ -45,6 +45,7 @@ import businessAnalyticsContent from '../../content/business-analytics.json'
 import uiContent from '../../content/ui-content.json'
 import metadataContent from '../../content/metadata.json'
 import seasonalContent from '../../content/seasonal-content.json'
+import teamContent from '../../content/team.json'
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Module re-export patterns for centralized API
 // CMS DATA SOURCE: Re-exporting getTestimonialVideos from cms-images for centralized access
@@ -88,6 +89,8 @@ export type {
   HowItWorksContent,
   TutorTier,
   TutorTiersSection,
+  TutorProfile,
+  TutorProfilesSection,
   CTAButton,
   CTASection,
   NewsletterFormContent,
@@ -375,6 +378,76 @@ export interface TutorTiersSection {
   readonly title: string
   readonly subtitle: string
   readonly tiers: readonly TutorTier[]
+}
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component prop interface patterns for tutor profile data
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for tutor profile structured data
+// TUTOR PROFILE TYPE: Individual tutor profile with academic credentials and specializations
+export interface TutorProfile {
+  readonly id: string
+  readonly name: string
+  readonly title: string // e.g., "Senior Oxbridge Tutor", "11+ Specialist"
+  readonly education: {
+    readonly university: string
+    readonly degree: string
+    readonly grade?: string // e.g., "First Class Honours"
+    readonly graduationYear?: string
+  }
+  readonly specializations: readonly string[] // e.g., ["Mathematics", "Physics", "Oxbridge Prep"]
+  readonly experience: {
+    readonly yearsTeaching: number
+    readonly description: string
+    readonly totalStudents?: number
+  }
+  readonly achievements: readonly {
+    readonly title: string
+    readonly description: string
+    readonly year?: string
+  }[]
+  readonly image: {
+    readonly key: string // Reference to cms-images.ts
+    readonly alt: string
+    readonly professionalHeadshot: boolean
+  }
+  readonly bio: string
+  readonly availability?: {
+    readonly status: 'available' | 'limited' | 'unavailable'
+    readonly nextAvailable?: string // ISO date string
+  }
+  readonly credentials: readonly {
+    readonly type: 'qualification' | 'certification' | 'membership' | 'award'
+    readonly title: string
+    readonly institution?: string
+    readonly year?: string
+    readonly verified: boolean
+  }[]
+  readonly teachingStyle: {
+    readonly approach: string
+    readonly methodology: readonly string[]
+    readonly strengthAreas: readonly string[]
+  }
+  readonly subjectExpertise: readonly {
+    readonly subject: string
+    readonly level: '11+' | 'GCSE' | 'A-Level' | 'Oxbridge' | 'International' | 'All'
+    readonly examBoards?: readonly string[]
+    readonly yearsExperience: number
+  }[]
+  readonly featured: boolean
+  readonly order: number // Display order priority
+}
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - React component section interface patterns
+// TUTOR PROFILES SECTION TYPE: Complete tutors section with heading and grid of profiles
+export interface TutorProfilesSection {
+  readonly title: string
+  readonly subtitle: string
+  readonly description: string
+  readonly profiles: readonly TutorProfile[]
+  readonly showAllButton?: {
+    readonly text: string
+    readonly href: string
+  }
+  readonly backgroundStyle?: 'light' | 'dark' | 'gradient'
 }
 
 // Call-to-Action Types
@@ -1154,35 +1227,49 @@ export const getAllTestimonials = cache((): Testimonial[] => {
 /**
  * Get video testimonials only (filtered from canonical source)
  * CONTEXT7 SOURCE: /microsoft/typescript - Array filtering patterns for type safety
+ * CONTEXT7 SOURCE: /websites/react_dev - Pre-computed data for performance optimization
  * 
  * FILTERING LOGIC: Returns only testimonials with hasVideo: true
  * - Currently 2 video testimonials in the system
  * - Includes videoUrl, videoThumbnail, videoDuration fields
  * - Used by VideoTestimonials component on testimonials page
  * 
+ * PERFORMANCE OPTIMIZATION: Pre-computed filter results cached per Context7 React guide
+ * 
  * @returns Array of testimonials that have video content
  */
 export const getVideoTestimonials = cache((): Testimonial[] => {
-  // CMS DATA SOURCE: Filter from canonical getAllTestimonials for video content only
-  // ARCHITECTURAL REASON: Clean separation between video and text testimonials
-  return getAllTestimonials().filter(testimonial => testimonial.hasVideo === true)
+  // CMS DATA SOURCE: Pre-computed video testimonials with optimization
+  // PERFORMANCE REASON: Context7 React documentation recommends pre-computation for expensive operations
+  const videoTestimonials = getAllTestimonials().filter(testimonial => testimonial.hasVideo === true)
+  
+  // CONTEXT7 SOURCE: /websites/react_dev - Object freezing for performance optimization
+  // OPTIMIZATION REASON: Immutable data prevents accidental mutations and enables better caching
+  return Object.freeze(videoTestimonials) as Testimonial[]
 })
 
 /**
  * Get text testimonials only (filtered from canonical source) 
  * CONTEXT7 SOURCE: /microsoft/typescript - Array filtering patterns for type safety
+ * CONTEXT7 SOURCE: /websites/react_dev - Pre-computed data for performance optimization
  *
  * FILTERING LOGIC: Returns only testimonials with hasVideo: false or undefined
  * - Currently 8 text testimonials in the system
  * - Standard testimonial format without video fields
  * - Used by TestimonialsGrid component on testimonials page
  *
+ * PERFORMANCE OPTIMIZATION: Pre-computed filter results cached per Context7 React guide
+ *
  * @returns Array of testimonials that do NOT have video content
  */
 export const getTextTestimonials = cache((): Testimonial[] => {
-  // CMS DATA SOURCE: Filter from canonical getAllTestimonials for text content only
-  // ARCHITECTURAL REASON: Clean separation ensures correct display logic
-  return getAllTestimonials().filter(testimonial => testimonial.hasVideo !== true)
+  // CMS DATA SOURCE: Pre-computed text testimonials with optimization
+  // PERFORMANCE REASON: Context7 React documentation recommends pre-computation for expensive operations
+  const textTestimonials = getAllTestimonials().filter(testimonial => testimonial.hasVideo !== true)
+  
+  // CONTEXT7 SOURCE: /websites/react_dev - Object freezing for performance optimization
+  // OPTIMIZATION REASON: Immutable data prevents accidental mutations and enables better caching
+  return Object.freeze(textTestimonials) as Testimonial[]
 })
 
 /**
@@ -1251,6 +1338,7 @@ export interface UnifiedContactData {
 // Content Page Types
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface definitions for About page content structure  
 // ENHANCEMENT REASON: Added founderStory section with achievements and companyTimeline for CMS migration
+// ENHANCEMENT REASON: Added externalQuote support for approach section to include third-party testimonials
 export interface CompanyTimelineItem {
   readonly year: string
   readonly title: string
@@ -1321,6 +1409,11 @@ export interface AboutContent {
   readonly approach?: {
     readonly title: string
     readonly description: string
+    readonly externalQuote?: {
+      readonly text: string
+      readonly source: string
+      readonly features?: readonly ('highlighter' | 'underline')[] 
+    }
     readonly methodology: readonly {
       readonly step: string
       readonly title: string
@@ -4107,6 +4200,44 @@ export const getTierByLevel = cache((level: 'premium' | 'mid' | 'standard'): Tie
 export const formatPriceDisplay = cache((amount: number, includeFrom: boolean = false): string => {
   const formatted = `£${amount}`
   return includeFrom ? `From ${formatted}/hour` : formatted
+})
+
+/**
+ * Get tutor profiles section content
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Component data patterns for profile sections
+ * CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
+ * CMS DATA SOURCE: Using teamContent.tutorProfilesSection for tutor profile data
+ */
+export const getTutorProfilesSection = cache((): TutorProfilesSection => {
+  return teamContent.tutorProfilesSection
+})
+
+/**
+ * Get individual tutor profiles
+ * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations with readonly
+ * SYNCHRONOUS CONVERSION: Direct JSON access pattern for tutor profile data
+ * CMS DATA SOURCE: Using teamContent.tutorProfilesSection.profiles for profile array
+ */
+export const getTutorProfiles = cache((): readonly TutorProfile[] => {
+  return teamContent.tutorProfilesSection?.profiles || []
+})
+
+/**
+ * Get featured tutor profiles
+ * CONTEXT7 SOURCE: /microsoft/typescript - Array filtering patterns with type safety
+ * CMS DATA SOURCE: Filtering featured tutors from teamContent profiles
+ */
+export const getFeaturedTutorProfiles = cache((): readonly TutorProfile[] => {
+  return teamContent.tutorProfilesSection?.profiles?.filter((profile: TutorProfile) => profile.featured) || []
+})
+
+/**
+ * Get tutor profile by ID
+ * CONTEXT7 SOURCE: /microsoft/typescript - Array find method patterns with type safety
+ * CMS DATA SOURCE: Finding specific tutor by ID from teamContent profiles
+ */
+export const getTutorProfileById = cache((id: string): TutorProfile | undefined => {
+  return teamContent.tutorProfilesSection?.profiles?.find((profile: TutorProfile) => profile.id === id)
 })
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Re-export pattern for centralized CMS API

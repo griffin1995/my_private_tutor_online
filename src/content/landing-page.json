@@ -18,6 +18,13 @@
         "reason": "CONTEXT7 SOURCE: /vercel/next.js - Consistent headline strategy across homepage components",
         "date": "2025-01-16",
         "source": "Homepage audit findings - critical UX improvement"
+      },
+      {
+        "change": "CONTENT MISMATCH RESOLUTION: Updated By Invitation Only section description",
+        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - Content management JSON structure patterns for client feedback alignment",
+        "date": "2025-08-20",
+        "source": "August 20th client feedback - By Invitation Only copy correction to focus on Elizabeth's international career",
+        "details": "Replaced royal family references with content about Elizabeth's educational background and global experience per client feedback"
       }
     ]
   },
@@ -125,7 +132,7 @@
         "icon": "",
         "title": "By Invitation Only",
         "subtitle": "",
-        "description": "My Private Tutor Online is invitation-only and operates on a referral basis. Our families include members of the British Royal Family, prominent political figures, celebrities, and top executives from leading corporations. We pride ourselves on discretion and delivering exceptional results for high-profile clients who require the utmost privacy and personalised service.",
+        "description": "Elizabeth's international career in education spans seven continents and over 15 years. From her Cambridge-accepted education path to her former role as Forbes Middle East Editor, she brings unique global perspective and academic insight. My Private Tutor Online operates by invitation only, connecting families with exceptional educators through trusted referrals and proven results.",
         "imageUrl": "/images/graphics/feature-built-on-trust.jpeg",
         "imageAlt": "Built on trust - Premium tutoring service with vetted educators and proven track record"
       },

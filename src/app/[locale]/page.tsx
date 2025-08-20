@@ -97,7 +97,7 @@ export default function HomePage() {
     studentImages: studentImages ? Object.keys(studentImages).length : 0,
     branding: !!branding,
     founderQuote: !!founderQuote?.quote,
-    testimonialsSchools: testimonialsSchools?.length || 0
+    testimonialsSchools: testimonialsSchools?.length || 0,
   })
 
   return (
@@ -171,13 +171,14 @@ export default function HomePage() {
         <AboutSection />
       </div>
       
-      {/* 5. WHO WE SUPPORT */}
+      
+      {/* 6. WHO WE SUPPORT */}
       <TrustIndicatorsGrid 
         indicators={trustIndicators}
         studentImages={studentImages}
       />
       
-      {/* 6. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
+      {/* 7. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
       {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
       <HomepageSections 
@@ -185,7 +186,7 @@ export default function HomePage() {
         studentImages={studentImages}
       />
       
-      {/* 7. QUOTE SECTION */}
+      {/* 8. QUOTE SECTION */}
       {/* CONTEXT7 SOURCE: /magicui/design - Text-only quote with strategic highlighting effects */}
       {/* HIGHLIGHTER ENHANCEMENT REASON: Magic UI documentation enables visual emphasis without photos for clean, professional presentation */}
       <QuoteSection 
@@ -195,7 +196,7 @@ export default function HomePage() {
         showAuthorImage={false}
       />
       
-      {/* 8. BIZSTIM CTA SECTION */}
+      {/* 9. BIZSTIM CTA SECTION */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for main CTA section */}
       {/* BIZSTIM SECTION REASON: Official React documentation enables component repositioning for improved user flow */}
       <section className="py-16 lg:py-24 bg-white">

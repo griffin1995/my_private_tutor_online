@@ -197,6 +197,8 @@ export function TestimonialsGrid({
   enableSorting = false,
   className = ''
 }: TestimonialsGridProps) {
+  // CONTEXT7 SOURCE: /context7/react_dev - Component initialization with testimonials data
+  // PERFORMANCE REASON: Efficient testimonials grid rendering with memoized data
   // CONTEXT7 SOURCE: /context7/react_dev - useState patterns for component state management
   // STATE MANAGEMENT REASON: Comprehensive state for grid interactions and user preferences
   const [currentLayout, setCurrentLayout] = useState(layout)

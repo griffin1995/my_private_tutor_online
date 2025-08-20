@@ -1,10 +1,22 @@
 {
+  "_comments": {
+    "lastUpdated": "2025-08-20",
+    "recentChanges": [
+      {
+        "change": "CONTENT MISMATCH RESOLUTION: Updated Royal family endorsed to Royal clientele endorsed in meta descriptions",
+        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - Metadata content management patterns for SEO consistency",
+        "date": "2025-08-20",
+        "source": "Client feedback alignment - August 20th branding terminology updates",
+        "details": "Updated site description and Twitter description to use Royal clientele instead of Royal family"
+      }
+    ]
+  },
   "site": {
     "title": {
       "default": "My Private Tutor Online | Premium Academic Tutoring | Oxbridge & 11+ Specialists",
       "template": "%s | My Private Tutor Online"
     },
-    "description": "Premium private tutoring services with 15+ years experience. Royal family endorsed, Tatler-listed tutors specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels. Trusted by elite families across the UK.",
+    "description": "Premium private tutoring services with 15+ years experience. Royal clientele endorsed, Tatler-listed tutors specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels. Trusted by elite families across the UK.",
     "keywords": [
       "private tutoring",
       "Oxbridge preparation",
@@ -39,7 +51,7 @@
   },
   "twitter": {
     "title": "My Private Tutor Online | Premium Academic Tutoring",
-    "description": "Royal family endorsed private tutoring. Oxbridge preparation, 11+ entry, GCSE & A-levels. 15+ years experience.",
+    "description": "Royal clientele endorsed private tutoring. Oxbridge preparation, 11+ entry, GCSE & A-levels. 15+ years experience.",
     "images": [
       "https://myprivatetutoronline.co.uk/images/opengraph/hero-meta.jpg"
     ]

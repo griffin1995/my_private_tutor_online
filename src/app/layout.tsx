@@ -306,7 +306,8 @@ export default function RootLayout({
         <link rel="icon" href="/icons/favicon-96x96.png" sizes="96x96" type="image/png" />
         <link rel="icon" href="/icons/favicon-128x128.png" sizes="128x128" type="image/png" />
         <link rel="icon" href="/icons/favicon-192x192.png" sizes="192x192" type="image/png" />
-        <link rel="icon" href="/icons/favicon-256x256.png" sizes="256x256" type="image/png" />
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Removed missing favicon-256x256.png to prevent 404 error */}
+        {/* FAVICON CLEANUP REASON: File does not exist - removing reference to prevent 404 error */}
         {/* CONTEXT7 SOURCE: /vercel/next.js - Removed missing favicon-512x512.png to prevent 404 error */}
         
         {/* CONTEXT7 SOURCE: /vercel/next.js - Apple Touch Icon configuration for iOS devices */}

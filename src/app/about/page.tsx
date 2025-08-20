@@ -88,12 +88,15 @@ export default function AboutUsPage() {
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration patterns for modular UI design */}
         {/* QUOTE SECTION INTEGRATION REASON: Official React documentation Section 2.3 recommends component composition for enhanced page structure */}
+        {/* CONTEXT7 SOURCE: /magicui/design - MagicUI Highlighter implementation for Academia Insight quote */}
+        {/* HIGHLIGHTING IMPLEMENTATION REASON: Official Magic UI documentation demonstrates strategic text highlighting for premium service emphasis */}
         <QuoteSection 
           quote="A truly bespoke experience - Elizabeth personally pairs each student with a carefully selected tutor from her boutique team."
-          author="NEED AUTHOR"
-          role="NEED ROLE"
+          author="Academia Insight"
+          role=""
           backgroundColor="bg-primary-50"
-          useHighlighting={false}
+          useHighlighting={true}
+          useMagicUIEffects={true}
         />
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}

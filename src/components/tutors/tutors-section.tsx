@@ -1,0 +1,185 @@
+// CONTEXT7 SOURCE: /reactjs/react.dev - React component section interface patterns
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive marketing page component with mobile-first
+// IMPLEMENTATION REASON: Complete tutors section component with heading, grid, and CTA following official patterns
+"use client"
+
+import React from 'react'
+import { TutorProfilesSection } from '@/lib/cms/cms-content'
+import { TutorsGrid } from './tutors-grid'
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component prop interface patterns for section components
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for section component props
+interface TutorsSectionProps {
+  readonly data: TutorProfilesSection
+  readonly showFeaturedOnly?: boolean
+  readonly maxProfiles?: number
+  readonly showViewAllButton?: boolean
+  readonly className?: string
+}
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - React component composition patterns with section layout
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Create responsive grid column layouts with Tailwind CSS
+// IMPLEMENTATION REASON: Complete tutors section with professional layout and responsive design
+export const TutorsSection: React.FC<TutorsSectionProps> = ({ 
+  data, 
+  showFeaturedOnly = false,
+  maxProfiles,
+  showViewAllButton = true,
+  className = ""
+}) => {
+  // CONTEXT7 SOURCE: /microsoft/typescript - Array filtering patterns with type safety
+  // Filter profiles based on featured status if specified
+  const profilesToShow = React.useMemo(() => {
+    if (showFeaturedOnly) {
+      return data.profiles.filter(profile => profile.featured)
+    }
+    return data.profiles
+  }, [data.profiles, showFeaturedOnly])
+
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive design principles for section layouts
+  // Background style classes based on CMS configuration
+  const backgroundClasses = React.useMemo(() => {
+    switch (data.backgroundStyle) {
+      case 'dark':
+        return 'bg-gray-900 text-white'
+      case 'gradient':
+        return 'bg-gradient-to-br from-orange-50 to-orange-100'
+      case 'light':
+      default:
+        return 'bg-gray-50'
+    }
+  }, [data.backgroundStyle])
+
+  return (
+    <section className={`py-16 lg:py-24 ${backgroundClasses} ${className}`}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive component styles with mobile-first approach */}
+        {/* Section Header */}
+        <div className="mx-auto max-w-3xl text-center mb-12 lg:mb-16">
+          <h2 className={`text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4 ${
+            data.backgroundStyle === 'dark' ? 'text-white' : 'text-gray-900'
+          }`}>
+            {data.title}
+          </h2>
+          
+          {data.subtitle && (
+            <p className={`text-xl font-medium mb-6 ${
+              data.backgroundStyle === 'dark' ? 'text-orange-400' : 'text-orange-600'
+            }`}>
+              {data.subtitle}
+            </p>
+          )}
+          
+          {data.description && (
+            <p className={`text-lg leading-relaxed ${
+              data.backgroundStyle === 'dark' ? 'text-gray-300' : 'text-gray-600'
+            }`}>
+              {data.description}
+            </p>
+          )}
+        </div>
+
+        {/* Tutors Grid */}
+        <div className="mb-12 lg:mb-16">
+          <TutorsGrid 
+            profiles={profilesToShow}
+            showFeatured={!showFeaturedOnly}
+            maxProfiles={maxProfiles}
+          />
+        </div>
+
+        {/* View All Button */}
+        {showViewAllButton && data.showAllButton && profilesToShow.length > 0 && (
+          <div className="text-center">
+            <a
+              href={data.showAllButton.href}
+              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-orange-600 text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            >
+              {data.showAllButton.text}
+              <svg 
+                className="ml-2 h-4 w-4" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M9 5l7 7-7 7" 
+                />
+              </svg>
+            </a>
+          </div>
+        )}
+
+        {/* Stats Bar */}
+        {profilesToShow.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 text-center">
+              <div>
+                <div className={`text-2xl font-bold ${
+                  data.backgroundStyle === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {profilesToShow.length}
+                </div>
+                <div className={`text-sm font-medium ${
+                  data.backgroundStyle === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                  Expert Tutors
+                </div>
+              </div>
+              
+              <div>
+                <div className={`text-2xl font-bold ${
+                  data.backgroundStyle === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {profilesToShow.reduce((total, profile) => total + profile.experience.yearsTeaching, 0)}+
+                </div>
+                <div className={`text-sm font-medium ${
+                  data.backgroundStyle === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                  Years Combined Experience
+                </div>
+              </div>
+
+              <div>
+                <div className={`text-2xl font-bold ${
+                  data.backgroundStyle === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {profilesToShow.filter(profile => 
+                    profile.education.university.includes('Cambridge') || 
+                    profile.education.university.includes('Oxford')
+                  ).length}
+                </div>
+                <div className={`text-sm font-medium ${
+                  data.backgroundStyle === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                  Oxbridge Graduates
+                </div>
+              </div>
+
+              <div>
+                <div className={`text-2xl font-bold ${
+                  data.backgroundStyle === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}>
+                  {profilesToShow.reduce((total, profile) => 
+                    total + (profile.experience.totalStudents || 0), 0
+                  )}+
+                </div>
+                <div className={`text-sm font-medium ${
+                  data.backgroundStyle === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                  Students Taught
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - React component export patterns for component library
+export default TutorsSection

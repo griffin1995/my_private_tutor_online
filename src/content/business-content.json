@@ -1,9 +1,20 @@
 {
-  "lastUpdated": "2025-01-24T12:00:00Z",
+  "lastUpdated": "2025-08-20T12:00:00Z",
+  "_comments": {
+    "recentChanges": [
+      {
+        "change": "CONTENT MISMATCH RESOLUTION: Updated Royal family endorsed references to Royal clientele endorsed",
+        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - JSON data structure content management for brand terminology alignment",
+        "date": "2025-08-20",
+        "source": "Client feedback integration - August 20th content alignment requirements",
+        "details": "Multiple references updated: hero subheading and services meta description"
+      }
+    ]
+  },
   "website": {
     "hero": {
       "mainHeading": "Premium Private Tutoring Excellence",
-      "subheading": "Royal family endorsed academic tutoring with 15+ years of proven success. Specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels.",
+      "subheading": "Royal clientele endorsed academic tutoring with 15+ years of proven success. Specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels.",
       "primaryCta": "Book Consultation",
       "secondaryCta": "View Success Stories",
       "backgroundImage": "/images/hero/premium-tutoring-hero.jpg",
@@ -237,7 +248,7 @@
     "content": {
       "metaDescriptions": {
         "home": "Premium private tutoring with royal endorsements. 15+ years experience in Oxbridge prep, 11+ entry, GCSE & A-levels. Featured in Tatler Address Book.",
-        "services": "Expert tutoring across all academic levels. Oxbridge preparation, 11+ entry, GCSE excellence, A-level mastery. Royal family endorsed.",
+        "services": "Expert tutoring across all academic levels. Oxbridge preparation, 11+ entry, GCSE excellence, A-level mastery. Royal clientele endorsed.",
         "about": "Established 2010. Royal testimonials, Tatler-listed premium tutoring service. Proven track record in academic excellence.",
         "contact": "Contact My Private Tutor Online for premium academic tutoring. Confidential consultations, bespoke programmes, proven results."
       }

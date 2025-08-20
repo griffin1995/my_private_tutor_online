@@ -1,0 +1,977 @@
+{
+  "tutorProfilesSection": {
+    "title": "Meet Our Expert Tutors",
+    "subtitle": "World-Class Educators, Royal Family Endorsed",
+    "description": "Our tutors are handpicked by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools and official examiners for GCSEs, A Levels and IB exams.",
+    "profiles": [
+      {
+        "id": "elizabeth-founder",
+        "name": "Elizabeth",
+        "title": "Founder and CEO",
+        "education": {
+          "university": "University of Bristol",
+          "degree": "Masters in Education Studies",
+          "grade": "Distinction",
+          "graduationYear": "2010",
+          "additionalInfo": "Offered place at Cambridge for English Literature and Education Studies"
+        },
+        "specializations": [
+          "English Literature",
+          "University Applications",
+          "Oxbridge Admissions",
+          "Educational Leadership"
+        ],
+        "experience": {
+          "yearsTeaching": 15,
+          "description": "15 years international teaching experience with clients including royalty and VVIPs",
+          "totalStudents": 500
+        },
+        "achievements": [
+          {
+            "title": "Royal Client Experience",
+            "description": "Clients include royalty and VVIPs worldwide",
+            "year": "2025"
+          },
+          {
+            "title": "Published Journalist",
+            "description": "Published journalist with Forbes magazine",
+            "year": "2023"
+          },
+          {
+            "title": "Cambridge Offer",
+            "description": "Offered place at Cambridge for English Literature and Education Studies",
+            "year": "2008"
+          }
+        ],
+        "image": {
+          "key": "elizabeth-founder",
+          "alt": "Elizabeth - Founder and CEO of My Private Tutor Online",
+          "professionalHeadshot": true
+        },
+        "bio": "Elizabeth is the Founder and CEO of My Private Tutor Online. Offered a place at Cambridge for English Literature and Education Studies, she chose Bristol University where she completed her Masters. With 15 years of international teaching experience, her clients include royalty and VVIPs. She is also a published journalist with Forbes magazine.",
+        "availability": {
+          "status": "available",
+          "nextAvailable": "2025-01-15"
+        },
+        "credentials": [
+          {
+            "type": "qualification",
+            "title": "Masters in Education Studies",
+            "institution": "University of Bristol",
+            "year": "2010",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Enhanced DBS Check",
+            "institution": "Disclosure and Barring Service",
+            "year": "2024",
+            "verified": true
+          }
+        ],
+        "teachingStyle": {
+          "approach": "Personalised and inspirational, focusing on building confidence and achieving excellence",
+          "methodology": [
+            "Individual assessment",
+            "Tailored learning plans",
+            "Progress tracking"
+          ],
+          "strengthAreas": [
+            "University applications",
+            "Personal statements",
+            "Interview preparation"
+          ]
+        },
+        "subjectExpertise": [
+          {
+            "subject": "English Literature",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 15
+          },
+          {
+            "subject": "University Applications",
+            "level": "University",
+            "examBoards": ["UCAS", "Oxbridge"],
+            "yearsExperience": 15
+          }
+        ],
+        "featured": true,
+        "order": 1
+      },
+      {
+        "id": "rachel-deputy-head",
+        "name": "Rachel",
+        "title": "Deputy Headteacher and Entrance Exam Specialist",
+        "education": {
+          "university": "Professional Teaching Qualification",
+          "degree": "PGCE with Leadership Qualification",
+          "grade": "Outstanding",
+          "graduationYear": "1998"
+        },
+        "specializations": [
+          "Entrance Exams (7+ and 11+)",
+          "Primary Education",
+          "School Leadership",
+          "Educational Assessment"
+        ],
+        "experience": {
+          "yearsTeaching": 27,
+          "description": "27 years experience in independent and state systems as professionally qualified teacher and Deputy Headteacher",
+          "totalStudents": 1000
+        },
+        "achievements": [
+          {
+            "title": "Entrance Exam Excellence",
+            "description": "One tutee scored 93% in 11+ exam",
+            "year": "2024"
+          },
+          {
+            "title": "Deputy Headteacher",
+            "description": "Leadership role in both independent and state school systems",
+            "year": "2025"
+          },
+          {
+            "title": "11+ Specialist",
+            "description": "Specialist in 7+ and 11+ entrance exam preparation",
+            "year": "2025"
+          }
+        ],
+        "image": {
+          "key": "rachel-deputy-head",
+          "alt": "Rachel - Deputy Headteacher and Entrance Exam Specialist",
+          "professionalHeadshot": true
+        },
+        "bio": "Rachel is a professionally qualified teacher and Deputy Headteacher with 27 years of experience in both independent and state school systems. As an Entrance Exam Specialist focusing on 7+ and 11+ preparation, one of her tutees recently scored 93% in the 11+ exam.",
+        "availability": {
+          "status": "available",
+          "nextAvailable": "2025-01-20"
+        },
+        "credentials": [
+          {
+            "type": "qualification",
+            "title": "PGCE with Leadership Qualification",
+            "institution": "Professional Teaching Authority",
+            "year": "1998",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Enhanced DBS Check",
+            "institution": "Disclosure and Barring Service",
+            "year": "2024",
+            "verified": true
+          }
+        ],
+        "teachingStyle": {
+          "approach": "Structured and supportive, building confidence through achievement",
+          "methodology": [
+            "Entrance exam practice",
+            "Confidence building",
+            "Personalised assessment"
+          ],
+          "strengthAreas": [
+            "11+ preparation",
+            "Primary education",
+            "School readiness"
+          ]
+        },
+        "subjectExpertise": [
+          {
+            "subject": "11+ Preparation",
+            "level": "11+",
+            "examBoards": ["CEM", "GL Assessment"],
+            "yearsExperience": 15
+          },
+          {
+            "subject": "Primary Education",
+            "level": "Primary",
+            "examBoards": ["National Curriculum"],
+            "yearsExperience": 27
+          }
+        ],
+        "featured": true,
+        "order": 2
+      },
+      {
+        "id": "derek-maths-sciences",
+        "name": "Derek",
+        "title": "Maths, Biology, Chemistry and Physics",
+        "education": {
+          "university": "Professional Teaching Qualification",
+          "degree": "Qualified Mathematics Teacher",
+          "grade": "Outstanding",
+          "graduationYear": "1987"
+        },
+        "specializations": [
+          "Mathematics",
+          "Biology",
+          "Chemistry",
+          "Physics",
+          "IB Coordination"
+        ],
+        "experience": {
+          "yearsTeaching": 38,
+          "description": "38 years experience as qualified Maths teacher and Head of Maths at leading independent London day school",
+          "totalStudents": 2000
+        },
+        "achievements": [
+          {
+            "title": "Head of Mathematics",
+            "description": "Head of Maths at leading independent London day school",
+            "year": "2025"
+          },
+          {
+            "title": "Former Examiner",
+            "description": "Former examiner for EdExcel and AQA examination boards",
+            "year": "2023"
+          },
+          {
+            "title": "IB Coordinator",
+            "description": "Qualified IB coordinator with international programme experience",
+            "year": "2020"
+          },
+          {
+            "title": "Royal Family Tutor",
+            "description": "Private tutor to Saudi Arabian royal family",
+            "year": "2022"
+          }
+        ],
+        "image": {
+          "key": "derek-maths-sciences",
+          "alt": "Derek - Maths, Biology, Chemistry and Physics Expert",
+          "professionalHeadshot": true
+        },
+        "bio": "Derek is a qualified Maths teacher with 38 years of experience and Head of Maths at a leading independent London day school. He is a former examiner for EdExcel and AQA, a qualified IB coordinator, and has served as private tutor to the Saudi Arabian royal family.",
+        "availability": {
+          "status": "limited",
+          "nextAvailable": "2025-02-01"
+        },
+        "credentials": [
+          {
+            "type": "qualification",
+            "title": "Qualified Mathematics Teacher",
+            "institution": "Professional Teaching Authority",
+            "year": "1987",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "IB Coordinator Qualification",
+            "institution": "International Baccalaureate Organization",
+            "year": "2020",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Enhanced DBS Check",
+            "institution": "Disclosure and Barring Service",
+            "year": "2024",
+            "verified": true
+          }
+        ],
+        "teachingStyle": {
+          "approach": "Systematic and thorough, building mathematical confidence through understanding",
+          "methodology": [
+            "Structured problem solving",
+            "Examination technique",
+            "Conceptual understanding"
+          ],
+          "strengthAreas": [
+            "Advanced mathematics",
+            "Science integration",
+            "Exam preparation"
+          ]
+        },
+        "subjectExpertise": [
+          {
+            "subject": "Mathematics",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 38
+          },
+          {
+            "subject": "Physics",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel"],
+            "yearsExperience": 25
+          },
+          {
+            "subject": "Chemistry",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel"],
+            "yearsExperience": 25
+          },
+          {
+            "subject": "Biology",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel"],
+            "yearsExperience": 25
+          }
+        ],
+        "featured": true,
+        "order": 3
+      },
+      {
+        "id": "jay-sciences-maths",
+        "name": "Jay",
+        "title": "Biology, Chemistry, Physics and Maths",
+        "education": {
+          "university": "Professional Teaching Qualification",
+          "degree": "Qualified Teacher with NPQH",
+          "grade": "Outstanding",
+          "graduationYear": "1995"
+        },
+        "specializations": [
+          "Biology",
+          "Chemistry", 
+          "Physics",
+          "Mathematics",
+          "School Leadership"
+        ],
+        "experience": {
+          "yearsTeaching": 30,
+          "description": "30 years international teaching experience as qualified teacher and Deputy Head of multiple schools",
+          "totalStudents": 1500
+        },
+        "achievements": [
+          {
+            "title": "School Leadership",
+            "description": "Deputy Head of multiple schools with National Professional Qualification for Headteachers",
+            "year": "2025"
+          },
+          {
+            "title": "Head of Science",
+            "description": "Head of Science at leading boys' school",
+            "year": "2020"
+          },
+          {
+            "title": "TPR Training",
+            "description": "Trained in Total Physical Response (TPR) teaching methodology",
+            "year": "2018"
+          }
+        ],
+        "image": {
+          "key": "jay-sciences-maths",
+          "alt": "Jay - Biology, Chemistry, Physics and Maths Expert",
+          "professionalHeadshot": true
+        },
+        "bio": "Jay is a qualified teacher with 30 years of international experience and Deputy Head of multiple schools. He holds the National Professional Qualification for Headteachers, served as Head of Science at a leading boys' school, and is trained in Total Physical Response (TPR) methodology.",
+        "availability": {
+          "status": "available",
+          "nextAvailable": "2025-01-25"
+        },
+        "credentials": [
+          {
+            "type": "qualification",
+            "title": "NPQH - National Professional Qualification for Headteachers",
+            "institution": "Department for Education",
+            "year": "2010",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Enhanced DBS Check",
+            "institution": "Disclosure and Barring Service",
+            "year": "2024",
+            "verified": true
+          }
+        ],
+        "teachingStyle": {
+          "approach": "International perspective with innovative teaching methods including TPR",
+          "methodology": [
+            "Total Physical Response",
+            "Interactive learning",
+            "International best practices"
+          ],
+          "strengthAreas": [
+            "Science education",
+            "International curricula",
+            "Leadership development"
+          ]
+        },
+        "subjectExpertise": [
+          {
+            "subject": "Biology",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 30
+          },
+          {
+            "subject": "Chemistry",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 30
+          },
+          {
+            "subject": "Physics",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel"],
+            "yearsExperience": 25
+          },
+          {
+            "subject": "Mathematics",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel"],
+            "yearsExperience": 20
+          }
+        ],
+        "featured": true,
+        "order": 4
+      },
+      {
+        "id": "emilia-entrance-history",
+        "name": "Emilia",
+        "title": "Entrance Exams, History and University/Oxbridge Applications",
+        "education": {
+          "university": "University of Oxford",
+          "degree": "PGCE from Oxford",
+          "grade": "Distinction",
+          "graduationYear": "2015",
+          "additionalInfo": "Masters in History from Cambridge"
+        },
+        "specializations": [
+          "Entrance Exams (11+ and 13+)",
+          "History",
+          "University Applications",
+          "Oxbridge Admissions"
+        ],
+        "experience": {
+          "yearsTeaching": 10,
+          "description": "Entrance exam specialist with success placing students at Eton, Harrow, Highgate, Merchant Taylor, St Paul's, and Latymer",
+          "totalStudents": 300
+        },
+        "achievements": [
+          {
+            "title": "Elite School Placements",
+            "description": "Helped secure places at Eton, Harrow, Highgate, Merchant Taylor, St Paul's, Latymer",
+            "year": "2025"
+          },
+          {
+            "title": "Head of History",
+            "description": "Head of History and official A Level examiner",
+            "year": "2023"
+          },
+          {
+            "title": "Oxbridge Education",
+            "description": "PGCE from Oxford and Masters in History from Cambridge",
+            "year": "2015"
+          }
+        ],
+        "image": {
+          "key": "emilia-entrance-history",
+          "alt": "Emilia - Entrance Exams, History and University Applications Expert",
+          "professionalHeadshot": true
+        },
+        "bio": "Emilia holds a PGCE from Oxford and Masters in History from Cambridge. As an entrance exam specialist for 11+ and 13+, she has helped secure places at Eton, Harrow, Highgate, Merchant Taylor, St Paul's, and Latymer. She is Head of History and an official A Level examiner.",
+        "availability": {
+          "status": "available",
+          "nextAvailable": "2025-01-30"
+        },
+        "credentials": [
+          {
+            "type": "qualification",
+            "title": "PGCE",
+            "institution": "University of Oxford",
+            "year": "2015",
+            "verified": true
+          },
+          {
+            "type": "qualification",
+            "title": "Masters in History",
+            "institution": "University of Cambridge",
+            "year": "2013",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Enhanced DBS Check",
+            "institution": "Disclosure and Barring Service",
+            "year": "2024",
+            "verified": true
+          }
+        ],
+        "teachingStyle": {
+          "approach": "Rigorous academic preparation combined with strategic exam technique",
+          "methodology": [
+            "Entrance exam strategy",
+            "Historical analysis",
+            "University preparation"
+          ],
+          "strengthAreas": [
+            "11+ and 13+ preparation",
+            "Elite school admissions",
+            "Historical research"
+          ]
+        },
+        "subjectExpertise": [
+          {
+            "subject": "History",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 10
+          },
+          {
+            "subject": "11+ Preparation",
+            "level": "11+",
+            "examBoards": ["CEM", "GL Assessment"],
+            "yearsExperience": 8
+          },
+          {
+            "subject": "13+ Preparation",
+            "level": "13+",
+            "examBoards": ["Common Entrance"],
+            "yearsExperience": 8
+          }
+        ],
+        "featured": true,
+        "order": 5
+      },
+      {
+        "id": "annette-english-history",
+        "name": "Annette",
+        "title": "English and History",
+        "education": {
+          "university": "Professional Teaching Qualification",
+          "degree": "Qualified English and History Teacher",
+          "grade": "Outstanding",
+          "graduationYear": "1988"
+        },
+        "specializations": [
+          "English Language",
+          "English Literature",
+          "History",
+          "Special Educational Needs"
+        ],
+        "experience": {
+          "yearsTeaching": 37,
+          "description": "37 years experience as qualified English and History teacher with extensive SEN experience",
+          "totalStudents": 2000
+        },
+        "achievements": [
+          {
+            "title": "GCSE Examiner",
+            "description": "GCSE examiner for Pearson/Edexcel, CIE and OCR for 25 years",
+            "year": "2024"
+          },
+          {
+            "title": "National Tutoring Programme",
+            "description": "National Tutoring Programme practitioner",
+            "year": "2022"
+          },
+          {
+            "title": "SEN Specialist",
+            "description": "Extensive experience with Special Educational Needs students",
+            "year": "2025"
+          }
+        ],
+        "image": {
+          "key": "annette-english-history",
+          "alt": "Annette - English and History Expert with SEN Experience",
+          "professionalHeadshot": true
+        },
+        "bio": "Annette is a qualified English and History teacher with 37 years of experience. She has been a GCSE examiner for Pearson/Edexcel, CIE and OCR for 25 years, is a National Tutoring Programme practitioner, and has extensive experience with Special Educational Needs students.",
+        "availability": {
+          "status": "available",
+          "nextAvailable": "2025-01-18"
+        },
+        "credentials": [
+          {
+            "type": "qualification",
+            "title": "Qualified English and History Teacher",
+            "institution": "Professional Teaching Authority",
+            "year": "1988",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "GCSE Examiner Qualification",
+            "institution": "Pearson/Edexcel, CIE, OCR",
+            "year": "2024",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Enhanced DBS Check",
+            "institution": "Disclosure and Barring Service",
+            "year": "2024",
+            "verified": true
+          }
+        ],
+        "teachingStyle": {
+          "approach": "Inclusive and supportive, adapting to individual learning needs",
+          "methodology": [
+            "Differentiated learning",
+            "SEN support strategies",
+            "Examination preparation"
+          ],
+          "strengthAreas": [
+            "English literature analysis",
+            "Special needs support",
+            "GCSE preparation"
+          ]
+        },
+        "subjectExpertise": [
+          {
+            "subject": "English Literature",
+            "level": "GCSE",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 37
+          },
+          {
+            "subject": "English Language",
+            "level": "GCSE",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 37
+          },
+          {
+            "subject": "History",
+            "level": "GCSE",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 37
+          }
+        ],
+        "featured": false,
+        "order": 6
+      },
+      {
+        "id": "elle-primary-maths",
+        "name": "Elle",
+        "title": "Primary Specialist, Entrance Exams and Maths",
+        "education": {
+          "university": "Professional Teaching Qualification",
+          "degree": "Qualified Primary Teacher",
+          "grade": "Outstanding",
+          "graduationYear": "2010"
+        },
+        "specializations": [
+          "Primary Education",
+          "Entrance Exams (7+ and 11+)",
+          "Mathematics to A Level",
+          "Teacher Training"
+        ],
+        "experience": {
+          "yearsTeaching": 15,
+          "description": "Top Entrance Exam Specialist with success at St Paul's, City of London, Dulwich College, Perse School",
+          "totalStudents": 400
+        },
+        "achievements": [
+          {
+            "title": "Elite School Success",
+            "description": "Secured offers from St Paul's, City of London, Dulwich College, Perse School",
+            "year": "2025"
+          },
+          {
+            "title": "Cambridge Mentor",
+            "description": "Selected to mentor PGCE placement students from Cambridge University",
+            "year": "2023"
+          },
+          {
+            "title": "Top Entrance Specialist",
+            "description": "Recognised as top Entrance Exam Specialist for 7+ and 11+",
+            "year": "2024"
+          }
+        ],
+        "image": {
+          "key": "elle-primary-maths",
+          "alt": "Elle - Primary Specialist, Entrance Exams and Maths Expert",
+          "professionalHeadshot": true
+        },
+        "bio": "Elle is a qualified teacher specialising in Primary education and Entrance Exams for 7+ and 11+. She has secured offers from St Paul's, City of London, Dulwich College, and Perse School. She was selected to mentor PGCE placement students from Cambridge University and teaches Maths to A Level.",
+        "availability": {
+          "status": "available",
+          "nextAvailable": "2025-01-22"
+        },
+        "credentials": [
+          {
+            "type": "qualification",
+            "title": "Qualified Primary Teacher",
+            "institution": "Professional Teaching Authority",
+            "year": "2010",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Cambridge University Mentor",
+            "institution": "University of Cambridge",
+            "year": "2023",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Enhanced DBS Check",
+            "institution": "Disclosure and Barring Service",
+            "year": "2024",
+            "verified": true
+          }
+        ],
+        "teachingStyle": {
+          "approach": "Child-centred and developmental, building strong foundations",
+          "methodology": [
+            "Primary pedagogy",
+            "Entrance exam preparation",
+            "Mathematical progression"
+          ],
+          "strengthAreas": [
+            "7+ and 11+ preparation",
+            "Primary mathematics",
+            "School readiness"
+          ]
+        },
+        "subjectExpertise": [
+          {
+            "subject": "Primary Education",
+            "level": "Primary",
+            "examBoards": ["National Curriculum"],
+            "yearsExperience": 15
+          },
+          {
+            "subject": "Mathematics",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel"],
+            "yearsExperience": 10
+          },
+          {
+            "subject": "11+ Preparation",
+            "level": "11+",
+            "examBoards": ["CEM", "GL Assessment"],
+            "yearsExperience": 12
+          }
+        ],
+        "featured": false,
+        "order": 7
+      },
+      {
+        "id": "daniel-humanities",
+        "name": "Daniel",
+        "title": "History, Politics, Economics and Sociology",
+        "education": {
+          "university": "Professional Teaching and Academic Qualification",
+          "degree": "History, Politics, Economics and Sociology Specialist",
+          "grade": "Distinction",
+          "graduationYear": "2006"
+        },
+        "specializations": [
+          "History",
+          "Politics",
+          "Economics",
+          "Sociology"
+        ],
+        "experience": {
+          "yearsTeaching": 16,
+          "description": "Providing 1-2-1 educational support since 2009 with examiner experience teaching from GCSE to University level",
+          "totalStudents": 600
+        },
+        "achievements": [
+          {
+            "title": "Examiner Experience",
+            "description": "Official examiner with extensive marking and assessment experience",
+            "year": "2024"
+          },
+          {
+            "title": "University Level Teaching",
+            "description": "Teaches from GCSE to University level across multiple humanities subjects",
+            "year": "2025"
+          },
+          {
+            "title": "Creative Teaching Approach",
+            "description": "Uses variety of teaching styles with creative approach to learning",
+            "year": "2023"
+          }
+        ],
+        "image": {
+          "key": "daniel-humanities",
+          "alt": "Daniel - History, Politics, Economics and Sociology Expert",
+          "professionalHeadshot": true
+        },
+        "bio": "Daniel has been providing 1-2-1 educational support since 2009 with examiner experience. He teaches History, Politics, Economics and Sociology from GCSE to University level, using a creative approach with a variety of teaching styles to engage students effectively.",
+        "availability": {
+          "status": "available",
+          "nextAvailable": "2025-01-16"
+        },
+        "credentials": [
+          {
+            "type": "qualification",
+            "title": "Humanities Teaching Specialist",
+            "institution": "Professional Teaching Authority",
+            "year": "2006",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Examiner Qualification",
+            "institution": "Examination Boards",
+            "year": "2024",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Enhanced DBS Check",
+            "institution": "Disclosure and Barring Service",
+            "year": "2024",
+            "verified": true
+          }
+        ],
+        "teachingStyle": {
+          "approach": "Creative and varied, adapting teaching styles to individual student needs",
+          "methodology": [
+            "Interactive discussions",
+            "Case study analysis",
+            "Creative learning techniques"
+          ],
+          "strengthAreas": [
+            "University preparation",
+            "Critical thinking",
+            "Essay writing"
+          ]
+        },
+        "subjectExpertise": [
+          {
+            "subject": "History",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 16
+          },
+          {
+            "subject": "Politics",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel"],
+            "yearsExperience": 15
+          },
+          {
+            "subject": "Economics",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel"],
+            "yearsExperience": 14
+          },
+          {
+            "subject": "Sociology",
+            "level": "A-Level",
+            "examBoards": ["AQA", "OCR"],
+            "yearsExperience": 12
+          }
+        ],
+        "featured": false,
+        "order": 8
+      },
+      {
+        "id": "david-sciences-oxbridge",
+        "name": "David",
+        "title": "Sciences, Maths and Oxbridge Entrance",
+        "education": {
+          "university": "University of Cambridge",
+          "degree": "Master's in Natural Sciences with Biology and Chemistry",
+          "grade": "First Class Honours",
+          "graduationYear": "2012",
+          "additionalInfo": "Parkinson's research specialisation"
+        },
+        "specializations": [
+          "Biology",
+          "Chemistry",
+          "Mathematics",
+          "Oxbridge Entrance"
+        ],
+        "experience": {
+          "yearsTeaching": 13,
+          "description": "13 years international teaching experience including royalty, with laboratory science teaching fellowship",
+          "totalStudents": 500
+        },
+        "achievements": [
+          {
+            "title": "Cambridge Natural Sciences",
+            "description": "Master's in Natural Sciences from Cambridge University with Biology and Chemistry focus",
+            "year": "2012"
+          },
+          {
+            "title": "Teaching Fellowship",
+            "description": "Laboratory science teaching fellow at St. John's Leatherhead",
+            "year": "2020"
+          },
+          {
+            "title": "Royal Tutoring",
+            "description": "13 years international teaching experience including royalty",
+            "year": "2025"
+          },
+          {
+            "title": "Research Experience",
+            "description": "Parkinson's research specialisation during Master's degree",
+            "year": "2012"
+          }
+        ],
+        "image": {
+          "key": "david-sciences-oxbridge",
+          "alt": "David - Sciences, Maths and Oxbridge Entrance Expert",
+          "professionalHeadshot": true
+        },
+        "bio": "David holds a Master's in Natural Sciences from Cambridge University with Biology and Chemistry specialisation, including Parkinson's research. He has 13 years of international teaching experience including royalty, and serves as a laboratory science teaching fellow at St. John's Leatherhead. He is fluent in French.",
+        "availability": {
+          "status": "available",
+          "nextAvailable": "2025-01-12"
+        },
+        "credentials": [
+          {
+            "type": "qualification",
+            "title": "Master's in Natural Sciences",
+            "institution": "University of Cambridge",
+            "year": "2012",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Teaching Fellowship",
+            "institution": "St. John's Leatherhead",
+            "year": "2020",
+            "verified": true
+          },
+          {
+            "type": "certification",
+            "title": "Enhanced DBS Check",
+            "institution": "Disclosure and Barring Service",
+            "year": "2024",
+            "verified": true
+          }
+        ],
+        "teachingStyle": {
+          "approach": "Research-informed with practical laboratory experience and international perspective",
+          "methodology": [
+            "Scientific methodology",
+            "Laboratory techniques",
+            "International best practices"
+          ],
+          "strengthAreas": [
+            "Oxbridge preparation",
+            "Laboratory sciences",
+            "International curricula"
+          ]
+        },
+        "subjectExpertise": [
+          {
+            "subject": "Biology",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 13
+          },
+          {
+            "subject": "Chemistry",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel", "OCR"],
+            "yearsExperience": 13
+          },
+          {
+            "subject": "Mathematics",
+            "level": "A-Level",
+            "examBoards": ["AQA", "Edexcel"],
+            "yearsExperience": 10
+          }
+        ],
+        "featured": false,
+        "order": 9
+      }
+    ],
+    "showAllButton": {
+      "text": "View All Tutors",
+      "href": "/meet-our-tutors"
+    },
+    "backgroundStyle": "light"
+  }
+}
