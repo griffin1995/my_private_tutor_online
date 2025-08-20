@@ -1,6 +1,6 @@
 /**
  * TESTIMONIALS PAGE - STREAMLINED CMS ARCHITECTURE
- * 
+ *
  * CONTEXT7 SOURCE: /vercel/next.js - Client Components with optimized data flow
  * CONTEXT7 SOURCE: /framer/motion - LazyMotion for performance optimization
  * CONTEXT7 SOURCE: /microsoft/typescript - Type-safe data processing patterns
@@ -8,7 +8,7 @@
  * ========================================
  * ARCHITECTURAL REDESIGN - SINGLE SOURCE OF TRUTH
  * ========================================
- * 
+ *
  * PREVIOUS ISSUES RESOLVED:
  * ❌ Multiple overlapping data sources (getUnifiedTestimonials vs getRecentTestimonials)
  * ❌ Conflicting hasVideo flags (video testimonials marked as hasVideo: false)
@@ -103,7 +103,7 @@ export default function TestimonialsPage() {
   // ========================================
   // CONTEXT7 SOURCE: /typescript/handbook - Direct synchronous CMS data access for immediate availability
   // SYNCHRONOUS CMS PATTERN: All CMS data loaded immediately without loading states
-  
+
   // CORE CONTENT DATA
   const testimonialsContent = getTestimonialsContent();
   const heroContent = getTestimonialsHero();
@@ -115,26 +115,26 @@ export default function TestimonialsPage() {
   // TESTIMONIALS DATA - STREAMLINED ARCHITECTURE
   // CMS DATA SOURCE: Using dedicated functions for clean separation
   // ARCHITECTURAL IMPROVEMENT: No manual filtering - functions handle logic internally
-  
+
   // All testimonials from canonical source (10 total: 2 video + 8 text)
   const allTestimonials = getAllTestimonials();
-  
+
   // Video testimonials only (hasVideo: true) - Currently 2 testimonials
   const testimonialsWithVideo = getVideoTestimonials();
-  
+
   // Text testimonials only (hasVideo: false/undefined) - Currently 8 testimonials
   const testimonialsWithoutVideo = getTextTestimonials();
-  
+
   // ARCHITECTURE VERIFICATION:
   // - testimonialsWithVideo.length should be 2
   // - testimonialsWithoutVideo.length should be 8
   // - allTestimonials.length should be 10
-  console.log('TESTIMONIALS ARCHITECTURE CHECK:', {
+  console.log("TESTIMONIALS ARCHITECTURE CHECK:", {
     total: allTestimonials.length,
     video: testimonialsWithVideo.length,
     text: testimonialsWithoutVideo.length,
-    videoIds: testimonialsWithVideo.map(t => t.id),
-    textIds: testimonialsWithoutVideo.map(t => t.id)
+    videoIds: testimonialsWithVideo.map((t) => t.id),
+    textIds: testimonialsWithoutVideo.map((t) => t.id),
   });
 
   // State management for filtering within each section
@@ -199,16 +199,16 @@ export default function TestimonialsPage() {
         {/* CONTEXT7 SOURCE: /cookpete/react-player - Professional video gallery with thumbnail navigation and analytics */}
         {/* VIDEO GALLERY COMPONENT: VideoTestimonials with enhanced video presentation and engagement tracking */}
         <VideoTestimonials
-            videos={testimonialsWithVideo}
-            layout="gallery"
-            backgroundVariant="blue"
-            showThumbnails={true}
-            enableAnalytics={true}
-            showCategories={true}
-            title="Video Testimonials - What Families Are Saying"
-            description={`Watch our families share their experiences with My Private Tutor Online (${testimonialsWithVideo.length} video testimonials)`}
-            animationDelay={0.1}
-          />
+          videos={testimonialsWithVideo}
+          layout="gallery"
+          backgroundVariant="blue"
+          showThumbnails={true}
+          enableAnalytics={true}
+          showCategories={true}
+          title="Video Testimonials - What Families Are Saying"
+          description={`Watch our families share their experiences with My Private Tutor Online (${testimonialsWithVideo.length} video testimonials)`}
+          animationDelay={0.1}
+        />
 
         {/* SECTION 1: VIDEO TESTIMONIALS - Testimonials WITH video content */}
         {testimonialsWithVideo.length > 0 && (

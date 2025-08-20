@@ -498,6 +498,18 @@ const config: Config = {
         'full': '9999px',
       },
       
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom breakpoint for responsive navbar design
+      // RESPONSIVE BREAKPOINT REASON: Official Tailwind documentation supports custom screen sizes for specific design requirements
+      // CLIENT REQUIREMENT: 1780px breakpoint to prevent tablet navigation overlap issues
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1400px',
+        '3xl': '1780px', // Custom breakpoint for full navigation display
+      },
+
       // Container sizes
       container: {
         center: true,
@@ -514,6 +526,7 @@ const config: Config = {
           'lg': '1024px',
           'xl': '1280px',
           '2xl': '1400px',
+          '3xl': '1780px',
         },
       },
     },
