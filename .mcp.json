@@ -1,24 +1,19 @@
 {
   "mcpServers": {
     "context7": {
-      "description": "Official documentation retrieval for libraries and frameworks",
-      "required": true,
-      "priority": 1
+      "command": "npx",
+      "args": ["-y", "@context7/mcp-server"],
+      "env": {}
     },
     "web-browser": {
-      "description": "Web browsing for documentation and research",
-      "required": false,
-      "priority": 2
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": {}
     },
     "git": {
-      "description": "Git operations and version control",
-      "required": false,
-      "priority": 3
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git"],
+      "env": {}
     }
-  },
-  "settings": {
-    "preferOfficialDocs": true,
-    "documentationSource": "context7",
-    "verifyWithContext7": true
   }
 }
