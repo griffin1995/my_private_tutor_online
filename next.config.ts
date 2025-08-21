@@ -357,14 +357,14 @@ const nextConfig: NextConfig = {
         maxAssetSize: 50000, // CONTEXT7 SOURCE: /webpack/webpack - 50KB max per asset
         maxEntrypointSize: 577000, // CONTEXT7 SOURCE: /webpack/webpack - 577KB target for entry point
         hints: 'warning',
-        assetFilter: function(assetFilename) {
+        assetFilter: function(assetFilename: string) {
           return assetFilename.endsWith('.js') || assetFilename.endsWith('.css');
         }
       };
       
       // CONTEXT7 SOURCE: /webpack/webpack - Additional terser optimization
       if (config.optimization.minimizer) {
-        config.optimization.minimizer.forEach((minimizer) => {
+        config.optimization.minimizer.forEach((minimizer: any) => {
           if (minimizer.constructor.name === 'TerserPlugin') {
             minimizer.options.terserOptions = {
               ...minimizer.options.terserOptions,

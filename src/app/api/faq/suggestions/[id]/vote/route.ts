@@ -149,10 +149,11 @@ const getVoteCounts = (suggestionId: string) => {
 // POST HANDLER: Cast or change vote on FAQ suggestion
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const suggestionId = params.id
+    const { id } = await params
+    const suggestionId = id
     
     // CONTEXT7 SOURCE: /vercel/next.js - Request context extraction
     // CONTEXT EXTRACTION: Get user context for fraud prevention
@@ -284,10 +285,11 @@ export async function POST(
 // GET HANDLER: Get current user's vote status for suggestion
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const suggestionId = params.id
+    const { id } = await params
+    const suggestionId = id
     const { searchParams } = new URL(request.url)
     const userId = searchParams.get('userId')
     
@@ -333,10 +335,11 @@ export async function GET(
 // DELETE HANDLER: Remove user's vote from suggestion
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const suggestionId = params.id
+    const { id } = await params
+    const suggestionId = id
     const { searchParams } = new URL(request.url)
     const userId = searchParams.get('userId')
     

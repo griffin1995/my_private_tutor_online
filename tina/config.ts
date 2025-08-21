@@ -1,9 +1,9 @@
 import { defineConfig } from "tinacms";
 
-// Security: Validate required environment variables
+// CONTEXT7 SOURCE: /tinacms/docs - Security: Validate required environment variables
 const requiredEnvVars = {
-  NEXT_PUBLIC_TINA_CLIENT_ID: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
-  TINA_TOKEN: process.env.TINA_TOKEN
+  NEXT_PUBLIC_TINA_CLIENT_ID: process.env['NEXT_PUBLIC_TINA_CLIENT_ID'],
+  TINA_TOKEN: process.env['TINA_TOKEN']
 };
 
 // Check for missing environment variables in production
@@ -17,18 +17,18 @@ if (process.env.NODE_ENV === 'production') {
   }
 }
 
-// Your hosting provider will set this automatically
-const branch = process.env.NEXT_PUBLIC_TINA_BRANCH || "main";
+// CONTEXT7 SOURCE: /tinacms/docs - Your hosting provider will set this automatically
+const branch = process.env['NEXT_PUBLIC_TINA_BRANCH'] || "main";
 
 export default defineConfig({
   branch,
   clientId: requiredEnvVars.NEXT_PUBLIC_TINA_CLIENT_ID || "",
   token: requiredEnvVars.TINA_TOKEN || "",
   
-  // Use local content API for development
-  contentApiUrlOverride: process.env.TINA_PUBLIC_IS_LOCAL === "true" 
-    ? "/api/tina/gql" 
-    : undefined,
+  // CONTEXT7 SOURCE: /tinacms/docs - Use local content API for development
+  ...(process.env['TINA_PUBLIC_IS_LOCAL'] === "true" 
+    ? { contentApiUrlOverride: "/api/tina/gql" } 
+    : {}),
   
   build: {
     outputFolder: "admin",

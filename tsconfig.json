@@ -75,6 +75,10 @@
   "exclude": [
     "node_modules",
     "out/**/*", // Exclude old static export artifacts
-    ".next/cache/**/*"
+    ".next/cache/**/*",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "tests/**/*",
+    "src/__tests__/**/*"
   ]
 }

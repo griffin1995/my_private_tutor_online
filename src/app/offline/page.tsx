@@ -41,7 +41,7 @@ import {
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Type definitions for offline page
 // TYPE SAFETY: Complete interfaces for offline page configuration
-export interface OfflinePageProps {
+interface OfflinePageProps {
   showBackButton?: boolean;
   showContactInfo?: boolean;
   showCachedContent?: boolean;
@@ -50,12 +50,11 @@ export interface OfflinePageProps {
 
 // CONTEXT7 SOURCE: /radix-ui/primitives - Main offline fallback page component
 // OFFLINE PAGE: Comprehensive offline experience with royal client standards
-export default function OfflinePage({
-  showBackButton = true,
-  showContactInfo = true,
-  showCachedContent = true,
-  customMessage
-}: OfflinePageProps) {
+export default function OfflinePage() {
+  const showBackButton = true;
+  const showContactInfo = true;
+  const showCachedContent = true;
+  const customMessage = undefined;
   const { state, actions } = useOffline();
   const [retryCount, setRetryCount] = useState(0);
   const [isRetrying, setIsRetrying] = useState(false);

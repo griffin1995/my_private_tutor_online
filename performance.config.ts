@@ -296,7 +296,7 @@ export const MONITORING_INTEGRATIONS = {
   // Google Analytics 4
   ga4: {
     enabled: true,
-    measurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+    measurementId: process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'],
     trackPerformance: true,
     trackErrors: true,
   },
@@ -311,8 +311,8 @@ export const MONITORING_INTEGRATIONS = {
   
   // Custom Monitoring Webhook
   webhook: {
-    enabled: !!process.env.PERFORMANCE_WEBHOOK_URL,
-    url: process.env.PERFORMANCE_WEBHOOK_URL,
+    enabled: !!process.env['PERFORMANCE_WEBHOOK_URL'],
+    url: process.env['PERFORMANCE_WEBHOOK_URL'],
     batchSize: 10,
     flushInterval: 30000,     // 30 seconds
   },
