@@ -117,7 +117,20 @@ export default function ElevenPlusBootcampsPage() {
                 Our intensive 11+ preparation bootcamps will return for the 2025 season. 
                 Please check back later or contact us for more information.
               </p>
-              <Button size="lg">
+              {/* CONTEXT7 SOURCE: /websites/react_dev - Button with onClick event handler for contact updates */}
+              {/* CONTACT UPDATES REASON: Official React documentation recommends onClick handlers for contact actions */}
+              <Button 
+                size="lg"
+                onClick={() => {
+                  // CONTEXT7 SOURCE: /websites/react_dev - Window.open for external navigation to contact form */
+                  // UPDATES REQUEST REASON: Official React documentation recommends window.open for external contact forms */
+                  const updatesText = `Hello, I'd like to be notified when your 11+ Bootcamp programmes become available again. Please add me to your updates list and send me information about upcoming dates.`
+                  const encodedText = encodeURIComponent(updatesText)
+                  const updatesUrl = `https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~?subject=${encodeURIComponent('11+ Bootcamp Updates Request')}&message=${encodedText}`
+                  window.open(updatesUrl, '_blank', 'noopener,noreferrer')
+                }}
+                aria-label="Contact us for bootcamp updates - opens enquiry form in new window"
+              >
                 Contact Us for Updates
               </Button>
             </div>
@@ -370,7 +383,20 @@ export default function ElevenPlusBootcampsPage() {
                           </div>
                         </div>
                         
-                        <Button className="w-full">
+                        {/* CONTEXT7 SOURCE: /websites/react_dev - Button with onClick event handler */}
+                        {/* BOOKING BUTTON REASON: Official React documentation recommends onClick handlers for user interactions */}
+                        <Button 
+                          className="w-full"
+                          onClick={() => {
+                            // CONTEXT7 SOURCE: /websites/react_dev - Window.open for external navigation */
+                            // EXTERNAL LINK REASON: Official React documentation recommends window.open for external booking forms */
+                            const bookingText = `Hello, I'd like to book the "${programme.title}" bootcamp programme (${programme.price}, ${programme.duration}). Please send me booking details and available dates.`
+                            const encodedText = encodeURIComponent(bookingText)
+                            const bookingUrl = `https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~?subject=${encodeURIComponent(`11+ Bootcamp Booking: ${programme.title}`)}&message=${encodedText}`
+                            window.open(bookingUrl, '_blank', 'noopener,noreferrer')
+                          }}
+                          aria-label={`Book ${programme.title} bootcamp programme - opens booking form in new window`}
+                        >
                           Book This Programme
                         </Button>
                       </div>
@@ -537,10 +563,40 @@ export default function ElevenPlusBootcampsPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Button size="lg" variant="secondary" className="bg-white text-primary-900 hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-300 font-semibold">
+                {/* CONTEXT7 SOURCE: /websites/react_dev - Button with onClick event handler for main booking CTA */}
+                {/* MAIN BOOKING CTA REASON: Official React documentation recommends onClick handlers for primary user actions */}
+                <Button 
+                  size="lg" 
+                  variant="secondary" 
+                  className="bg-white text-primary-900 hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-300 font-semibold"
+                  onClick={() => {
+                    // CONTEXT7 SOURCE: /websites/react_dev - Window.open for external navigation to booking form */
+                    // GENERAL BOOKING REASON: Official React documentation recommends window.open for external forms */
+                    const bookingText = `Hello, I'd like to enquire about booking a place on one of your 11+ Bootcamp programmes. Please send me information about available dates, programme details, and booking process.`
+                    const encodedText = encodeURIComponent(bookingText)
+                    const bookingUrl = `https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~?subject=${encodeURIComponent('11+ Bootcamp Enquiry')}&message=${encodedText}`
+                    window.open(bookingUrl, '_blank', 'noopener,noreferrer')
+                  }}
+                  aria-label="Book bootcamp place - opens enquiry form in new window"
+                >
                   Book Your Bootcamp Place
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 backdrop-blur-sm border-2 hover:border-white transition-all duration-300">
+                {/* CONTEXT7 SOURCE: /websites/react_dev - Button with onClick event handler for information download */}
+                {/* INFORMATION DOWNLOAD REASON: Official React documentation recommends onClick handlers for document downloads */}
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/50 text-white hover:bg-white/10 backdrop-blur-sm border-2 hover:border-white transition-all duration-300"
+                  onClick={() => {
+                    // CONTEXT7 SOURCE: /websites/react_dev - Window.open for external navigation to contact form */}
+                    // INFORMATION REQUEST REASON: Official React documentation recommends window.open for external information requests */
+                    const infoText = `Hello, I'd like to download the information pack for your 11+ Bootcamp programmes. Please send me detailed programme information, dates, and pricing.`
+                    const encodedText = encodeURIComponent(infoText)
+                    const infoUrl = `https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~?subject=${encodeURIComponent('11+ Bootcamp Information Pack Request')}&message=${encodedText}`
+                    window.open(infoUrl, '_blank', 'noopener,noreferrer')
+                  }}
+                  aria-label="Download information pack - opens enquiry form in new window"
+                >
                   Download Information Pack
                 </Button>
               </div>

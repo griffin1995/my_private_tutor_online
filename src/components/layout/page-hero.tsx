@@ -161,6 +161,8 @@ export function PageHero({
       {/* Reference: https://github.com/thewidlarzgroup/react-native-video/blob/master/docs/pages/component/props.mdx */}
       {/* Reference: https://tailwindcss.com/docs/object-fit */}
       {/* Pattern: Full-screen background video with proper HTML5 attributes, object-fit, and fallbacks */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - object-contain utility for full content visibility */}
+      {/* VIDEO SCALING FIX: Changed from object-cover to object-contain to show full video height and prevent text cropping */}
       {background === 'video' && backgroundVideo && (
         <>
           {/* Full-screen video background */}
@@ -171,7 +173,7 @@ export function PageHero({
             playsInline
             preload="metadata"
             disablePictureInPicture
-            className="absolute inset-0 w-full h-full object-cover z-0"
+            className="absolute inset-0 w-full h-full object-contain z-0"
             style={{
               filter: 'brightness(0.75) contrast(1.1) saturate(1.1)'
             }}

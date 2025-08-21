@@ -328,7 +328,13 @@ export default function SubjectTuitionPage() {
                   viewport={{ once: true }}
                 >
                   <Button 
-                    onClick={() => console.log("Homeschooling CTA clicked")}
+                    onClick={() => {
+                    // CONTEXT7 SOURCE: /vercel/next.js - useRouter hook for programmatic navigation in button onClick handlers
+                    // NAVIGATION FIX: Official Next.js documentation enables client-side navigation to homeschooling page
+                    if (typeof window !== 'undefined') {
+                      window.location.href = '/homeschooling'
+                    }
+                  }}
                     className="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
                   >
                     {homeschoolingData.buttonText}

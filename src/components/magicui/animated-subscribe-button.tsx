@@ -1,8 +1,11 @@
 "use client"
 
+// CONTEXT7 SOURCE: /vercel/next.js - Next.js useRouter hook for programmatic navigation
+// BUTTON FUNCTIONALITY FIX: Official Next.js documentation enables client-side navigation in button onClick handlers
 import React, { useState } from "react"
 import { AnimatePresence, m } from "framer-motion"
 import { CheckIcon, PlusIcon } from "lucide-react"
+import { useRouter } from 'next/navigation'
 
 interface AnimatedSubscribeButtonProps {
   buttonColor: string
@@ -11,6 +14,12 @@ interface AnimatedSubscribeButtonProps {
   initialText: string
   changeText: string
   onToggle?: () => void
+  // CONTEXT7 SOURCE: /vercel/next.js - Next.js Link component navigation patterns
+  // NAVIGATION ENHANCEMENT: Official Next.js documentation enables href prop for button navigation
+  navigationUrl?: string
+  // CONTEXT7 SOURCE: /reactjs/react.dev - React onClick handler patterns for external actions
+  // EXTERNAL ACTION ENHANCEMENT: Official React documentation enables custom action handling in button components
+  externalAction?: () => void
 }
 
 export const AnimatedSubscribeButton: React.FC<
@@ -22,13 +31,32 @@ export const AnimatedSubscribeButton: React.FC<
   initialText,
   changeText,
   onToggle,
+  navigationUrl,
+  externalAction,
 }) => {
   const [isSubscribed, setIsSubscribed] = useState<boolean>(subscribeStatus)
+  // CONTEXT7 SOURCE: /vercel/next.js - useRouter hook for programmatic client-side navigation
+  // ROUTER IMPLEMENTATION: Official Next.js documentation shows useRouter pattern for button navigation
+  const router = useRouter()
 
+  // CONTEXT7 SOURCE: /reactjs/react.dev - React event handler patterns with multiple action support
+  // ENHANCED CLICK HANDLER: Official React documentation enables combining state updates with navigation actions
   const handleClick = () => {
     setIsSubscribed(!isSubscribed)
     if (onToggle) {
       onToggle()
+    }
+    
+    // CONTEXT7 SOURCE: /vercel/next.js - Programmatic client-side navigation with useRouter hook
+    // NAVIGATION LOGIC: Official Next.js documentation shows router.push() for button-triggered navigation
+    if (navigationUrl) {
+      router.push(navigationUrl)
+    }
+    
+    // CONTEXT7 SOURCE: /reactjs/react.dev - Custom action execution in React event handlers
+    // EXTERNAL ACTION EXECUTION: Official React documentation enables custom function calls in onClick handlers
+    if (externalAction) {
+      externalAction()
     }
   }
 

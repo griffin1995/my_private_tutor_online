@@ -1280,6 +1280,24 @@ export const getAboutHeroImage = (): ImageAsset => {
 };
 
 /**
+ * Get Meet Our Tutors page hero background image
+ * CONTEXT7 SOURCE: /vercel/next.js - Static asset serving patterns for tutoring scene hero backgrounds
+ * CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations for Meet Our Tutors hero background
+ * CMS DATA SOURCE: Using student-teacher-inside-comfortable.jpg for Meet Our Tutors hero background showing professional tutoring environment
+ */
+export const getTutorsHeroImage = (): ImageAsset => {
+  return {
+    src: "/images/students/student-teacher-inside-comfortable.jpg",
+    alt: "Professional tutor working with student in comfortable learning environment - Meet Our Expert Tutors",
+    width: 1920,
+    height: 1080,
+    title: "Meet Our Expert Tutors - Professional Learning Environment",
+    loading: "eager" as const,
+    priority: true,
+  };
+};
+
+/**
  * Get team member images
  * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
  * CMS DATA SOURCE: Using TEAM_IMAGES for team member photos
