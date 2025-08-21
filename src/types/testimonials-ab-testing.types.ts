@@ -12,7 +12,7 @@
  * ROYAL CLIENT STANDARDS: Statistical rigor with executive-level insights
  */
 
-import type { TestimonialsCMSData } from './testimonials-cms.types'
+import type { TestimonialsCMS } from './testimonials-cms.types'
 import type { ClientSuccessMetrics, TestimonialPerformance } from '../components/dashboards/client-success-metrics-dashboard'
 
 // CONTEXT7 SOURCE: /posthog/posthog - Experiment configuration patterns for feature flag testing

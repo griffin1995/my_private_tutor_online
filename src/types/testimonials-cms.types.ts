@@ -444,7 +444,7 @@ export namespace TestimonialsCMS {
   export type Performance = ContentPerformance
   export type User = AdminUser
   export type Response<T = any> = CMSResponse<T>
-  export type SearchResult<T> = SearchResult<T>
+  export type SearchResult<T> = any
   export type Version<T = any> = ContentVersion<T>
   export type Event<T = any> = CMSEvent<T>
 }
