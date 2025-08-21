@@ -58,13 +58,13 @@
 
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
 // SYNCHRONOUS CMS PATTERN: Converting from async to synchronous CMS data access for immediate loading
-import { EliteSchoolsCarousel } from "@/components/testimonials/elite-schools-carousel";
+import EliteSchoolsCarousel from "@/components/testimonials/elite-schools-carousel";
 import { TestimonialsFilter } from "@/components/testimonials/testimonials-filter";
 import { TestimonialsGrid } from "@/components/testimonials/testimonials-grid";
 import { SimpleHero } from "@/components/layout/simple-hero";
-import { TestimonialsIntro } from "@/components/testimonials/testimonials-intro";
-import { VideoTestimonials } from "@/components/testimonials/video-testimonials";
-import { useCallback, useState } from "react";
+import TestimonialsIntro from "@/components/testimonials/testimonials-intro";
+import VideoTestimonials from "@/components/testimonials/video-testimonials";
+import React, { useCallback, useState, useMemo } from "react";
 // TESTIMONIALS OVERHAUL: Removed TestimonialsCTA import for cleaner page boundaries
 import { PageLayout } from "@/components/layout/page-layout";
 import {
@@ -129,21 +129,126 @@ export default function TestimonialsPage() {
   // - testimonialsWithVideo.length should be 2
   // - testimonialsWithoutVideo.length should be 8
   // - allTestimonials.length should be 10
-  console.log("TESTIMONIALS ARCHITECTURE CHECK:", {
-    total: allTestimonials.length,
-    video: testimonialsWithVideo.length,
-    text: testimonialsWithoutVideo.length,
-    videoIds: testimonialsWithVideo.map((t) => t.id),
-    textIds: testimonialsWithoutVideo.map((t) => t.id),
-  });
+
+  // CONTEXT7 SOURCE: /websites/react_dev - useMemo for expensive calculations performance optimization
+  // PERFORMANCE OPTIMIZATION: Memoized testimonials grid data mapping per Context7 React guide
+  const optimizedVideoTestimonialsData = useMemo(() => {
+    // CONTEXT7 SOURCE: /websites/react_dev - Memoizing expensive computations to prevent re-calculations
+    // DATA TRANSFORMATION REASON: Official React documentation recommends memoizing data transformations
+    return testimonialsWithVideo.map((testimonial) => ({
+      id: `video-testimonial-${testimonial.author.replace(/\s+/g, "-").toLowerCase()}`,
+      quote: testimonial.quote,
+      author: testimonial.author,
+      role: testimonial.role,
+      avatar: testimonial.avatar,
+      rating: testimonial.rating,
+      featured: testimonial.featured || false,
+      expandable: testimonial.quote.length > 150,
+      fullQuote: testimonial.quote.length > 150 ? testimonial.quote : undefined,
+      verificationStatus: testimonial.verified ? "verified" : "unverified",
+      date: testimonial.date || new Date().toISOString(),
+      location: testimonial.location,
+      subject: testimonial.subject,
+      result: testimonial.result,
+      helpfulVotes: Math.floor(Math.random() * 25) + 5,
+      // CONTEXT7 SOURCE: /facebook/react - Fix field name mismatch and case sensitivity for TestimonialsFilter compatibility
+      // FIX REASON: TestimonialsFilter expects 'category' field with normalized capitalization
+      category: testimonial.category 
+        ? testimonial.category.charAt(0).toUpperCase() + testimonial.category.slice(1)
+        : testimonial.category, // Normalize case to match filter configuration
+      categories: testimonial.subject ? [testimonial.subject] : undefined,
+      hasVideo: true,
+    }))
+  }, [testimonialsWithVideo])
+
+  const optimizedTextTestimonialsData = useMemo(() => {
+    // CONTEXT7 SOURCE: /websites/react_dev - useMemo for preventing expensive recalculations
+    // OPTIMIZATION REASON: Context7 React performance guide recommends memoizing data transformations
+    return testimonialsWithoutVideo.map((testimonial) => ({
+      id: `text-testimonial-${testimonial.author.replace(/\s+/g, "-").toLowerCase()}`,
+      quote: testimonial.quote,
+      author: testimonial.author,
+      role: testimonial.role,
+      avatar: testimonial.avatar,
+      rating: testimonial.rating,
+      featured: testimonial.featured || false,
+      expandable: testimonial.quote.length > 150,
+      fullQuote: testimonial.quote.length > 150 ? testimonial.quote : undefined,
+      verificationStatus: testimonial.verified ? "verified" : "unverified",
+      date: testimonial.date || new Date().toISOString(),
+      location: testimonial.location,
+      subject: testimonial.subject,
+      result: testimonial.result,
+      helpfulVotes: Math.floor(Math.random() * 25) + 5,
+      // CONTEXT7 SOURCE: /facebook/react - Fix field name mismatch and case sensitivity for TestimonialsFilter compatibility
+      // FIX REASON: TestimonialsFilter expects 'category' field with normalized capitalization
+      category: testimonial.category 
+        ? testimonial.category.charAt(0).toUpperCase() + testimonial.category.slice(1)
+        : testimonial.category, // Normalize case to match filter configuration
+      categories: testimonial.subject ? [testimonial.subject] : undefined,
+      hasVideo: false,
+    }))
+  }, [testimonialsWithoutVideo])
+
+  // CONTEXT7 SOURCE: /facebook/react - Data transformation for optimized testimonials display
+  // PERFORMANCE REASON: Memoized data transformations for enhanced rendering performance
+
+  // CONTEXT7 SOURCE: /facebook/react - Dynamic filter configuration generation from actual testimonials data
+  // FILTER CONFIG REASON: Generate filter configuration from actual data to avoid mismatch issues
+  const dynamicFilterConfig = useMemo(() => {
+    // Extract unique categories from both video and text testimonials
+    const allTestimonials = [...testimonialsWithVideo, ...testimonialsWithoutVideo];
+    const uniqueCategories = [...new Set(
+      allTestimonials
+        .map(t => t.category)
+        .filter(Boolean)
+        .map(category => category.charAt(0).toUpperCase() + category.slice(1)) // Normalize case
+    )].sort();
+
+    const uniqueSubjects = [...new Set(
+      allTestimonials
+        .map(t => t.subject)
+        .filter(Boolean)
+    )].sort();
+
+    const uniqueLocations = [...new Set(
+      allTestimonials
+        .map(t => t.location)
+        .filter(Boolean)
+    )].sort();
+
+    const years = allTestimonials
+      .map(t => t.year)
+      .filter(Boolean)
+      .map(Number);
+
+    const config = {
+      categories: uniqueCategories,
+      subjects: uniqueSubjects,
+      gradeOptions: ["A*", "A", "B", "C", "Grade 7", "Grade 8", "Grade 9"],
+      locationOptions: uniqueLocations,
+      yearRange: {
+        min: Math.min(...years, 2020),
+        max: Math.max(...years, new Date().getFullYear())
+      }
+    };
+
+    // CONTEXT7 SOURCE: /facebook/react - Dynamic filter configuration generation from testimonials data
+    // FILTER CONFIGURATION REASON: Ensures filter options match actual testimonials categories
+
+    return config;
+  }, [testimonialsWithVideo, testimonialsWithoutVideo]);
 
   // State management for filtering within each section
   const [filteredVideoTestimonials, setFilteredVideoTestimonials] = useState<
     any[]
-  >(testimonialsWithVideo);
+  >(optimizedVideoTestimonialsData);
   const [filteredTextTestimonials, setFilteredTextTestimonials] = useState<
     any[]
-  >(testimonialsWithoutVideo);
+  >(optimizedTextTestimonialsData);
+
+  // CONTEXT7 SOURCE: /facebook/react - Filtered testimonials state management
+  // STATE MANAGEMENT REASON: Optimized filtering state for enhanced user experience
 
   // CONTEXT7 SOURCE: /context7/react_dev - useCallback for stable filter change handlers
   // PERFORMANCE OPTIMIZATION REASON: Official React documentation recommends useCallback for component props
@@ -160,6 +265,16 @@ export default function TestimonialsPage() {
     },
     []
   );
+
+  // CONTEXT7 SOURCE: /websites/react_dev - useEffect for syncing derived state
+  // PERFORMANCE OPTIMIZATION: Sync filtered state when optimized data changes
+  React.useEffect(() => {
+    setFilteredVideoTestimonials(optimizedVideoTestimonialsData);
+  }, [optimizedVideoTestimonialsData]);
+
+  React.useEffect(() => {
+    setFilteredTextTestimonials(optimizedTextTestimonialsData);
+  }, [optimizedTextTestimonialsData]);
 
   // CONTEXT7 SOURCE: Official React documentation for component composition and reusability
   // COMPONENT EXTRACTION REASON: Following React best practices for modular, reusable component architecture
@@ -219,13 +334,14 @@ export default function TestimonialsPage() {
             <TestimonialsFilter
               testimonials={testimonialsWithVideo}
               onFilterChange={handleVideoFilterChange}
+              filterConfig={dynamicFilterConfig}
               showSearch={true}
               showAdvancedFilters={true}
               enableAnalytics={true}
             />
 
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced TestimonialsGrid Component for Text Testimonials */}
-            {/* TEXT TESTIMONIALS GRID: Display testimonials that do NOT have videoSource field */}
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced TestimonialsGrid Component for Video Testimonials */}
+            {/* VIDEO TESTIMONIALS GRID: Display testimonials that HAVE videoSource field */}
             <section className="relative bg-slate-50/60 py-16 lg:py-20">
               {/* Premium Pattern Overlay (1% opacity for very subtle treatment) */}
               <div
@@ -237,34 +353,10 @@ export default function TestimonialsPage() {
               />
 
               <div className="relative">
+                {/* CONTEXT7 SOURCE: /websites/react_dev - Pre-computed testimonials data for performance optimization */}
+                {/* PERFORMANCE REASON: Using memoized data prevents expensive re-calculations on every render */}
                 <TestimonialsGrid
-                  testimonials={filteredTextTestimonials.map((testimonial) => ({
-                    id: `text-testimonial-${testimonial.author.replace(/\s+/g, "-").toLowerCase()}`,
-                    quote: testimonial.quote,
-                    author: testimonial.author,
-                    role: testimonial.role,
-                    avatar: testimonial.avatar,
-                    rating: testimonial.rating,
-                    featured: testimonial.featured || false,
-                    expandable: testimonial.quote.length > 150,
-                    fullQuote:
-                      testimonial.quote.length > 150
-                        ? testimonial.quote
-                        : undefined,
-                    verificationStatus: testimonial.verified
-                      ? "verified"
-                      : "unverified",
-                    date: testimonial.date || new Date().toISOString(),
-                    location: testimonial.location,
-                    subject: testimonial.subject,
-                    result: testimonial.result,
-                    helpfulVotes: Math.floor(Math.random() * 25) + 5,
-                    categories: testimonial.subject
-                      ? [testimonial.subject]
-                      : undefined,
-                    // TEXT INDICATOR: Mark testimonials that do NOT have video content
-                    hasVideo: false,
-                  }))}
+                  testimonials={filteredVideoTestimonials}
                   layout="grid"
                   columns={3}
                   animationStyle="fade"
@@ -300,6 +392,7 @@ export default function TestimonialsPage() {
               <TestimonialsFilter
                 testimonials={testimonialsWithoutVideo}
                 onFilterChange={handleTextFilterChange}
+                filterConfig={dynamicFilterConfig}
                 showSearch={true}
                 showAdvancedFilters={true}
                 enableAnalytics={true}
@@ -319,34 +412,10 @@ export default function TestimonialsPage() {
               />
 
               <div className="relative">
+                {/* CONTEXT7 SOURCE: /websites/react_dev - Pre-computed testimonials data for performance optimization */}
+                {/* PERFORMANCE REASON: Using memoized data prevents expensive re-calculations on every render */}
                 <TestimonialsGrid
-                  testimonials={filteredTextTestimonials.map((testimonial) => ({
-                    id: `text-testimonial-${testimonial.author.replace(/\s+/g, "-").toLowerCase()}`,
-                    quote: testimonial.quote,
-                    author: testimonial.author,
-                    role: testimonial.role,
-                    avatar: testimonial.avatar,
-                    rating: testimonial.rating,
-                    featured: testimonial.featured || false,
-                    expandable: testimonial.quote.length > 150,
-                    fullQuote:
-                      testimonial.quote.length > 150
-                        ? testimonial.quote
-                        : undefined,
-                    verificationStatus: testimonial.verified
-                      ? "verified"
-                      : "unverified",
-                    date: testimonial.date || new Date().toISOString(),
-                    location: testimonial.location,
-                    subject: testimonial.subject,
-                    result: testimonial.result,
-                    helpfulVotes: Math.floor(Math.random() * 25) + 5,
-                    categories: testimonial.subject
-                      ? [testimonial.subject]
-                      : undefined,
-                    // TEXT INDICATOR: Mark testimonials that do NOT have video content
-                    hasVideo: false,
-                  }))}
+                  testimonials={filteredTextTestimonials}
                   layout="grid"
                   columns={3}
                   animationStyle="fade"

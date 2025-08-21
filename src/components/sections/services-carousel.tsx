@@ -430,6 +430,8 @@ export function ServicesCarousel({
                            */}
                           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color styling with hex values */}
                           {/* BUTTON STYLING REVISION: Updated Who We Support button to project secondary gold (#ca9e5b) for brand consistency */}
+                          {/* CONTEXT7 SOURCE: /vercel/next.js - Enhanced button navigation for service enquiries */}
+                          {/* BUTTON FUNCTIONALITY FIX: Official Next.js documentation enables proper service navigation and external enquiry actions */}
                           <div className="flex justify-end w-full">
                             <AnimatedSubscribeButton
                               key={`button-${index}`}
@@ -438,6 +440,18 @@ export function ServicesCarousel({
                               subscribeStatus={false}
                               initialText="Learn More"
                               changeText="View Details"
+                              navigationUrl="/services"
+                              externalAction={() => {
+                                // CONTEXT7 SOURCE: /reactjs/react.dev - Analytics tracking in React event handlers
+                                // ANALYTICS ENHANCEMENT: Official React documentation enables event tracking in onClick handlers
+                                if (typeof window !== 'undefined' && window.gtag) {
+                                  window.gtag('event', 'service_inquiry', {
+                                    event_category: 'engagement',
+                                    event_label: service.title,
+                                    value: 1
+                                  })
+                                }
+                              }}
                             />
                           </div>
                         </div>

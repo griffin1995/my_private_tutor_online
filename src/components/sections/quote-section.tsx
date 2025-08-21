@@ -59,6 +59,8 @@ interface QuoteSectionProps {
   showAuthorImage?: boolean
   /** Whether to apply strategic highlighting to key quote phrases */
   useHighlighting?: boolean
+  /** Whether to use MagicUI effects for Academia Insight quote */
+  useMagicUIEffects?: boolean
 }
 
 /**
@@ -90,7 +92,8 @@ export function QuoteSection({
   authorImage,
   authorImageAlt,
   showAuthorImage = false,
-  useHighlighting = true
+  useHighlighting = true,
+  useMagicUIEffects = false
 }: QuoteSectionProps) {
   /**
    * Documentation Source: Context7 MCP - Tailwind CSS Dynamic Class Composition
@@ -134,6 +137,24 @@ export function QuoteSection({
   const renderHighlightedQuote = () => {
     if (!useHighlighting) {
       return quote
+    }
+
+    // CONTEXT7 SOURCE: /magicui/design - Academia Insight quote with specific MagicUI effects
+    // IMPLEMENTATION REASON: Magic UI documentation shows highlighter and underline effects for premium emphasis
+    if (useMagicUIEffects && quote.includes("A truly bespoke experience")) {
+      // Academia Insight quote with requested MagicUI effects
+      return (
+        <>
+          <Highlighter action="highlight" color="#eab308" strokeWidth={2} iterations={1} padding={6}>
+            A truly bespoke
+          </Highlighter>
+          {' '}experience - Elizabeth personally pairs each student with a{' '}
+          <Highlighter action="underline" color="#ea580c" strokeWidth={2} iterations={1} padding={2}>
+            carefully selected tutor
+          </Highlighter>
+          {' '}from her boutique team.
+        </>
+      )
     }
 
     // Brand-consistent highlighting using only main project colors

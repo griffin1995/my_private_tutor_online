@@ -1,4 +1,23 @@
 {
+  "_comments": {
+    "lastUpdated": "2025-08-20",
+    "recentChanges": [
+      {
+        "change": "CONTENT MISMATCH RESOLUTION: Updated Royal Family Endorsed to Royal Clientele",
+        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - Content management pattern for client feedback alignment",
+        "date": "2025-08-20",
+        "source": "Client feedback August 20th - footer text changes requested for professional terminology",
+        "details": "Changed 'Royal Family Endorsed' to 'Royal Clientele' to align with client preference for reduced royal references"
+      },
+      {
+        "change": "Added Academia Insight Quote",
+        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - Content enhancement for About page social proof",
+        "date": "2025-08-20",
+        "source": "Academia Insight External Testimonial",
+        "details": "Integrated external quote highlighting bespoke tutoring approach"
+      }
+    ]
+  },
   "hero": {
     "title": "About Our Tutoring Excellence",
     "subtitle": "Dedicated to Academic Success",
@@ -110,6 +129,11 @@
   "approach": {
     "title": "Our Teaching Approach",
     "description": "We believe in a student-centred approach that combines proven pedagogical methods with modern technology to create engaging, effective learning experiences.",
+    "externalQuote": {
+      "text": "A truly bespoke experience - Elizabeth personally pairs each student with a carefully selected tutor from her boutique team.",
+      "source": "Academia Insight",
+      "features": ["highlighter", "underline"]
+    },
     "methodology": [
       {
         "step": "1",
@@ -253,7 +277,7 @@
       },
       {
         "icon": "Crown", 
-        "text": "Royal Family Endorsed",
+        "text": "Royal Clientele",
         "stat": "2018"
       },
       {

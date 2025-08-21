@@ -18,6 +18,7 @@
 
 "use client"
 
+import React, { useMemo } from 'react'
 import { m } from 'framer-motion'
 import { Award, Star, Shield, Trophy, Medal, LucideIcon } from 'lucide-react'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
@@ -36,7 +37,9 @@ interface TrustIndicator {
 }
 
 // CONTEXT7 SOURCE: /lucide-icons/lucide - Icon mapping patterns for dynamic icon selection
+// CONTEXT7 SOURCE: /websites/react_dev - useMemo for caching expensive computations
 // ICON MAPPING REASON: Lucide React documentation demonstrates dynamic icon usage patterns
+// PERFORMANCE OPTIMIZATION: Pre-computed icon map reduces runtime lookups per Context7 React performance guide
 const iconTypeMap = {
   award: Award,
   shield: Shield,
@@ -44,6 +47,71 @@ const iconTypeMap = {
   medal: Medal,
   star: Star
 } as const
+
+// CONTEXT7 SOURCE: /websites/react_dev - React.memo for component memoization patterns
+// PERFORMANCE OPTIMIZATION: Cache icon component resolution to prevent repeated lookups
+const IconComponentResolver = React.memo(({ 
+  icon, 
+  iconType, 
+  className 
+}: { 
+  icon?: LucideIcon
+  iconType?: keyof typeof iconTypeMap
+  className: string 
+}) => {
+  // CONTEXT7 SOURCE: /websites/react_dev - useMemo for expensive calculations
+  // OPTIMIZATION REASON: Official React documentation recommends memoizing component resolution
+  const IconComponent = useMemo(() => {
+    return icon || (iconType && iconTypeMap[iconType]) || Star
+  }, [icon, iconType])
+  
+  return <IconComponent className={className} />
+})
+
+// CONTEXT7 SOURCE: /websites/react_dev - React.memo for preventing unnecessary re-renders
+// PERFORMANCE OPTIMIZATION: Memoized trust indicator component prevents re-rendering when props unchanged
+const TrustIndicatorItem = React.memo(({ 
+  indicator, 
+  variants 
+}: { 
+  indicator: TrustIndicator
+  variants: any
+}) => {
+  return (
+    <m.div
+      className={`
+        flex items-center gap-3 bg-white px-6 py-3 rounded-2xl shadow-lg border border-primary-100
+        hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group
+        ${indicator.featured ? 'ring-2 ring-accent-200' : ''}
+      `}
+      variants={variants}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      title={indicator.description}
+      role="button"
+      tabIndex={0}
+      aria-label={`${indicator.text}${indicator.description ? `: ${indicator.description}` : ''}`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          // Handle trust indicator interaction
+        }
+      }}
+    >
+      <IconComponentResolver
+        icon={indicator.icon}
+        iconType={indicator.iconType}
+        className="w-6 h-6 text-accent-600 group-hover:text-accent-700 transition-colors"
+      />
+      <span className="font-semibold text-primary-900 group-hover:text-primary-800 transition-colors">
+        {indicator.text}
+      </span>
+      {indicator.featured && (
+        <Star className="w-4 h-4 text-accent-500 fill-current ml-1" />
+      )}
+    </m.div>
+  )
+})
 
 // CONTEXT7 SOURCE: /context7/react_dev - Component props interface with comprehensive configuration options
 // PROPS DESIGN REASON: React TypeScript best practices for flexible, reusable component architecture
@@ -215,43 +283,13 @@ export function TestimonialsIntro({
               className="flex items-center justify-center gap-6 md:gap-8 mb-12 flex-wrap"
               variants={itemVariants}
             >
-              {trustIndicators.slice(0, 4).map((indicator, index) => {
-                // CONTEXT7 SOURCE: /lucide-icons/lucide - Dynamic icon component resolution patterns
-                // ICON RESOLUTION REASON: Official Lucide React documentation recommends direct icon reference for reliable component rendering
-                const IconComponent = indicator.icon || (indicator.iconType ? iconTypeMap[indicator.iconType] : Star)
-                
-                return (
-                  <m.div
-                    key={indicator.id}
-                    className={`
-                      flex items-center gap-3 bg-white px-6 py-3 rounded-2xl shadow-lg border border-primary-100
-                      hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer group
-                      ${indicator.featured ? 'ring-2 ring-accent-200' : ''}
-                    `}
-                    variants={trustIndicatorVariants}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    title={indicator.description}
-                    role="button"
-                    tabIndex={0}
-                    aria-label={`${indicator.text}${indicator.description ? `: ${indicator.description}` : ''}`}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault()
-                        // Handle trust indicator interaction
-                      }
-                    }}
-                  >
-                    <IconComponent className="w-6 h-6 text-accent-600 group-hover:text-accent-700 transition-colors" />
-                    <span className="font-semibold text-primary-900 group-hover:text-primary-800 transition-colors">
-                      {indicator.text}
-                    </span>
-                    {indicator.featured && (
-                      <Star className="w-4 h-4 text-accent-500 fill-current ml-1" />
-                    )}
-                  </m.div>
-                )
-              })}
+              {trustIndicators.slice(0, 4).map((indicator, index) => (
+                <TrustIndicatorItem
+                  key={indicator.id}
+                  indicator={indicator}
+                  variants={trustIndicatorVariants}
+                />
+              ))}
             </m.div>
           )}
           

@@ -300,14 +300,15 @@ export default function RootLayout({
         {/* CONTEXT7 SOURCE: /vercel/next.js - Favicon and icon configuration for Next.js App Router */}
         {/* FAVICON IMPLEMENTATION: Comprehensive favicon setup for royal client browser compatibility */}
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/icons/favicon-16x16.png" sizes="16x16" type="image/png" />
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Removed missing favicon-16x16.png to prevent 404 error */}
         <link rel="icon" href="/icons/favicon-32x32.png" sizes="32x32" type="image/png" />
         <link rel="icon" href="/icons/favicon-48x48.png" sizes="48x48" type="image/png" />
         <link rel="icon" href="/icons/favicon-96x96.png" sizes="96x96" type="image/png" />
         <link rel="icon" href="/icons/favicon-128x128.png" sizes="128x128" type="image/png" />
         <link rel="icon" href="/icons/favicon-192x192.png" sizes="192x192" type="image/png" />
-        <link rel="icon" href="/icons/favicon-256x256.png" sizes="256x256" type="image/png" />
-        <link rel="icon" href="/icons/favicon-512x512.png" sizes="512x512" type="image/png" />
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Removed missing favicon-256x256.png to prevent 404 error */}
+        {/* FAVICON CLEANUP REASON: File does not exist - removing reference to prevent 404 error */}
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Removed missing favicon-512x512.png to prevent 404 error */}
         
         {/* CONTEXT7 SOURCE: /vercel/next.js - Apple Touch Icon configuration for iOS devices */}
         {/* APPLE ICONS: iOS-specific icon sizes for premium service mobile experience */}

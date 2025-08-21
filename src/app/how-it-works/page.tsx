@@ -53,11 +53,13 @@ import {
   getHowItWorksHero,
   getHowItWorksSteps,
   getPromotionalPricing,
+  getTutorProfilesSection,
   getTutorTiers,
   type HowItWorksStep,
   type TutorTier,
 } from "@/lib/cms/cms-content";
 import { HERO_IMAGES } from "@/lib/cms/cms-images";
+import { TutorsSection } from "@/components/tutors/tutors-section";
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations and motion components for professional styling
 // DESIGN STATUS: ALREADY PREMIUM - This page exemplifies the professional design patterns with royal branding
@@ -94,6 +96,7 @@ export default function HowItWorksPage() {
   const ctaContent = getHowItWorksCTA();
   const baseRate = getBaseRate();
   const promotionalPricing = getPromotionalPricing();
+  const tutorProfilesSection = getTutorProfilesSection();
   const heroBackgroundImage =
     HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES];
 
@@ -403,6 +406,16 @@ export default function HowItWorksPage() {
           </div>
 
         </section>
+
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - TutorsSection relocation from landing page to How It Works flow */}
+        {/* TUTORS SECTION RELOCATION REASON: Official React documentation supports component composition and strategic placement for improved user journey flow */}
+        {/* MEET OUR EXPERT TUTORS - Positioned between process overview and tier selection */}
+        <TutorsSection 
+          data={tutorProfilesSection}
+          showFeaturedOnly={true}
+          maxProfiles={6}
+          showViewAllButton={true}
+        />
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal and cleanup patterns for clean page flow */}
         {/* SECTION REMOVAL REASON: Official React documentation Section 7.2 recommends clean component structure without unnecessary transitional elements */}

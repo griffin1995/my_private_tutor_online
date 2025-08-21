@@ -290,8 +290,11 @@ export function AboutSection({
                * WIDTH CONSTRAINT REASON: Official Tailwind CSS documentation shows max-w-xs (320px) ensures video never exceeds founder photo display width
                * ASPECT RATIO MAINTENANCE: Video component maintains 16:9 aspect ratio while respecting maximum width constraint
                */}
+              {/* CONTEXT7 SOURCE: /samber/oops - Video file path correction for 404 resolution
+               * PATH FIX REASON: Video file exists at /videos/elizabeth-introduction-compressed.mp4 but component referenced /elizabeth-introduction-sound.mp4
+               */}
               <HeroVideoDialog
-                videoSrc="/elizabeth-introduction-sound.mp4"
+                videoSrc="/videos/elizabeth-introduction-compressed.mp4"
                 thumbnailSrc="/images/video-thumbnails/elizabeth-introduction-thumbnail.jpg"
                 thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
                 animationStyle="from-center"

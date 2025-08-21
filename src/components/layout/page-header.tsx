@@ -504,8 +504,13 @@ export function PageHeader({
            * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Optimized navigation spacing for enhanced logo/button positioning
            * NAVIGATION SPACING REASON: Official Tailwind flex patterns for balanced center navigation with responsive spacing
            */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom breakpoint implementation for navbar responsive behavior
+           * BREAKPOINT UPDATE REASON: Official Tailwind CSS documentation Section 2.1 supports custom screen breakpoints for responsive design control
+           * CLIENT REQUIREMENT: Changed navigation breakpoint from lg (1024px) to desktop (1500px) for mobile display at screen widths ≤1500px
+           * IMPLEMENTATION: Updated hidden lg:flex to hidden desktop:flex for navbar visibility control
+           */}
           <nav 
-            className="hidden lg:flex justify-center px-2" 
+            className="hidden desktop:flex justify-center px-2" 
             role="navigation" 
             aria-label="Main navigation"
             data-navigation
@@ -619,7 +624,12 @@ export function PageHeader({
           <div className="flex items-center justify-end space-x-4">
             
             {/* Desktop CTA Button */}
-            <div className="hidden lg:block">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive display utilities with custom breakpoints
+             * CTA BUTTON BREAKPOINT REASON: Official Tailwind CSS documentation supports custom breakpoints for responsive visibility control
+             * CLIENT REQUIREMENT: Updated CTA button visibility from lg to desktop breakpoint (1500px) to match navigation behavior
+             * IMPLEMENTATION: Changed hidden lg:block to hidden desktop:block for consistent responsive behavior
+             */}
+            <div className="hidden desktop:block">
               <Button
                 size="default"
                 className={cn(
@@ -684,7 +694,12 @@ export function PageHeader({
              * Reference: https://www.radix-ui.com/docs/primitives/components/dialog
              * Pattern: Accessible mobile menu with focus trap and ARIA support
              */}
-            <div className="lg:hidden">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile menu breakpoint alignment with desktop navigation
+             * MOBILE MENU BREAKPOINT REASON: Official Tailwind CSS documentation supports responsive visibility utilities for mobile menu toggles
+             * CLIENT REQUIREMENT: Updated mobile menu button visibility from lg:hidden to desktop:hidden to match navigation breakpoint (1500px)
+             * IMPLEMENTATION: Mobile hamburger menu now shows for screens ≤1500px instead of ≤1024px
+             */}
+            <div className="desktop:hidden">
               <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
                   <Button
@@ -1210,20 +1225,20 @@ function getSubmenuItems(activeDropdown: string) {
 }
 
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Three-tier responsive navigation implementation summary
-// RESPONSIVE NAVIGATION SUMMARY: Complete solution for tablet navigation overlap issues
+// RESPONSIVE NAVIGATION SUMMARY: Complete solution for tablet navigation overlap issues with updated breakpoints
 /*
 * RESPONSIVE NAVIGATION IMPLEMENTATION SUMMARY
 * ============================================
 * 
 * BREAKPOINT STRATEGY:
-* - Mobile (<768px): Full hamburger menu with all navigation items
-* - Tablet (768px-1780px): Primary items visible, secondary items hidden to prevent overlap
-* - Desktop (1780px+): All navigation items visible inline
+* - Mobile (≤1500px): Full hamburger menu with all navigation items
+* - Desktop (1500px-1780px): Primary items visible, secondary items hidden to prevent overlap  
+* - Full Desktop (1780px+): All navigation items visible inline
 * 
 * PRIMARY ITEMS (Always visible on tablet+):
 * - About Us, Subject Tuition, How It Works, Video Masterclasses, Testimonials
 * 
-* SECONDARY ITEMS (Hidden 768px-1780px, visible on mobile burger + desktop 1780px+):
+* SECONDARY ITEMS (Hidden 1500px-1780px, visible on mobile burger + desktop 1780px+):
 * - 11+ Bootcamps, Blog, FAQ
 * 
 * ACCESSIBILITY:
@@ -1232,9 +1247,13 @@ function getSubmenuItems(activeDropdown: string) {
 * - Focus management for dropdown menus and mobile interactions
 * 
 * IMPLEMENTATION:
-* - Custom 3xl breakpoint at 1780px added to Tailwind config
+* - Custom desktop breakpoint at 1500px added to Tailwind config for navbar switch
+* - Custom 3xl breakpoint at 1780px added to Tailwind config for full navigation
 * - Priority-based navigation item classification (primary/secondary)
-* - Conditional CSS classes: "hidden 3xl:block" for secondary items
+* - Main navigation: "hidden desktop:flex" for responsive control
+* - Mobile menu: "desktop:hidden" for consistent breakpoint behavior
+* - CTA button: "hidden desktop:block" aligned with navigation breakpoint
+* - Secondary items: "hidden 3xl:block" for comprehensive navigation display
 * - Mobile burger menu shows all items for complete accessibility
 * - Smooth animations and hover states maintained across all breakpoints
 * 
