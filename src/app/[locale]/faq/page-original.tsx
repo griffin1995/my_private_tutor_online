@@ -281,7 +281,7 @@ export default async function FAQPage({ params }: FAQPageProps) {
 
         <>
           <WaveSeparator 
-            variant="wave" 
+            variant="subtle" 
             className="text-slate-900" 
           />
 

@@ -410,7 +410,7 @@ export default function ElevenPlusBootcampsPage() {
           </div>
         </section>
         
-        <WaveSeparator variant="light" className="text-blue-50" />
+        <WaveSeparator variant="subtle" className="text-blue-50" />
 
         {/* What Makes Our Bootcamps Different */}
         <section className="py-20 bg-neutral-50 relative">
@@ -537,7 +537,7 @@ export default function ElevenPlusBootcampsPage() {
           </div>
         </section>
         
-        <WaveSeparator variant="accent" className="text-neutral-50" />
+        <WaveSeparator variant="subtle" className="text-neutral-50" />
 
         {/* Call to Action */}
         <section className="py-20 bg-primary-900 relative overflow-hidden">

@@ -434,8 +434,8 @@ export class SecurityValidator {
     )
 
     // Test 2: Session secret strength
-    const sessionSecret = process.env.SESSION_SECRET
-    const hasStrongSecret = sessionSecret && sessionSecret.length >= 32
+    const sessionSecret = process.env['SESSION_SECRET']
+    const hasStrongSecret = Boolean(sessionSecret && sessionSecret.length >= 32)
     
     this.addResult(
       'environment',
@@ -450,8 +450,8 @@ export class SecurityValidator {
     // Test 3: Production environment checks
     const isProduction = process.env.NODE_ENV === 'production'
     if (isProduction) {
-      const hasRedisConfig = process.env.REDIS_URL || 
-                           (process.env.REDIS_HOST && process.env.REDIS_PORT)
+      const hasRedisConfig = Boolean(process.env['REDIS_URL'] || 
+                           (process.env['REDIS_HOST'] && process.env['REDIS_PORT']))
       
       this.addResult(
         'environment',
