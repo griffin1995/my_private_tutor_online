@@ -53,19 +53,55 @@ import { getStudentImages } from '../../lib/cms/cms-images'
 // CONTEXT7 SOURCE: /reactjs/react.dev - Optimized component imports with lazy loading strategy
 // LAZY LOADING REASON: Official React documentation enables code splitting for better performance
 
-// Critical above-the-fold components (immediate load)
+// CONTEXT7 SOURCE: /websites/nextjs - Dynamic imports for performance optimization and code splitting
+// PERFORMANCE OPTIMIZATION: Critical above-the-fold components loaded immediately, others dynamically
+import dynamic from "next/dynamic";
 import { PageLayout } from '../../components/layout/page-layout'
 import { HeroSection } from '../../components/sections/hero-section'
 import { AnimatedTagline } from '../../components/sections/animated-tagline'
-import { ScrollingSchools } from '../../components/sections/scrolling-schools'
-import { AboutSection } from '../../components/sections/about-section'
-import { TrustIndicatorsGrid } from '../../components/sections/trust-indicators-grid'
-import { QuoteSection } from '../../components/sections/quote-section'
 import { LanguageSwitcher } from '../../components/ui/language-switcher'
 
-// CONTEXT7 SOURCE: /vercel/next.js - Client component wrapper for homepage sections
-// CLIENT WRAPPER REASON: Official Next.js documentation prohibits client components in server components
-import { HomepageSections } from '../../components/homepage/homepage-sections'
+// CONTEXT7 SOURCE: /websites/nextjs - Dynamic import for below-the-fold components
+// BUNDLE REDUCTION: Below-the-fold components loaded on demand to reduce First Load JS
+const ScrollingSchools = dynamic(
+  () => import('../../components/sections/scrolling-schools').then(mod => ({ default: mod.ScrollingSchools })),
+  {
+    loading: () => <div className="h-32 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
+
+const AboutSection = dynamic(
+  () => import('../../components/sections/about-section').then(mod => ({ default: mod.AboutSection })),
+  {
+    loading: () => <div className="h-96 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
+
+const TrustIndicatorsGrid = dynamic(
+  () => import('../../components/sections/trust-indicators-grid').then(mod => ({ default: mod.TrustIndicatorsGrid })),
+  {
+    loading: () => <div className="h-64 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
+
+const QuoteSection = dynamic(
+  () => import('../../components/sections/quote-section').then(mod => ({ default: mod.QuoteSection })),
+  {
+    loading: () => <div className="h-48 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
+
+const HomepageSections = dynamic(
+  () => import('../../components/homepage/homepage-sections').then(mod => ({ default: mod.HomepageSections })),
+  {
+    loading: () => <div className="h-[600px] bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage without server-side locale parameters
 // CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations hook in client components

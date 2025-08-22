@@ -27,11 +27,17 @@
 
 "use client"
 
-import 'regenerator-runtime/runtime'
 import React, { useState, useRef, useEffect, useCallback } from 'react'
-// CONTEXT7 SOURCE: /jamesbrill/react-speech-recognition - React hooks for speech recognition
-// VOICE RECOGNITION REASON: Official React Speech Recognition documentation recommends hook-based pattern with continuous listening
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+// CONTEXT7 SOURCE: /web-api/speech - Simplified voice search without heavy dependencies  
+// PERFORMANCE OPTIMIZATION REASON: Phase 6 bundle reduction - using native Web Speech API instead of react-speech-recognition
+
+// TypeScript declarations for Web Speech API
+declare global {
+  interface Window {
+    SpeechRecognition: any
+    webkitSpeechRecognition: any
+  }
+}
 // CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced motion patterns for voice interface interactions
 // VOICE UI ANIMATION REASON: Official Motion documentation recommends comprehensive animation system for voice feedback
 import { m, AnimatePresence, useAnimation, useMotionValue, useTransform } from 'framer-motion'
@@ -195,16 +201,22 @@ export function FAQVoiceSearch({
     }
   ]
 
-  // CONTEXT7 SOURCE: /jamesbrill/react-speech-recognition - React speech recognition hook with voice commands
-  // SPEECH RECOGNITION: Initialize speech recognition with custom commands
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-    isMicrophoneAvailable,
-    browserSupportsContinuousListening
-  } = useSpeechRecognition({ commands: voiceCommands })
+  // CONTEXT7 SOURCE: /web-api/speech - Native Web Speech API state management
+  // PERFORMANCE OPTIMIZATION: Simplified voice recognition state without heavy dependencies
+  const [transcript, setTranscript] = useState('')
+  const [listening, setListening] = useState(false)
+  const [browserSupportsSpeechRecognition, setBrowserSupport] = useState(false)
+  const [isMicrophoneAvailable, setMicrophoneAvailable] = useState(true)
+  const recognitionRef = useRef<SpeechRecognition | null>(null)
+
+  // Check browser support
+  useEffect(() => {
+    setBrowserSupport('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)
+  }, [])
+
+  const resetTranscript = useCallback(() => {
+    setTranscript('')
+  }, [])
 
   // CONTEXT7 SOURCE: /jamesbrill/react-speech-recognition - Language configuration for accent tolerance  
   // LANGUAGE STATE: Multi-language support with accent tolerance configuration
@@ -415,13 +427,30 @@ export function FAQVoiceSearch({
       setIsListening(true)
       await initializeAudioAnalysis()
       
-      // CONTEXT7 SOURCE: /jamesbrill/react-speech-recognition - Start listening with language and continuous mode
-      // SPEECH RECOGNITION: Configure recognition with accent tolerance and continuous listening
-      await SpeechRecognition.startListening({ 
-        continuous: browserSupportsContinuousListening, 
-        language: selectedLanguage,
-        interimResults: true
-      })
+      // CONTEXT7 SOURCE: /web-api/speech - Native Web Speech API configuration
+      // SPEECH RECOGNITION: Simplified recognition with basic configuration
+      if (browserSupportsSpeechRecognition) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+        recognitionRef.current = new SpeechRecognition()
+        recognitionRef.current.continuous = true
+        recognitionRef.current.interimResults = true
+        recognitionRef.current.lang = selectedLanguage
+        
+        recognitionRef.current.onresult = (event) => {
+          let finalTranscript = ''
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript
+            }
+          }
+          if (finalTranscript) setTranscript(finalTranscript)
+        }
+        
+        recognitionRef.current.onstart = () => setListening(true)
+        recognitionRef.current.onend = () => setListening(false)
+        
+        recognitionRef.current.start()
+      }
       
       microphoneControls.start("listening")
       waveControls.start("active")
@@ -446,7 +475,6 @@ export function FAQVoiceSearch({
   }, [
     browserSupportsSpeechRecognition, 
     isMicrophoneAvailable,
-    browserSupportsContinuousListening,
     selectedLanguage,
     initializeAudioAnalysis,
     microphoneControls,
@@ -461,7 +489,9 @@ export function FAQVoiceSearch({
    */
   const handleStopListening = useCallback(() => {
     setIsListening(false)
-    SpeechRecognition.stopListening()
+    if (recognitionRef.current) {
+      recognitionRef.current.stop()
+    }
     
     // Cleanup audio analysis
     if (microphoneStreamRef.current) {

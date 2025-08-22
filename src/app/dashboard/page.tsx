@@ -13,12 +13,21 @@
  * ROYAL CLIENT STANDARDS: Enterprise-grade dashboard with premium presentation
  */
 
-// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
-// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+// CONTEXT7 SOURCE: /websites/nextjs - Dynamic imports for performance optimization  
+// PERFORMANCE OPTIMIZATION: Dynamic imports reduce initial bundle size for dashboard page
 import React, { useState } from 'react'
-// CONTEXT7 SOURCE: /vercel/next.js - Direct import for dashboard component resolution
-import ClientSuccessMetricsDashboard from '@/components/dashboards/client-success-metrics-dashboard'
+import dynamic from "next/dynamic";
 import { PageLayout } from '@/components/layout/page-layout'
+
+// CONTEXT7 SOURCE: /websites/nextjs - Dynamic import with loading placeholder for dashboard components
+// BUNDLE REDUCTION: Large dashboard components loaded on demand to reduce First Load JS
+const ClientSuccessMetricsDashboard = dynamic(
+  () => import('@/components/dashboards/client-success-metrics-dashboard'),
+  {
+    loading: () => <div className="h-[600px] bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: false // Dashboard requires client-side data fetching
+  }
+);
 
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering for real-time dashboard data
 // CONTEXT7 SOURCE: /vercel/next.js - Client component without dynamic export for build compatibility

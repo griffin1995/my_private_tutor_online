@@ -58,12 +58,52 @@
 
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
 // SYNCHRONOUS CMS PATTERN: Converting from async to synchronous CMS data access for immediate loading
-import EliteSchoolsCarousel from "@/components/testimonials/elite-schools-carousel";
-import { TestimonialsFilter } from "@/components/testimonials/testimonials-filter";
-import { TestimonialsGrid } from "@/components/testimonials/testimonials-grid";
+// CONTEXT7 SOURCE: /websites/nextjs - Dynamic imports for performance optimization
+// PERFORMANCE OPTIMIZATION: Dynamic imports reduce initial bundle size for testimonials page
+import dynamic from "next/dynamic";
 import { SimpleHero } from "@/components/layout/simple-hero";
-import TestimonialsIntro from "@/components/testimonials/testimonials-intro";
-import VideoTestimonials from "@/components/testimonials/video-testimonials";
+
+// CONTEXT7 SOURCE: /websites/nextjs - Dynamic import with loading placeholder for testimonials components
+// BUNDLE REDUCTION: Large testimonials components loaded on demand to reduce First Load JS
+const EliteSchoolsCarousel = dynamic(
+  () => import("@/components/testimonials/elite-schools-carousel"),
+  {
+    loading: () => <div className="h-96 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
+
+const TestimonialsFilter = dynamic(
+  () => import("@/components/testimonials/testimonials-filter").then(mod => ({ default: mod.TestimonialsFilter })),
+  {
+    loading: () => <div className="h-20 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
+
+const TestimonialsGrid = dynamic(
+  () => import("@/components/testimonials/testimonials-grid").then(mod => ({ default: mod.TestimonialsGrid })),
+  {
+    loading: () => <div className="h-96 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
+
+const TestimonialsIntro = dynamic(
+  () => import("@/components/testimonials/testimonials-intro"),
+  {
+    loading: () => <div className="h-32 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
+
+const VideoTestimonials = dynamic(
+  () => import("@/components/testimonials/video-testimonials"),
+  {
+    loading: () => <div className="h-80 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
 import React, { useCallback, useState, useMemo } from "react";
 // TESTIMONIALS OVERHAUL: Removed TestimonialsCTA import for cleaner page boundaries
 import { PageLayout } from "@/components/layout/page-layout";

@@ -1,5 +1,6 @@
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js API route for performance analytics collection
-// IMPLEMENTATION REASON: Official Next.js App Router pattern for handling performance data collection
+// CONTEXT7 SOURCE: /datadog/browser-sdk - Enhanced performance monitoring integration
+// IMPLEMENTATION REASON: Phase 4 comprehensive performance monitoring with royal client intelligence
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';

@@ -1,77 +1,9 @@
-/**
- * Documentation Source: React Icon Cloud + React 18 Hooks
- * Reference: https://github.com/jpmorganchase/react-icon-cloud
- * Reference: https://react.dev/reference/react/useEffect
- * Reference: https://react.dev/reference/react/useMemo
- * 
- * Pattern: 3D Icon Cloud Component
- * Architecture:
- * - Client component using react-icon-cloud library
- * - Dynamic icon fetching from Simple Icons
- * - Theme-aware icon rendering
- * - Memoized performance optimization
- * 
- * Features:
- * - 3D rotating icon cloud
- * - Simple Icons integration
- * - Light/dark theme support
- * - Interactive hover effects
- * - Customizable cloud properties
- * 
- * Performance:
- * - useMemo for expensive computations
- * - useEffect for side effects
- * - Icon caching and optimization
- */
-
+// CONTEXT7 SOURCE: /framer/motion - Optimized icon cloud without heavy dependencies
+// PERFORMANCE OPTIMIZATION REASON: Phase 6 bundle reduction - replaced heavy react-icon-cloud with lightweight CSS grid animation
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
-import { Cloud, fetchSimpleIcons, ICloud, renderSimpleIcon } from "react-icon-cloud"
-
-export const cloudProps: Omit<ICloud, "children"> = {
-  containerProps: {
-    style: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      width: "100%",
-      paddingTop: 40,
-    },
-  },
-  options: {
-    reverse: true,
-    depth: 1,
-    wheelZoom: false,
-    imageScale: 2,
-    activeCursor: "default",
-    tooltip: "native",
-    initial: [0.1, -0.1],
-    clickToFront: 500,
-    tooltipDelay: 0,
-    outlineColour: "#0000",
-    maxSpeed: 0.04,
-    minSpeed: 0.02,
-  },
-}
-
-// Context7 MCP Documentation Source: /microsoft/typescript
-// Reference: TypeScript strict mode - proper type definitions instead of any
-// Purpose: Type safety for icon cloud rendering and props
-
-interface SimpleIcon {
-  title: string
-  slug: string
-  hex: string
-  source: string
-  svg: string
-  path: string
-  guidelines?: string
-  license?: {
-    type: string
-    url?: string
-  }
-}
+import { motion } from "framer-motion"
+import { ReactNode } from "react"
 
 interface ImageItem {
   src: string
@@ -80,70 +12,92 @@ interface ImageItem {
   height?: number
 }
 
-export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
-  const bgHex = theme === "light" ? "#f3f2f1" : "#080510"
-  const fallbackHex = theme === "light" ? "#6e6e73" : "#ffffff"
-  const minContrastRatio = theme === "dark" ? 2 : 1.2
-
-  return renderSimpleIcon({
-    icon,
-    bgHex,
-    fallbackHex,
-    minContrastRatio,
-    size: 42,
-    aProps: {
-      href: undefined,
-      target: undefined,
-      rel: undefined,
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => e.preventDefault(),
-    },
-  })
-}
-
 export type DynamicCloudProps = {
   iconSlugs: string[]
   imageArray?: ImageItem[]
 }
 
-type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>
+// Simple icon mapping for common tech icons
+const iconMapping: Record<string, string> = {
+  react: "⚛️",
+  typescript: "🔷",
+  javascript: "🟨",
+  nextjs: "▲",
+  nodejs: "🟢",
+  python: "🐍",
+  html5: "🌐",
+  css3: "🎨",
+  git: "📚",
+  github: "🐙",
+  vercel: "▲",
+  tailwindcss: "💨",
+  mongodb: "🍃",
+  postgresql: "🐘",
+  docker: "🐋",
+  aws: "☁️",
+  gcp: "☁️",
+  firebase: "🔥",
+  graphql: "◉",
+  redux: "🔄"
+}
 
 export default function IconCloud({ iconSlugs, imageArray }: DynamicCloudProps) {
-  const [data, setData] = useState<IconData | null>(null)
-
-  useEffect(() => {
-    fetchSimpleIcons({ slugs: iconSlugs }).then(setData)
-  }, [iconSlugs])
-
-  const renderedIcons = useMemo(() => {
-    if (!data) return null
-
-    return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon as SimpleIcon, "light")
-    )
-  }, [data])
-
-  if (!renderedIcons) {
-    return <div className="flex h-full w-full items-center justify-center">
-      <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary-900 border-t-transparent"></div>
-    </div>
-  }
-
   return (
-    <Cloud {...cloudProps}>
-      <div>
-        {renderedIcons}
-        {imageArray &&
-          imageArray.map((image, index) => (
+    <div className="flex h-full w-full items-center justify-center p-8">
+      <div className="relative grid grid-cols-4 gap-4 max-w-md">
+        {iconSlugs.map((slug, index) => (
+          <motion.div
+            key={slug}
+            className="flex items-center justify-center w-12 h-12 bg-white dark:bg-gray-800 rounded-lg shadow-md"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              delay: index * 0.1,
+              duration: 0.5,
+              type: "spring",
+              stiffness: 100 
+            }}
+            whileHover={{ 
+              scale: 1.1,
+              rotate: 5,
+              transition: { duration: 0.2 }
+            }}
+          >
+            <span className="text-xl" title={slug}>
+              {iconMapping[slug] || "⚡"}
+            </span>
+          </motion.div>
+        ))}
+        
+        {imageArray?.map((image, index) => (
+          <motion.div
+            key={`img-${index}`}
+            className="flex items-center justify-center w-12 h-12 bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              delay: (iconSlugs.length + index) * 0.1,
+              duration: 0.5,
+              type: "spring",
+              stiffness: 100 
+            }}
+            whileHover={{ 
+              scale: 1.1,
+              rotate: -5,
+              transition: { duration: 0.2 }
+            }}
+          >
             <img 
-              key={index} 
-              height={image.height || 42} 
-              width={image.width || 42} 
-              alt={image.alt || 'Icon'} 
-              src={image.src} 
+              src={image.src}
+              alt={image.alt}
+              width={image.width || 32}
+              height={image.height || 32}
+              className="object-contain"
             />
-          ))}
+          </motion.div>
+        ))}
       </div>
-    </Cloud>
+    </div>
   )
 }
 

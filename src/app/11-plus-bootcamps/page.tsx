@@ -158,7 +158,8 @@ export default function ElevenPlusBootcampsPage() {
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
 
-        <WaveSeparator variant="light" className="text-white" />
+        {/* CONTEXT7 SOURCE: /microsoft/typescript - Using valid enum value for variant type */}
+        <WaveSeparator variant="subtle" className="text-white" />
         {/* Success Statistics */}
         <section className="py-20 bg-slate-50/80 relative">
           {/* CONTEXT7 SOURCE: /grx7/framer-motion - Subtle pattern overlay for professional background texture */}
@@ -194,7 +195,8 @@ export default function ElevenPlusBootcampsPage() {
           </div>
         </section>
         
-        <WaveSeparator variant="primary" />
+        {/* CONTEXT7 SOURCE: /microsoft/typescript - Using valid enum value for variant type */}
+        <WaveSeparator variant="dramatic" />
 
         {/* Programme Images Showcase */}
         <section className="py-16 bg-white/90 relative">

@@ -20,10 +20,9 @@
 
 "use client"
 
-// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
-// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+// CONTEXT7 SOURCE: /websites/react_dev - React import for client component compatibility
+// SYNCHRONOUS RESTORATION: Official React documentation for client components with synchronous data patterns
 import React from 'react'
-import { useState, useEffect } from 'react'
 import { m } from 'framer-motion'
 import Image from 'next/image'
 import { BookOpen, GraduationCap, Users, Award, Target, Globe } from 'lucide-react'
@@ -169,22 +168,10 @@ const ctaData = {
 // CONTEXT7 SOURCE: /facebook/react - Main page component using modular extracted components
 // REFACTORED ARCHITECTURE REASON: Official React patterns for component composition and maintainability
 export default function SubjectTuitionPage() {
-  // CONTEXT7 SOURCE: /reactjs/react.dev - useState and useEffect for async data loading
-  // ASYNC DATA REASON: Official React documentation for managing server-fetched data in client components
-  const [asyncResultsData, setAsyncResultsData] = useState<any[]>([])
-  
-  useEffect(() => {
-    async function loadResultsData() {
-      try {
-        const data = await getResultsDocumentation()
-        setAsyncResultsData(data)
-      } catch (error) {
-        console.error('Failed to load results data:', error)
-      }
-    }
-    
-    loadResultsData()
-  }, [])
+  // CONTEXT7 SOURCE: /websites/nextjs - Synchronous CMS data access pattern for Client Components
+  // SYNCHRONOUS RESTORATION: Direct function call eliminates async complexity and loading states
+  // CMS SECURITY REASON: Prevents August 2025 homepage failure caused by async CMS patterns
+  const resultsData = getResultsDocumentation()
   
   return (
     <>
@@ -261,7 +248,7 @@ export default function SubjectTuitionPage() {
             <ResultsDocumentation
               title="Quantifiable Academic Outcomes"
               description="Verified results that demonstrate measurable ROI for logic-driven families and elite service positioning"
-              results={asyncResultsData}
+              results={resultsData}
               showVerificationBadges={true}
               showConfidenceIntervals={true}
               layout="grid"

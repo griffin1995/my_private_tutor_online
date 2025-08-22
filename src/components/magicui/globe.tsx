@@ -1,105 +1,16 @@
+// CONTEXT7 SOURCE: /framer/motion - Optimized globe component without heavy 3D dependencies
+// PERFORMANCE OPTIMIZATION REASON: Phase 6 bundle reduction - replaced heavy cobe dependency with lightweight CSS animation
 "use client";
 
-import createGlobe, { COBEOptions } from "cobe";
-import { useMotionValue, useSpring } from "framer-motion";
-import { useEffect, useRef } from "react";
-
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-const MOVEMENT_DAMPING = 1400;
-
-const GLOBE_CONFIG: COBEOptions = {
-  width: 800,
-  height: 800,
-  onRender: () => {},
-  devicePixelRatio: 2,
-  phi: 0,
-  theta: 0.3,
-  dark: 0,
-  diffuse: 0.4,
-  mapSamples: 16000,
-  mapBrightness: 1.2,
-  baseColor: [1, 1, 1],
-  markerColor: [251 / 255, 100 / 255, 21 / 255],
-  glowColor: [1, 1, 1],
-  markers: [
-    { location: [14.5995, 120.9842], size: 0.03 },
-    { location: [19.076, 72.8777], size: 0.1 },
-    { location: [23.8103, 90.4125], size: 0.05 },
-    { location: [30.0444, 31.2357], size: 0.07 },
-    { location: [39.9042, 116.4074], size: 0.08 },
-    { location: [-23.5505, -46.6333], size: 0.1 },
-    { location: [19.4326, -99.1332], size: 0.1 },
-    { location: [40.7128, -74.006], size: 0.1 },
-    { location: [34.6937, 135.5022], size: 0.05 },
-    { location: [41.0082, 28.9784], size: 0.06 },
-  ],
-};
-
-export function Globe({
-  className,
-  config = GLOBE_CONFIG,
-}: {
+interface GlobeProps {
   className?: string;
-  config?: COBEOptions;
-}) {
-  let phi = 0;
-  let width = 0;
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const pointerInteracting = useRef<number | null>(null);
-  const pointerInteractionMovement = useRef(0);
+  config?: any; // Kept for backward compatibility
+}
 
-  const r = useMotionValue(0);
-  const rs = useSpring(r, {
-    mass: 1,
-    damping: 30,
-    stiffness: 100,
-  });
-
-  const updatePointerInteraction = (value: number | null) => {
-    pointerInteracting.current = value;
-    if (canvasRef.current) {
-      canvasRef.current.style.cursor = value !== null ? "grabbing" : "grab";
-    }
-  };
-
-  const updateMovement = (clientX: number) => {
-    if (pointerInteracting.current !== null) {
-      const delta = clientX - pointerInteracting.current;
-      pointerInteractionMovement.current = delta;
-      r.set(r.get() + delta / MOVEMENT_DAMPING);
-    }
-  };
-
-  useEffect(() => {
-    const onResize = () => {
-      if (canvasRef.current) {
-        width = canvasRef.current.offsetWidth;
-      }
-    };
-
-    window.addEventListener("resize", onResize);
-    onResize();
-
-    const globe = createGlobe(canvasRef.current!, {
-      ...config,
-      width: width * 2,
-      height: width * 2,
-      onRender: (state) => {
-        if (!pointerInteracting.current) phi += 0.005;
-        state.phi = phi + rs.get();
-        state.width = width * 2;
-        state.height = width * 2;
-      },
-    });
-
-    setTimeout(() => (canvasRef.current!.style.opacity = "1"), 0);
-    return () => {
-      globe.destroy();
-      window.removeEventListener("resize", onResize);
-    };
-  }, [rs, config]);
-
+export function Globe({ className }: GlobeProps) {
   return (
     <div
       className={cn(
@@ -107,22 +18,39 @@ export function Globe({
         className,
       )}
     >
-      <canvas
-        className={cn(
-          "size-full opacity-0 transition-opacity duration-500 [contain:layout_paint_size]",
-        )}
-        ref={canvasRef}
-        onPointerDown={(e) => {
-          pointerInteracting.current = e.clientX;
-          updatePointerInteraction(e.clientX);
-        }}
-        onPointerUp={() => updatePointerInteraction(null)}
-        onPointerOut={() => updatePointerInteraction(null)}
-        onMouseMove={(e) => updateMovement(e.clientX)}
-        onTouchMove={(e) =>
-          e.touches[0] && updateMovement(e.touches[0].clientX)
-        }
-      />
+      <motion.div
+        className="relative size-full"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Simplified globe visualization with CSS gradients */}
+        <motion.div
+          className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 dark:from-blue-900 dark:via-blue-800 dark:to-blue-700"
+          animate={{ 
+            rotate: 360,
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+          {/* Globe grid lines */}
+          <div className="absolute inset-0 rounded-full border-2 border-blue-300/30 dark:border-blue-600/30" />
+          <div className="absolute inset-2 rounded-full border border-blue-300/20 dark:border-blue-600/20" />
+          <div className="absolute inset-4 rounded-full border border-blue-300/15 dark:border-blue-600/15" />
+          
+          {/* Continent markers */}
+          <div className="absolute top-1/3 left-1/4 size-2 rounded-full bg-orange-400 shadow-lg" />
+          <div className="absolute top-1/2 right-1/3 size-1.5 rounded-full bg-orange-400 shadow-lg" />
+          <div className="absolute bottom-1/3 left-1/2 size-1 rounded-full bg-orange-400 shadow-lg" />
+          <div className="absolute top-2/3 right-1/4 size-1.5 rounded-full bg-orange-400 shadow-lg" />
+        </motion.div>
+        
+        {/* Glow effect */}
+        <div className="absolute inset-0 rounded-full bg-gradient-radial from-transparent via-blue-100/20 to-blue-200/30 dark:from-transparent dark:via-blue-900/20 dark:to-blue-800/30" />
+      </motion.div>
     </div>
   );
 }

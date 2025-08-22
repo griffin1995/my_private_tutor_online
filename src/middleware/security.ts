@@ -139,25 +139,29 @@ export function sanitiseInput<T>(
 }
 
 /**
- * Security headers middleware
+ * Enhanced security headers middleware with CSP integration
+ * CONTEXT7 SOURCE: /frux/csp - Enterprise security headers with nonce-based CSP
  */
 export function applySecurityHeaders(response: NextResponse): NextResponse {
-  // Apply nonce for inline scripts using Web Crypto API
-  // CONTEXT7 SOURCE: /vercel/next.js - Edge Runtime compatible random generation
-  const array = new Uint8Array(16)
-  crypto.getRandomValues(array)
-  const nonce = btoa(String.fromCharCode(...array))
+  // Import CSP middleware dynamically to avoid circular dependencies
+  const { applyEnhancedSecurityHeaders, generateCSPNonce } = require('@/lib/security/csp-middleware')
+  
+  // Generate secure nonce for CSP
+  const nonce = generateCSPNonce()
   
   // Generate request ID using Web Crypto API
   const requestIdArray = new Uint8Array(16)
   crypto.getRandomValues(requestIdArray)
   const requestId = Array.from(requestIdArray, byte => byte.toString(16).padStart(2, '0')).join('')
   
-  // Additional security headers not in vercel.json
-  response.headers.set('X-Request-ID', requestId)
-  response.headers.set('X-Content-Security-Policy-Nonce', nonce)
+  // Apply enhanced security headers with CSP
+  const securedResponse = applyEnhancedSecurityHeaders(response, nonce)
   
-  return response
+  // Additional request tracking
+  securedResponse.headers.set('X-Request-ID', requestId)
+  securedResponse.headers.set('X-Security-Timestamp', new Date().toISOString())
+  
+  return securedResponse
 }
 
 /**

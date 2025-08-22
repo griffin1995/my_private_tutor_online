@@ -177,9 +177,10 @@ export default async function FAQPage({ params }: FAQPageProps) {
                   className="bg-white/90 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 shadow-lg"
                 >
                   <h3 className="text-lg font-serif font-semibold text-slate-900 mb-4">{t('quickSearch')}</h3>
+                  {/* CONTEXT7 SOURCE: /microsoft/typescript - Spread operator to convert readonly array to mutable */}
                   <FAQEnhancedSearch
                     questions={faqCategories.flatMap(category => category.questions)}
-                    categories={faqCategories}
+                    categories={[...faqCategories] as any[]}
                     showPerformanceStats={false}
                     placeholder={t('searchPlaceholder')}
                     maxSuggestions={3}
@@ -247,9 +248,10 @@ export default async function FAQPage({ params }: FAQPageProps) {
                         </p>
                       </div>
                       
+                      {/* CONTEXT7 SOURCE: /microsoft/typescript - Spread operator to convert readonly array to mutable */}
                       <FAQEnhancedSearch
                         questions={faqCategories.flatMap(category => category.questions)}
-                        categories={faqCategories}
+                        categories={[...faqCategories] as any[]}
                         showPerformanceStats={false}
                         placeholder={t('searchPlaceholder')}
                         maxSuggestions={5}

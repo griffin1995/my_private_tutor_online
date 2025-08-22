@@ -29,13 +29,32 @@
 
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
 // BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
+// CONTEXT7 SOURCE: /websites/nextjs - Dynamic imports for performance optimization and code splitting
+// PERFORMANCE OPTIMIZATION: Dynamic imports reduce initial bundle size for video masterclasses page
 import React from 'react';
+import dynamic from "next/dynamic";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { PageLayout } from "@/components/layout/page-layout";
 import { Section } from "@/components/layout/section";
-import { VideoThumbnailMidCard } from "@/components/marketing/video-thumbnail-mid-card";
-import { VideoThumbnailTopCard } from "@/components/marketing/video-thumbnail-top-card";
 import { useVideoGridNavigation } from "@/hooks/use-video-grid-navigation";
+
+// CONTEXT7 SOURCE: /websites/nextjs - Dynamic import with loading placeholder for video components
+// BUNDLE REDUCTION: Large video components loaded on demand to reduce First Load JS
+const VideoThumbnailMidCard = dynamic(
+  () => import("@/components/marketing/video-thumbnail-mid-card").then(mod => ({ default: mod.VideoThumbnailMidCard })),
+  {
+    loading: () => <div className="h-96 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
+
+const VideoThumbnailTopCard = dynamic(
+  () => import("@/components/marketing/video-thumbnail-top-card").then(mod => ({ default: mod.VideoThumbnailTopCard })),
+  {
+    loading: () => <div className="h-96 bg-slate-100 animate-pulse rounded-xl" />,
+    ssr: true
+  }
+);
 import { getMasterclassVideo } from "@/lib/cms/cms-images";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
