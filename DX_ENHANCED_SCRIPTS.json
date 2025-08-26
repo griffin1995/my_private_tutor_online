@@ -1,0 +1,71 @@
+{
+  "scripts": {
+    "// Developer Experience Enhancements": "=== ADDED FOR CLIENT FEEDBACK IMPLEMENTATION ===",
+    
+    "// Quick Start Commands": "",
+    "dx:start": "npm run clean-cache && npm run dev:fast",
+    "dx:fresh": "npm run clean:full && npm install && npm run dev",
+    
+    "// Implementation Workflows": "",
+    "implement:critical": "npm run test:critical && npm run fix:critical-issues",
+    "implement:content": "npm run validate:content && npm run update:content",
+    "implement:visual": "npm run optimize:images && npm run update:styling",
+    
+    "// Fast Feedback Loops": "",
+    "validate:quick": "npm run typecheck && npm run lint --max-warnings 0",
+    "validate:content": "node scripts/validate-beth-requirements.js",
+    "validate:performance": "npm run build && npm run test:performance",
+    
+    "// Automated Fixes": "",
+    "fix:critical-issues": "node scripts/fix-critical-blockers.js",
+    "fix:typography": "node scripts/implement-fonts.js",
+    "fix:navigation": "node scripts/update-menu-order.js",
+    
+    "// Progress Tracking": "",
+    "progress:check": "node scripts/implementation-progress.js",
+    "progress:report": "node scripts/generate-status-report.js",
+    
+    "// Quality Gates": "",
+    "gate:critical": "npm run test:revenue && npm run test:navigation && npm run test:content",
+    "gate:delivery": "npm run qa:validate && npm run build && npm run test:royal-standards",
+    
+    "// Monday Delivery Pipeline": "",
+    "delivery:validate": "npm run gate:critical && npm run gate:delivery",
+    "delivery:deploy": "npm run delivery:validate && npm run deploy:production",
+    
+    "// Emergency Procedures": "",
+    "emergency:backup": "node scripts/create-emergency-backup.js",
+    "emergency:rollback": "node scripts/rollback-to-stable.js",
+    "emergency:hotfix": "npm run fix:critical-issues && npm run test:critical"
+  },
+  "dx_automation": {
+    "beth_requirements_validator": {
+      "description": "Validates exact copy implementation against Beth's specifications",
+      "checks": [
+        "Royal testimonial placement",
+        "Button text corrections",
+        "Typography implementation",
+        "Menu order compliance",
+        "Statistics content accuracy"
+      ]
+    },
+    "critical_issue_detector": {
+      "description": "Automatically identifies and attempts to fix blocking issues",
+      "monitors": [
+        "FAQ page accessibility",
+        "Video playback functionality", 
+        "Payment link validation",
+        "Navigation button clicks"
+      ]
+    },
+    "progress_tracker": {
+      "description": "Real-time implementation progress with bottleneck identification",
+      "metrics": [
+        "Tasks completed per hour",
+        "Quality gate pass rates",
+        "Performance regression alerts",
+        "Delivery readiness score"
+      ]
+    }
+  }
+}

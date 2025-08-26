@@ -53,7 +53,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel-scripts.com https://www.googletagmanager.com https://www.google-analytics.com https://plausible.io https://*.plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; media-src 'self' blob:; connect-src 'self' https://vercel.live wss://ws-us6.pusher.com https://*.vercel-insights.com https://www.google-analytics.com https://plausible.io https://*.plausible.io https://vitals.vercel-insights.com; frame-src 'self' https://vercel.live https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://*.vercel-scripts.com https://www.googletagmanager.com https://www.google-analytics.com https://plausible.io https://*.plausible.io https://js.stripe.com https://checkout.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; media-src 'self' blob:; connect-src 'self' https://vercel.live wss://ws-us6.pusher.com https://*.vercel-insights.com https://www.google-analytics.com https://plausible.io https://*.plausible.io https://vitals.vercel-insights.com https://api.stripe.com https://checkout.stripe.com; frame-src 'self' https://vercel.live https://www.youtube.com https://www.youtube-nocookie.com https://js.stripe.com https://checkout.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self' https://checkout.stripe.com; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content"
         }
       ]
     },
@@ -84,12 +84,30 @@
     }
   ],
   
-  "regions": ["lhr1"],
+  "regions": ["lhr1", "fra1", "iad1", "pdx1", "syd1"],
+  
+  "crons": [
+    {
+      "path": "/api/cron/health-check",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/performance-monitor",
+      "schedule": "*/15 * * * *"
+    },
+    {
+      "path": "/api/cron/database-backup",
+      "schedule": "0 2 * * *"
+    }
+  ],
   
   "env": {
     "VERCEL_ANALYTICS_ENABLED": "1",
     "VERCEL_SPEED_INSIGHTS_ENABLED": "1", 
-    "PERFORMANCE_MONITORING": "enabled"
+    "PERFORMANCE_MONITORING": "enabled",
+    "MULTI_REGION_DEPLOYMENT": "enabled",
+    "EDGE_CACHING": "aggressive",
+    "FAILOVER_ENABLED": "true"
   },
   
   "github": {

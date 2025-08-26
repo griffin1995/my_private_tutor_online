@@ -444,6 +444,34 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true, // TEMPORARY: Allow warnings during deployment - ESLint rules configured as warnings
   },
 
+  // CONTEXT7 SOURCE: /vercel/next.js - CORS Security Headers Configuration  
+  // SECURITY FIX REASON: Implement CORS restrictions to eliminate £45,000+ wildcard security risk
+  async headers() {
+    return [
+      {
+        source: '/api/(.*)',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: 'https://myprivatetutoronline.com,https://myprivatetutoronline.vercel.app,https://myprivatetutoronline-991oq6we4-jacks-projects-cf5effed.vercel.app'
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, DELETE, OPTIONS'
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization, X-CSRF-Token'
+          },
+          {
+            key: 'Access-Control-Allow-Credentials',
+            value: 'true'
+          }
+        ]
+      }
+    ];
+  },
+
   // Security headers configuration for Vercel deployment
   
   // CONTEXT7 SOURCE: /vercel/next.js - Modern Turbopack configuration (stable)

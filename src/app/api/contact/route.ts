@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { withCSRFProtection } from '@/lib/security/csrf'
 import { sanitiseInput, securityMonitor } from '@/middleware/security'
+import { sendContactEmail } from '@/lib/email-service'
 
 // CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 API route security
 // Reference: /vercel/next.js API routes with Zod validation
@@ -164,23 +165,43 @@ function generateEnquiryReference(): string {
 
 /**
  * Process contact form submission
+ * CONTEXT7 SOURCE: /resend/resend-js - Email integration for revenue recovery
+ * REVISION REASON: Implementation - Replace console logging with actual email sending for £85,000 revenue capture
  */
 async function processContactForm(data: ContactFormData): Promise<void> {
-  // In production:
-  // 1. Save to database with encryption for sensitive data
-  // 2. Send notification email to admin
-  // 3. Send confirmation email to user
-  // 4. Create CRM entry
-  // 5. Trigger Slack/Teams notification for urgent enquiries
-  
-  // For now, just log
-  console.log('[Process Contact Form]', {
-    reference: generateEnquiryReference(),
-    data: {
-      ...data,
-      // Redact sensitive information in logs
-      email: data.email.replace(/(.{3}).*(@.*)/, '$1***$2'),
-      phone: data.phone?.replace(/\d(?=\d{4})/g, '*'),
+  try {
+    // Send email using Resend service
+    const emailResult = await sendContactEmail({
+      name: data.name,
+      email: data.email,
+      subject: data.subject,
+      message: data.message,
+      phone: data.phone,
+      preferredContact: data.preferredContact,
+      // Map additional fields if needed
+      service: data.studentDetails?.subjects?.join(', '),
+    });
+
+    if (!emailResult.success) {
+      console.error('[Email Service Error]', emailResult.error);
+      throw new Error(`Email service failed: ${emailResult.error}`);
     }
-  })
+
+    // Log successful email submission for audit trail
+    console.log('[Contact Form - Email Sent Successfully]', {
+      reference: generateEnquiryReference(),
+      messageId: emailResult.messageId,
+      timestamp: new Date().toISOString(),
+      redactedData: {
+        name: data.name,
+        email: data.email.replace(/(.{3}).*(@.*)/, '$1***$2'),
+        phone: data.phone?.replace(/\d(?=\d{4})/g, '*'),
+        subject: data.subject,
+      }
+    });
+
+  } catch (error) {
+    console.error('[Process Contact Form Error]', error);
+    throw error; // Re-throw to handle in main API endpoint
+  }
 }

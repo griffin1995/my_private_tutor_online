@@ -57,13 +57,45 @@
 "use client";
 
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
-// SYNCHRONOUS CMS PATTERN: Converting from async to synchronous CMS data access for immediate loading
-import EliteSchoolsCarousel from "@/components/testimonials/elite-schools-carousel";
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic imports for bundle size optimization
+// PERFORMANCE CRITICAL: Dynamic imports reduce initial bundle from 81.8KB, targeting <50KB
+import dynamic from "next/dynamic";
+
+// Heavy components loaded dynamically with loading states
+const EliteSchoolsCarousel = dynamic(
+  () => import("@/components/testimonials/elite-schools-carousel"),
+  {
+    loading: () => (
+      <div className="h-64 bg-gray-100 animate-pulse rounded-lg" />
+    ),
+  }
+);
+const TestimonialsGrid = dynamic(
+  () =>
+    import("@/components/testimonials/testimonials-grid").then((mod) => ({
+      default: mod.TestimonialsGrid,
+    })),
+  {
+    loading: () => (
+      <div className="grid gap-6 animate-pulse">
+        <div className="h-48 bg-gray-100 rounded-lg"></div>
+      </div>
+    ),
+  }
+);
+const VideoTestimonials = dynamic(
+  () => import("@/components/testimonials/video-testimonials"),
+  {
+    loading: () => (
+      <div className="aspect-video bg-gray-100 animate-pulse rounded-lg" />
+    ),
+  }
+);
+
+// Lightweight components loaded synchronously
 import { TestimonialsFilter } from "@/components/testimonials/testimonials-filter";
-import { TestimonialsGrid } from "@/components/testimonials/testimonials-grid";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import TestimonialsIntro from "@/components/testimonials/testimonials-intro";
-import VideoTestimonials from "@/components/testimonials/video-testimonials";
 import React, { useCallback, useState, useMemo } from "react";
 // TESTIMONIALS OVERHAUL: Removed TestimonialsCTA import for cleaner page boundaries
 import { PageLayout } from "@/components/layout/page-layout";
@@ -153,13 +185,14 @@ export default function TestimonialsPage() {
       helpfulVotes: Math.floor(Math.random() * 25) + 5,
       // CONTEXT7 SOURCE: /facebook/react - Fix field name mismatch and case sensitivity for TestimonialsFilter compatibility
       // FIX REASON: TestimonialsFilter expects 'category' field with normalized capitalization
-      category: testimonial.category 
-        ? testimonial.category.charAt(0).toUpperCase() + testimonial.category.slice(1)
+      category: testimonial.category
+        ? testimonial.category.charAt(0).toUpperCase() +
+          testimonial.category.slice(1)
         : testimonial.category, // Normalize case to match filter configuration
       categories: testimonial.subject ? [testimonial.subject] : undefined,
       hasVideo: true,
-    }))
-  }, [testimonialsWithVideo])
+    }));
+  }, [testimonialsWithVideo]);
 
   const optimizedTextTestimonialsData = useMemo(() => {
     // CONTEXT7 SOURCE: /websites/react_dev - useMemo for preventing expensive recalculations
@@ -182,13 +215,14 @@ export default function TestimonialsPage() {
       helpfulVotes: Math.floor(Math.random() * 25) + 5,
       // CONTEXT7 SOURCE: /facebook/react - Fix field name mismatch and case sensitivity for TestimonialsFilter compatibility
       // FIX REASON: TestimonialsFilter expects 'category' field with normalized capitalization
-      category: testimonial.category 
-        ? testimonial.category.charAt(0).toUpperCase() + testimonial.category.slice(1)
+      category: testimonial.category
+        ? testimonial.category.charAt(0).toUpperCase() +
+          testimonial.category.slice(1)
         : testimonial.category, // Normalize case to match filter configuration
       categories: testimonial.subject ? [testimonial.subject] : undefined,
       hasVideo: false,
-    }))
-  }, [testimonialsWithoutVideo])
+    }));
+  }, [testimonialsWithoutVideo]);
 
   // CONTEXT7 SOURCE: /facebook/react - Data transformation for optimized testimonials display
   // PERFORMANCE REASON: Memoized data transformations for enhanced rendering performance
@@ -197,28 +231,31 @@ export default function TestimonialsPage() {
   // FILTER CONFIG REASON: Generate filter configuration from actual data to avoid mismatch issues
   const dynamicFilterConfig = useMemo(() => {
     // Extract unique categories from both video and text testimonials
-    const allTestimonials = [...testimonialsWithVideo, ...testimonialsWithoutVideo];
-    const uniqueCategories = [...new Set(
-      allTestimonials
-        .map(t => t.category)
-        .filter(Boolean)
-        .map(category => category.charAt(0).toUpperCase() + category.slice(1)) // Normalize case
-    )].sort();
+    const allTestimonials = [
+      ...testimonialsWithVideo,
+      ...testimonialsWithoutVideo,
+    ];
+    const uniqueCategories = [
+      ...new Set(
+        allTestimonials
+          .map((t) => t.category)
+          .filter(Boolean)
+          .map(
+            (category) => category.charAt(0).toUpperCase() + category.slice(1)
+          ) // Normalize case
+      ),
+    ].sort();
 
-    const uniqueSubjects = [...new Set(
-      allTestimonials
-        .map(t => t.subject)
-        .filter(Boolean)
-    )].sort();
+    const uniqueSubjects = [
+      ...new Set(allTestimonials.map((t) => t.subject).filter(Boolean)),
+    ].sort();
 
-    const uniqueLocations = [...new Set(
-      allTestimonials
-        .map(t => t.location)
-        .filter(Boolean)
-    )].sort();
+    const uniqueLocations = [
+      ...new Set(allTestimonials.map((t) => t.location).filter(Boolean)),
+    ].sort();
 
     const years = allTestimonials
-      .map(t => t.year)
+      .map((t) => t.year)
       .filter(Boolean)
       .map(Number);
 
@@ -229,8 +266,8 @@ export default function TestimonialsPage() {
       locationOptions: uniqueLocations,
       yearRange: {
         min: Math.min(...years, 2020),
-        max: Math.max(...years, new Date().getFullYear())
-      }
+        max: Math.max(...years, new Date().getFullYear()),
+      },
     };
 
     // CONTEXT7 SOURCE: /facebook/react - Dynamic filter configuration generation from testimonials data
