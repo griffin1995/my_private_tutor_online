@@ -33,7 +33,8 @@ import React from 'react';
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { PageLayout } from "@/components/layout/page-layout";
 import { Section } from "@/components/layout/section";
-import { VideoThumbnailMidCard } from "@/components/marketing/video-thumbnail-mid-card";
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component imports for VideoThumbnailTopCard component patterns
+// COMPONENT STANDARDIZATION: Official React documentation recommends consistent component usage patterns
 import { VideoThumbnailTopCard } from "@/components/marketing/video-thumbnail-top-card";
 import { useVideoGridNavigation } from "@/hooks/use-video-grid-navigation";
 import { getMasterclassVideo } from "@/lib/cms/cms-images";
@@ -311,7 +312,7 @@ export default function VideoMasterclassesPage() {
               <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
             </m.div>
 
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailMidCard components */}
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailTopCard components */}
             {/* GRID ANIMATION REASON: Official Framer Motion documentation recommends staggered animations for multiple components in grid layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
               {/* Card 1 - Unlocking Academic Success (Free) */}
@@ -321,10 +322,12 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailMidCard component usage for free masterclass content */}
-                {/* FREE MASTERCLASS IMPLEMENTATION: Using VideoThumbnailMidCard with CMS integration for proper video asset management */}
+                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailTopCard component usage for free masterclass content */}
+                {/* FREE MASTERCLASS IMPLEMENTATION: Using VideoThumbnailTopCard with CMS integration for proper video asset management */}
                 {/* CMS DATA SOURCE: Using getMasterclassVideo for unlocking academic success video data */}
-                <VideoThumbnailMidCard
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with consistent thumbnail positioning */}
+                {/* TASK 1 IMPLEMENTATION: Converting all VideoThumbnailMidCard instances to VideoThumbnailTopCard for standardized styling */}
+                <VideoThumbnailTopCard
                   title={getMasterclassVideo('unlockingAcademicSuccess').title}
                   description={getMasterclassVideo('unlockingAcademicSuccess').description}
                   variant="standard"
@@ -355,9 +358,11 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailMidCard component with smooth scroll functionality */}
-                {/* UCAS GUIDE IMPLEMENTATION: Using VideoThumbnailMidCard with smooth scroll to Section 3 on CTA click */}
-                <VideoThumbnailMidCard
+                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailTopCard component with smooth scroll functionality */}
+                {/* UCAS GUIDE IMPLEMENTATION: Using VideoThumbnailTopCard with smooth scroll to Section 3 on CTA click */}
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with consistent thumbnail positioning */}
+                {/* TASK 1 IMPLEMENTATION: Converting all VideoThumbnailMidCard instances to VideoThumbnailTopCard for standardized styling */}
+                <VideoThumbnailTopCard
                   title="Elizabeth's Essential UCAS Guide"
                   description="This comprehensive guide serves as your gateway to both parts of Elizabeth's UCAS expertise, offering essential insights for university application success."
                   variant="premium"
@@ -411,7 +416,7 @@ export default function VideoMasterclassesPage() {
               </p>
             </m.div>
 
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailMidCard components */}
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailTopCard components */}
             {/* GRID ANIMATION REASON: Official Framer Motion documentation recommends staggered animations for multiple components in grid layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
               {/* Card 1 - Unlocking Academic Success (Free) */}
@@ -421,10 +426,12 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailMidCard component usage for free masterclass content */}
-                {/* FREE MASTERCLASS IMPLEMENTATION: Using VideoThumbnailMidCard with CMS integration for proper video asset management */}
+                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailTopCard component usage for free masterclass content */}
+                {/* FREE MASTERCLASS IMPLEMENTATION: Using VideoThumbnailTopCard with CMS integration for proper video asset management */}
                 {/* CMS DATA SOURCE: Using getMasterclassVideo for unlocking academic success video data */}
-                <VideoThumbnailMidCard
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with consistent thumbnail positioning */}
+                {/* TASK 1 IMPLEMENTATION: Converting all VideoThumbnailMidCard instances to VideoThumbnailTopCard for standardized styling */}
+                <VideoThumbnailTopCard
                   title="Unlocking Academic Success"
                   description={getMasterclassVideo('unlockingAcademicSuccess').description}
                   variant="standard"
@@ -452,10 +459,12 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailMidCard component with proper video CMS connection */}
+                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailTopCard component with proper video CMS connection */}
                 {/* TASK 2 FIX: Official Framer Motion documentation - Connected to proper ucasSummit2024 video instead of wrong video */}
                 {/* CMS DATA SOURCE: Using getMasterclassVideo('ucasSummit2024') for proper video asset management */}
-                <VideoThumbnailMidCard
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with consistent thumbnail positioning */}
+                {/* TASK 1 IMPLEMENTATION: Converting all VideoThumbnailMidCard instances to VideoThumbnailTopCard for standardized styling */}
+                <VideoThumbnailTopCard
                   title={getMasterclassVideo('ucasSummit2024').title}
                   description={getMasterclassVideo('ucasSummit2024').description}
                   variant="standard"
@@ -480,7 +489,7 @@ export default function VideoMasterclassesPage() {
         </Section>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - React component patterns and useState for video modal functionality */}
-        {/* SECTION IMPLEMENTATION REASON: Official React documentation recommends VideoThumbnailMidCard component for consistent video masterclass presentation */}
+        {/* SECTION IMPLEMENTATION REASON: Official React documentation recommends VideoThumbnailTopCard component for consistent video masterclass presentation */}
         {/* Elizabeth's Essential UCAS Guide Section */}
         <Section id="ucas-guide-section" background="white" className="py-20 relative">
           <div className="absolute inset-0 bg-blue-50 opacity-60" />
@@ -503,7 +512,7 @@ export default function VideoMasterclassesPage() {
               </p>
             </m.div>
 
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailMidCard components */}
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailTopCard components */}
             {/* GRID ANIMATION REASON: Official Framer Motion documentation recommends staggered animations for multiple components in grid layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
               {/* Card 1 - UCAS Guide Part 1 */}
@@ -513,9 +522,11 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailMidCard component for UCAS masterclass content delivery at LSE */}
+                {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailTopCard component for UCAS masterclass content delivery at LSE */}
                 {/* UCAS PART 1 IMPLEMENTATION: Elizabeth's expertise delivered at London School of Economics with 90-minute seminar format */}
-                <VideoThumbnailMidCard
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with Stripe payment integration */}
+                {/* TASK 1 & TASK 3 IMPLEMENTATION: Converting to VideoThumbnailTopCard and adding Elizabeth's Essential UCAS Guide payment */}
+                <VideoThumbnailTopCard
                   title={getMasterclassVideo('elizabethsUcasGuide').title}
                   description={getMasterclassVideo('elizabethsUcasGuide').description}
                   variant="premium"
@@ -533,7 +544,10 @@ export default function VideoMasterclassesPage() {
                   ctaText="Purchase Masterclass"
                   ctaLink="#ucas-part-1-purchase"
                   thumbnailUrl={getMasterclassVideo('elizabethsUcasGuide').thumbnailUrl}
-                  paymentUrl={getMasterclassVideo('elizabethsUcasGuide').paymentUrl}
+                  paymentUrl="https://buy.stripe.com/7sY6oGdj767tbtO1Zd38408"
+                  onCTAClick={() => {
+                    window.open("https://buy.stripe.com/7sY6oGdj767tbtO1Zd38408", '_blank', 'noopener,noreferrer')
+                  }}
                 />
               </m.div>
 
@@ -544,9 +558,11 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailMidCard component with Elizabeth's Oxbridge expertise and LSE delivery */}
+                {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailTopCard component with Elizabeth's Oxbridge expertise and LSE delivery */}
                 {/* PERSONAL STATEMENTS IMPLEMENTATION: Elizabeth's proven track record with Oxbridge success and new UCAS format relevance */}
-                <VideoThumbnailMidCard
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with Stripe payment integration */}
+                {/* TASK 1 & TASK 3 IMPLEMENTATION: Converting to VideoThumbnailTopCard and adding Personal Statements payment */}
+                <VideoThumbnailTopCard
                   title={getMasterclassVideo('personalStatementsGuide').title}
                   description={getMasterclassVideo('personalStatementsGuide').description}
                   variant="premium"
@@ -564,7 +580,10 @@ export default function VideoMasterclassesPage() {
                   ctaText="Purchase Masterclass"
                   ctaLink="#personal-statements-purchase"
                   thumbnailUrl={getMasterclassVideo('personalStatementsGuide').thumbnailUrl}
-                  paymentUrl={getMasterclassVideo('personalStatementsGuide').paymentUrl}
+                  paymentUrl="https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409"
+                  onCTAClick={() => {
+                    window.open("https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409", '_blank', 'noopener,noreferrer')
+                  }}
                 />
               </m.div>
             </div>
@@ -572,7 +591,7 @@ export default function VideoMasterclassesPage() {
         </Section>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - React component patterns for British cultural masterclasses */}
-        {/* CULTURAL SECTION IMPLEMENTATION REASON: Official React documentation recommends VideoThumbnailMidCard for consistent educational content presentation */}
+        {/* CULTURAL SECTION IMPLEMENTATION REASON: Official React documentation recommends VideoThumbnailTopCard for consistent educational content presentation */}
         {/* Get Confident with British Culture Section */}
         <Section id="british-culture-section" background="slate" className="py-20 relative">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -596,7 +615,7 @@ export default function VideoMasterclassesPage() {
               </p>
             </m.div>
 
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailMidCard components */}
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailTopCard components */}
             {/* GRID ANIMATION REASON: Official Framer Motion documentation recommends staggered animations for multiple components in grid layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
               {/* Card 1 - British Literary Classics */}
@@ -606,11 +625,13 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailMidCard component with literary classics for young readers aged 8-14 */}
+                {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailTopCard component with literary classics for young readers aged 8-14 */}
                 {/* LITERARY CLASSICS IMPLEMENTATION: Curious and aspiring readers masterclass with Mandarin subtitles and 60-minute format */}
-                <VideoThumbnailMidCard
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with Stripe payment integration */}
+                {/* TASK 1 & TASK 3 IMPLEMENTATION: Converting to VideoThumbnailTopCard and adding British Literary Classics payment */}
+                <VideoThumbnailTopCard
                   title={getMasterclassVideo('britishLiteraryClassics').title}
-                  description={getMasterclassVideo('britishLiteraryClassics').description}
+                  description={`${getMasterclassVideo('britishLiteraryClassics').description}, delivered to an international student audience (includes partial Mandarin subtitles)`}
                   variant="standard"
                   popular={false}
                   priceRange={getMasterclassVideo('britishLiteraryClassics').price}
@@ -626,7 +647,10 @@ export default function VideoMasterclassesPage() {
                   ctaText="Purchase Masterclass"
                   ctaLink="#literary-classics-purchase"
                   thumbnailUrl={getMasterclassVideo('britishLiteraryClassics').thumbnailUrl}
-                  paymentUrl={getMasterclassVideo('britishLiteraryClassics').paymentUrl}
+                  paymentUrl="https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a"
+                  onCTAClick={() => {
+                    window.open("https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a", '_blank', 'noopener,noreferrer')
+                  }}
                 />
               </m.div>
 
@@ -637,11 +661,13 @@ export default function VideoMasterclassesPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailMidCard component with Elizabeth's royal and high-profile family experience */}
+                {/* CONTEXT7 SOURCE: /vercel/next.js - VideoThumbnailTopCard component with Elizabeth's royal and high-profile family experience */}
                 {/* ETIQUETTE IMPLEMENTATION: 60-minute recorded masterclass with Mandarin subtitles and practical guidance from royal experience */}
-                <VideoThumbnailMidCard
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with Stripe payment integration */}
+                {/* TASK 1 & TASK 3 IMPLEMENTATION: Converting to VideoThumbnailTopCard and adding British Etiquette payment */}
+                <VideoThumbnailTopCard
                   title={getMasterclassVideo('britishEtiquette').title}
-                  description={getMasterclassVideo('britishEtiquette').description}
+                  description={`${getMasterclassVideo('britishEtiquette').description}, delivered to an international student audience (includes partial Mandarin subtitles)`}
                   variant="standard"
                   popular={false}
                   priceRange={getMasterclassVideo('britishEtiquette').price}
@@ -657,7 +683,10 @@ export default function VideoMasterclassesPage() {
                   ctaText="Purchase Masterclass"
                   ctaLink="#british-etiquette-purchase"
                   thumbnailUrl={getMasterclassVideo('britishEtiquette').thumbnailUrl}
-                  paymentUrl={getMasterclassVideo('britishEtiquette').paymentUrl}
+                  paymentUrl="https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b"
+                  onCTAClick={() => {
+                    window.open("https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b", '_blank', 'noopener,noreferrer')
+                  }}
                 />
               </m.div>
             </div>
@@ -681,443 +710,9 @@ export default function VideoMasterclassesPage() {
           </div>
         </Section>
 
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll animations */}
-        {/* DESIGN COMPARISON SECTION: Professional showcase of thumbnail positioning options for client review */}
-        {/* IMPLEMENTATION REASON: Official Framer Motion documentation recommends whileInView for scroll-triggered animations */}
-        <Section background="slate-100" className="py-20 border-t border-slate-200">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <m.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-4">
-                Design Variations: Video Thumbnail Placement Options
-              </h2>
-              <p className="text-lg text-slate-600 mb-6 max-w-3xl mx-auto">
-                Compare different card layout options with thumbnail positioning for optimal visual impact
-              </p>
-              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
-            </m.div>
-
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Staggered animations for grid layout components */}
-            {/* GRID LAYOUT REASON: Official Framer Motion documentation recommends staggered animations for multiple components */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-              {/* UCAS Guide Card - VideoThumbnailMidCard variant (thumbnail in middle) */}
-              <m.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative">
-                  <div className="absolute -top-4 left-4 bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
-                    Thumbnail Mid Position
-                  </div>
-                  <VideoThumbnailMidCard
-                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
-                    description="Demystifying UCAS: A Clear Path to UK University Success"
-                    variant="premium"
-                    popular={true}
-                    priceRange="£49.99"
-                    duration="90 minutes"
-                    features={[
-                      { feature: "Complete UCAS application timeline breakdown" },
-                      {
-                        feature:
-                          "University selection strategies for international students",
-                      },
-                      { feature: "Personal statement foundation and planning" },
-                      {
-                        feature:
-                          "Reference letter guidance and timeline management",
-                      },
-                      {
-                        feature: "UCAS Hub navigation and technical requirements",
-                      },
-                      {
-                        feature:
-                          "Common application mistakes and how to avoid them",
-                      },
-                    ]}
-                    ctaText="Scroll to UCAS Section"
-                    ctaLink="#ucas-guide-part-1"
-                    onCTAClick={() => {
-                      const ucasSection =
-                        document.getElementById("ucas-guide-part-1");
-                      if (ucasSection) {
-                        ucasSection.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
-                    paymentUrl="#"
-                  />
-                </div>
-              </m.div>
-
-              {/* UCAS Guide Card - VideoThumbnailTopCard variant (thumbnail at top) */}
-              <m.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative">
-                  <div className="absolute -top-4 left-4 bg-amber-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
-                    Thumbnail Top Position
-                  </div>
-                  <VideoThumbnailTopCard
-                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
-                    description="Demystifying UCAS: A Clear Path to UK University Success"
-                    variant="premium"
-                    popular={true}
-                    priceRange="£49.99"
-                    duration="90 minutes"
-                    features={[
-                      { feature: "Complete UCAS application timeline breakdown" },
-                      {
-                        feature:
-                          "University selection strategies for international students",
-                      },
-                      { feature: "Personal statement foundation and planning" },
-                      {
-                        feature:
-                          "Reference letter guidance and timeline management",
-                      },
-                      {
-                        feature: "UCAS Hub navigation and technical requirements",
-                      },
-                      {
-                        feature:
-                          "Common application mistakes and how to avoid them",
-                      },
-                    ]}
-                    ctaText="Scroll to UCAS Section"
-                    ctaLink="#ucas-guide-part-1"
-                    onCTAClick={() => {
-                      const ucasSection =
-                        document.getElementById("ucas-guide-part-1");
-                      if (ucasSection) {
-                        ucasSection.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
-                    paymentUrl="#"
-                  />
-                </div>
-              </m.div>
-            </div>
-
-            {/* Layout comparison explanation */}
-            <m.div
-              className="text-center mt-12 max-w-4xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-white rounded-lg shadow-md p-6 border border-slate-200">
-                <p className="text-slate-700 leading-relaxed">
-                  <strong className="text-slate-900">Layout Comparison:</strong> The left card demonstrates thumbnail positioning within the content area, while the right card showcases thumbnail placement at the header. Both maintain identical content and functionality with different visual emphasis for your review.
-                </p>
-              </div>
-            </m.div>
-          </div>
-        </Section>
-
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll animations */}
-        {/* FULL-WIDTH SINGLE CARD SECTION: Professional showcase of single card presentation for client review */}
-        {/* IMPLEMENTATION REASON: Official Framer Motion documentation recommends whileInView for scroll-triggered animations */}
-        <Section background="white" className="py-20 border-t border-slate-200">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <m.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-4">
-                Single Card Layout: Full-Width Presentation
-              </h2>
-              <p className="text-lg text-slate-600 mb-6 max-w-3xl mx-auto">
-                Maximize impact with a centered, full-width card design for featured content
-              </p>
-              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
-            </m.div>
-
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Single element animation for full-width layout component */}
-            {/* SINGLE CARD LAYOUT REASON: Official Framer Motion documentation recommends viewport-triggered animations for single component showcase */}
-            <div className="max-w-4xl mx-auto">
-              {/* UCAS Guide Card - VideoThumbnailMidCard variant (full-width single card) */}
-              <m.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative">
-                  <div className="absolute -top-4 left-4 bg-green-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
-                    Full-Width Layout
-                  </div>
-                  <VideoThumbnailMidCard
-                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
-                    description="Demystifying UCAS: A Clear Path to UK University Success"
-                    variant="premium"
-                    popular={true}
-                    priceRange="£49.99"
-                    duration="90 minutes"
-                    features={[
-                      { feature: "Complete UCAS application timeline breakdown" },
-                      {
-                        feature:
-                          "University selection strategies for international students",
-                      },
-                      { feature: "Personal statement foundation and planning" },
-                      {
-                        feature:
-                          "Reference letter guidance and timeline management",
-                      },
-                      {
-                        feature: "UCAS Hub navigation and technical requirements",
-                      },
-                      {
-                        feature:
-                          "Common application mistakes and how to avoid them",
-                      },
-                    ]}
-                    ctaText="Scroll to UCAS Section"
-                    ctaLink="#ucas-guide-part-1"
-                    onCTAClick={() => {
-                      const ucasSection =
-                        document.getElementById("ucas-guide-part-1");
-                      if (ucasSection) {
-                        ucasSection.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
-                    paymentUrl="#"
-                  />
-                </div>
-              </m.div>
-            </div>
-
-            {/* Layout description explanation */}
-            <m.div
-              className="text-center mt-12 max-w-4xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-slate-50 rounded-lg shadow-md p-6 border border-slate-200">
-                <p className="text-slate-700 leading-relaxed">
-                  <strong className="text-slate-900">Full-Width Layout:</strong> This presentation style maximizes visual impact by centering a single card with generous whitespace. Ideal for featured content that requires maximum attention and detailed information display.
-                </p>
-              </div>
-            </m.div>
-          </div>
-        </Section>
-
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for grid layout animations */}
-        {/* THREE-COLUMN GRID SECTION: Professional showcase of multiple card grid layout for client review */}
-        {/* IMPLEMENTATION REASON: Official Framer Motion documentation recommends staggered animations for multiple grid components */}
-        <Section background="slate-100" className="py-20 border-t border-slate-200">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <m.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-4">
-                Multi-Card Layout: Three-Column Grid
-              </h2>
-              <p className="text-lg text-slate-600 mb-6 max-w-3xl mx-auto">
-                Display multiple masterclasses in a compact three-column grid layout
-              </p>
-              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
-            </m.div>
-
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Staggered animations for three-column grid layout components */}
-            {/* THREE-COLUMN GRID REASON: Official Framer Motion documentation recommends staggered animations with delay for multiple components */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {/* First UCAS Guide Card */}
-              <m.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative">
-                  <div className="absolute -top-4 left-4 bg-purple-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
-                    Card 1
-                  </div>
-                  <VideoThumbnailMidCard
-                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
-                    description="Demystifying UCAS: A Clear Path to UK University Success"
-                    variant="premium"
-                    popular={true}
-                    priceRange="£49.99"
-                    duration="90 minutes"
-                    features={[
-                      { feature: "Complete UCAS application timeline breakdown" },
-                      {
-                        feature:
-                          "University selection strategies for international students",
-                      },
-                      { feature: "Personal statement foundation and planning" },
-                      {
-                        feature:
-                          "Reference letter guidance and timeline management",
-                      },
-                      {
-                        feature: "UCAS Hub navigation and technical requirements",
-                      },
-                      {
-                        feature:
-                          "Common application mistakes and how to avoid them",
-                      },
-                    ]}
-                    ctaText="Scroll to UCAS Section"
-                    ctaLink="#ucas-guide-part-1"
-                    onCTAClick={() => {
-                      const ucasSection =
-                        document.getElementById("ucas-guide-part-1");
-                      if (ucasSection) {
-                        ucasSection.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
-                    paymentUrl="#"
-                  />
-                </div>
-              </m.div>
-
-              {/* Second UCAS Guide Card */}
-              <m.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative">
-                  <div className="absolute -top-4 left-4 bg-purple-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
-                    Card 2
-                  </div>
-                  <VideoThumbnailMidCard
-                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
-                    description="Demystifying UCAS: A Clear Path to UK University Success"
-                    variant="premium"
-                    popular={true}
-                    priceRange="£49.99"
-                    duration="90 minutes"
-                    features={[
-                      { feature: "Complete UCAS application timeline breakdown" },
-                      {
-                        feature:
-                          "University selection strategies for international students",
-                      },
-                      { feature: "Personal statement foundation and planning" },
-                      {
-                        feature:
-                          "Reference letter guidance and timeline management",
-                      },
-                      {
-                        feature: "UCAS Hub navigation and technical requirements",
-                      },
-                      {
-                        feature:
-                          "Common application mistakes and how to avoid them",
-                      },
-                    ]}
-                    ctaText="Scroll to UCAS Section"
-                    ctaLink="#ucas-guide-part-1"
-                    onCTAClick={() => {
-                      const ucasSection =
-                        document.getElementById("ucas-guide-part-1");
-                      if (ucasSection) {
-                        ucasSection.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
-                    paymentUrl="#"
-                  />
-                </div>
-              </m.div>
-
-              {/* Third UCAS Guide Card */}
-              <m.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative">
-                  <div className="absolute -top-4 left-4 bg-purple-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md z-10">
-                    Card 3
-                  </div>
-                  <VideoThumbnailMidCard
-                    title="Elizabeth's Essential UCAS Guide - Part 1 of 2"
-                    description="Demystifying UCAS: A Clear Path to UK University Success"
-                    variant="premium"
-                    popular={true}
-                    priceRange="£49.99"
-                    duration="90 minutes"
-                    features={[
-                      { feature: "Complete UCAS application timeline breakdown" },
-                      {
-                        feature:
-                          "University selection strategies for international students",
-                      },
-                      { feature: "Personal statement foundation and planning" },
-                      {
-                        feature:
-                          "Reference letter guidance and timeline management",
-                      },
-                      {
-                        feature: "UCAS Hub navigation and technical requirements",
-                      },
-                      {
-                        feature:
-                          "Common application mistakes and how to avoid them",
-                      },
-                    ]}
-                    ctaText="Scroll to UCAS Section"
-                    ctaLink="#ucas-guide-part-1"
-                    onCTAClick={() => {
-                      const ucasSection =
-                        document.getElementById("ucas-guide-part-1");
-                      if (ucasSection) {
-                        ucasSection.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                    thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
-                    paymentUrl="#"
-                  />
-                </div>
-              </m.div>
-            </div>
-
-            {/* Grid layout explanation */}
-            <m.div
-              className="text-center mt-12 max-w-4xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-white rounded-lg shadow-md p-6 border border-slate-200">
-                <p className="text-slate-700 leading-relaxed">
-                  <strong className="text-slate-900">Three-Column Grid Layout:</strong> This compact presentation style allows multiple masterclasses to be displayed efficiently with staggered animations. Cards automatically stack on mobile devices for optimal responsive behaviour across all screen sizes.
-                </p>
-              </div>
-            </m.div>
-          </div>
-        </Section>
+{/* CONTEXT7 SOURCE: /reactjs/react.dev - Section removal for production-ready video masterclass page */}
+        {/* TASK 2 IMPLEMENTATION: Removed sections 9, 10, 11 - Design Variations, Single Card Layout, Multi-Card Layout */}
+        {/* PRODUCTION READY: Clean implementation focusing on actual masterclass content without demo sections */}
       </PageLayout>
       
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Custom video modal implementation */}

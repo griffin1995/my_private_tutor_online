@@ -39,8 +39,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
-import { WaveSeparator } from '@/components/ui/wave-separator'
-import { getHomeschoolingPreview } from '@/lib/cms/cms-content'
+import { getHomeschoolingPreview, getTestimonialsSchools } from '@/lib/cms/cms-content'
+import { ScrollingSchools } from '@/components/sections/scrolling-schools'
+import { AnimatedTagline } from '@/components/sections/animated-tagline'
 import { VideoPopup } from '@/components/video/video-popup'
 
 /**
@@ -110,6 +111,10 @@ const successStats = [
 // HOMESCHOOLING DATA REASON: Official TypeScript patterns for centralized data management and type-safe content access
 const homeschoolingData = getHomeschoolingPreview()
 
+// CONTEXT7 SOURCE: /reactjs/react.dev - Synchronous CMS data access for testimonials schools
+// SCHOOLS DATA REASON: Official React documentation patterns for direct data access without async loading
+const testimonialsSchools = getTestimonialsSchools()
+
 export default function ElevenPlusBootcampsPage() {
   // CONTEXT7 SOURCE: /reactjs/react.dev - useState Hook for managing video popup state
   // VIDEO STATE REASON: Official React documentation shows useState for boolean state management in event handlers
@@ -165,13 +170,19 @@ export default function ElevenPlusBootcampsPage() {
         decorativeStyle="lines"
       />
       
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration below hero section */}
+      {/* SCROLLING SCHOOLS INTEGRATION: Official React documentation shows component composition patterns */}
+      <ScrollingSchools schools={[...testimonialsSchools]} />
+      
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - AnimatedTagline component integration with custom text */}
+      {/* ANIMATED TAGLINE INTEGRATION: Official React documentation shows component prop customization patterns */}
+      <AnimatedTagline text="We help students place at top UK Independent and grammar schools" />
+      
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Layout component with navigation header for consistent site structure */}
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
-
-        <WaveSeparator variant="subtle" className="text-white" />
         {/* Success Statistics */}
         <section className="py-20 bg-slate-50/80 relative">
           {/* CONTEXT7 SOURCE: /grx7/framer-motion - Subtle pattern overlay for professional background texture */}
@@ -207,8 +218,6 @@ export default function ElevenPlusBootcampsPage() {
           </div>
         </section>
         
-        <WaveSeparator variant="dramatic" />
-
         {/* Programme Images Showcase */}
         <section id="programme-options" className="py-16 bg-white/90 relative">
           {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for programme showcase images */}
