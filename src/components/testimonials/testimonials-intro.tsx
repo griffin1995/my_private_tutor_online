@@ -20,7 +20,7 @@
 
 import React, { useMemo } from 'react'
 import { m } from 'framer-motion'
-import { Award, Star, Shield, Trophy, Medal, LucideIcon } from 'lucide-react'
+import { Award, Star, Shield, Trophy, Medal, BarChart3, Crown, LucideIcon } from 'lucide-react'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
 import { WaveSeparator } from '@/components/ui/wave-separator'
 
@@ -29,7 +29,7 @@ import { WaveSeparator } from '@/components/ui/wave-separator'
 interface TrustIndicator {
   readonly id: string
   readonly icon?: LucideIcon
-  readonly iconType?: 'award' | 'shield' | 'trophy' | 'medal' | 'star'
+  readonly iconType?: 'award' | 'shield' | 'trophy' | 'medal' | 'star' | 'barChart3' | 'crown'
   readonly text: string
   readonly description?: string
   readonly featured?: boolean
@@ -45,7 +45,9 @@ const iconTypeMap = {
   shield: Shield,
   trophy: Trophy,
   medal: Medal,
-  star: Star
+  star: Star,
+  barChart3: BarChart3,
+  crown: Crown
 } as const
 
 // CONTEXT7 SOURCE: /websites/react_dev - React.memo for component memoization patterns
@@ -136,36 +138,38 @@ interface TestimonialsIntroProps {
 }
 
 // CONTEXT7 SOURCE: /lucide-icons/lucide - Icon component patterns for trust indicators
+// CONTEXT7 SOURCE: TASK UPDATE - Icon mapping updated per user requirements for testimonials page trust indicators
 // TRUST INDICATORS REASON: Lucide React documentation demonstrates icon usage for UI credibility elements
+// ICON UPDATES REASON: User-specified icon mapping for enhanced testimonials page presentation
 const defaultTrustIndicators: readonly TrustIndicator[] = [
   {
     id: 'tatler',
-    icon: Star,
+    iconType: 'award',
     text: 'Featured in Tatler',
-    description: 'Elite society magazine recognition',
+    description: 'Elite society magazine recognition (Rosette icon)',
     featured: true,
     url: '#tatler'
   },
   {
     id: 'school-guide',
-    icon: Award,
-    text: "School Guide UK's Top Pick",
-    description: 'Educational excellence recognition',
+    iconType: 'trophy',
+    text: "School Guide UK's Top Choice",
+    description: 'Educational excellence recognition (Trophy icon)',
     featured: true,
     url: '#school-guide'
   },
   {
-    id: 'elite-trust',
-    icon: Shield,
-    text: 'Elite Client Trust',
-    description: 'Serving distinguished families since 2010',
+    id: 'excellence',
+    iconType: 'barChart3',
+    text: '15 Years of Excellence',
+    description: 'Established educational heritage (Bar chart graph icon)',
     featured: false
   },
   {
-    id: 'excellence',
-    icon: Trophy,
-    text: '15 Years Excellence',
-    description: 'Established educational heritage',
+    id: 'royal-clientele',
+    iconType: 'crown',
+    text: 'Royal Clientele Trust',
+    description: 'Serving distinguished families since 2010 (Crown icon)',
     featured: false
   }
 ] as const

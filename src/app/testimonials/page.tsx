@@ -285,7 +285,7 @@ export default function TestimonialsPage() {
       <SimpleHero
         backgroundImage="/images/hero/child_book_and_laptop.avif"
         h1="Student & Parent Testimonials"
-        h2="Real Stories"
+        h2="Read testimonials from families who have achieved exceptional results with My Private Tutor Online."
         decorativeStyle="lines"
       />
 
@@ -305,7 +305,7 @@ export default function TestimonialsPage() {
           introContent={introConfig.introContent}
           backgroundVariant={introConfig.backgroundVariant}
           showTrustIndicators={true}
-          showWaveSeparator={introConfig.showWaveSeparator}
+          showWaveSeparator={false}
           trustIndicators={introConfig.trustIndicators}
           animationDelay={0.1}
         />
@@ -381,11 +381,10 @@ export default function TestimonialsPage() {
               <div className="container mx-auto px-4">
                 <div className="text-center mb-8">
                   <h2 className="text-3xl font-bold text-slate-800 mb-4">
-                    Written Testimonials
+                    Find Your Success Story
                   </h2>
                   <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                    Read what our families have to say about their
-                    transformative experiences
+                    Discover testimonials from families with similar academic goals and backgrounds
                   </p>
                 </div>
               </div>

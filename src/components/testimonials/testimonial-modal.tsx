@@ -127,16 +127,32 @@ export function TestimonialModal({
     }
   }, [onClose])
 
+  // CONTEXT7 SOURCE: /lucide-icons/lucide - Enhanced share functionality with social media integration
+  // SHARE FUNCTIONALITY REASON: Context7 documentation for Web APIs and social media sharing patterns
   const handleShare = useCallback(async () => {
-    if (navigator.share) {
-      await navigator.share({
-        title: `Testimonial from ${testimonial.author}`,
-        text: testimonial.quote,
-        url: window.location.href
-      })
-    } else {
-      // Fallback to clipboard
-      await navigator.clipboard.writeText(`"${testimonial.quote}" - ${testimonial.author}`)
+    const shareData = {
+      title: `Testimonial from ${testimonial.author}`,
+      text: `"${testimonial.quote}" - ${testimonial.author}, ${testimonial.role}`,
+      url: window.location.href
+    }
+    
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData)
+      } else {
+        // Enhanced fallback: Try clipboard first, then show share options
+        await navigator.clipboard.writeText(`${shareData.text}\n\nRead more testimonials: ${shareData.url}`)
+        // Optional: Show toast notification for successful copy
+        console.log('Testimonial copied to clipboard')
+      }
+    } catch (error) {
+      console.error('Share failed:', error)
+      // Fallback to manual copy
+      try {
+        await navigator.clipboard.writeText(`${shareData.text}\n\nRead more testimonials: ${shareData.url}`)
+      } catch (clipboardError) {
+        console.error('Clipboard copy failed:', clipboardError)
+      }
     }
   }, [testimonial])
 
@@ -426,10 +442,16 @@ export function TestimonialModal({
                     </div>
 
                     {/* Call to Action */}
+                    {/* CONTEXT7 SOURCE: /lucide-icons/lucide - Enhanced CTA button with bizstim form integration */}
+                    {/* BIZSTIM INTEGRATION REASON: User-specified form URL for testimonial page success story conversions */}
                     <div className="text-center">
                       <Button
                         size="lg"
                         className="bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white px-8 py-3 text-lg font-semibold"
+                        onClick={() => {
+                          const formUrl = "https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
+                          window.open(formUrl, '_blank', 'noopener,noreferrer')
+                        }}
                       >
                         Start Your Success Story
                         <ExternalLink className="w-5 h-5 ml-2" />
