@@ -87,7 +87,7 @@
     "sectionTitle": "We help students place at top 10 UK schools and universities",
     "schools": [
       "Eton College",
-      "Westminster School", 
+      "Westminster School",
       "St Paul's School",
       "Highgate School",
       "Oxford University",
@@ -123,7 +123,7 @@
         "icon": "",
         "title": "Fit For a King",
         "subtitle": "",
-        "description": "Our services are trusted by prominent families, including VIPs and royalty.",
+        "description": "Our services are trusted by prominent families, including VIPs and royalty.\n\n\n\n\"Hi Elizabeth, I found out today that the two princes and the princess have all been offered places at Le Rosey for next year. The family is delighted and would like me to pass on their sincerest thanks to you and the team for all your hard work.\"",
         "imageUrl": "/images/graphics/feature-royal-endorsement.jpg",
         "imageAlt": "Royal endorsement - Invitation-only service trusted by royal families and high-profile clients"
       },
@@ -429,7 +429,7 @@
       },
       {
         "number": "95%",
-        "label": "11+ Success Rate", 
+        "label": "11+ Success Rate",
         "description": "of 11+ candidates receive an offer from at least one of their top choices, with some students scoring in the top 2% of test takers",
         "icon": "🎯",
         "lucideIcon": "School",

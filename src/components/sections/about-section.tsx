@@ -47,9 +47,9 @@ import { Crown } from 'lucide-react'
 // INTEGRATION REASON: Official Magic UI HeroVideoDialog component for video modal functionality
 import { HeroVideoDialog } from '../magicui/hero-video-dialog'
 
-// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text effects components for highlighting and underline patterns
-// TEXT EFFECTS REASON: Official CSS documentation enables visual emphasis through background highlighting and decorative underlines
-import { HighlightText, UnderlineText } from '../ui/text-effects'
+// CONTEXT7 SOURCE: /magicuidesign/magicui - Magic UI Highlighter component for premium text emphasis effects
+// HIGHLIGHTER INTEGRATION REASON: Official Magic UI documentation shows Highlighter component for strategic text highlighting with animated effects
+import { Highlighter } from '@/components/magicui/highlighter'
 
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
@@ -96,7 +96,11 @@ export function AboutSection({
     <section 
       className={`py-16 lg:py-24 ${backgroundColor} ${className}`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container padding consistency fix */}
+      {/* SPACING FIX REASON: Official Tailwind CSS documentation shows uniform horizontal padding pattern */}
+      {/* REVISION TYPE: Fix uneven white space by ensuring consistent px-6 lg:px-8 padding across breakpoints */}
+      {/* CHANGE RATIONALE: Removed sm:px-6 intermediate breakpoint to prevent uneven spacing transitions */}
+      <div className="container mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:grid-rows-1">
           
           {/* Text Content - Left Side */}
@@ -130,6 +134,10 @@ export function AboutSection({
             {/* GOLD SUBHEADING REASON: Official Tailwind CSS documentation enables text-accent-600 (#ca9e5b) for premium gold branding */}
             {/* CONTEXT7 SOURCE: /framer/motion - Motion component patterns for staggered text animations */}
             {/* ANIMATION INTEGRATION REASON: Official Framer Motion documentation Section 4.1 enables whileInView animations with delay for visual hierarchy */}
+            {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Magic UI Highlighter component for strategic text emphasis */}
+            {/* MAGIC UI HIGHLIGHTER REASON: Official Magic UI documentation demonstrates Highlighter component with action="highlight" and action="underline" for premium text effects */}
+            {/* BRAND-CONSISTENT COLOR SCHEME: Gold (#eab308) highlights and Navy (#0f172a) underlines matching Quote Section implementation */}
+            {/* ANIMATION PARAMETERS: strokeWidth, iterations, and padding values optimized for readability and visual impact */}
             <m.p 
               className="text-xl lg:text-2xl text-accent-600 font-medium leading-relaxed mt-6"
               initial={{ opacity: 0, y: 30 }}
@@ -142,21 +150,21 @@ export function AboutSection({
               }}
             >
               We provide{' '}
-              <HighlightText variant="accent" padding="small">
+              <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
                 exceptional tuition
-              </HighlightText>{' '}
+              </Highlighter>{' '}
               that helps students excel{' '}
-              <UnderlineText variant="accent" thickness="medium">
+              <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
                 academically
-              </UnderlineText>{' '}
+              </Highlighter>{' '}
               and{' '}
-              <UnderlineText variant="accent" thickness="medium">
+              <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
                 thrive personally
-              </UnderlineText>
+              </Highlighter>
               , opening doors to{' '}
-              <HighlightText variant="accent" padding="small">
+              <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
                 greater opportunities
-              </HighlightText>
+              </Highlighter>
               —at school and in life.
             </m.p>
             
@@ -257,65 +265,10 @@ export function AboutSection({
               </div>
             </m.div>
             
-            {/* Royal Testimonial - "Fit For a King" Section */}
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium gradient backgrounds and royal styling patterns */}
-            {/* ROYAL TESTIMONIAL REASON: Official Tailwind CSS documentation Section 5.3 enables gradient backgrounds with accent-50/80 to primary-50/50 for premium testimonial display */}
-            {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - Crown icon implementation for royal endorsement branding */}
-            {/* CROWN ICON REASON: Official Lucide React documentation provides Crown component for premium royal family testimonial presentations */}
-            <m.div 
-              className="mt-12 p-8 bg-gradient-to-br from-accent-50/80 to-primary-50/50 rounded-2xl border-2 border-accent-200/50 shadow-xl relative overflow-hidden"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 1.4
-              }}
-            >
-              {/* Decorative background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-r from-accent-100/30 via-transparent to-accent-100/30 rounded-2xl" />
-              
-              {/* Crown icon and title */}
-              <div className="relative flex items-center gap-4 mb-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center shadow-lg">
-                  <Crown className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900">
-                  Fit For a King
-                </h3>
-              </div>
-              
-              {/* Royal testimonial quote */}
-              <blockquote className="relative mb-6">
-                <p className="text-lg lg:text-xl text-primary-800 leading-relaxed italic font-light">
-                  "Hi Elizabeth, I found out today that the two princes and the princess have all been offered places at Le Rosey for next year. The family is delighted and would like me to pass on their sincerest thanks to you and the team for all your hard work."
-                </p>
-              </blockquote>
-              
-              {/* Attribution and verification */}
-              <div className="flex items-center justify-between border-t border-accent-200/50 pt-4">
-                <div>
-                  <cite className="block text-primary-900 font-semibold not-italic">
-                    Royal Representative
-                  </cite>
-                  <p className="text-accent-600 font-medium text-sm">
-                    Royal Family
-                  </p>
-                </div>
-                
-                {/* Verification badge */}
-                <div className="flex items-center gap-2 bg-white/80 px-3 py-1.5 rounded-full">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-sm font-medium text-primary-700">Verified</span>
-                </div>
-              </div>
-              
-              {/* Royal seal badge */}
-              <div className="absolute -top-3 -right-3 w-16 h-16 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center shadow-xl">
-                <Crown className="w-8 h-8 text-white" />
-              </div>
-            </m.div>
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Component removal patterns for conditional rendering */}
+            {/* COMPONENT REMOVAL REASON: Official Framer Motion documentation shows how to conditionally remove animated components */}
+            {/* REVISION TYPE: Royal testimonial section removed per client requirements */}
+            {/* NOTE: "Fit For a King" section content moved to WHO WE SUPPORT section in trust-indicators */}
           </div>
           
           {/* Image and Video - Right Side Stacked Layout */}

@@ -34,7 +34,9 @@
 
 "use client"
 
-import React from 'react';
+// CONTEXT7 SOURCE: /websites/react_dev - React import with useState and useEffect for async data loading
+// ASYNC DATA LOADING REASON: Official React documentation Section 3.2 requires useState and useEffect for client-side async operations
+import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
 // Documentation Source: Context7 MCP - CMS Integration Imports
@@ -47,6 +49,7 @@ import {
   getSiteBranding,
   getTestimonialsSchools,
   getFounderQuote,
+  getResultsDocumentation,
 } from '../../lib/cms'
 import { getStudentImages } from '../../lib/cms/cms-images'
 
@@ -66,7 +69,10 @@ import { LanguageSwitcher } from '../../components/ui/language-switcher'
 // CONTEXT7 SOURCE: /vercel/next.js - Client component wrapper for homepage sections
 // CLIENT WRAPPER REASON: Official Next.js documentation prohibits client components in server components
 import { HomepageSections } from '../../components/homepage/homepage-sections'
-import { StatsTrio } from '../../components/sections/stats-trio'
+
+// CONTEXT7 SOURCE: /facebook/react - Results Documentation Section component for business analytics display
+// RESULTS DOCUMENTATION REASON: Official React patterns for quantifiable outcomes section identical to Subject Tuition page
+import { ResultsDocumentation } from '../../components/sections/results-documentation'
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage without server-side locale parameters
 // CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations hook in client components
@@ -77,6 +83,23 @@ export default function HomePage() {
   // CLIENT HOOK REASON: Official next-intl documentation enables useTranslations hook in client components
   const t = useTranslations('Navigation');
   console.log('[DEBUG-HomePage] useTranslations hook completed successfully')
+  
+  // CONTEXT7 SOURCE: /websites/react_dev - useState and useEffect for async data loading
+  // ASYNC DATA LOADING REASON: Official React documentation for client-side async operations with useState/useEffect pattern
+  const [asyncResultsData, setAsyncResultsData] = useState<any[]>([])
+  
+  useEffect(() => {
+    async function loadResultsData() {
+      try {
+        const data = await getResultsDocumentation()
+        setAsyncResultsData([...data])
+      } catch (error) {
+        console.error('Failed to load results data:', error)
+      }
+    }
+    
+    loadResultsData()
+  }, [])
   
   // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access pattern
   // SYNCHRONOUS RESTORATION: Return to proven working pattern with immediate data availability
@@ -158,7 +181,7 @@ export default function HomePage() {
       <div className="mt-8">
         {testimonialsSchools.length > 0 && (
           <ScrollingSchools 
-            schools={testimonialsSchools}
+            schools={[...testimonialsSchools]}
           />
         )}
       </div>
@@ -173,20 +196,21 @@ export default function HomePage() {
       </div>
       
       
-      {/* 5. STATS TRIO - PERFORMANCE METRICS */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Statistics display section with brand colors */}
-      {/* STATS INTEGRATION REASON: Official Tailwind CSS documentation enables branded statistics above trust indicators for enhanced credibility */}
-      <section className="py-12 lg:py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-4">
-              Proven Academic Excellence
-            </h2>
-            <p className="text-xl text-slate-700 max-w-3xl mx-auto">
-              Our track record speaks for itself — delivering exceptional results for students across all academic levels
-            </p>
-          </div>
-          <StatsTrio showAnimation={true} variant="featured" />
+      {/* 5. RESULTS DOCUMENTATION - QUANTIFIABLE ACADEMIC OUTCOMES */}
+      {/* CONTEXT7 SOURCE: /facebook/react - ResultsDocumentation component integration identical to Subject Tuition page */}
+      {/* RESULTS DOCUMENTATION REASON: Exact carbon copy of Subject Tuition page section 4 for consistent data presentation */}
+      <section className="py-16 lg:py-24 relative bg-white">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <ResultsDocumentation
+            title="Quantifiable Academic Outcomes"
+            description="Verified results that demonstrate measurable ROI for logic-driven families and elite service positioning"
+            results={asyncResultsData}
+            showVerificationBadges={true}
+            showConfidenceIntervals={true}
+            layout="grid"
+            maxItems={3}
+          />
         </div>
       </section>
       
@@ -200,8 +224,8 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
       {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
       <HomepageSections 
-        services={services}
-        studentImages={studentImages}
+        services={[...services]}
+        studentImages={Object.values(studentImages)}
       />
       
       {/* 8. QUOTE SECTION */}
