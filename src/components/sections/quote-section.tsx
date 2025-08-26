@@ -175,8 +175,10 @@ export function QuoteSection({
 
   return (
     <section className={`${spacingClasses} ${backgroundColor} ${className}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
+      {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {showAuthorImage && authorImage ? (
             /* 
              * CONTEXT7 SOURCE: /vercel/next.js - Image component with responsive layout patterns

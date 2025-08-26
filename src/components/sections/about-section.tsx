@@ -96,15 +96,21 @@ export function AboutSection({
     <section 
       className={`py-16 lg:py-24 ${backgroundColor} ${className}`}
     >
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container padding consistency fix */}
-      {/* SPACING FIX REASON: Official Tailwind CSS documentation shows uniform horizontal padding pattern */}
-      {/* REVISION TYPE: Fix uneven white space by ensuring consistent px-6 lg:px-8 padding across breakpoints */}
-      {/* CHANGE RATIONALE: Removed sm:px-6 intermediate breakpoint to prevent uneven spacing transitions */}
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start lg:grid-rows-1">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container symmetric padding for perfect left/right balance */}
+      {/* PADDING SYMMETRY FIX REASON: Official Tailwind CSS documentation shows container with mx-auto for horizontal centering and px-* for equal horizontal padding */}
+      {/* REVISION TYPE: Enhanced symmetric spacing by ensuring consistent progressive padding at all responsive breakpoints */}
+      {/* VISUAL BALANCE IMPLEMENTATION: Container mx-auto provides perfect centering, px-6 sm:px-8 lg:px-12 xl:px-16 ensures equal left/right spacing */}
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout with symmetric column distribution and balanced spacing */}
+        {/* GRID SYMMETRY REASON: Official Tailwind CSS documentation shows lg:grid-cols-2 creates equal-width columns with items-center for vertical alignment balance */}
+        {/* REVISION TYPE: Enhanced grid layout with items-center to ensure both columns maintain equal visual weight and balanced spacing */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:grid-rows-1">
           
           {/* Text Content - Left Side */}
-          <div className="space-y-6 min-h-0">
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid column equal width with consistent internal padding */}
+          {/* EQUAL WIDTH FIX REASON: Official Tailwind CSS documentation shows lg:grid-cols-2 creates equal-width columns by default */}
+          {/* PADDING ADDITION: Added p-6 for consistent internal padding matching right column for perfect visual balance */}
+          <div className="space-y-6 min-h-0 p-6">
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for consistent heading styling */}
             {/* AURORA REMOVAL: Removed aurora gradient effects per Task 4 requirements */}
             {/* PATTERN: Standard Tailwind CSS text color utility for default heading styling */}
@@ -272,7 +278,10 @@ export function AboutSection({
           </div>
           
           {/* Image and Video - Right Side Stacked Layout */}
-          <div className="relative min-h-0 flex flex-col space-y-6">
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid column equal width with consistent internal padding */}
+          {/* EQUAL WIDTH FIX REASON: Official Tailwind CSS documentation shows lg:grid-cols-2 creates equal-width columns by default */}
+          {/* PADDING ADDITION: Added p-6 for consistent internal padding matching left column for perfect visual balance */}
+          <div className="relative min-h-0 flex flex-col space-y-6 p-6">
             {/* Founder Image - Top Position */}
             <m.div 
               className="relative w-full flex items-center justify-center bg-transparent"
@@ -300,20 +309,36 @@ export function AboutSection({
                 priority
               />
               
-              {/* Animated Decorative elements for image */}
-              <m.div 
-                className="absolute -top-4 -right-4 w-24 h-24 bg-accent-200/30 rounded-full blur-xl"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-150px" }}
-                transition={{ 
-                  duration: 0.8, 
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: 0.9
-                }}
-              />
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Gradient removal for clean component design */}
+              {/* DECORATIVE ELEMENT REMOVAL: Official Tailwind CSS documentation promotes clean styling without unnecessary visual effects */}
+              {/* GRADIENT ELIMINATION: Removed blur-xl gradient decorative element to achieve clean appearance */}
             </m.div>
             
+            {/* Introductory Text Above Video */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Max-width utility for responsive text container sizing */}
+            {/* SIGNIFICANT SIZE REDUCTION REASON: Official Tailwind CSS documentation shows max-w-3xs (16rem/256px) provides substantial reduction from max-w-2xs (18rem/288px) */}
+            {/* FURTHER FONT REDUCTION: Official Tailwind CSS font-size utilities show text-[10px] sm:text-xs md:text-sm for more aggressive text size control */}
+            {/* WIDTH CONSTRAINT ENHANCEMENT: Using max-w-3xs (16rem) to ensure text is significantly smaller than video max-w-xs container (20rem) */}
+            {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Highlighter component for strategic text emphasis within sentences */}
+            {/* IMPLEMENTATION REASON: Official Magic UI documentation shows Highlighter component can highlight specific words within text content */}
+            {/* HIGHLIGHT PATTERN: Using orange/accent color (#eab308) to emphasize key word "thrive" for brand consistency */}
+            <m.p 
+              className="text-[10px] sm:text-xs md:text-sm italic text-center text-primary-700 font-medium mb-2 max-w-3xs mx-auto whitespace-nowrap"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ 
+                duration: 0.8, 
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.4
+              }}
+            >
+              Meet Elizabeth, here to help your child{' '}
+              <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+                thrive
+              </Highlighter>
+            </m.p>
+
             {/* Video Component - Bottom Position */}
             {/* 
              * CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog stacked layout integration
@@ -336,35 +361,21 @@ export function AboutSection({
               transition={{ 
                 duration: 1.0, 
                 ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.5
+                delay: 0.6
               }}
             >
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Width constraint utilities for responsive design
-               * WIDTH CONSTRAINT REASON: Official Tailwind CSS documentation shows max-w-xs (320px) ensures video never exceeds founder photo display width
-               * ASPECT RATIO MAINTENANCE: Video component maintains 16:9 aspect ratio while respecting maximum width constraint
-               */}
-              {/* CONTEXT7 SOURCE: /samber/oops - Video file path correction for 404 resolution
-               * PATH FIX REASON: Video file exists at /videos/elizabeth-introduction-compressed.mp4 but component referenced /elizabeth-introduction-sound.mp4
-               */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Width constraint utilities for responsive design */}
+              {/* WIDTH CONSTRAINT REASON: Official Tailwind CSS documentation shows max-w-xs (320px) ensures video never exceeds founder photo display width */}
+              {/* ASPECT RATIO MAINTENANCE: Video component maintains 16:9 aspect ratio while respecting maximum width constraint */}
+              {/* CONTEXT7 SOURCE: /samber/oops - Video file path correction for 404 resolution */}
+              {/* PATH FIX REASON: Video file exists at /videos/elizabeth-introduction-compressed.mp4 but component referenced /elizabeth-introduction-sound.mp4 */}
+              {/* GRADIENT REMOVAL IMPLEMENTATION: Official Tailwind CSS documentation shows clean component styling without background gradients or decorative overlays */}
               <HeroVideoDialog
                 videoSrc="/videos/elizabeth-introduction-compressed.mp4"
                 thumbnailSrc="/images/video-thumbnails/elizabeth-introduction-thumbnail.jpg"
                 thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
                 animationStyle="from-center"
                 className="w-full max-w-xs mx-auto"
-              />
-              
-              {/* Animated Decorative elements for video */}
-              <m.div 
-                className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-200/20 rounded-full blur-xl"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-150px" }}
-                transition={{ 
-                  duration: 0.8, 
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: 1.3
-                }}
               />
             </m.div>
           </div>

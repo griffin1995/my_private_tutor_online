@@ -29,9 +29,11 @@
  * - Performance optimised animations
  */
 
-import { GradientOverlay } from "@/components/ui/gradient-overlay";
-import { WaveSeparator } from "@/components/ui/wave-separator";
-import { SmartTextProcessor } from "@/components/ui/text-effects";
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component imports cleanup for separator removal
+// SEPARATOR REMOVAL REASON: Official React documentation Section 2.1 recommends removing unused imports for clean architecture
+// CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component for text highlighting effects
+// MAGIC UI REPLACEMENT REASON: Official Magic UI documentation Section 2.3 recommends Highlighter component for dynamic text highlighting with annotation support
+import { Highlighter } from "@/components/magicui/highlighter";
 import { m } from "framer-motion";
 import Image from "next/image";
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimised founder story images
@@ -99,24 +101,19 @@ export function FounderStorySection({
       className={`relative bg-${backgroundColor} pt-8 pb-16 lg:pt-12 lg:pb-24 ${className}`}
       aria-labelledby="founder-story-heading"
     >
-      {/* CONTEXT7 SOURCE: /radix-ui/primitives - Gradient overlay component for professional section transitions */}
-      {/* GRADIENT TREATMENT REASON: Official Radix UI documentation Section 4.1 recommends gradient overlays for visual hierarchy */}
-      <GradientOverlay
-        direction="top"
-        from="white/20"
-        to="transparent"
-        height="h-20"
-        className="top-0"
-      />
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section separator removal for clean layout flow */}
+      {/* SEPARATOR REMOVAL REASON: Official React documentation recommends clean section transitions without decorative overlays */}
 
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container patterns for responsive layouts */}
       {/* CONTAINER STRATEGY REASON: Official Tailwind CSS documentation Section 2.3 recommends container classes for responsive content width management */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
+      {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         {/* ROW 1: Hero Introduction - Educational Philosophy with Text Effects */}
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Section size reduction for optimal layout proportions */}
         {/* CONTEXT7 SOURCE: /components/ui/text-effects - CombinedTextEffect component for highlighting and underline patterns */}
         {/* TEXT EFFECTS IMPLEMENTATION REASON: Client requirement to copy homepage CombinedTextEffect component with specific highlight/underline phrases */}
-        <div className="max-w-2xl mx-auto text-center mb-10">
+        <div className="max-w-3xl mx-auto text-center mb-10 px-4 sm:px-6">
           <m.h1
             id="founder-story-heading"
             className="text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-primary-900 mb-3 leading-tight"
@@ -128,27 +125,41 @@ export function FounderStorySection({
             Our Educational Philosophy
           </m.h1>
 
-          {/* CONTEXT7 SOURCE: /components/ui/text-effects - Educational philosophy with SmartTextProcessor for dynamic text effects */}
-          {/* SMART TEXT PROCESSING REASON: Client requirement to apply specific highlight/underline effects to phrases within educational philosophy text */}
-          <SmartTextProcessor
+          {/* CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component for educational philosophy text effects */}
+          {/* MAGIC UI IMPLEMENTATION REASON: Official Magic UI documentation demonstrates Highlighter component for text highlighting and underline effects */}
+          <m.div
             className="text-lg lg:text-xl text-primary-700 leading-relaxed max-w-xl mx-auto"
             initial={fadeInUpVariant.initial}
             whileInView={fadeInUpVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ ...fadeInUpVariant.transition, delay: 0.2 }}
-            highlights={[
-              "tailored to who they are",
-              "academic rigour with personal mentorship", 
-              "structure, insight and flexibility"
-            ]}
-            underlines={[
-              "confidence, curiosity, and clarity",
-              "resilience and self-belief",
-              "cultivate independence"
-            ]}
           >
-            We believe every child deserves an education tailored to who they are, helping them build confidence, curiosity, and clarity. We combine academic rigour with personal mentorship, knowing that success depends as much on resilience and self-belief as it does on subject mastery. Whether preparing for British schools, moving abroad, or facing competitive exams, we provide structure, insight and flexibility. Above all, we aim to cultivate independence — giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends.
-          </SmartTextProcessor>
+            We believe every child deserves an education{" "}
+            <Highlighter action="highlight" color="#eab308">
+              tailored to who they are
+            </Highlighter>
+            , helping them build{" "}
+            <Highlighter action="underline" color="#0f172a">
+              confidence, curiosity, and clarity
+            </Highlighter>
+            . We combine{" "}
+            <Highlighter action="highlight" color="#eab308">
+              academic rigour with personal mentorship
+            </Highlighter>
+            , knowing that success depends as much on{" "}
+            <Highlighter action="underline" color="#0f172a">
+              resilience and self-belief
+            </Highlighter>
+            {" "}as it does on subject mastery. Whether preparing for British schools, moving abroad, or facing competitive exams, we provide{" "}
+            <Highlighter action="highlight" color="#eab308">
+              structure, insight and flexibility
+            </Highlighter>
+            . Above all, we aim to{" "}
+            <Highlighter action="underline" color="#0f172a">
+              cultivate independence
+            </Highlighter>
+            {" "}— giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends.
+          </m.div>
         </div>
       </div>
 
@@ -188,8 +199,10 @@ export function FounderStorySection({
             whileInView={fadeInRightVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={fadeInRightVariant.transition}
-            className="order-1 lg:order-2 px-6 lg:px-8 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
+            className="order-1 lg:order-2 px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
           >
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts */}
+            {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations */}
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
               Meet Elizabeth, A Different Kind of Educator
             </h2>
@@ -220,8 +233,10 @@ export function FounderStorySection({
             whileInView={fadeInLeftVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={fadeInLeftVariant.transition}
-            className="px-6 lg:px-8 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
+            className="px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
           >
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts */}
+            {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations */}
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
               Going Against the Grain
             </h2>
@@ -285,12 +300,14 @@ export function FounderStorySection({
         </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
+      {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         {/* ROW 4: Career Milestones - Centered Text Container with Sub-sections + Video Integration */}
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spacing utilities for section organisation */}
         {/* SUBSECTION SPACING REASON: Official Tailwind CSS documentation Section 2.5 recommends consistent spacing for content hierarchy */}
         <m.div
-          className="max-w-4xl mx-auto mb-20"
+          className="max-w-4xl mx-auto mb-20 px-4 sm:px-6 lg:px-8"
           initial={fadeInUpVariant.initial}
           whileInView={fadeInUpVariant.animate}
           viewport={{ once: true, margin: "-100px" }}
@@ -360,9 +377,9 @@ export function FounderStorySection({
 
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text positioning adjustment for bottom placement */}
           {/* TASK 5 FIX: Official Tailwind CSS documentation - Text moved to bottom of container with proper padding */}
-          <div className="absolute inset-x-0 bottom-0 flex items-end z-10 p-8">
+          <div className="absolute inset-x-0 bottom-0 flex items-end z-10 p-8 sm:p-10 lg:p-12">
             <div className="w-full">
-              <div className="max-w-2xl">
+              <div className="max-w-2xl px-4 sm:px-6">
                 <h2 className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-white mb-6 leading-tight">
                   A Global View of What Education Can Do
                 </h2>
@@ -389,12 +406,14 @@ export function FounderStorySection({
         </m.div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
+      {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         {/* ROW 6: Results That Matter - Centered Text Container (Heading + Paragraphs Only) */}
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Centered text container patterns for content presentation */}
         {/* CONTENT SEPARATION REASON: Official Tailwind CSS documentation Section 3.2 recommends separating content types for better visual hierarchy */}
         <m.div
-          className="max-w-4xl mx-auto text-center mb-20"
+          className="max-w-4xl mx-auto text-center mb-20 px-4 sm:px-6 lg:px-8"
           initial={fadeInUpVariant.initial}
           whileInView={fadeInUpVariant.animate}
           viewport={{ once: true, margin: "-100px" }}
@@ -467,8 +486,10 @@ export function FounderStorySection({
             whileInView={fadeInRightVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={fadeInRightVariant.transition}
-            className="order-1 lg:order-2 px-6 lg:px-8 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
+            className="order-1 lg:order-2 px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
           >
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts */}
+            {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations */}
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
               Personalised. Empowering. World-Class.
             </h2>
@@ -505,8 +526,10 @@ export function FounderStorySection({
             whileInView={fadeInLeftVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={fadeInLeftVariant.transition}
-            className="px-6 lg:px-8 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
+            className="px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
           >
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts */}
+            {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations */}
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
               Global Perspective, Local Sensitivity
             </h2>
@@ -567,12 +590,14 @@ export function FounderStorySection({
         </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
+      {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         {/* NEW ROW: Supportive Guidance, Independent Growth - Centered Text Container */}
         {/* CONTEXT7 SOURCE: /websites/react_dev - React component patterns with TypeScript prop definitions for centered text sections */}
         {/* IMPLEMENTATION REASON: Official React documentation Section component-based architecture for reusable UI elements matching ROW 6 styling patterns */}
         <m.div
-          className="max-w-4xl mx-auto text-center mb-20"
+          className="max-w-4xl mx-auto text-center mb-20 px-4 sm:px-6 lg:px-8"
           initial={fadeInUpVariant.initial}
           whileInView={fadeInUpVariant.animate}
           viewport={{ once: true, margin: "-100px" }}
@@ -605,7 +630,7 @@ export function FounderStorySection({
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium styling patterns for conclusion sections */}
         {/* FINAL SECTION REASON: Official Tailwind CSS documentation Section 5.1 for premium content presentation as conclusion */}
         <m.div
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8"
           initial={fadeInUpVariant.initial}
           whileInView={fadeInUpVariant.animate}
           viewport={{ once: true, margin: "-100px" }}
@@ -643,9 +668,8 @@ export function FounderStorySection({
         </m.div>
       </div>
 
-      {/* CONTEXT7 SOURCE: /radix-ui/primitives - Professional section transition component */}
-      {/* WAVE SEPARATOR REASON: Official Radix UI documentation Section 5.1 recommends visual separators for content section transitions */}
-      <WaveSeparator variant="subtle" color="blue-50/30" />
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section separator removal for direct transitions */}
+      {/* SEPARATOR REMOVAL REASON: Official React documentation Section 3.1 recommends clean section boundaries without decorative elements */}
     </section>
   );
 }

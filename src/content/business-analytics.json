@@ -3,6 +3,12 @@
     "lastUpdated": "2025-08-26",
     "recentChanges": [
       {
+        "change": "Updated results documentation with exact client-provided copy: Enhanced school list (added Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's), refined GCSE description wording for clarity",
+        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - JSON object property updates for exact client copy implementation",
+        "date": "2025-08-26",
+        "source": "Direct client requirements - exact copy implementation for results documentation section 1.6"
+      },
+      {
         "change": "Revised existing 3 results cards with new client-approved copy: 11+ School Success (95% pass rate), GCSE Grade Growth (94% 2+ grade growth), Top 2% Test Performance",
         "reason": "CONTEXT7 SOURCE: /jamesnk/newtonsoft.json - JSON content structure updates for enhanced client messaging",
         "date": "2025-08-26",
@@ -27,7 +33,7 @@
       "category": "school_success",
       "metric": "11+ Grammar & Independent School Success",
       "value": "95% pass rate",
-      "description": "Students achieving offers from at least one of their first choice schools, including Eton, St Paul's, Westminster, Highgate and more.",
+      "description": "Students achieving offers from at least one of their first choice schools, including Eton, St Paul's, Westminster, Highgate, Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's and more.",
       "sampleSize": 156,
       "timeframe": "2024-2025 application cycle",
       "verificationLevel": "verified",
@@ -39,7 +45,7 @@
       "category": "grade_improvement",
       "metric": "GCSE Grade Growth",
       "value": "94% 2+ grade growth",
-      "description": "Since 2010 an average of 94% of our GCSE students have improved by two or more full levels.",
+      "description": "Since 2010 an average of 94% our GCSE students improved by two or more full levels during their time with us.",
       "sampleSize": 340,
       "timeframe": "2010-2025 academic years",
       "verificationLevel": "verified",

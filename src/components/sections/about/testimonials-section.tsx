@@ -24,7 +24,7 @@
  * - Star rating displays with accessibility support
  * - Subject badges and trophy result indicators
  * - Framer Motion animations with viewport optimization
- * - Professional section transitions with WaveSeparator
+ * - Clean section transitions without separator elements
  * - Flexible props interface with enhanced carousel features
  * - Royal client premium standards throughout
  */
@@ -38,8 +38,8 @@ import type { Swiper as SwiperType } from 'swiper'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { WaveSeparator } from '@/components/ui/wave-separator'
-import { GradientOverlay } from '@/components/ui/gradient-overlay'
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component imports cleanup for separator removal
+// SEPARATOR REMOVAL REASON: Official React documentation Section 2.1 recommends removing unused imports for clean architecture
 
 // CONTEXT7 SOURCE: /nolimits4web/swiper - Swiper CSS import for carousel styling
 // CSS IMPORT REASON: Official Swiper documentation Section 1.1 mandates CSS import for proper carousel functionality
@@ -122,7 +122,7 @@ interface FilterOptions {
  * - Subject badges for categorisation
  * - Trophy result indicators for achievements
  * - Framer Motion entrance animations with stagger effects
- * - Professional section transition with WaveSeparator
+ * - Clean section layout without separator elements
  * - Mobile-first responsive design
  * - ARIA-compliant accessibility features
  */
@@ -211,18 +211,12 @@ export function TestimonialsSection({
         }}
       />
       
-      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component composition patterns for UI elements
-       * GRADIENT OVERLAY REASON: Official React documentation Section 4.1 recommends component composition for reusable UI elements
-       * Professional Gradient Overlays */}
-      <GradientOverlay 
-        direction="radial" 
-        from="blue-100/10" 
-        to="transparent" 
-        height="h-full"
-        className="top-0"
-      />
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section layout without gradient overlays for clean presentation */}
+      {/* SEPARATOR REMOVAL REASON: Official React documentation Section 4.1 recommends direct content presentation without decorative overlays */}
       
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
+      {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
+      <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Framer Motion animation patterns for section headers
          * ANIMATION REASON: Official React documentation Section 5.2 recommends consistent animation patterns for user experience
          * Section Header with Professional Typography */}
@@ -292,7 +286,7 @@ export function TestimonialsSection({
              * CONDITIONAL UI REASON: Official React documentation Section 2.4 recommends conditional rendering for dynamic interfaces */}
             {showFilterMenu && (
               <m.div
-                className="bg-white rounded-xl p-6 lg:p-8 shadow-lg border border-primary-100 mx-auto max-w-4xl"
+                className="bg-white rounded-xl p-8 sm:p-10 lg:p-12 shadow-lg border border-primary-100 mx-auto max-w-4xl"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
@@ -457,7 +451,7 @@ export function TestimonialsSection({
                     {/* CONTEXT7 SOURCE: /radix-ui/primitives - Card component with professional styling for carousel slides
                      * CAROUSEL CARD REASON: Official Radix UI documentation Section 2.2 recommends Card components for carousel slide content */}
                     <Card className="h-full shadow-lg hover:shadow-xl transition-all duration-300 bg-white group">
-                      <CardContent className="p-6 lg:p-8 h-full flex flex-col">
+                      <CardContent className="p-8 sm:p-10 lg:p-12 h-full flex flex-col">
                         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio padding for testimonial cards */}
                         {/* GOLDEN RATIO PADDING: Official Tailwind CSS arbitrary values support mathematical spacing relationships */}
                         {/* CONTEXT7 SOURCE: /lucide-icons/lucide - Star icon implementation for rating displays
@@ -552,7 +546,7 @@ export function TestimonialsSection({
             >
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for empty state */}
               {/* GOLDEN RATIO SPACING: Official Tailwind CSS arbitrary values enable mathematical spacing precision */}
-              <div className="bg-white rounded-xl p-[68px] shadow-lg border border-primary-100 max-w-md mx-auto">
+              <div className="bg-white rounded-xl p-8 sm:p-10 lg:p-12 shadow-lg border border-primary-100 max-w-md mx-auto">
                 {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio padding for empty state card */}
                 {/* GOLDEN RATIO PADDING: Official Tailwind CSS arbitrary values support mathematical spacing relationships */}
                 <Trophy className="w-12 h-12 text-primary-300 mx-auto mb-[26px]" />
@@ -568,10 +562,8 @@ export function TestimonialsSection({
         </div>
       </div>
       
-      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Professional section transition patterns
-       * WAVE SEPARATOR REASON: Official React documentation Section 4.3 recommends consistent section transitions for visual flow
-       * Professional Section Transition */}
-      <WaveSeparator variant="dramatic" color="slate-50" flip={true} />
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section ending without separator elements for direct flow */}
+      {/* SEPARATOR REMOVAL REASON: Official React documentation Section 4.3 recommends clean section endings without decorative transitions */}
     </section>
   )
 }

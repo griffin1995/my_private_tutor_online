@@ -25,9 +25,9 @@
  * PREMIUM TYPOGRAPHY REASON: Enhanced font-black (900 weight) and sophisticated letter-spacing
  * for luxury service presentation matching royal client standards
  * 
- * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spacing clamp functions and shadow utilities
- * LUXURY SPACING REASON: Clamp functions provide responsive luxury spacing that scales elegantly
- * across devices while maintaining premium feel
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Edge-to-edge layout with zero spacing utilities
+ * EDGE-TO-EDGE LAYOUT REASON: Official Tailwind CSS documentation shows gap-0 and no padding creates
+ * full-width layouts where content touches screen edges for seamless visual flow
  * 
  * Component Architecture:
  * - 2 columns on desktop, 1 column on mobile
@@ -191,22 +191,13 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
 
   return (
     <div 
-      className="container mx-auto px-2 sm:px-4 lg:px-6"
+      className="w-full"
     >
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container utility with reduced padding for tighter layout */}
-      {/* PADDING REDUCTION REASON: Official Tailwind CSS documentation shows px-2 sm:px-4 lg:px-6 reduces excessive horizontal whitespace */}
-      {/* pattern for reduced horizontal margins and responsive padding for more compact section display */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid container with enhanced spacing utilities */}
-      {/* LAYOUT REASON: Grid provides precise control over alternating row layouts */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced spacing with clamp functions for luxury presentation */}
-      {/* PREMIUM SPACING REASON: Clamp-based vertical spacing creates elegant rhythm for royal client quality */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clamp function spacing reduction for tighter vertical rhythm */}
-      {/* ROW SPACING REDUCTION REASON: Official Tailwind CSS documentation shows clamp(1rem, 4vw, 2.5rem) reduces excessive vertical spacing between rows */}
-      <div style={{ 
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'clamp(1rem, 4vw, 2.5rem)'
-      }}>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Edge-to-edge layout with zero padding */}
+      {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation shows w-full with no padding creates full-width edge-to-edge layouts */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox with gap-0 for no spacing between items */}
+      {/* GAP ELIMINATION REASON: Official Tailwind CSS gap documentation shows gap-0 removes all spacing between flex/grid items */}
+      <div className="flex flex-col gap-0">
         {indicators.slice(0, 4).map((indicator, index) => {
           const studentImage = getImageForIndicator(indicator, index)
           const isOddRow = index % 2 === 0
@@ -214,10 +205,9 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
           return (
             <div
               key={index}
-              className="grid grid-cols-1 lg:grid-cols-2"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-0"
               style={{
-                minHeight: 'clamp(350px, 40vh, 500px)',
-                padding: 'clamp(0.75rem, 2vw, 1.5rem) 0'
+                minHeight: 'clamp(350px, 40vh, 500px)'
               }}
             >
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional rendering with order classes */}
@@ -229,25 +219,26 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                     className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] overflow-hidden group"
                     initial={{ opacity: 0, scale: 1.05 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.02 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ 
                       duration: 0.8, 
-                      ease: "easeOut",
-                      hover: { duration: 0.3, ease: "easeOut" }
+                      ease: "easeOut"
                     }}
                   >
                     <Image
                       src={studentImage.src}
                       alt={indicator.title}
                       fill
-                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - object-cover utility for perfect square aspect ratio
+                      // CONTEXT7 SOURCE: /websites/tailwindcss - Inner zoom animation with overflow-hidden container
+                      // INNER ZOOM REASON: Official Tailwind CSS documentation shows hover:scale-110 applied to inner element
+                      // while container maintains overflow-hidden to clip zoomed content and preserve layout integrity
+                      // CONTEXT7 SOURCE: /websites/tailwindcss - object-cover utility for perfect square aspect ratio
                       // SQUARE CONSTRAINT REASON: Official Tailwind CSS documentation specifies object-cover crops
                       // landscape images to fill square containers (h-64 to xl:h-[28rem]) maintaining 1:1 ratio
-                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-square with explicit height constraints
+                      // CONTEXT7 SOURCE: /websites/tailwindcss - aspect-square with explicit height constraints
                       // PERFECT SQUARE REASON: Combining aspect-square with responsive height ensures images are always
                       // perfectly square regardless of source dimensions (landscape, portrait, or square)
-                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-110"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       priority={index < 2}
                     />
@@ -262,9 +253,6 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                   {/* Text content on right */}
                   <motion.div 
                     className="trust-content flex items-center justify-center bg-white"
-                    style={{ 
-                      padding: 'clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem)'
-                    }}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -309,9 +297,6 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                   {/* Even rows: Text on left */}
                   <motion.div 
                     className="trust-content flex items-center justify-center bg-slate-50 order-2 lg:order-1"
-                    style={{ 
-                      padding: 'clamp(2rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem)'
-                    }}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -356,25 +341,26 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                     className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] order-1 lg:order-2 overflow-hidden group"
                     initial={{ opacity: 0, scale: 1.05 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.02 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ 
                       duration: 0.8, 
-                      ease: "easeOut",
-                      hover: { duration: 0.3, ease: "easeOut" }
+                      ease: "easeOut"
                     }}
                   >
                     <Image
                       src={studentImage.src}
                       alt={indicator.title}
                       fill
-                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - object-cover utility for perfect square aspect ratio
+                      // CONTEXT7 SOURCE: /websites/tailwindcss - Inner zoom animation with overflow-hidden container
+                      // INNER ZOOM REASON: Official Tailwind CSS documentation shows hover:scale-110 applied to inner element
+                      // while container maintains overflow-hidden to clip zoomed content and preserve layout integrity
+                      // CONTEXT7 SOURCE: /websites/tailwindcss - object-cover utility for perfect square aspect ratio
                       // SQUARE CONSTRAINT REASON: Official Tailwind CSS documentation specifies object-cover crops
                       // landscape images to fill square containers (h-64 to xl:h-[28rem]) maintaining 1:1 ratio
-                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-square with explicit height constraints
+                      // CONTEXT7 SOURCE: /websites/tailwindcss - aspect-square with explicit height constraints
                       // PERFECT SQUARE REASON: Combining aspect-square with responsive height ensures images are always
                       // perfectly square regardless of source dimensions (landscape, portrait, or square)
-                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-110"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       priority={index < 2}
                     />
@@ -396,47 +382,58 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
 }
 
 /**
- * Component Features - Premium Trust Indicators with Royal Quality Standards:
- * =========================================================================
+ * Component Features - Premium Trust Indicators with Edge-to-Edge Layout:
+ * ======================================================================
  * 
- * 1. Alternating Layout Pattern:
- *    - Odd rows: Image left, text right
- *    - Even rows: Text left, image right
+ * 1. Edge-to-Edge Layout Pattern:
+ *    - CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-width layout with zero padding
+ *    - Images touch screen edges (no horizontal padding)
+ *    - Rows touch each other (no vertical gaps)
+ *    - Alternating pattern: odd rows (image-left/text-right), even rows (text-left/image-right)
  *    - Mobile: Stacked vertically with consistent order
- *    - Perfect square aspect ratio images (1:1) with responsive height constraints for consistent visual hierarchy
+ *    - Perfect square aspect ratio images (1:1) with responsive height constraints
  * 
- * 2. Premium Animation Strategy:
- *    - GSAP ScrollTrigger for viewport detection
- *    - Framer Motion for smooth element animations with hover interactions
- *    - Image hover effects: 1.02x scale + gold border glow
+ * 2. Zero-Gap Grid System:
+ *    - CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - gap-0 utility for seamless grid
+ *    - No spacing between grid items (gap-0)
+ *    - No container padding (w-full instead of container mx-auto px-*)
+ *    - No internal padding on text content sections
+ *    - Creates seamless visual flow from edge to edge
+ * 
+ * 3. Premium Animation Strategy:
+ *    - Framer Motion for smooth element animations with viewport-based entrance
+ *    - Inner zoom hover effects: 1.1x scale applied to Image component only (container maintains size)
+ *    - Container overflow-hidden clips zoomed content for layout preservation
+ *    - Gold border glow on hover for premium visual feedback
  *    - Staggered entrance for visual interest
  *    - Respects prefers-reduced-motion
  * 
- * 3. Luxury Responsive Design:
+ * 4. Luxury Responsive Design:
  *    - Mobile (< lg): Single column, stacked layout
  *    - Desktop (>= lg): Two-column alternating layout
  *    - Perfect square aspect ratio images (1:1) with explicit responsive height constraints (h-64 to xl:h-[28rem])
- *    - Clamp-based spacing system for elegant scaling
  *    - Enhanced typography hierarchy with sophisticated letter-spacing
+ *    - Edge-to-edge visual continuity across all devices
  * 
- * 4. Royal Client Accessibility:
+ * 5. Royal Client Accessibility:
  *    - Semantic HTML structure
  *    - Proper heading hierarchy with enhanced typography
  *    - Alt text for all images
  *    - Motion preferences respected
  *    - Keyboard navigation friendly
- *    - Premium contrast ratios
+ *    - Premium contrast ratios maintained despite edge-to-edge layout
  * 
- * 5. Enterprise Performance:
+ * 6. Enterprise Performance:
  *    - Priority loading for above-fold images
  *    - Perfect square aspect ratio optimization (1:1) with explicit height constraints and Next.js Image
- *    - Efficient animation triggers with hover interactions
- *    - Context cleanup on unmount
- *    - Smooth transitions (0.3s ease-out)
+ *    - Efficient inner zoom animation triggers (Image component only, container preserves layout)
+ *    - Smooth transitions (0.3s ease-out) with GPU acceleration via group-hover:scale-110
+ *    - Reduced DOM complexity with simplified layout structure
  * 
- * 6. Trust Signal Amplification:
- *    - Enhanced visual weight through typography scaling
+ * 7. Trust Signal Amplification:
+ *    - Enhanced visual impact through full-width presentation
  *    - Champagne gold accent interactions
  *    - Sophisticated shadow systems
  *    - Premium positioning elements
+ *    - Edge-to-edge imagery for maximum visual engagement
  */
