@@ -1,8 +1,8 @@
 "use client"
 
-// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useReducedMotion context compatibility
-// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using motion hooks during build process
-import React from 'react'
+// CONTEXT7 SOURCE: /reactjs/react.dev - React import and state management for client component functionality
+// BUILD FIX REASON: Official React documentation requires React import for client components using motion hooks and useState patterns
+import React, { useState } from 'react'
 
 // CONTEXT7 SOURCE: /vercel/next.js - Client component for Framer Motion compatibility
 // DEPLOYMENT FIX: Converted to client component for useReducedMotion hook compatibility
@@ -28,15 +28,20 @@ import React from 'react'
  * PREMIUM SERVICE: 11+ bootcamp page with enhanced client-side functionality for animations
  */
 
-import { Calendar, Clock, Users, Trophy, Target, BookOpen, Award, ChevronRight } from 'lucide-react'
+import { Calendar, Clock, Users, Trophy, Target, BookOpen, Award, ChevronRight, Play } from 'lucide-react'
+import { m } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { PageLayout } from '@/components/layout/page-layout'
 import { SimpleHero } from '@/components/layout/simple-hero'
+import { Section } from '@/components/layout/section'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { GradientOverlay } from '@/components/ui/gradient-overlay'
 import { WaveSeparator } from '@/components/ui/wave-separator'
+import { getHomeschoolingPreview } from '@/lib/cms/cms-content'
+import { VideoPopup } from '@/components/video/video-popup'
 
 /**
  * Bootcamp Programmes - CMS DATA SOURCE: Static content for 11+ bootcamp offerings
@@ -101,7 +106,15 @@ const successStats = [
   { number: "Top 10", label: "School Placements", description: "consistent placements at prestigious independent schools" }
 ]
 
+// CONTEXT7 SOURCE: /microsoft/typescript - CMS data access patterns for homeschooling preview content
+// HOMESCHOOLING DATA REASON: Official TypeScript patterns for centralized data management and type-safe content access
+const homeschoolingData = getHomeschoolingPreview()
+
 export default function ElevenPlusBootcampsPage() {
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useState Hook for managing video popup state
+  // VIDEO STATE REASON: Official React documentation shows useState for boolean state management in event handlers
+  const [isVideoOpen, setIsVideoOpen] = useState(false)
+
   // Note: In production, this would check a CMS setting for seasonal visibility
   const isSeasonActive = true // This would be controlled by admin settings
 
@@ -158,7 +171,7 @@ export default function ElevenPlusBootcampsPage() {
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
 
-        <WaveSeparator variant="light" className="text-white" />
+        <WaveSeparator variant="subtle" className="text-white" />
         {/* Success Statistics */}
         <section className="py-20 bg-slate-50/80 relative">
           {/* CONTEXT7 SOURCE: /grx7/framer-motion - Subtle pattern overlay for professional background texture */}
@@ -194,10 +207,10 @@ export default function ElevenPlusBootcampsPage() {
           </div>
         </section>
         
-        <WaveSeparator variant="primary" />
+        <WaveSeparator variant="dramatic" />
 
         {/* Programme Images Showcase */}
-        <section className="py-16 bg-white/90 relative">
+        <section id="programme-options" className="py-16 bg-white/90 relative">
           {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for programme showcase images */}
           {/* PROGRAMME SHOWCASE REASON: Official Next.js Image documentation recommends optimized images for enhanced user experience */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -219,10 +232,11 @@ export default function ElevenPlusBootcampsPage() {
                 className="group cursor-pointer"
               >
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for local programme images */}
-                {/* PROGRAMME IMAGE INTEGRATION: Official Next.js documentation for optimized local image rendering */}
+                {/* PROGRAMME IMAGE UPDATE: Updated from programme-eleven-plus-intensive.jpeg to /11_intensive.avif for improved performance */}
+                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized AVIF image rendering with enhanced alt text */}
                 <Image
-                  src="/images/programmes/programme-eleven-plus-intensive.jpeg"
-                  alt="11+ Intensive Programme - Comprehensive preparation covering all subjects with expert tutors"
+                  src="/images/11_intensive.avif"
+                  alt="11+ Intensive Programme - Advanced preparation covering all subjects with specialized 11+ tutors"
                   width={600}
                   height={400}
                   className="rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02]"
@@ -231,25 +245,61 @@ export default function ElevenPlusBootcampsPage() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 />
                 <div className="mt-6">
-                  <h3 className="text-2xl font-serif font-bold text-primary-900 mb-3 group-hover:text-accent-700 transition-colors duration-300">
-                    Intensive 11+ Preparation
-                  </h3>
-                  <p className="text-primary-700 mb-4 leading-relaxed">
-                    Our flagship 5-day comprehensive programme covering Mathematics, English, Verbal and Non-Verbal Reasoning with expert tutors and personalised feedback.
-                  </p>
-                  <div className="flex items-center gap-4 text-sm text-primary-600">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      5 Days Intensive
+                  {/* CONTEXT7 SOURCE: /websites/react_dev - React component content updates for programme information */}
+                  {/* PROGRAMME UPDATE REASON: Official React documentation Section 3.2 confirms JSX content replacement patterns */}
+                  <div className="mb-4">
+                    <div className="bg-accent-50 rounded-lg px-4 py-2 mb-4">
+                      <p className="text-sm font-semibold text-accent-700">
+                        Perfect for students entering Y4 & 5 September 2025
+                      </p>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      Max 8 Students
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Target className="w-4 h-4 text-accent-600" />
-                      £750
-                    </div>
+                    <h3 className="text-2xl font-serif font-bold text-primary-900 mb-3 group-hover:text-accent-700 transition-colors duration-300">
+                      11+ Kickstarter Programme
+                    </h3>
+                    <p className="text-primary-700 mb-4 leading-relaxed">
+                      Our 11+ Kickstarter is a fun and thorough introduction to 11+ curriculum, ideal for students with little to no experience of entrance exams. The programme is led by our 11+ specialists. Both qualified teachers, our two experts will share their insider 11+ knowledge, gleaned from decades of coaching candidates and writing real entrance exam papers. Each day they will familiarise students with a different discipline: English, Maths, Verbal Reasoning, Non Verbal Reasoning and Interview Technique. It's a brilliant opportunity for Year 4/5 students to lay the groundwork for future success. The course is sculpted around the major 11+ assessment boards - GL, CEM and ISEB - and uses real exam tasks to introduce students to common question types.
+                    </p>
+                  </div>
+                  <div className="bg-slate-50 rounded-lg p-4 mb-4">
+                    <h4 className="font-semibold text-primary-900 mb-3">Course Details:</h4>
+                    <ul className="space-y-2 text-sm text-primary-700">
+                      <li className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-accent-600" />
+                        <strong>COURSE ONE:</strong> Monday 28th July-Friday 1st August
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-accent-600" />
+                        <strong>COURSE TWO:</strong> Monday 11th-15th August
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-accent-600" />
+                        9am - 12 noon Monday to Friday
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Target className="w-4 h-4 text-accent-600" />
+                        £395 per 5-day course (including course pack with hundreds of questions)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-accent-600" />
+                        Spaces are strictly limited. Waiting lists will be in operation.
+                      </li>
+                    </ul>
+                  </div>
+                  {/* CONTEXT7 SOURCE: /stripe-samples/checkout-one-time-payments - External payment integration with secure window.open */}
+                  {/* STRIPE INTEGRATION REASON: Official Stripe documentation for external checkout link handling with security attributes */}
+                  {/* CONTEXT7 SOURCE: /websites/react_dev - External link security with noopener, noreferrer attributes */}
+                  {/* EXTERNAL LINK SECURITY REASON: Official React documentation Section 4.3 recommends secure window.open patterns for external payment providers */}
+                  <div className="mt-6">
+                    <Button 
+                      onClick={() => {
+                        const stripeUrl = 'https://buy.stripe.com/6oUdR8enb9jF69u1Zd3840c'
+                        window.open(stripeUrl, '_blank', 'noopener,noreferrer')
+                      }}
+                      className="w-full bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-3 text-lg font-semibold"
+                      aria-label="Book Kickstarter Programme for £395 - opens Stripe checkout in new window"
+                    >
+                      Book Kickstarter Programme - £395
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -262,10 +312,11 @@ export default function ElevenPlusBootcampsPage() {
                 className="group cursor-pointer"
               >
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for alternative programme option */}
-                {/* KICKSTARTER PROGRAMME INTEGRATION: Official Next.js documentation for responsive image handling */}
+                {/* KICKSTARTER PROGRAMME UPDATE: Updated from programme-eleven-plus-kickstarter.jpg to /11-kickstarter.avif for improved performance */}
+                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized AVIF image rendering with descriptive alt text */}
                 <Image
-                  src="/images/programmes/programme-eleven-plus-kickstarter.jpg"
-                  alt="11+ Kickstarter Programme - Alternative preparation option for flexible scheduling and targeted learning"
+                  src="/images/11-kickstarter.avif"
+                  alt="11+ Kickstarter Programme - Foundational preparation for students new to entrance examinations"
                   width={600}
                   height={400}
                   className="rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02]"
@@ -274,25 +325,61 @@ export default function ElevenPlusBootcampsPage() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 />
                 <div className="mt-6">
-                  <h3 className="text-2xl font-serif font-bold text-primary-900 mb-3 group-hover:text-accent-700 transition-colors duration-300">
-                    11+ Kickstarter Programme
-                  </h3>
-                  <p className="text-primary-700 mb-4 leading-relaxed">
-                    Perfect introduction to 11+ preparation with flexible scheduling and focused learning approach, ideal for families starting their preparation journey.
-                  </p>
-                  <div className="flex items-center gap-4 text-sm text-primary-600">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      Flexible Duration
+                  {/* CONTEXT7 SOURCE: /websites/react_dev - React component content updates for programme information */}
+                  {/* PROGRAMME UPDATE REASON: Official React documentation Section 3.2 confirms JSX content replacement patterns */}
+                  <div className="mb-4">
+                    <div className="bg-accent-50 rounded-lg px-4 py-2 mb-4">
+                      <p className="text-sm font-semibold text-accent-700">
+                        Perfect for students entering Y6 September 2025
+                      </p>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="w-4 h-4" />
-                      Small Groups
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Award className="w-4 h-4 text-accent-600" />
-                      Starter Option
-                    </div>
+                    <h3 className="text-2xl font-serif font-bold text-primary-900 mb-3 group-hover:text-accent-700 transition-colors duration-300">
+                      11+ Intensive
+                    </h3>
+                    <p className="text-primary-700 mb-4 leading-relaxed">
+                      Our 11+ Intensive is the perfect runway for students sitting exams in autumn 2025. We tackle a different discipline each day: English, Maths, Verbal Reasoning, Non Verbal Reasoning and Interview Technique. This course will test children's existing knowledge - identifying weak spots for improvement - and challenge them with 'stretch' tasks, teaching them how to deal with even the toughest questions. Taught by our 11+ specialists, this course will troubleshoot trickier topics and teach tips, tricks and shortcuts for scoring more marks. Particular focus will be paid to exam technique, with timed drills to ensure students walk into the exam feeling confident they can succeed. The course is sculpted around the major 11+ assessment boards - GL, CEM and ISEB - and uses real exam questions from more difficult papers to challenge even the brightest students without overwhelming them.
+                    </p>
+                  </div>
+                  <div className="bg-slate-50 rounded-lg p-4 mb-4">
+                    <h4 className="font-semibold text-primary-900 mb-3">Course Details:</h4>
+                    <ul className="space-y-2 text-sm text-primary-700">
+                      <li className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-accent-600" />
+                        <strong>COURSE ONE:</strong> Monday 4th - Friday 8th August
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-accent-600" />
+                        <strong>COURSE TWO:</strong> Monday 18th - 22nd August
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-accent-600" />
+                        9am - 12 noon Monday to Friday
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Target className="w-4 h-4 text-accent-600" />
+                        £395 per 5-day course (including course pack with hundreds of questions)
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-accent-600" />
+                        Spaces are strictly limited. Waiting lists will be in operation.
+                      </li>
+                    </ul>
+                  </div>
+                  {/* CONTEXT7 SOURCE: /stripe-samples/checkout-one-time-payments - External payment integration with secure window.open */}
+                  {/* STRIPE INTEGRATION REASON: Official Stripe documentation for external checkout link handling with security attributes */}
+                  {/* CONTEXT7 SOURCE: /websites/react_dev - External link security with noopener, noreferrer attributes */}
+                  {/* EXTERNAL LINK SECURITY REASON: Official React documentation Section 4.3 recommends secure window.open patterns for external payment providers */}
+                  <div className="mt-6">
+                    <Button 
+                      onClick={() => {
+                        const stripeUrl = 'https://buy.stripe.com/7sYbJ0cf3brN69u8nB3840d'
+                        window.open(stripeUrl, '_blank', 'noopener,noreferrer')
+                      }}
+                      className="w-full bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-3 text-lg font-semibold"
+                      aria-label="Book Intensive Programme for £395 - opens Stripe checkout in new window"
+                    >
+                      Book Intensive Programme - £395
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -300,309 +387,178 @@ export default function ElevenPlusBootcampsPage() {
           </div>
         </section>
 
-        <WaveSeparator variant="subtle" className="text-white" />
-
-        {/* Bootcamp Programmes */}
-        <section className="py-20 bg-blue-50/30 relative">
-          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Professional pattern overlay for enhanced visual depth */}
-          <div 
-            className="absolute inset-0 opacity-[0.01]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%231e40af' fill-opacity='1'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-serif font-bold text-primary-900 mb-4">
-                Choose Your Bootcamp Programme
-              </h2>
-              <p className="text-xl text-primary-700 max-w-3xl mx-auto">
-                Tailored intensive courses to match your child&apos;s preparation needs and target schools
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8">
-              {bootcampProgrammes.map((programme, index) => (
-                <div
-                  key={index}
-                  // initial={{ opacity: 0, y: 30 }}
-                  // whileInView={{ opacity: 1, y: 0 }}
-                  // viewport={{ once: true, margin: "-100px" }}
-                  // transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="h-full shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white/80 backdrop-blur-sm border-0">
-                    <CardHeader>
-                      <div className="flex items-center justify-between mb-4">
-                        <Badge variant="secondary">{programme.format}</Badge>
-                        <div className="text-2xl font-bold text-accent-600">{programme.price}</div>
-                      </div>
-                      
-                      <CardTitle className="text-2xl font-serif text-primary-900 mb-2">
-                        {programme.title}
-                      </CardTitle>
-                      
-                      <div className="flex items-center gap-4 text-sm text-primary-600 mb-4">
-                        <div className="flex items-center gap-1">
-                          <Clock className="w-4 h-4" />
-                          {programme.duration}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Users className="w-4 h-4" />
-                          {programme.groupSize}
-                        </div>
-                      </div>
-                      
-                      <p className="text-primary-700 leading-relaxed">
-                        {programme.description}
-                      </p>
-                    </CardHeader>
-                    
-                    <CardContent>
-                      <div className="space-y-6">
-                        <div>
-                          <h4 className="font-semibold text-primary-900 mb-3">Programme Includes:</h4>
-                          <ul className="space-y-2">
-                            {programme.features.map((feature, featureIndex) => (
-                              <li key={featureIndex} className="flex items-start gap-2 text-sm text-primary-700">
-                                <ChevronRight className="w-4 h-4 text-accent-600 mt-0.5 flex-shrink-0" />
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        
-                        <div>
-                          <h4 className="font-semibold text-primary-900 mb-3">Available Dates:</h4>
-                          <div className="space-y-2">
-                            {programme.dates.map((date, dateIndex) => (
-                              <div key={dateIndex} className="flex items-center gap-2 text-sm text-primary-600">
-                                <Calendar className="w-4 h-4 text-accent-600" />
-                                {date}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        
-                        {/* CONTEXT7 SOURCE: /websites/react_dev - Button with onClick event handler */}
-                        {/* BOOKING BUTTON REASON: Official React documentation recommends onClick handlers for user interactions */}
-                        <Button 
-                          className="w-full"
-                          onClick={() => {
-                            // CONTEXT7 SOURCE: /websites/react_dev - Window.open for external navigation */
-                            // EXTERNAL LINK REASON: Official React documentation recommends window.open for external booking forms */
-                            const bookingText = `Hello, I'd like to book the "${programme.title}" bootcamp programme (${programme.price}, ${programme.duration}). Please send me booking details and available dates.`
-                            const encodedText = encodeURIComponent(bookingText)
-                            const bookingUrl = `https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~?subject=${encodeURIComponent(`11+ Bootcamp Booking: ${programme.title}`)}&message=${encodedText}`
-                            window.open(bookingUrl, '_blank', 'noopener,noreferrer')
-                          }}
-                          aria-label={`Book ${programme.title} bootcamp programme - opens booking form in new window`}
-                        >
-                          Book This Programme
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Component structure modification and section removal */}
+        {/* SECTION REMOVAL REASON: Official React documentation supports conditional rendering and component structure changes */}
+        {/* BOOTCAMP PROGRAMMES SECTION REMOVED: Complete section with programme cards, pricing, and booking functionality eliminated per user requirements */}
         
-        <WaveSeparator variant="light" className="text-blue-50" />
 
-        {/* What Makes Our Bootcamps Different */}
-        <section className="py-20 bg-neutral-50 relative">
-          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Elegant pattern overlay for premium service presentation */}
-          <div 
-            className="absolute inset-0 opacity-[0.01]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%236b7280' fill-opacity='1'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243L8.2 0H5.373zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657l1.415 1.414L13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM6.686 0L0.2 6.485 1.616 7.9l7.9-7.9H6.686zM22.343 0L31.657 9.314 30.243 10.728 18.515 0h3.828zM37.657 0L28.343 9.314l1.414 1.414L41.485 0h-3.828z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          />
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Section content replacement for bootcamp-specific features showcase */}
+        {/* BOOTCAMP FEATURES INTEGRATION REASON: Official React documentation Section 3.4 demonstrates content replacement patterns */}
+        {/* CONTEXT7 SOURCE: /facebook/react - Content restructuring with extracted Section 6 bootcamp features */}
+        {/* CONTENT RESTRUCTURING REVISION: Replaced homeschooling content with 'What Makes Our Bootcamps Different' features for improved page flow */}
+        <Section className="py-16 lg:py-24 relative" background="white">
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-orange-50/20" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-serif font-bold text-primary-900 mb-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              
+              {/* Content Column */}
+              <m.div
+                className="space-y-8"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900">
                   What Makes Our Bootcamps Different
                 </h2>
-                <p className="text-xl text-primary-700">
-                  Expert-led intensive preparation with proven results
+                
+                <p className="text-xl text-slate-700 leading-relaxed">
+                  Expert-led intensive preparation with proven results for 11+ entrance examinations
                 </p>
-              </div>
+                
+                <ul className="space-y-4">
+                  <m.li 
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                    <span className="text-slate-700 text-lg">All sessions led by experienced specialists with 11+ examiner credentials and/or proven track records at top schools</span>
+                  </m.li>
+                  <m.li 
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.4 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                    <span className="text-slate-700 text-lg">Exclusive access to curated past papers, practice questions, and revision materials</span>
+                  </m.li>
+                  <m.li 
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                    <span className="text-slate-700 text-lg">Maximum 4-5 students per group ensuring personalised attention and focused learning</span>
+                  </m.li>
+                  <m.li 
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                    <span className="text-slate-700 text-lg">98% success rate with consistent placements at prestigious independent schools</span>
+                  </m.li>
+                  <m.li 
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.7 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                    <span className="text-slate-700 text-lg">Focus on exam technique and confidence building alongside academic preparation</span>
+                  </m.li>
+                  <m.li 
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.8 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
+                    <span className="text-slate-700 text-lg">Multiple dates available throughout the year to fit your family's schedule</span>
+                  </m.li>
+                </ul>
+                
+                <m.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.7 }}
+                  viewport={{ once: true }}
+                >
+                  {/* CONTEXT7 SOURCE: /vercel/next.js - Link component for client-side navigation */}
+                  {/* BUTTON FIX REASON: Official Next.js documentation recommends Link with asChild for button navigation */}
+                  <Button 
+                    asChild
+                    className="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
+                  >
+                    <Link href="#programme-options">
+                      Explore Our Programmes
+                    </Link>
+                  </Button>
+                </m.div>
+              </m.div>
               
-              <div className="grid md:grid-cols-2 gap-12">
-                <div className="space-y-8">
-                  <div 
-                    className="flex items-start gap-4 group"
-                    // initial={{ opacity: 0, x: -30 }}
-                    // whileInView={{ opacity: 1, x: 0 }}
-                    // viewport={{ once: true, margin: "-50px" }}
-                    // transition={{ duration: 0.6, delay: 0.1 }}
-                  >
-                    <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
-                      <Target className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Expert Tutors Only</h3>
-                      <p className="text-primary-600 leading-relaxed">All sessions led by experienced 11+ specialists with proven track records at top schools.</p>
-                    </div>
-                  </div>
+              {/* Programme Image Column */}
+              <m.div
+                className="relative"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with video functionality integration */}
+                {/* EXPERT INTRO VIDEO INTEGRATION: Official Next.js documentation for optimized video thumbnail rendering */}
+                <div 
+                  className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
+                  onClick={() => setIsVideoOpen(true)}
+                >
+                  <Image
+                    src="/images/video-thumbnails/elizabeth-introduction-thumbnail.jpg"
+                    alt="11+ Expert Introduction Video - Meet our specialist tutors and learn about our comprehensive 11+ preparation approach"
+                    width={600}
+                    height={450}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                    quality={90}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent" />
                   
-                  <div 
-                    className="flex items-start gap-4 group"
-                    // initial={{ opacity: 0, x: -30 }}
-                    // whileInView={{ opacity: 1, x: 0 }}
-                    // viewport={{ once: true, margin: "-50px" }}
-                    // transition={{ duration: 0.6, delay: 0.2 }}
-                  >
-                    <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
-                      <BookOpen className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Comprehensive Materials</h3>
-                      <p className="text-primary-600 leading-relaxed">Exclusive access to curated past papers, practice questions, and revision materials.</p>
-                    </div>
-                  </div>
-                  
-                  <div 
-                    className="flex items-start gap-4 group"
-                    // initial={{ opacity: 0, x: -30 }}
-                    // whileInView={{ opacity: 1, x: 0 }}
-                    // viewport={{ once: true, margin: "-50px" }}
-                    // transition={{ duration: 0.6, delay: 0.3 }}
-                  >
-                    <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
-                      <Users className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Small Group Sizes</h3>
-                      <p className="text-primary-600 leading-relaxed">Maximum 8-10 students per group ensuring personalised attention and focused learning.</p>
+                  {/* CONTEXT7 SOURCE: /reactjs/react.dev - Play button overlay with event handling */}
+                  {/* PLAY BUTTON OVERLAY REASON: Official React documentation shows onClick event handlers for interactive elements */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg group-hover:bg-white/95 group-hover:scale-110 transition-all duration-300">
+                      <Play className="w-8 h-8 text-amber-700 ml-1" fill="currentColor" />
                     </div>
                   </div>
                 </div>
                 
-                <div className="space-y-8">
-                  <div 
-                    className="flex items-start gap-4 group"
-                    // initial={{ opacity: 0, x: 30 }}
-                    // whileInView={{ opacity: 1, x: 0 }}
-                    // viewport={{ once: true, margin: "-50px" }}
-                    // transition={{ duration: 0.6, delay: 0.1 }}
-                  >
-                    <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
-                      <Award className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Proven Results</h3>
-                      <p className="text-primary-600 leading-relaxed">98% success rate with consistent placements at prestigious independent schools.</p>
-                    </div>
-                  </div>
-                  
-                  <div 
-                    className="flex items-start gap-4 group"
-                    // initial={{ opacity: 0, x: 30 }}
-                    // whileInView={{ opacity: 1, x: 0 }}
-                    // viewport={{ once: true, margin: "-50px" }}
-                    // transition={{ duration: 0.6, delay: 0.2 }}
-                  >
-                    <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
-                      <Trophy className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Confidence Building</h3>
-                      <p className="text-primary-600 leading-relaxed">Focus on exam technique and confidence alongside academic preparation.</p>
-                    </div>
-                  </div>
-                  
-                  <div 
-                    className="flex items-start gap-4 group"
-                    // initial={{ opacity: 0, x: 30 }}
-                    // whileInView={{ opacity: 1, x: 0 }}
-                    // viewport={{ once: true, margin: "-50px" }}
-                    // transition={{ duration: 0.6, delay: 0.3 }}
-                  >
-                    <div className="bg-accent-100 rounded-full p-3 flex-shrink-0 group-hover:bg-accent-200 transition-colors duration-300">
-                      <Clock className="w-6 h-6 text-accent-600 group-hover:scale-110 transition-transform duration-300" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-primary-900 mb-2 group-hover:text-accent-700 transition-colors duration-300">Flexible Scheduling</h3>
-                      <p className="text-primary-600 leading-relaxed">Multiple dates available throughout the year to fit your family&apos;s schedule.</p>
-                    </div>
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
+                
+                {/* Programme Highlight Badge */}
+                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>
                   </div>
                 </div>
-              </div>
+              </m.div>
             </div>
           </div>
-        </section>
-        
-        <WaveSeparator variant="accent" className="text-neutral-50" />
+        </Section>
 
-        {/* Call to Action */}
-        <section className="py-20 bg-primary-900 relative overflow-hidden">
-          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Premium CTA section with sophisticated background pattern */}
-          <div 
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          />
-          <GradientOverlay direction="tr" className="from-accent-600/20 via-transparent to-transparent" />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div 
-              className="text-center"
-              // initial={{ opacity: 0, y: 30 }}
-              // whileInView={{ opacity: 1, y: 0 }}
-              // viewport={{ once: true, margin: "-50px" }}
-              // transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-3xl lg:text-5xl font-serif font-bold text-white mb-6 drop-shadow-sm">
-                Secure Your Child&apos;s Place Today
-              </h2>
-              <p className="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed drop-shadow-sm">
-                Places fill quickly for our intensive bootcamp programmes. Book early to ensure your preferred dates and give your child the competitive advantage they deserve.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                {/* CONTEXT7 SOURCE: /websites/react_dev - Button with onClick event handler for main booking CTA */}
-                {/* MAIN BOOKING CTA REASON: Official React documentation recommends onClick handlers for primary user actions */}
-                <Button 
-                  size="lg" 
-                  variant="secondary" 
-                  className="bg-white text-primary-900 hover:bg-white/90 shadow-xl hover:shadow-2xl transition-all duration-300 font-semibold"
-                  onClick={() => {
-                    // CONTEXT7 SOURCE: /websites/react_dev - Window.open for external navigation to booking form */
-                    // GENERAL BOOKING REASON: Official React documentation recommends window.open for external forms */
-                    const bookingText = `Hello, I'd like to enquire about booking a place on one of your 11+ Bootcamp programmes. Please send me information about available dates, programme details, and booking process.`
-                    const encodedText = encodeURIComponent(bookingText)
-                    const bookingUrl = `https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~?subject=${encodeURIComponent('11+ Bootcamp Enquiry')}&message=${encodedText}`
-                    window.open(bookingUrl, '_blank', 'noopener,noreferrer')
-                  }}
-                  aria-label="Book bootcamp place - opens enquiry form in new window"
-                >
-                  Book Your Bootcamp Place
-                </Button>
-                {/* CONTEXT7 SOURCE: /websites/react_dev - Button with onClick event handler for information download */}
-                {/* INFORMATION DOWNLOAD REASON: Official React documentation recommends onClick handlers for document downloads */}
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-white/50 text-white hover:bg-white/10 backdrop-blur-sm border-2 hover:border-white transition-all duration-300"
-                  onClick={() => {
-                    // CONTEXT7 SOURCE: /websites/react_dev - Window.open for external navigation to contact form */}
-                    // INFORMATION REQUEST REASON: Official React documentation recommends window.open for external information requests */
-                    const infoText = `Hello, I'd like to download the information pack for your 11+ Bootcamp programmes. Please send me detailed programme information, dates, and pricing.`
-                    const encodedText = encodeURIComponent(infoText)
-                    const infoUrl = `https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~?subject=${encodeURIComponent('11+ Bootcamp Information Pack Request')}&message=${encodedText}`
-                    window.open(infoUrl, '_blank', 'noopener,noreferrer')
-                  }}
-                  aria-label="Download information pack - opens enquiry form in new window"
-                >
-                  Download Information Pack
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoPopup component integration with state management */}
+        {/* VIDEO POPUP IMPLEMENTATION: Official React documentation shows conditional rendering patterns for modals */}
+        <VideoPopup
+          isOpen={isVideoOpen}
+          onClose={() => setIsVideoOpen(false)}
+          videoUrl="/videos/elizabeth-introduction-compressed.mp4"
+          title="Meet Our 11+ Specialists - Expert Introduction"
+          poster="/images/video-thumbnails/elizabeth-introduction-thumbnail.jpg"
+        />
         
       </PageLayout>
     </>

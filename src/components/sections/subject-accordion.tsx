@@ -19,9 +19,11 @@
 
 import { useState } from 'react'
 import { m } from 'framer-motion'
-import { ChevronDown, ChevronRight, LucideIcon } from 'lucide-react'
+import { ChevronDown, ChevronRight, LucideIcon, Play, Download, ExternalLink } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 // CONTEXT7 SOURCE: /facebook/react - TypeScript interface patterns for component props
 // INTERFACE REASON: Official React TypeScript documentation recommends explicit prop typing for reusable components
@@ -30,6 +32,19 @@ export interface SubjectItem {
   description: string
   keyFeatures: string[]
   children?: SubjectItem[]  // CONTEXT7 SOURCE: /radix-ui/primitives - Nested accordion pattern support for multi-level dropdowns
+  // CONTEXT7 SOURCE: /facebook/react - Enhanced interface for multimedia content support
+  // MULTIMEDIA REASON: Official React patterns for optional props supporting video thumbnails and PDF downloads
+  videoThumbnail?: {
+    thumbnailUrl: string
+    videoUrl: string
+    title: string
+    isPlaceholder?: boolean
+  }
+  pdfDownload?: {
+    title: string
+    downloadUrl: string
+    isPlaceholder?: boolean
+  }
 }
 
 export interface SubjectCategory {
@@ -91,6 +106,50 @@ function NestedSubjectItem({ subjectItem, index, parentId }: NestedSubjectItemPr
       >
         <h4 className="text-lg font-serif font-bold text-slate-900 mb-3">{subjectItem.name}</h4>
         <p className="text-slate-700 mb-4 leading-relaxed">{subjectItem.description}</p>
+        
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Video thumbnail and PDF download section */}
+        {/* MULTIMEDIA CONTENT REASON: Official Tailwind CSS grid patterns for multimedia content display */}
+        {(subjectItem.videoThumbnail || subjectItem.pdfDownload) && (
+          <div className="mb-4 p-4 bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-lg">
+            {subjectItem.videoThumbnail && (
+              <div className="mb-3">
+                <Link 
+                  href={subjectItem.videoThumbnail.isPlaceholder ? '#' : subjectItem.videoThumbnail.videoUrl}
+                  className="inline-flex items-center gap-2 text-amber-700 hover:text-amber-800 font-medium text-sm transition-colors"
+                >
+                  <Play className="w-4 h-4" />
+                  {subjectItem.videoThumbnail.title}
+                  {subjectItem.videoThumbnail.isPlaceholder && <span className="text-xs opacity-75">(Coming Soon)</span>}
+                  {!subjectItem.videoThumbnail.isPlaceholder && <ExternalLink className="w-3 h-3" />}
+                </Link>
+              </div>
+            )}
+            {subjectItem.pdfDownload && (
+              <div>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-amber-300 text-amber-800 hover:bg-amber-100"
+                  disabled={subjectItem.pdfDownload.isPlaceholder}
+                  asChild={!subjectItem.pdfDownload.isPlaceholder}
+                >
+                  {subjectItem.pdfDownload.isPlaceholder ? (
+                    <>
+                      <Download className="w-4 h-4 mr-2" />
+                      {subjectItem.pdfDownload.title} (Coming Soon)
+                    </>
+                  ) : (
+                    <Link href={subjectItem.pdfDownload.downloadUrl}>
+                      <Download className="w-4 h-4 mr-2" />
+                      {subjectItem.pdfDownload.title}
+                    </Link>
+                  )}
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+        
         <div className="flex flex-wrap gap-2">
           {subjectItem.keyFeatures.map((feature, featureIndex) => (
             <Badge 
@@ -242,18 +301,16 @@ function AccordionSection({ category, isOpen, onToggle }: AccordionSectionProps)
 
               {/* Testimonial Section */}
               <div className="bg-gradient-to-r from-slate-50 to-white border border-slate-200 rounded-lg p-5">
-                <div className="flex items-start gap-3">
-                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities text-yellow-500 for brand gold #eab308 */}
-                  {/* REVISION REASON: Typography fix - color correction from text-amber-500 to text-yellow-500 for brand consistency */}
-                  <div className="text-yellow-500 text-2xl font-serif leading-none">"</div>
-                  <div className="flex-1">
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Quote positioning fix with proper grid layout */}
+                {/* QUOTE FORMATTING REASON: Official Tailwind CSS relative positioning for proper quote mark alignment */}
+                <div className="relative">
+                  <div className="absolute -top-2 -left-1 text-yellow-500 text-4xl font-serif leading-none">"</div>
+                  <div className="pl-6 pr-4">
                     <p className="text-slate-700 italic leading-relaxed text-sm">
                       {category.testimonial}
                     </p>
-                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - align-self utilities self-end for flexbox positioning */}
-                    {/* REVISION REASON: Typography fix - improved closing quote positioning using self-end instead of text-right mt-2 */}
-                    <div className="text-yellow-500 text-2xl font-serif leading-none self-end">"</div>
                   </div>
+                  <div className="absolute -bottom-2 right-0 text-yellow-500 text-4xl font-serif leading-none rotate-180">"</div>
                 </div>
               </div>
             </div>

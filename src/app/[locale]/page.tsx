@@ -66,6 +66,7 @@ import { LanguageSwitcher } from '../../components/ui/language-switcher'
 // CONTEXT7 SOURCE: /vercel/next.js - Client component wrapper for homepage sections
 // CLIENT WRAPPER REASON: Official Next.js documentation prohibits client components in server components
 import { HomepageSections } from '../../components/homepage/homepage-sections'
+import { StatsTrio } from '../../components/sections/stats-trio'
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage without server-side locale parameters
 // CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations hook in client components
@@ -171,6 +172,23 @@ export default function HomePage() {
         <AboutSection />
       </div>
       
+      
+      {/* 5. STATS TRIO - PERFORMANCE METRICS */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Statistics display section with brand colors */}
+      {/* STATS INTEGRATION REASON: Official Tailwind CSS documentation enables branded statistics above trust indicators for enhanced credibility */}
+      <section className="py-12 lg:py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-4">
+              Proven Academic Excellence
+            </h2>
+            <p className="text-xl text-slate-700 max-w-3xl mx-auto">
+              Our track record speaks for itself — delivering exceptional results for students across all academic levels
+            </p>
+          </div>
+          <StatsTrio showAnimation={true} variant="featured" />
+        </div>
+      </section>
       
       {/* 6. WHO WE SUPPORT */}
       <TrustIndicatorsGrid 

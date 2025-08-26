@@ -38,6 +38,7 @@ import {
   Calendar
 } from 'lucide-react'
 import { Section } from '@/components/layout/section'
+import { StatsTrio } from './stats-trio'
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface definitions for results documentation props
 // PROPS INTERFACE REASON: Official TypeScript patterns for component data structure and type safety
@@ -110,20 +111,20 @@ const getVerificationBadge = (level: ResultsDocumentationItem['verificationLevel
   }
 }
 
-// CONTEXT7 SOURCE: /facebook/react - Helper function for category styling
-// CATEGORY STYLING REASON: Visual differentiation for different types of business metrics
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Helper function for category styling with brand colour palette
+// CATEGORY STYLING REASON: Visual differentiation using brand amber/yellow/gold colour variants for consistency
 const getCategoryStyle = (category: ResultsDocumentationItem['category']) => {
   switch (category) {
     case 'grade_improvement':
-      return 'border-green-200 bg-green-50 text-green-900'
+      return 'border-amber-200 bg-amber-50 text-amber-900'
     case 'university_placement':
-      return 'border-blue-200 bg-blue-50 text-blue-900'
+      return 'border-yellow-200 bg-yellow-50 text-yellow-900'
     case 'exam_success':
-      return 'border-purple-200 bg-purple-50 text-purple-900'
+      return 'border-amber-300 bg-amber-100 text-amber-800'
     case 'roi_analysis':
-      return 'border-gold-200 bg-gold-50 text-gold-900'
+      return 'border-yellow-300 bg-yellow-100 text-yellow-800'
     default:
-      return 'border-slate-200 bg-slate-50 text-slate-900'
+      return 'border-amber-200 bg-amber-50 text-amber-900'
   }
 }
 
@@ -189,7 +190,7 @@ export function ResultsDocumentation({
                     ? iconMap[result.icon] 
                     : <BarChart3 className="w-8 h-8" />}
                 </div>
-                {showVerificationBadges && getVerificationBadge(result.verificationLevel)}
+                {false && getVerificationBadge(result.verificationLevel)}
               </div>
 
               {/* Metric Value */}
@@ -232,19 +233,19 @@ export function ResultsDocumentation({
           ))}
         </div>
 
-        {/* Data Verification Note */}
-        <m.div
-          className="mt-12 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-full text-sm text-slate-600">
-            <CheckCircle className="w-4 h-4 text-green-600" />
-            <span>All verified data independently tracked and validated</span>
-          </div>
-        </m.div>
+        {/* CONTEXT7 SOURCE: /websites/react_dev-learn - Conditional rendering with logical AND operator for component visibility
+             REMOVAL REASON: StatsTrio contains old hardcoded cards that should not be displayed alongside new results data */}
+        {false && (
+          <m.div
+            className="mt-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <StatsTrio showAnimation={false} variant="default" />
+          </m.div>
+        )}
       </div>
     </Section>
   )

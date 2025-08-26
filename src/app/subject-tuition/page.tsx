@@ -26,6 +26,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { m } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { BookOpen, GraduationCap, Users, Award, Target, Globe } from 'lucide-react'
 import { PageLayout } from '@/components/layout/page-layout'
 import { SimpleHero } from '@/components/layout/simple-hero'
@@ -245,9 +246,11 @@ export default function SubjectTuitionPage() {
               <div id="sen-neurodiverse" className="-mt-24 pt-24"></div>
               <div id="london-in-person" className="-mt-24 pt-24"></div>
               
+              {/* CONTEXT7 SOURCE: /websites/react_dev - Default props and empty arrays for component initialization */}
+              {/* REVISION REASON: Remove default open section to start with all accordions closed per user requirement */}
               <SubjectAccordion 
                 categories={subjectCategories}
-                defaultOpenSections={['entrance-exams']}
+                defaultOpenSections={[]}
                 onSectionToggle={(sectionId, isOpen) => {
                   console.log(`Section ${sectionId} ${isOpen ? 'opened' : 'closed'}`)
                 }}
@@ -337,17 +340,15 @@ export default function SubjectTuitionPage() {
                   transition={{ duration: 0.4, delay: 0.7 }}
                   viewport={{ once: true }}
                 >
+                  {/* CONTEXT7 SOURCE: /vercel/next.js - Link component for client-side navigation */}
+                  {/* BUTTON FIX REASON: Official Next.js documentation recommends Link with asChild for button navigation */}
                   <Button 
-                    onClick={() => {
-                    // CONTEXT7 SOURCE: /vercel/next.js - useRouter hook for programmatic navigation in button onClick handlers
-                    // NAVIGATION FIX: Official Next.js documentation enables client-side navigation to homeschooling page
-                    if (typeof window !== 'undefined') {
-                      window.location.href = '/homeschooling'
-                    }
-                  }}
+                    asChild
                     className="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
                   >
-                    {homeschoolingData.buttonText}
+                    <Link href="/homeschooling">
+                      {homeschoolingData.buttonText}
+                    </Link>
                   </Button>
                 </m.div>
               </m.div>

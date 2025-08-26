@@ -3267,7 +3267,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
       // 4. UNIVERSITY AND BEYOND
       {
         id: "university-beyond",
-        title: "UNIVERSITY AND BEYOND",
+        title: "UNIVERSITY ADMISSIONS EXAMS & ENGLISH PROFICIENCY TESTS",
         icon: "GraduationCap",
         description: "Expert academic support for undergraduates and postgraduates, including essay coaching, dissertations, and subject-specific tutoring. University admissions guidance for UK, US, Oxbridge and other global institutions—personal statements, interview prep, admissions tests.",
         popularityRank: 4,
@@ -3521,7 +3521,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
     ],
     homeschoolingPreview: {
       title: "Interested in Homeschooling?",
-      description: "Discover our comprehensive homeschooling programmes designed to provide complete educational support for families choosing to educate at home.",
+      description: "Discover our comprehensive online homeschooling programmes",
       features: [
         { text: "Complete curriculum coverage" },
         { text: "Flexible scheduling options" },
