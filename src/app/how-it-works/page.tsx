@@ -38,13 +38,13 @@ import {
   CheckCircle,
   ChevronRight,
   ClipboardCheck,
+  Crown,
   Home,
   MessageSquare,
   Target,
   Users,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 import {
   getBaseRate,
@@ -60,6 +60,7 @@ import {
 } from "@/lib/cms/cms-content";
 import { HERO_IMAGES } from "@/lib/cms/cms-images";
 import { TutorsSection } from "@/components/tutors/tutors-section";
+import { ConsultationBookingForm } from "@/components/forms/consultation-booking-form";
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations and motion components for professional styling
 // DESIGN STATUS: ALREADY PREMIUM - This page exemplifies the professional design patterns with royal branding
@@ -526,15 +527,15 @@ export default function HowItWorksPage() {
                           },
                         }}
                       >
-                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight card styling with enhanced tier differentiation */}
-                        {/* SPOTLIGHT STYLING REASON: Official Tailwind CSS documentation Section 3.1 recommends enhanced border and shadow treatments for spotlight elements */}
+                        {/* CONTEXT7 SOURCE: /tailwindcss/docs - Enhanced tier-specific border colors for bronze/silver/gold differentiation */}
+                        {/* TIER COLOR SYSTEM REASON: Official Tailwind CSS documentation demonstrates color-based tier differentiation using bronze/silver/gold for tiered service systems */}
                         <Card
                           className={`group relative h-full transition-all duration-700 rounded-3xl overflow-hidden border-4 ${
                             isPremiumTier
                               ? "bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-50/60 border-amber-500 ring-2 ring-amber-400/40 shadow-3xl hover:shadow-4xl shadow-amber-200/40"
                               : isSilverTier
                                 ? "bg-gradient-to-br from-slate-50 via-gray-50/80 to-slate-50/60 border-slate-400 ring-1 ring-slate-300/30 shadow-xl hover:shadow-2xl shadow-slate-200/20"
-                                : "bg-gradient-to-br from-amber-100/20 via-orange-50/40 to-amber-50/30 border-amber-600/70 ring-1 ring-amber-500/20 shadow-xl hover:shadow-2xl shadow-amber-200/15"
+                                : "bg-gradient-to-br from-orange-100/20 via-amber-50/40 to-orange-50/30 border-orange-700 ring-1 ring-orange-600/20 shadow-xl hover:shadow-2xl shadow-orange-200/15"
                           }`}
                         >
                           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight shimmer overlay with enhanced gradient treatments */}
@@ -542,10 +543,10 @@ export default function HowItWorksPage() {
                           <div
                             className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ${
                               isPremiumTier
-                                ? "bg-gradient-to-br from-amber-100/40 via-yellow-100/30 to-orange-100/20"
+                                ? "bg-gradient-to-br from-yellow-100/40 via-amber-100/30 to-yellow-100/20"
                                 : isSilverTier
-                                  ? "bg-gradient-to-br from-slate-100/20 via-gray-100/15 to-slate-100/10"
-                                  : "bg-gradient-to-br from-amber-100/20 via-orange-100/15 to-amber-100/10"
+                                  ? "bg-gradient-to-br from-gray-100/20 via-slate-100/15 to-gray-100/10"
+                                  : "bg-gradient-to-br from-orange-100/20 via-amber-100/15 to-orange-100/10"
                             }`}
                           />
 
@@ -556,15 +557,15 @@ export default function HowItWorksPage() {
                               <div
                                 className={`absolute top-0 left-0 w-24 h-24 opacity-10 group-hover:opacity-20 transition-opacity duration-700 ${
                                   isPremiumTier
-                                    ? "bg-gradient-to-br from-amber-300 via-yellow-200 to-transparent"
-                                    : "bg-gradient-to-br from-amber-300/60 via-orange-200/40 to-transparent"
+                                    ? "bg-gradient-to-br from-yellow-300 via-amber-200 to-transparent"
+                                    : "bg-gradient-to-br from-orange-300/60 via-amber-200/40 to-transparent"
                                 } rounded-br-full`}
                               />
                               <div
                                 className={`absolute bottom-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-700 ${
                                   isPremiumTier
-                                    ? "bg-gradient-to-tl from-amber-300 via-yellow-200 to-transparent"
-                                    : "bg-gradient-to-tl from-amber-300/60 via-orange-200/40 to-transparent"
+                                    ? "bg-gradient-to-tl from-yellow-300 via-amber-200 to-transparent"
+                                    : "bg-gradient-to-tl from-orange-300/60 via-amber-200/40 to-transparent"
                                 } rounded-tl-full`}
                               />
                             </>
@@ -583,10 +584,10 @@ export default function HowItWorksPage() {
                             style={{
                               backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23${
                                 isPremiumTier
-                                  ? "eab308"
+                                  ? "facc15"
                                   : isSilverTier
-                                    ? "64748b"
-                                    : "ea580c"
+                                    ? "9ca3af"
+                                    : "f97316"
                               }' fill-opacity='1'%3E%3Cpath d='M20 10l-5 5L10 10l5-5L20 10zm10 10l-5 5L20 15l5-5L30 20z'/%3E%3C/g%3E%3C/svg%3E")`,
                               backgroundSize: "40px 40px",
                             }}
@@ -596,30 +597,37 @@ export default function HowItWorksPage() {
                             {/* SPOTLIGHT BADGE REASON: Official Tailwind CSS documentation Section 8.3 recommends prominent badge treatments for featured elements */}
                             {isPremiumTier && (
                               <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-30">
-                                <Badge className="relative bg-gradient-to-r from-amber-500 via-yellow-600 to-amber-700 text-white px-8 py-3 rounded-full shadow-2xl font-bold text-sm uppercase tracking-wider ring-2 ring-amber-400/50">
+                                <Badge className="relative bg-gradient-to-r from-yellow-500 via-amber-600 to-yellow-700 text-white px-8 py-3 rounded-full shadow-2xl font-bold text-sm uppercase tracking-wider ring-2 ring-yellow-400/50">
                                   Most Popular Choice
-                                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/40 to-yellow-500/40 animate-pulse" />
+                                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/40 to-amber-500/40 animate-pulse" />
                                 </Badge>
                               </div>
                             )}
 
                             {isBronzeTier && (
                               <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
-                                <Badge className="relative bg-gradient-to-r from-amber-600/80 via-orange-700/90 to-amber-800 text-white px-6 py-2.5 rounded-full shadow-xl font-bold text-sm uppercase tracking-wider">
+                                <Badge className="relative bg-gradient-to-r from-orange-600/80 via-amber-700/90 to-orange-800 text-white px-6 py-2.5 rounded-full shadow-xl font-bold text-sm uppercase tracking-wider">
                                   Bronze Tier
-                                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/20 to-orange-500/20 animate-pulse" />
+                                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400/20 to-amber-500/20 animate-pulse" />
                                 </Badge>
                               </div>
                             )}
 
                             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight tier title with enhanced royal treatment */}
                             {/* SPOTLIGHT TITLE REASON: Official Tailwind CSS documentation Section 2.4 recommends enhanced typography for featured elements */}
-                            {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from tier headers for consistent design */}
-                            {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 5.1 recommends consistent tier presentation without crown differentiation */}
+                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Crown icon implementation for Tier 1 premium indication */}
+                            {/* CROWN IMPLEMENTATION REASON: Official Tailwind CSS documentation demonstrates selective icon implementation for premium tier differentiation */}
                             <div className="mb-6">
+                              {isPremiumTier && (
+                                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+                                  <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
+                                    <Crown className="w-6 h-6 text-white" />
+                                  </div>
+                                </div>
+                              )}
                               {isSilverTier && (
                                 <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-                                  <div className="w-8 h-8 bg-gradient-to-br from-slate-400 to-slate-600 rounded-full flex items-center justify-center">
+                                  <div className="w-8 h-8 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center">
                                     <span className="text-white font-bold text-sm">
                                       2
                                     </span>
@@ -641,10 +649,10 @@ export default function HowItWorksPage() {
                             <div
                               className={`relative mb-8 rounded-2xl border-2 shadow-inner ${
                                 isPremiumTier
-                                  ? "p-8 bg-gradient-to-br from-amber-50/90 to-yellow-50/70 border-amber-300/60 shadow-amber-100/50"
+                                  ? "p-8 bg-gradient-to-br from-yellow-50/90 to-amber-50/70 border-yellow-300/60 shadow-yellow-100/50"
                                   : isSilverTier
-                                    ? "p-6 bg-gradient-to-br from-slate-50/80 to-gray-50/60 border-slate-200/50 shadow-slate-100/30"
-                                    : "p-6 bg-gradient-to-br from-amber-50/50 to-orange-50/40 border-amber-300/50 shadow-amber-100/20"
+                                    ? "p-6 bg-gradient-to-br from-gray-50/80 to-slate-50/60 border-gray-200/50 shadow-gray-100/30"
+                                    : "p-6 bg-gradient-to-br from-orange-50/50 to-amber-50/40 border-orange-300/50 shadow-orange-100/20"
                               }`}
                             >
                               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight pricing with enhanced typography for featured elements */}
@@ -653,10 +661,10 @@ export default function HowItWorksPage() {
                                 <div
                                   className={`font-black mb-2 ${
                                     isPremiumTier
-                                      ? "text-4xl lg:text-5xl text-amber-700"
+                                      ? "text-4xl lg:text-5xl text-yellow-700"
                                       : isSilverTier
-                                        ? "text-3xl lg:text-4xl text-slate-700"
-                                        : "text-3xl lg:text-4xl text-amber-700"
+                                        ? "text-3xl lg:text-4xl text-gray-700"
+                                        : "text-3xl lg:text-4xl text-orange-700"
                                   }`}
                                 >
                                   {tier.pricePoint}
@@ -667,10 +675,10 @@ export default function HowItWorksPage() {
                                 <div
                                   className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${
                                     isPremiumTier
-                                      ? "bg-amber-200/60 text-amber-900 border-2 border-amber-300 shadow-md"
+                                      ? "bg-yellow-200/60 text-yellow-900 border-2 border-yellow-300 shadow-md"
                                       : isSilverTier
-                                        ? "bg-slate-100 text-slate-800 border border-slate-200"
-                                        : "bg-amber-100/60 text-amber-800 border border-amber-200/60"
+                                        ? "bg-gray-100 text-gray-800 border border-gray-200"
+                                        : "bg-orange-100/60 text-orange-800 border border-orange-200/60"
                                   }`}
                                 >
                                   <span className="w-2 h-2 bg-current rounded-full mr-2 animate-pulse" />
@@ -687,10 +695,10 @@ export default function HowItWorksPage() {
                               <div
                                 className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-full ${
                                   isPremiumTier
-                                    ? "w-24 h-1.5 bg-gradient-to-r from-amber-400 to-yellow-500 shadow-lg"
+                                    ? "w-24 h-1.5 bg-gradient-to-r from-yellow-400 to-amber-500 shadow-lg"
                                     : isSilverTier
-                                      ? "w-20 h-1 bg-gradient-to-r from-slate-400 to-gray-500"
-                                      : "w-20 h-1 bg-gradient-to-r from-amber-500 to-orange-500"
+                                      ? "w-20 h-1 bg-gradient-to-r from-gray-400 to-slate-500"
+                                      : "w-20 h-1 bg-gradient-to-r from-orange-500 to-amber-500"
                                 }`}
                               />
                             </div>
@@ -712,10 +720,10 @@ export default function HowItWorksPage() {
                             <Separator
                               className={`my-6 transition-colors duration-300 ${
                                 isPremiumTier
-                                  ? "bg-amber-300"
+                                  ? "bg-yellow-300"
                                   : isSilverTier
-                                    ? "bg-slate-200"
-                                    : "bg-amber-200"
+                                    ? "bg-gray-200"
+                                    : "bg-orange-200"
                               }`}
                             />
 
@@ -733,10 +741,10 @@ export default function HowItWorksPage() {
                           <div
                             className={`absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
                               isPremiumTier
-                                ? "h-2 bg-gradient-to-r from-transparent via-amber-400 to-transparent shadow-lg"
+                                ? "h-2 bg-gradient-to-r from-transparent via-yellow-400 to-transparent shadow-lg"
                                 : isSilverTier
-                                  ? "h-1 bg-gradient-to-r from-transparent via-slate-400 to-transparent"
-                                  : "h-1 bg-gradient-to-r from-transparent via-amber-600 to-transparent"
+                                  ? "h-1 bg-gradient-to-r from-transparent via-gray-400 to-transparent"
+                                  : "h-1 bg-gradient-to-r from-transparent via-orange-600 to-transparent"
                             }`}
                           />
                         </Card>
@@ -821,84 +829,91 @@ export default function HowItWorksPage() {
                 </div>
 
                 <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
-                  Discover the exclusive advantages that make our premium
-                  tutoring service the preferred choice of discerning families
+                  Discover what sets My Private Tutor Online apart as the trusted choice of families across the UK
                 </p>
               </div>
 
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium hover effects and gradient styling patterns */}
-              {/* BENEFIT STYLING REASON: Official Tailwind CSS documentation Section 4.7 recommends sophisticated interaction states and glass-morphism patterns for luxury interfaces */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                {benefits && benefits.length > 0 ? (
-                  benefits.map((benefit: string, index: number) => (
-                    <m.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      transition={{
-                        duration: 0.6,
-                        delay: index * 0.1,
-                        ease: [0.25, 0.1, 0.25, 1],
-                      }}
-                      whileHover={{
-                        scale: 1.02,
-                        y: -4,
-                        transition: {
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 25,
-                        },
-                      }}
-                    >
-                      <Card className="group relative h-full bg-gradient-to-br from-white via-slate-50/30 to-amber-50/10 border-2 border-slate-200 hover:border-amber-400/60 shadow-lg hover:shadow-xl transition-all duration-500 rounded-xl overflow-hidden">
-                        {/* Premium shimmer overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-amber-50/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Split screen layout with image and content sections */}
+              {/* SPLIT SCREEN REASON: Official Tailwind CSS documentation demonstrates grid-based layouts for image-content splits */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 items-center">
+                {/* Left side - Hero image */}
+                <m.div
+                  className="relative rounded-2xl overflow-hidden shadow-2xl"
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                >
+                  <div className="aspect-[4/3] bg-gradient-to-br from-slate-100 via-amber-50 to-slate-50 relative">
+                    <Image
+                      src="/images/graphics/feature-built-on-trust.jpeg"
+                      alt="Why families choose our premium tutoring approach - professional educational consultation"
+                      fill
+                      className="object-cover rounded-2xl"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    {/* Premium overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 via-transparent to-slate-900/10 rounded-2xl" />
+                  </div>
+                </m.div>
 
-                        {/* Royal pattern overlay */}
-                        <div
-                          className="absolute inset-0 opacity-[0.015] group-hover:opacity-[0.03] transition-opacity duration-500"
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eab308' fill-opacity='1'%3E%3Cpath d='M15 7.5l-3.75 3.75L7.5 7.5l3.75-3.75L15 7.5zm7.5 7.5l-3.75 3.75L15 11.25l3.75-3.75L22.5 15z'/%3E%3C/g%3E%3C/svg%3E")`,
-                            backgroundSize: "30px 30px",
+                {/* Right side - Benefits list */}
+                <m.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.2,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                >
+                  <div className="space-y-6">
+                    {benefits && benefits.length > 0 ? (
+                      benefits.map((benefit: string, index: number) => (
+                        <m.div
+                          key={index}
+                          className="flex items-start gap-4 group"
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, margin: "-50px" }}
+                          transition={{
+                            duration: 0.6,
+                            delay: 0.4 + index * 0.1,
+                            ease: [0.25, 0.1, 0.25, 1],
                           }}
-                        />
-
-                        <CardContent className="relative p-8">
-                          <div className="flex items-start gap-6">
-                            {/* Premium checkmark with royal treatment */}
-                            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
-                              <CheckCircle className="w-6 h-6 text-white drop-shadow-sm" />
-                              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-300/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            </div>
-
-                            <div className="flex-1">
-                              <p className="text-lg font-medium text-slate-700 group-hover:text-slate-600 transition-colors duration-300 leading-relaxed">
-                                {benefit}
-                              </p>
-                            </div>
+                        >
+                          {/* Premium checkmark with royal treatment */}
+                          <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110 mt-1">
+                            <CheckCircle className="w-5 h-5 text-white drop-shadow-sm" />
                           </div>
 
-                          {/* Premium bottom accent */}
-                          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        </CardContent>
-                      </Card>
-                    </m.div>
-                  ))
-                ) : (
-                  // CONTEXT7 SOURCE: /vercel/next.js - Fallback content patterns for missing benefits data
-                  // FALLBACK REASON: Official Next.js documentation Section 2.1 recommends graceful fallbacks for missing CMS data
-                  <div className="text-center py-12 col-span-2">
-                    <p className="text-slate-600">
-                      Benefits are currently being loaded...
-                    </p>
+                          <div className="flex-1">
+                            <p className="text-lg font-medium text-slate-700 group-hover:text-slate-600 transition-colors duration-300 leading-relaxed">
+                              {benefit}
+                            </p>
+                          </div>
+                        </m.div>
+                      ))
+                    ) : (
+                      // CONTEXT7 SOURCE: /vercel/next.js - Fallback content patterns for missing benefits data
+                      // FALLBACK REASON: Official Next.js documentation Section 2.1 recommends graceful fallbacks for missing CMS data
+                      <div className="text-center py-12">
+                        <p className="text-slate-600">
+                          Benefits are currently being loaded...
+                        </p>
+                      </div>
+                    )}
                   </div>
-                )}
+                </m.div>
               </div>
 
-              {/* Premium CTA Section with Royal Enhancement and Next Steps */}
+              {/* Enquiry Form Section - Replacing CTA with consultation booking form */}
               <m.div
-                className="relative bg-gradient-to-br from-white/80 via-amber-50/30 to-white/60 backdrop-blur-sm p-12 rounded-2xl border border-white/30 shadow-xl group"
+                className="relative bg-gradient-to-br from-white/80 via-blue-50/30 to-white/60 backdrop-blur-sm p-8 rounded-2xl border border-white/30 shadow-xl"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -907,136 +922,45 @@ export default function HowItWorksPage() {
                   delay: 0.2,
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
-                whileHover={{
-                  scale: 1.01,
-                  y: -4,
-                  transition: { type: "spring", stiffness: 300, damping: 25 },
-                }}
               >
-                {/* Royal Corner Accents */}
-                <div className="absolute top-0 left-0 w-16 h-16 bg-gradient-to-br from-amber-100/40 to-transparent rounded-br-3xl" />
-                <div className="absolute bottom-0 right-0 w-16 h-16 bg-gradient-to-tl from-amber-100/40 to-transparent rounded-tl-3xl" />
-
-                <div className="relative">
-                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium gradient text effects */}
-                  {/* TYPOGRAPHY REASON: Official Tailwind CSS documentation Section 3.8 demonstrates gradient text for premium branding */}
-                  <h3 className="text-3xl lg:text-4xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-6 group-hover:from-slate-800 group-hover:to-slate-700 transition-all duration-500">
+                <div className="text-center mb-8">
+                  <h3 className="text-3xl lg:text-4xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-4">
                     {ctaContent.title}
                   </h3>
-                  <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto">
+                  <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-8">
                     {ctaContent.description}
                   </p>
+                </div>
 
-                  {/* CONTEXT7 SOURCE: /context7/motion_dev - Enhanced interactive animations with motion effects */}
-                  {/* NEXT STEPS REASON: Official Motion documentation Section 4.3 demonstrates hover and gesture animations for premium user experience */}
-                  {/* Next Steps Guidance */}
-                  <div className="bg-gradient-to-br from-white/70 via-amber-50/40 to-white/50 backdrop-blur-sm rounded-xl p-8 mb-8 border-2 border-white/40 shadow-inner group-hover:border-amber-200/50 transition-all duration-500">
-                    {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from royal journey indicator */}
-                    {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean headers without multiple crown decorations */}
-                    {/* Royal indicator */}
-                    <div className="flex items-center justify-center gap-2 mb-6">
-                      <h4 className="text-xl font-serif font-bold text-slate-800">
-                        Your Royal Journey Begins
-                      </h4>
-                    </div>
+                {/* Consultation Booking Form */}
+                <div className="max-w-4xl mx-auto">
+                  <ConsultationBookingForm className="bg-white/80 backdrop-blur-sm" compact={true} />
+                </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                      {[
-                        {
-                          step: "1",
-                          title: "Elite Consultation",
-                          desc: "Complimentary discussion of your child's academic aspirations",
-                        },
-                        {
-                          step: "2",
-                          title: "Perfect Match",
-                          desc: "Hand-selected tutor aligned with your family's standards",
-                        },
-                        {
-                          step: "3",
-                          title: "Excellence Begins",
-                          desc: "First premium lesson scheduled at your convenience",
-                        },
-                      ].map((item, index) => (
-                        <div
-                          key={index}
-                          className="flex flex-col items-center group/step"
-                        >
-                          <div className="relative w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full flex items-center justify-center mb-4 shadow-lg group-hover/step:shadow-xl transition-all duration-300 transform group-hover/step:scale-110">
-                            <span className="text-white font-bold text-xl">
-                              {item.step}
-                            </span>
-                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-300/30 to-transparent opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
-                          </div>
-                          <h5 className="font-semibold text-slate-800 mb-2 group-hover/step:text-slate-700 transition-colors duration-300">
-                            {item.title}
-                          </h5>
-                          <p className="text-sm text-slate-600 group-hover/step:text-slate-500 transition-colors duration-300 leading-relaxed">
-                            {item.desc}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
+                {/* Trust indicators */}
+                {ctaContent.trustText && (
+                  <div className="mt-8 text-center">
+                    <p className="text-sm text-slate-500 italic">
+                      {ctaContent.trustText}
+                    </p>
                   </div>
+                )}
 
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    {ctaContent.buttons.map((button, index) =>
-                      button.type === "primary" ? (
-                        <Link 
-                          key={index}
-                          href={button.href}
-                          target={button.external ? "_blank" : "_self"}
-                          rel={button.external ? "noopener noreferrer" : undefined}
-                        >
-                          <ShinyButton
-                            text={button.text}
-                            variant="orange"
-                            className="px-8 py-3"
-                          />
-                        </Link>
-                      ) : (
-                        <Link 
-                          key={index}
-                          href={button.href}
-                        >
-                          <InteractiveHoverButton
-                            text={button.text}
-                            variant="blue"
-                            className="px-8 py-3"
-                          />
-                        </Link>
-                      )
-                    )}
-                  </div>
-
-                  {/* CONTEXT7 SOURCE: /vercel/next.js - Trust indicators for secure external links */}
-                  {/* TRUST TEXT REASON: Official Next.js documentation recommends security indicators for external links */}
-                  {ctaContent.trustText && (
-                    <div className="mt-4 text-center">
-                      <p className="text-sm text-slate-500 italic">
-                        {ctaContent.trustText}
-                      </p>
+                {/* Trust indicators for professional branding */}
+                <div className="mt-8 pt-8 border-t border-blue-200/30">
+                  <div className="flex items-center justify-center gap-8 text-sm">
+                    <div className="flex items-center gap-2 text-slate-600">
+                      <span className="font-medium">
+                        Tatler Address Book 2025
+                      </span>
                     </div>
-                  )}
-
-                  {/* Trust indicators for royal branding */}
-                  <div className="mt-8 pt-8 border-t border-amber-200/30">
-                    {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from trust indicators for cleaner design */}
-                    {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean trust indicators without repetitive crown icons */}
-                    <div className="flex items-center justify-center gap-8 text-sm">
-                      <div className="flex items-center gap-2 text-slate-600">
-                        <span className="font-medium">
-                          Tatler Address Book 2025
-                        </span>
-                      </div>
-                      <div className="hidden sm:block w-px h-4 bg-slate-300"></div>
-                      <div className="flex items-center gap-2 text-slate-600">
-                        <span className="font-medium">15 Years Excellence</span>
-                      </div>
-                      <div className="hidden sm:block w-px h-4 bg-slate-300"></div>
-                      <div className="flex items-center gap-2 text-slate-600">
-                        <span className="font-medium">Elite Family Trust</span>
-                      </div>
+                    <div className="hidden sm:block w-px h-4 bg-slate-300"></div>
+                    <div className="flex items-center gap-2 text-slate-600">
+                      <span className="font-medium">15 Years Excellence</span>
+                    </div>
+                    <div className="hidden sm:block w-px h-4 bg-slate-300"></div>
+                    <div className="flex items-center gap-2 text-slate-600">
+                      <span className="font-medium">Trusted by Families</span>
                     </div>
                   </div>
                 </div>

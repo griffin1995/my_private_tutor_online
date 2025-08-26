@@ -46,26 +46,6 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
         </div>
       )}
 
-      {/* Availability Badge */}
-      {profile.availability && (
-        <div className="absolute top-4 right-4 z-10">
-          <span 
-            className={`
-              inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium
-              ${profile.availability.status === 'available' 
-                ? 'bg-green-100 text-green-800' 
-                : profile.availability.status === 'limited'
-                ? 'bg-yellow-100 text-yellow-800'
-                : 'bg-red-100 text-red-800'
-              }
-            `}
-          >
-            {profile.availability.status === 'available' && 'Available'}
-            {profile.availability.status === 'limited' && 'Limited'}
-            {profile.availability.status === 'unavailable' && 'Unavailable'}
-          </span>
-        </div>
-      )}
 
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive marketing page component with mobile-first */}
       {/* Professional Headshot */}
@@ -164,9 +144,9 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
           </div>
         )}
 
-        {/* View Full Profile Button */}
+        {/* Meet Our Tutors Button */}
         <button className="w-full bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
-          View Full Profile
+          Meet Our Tutors
         </button>
       </div>
     </div>

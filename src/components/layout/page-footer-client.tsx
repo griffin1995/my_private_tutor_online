@@ -3,7 +3,7 @@
 // CONTEXT7 SOURCE: /reactjs/react.dev - Client Component for interactive functionality with hooks
 // CLIENT COMPONENT REASON: Official React documentation requires "use client" directive for components using useState, useForm, and browser APIs
 import React, { useState } from 'react'
-import { Mail, Phone, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2, MessageCircle, BarChart3 } from 'lucide-react'
+import { Mail, Phone, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2, MessageCircle, BarChart3, Users } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -256,11 +256,11 @@ export function PageFooterClient({
                 {/* Premium Accolades - horizontal layout on one row */}
                 <div className="grid grid-cols-3 gap-3">
                   {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - Crown icon and updated badge content */}
-                  {/* TASK 3 REVISION: Updated main text to "Royal Clientele" and added "Excellence" subtext for better presentation */}
+                  {/* TASK 3 REVISION: Updated main text to "Royal Clientele" and changed subtext from "Excellence" to "Pedigree" for premium royal heritage presentation */}
                   <div className="bg-gray-100 rounded-lg p-3 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
-                    <Crown className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
-                    <p className="text-xs font-semibold text-black leading-tight">Royal Clientele</p>
-                    <p className="text-xs text-gray-600">Excellence</p>
+                    <Users className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
+                    <p className="text-xs font-semibold text-black leading-tight">Trusted Families</p>
+                    <p className="text-xs text-gray-600">Nationwide</p>
                   </div>
                   {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - Award icon for Tatler achievement badge */}
                   {/* TASK 4 REVISION: Enhanced padding from p-2 to p-3 for better visual positioning */}

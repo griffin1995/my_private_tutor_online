@@ -50,7 +50,7 @@
     "tiers": {
       "tier1": {
         "name": "Tier 1",
-        "level": "premium",
+        "level": "expert",
         "description": "Official examiners and senior educators with extensive track records",
         "bestFor": "Top grades, exam strategy",
         "hourlyRate": {
@@ -69,8 +69,8 @@
         "features": [
           "Official exam board examiners",
           "Senior educators with track records",
-          "Premium exam strategy guidance",
-          "Exclusive crown designation"
+          "Expert exam strategy guidance",
+          "Official examiner designation"
         ],
         "hasAccent": true,
         "hasCrown": true
@@ -143,14 +143,14 @@
       "minimumLessonsForDiscount": 15
     },
     "promotional": {
-      "tagline": "From essential support to premium elite guidance — all starting from just £45 per hour",
+      "tagline": "From essential support to expert guidance — all starting from just £45 per hour",
       "feeDisclaimer": "Unlike many other providers, we don't charge registration, placement or administrative fees"
     }
   },
   "qualifications": {
     "featured": [
       "Featured in Tatler Address Book 2025",
-      "Royal family testimonials",
+      "Professional family testimonials",
       "15+ years established since 2010",
       "100% Oxbridge graduate tutors",
       "Official exam board examiners"

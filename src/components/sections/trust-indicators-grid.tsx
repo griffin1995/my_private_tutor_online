@@ -144,7 +144,8 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
     // CMS DATA SOURCE: Semantic mapping of trust indicators to appropriate images (fallback)
     if (indicator.title.includes('Built on Trust')) {
       imageKey = 'student-teacher-inside-comfortable'
-    } else if (indicator.title.includes('Exam Insight')) {
+    } else if (indicator.title.includes('Examiner insight')) {
+      // CONTENT UPDATE: Changed from "Exam Insight" to "Examiner insight" for clearer, more concise messaging
       imageKey = 'student-inside-holding-pencil'
     } else if (indicator.title.includes('By Invitation Only') || indicator.title.includes('Discretion')) {
       imageKey = 'adult-student-with-teacher'

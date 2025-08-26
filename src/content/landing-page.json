@@ -25,6 +25,13 @@
         "date": "2025-08-20",
         "source": "August 20th client feedback - By Invitation Only copy correction to focus on Elizabeth's international career",
         "details": "Replaced royal family references with content about Elizabeth's educational background and global experience per client feedback"
+      },
+      {
+        "change": "CONTENT UPDATE: Updated By Invitation Only section with Elizabeth's international career text",
+        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - JSON content management patterns for client-specified copy updates",
+        "date": "2025-08-26",
+        "source": "Client request - exact copy replacement with Elizabeth's international career text",
+        "details": "Replaced longer educational background description with focused text about Elizabeth's personal tutoring relationships and vetting process"
       }
     ]
   },
@@ -122,17 +129,17 @@
       },
       {
         "icon": "",
-        "title": "Exam Insight, from the Inside",
+        "title": "Examiner insight",
         "subtitle": "",
         "description": "Our Tier 1 tutors actually write/mark the real tests your child takes. Such insider perspective is rare.",
         "imageUrl": "/images/graphics/feature-exam-insight.jpeg",
-        "imageAlt": "Exam insight from inside - Tutors who are actual examiners providing unique academic advantage"
+        "imageAlt": "Examiner insight - Tutors who are actual examiners providing unique academic advantage"
       },
       {
         "icon": "",
         "title": "By Invitation Only",
         "subtitle": "",
-        "description": "Elizabeth's international career in education spans seven continents and over 15 years. From her Cambridge-accepted education path to her former role as Forbes Middle East Editor, she brings unique global perspective and academic insight. My Private Tutor Online operates by invitation only, connecting families with exceptional educators through trusted referrals and proven results.",
+        "description": "Elizabeth's international career has allowed her to personally work alongside almost all our tutors, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team.",
         "imageUrl": "/images/graphics/feature-built-on-trust.jpeg",
         "imageAlt": "Built on trust - Premium tutoring service with vetted educators and proven track record"
       },

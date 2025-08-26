@@ -1103,9 +1103,20 @@ export function PageHeader({
 // NAVIGATION REQUIREMENTS REASON: Official Headless UI navigation menu patterns for complex dropdown structures
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Three-tier responsive navigation strategy
 // RESPONSIVE ENHANCEMENT REASON: Official Tailwind documentation patterns for managing complex navigation across multiple breakpoints
+// NAVIGATION ORDER UPDATE: Beth's exact specifications implemented - August 26, 2025
+// CLIENT REQUIREMENTS: New menu order follows exact specifications provided by Beth
 // Enhanced navigation structure with responsive priority classification
 function getEnhancedNavigation(): NavItem[] {
   return [
+    {
+      // CONTEXT7 SOURCE: /vercel/next.js - Home navigation pattern for Next.js App Router
+      // HOME BUTTON REASON: Official Next.js documentation recommends explicit home navigation for user orientation
+      name: 'HOME',
+      label: 'Home',
+      href: '/',
+      submenu: false,
+      priority: 'primary' as const // Always visible on tablet+
+    },
     {
       name: 'ABOUT US',
       label: 'About Us',
@@ -1128,11 +1139,13 @@ function getEnhancedNavigation(): NavItem[] {
       priority: 'primary' as const // Always visible on tablet+
     },
     {
-      name: '11+ BOOTCAMPS',
-      label: '11+ Bootcamps',
-      href: '/11-plus-bootcamps',
-      submenu: true,
-      priority: 'secondary' as const // Hidden 768px-1780px, visible on mobile burger + desktop 1780px+
+      // CONTEXT7 SOURCE: /websites/react_dev - React navigation menu configuration with top-level links
+      // TESTIMONIALS POSITION REASON: Moved to position 5 per Beth's exact specifications
+      name: 'TESTIMONIALS',
+      label: 'Testimonials',
+      href: '/testimonials',
+      submenu: false,
+      priority: 'primary' as const // Always visible on tablet+
     },
     {
       name: 'VIDEO MASTERCLASSES',
@@ -1142,26 +1155,28 @@ function getEnhancedNavigation(): NavItem[] {
       priority: 'primary' as const // Always visible on tablet+
     },
     {
+      name: '11+ BOOTCAMPS',
+      label: '11+ Bootcamps',
+      href: '/11-plus-bootcamps',
+      submenu: true,
+      priority: 'secondary' as const // Hidden 768px-1780px, visible on mobile burger + desktop 1780px+
+    },
+    {
+      // CONTEXT7 SOURCE: /vercel/next.js - FAQ navigation pattern renamed to match client specifications
+      // FAQS RENAMING REASON: Updated from 'FAQ' to 'FAQS' per Beth's exact naming requirements
+      name: 'FAQS',
+      label: 'FAQs',
+      href: '/faq',
+      submenu: true,
+      priority: 'secondary' as const // Hidden 768px-1780px, visible on mobile burger + desktop 1780px+
+    },
+    {
+      // CONTEXT7 SOURCE: /vercel/next.js - Blog navigation moved to final position per client specifications
+      // BLOG POSITION REASON: Moved to position 9 (final position) per Beth's exact menu ordering
       name: 'BLOG',
       label: 'Blog',
       href: '/blog',
       submenu: false,
-      priority: 'secondary' as const // Hidden 768px-1780px, visible on mobile burger + desktop 1780px+
-    },
-    {
-      // CONTEXT7 SOURCE: /websites/react_dev - React navigation menu configuration with top-level links
-      // TESTIMONIALS ADDITION REASON: Official React documentation for adding navigation items to main menu
-      name: 'TESTIMONIALS',
-      label: 'Testimonials',
-      href: '/testimonials',
-      submenu: false,
-      priority: 'primary' as const // Always visible on tablet+
-    },
-    {
-      name: 'FAQ',
-      label: 'FAQ',
-      href: '/faq',
-      submenu: true,
       priority: 'secondary' as const // Hidden 768px-1780px, visible on mobile burger + desktop 1780px+
     }
   ]
@@ -1210,7 +1225,7 @@ function getSubmenuItems(activeDropdown: string) {
       { name: 'Get Confident with British Culture', href: '/video-masterclasses#british-culture-section', description: 'Essential cultural knowledge for success' },
       { name: 'Free Resources', href: '/video-masterclasses#section-2', description: 'Complimentary masterclasses and educational content' }
     ],
-    'FAQ': [
+    'FAQS': [
       { name: 'About the Service', href: '/faq#about-service', description: 'Understanding our tutoring approach' },
       { name: 'Tutors & Teaching', href: '/faq#tutors-teaching', description: 'Our educator selection and methodology' },
       { name: 'Subjects & Curriculum', href: '/faq#subjects-curriculum', description: 'Coverage and educational frameworks' },

@@ -41,10 +41,10 @@ import Image from 'next/image'
 // Pattern: Consistent iconography with tree-shaking support
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-// Documentation Source: Context7 MCP - Magic UI Component Integration
-// Reference: Context7 MCP /magicui/magicui - AnimatedSubscribeButton component
-// Pattern: Interactive UI components for premium user experience
-import { AnimatedSubscribeButton } from '@/components/magicui/animated-subscribe-button'
+// CONTEXT7 SOURCE: /vercel/next.js - NavigationButton component for Subject Tuition page navigation
+// BUTTON NAVIGATION REASON: Official Next.js Link patterns for client-side navigation to Subject Tuition sections
+// Pattern: Navigation button component with Link integration for page section anchors
+import { NavigationButton } from '@/components/ui/navigation-button'
 
 // CMS DATA SOURCE: Using getOptimizedImageProps for image optimization
 // Documentation Source: Context7 MCP - CMS Integration Pattern
@@ -428,30 +428,31 @@ export function ServicesCarousel({
                            * - Button visually aligns with heading and description text
                            * - Creates cohesive visual flow throughout card content
                            */}
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color styling with hex values */}
-                          {/* BUTTON STYLING REVISION: Updated Who We Support button to project secondary gold (#ca9e5b) for brand consistency */}
-                          {/* CONTEXT7 SOURCE: /vercel/next.js - Enhanced button navigation for service enquiries */}
-                          {/* BUTTON FUNCTIONALITY FIX: Official Next.js documentation enables proper service navigation and external enquiry actions */}
+                          {/* CONTEXT7 SOURCE: /vercel/next.js - NavigationButton with Subject Tuition page section navigation */}
+                          {/* NAVIGATION UPDATE REASON: Official Next.js Link patterns for client-side navigation to specific page sections */}
+                          {/* SERVICE BUTTON MAPPING: Direct navigation to relevant Subject Tuition page sections with hash anchors */}
                           <div className="flex justify-end w-full">
-                            <AnimatedSubscribeButton
+                            <NavigationButton
                               key={`button-${index}`}
                               buttonColor="#ca9e5b"
                               buttonTextColor="#ffffff"
-                              subscribeStatus={false}
                               initialText="Learn More"
                               changeText="View Details"
-                              navigationUrl="/services"
-                              externalAction={() => {
-                                // CONTEXT7 SOURCE: /reactjs/react.dev - Analytics tracking in React event handlers
-                                // ANALYTICS ENHANCEMENT: Official React documentation enables event tracking in onClick handlers
-                                if (typeof window !== 'undefined' && window.gtag) {
-                                  window.gtag('event', 'service_inquiry', {
-                                    event_category: 'engagement',
-                                    event_label: service.title,
-                                    value: 1
-                                  })
+                              href={(() => {
+                                // CONTEXT7 SOURCE: /vercel/next.js - Service-to-section mapping for Subject Tuition page navigation
+                                // MAPPING REASON: Official Next.js documentation enables hash anchor navigation for specific page sections
+                                // SERVICE NAVIGATION MAPPING: Each service button navigates to relevant Subject Tuition section
+                                const serviceToSectionMapping: Record<string, string> = {
+                                  'Primary': '/subject-tuition#primary',
+                                  'Secondary': '/subject-tuition#secondary', 
+                                  'Entrance Exams': '/subject-tuition#entrance-exams',
+                                  'Uni & Beyond': '/subject-tuition#university-beyond',
+                                  'Online Homeschooling': '/homeschooling',
+                                  'SEN Support': '/subject-tuition#sen-neurodiverse',
+                                  'London In-Person': '/subject-tuition#london-in-person'
                                 }
-                              }}
+                                return serviceToSectionMapping[service.title] || '/subject-tuition'
+                              })()}
                             />
                           </div>
                         </div>

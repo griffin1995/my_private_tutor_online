@@ -124,7 +124,7 @@ export default async function Image() {
           >
             <div>Featured in Tatler 2025</div>
             <div>•</div>
-            <div>Royal Family Endorsed</div>
+            <div>Trusted by Families</div>
             <div>•</div>
             <div>15+ Years Excellence</div>
           </div>

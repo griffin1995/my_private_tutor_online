@@ -216,7 +216,7 @@ export default function SubjectTuitionPage() {
         {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
         {/* CONTEXT7 SOURCE: /facebook/react - SubjectAccordion component integration */}
         {/* ACCORDION SECTION REASON: Extracted component for subject category display */}
-        <Section className="py-16 lg:py-24 relative" background="white">
+        <Section id="primary-secondary" className="py-16 lg:py-24 relative" background="white">
           <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <m.div
@@ -234,7 +234,17 @@ export default function SubjectTuitionPage() {
               </p>
             </m.div>
 
+            {/* CONTEXT7 SOURCE: /vercel/next.js - Section anchor mapping for navigation targets */}
+            {/* SECTION ANCHOR REASON: Official Next.js documentation enables hash anchor navigation to specific page sections */}
             <div className="max-w-6xl mx-auto">
+              {/* Navigation anchor points for service button links */}
+              <div id="primary" className="-mt-24 pt-24"></div>
+              <div id="secondary" className="-mt-24 pt-24"></div>
+              <div id="entrance-exams" className="-mt-24 pt-24"></div>
+              <div id="university-beyond" className="-mt-24 pt-24"></div>
+              <div id="sen-neurodiverse" className="-mt-24 pt-24"></div>
+              <div id="london-in-person" className="-mt-24 pt-24"></div>
+              
               <SubjectAccordion 
                 categories={subjectCategories}
                 defaultOpenSections={['entrance-exams']}

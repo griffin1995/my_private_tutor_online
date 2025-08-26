@@ -31,6 +31,7 @@
 
 import { GradientOverlay } from "@/components/ui/gradient-overlay";
 import { WaveSeparator } from "@/components/ui/wave-separator";
+import { SmartTextProcessor } from "@/components/ui/text-effects";
 import { m } from "framer-motion";
 import Image from "next/image";
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimised founder story images
@@ -111,9 +112,10 @@ export function FounderStorySection({
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container patterns for responsive layouts */}
       {/* CONTAINER STRATEGY REASON: Official Tailwind CSS documentation Section 2.3 recommends container classes for responsive content width management */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ROW 1: Hero Introduction - Centered Text Container (50-70% width) */}
+        {/* ROW 1: Hero Introduction - Educational Philosophy with Text Effects */}
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Section size reduction for optimal layout proportions */}
-        {/* TASK 3 FIX: Official Tailwind CSS documentation - Container and content reduced by 50% for better visual balance */}
+        {/* CONTEXT7 SOURCE: /components/ui/text-effects - CombinedTextEffect component for highlighting and underline patterns */}
+        {/* TEXT EFFECTS IMPLEMENTATION REASON: Client requirement to copy homepage CombinedTextEffect component with specific highlight/underline phrases */}
         <div className="max-w-2xl mx-auto text-center mb-10">
           <m.h1
             id="founder-story-heading"
@@ -123,22 +125,30 @@ export function FounderStorySection({
             viewport={{ once: true, margin: "-100px" }}
             transition={fadeInUpVariant.transition}
           >
-            Meet Elizabeth, A Different Kind of Educator
+            Our Educational Philosophy
           </m.h1>
 
-          {/* CONTEXT7 SOURCE: /websites/react_dev - Content editing patterns for React components */}
-          {/* CONTENT CONDENSATION REASON: Official React documentation Section for content editing patterns applied to reduce Elizabeth introduction by 50% while preserving key messaging about unconventional background and unique educational approach */}
-          <m.p
+          {/* CONTEXT7 SOURCE: /components/ui/text-effects - Educational philosophy with SmartTextProcessor for dynamic text effects */}
+          {/* SMART TEXT PROCESSING REASON: Client requirement to apply specific highlight/underline effects to phrases within educational philosophy text */}
+          <SmartTextProcessor
             className="text-lg lg:text-xl text-primary-700 leading-relaxed max-w-xl mx-auto"
             initial={fadeInUpVariant.initial}
             whileInView={fadeInUpVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ ...fadeInUpVariant.transition, delay: 0.2 }}
+            highlights={[
+              "tailored to who they are",
+              "academic rigour with personal mentorship", 
+              "structure, insight and flexibility"
+            ]}
+            underlines={[
+              "confidence, curiosity, and clarity",
+              "resilience and self-belief",
+              "cultivate independence"
+            ]}
           >
-            Elizabeth's unconventional journey through six different schools and
-            into business journalism has shaped a unique educational approach
-            that puts choice, confidence, and individual needs first.
-          </m.p>
+            We believe every child deserves an education tailored to who they are, helping them build confidence, curiosity, and clarity. We combine academic rigour with personal mentorship, knowing that success depends as much on resilience and self-belief as it does on subject mastery. Whether preparing for British schools, moving abroad, or facing competitive exams, we provide structure, insight and flexibility. Above all, we aim to cultivate independence — giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends.
+          </SmartTextProcessor>
         </div>
       </div>
 
@@ -181,7 +191,7 @@ export function FounderStorySection({
             className="order-1 lg:order-2 px-6 lg:px-8 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
           >
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
-              An Unconventional Start
+              Meet Elizabeth, A Different Kind of Educator
             </h2>
 
             <p className="text-lg text-primary-700 leading-relaxed">
@@ -287,33 +297,32 @@ export function FounderStorySection({
           transition={fadeInUpVariant.transition}
         >
           <div className="space-y-10">
-            {/* Sub-row 1: First Lesson */}
-            <div className="text-center">
-              <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-4">
-                First Lesson
+            {/* Sub-section: First Lesson to Seventh Continent - Unified Subtitle */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography hierarchy for cohesive subtitle presentation */}
+            {/* SUBTITLE FORMATTING REASON: Official Tailwind CSS documentation enables unified text presentation with proper visual grouping */}
+            <div className="text-center space-y-6">
+              <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6">
+                First Lesson to Seventh Continent
               </h3>
-              <p className="text-lg text-primary-700 leading-relaxed">
-                I started tutoring at Bristol; it was love at first lesson. I've
-                always had a natural affinity with children and combining that
-                with academics just made sense. I went on to complete my
-                Masters, all the while refining my tutoring practice, both in
-                person and online. I quickly found myself being recommended from
-                family to family.
-              </p>
-            </div>
-
-            {/* Sub-row 2: to Seventh Continent with Video Integration */}
-            <div className="text-center">
-              <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-4">
-                to Seventh Continent
-              </h3>
-              <p className="text-lg text-primary-700 leading-relaxed mb-8">
-                What followed was a series of international placements and the
-                opportunities to work with VIPs and private families around the
-                world. By 2017, I had visited all seven continents. I met and
-                worked alongside some truly exceptional educators — many of whom
-                are still firm favourites in the tutoring team now.
-              </p>
+              
+              <div className="space-y-6">
+                <p className="text-lg text-primary-700 leading-relaxed">
+                  I started tutoring at Bristol; it was love at first lesson. I've
+                  always had a natural affinity with children and combining that
+                  with academics just made sense. I went on to complete my
+                  Masters, all the while refining my tutoring practice, both in
+                  person and online. I quickly found myself being recommended from
+                  family to family.
+                </p>
+                
+                <p className="text-lg text-primary-700 leading-relaxed">
+                  What followed was a series of international placements and the
+                  opportunities to work with VIPs and private families around the
+                  world. By 2017, I had visited all seven continents. I met and
+                  worked alongside some truly exceptional educators — many of whom
+                  are still firm favourites in the tutoring team now.
+                </p>
+              </div>
             </div>
           </div>
         </m.div>

@@ -1148,26 +1148,27 @@ export const getInstitutionLogos = () => {
  * Performance: Lazy loading with optimized Next.js Image component integration
  */
 export const getScrollingSchoolLogos = cache((): Record<string, ImageAsset> => {
-  // CMS DATA SOURCE: Mapping school names to logo assets for visual carousel
-  // Context7 MCP verified pattern: Object-to-array transformation for component consumption
+  // CONTEXT7 SOURCE: /microsoft/typescript - Object mapping patterns for school logo asset management
+  // CONTEXT7 SOURCE: /vercel/next.js - Static asset serving patterns for educational institution logos
+  // CMS DATA SOURCE: Mapping all 16 school names to logo assets for visual carousel display
+  // EXPANDED TO 16 SCHOOLS: All prestigious institutions now included in scrolling animation
   const schoolLogoMapping: Record<string, ImageAsset> = {
     "Eton College": INSTITUTION_LOGOS.eton,
     "Westminster School": INSTITUTION_LOGOS.westminster,
-    // "Winchester College": INSTITUTION_LOGOS.winchester, // REMOVED: Missing asset file
     "St Paul's School": INSTITUTION_LOGOS.stPauls,
     "Harrow School": INSTITUTION_LOGOS.harrow,
     "Oxford University": INSTITUTION_LOGOS.oxford,
     "Cambridge University": INSTITUTION_LOGOS.cambridge,
-    // "Imperial College London": INSTITUTION_LOGOS.imperialCollege, // REMOVED: Missing asset file
     "London School of Economics": INSTITUTION_LOGOS.lse,
-    // "University College London": INSTITUTION_LOGOS.ucl, // REMOVED: Missing asset file
+    "King's College London": INSTITUTION_LOGOS.kingsCollege,
     "Brighton College": INSTITUTION_LOGOS.brightonCollege,
-    "Harvard University": INSTITUTION_LOGOS.harvard,
     "Durham University": INSTITUTION_LOGOS.durham,
     "University of Edinburgh": INSTITUTION_LOGOS.edinburgh,
+    "Harvard University": INSTITUTION_LOGOS.harvard,
+    "Highgate School": INSTITUTION_LOGOS.highgate,
+    "Le Rosey School": INSTITUTION_LOGOS.leRosey,
     "University of St Andrews": INSTITUTION_LOGOS.stAndrews,
     "University of Warwick": INSTITUTION_LOGOS.warwick,
-    "Highgate School": INSTITUTION_LOGOS.highgate,
   };
 
   return schoolLogoMapping;
