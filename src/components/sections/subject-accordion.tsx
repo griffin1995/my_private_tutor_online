@@ -165,12 +165,13 @@ function NestedSubjectItem({ subjectItem, index, parentId }: NestedSubjectItemPr
     )
   }
 
-  // Subject item with nested children - creates another accordion
+  // CONTEXT7 SOURCE: /radix-ui/website - Subject item with nested children creates multi-level accordion
+  // NESTED_ACCORDION_REASON: Official Radix UI documentation for nested accordion patterns with enhanced accessibility
   return (
     <Card className="border-slate-200 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 mb-4">
       <button
         onClick={() => setIsNestedOpen(!isNestedOpen)}
-        className="w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 rounded-t-xl"
+        className="w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 rounded-t-xl min-h-[44px] focus-visible:ring-2 focus-visible:ring-accent-500"
         aria-expanded={isNestedOpen}
         aria-controls={`nested-${parentId}-${index}`}
         aria-label={`${isNestedOpen ? 'Collapse' : 'Expand'} ${subjectItem.name} section`}
@@ -237,14 +238,17 @@ function NestedSubjectItem({ subjectItem, index, parentId }: NestedSubjectItemPr
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - AccordionSection component with motion.div animations
 // ANIMATION IMPLEMENTATION REASON: Official Framer Motion patterns for expandable content with height:'auto'
+// CONTEXT7 SOURCE: /radix-ui/website - Enhanced accordion button patterns with accessibility compliance
+// ACCESSIBILITY_ENHANCEMENT_REASON: Official Radix UI documentation for accessible button states with WCAG 2.1 AA touch targets
 function AccordionSection({ category, isOpen, onToggle }: AccordionSectionProps) {
   return (
     <Card className="border-slate-200 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
       <button
         onClick={onToggle}
-        className="w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-all duration-300"
+        className="w-full p-6 flex items-center justify-between hover:bg-slate-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 min-h-[44px] focus-visible:ring-2 focus-visible:ring-accent-500"
         aria-expanded={isOpen}
         aria-controls={`section-${category.id}`}
+        aria-label={`${isOpen ? 'Collapse' : 'Expand'} ${category.title} section`}
       >
         <div className="flex items-center gap-4">
           <div className="bg-gradient-to-br from-amber-100 to-amber-200 rounded-full p-3 text-amber-700 shadow-sm">

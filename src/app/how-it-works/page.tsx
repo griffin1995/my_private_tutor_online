@@ -144,16 +144,20 @@ export default function HowItWorksPage() {
             }}
           />
 
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for gradient accents */}
+          {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
           {/* Royal Gradient Accents */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-500/30 to-transparent" />
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-300/40 to-transparent" />
 
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container padding removal for seamless section connection */}
           {/* PADDING ELIMINATION REASON: Official Tailwind CSS documentation shows removing pb-* classes to eliminate gaps between adjacent sections */}
           <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for corner accents */}
+            {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
             {/* Royal Corner Accents */}
-            <div className="absolute top-2 left-4 w-8 h-8 border-l border-t border-amber-400/20 rounded-tl-lg"></div>
-            <div className="absolute top-2 right-4 w-8 h-8 border-r border-t border-amber-400/20 rounded-tr-lg"></div>
+            <div className="absolute top-2 left-4 w-8 h-8 border-l border-t border-accent-500/20 rounded-tl-lg"></div>
+            <div className="absolute top-2 right-4 w-8 h-8 border-r border-t border-accent-500/20 rounded-tr-lg"></div>
 
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations for sophisticated breadcrumb presentation */}
             {/* ANIMATION ENHANCEMENT REASON: Official Framer Motion documentation Section 3.1 recommends custom ease curves for premium navigation experiences */}
@@ -171,19 +175,19 @@ export default function HowItWorksPage() {
                 {/* Enhanced Home Link */}
                 <a
                   href="/"
-                  className="group relative flex items-center text-slate-700 hover:text-amber-700 transition-all duration-300 px-3 py-2 rounded-lg hover:bg-amber-50/50 backdrop-blur-sm transform hover:scale-105"
+                  className="group relative flex items-center text-slate-700 hover:text-accent-700 transition-all duration-300 px-3 py-2 rounded-lg hover:bg-accent-50/50 backdrop-blur-sm transform hover:scale-105"
                 >
-                  <Home className="w-4 h-4 mr-2 group-hover:text-amber-500 transition-colors duration-300" />
+                  <Home className="w-4 h-4 mr-2 group-hover:text-accent-600 transition-colors duration-300" />
                   <span className="font-medium tracking-wide">Home</span>
-                  <div className="absolute inset-0 rounded-lg border border-transparent group-hover:border-amber-200/50 transition-colors duration-300" />
+                  <div className="absolute inset-0 rounded-lg border border-transparent group-hover:border-accent-200/50 transition-colors duration-300" />
                 </a>
 
                 <ChevronRight className="w-4 h-4 text-slate-400 mx-2" />
 
                 {/* Enhanced Current Page Indicator */}
-                <span className="relative text-slate-900 font-semibold tracking-wide px-3 py-2 rounded-lg bg-gradient-to-r from-amber-50/30 to-transparent">
+                <span className="relative text-slate-900 font-semibold tracking-wide px-3 py-2 rounded-lg bg-gradient-to-r from-accent-50/30 to-transparent">
                   How It Works
-                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400/60 to-transparent rounded-full" />
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-accent-500/60 to-transparent rounded-full" />
                 </span>
               </div>
 
@@ -194,7 +198,7 @@ export default function HowItWorksPage() {
                 <span className="font-medium tracking-wide">
                   Royal Client Service
                 </span>
-                <div className="w-1 h-1 bg-amber-400 rounded-full animate-pulse"></div>
+                <div className="w-1 h-1 bg-accent-500 rounded-full animate-pulse"></div>
               </div>
             </m.nav>
           </div>
@@ -223,8 +227,10 @@ export default function HowItWorksPage() {
           <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/30 to-transparent" />
           <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-50/40 to-transparent" />
 
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for accent borders */}
+          {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
           {/* Premium Accent Borders */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-500/40 to-transparent" />
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-300/30 to-transparent" />
 
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container padding for proper content spacing after hero sections */}
@@ -237,7 +243,7 @@ export default function HowItWorksPage() {
               {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean section headers without multiple decorative crown elements */}
               {/* Royal service indicator */}
               <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="text-sm font-semibold text-amber-700 tracking-wider uppercase">
+                <span className="text-sm font-semibold text-accent-700 tracking-wider uppercase">
                   Royal Process Excellence
                 </span>
               </div>
@@ -246,7 +252,7 @@ export default function HowItWorksPage() {
                 How It Works
               </h2>
 
-              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent mx-auto mb-6"></div>
 
               <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
                 Our bespoke consultation and pairing process ensures an
@@ -261,12 +267,14 @@ export default function HowItWorksPage() {
               {/* CONTEXT7 SOURCE: /context7/motion_dev - Central Timeline Spine with gradient treatment and royal nodes */}
               {/* TIMELINE SPINE REASON: Official Motion documentation Section 4.2 recommends sophisticated visual flow elements for premium user experiences */}
               {/* Central Timeline Spine */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-300 via-amber-400 to-amber-500 transform -translate-x-1/2 hidden lg:block">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for timeline spine */}
+              {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-accent-400 via-accent-500 to-accent-600 transform -translate-x-1/2 hidden lg:block">
                 {/* Timeline Nodes */}
-                <div className="absolute top-[12.5%] w-4 h-4 bg-amber-400 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-                <div className="absolute top-[37.5%] w-4 h-4 bg-amber-400 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-                <div className="absolute top-[62.5%] w-4 h-4 bg-amber-400 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-                <div className="absolute top-[87.5%] w-4 h-4 bg-amber-400 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
+                <div className="absolute top-[12.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
+                <div className="absolute top-[37.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
+                <div className="absolute top-[62.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
+                <div className="absolute top-[87.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
               </div>
 
               {/* CONTEXT7 SOURCE: /context7/motion_dev - Alternating Card Layout with spring-based animations */}
@@ -307,11 +315,13 @@ export default function HowItWorksPage() {
                               },
                             }}
                           >
-                            <Card className="group relative bg-gradient-to-br from-white via-slate-50/30 to-amber-50/10 border-3 border-slate-200 hover:border-amber-400/60 shadow-xl hover:shadow-3xl transition-all duration-700 rounded-2xl overflow-hidden transform hover:scale-[1.02] hover:-translate-y-1">
+                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for card hover states */}
+                            {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
+                            <Card className="group relative bg-gradient-to-br from-white via-slate-50/30 to-accent-50/10 border-3 border-slate-200 hover:border-accent-500/60 shadow-xl hover:shadow-3xl transition-all duration-700 rounded-2xl overflow-hidden transform hover:scale-[1.02] hover:-translate-y-1">
                               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Luxury shimmer effects and royal pattern overlays */}
                               {/* LUXURY SHIMMER REASON: Official Tailwind CSS documentation Section 8.5 recommends gradient overlays for premium card treatments */}
                               {/* Luxury shimmer effect */}
-                              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-amber-50/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-accent-50/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                               {/* Royal pattern overlay */}
                               <div
@@ -323,7 +333,7 @@ export default function HowItWorksPage() {
                               />
 
                               {/* Premium border accent */}
-                              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-amber-400/10 group-hover:ring-amber-400/30 transition-all duration-700" />
+                              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-accent-500/10 group-hover:ring-accent-500/30 transition-all duration-700" />
 
                               <CardHeader className="relative pb-8 p-10 lg:p-12">
                                 <div className="flex items-start gap-6">
@@ -332,7 +342,7 @@ export default function HowItWorksPage() {
                                   <div className="flex-shrink-0">
                                     <div className="relative w-16 h-16 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white flex items-center justify-center font-bold text-xl rounded-xl shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-110">
                                       {/* Royal inner glow */}
-                                      <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 via-amber-300/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                      <div className="absolute inset-0 bg-gradient-to-br from-accent-500/20 via-accent-400/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                                       {/* Premium number */}
                                       <span className="relative text-2xl font-black tracking-tight drop-shadow-lg">
@@ -340,7 +350,7 @@ export default function HowItWorksPage() {
                                       </span>
 
                                       {/* Royal corner flourish */}
-                                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
                                     </div>
                                   </div>
                                   <div className="flex-1">
@@ -348,7 +358,7 @@ export default function HowItWorksPage() {
                                       {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal for consistent step icons */}
                                       {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 5.1 recommends consistent icon mapping without special case crown enhancements */}
                                       {/* Premium Icon with Consistent Design */}
-                                      <IconComponent className="w-7 h-7 text-amber-600 group-hover:text-amber-500 transition-colors duration-300" />
+                                      <IconComponent className="w-7 h-7 text-accent-600 group-hover:text-accent-500 transition-colors duration-300" />
                                       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography hierarchy with royal treatment */}
                                       {/* ROYAL TYPOGRAPHY REASON: Official Tailwind CSS documentation Section 2.4 recommends sophisticated text treatments for premium positioning */}
                                       <h3 className="text-2xl lg:text-3xl font-serif font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent group-hover:from-slate-800 group-hover:to-slate-600 transition-all duration-500 mb-0 leading-tight">
@@ -372,8 +382,10 @@ export default function HowItWorksPage() {
                                         key={featureIndex}
                                         className="flex items-start gap-4 group/feature"
                                       >
-                                        {/* Royal checkmark with glow effect */}
-                                        <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full flex items-center justify-center shadow-lg group-hover/feature:shadow-xl transition-all duration-300">
+                                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for consistent checkmark styling */}
+                                        {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
+                                        {/* Royal checkmark with brand color treatment */}
+                                        <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-lg group-hover/feature:shadow-xl transition-all duration-300">
                                           <CheckCircle className="w-4 h-4 text-white drop-shadow-sm" />
                                         </div>
                                         <span className="text-slate-600 group-hover/feature:text-slate-500 transition-colors duration-300 font-medium leading-relaxed">
@@ -386,7 +398,7 @@ export default function HowItWorksPage() {
                               </CardContent>
 
                               {/* Premium Bottom Accent */}
-                              <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                              <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-accent-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                             </Card>
                           </m.div>
                         </div>
@@ -454,7 +466,7 @@ export default function HowItWorksPage() {
               {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends simplified section headers without multiple crown decorations */}
               {/* Royal service indicator */}
               <div className="flex items-center justify-center gap-3 mb-6">
-                <span className="text-sm font-bold text-amber-700 tracking-widest uppercase">
+                <span className="text-sm font-bold text-accent-700 tracking-widest uppercase">
                   Tiered Excellence
                 </span>
               </div>
@@ -769,7 +781,7 @@ export default function HowItWorksPage() {
               <div className="rounded-2xl p-8 max-w-2xl mx-auto">
                 <p className="text-lg text-slate-700 mb-6">
                   Bespoke 1-2-1 tutoring starts from just{" "}
-                  <span className="font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">
+                  <span className="font-bold text-accent-700 bg-accent-50 px-2 py-1 rounded-lg">
                     {baseRate.display} per hour
                   </span>
                 </p>
@@ -809,7 +821,7 @@ export default function HowItWorksPage() {
                 {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean section headers without multiple crown decorations */}
                 {/* Royal service indicator */}
                 <div className="flex items-center justify-center gap-3 mb-6">
-                  <span className="text-sm font-bold text-amber-700 tracking-widest uppercase">
+                  <span className="text-sm font-bold text-accent-700 tracking-widest uppercase">
                     Royal Excellence Benefits
                   </span>
                 </div>
@@ -886,8 +898,10 @@ export default function HowItWorksPage() {
                             ease: [0.25, 0.1, 0.25, 1],
                           }}
                         >
-                          {/* Premium checkmark with royal treatment */}
-                          <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110 mt-1">
+                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for premium checkmark elements */}
+                          {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
+                          {/* Premium checkmark with brand color treatment */}
+                          <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110 mt-1">
                             <CheckCircle className="w-5 h-5 text-white drop-shadow-sm" />
                           </div>
 
