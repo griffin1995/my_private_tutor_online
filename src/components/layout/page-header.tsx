@@ -188,16 +188,16 @@ export function PageHeader({
     }
   }
 
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Enhanced transparency logic for proper homepage behavior
-  // TRANSPARENCY_REASON: Official React documentation for useMemo optimization with multiple state dependencies
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Universal transparency logic for all pages
+  // TRANSPARENCY_REASON: Official React documentation for useMemo optimization with scroll-based state
+  // UNIVERSAL_IMPLEMENTATION: Apply transparent styling to ALL pages when at top, not homepage-only
   const isTransparent = React.useMemo(() => {
-    // Enhanced logic for transparency determination
-    const hasHeroSection = isHeroPage || isHomepage
+    // Universal transparent logic - applies to all pages
     const isScrolledPastThreshold = isScrolled && isMounted
-    const shouldShowTransparent = hasHeroSection && !isScrolledPastThreshold
+    const shouldShowTransparent = !isScrolledPastThreshold // Show transparent when not scrolled on ANY page
     
     return shouldShowTransparent
-  }, [isHeroPage, isHomepage, isScrolled, isMounted])
+  }, [isScrolled, isMounted])
   
   const currentVariant = isTransparent ? 'transparent' : 'solid'
 
