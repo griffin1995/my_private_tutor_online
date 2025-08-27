@@ -199,7 +199,9 @@ export function PageHeader({
       )}
       variants={navbarVariants}
       animate={currentVariant}
-      initial={isHomepage ? 'solid' : 'transparent'}
+      // CONTEXT7 SOURCE: /grx7/framer-motion - Initial state optimization for immediate transparency
+      // INITIAL_STATE_REASON: Official Framer Motion documentation for preventing unwanted initial animations
+      initial={isTransparent ? 'transparent' : 'solid'}
       // CONTEXT7 SOURCE: /grx7/framer-motion - Transition configuration
       // TRANSITION_REASON: Official Framer Motion documentation for smooth state changes
       transition={{
