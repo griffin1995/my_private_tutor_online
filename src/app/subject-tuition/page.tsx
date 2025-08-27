@@ -271,12 +271,12 @@ export default function SubjectTuitionPage() {
         <Section className="py-16 lg:py-24 relative" background="white">
           <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for statistical data removal
+                 STATISTICAL SIMPLIFICATION: Remove showVerificationBadges and showConfidenceIntervals props to hide granular statistics */}
             <ResultsDocumentation
               title="Quantifiable Academic Outcomes"
               description="Verified results that demonstrate measurable ROI for logic-driven families and elite service positioning"
               results={asyncResultsData}
-              showVerificationBadges={true}
-              showConfidenceIntervals={true}
               layout="grid"
               maxItems={3}
             />

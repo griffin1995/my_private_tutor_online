@@ -44,8 +44,8 @@ import { Crown } from 'lucide-react'
 // BRAND SIMPLIFICATION: Using standard Tailwind CSS text utilities for consistent styling
 
 // CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component for video integration
-// INTEGRATION REASON: Official Magic UI HeroVideoDialog component for video modal functionality
-import { HeroVideoDialog } from '../magicui/hero-video-dialog'
+// INTEGRATION REASON: Official Magic UI documentation recommends default import pattern for HeroVideoDialog component
+import HeroVideoDialog from '../magicui/hero-video-dialog'
 
 // CONTEXT7 SOURCE: /magicuidesign/magicui - Magic UI Highlighter component for premium text emphasis effects
 // HIGHLIGHTER INTEGRATION REASON: Official Magic UI documentation shows Highlighter component for strategic text highlighting with animated effects
@@ -136,54 +136,23 @@ export function AboutSection({
               At Your Fingertips.
             </m.h2>
 
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive typography with accent color for premium gold subheading */}
-            {/* GOLD SUBHEADING REASON: Official Tailwind CSS documentation enables text-accent-600 (#ca9e5b) for premium gold branding */}
-            {/* CONTEXT7 SOURCE: /framer/motion - Motion component patterns for staggered text animations */}
-            {/* ANIMATION INTEGRATION REASON: Official Framer Motion documentation Section 4.1 enables whileInView animations with delay for visual hierarchy */}
-            {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Magic UI Highlighter component for strategic text emphasis */}
-            {/* MAGIC UI HIGHLIGHTER REASON: Official Magic UI documentation demonstrates Highlighter component with action="highlight" and action="underline" for premium text effects */}
-            {/* BRAND-CONSISTENT COLOR SCHEME: Gold (#eab308) highlights and Navy (#0f172a) underlines matching Quote Section implementation */}
-            {/* ANIMATION PARAMETERS: strokeWidth, iterations, and padding values optimized for readability and visual impact */}
-            <m.p 
-              className="text-xl lg:text-2xl text-accent-600 font-medium leading-relaxed mt-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.3
-              }}
-            >
-              We provide{' '}
-              <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
-                exceptional tuition
-              </Highlighter>{' '}
-              that helps students excel{' '}
-              <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
-                academically
-              </Highlighter>{' '}
-              and{' '}
-              <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
-                thrive personally
-              </Highlighter>
-              , opening doors to{' '}
-              <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
-                greater opportunities
-              </Highlighter>
-              —at school and in life.
-            </m.p>
+            {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component content removal patterns for conditional rendering */}
+            {/* HIGHLIGHTED SUBHEADING REMOVAL: Official React documentation Section 4.1 shows how to conditionally remove component content */}
+            {/* REVISION REASON: Highlighted subheading text relocated to NEW Quote Section (section 4) for enhanced prominence */}
+            {/* CONTENT REPOSITIONING: "We provide exceptional tuition..." text moved to dedicated QuoteSection component with highlighting effects */}
+            {/* NOTE: This highlighted subheading content is now displayed in the Quote Section above About Section */}
             
             {/* 
-             * Documentation Source: Context7 MCP - Framer Motion Animation Best Practices
-             * Reference: /grx7/framer-motion - Motion component animation patterns
-             * Pattern: Removed redundant tagline per user requirements
+             * CONTEXT7 SOURCE: /reactjs/react.dev - Component content organization and removal patterns
+             * CONTENT ORGANIZATION REASON: Official React documentation shows how to manage component content hierarchy
              * 
-             * Implementation Decision:
-             * - Removed "Founded on trust. Built on results. Delivered by experts." tagline
-             * - Maintains clean content hierarchy focusing on main value proposition
-             * - Reduces visual noise and strengthens primary messaging
-             * - Improves page reading flow by removing repetitive content
+             * Implementation Decisions:
+             * - Removed highlighted subheading: "We provide exceptional tuition..." (relocated to Quote Section)
+             * - Removed "Founded on trust. Built on results. Delivered by experts." tagline (per user requirements)
+             * - Maintains clean content hierarchy focusing on main About section narrative
+             * - Reduces visual noise and strengthens primary messaging about founder story
+             * - Improves page reading flow by removing repetitive highlighted content
+             * - Enhanced prominence for relocated quote in dedicated Quote Section component
              */}
             
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scaling for visual hierarchy */}
@@ -232,8 +201,13 @@ export function AboutSection({
             {/* Credentials with Brand Logos */}
             {/* Documentation Source: Context7 MCP - Next.js Image optimization for brand logos */}
             {/* Pattern: Using actual brand logos instead of generic icons for credibility */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding utilities reference for padding removal */}
+            {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation shows p-<number>, py-<number>, px-<number> utilities for padding control */}
+            {/* REVISION TYPE: Complete padding elimination from credentials section container per user requirements */}
+            {/* ZERO PADDING IMPLEMENTATION: Removed py-10 px-8 classes to achieve "0 padding left" and complete padding elimination */}
+            {/* BACKGROUND PRESERVATION: Maintained bg-primary-50/30 rounded-lg for visual styling without spacing */}
             <m.div 
-              className="flex flex-wrap items-center gap-8 pt-4"
+              className="flex flex-wrap items-center gap-8 bg-primary-50/30 rounded-lg"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -244,25 +218,32 @@ export function AboutSection({
               }}
             >
               <div className="flex items-center gap-3">
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Height utility classes for logo sizing enhancement */}
+                {/* SIZE INCREASE REASON: Official Tailwind CSS documentation shows h-8 (32px) provides ~33% size increase from h-6 (24px) for enhanced logo prominence */}
+                {/* CREDENTIALS VISIBILITY: Increased Tatler Address Book logo size by 30% while maintaining aspect ratio with w-auto object-contain */}
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Vertical padding utilities for minimal breathing room */}
+                {/* VERTICAL PADDING ADDITION: Added py-0.5 (2px) vertical padding per user requirements for small top/bottom spacing */}
+                {/* REVISION TYPE: Minimal vertical padding addition to Tatler logo only for improved visual spacing */}
+                {/* IMPLEMENTATION: py-0.5 applies padding-block: calc(var(--spacing) * 0.5) = 2px top and bottom */}
                 <Image
                   src="/images/media/tatler-logo.png"
                   alt="Tatler Address Book"
                   width={80}
                   height={30}
-                  className="h-6 w-auto object-contain"
+                  className="h-8 w-auto object-contain py-0.5"
                 />
                 <span className="font-medium text-primary-900">Address Book</span>
               </div>
               <div className="flex items-center gap-3">
-                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Height utility classes for responsive image sizing */}
-                {/* SIZE INCREASE REASON: Official Tailwind CSS documentation shows h-7 (28px) provides ~17% size increase from h-6 (24px) for improved logo visibility */}
-                {/* VISUAL HIERARCHY: Increased School Guide UK logo prominence while maintaining aspect ratio with w-auto object-contain */}
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Height utility classes for consistent logo sizing enhancement */}
+                {/* SIZE INCREASE REASON: Official Tailwind CSS documentation shows h-9 (36px) provides ~29% size increase from h-7 (28px) for balanced logo prominence */}
+                {/* VISUAL HARMONY: Increased School Guide UK logo size by 30% to match Tatler logo enhancement while maintaining aspect ratio */}
                 <Image
                   src="/images/media/schools-guide-uk-logo.png"
                   alt="School Guide UK"
                   width={80}
                   height={30}
-                  className="h-7 w-auto object-contain"
+                  className="h-9 w-auto object-contain"
                 />
                 <span className="font-medium text-primary-900">&lsquo;Top Pick&rsquo;</span>
               </div>

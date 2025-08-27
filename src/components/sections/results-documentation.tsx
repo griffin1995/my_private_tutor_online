@@ -53,15 +53,17 @@ export interface ResultsDocumentationProps {
   readonly className?: string
 }
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface simplification for statistical data removal
+// STATISTICAL DATA REMOVAL: sampleSize and confidenceInterval made optional/removed per client requirements for UI simplification
 export interface ResultsDocumentationItem {
   readonly category: 'grade_improvement' | 'university_placement' | 'exam_success' | 'roi_analysis'
   readonly metric: string
   readonly value: string
   readonly description: string
-  readonly sampleSize?: number
+  readonly sampleSize?: number // Optional - not displayed in simplified UI
   readonly timeframe: string
   readonly verificationLevel: 'verified' | 'estimated' | 'projected'
-  readonly confidenceInterval?: string
+  readonly confidenceInterval?: string // Optional - not displayed in simplified UI
   readonly icon?: string
   readonly priority: number
 }
@@ -130,12 +132,14 @@ const getCategoryStyle = (category: ResultsDocumentationItem['category']) => {
 
 // CONTEXT7 SOURCE: /facebook/react - Main component implementation with analytics data display
 // COMPONENT IMPLEMENTATION REASON: Official React patterns for business analytics presentation
+// CONTEXT7 SOURCE: /facebook/react - Component function with simplified props for statistical data removal
+// STATISTICAL DATA REMOVAL: Default showVerificationBadges and showConfidenceIntervals set to false for UI simplification
 export function ResultsDocumentation({
   title = "Results That Drive Decisions",
   description = "Verifiable outcomes and competitive advantages that justify premium investment",
   results,
-  showVerificationBadges = true,
-  showConfidenceIntervals = true,
+  showVerificationBadges = false, // Simplified UI - hide verification badges
+  showConfidenceIntervals = false, // Simplified UI - hide confidence intervals
   layout = 'grid',
   maxItems,
   className = ""
@@ -183,14 +187,14 @@ export function ResultsDocumentation({
               viewport={{ once: true }}
               whileHover={{ scale: 1.02 }}
             >
-              {/* Icon and Verification Badge */}
+              {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering for UI element visibility control
+                   VERIFICATION BADGE REMOVAL: Hide verification badges to simplify statistical presentation */}
               <div className="flex items-start justify-between mb-4">
                 <div className="p-3 rounded-lg bg-white/70">
                   {result.icon && iconMap[result.icon] 
                     ? iconMap[result.icon] 
                     : <BarChart3 className="w-8 h-8" />}
                 </div>
-                {false && getVerificationBadge(result.verificationLevel)}
               </div>
 
               {/* Metric Value */}
@@ -208,26 +212,13 @@ export function ResultsDocumentation({
                 {result.description}
               </p>
 
-              {/* Additional Information */}
+              {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for UI simplification
+                   STATISTICAL DATA REMOVAL: Hide sample sizes, confidence intervals, and specific statistical details per client requirements */}
               <div className="space-y-2 text-xs">
-                {result.sampleSize && (
-                  <div className="flex items-center gap-1">
-                    <Users className="w-3 h-3" />
-                    <span>Sample: {result.sampleSize.toLocaleString()} students</span>
-                  </div>
-                )}
-                
                 <div className="flex items-center gap-1">
                   <Calendar className="w-3 h-3" />
                   <span>{result.timeframe}</span>
                 </div>
-
-                {showConfidenceIntervals && result.confidenceInterval && (
-                  <div className="flex items-center gap-1">
-                    <BarChart3 className="w-3 h-3" />
-                    <span>{result.confidenceInterval}</span>
-                  </div>
-                )}
               </div>
             </m.div>
           ))}

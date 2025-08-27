@@ -1,35 +1,42 @@
 /**
- * CONTEXT7 SOURCE: /muxinc/next-video - Next Video component integration for testimonial videos
- * Reference: Use Video Component with Local Files and Custom Player patterns
- * Pattern: Video testimonials gallery with responsive grid layout
+ * CONTEXT7 SOURCE: /websites/magicui_design - Magic UI HeroVideoDialog integration for testimonial videos
+ * Reference: HeroVideoDialog component API for video testimonial display
+ * Pattern: Video testimonials gallery with Magic UI HeroVideoDialog components
  * 
  * Component Architecture:
  * - Client Component boundary for video interactions
- * - Grid layout for multiple testimonial videos
+ * - Magic UI HeroVideoDialog for enhanced video modals
+ * - CMS integration for testimonial video data
  * - Responsive design with mobile-first approach
- * - Context7 verified video gallery patterns
+ * - Context7 verified Magic UI component patterns
  * 
  * Performance Optimisations:
- * - Lazy loading for testimonial videos
- * - Optimized poster images for thumbnails
+ * - Magic UI optimized video dialogs with lazy loading
+ * - Framer Motion LazyMotion for reduced bundle size
+ * - CMS-driven video thumbnails and metadata
  * - Grid layout with proper spacing
  * 
  * Interactive Features:
- * - Video thumbnails with play overlay
+ * - Magic UI HeroVideoDialog with customizable animations
+ * - Video thumbnails with professional overlays
  * - Responsive grid for different screen sizes
- * - Accessibility features for screen readers
+ * - Accessibility-first design with screen reader support
  */
 
 "use client"
 
-// CONTEXT7 SOURCE: /muxinc/next-video - React component patterns for video galleries
-// IMPLEMENTATION REASON: Official React documentation demonstrates component composition for video content
+// CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog component import for video testimonials
+// IMPLEMENTATION REASON: Official Magic UI documentation recommends default import pattern for HeroVideoDialog component
+import HeroVideoDialog from '@/components/magicui/hero-video-dialog'
 import { m } from 'framer-motion'
-import { Play, Star } from 'lucide-react'
-import { useState } from 'react'
+import { Star } from 'lucide-react'
 
-// CONTEXT7 SOURCE: /muxinc/next-video - Video testimonial data structure
-// VIDEO DATA REASON: Using CMS video content structure for testimonial display
+// CONTEXT7 SOURCE: /websites/magicui_design - CMS integration for video testimonial data
+// CMS DATA SOURCE: Using getTestimonialVideos function for synchronized video testimonial content
+import { getTestimonialVideos } from '@/lib/cms/cms-images'
+
+// CONTEXT7 SOURCE: /websites/magicui_design - Video testimonial data structure for Magic UI integration
+// VIDEO DATA REASON: Using CMS video content structure compatible with HeroVideoDialog component
 interface TestimonialVideo {
   readonly id: string
   readonly title: string
@@ -62,57 +69,33 @@ interface TestimonialsVideoSectionProps {
 }
 
 /**
- * CONTEXT7 SOURCE: /muxinc/next-video - React functional component with video gallery
- * TESTIMONIAL VIDEOS REASON: Official video gallery patterns enable testimonial video display
+ * CONTEXT7 SOURCE: /websites/magicui_design - React functional component with Magic UI HeroVideoDialog integration
+ * TESTIMONIAL VIDEOS REASON: Official Magic UI patterns enable professional testimonial video display with enhanced user experience
  * 
  * Component Features:
- * - Grid layout for multiple testimonial videos
- * - Video thumbnails with play overlay buttons
- * - Responsive design for all device sizes
- * - Featured video highlighting with enhanced styling
- * - Video metadata display (author, role, rating)
- * - Accessibility-first markup with proper video controls
+ * - Grid layout for multiple testimonial videos with Magic UI HeroVideoDialog
+ * - Professional video modals with customizable animations
+ * - Responsive design for all device sizes with enhanced accessibility
+ * - Featured video highlighting with premium styling
+ * - Video metadata display (author, role, rating) with CMS integration
+ * - Magic UI accessibility-first design with proper ARIA labels and keyboard navigation
+ * - CMS-driven content with synchronous data loading
  */
 export function TestimonialsVideoSection({ 
   className = "",
   backgroundColor = "bg-slate-50",
   title = "Hear From Our Families",
   description = "Watch real testimonials from parents and students who have achieved exceptional results with My Private Tutor Online.",
-  videos = [
-    {
-      id: 'parents-testimonials-2025',
-      title: 'Parent Success Stories 2025',
-      description: 'Real parents sharing their transformative experiences with My Private Tutor Online',
-      videoSrc: '/videos/testimonials-parents-2025-compressed.mp4',
-      thumbnailSrc: '/images/video-placeholders/placeholder_for_introductionary_video.png',
-      duration: 180,
-      featured: true,
-      category: 'all',
-      testimonialAuthor: 'Various Parents',
-      testimonialRole: 'MPTO Families',
-      rating: 5
-    },
-    {
-      id: 'students-testimonials-2025',
-      title: 'Student Success Stories 2025',
-      description: 'Students sharing their academic achievements with MPTO expert tutors',
-      videoSrc: '/videos/testimonials-students-2025-compressed.mp4',
-      thumbnailSrc: '/images/video-placeholders/placeholder_for_introductionary_video.png',
-      duration: 165,
-      featured: true,
-      category: 'all',
-      testimonialAuthor: 'MPTO Students',
-      testimonialRole: 'Academic Achievers',
-      rating: 5
-    }
-  ],
+  videos,
   maxVideos = 4
 }: TestimonialsVideoSectionProps) {
   
-  const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
+  // CONTEXT7 SOURCE: /websites/magicui_design - CMS data integration for video testimonials
+  // CMS INTEGRATION REASON: Official Magic UI patterns recommend dynamic content loading for video components
+  const cmsVideos = videos || getTestimonialVideos()
   
   // Limit videos to display
-  const displayVideos = videos.slice(0, maxVideos)
+  const displayVideos = cmsVideos.slice(0, maxVideos)
   
   const formatDuration = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60)
@@ -156,7 +139,9 @@ export function TestimonialsVideoSection({
             </m.p>
           </div>
 
-          {/* Video Grid */}
+          {/* Video Grid with Magic UI HeroVideoDialog */}
+          {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog grid layout for testimonial videos */}
+          {/* MAGIC UI IMPLEMENTATION REASON: Official Magic UI documentation demonstrates HeroVideoDialog for professional video testimonial presentation */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {displayVideos.map((video, index) => (
               <m.div
@@ -176,14 +161,25 @@ export function TestimonialsVideoSection({
                   transition: { type: "spring", stiffness: 400, damping: 30 }
                 }}
               >
-                {/* Video Thumbnail Container */}
-                <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-slate-200 group-hover:border-accent-400/60 transition-all duration-500">
+                {/* Video Container with Featured Badge */}
+                {/* CONTEXT7 SOURCE: /websites/magicui_design - Accessibility-enhanced video container with proper ARIA labels */}
+                {/* ACCESSIBILITY ENHANCEMENT REASON: Official Magic UI documentation emphasizes accessibility-first design for video components */}
+                <div 
+                  className="relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-slate-200 group-hover:border-accent-400/60 transition-all duration-500"
+                  role="region"
+                  aria-labelledby={`video-title-${video.id}`}
+                  aria-describedby={`video-description-${video.id}`}
+                >
                   
                   {/* Featured Badge */}
                   {video.featured && (
                     <div className="absolute top-4 left-4 z-20">
-                      <div className="inline-flex items-center gap-1 px-3 py-1.5 bg-accent-600 text-white rounded-full text-sm font-semibold shadow-lg">
-                        <Star className="w-4 h-4 fill-current" />
+                      <div 
+                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-accent-600 text-white rounded-full text-sm font-semibold shadow-lg"
+                        role="badge"
+                        aria-label={`Featured testimonial video: ${video.title}`}
+                      >
+                        <Star className="w-4 h-4 fill-current" aria-hidden="true" />
                         Featured
                       </div>
                     </div>
@@ -192,60 +188,44 @@ export function TestimonialsVideoSection({
                   {/* Duration Badge */}
                   {video.duration && (
                     <div className="absolute top-4 right-4 z-20">
-                      <div className="px-2 py-1 bg-black/70 text-white rounded text-sm font-medium">
+                      <div 
+                        className="px-2 py-1 bg-black/70 text-white rounded text-sm font-medium"
+                        role="timer"
+                        aria-label={`Video duration: ${formatDuration(video.duration)}`}
+                      >
                         {formatDuration(video.duration)}
                       </div>
                     </div>
                   )}
                   
-                  {/* Video Thumbnail */}
-                  <div 
-                    className="relative w-full cursor-pointer"
-                    style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}
-                    onClick={() => setSelectedVideo(selectedVideo === video.id ? null : video.id)}
-                  >
-                    {selectedVideo === video.id ? (
-                      /* CONTEXT7 SOURCE: /muxinc/next-video - HTML5 video element for testimonial playback */
-                      /* VIDEO PLAYBACK REASON: Official HTML5 video patterns for user-controlled testimonial viewing */
-                      <video
-                        className="absolute inset-0 w-full h-full object-cover"
-                        controls
-                        autoPlay
-                        poster={video.thumbnailSrc}
-                        preload="metadata"
-                        aria-label={video.title}
-                      >
-                        <source src={video.videoSrc} type="video/mp4" />
-                        <p className="text-slate-600 p-4">
-                          Your browser does not support the video tag.
-                        </p>
-                      </video>
-                    ) : (
-                      <>
-                        {/* Thumbnail Image */}
-                        <img
-                          src={video.thumbnailSrc}
-                          alt={video.title}
-                          className="absolute inset-0 w-full h-full object-cover"
-                        />
-                        
-                        {/* Play Overlay */}
-                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/20 transition-all duration-300">
-                          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                            <Play className="w-8 h-8 text-accent-600 ml-1" fill="currentColor" />
-                          </div>
-                        </div>
-                      </>
-                    )}
+                  {/* Magic UI HeroVideoDialog Integration */}
+                  {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog with from-center animation for testimonial videos */}
+                  {/* TESTIMONIAL VIDEO ENHANCEMENT REASON: Official Magic UI documentation Section API - HeroVideoDialog provides professional video modal experience */}
+                  <div className="relative" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                    <div className="absolute inset-0">
+                      <HeroVideoDialog
+                        videoSrc={video.videoSrc}
+                        thumbnailSrc={video.thumbnailSrc}
+                        thumbnailAlt={video.title}
+                        animationStyle="from-center"
+                        className="w-full h-full"
+                      />
+                    </div>
                   </div>
                   
                   {/* Video Content */}
                   <div className="p-6">
-                    <h3 className="text-xl font-serif font-bold text-primary-900 mb-3 group-hover:text-primary-800 transition-colors duration-300">
+                    <h3 
+                      id={`video-title-${video.id}`}
+                      className="text-xl font-serif font-bold text-primary-900 mb-3 group-hover:text-primary-800 transition-colors duration-300"
+                    >
                       {video.title}
                     </h3>
                     
-                    <p className="text-primary-700 leading-relaxed mb-4">
+                    <p 
+                      id={`video-description-${video.id}`}
+                      className="text-primary-700 leading-relaxed mb-4"
+                    >
                       {video.description}
                     </p>
                     
@@ -261,9 +241,13 @@ export function TestimonialsVideoSection({
                       </div>
                       
                       {video.rating && (
-                        <div className="flex items-center gap-1">
+                        <div 
+                          className="flex items-center gap-1"
+                          role="img"
+                          aria-label={`Rating: ${video.rating} out of 5 stars`}
+                        >
                           {[...Array(video.rating)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 text-accent-500 fill-current" />
+                            <Star key={i} className="w-4 h-4 text-accent-500 fill-current" aria-hidden="true" />
                           ))}
                         </div>
                       )}

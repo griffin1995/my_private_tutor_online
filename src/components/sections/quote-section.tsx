@@ -170,6 +170,25 @@ export function QuoteSection({
       )
     }
 
+    // CONTEXT7 SOURCE: /magicuidesign/magicui - Highlighter component for About section relocated text
+    // HIGHLIGHTING REASON: Official Magic UI documentation shows strategic highlighting for key messaging relocated from About section
+    if (quote.includes("We provide exceptional tuition that helps students excel academically and thrive personally")) {
+      // About section relocated text with exact same highlighting pattern: Gold highlights, navy underlines
+      return (
+        <>
+          We provide{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>exceptional tuition</Highlighter>
+          {' '}that helps students{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>excel academically</Highlighter>
+          {' '}and{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>thrive personally</Highlighter>
+          , opening doors to{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>greater opportunities</Highlighter>
+          —at school and in life.
+        </>
+      )
+    }
+
     // Brand-consistent highlighting using only main project colors
     return (
       <>

@@ -577,41 +577,42 @@ export const TUTOR_IMAGES = {
 
 // CONTEXT7 SOURCE: /muxinc/next-video - Enhanced video content structure with comprehensive metadata
 // CONTEXT7 SOURCE: /microsoft/typescript - Readonly object patterns for immutable video asset definitions
-// Video testimonials and content - Enhanced for comprehensive video gallery support
+// CONTEXT7 SOURCE: /websites/magicui_design - Video testimonials and content enhanced for Magic UI HeroVideoDialog integration
+// CMS VIDEO DATA REASON: Official Magic UI documentation recommends proper video source and thumbnail structure for HeroVideoDialog components
 export const VIDEO_CONTENT = {
   parentsTestimonials: {
     id: "parents-testimonials-2025",
-    src: "/videos/testimonials-parents-2025-compressed.mp4",
-    poster: "/images/video-placeholders/parents-testimonials-poster.jpg",
-    alt: "Parent testimonials for My Private Tutor Online - July 2025",
+    src: "/videos/parent-testimonials-compilation.mp4",
+    poster: "/images/testimonials/parent-testimonials-thumbnail.jpg",
+    alt: "Parent testimonials for My Private Tutor Online - Compilation 2025",
     title: "Parent Success Stories 2025",
     description:
       "Real parents sharing their transformative experiences with My Private Tutor Online",
-    duration: 180,
+    duration: 300,
     featured: true,
     category: "all" as const,
     testimonialAuthor: "Various Parents",
     testimonialRole: "MPTO Families",
     viewCount: 2847,
     rating: 5,
-    uploadDate: "2025-07-15",
+    uploadDate: "2025-08-19",
   },
   studentsTestimonials: {
     id: "students-testimonials-2025",
-    src: "/videos/testimonials-students-2025-compressed.mp4",
-    poster: "/images/video-placeholders/students-testimonials-poster.jpg",
-    alt: "Student testimonials for My Private Tutor Online - 2025",
+    src: "/videos/student-testimonials-compilation.mp4",
+    poster: "/images/testimonials/student-testimonials-thumbnail.jpg",
+    alt: "Student testimonials for My Private Tutor Online - Compilation 2025",
     title: "Student Success Stories 2025",
     description:
       "Students sharing their academic achievements with MPTO expert tutors",
-    duration: 165,
+    duration: 280,
     featured: true,
     category: "all" as const,
     testimonialAuthor: "MPTO Students",
     testimonialRole: "Academic Achievers",
     viewCount: 2156,
     rating: 5,
-    uploadDate: "2025-07-12",
+    uploadDate: "2025-08-19",
   },
   oxbridgeSuccess: {
     id: "oxbridge-success-stories",
@@ -1202,9 +1203,9 @@ export const getVideoContent = (): typeof VIDEO_CONTENT => {
 };
 
 /**
- * Get testimonial videos as array for video gallery component
- * CONTEXT7 SOURCE: /muxinc/next-video - Video gallery data structure for enhanced testimonial presentation
- * CMS DATA SOURCE: Using VIDEO_CONTENT transformed for VideoTestimonials component
+ * Get testimonial videos as array for Magic UI HeroVideoDialog component integration
+ * CONTEXT7 SOURCE: /websites/magicui_design - Video gallery data structure for HeroVideoDialog testimonial presentation
+ * CMS DATA SOURCE: Using VIDEO_CONTENT transformed for Magic UI HeroVideoDialog components with proper API structure
  */
 export const getTestimonialVideos = (): Array<{
   readonly id: string;

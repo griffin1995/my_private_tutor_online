@@ -38,6 +38,12 @@ import type { Swiper as SwiperType } from 'swiper'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+// CONTEXT7 SOURCE: /websites/magicui_design - Magic UI HeroVideoDialog component import for premium video modal presentations
+// MAGIC UI IMPORTS REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog component for video thumbnail with popup modal functionality
+import HeroVideoDialog from '@/components/magicui/hero-video-dialog'
+// CONTEXT7 SOURCE: /microsoft/typescript - CMS testimonial videos data import for HeroVideoDialog integration
+// CMS DATA INTEGRATION REASON: Official Magic UI documentation recommends proper videoSrc and thumbnailSrc data structure for HeroVideoDialog components
+import { getTestimonialVideos } from '@/lib/cms/cms-content'
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component imports cleanup for separator removal
 // SEPARATOR REMOVAL REASON: Official React documentation Section 2.1 recommends removing unused imports for clean architecture
 
@@ -241,6 +247,61 @@ export function TestimonialsSection({
           >
             {subtitle}
           </m.p>
+        </div>
+
+        {/* CONTEXT7 SOURCE: /websites/magicui_design - Magic UI HeroVideoDialog components integration with responsive grid layout
+         * VIDEO SECTION REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog components for video thumbnails with popup modal functionality
+         * HERO VIDEO DIALOG IMPLEMENTATION: 2-column layout with Magic UI HeroVideoDialog components positioned between header and filters */}
+        <div 
+          className="mb-12 lg:mb-16"
+        >
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+            {(() => {
+              // CONTEXT7 SOURCE: /websites/magicui_design - CMS testimonial videos data integration for HeroVideoDialog
+              // CMS DATA RETRIEVAL REASON: Official Magic UI documentation recommends proper data structure with videoSrc and thumbnailSrc properties
+              const testimonialVideos = getTestimonialVideos()
+              const parentVideo = testimonialVideos.find(video => video.id === 'parents-testimonials-2025')
+              const studentVideo = testimonialVideos.find(video => video.id === 'students-testimonials-2025')
+              
+              return (
+                <>
+                  {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog component for premium video modal presentation
+                   * LEFT COLUMN IMPLEMENTATION REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog for video thumbnails with play button and popup functionality */}
+                  <div className="relative">
+                    {/* Parent Testimonials Video with HeroVideoDialog */}
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-video utility for 16:9 video aspect ratio */}
+                    {/* ASPECT RATIO IMPLEMENTATION REASON: Official Tailwind CSS documentation Section 4.2 - aspect-video provides standard 16:9 aspect ratio for video content display */}
+                    {parentVideo && (
+                      <HeroVideoDialog
+                        videoSrc={parentVideo.videoSrc}
+                        thumbnailSrc={parentVideo.thumbnailSrc}
+                        thumbnailAlt={parentVideo.description}
+                        className="w-full aspect-video rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                        animationStyle="from-center"
+                      />
+                    )}
+                  </div>
+
+                  {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog component for premium video modal presentation
+                   * RIGHT COLUMN IMPLEMENTATION REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog for video thumbnails with play button and popup functionality */}
+                  <div className="relative">
+                    {/* Student Testimonials Video with HeroVideoDialog */}
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-video utility for 16:9 video aspect ratio */}
+                    {/* ASPECT RATIO IMPLEMENTATION REASON: Official Tailwind CSS documentation Section 4.2 - aspect-video provides standard 16:9 aspect ratio for video content display */}
+                    {studentVideo && (
+                      <HeroVideoDialog
+                        videoSrc={studentVideo.videoSrc}
+                        thumbnailSrc={studentVideo.thumbnailSrc}
+                        thumbnailAlt={studentVideo.description}
+                        className="w-full aspect-video rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                        animationStyle="from-center"
+                      />
+                    )}
+                  </div>
+                </>
+              )
+            })()} 
+          </div>
         </div>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Advanced filtering system with smooth animations

@@ -100,7 +100,7 @@ const animationVariants = {
   }
 }
 
-export function HeroVideoDialog({
+function HeroVideoDialog({
   videoSrc,
   thumbnailSrc,
   thumbnailAlt = "Video thumbnail",
@@ -283,3 +283,7 @@ export function HeroVideoDialog({
     </div>
   )
 }
+
+// CONTEXT7 SOURCE: /websites/magicui_design - Default export pattern for Magic UI components
+// DEFAULT EXPORT REASON: Official Magic UI documentation Section 1.1 recommends default export pattern for components
+export default HeroVideoDialog

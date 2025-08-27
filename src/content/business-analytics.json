@@ -34,10 +34,8 @@
       "metric": "11+ Grammar & Independent School Success",
       "value": "95% pass rate",
       "description": "Students achieving offers from at least one of their first choice schools, including Eton, St Paul's, Westminster, Highgate, Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's and more.",
-      "sampleSize": 156,
-      "timeframe": "2024-2025 application cycle",
+      "timeframe": "Recent application cycles",
       "verificationLevel": "verified",
-      "confidenceInterval": "±6% (95% confidence)",
       "icon": "Award",
       "priority": 1
     },
@@ -45,11 +43,9 @@
       "category": "grade_improvement",
       "metric": "GCSE Grade Growth",
       "value": "94% 2+ grade growth",
-      "description": "Since 2010 an average of 94% our GCSE students improved by two or more full levels during their time with us.",
-      "sampleSize": 340,
-      "timeframe": "2010-2025 academic years",
+      "description": "Our GCSE students consistently improve by two or more full levels during their time with us.",
+      "timeframe": "Long-term tracking across multiple academic years",
       "verificationLevel": "verified",
-      "confidenceInterval": "±2% (95% confidence)",
       "icon": "TrendingUp",
       "priority": 1
     },
@@ -58,10 +54,8 @@
       "metric": "Top 2% Test Performance",
       "value": "Top 2% of test takers",
       "description": "From 7+ entrance all the way through to A Levels, our tutees frequently score in the top 2% of candidates. For example, one of our current students obtained the highest GCSE Science score in all of Asia.",
-      "sampleSize": 89,
-      "timeframe": "2020-2025 examination cycles",
+      "timeframe": "Recent examination cycles",
       "verificationLevel": "verified",
-      "confidenceInterval": "±5% (90% confidence)",
       "icon": "Crown",
       "priority": 1
     }

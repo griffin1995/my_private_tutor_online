@@ -70,15 +70,17 @@ export function VideoText({
     )
   }
 
-  // During SSR, render simple text without video effects to prevent hydration mismatch
+  // During SSR, render placeholder with same dimensions to prevent layout shift
   if (!isClient) {
     return (
-      <Component className={cn("relative flex items-center justify-center bg-primary-900 text-white", className)}>
+      <Component className={cn("relative overflow-hidden", className)}>
         <div 
-          className="text-center font-serif font-bold"
+          className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-900 to-primary-700 text-white"
           style={{ fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize }}
         >
-          {displayText}
+          <div className="text-center font-serif font-bold opacity-90">
+            {displayText}
+          </div>
         </div>
       </Component>
     )

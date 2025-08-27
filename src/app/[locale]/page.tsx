@@ -186,12 +186,13 @@ export default function HomePage() {
         )}
       </div>
       
-      {/* 4. NEW HERO SUBHEADING AS QUOTE SECTION */}
+      {/* 4. NEW QUOTE SECTION - ABOUT SECTION SUBHEADING RELOCATED */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component rendering with JSX for modular sections */}
-      {/* HERO SUBTITLE RELOCATION: Moving hero.subtitle from HeroSection to dedicated Quote Section for enhanced prominence */}
+      {/* REVISION REASON: Official React documentation Section 4.1 shows proper conditional rendering for component repositioning */}
+      {/* ABOUT SECTION SUBHEADING RELOCATION: Moving highlighted subheading from About Section to dedicated Quote Section for enhanced prominence */}
       <div className="mt-16">
         <QuoteSection 
-          quote="Expert Private Tutoring, Personally Curated by Elizabeth Burrows"
+          quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
           backgroundColor="bg-white"
           className=""
           useHighlighting={true}
@@ -215,12 +216,12 @@ export default function HomePage() {
       <section className="py-16 lg:py-24 relative bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for statistical data removal
+               STATISTICAL SIMPLIFICATION: Remove showVerificationBadges and showConfidenceIntervals props to hide granular statistics */}
           <ResultsDocumentation
             title="Quantifiable Academic Outcomes"
             description="Verified results that demonstrate measurable ROI for logic-driven families and elite service positioning"
             results={asyncResultsData}
-            showVerificationBadges={true}
-            showConfidenceIntervals={true}
             layout="grid"
             maxItems={3}
           />

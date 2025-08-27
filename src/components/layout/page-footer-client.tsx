@@ -255,12 +255,12 @@ export function PageFooterClient({
 
                 {/* Premium Accolades - horizontal layout on one row */}
                 <div className="grid grid-cols-3 gap-3">
-                  {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - Crown icon and updated badge content */}
-                  {/* TASK 3 REVISION: Updated main text to "Royal Clientele" and changed subtext from "Excellence" to "Pedigree" for premium royal heritage presentation */}
+                  {/* CONTEXT7 SOURCE: /reactjs/react.dev - JSX text content modification patterns */}
+                  {/* TEXT CHANGE REVISION: Updated footer accolade text from "Trusted Families Nationwide" to "Royal Clientele Pedigree" for enhanced premium royal client positioning */}
                   <div className="bg-gray-100 rounded-lg p-3 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
                     <Users className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
-                    <p className="text-xs font-semibold text-black leading-tight">Trusted Families</p>
-                    <p className="text-xs text-gray-600">Nationwide</p>
+                    <p className="text-xs font-semibold text-black leading-tight">Royal Clientele</p>
+                    <p className="text-xs text-gray-600">Pedigree</p>
                   </div>
                   {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - Award icon for Tatler achievement badge */}
                   {/* TASK 4 REVISION: Enhanced padding from p-2 to p-3 for better visual positioning */}
