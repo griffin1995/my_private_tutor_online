@@ -337,17 +337,24 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
       : "text-gray-700 hover:text-primary-600 hover:bg-gray-50"
   )
 
-  // CONTEXT7 SOURCE: /radix-ui/website - Enhanced content classes for premium mobile experience  
-  // CONTENT_REASON: Official Radix UI documentation for NavigationMenu content with mobile optimization
+  // CONTEXT7 SOURCE: /radix-ui/website - Enhanced content classes with full-width container breakout
+  // CONTENT_REASON: Official Radix UI documentation for NavigationMenu content with full viewport width
+  // FULL_WIDTH_ENHANCEMENT: Apply same container breakout technique as viewport for consistent full-width dropdowns
   const contentClasses = cn(
-    "absolute left-0 top-0 w-full sm:w-auto",
+    "absolute top-0 w-screen -ml-[50vw] left-1/2", // Container breakout technique for full width
     "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out",
     "data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out",
     "data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52",
     "data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52",
-    "bg-white border border-gray-200/50 rounded-lg shadow-xl backdrop-blur-sm",
-    "p-4 sm:p-6 min-w-[300px] max-w-[90vw] sm:max-w-none z-50",
-    "transition-all duration-200 ease-out"
+    "bg-white border-t border-gray-200/50 shadow-xl backdrop-blur-sm",
+    "transition-all duration-200 ease-out z-50"
+  )
+
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Inner content container for proper centering
+  // CONTAINER_REASON: Official Tailwind documentation for max-width containers with horizontal centering
+  const contentInnerClasses = cn(
+    "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "py-4 sm:py-6"
   )
 
   // CONTEXT7 SOURCE: /radix-ui/website - Render navigation item helper function
@@ -381,30 +388,32 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
             </svg>
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className={contentClasses}>
-            <div className="grid gap-3">
-              {item.items.map((subItem) => (
-                <NavigationMenu.Link asChild key={subItem.label}>
-                  <Link
-                    href={subItem.href}
-                    className={cn(
-                      "group grid h-auto w-full justify-start gap-1 rounded-md p-3",
-                      "text-sm leading-none no-underline outline-none transition-all duration-200",
-                      "hover:bg-gray-50 hover:text-primary-600 hover:shadow-sm hover:scale-[1.02]",
-                      "focus:bg-gray-50 focus:text-primary-600 focus:ring-2 focus:ring-primary-500/20",
-                      "active:scale-[0.98] min-h-[44px] flex items-start" // WCAG touch target + alignment
-                    )}
-                  >
-                    <div className="text-sm font-medium leading-none group-hover:text-primary-600">
-                      {subItem.label}
-                    </div>
-                    {subItem.description && (
-                      <p className="line-clamp-2 text-xs leading-snug text-gray-600 group-hover:text-gray-700">
-                        {subItem.description}
-                      </p>
-                    )}
-                  </Link>
-                </NavigationMenu.Link>
-              ))}
+            <div className={contentInnerClasses}>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {item.items.map((subItem) => (
+                  <NavigationMenu.Link asChild key={subItem.label}>
+                    <Link
+                      href={subItem.href}
+                      className={cn(
+                        "group grid h-auto w-full justify-start gap-1 rounded-md p-3",
+                        "text-sm leading-none no-underline outline-none transition-all duration-200",
+                        "hover:bg-gray-50 hover:text-primary-600 hover:shadow-sm hover:scale-[1.02]",
+                        "focus:bg-gray-50 focus:text-primary-600 focus:ring-2 focus:ring-primary-500/20",
+                        "active:scale-[0.98] min-h-[44px] flex items-start" // WCAG touch target + alignment
+                      )}
+                    >
+                      <div className="text-sm font-medium leading-none group-hover:text-primary-600">
+                        {subItem.label}
+                      </div>
+                      {subItem.description && (
+                        <p className="line-clamp-2 text-xs leading-snug text-gray-600 group-hover:text-gray-700">
+                          {subItem.description}
+                        </p>
+                      )}
+                    </Link>
+                  </NavigationMenu.Link>
+                ))}
+              </div>
             </div>
           </NavigationMenu.Content>
         </NavigationMenu.Item>
