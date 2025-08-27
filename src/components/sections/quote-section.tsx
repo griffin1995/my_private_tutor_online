@@ -157,6 +157,19 @@ export function QuoteSection({
       )
     }
 
+    // CONTEXT7 SOURCE: /reactjs/react.dev - Strategic highlighting for Elizabeth Burrows tagline
+    // HIGHLIGHTING REASON: Official React patterns enable selective text emphasis for premium service positioning
+    if (quote.includes("Expert Private Tutoring, Personally Curated by Elizabeth Burrows")) {
+      // Elizabeth Burrows tagline with strategic emphasis
+      return (
+        <>
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>Expert Private Tutoring</Highlighter>
+          , Personally Curated by{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>Elizabeth Burrows</Highlighter>
+        </>
+      )
+    }
+
     // Brand-consistent highlighting using only main project colors
     return (
       <>

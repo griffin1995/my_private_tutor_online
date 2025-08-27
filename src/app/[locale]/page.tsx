@@ -186,7 +186,20 @@ export default function HomePage() {
         )}
       </div>
       
-      {/* 4. ABOUT SECTION */}
+      {/* 4. NEW HERO SUBHEADING AS QUOTE SECTION */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component rendering with JSX for modular sections */}
+      {/* HERO SUBTITLE RELOCATION: Moving hero.subtitle from HeroSection to dedicated Quote Section for enhanced prominence */}
+      <div className="mt-16">
+        <QuoteSection 
+          quote="Expert Private Tutoring, Personally Curated by Elizabeth Burrows"
+          backgroundColor="bg-white"
+          className=""
+          useHighlighting={true}
+          showAuthorImage={false}
+        />
+      </div>
+      
+      {/* 5. ABOUT SECTION */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for visual hierarchy and section separation */}
       {/* VISUAL BREAK REASON: Official Tailwind CSS documentation mt-16 utility creates 4rem (64px) top margin for clear separation between introductory group (Hero/Tagline/Schools) and main content sections */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - About section with founder story and company credentials */}
@@ -196,7 +209,7 @@ export default function HomePage() {
       </div>
       
       
-      {/* 5. RESULTS DOCUMENTATION - QUANTIFIABLE ACADEMIC OUTCOMES */}
+      {/* 6. RESULTS DOCUMENTATION - QUANTIFIABLE ACADEMIC OUTCOMES */}
       {/* CONTEXT7 SOURCE: /facebook/react - ResultsDocumentation component integration identical to Subject Tuition page */}
       {/* RESULTS DOCUMENTATION REASON: Exact carbon copy of Subject Tuition page section 4 for consistent data presentation */}
       <section className="py-16 lg:py-24 relative bg-white">
@@ -214,13 +227,13 @@ export default function HomePage() {
         </div>
       </section>
       
-      {/* 6. WHO WE SUPPORT */}
+      {/* 7. WHO WE SUPPORT */}
       <TrustIndicatorsGrid 
         indicators={trustIndicators}
         studentImages={studentImages}
       />
       
-      {/* 7. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
+      {/* 8. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
       {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
       <HomepageSections 
@@ -228,7 +241,7 @@ export default function HomePage() {
         studentImages={Object.values(studentImages)}
       />
       
-      {/* 8. QUOTE SECTION */}
+      {/* 9. QUOTE SECTION */}
       {/* CONTEXT7 SOURCE: /magicui/design - Text-only quote with strategic highlighting effects */}
       {/* HIGHLIGHTER ENHANCEMENT REASON: Magic UI documentation enables visual emphasis without photos for clean, professional presentation */}
       <QuoteSection 
@@ -238,7 +251,7 @@ export default function HomePage() {
         showAuthorImage={false}
       />
       
-      {/* 9. BIZSTIM CTA SECTION */}
+      {/* 10. BIZSTIM CTA SECTION */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for main CTA section */}
       {/* BIZSTIM SECTION REASON: Official React documentation enables component repositioning for improved user flow */}
       <section className="py-16 lg:py-24 bg-white">
