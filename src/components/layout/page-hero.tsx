@@ -139,14 +139,21 @@ export function PageHero({
         sizeClasses[size],
         backgroundClasses[background],
         verticalAlignmentClasses[verticalAlignment],
-        // CRITICAL FULL-SCREEN LAYOUT FIX: For full-size heroes, we need to break out of PageLayout's container padding
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full viewport layout with viewport units
+        // VIEWPORT_ENHANCEMENT_REASON: Official Tailwind documentation for 100vw viewport width and container breakout
+        // CRITICAL FULL-SCREEN LAYOUT FIX: For full-size heroes, we need complete viewport coverage
         // PageLayout applies px-4 sm:px-6 lg:px-8 padding, creating unwanted side gaps for full-screen video backgrounds
-        // Solution: Use negative margins to pull content to edges + calculated width to extend full viewport width
-        // -mx-4 (1rem each side) + w-[calc(100%+2rem)] = perfect edge-to-edge coverage on mobile
-        // -mx-6 (1.5rem each side) + w-[calc(100%+3rem)] = perfect edge-to-edge coverage on small screens
-        // -mx-8 (2rem each side) + w-[calc(100%+4rem)] = perfect edge-to-edge coverage on large screens
-        // DO NOT MODIFY: This ensures video backgrounds extend completely edge-to-edge without white gaps
-        size === 'full' ? '-mx-4 sm:-mx-6 lg:-mx-8 w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)] lg:w-[calc(100%+4rem)]' : '',
+        // Solution: Use viewport width (100vw) with negative margins for complete edge-to-edge coverage
+        // w-screen = 100vw ensures full viewport width regardless of container padding
+        // Combined with negative margins for perfect edge-to-edge coverage breaking out of any container constraints
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container breakout technique for true viewport coverage
+        // CRITICAL VIEWPORT BREAKOUT: Use viewport calculation to escape centered container constraints
+        // SOLUTION: Transform-based breakout that achieves true edge-to-edge coverage without breaking document flow
+        // - w-screen: 100vw viewport width
+        // - left-1/2: Position at 50% of parent (centered container)  
+        // - -ml-[50vw]: Negative margin of 50vw to shift left edge to viewport edge
+        // This combination breaks out of mx-auto centering to achieve true full-screen coverage
+        size === 'full' ? 'w-screen min-h-screen -ml-[50vw] left-1/2 relative z-10' : '',
         className
       )}
       style={{
@@ -173,7 +180,7 @@ export function PageHero({
             playsInline
             preload="metadata"
             disablePictureInPicture
-            className="absolute inset-0 w-full h-full object-contain z-0"
+            className="absolute inset-0 w-full h-full object-cover z-0"
             style={{
               filter: 'brightness(0.75) contrast(1.1) saturate(1.1)'
             }}

@@ -35,9 +35,9 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-// CONTEXT7 SOURCE: /grx7/framer-motion - Motion components for premium animations
-// MOTION_REASON: Official Framer Motion documentation for hover animations and scale effects
-import { motion } from 'framer-motion'
+// CONTEXT7 SOURCE: /grx7/framer-motion - Motion components for premium animations and seamless transitions
+// MOTION_REASON: Official Framer Motion documentation for hover animations, scale effects, and AnimatePresence
+import { motion, AnimatePresence } from 'framer-motion'
 
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Utility function for CSS class management
 // UTILS_REASON: Official Tailwind documentation for conditional class composition
@@ -56,24 +56,41 @@ interface LogoSectionProps {
 }
 
 /**
- * CONTEXT7 SOURCE: /vercel/next.js - Image component with priority loading
+ * CONTEXT7 SOURCE: /vercel/next.js - Image component with priority loading and animated switching
  * LOGO_COMPONENT_REASON: Official Next.js documentation for Image optimization with layout stability
  * 
- * CONTEXT7 SOURCE: /grx7/framer-motion - Interactive hover animations
- * ANIMATION_REASON: Official Framer Motion documentation for scale animations and smooth transitions
+ * CONTEXT7 SOURCE: /grx7/framer-motion - Interactive hover animations and seamless logo transitions
+ * ANIMATION_REASON: Official Framer Motion documentation for AnimatePresence, scale animations, and smooth transitions
  * 
  * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive design patterns
  * RESPONSIVE_REASON: Official Tailwind documentation for responsive sizing and hover effects
+ * 
+ * ENHANCEMENT: Logo switching now integrated with navbar's fade animation system
+ * INTEGRATION_REASON: Seamless visual experience matching navbar's 0.3s easeInOut transition timing
  */
 export function LogoSection({ isTransparent, isHomepage, className }: LogoSectionProps) {
-  // CONTEXT7 SOURCE: /vercel/next.js - CMS-based logo selection with transparent state logic
+  // CONTEXT7 SOURCE: /vercel/next.js - CMS-based logo selection with animated state transition
   // LOGO_LOGIC_REASON: Official Next.js documentation for conditional image rendering using CMS assets
-  // IMPLEMENTATION_REASON: White logo displays during transparent navbar state, standard logo when scrolled/solid
+  // ENHANCEMENT_REASON: Logo switching now animated to match navbar fade transition timing
   const standardLogo = getMainLogo()
   const whiteLogo = getMainLogoWhite()
   
-  const currentLogo = isTransparent ? whiteLogo : standardLogo
+  // CONTEXT7 SOURCE: /grx7/framer-motion - Animation variants matching navbar transition system
+  // VARIANTS_REASON: Official Framer Motion documentation for consistent animation timing across components
+  const logoVariants = {
+    initial: { opacity: 0, scale: 0.95 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.95 }
+  }
   
+  // CONTEXT7 SOURCE: /grx7/framer-motion - Transition configuration matching navbar system
+  // TRANSITION_REASON: Official Framer Motion documentation for consistent 0.3s easeInOut timing
+  const logoTransition = {
+    duration: 0.3,
+    ease: 'easeInOut'
+  }
+  
+  const currentLogo = isTransparent ? whiteLogo : standardLogo
   const logoSrc = currentLogo?.src || '/images/logos/logo-with-name.png'
   const logoAlt = isTransparent 
     ? 'My Private Tutor Online - White Logo' 
@@ -107,65 +124,67 @@ export function LogoSection({ isTransparent, isHomepage, className }: LogoSectio
             duration: 0.15
           }}
         >
-          {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with performance optimization */}
-          {/* IMAGE_OPTIMIZATION_REASON: Official Next.js documentation for Image with priority and layout stability */}
-          <Image
-            src={logoSrc}
-            alt={logoAlt}
-            width={175}
-            height={100}
-            priority
-            className={cn(
-              // Base responsive sizing - progressive scaling across breakpoints
-              "h-12 lg:h-16 xl:h-20 w-auto object-contain",
+          {/* CONTEXT7 SOURCE: /grx7/framer-motion - AnimatePresence for seamless logo transitions */}
+          {/* ANIMATE_PRESENCE_REASON: Official Framer Motion documentation for smooth component switching */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={isTransparent ? 'white-logo' : 'standard-logo'}
+              variants={logoVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={logoTransition}
+              className="relative"
+            >
+              {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with performance optimization */}
+              {/* IMAGE_OPTIMIZATION_REASON: Official Next.js documentation for Image with priority and layout stability */}
+              <Image
+                src={logoSrc}
+                alt={logoAlt}
+                width={175}
+                height={100}
+                priority
+                className={cn(
+                  // Base responsive sizing - progressive scaling across breakpoints
+                  "h-12 lg:h-16 xl:h-20 w-auto object-contain",
+                  
+                  // Performance optimizations
+                  "will-change-transform",
+                  
+                  // Context-aware glow effect on hover
+                  glowColor,
+                  
+                  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Filter effects for brand enhancement
+                  // FILTER_REASON: Official Tailwind documentation for filter utilities and visual enhancement
+                  "hover:brightness-110 active:brightness-95"
+                )}
+                // CONTEXT7 SOURCE: /vercel/next.js - Image loading optimization
+                // LOADING_REASON: Official Next.js documentation for eager loading of critical images
+                loading="eager"
+                // Prevent layout shift with fixed aspect ratio
+                style={{
+                  aspectRatio: '175/100',
+                  maxWidth: 'none'
+                }}
+              />
               
-              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Smooth transitions
-              // TRANSITION_REASON: Official Tailwind documentation for transition timing and easing
-              "transition-all duration-300 ease-in-out",
-              
-              // Performance optimizations
-              "will-change-transform",
-              
-              // Context-aware glow effect on hover
-              glowColor,
-              
-              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Filter effects for brand enhancement
-              // FILTER_REASON: Official Tailwind documentation for filter utilities and visual enhancement
-              "hover:brightness-110 active:brightness-95"
-            )}
-            // CONTEXT7 SOURCE: /vercel/next.js - Image loading optimization
-            // LOADING_REASON: Official Next.js documentation for eager loading of critical images
-            loading="eager"
-            // Prevent layout shift with fixed aspect ratio
-            style={{
-              aspectRatio: '175/100',
-              maxWidth: 'none'
-            }}
-          />
-          
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-aware brand enhancement overlay */}
-          {/* OVERLAY_REASON: Official Tailwind documentation for pseudo-element styling with transparent/solid state awareness */}
-          <div 
-            className={cn(
-              "absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300",
-              "hover:opacity-100 pointer-events-none",
-              isTransparent 
-                ? "bg-gradient-to-r from-white/5 via-white/10 to-white/5"
-                : "bg-gradient-to-r from-primary-500/5 via-primary-600/10 to-primary-500/5"
-            )}
-            aria-hidden="true"
-          />
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-aware brand enhancement overlay */}
+              {/* OVERLAY_REASON: Official Tailwind documentation for pseudo-element styling with transparent/solid state awareness */}
+              <div 
+                className={cn(
+                  "absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300",
+                  "hover:opacity-100 pointer-events-none",
+                  isTransparent 
+                    ? "bg-gradient-to-r from-white/5 via-white/10 to-white/5"
+                    : "bg-gradient-to-r from-primary-500/5 via-primary-600/10 to-primary-500/5"
+                )}
+                aria-hidden="true"
+              />
+            </motion.div>
+          </AnimatePresence>
         </motion.div>
       </Link>
 
-      {/* Development Status Indicator - Logo State Information */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-full left-0 mt-1 text-xs bg-black/75 text-white px-2 py-1 rounded z-50">
-          Logo: {isTransparent ? 'White' : 'Standard'} | 
-          Context: {isHomepage ? 'Homepage' : 'Page'} | 
-          State: {isTransparent ? 'Transparent' : 'Solid'}
-        </div>
-      )}
     </div>
   )
 }

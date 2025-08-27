@@ -228,18 +228,6 @@ export function PageHeader({
         </div>
       </div>
       
-      {/* Development Status Indicator - Phase 6: Library-Native Enhanced Architecture */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-full left-0 right-0 bg-blue-100 border-b border-blue-300 px-4 py-2 text-center z-40">
-          <div className="text-blue-800 text-xs">
-            🚀 Phase 6: Library-Native Enhancements Complete | 
-            State: {isTransparent ? 'Transparent' : 'Solid'} | 
-            Scroll: {isScrolled ? 'Yes' : 'No'} (75px RAF-optimized) | 
-            Homepage: {isHomepage ? 'Yes' : 'No'} |
-            Features: Full-width Dropdowns ✓ Enhanced Transparency Logic ✓ 60fps Scroll ✓
-          </div>
-        </div>
-      )}
     </motion.header>
   )
 }
@@ -443,24 +431,15 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
         {/* VIEWPORT_CONTEXT_FIX: Official Radix UI documentation requires Viewport inside Root for React Context */}
         {/* FULL-WIDTH_SOLUTION: Enhanced CSS positioning for viewport-width with performance optimizations */}
         <div className="absolute left-1/2 -translate-x-1/2 top-full z-40 w-screen">
-          {/* CONTEXT7 SOURCE: /radix-ui/website - Premium styling wrapper with enhanced mobile responsiveness */}
-          {/* STYLING_REASON: Official Radix UI documentation for Viewport styling with CSS variables and mobile optimization */}
-          <div className={cn(
-            "flex justify-center bg-white/95 backdrop-blur-lg border-b shadow-xl",
-            "px-4 py-6 sm:px-6 sm:py-8", // Enhanced mobile spacing
-            "border-gray-200/50 transition-all duration-200", // Smooth transitions
-            "max-h-[85vh] overflow-y-auto" // Prevent viewport overflow on mobile
-          )}>
-            {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport with enhanced mobile support */}
-            {/* VIEWPORT_REASON: Official Radix UI documentation for Viewport with responsive constraints */}
-            <NavigationMenu.Viewport className={cn(
-              "w-full transition-all duration-200",
-              "max-w-7xl mx-auto", // Enhanced centering
-              "data-[state=open]:animate-in data-[state=closed]:animate-out",
-              "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-              "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
-            )} />
-          </div>
+          {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport with enhanced mobile support */}
+          {/* VIEWPORT_REASON: Official Radix UI documentation for Viewport with responsive constraints */}
+          <NavigationMenu.Viewport className={cn(
+            "w-full transition-all duration-200",
+            "max-w-7xl mx-auto", // Enhanced centering
+            "data-[state=open]:animate-in data-[state=closed]:animate-out",
+            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+            "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
+          )} />
         </div>
       </NavigationMenu.Root>
     </div>
