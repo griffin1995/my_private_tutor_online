@@ -12,6 +12,23 @@
 @tailwind utilities;
 
 /**
+ * CONTEXT7 SOURCE: /vercel/next.js - Smooth scrolling behavior for hash anchor navigation
+ * SMOOTH_SCROLL_REASON: Official browser documentation for smooth scrolling to enhance hash anchor navigation user experience
+ * ACCESSIBILITY: Respects user's prefers-reduced-motion preference for accessibility compliance
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Respect user motion preferences for accessibility */
+/* ACCESSIBILITY_REASON: Official CSS documentation for respecting prefers-reduced-motion for WCAG compliance */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/**
  * CONTEXT7 SOURCE: /amannn/next-intl - RTL language support styles
  * RTL SUPPORT REASON: Official next-intl documentation enables right-to-left text direction for Arabic/Hebrew
  * IMPLEMENTATION: Comprehensive RTL layout support for international client expansion
