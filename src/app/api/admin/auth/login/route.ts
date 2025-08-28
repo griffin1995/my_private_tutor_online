@@ -35,8 +35,8 @@ const RATE_LIMIT = {
  * CRITICAL: These must be set in production deployment
  */
 const ADMIN_CREDENTIALS = {
-  email: process.env.ADMIN_EMAIL,
-  password: process.env.ADMIN_PASSWORD,
+  email: process.env['ADMIN_EMAIL'],
+  password: process.env['ADMIN_PASSWORD'],
 }
 
 /**

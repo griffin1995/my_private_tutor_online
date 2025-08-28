@@ -199,7 +199,7 @@ class PerformanceAlertSystem {
         
         if (process.env.NODE_ENV === 'production') {
           // Example integration with external monitoring
-          await fetch(process.env.MONITORING_WEBHOOK_URL || '', {
+          await fetch(process.env['MONITORING_WEBHOOK_URL'] || '', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

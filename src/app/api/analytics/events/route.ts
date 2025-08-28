@@ -314,12 +314,12 @@ function extractBusinessInsights(events: any[]) {
 async function sendToAnalyticsServices(events: any[], sessionAnalysis: any) {
   try {
     // Send to external monitoring service
-    if (process.env.ANALYTICS_WEBHOOK_URL) {
-      await fetch(process.env.ANALYTICS_WEBHOOK_URL, {
+    if (process.env['ANALYTICS_WEBHOOK_URL']) {
+      await fetch(process.env['ANALYTICS_WEBHOOK_URL'], {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.ANALYTICS_API_KEY}`,
+          'Authorization': `Bearer ${process.env['ANALYTICS_API_KEY']}`,
         },
         body: JSON.stringify({
           service: 'my-private-tutor-online',
