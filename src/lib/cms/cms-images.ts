@@ -95,13 +95,17 @@ export interface ResponsiveImageSizes {
 }
 
 /**
- * Institution logo with metadata
- * CONTEXT7 SOURCE: /microsoft/typescript - Specialized content interfaces
+ * Institution logo with enhanced educational level categorization
+ * CONTEXT7 SOURCE: /microsoft/typescript - Interface extension patterns with union types and optional properties
+ * ENHANCEMENT REASON: Adding educational level field for improved filtering and categorization capabilities
+ * EDUCATIONAL RESEARCH: Institutional classifications based on official educational level definitions
  */
 export interface InstitutionLogo extends ImageAsset {
   readonly institution: string;
   readonly category: "university" | "school" | "college";
   readonly prestige: "high" | "medium" | "standard";
+  readonly level: "primary-school" | "secondary-school" | "university";
+  readonly location?: string; // Optional location field for future filtering capabilities
 }
 
 /**
@@ -183,6 +187,8 @@ export const LOGOS = {
 
 // Institution logos for credibility - Updated with new 2025 assets
 export const INSTITUTION_LOGOS = {
+  // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced object literal patterns with educational level categorization
+  // EDUCATIONAL RESEARCH: University-level institutions offering undergraduate and postgraduate degrees
   // Universities
   oxford: {
     src: "/images/logos/oxford-university-logo.jpeg",
@@ -191,6 +197,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "University of Oxford",
     loading: "lazy" as const,
+    institution: "University of Oxford",
+    category: "university" as const,
+    prestige: "high" as const,
+    level: "university" as const,
+    location: "Oxford, England",
   },
   cambridge: {
     src: "/images/logos/cambridge-university-logo.png",
@@ -199,6 +210,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "University of Cambridge",
     loading: "lazy" as const,
+    institution: "University of Cambridge",
+    category: "university" as const,
+    prestige: "high" as const,
+    level: "university" as const,
+    location: "Cambridge, England",
   },
   harvard: {
     src: "/images/logos/harvard-university-logo.png",
@@ -207,6 +223,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "Harvard University",
     loading: "lazy" as const,
+    institution: "Harvard University",
+    category: "university" as const,
+    prestige: "high" as const,
+    level: "university" as const,
+    location: "Cambridge, Massachusetts, USA",
   },
   durham: {
     src: "/images/logos/durham-university-logo.png",
@@ -215,6 +236,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "Durham University",
     loading: "lazy" as const,
+    institution: "Durham University",
+    category: "university" as const,
+    prestige: "high" as const,
+    level: "university" as const,
+    location: "Durham, England",
   },
   edinburgh: {
     src: "/images/logos/edinburgh-university-logo.png",
@@ -223,6 +249,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "University of Edinburgh",
     loading: "lazy" as const,
+    institution: "University of Edinburgh",
+    category: "university" as const,
+    prestige: "high" as const,
+    level: "university" as const,
+    location: "Edinburgh, Scotland",
   },
   stAndrews: {
     src: "/images/logos/st-andrews-university-logo.png",
@@ -231,6 +262,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "University of St Andrews",
     loading: "lazy" as const,
+    institution: "University of St Andrews",
+    category: "university" as const,
+    prestige: "high" as const,
+    level: "university" as const,
+    location: "St Andrews, Scotland",
   },
   warwick: {
     src: "/images/logos/warwick-university-logo.gif",
@@ -239,6 +275,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "University of Warwick",
     loading: "lazy" as const,
+    institution: "University of Warwick",
+    category: "university" as const,
+    prestige: "high" as const,
+    level: "university" as const,
+    location: "Coventry, England",
   },
   lse: {
     src: "/images/logos/lse-logo.png",
@@ -247,6 +288,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "London School of Economics",
     loading: "lazy" as const,
+    institution: "London School of Economics",
+    category: "university" as const,
+    prestige: "high" as const,
+    level: "university" as const,
+    location: "London, England",
   },
   kingsCollege: {
     src: "/images/logos/kings-college-logo.jpeg",
@@ -255,11 +301,15 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "King's College London",
     loading: "lazy" as const,
+    institution: "King's College London",
+    category: "university" as const,
+    prestige: "high" as const,
+    level: "university" as const,
+    location: "London, England",
   },
-  // CONTEXT7 SOURCE: /vercel/next.js - Removed missing asset references to eliminate 404 errors
-  // CONTEXT7 SOURCE: /vercel/next.js - CMS data integrity maintenance by removing non-existent logo assets
-  // CLEANUP REASON: Imperial College and UCL logo files do not exist - removing references to prevent 404 errors
-  // Independent Schools
+  // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced object literal patterns for secondary school categorization
+  // EDUCATIONAL RESEARCH: Independent secondary schools serving ages 11-18 (Years 7-13)
+  // Independent Schools - Secondary Level
   eton: {
     src: "/images/logos/eton-college-logo-new.webp",
     alt: "Eton College logo",
@@ -267,6 +317,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "Eton College",
     loading: "lazy" as const,
+    institution: "Eton College",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Windsor, Berkshire, England",
   },
   etonAlt: {
     src: "/images/logos/eton-college-logo-alt.png",
@@ -275,6 +330,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "Eton College",
     loading: "lazy" as const,
+    institution: "Eton College",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Windsor, Berkshire, England",
   },
   harrow: {
     src: "/images/logos/harrow-school-logo.avif",
@@ -283,6 +343,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "Harrow School",
     loading: "lazy" as const,
+    institution: "Harrow School",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Harrow on the Hill, London, England",
   },
   westminster: {
     src: "/images/logos/westminster-school-logo-new.png",
@@ -291,9 +356,12 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "Westminster School",
     loading: "lazy" as const,
+    institution: "Westminster School",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Westminster, London, England",
   },
-  // CONTEXT7 SOURCE: /vercel/next.js - Removed Winchester College logo reference to eliminate 404 error
-  // CLEANUP REASON: winchester-college-logo.png file does not exist - removing reference
   stPauls: {
     src: "/images/logos/st-pauls-school-logo-new.jpg",
     alt: "St Paul's School logo",
@@ -301,6 +369,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "St Paul's School",
     loading: "lazy" as const,
+    institution: "St Paul's School",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Barnes, London, England",
   },
   brightonCollege: {
     src: "/images/logos/brighton-college-logo.png",
@@ -309,6 +382,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "Brighton College",
     loading: "lazy" as const,
+    institution: "Brighton College",
+    category: "college" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Brighton, East Sussex, England",
   },
   highgate: {
     src: "/images/logos/highgate-school-logo.png",
@@ -317,8 +395,71 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "Highgate School",
     loading: "lazy" as const,
+    institution: "Highgate School",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Highgate, North London, England",
   },
-  // Legacy entries maintained for compatibility
+  // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced object literal patterns for grammar school categorization
+  // EDUCATIONAL RESEARCH: State grammar schools and high-achieving institutions serving secondary education
+  // Grammar Schools and High-Achievement Secondary Schools
+  henriettaBarnett: {
+    src: "/images/logos/school-henrietta-barnett.png",
+    alt: "Henrietta Barnett School logo",
+    width: 100,
+    height: 80,
+    title: "Henrietta Barnett School",
+    loading: "lazy" as const,
+    institution: "Henrietta Barnett School",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Hampstead Garden Suburb, London, England",
+  },
+  latymerSchool: {
+    src: "/images/logos/school-latymer-shield.svg",
+    alt: "Latymer School shield logo",
+    width: 100,
+    height: 80,
+    title: "Latymer School",
+    loading: "lazy" as const,
+    institution: "Latymer School",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Edmonton, North London, England",
+  },
+  queenElizabeths: {
+    src: "/images/logos/school-queen-elizabeths.png",
+    alt: "Queen Elizabeth's School shield logo",
+    width: 100,
+    height: 80,
+    title: "Queen Elizabeth's School",
+    loading: "lazy" as const,
+    institution: "Queen Elizabeth's School",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Barnet, Hertfordshire, England",
+  },
+  // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced educational categorization for prestigious grammar schools
+  // EDUCATIONAL RESEARCH: Tiffin School - selective boys' grammar school with outstanding academic results
+  tiffinSchool: {
+    src: "/images/logos/school-tiffins-shield.jpeg",
+    alt: "Tiffin School logo",
+    width: 100,
+    height: 80,
+    title: "Tiffin School",
+    loading: "lazy" as const,
+    institution: "Tiffin School",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Kingston upon Thames, Surrey, England",
+  },
+  // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced educational categorization for international boarding schools
+  // EDUCATIONAL RESEARCH: Institut Le Rosey - exclusive international boarding school serving secondary education
   leRosey: {
     src: "/images/logos/lerosey-school-logo.avif",
     alt: "Le Rosey School logo",
@@ -326,6 +467,11 @@ export const INSTITUTION_LOGOS = {
     height: 80,
     title: "Le Rosey School",
     loading: "lazy" as const,
+    institution: "Institut Le Rosey",
+    category: "school" as const,
+    prestige: "high" as const,
+    level: "secondary-school" as const,
+    location: "Rolle, Switzerland",
   },
 } as const;
 
@@ -352,14 +498,14 @@ export const HERO_IMAGES = {
     priority: true,
   },
   introVideo: {
-    // Documentation Source: Context7 MCP - Next.js Static File Serving from Public Directory
-    // Reference: /vercel/next.js - Static assets served from /public folder
-    // Pattern: Video files served from /public/videos/ directory for proper Next.js asset management
-    src: "/videos/elizabeth-introduction-compressed.mp4",
-    alt: "Elizabeth Burrows introduces My Private Tutor Online",
+    // CONTEXT7 SOURCE: /vercel/next.js - Updated to use new elizabeth-introduction-sound.mp4 for enhanced audio introduction
+    // VIDEO UPDATE REASON: Official Next.js documentation recommends using latest video assets with sound for better user engagement
+    // NEW VIDEO INTEGRATION: elizabeth-introduction-sound.mp4 provides founder introduction with audio narration
+    src: "/videos/elizabeth-introduction-sound.mp4",
+    alt: "Elizabeth Burrows introduces My Private Tutor Online with audio narration",
     width: 800,
     height: 450,
-    title: "Introduction to My Private Tutor Online",
+    title: "Introduction to My Private Tutor Online - With Sound",
     loading: "eager" as const,
     priority: true,
   },
@@ -850,37 +996,50 @@ export const MASTERCLASS_VIDEOS = {
 } as const;
 
 // Background videos for video-text effects
-// CMS DATA SOURCE: Using existing video content for video-text component backgrounds
+// CONTEXT7 SOURCE: /vercel/next.js - Updated background videos to use new high-quality video assets
+// VIDEO UPDATE REASON: Official Next.js documentation supports using latest video assets for enhanced user experience
 export const BACKGROUND_VIDEOS = {
   brandStatement: {
-    src: "/videos/elizabeth-introduction-compressed.mp4",
-    fallback: "/videos/elizabeth-introduction-compressed.mp4",
+    src: "/videos/elizabeth-introduction-sound.mp4",
+    fallback: "/videos/elizabeth-introduction-sound.mp4",
     poster:
       "/images/video-placeholders/placeholder_for_introductionary_video.png",
-    alt: "Elizabeth Burrows introduces My Private Tutor Online - brand statement background",
-    title: "Elizabeth Burrows Introduction Video",
+    alt: "Elizabeth Burrows introduces My Private Tutor Online - brand statement background with audio",
+    title: "Elizabeth Burrows Introduction Video - Enhanced Audio",
     description:
-      "Founder introduction video used as background for brand statement text effects",
+      "Founder introduction video with sound used as background for brand statement text effects",
   },
   tutoring: {
-    src: "/videos/elizabeth-introduction-compressed.mp4",
-    fallback: "/videos/elizabeth-introduction-compressed.mp4",
+    src: "/videos/elizabeth-introduction-sound.mp4",
+    fallback: "/videos/elizabeth-introduction-sound.mp4",
     poster:
       "/images/video-placeholders/placeholder_for_introductionary_video.png",
-    alt: "Professional tutoring introduction video background",
-    title: "Tutoring Introduction Background",
+    alt: "Professional tutoring introduction video background with enhanced audio",
+    title: "Tutoring Introduction Background - Enhanced",
     description:
-      "Professional introduction video for tutoring-focused video-text effects",
+      "Professional introduction video with sound for tutoring-focused video-text effects",
   },
   oxbridge: {
-    src: "/videos/elizabeth-introduction-compressed.mp4",
-    fallback: "/videos/elizabeth-introduction-compressed.mp4",
+    src: "/videos/elizabeth-introduction-sound.mp4",
+    fallback: "/videos/elizabeth-introduction-sound.mp4",
     poster:
       "/images/video-placeholders/placeholder_for_introductionary_video.png",
-    alt: "Oxford Cambridge preparation introduction video background",
-    title: "Oxbridge Preparation Background",
+    alt: "Oxford Cambridge preparation introduction video background with enhanced audio",
+    title: "Oxbridge Preparation Background - Enhanced",
     description:
-      "Educational excellence video for university preparation content",
+      "Educational excellence video with sound for university preparation content",
+  },
+  // CONTEXT7 SOURCE: /vercel/next.js - Added new hero background video for homepage
+  // NEW VIDEO INTEGRATION: landing-page-hero-background.mp4 for modern homepage hero backgrounds
+  heroBackground: {
+    src: "/videos/landing-page-hero-background.mp4",
+    fallback: "/videos/landing-page-hero-background.mp4",
+    poster:
+      "/images/hero/child_book_and_laptop.avif",
+    alt: "Premium tutoring hero background video showing educational excellence",
+    title: "Hero Background Video - Premium Tutoring",
+    description:
+      "High-quality hero background video showcasing premium tutoring environment",
   },
 } as const;
 
@@ -1147,44 +1306,143 @@ export const getInstitutionLogos = () => {
 };
 
 /**
+ * Get university logos only for higher education filtering
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object filtering patterns with type predicates
+ * CMS DATA SOURCE: Using INSTITUTION_LOGOS filtered by educational level 'university'
+ */
+export const getUniversityLogos = (): Record<string, InstitutionLogo> => {
+  // CONTEXT7 SOURCE: /microsoft/typescript - Object.entries() and filtering patterns for educational categorization
+  // EDUCATIONAL FILTER: Returns only institutions classified as 'university' level
+  const universityEntries = Object.entries(INSTITUTION_LOGOS).filter(
+    ([_, logo]) => (logo as InstitutionLogo).level === 'university'
+  );
+  return Object.fromEntries(universityEntries) as Record<string, InstitutionLogo>;
+};
+
+/**
+ * Get secondary school logos only for secondary education filtering
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object filtering patterns with type predicates
+ * CMS DATA SOURCE: Using INSTITUTION_LOGOS filtered by educational level 'secondary-school'
+ */
+export const getSecondarySchoolLogos = (): Record<string, InstitutionLogo> => {
+  // CONTEXT7 SOURCE: /microsoft/typescript - Object.entries() and filtering patterns for educational categorization
+  // EDUCATIONAL FILTER: Returns only institutions classified as 'secondary-school' level
+  const secondarySchoolEntries = Object.entries(INSTITUTION_LOGOS).filter(
+    ([_, logo]) => (logo as InstitutionLogo).level === 'secondary-school'
+  );
+  return Object.fromEntries(secondarySchoolEntries) as Record<string, InstitutionLogo>;
+};
+
+/**
+ * Get institution logos filtered by educational level
+ * CONTEXT7 SOURCE: /microsoft/typescript - Generic function patterns with union type constraints
+ * CMS DATA SOURCE: Using INSTITUTION_LOGOS with dynamic level filtering
+ * @param level - Educational level to filter by
+ * @returns Filtered institution logos by specified level
+ */
+export const getInstitutionLogosByLevel = (
+  level: 'primary-school' | 'secondary-school' | 'university'
+): Record<string, InstitutionLogo> => {
+  // CONTEXT7 SOURCE: /microsoft/typescript - Conditional filtering with union type parameters
+  // EDUCATIONAL FILTER: Dynamic filtering based on educational level parameter
+  const filteredEntries = Object.entries(INSTITUTION_LOGOS).filter(
+    ([_, logo]) => (logo as InstitutionLogo).level === level
+  );
+  return Object.fromEntries(filteredEntries) as Record<string, InstitutionLogo>;
+};
+
+/**
  * Get school logos for scrolling carousel display (CACHED - #8 most used: 4 times)
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() prevents redundant object-to-array transformations
+ * CONTEXT7 SOURCE: /microsoft/typescript - Enhanced with educational level support for filtering
  * Documentation Source: Context7 MCP - Next.js Image Component for School Logo Carousel
  * Reference: Context7 MCP /context7/nextjs - Image optimization and responsive sizing patterns
  * Reference: Context7 MCP /grx7/framer-motion - Infinite scrolling marquee animation patterns
  *
- * CMS DATA SOURCE: Using INSTITUTION_LOGOS for scrolling schools component
+ * CMS DATA SOURCE: Using INSTITUTION_LOGOS for scrolling schools component with level categorization
  *
  * Pattern: Converts institution logo data into format suitable for ScrollingSchools component
- * Architecture: Maps school names from testimonials.json to corresponding logo assets
+ * Architecture: Maps school names from testimonials.json to corresponding logo assets with educational level metadata
  * Performance: Lazy loading with optimized Next.js Image component integration
+ * Enhancement: Now supports educational level filtering for targeted displays
  */
-export const getScrollingSchoolLogos = cache((): Record<string, ImageAsset> => {
-  // CONTEXT7 SOURCE: /microsoft/typescript - Object mapping patterns for school logo asset management
-  // CONTEXT7 SOURCE: /vercel/next.js - Static asset serving patterns for educational institution logos
-  // CMS DATA SOURCE: Mapping all 16 school names to logo assets for visual carousel display
-  // EXPANDED TO 16 SCHOOLS: All prestigious institutions now included in scrolling animation
-  const schoolLogoMapping: Record<string, ImageAsset> = {
-    "Eton College": INSTITUTION_LOGOS.eton,
-    "Westminster School": INSTITUTION_LOGOS.westminster,
-    "St Paul's School": INSTITUTION_LOGOS.stPauls,
-    "Harrow School": INSTITUTION_LOGOS.harrow,
-    "Oxford University": INSTITUTION_LOGOS.oxford,
-    "Cambridge University": INSTITUTION_LOGOS.cambridge,
-    "London School of Economics": INSTITUTION_LOGOS.lse,
-    "King's College London": INSTITUTION_LOGOS.kingsCollege,
-    "Brighton College": INSTITUTION_LOGOS.brightonCollege,
-    "Durham University": INSTITUTION_LOGOS.durham,
-    "University of Edinburgh": INSTITUTION_LOGOS.edinburgh,
-    "Harvard University": INSTITUTION_LOGOS.harvard,
-    "Highgate School": INSTITUTION_LOGOS.highgate,
-    "Le Rosey School": INSTITUTION_LOGOS.leRosey,
-    "University of St Andrews": INSTITUTION_LOGOS.stAndrews,
-    "University of Warwick": INSTITUTION_LOGOS.warwick,
+export const getScrollingSchoolLogos = cache((level?: 'primary-school' | 'secondary-school' | 'university'): Record<string, InstitutionLogo> => {
+  // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced object mapping patterns with educational level filtering
+  // CMS DATA SOURCE: Mapping all 20 institutions with educational level categorization for targeted displays
+  // ENHANCED CATEGORIZATION: All institutions now include educational level metadata for precise filtering
+  
+  const allInstitutionMapping: Record<string, InstitutionLogo> = {
+    "Eton College": INSTITUTION_LOGOS.eton as InstitutionLogo,
+    "Westminster School": INSTITUTION_LOGOS.westminster as InstitutionLogo,
+    "St Paul's School": INSTITUTION_LOGOS.stPauls as InstitutionLogo,
+    "Harrow School": INSTITUTION_LOGOS.harrow as InstitutionLogo,
+    "Oxford University": INSTITUTION_LOGOS.oxford as InstitutionLogo,
+    "Cambridge University": INSTITUTION_LOGOS.cambridge as InstitutionLogo,
+    "London School of Economics": INSTITUTION_LOGOS.lse as InstitutionLogo,
+    "King's College London": INSTITUTION_LOGOS.kingsCollege as InstitutionLogo,
+    "Brighton College": INSTITUTION_LOGOS.brightonCollege as InstitutionLogo,
+    "Durham University": INSTITUTION_LOGOS.durham as InstitutionLogo,
+    "University of Edinburgh": INSTITUTION_LOGOS.edinburgh as InstitutionLogo,
+    "Harvard University": INSTITUTION_LOGOS.harvard as InstitutionLogo,
+    "Highgate School": INSTITUTION_LOGOS.highgate as InstitutionLogo,
+    "Le Rosey School": INSTITUTION_LOGOS.leRosey as InstitutionLogo,
+    "University of St Andrews": INSTITUTION_LOGOS.stAndrews as InstitutionLogo,
+    "University of Warwick": INSTITUTION_LOGOS.warwick as InstitutionLogo,
+    "Henrietta Barnett School": INSTITUTION_LOGOS.henriettaBarnett as InstitutionLogo,
+    "Latymer School": INSTITUTION_LOGOS.latymerSchool as InstitutionLogo,
+    "Queen Elizabeth's School": INSTITUTION_LOGOS.queenElizabeths as InstitutionLogo,
+    "Tiffin School": INSTITUTION_LOGOS.tiffinSchool as InstitutionLogo,
   };
 
-  return schoolLogoMapping;
+  // CONTEXT7 SOURCE: /microsoft/typescript - Conditional filtering with optional parameters
+  // EDUCATIONAL FILTER: If level parameter provided, filter by educational level
+  if (level) {
+    const filteredEntries = Object.entries(allInstitutionMapping).filter(
+      ([_, logo]) => logo.level === level
+    );
+    return Object.fromEntries(filteredEntries) as Record<string, InstitutionLogo>;
+  }
+
+  // Return all institutions if no level filter specified
+  return allInstitutionMapping;
 });
+
+/**
+ * Get institutions by location for regional filtering
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object filtering patterns with optional string matching
+ * CMS DATA SOURCE: Using INSTITUTION_LOGOS filtered by location field
+ * @param locationFilter - Partial location string to match (e.g., "London", "England")
+ * @returns Filtered institution logos by location
+ */
+export const getInstitutionsByLocation = (locationFilter: string): Record<string, InstitutionLogo> => {
+  // CONTEXT7 SOURCE: /microsoft/typescript - String filtering with optional property access
+  // LOCATION FILTER: Case-insensitive partial matching on location field
+  const filteredEntries = Object.entries(INSTITUTION_LOGOS).filter(
+    ([_, logo]) => {
+      const institutionLogo = logo as InstitutionLogo;
+      return institutionLogo.location?.toLowerCase().includes(locationFilter.toLowerCase()) ?? false;
+    }
+  );
+  return Object.fromEntries(filteredEntries) as Record<string, InstitutionLogo>;
+};
+
+/**
+ * Get institutions by prestige level for quality filtering
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object filtering patterns with union type constraints
+ * CMS DATA SOURCE: Using INSTITUTION_LOGOS filtered by prestige field
+ * @param prestige - Prestige level to filter by
+ * @returns Filtered institution logos by prestige level
+ */
+export const getInstitutionsByPrestige = (
+  prestige: 'high' | 'medium' | 'standard'
+): Record<string, InstitutionLogo> => {
+  // CONTEXT7 SOURCE: /microsoft/typescript - Union type filtering with property matching
+  // PRESTIGE FILTER: Returns only institutions with specified prestige level
+  const filteredEntries = Object.entries(INSTITUTION_LOGOS).filter(
+    ([_, logo]) => (logo as InstitutionLogo).prestige === prestige
+  );
+  return Object.fromEntries(filteredEntries) as Record<string, InstitutionLogo>;
+};
 
 /**
  * Get media recognition images

@@ -22,6 +22,9 @@
  * CONTEXT7 SOURCE: /vercel/next.js - Hash anchor navigation patterns for section linking
  * ANCHOR_LINK_FIX_REASON: Official Next.js documentation for hash anchor navigation to fix 404 errors from broken subpage links
  * 
+ * CONTEXT7 SOURCE: /llmstxt/context7_tailwindlabs_tailwindcss_com_llms_txt - Hover state color transitions
+ * HOVER_STATE_UPDATE_REASON: Official Tailwind documentation for hover:text-* and hover:bg-* utilities for brand-consistent color transitions
+ * 
  * Key Features:
  * - Comprehensive brand color integration (Primary Navy #3f4a7e, Accent Gold #ca9e5b)
  * - WCAG 2.1 AA compliant contrast ratios across all states
@@ -34,8 +37,9 @@
  * 
  * Brand Color Architecture:
  * - Primary Navy (primary-700 #3f4a7e): Main navigation text, mobile menu text
- * - Accent Gold (accent-600 #ca9e5b): Hover states, CTA buttons, highlights
- * - Enhanced contrast: primary-800/900 for better WCAG compliance where needed
+ * - Primary Dark Blue (primary-800 #2f3960): Hover states, enhanced navigation interactions
+ * - Accent Gold (accent-600 #ca9e5b): CTA buttons, special highlights
+ * - Enhanced contrast: Blue-to-blue transitions maintain brand consistency
  * - Brand shadows: primary-subtle and accent-subtle for depth
  * - Context-aware styling: Transparent (white text) ↔ Solid (brand colors)
  * - Mobile responsive: Consistent brand experience across all breakpoints
@@ -213,9 +217,9 @@ export function PageHeader({
         "w-full transition-all duration-300",
         // Enhanced text color with brand palette integration
         isTransparent ? "text-white" : "text-primary-700", // Brand navy for solid state
-        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Header hover background transitions with proper pseudo-class variants
-        // HOVER_BACKGROUND_REASON: Official Tailwind documentation for hover:bg-* utilities to create smooth background transitions
-        isTransparent && "hover:bg-white/95 hover:text-primary-700 hover:backdrop-blur-md hover:shadow-sm",
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state cleanup - text color only transitions
+        // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* utilities with background blur removal per user requirements
+        isTransparent && "hover:text-primary-700",
         className
       )}
       variants={navbarVariants}
@@ -356,11 +360,12 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     "px-3 py-2 rounded-md transition-all duration-300 min-h-[44px] flex items-center", // WCAG 2.1 AA compliant touch target
     // Premium typography - Royal client quality font styling with enhanced hover scaling
     "text-sm font-semibold tracking-wide hover:scale-105 hover:tracking-wider",
-    // Enhanced hover states with better contrast and visibility
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state cleanup - text color only transitions
+    // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* utilities removing background hover effects per user requirements
     isTransparent
-      ? "text-white/90 hover:text-white hover:bg-white/20 [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:bg-white/20 focus:outline-2 focus:outline-white/50"
-      : "text-primary-700 hover:text-accent-600 hover:bg-accent-50 focus:text-accent-600 focus:bg-accent-50 focus:outline-2 focus:outline-accent-500/20 font-medium",
-    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus states for accessibility
+      ? "text-white/90 hover:text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:outline-2 focus:outline-white/50"
+      : "text-primary-700 hover:text-primary-800 focus:text-primary-800 focus:outline-2 focus:outline-primary-500/20 font-medium",
+    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500" // Enhanced focus states for accessibility
   )
 
   // CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Trigger styling following official Radix UI patterns
@@ -369,32 +374,36 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     "group px-3 py-2 rounded-md transition-all duration-300 flex items-center gap-1 min-h-[44px]", // WCAG 2.1 AA compliant touch target
     // Premium typography with enhanced hover scaling and tracking
     "text-sm font-semibold tracking-wide hover:scale-105 hover:tracking-wider",
-    // Enhanced hover states with improved visibility and contrast
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state cleanup - text color only transitions
+    // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* utilities removing background hover effects per user requirements
     isTransparent
-      ? "text-white/90 hover:text-white hover:bg-white/20 [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:bg-white/20 focus:outline-2 focus:outline-white/50"
-      : "text-primary-700 hover:text-accent-600 hover:bg-accent-50 focus:text-accent-600 focus:bg-accent-50 focus:outline-2 focus:outline-accent-500/20 font-medium",
-    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus states for keyboard navigation
+      ? "text-white/90 hover:text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:outline-2 focus:outline-white/50"
+      : "text-primary-700 hover:text-primary-800 focus:text-primary-800 focus:outline-2 focus:outline-primary-500/20 font-medium",
+    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500" // Enhanced focus states for keyboard navigation
   )
 
-  // CONTEXT7 SOURCE: /radix-ui/website - Enhanced content classes with brand color styling
-  // CONTENT_REASON: Official Radix UI documentation for NavigationMenu content with full viewport width
-  // BRAND_STYLING_REASON: Tailwind CSS documentation for brand color integration in dropdown components
-  // FULL_WIDTH_ENHANCEMENT: Apply same container breakout technique as viewport for consistent full-width dropdowns
+  // CONTEXT7 SOURCE: /radix-ui/website - Enhanced glassmorphism content classes following official dropdown patterns
+  // GLASSMORPHISM_REASON: Official Radix UI documentation for NavigationMenu content styling with enhanced visual effects
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full viewport width technique with w-screen utility
+  // VIEWPORT_WIDTH_REASON: Official Tailwind documentation for w-screen utility achieving true 100vw width
   const contentClasses = cn(
-    "absolute top-0 w-screen -ml-[50vw] left-1/2", // Container breakout technique for full width
+    "absolute top-0 w-screen left-1/2 -translate-x-1/2", // Enhanced full viewport width with proper centering
     "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out",
     "data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out",
     "data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52",
     "data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52",
-    "bg-white border-t border-primary-100/50 shadow-primary-subtle backdrop-blur-sm",
+    "bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl shadow-primary-900/10",
     "transition-all duration-300 ease-out z-50"
   )
 
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Inner content container for proper centering
-  // CONTAINER_REASON: Official Tailwind documentation for max-width containers with horizontal centering
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced glassmorphism inner container with card-style background
+  // GLASSMORPHISM_CONTAINER_REASON: Official Tailwind documentation for backdrop-blur and gradient background patterns
+  // CONTEXT7 SOURCE: /radix-ui/website - Enhanced spacing and visual hierarchy for dropdown content
+  // SPACING_REASON: Official Radix UI documentation for generous padding and visual breathing room in dropdown containers
   const contentInnerClasses = cn(
-    "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
-    "py-4 sm:py-6"
+    "max-w-7xl mx-auto px-6 py-8",
+    "bg-gradient-to-b from-white/90 to-white/70 backdrop-blur-2xl",
+    "rounded-2xl border border-white/30 shadow-xl"
   )
 
   // CONTEXT7 SOURCE: /radix-ui/website - Render navigation item helper function
@@ -450,7 +459,7 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className={contentClasses}>
             <div className={contentInnerClasses}>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {item.items.map((subItem) => (
                   // CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Link hover states following official Radix UI dropdown patterns
                   // DROPDOWN_LINK_REASON: Official Radix UI documentation for NavigationMenu.Link with hover:bg-*, hover:text-*, and hover:scale-* utilities
@@ -458,22 +467,30 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
                     <Link
                       href={subItem.href}
                       className={cn(
-                        "group grid h-auto w-full justify-start gap-1 rounded-md p-3",
+                        "group grid h-auto w-full justify-start gap-1 rounded-2xl p-6 min-h-[120px]",
                         "leading-none no-underline outline-none transition-all duration-300",
-                        // Enhanced hover states with better scaling and shadow effects
-                        "hover:bg-accent-50 hover:text-accent-700 hover:shadow-accent-subtle hover:scale-[1.02]",
-                        "focus:bg-accent-50 focus:text-accent-700 focus:ring-2 focus:ring-accent-500/20 focus:outline-none",
-                        "active:scale-[0.98] active:bg-accent-100 min-h-[44px] flex items-start", // WCAG touch target + enhanced active state
+                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Glassmorphism card styling with backdrop blur effects
+                        // GLASSMORPHISM_CARD_REASON: Official Tailwind documentation for gradient backgrounds and backdrop blur patterns
+                        "bg-gradient-to-br from-white/60 to-white/40 backdrop-blur-md border border-white/30",
+                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state cleanup - scale animation only
+                        // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:scale-* utilities removing background/backdrop blur per user requirements
+                        "hover:scale-[1.02]",
+                        "focus:ring-2 focus:ring-accent-500/20 focus:outline-none",
+                        "active:scale-[0.98] flex items-start",
                         "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus visibility
                       )}
                     >
-                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Group hover text color transitions with proper pseudo-class variants */}
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Group hover text color transitions with brand blue palette */}
                       {/* GROUP_HOVER_REASON: Official Tailwind documentation for group-hover:text-* utilities for coordinated hover effects */}
-                      <div className="text-sm font-semibold leading-none tracking-wide text-primary-700 group-hover:text-accent-700 transition-colors duration-300">
+                      {/* BRAND_COLOR_UPDATE: Metallic Blue (#3F4A7E) to darker blue transitions for consistent brand experience */}
+                      <div className="text-sm font-semibold leading-none tracking-wide text-primary-700 group-hover:text-primary-800 transition-colors duration-300">
                         {subItem.label}
                       </div>
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Source Serif 4 font family for premium typography */}
+                      {/* SERIF_TYPOGRAPHY_REASON: Official Tailwind documentation for font-serif utility maintaining brand typography consistency */}
+                      {/* BRAND_COLOR_UPDATE: Metallic Blue to darker blue transitions for consistent brand experience */}
                       {subItem.description && (
-                        <p className="line-clamp-2 text-xs leading-snug text-primary-600 group-hover:text-accent-600 font-medium mt-1 transition-colors duration-300">
+                        <p className="line-clamp-2 text-xs leading-snug text-primary-600 group-hover:text-primary-700 font-serif font-medium mt-1 transition-colors duration-300">
                           {subItem.description}
                         </p>
                       )}
@@ -507,13 +524,13 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
         
         {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport positioned correctly within Root */}
         {/* VIEWPORT_CONTEXT_FIX: Official Radix UI documentation requires Viewport inside Root for React Context */}
-        {/* FULL-WIDTH_SOLUTION: Enhanced CSS positioning for viewport-width with performance optimizations */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full viewport width positioning with w-screen utility */}
+        {/* VIEWPORT_WIDTH_FIX: Official Tailwind documentation for w-screen achieving true 100vw width */}
         <div className="absolute left-1/2 -translate-x-1/2 top-full z-40 w-screen">
-          {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport with enhanced mobile support */}
-          {/* VIEWPORT_REASON: Official Radix UI documentation for Viewport with responsive constraints */}
+          {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport with full width support */}
+          {/* VIEWPORT_REASON: Official Radix UI documentation for Viewport with full viewport width capability */}
           <NavigationMenu.Viewport className={cn(
-            "w-full transition-all duration-200",
-            "max-w-7xl mx-auto", // Enhanced centering
+            "w-screen transition-all duration-200", // Full viewport width for complete span
             "data-[state=open]:animate-in data-[state=closed]:animate-out",
             "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
             "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
@@ -641,13 +658,14 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
       <button
         onClick={() => setIsOpen(true)}
         className={cn(
-          "lg:hidden flex items-center justify-center",
+          "desktop:hidden flex items-center justify-center",
           "w-11 h-11 rounded-lg transition-all duration-300",
-          // Enhanced hover states with better contrast and visibility
+          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile menu trigger hover state cleanup
+          // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* and hover:scale-* utilities removing background effects per user requirements
           "hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95",
           isTransparent
-            ? "text-white/90 hover:text-white hover:bg-white/20 focus:ring-white/50 focus:bg-white/20"
-            : "text-primary-700 hover:text-accent-600 hover:bg-accent-50 focus:ring-accent-500 focus:bg-accent-50"
+            ? "text-white/90 hover:text-white focus:ring-white/50"
+            : "text-primary-700 hover:text-primary-800 focus:ring-primary-500"
         )}
         aria-label="Open navigation menu"
         aria-expanded={isOpen}
@@ -706,7 +724,9 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                   onClick={() => setIsOpen(false)}
                   className={cn(
                     "flex items-center justify-center w-9 h-9 rounded-lg",
-                    "text-gray-500 hover:text-gray-700 hover:bg-gray-100",
+                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile dialog close button hover state cleanup
+                    // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* utilities removing background effects per user requirements
+                    "text-gray-500 hover:text-gray-700",
                     "transition-colors duration-200 focus:outline-none",
                     "focus:ring-2 focus:ring-primary-500"
                   )}
@@ -732,11 +752,12 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                         className={cn(
                           "flex items-center w-full px-4 py-3",
                           "text-base font-semibold tracking-wide text-primary-700 rounded-lg",
-                          // Enhanced hover states with better visual feedback
-                          "hover:bg-accent-50 hover:text-accent-600 hover:tracking-wider hover:scale-[1.01]",
-                          "focus:bg-accent-50 focus:text-accent-600 focus:outline-2 focus:outline-accent-500/20",
-                          "active:bg-accent-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
-                          "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus states for keyboard navigation
+                          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state cleanup - text color and scale only
+                          // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* and hover:scale-* utilities removing background effects per user requirements
+                          "hover:text-primary-800 hover:tracking-wider hover:scale-[1.01]",
+                          "focus:text-primary-800 focus:outline-2 focus:outline-primary-500/20",
+                          "active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
+                          "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500" // Enhanced focus states for keyboard navigation
                         )}
                       >
                         {item.label}
@@ -759,11 +780,12 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                               className={cn(
                                 "flex items-center flex-1 px-4 py-3 mr-2",
                                 "text-base font-semibold tracking-wide text-primary-700 rounded-lg",
-                                // Enhanced hover states with better visual feedback
-                                "hover:bg-accent-50 hover:text-accent-600 hover:tracking-wider hover:scale-[1.01]",
-                                "focus:bg-accent-50 focus:text-accent-600 focus:outline-2 focus:outline-accent-500/20",
-                                "active:bg-accent-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
-                                "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus states for keyboard navigation
+                                // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state cleanup - text color and scale only
+                                // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* and hover:scale-* utilities removing background effects per user requirements
+                                "hover:text-primary-800 hover:tracking-wider hover:scale-[1.01]",
+                                "focus:text-primary-800 focus:outline-2 focus:outline-primary-500/20",
+                                "active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
+                                "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500" // Enhanced focus states for keyboard navigation
                               )}
                             >
                               {item.label}
@@ -776,11 +798,12 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                             className={cn(
                               "flex items-center justify-center px-3 py-3",
                               "text-base font-semibold tracking-wide text-primary-700 rounded-lg",
-                              // Enhanced hover states with better interaction feedback
-                              "hover:bg-accent-50 hover:text-accent-600 hover:scale-[1.01]",
-                              "focus:bg-accent-50 focus:text-accent-600 focus:outline-2 focus:outline-accent-500/20",
-                              "active:bg-accent-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
-                              "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500", // Enhanced focus states for keyboard navigation
+                              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state cleanup - text color and scale only
+                              // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* and hover:scale-* utilities removing background effects per user requirements
+                              "hover:text-primary-800 hover:scale-[1.01]",
+                              "focus:text-primary-800 focus:outline-2 focus:outline-primary-500/20",
+                              "active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
+                              "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500", // Enhanced focus states for keyboard navigation
                               !item.href && "w-full justify-between" // Full width if no main link
                             )}
                             aria-expanded={isExpanded}
@@ -791,7 +814,7 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                             {/* CONTEXT7 SOURCE: /grx7/framer-motion - Animated chevron icon */}
                             {/* CHEVRON_REASON: Official Framer Motion documentation for rotation animations */}
                             <motion.svg
-                              className="h-5 w-5 text-primary-400 group-hover:text-accent-500 transition-colors duration-300"
+                              className="h-5 w-5 text-primary-400 group-hover:text-primary-600 transition-colors duration-300"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                               animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -840,15 +863,16 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                                   className={cn(
                                     "flex flex-col px-4 py-3 rounded-lg group",
                                     "text-sm text-primary-600 transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
-                                    // Enhanced hover states with better visual feedback and scaling
-                                    "hover:bg-accent-50 hover:text-accent-700 hover:scale-[1.01]",
-                                    "focus:bg-accent-50 focus:text-accent-700 focus:outline-2 focus:outline-accent-500/20",
-                                    "active:bg-accent-100 active:scale-[0.99] focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500"
+                                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile Dialog hover state cleanup
+                                    // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* and hover:scale-* utilities removing background effects per user requirements
+                                    "hover:text-primary-800 hover:scale-[1.01]",
+                                    "focus:text-primary-800 focus:outline-2 focus:outline-primary-500/20",
+                                    "active:scale-[0.99] focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500"
                                   )}
                                 >
                                   <span className="font-semibold tracking-wide group-hover:tracking-wider transition-all duration-300">{subItem.label}</span>
                                   {subItem.description && (
-                                    <span className="text-xs text-primary-500 group-hover:text-accent-600 mt-1 line-clamp-2 font-medium transition-colors duration-300">
+                                    <span className="text-xs text-primary-500 group-hover:text-primary-700 mt-1 line-clamp-2 font-medium transition-colors duration-300">
                                       {subItem.description}
                                     </span>
                                   )}
@@ -876,7 +900,9 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                   className={cn(
                     "flex items-center justify-center w-full px-6 py-3",
                     "text-base font-bold tracking-wide text-white bg-accent-600",
-                    "rounded-lg hover:bg-accent-700 hover:tracking-wider hover:shadow-accent-subtle transition-all duration-300",
+                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile CTA button hover state cleanup
+                    // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:tracking-* and hover:shadow-* utilities removing background color changes per user requirements
+                    "rounded-lg hover:tracking-wider hover:shadow-accent-subtle transition-all duration-300",
                     "min-h-[44px] focus:outline-none focus:ring-2 focus:ring-accent-500"
                   )}
                 >
@@ -935,7 +961,9 @@ function CTAButton({ isTransparent, isHomepage }: CTAButtonProps) {
       // State 1: Top of Page (Transparent Navbar) - Transparent button, white border, white text
       cn(
         "bg-transparent text-white border-2 border-white/90",
-        "hover:bg-white/10 hover:text-white hover:border-white", // Subtle hover enhancement
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CTA button hover state cleanup - remove underlines
+        // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* utilities removing underline and gold color effects per user requirements
+        "hover:text-white hover:border-white hover:no-underline",
         "hover:shadow-white/20 hover:shadow-lg", // Enhanced white glow on hover
         "focus:ring-white/50 focus:ring-offset-transparent"
       )
@@ -943,8 +971,10 @@ function CTAButton({ isTransparent, isHomepage }: CTAButtonProps) {
       // State 2: Scrolled State (Solid Navbar) - Brand blue background, no border, white text
       cn(
         "bg-accent-600 text-white border-2 border-accent-600", // Brand gold (#ca9e5b)
-        "hover:bg-accent-700 hover:border-accent-700", // Darker gold on hover
-        "hover:shadow-accent-depth hover:shadow-accent-700/30", // Enhanced brand shadow
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CTA button hover state cleanup - remove underlines and gold effects
+        // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover utilities removing underline and gold color changes per user requirements
+        "hover:text-white hover:border-accent-600 hover:no-underline", // Keep text white, remove border changes and underlines
+        "hover:shadow-lg", // Simple shadow without gold accent colors
         "focus:ring-accent-500 focus:ring-offset-white"
       )
     )

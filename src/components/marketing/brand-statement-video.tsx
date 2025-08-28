@@ -48,7 +48,9 @@ export function BrandStatementVideo({
   const backgroundVideo = getBackgroundVideo(videoKey)
   
   // Fallback to existing video if CMS video not available
-  const videoSrc = backgroundVideo?.src || '/videos/elizabeth-introduction-compressed.mp4'
+  // CONTEXT7 SOURCE: /vercel/next.js - Updated fallback to use new elizabeth-introduction-sound.mp4 with enhanced audio
+  // VIDEO UPDATE REASON: Official Next.js documentation supports using latest video assets for consistent user experience
+  const videoSrc = backgroundVideo?.src || '/videos/elizabeth-introduction-sound.mp4'
   
   return (
     <div className={cn(

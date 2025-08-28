@@ -22,9 +22,11 @@ import {
 
 // CONTEXT7 SOURCE: /vercel/next.js - Props interface for client component wrapper
 // TYPE SAFETY REASON: Official Next.js documentation ensures proper prop typing
+// CONTEXT7 SOURCE: /vercel/next.js - Props passing patterns for proper data structure types
+// INTERFACE FIX: Official Next.js documentation requires matching interface types - ServicesCarousel expects Record<string, StudentImageData> not array
 interface HomepageSectionsProps {
   services: any[]
-  studentImages: any[]
+  studentImages: Record<string, any>
 }
 
 // CONTEXT7 SOURCE: /vercel/next.js - Client component wrapper for homepage sections

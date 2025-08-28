@@ -237,9 +237,11 @@ export default function HomePage() {
       {/* 8. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
       {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Props passing patterns for Next.js components */}
+      {/* PROP STRUCTURE FIX: Official Next.js documentation shows props must maintain expected data structures - ServicesCarousel expects Record<string, StudentImageData> not array */}
       <HomepageSections 
         services={[...services]}
-        studentImages={Object.values(studentImages)}
+        studentImages={studentImages}
       />
       
       {/* 9. QUOTE SECTION */}

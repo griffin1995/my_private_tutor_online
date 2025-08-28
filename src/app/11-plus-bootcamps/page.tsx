@@ -564,7 +564,7 @@ export default function ElevenPlusBootcampsPage() {
         <VideoPopup
           isOpen={isVideoOpen}
           onClose={() => setIsVideoOpen(false)}
-          videoUrl="/videos/elizabeth-introduction-compressed.mp4"
+          videoUrl="/videos/elizabeth-introduction-sound.mp4"
           title="Meet Our 11+ Specialists - Expert Introduction"
           poster="/images/video-thumbnails/elizabeth-introduction-thumbnail.jpg"
         />
