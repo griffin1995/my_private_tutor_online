@@ -49,13 +49,27 @@ export default function AboutUsPage() {
   // ARCHITECTURE FIX: Replace async/await pattern with synchronous CMS access to maintain CRITICAL homepage recovery architecture
   // VIDEO FILTERING: Using getTextTestimonials() to automatically exclude video testimonials from About page display
   // DEPLOYMENT FIX: Force fresh deployment - August 28, 2025
-  const aboutTestimonials = getTextTestimonials()
+  
+  // EMERGENCY FIX: Try-catch wrapper to isolate potential CMS errors
+  let aboutTestimonials = [];
+  try {
+    aboutTestimonials = getTextTestimonials()
+  } catch (error) {
+    console.error('Error loading testimonials:', error);
+    aboutTestimonials = []; // Fallback to empty array
+  }
   
   // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
 
   // CMS DATA SOURCE: Using getAboutHeroImage() for centralized image management
-  const aboutHeroImage = getAboutHeroImage();
+  let aboutHeroImage = { src: "/images/about/about-founder-story.jpg" };
+  try {
+    aboutHeroImage = getAboutHeroImage();
+  } catch (error) {
+    console.error('Error loading hero image:', error);
+    // Use fallback image path
+  }
 
   return (
     <>
