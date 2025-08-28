@@ -51,7 +51,7 @@ export default function AboutUsPage() {
   // DEPLOYMENT FIX: Force fresh deployment - August 28, 2025
   
   // EMERGENCY FIX: Try-catch wrapper to isolate potential CMS errors
-  let aboutTestimonials = [];
+  let aboutTestimonials: Testimonial[] = [];
   try {
     aboutTestimonials = getTextTestimonials()
   } catch (error) {
@@ -79,9 +79,9 @@ export default function AboutUsPage() {
       {/* DECORATIVE STYLE OPTIONS: decorativeStyle="lines" (default), decorativeStyle="dots", decorativeStyle="none" */}
       <SimpleHero
         backgroundImage={aboutHeroImage.src}
-        h1="Our Founder and Ethos"
-        h2="Excellence Through Experience"
-        decorativeStyle="lines"
+        h1="Our Ethos and Founder"
+        h2="Elizabeth's unconventional educational journey has shaped My Private Tutor Online's unique ethos and approach."
+        decorativeStyle="none"
       />
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
