@@ -431,9 +431,16 @@ const FAQPage = React.memo(function FAQPage() {
 
   // CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline FAQ system initialization
   // OFFLINE INITIALIZATION: Set up search index and preload content for offline access
+  // FIX: Removed offlineActions from dependencies to prevent infinite loop
   useEffect(() => {
     const initializeOfflineSystem = async () => {
       try {
+        // CONTEXT7 SOURCE: /vercel/next.js - Client-side only check for SSR compatibility
+        // SSR GUARD: Skip initialization during server-side rendering
+        if (typeof window === 'undefined') {
+          return;
+        }
+        
         console.log('🔧 Initializing offline FAQ system...');
         
         // Build search index from FAQ categories
@@ -452,7 +459,7 @@ const FAQPage = React.memo(function FAQPage() {
     if (faqCategories.length > 0) {
       initializeOfflineSystem();
     }
-  }, [faqCategories, offlineActions]);
+  }, [faqCategories]); // FIX: Removed offlineActions to prevent re-creation loop
 
   // CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline search result handler
   // SEARCH HANDLING: Handle offline search results and display

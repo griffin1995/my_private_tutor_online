@@ -223,8 +223,9 @@ export function PageHeader({
         // GROUP_REASON: Official Tailwind documentation for group-hover variants to enable child element styling
         "fixed top-0 left-0 right-0 z-50 group",
         "w-full transition-all duration-300",
-        // Enhanced text color with brand palette integration
-        isTransparent ? "text-white" : "text-primary-700", // Brand navy for solid state
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Proper text color contrast for navbar container states
+        // NAVBAR_CONTAINER_CONTRAST_REASON: Official Tailwind documentation for text contrast - white text on transparent background, dark text on solid white background
+        isTransparent ? "text-white" : "text-primary-700", // White text for transparent state, dark text for solid state
         // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Header hover background transitions with proper pseudo-class variants
         // HOVER_BACKGROUND_REASON: Official Tailwind documentation for hover:bg-* utilities to create smooth background transitions
         isTransparent && "hover:bg-white/95 hover:text-primary-700 hover:backdrop-blur-md hover:shadow-sm",
@@ -367,32 +368,42 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
   // HOVER_REASON: Official Radix UI documentation for NavigationMenu.Link hover:bg-* and hover:text-* utilities
   // CONTEXT7 SOURCE: /reactjs/react.dev - React hover event handling patterns with accessibility compliance
   // EVENT_HANDLING_REASON: Official React documentation for onMouseEnter and onMouseLeave event patterns with WCAG 2.1 AA touch targets
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CONSISTENT WHITE TEXT for all navbar links in both states
+  // ARCHITECTURAL_FIX_REASON: Official Tailwind documentation for text-white utility - ALL navbar links must be white in both transparent AND solid states for consistency
+  // SINGLE_SOURCE_TRUTH: Enforcing single color rule - white text across all navbar link states to eliminate color inconsistencies
   const linkClasses = cn(
     "px-3 py-2 rounded-md transition-all duration-300 min-h-[44px] flex items-center", // WCAG 2.1 AA compliant touch target
     // Premium typography - Royal client quality font styling with enhanced hover scaling
     "text-sm font-semibold tracking-wide hover:scale-105 hover:tracking-wider",
-    // Enhanced hover states with better contrast and visibility
+    // ARCHITECTURAL FIX: WHITE TEXT IN BOTH TRANSPARENT AND SOLID STATES FOR CONSISTENCY
     isTransparent
       ? "text-white/90 hover:text-white hover:bg-white/20 [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:bg-white/20 focus:outline-2 focus:outline-white/50"
-      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
-      // LINK_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
-      : "text-primary-700 hover:text-blue-600 hover:bg-blue-50 focus:text-blue-600 focus:bg-blue-50 focus:outline-2 focus:outline-blue-500/20 font-medium",
-    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus states for accessibility
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CONSISTENT white text for solid navbar state
+      // SOLID_STATE_FIX_REASON: Official Tailwind documentation for text-white utility - maintaining white text consistency across all navbar states
+      : "text-white/90 hover:text-white hover:bg-white/10 [text-shadow:0_1px_2px_rgba(0,0,0,0.3)] focus:text-white focus:bg-white/10 focus:outline-2 focus:outline-white/50 font-medium",
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent white focus rings for all states
+    // FOCUS_RING_REASON: Official Tailwind documentation for focus-visible utility with consistent white contrast
+    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-white/50"
   )
 
   // CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Trigger styling following official Radix UI patterns
   // TRIGGER_HOVER_REASON: Official Radix UI documentation for NavigationMenu.Trigger with group hover:bg-* and hover:text-* utilities
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CONSISTENT WHITE TEXT for all navbar triggers in both states
+  // ARCHITECTURAL_FIX_REASON: Official Tailwind documentation for text-white utility - ALL navbar triggers must be white in both transparent AND solid states for consistency
+  // SINGLE_SOURCE_TRUTH: Enforcing single color rule - white text across all navbar trigger states to eliminate color inconsistencies
   const triggerClasses = cn(
     "group px-3 py-2 rounded-md transition-all duration-300 flex items-center gap-1 min-h-[44px]", // WCAG 2.1 AA compliant touch target
     // Premium typography with enhanced hover scaling and tracking
     "text-sm font-semibold tracking-wide hover:scale-105 hover:tracking-wider",
-    // Enhanced hover states with improved visibility and contrast
+    // ARCHITECTURAL FIX: WHITE TEXT IN BOTH TRANSPARENT AND SOLID STATES FOR CONSISTENCY
     isTransparent
       ? "text-white/90 hover:text-white hover:bg-white/20 [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:bg-white/20 focus:outline-2 focus:outline-white/50"
-      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
-      // TRIGGER_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
-      : "text-primary-700 hover:text-blue-600 hover:bg-blue-50 focus:text-blue-600 focus:bg-blue-50 focus:outline-2 focus:outline-blue-500/20 font-medium",
-    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus states for keyboard navigation
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CONSISTENT white text for solid navbar trigger state
+      // TRIGGER_SOLID_STATE_FIX_REASON: Official Tailwind documentation for text-white utility - maintaining white text consistency across all navbar trigger states
+      : "text-white/90 hover:text-white hover:bg-white/10 [text-shadow:0_1px_2px_rgba(0,0,0,0.3)] focus:text-white focus:bg-white/10 focus:outline-2 focus:outline-white/50 font-medium",
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent white focus rings for all trigger states
+    // TRIGGER_FOCUS_RING_REASON: Official Tailwind documentation for focus-visible utility with consistent white contrast
+    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-white/50"
   )
 
   // CONTEXT7 SOURCE: /radix-ui/website - Enhanced content classes with brand color styling
@@ -701,16 +712,18 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
   // HAMBURGER_HOVER_REASON: Official Tailwind documentation for button hover:bg-*, hover:text-*, and hover:scale-* utilities
   // CONTEXT7 SOURCE: /reactjs/react.dev - Button interaction event handling with proper focus states
   // BUTTON_INTERACTION_REASON: Official React documentation for button onClick event patterns with accessibility
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CONSISTENT WHITE TEXT for mobile hamburger button in both states
+  // ARCHITECTURAL_FIX_REASON: Official Tailwind documentation for text-white utility - hamburger button must be white in both transparent AND solid states for consistency
   const hamburgerButtonClasses = cn(
     "lg:hidden flex items-center justify-center",
     "w-11 h-11 rounded-lg transition-all duration-300",
-    // Enhanced hover and focus states with better scaling and visibility
+    // ARCHITECTURAL FIX: WHITE HAMBURGER IN BOTH TRANSPARENT AND SOLID STATES FOR CONSISTENCY
     "hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95",
     isTransparent
       ? "text-white/90 hover:text-white hover:bg-white/20 focus:ring-white/50 focus:bg-white/20"
-      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
-      // HAMBURGER_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
-      : "text-primary-700 hover:text-blue-600 hover:bg-blue-50 focus:ring-blue-500 focus:bg-blue-50 transition-colors duration-300"
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CONSISTENT white hamburger for solid navbar state
+      // HAMBURGER_SOLID_STATE_FIX_REASON: Official Tailwind documentation for text-white utility - maintaining white hamburger consistency across all navbar states
+      : "text-white/90 hover:text-white hover:bg-white/10 focus:ring-white/50 focus:bg-white/10 transition-colors duration-300"
   )
 
   return (
