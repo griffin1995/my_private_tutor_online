@@ -353,8 +353,10 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     // Enhanced hover states with better contrast and visibility
     isTransparent
       ? "text-white/90 hover:text-white hover:bg-white/20 [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:bg-white/20 focus:outline-2 focus:outline-white/50"
-      : "text-primary-700 hover:text-accent-600 hover:bg-accent-50 focus:text-accent-600 focus:bg-accent-50 focus:outline-2 focus:outline-accent-500/20 font-medium",
-    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus states for accessibility
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+      // LINK_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+      : "text-primary-700 hover:text-blue-600 hover:bg-blue-50 focus:text-blue-600 focus:bg-blue-50 focus:outline-2 focus:outline-blue-500/20 font-medium",
+    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus states for accessibility
   )
 
   // CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Trigger styling following official Radix UI patterns
@@ -366,8 +368,10 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     // Enhanced hover states with improved visibility and contrast
     isTransparent
       ? "text-white/90 hover:text-white hover:bg-white/20 [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:bg-white/20 focus:outline-2 focus:outline-white/50"
-      : "text-primary-700 hover:text-accent-600 hover:bg-accent-50 focus:text-accent-600 focus:bg-accent-50 focus:outline-2 focus:outline-accent-500/20 font-medium",
-    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus states for keyboard navigation
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+      // TRIGGER_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+      : "text-primary-700 hover:text-blue-600 hover:bg-blue-50 focus:text-blue-600 focus:bg-blue-50 focus:outline-2 focus:outline-blue-500/20 font-medium",
+    "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus states for keyboard navigation
   )
 
   // CONTEXT7 SOURCE: /radix-ui/website - Enhanced content classes with brand color styling
@@ -425,28 +429,30 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
             <div className={contentInnerClasses}>
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {item.items.map((subItem) => (
+                  // CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Link with asChild pattern for single child element
+                  // REVISION REASON: Fixed React.Children.only error by ensuring NavigationMenu.Link with asChild has exactly one child element, following official Radix UI NavigationMenu documentation
                   <NavigationMenu.Link asChild key={subItem.label}>
-                    // CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Link hover states following official Radix UI dropdown patterns
-                    // DROPDOWN_LINK_REASON: Official Radix UI documentation for NavigationMenu.Link with hover:bg-*, hover:text-*, and hover:scale-* utilities
                     <Link
                       href={subItem.href}
                       className={cn(
                         "group grid h-auto w-full justify-start gap-1 rounded-md p-3",
                         "leading-none no-underline outline-none transition-all duration-300",
                         // Enhanced hover states with better scaling and shadow effects
-                        "hover:bg-accent-50 hover:text-accent-700 hover:shadow-accent-subtle hover:scale-[1.02]",
-                        "focus:bg-accent-50 focus:text-accent-700 focus:ring-2 focus:ring-accent-500/20 focus:outline-none",
-                        "active:scale-[0.98] active:bg-accent-100 min-h-[44px] flex items-start", // WCAG touch target + enhanced active state
-                        "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus visibility
+                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+                        // SUBMENU_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+                        "hover:bg-blue-50 hover:text-blue-700 hover:shadow-blue-subtle hover:scale-[1.02]",
+                        "focus:bg-blue-50 focus:text-blue-700 focus:ring-2 focus:ring-blue-500/20 focus:outline-none",
+                        "active:scale-[0.98] active:bg-blue-100 min-h-[44px] flex items-start", // WCAG touch target + enhanced active state
+                        "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus visibility
                       )}
                     >
-                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Group hover text color transitions with proper pseudo-class variants
-                      // GROUP_HOVER_REASON: Official Tailwind documentation for group-hover:text-* utilities for coordinated hover effects
-                      <div className="text-sm font-semibold leading-none tracking-wide text-primary-700 group-hover:text-accent-700 transition-colors duration-300">
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from gold to blue */}
+                      {/* BRAND_COLOR_UPDATE: Changed text-accent-700 to text-blue-600 for brand consistency */}
+                      <div className="text-sm font-semibold leading-none tracking-wide text-primary-700 group-hover:text-blue-600 transition-colors duration-300">
                         {subItem.label}
                       </div>
                       {subItem.description && (
-                        <p className="line-clamp-2 text-xs leading-snug text-primary-600 group-hover:text-accent-600 font-medium mt-1 transition-colors duration-300">
+                        <p className="line-clamp-2 text-xs leading-snug text-primary-600 group-hover:text-blue-600 font-medium mt-1 transition-colors duration-300">
                           {subItem.description}
                         </p>
                       )}
@@ -480,18 +486,15 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
         
         {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport positioned correctly within Root */}
         {/* VIEWPORT_CONTEXT_FIX: Official Radix UI documentation requires Viewport inside Root for React Context */}
-        {/* FULL-WIDTH_SOLUTION: Enhanced CSS positioning for viewport-width with performance optimizations */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-full z-40 w-screen">
-          {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport with enhanced mobile support */}
-          {/* VIEWPORT_REASON: Official Radix UI documentation for Viewport with responsive constraints */}
-          <NavigationMenu.Viewport className={cn(
-            "w-full transition-all duration-200",
-            "max-w-7xl mx-auto", // Enhanced centering
-            "data-[state=open]:animate-in data-[state=closed]:animate-out",
-            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-            "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
-          )} />
-        </div>
+        {/* RADIX_STRUCTURE_FIX: NavigationMenuViewport must be used within NavigationMenu Root context - moved from external div wrapper */}
+        <NavigationMenu.Viewport className={cn(
+          "absolute left-1/2 -translate-x-1/2 top-full z-40",
+          "w-screen max-w-7xl mx-auto", // Full width with centering
+          "transition-all duration-200",
+          "data-[state=open]:animate-in data-[state=closed]:animate-out",
+          "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
+        )} />
       </NavigationMenu.Root>
     </div>
   )
@@ -612,7 +615,9 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
     "hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95",
     isTransparent
       ? "text-white/90 hover:text-white hover:bg-white/20 focus:ring-white/50 focus:bg-white/20"
-      : "text-primary-700 hover:text-accent-600 hover:bg-accent-50 focus:ring-accent-500 focus:bg-accent-50 transition-colors duration-300"
+      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+      // HAMBURGER_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+      : "text-primary-700 hover:text-blue-600 hover:bg-blue-50 focus:ring-blue-500 focus:bg-blue-50 transition-colors duration-300"
   )
 
   return (
@@ -698,8 +703,6 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                   if (item.href && !item.items) {
                     // Simple navigation link
                     return (
-                      // CONTEXT7 SOURCE: /websites/headlessui_com - Mobile Dialog navigation link patterns with enhanced accessibility
-                      // MOBILE_HOVER_REASON: Official Headless UI documentation for Dialog panel interactive elements with WCAG 2.1 AA compliance
                       <Link
                         key={item.label}
                         href={item.href}
@@ -708,10 +711,12 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                           "flex items-center w-full px-4 py-3",
                           "text-base font-semibold tracking-wide text-primary-700 rounded-lg",
                           // Enhanced hover states with better visual feedback
-                          "hover:bg-accent-50 hover:text-accent-600 hover:tracking-wider hover:scale-[1.01]",
-                          "focus:bg-accent-50 focus:text-accent-600 focus:outline-2 focus:outline-accent-500/20",
-                          "active:bg-accent-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
-                          "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus states for keyboard navigation
+                          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+                          // MOBILE_LINK_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+                          "hover:bg-blue-50 hover:text-blue-600 hover:tracking-wider hover:scale-[1.01]",
+                          "focus:bg-blue-50 focus:text-blue-600 focus:outline-2 focus:outline-blue-500/20",
+                          "active:bg-blue-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
+                          "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus states for keyboard navigation
                         )}
                       >
                         {item.label}
@@ -725,18 +730,20 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                       <div key={item.label}>
                         {/* CONTEXT7 SOURCE: /grx7/framer-motion - Expandable trigger button */}
                         {/* TRIGGER_REASON: Official Framer Motion documentation for interactive animations */}
-                        // CONTEXT7 SOURCE: /websites/headlessui_com - Mobile Dialog expandable button patterns with accessibility compliance
-                        // EXPANDABLE_HOVER_REASON: Official Headless UI documentation for Dialog panel button interactions with proper focus management
+                        {/* CONTEXT7 SOURCE: /websites/headlessui_com - Mobile Dialog expandable button patterns with accessibility compliance */}
+                        {/* EXPANDABLE_HOVER_REASON: Official Headless UI documentation for Dialog panel button interactions with proper focus management */}
                         <button
                           onClick={() => toggleExpanded(item.label)}
                           className={cn(
                             "flex items-center justify-between w-full px-4 py-3",
                             "text-base font-semibold tracking-wide text-primary-700 rounded-lg",
                             // Enhanced hover states with better interaction feedback
-                            "hover:bg-accent-50 hover:text-accent-600 hover:tracking-wider hover:scale-[1.01]",
-                            "focus:bg-accent-50 focus:text-accent-600 focus:outline-2 focus:outline-accent-500/20",
-                            "active:bg-accent-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
-                            "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500" // Enhanced focus states for keyboard navigation
+                            // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+                            // MOBILE_EXPANDABLE_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+                            "hover:bg-blue-50 hover:text-blue-600 hover:tracking-wider hover:scale-[1.01]",
+                            "focus:bg-blue-50 focus:text-blue-600 focus:outline-2 focus:outline-blue-500/20",
+                            "active:bg-blue-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
+                            "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus states for keyboard navigation
                           )}
                           aria-expanded={isExpanded}
                           aria-controls={`mobile-submenu-${item.label.replace(/\s+/g, '-').toLowerCase()}`}
@@ -745,7 +752,9 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                           {/* CONTEXT7 SOURCE: /grx7/framer-motion - Animated chevron icon */}
                           {/* CHEVRON_REASON: Official Framer Motion documentation for rotation animations */}
                           <motion.svg
-                            className="h-5 w-5 text-primary-400 group-hover:text-accent-500 transition-colors duration-300"
+                            // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+                            // CHEVRON_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+                            className="h-5 w-5 text-primary-400 group-hover:text-blue-500 transition-colors duration-300"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                             animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -785,8 +794,8 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                                   delay: isExpanded ? index * 0.05 : 0
                                 }}
                               >
-                                // CONTEXT7 SOURCE: /websites/headlessui_com - Mobile Dialog nested navigation patterns with enhanced touch interaction
-                                // SUBMENU_HOVER_REASON: Official Headless UI documentation for Dialog nested elements with hover:bg-* and hover:text-* utilities
+                                {/* CONTEXT7 SOURCE: /websites/headlessui_com - Mobile Dialog nested navigation patterns with enhanced touch interaction */}
+                                {/* SUBMENU_HOVER_REASON: Official Headless UI documentation for Dialog nested elements with hover:bg-* and hover:text-* utilities */}
                                 <Link
                                   href={subItem.href}
                                   onClick={handleNavigation}
@@ -794,14 +803,16 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                                     "flex flex-col px-4 py-3 rounded-lg group",
                                     "text-sm text-primary-600 transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
                                     // Enhanced hover states with better visual feedback and scaling
-                                    "hover:bg-accent-50 hover:text-accent-700 hover:scale-[1.01]",
-                                    "focus:bg-accent-50 focus:text-accent-700 focus:outline-2 focus:outline-accent-500/20",
-                                    "active:bg-accent-100 active:scale-[0.99] focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-accent-500"
+                                    "hover:bg-blue-50 hover:text-blue-700 hover:scale-[1.01]",
+                                    "focus:bg-blue-50 focus:text-blue-700 focus:outline-2 focus:outline-blue-500/20",
+                                    "active:bg-blue-100 active:scale-[0.99] focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500"
                                   )}
                                 >
+                                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile menu brand color update */}
+                                  {/* MOBILE_BRAND_COLOR_UPDATE: Changed hover:text-accent-600 to hover:text-blue-600 for brand consistency */}
                                   <span className="font-semibold tracking-wide group-hover:tracking-wider transition-all duration-300">{subItem.label}</span>
                                   {subItem.description && (
-                                    <span className="text-xs text-primary-500 group-hover:text-accent-600 mt-1 line-clamp-2 font-medium transition-colors duration-300">
+                                    <span className="text-xs text-primary-500 group-hover:text-blue-600 mt-1 line-clamp-2 font-medium transition-colors duration-300">
                                       {subItem.description}
                                     </span>
                                   )}

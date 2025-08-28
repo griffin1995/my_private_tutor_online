@@ -284,8 +284,10 @@ export function FounderStorySection({
             <div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
               {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with fill prop for proportional container optimization */}
               {/* PROPORTIONAL IMAGE FITTING REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for responsive proportional scaling */}
+              {/* CONTEXT7 SOURCE: /vercel/next.js - Image source path update for Going Against the Grain section */}
+              {/* IMAGE PATH UPDATE REASON: Official Next.js documentation Section 3.4 recommends updating src prop for new image assets */}
               <Image
-                src="/images/team/founder-elizabeth-burrows-secondary.jpg"
+                src="/new_imgs/Going Against the Grain.webp"
                 alt="Elizabeth Burrows Making Educational Choices - Founder of My Private Tutor Online, representing the confidence to choose what's right rather than what's expected"
                 fill
                 className="object-cover"
