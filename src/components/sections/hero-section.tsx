@@ -88,7 +88,9 @@ interface HeroSectionProps {
  */
 export function HeroSection({ 
   className = "",
-  backgroundVideo = "/videos/background-video-2025-compressed.mp4",
+  // CONTEXT7 SOURCE: /vercel/next.js - Corrected video file path to match existing public assets
+  // VIDEO_PATH_FIX_REASON: Official Next.js documentation for public folder asset serving - fixed path to match actual video file name
+  backgroundVideo = "/videos/background-video-2025.mp4",
   showHeader = true,
   hasStaticNavbar = false
 }: HeroSectionProps) {

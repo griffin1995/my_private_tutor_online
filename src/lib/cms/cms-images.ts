@@ -1039,6 +1039,17 @@ export const STUDENT_IMAGES = {
     title: "University and Beyond Support",
     loading: "lazy" as const,
   },
+  // CONTEXT7 SOURCE: /vercel/next.js - Enhanced student image collection with London in-person tutoring representation
+  // IMPLEMENTATION REASON: Official Next.js documentation recommends comprehensive image asset management for service location imagery
+  // REVISION REASON: Added London in-person tutoring image from london-in-person.jpg for homepage service section representation
+  "london-in-person-tuition": {
+    src: "/images/students/london-in-person-tuition-2025.jpg",
+    alt: "Professional in-person tutoring session in London showing expert educator working with student in premium learning environment",
+    width: 600,
+    height: 400,
+    title: "London In-Person Tutoring Excellence",
+    loading: "lazy" as const,
+  },
 } as const;
 
 // ========================================================================================

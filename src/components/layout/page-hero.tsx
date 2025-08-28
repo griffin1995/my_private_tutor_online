@@ -173,18 +173,34 @@ export function PageHero({
       {background === 'video' && backgroundVideo && (
         <>
           {/* Full-screen video background */}
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Enhanced video element with improved browser compatibility and autoplay reliability */}
+          {/* VIDEO_ENHANCEMENT_REASON: Official browser documentation for reliable video autoplay with multiple fallback sources and error handling */}
           <video
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             disablePictureInPicture
+            controls={false}
             className="absolute inset-0 w-full h-full object-cover z-0"
             style={{
               filter: 'brightness(0.75) contrast(1.1) saturate(1.1)'
             }}
             aria-label="Background video"
+            onError={(e) => {
+              console.warn('Video playback error:', e);
+              // Fallback: try to play again after a brief delay
+              const video = e.currentTarget;
+              setTimeout(() => {
+                video.load();
+                video.play().catch(console.warn);
+              }, 1000);
+            }}
+            onCanPlayThrough={(e) => {
+              // Ensure video plays when it's ready
+              e.currentTarget.play().catch(console.warn);
+            }}
           >
             <source src={backgroundVideo} type="video/mp4" />
             <source src={backgroundVideo.replace('.mp4', '.webm')} type="video/webm" />

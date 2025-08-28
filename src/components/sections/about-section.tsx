@@ -331,8 +331,8 @@ export function AboutSection({
              * CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog thumbnailSrc property configuration
              * THUMBNAIL UPDATE REASON: Official Magic UI documentation Section 3 shows thumbnailSrc prop for video thumbnail image
              * CHANGE TYPE: Update thumbnailSrc from founder portrait to actual video first frame
-             * IMPLEMENTATION: Using extracted first frame from elizabeth-introduction-sound.mp4 via ffmpeg
-             * FILE PATH: /images/video-thumbnails/elizabeth-introduction-thumbnail.jpg
+             * IMPLEMENTATION: Using new 2025 video thumbnail Screenshot 2025-08-22 at 11.38.39.png renamed to introduction-video-thumbnail-2025.png
+             * REVISION REASON: Updated homepage video thumbnail with new 2025 screenshot for improved user experience
              */}
             <m.div 
               className="relative w-full"
@@ -353,7 +353,7 @@ export function AboutSection({
               {/* GRADIENT REMOVAL IMPLEMENTATION: Official Tailwind CSS documentation shows clean component styling without background gradients or decorative overlays */}
               <HeroVideoDialog
                 videoSrc="/videos/elizabeth-introduction-compressed.mp4"
-                thumbnailSrc="/images/video-thumbnails/elizabeth-introduction-thumbnail.jpg"
+                thumbnailSrc="/images/video-thumbnails/introduction-video-thumbnail-2025.png"
                 thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
                 animationStyle="from-center"
                 className="w-full max-w-xs mx-auto"

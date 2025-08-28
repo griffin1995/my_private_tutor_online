@@ -307,10 +307,14 @@ export function useOffline(options: OfflineOptions = {}): UseOfflineReturn {
   // CONTEXT7 SOURCE: /facebook/react - Effect for initialization and cleanup
   // INITIALIZATION: Set up event listeners and intervals
   useEffect(() => {
-    // Initialize cache manager
-    cacheManager.initializeCaches().catch(error => {
-      console.error('Failed to initialize caches:', error);
-    });
+    // CONTEXT7 SOURCE: /vercel/next.js - Client-side only check for SSR compatibility
+    // SSR GUARD: Skip cache initialization during server-side rendering
+    if (typeof window !== 'undefined') {
+      // Initialize cache manager only on client-side
+      cacheManager.initializeCaches().catch(error => {
+        console.error('Failed to initialize caches:', error);
+      });
+    }
 
     // Set up event listeners for network status
     // CONTEXT7 SOURCE: /vercel/next.js - Client-side only window check for SSR compatibility

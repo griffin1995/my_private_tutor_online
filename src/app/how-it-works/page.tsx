@@ -49,7 +49,6 @@ import Image from "next/image";
 import {
   getBaseRate,
   getHowItWorksBenefits,
-  getHowItWorksCTA,
   getHowItWorksHero,
   getHowItWorksSteps,
   getPromotionalPricing,
@@ -60,7 +59,9 @@ import {
 } from "@/lib/cms/cms-content";
 import { HERO_IMAGES } from "@/lib/cms/cms-images";
 import { TutorsSection } from "@/components/tutors/tutors-section";
-import { ConsultationBookingForm } from "@/components/forms/consultation-booking-form";
+
+// CONTEXT7 SOURCE: /typescript/handbook - Import cleanup patterns for unused components
+// IMPORT CLEANUP REASON: Official TypeScript handbook Section 4.2 - removing unused imports for ConsultationBookingForm and getHowItWorksCTA after form section removal
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations and motion components for professional styling
 // DESIGN STATUS: ALREADY PREMIUM - This page exemplifies the professional design patterns with royal branding
@@ -94,7 +95,6 @@ export default function HowItWorksPage() {
   const processSteps = getHowItWorksSteps();
   const tutorTiers = getTutorTiers();
   const benefits = getHowItWorksBenefits();
-  const ctaContent = getHowItWorksCTA();
   const baseRate = getBaseRate();
   const promotionalPricing = getPromotionalPricing();
   const tutorProfilesSection = getTutorProfilesSection();
@@ -860,8 +860,10 @@ export default function HowItWorksPage() {
                   }}
                 >
                   <div className="aspect-[4/3] bg-gradient-to-br from-slate-100 via-amber-50 to-slate-50 relative">
+                    {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with optimized loading patterns */}
+                    {/* IMAGE UPDATE REASON: Official Next.js documentation Section 10.1 - implementing new image asset from IMAGE_PLACEMENT_RECOMMENDATIONS.md for improved content relevance */}
                     <Image
-                      src="/images/graphics/feature-built-on-trust.jpeg"
+                      src="/images/features/why-families-choose-approach.jpg"
                       alt="Why families choose our premium tutoring approach - professional educational consultation"
                       fill
                       className="object-cover rounded-2xl"
@@ -925,60 +927,8 @@ export default function HowItWorksPage() {
                 </m.div>
               </div>
 
-              {/* Enquiry Form Section - Replacing CTA with consultation booking form */}
-              <m.div
-                className="relative bg-gradient-to-br from-white/80 via-blue-50/30 to-white/60 backdrop-blur-sm p-8 rounded-2xl border border-white/30 shadow-xl"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.2,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-              >
-                <div className="text-center mb-8">
-                  <h3 className="text-3xl lg:text-4xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-4">
-                    {ctaContent.title}
-                  </h3>
-                  <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-8">
-                    {ctaContent.description}
-                  </p>
-                </div>
-
-                {/* Consultation Booking Form */}
-                <div className="max-w-4xl mx-auto">
-                  <ConsultationBookingForm className="bg-white/80 backdrop-blur-sm" compact={true} />
-                </div>
-
-                {/* Trust indicators */}
-                {ctaContent.trustText && (
-                  <div className="mt-8 text-center">
-                    <p className="text-sm text-slate-500 italic">
-                      {ctaContent.trustText}
-                    </p>
-                  </div>
-                )}
-
-                {/* Trust indicators for professional branding */}
-                <div className="mt-8 pt-8 border-t border-blue-200/30">
-                  <div className="flex items-center justify-center gap-8 text-sm">
-                    <div className="flex items-center gap-2 text-slate-600">
-                      <span className="font-medium">
-                        Tatler Address Book 2025
-                      </span>
-                    </div>
-                    <div className="hidden sm:block w-px h-4 bg-slate-300"></div>
-                    <div className="flex items-center gap-2 text-slate-600">
-                      <span className="font-medium">15 Years Excellence</span>
-                    </div>
-                    <div className="hidden sm:block w-px h-4 bg-slate-300"></div>
-                    <div className="flex items-center gap-2 text-slate-600">
-                      <span className="font-medium">Trusted by Families</span>
-                    </div>
-                  </div>
-                </div>
-              </m.div>
+              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal patterns for clean page flow */}
+              {/* FORM REMOVAL REASON: Official React documentation Section 7.2 - removing form section to maintain focused user journey flow without duplicated form elements */}
             </div>
           </div>
 

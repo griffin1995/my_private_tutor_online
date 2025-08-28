@@ -319,34 +319,36 @@ export function PageFooterClient({
               
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Footer contact section with subtle border styling */}
               {/* REVISION REASON: Task Footer Section 2.2.2 - reduced border thickness and maintained default text styling */}
+              {/* CONTEXT7 SOURCE: /tailwindcss/docs - Text color utility classes for explicit color control */}
+              {/* TEXT COLOR REVISION: Added text-black classes to contact information links and separators for explicit black text color styling */}
               {/* Contact Information - positioned at the end of footer links */}
               <div className="col-span-2 md:col-span-4 mt-8 pt-6 border-t border-gray-200">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4">
-                  {/* Contact links - using default text color (removed custom gray-600) */}
+                  {/* Contact links - explicit black text color (text-black) for enhanced contrast and visibility */}
                   <div className="text-sm flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                     <a 
                       href={`tel:${contactInfo.phone}`}
-                      className="hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
+                      className="text-black hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
                     >
                       <Phone className="w-4 h-4" />
                       Call us: {contactInfo.phone}
                     </a>
-                    <span className="hidden sm:inline">|</span>
+                    <span className="hidden sm:inline text-black">|</span>
                     <a 
                       href={`mailto:${contactInfo.email}`}
-                      className="hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
+                      className="text-black hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
                     >
                       <Mail className="w-4 h-4" />
                       Email: {contactInfo.email}
                     </a>
-                    <span className="hidden sm:inline">|</span>
+                    <span className="hidden sm:inline text-black">|</span>
                     {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - MessageCircle icon for WhatsApp functionality */}
                     {/* WHATSAPP REDESIGN: Text with icon to the right, no green background, matching text color */}
                     <a
                       href={`https://wa.me/447513550278?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20private%20tutoring%20services%20for%20my%20child.`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
+                      className="text-black hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
                       aria-label="Contact us on WhatsApp - opens in new window"
                     >
                       WhatsApp Us
