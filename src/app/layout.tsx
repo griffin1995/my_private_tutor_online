@@ -46,6 +46,10 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { CookieConsentManager } from '@/components/legal/CookieConsent';
 import { GlobalErrorBoundary } from '@/components/infrastructure/GlobalErrorBoundary';
 
+// CONTEXT7 SOURCE: /sonner/toast - Toast notification system for user feedback
+// TOAST INTEGRATION REASON: Global toast provider for language switching notifications and user feedback
+import { Toaster } from '@/components/ui/toast';
+
 /**
  * CONTEXT7 SOURCE: /vercel/next.js - Performance monitoring component integration
  * PERFORMANCE MONITORING REASON: Comprehensive Web Vitals tracking with useReportWebVitals hook
@@ -374,6 +378,10 @@ export default function RootLayout({
             PERFORMANCE MONITORING: Real-time Core Web Vitals tracking and business metrics */}
         <WebVitalsReporter />
         <CookieConsentManager />
+        
+        {/* CONTEXT7 SOURCE: /sonner/toast - Global toast notification system
+            TOAST PROVIDER REASON: Sonner toaster for user feedback including language switching notifications */}
+        <Toaster />
       </body>
     </html>
   );

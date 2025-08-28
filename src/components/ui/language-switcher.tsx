@@ -11,6 +11,10 @@ import { useRouter, usePathname } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
 import { localeNames, localeFlags } from '@/i18n/navigation';
 
+// CONTEXT7 SOURCE: /sonner/toast - Toast notification system for user feedback
+// TOAST NOTIFICATION REASON: User feedback for language switching indicating future availability
+import { useToast } from '@/hooks/use-toast';
+
 // CONTEXT7 SOURCE: /amannn/next-intl - Language switcher component props interface
 // TYPE SAFETY REASON: Official next-intl documentation recommends TypeScript for type-safe internationalization
 interface LanguageSwitcherProps {
@@ -36,10 +40,26 @@ export function LanguageSwitcher({
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
+  
+  // CONTEXT7 SOURCE: /sonner/toast - Toast hook for language switching notifications
+  // TOAST HOOK REASON: User feedback system for non-English language selection
+  const { toast } = useToast();
 
-  // CONTEXT7 SOURCE: /amannn/next-intl - Locale switching handler
+  // CONTEXT7 SOURCE: /amannn/next-intl - Enhanced locale switching handler with toast notifications
   // LOCALE SWITCHING REASON: Official next-intl documentation provides router-based locale navigation
+  // TOAST NOTIFICATION ENHANCEMENT: User feedback for non-English language selections
   const handleLocaleChange = (newLocale: string) => {
+    // Show toast notification for non-English languages
+    if (newLocale !== 'en-GB') {
+      const languageName = localeNames[newLocale];
+      // CONTEXT7 SOURCE: /sonner/toast - Toast notification for language switching feedback
+      // TOAST MESSAGE REASON: Professional user feedback indicating future language availability
+      toast.info(`${languageName} on its way`, {
+        description: `We're working on bringing you ${languageName} language support soon!`,
+        duration: 4000,
+      });
+    }
+    
     router.replace(pathname, { locale: newLocale });
     setIsOpen(false);
   };

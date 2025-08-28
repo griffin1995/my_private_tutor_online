@@ -86,6 +86,10 @@ import { cn } from '@/lib/utils'
 // COMPONENT_REASON: Official Next.js documentation for component composition and reusable architecture
 import { LogoSection } from './logo-section'
 
+// CONTEXT7 SOURCE: /amannn/next-intl - Language switcher component for navbar internationalization
+// LANGUAGE_SWITCHER_REASON: Professional multi-language support for royal client international families
+import { LanguageSwitcher } from '@/components/ui/language-switcher'
+
 // CONTEXT7 SOURCE: /typescript/handbook - Interface definitions for type safety
 // INTERFACE_REASON: Official TypeScript documentation for component prop typing
 interface PageHeaderProps {
@@ -250,6 +254,9 @@ export function PageHeader({
 
           {/* Desktop Navigation - Full Implementation */}
           <DesktopNavigation isTransparent={isTransparent} />
+
+          {/* Language Switcher - Desktop Only */}
+          <LanguageSwitcherDesktop isTransparent={isTransparent} />
 
           {/* CTA Button - Context-Aware Design */}
           <CTAButton isTransparent={isTransparent} isHomepage={isHomepage} />
@@ -962,6 +969,23 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                 })}
               </nav>
 
+              {/* CONTEXT7 SOURCE: /amannn/next-intl - Mobile Language Selection Section */}
+              {/* MOBILE_LANGUAGE_REASON: Language selection integration in mobile menu for international families */}
+              <div className="border-t border-gray-200 px-6 py-4">
+                <div className="mb-4">
+                  <p className="text-sm font-medium text-primary-600 mb-3">Select Language</p>
+                  {/* CONTEXT7 SOURCE: /amannn/next-intl - Button variant language switcher for mobile menu */}
+                  {/* MOBILE_VARIANT_REASON: Button layout provides better touch interaction for mobile */}
+                  <LanguageSwitcher
+                    variant="buttons"
+                    showFlags={true}
+                    showLabels={true}
+                    position="sidebar"
+                    className="gap-2"
+                  />
+                </div>
+              </div>
+
               {/* CONTEXT7 SOURCE: /websites/headlessui_com - Mobile CTA section */}
               {/* CTA_REASON: Official Headless UI documentation for dialog action patterns */}
               <div className="border-t border-gray-200 px-6 py-4">
@@ -1096,6 +1120,39 @@ function CTAButton({ isTransparent, isHomepage }: CTAButtonProps) {
           </motion.svg>
         </motion.span>
       </Link>
+    </div>
+  )
+}
+
+/**
+ * CONTEXT7 SOURCE: /amannn/next-intl - Desktop Language Switcher Component for Navbar
+ * IMPLEMENTATION_REASON: Context-aware language switcher that integrates with navbar styling
+ */
+interface LanguageSwitcherDesktopProps {
+  isTransparent: boolean
+}
+
+function LanguageSwitcherDesktop({ isTransparent }: LanguageSwitcherDesktopProps) {
+  return (
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive visibility for desktop only
+    // RESPONSIVE_REASON: Hide on mobile to prevent overlap with burger menu
+    <div className="hidden desktop:block">
+      {/* CONTEXT7 SOURCE: /amannn/next-intl - Compact variant language switcher for navbar */}
+      {/* COMPACT_VARIANT_REASON: Space-efficient design for navbar integration */}
+      <LanguageSwitcher
+        variant="compact"
+        showFlags={true}
+        showLabels={false}
+        position="header"
+        className={cn(
+          "transition-all duration-300",
+          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-aware styling based on navbar state
+          // STYLING_REASON: Consistent visual integration with navbar transparency states
+          isTransparent 
+            ? "text-white" 
+            : "text-primary-700"
+        )}
+      />
     </div>
   )
 }
