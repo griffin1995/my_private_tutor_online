@@ -48,6 +48,7 @@ export default function AboutUsPage() {
   // SYNCHRONOUS CMS PATTERN REASON: Official React documentation Section 4.2 recommends direct data access for static content to prevent homepage failure scenarios
   // ARCHITECTURE FIX: Replace async/await pattern with synchronous CMS access to maintain CRITICAL homepage recovery architecture
   // VIDEO FILTERING: Using getTextTestimonials() to automatically exclude video testimonials from About page display
+  // DEPLOYMENT FIX: Force fresh deployment - August 28, 2025
   const aboutTestimonials = getTextTestimonials()
   
   // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
