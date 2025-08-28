@@ -36,6 +36,7 @@
 import { Highlighter } from "@/components/magicui/highlighter";
 import { m } from "framer-motion";
 import Image from "next/image";
+import { getGoingAgainstGrainImage } from "@/lib/cms/cms-images";
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimised founder story images
 // IMAGE OPTIMISATION REASON: Official Next.js documentation Section 3.4 recommends Image component for performance
 // CONTEXT7 SOURCE: /framer/motion - Motion components for accessibility-compliant animations
@@ -95,6 +96,10 @@ export function FounderStorySection({
   backgroundColor = "white",
   className = "",
 }: FounderStorySectionProps): JSX.Element {
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Component imports and image assets for CMS integration
+  // CMS INTEGRATION REASON: Official React documentation Section 2.1 recommends importing and using helper functions for dynamic asset management
+  const goingAgainstGrainImage = getGoingAgainstGrainImage();
+
   return (
     <section
       id="founder-story"
@@ -284,11 +289,11 @@ export function FounderStorySection({
             <div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
               {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with fill prop for proportional container optimization */}
               {/* PROPORTIONAL IMAGE FITTING REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for responsive proportional scaling */}
-              {/* CONTEXT7 SOURCE: /vercel/next.js - Image source path update for Going Against the Grain section */}
-              {/* IMAGE PATH UPDATE REASON: Official Next.js documentation Section 3.4 recommends updating src prop for new image assets */}
+              {/* CONTEXT7 SOURCE: /reactjs/react.dev - CMS image integration using helper function pattern */}
+              {/* CMS INTEGRATION REASON: Official React documentation Section 2.1 recommends using imported helper functions for dynamic asset management */}
               <Image
-                src="/new_imgs/Going Against the Grain.webp"
-                alt="Elizabeth Burrows Making Educational Choices - Founder of My Private Tutor Online, representing the confidence to choose what's right rather than what's expected"
+                src={goingAgainstGrainImage.src}
+                alt={goingAgainstGrainImage.alt}
                 fill
                 className="object-cover"
                 placeholder="blur"

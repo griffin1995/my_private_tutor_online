@@ -252,8 +252,10 @@ export function TestimonialsSection({
         {/* CONTEXT7 SOURCE: /websites/magicui_design - Magic UI HeroVideoDialog components integration with responsive grid layout
          * VIDEO SECTION REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog components for video thumbnails with popup modal functionality
          * HERO VIDEO DIALOG IMPLEMENTATION: 2-column layout with Magic UI HeroVideoDialog components positioned between header and filters */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container width reduction with responsive sizing utilities */}
+        {/* CONTAINER SIZE REDUCTION REASON: Official Tailwind CSS documentation Section 2.2 - w-[70%] provides 70% width (30% reduction from w-full) for video testimonials container sizing with mx-auto for centering */}
         <div 
-          className="mb-12 lg:mb-16"
+          className="mb-12 lg:mb-16 w-[70%] mx-auto"
         >
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
             {(() => {
@@ -267,16 +269,18 @@ export function TestimonialsSection({
                 <>
                   {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog component for premium video modal presentation
                    * LEFT COLUMN IMPLEMENTATION REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog for video thumbnails with play button and popup functionality */}
-                  <div className="relative">
+                  <div className="relative flex justify-center">
                     {/* Parent Testimonials Video with HeroVideoDialog */}
                     {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-video utility for 16:9 video aspect ratio */}
                     {/* ASPECT RATIO IMPLEMENTATION REASON: Official Tailwind CSS documentation Section 4.2 - aspect-video provides standard 16:9 aspect ratio for video content display */}
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - w-4/5 utility for percentage-based width sizing */}
+                    {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation Section 2.2 - w-4/5 provides 80% width (30% reduction from w-full) for responsive video thumbnail scaling */}
                     {parentVideo && (
                       <HeroVideoDialog
                         videoSrc={parentVideo.videoSrc}
                         thumbnailSrc={parentVideo.thumbnailSrc}
                         thumbnailAlt={parentVideo.description}
-                        className="w-full aspect-video rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-4/5 aspect-video rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                         animationStyle="from-center"
                       />
                     )}
@@ -284,16 +288,18 @@ export function TestimonialsSection({
 
                   {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog component for premium video modal presentation
                    * RIGHT COLUMN IMPLEMENTATION REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog for video thumbnails with play button and popup functionality */}
-                  <div className="relative">
+                  <div className="relative flex justify-center">
                     {/* Student Testimonials Video with HeroVideoDialog */}
                     {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-video utility for 16:9 video aspect ratio */}
                     {/* ASPECT RATIO IMPLEMENTATION REASON: Official Tailwind CSS documentation Section 4.2 - aspect-video provides standard 16:9 aspect ratio for video content display */}
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - w-4/5 utility for percentage-based width sizing */}
+                    {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation Section 2.2 - w-4/5 provides 80% width (30% reduction from w-full) for responsive video thumbnail scaling */}
                     {studentVideo && (
                       <HeroVideoDialog
                         videoSrc={studentVideo.videoSrc}
                         thumbnailSrc={studentVideo.thumbnailSrc}
                         thumbnailAlt={studentVideo.description}
-                        className="w-full aspect-video rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-4/5 aspect-video rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
                         animationStyle="from-center"
                       />
                     )}

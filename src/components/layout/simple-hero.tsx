@@ -115,8 +115,12 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
           >
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background clipping for gradient text effects */}
               {/* GRADIENT TEXT RESTORATION: Official Tailwind CSS documentation Section 3.1 - Luxury overlay gradients converted to text gradients using bg-clip-text for premium visual continuity */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale increase for enhanced visual hierarchy */}
+              {/* SIZE INCREASE: 30% larger heading sizes - from text-2xl/3xl/4xl/5xl/6xl to text-3xl/4xl/5xl/6xl/7xl */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom color values using arbitrary value syntax */}
+              {/* COLOR UPDATE: Replaced gradient with solid Aztec Gold brand colour (#CA9E5B) using Tailwind arbitrary value pattern */}
               <motion.h1 
-                className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-display font-black bg-gradient-to-br from-slate-100 via-white to-yellow-200 bg-clip-text text-transparent leading-[1.618] tracking-tight transition-all duration-500 group-hover:scale-105"
+                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-display font-black text-[#CA9E5B] leading-[1.618] tracking-tight transition-all duration-500 group-hover:scale-105"
                 initial={{ 
                   opacity: 0, 
                   y: 30, 
@@ -139,135 +143,38 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
                   transition: { duration: 0.3 }
                 }}
                 style={{
-                  // Fallback for browsers that don't support bg-clip-text
-                  color: 'white'
+                  // Fallback for browsers that don't support text color arbitrary values
+                  color: '#CA9E5B'
                 }}
               >
                 {h1}
               </motion.h1>
           </motion.div>
 
-          {/* H2 - Sub Heading with 30% Size Increase and Decorative Elements (Second Position) */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale and responsive text sizing
-          /* TYPOGRAPHY REASON: Official Tailwind CSS documentation for consistent text hierarchy */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox alignment and decorative pseudo-elements
-          /* DECORATIVE REASON: Official Tailwind CSS documentation for creating decorative line elements with flexbox */}
+          {/* H2 - Sub Heading without Decorative Elements (Second Position) */}
+          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Simplified motion.div without decorative elements for clean subtitle layout */}
+          {/* HERO LAYOUT MODIFICATION: Official Framer Motion documentation demonstrates clean motion components without complex decorative wrapper structures */}
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale enhancement and responsive text sizing */}
           {/* TYPOGRAPHY SIZE REVISION: Official Tailwind CSS documentation Section 3.1 - Increased from text-sm/base to text-lg/xl for 30% larger sub-heading presence */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox alignment and decorative pseudo-elements */}
-          {/* DECORATIVE REASON: Official Tailwind CSS documentation for creating decorative line elements with flexbox */}
-          <motion.div
-            className="flex items-center justify-center place-items-center gap-4 group"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            style={{ alignItems: 'center', alignContent: 'center' }}
+          {/* COLOR SWAP: H2 now uses white/slate gradient previously on H1 */}
+          <motion.h2 
+            className="text-lg md:text-xl font-serif font-medium bg-gradient-to-br from-slate-100 via-white to-yellow-200 bg-clip-text text-transparent tracking-widest uppercase whitespace-nowrap leading-none transition-all duration-300 hover:tracking-[0.3em] flex-shrink-0 self-center flex items-center justify-center"
+            initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            style={{
+              // Fallback for browsers that don't support bg-clip-text
+              color: 'rgba(255, 255, 255, 0.9)',
+              // Ultimate centering with multiple methods
+              alignSelf: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              lineHeight: '1'
+            }}
           >
-              {/* Left decorative element with perfect text middle alignment */}
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Perfect text baseline alignment using items-baseline for text-relative positioning */}
-              {/* REVISION REASON: Official Tailwind CSS documentation Section 2.3 - items-baseline aligns elements to text baseline, ensuring lines align with text middle rather than container center */}
-              {decorativeStyle === 'lines' && (
-                <motion.div 
-                  className="hidden sm:flex w-8 md:w-12 h-px bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-yellow-300 group-hover:to-yellow-400 group-hover:w-16 flex-shrink-0 items-baseline"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  aria-hidden="true"
-                  style={{ 
-                    // CONTEXT7 SOURCE: /websites/motion_dev - Vertical alignment transforms for text baseline positioning
-                    // TASK 1 FIX: Official Motion documentation - translateY(-50%) positions decorative lines at exact text vertical center
-                    transform: 'translateY(-50%)',
-                    alignSelf: 'center'
-                  }}
-                />
-              )}
-              {decorativeStyle === 'dots' && (
-                <motion.div 
-                  className="hidden sm:flex items-center gap-1" 
-                  aria-hidden="true"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  <motion.div 
-                    className="w-1.5 h-1.5 rounded-full bg-white/60 transition-colors duration-300 group-hover:bg-white/80"
-                    whileHover={{ scale: 1.2 }}
-                  />
-                  <motion.div 
-                    className="w-1 h-1 rounded-full bg-white/40 transition-colors duration-300 group-hover:bg-white/60"
-                    whileHover={{ scale: 1.2 }}
-                  />
-                  <motion.div 
-                    className="w-0.5 h-0.5 rounded-full bg-white/30 transition-colors duration-300 group-hover:bg-white/50"
-                    whileHover={{ scale: 1.2 }}
-                  />
-                </motion.div>
-              )}
-              
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background clipping for gradient text effects */}
-              {/* GRADIENT TEXT RESTORATION: Official Tailwind CSS documentation Section 3.1 - bg-clip-text utility creates premium gradient text effects matching luxury overlay aesthetics */}
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography size enhancement and responsive scaling */}
-              {/* TYPOGRAPHY SIZE REVISION: Official Tailwind CSS documentation Section 3.1 - Increased from text-sm/base to text-lg/xl for 30% larger sub-heading presence */}
-              <motion.h2 
-                className="text-lg md:text-xl font-serif font-medium bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent tracking-widest uppercase whitespace-nowrap leading-none transition-all duration-300 group-hover:tracking-[0.3em] flex-shrink-0 self-center flex items-center justify-center"
-                initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                style={{
-                  // Fallback for browsers that don't support bg-clip-text
-                  color: 'rgba(255, 255, 255, 0.9)',
-                  // Ultimate centering with multiple methods
-                  alignSelf: 'center',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  lineHeight: '1'
-                }}
-              >
-                {h2}
-              </motion.h2>
-              
-              {/* Right decorative element with perfect text middle alignment */}
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Perfect text baseline alignment using items-baseline for text-relative positioning */}
-              {/* REVISION REASON: Official Tailwind CSS documentation Section 2.3 - items-baseline aligns elements to text baseline, ensuring lines align with text middle rather than container center */}
-              {decorativeStyle === 'lines' && (
-                <motion.div 
-                  className="hidden sm:flex w-8 md:w-12 h-px bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-yellow-300 group-hover:to-yellow-400 group-hover:w-16 flex-shrink-0 items-baseline"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
-                  aria-hidden="true"
-                  style={{ 
-                    // CONTEXT7 SOURCE: /websites/motion_dev - Vertical alignment transforms for text baseline positioning  
-                    // TASK 1 FIX: Official Motion documentation - translateY(-50%) positions decorative lines at exact text vertical center
-                    transform: 'translateY(-50%)',
-                    alignSelf: 'center'
-                  }}
-                />
-              )}
-              {decorativeStyle === 'dots' && (
-                <motion.div 
-                  className="hidden sm:flex items-center gap-1" 
-                  aria-hidden="true"
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                >
-                  <motion.div 
-                    className="w-0.5 h-0.5 rounded-full bg-white/30 transition-colors duration-300 group-hover:bg-white/50"
-                    whileHover={{ scale: 1.2 }}
-                  />
-                  <motion.div 
-                    className="w-1 h-1 rounded-full bg-white/40 transition-colors duration-300 group-hover:bg-white/60"
-                    whileHover={{ scale: 1.2 }}
-                  />
-                  <motion.div 
-                    className="w-1.5 h-1.5 rounded-full bg-white/60 transition-colors duration-300 group-hover:bg-white/80"
-                    whileHover={{ scale: 1.2 }}
-                  />
-                </motion.div>
-              )}
-          </motion.div>
+            {h2}
+          </motion.h2>
         </motion.div>
 
         {/* Enhanced Scroll Indicator - Clean Minimal Design */}

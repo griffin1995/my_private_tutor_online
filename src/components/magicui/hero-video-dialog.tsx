@@ -168,31 +168,16 @@ function HeroVideoDialog({
         aria-label={`Play video: ${thumbnailAlt}`}
       >
         <div className="relative overflow-hidden rounded-lg">
-          {/* 
-           * Documentation Source: Context7 MCP - Magic UI HeroVideoDialog Official Implementation
-           * Reference: /magicuidesign/magicui - HeroVideoDialog component API documentation
-           * Pattern: Standard Magic UI HeroVideoDialog with image thumbnail as per official docs
-           * 
-           * Implementation Logic:
-           * - thumbnailSrc prop is required and expects image URL (not video file)
-           * - Image thumbnail displayed "before the video plays" as per Magic UI docs
-           * - Uses Next.js Image component for optimized image loading
-           * - Standard Magic UI component behavior maintained
-           */}
-          {/* CONTEXT7 SOURCE: /vercel/next.js - Image optimization with lazy loading and blur placeholder */}
-          {/* PERFORMANCE ENHANCEMENT REASON: Official Next.js documentation recommends lazy loading and blur placeholders for video thumbnails */}
-          {/* QUALITY FIX REASON: Changed quality from 80 to 75 to match next.config.js qualities array [25, 35, 50, 65, 75, 85, 90, 95] */}
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Image optimization with fixed dimensions for consistent thumbnail display */}
+          {/* REVERSION REASON: Restoring original working implementation with fixed width/height instead of fill prop */}
           <Image
             src={thumbnailSrc}
             alt={thumbnailAlt}
             width={800}
             height={450}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-            loading="lazy"
+            priority
             quality={75}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
           />
           
           {/* Play Button Overlay */}

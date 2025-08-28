@@ -45,8 +45,8 @@ import teamContent from "../../content/team.json";
 import testimonialsContent from "../../content/testimonials.json";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Module re-export patterns for centralized API
-// CMS DATA SOURCE: Re-exporting getTestimonialVideos from cms-images for centralized access
-import { getTestimonialVideos } from "./cms-images";
+// CMS DATA SOURCE: Re-exporting getTestimonialVideos and tutor image utilities from cms-images for centralized access
+import { getTestimonialVideos, getTutorImageById, hasTutorImage } from "./cms-images";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - FAQ content import for centralized FAQ data management
 // CMS DATA SOURCE: Importing faqContent from cms-faq for FAQ page functionality
@@ -4764,6 +4764,35 @@ export const formatPriceDisplay = cache(
  */
 export const getTutorProfilesSection = cache((): TutorProfilesSection => {
   return teamContent.tutorProfilesSection;
+});
+
+/**
+ * Get tutor profiles section with dynamic content based on tutors with photos
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Array filtering patterns with conditional logic for dynamic content
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object spread syntax for creating new objects with updated properties
+ * DYNAMIC CONTENT: Updates title, description, and button text to reflect actual count of tutors with photos
+ */
+export const getTutorProfilesSectionWithDynamicContent = cache((): TutorProfilesSection => {
+  // Import hasTutorImage function for photo checking
+  const { hasTutorImage } = require('./cms-images');
+  
+  // Get base section content
+  const baseSection = teamContent.tutorProfilesSection;
+  
+  // Filter profiles to only include those with real photos
+  const profilesWithPhotos = baseSection.profiles.filter(profile => hasTutorImage(profile.id));
+  const photoCount = profilesWithPhotos.length;
+  
+  // Create dynamic content with updated counts
+  return {
+    ...baseSection,
+    title: `Meet Our ${photoCount} Expert Tutors`,
+    description: `Our team of ${photoCount} tutors are handpicked by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools, official examiners for GCSEs, A Levels and IB exams, and specialists across all academic subjects.`,
+    showAllButton: {
+      ...baseSection.showAllButton,
+      text: `View All ${photoCount} Expert Tutors`
+    }
+  };
 });
 
 /**

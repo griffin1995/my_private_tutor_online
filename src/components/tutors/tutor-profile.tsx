@@ -48,12 +48,14 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 
 
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive marketing page component with mobile-first */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Create circular avatars with rounded-full utility class */}
+      {/* CIRCULAR AVATAR REVISION: Official Tailwind CSS documentation demonstrates rounded-full utility for perfect circular images */}
       {/* Professional Headshot */}
-      <div className="relative h-64 w-full overflow-hidden">
+      <div className="relative h-64 w-full overflow-hidden rounded-full">
         <img
           src={tutorImage?.src || '/images/tutors/tutor-placeholder.jpg'}
           alt={profile.image.alt}
-          className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+          className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105 rounded-full"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
       </div>

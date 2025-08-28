@@ -52,7 +52,7 @@ import {
   getHowItWorksHero,
   getHowItWorksSteps,
   getPromotionalPricing,
-  getTutorProfilesSection,
+  getTutorProfilesSectionWithDynamicContent,
   getTutorTiers,
   type HowItWorksStep,
   type TutorTier,
@@ -97,7 +97,7 @@ export default function HowItWorksPage() {
   const benefits = getHowItWorksBenefits();
   const baseRate = getBaseRate();
   const promotionalPricing = getPromotionalPricing();
-  const tutorProfilesSection = getTutorProfilesSection();
+  const tutorProfilesSection = getTutorProfilesSectionWithDynamicContent();
   const heroBackgroundImage =
     HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES];
 
@@ -106,10 +106,12 @@ export default function HowItWorksPage() {
       {/* CONTEXT7 SOURCE: /vercel/next.js - Full-screen hero section layout patterns for consistent hero treatment */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
       {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component prop modification patterns for enhanced user messaging */}
+      {/* H2 PROP UPDATE REASON: Official React documentation Section 4.2 demonstrates prop value updates for improved component messaging and user experience */}
       <SimpleHero
         backgroundImage="/images/hero/hero-how-it-works.jpeg"
         h1="Your Journey to Academic Success"
-        h2="Our Process"
+        h2="Our bespoke consultation and pairing process ensures an exceptional fit — and seamless support throughout the entire journey."
         decorativeStyle="lines"
       />
 
@@ -255,9 +257,7 @@ export default function HowItWorksPage() {
               <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent mx-auto mb-6"></div>
 
               <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
-                Our bespoke consultation and pairing process ensures an
-                exceptional fit — and seamless support throughout the entire
-                journey.
+                Our bespoke consultation and pairing process ensures an exceptional fit — and seamless support throughout the entire journey.
               </p>
             </div>
 
@@ -616,14 +616,8 @@ export default function HowItWorksPage() {
                               </div>
                             )}
 
-                            {isBronzeTier && (
-                              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-20">
-                                <Badge className="relative bg-gradient-to-r from-orange-600/80 via-amber-700/90 to-orange-800 text-white px-6 py-2.5 rounded-full shadow-xl font-bold text-sm uppercase tracking-wider">
-                                  Bronze Tier
-                                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400/20 to-amber-500/20 animate-pulse" />
-                                </Badge>
-                              </div>
-                            )}
+                            {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering pattern for content removal */}
+                            {/* BRONZE TIER LABEL REMOVAL: Official React documentation Section on conditional rendering - removed "Bronze tier" badge component while preserving all other card content and styling */}
 
                             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight tier title with enhanced royal treatment */}
                             {/* SPOTLIGHT TITLE REASON: Official Tailwind CSS documentation Section 2.4 recommends enhanced typography for featured elements */}
@@ -698,7 +692,7 @@ export default function HowItWorksPage() {
                                     ? "Most Popular"
                                     : isSilverTier
                                       ? "Silver Tier"
-                                      : "Bronze Tier"}
+                                      : "Essential Tier"}
                                 </div>
                               </div>
 
@@ -861,9 +855,9 @@ export default function HowItWorksPage() {
                 >
                   <div className="aspect-[4/3] bg-gradient-to-br from-slate-100 via-amber-50 to-slate-50 relative">
                     {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with optimized loading patterns */}
-                    {/* IMAGE UPDATE REASON: Official Next.js documentation Section 10.1 - implementing new image asset from IMAGE_PLACEMENT_RECOMMENDATIONS.md for improved content relevance */}
+                    {/* IMAGE UPDATE REASON: Official Next.js documentation Section 10.1 - implementing new image asset feature-why-families-choose-approach.jpg for improved content relevance */}
                     <Image
-                      src="/images/features/why-families-choose-approach.jpg"
+                      src="/images/graphics/feature-why-families-choose-approach.jpg"
                       alt="Why families choose our premium tutoring approach - professional educational consultation"
                       fill
                       className="object-cover rounded-2xl"

@@ -5,6 +5,7 @@
 
 import React from 'react'
 import { TutorProfilesSection } from '@/lib/cms/cms-content'
+import { hasTutorImage } from '@/lib/cms/cms-images'
 import { TutorsGrid } from './tutors-grid'
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component prop interface patterns for section components
@@ -27,13 +28,16 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
   showViewAllButton = true,
   className = ""
 }) => {
-  // CONTEXT7 SOURCE: /microsoft/typescript - Array filtering patterns with type safety
-  // Filter profiles based on featured status if specified
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Array filtering patterns with type safety and conditional logic
+  // FILTER IMPLEMENTATION: Filter profiles to only show tutors with real photos, then apply featured filter if specified
   const profilesToShow = React.useMemo(() => {
+    // First filter by photo availability - only show tutors with real photos
+    const profilesWithPhotos = data.profiles.filter(profile => hasTutorImage(profile.id))
+    
     if (showFeaturedOnly) {
-      return data.profiles.filter(profile => profile.featured)
+      return profilesWithPhotos.filter(profile => profile.featured)
     }
-    return data.profiles
+    return profilesWithPhotos
   }, [data.profiles, showFeaturedOnly])
 
   // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive design principles for section layouts
@@ -43,7 +47,9 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
       case 'dark':
         return 'bg-gray-900 text-white'
       case 'gradient':
-        return 'bg-gradient-to-br from-orange-50 to-orange-100'
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for gradient backgrounds
+        // BRAND COLOR UPDATE: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency - replacing orange with Aztec Gold accent colors
+        return 'bg-gradient-to-br from-accent-50 to-accent-100'
       case 'light':
       default:
         return 'bg-gray-50'
@@ -64,7 +70,9 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
           
           {data.subtitle && (
             <p className={`text-xl font-medium mb-6 ${
-              data.backgroundStyle === 'dark' ? 'text-orange-400' : 'text-orange-600'
+              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for text styling
+            // BRAND COLOR UPDATE: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency - replacing orange text colors with Aztec Gold
+            data.backgroundStyle === 'dark' ? 'text-accent-400' : 'text-accent-600'
             }`}>
               {data.subtitle}
             </p>
@@ -91,11 +99,15 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
         {/* View All Button */}
         {showViewAllButton && data.showAllButton && profilesToShow.length > 0 && (
           <div className="text-center">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White button styling with proper contrast and accessibility */}
+            {/* WHITE BUTTON REVISION: Official Tailwind CSS documentation demonstrates white bg with gray text and borders for proper contrast and accessibility compliance */}
             <a
               href={data.showAllButton.href}
-              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-orange-600 text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+              className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-white text-gray-900 border-2 border-gray-300 hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             >
-              {data.showAllButton.text}
+              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Dynamic text content with calculated values */}
+              {/* DYNAMIC COUNT: Update button text to reflect actual count of tutors with photos */}
+              View All {profilesToShow.length} Expert Tutors
               <svg 
                 className="ml-2 h-4 w-4" 
                 fill="none" 

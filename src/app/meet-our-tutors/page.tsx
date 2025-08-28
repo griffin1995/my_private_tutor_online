@@ -3,7 +3,8 @@
 // IMPLEMENTATION REASON: Dedicated Meet Our Tutors page as Server Component to support metadata export
 
 import React from 'react'
-import { getTutorProfilesSection } from '@/lib/cms/cms-content'
+import { getTutorProfilesSectionWithDynamicContent } from '@/lib/cms/cms-content'
+import { hasTutorImage } from '@/lib/cms/cms-images'
 import { PageLayout } from '@/components/layout/page-layout'
 import { SimpleHero } from '@/components/layout/simple-hero'
 import { TutorsSection } from '@/components/tutors/tutors-section'
@@ -23,9 +24,13 @@ export const metadata = {
 export default function MeetOurTutorsPage() {
   console.log('[DEBUG-MeetOurTutorsPage] Component function executed')
   
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access pattern
-  // SYNCHRONOUS CMS: Using proven working pattern with direct function calls
-  const tutorProfilesSection = getTutorProfilesSection()
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access pattern with dynamic content
+  // SYNCHRONOUS CMS: Using proven working pattern with dynamic content generation based on photo availability
+  const tutorProfilesSection = getTutorProfilesSectionWithDynamicContent()
+  
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Array filtering patterns for display calculations
+  // FILTERED DATA: Calculate statistics based only on tutors with real photos
+  const tutorsWithPhotos = tutorProfilesSection.profiles.filter(profile => hasTutorImage(profile.id))
   
   console.log('[DEBUG-MeetOurTutorsPage] Tutor data loaded:', {
     tutorProfiles: tutorProfilesSection?.profiles?.length || 0,
@@ -79,7 +84,7 @@ export default function MeetOurTutorsPage() {
                 <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                   <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-sm">
                     <div className="text-3xl font-bold text-gray-900">
-                      {tutorProfilesSection.profiles.length}
+                      {tutorsWithPhotos.length}
                     </div>
                     <div className="text-sm font-medium text-gray-600">
                       Expert Tutors
@@ -88,7 +93,7 @@ export default function MeetOurTutorsPage() {
                   
                   <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-sm">
                     <div className="text-3xl font-bold text-gray-900">
-                      {tutorProfilesSection.profiles.filter(profile => 
+                      {tutorsWithPhotos.filter(profile => 
                         profile.education.university.includes('Cambridge') || 
                         profile.education.university.includes('Oxford')
                       ).length}
@@ -100,7 +105,7 @@ export default function MeetOurTutorsPage() {
 
                   <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-sm">
                     <div className="text-3xl font-bold text-gray-900">
-                      {tutorProfilesSection.profiles.reduce((total, profile) => 
+                      {tutorsWithPhotos.reduce((total, profile) => 
                         total + profile.experience.yearsTeaching, 0
                       )}+
                     </div>
@@ -111,7 +116,7 @@ export default function MeetOurTutorsPage() {
 
                   <div className="rounded-lg bg-white/80 backdrop-blur-sm p-6 shadow-sm">
                     <div className="text-3xl font-bold text-gray-900">
-                      {tutorProfilesSection.profiles.reduce((total, profile) => 
+                      {tutorsWithPhotos.reduce((total, profile) => 
                         total + (profile.experience.totalStudents || 0), 0
                       )}+
                     </div>

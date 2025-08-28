@@ -1,104 +1,9 @@
 {
   "tutorProfilesSection": {
-    "title": "Meet Our Expert Tutors",
-    "subtitle": "World-Class Educators, Royal Family Endorsed",
-    "description": "Our tutors are handpicked by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools and official examiners for GCSEs, A Levels and IB exams.",
+    "title": "Meet Our 8 Expert Tutors",
+    "subtitle": "World-Class Educators, Royal Clientele Endorsed",
+    "description": "Our handpicked team of 8 tutors are selected by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools, official examiners for GCSEs, A Levels and IB exams, and specialists across all academic subjects.",
     "profiles": [
-      {
-        "id": "elizabeth-founder",
-        "name": "Elizabeth",
-        "title": "Founder and CEO",
-        "education": {
-          "university": "University of Bristol",
-          "degree": "Masters in Education Studies",
-          "grade": "Distinction",
-          "graduationYear": "2010",
-          "additionalInfo": "Offered place at Cambridge for English Literature and Education Studies"
-        },
-        "specializations": [
-          "English Literature",
-          "University Applications",
-          "Oxbridge Admissions",
-          "Educational Leadership"
-        ],
-        "experience": {
-          "yearsTeaching": 15,
-          "description": "15 years international teaching experience with clients including royalty and VVIPs",
-          "totalStudents": 500
-        },
-        "achievements": [
-          {
-            "title": "Royal Client Experience",
-            "description": "Clients include royalty and VVIPs worldwide",
-            "year": "2025"
-          },
-          {
-            "title": "Published Journalist",
-            "description": "Published journalist with Forbes magazine",
-            "year": "2023"
-          },
-          {
-            "title": "Cambridge Offer",
-            "description": "Offered place at Cambridge for English Literature and Education Studies",
-            "year": "2008"
-          }
-        ],
-        "image": {
-          "key": "elizabeth-founder",
-          "alt": "Elizabeth - Founder and CEO of My Private Tutor Online",
-          "professionalHeadshot": true
-        },
-        "bio": "Elizabeth is the Founder and CEO of My Private Tutor Online. Offered a place at Cambridge for English Literature and Education Studies, she chose Bristol University where she completed her Masters. With 15 years of international teaching experience, her clients include royalty and VVIPs. She is also a published journalist with Forbes magazine.",
-        "availability": {
-          "status": "available",
-          "nextAvailable": "2025-01-15"
-        },
-        "credentials": [
-          {
-            "type": "qualification",
-            "title": "Masters in Education Studies",
-            "institution": "University of Bristol",
-            "year": "2010",
-            "verified": true
-          },
-          {
-            "type": "certification",
-            "title": "Enhanced DBS Check",
-            "institution": "Disclosure and Barring Service",
-            "year": "2024",
-            "verified": true
-          }
-        ],
-        "teachingStyle": {
-          "approach": "Personalised and inspirational, focusing on building confidence and achieving excellence",
-          "methodology": [
-            "Individual assessment",
-            "Tailored learning plans",
-            "Progress tracking"
-          ],
-          "strengthAreas": [
-            "University applications",
-            "Personal statements",
-            "Interview preparation"
-          ]
-        },
-        "subjectExpertise": [
-          {
-            "subject": "English Literature",
-            "level": "A-Level",
-            "examBoards": ["AQA", "Edexcel", "OCR"],
-            "yearsExperience": 15
-          },
-          {
-            "subject": "University Applications",
-            "level": "University",
-            "examBoards": ["UCAS", "Oxbridge"],
-            "yearsExperience": 15
-          }
-        ],
-        "featured": true,
-        "order": 1
-      },
       {
         "id": "rachel-deputy-head",
         "name": "Rachel",
@@ -191,7 +96,7 @@
           }
         ],
         "featured": true,
-        "order": 2
+        "order": 1
       },
       {
         "id": "derek-maths-sciences",
@@ -310,7 +215,7 @@
           }
         ],
         "featured": true,
-        "order": 3
+        "order": 2
       },
       {
         "id": "jay-sciences-maths",
@@ -417,7 +322,7 @@
           }
         ],
         "featured": true,
-        "order": 4
+        "order": 3
       },
       {
         "id": "emilia-entrance-history",
@@ -525,7 +430,7 @@
           }
         ],
         "featured": true,
-        "order": 5
+        "order": 4
       },
       {
         "id": "annette-english-history",
@@ -632,7 +537,7 @@
           }
         ],
         "featured": false,
-        "order": 6
+        "order": 5
       },
       {
         "id": "elle-primary-maths",
@@ -739,7 +644,7 @@
           }
         ],
         "featured": false,
-        "order": 7
+        "order": 6
       },
       {
         "id": "daniel-humanities",
@@ -852,7 +757,7 @@
           }
         ],
         "featured": false,
-        "order": 8
+        "order": 7
       },
       {
         "id": "david-sciences-oxbridge",
@@ -965,11 +870,11 @@
           }
         ],
         "featured": false,
-        "order": 9
+        "order": 8
       }
     ],
     "showAllButton": {
-      "text": "View All Tutors",
+      "text": "View All 8 Expert Tutors",
       "href": "/meet-our-tutors"
     },
     "backgroundStyle": "light"
