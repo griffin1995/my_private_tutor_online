@@ -113,20 +113,21 @@ const getVerificationBadge = (level: ResultsDocumentationItem['verificationLevel
   }
 }
 
-// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Helper function for category styling with brand colour palette
-// CATEGORY STYLING REASON: Visual differentiation using brand amber/yellow/gold colour variants for consistency
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Helper function for category styling with brand blue colour palette
+// BRAND COLOR UPDATE REASON: Transition from amber/yellow to brand blue for enhanced visual consistency and royal client standards
+// CATEGORY STYLING REASON: Visual differentiation using brand blue colour variants for premium positioning and consistency
 const getCategoryStyle = (category: ResultsDocumentationItem['category']) => {
   switch (category) {
     case 'grade_improvement':
-      return 'border-amber-200 bg-amber-50 text-amber-900'
+      return 'border-primary-200 bg-primary-50 text-primary-900'
     case 'university_placement':
-      return 'border-yellow-200 bg-yellow-50 text-yellow-900'
+      return 'border-primary-300 bg-primary-100 text-primary-900'
     case 'exam_success':
-      return 'border-amber-300 bg-amber-100 text-amber-800'
+      return 'border-primary-200 bg-primary-50 text-primary-800'
     case 'roi_analysis':
-      return 'border-yellow-300 bg-yellow-100 text-yellow-800'
+      return 'border-primary-300 bg-primary-100 text-primary-800'
     default:
-      return 'border-amber-200 bg-amber-50 text-amber-900'
+      return 'border-primary-200 bg-primary-50 text-primary-900'
   }
 }
 

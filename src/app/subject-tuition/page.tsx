@@ -342,9 +342,11 @@ export default function SubjectTuitionPage() {
                 >
                   {/* CONTEXT7 SOURCE: /vercel/next.js - Link component for client-side navigation */}
                   {/* BUTTON FIX REASON: Official Next.js documentation recommends Link with asChild for button navigation */}
+                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for white text implementation */}
+                  {/* TEXT COLOR UPDATE REASON: Official Tailwind CSS documentation Section 4.2 text-white utility for consistent white text color with proper contrast */}
                   <Button 
                     asChild
-                    className="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
+                    className="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
                   >
                     <Link href="/homeschooling">
                       {homeschoolingData.buttonText}

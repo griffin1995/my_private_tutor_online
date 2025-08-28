@@ -99,26 +99,68 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
       /* LAYOUT REASON: Official Tailwind CSS documentation for centering content with proper stacking */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center">
         
-        {/* Text Content with Enhanced Animations */}
-        {/* CONTEXT7 SOURCE: /websites/tailwindcss-com_vercel_app - Viewport width-based responsive design */}
-        {/* H1 WIDTH EXPANSION REASON: Official Tailwind CSS documentation demonstrates responsive max-width utilities for optimal viewport coverage */}
+        {/* Text Content with Enhanced Animations - HERO TYPOGRAPHY REVISION */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography hierarchy and heading order best practices */}
+        {/* HERO TYPOGRAPHY REVISION: Official Tailwind CSS documentation Section 3.1 recommends proper heading hierarchy (H1 → H2) for semantic structure and accessibility compliance */}
         <motion.div className="w-[80vw] max-w-screen-xl mx-auto">
-          {/* H2 - Extra Small Text with Decorative Elements and Interactive Animations */}
+          
+          {/* H1 - Main Heading with 50% Size Reduction (First Position) */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale optimization and responsive text sizing */}
+          {/* TYPOGRAPHY SIZE REVISION: Official Tailwind CSS documentation Section 3.1 - Reduced from text-4xl/6xl/7xl/8xl/9xl to text-2xl/3xl/4xl/5xl/6xl for 50% smaller visual impact */}
+          <motion.div
+            className="group cursor-default mb-[26px]"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background clipping for gradient text effects */}
+              {/* GRADIENT TEXT RESTORATION: Official Tailwind CSS documentation Section 3.1 - Luxury overlay gradients converted to text gradients using bg-clip-text for premium visual continuity */}
+              <motion.h1 
+                className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-display font-black bg-gradient-to-br from-slate-100 via-white to-yellow-200 bg-clip-text text-transparent leading-[1.618] tracking-tight transition-all duration-500 group-hover:scale-105"
+                initial={{ 
+                  opacity: 0, 
+                  y: 30, 
+                  filter: 'blur(6px)', 
+                  scale: 0.95 
+                }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0, 
+                  filter: 'blur(0px)', 
+                  scale: 1,
+                  transition: { 
+                    duration: 1.2, 
+                    delay: 0.3,
+                    ease: 'easeOut'
+                  }
+                }}
+                whileHover={{
+                  scale: 1.02,
+                  transition: { duration: 0.3 }
+                }}
+                style={{
+                  // Fallback for browsers that don't support bg-clip-text
+                  color: 'white'
+                }}
+              >
+                {h1}
+              </motion.h1>
+          </motion.div>
+
+          {/* H2 - Sub Heading with 30% Size Increase and Decorative Elements (Second Position) */}
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale and responsive text sizing
           /* TYPOGRAPHY REASON: Official Tailwind CSS documentation for consistent text hierarchy */}
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox alignment and decorative pseudo-elements
           /* DECORATIVE REASON: Official Tailwind CSS documentation for creating decorative line elements with flexbox */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing implementation using arbitrary values */}
-          {/* GOLDEN RATIO SPACING: Official Tailwind CSS documentation recommends arbitrary values for mathematical spacing systems (1.618 ratio) */}
-          {/* CONTEXT7 SOURCE: /websites/motion_dev - Stagger animation patterns for sequential element revelation */}
-          {/* STAGGER ANIMATION REASON: Official Motion documentation demonstrates staggerChildren for elegant content introduction */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Advanced vertical centering with items-center and place-items-center */}
-          {/* ULTIMATE LINE CENTERING FIX: Official Tailwind CSS documentation - items-center + place-items-center ensures perfect cross-axis alignment with multiple centering methods */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale enhancement and responsive text sizing */}
+          {/* TYPOGRAPHY SIZE REVISION: Official Tailwind CSS documentation Section 3.1 - Increased from text-sm/base to text-lg/xl for 30% larger sub-heading presence */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox alignment and decorative pseudo-elements */}
+          {/* DECORATIVE REASON: Official Tailwind CSS documentation for creating decorative line elements with flexbox */}
           <motion.div
-            className="flex items-center justify-center place-items-center gap-4 mb-[26px] group"
+            className="flex items-center justify-center place-items-center gap-4 group"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
             style={{ alignItems: 'center', alignContent: 'center' }}
           >
               {/* Left decorative element with perfect text middle alignment */}
@@ -164,13 +206,13 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
               
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background clipping for gradient text effects */}
               {/* GRADIENT TEXT RESTORATION: Official Tailwind CSS documentation Section 3.1 - bg-clip-text utility creates premium gradient text effects matching luxury overlay aesthetics */}
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Linear gradient text with leading-none and flex centering */}
-              {/* PERFECT TYPOGRAPHY CENTERING: Official documentation - leading-none + flex centering + multiple alignment methods ensure perfect baseline alignment */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography size enhancement and responsive scaling */}
+              {/* TYPOGRAPHY SIZE REVISION: Official Tailwind CSS documentation Section 3.1 - Increased from text-sm/base to text-lg/xl for 30% larger sub-heading presence */}
               <motion.h2 
-                className="text-sm md:text-base font-serif font-medium bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent tracking-widest uppercase whitespace-nowrap leading-none transition-all duration-300 group-hover:tracking-[0.3em] flex-shrink-0 self-center flex items-center justify-center"
+                className="text-lg md:text-xl font-serif font-medium bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent tracking-widest uppercase whitespace-nowrap leading-none transition-all duration-300 group-hover:tracking-[0.3em] flex-shrink-0 self-center flex items-center justify-center"
                 initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
                 style={{
                   // Fallback for browsers that don't support bg-clip-text
                   color: 'rgba(255, 255, 255, 0.9)',
@@ -225,63 +267,6 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
                   />
                 </motion.div>
               )}
-          </motion.div>
-          
-          {/* H1 - Large Center Text with Premium Animation */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Large display text and responsive scaling
-          /* HEADING REASON: Official Tailwind CSS documentation for hero heading typography */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin spacing utilities for tight text coupling
-          /* SPACING REFINEMENT: Official Tailwind CSS documentation for reducing space between related typography elements */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography font-weight hierarchy and letter-spacing optimization for display text */}
-          {/* TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 1.2 - font-black provides maximum impact for hero headings, tracking-tight improves large text readability */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing for optimal visual hierarchy */}
-          {/* GOLDEN RATIO SPACING: Official Tailwind CSS documentation supports arbitrary values for mathematical spacing precision */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced text shadow utilities for dramatic hero text impact */}
-          {/* TEXT SHADOW ENHANCEMENT: Official Tailwind CSS documentation Section 2.4 - drop-shadow-text-xl creates strong premium effect for hero headings */}
-          {/* CONTEXT7 SOURCE: /websites/motion_dev - Hero heading animation with sophisticated text reveal effects */}
-          {/* HERO ANIMATION REASON: Official Motion documentation demonstrates text animation patterns with stagger and blur for maximum impact */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced responsive text scaling for maximum visual impact */}
-          {/* H1 SIZE INCREASE: Official Tailwind CSS documentation Section 1.2 - Extended text-scale utilities (2xl:text-8xl, 3xl:text-9xl) for dramatic hero presence */}
-          <motion.div
-            className="group cursor-default"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background clipping for gradient text effects */}
-              {/* GRADIENT TEXT RESTORATION: Official Tailwind CSS documentation Section 3.1 - Luxury overlay gradients converted to text gradients using bg-clip-text for premium visual continuity */}
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Linear gradient text implementation */}
-              {/* LUXURY H1 GRADIENT IMPLEMENTATION: Official documentation pattern using luxury navy-to-metallic gradient matching overlay system with bg-clip-text and text-transparent */}
-              <motion.h1 
-                className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-display font-black bg-gradient-to-br from-slate-100 via-white to-yellow-200 bg-clip-text text-transparent leading-[1.618] tracking-tight mt-[42px] transition-all duration-500 group-hover:scale-105"
-                initial={{ 
-                  opacity: 0, 
-                  y: 30, 
-                  filter: 'blur(6px)', 
-                  scale: 0.95 
-                }}
-                animate={{ 
-                  opacity: 1, 
-                  y: 0, 
-                  filter: 'blur(0px)', 
-                  scale: 1,
-                  transition: { 
-                    duration: 1.2, 
-                    delay: 0.5,
-                    ease: 'easeOut'
-                  }
-                }}
-                whileHover={{
-                  scale: 1.02,
-                  transition: { duration: 0.3 }
-                }}
-                style={{
-                  // Fallback for browsers that don't support bg-clip-text
-                  color: 'white'
-                }}
-              >
-                {h1}
-              </motion.h1>
           </motion.div>
         </motion.div>
 

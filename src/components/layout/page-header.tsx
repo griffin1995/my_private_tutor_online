@@ -3,8 +3,16 @@
  * Created: August 27, 2025
  * Updated: August 27, 2025 - Brand color implementation
  * Updated: August 27, 2025 - Critical navbar anchor link fixes
+ * Updated: August 28, 2025 - CLICKABLE MAIN LINKS NAVIGATION FIX
  * Purpose: Premium navbar with brand colors and WCAG 2.1 AA compliance
  * Status: Brand color-enhanced with full accessibility compliance and corrected navigation
+ * 
+ * MAJOR UPDATE (August 28, 2025): CLICKABLE MAIN LINKS IMPLEMENTATION
+ * - Fixed main navbar links to be clickable and navigate to their respective pages
+ * - Enhanced desktop navigation with both direct link access and dropdown functionality
+ * - Improved mobile navigation with clickable main links plus expandable submenus
+ * - Maintained royal client quality and accessibility compliance (WCAG 2.1 AA)
+ * - All main links now functional: Home, About, Subject Tuition, How It Works, Video Masterclasses
  * 
  * CONTEXT7 SOURCE: /reactjs/react.dev - React hooks and state management patterns
  * IMPLEMENTATION REASON: Official React documentation for useEffect, useCallback, and useState patterns
@@ -262,6 +270,8 @@ export function PageHeader({
 function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
   // CONTEXT7 SOURCE: /radix-ui/website - Navigation data structure following official patterns
   // DATA_REASON: Official Radix UI documentation for navigation content organization
+  // CONTEXT7 SOURCE: /vercel/next.js - Navigation data structure with clickable main links
+  // CLICKABLE_LINKS_REASON: Enhanced navigation allowing both direct page navigation and dropdown functionality
   const navigationData: NavigationItem[] = [
     {
       label: 'Home',
@@ -269,6 +279,7 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     },
     {
       label: 'About Us',
+      href: '/about', // CLICKABLE_MAIN_LINK: Direct navigation to About page
       items: [
         { label: 'Founder Story', href: '/about#founder-story', description: 'Meet our founder and learn about our journey' },
         { label: 'Statistics', href: '/about', description: 'Our proven track record and success metrics' },
@@ -279,6 +290,7 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     },
     {
       label: 'Subject Tuition',
+      href: '/subject-tuition', // CLICKABLE_MAIN_LINK: Direct navigation to Subject Tuition page
       items: [
         { label: 'Primary Education', href: '/subject-tuition#primary', description: 'Foundation learning for ages 5-11' },
         { label: 'Secondary Education', href: '/subject-tuition#secondary', description: 'Comprehensive GCSE and A-Level support' },
@@ -291,6 +303,7 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     },
     {
       label: 'How It Works',
+      href: '/how-it-works', // CLICKABLE_MAIN_LINK: Direct navigation to How It Works page
       items: [
         { label: 'Tier System', href: '/how-it-works', description: 'Our unique three-tier tutoring approach' },
         { label: 'Initial Assessment', href: '/how-it-works', description: 'Comprehensive educational evaluation' },
@@ -305,6 +318,7 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     },
     {
       label: 'Video Masterclasses',
+      href: '/video-masterclasses', // CLICKABLE_MAIN_LINK: Direct navigation to Video Masterclasses page
       items: [
         { label: 'Featured Classes', href: '/video-masterclasses', description: 'Our most popular educational content' },
         { label: 'UCAS Application Guide', href: '/video-masterclasses', description: 'Complete university application support' },
@@ -395,9 +409,11 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     "py-4 sm:py-6"
   )
 
-  // CONTEXT7 SOURCE: /radix-ui/website - Render navigation item helper function
-  // HELPER_REASON: Official Radix UI documentation for NavigationMenu item patterns
+  // CONTEXT7 SOURCE: /radix-ui/website - Enhanced navigation item helper function with clickable main links
+  // HELPER_REASON: Official Radix UI documentation for NavigationMenu item patterns supporting both Link and Trigger
+  // CLICKABLE_MAIN_LINKS_IMPLEMENTATION: Modified to handle items with both href and dropdown functionality
   const renderNavigationItem = (item: NavigationItem) => {
+    // Simple navigation link (no dropdown)
     if (item.href && !item.items) {
       return (
         <NavigationMenu.Item key={item.label}>
@@ -410,7 +426,72 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
       )
     }
 
-    if (item.items) {
+    // Dropdown with clickable main link
+    if (item.items && item.href) {
+      return (
+        <NavigationMenu.Item key={item.label}>
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Clickable main link trigger with dropdown functionality */}
+          {/* CLICKABLE_TRIGGER_REASON: Custom implementation for clickable triggers with dropdown capability */}
+          <NavigationMenu.Trigger 
+            className={triggerClasses}
+            asChild
+          >
+            <Link href={item.href} className="flex items-center gap-1">
+              <span>{item.label}</span>
+              {/* CONTEXT7 SOURCE: /radix-ui/website - Dropdown indicator icon */}
+              {/* ICON_REASON: Official Radix UI documentation for trigger visual indicators */}
+              <svg 
+                className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" 
+                viewBox="0 0 20 20" 
+                fill="currentColor"
+              >
+                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+              </svg>
+            </Link>
+          </NavigationMenu.Trigger>
+          <NavigationMenu.Content className={contentClasses}>
+            <div className={contentInnerClasses}>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {item.items.map((subItem) => (
+                  // CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Link with asChild pattern for single child element
+                  // REVISION REASON: Fixed React.Children.only error by ensuring NavigationMenu.Link with asChild has exactly one child element, following official Radix UI NavigationMenu documentation
+                  <NavigationMenu.Link asChild key={subItem.label}>
+                    <Link
+                      href={subItem.href}
+                      className={cn(
+                        "group grid h-auto w-full justify-start gap-1 rounded-md p-3",
+                        "leading-none no-underline outline-none transition-all duration-300",
+                        // Enhanced hover states with better scaling and shadow effects
+                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+                        // SUBMENU_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+                        "hover:bg-blue-50 hover:text-blue-700 hover:shadow-blue-subtle hover:scale-[1.02]",
+                        "focus:bg-blue-50 focus:text-blue-700 focus:ring-2 focus:ring-blue-500/20 focus:outline-none",
+                        "active:scale-[0.98] active:bg-blue-100 min-h-[44px] flex items-start", // WCAG touch target + enhanced active state
+                        "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus visibility
+                      )}
+                    >
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from gold to blue */}
+                      {/* BRAND_COLOR_UPDATE: Changed text-accent-700 to text-blue-600 for brand consistency */}
+                      <div className="text-sm font-semibold leading-none tracking-wide text-primary-700 group-hover:text-blue-600 transition-colors duration-300">
+                        {subItem.label}
+                      </div>
+                      {subItem.description && (
+                        <p className="line-clamp-2 text-xs leading-snug text-primary-600 group-hover:text-blue-600 font-medium mt-1 transition-colors duration-300">
+                          {subItem.description}
+                        </p>
+                      )}
+                    </Link>
+                  </NavigationMenu.Link>
+                ))}
+              </div>
+            </div>
+          </NavigationMenu.Content>
+        </NavigationMenu.Item>
+      )
+    }
+
+    // Dropdown without main link (legacy support)
+    if (item.items && !item.href) {
       return (
         <NavigationMenu.Item key={item.label}>
           <NavigationMenu.Trigger className={triggerClasses}>
@@ -510,8 +591,9 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
   const [isOpen, setIsOpen] = useState(false)
   const [expandedItems, setExpandedItems] = useState<string[]>([])
 
-  // CONTEXT7 SOURCE: /websites/headlessui_com - Navigation data structure for mobile menu
+  // CONTEXT7 SOURCE: /websites/headlessui_com - Navigation data structure for mobile menu with clickable main links
   // DATA_REASON: Official Headless UI documentation for accessible navigation patterns
+  // MOBILE_CLICKABLE_LINKS_REASON: Enhanced mobile navigation matching desktop functionality
   const navigationData: NavigationItem[] = [
     {
       label: 'Home',
@@ -519,6 +601,7 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
     },
     {
       label: 'About Us',
+      href: '/about', // MOBILE_CLICKABLE_MAIN_LINK: Direct navigation to About page
       items: [
         { label: 'Founder Story', href: '/about#founder-story', description: 'Meet our founder and learn about our journey' },
         { label: 'Statistics', href: '/about', description: 'Our proven track record and success metrics' },
@@ -529,6 +612,7 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
     },
     {
       label: 'Subject Tuition',
+      href: '/subject-tuition', // MOBILE_CLICKABLE_MAIN_LINK: Direct navigation to Subject Tuition page
       items: [
         { label: 'Primary Education', href: '/subject-tuition#primary', description: 'Foundation learning for ages 5-11' },
         { label: 'Secondary Education', href: '/subject-tuition#secondary', description: 'Comprehensive GCSE and A-Level support' },
@@ -541,6 +625,7 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
     },
     {
       label: 'How It Works',
+      href: '/how-it-works', // MOBILE_CLICKABLE_MAIN_LINK: Direct navigation to How It Works page
       items: [
         { label: 'Tier System', href: '/how-it-works', description: 'Our unique three-tier tutoring approach' },
         { label: 'Initial Assessment', href: '/how-it-works', description: 'Comprehensive educational evaluation' },
@@ -555,6 +640,7 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
     },
     {
       label: 'Video Masterclasses',
+      href: '/video-masterclasses', // MOBILE_CLICKABLE_MAIN_LINK: Direct navigation to Video Masterclasses page
       items: [
         { label: 'Featured Classes', href: '/video-masterclasses', description: 'Our most popular educational content' },
         { label: 'UCAS Application Guide', href: '/video-masterclasses', description: 'Complete university application support' },
@@ -700,8 +786,8 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                 {navigationData.map((item) => {
                   const isExpanded = expandedItems.includes(item.label)
                   
+                  // Simple navigation link (no submenu)
                   if (item.href && !item.items) {
-                    // Simple navigation link
                     return (
                       <Link
                         key={item.label}
@@ -724,46 +810,93 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
                     )
                   }
 
+                  // Item with submenu (with or without main link)
                   if (item.items) {
-                    // Expandable navigation section
                     return (
                       <div key={item.label}>
-                        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Expandable trigger button */}
-                        {/* TRIGGER_REASON: Official Framer Motion documentation for interactive animations */}
-                        {/* CONTEXT7 SOURCE: /websites/headlessui_com - Mobile Dialog expandable button patterns with accessibility compliance */}
-                        {/* EXPANDABLE_HOVER_REASON: Official Headless UI documentation for Dialog panel button interactions with proper focus management */}
-                        <button
-                          onClick={() => toggleExpanded(item.label)}
-                          className={cn(
-                            "flex items-center justify-between w-full px-4 py-3",
-                            "text-base font-semibold tracking-wide text-primary-700 rounded-lg",
-                            // Enhanced hover states with better interaction feedback
-                            // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
-                            // MOBILE_EXPANDABLE_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
-                            "hover:bg-blue-50 hover:text-blue-600 hover:tracking-wider hover:scale-[1.01]",
-                            "focus:bg-blue-50 focus:text-blue-600 focus:outline-2 focus:outline-blue-500/20",
-                            "active:bg-blue-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
-                            "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus states for keyboard navigation
-                          )}
-                          aria-expanded={isExpanded}
-                          aria-controls={`mobile-submenu-${item.label.replace(/\s+/g, '-').toLowerCase()}`}
-                        >
-                          <span>{item.label}</span>
-                          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Animated chevron icon */}
-                          {/* CHEVRON_REASON: Official Framer Motion documentation for rotation animations */}
-                          <motion.svg
-                            // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
-                            // CHEVRON_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
-                            className="h-5 w-5 text-primary-400 group-hover:text-blue-500 transition-colors duration-300"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
-                            aria-hidden="true"
+                        {/* CONTEXT7 SOURCE: /websites/headlessui_com - Mobile navigation with clickable main link */}
+                        {/* MOBILE_CLICKABLE_MAIN_LINK_REASON: Enhanced mobile UX with direct page access plus expandable submenu */}
+                        {item.href ? (
+                          // Clickable main link + expand/collapse button
+                          <div className="flex items-center gap-0">
+                            <Link
+                              href={item.href}
+                              onClick={handleNavigation}
+                              className={cn(
+                                "flex items-center flex-1 px-4 py-3",
+                                "text-base font-semibold tracking-wide text-primary-700 rounded-l-lg",
+                                // Enhanced hover states with better visual feedback
+                                "hover:bg-blue-50 hover:text-blue-600 hover:tracking-wider hover:scale-[1.01]",
+                                "focus:bg-blue-50 focus:text-blue-600 focus:outline-2 focus:outline-blue-500/20",
+                                "active:bg-blue-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
+                                "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500"
+                              )}
+                            >
+                              {item.label}
+                            </Link>
+                            <button
+                              onClick={() => toggleExpanded(item.label)}
+                              className={cn(
+                                "flex items-center justify-center px-3 py-3",
+                                "text-primary-700 rounded-r-lg min-h-[44px] min-w-[44px]", // WCAG 2.1 AA touch target
+                                "hover:bg-blue-50 hover:text-blue-600",
+                                "focus:bg-blue-50 focus:text-blue-600 focus:outline-2 focus:outline-blue-500/20",
+                                "active:bg-blue-100 transition-all duration-300",
+                                "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500"
+                              )}
+                              aria-expanded={isExpanded}
+                              aria-controls={`mobile-submenu-${item.label.replace(/\s+/g, '-').toLowerCase()}`}
+                              aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${item.label} menu`}
+                            >
+                              {/* CONTEXT7 SOURCE: /grx7/framer-motion - Animated chevron icon */}
+                              {/* CHEVRON_REASON: Official Framer Motion documentation for rotation animations */}
+                              <motion.svg
+                                className="h-5 w-5 text-primary-400 transition-colors duration-300"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                animate={{ rotate: isExpanded ? 180 : 0 }}
+                                transition={{ duration: 0.3 }}
+                                aria-hidden="true"
+                              >
+                                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                              </motion.svg>
+                            </button>
+                          </div>
+                        ) : (
+                          // Expandable button only (no main link)
+                          <button
+                            onClick={() => toggleExpanded(item.label)}
+                            className={cn(
+                              "flex items-center justify-between w-full px-4 py-3",
+                              "text-base font-semibold tracking-wide text-primary-700 rounded-lg",
+                              // Enhanced hover states with better interaction feedback
+                              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+                              // MOBILE_EXPANDABLE_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+                              "hover:bg-blue-50 hover:text-blue-600 hover:tracking-wider hover:scale-[1.01]",
+                              "focus:bg-blue-50 focus:text-blue-600 focus:outline-2 focus:outline-blue-500/20",
+                              "active:bg-blue-100 active:scale-[0.99] transition-all duration-300 min-h-[44px]", // WCAG 2.1 AA touch target
+                              "focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-blue-500" // Enhanced focus states for keyboard navigation
+                            )}
+                            aria-expanded={isExpanded}
+                            aria-controls={`mobile-submenu-${item.label.replace(/\s+/g, '-').toLowerCase()}`}
                           >
-                            <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
-                          </motion.svg>
-                        </button>
+                            <span>{item.label}</span>
+                            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Animated chevron icon */}
+                            {/* CHEVRON_REASON: Official Framer Motion documentation for rotation animations */}
+                            <motion.svg
+                              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color update from accent to blue
+                              // CHEVRON_BRAND_COLOR_UPDATE_REASON: Official Tailwind documentation for consistent blue brand palette
+                              className="h-5 w-5 text-primary-400 group-hover:text-blue-500 transition-colors duration-300"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              animate={{ rotate: isExpanded ? 180 : 0 }}
+                              transition={{ duration: 0.3 }}
+                              aria-hidden="true"
+                            >
+                              <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                            </motion.svg>
+                          </button>
+                        )}
 
                         {/* CONTEXT7 SOURCE: /grx7/framer-motion - Animated submenu */}
                         {/* SUBMENU_REASON: Official Framer Motion documentation for height animations */}
@@ -856,14 +989,19 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
 }
 
 /**
- * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-Aware CTA Button Component
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-Aware CTA Button Component with Scroll State Styling
  * IMPLEMENTATION_REASON: Official Tailwind documentation for button styling with hover effects and transitions
+ * SCROLL_STATE_UPDATE: Enhanced conditional styling for different navbar scroll states
  * 
  * CONTEXT7 SOURCE: /grx7/framer-motion - Animation and interaction patterns
  * ANIMATION_REASON: Official Framer Motion documentation for hover animations and scale effects
  * 
  * CONTEXT7 SOURCE: /vercel/next.js - Link component composition patterns
  * LINK_REASON: Official Next.js documentation for Link component with button composition
+ * 
+ * STATE REQUIREMENTS (USER SPECIFICATION):
+ * State 1: Top of Page (Transparent Navbar) - Transparent background, white border, white text
+ * State 2: Scrolled State (Solid Navbar) - Brand blue background, no border, white text
  */
 interface CTAButtonProps {
   isTransparent: boolean
@@ -886,22 +1024,25 @@ function CTAButton({ isTransparent, isHomepage }: CTAButtonProps) {
     // Responsive visibility - desktop only (1500px+)
     "hidden desktop:block",
     
-    // Enhanced context-aware brand styling logic
-    isHomepage || !isTransparent ? (
-      // Solid state styling - Premium brand colors (homepage or scrolled)
-      cn(
-        "bg-accent-600 text-white border-2 border-accent-600",
-        "hover:bg-accent-700 hover:border-accent-700",
-        "hover:shadow-accent-depth hover:shadow-accent-600/30", // Enhanced brand shadow
-        "focus:ring-accent-500 focus:ring-offset-white"
-      )
-    ) : (
-      // Transparent state styling - Enhanced contrast and brand integration (hero pages, not scrolled)
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced scroll state conditional styling
+    // SCROLL_STATE_STYLING_REASON: Official Tailwind documentation for conditional button styling based on scroll position
+    // STATE_1: Top of page (transparent navbar) - Transparent button with white border
+    // STATE_2: Scrolled state (solid navbar) - Brand blue button with no border
+    isTransparent ? (
+      // State 1: Top of Page (Transparent Navbar) - Transparent button, white border, white text
       cn(
         "bg-transparent text-white border-2 border-white/90",
-        "hover:bg-accent-600 hover:text-white hover:border-accent-600", // Brand color on hover
-        "hover:shadow-accent-depth hover:shadow-accent-600/40", // Brand shadow on hover
-        "focus:ring-accent-400/50 focus:ring-offset-transparent"
+        "hover:bg-white/10 hover:text-white hover:border-white", // Subtle hover enhancement
+        "hover:shadow-white/20 hover:shadow-lg", // Enhanced white glow on hover
+        "focus:ring-white/50 focus:ring-offset-transparent"
+      )
+    ) : (
+      // State 2: Scrolled State (Solid Navbar) - Brand blue background, no border, white text
+      cn(
+        "bg-primary-700 text-white border-2 border-primary-700", // Brand royal blue (#3f4a7e)
+        "hover:bg-primary-800 hover:border-primary-800", // Darker blue on hover
+        "hover:shadow-primary-depth hover:shadow-primary-700/30", // Enhanced brand shadow
+        "focus:ring-primary-500 focus:ring-offset-white"
       )
     )
   )
