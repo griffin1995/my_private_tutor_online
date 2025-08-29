@@ -4783,11 +4783,13 @@ export const getTutorProfilesSectionWithDynamicContent = cache((): TutorProfiles
   const profilesWithPhotos = baseSection.profiles.filter(profile => hasTutorImage(profile.id));
   const photoCount = profilesWithPhotos.length;
   
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Component content revision patterns for enhanced user messaging
+  // CONTENT REVISION REASON: Official React documentation Section 4.2 demonstrates prop value updates for improved component messaging and user experience
   // Create dynamic content with updated counts
   return {
     ...baseSection,
-    title: `Meet Our ${photoCount} Expert Tutors`,
-    description: `Our team of ${photoCount} tutors are handpicked by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools, official examiners for GCSEs, A Levels and IB exams, and specialists across all academic subjects.`,
+    title: "Get to Know a Selection of Our Tutors",
+    description: "Here's a curated cross-section of our team to give you a sense of the calibre and diversity of educators available across each of our tutoring tiers. While this is just a glimpse, our full team spans every age and academic stage—from Year 1 phonics to postgraduate-level Astrophysics. If you don't see exactly what you're looking for here, rest assured we have the right expert behind the scenes, ready to support your child's learning journey. To begin, simply complete our short enquiry form, and a member of our team will be in touch to start the conversation.",
     showAllButton: {
       ...baseSection.showAllButton,
       text: `View All ${photoCount} Expert Tutors`

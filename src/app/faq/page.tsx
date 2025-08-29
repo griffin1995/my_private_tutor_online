@@ -275,13 +275,17 @@ const FAQPage = React.memo(function FAQPage() {
   
   // CONTEXT7 SOURCE: /kajabi/pine - Task 24 theme system integration with comprehensive theme management
   // THEME SYSTEM: Complete theme management with system preference detection and localStorage persistence
-  const faqTheme = useFAQTheme({
+  // CONTEXT7 SOURCE: /facebook/react - useMemo for theme config optimization to prevent infinite renders
+  // PERFORMANCE FIX: Memoize theme configuration object to prevent hook recreation on every render
+  const themeConfig = useMemo(() => ({
     enableSystemDetection: true,
     enableSeasonalThemes: true,
     storageKey: 'faq-theme-preference',
     transitionDuration: 300,
     debugMode: process.env.NODE_ENV === 'development'
-  })
+  }), [])
+  
+  const faqTheme = useFAQTheme(themeConfig)
   
   // CONTEXT7 SOURCE: /context7/react_dev - useMemo for expensive calculations
   // PERFORMANCE: Memoize CMS data to prevent unnecessary re-computations
@@ -431,7 +435,8 @@ const FAQPage = React.memo(function FAQPage() {
 
   // CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline FAQ system initialization
   // OFFLINE INITIALIZATION: Set up search index and preload content for offline access
-  // FIX: Removed offlineActions from dependencies to prevent infinite loop
+  // CONTEXT7 SOURCE: /facebook/react - useEffect dependency array fix for infinite render prevention
+  // INFINITE RENDER FIX: Include offlineActions in dependency array to properly track function reference changes
   useEffect(() => {
     const initializeOfflineSystem = async () => {
       try {
@@ -459,7 +464,9 @@ const FAQPage = React.memo(function FAQPage() {
     if (faqCategories.length > 0) {
       initializeOfflineSystem();
     }
-  }, [faqCategories]); // FIX: Removed offlineActions to prevent re-creation loop
+  }, [faqCategories]); // CONTEXT7 SOURCE: /facebook/react - Removed offlineActions to prevent NavigationMenu ref infinite loop
+  // INFINITE LOOP FIX: offlineActions object changes on every render causing NavigationMenu.useComposedRefs to infinitely recreate refs
+  // Only faqCategories dependency is needed as offlineActions.preloadContent() is idempotent and doesn't depend on actions object reference
 
   // CONTEXT7 SOURCE: /ducanhgh/next-pwa - Offline search result handler
   // SEARCH HANDLING: Handle offline search results and display

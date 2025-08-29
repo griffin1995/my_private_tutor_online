@@ -1,19 +1,12 @@
 // CONTEXT7 SOURCE: /amannn/next-intl - Language switcher component for internationalization
 // LANGUAGE SWITCHER REASON: Official next-intl documentation supports locale switching for multi-language applications
+// TEMPORARILY DISABLED: Language switcher functionality disabled per project requirements
+// STATUS: Ready for re-enabling when required - full implementation preserved in comments
 
 "use client";
 
+// Minimal imports for component export structure
 import React from 'react';
-import { m } from 'framer-motion';
-import { useTranslations, useLocale } from 'next-intl';
-import { ChevronDownIcon, GlobeIcon } from 'lucide-react';
-import { useRouter, usePathname } from '@/i18n/navigation';
-import { routing } from '@/i18n/routing';
-import { localeNames, localeFlags } from '@/i18n/navigation';
-
-// CONTEXT7 SOURCE: /sonner/toast - Toast notification system for user feedback
-// TOAST NOTIFICATION REASON: User feedback for language switching indicating future availability
-import { useToast } from '@/hooks/use-toast';
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Language switcher component props interface
 // TYPE SAFETY REASON: Official next-intl documentation recommends TypeScript for type-safe internationalization
@@ -24,6 +17,34 @@ interface LanguageSwitcherProps {
   showLabels?: boolean;
   position?: 'header' | 'footer' | 'sidebar';
 }
+
+// CONTEXT7 SOURCE: /facebook/react - Component disabled returning null
+// DISABLED COMPONENT REASON: Temporarily disabled whilst maintaining export structure
+export function LanguageSwitcher({
+  className = '',
+  variant = 'dropdown',
+  showFlags = true,
+  showLabels = true,
+  position = 'header'
+}: LanguageSwitcherProps) {
+  // Language switcher temporarily disabled - return null to render nothing
+  return null;
+}
+
+/*
+// FULL IMPLEMENTATION COMMENTED OUT - READY FOR RE-ENABLING
+// Uncomment this section to restore language switcher functionality
+
+import { m } from 'framer-motion';
+import { useTranslations, useLocale } from 'next-intl';
+import { ChevronDownIcon, GlobeIcon } from 'lucide-react';
+import { useRouter, usePathname } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
+import { localeNames, localeFlags } from '@/i18n/navigation';
+
+// CONTEXT7 SOURCE: /sonner/toast - Toast notification system for user feedback
+// TOAST NOTIFICATION REASON: User feedback for language switching indicating future availability
+import { useToast } from '@/hooks/use-toast';
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Multi-language switcher with accessibility support
 // ACCESSIBILITY REASON: Official next-intl documentation emphasises WCAG compliance for international users
@@ -145,8 +166,8 @@ export function LanguageSwitcher({
           )}
         </m.button>
 
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Animated dropdown menu */}
-        {/* ANIMATION REASON: Official Tailwind CSS documentation supports smooth UI transitions */}
+        {// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Animated dropdown menu //}
+        {// ANIMATION REASON: Official Tailwind CSS documentation supports smooth UI transitions //}
         {isOpen && (
           <m.div
             className="absolute right-0 top-full mt-2 bg-white rounded-xl shadow-lg border border-slate-200 py-2 min-w-48 z-50"
@@ -211,8 +232,8 @@ export function LanguageSwitcher({
         />
       </m.button>
 
-      {/* CONTEXT7 SOURCE: /grx7/framer-motion - Animated dropdown with smooth transitions */}
-      {/* ANIMATION ENHANCEMENT: Official Framer Motion documentation provides performant UI animations */}
+      {// CONTEXT7 SOURCE: /grx7/framer-motion - Animated dropdown with smooth transitions //}
+      {// ANIMATION ENHANCEMENT: Official Framer Motion documentation provides performant UI animations //}
       {isOpen && (
         <m.div
           className="absolute right-0 top-full mt-2 bg-white rounded-xl shadow-xl border border-slate-200 py-2 min-w-52 z-50"
@@ -262,3 +283,4 @@ export function LanguageSwitcher({
     </div>
   );
 }
+*/

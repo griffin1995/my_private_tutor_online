@@ -110,8 +110,8 @@ export default function HowItWorksPage() {
       {/* H2 PROP UPDATE REASON: Official React documentation Section 4.2 demonstrates prop value updates for improved component messaging and user experience */}
       <SimpleHero
         backgroundImage="/images/hero/hero-how-it-works.jpeg"
-        h1="Your Journey to Academic Success"
-        h2="Our bespoke consultation and pairing process ensures an exceptional fit — and seamless support throughout the entire journey."
+        h1="Outstanding Tuition. Tailored Pairing. Ongoing Guidance."
+        h2="At My Private Tutor Online, we offer more than just tutoring—we provide thoughtful, expert advice at every stage of your child's academic journey. Our service is consultative, personal, and bespoke to your family's individual needs."
         decorativeStyle="lines"
       />
 
@@ -251,13 +251,13 @@ export default function HowItWorksPage() {
               </div>
 
               <h2 className="text-4xl lg:text-5xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
-                How It Works
+                Outstanding Tuition. Tailored Pairing. Ongoing Guidance.
               </h2>
 
               <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent mx-auto mb-6"></div>
 
               <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
-                Our bespoke consultation and pairing process ensures an exceptional fit — and seamless support throughout the entire journey.
+                At My Private Tutor Online, we offer more than just tutoring—we provide thoughtful, expert advice at every stage of your child's academic journey. Our service is consultative, personal, and bespoke to your family's individual needs.
               </p>
             </div>
 

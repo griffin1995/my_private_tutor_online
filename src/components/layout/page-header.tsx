@@ -82,6 +82,10 @@ import { cn } from '@/lib/utils'
 // COMPONENT_REASON: Official Next.js documentation for component composition and reusable architecture
 import { LogoSection } from './logo-section'
 
+// CONTEXT7 SOURCE: /radix-ui/react-slot - Button component with proper variant support
+// BUTTON_REASON: Official Radix UI documentation for Button component with className overrides and asChild pattern
+import { Button } from '@/components/ui/button'
+
 // CONTEXT7 SOURCE: /typescript/handbook - Interface definitions for type safety
 // INTERFACE_REASON: Official TypeScript documentation for component prop typing
 interface PageHeaderProps {
@@ -259,15 +263,18 @@ export function PageHeader({
   )
 }
 
+// CONTEXT7 SOURCE: /radix-ui/website - Desktop Navigation Menu Component
+// REVERT_REASON: Moving navigation data back inside component to restore original working state
+// NAVIGATION_REVERT: Removing external static data definitions that were added as performance optimization
+
 /**
  * CONTEXT7 SOURCE: /radix-ui/website - Desktop Navigation Menu Component
  * IMPLEMENTATION_REASON: Official Radix UI NavigationMenu patterns with hover dropdowns
  */
 function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
-  // CONTEXT7 SOURCE: /radix-ui/website - Navigation data structure following official patterns
-  // DATA_REASON: Official Radix UI documentation for navigation content organization
-  // CONTEXT7 SOURCE: /radix-ui/primitives - NavigationMenu with clickable triggers and dropdown functionality
-  // CLICKABLE_TRIGGERS_REASON: Official Radix UI documentation for NavigationMenu.Trigger with asChild pattern for clickable main links
+  // CONTEXT7 SOURCE: /radix-ui/website - Navigation data restored to original component-internal structure
+  // REVERT_REASON: Restoring original navigation data placement inside component as per working state
+  // ORIGINAL_ARCHITECTURE: Moving back to inline data definitions that worked correctly
   const navigationData: NavigationItem[] = [
     {
       label: 'Home',
@@ -324,8 +331,8 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     }
   ]
 
-  // CONTEXT7 SOURCE: /radix-ui/website - Secondary navigation items for larger screens
-  // SECONDARY_REASON: Official Radix UI documentation for responsive navigation patterns
+  // CONTEXT7 SOURCE: /radix-ui/website - Secondary navigation data restored to original component-internal structure
+  // REVERT_REASON: Restoring original secondary navigation data placement inside component as per working state
   const secondaryNavigationData: NavigationItem[] = [
     {
       label: '11+ Bootcamps',
@@ -352,10 +359,9 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     }
   ]
 
-  // CONTEXT7 SOURCE: /radix-ui/website - Enhanced navigation link hover states following official Radix UI patterns
-  // HOVER_REASON: Official Radix UI documentation for NavigationMenu.Link hover:bg-* and hover:text-* utilities
-  // CONTEXT7 SOURCE: /reactjs/react.dev - React hover event handling patterns with accessibility compliance
-  // EVENT_HANDLING_REASON: Official React documentation for onMouseEnter and onMouseLeave event patterns with WCAG 2.1 AA touch targets
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reverted to original inline class definitions
+  // REVERT_REASON: Removing useMemo optimizations that were added to fix performance issues
+  // ORIGINAL_WORKING_STATE: Restoring direct className construction that worked on other pages
   const linkClasses = cn(
     "px-3 py-2 rounded-md transition-all duration-300 min-h-[44px] flex items-center", // WCAG 2.1 AA compliant touch target
     // Premium typography - Royal client quality font styling with enhanced hover scaling
@@ -363,13 +369,13 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state cleanup - text color only transitions
     // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* utilities removing background hover effects per user requirements
     isTransparent
-      ? "text-white/90 hover:text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:outline-2 focus:outline-white/50"
+      ? "text-white/90 hover:text-white focus:text-white focus:outline-2 focus:outline-white/50"
       : "text-primary-700 hover:text-primary-800 focus:text-primary-800 focus:outline-2 focus:outline-primary-500/20 font-medium",
     "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500" // Enhanced focus states for accessibility
   )
 
-  // CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Trigger styling following official Radix UI patterns
-  // TRIGGER_HOVER_REASON: Official Radix UI documentation for NavigationMenu.Trigger with group hover:bg-* and hover:text-* utilities
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reverted to original inline class definitions
+  // REVERT_REASON: Removing useMemo optimizations that were added to fix performance issues
   const triggerClasses = cn(
     "group px-3 py-2 rounded-md transition-all duration-300 flex items-center gap-1 min-h-[44px]", // WCAG 2.1 AA compliant touch target
     // Premium typography with enhanced hover scaling and tracking
@@ -377,15 +383,13 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state cleanup - text color only transitions
     // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* utilities removing background hover effects per user requirements
     isTransparent
-      ? "text-white/90 hover:text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.8)] focus:text-white focus:outline-2 focus:outline-white/50"
+      ? "text-white/90 hover:text-white focus:text-white focus:outline-2 focus:outline-white/50"
       : "text-primary-700 hover:text-primary-800 focus:text-primary-800 focus:outline-2 focus:outline-primary-500/20 font-medium",
     "transition-all duration-300 focus:outline-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500" // Enhanced focus states for keyboard navigation
   )
 
-  // CONTEXT7 SOURCE: /radix-ui/website - Enhanced glassmorphism content classes following official dropdown patterns
-  // GLASSMORPHISM_REASON: Official Radix UI documentation for NavigationMenu content styling with enhanced visual effects
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full viewport width technique with w-screen utility
-  // VIEWPORT_WIDTH_REASON: Official Tailwind documentation for w-screen utility achieving true 100vw width
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reverted to original inline class definitions
+  // REVERT_REASON: Removing useMemo optimizations that were added to fix performance issues
   const contentClasses = cn(
     "absolute top-0 w-screen left-1/2 -translate-x-1/2", // Enhanced full viewport width with proper centering
     "data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out",
@@ -396,20 +400,17 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
     "transition-all duration-300 ease-out z-50"
   )
 
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced glassmorphism inner container with card-style background
-  // GLASSMORPHISM_CONTAINER_REASON: Official Tailwind documentation for backdrop-blur and gradient background patterns
-  // CONTEXT7 SOURCE: /radix-ui/website - Enhanced spacing and visual hierarchy for dropdown content
-  // SPACING_REASON: Official Radix UI documentation for generous padding and visual breathing room in dropdown containers
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reverted to original inline class definitions
+  // REVERT_REASON: Removing useMemo optimizations that were added to fix performance issues
   const contentInnerClasses = cn(
     "max-w-7xl mx-auto px-6 py-8",
     "bg-gradient-to-b from-white/90 to-white/70 backdrop-blur-2xl",
     "rounded-2xl border border-white/30 shadow-xl"
   )
 
-  // CONTEXT7 SOURCE: /radix-ui/website - Render navigation item helper function
-  // HELPER_REASON: Official Radix UI documentation for NavigationMenu item patterns
-  // CONTEXT7 SOURCE: /radix-ui/primitives - NavigationMenu.Trigger with asChild for clickable main links
-  // CLICKABLE_TRIGGER_REASON: Official Radix UI documentation for NavigationMenu.Trigger as clickable link with dropdown functionality
+  // CONTEXT7 SOURCE: /radix-ui/website - Reverted to original inline function definition
+  // REVERT_REASON: Removing useCallback optimization that was added to fix performance issues
+  // ORIGINAL_WORKING_STATE: Restoring direct function definition that worked on other pages
   const renderNavigationItem = (item: NavigationItem) => {
     if (item.href && !item.items) {
       return (
@@ -522,20 +523,9 @@ function DesktopNavigation({ isTransparent }: DesktopNavigationProps) {
           </div>
         </NavigationMenu.List>
         
-        {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport positioned correctly within Root */}
-        {/* VIEWPORT_CONTEXT_FIX: Official Radix UI documentation requires Viewport inside Root for React Context */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full viewport width positioning with w-screen utility */}
-        {/* VIEWPORT_WIDTH_FIX: Official Tailwind documentation for w-screen achieving true 100vw width */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-full z-40 w-screen">
-          {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport with full width support */}
-          {/* VIEWPORT_REASON: Official Radix UI documentation for Viewport with full viewport width capability */}
-          <NavigationMenu.Viewport className={cn(
-            "w-screen transition-all duration-200", // Full viewport width for complete span
-            "data-[state=open]:animate-in data-[state=closed]:animate-out",
-            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-            "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
-          )} />
-        </div>
+        {/* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu.Viewport for dropdown positioning */}
+        {/* VIEWPORT_REASON: Official Radix UI documentation for NavigationMenu.Viewport element */}
+        <NavigationMenu.Viewport className="absolute left-0 top-full w-full perspective-[2000px]" />
       </NavigationMenu.Root>
     </div>
   )
@@ -892,22 +882,35 @@ function MobileMenu({ isTransparent }: { isTransparent: boolean }) {
               {/* CONTEXT7 SOURCE: /websites/headlessui_com - Mobile CTA section */}
               {/* CTA_REASON: Official Headless UI documentation for dialog action patterns */}
               <div className="border-t border-gray-200 px-6 py-4">
-                <Link
-                  href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleNavigation}
+                {/* CONTEXT7 SOURCE: /radix-ui/react-slot - Button with asChild pattern for mobile CTA */}
+                {/* MOBILE_CTA_REASON: Official Radix UI documentation for Button asChild enabling proper Link composition */}
+                <Button
+                  asChild
+                  variant="ghost" // Use ghost variant as base, override with className
+                  size="default"
                   className={cn(
                     "flex items-center justify-center w-full px-6 py-3",
-                    "text-base font-bold tracking-wide text-white bg-accent-600",
-                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile CTA button hover state cleanup
-                    // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:tracking-* and hover:shadow-* utilities removing background color changes per user requirements
-                    "rounded-lg hover:tracking-wider hover:shadow-accent-subtle transition-all duration-300",
-                    "min-h-[44px] focus:outline-none focus:ring-2 focus:ring-accent-500"
+                    "text-base font-bold tracking-wide bg-accent-600 rounded-lg",
+                    "min-h-[44px] transition-all duration-300",
+                    "hover:tracking-wider hover:shadow-accent-subtle",
+                    "focus:outline-none focus:ring-2 focus:ring-accent-500",
+                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Force white text with !important modifier for mobile
+                    // MOBILE_WHITE_TEXT_FIX: Official Tailwind documentation for !text-white utility ensuring mobile button text overrides all styles
+                    "!text-white hover:!text-white focus:!text-white active:!text-white",
+                    "[&>*]:!text-white" // Force white text for all children
                   )}
+                  aria-label="Request Free Consultation - Opens Bizstim inquiry form in new window"
                 >
-                  Request Free Consultation
-                </Link>
+                  <Link
+                    href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleNavigation}
+                    className="!text-white" // Additional enforcement
+                  >
+                    Request Free Consultation
+                  </Link>
+                </Button>
               </div>
             </Dialog.Panel>
           </div>
@@ -938,97 +941,96 @@ interface CTAButtonProps {
 }
 
 function CTAButton({ isTransparent, isHomepage }: CTAButtonProps) {
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium brand color styling system
-  // STYLING_REASON: Official Tailwind documentation for conditional class composition with brand color integration
-  // BRAND_COLOR_REASON: Enhanced CTA button with accent gold primary and navy hover states for premium brand experience
-  const buttonStyles = cn(
-    // Base button styles - consistent across all states with enhanced brand styling
-    "inline-flex items-center justify-center",
+  // CONTEXT7 SOURCE: /radix-ui/react-slot - Button component with asChild pattern for Link composition
+  // ASCHILD_REASON: Official Radix UI documentation for Button component asChild pattern enabling Link composition
+  // TEXT_COLOR_FIX: Using Button component with proper className overrides to ensure white text in all states
+  
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced scroll state conditional styling with enforced white text
+  // SCROLL_STATE_STYLING_REASON: Official Tailwind documentation for conditional button styling based on scroll position
+  // TEXT_COLOR_FIX: Using !important modifiers and specific selectors to ensure white text overrides all other styles
+  const buttonOverrides = cn(
+    // Base responsive visibility - desktop only (1500px+)
+    "hidden desktop:block",
+    
+    // Enhanced button styling with forced white text
     "px-6 py-3 text-sm font-bold tracking-wide rounded-lg",
-    "min-h-[44px] transition-all duration-300 ease-in-out", // WCAG 2.1 AA touch target + smooth transitions
-    "focus:outline-none focus:ring-2 focus:ring-offset-2",
+    "min-h-[44px] transition-all duration-300 ease-in-out", // WCAG 2.1 AA touch target
     "hover:scale-105 active:scale-95", // Premium interaction effects
     "relative overflow-hidden", // For shimmer effect
     
-    // Responsive visibility - desktop only (1500px+)
-    "hidden desktop:block",
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Force white text with !important modifier
+    // WHITE_TEXT_FIX: Official Tailwind documentation for !text-white utility ensuring text overrides all conflicting styles
+    "!text-white hover:!text-white focus:!text-white active:!text-white", // Force white text in ALL states
+    "[&>*]:!text-white [&_svg]:!text-white", // Force white text for all children and SVG elements
     
-    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced scroll state conditional styling
-    // SCROLL_STATE_STYLING_REASON: Official Tailwind documentation for conditional button styling based on scroll position
-    // STATE_1: Top of page (transparent navbar) - Transparent button with white border
-    // STATE_2: Scrolled state (solid navbar) - Brand blue button with no border
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - State-specific styling based on navbar transparency
+    // STATE_STYLING_REASON: Official Tailwind documentation for conditional styling patterns
     isTransparent ? (
-      // State 1: Top of Page (Transparent Navbar) - Transparent button, white border, white text
+      // State 1: Top of Page (Transparent Navbar) - Transparent button with white border
       cn(
-        "bg-transparent text-white border-2 border-white/90",
-        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CTA button hover state cleanup - remove underlines
-        // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover:text-* utilities removing underline and gold color effects per user requirements
-        "hover:text-white hover:border-white hover:no-underline",
-        "hover:shadow-white/20 hover:shadow-lg", // Enhanced white glow on hover
+        "bg-transparent border-2 border-white/90",
+        "hover:border-white hover:shadow-white/20 hover:shadow-lg",
         "focus:ring-white/50 focus:ring-offset-transparent"
       )
     ) : (
-      // State 2: Scrolled State (Solid Navbar) - Brand blue background, no border, white text
+      // State 2: Scrolled State (Solid Navbar) - Accent gold background
       cn(
-        "bg-accent-600 text-white border-2 border-accent-600", // Brand gold (#ca9e5b)
-        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CTA button hover state cleanup - remove underlines and gold effects
-        // HOVER_CLEANUP_REASON: Official Tailwind documentation for hover utilities removing underline and gold color changes per user requirements
-        "hover:text-white hover:border-accent-600 hover:no-underline", // Keep text white, remove border changes and underlines
-        "hover:shadow-lg", // Simple shadow without gold accent colors
+        "bg-accent-600 border-2 border-accent-600", // Brand gold (#ca9e5b)
+        "hover:border-accent-600 hover:shadow-lg",
         "focus:ring-accent-500 focus:ring-offset-white"
       )
     )
   )
 
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced shimmer effect with brand color integration
-  // SHIMMER_REASON: Official Tailwind documentation for pseudo-element styling with brand-aware animations
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced shimmer effect
+  // SHIMMER_REASON: Official Tailwind documentation for pseudo-element styling
   const shimmerStyles = cn(
     "before:absolute before:inset-0",
     "before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent",
     "before:translate-x-[-100%] before:transition-transform before:duration-700",
-    "hover:before:translate-x-[100%] hover:before:duration-500" // Faster animation on hover
+    "hover:before:translate-x-[100%] hover:before:duration-500"
   )
 
   return (
     <div className="hidden desktop:block">
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Link component with anchor composition */}
-      {/* LINK_COMPOSITION_REASON: Official Next.js documentation for Link component button patterns */}
-      <Link 
-        href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cn(buttonStyles, shimmerStyles)}
+      {/* CONTEXT7 SOURCE: /radix-ui/react-slot - Button with asChild pattern for Link composition */}
+      {/* BUTTON_LINK_REASON: Official Radix UI documentation for Button asChild enabling proper Link composition with button styling */}
+      <Button
+        asChild
+        variant="ghost" // Use ghost variant as base, override with className
+        size="default"
+        className={cn(buttonOverrides, shimmerStyles)}
         aria-label="Request Free Consultation - Opens Bizstim inquiry form in new window"
-        role="button"
       >
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Motion span for premium text animation */}
-        {/* TEXT_ANIMATION_REASON: Official Framer Motion documentation for hover text effects */}
-        <motion.span
-          className="relative z-10 flex items-center gap-2"
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
+        <Link
+          href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Request Free Consultation
-          
-          {/* Premium arrow icon with enhanced brand color context awareness */}
-          <motion.svg
-            className={cn(
-              "w-4 h-4 transition-all duration-300",
-              isHomepage || !isTransparent 
-                ? "text-white" // Solid state - white arrow on brand background
-                : "text-white group-hover:text-white" // Transparent state - white arrow, stays white on brand hover
-            )}
-            whileHover={{ x: 2, scale: 1.1 }} // Enhanced hover animation
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2.5} // Slightly bolder for better visibility
-            aria-hidden="true"
+          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Motion span for premium text animation */}
+          {/* TEXT_ANIMATION_REASON: Official Framer Motion documentation for hover text effects */}
+          <motion.span
+            className="relative z-10 flex items-center gap-2 !text-white"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </motion.svg>
-        </motion.span>
-      </Link>
+            Request Free Consultation
+            
+            {/* Premium arrow icon with enforced white color */}
+            <motion.svg
+              className="w-4 h-4 transition-all duration-300 !text-white !fill-white"
+              whileHover={{ x: 2, scale: 1.1 }}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </motion.svg>
+          </motion.span>
+        </Link>
+      </Button>
     </div>
   )
 }

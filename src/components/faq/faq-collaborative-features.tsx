@@ -255,6 +255,10 @@ export function FAQCollaborativeFeatures({
   className = ""
 }: FAQCollaborativeFeaturesProps) {
   
+  // CONTEXT7 SOURCE: /facebook/react - useMemo to stabilize categories array reference
+  // INFINITE RENDER FIX: Memoize categories to prevent useForm defaultValues from changing
+  const memoizedCategories = React.useMemo(() => categories, [categories.join(',')])
+  
   // CONTEXT7 SOURCE: /pmndrs/zustand - Zustand store integration for collaborative features
   // STORE INTEGRATION: Access collaborative store state and actions
   const {
@@ -536,15 +540,15 @@ export function FAQCollaborativeFeatures({
                           name="category"
                           control={control}
                           rules={{ required: 'Please select a category' }}
-                          render={({ field }) => (
-                            <Select value={field.value} onValueChange={field.onChange}>
+                          render={({ field: { onChange, value, name } }) => (
+                            <Select value={value || ""} onValueChange={onChange} name={name}>
                               <SelectTrigger className={`w-full rounded-xl border-2 p-4 ${
                                 errors.category ? 'border-red-300' : 'border-slate-200'
                               }`}>
                                 <SelectValue placeholder="Choose the most relevant category" />
                               </SelectTrigger>
                               <SelectContent>
-                                {categories.map(category => (
+                                {memoizedCategories.map(category => (
                                   <SelectItem key={category} value={category}>
                                     {category.charAt(0).toUpperCase() + category.slice(1)}
                                   </SelectItem>
@@ -656,7 +660,7 @@ export function FAQCollaborativeFeatures({
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="all">All Categories</SelectItem>
-                        {categories.map(category => (
+                        {memoizedCategories.map(category => (
                           <SelectItem key={category} value={category}>
                             {category.charAt(0).toUpperCase() + category.slice(1)}
                           </SelectItem>
