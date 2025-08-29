@@ -41,7 +41,10 @@ import howItWorksContent from "../../content/how-it-works.json";
 import landingPageContent from "../../content/landing-page.json";
 import quoteFormContent from "../../content/quote-form.json";
 import settingsContent from "../../content/settings.json";
+// CONTEXT7 SOURCE: /microsoft/typescript - Dynamic import patterns for CMS content switching
+// IMPLEMENTATION REASON: Import new tutor structure with fallback to existing structure
 import teamContent from "../../content/team.json";
+import tutorsNewContent from "../../content/tutors-new.json";
 import testimonialsContent from "../../content/testimonials.json";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Module re-export patterns for centralized API
@@ -392,17 +395,31 @@ export interface TutorProfile {
   readonly id: string;
   readonly name: string;
   readonly title: string; // e.g., "Senior Oxbridge Tutor", "11+ Specialist"
+  readonly tier?: "tier-one" | "tier-two" | "tier-three"; // New tier classification
+  readonly badge?: string; // New badge emoji for tier display
   readonly education: {
     readonly university: string;
     readonly degree: string;
+    readonly additionalQualifications?: readonly string[]; // New field for additional qualifications
     readonly grade?: string; // e.g., "First Class Honours"
     readonly graduationYear?: string;
+    readonly additionalInfo?: string; // New field for additional education info
   };
   readonly specializations: readonly string[]; // e.g., ["Mathematics", "Physics", "Oxbridge Prep"]
   readonly experience: {
     readonly yearsTeaching: number;
     readonly description: string;
     readonly totalStudents?: number;
+    readonly onlineHours?: number; // New field for online tutoring hours
+    readonly eliteSchools?: readonly string[]; // New field for elite school experience
+    readonly teachingAreas?: readonly string[]; // New field for teaching areas
+    readonly internationalExperience?: boolean; // New field for international experience
+    readonly headteacherExperience?: boolean; // New field for headteacher experience
+    readonly grammarSuccess?: readonly string[]; // New field for grammar school success
+    readonly languagesFluent?: number; // New field for languages fluent
+    readonly eliteSchoolSuccess?: readonly string[]; // New field for elite school placements
+    readonly tutoringHours?: number; // New field for tutoring hours
+    readonly admissionsSuccess?: readonly string[]; // New field for admissions success
   };
   readonly achievements: readonly {
     readonly title: string;
@@ -415,6 +432,11 @@ export interface TutorProfile {
     readonly professionalHeadshot: boolean;
   };
   readonly bio: string;
+  readonly testimonial?: {
+    readonly quote: string;
+    readonly author: string;
+    readonly context: string;
+  }; // New field for individual testimonials
   readonly availability?: {
     readonly status: "available" | "limited" | "unavailable";
     readonly nextAvailable?: string; // ISO date string
@@ -435,10 +457,14 @@ export interface TutorProfile {
     readonly subject: string;
     readonly level:
       | "11+"
+      | "13+"
+      | "Primary"
       | "GCSE"
       | "A-Level"
-      | "Oxbridge"
+      | "IB"
+      | "University"
       | "International"
+      | "Oxbridge"
       | "All";
     readonly examBoards?: readonly string[];
     readonly yearsExperience: number;
@@ -454,6 +480,20 @@ export interface TutorProfilesSection {
   readonly subtitle: string;
   readonly description: string;
   readonly profiles: readonly TutorProfile[];
+  readonly showAllButton?: {
+    readonly text: string;
+    readonly href: string;
+  };
+  readonly backgroundStyle?: "light" | "dark" | "gradient";
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for key:value tutor structure
+// NEW TUTOR PROFILES SECTION TYPE: Updated structure with key:value profiles object
+export interface TutorProfilesSectionNew {
+  readonly title: string;
+  readonly subtitle: string;
+  readonly description: string;
+  readonly profiles: { readonly [key: string]: TutorProfile };
   readonly showAllButton?: {
     readonly text: string;
     readonly href: string;
@@ -4757,17 +4797,31 @@ export const formatPriceDisplay = cache(
 );
 
 /**
- * Get tutor profiles section content
+ * Get tutor profiles section content - NEW STRUCTURE
  * CONTEXT7 SOURCE: /reactjs/react.dev - Component data patterns for profile sections
  * CONTEXT7 SOURCE: /microsoft/typescript - Direct JSON access pattern for static content
- * CMS DATA SOURCE: Using teamContent.tutorProfilesSection for tutor profile data
+ * CMS DATA SOURCE: Using tutorsNewContent.tutorProfilesSection for new tutor profile data with key:value structure
  */
 export const getTutorProfilesSection = cache((): TutorProfilesSection => {
-  return teamContent.tutorProfilesSection;
+  // CONTEXT7 SOURCE: /microsoft/typescript - Object transformation patterns for key:value to array conversion
+  // IMPLEMENTATION REASON: Convert new key:value structure to array format for backward compatibility
+  const newData = tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
+  
+  // Convert profiles object to array
+  const profilesArray = Object.values(newData.profiles);
+  
+  return {
+    title: newData.title,
+    subtitle: newData.subtitle,
+    description: newData.description,
+    profiles: profilesArray,
+    showAllButton: newData.showAllButton,
+    backgroundStyle: newData.backgroundStyle
+  };
 });
 
 /**
- * Get tutor profiles section with dynamic content based on tutors with photos
+ * Get tutor profiles section with dynamic content based on tutors with photos - NEW STRUCTURE
  * CONTEXT7 SOURCE: /reactjs/react.dev - Array filtering patterns with conditional logic for dynamic content
  * CONTEXT7 SOURCE: /microsoft/typescript - Object spread syntax for creating new objects with updated properties
  * DYNAMIC CONTENT: Updates title, description, and button text to reflect actual count of tutors with photos
@@ -4776,8 +4830,8 @@ export const getTutorProfilesSectionWithDynamicContent = cache((): TutorProfiles
   // Import hasTutorImage function for photo checking
   const { hasTutorImage } = require('./cms-images');
   
-  // Get base section content
-  const baseSection = teamContent.tutorProfilesSection;
+  // Get base section content from new structure
+  const baseSection = getTutorProfilesSection();
   
   // Filter profiles to only include those with real photos
   const profilesWithPhotos = baseSection.profiles.filter(profile => hasTutorImage(profile.id));
@@ -4798,38 +4852,43 @@ export const getTutorProfilesSectionWithDynamicContent = cache((): TutorProfiles
 });
 
 /**
- * Get individual tutor profiles
+ * Get individual tutor profiles - NEW STRUCTURE
  * CONTEXT7 SOURCE: /microsoft/typescript - Array return type annotations with readonly
  * SYNCHRONOUS CONVERSION: Direct JSON access pattern for tutor profile data
- * CMS DATA SOURCE: Using teamContent.tutorProfilesSection.profiles for profile array
+ * CMS DATA SOURCE: Using tutorsNewContent.tutorProfilesSection.profiles for new profile structure
  */
 export const getTutorProfiles = cache((): readonly TutorProfile[] => {
-  return teamContent.tutorProfilesSection?.profiles || [];
+  // CONTEXT7 SOURCE: /microsoft/typescript - Object.values() method for converting object properties to array
+  // IMPLEMENTATION REASON: Convert key:value structure to array format for compatibility
+  const newData = tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
+  return Object.values(newData.profiles) || [];
 });
 
 /**
- * Get featured tutor profiles
+ * Get featured tutor profiles - NEW STRUCTURE
  * CONTEXT7 SOURCE: /microsoft/typescript - Array filtering patterns with type safety
- * CMS DATA SOURCE: Filtering featured tutors from teamContent profiles
+ * CMS DATA SOURCE: Filtering featured tutors from new tutorsNewContent profiles
  */
 export const getFeaturedTutorProfiles = cache((): readonly TutorProfile[] => {
-  return (
-    teamContent.tutorProfilesSection?.profiles?.filter(
-      (profile: TutorProfile) => profile.featured
-    ) || []
-  );
+  // CONTEXT7 SOURCE: /microsoft/typescript - Object.values() with filter method chaining
+  // IMPLEMENTATION REASON: Convert key:value structure to array and filter for featured tutors
+  const newData = tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
+  return Object.values(newData.profiles).filter(
+    (profile: TutorProfile) => profile.featured
+  ) || [];
 });
 
 /**
- * Get tutor profile by ID
- * CONTEXT7 SOURCE: /microsoft/typescript - Array find method patterns with type safety
- * CMS DATA SOURCE: Finding specific tutor by ID from teamContent profiles
+ * Get tutor profile by ID - NEW STRUCTURE
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object property access patterns with type safety
+ * CMS DATA SOURCE: Direct access to specific tutor by key from new tutorsNewContent profiles structure
  */
 export const getTutorProfileById = cache(
   (id: string): TutorProfile | undefined => {
-    return teamContent.tutorProfilesSection?.profiles?.find(
-      (profile: TutorProfile) => profile.id === id
-    );
+    // CONTEXT7 SOURCE: /microsoft/typescript - Direct object property access for key:value structures
+    // IMPLEMENTATION REASON: Use direct key access for optimal performance with new key:value structure
+    const newData = tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
+    return newData.profiles[id];
   }
 );
 

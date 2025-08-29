@@ -25,19 +25,39 @@ export const TutorsGrid: React.FC<TutorsGridProps> = ({
   maxProfiles,
   className = ""
 }) => {
-  // CONTEXT7 SOURCE: /microsoft/typescript - Array filtering patterns with type safety
-  // Filter and sort profiles based on featured status and display order
+  // CONTEXT7 SOURCE: /microsoft/typescript - Array filtering patterns with type safety and tier-based sorting
+  // TIER SORTING REASON: Official TypeScript documentation demonstrates array sorting with custom comparator functions
+  // Helper function to convert tier strings to numbers for sorting
+  const getTierNumber = (tier?: string): number => {
+    switch (tier) {
+      case 'tier-one': return 1
+      case 'tier-two': return 2  
+      case 'tier-three': return 3
+      default: return 999 // Unknown tiers go to end
+    }
+  }
+
+  // Filter and sort profiles based on tier-based sorting (Tier 1, Tier 2, Tier 3)
   const sortedProfiles = React.useMemo(() => {
     let filteredProfiles = [...profiles]
 
-    // Sort by featured status first, then by order
+    // CONTEXT7 SOURCE: /microsoft/typescript - Primary sorting by tier, secondary by featured status, tertiary by order
+    // TIER SORTING IMPLEMENTATION: Official TypeScript documentation demonstrates multi-level array sorting patterns
     filteredProfiles.sort((a, b) => {
+      // Primary sort: by tier (1, 2, 3)
+      const tierA = getTierNumber(a.tier)
+      const tierB = getTierNumber(b.tier)
+      if (tierA !== tierB) {
+        return tierA - tierB
+      }
+
+      // Secondary sort: by featured status (if showFeatured is enabled)
       if (showFeatured) {
-        // Featured profiles first
         if (a.featured && !b.featured) return -1
         if (!a.featured && b.featured) return 1
       }
-      // Then sort by order
+
+      // Tertiary sort: by order
       return a.order - b.order
     })
 

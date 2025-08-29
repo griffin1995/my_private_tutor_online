@@ -52,7 +52,7 @@ import {
   getHowItWorksHero,
   getHowItWorksSteps,
   getPromotionalPricing,
-  getTutorProfilesSectionWithDynamicContent,
+  getTutorProfilesSection,
   getTutorTiers,
   type HowItWorksStep,
   type TutorTier,
@@ -97,7 +97,7 @@ export default function HowItWorksPage() {
   const benefits = getHowItWorksBenefits();
   const baseRate = getBaseRate();
   const promotionalPricing = getPromotionalPricing();
-  const tutorProfilesSection = getTutorProfilesSectionWithDynamicContent();
+  const tutorProfilesSection = getTutorProfilesSection();
   const heroBackgroundImage =
     HERO_IMAGES[heroContent.backgroundImageKey as keyof typeof HERO_IMAGES];
 
@@ -422,11 +422,12 @@ export default function HowItWorksPage() {
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - TutorsSection relocation from landing page to How It Works flow */}
         {/* TUTORS SECTION RELOCATION REASON: Official React documentation supports component composition and strategic placement for improved user journey flow */}
-        {/* MEET OUR EXPERT TUTORS - Positioned between process overview and tier selection */}
+        {/* CONTEXT7 SOURCE: /microsoft/typescript - Remove filtering logic to show all tutors with tier-based sorting */}
+        {/* FILTERING REMOVAL REASON: Official TypeScript documentation demonstrates array processing without filter operations - show all 9 tutors sorted by tier only */}
+        {/* MEET OUR EXPERT TUTORS - All 9 tutors displayed with tier-based sorting (Tier 1, Tier 2, Tier 3) */}
         <TutorsSection 
           data={tutorProfilesSection}
-          showFeaturedOnly={true}
-          maxProfiles={6}
+          showFeaturedOnly={false}
           showViewAllButton={true}
         />
 

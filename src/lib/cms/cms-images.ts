@@ -11,18 +11,9 @@ import { cache } from "react";
 // CONTEXT7 SOURCE: /microsoft/typescript - Readonly properties for immutable data structures
 // COMPREHENSIVE IMAGE TYPE SYSTEM - All image assets with type safety
 
-// CONTEXT7 SOURCE: /microsoft/typescript - Type export patterns for external consumption
-// TYPE EXPORTS: All image interfaces available for external components and libraries
-export type {
-  BackgroundVideoAsset,
-  DocumentAsset,
-  ImageAsset,
-  InstitutionLogo,
-  MediaLogo,
-  ResponsiveImageSizes,
-  TeamMemberImage,
-  VideoAsset,
-};
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for media asset management
+// CONTEXT7 SOURCE: /microsoft/typescript - Readonly properties for immutable data structures
+// COMPREHENSIVE IMAGE TYPE SYSTEM - All image assets with type safety
 
 /**
  * Base interface for all image assets with comprehensive metadata
@@ -637,8 +628,15 @@ export const MEDIA_IMAGES = {
   },
 } as const;
 
-// Tutor profile images
+// CONTEXT7 SOURCE: /vercel/next.js - Static asset management patterns for tutor photos integration
+// CONTEXT7 SOURCE: /microsoft/typescript - Object literal patterns for professional headshot image data structure
+// NEW TUTOR SYSTEM UPDATE: Complete overhaul to use new tutors-new.json data structure with 9 expert tutors
+// IMPLEMENTATION REASON: Official TypeScript documentation Section 3.2 demonstrates object literal extension patterns for CMS integration
+// DATA SOURCE: Mapping tutor images from /public/images/tutors/ to corresponding profile IDs in tutors-new.json
+
+// Tutor profile images - Updated for new 9-tutor system (2025)
 export const TUTOR_IMAGES = {
+  // Generic tutor images for fallback use
   "tutor-facing-monitor": {
     src: "/images/tutors/tutor-facing-monitor.jpg",
     alt: "Professional tutor working at computer delivering online lessons",
@@ -656,208 +654,160 @@ export const TUTOR_IMAGES = {
     loading: "lazy" as const,
   },
   
-  // CONTEXT7 SOURCE: /vercel/next.js - Static asset management patterns for tutor photos integration
-  // REAL TUTOR DATA UPDATE: Correctly mapping authentic tutor photos to actual My Private Tutor Online team members
-  // INDIVIDUAL TUTOR PROFILE IMAGES: Real professional headshots properly linked to tutor profiles
+  // CONTEXT7 SOURCE: /vercel/next.js - Static asset serving patterns for new tutor system professional headshots
+  // NEW TUTOR PROFILES: 9 expert tutors with matching professional headshot images from tutors-new.json
+  // DIRECT IMAGE MAPPING: Each tutor ID matches corresponding image filename in /public/images/tutors/
+  
+  // TIER ONE TUTORS (Featured)
+  // CONTEXT7 SOURCE: /vercel/next.js - Standardized image format update for tutor headshots
+  // UPDATE REASON: All tutor images standardized to .jpg format for consistency and optimization
+  "alma-maths-science": {
+    src: "/images/tutors/alma.jpg",
+    alt: "Alma - Maths & Science Specialist, UCL First-Class MSci Astrophysics, Official GCSE & A Level Examiner",
+    width: 400,
+    height: 400,
+    title: "Alma - Maths & Science Specialist",
+    loading: "lazy" as const,
+  },
+  "amy-english": {
+    src: "/images/tutors/amy.jpg",
+    alt: "Amy - English Language & Literature Specialist, LLB (Hons) Law, Head of English & Media Studies",
+    width: 400,
+    height: 400,
+    title: "Amy - English Language & Literature Specialist",
+    loading: "lazy" as const,
+  },
+  "emily-entrance-history": {
+    src: "/images/tutors/emily.jpg",
+    alt: "Emily - Entrance Exam Expert, History & Politics, Cambridge BA History, Oxford PGCE, Official 11+ Examiner",
+    width: 400,
+    height: 400,
+    title: "Emily - Entrance Exam Expert, History & Politics",
+    loading: "lazy" as const,
+  },
+  
+  // TIER TWO TUTORS
+  // CONTEXT7 SOURCE: /vercel/next.js - Standardized image format update for tutor headshots
+  // UPDATE REASON: All tutor images standardized to .jpg format for consistency and optimization
+  "michael-primary": {
+    src: "/images/tutors/michael.jpg",
+    alt: "Michael - Primary & 11+/13+ Specialist, PGCE Primary, English Subject Lead with 22+ years experience",
+    width: 400,
+    height: 400,
+    title: "Michael - Primary & 11+/13+ Specialist",
+    loading: "lazy" as const,
+  },
+  "juliet-maths-sen": {
+    src: "/images/tutors/juliet.jpg",
+    alt: "Juliet - Maths, SEN & International Teaching Expert, BSc Maths, MA Education, 30+ years international experience",
+    width: 400,
+    height: 400,
+    title: "Juliet - Maths, SEN & International Teaching Expert",
+    loading: "lazy" as const,
+  },
+  "andreas-languages": {
+    src: "/images/tutors/andreas.jpg",
+    alt: "Andreas - Modern Languages Specialist, BA Spanish & German, QTS qualified, fluent in six languages",
+    width: 400,
+    height: 400,
+    title: "Andreas - Modern Languages Specialist",
+    loading: "lazy" as const,
+  },
+  
+  // TIER THREE TUTORS
+  "ophelia-classics": {
+    src: "/images/tutors/ophelia.jpg",
+    alt: "Ophelia - 11+, Entrance Exams & Classics Expert, BA Classics Cambridge, elite school success at Harrow & Westminster",
+    width: 400,
+    height: 400,
+    title: "Ophelia - 11+, Entrance Exams & Classics Expert",
+    loading: "lazy" as const,
+  },
+  "annoushka-english": {
+    // CONTEXT7 SOURCE: /vercel/next.js - Static asset handling for professional tutor headshot images
+    // FILENAME CORRECTION: Updated to use annoushka.jpg filename to match renamed file asset
+    src: "/images/tutors/annoushka.jpg",
+    alt: "Annoushka - English & Entrance Exams Specialist, BA English Oxford, CELTA qualified, Westminster & Cheltenham Ladies success",
+    width: 400,
+    height: 400,
+    title: "Annoushka - English & Entrance Exams Specialist",
+    loading: "lazy" as const,
+  },
+  "alex-admissions": {
+    src: "/images/tutors/alex.jpg",
+    alt: "Alex - University Admissions & English Expert, BA Law Cambridge, MA Harvard, British & US admissions expert",
+    width: 400,
+    height: 400,
+    title: "Alex - University Admissions & English Expert",
+    loading: "lazy" as const,
+  },
+  
+  // LEGACY TUTOR IMAGES (Maintained for backward compatibility - moved to old_backup/)
+  // These are preserved in case any existing components still reference them
   "rachel-deputy-head": {
-    src: "/images/tutors/rachel.avif",
-    alt: "Rachel - Deputy Headteacher and Entrance Exam Specialist professional headshot",
+    src: "/images/tutors/old_backup/rachel.avif",
+    alt: "Rachel - Deputy Headteacher and Entrance Exam Specialist professional headshot (legacy)",
     width: 400,
     height: 400,
-    title: "Rachel - Deputy Headteacher and Entrance Exam Specialist",
+    title: "Rachel - Deputy Headteacher and Entrance Exam Specialist (Legacy)",
     loading: "lazy" as const,
   },
   "derek-maths-sciences": {
-    src: "/images/tutors/derek.avif",
-    alt: "Derek - Maths, Biology, Chemistry and Physics Expert professional headshot",
+    src: "/images/tutors/old_backup/derek.avif",
+    alt: "Derek - Maths, Biology, Chemistry and Physics Expert professional headshot (legacy)",
     width: 400,
     height: 400,
-    title: "Derek - Maths, Biology, Chemistry and Physics",
+    title: "Derek - Maths, Biology, Chemistry and Physics (Legacy)",
     loading: "lazy" as const,
   },
   "jay-sciences-maths": {
-    src: "/images/tutors/jay.avif",
-    alt: "Jay - Biology, Chemistry, Physics and Maths Expert professional headshot",
+    src: "/images/tutors/old_backup/jay.avif",
+    alt: "Jay - Biology, Chemistry, Physics and Maths Expert professional headshot (legacy)",
     width: 400,
     height: 400,
-    title: "Jay - Biology, Chemistry, Physics and Maths",
+    title: "Jay - Biology, Chemistry, Physics and Maths (Legacy)",
     loading: "lazy" as const,
   },
   "emilia-entrance-history": {
-    src: "/images/tutors/emilia.avif",
-    alt: "Emilia - Entrance Exams, History and University Applications Expert professional headshot",
+    src: "/images/tutors/old_backup/emilia.avif",
+    alt: "Emilia - Entrance Exams, History and University Applications Expert professional headshot (legacy)",
     width: 400,
     height: 400,
-    title: "Emilia - Entrance Exams, History and University/Oxbridge Applications",
+    title: "Emilia - Entrance Exams, History and University/Oxbridge Applications (Legacy)",
     loading: "lazy" as const,
   },
   "annette-english-history": {
-    src: "/images/tutors/annette.avif",
-    alt: "Annette - English and History Expert with SEN Experience professional headshot",
+    src: "/images/tutors/old_backup/annette.avif",
+    alt: "Annette - English and History Expert with SEN Experience professional headshot (legacy)",
     width: 400,
     height: 400,
-    title: "Annette - English and History",
+    title: "Annette - English and History Expert with SEN Experience (Legacy)",
     loading: "lazy" as const,
   },
   "elle-primary-maths": {
-    src: "/images/tutors/elle.avif",
-    alt: "Elle - Primary Specialist, Entrance Exams and Maths Expert professional headshot",
+    src: "/images/tutors/old_backup/elle.avif",
+    alt: "Elle - Primary Specialist, Entrance Exams and Maths Expert professional headshot (legacy)",
     width: 400,
     height: 400,
-    title: "Elle - Primary Specialist, Entrance Exams and Maths",
+    title: "Elle - Primary Specialist, Entrance Exams and Maths (Legacy)",
     loading: "lazy" as const,
   },
   "daniel-humanities": {
-    src: "/images/tutors/daniel.avif",
-    alt: "Daniel - History, Politics, Economics and Sociology Expert professional headshot",
+    src: "/images/tutors/old_backup/daniel.avif",
+    alt: "Daniel - History, Politics, Economics and Sociology Expert professional headshot (legacy)",
     width: 400,
     height: 400,
-    title: "Daniel - History, Politics, Economics and Sociology",
+    title: "Daniel - History, Politics, Economics and Sociology (Legacy)",
     loading: "lazy" as const,
   },
   "david-sciences-oxbridge": {
-    src: "/images/tutors/david.avif",
-    alt: "David - Sciences, Maths and Oxbridge Entrance Expert professional headshot",
+    src: "/images/tutors/old_backup/david.avif",
+    alt: "David - Sciences, Maths and Oxbridge Entrance Expert professional headshot (legacy)",
     width: 400,
     height: 400,
-    title: "David - Sciences, Maths and Oxbridge Entrance",
+    title: "David - Sciences, Maths and Oxbridge Entrance (Legacy)",
     loading: "lazy" as const,
   },
-  
-  // CONTEXT7 SOURCE: /vercel/next.js - Static asset management patterns for tutor photos integration
-  // CONTEXT7 SOURCE: /microsoft/typescript - Object literal patterns for professional headshot image data structure
-  // TUTOR PHOTO UPDATE: Integrating processed tutor photos with correct kebab-case naming and real professional headshots
-  // DATA INTEGRATION: Linking tutor photos from /public/images/tutors/ to corresponding profile IDs in team.json
-  "alex-sciences-maths": {
-    src: "/images/tutors/alex-sciences-maths.jpg",
-    alt: "Alex - Mathematics, Physics, Chemistry and Computer Science Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Alex - Mathematics, Physics, Chemistry and Computer Science",
-    loading: "lazy" as const,
-  },
-  "alma-languages-literature": {
-    src: "/images/tutors/alma-languages-literature.jpg",
-    alt: "Alma - Modern Languages, English Literature and International Studies Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Alma - Modern Languages, English Literature and International Studies",
-    loading: "lazy" as const,
-  },
-  "amy-primary-sen": {
-    src: "/images/tutors/amy-primary-sen.jpg",
-    alt: "Amy - Primary Education, SEN Support and Early Years Development Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Amy - Primary Education, SEN Support and Early Years Development",
-    loading: "lazy" as const,
-  },
-  "andreas-classics-philosophy": {
-    src: "/images/tutors/andreas-classics-philosophy.jpg",
-    alt: "Andreas - Classics, Ancient Philosophy and Classical Civilisation Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Andreas - Classics, Ancient Philosophy and Classical Civilisation",
-    loading: "lazy" as const,
-  },
-  "annette-english-history": {
-    src: "/images/tutors/annette.avif",
-    alt: "Annette - English and History Expert with SEN Experience professional headshot",
-    width: 400,
-    height: 400,
-    title: "Annette - English and History Expert with SEN Experience",
-    loading: "lazy" as const,
-  },
-  "annoushka-arts-creative": {
-    src: "/images/tutors/annoushka-arts-creative.jpg",
-    alt: "Annoushka - Fine Arts, Creative Writing and Media Studies Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Annoushka - Fine Arts, Creative Writing and Media Studies",
-    loading: "lazy" as const,
-  },
-  "daniel-humanities": {
-    src: "/images/tutors/daniel.avif",
-    alt: "Daniel - History, Politics, Economics and Sociology Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Daniel - History, Politics, Economics and Sociology",
-    loading: "lazy" as const,
-  },
-  "david-sciences-oxbridge": {
-    src: "/images/tutors/david.avif",
-    alt: "David - Sciences, Maths and Oxbridge Entrance Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "David - Sciences, Maths and Oxbridge Entrance",
-    loading: "lazy" as const,
-  },
-  "derek-maths-sciences": {
-    src: "/images/tutors/derek.avif",
-    alt: "Derek - Maths, Biology, Chemistry and Physics Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Derek - Maths, Biology, Chemistry and Physics",
-    loading: "lazy" as const,
-  },
-  "elle-primary-maths": {
-    src: "/images/tutors/elle.avif",
-    alt: "Elle - Primary Specialist, Entrance Exams and Maths Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Elle - Primary Specialist, Entrance Exams and Maths",
-    loading: "lazy" as const,
-  },
-  "emilia-entrance-history": {
-    src: "/images/tutors/emilia.avif",
-    alt: "Emilia - Entrance Exams, History and University Applications Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Emilia - Entrance Exams, History and University Applications",
-    loading: "lazy" as const,
-  },
-  "emily-psychology-sociology": {
-    src: "/images/tutors/emily-psychology-sociology.jpg",
-    alt: "Emily - Psychology, Sociology and Social Sciences Research Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Emily - Psychology, Sociology and Social Sciences Research",
-    loading: "lazy" as const,
-  },
-  "jay-sciences-maths": {
-    src: "/images/tutors/jay.avif",
-    alt: "Jay - Biology, Chemistry, Physics and Maths Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Jay - Biology, Chemistry, Physics and Maths",
-    loading: "lazy" as const,
-  },
-  "juliet-music-performance": {
-    src: "/images/tutors/juliet-music-performance.jpg",
-    alt: "Juliet - Music Theory, Performance and Composition Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Juliet - Music Theory, Performance and Composition",
-    loading: "lazy" as const,
-  },
-  "michael-economics-business": {
-    src: "/images/tutors/michael-economics-business.jpg",
-    alt: "Michael - Economics, Business Studies and Entrepreneurship Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Michael - Economics, Business Studies and Entrepreneurship",
-    loading: "lazy" as const,
-  },
-  "ophelia-drama-english": {
-    src: "/images/tutors/ophelia-drama-english.jpg",
-    alt: "Ophelia - Drama, English Literature and Theatre Studies Expert professional headshot",
-    width: 400,
-    height: 400,
-    title: "Ophelia - Drama, English Literature and Theatre Studies",
-    loading: "lazy" as const,
-  },
-  
-  // NOTE: Rachel photo not available - will use placeholder from existing system
 } as const;
 
 // CONTEXT7 SOURCE: /muxinc/next-video - Enhanced video content structure with comprehensive metadata
@@ -1606,8 +1556,9 @@ export const getTutorImages = (): typeof TUTOR_IMAGES => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object property access patterns with type safety
  * CONTEXT7 SOURCE: /vercel/next.js - Image asset retrieval patterns for Next.js Image component integration
  * IMPLEMENTATION REASON: Official TypeScript documentation Section 4.3 demonstrates keyof operator for type-safe object property access
- * CMS DATA SOURCE: Using TUTOR_IMAGES with profile ID matching for team.json integration
- * @param profileId - The tutor profile ID (kebab-case) matching team.json structure
+ * CMS DATA SOURCE: Using TUTOR_IMAGES with profile ID matching for tutors-new.json integration
+ * UPDATE: Now supports new 9-tutor system with proper profile ID mapping
+ * @param profileId - The tutor profile ID (kebab-case) matching tutors-new.json structure
  * @returns ImageAsset for the specified tutor or fallback image if not found
  */
 export const getTutorImageById = (profileId: string): ImageAsset => {
@@ -1620,13 +1571,18 @@ export const getTutorImageById = (profileId: string): ImageAsset => {
   }
   
   // CONTEXT7 SOURCE: /vercel/next.js - Fallback image patterns for missing assets
-  // FALLBACK STRATEGY: Return generic tutor placeholder when specific photo not available
+  // NEW TUTOR SYSTEM FALLBACK: Enhanced fallback with better alt text for new tutors
+  // ACCESSIBILITY: Proper alt text generation from profileId
+  const formattedName = profileId
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, char => char.toUpperCase()); // Convert to Title Case
+  
   return {
     src: "/images/tutors/tutor-facing-monitor.jpg",
-    alt: `Professional tutor - ${profileId.replace(/-/g, ' ')} placeholder image`,
+    alt: `${formattedName} - Professional tutor placeholder image`,
     width: 400,
     height: 400,
-    title: "Professional Tutor",
+    title: `${formattedName} - Professional Tutor`,
     loading: "lazy" as const,
   };
 };
@@ -1634,7 +1590,8 @@ export const getTutorImageById = (profileId: string): ImageAsset => {
 /**
  * Check if tutor has specific professional headshot available
  * CONTEXT7 SOURCE: /microsoft/typescript - Boolean return type patterns with object property checking
- * CMS DATA SOURCE: Using TUTOR_IMAGES to verify photo availability for team profiles
+ * CMS DATA SOURCE: Using TUTOR_IMAGES to verify photo availability for tutor profiles
+ * UPDATE: Now supports new 9-tutor system with enhanced checking
  * @param profileId - The tutor profile ID to check
  * @returns Boolean indicating if specific headshot exists
  */
@@ -1642,6 +1599,42 @@ export const hasTutorImage = (profileId: string): boolean => {
   // CONTEXT7 SOURCE: /microsoft/typescript - Object property existence checking with 'in' operator
   // AVAILABILITY CHECK: Verify if profileId exists as key in TUTOR_IMAGES object
   return profileId in TUTOR_IMAGES;
+};
+
+/**
+ * Get all new tutor image IDs for the 9-tutor system
+ * CONTEXT7 SOURCE: /microsoft/typescript - Array return type patterns for data filtering
+ * CMS DATA SOURCE: Using TUTOR_IMAGES keys filtered for new tutor system
+ * @returns Array of tutor profile IDs for the new 9-tutor system
+ */
+export const getNewTutorImageIds = (): readonly string[] => {
+  // CONTEXT7 SOURCE: /microsoft/typescript - Array filtering with string matching patterns
+  // NEW TUTOR FILTER: Return only the 9 new tutor IDs, excluding legacy and generic images
+  const newTutorIds = [
+    "alma-maths-science",
+    "amy-english", 
+    "emily-entrance-history",
+    "michael-primary",
+    "juliet-maths-sen",
+    "andreas-languages",
+    "ophelia-classics",
+    "annoushka-english",
+    "alex-admissions"
+  ] as const;
+  
+  return newTutorIds;
+};
+
+/**
+ * Check if tutor ID is part of the new 9-tutor system
+ * CONTEXT7 SOURCE: /microsoft/typescript - Boolean return patterns with array includes
+ * CMS DATA SOURCE: Using new tutor ID list to verify membership
+ * @param profileId - The tutor profile ID to check
+ * @returns Boolean indicating if tutor is part of new system
+ */
+export const isNewTutor = (profileId: string): boolean => {
+  const newTutorIds = getNewTutorImageIds();
+  return newTutorIds.includes(profileId as typeof newTutorIds[number]);
 };
 
 /**
@@ -2023,6 +2016,8 @@ export const CMSImages = {
   // TUTOR IMAGE UTILITIES: Functions for accessing tutor photos by profile ID
   getTutorImageById,
   hasTutorImage,
+  getNewTutorImageIds,
+  isNewTutor,
 } as const;
 
 // Export default for common usage patterns

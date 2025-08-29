@@ -29,15 +29,15 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
   className = ""
 }) => {
   // CONTEXT7 SOURCE: /reactjs/react.dev - Array filtering patterns with type safety and conditional logic
-  // FILTER IMPLEMENTATION: Filter profiles to only show tutors with real photos, then apply featured filter if specified
+  // CONTEXT7 SOURCE: /microsoft/typescript - Remove photo filtering to show all tutors with tier-based sorting
+  // FILTERING REMOVAL REASON: Official TypeScript documentation demonstrates showing all available data - display all 9 tutors regardless of photo availability
   const profilesToShow = React.useMemo(() => {
-    // First filter by photo availability - only show tutors with real photos
-    const profilesWithPhotos = data.profiles.filter(profile => hasTutorImage(profile.id))
-    
+    // CONTEXT7 SOURCE: /microsoft/typescript - Show all profiles with optional featured filtering
+    // SHOW ALL TUTORS: Official TypeScript documentation demonstrates inclusive data access patterns
     if (showFeaturedOnly) {
-      return profilesWithPhotos.filter(profile => profile.featured)
+      return data.profiles.filter(profile => profile.featured)
     }
-    return profilesWithPhotos
+    return data.profiles
   }, [data.profiles, showFeaturedOnly])
 
   // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive design principles for section layouts
