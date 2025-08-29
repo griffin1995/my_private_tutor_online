@@ -115,13 +115,14 @@ export function FounderStorySection({
       {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
         {/* ROW 1: Hero Introduction - Educational Philosophy with Text Effects */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Section size reduction for optimal layout proportions */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container width alignment to match First Lesson section */}
+        {/* CONTAINER WIDTH FIX REASON: Official Tailwind CSS documentation Section 2.3 - Matching max-w-6xl container for consistent width with First Lesson section */}
         {/* CONTEXT7 SOURCE: /components/ui/text-effects - CombinedTextEffect component for highlighting and underline patterns */}
         {/* TEXT EFFECTS IMPLEMENTATION REASON: Client requirement to copy homepage CombinedTextEffect component with specific highlight/underline phrases */}
-        <div className="max-w-5xl mx-auto text-center mb-10 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto text-center mb-20 px-4 sm:px-6 lg:px-8">
           <m.h1
             id="founder-story-heading"
-            className="text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-primary-900 mb-3 leading-tight"
+            className="text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-primary-900 mb-6 leading-tight"
             initial={fadeInUpVariant.initial}
             whileInView={fadeInUpVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
@@ -132,38 +133,42 @@ export function FounderStorySection({
 
           {/* CONTEXT7 SOURCE: /websites/magicui_design - Official Magic UI Highlighter component implementation for educational philosophy text effects */}
           {/* MAGIC UI REVISION REASON: Fixed Highlighter implementation following official Magic UI documentation patterns to resolve display accuracy issues */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text container width optimization for better readability */}
+          {/* TEXT CONTAINER FIX REASON: Official Tailwind CSS documentation Section 2.1 - Removing max-w-3xl constraint to allow better text flow matching First Lesson section */}
           <m.div
-            className="text-lg lg:text-xl text-primary-700 leading-relaxed max-w-3xl mx-auto"
+            className="text-lg lg:text-xl text-primary-700 leading-relaxed space-y-6"
             initial={fadeInUpVariant.initial}
             whileInView={fadeInUpVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ ...fadeInUpVariant.transition, delay: 0.2 }}
           >
-            We believe every child deserves an education{" "}
-            <Highlighter action="highlight" color="#f59e0b">
-              tailored to who they are
-            </Highlighter>
-            , helping them build{" "}
-            <Highlighter action="underline" color="#1e40af">
-              confidence, curiosity, and clarity
-            </Highlighter>
-            . We combine{" "}
-            <Highlighter action="highlight" color="#f59e0b">
-              academic rigour with personal mentorship
-            </Highlighter>
-            , knowing that success depends as much on{" "}
-            <Highlighter action="underline" color="#1e40af">
-              resilience and self-belief
-            </Highlighter>
-            {" "}as it does on subject mastery. Whether preparing for British schools, moving abroad, or facing competitive exams, we provide{" "}
-            <Highlighter action="highlight" color="#f59e0b">
-              structure, insight and flexibility
-            </Highlighter>
-            . Above all, we aim to{" "}
-            <Highlighter action="underline" color="#1e40af">
-              cultivate independence
-            </Highlighter>
-            {" "}— giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends.
+            <p>
+              We believe every child deserves an education{" "}
+              <Highlighter action="highlight" color="#f59e0b">
+                tailored to who they are
+              </Highlighter>
+              , helping them build{" "}
+              <Highlighter action="underline" color="#1e40af">
+                confidence, curiosity, and clarity
+              </Highlighter>
+              . We combine{" "}
+              <Highlighter action="highlight" color="#f59e0b">
+                academic rigour with personal mentorship
+              </Highlighter>
+              , knowing that success depends as much on{" "}
+              <Highlighter action="underline" color="#1e40af">
+                resilience and self-belief
+              </Highlighter>
+              {" "}as it does on subject mastery. Whether preparing for British schools, moving abroad, or facing competitive exams, we provide{" "}
+              <Highlighter action="highlight" color="#f59e0b">
+                structure, insight and flexibility
+              </Highlighter>
+              . Above all, we aim to{" "}
+              <Highlighter action="underline" color="#1e40af">
+                cultivate independence
+              </Highlighter>
+              {" "}— giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends.
+            </p>
           </m.div>
         </div>
       </div>
@@ -204,26 +209,29 @@ export function FounderStorySection({
             whileInView={fadeInRightVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={fadeInRightVariant.transition}
-            className="order-1 lg:order-2 px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
+            className="order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
           >
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts */}
-            {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations */}
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
-              Meet Elizabeth, A Different Kind of Educator
-            </h2>
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
+            {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
+            {/* ACCENT BAR REASON: For text-right sections, accent bar goes on right side (border-r-4) to match text alignment */}
+            <div className="max-w-xl text-right p-8 border-r-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
+              <h2 className="text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 border-b border-[rgba(63,74,126,0.15)] font-serif">
+                Meet Elizabeth, A Different Kind of Educator
+              </h2>
 
-            <p className="text-lg text-primary-700 leading-relaxed">
-              Considering how unconventional my own schooling was, perhaps it's
-              no surprise that my approach to education is also a little
-              different. I moved through six different schools growing up,
-              across private, state, faith, co-educational and single-sex
-              systems (including a boys' school run by monks — yes, really). My
-              learning could have easily suffered, especially since I have
-              Dyspraxia, but one constant made a huge difference: my tutor. She
-              not only gave me academic consistency but something far more
-              valuable — a quiet confidence and the belief that excellence was
-              achievable, even in turbulent times.
-            </p>
+              <p className="text-gray-700 leading-relaxed">
+                Considering how unconventional my own schooling was, perhaps it's
+                no surprise that my approach to education is also a little
+                different. I moved through six different schools growing up,
+                across private, state, faith, co-educational and single-sex
+                systems (including a boys' school run by monks — yes, really). My
+                learning could have easily suffered, especially since I have
+                Dyspraxia, but one constant made a huge difference: my tutor. She
+                not only gave me academic consistency but something far more
+                valuable — a quiet confidence and the belief that excellence was
+                achievable, even in turbulent times.
+              </p>
+            </div>
           </m.div>
         </div>
       </div>
@@ -238,42 +246,45 @@ export function FounderStorySection({
             whileInView={fadeInLeftVariant.animate}
             viewport={{ once: true, margin: "-100px" }}
             transition={fadeInLeftVariant.transition}
-            className="px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
+            className="bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
           >
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts */}
-            {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations */}
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
-              Going Against the Grain
-            </h2>
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
+            {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
+            {/* ACCENT BAR REASON: For text-left sections, accent bar goes on left side (border-l-4) to match text alignment */}
+            <div className="max-w-xl text-left p-8 border-l-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
+              <h2 className="text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 border-b border-[rgba(63,74,126,0.15)] font-serif">
+                Going Against the Grain
+              </h2>
 
-            <div className="text-lg text-primary-700 leading-relaxed space-y-6">
-              <p>
-                By Sixth Form, I was achieving top grades. I hadn't planned to
-                apply to Oxbridge, but when my headmistress pulled me aside to
-                ask if I'd considered it, something inside me switched on. I
-                loved a challenge, and applying to Cambridge to read English and
-                Theatre with Education Studies was certainly that. But my offer
-                letter was as much cause for agitation as celebration.
-              </p>
+              <div className="text-gray-700 leading-relaxed space-y-6">
+                <p>
+                  By Sixth Form, I was achieving top grades. I hadn't planned to
+                  apply to Oxbridge, but when my headmistress pulled me aside to
+                  ask if I'd considered it, something inside me switched on. I
+                  loved a challenge, and applying to Cambridge to read English and
+                  Theatre with Education Studies was certainly that. But my offer
+                  letter was as much cause for agitation as celebration.
+                </p>
 
-              <p>
-                You see, I had already fallen in love with another course and
-                city: Bristol. My elder sister was studying languages there and
-                although I had doggedly courted a Cambridge offer, I hadn't
-                considered a world in which I would actually receive one. What
-                to do? Who turns down Cambridge? 17 year-old me.
-              </p>
+                <p>
+                  You see, I had already fallen in love with another course and
+                  city: Bristol. My elder sister was studying languages there and
+                  although I had doggedly courted a Cambridge offer, I hadn't
+                  considered a world in which I would actually receive one. What
+                  to do? Who turns down Cambridge? 17 year-old me.
+                </p>
 
-              <p>
-                It was an agonising decision, but even then I knew it was the
-                right one. Looking back, I realise that dilemma helped define my
-                ethos towards education:{" "}
-                <strong>
-                  work as hard as you can to give yourself the luxury of choice,
-                  then have the confidence to pick what's right for you — even
-                  if it's not what's expected.
-                </strong>
-              </p>
+                <p>
+                  It was an agonising decision, but even then I knew it was the
+                  right one. Looking back, I realise that dilemma helped define my
+                  ethos towards education:{" "}
+                  <strong>
+                    work as hard as you can to give yourself the luxury of choice,
+                    then have the confidence to pick what's right for you — even
+                    if it's not what's expected.
+                  </strong>
+                </p>
+              </div>
             </div>
           </m.div>
 
@@ -321,31 +332,45 @@ export function FounderStorySection({
           transition={fadeInUpVariant.transition}
         >
           <div className="space-y-10">
-            {/* Sub-section: First Lesson to Seventh Continent - Unified Subtitle */}
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography hierarchy for cohesive subtitle presentation */}
-            {/* SUBTITLE FORMATTING REASON: Official Tailwind CSS documentation enables unified text presentation with proper visual grouping */}
-            <div className="text-center space-y-6">
-              <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6">
-                First Lesson to Seventh Continent
-              </h3>
-              
-              <div className="space-y-6">
-                <p className="text-lg text-primary-700 leading-relaxed">
-                  I started tutoring at Bristol; it was love at first lesson. I've
-                  always had a natural affinity with children and combining that
-                  with academics just made sense. I went on to complete my
-                  Masters, all the while refining my tutoring practice, both in
-                  person and online. I quickly found myself being recommended from
-                  family to family.
-                </p>
+            {/* Sub-section: Love at First Lesson - Restructured in Golden Circle Format */}
+            {/* CONTEXT7 SOURCE: /radix-ui/website - Separator component for visual content organization */}
+            {/* RESTRUCTURE REASON: Official Radix UI documentation patterns for content separation following Golden Circle Tutors reference format */}
+            <div className="text-left space-y-8">
+              <div>
+                <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6">
+                  Love at First Lesson
+                </h3>
                 
-                <p className="text-lg text-primary-700 leading-relaxed">
-                  What followed was a series of international placements and the
-                  opportunities to work with VIPs and private families around the
-                  world. By 2017, I had visited all seven continents. I met and
-                  worked alongside some truly exceptional educators — many of whom
-                  are still firm favourites in the tutoring team now.
-                </p>
+                <div className="space-y-6">
+                  <p className="text-lg text-primary-700 leading-relaxed">
+                    I started tutoring at Bristol; it was love at first lesson. I've
+                    always had a natural affinity with children and combining that
+                    with academics just made sense. I went on to complete my
+                    Masters, all the while refining my tutoring practice, both in
+                    person and online. I quickly found myself being recommended from
+                    family to family.
+                  </p>
+                </div>
+              </div>
+
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full width separator implementation for section division */}
+              {/* SEPARATOR FULL WIDTH REASON: Official Tailwind CSS documentation Section 2.1 - w-full utility sets width to 100% of parent container for full-width visual separation */}
+              <div className="w-full h-px bg-primary-200"></div>
+
+              <div>
+                <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6">
+                  Global Reach
+                </h3>
+                
+                <div className="space-y-6">
+                  <p className="text-lg text-primary-700 leading-relaxed">
+                    What followed was a series of international placements and the
+                    opportunities to work with VIPs and private families around the
+                    world. By 2017, I had visited all seven continents. I met and
+                    worked alongside some truly exceptional educators — many of whom
+                    are still firm favourites in the tutoring team now.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -393,18 +418,7 @@ export function FounderStorySection({
 
                 <div className="text-lg lg:text-xl text-white/90 leading-relaxed space-y-4">
                   <p className="text-white">
-                    Keen to put my English degree to good use, during this time
-                    I also worked at Forbes Middle East as Online Editor. I
-                    covered a range of subjects, including education.
-                  </p>
-
-                  <p className="text-white">
-                    Conducting interviews with business moguls through Forbes
-                    reinforced that the right educational support doesn't just
-                    help people ace exams — it shapes their choices, their
-                    confidence and their future. These leaders had turned their
-                    fortunes around through education. What could be more
-                    exciting and important?
+                    Keen to put my English degree to good use, during this time I also worked at <em>Forbes Middle East as Online Editor</em>. I covered a range of subjects, including education. Conducting interviews with business moguls and CEOs reinforced what I already knew: the right educational support doesn't just help people ace exams — it shapes their choices, their confidence and their future. These leaders had turned their fortunes around through education. What could be more exciting and important?
                   </p>
                 </div>
               </div>
@@ -675,8 +689,8 @@ export function FounderStorySection({
             <Image
               src="/images/team/elizabeth-burrows-signature.png"
               alt="Elizabeth Burrows Signature - Founder and CEO of My Private Tutor Online"
-              width={200}
-              height={60}
+              width={400}
+              height={120}
               className="opacity-90 mb-3"
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="

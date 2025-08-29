@@ -48,6 +48,35 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
+// CONTEXT7 SOURCE: /reactjs/react.dev - Utility function for parsing simple markdown formatting
+// MARKDOWN PARSING REASON: Official React documentation shows how to create utility functions for text processing
+const parseDescription = (text: string): JSX.Element => {
+  // Split by double newlines to create paragraphs
+  const paragraphs = text.split('\n\n')
+  
+  return (
+    <>
+      {paragraphs.map((paragraph, index) => {
+        // Handle bold formatting within paragraphs
+        const parts = paragraph.split(/(\*\*[^*]+\*\*)/)
+        
+        return (
+          <p key={index} className={index > 0 ? "mt-4 text-gray-700" : "text-gray-700"}>
+            {parts.map((part, partIndex) => {
+              if (part.startsWith('**') && part.endsWith('**')) {
+                // Remove the ** markers and make bold
+                const boldText = part.slice(2, -2)
+                return <strong key={partIndex} className="font-semibold">{boldText}</strong>
+              }
+              return part
+            })}
+          </p>
+        )
+      })}
+    </>
+  )
+}
+
 interface TrustIndicator {
   icon: string
   title: string
@@ -252,7 +281,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                   
                   {/* Text content on right */}
                   <motion.div 
-                    className="trust-content flex items-center justify-center bg-white"
+                    className="trust-content flex items-center justify-center bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -260,11 +289,14 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                   >
                     {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - text-right utility for right text alignment */}
                     {/* ALIGNMENT REASON: Official Tailwind CSS docs specify text-right applies text-align: right for odd rows (text flows toward left-side image) */}
-                    <div className="max-w-xl text-right">
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
+                    {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
+                    {/* ACCENT BAR REASON: For odd rows (text-right), accent bar goes on right side (border-r-4) to match text alignment */}
+                    <div className="max-w-xl text-right p-8 border-r-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
                       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography with font-black and letter-spacing */}
                       {/* PREMIUM TYPOGRAPHY REASON: Official documentation recommends font-black (900 weight) and */}
                       {/* sophisticated letter-spacing for luxury service presentation */}
-                      <h3 className="font-serif font-black text-primary-900 mb-6" style={{
+                      <h3 className="font-serif text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 border-b border-[rgba(63,74,126,0.15)]" style={{
                         fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
                         lineHeight: '1.2',
                         letterSpacing: '-0.025em'
@@ -282,13 +314,13 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                       )}
                       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced line-height for premium readability */}
                       {/* READABILITY REASON: Improved line-height ratios for sophisticated text presentation */}
-                      <p className="text-gray-700" style={{
+                      <div className="text-gray-700 leading-relaxed" style={{
                         fontSize: 'clamp(1rem, 2.2vw, 1.25rem)',
                         lineHeight: '1.6',
                         letterSpacing: '0.01em'
                       }}>
-                        {indicator.description}
-                      </p>
+                        {parseDescription(indicator.description)}
+                      </div>
                     </div>
                   </motion.div>
                 </>
@@ -296,7 +328,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                 <>
                   {/* Even rows: Text on left */}
                   <motion.div 
-                    className="trust-content flex items-center justify-center bg-slate-50 order-2 lg:order-1"
+                    className="trust-content flex items-center justify-center bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md order-2 lg:order-1"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -304,11 +336,14 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                   >
                     {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - text-left utility for left text alignment */}
                     {/* ALIGNMENT REASON: Official Tailwind CSS docs specify text-left applies text-align: left for even rows (text flows toward right-side image) */}
-                    <div className="max-w-xl text-left">
+                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
+                    {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
+                    {/* ACCENT BAR REASON: For even rows (text-left), accent bar goes on left side (border-l-4) to match text alignment */}
+                    <div className="max-w-xl text-left p-8 border-l-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
                       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography with font-black and letter-spacing */}
                       {/* PREMIUM TYPOGRAPHY REASON: Official documentation recommends font-black (900 weight) and */}
                       {/* sophisticated letter-spacing for luxury service presentation */}
-                      <h3 className="font-serif font-black text-primary-900 mb-6" style={{
+                      <h3 className="font-serif text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 border-b border-[rgba(63,74,126,0.15)]" style={{
                         fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
                         lineHeight: '1.2',
                         letterSpacing: '-0.025em'
@@ -326,13 +361,13 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                       )}
                       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced line-height for premium readability */}
                       {/* READABILITY REASON: Improved line-height ratios for sophisticated text presentation */}
-                      <p className="text-gray-700" style={{
+                      <div className="text-gray-700 leading-relaxed" style={{
                         fontSize: 'clamp(1rem, 2.2vw, 1.25rem)',
                         lineHeight: '1.6',
                         letterSpacing: '0.01em'
                       }}>
-                        {indicator.description}
-                      </p>
+                        {parseDescription(indicator.description)}
+                      </div>
                     </div>
                   </motion.div>
                   

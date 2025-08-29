@@ -47,6 +47,7 @@ interface PageFooterClientProps {
   variant?: 'default' | 'minimal' | 'premium'
   showBackToTop?: boolean
   showNewsletter?: boolean
+  showContactForm?: boolean
 }
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Client Component with React hooks for interactive functionality
@@ -58,7 +59,8 @@ export function PageFooterClient({
   className,
   variant = 'default',
   showBackToTop = true,
-  showNewsletter = false
+  showNewsletter = false,
+  showContactForm = false
 }: PageFooterClientProps) {
   // CONTEXT7 SOURCE: /react-hook-form/documentation - Form state management
   // Reference: useForm with TypeScript and Zod validation resolver
@@ -134,8 +136,58 @@ export function PageFooterClient({
       )}
 
       <div className="relative">
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for newsletter section display */}
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for contact form section display */}
         {/* CONDITIONAL RENDERING REASON: Official React documentation demonstrates logical AND operator for conditional component display */}
+        {/* Contact Form Section */}
+        {showContactForm && (
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4">
+                Ready to Start the Conversation?
+              </h2>
+              <p className="text-xl text-primary-700 mb-8">
+                Access our secure enquiry portal to discuss your child's educational needs
+              </p>
+              {/* CONTEXT7 SOURCE: /vercel/next.js - Link component wrapping Image for external navigation */}
+              {/* ACCESSIBILITY REASON: Official React documentation emphasizes proper external link handling with target and rel attributes */}
+              <a 
+                href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block group"
+                aria-label="Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online"
+              >
+                <div className="relative overflow-hidden rounded-lg border-2 border-gray-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+                  {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with proper width, height and alt for accessibility */}
+                  {/* IMAGE OPTIMIZATION REASON: Official Next.js documentation requires explicit dimensions for local images */}
+                  {/* BIZSTIM FORM UPDATE: Updated to use new bizstim-form-preview.png as per homepage CMS configuration */}
+                  <img
+                    src="/images/graphics/bizstim-form-preview.png"
+                    alt="Screenshot of My Private Tutor Online enquiry form on Bizstim platform showing student details form with fields for first name, last name, email and phone number"
+                    className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  {/* Overlay for interaction feedback */}
+                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                  {/* Call-to-action overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                    <p className="text-white font-medium text-sm">
+                      Click to access secure enquiry form →
+                    </p>
+                  </div>
+                </div>
+              </a>
+              <p className="text-xs text-gray-500 mt-3">
+                Opens in new window • Secure encrypted connection • Same trusted service
+              </p>
+            </div>
+          </div>
+        )}
+        
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for separator display */}
+        {/* SEPARATOR CONDITIONAL REASON: Official React documentation shows conditional rendering prevents orphaned separators when sections are hidden */}
+        {showContactForm && <Separator className="bg-gray-300" />}
+        
         {/* Newsletter CTA Section */}
         {showNewsletter && (
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -243,12 +295,14 @@ export function PageFooterClient({
                     className="inline-block group w-full"
                     aria-label={`${footerContent.companyName} homepage`}
                   >
+                    {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with responsive sizing patterns */}
+                    {/* LOGO SIZE MAXIMIZATION REVISION: Increased from max-h-32 to max-h-40 for maximum logo display while maintaining aspect ratio and container fit */}
                     <Image
                       src={footerContent.logo.main}
                       alt={footerContent.logo.alt}
                       width={footerContent.logo.width}
                       height={footerContent.logo.height}
-                      className="w-full h-auto max-h-24 object-contain group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-auto max-h-40 object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </Link>
                 </div>
@@ -324,7 +378,9 @@ export function PageFooterClient({
               {/* Contact Information - positioned at the end of footer links */}
               <div className="col-span-2 md:col-span-4 mt-8 pt-6 border-t border-gray-200">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4">
-                  {/* Contact links - explicit black text color (text-black) for enhanced contrast and visibility */}
+                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for dark text styling */}
+                  {/* CONTACT INFO COLOR FIX: Changed from text-gray-900 to text-black for explicit black text color to match footer text consistency and override any conflicting styles */}
+                  {/* Contact links - pure black text color (text-black) for maximum contrast and consistency with footer text */}
                   <div className="text-sm flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                     <a 
                       href={`tel:${contactInfo.phone}`}
@@ -345,7 +401,7 @@ export function PageFooterClient({
                     {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - MessageCircle icon for WhatsApp functionality */}
                     {/* WHATSAPP REDESIGN: Text with icon to the right, no green background, matching text color */}
                     <a
-                      href={`https://wa.me/447513550278?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20private%20tutoring%20services%20for%20my%20child.`}
+                      href={`https://wa.me/447513550278?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20private%tutoring%20services%20for%20my%20child.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-black hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"

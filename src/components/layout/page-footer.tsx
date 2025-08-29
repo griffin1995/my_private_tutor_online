@@ -14,6 +14,7 @@ interface PageFooterProps {
   variant?: 'default' | 'minimal' | 'premium'
   showBackToTop?: boolean
   showNewsletter?: boolean
+  showContactForm?: boolean
 }
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - React Client Component with synchronous data access
@@ -22,7 +23,8 @@ export function PageFooter({
   className,
   variant = 'default',
   showBackToTop = true,
-  showNewsletter = false
+  showNewsletter = false,
+  showContactForm = false
 }: PageFooterProps) {
   // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access pattern
   // SYNCHRONOUS CMS REASON: Direct function calls eliminate async complexity and loading states
@@ -44,6 +46,7 @@ export function PageFooter({
       variant={variant}
       showBackToTop={showBackToTop}
       showNewsletter={showNewsletter}
+      showContactForm={showContactForm}
     />
   )
 }

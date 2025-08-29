@@ -113,21 +113,24 @@ const getVerificationBadge = (level: ResultsDocumentationItem['verificationLevel
   }
 }
 
-// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Helper function for category styling with brand blue colour palette
-// BRAND COLOR UPDATE REASON: Transition from amber/yellow to brand blue for enhanced visual consistency and royal client standards
-// CATEGORY STYLING REASON: Visual differentiation using brand blue colour variants for premium positioning and consistency
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Helper function for category styling with royal blue backgrounds in rgba format
+// ROYAL BLUE UPDATE REASON: Enhanced visual consistency using royal blue from brand palette with rgba format for opacity adjustments
+// RGBA FORMAT REASON: rgba(37, 99, 235, opacity) format allows easy future opacity modifications while maintaining royal blue consistency
 const getCategoryStyle = (category: ResultsDocumentationItem['category']) => {
+  // Royal blue rgba values: rgba(37, 99, 235, opacity) - based on blue-600 (#2563eb)
+  const baseStyle = 'text-white border-2';
+  
   switch (category) {
     case 'grade_improvement':
-      return 'border-primary-200 bg-primary-50 text-primary-900'
+      return `${baseStyle} border-blue-400 bg-[rgba(37,99,235,0.9)]`
     case 'university_placement':
-      return 'border-primary-300 bg-primary-100 text-primary-900'
+      return `${baseStyle} border-blue-300 bg-[rgba(37,99,235,0.95)]`
     case 'exam_success':
-      return 'border-primary-200 bg-primary-50 text-primary-800'
+      return `${baseStyle} border-blue-400 bg-[rgba(37,99,235,0.85)]`
     case 'roi_analysis':
-      return 'border-primary-300 bg-primary-100 text-primary-800'
+      return `${baseStyle} border-blue-300 bg-[rgba(37,99,235,0.9)]`
     default:
-      return 'border-primary-200 bg-primary-50 text-primary-900'
+      return `${baseStyle} border-blue-400 bg-[rgba(37,99,235,0.9)]`
   }
 }
 
@@ -191,7 +194,7 @@ export function ResultsDocumentation({
               {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering for UI element visibility control
                    VERIFICATION BADGE REMOVAL: Hide verification badges to simplify statistical presentation */}
               <div className="flex items-start justify-between mb-4">
-                <div className="p-3 rounded-lg bg-white/70">
+                <div className="p-3 rounded-lg bg-white/20 backdrop-blur-sm text-white">
                   {result.icon && iconMap[result.icon] 
                     ? iconMap[result.icon] 
                     : <BarChart3 className="w-8 h-8" />}

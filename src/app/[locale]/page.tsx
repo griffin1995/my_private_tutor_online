@@ -131,6 +131,7 @@ export default function HomePage() {
       containerSize="full" 
       verticalSpacing="none"
       headerProps={{ isHomepage: true }}
+      footerProps={{ showContactForm: true }}
     >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - PageLayout spacing control with verticalSpacing="none" */}
       {/* WHITE SPACE FIX REASON: Official Tailwind CSS documentation shows py-12 utility creates 48px top/bottom padding - verticalSpacing="none" eliminates this padding to allow full-screen Hero section to start at viewport top */}
@@ -161,36 +162,38 @@ export default function HomePage() {
       {/* - HeroSection.showHeader={false} = Prevents DUPLICATE header inside hero section */}
       {/* CRITICAL UNDERSTANDING: These control DIFFERENT headers - navbar vs hero header */}
       {/* ACCESSIBILITY: PageLayout navbar is ESSENTIAL for users to navigate between pages */}
-      <HeroSection 
-        showHeader={false}
-        hasStaticNavbar={true}
-      />
+      <section id="hero">
+        <HeroSection 
+          showHeader={false}
+          hasStaticNavbar={true}
+        />
+      </section>
       
       {/* 2. "WE HELP STUDENTS PLACE AT TOP 10 UK SCHOOLS AND UNIVERSITIES" */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spacing utilities for vertical rhythm */}
       {/* SPACING ADDITION REASON: Official Tailwind CSS documentation mt-8 utility creates 2rem (32px) top margin for breathing room between Hero and Tagline sections */}
-      <div className="mt-8">
+      <section id="tagline" className="mt-8">
         <AnimatedTagline />
-      </div>
+      </section>
       
       {/* 3. SCROLLING SCHOOLS COMPONENT */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for consistent vertical rhythm */}
       {/* SPACING CONSISTENCY REASON: Official Tailwind CSS documentation mt-8 utility maintains same 2rem spacing as Tagline for visual rhythm grouping */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering for async data loading */}
       {/* ASYNC RENDERING REASON: Official React documentation shows conditional rendering patterns for loading states and data availability */}
-      <div className="mt-8">
+      <section id="schools" className="mt-8">
         {testimonialsSchools.length > 0 && (
           <ScrollingSchools 
             schools={[...testimonialsSchools]}
           />
         )}
-      </div>
+      </section>
       
       {/* 4. NEW QUOTE SECTION - ABOUT SECTION SUBHEADING RELOCATED */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component rendering with JSX for modular sections */}
       {/* REVISION REASON: Official React documentation Section 4.1 shows proper conditional rendering for component repositioning */}
       {/* ABOUT SECTION SUBHEADING RELOCATION: Moving highlighted subheading from About Section to dedicated Quote Section for enhanced prominence */}
-      <div className="mt-16">
+      <section id="mission" className="mt-16">
         <QuoteSection 
           quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
           backgroundColor="bg-white"
@@ -198,22 +201,22 @@ export default function HomePage() {
           useHighlighting={true}
           showAuthorImage={false}
         />
-      </div>
+      </section>
       
       {/* 5. ABOUT SECTION */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for visual hierarchy and section separation */}
       {/* VISUAL BREAK REASON: Official Tailwind CSS documentation mt-16 utility creates 4rem (64px) top margin for clear separation between introductory group (Hero/Tagline/Schools) and main content sections */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - About section with founder story and company credentials */}
       {/* ABOUT SECTION RESTORATION: Restored from git history - provides company background and founder credibility */}
-      <div className="mt-16">
+      <section id="about" className="mt-16">
         <AboutSection />
-      </div>
+      </section>
       
       
       {/* 6. RESULTS DOCUMENTATION - QUANTIFIABLE ACADEMIC OUTCOMES */}
       {/* CONTEXT7 SOURCE: /facebook/react - ResultsDocumentation component integration identical to Subject Tuition page */}
       {/* RESULTS DOCUMENTATION REASON: Exact carbon copy of Subject Tuition page section 4 for consistent data presentation */}
-      <section className="py-16 lg:py-24 relative bg-white">
+      <section id="results" className="py-16 lg:py-24 relative bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for statistical data removal
@@ -229,78 +232,37 @@ export default function HomePage() {
       </section>
       
       {/* 7. WHO WE SUPPORT */}
-      <TrustIndicatorsGrid 
-        indicators={trustIndicators}
-        studentImages={studentImages}
-      />
+      <section id="who-we-support">
+        <TrustIndicatorsGrid 
+          indicators={trustIndicators}
+          studentImages={studentImages}
+        />
+      </section>
       
       {/* 8. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
       {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Props passing patterns for Next.js components */}
       {/* PROP STRUCTURE FIX: Official Next.js documentation shows props must maintain expected data structures - ServicesCarousel expects Record<string, StudentImageData> not array */}
-      <HomepageSections 
-        services={[...services]}
-        studentImages={studentImages}
-      />
+      <section id="what-we-offer">
+        <HomepageSections 
+          services={[...services]}
+          studentImages={studentImages}
+        />
+      </section>
       
       {/* 9. QUOTE SECTION */}
       {/* CONTEXT7 SOURCE: /magicui/design - Text-only quote with strategic highlighting effects */}
       {/* HIGHLIGHTER ENHANCEMENT REASON: Magic UI documentation enables visual emphasis without photos for clean, professional presentation */}
-      <QuoteSection 
-        quote={founderQuote.quote}
-        author={founderQuote.author}
-        role={founderQuote.role}
-        showAuthorImage={false}
-      />
-      
-      {/* 10. BIZSTIM CTA SECTION */}
-      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for main CTA section */}
-      {/* BIZSTIM SECTION REASON: Official React documentation enables component repositioning for improved user flow */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4">
-              Ready to Start the Conversation?
-            </h2>
-            <p className="text-xl text-primary-700 mb-8">
-              Access our secure enquiry portal to discuss your child's educational needs
-            </p>
-            {/* CONTEXT7 SOURCE: /vercel/next.js - Link component wrapping Image for external navigation */}
-            {/* ACCESSIBILITY REASON: Official React documentation emphasizes proper external link handling with target and rel attributes */}
-            <a 
-              href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block group"
-              aria-label="Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online"
-            >
-              <div className="relative overflow-hidden rounded-lg border-2 border-gray-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl">
-                {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with proper width, height and alt for accessibility */}
-                {/* IMAGE OPTIMIZATION REASON: Official Next.js documentation requires explicit dimensions for local images */}
-                {/* BIZSTIM FORM UPDATE: Updated to use new bizstim-form-preview.png as per homepage CMS configuration */}
-                <img
-                  src="/images/graphics/bizstim-form-preview.png"
-                  alt="Screenshot of My Private Tutor Online enquiry form on Bizstim platform showing student details form with fields for first name, last name, email and phone number"
-                  className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                />
-                {/* Overlay for interaction feedback */}
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                {/* Call-to-action overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                  <p className="text-white font-medium text-sm">
-                    Click to access secure enquiry form →
-                  </p>
-                </div>
-              </div>
-            </a>
-            <p className="text-xs text-gray-500 mt-3">
-              Opens in new window • Secure encrypted connection • Same trusted service
-            </p>
-          </div>
-        </div>
+      <section id="testimonials">
+        <QuoteSection 
+          quote={founderQuote.quote}
+          author={founderQuote.author}
+          role={founderQuote.role}
+          showAuthorImage={false}
+        />
       </section>
+      
       
       {/* CONSULTATION FORM SECTION - DISABLED FOR HOMEPAGE REORGANIZATION */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for component visibility control */}

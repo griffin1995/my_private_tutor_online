@@ -1,0 +1,118 @@
+{
+  "name": "Playwright MCP Server Configuration",
+  "description": "Configuration templates for Microsoft Playwright MCP server integration with Claude Code",
+  "version": "0.0.35",
+  "configurations": {
+    "basic": {
+      "mcpServers": {
+        "playwright": {
+          "command": "npx",
+          "args": [
+            "@playwright/mcp@latest"
+          ]
+        }
+      }
+    },
+    "headless_chrome": {
+      "mcpServers": {
+        "playwright": {
+          "command": "npx",
+          "args": [
+            "@playwright/mcp@latest",
+            "--headless",
+            "--browser=chrome"
+          ]
+        }
+      }
+    },
+    "headed_chrome": {
+      "mcpServers": {
+        "playwright": {
+          "command": "npx",
+          "args": [
+            "@playwright/mcp@latest",
+            "--browser=chrome"
+          ]
+        }
+      }
+    },
+    "firefox_headless": {
+      "mcpServers": {
+        "playwright": {
+          "command": "npx",
+          "args": [
+            "@playwright/mcp@latest",
+            "--headless",
+            "--browser=firefox"
+          ]
+        }
+      }
+    },
+    "with_output_directory": {
+      "mcpServers": {
+        "playwright": {
+          "command": "npx",
+          "args": [
+            "@playwright/mcp@latest",
+            "--headless",
+            "--browser=chrome",
+            "--output-dir=/home/jack/Documents/my_private_tutor_online/playwright-output",
+            "--save-trace",
+            "--save-session"
+          ]
+        }
+      }
+    },
+    "development_mode": {
+      "mcpServers": {
+        "playwright": {
+          "command": "npx",
+          "args": [
+            "@playwright/mcp@latest",
+            "--browser=chrome",
+            "--caps=vision",
+            "--viewport-size=1280,720"
+          ]
+        }
+      }
+    }
+  },
+  "features": {
+    "browser_support": [
+      "chrome",
+      "firefox",
+      "webkit",
+      "msedge"
+    ],
+    "capabilities": [
+      "vision",
+      "pdf"
+    ],
+    "modes": [
+      "headless",
+      "headed"
+    ]
+  },
+  "usage_examples": {
+    "test_basic_functionality": "npx @playwright/mcp@latest --version",
+    "start_headless_chrome": "npx @playwright/mcp@latest --headless --browser=chrome",
+    "start_with_vision": "npx @playwright/mcp@latest --caps=vision --browser=chrome",
+    "start_with_output": "npx @playwright/mcp@latest --output-dir=./output --save-trace --save-session"
+  },
+  "troubleshooting": {
+    "common_issues": [
+      {
+        "issue": "Server fails to start",
+        "solution": "Check Node.js version (requires 18+)"
+      },
+      {
+        "issue": "Browser not found",
+        "solution": "Install browser: npx playwright install chrome"
+      },
+      {
+        "issue": "Permission denied",
+        "solution": "Run with --no-sandbox flag if needed"
+      }
+    ]
+  }
+}

@@ -43,13 +43,12 @@ import quoteFormContent from "../../content/quote-form.json";
 import settingsContent from "../../content/settings.json";
 // CONTEXT7 SOURCE: /microsoft/typescript - Dynamic import patterns for CMS content switching
 // IMPLEMENTATION REASON: Import new tutor structure with fallback to existing structure
-import teamContent from "../../content/team.json";
-import tutorsNewContent from "../../content/tutors-new.json";
 import testimonialsContent from "../../content/testimonials.json";
+import tutorsNewContent from "../../content/tutors-new.json";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Module re-export patterns for centralized API
 // CMS DATA SOURCE: Re-exporting getTestimonialVideos and tutor image utilities from cms-images for centralized access
-import { getTestimonialVideos, getTutorImageById, hasTutorImage } from "./cms-images";
+import { getTestimonialVideos } from "./cms-images";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - FAQ content import for centralized FAQ data management
 // CMS DATA SOURCE: Importing faqContent from cms-faq for FAQ page functionality
@@ -3124,6 +3123,14 @@ export interface ServiceSubjectItem {
   };
   readonly level?: string; // e.g., "KS1-KS4", "A-Level", "University"
   readonly children?: readonly ServiceSubjectItem[]; // CONTEXT7 SOURCE: /microsoft/typescript - Nested children support for dropdown within dropdown functionality
+  // CONTEXT7 SOURCE: /microsoft/typescript - Video section interface for multimedia content integration
+  // VIDEO SECTION REASON: Official TypeScript patterns for optional video content within subject items
+  readonly videoSection?: {
+    readonly thumbnailUrl: string;
+    readonly videoUrl: string;
+    readonly title: string;
+    readonly alt: string;
+  };
 }
 
 export interface ServiceSubjectCategory {
@@ -3568,7 +3575,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
       // 3. ENTRANCE EXAMS (7+, 8+, 11+, 13+, 16+, UKiset, CAT4)
       {
         id: "entrance-exams",
-        title: "Entrance Exams (7+, 8+, 11+, 13+, 16+, UKiset, CAT4)",
+        title: "ENTRANCE EXAMS (7+, 8+, 11+, 13+, 16+, UKiset, CAT4)",
         icon: "Target",
         description:
           "Specialised preparation for competitive entrance examinations across all age groups",
@@ -3587,6 +3594,14 @@ export const getServicesContent = cache((): ServicesPageContent => {
             ],
             level: "Year 2-8",
             pricing: { from: "£85", to: "£160", currency: "GBP" },
+            // CONTEXT7 SOURCE: /facebook/react - Video section integration for entrance exam specialist introduction
+            // VIDEO SECTION REASON: Official React patterns for multimedia content display within CMS data structure
+            videoSection: {
+              thumbnailUrl: "/images/tutors/emily.jpg",
+              videoUrl: "/videos/11+ expert intro video MPTO.mp4",
+              title: "Meet Emily - Our 11+ Expert Introduction",
+              alt: "Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach"
+            },
           },
           {
             name: "Expert Tutor Matching",
@@ -3690,6 +3705,22 @@ export const getServicesContent = cache((): ServicesPageContent => {
             ],
             level: "Year 13+",
             pricing: { from: "£120", to: "£200", currency: "GBP" },
+            // CONTEXT7 SOURCE: /facebook/react - Two-column video section integration copying exact working entrance exams pattern
+            // TWO COLUMN VIDEO REASON: Official React patterns for dual video content following exact working entrance exams videoSection structure
+            twoColumnVideoSection: {
+              video1: {
+                thumbnailUrl: "/images/tutors/emily.jpg",
+                videoUrl: "/videos/11+ expert intro video MPTO.mp4",
+                title: "Meet Emily - University Admissions Specialist Introduction",
+                alt: "Emily's University Admissions Specialist Introduction Video - Meet Emily, our specialist university admissions tutor and learn about our comprehensive application preparation approach"
+              },
+              video2: {
+                thumbnailUrl: "/images/tutors/emily.jpg",
+                videoUrl: "/videos/11+ expert intro video MPTO.mp4",
+                title: "Meet Emily - Personal Statement & Interview Expert",
+                alt: "Emily's Personal Statement & Interview Expert Video - Learn about our expert personal statement crafting and interview preparation techniques for university applications"
+              }
+            },
           },
           {
             name: "Elizabeth's Top 10 Tips for Sculpting an Outstanding Personal Statement",
@@ -4098,7 +4129,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
       subjectCategories: {
         title: "Comprehensive Subject Coverage",
         description:
-          "Explore our extensive range of subjects and educational levels. Click on each section to discover detailed information about our tutoring services.",
+          "Our tutors are examiners, school teachers, and subject specialists who are not only experienced educators but also motivating mentors. Whether your child is preparing for a school entrance exam, navigating GCSEs/A-levels, or applying to top universities in the UK, we guide each family with clarity, care, and expert insight at every stage of their educational journey.",
       },
     },
   };
@@ -4805,18 +4836,19 @@ export const formatPriceDisplay = cache(
 export const getTutorProfilesSection = cache((): TutorProfilesSection => {
   // CONTEXT7 SOURCE: /microsoft/typescript - Object transformation patterns for key:value to array conversion
   // IMPLEMENTATION REASON: Convert new key:value structure to array format for backward compatibility
-  const newData = tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
-  
+  const newData =
+    tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
+
   // Convert profiles object to array
   const profilesArray = Object.values(newData.profiles);
-  
+
   return {
     title: newData.title,
     subtitle: newData.subtitle,
     description: newData.description,
     profiles: profilesArray,
     showAllButton: newData.showAllButton,
-    backgroundStyle: newData.backgroundStyle
+    backgroundStyle: newData.backgroundStyle,
   };
 });
 
@@ -4826,30 +4858,35 @@ export const getTutorProfilesSection = cache((): TutorProfilesSection => {
  * CONTEXT7 SOURCE: /microsoft/typescript - Object spread syntax for creating new objects with updated properties
  * DYNAMIC CONTENT: Updates title, description, and button text to reflect actual count of tutors with photos
  */
-export const getTutorProfilesSectionWithDynamicContent = cache((): TutorProfilesSection => {
-  // Import hasTutorImage function for photo checking
-  const { hasTutorImage } = require('./cms-images');
-  
-  // Get base section content from new structure
-  const baseSection = getTutorProfilesSection();
-  
-  // Filter profiles to only include those with real photos
-  const profilesWithPhotos = baseSection.profiles.filter(profile => hasTutorImage(profile.id));
-  const photoCount = profilesWithPhotos.length;
-  
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Component content revision patterns for enhanced user messaging
-  // CONTENT REVISION REASON: Official React documentation Section 4.2 demonstrates prop value updates for improved component messaging and user experience
-  // Create dynamic content with updated counts
-  return {
-    ...baseSection,
-    title: "Get to Know a Selection of Our Tutors",
-    description: "Here's a curated cross-section of our team to give you a sense of the calibre and diversity of educators available across each of our tutoring tiers. While this is just a glimpse, our full team spans every age and academic stage—from Year 1 phonics to postgraduate-level Astrophysics. If you don't see exactly what you're looking for here, rest assured we have the right expert behind the scenes, ready to support your child's learning journey. To begin, simply complete our short enquiry form, and a member of our team will be in touch to start the conversation.",
-    showAllButton: {
-      ...baseSection.showAllButton,
-      text: `View All ${photoCount} Expert Tutors`
-    }
-  };
-});
+export const getTutorProfilesSectionWithDynamicContent = cache(
+  (): TutorProfilesSection => {
+    // Import hasTutorImage function for photo checking
+    const { hasTutorImage } = require("./cms-images");
+
+    // Get base section content from new structure
+    const baseSection = getTutorProfilesSection();
+
+    // Filter profiles to only include those with real photos
+    const profilesWithPhotos = baseSection.profiles.filter((profile) =>
+      hasTutorImage(profile.id)
+    );
+    const photoCount = profilesWithPhotos.length;
+
+    // CONTEXT7 SOURCE: /reactjs/react.dev - Component content revision patterns for enhanced user messaging
+    // CONTENT REVISION REASON: Official React documentation Section 4.2 demonstrates prop value updates for improved component messaging and user experience
+    // Create dynamic content with updated counts
+    return {
+      ...baseSection,
+      title: "Get to Know a Selection of Our Tutors",
+      description:
+        "Here's a curated cross-section of our team to give you a sense of the calibre and diversity of educators available across each of our tutoring tiers. While this is just a glimpse, our full team spans every age and academic stage—from Year 1 phonics to postgraduate-level Astrophysics. If you don't see exactly what you're looking for here, rest assured we have the right expert behind the scenes, ready to support your child's learning journey. To begin, simply complete our short enquiry form, and a member of our team will be in touch to start the conversation.",
+      showAllButton: {
+        ...baseSection.showAllButton,
+        text: `View All ${photoCount} Expert Tutors`,
+      },
+    };
+  }
+);
 
 /**
  * Get individual tutor profiles - NEW STRUCTURE
@@ -4860,7 +4897,8 @@ export const getTutorProfilesSectionWithDynamicContent = cache((): TutorProfiles
 export const getTutorProfiles = cache((): readonly TutorProfile[] => {
   // CONTEXT7 SOURCE: /microsoft/typescript - Object.values() method for converting object properties to array
   // IMPLEMENTATION REASON: Convert key:value structure to array format for compatibility
-  const newData = tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
+  const newData =
+    tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
   return Object.values(newData.profiles) || [];
 });
 
@@ -4872,10 +4910,13 @@ export const getTutorProfiles = cache((): readonly TutorProfile[] => {
 export const getFeaturedTutorProfiles = cache((): readonly TutorProfile[] => {
   // CONTEXT7 SOURCE: /microsoft/typescript - Object.values() with filter method chaining
   // IMPLEMENTATION REASON: Convert key:value structure to array and filter for featured tutors
-  const newData = tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
-  return Object.values(newData.profiles).filter(
-    (profile: TutorProfile) => profile.featured
-  ) || [];
+  const newData =
+    tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
+  return (
+    Object.values(newData.profiles).filter(
+      (profile: TutorProfile) => profile.featured
+    ) || []
+  );
 });
 
 /**
@@ -4887,7 +4928,8 @@ export const getTutorProfileById = cache(
   (id: string): TutorProfile | undefined => {
     // CONTEXT7 SOURCE: /microsoft/typescript - Direct object property access for key:value structures
     // IMPLEMENTATION REASON: Use direct key access for optimal performance with new key:value structure
-    const newData = tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
+    const newData =
+      tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
     return newData.profiles[id];
   }
 );

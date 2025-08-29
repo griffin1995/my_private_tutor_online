@@ -158,7 +158,7 @@ export const LOGOS = {
     priority: true,
   },
   footer: {
-    src: "/images/logos/logo-name-tagline.png",
+    src: "/images/logos/logo-with-name.png",
     alt: "My Private Tutor Online - Premium Educational Services",
     width: 180,
     height: 70,
@@ -166,7 +166,7 @@ export const LOGOS = {
     loading: "lazy" as const,
   },
   icon: {
-    src: "/images/logos/logo-icon-only.png",
+    src: "/images/logos/logo-with-name.png",
     alt: "My Private Tutor Online Icon",
     width: 60,
     height: 60,

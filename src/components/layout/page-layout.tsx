@@ -54,6 +54,7 @@ interface PageFooterProps {
   className?: string
   variant?: 'default' | 'minimal' | 'premium'
   showBackToTop?: boolean
+  showContactForm?: boolean
 }
 
 interface PageLayoutProps {

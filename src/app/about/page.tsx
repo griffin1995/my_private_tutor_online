@@ -96,6 +96,7 @@ export default function AboutUsPage() {
         showFooter={true}
         containerSize="full"
         className="space-y-0"
+        footerProps={{ showContactForm: false }}
       >
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
         {/* FOUNDER STORY EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}

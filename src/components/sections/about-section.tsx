@@ -235,15 +235,16 @@ export function AboutSection({
                 <span className="font-medium text-primary-900">Address Book</span>
               </div>
               <div className="flex items-center gap-3">
-                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Height utility classes for consistent logo sizing enhancement */}
-                {/* SIZE INCREASE REASON: Official Tailwind CSS documentation shows h-9 (36px) provides ~29% size increase from h-7 (28px) for balanced logo prominence */}
-                {/* VISUAL HARMONY: Increased School Guide UK logo size by 30% to match Tatler logo enhancement while maintaining aspect ratio */}
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Arbitrary value height utilities for precise logo sizing */}
+                {/* SIZE UPDATE REASON: Official Tailwind CSS documentation shows h-[60px] arbitrary value provides precise 60px height for enhanced School Guide logo prominence */}
+                {/* REVISION TYPE: Updated School Guide UK logo to exactly 60px height while maintaining Tatler logo at h-8 for balanced presentation */}
+                {/* IMPLEMENTATION: Using h-[60px] (60px height) with w-auto object-contain to preserve aspect ratio and professional appearance */}
                 <Image
                   src="/images/media/schools-guide-uk-logo.png"
                   alt="School Guide UK"
                   width={80}
                   height={30}
-                  className="h-9 w-auto object-contain"
+                  className="h-[60px] w-auto object-contain"
                 />
                 <span className="font-medium text-primary-900">&lsquo;Top Pick&rsquo;</span>
               </div>

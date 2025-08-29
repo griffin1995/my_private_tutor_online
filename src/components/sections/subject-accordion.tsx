@@ -45,6 +45,30 @@ export interface SubjectItem {
     downloadUrl: string
     isPlaceholder?: boolean
   }
+  // CONTEXT7 SOURCE: /facebook/react - Video section interface for full video display
+  // VIDEO SECTION REASON: Official React patterns for comprehensive video content integration
+  videoSection?: {
+    thumbnailUrl: string
+    videoUrl: string
+    title: string
+    alt: string
+  }
+  // CONTEXT7 SOURCE: /microsoft/typescript - Two-column video section interface for dual video display
+  // TWO COLUMN VIDEO REASON: Official TypeScript data structure patterns for array-based dual video content
+  twoColumnVideoSection?: {
+    video1: {
+      thumbnailUrl: string
+      videoUrl: string
+      title: string
+      alt: string
+    }
+    video2: {
+      thumbnailUrl: string
+      videoUrl: string
+      title: string
+      alt: string
+    }
+  }
 }
 
 export interface SubjectCategory {
@@ -70,23 +94,27 @@ export interface SubjectAccordionProps {
   className?: string
   /** Callback when section is toggled */
   onSectionToggle?: (sectionId: string, isOpen: boolean) => void
+  /** Callback when video is clicked */
+  onVideoClick?: (videoUrl: string, title: string, poster?: string) => void
 }
 
 interface AccordionSectionProps {
   category: SubjectCategory
   isOpen: boolean
   onToggle: () => void
+  onVideoClick?: (videoUrl: string, title: string, poster?: string) => void
 }
 
 interface NestedSubjectItemProps {
   subjectItem: SubjectItem
   index: number
   parentId: string
+  onVideoClick?: (videoUrl: string, title: string, poster?: string) => void
 }
 
 // CONTEXT7 SOURCE: /radix-ui/primitives - Nested accordion component for child dropdowns
 // NESTED ACCORDION REASON: Official Radix UI patterns for nested accordions supporting multi-level dropdown functionality
-function NestedSubjectItem({ subjectItem, index, parentId }: NestedSubjectItemProps) {
+function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: NestedSubjectItemProps) {
   const [isNestedOpen, setIsNestedOpen] = useState(false)
   const hasChildren = subjectItem.children && subjectItem.children.length > 0
 
@@ -147,6 +175,123 @@ function NestedSubjectItem({ subjectItem, index, parentId }: NestedSubjectItemPr
                 </Button>
               </div>
             )}
+          </div>
+        )}
+        
+        {/* CONTEXT7 SOURCE: /facebook/react - Video section display component for full video integration */}
+        {/* VIDEO SECTION REASON: Official React patterns for comprehensive video content with click-to-play functionality */}
+        {subjectItem.videoSection && (
+          <div className="mb-6 relative">
+            <div 
+              className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
+              onClick={() => onVideoClick?.(subjectItem.videoSection!.videoUrl, subjectItem.videoSection!.title, subjectItem.videoSection!.thumbnailUrl)}
+            >
+              <div className="relative">
+                <img
+                  src={subjectItem.videoSection.thumbnailUrl}
+                  alt={subjectItem.videoSection.alt}
+                  className="w-full h-[300px] sm:h-[400px] lg:h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent" />
+              </div>
+              
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg group-hover:bg-white/95 group-hover:scale-110 transition-all duration-300">
+                  <Play className="w-8 h-8 text-amber-700 ml-1" fill="currentColor" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Decorative Elements */}
+            <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
+            
+            {/* Programme Highlight Badge */}
+            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {/* CONTEXT7 SOURCE: /microsoft/typescript - Two-column video section display component for dual video layout */}
+        {/* TWO COLUMN VIDEO REASON: Official TypeScript patterns for grid-based dual video content with identical styling */}
+        {subjectItem.twoColumnVideoSection && (
+          <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Video 1 Column */}
+            <div className="relative">
+              <div 
+                className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
+                onClick={() => onVideoClick?.(subjectItem.twoColumnVideoSection!.video1.videoUrl, subjectItem.twoColumnVideoSection!.video1.title, subjectItem.twoColumnVideoSection!.video1.thumbnailUrl)}
+              >
+                <div className="relative">
+                  <img
+                    src={subjectItem.twoColumnVideoSection.video1.thumbnailUrl}
+                    alt={subjectItem.twoColumnVideoSection.video1.alt}
+                    className="w-full h-[300px] sm:h-[400px] lg:h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent" />
+                </div>
+                
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg group-hover:bg-white/95 group-hover:scale-110 transition-all duration-300">
+                    <Play className="w-8 h-8 text-amber-700 ml-1" fill="currentColor" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
+              
+              {/* Programme Highlight Badge */}
+              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Video 2 Column */}
+            <div className="relative">
+              <div 
+                className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
+                onClick={() => onVideoClick?.(subjectItem.twoColumnVideoSection!.video2.videoUrl, subjectItem.twoColumnVideoSection!.video2.title, subjectItem.twoColumnVideoSection!.video2.thumbnailUrl)}
+              >
+                <div className="relative">
+                  <img
+                    src={subjectItem.twoColumnVideoSection.video2.thumbnailUrl}
+                    alt={subjectItem.twoColumnVideoSection.video2.alt}
+                    className="w-full h-[300px] sm:h-[400px] lg:h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent" />
+                </div>
+                
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg group-hover:bg-white/95 group-hover:scale-110 transition-all duration-300">
+                    <Play className="w-8 h-8 text-amber-700 ml-1" fill="currentColor" />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative Elements */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
+              
+              {/* Programme Highlight Badge */}
+              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>
+                </div>
+              </div>
+            </div>
           </div>
         )}
         
@@ -240,7 +385,7 @@ function NestedSubjectItem({ subjectItem, index, parentId }: NestedSubjectItemPr
 // ANIMATION IMPLEMENTATION REASON: Official Framer Motion patterns for expandable content with height:'auto'
 // CONTEXT7 SOURCE: /radix-ui/website - Enhanced accordion button patterns with accessibility compliance
 // ACCESSIBILITY_ENHANCEMENT_REASON: Official Radix UI documentation for accessible button states with WCAG 2.1 AA touch targets
-function AccordionSection({ category, isOpen, onToggle }: AccordionSectionProps) {
+function AccordionSection({ category, isOpen, onToggle, onVideoClick }: AccordionSectionProps) {
   return (
     <Card className="border-slate-200 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
       <button
@@ -280,6 +425,7 @@ function AccordionSection({ category, isOpen, onToggle }: AccordionSectionProps)
                 subjectItem={subjectItem}
                 index={index}
                 parentId={category.id}
+                onVideoClick={onVideoClick}
               />
             ))}
             
@@ -331,7 +477,8 @@ export function SubjectAccordion({
   categories, 
   defaultOpenSections = [], 
   className = "",
-  onSectionToggle 
+  onSectionToggle,
+  onVideoClick
 }: SubjectAccordionProps) {
   const [openSections, setOpenSections] = useState<string[]>(defaultOpenSections)
 
@@ -353,6 +500,7 @@ export function SubjectAccordion({
           category={category}
           isOpen={openSections.includes(category.id)}
           onToggle={() => toggleSection(category.id)}
+          onVideoClick={onVideoClick}
         />
       ))}
     </div>
