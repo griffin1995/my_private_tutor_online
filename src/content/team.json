@@ -1,6 +1,6 @@
 {
   "tutorProfilesSection": {
-    "title": "Meet Our 8 Expert Tutors",
+    "title": "Meet Our 9 Expert Tutors",
     "subtitle": "World-Class Educators, Royal Clientele Endorsed",
     "description": "Our handpicked team of 8 tutors are selected by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools, official examiners for GCSEs, A Levels and IB exams, and specialists across all academic subjects.",
     "profiles": [
@@ -229,7 +229,7 @@
         },
         "specializations": [
           "Biology",
-          "Chemistry", 
+          "Chemistry",
           "Physics",
           "Mathematics",
           "School Leadership"
@@ -656,12 +656,7 @@
           "grade": "Distinction",
           "graduationYear": "2006"
         },
-        "specializations": [
-          "History",
-          "Politics",
-          "Economics",
-          "Sociology"
-        ],
+        "specializations": ["History", "Politics", "Economics", "Sociology"],
         "experience": {
           "yearsTeaching": 16,
           "description": "Providing 1-2-1 educational support since 2009 with examiner experience teaching from GCSE to University level",

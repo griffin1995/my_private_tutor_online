@@ -258,7 +258,7 @@ export default function CookiePolicyPage() {
             These cookies track your visits across websites to show relevant advertisements.
           </p>
           
-          <div className="bg-orange-50 p-6 rounded-lg my-6">
+          <div className="bg-[#CA9E5B]/10 p-6 rounded-lg my-6">
             <h4 className="font-semibold mb-3">Marketing Cookie Details:</h4>
             <div className="space-y-4 text-sm">
               <div>

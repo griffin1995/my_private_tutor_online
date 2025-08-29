@@ -491,7 +491,7 @@ export const AISocialProofEngine: React.FC<AISocialProofEngineProps> = ({
         </div>
         
         <div className="text-center p-3 bg-white/60 rounded-lg">
-          <div className="text-lg font-bold text-orange-600">
+          <div className="text-lg font-bold text-[#CA9E5B]">
             {topRecommendations.length}
           </div>
           <div className="text-xs text-gray-600 flex items-center justify-center gap-1">

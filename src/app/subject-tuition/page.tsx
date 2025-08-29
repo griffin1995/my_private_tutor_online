@@ -298,7 +298,7 @@ export default function SubjectTuitionPage() {
         {/* CONTEXT7 SOURCE: /facebook/react - HomeschoolingPreview component integration with programme image */}
         {/* HOMESCHOOLING SECTION REASON: Extracted component for preview section with CTA and programme visualization */}
         <Section className="py-16 lg:py-24 relative" background="white">
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-orange-50/20" />
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-[#CA9E5B]/20" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               

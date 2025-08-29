@@ -153,7 +153,7 @@ export default function MeetOurTutorsPage() {
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-orange-600 text-white hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                  className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-[#CA9E5B] text-white hover:bg-[#B8915A] focus:outline-none focus:ring-2 focus:ring-[#CA9E5B] focus:ring-offset-2"
                 >
                   Schedule a Consultation
                 </a>
@@ -161,7 +161,7 @@ export default function MeetOurTutorsPage() {
                   href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-white text-orange-600 border-2 border-orange-600 hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                  className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-white text-[#CA9E5B] border-2 border-[#CA9E5B] hover:bg-[#CA9E5B]/10 focus:outline-none focus:ring-2 focus:ring-[#CA9E5B] focus:ring-offset-2"
                 >
                   Request Information
                 </a>

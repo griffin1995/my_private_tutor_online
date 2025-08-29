@@ -474,7 +474,7 @@ export function MultiModalTestimonials({
                 </div>
               )}
               {testimonial.imageContent && (
-                <div className="flex items-center gap-1 text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">
+                <div className="flex items-center gap-1 text-xs bg-[#CA9E5B]/20 text-[#CA9E5B] px-2 py-1 rounded-full">
                   <ImageIcon className="w-3 h-3" />
                   Images
                 </div>

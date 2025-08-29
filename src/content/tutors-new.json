@@ -1,6 +1,6 @@
 {
   "tutorProfilesSection": {
-    "title": "Meet Our 9 Expert Tutors",
+    "title": "Meet Our Expert Tutors",
     "subtitle": "World-Class Educators, Royal Clientele Endorsed",
     "description": "Our handpicked team of 9 tutors are selected by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools, official examiners for GCSEs, A Levels and IB exams, and specialists across all academic subjects.",
     "profiles": {
@@ -138,9 +138,7 @@
         "education": {
           "university": "Professional Teaching Qualification",
           "degree": "LLB (Hons) Law",
-          "additionalQualifications": [
-            "PGCE Secondary English"
-          ],
+          "additionalQualifications": ["PGCE Secondary English"],
           "grade": "Honours",
           "graduationYear": "2015"
         },
@@ -249,9 +247,7 @@
         "education": {
           "university": "Cambridge & Oxford",
           "degree": "BA History, Cambridge",
-          "additionalQualifications": [
-            "PGCE, Oxford"
-          ],
+          "additionalQualifications": ["PGCE, Oxford"],
           "grade": "First Class",
           "graduationYear": "2018"
         },
@@ -390,11 +386,7 @@
           "yearsTeaching": 22,
           "description": "English Subject Lead with outstanding success guiding students into competitive grammars and independents",
           "totalStudents": 800,
-          "grammarSuccess": [
-            "Tiffin",
-            "Sutton",
-            "Wallington"
-          ]
+          "grammarSuccess": ["Tiffin", "Sutton", "Wallington"]
         },
         "achievements": [
           {
@@ -484,10 +476,7 @@
         "education": {
           "university": "Professional Teaching Qualification",
           "degree": "BSc Maths",
-          "additionalQualifications": [
-            "MA Education",
-            "PGCE Secondary"
-          ],
+          "additionalQualifications": ["MA Education", "PGCE Secondary"],
           "grade": "Honours",
           "graduationYear": "1995"
         },
@@ -604,9 +593,7 @@
         "education": {
           "university": "Professional Teaching Qualification",
           "degree": "BA Spanish & German",
-          "additionalQualifications": [
-            "QTS in Spanish and German"
-          ],
+          "additionalQualifications": ["QTS in Spanish and German"],
           "grade": "Honours",
           "graduationYear": "2010"
         },
@@ -735,10 +722,7 @@
           "yearsTeaching": 6,
           "description": "11+ and entrance exam success across Harrow, Westminster and more, with Oxbridge personal statement & interview coaching",
           "totalStudents": 150,
-          "eliteSchoolSuccess": [
-            "Harrow",
-            "Westminster"
-          ]
+          "eliteSchoolSuccess": ["Harrow", "Westminster"]
         },
         "achievements": [
           {
@@ -833,9 +817,7 @@
         "education": {
           "university": "University of Oxford",
           "degree": "BA English, Oxford",
-          "additionalQualifications": [
-            "CELTA Qualified"
-          ],
+          "additionalQualifications": ["CELTA Qualified"],
           "grade": "First Class",
           "graduationYear": "2017"
         },
@@ -849,10 +831,7 @@
           "yearsTeaching": 8,
           "description": "Teaches online and in North London area with classroom experience in UK and international private schools",
           "totalStudents": 250,
-          "teachingAreas": [
-            "Online",
-            "North London"
-          ],
+          "teachingAreas": ["Online", "North London"],
           "internationalExperience": true
         },
         "achievements": [
@@ -966,10 +945,7 @@
           "description": "British & US admissions expert with Oxbridge & Ivy League success, 10,000+ tutoring hours",
           "totalStudents": 200,
           "tutoringHours": 10000,
-          "admissionsSuccess": [
-            "Oxbridge",
-            "Ivy League"
-          ]
+          "admissionsSuccess": ["Oxbridge", "Ivy League"]
         },
         "achievements": [
           {

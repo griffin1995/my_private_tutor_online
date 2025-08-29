@@ -548,7 +548,7 @@ export default function HowItWorksPage() {
                               ? "bg-gradient-to-br from-amber-50 via-yellow-50/80 to-orange-50/60 border-amber-500 ring-2 ring-amber-400/40 shadow-3xl hover:shadow-4xl shadow-amber-200/40"
                               : isSilverTier
                                 ? "bg-gradient-to-br from-slate-50 via-gray-50/80 to-slate-50/60 border-slate-400 ring-1 ring-slate-300/30 shadow-xl hover:shadow-2xl shadow-slate-200/20"
-                                : "bg-gradient-to-br from-orange-100/20 via-amber-50/40 to-orange-50/30 border-orange-700 ring-1 ring-orange-600/20 shadow-xl hover:shadow-2xl shadow-orange-200/15"
+                                : "bg-gradient-to-br from-[#CA9E5B]/20 via-amber-50/40 to-[#CA9E5B]/30 border-[#CA9E5B] ring-1 ring-[#CA9E5B]/20 shadow-xl hover:shadow-2xl shadow-[#CA9E5B]/15"
                           }`}
                         >
                           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight shimmer overlay with enhanced gradient treatments */}
@@ -659,7 +659,7 @@ export default function HowItWorksPage() {
                                   ? "p-8 bg-gradient-to-br from-yellow-50/90 to-amber-50/70 border-yellow-300/60 shadow-yellow-100/50"
                                   : isSilverTier
                                     ? "p-6 bg-gradient-to-br from-gray-50/80 to-slate-50/60 border-gray-200/50 shadow-gray-100/30"
-                                    : "p-6 bg-gradient-to-br from-orange-50/50 to-amber-50/40 border-orange-300/50 shadow-orange-100/20"
+                                    : "p-6 bg-gradient-to-br from-[#CA9E5B]/50 to-amber-50/40 border-[#CA9E5B]/50 shadow-[#CA9E5B]/20"
                               }`}
                             >
                               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight pricing with enhanced typography for featured elements */}
@@ -671,7 +671,7 @@ export default function HowItWorksPage() {
                                       ? "text-4xl lg:text-5xl text-yellow-700"
                                       : isSilverTier
                                         ? "text-3xl lg:text-4xl text-gray-700"
-                                        : "text-3xl lg:text-4xl text-orange-700"
+                                        : "text-3xl lg:text-4xl text-[#CA9E5B]"
                                   }`}
                                 >
                                   {tier.pricePoint}
@@ -685,7 +685,7 @@ export default function HowItWorksPage() {
                                       ? "bg-yellow-200/60 text-yellow-900 border-2 border-yellow-300 shadow-md"
                                       : isSilverTier
                                         ? "bg-gray-100 text-gray-800 border border-gray-200"
-                                        : "bg-orange-100/60 text-orange-800 border border-orange-200/60"
+                                        : "bg-[#CA9E5B]/10 text-[#CA9E5B] border border-[#CA9E5B]/30"
                                   }`}
                                 >
                                   <span className="w-2 h-2 bg-current rounded-full mr-2 animate-pulse" />
@@ -730,7 +730,7 @@ export default function HowItWorksPage() {
                                   ? "bg-yellow-300"
                                   : isSilverTier
                                     ? "bg-gray-200"
-                                    : "bg-orange-200"
+                                    : "bg-[#CA9E5B]"
                               }`}
                             />
 
