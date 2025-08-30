@@ -11,6 +11,12 @@ coverage
 .nyc_output
 
 # Large files and development assets
+# Allow specific video files for production deployment
+!/public/videos/landing-page-hero-background.mp4
+!/public/videos/elizabeth-introduction-sound.mp4
+!/public/videos/background-video-2025.mp4
+!/public/videos/background-video-2025.webm
+# Block all other video files
 *.mp4
 *.webm
 *.mov
