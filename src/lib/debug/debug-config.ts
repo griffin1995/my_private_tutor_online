@@ -80,10 +80,11 @@ export const DEBUG_CONFIG: DebugConfig = {
  * HYDRATION SAFETY REASON: Consistent debug state detection for server and client
  */
 export const isDebugEnabled = (): boolean => {
-  // CONTEXT7 SOURCE: /vercel/next.js - SSR-safe boolean evaluation
+  // CONTEXT7 SOURCE: /vercel/next.js - SSR-safe boolean evaluation with runtime overrides
   // CONSISTENCY REASON: Ensure same result on server and client for hydration safety
   try {
-    return DEBUG_CONFIG.enabled;
+    const config = getRuntimeDebugConfig();
+    return config.enabled;
   } catch (error) {
     // CONTEXT7 SOURCE: /vercel/next.js - Error handling for SSR safety
     // FALLBACK REASON: Return false if config access fails during SSR
@@ -96,7 +97,32 @@ export const isDebugEnabled = (): boolean => {
  * RUNTIME REASON: Next.js patterns for accessing environment variables at runtime
  */
 export const getDebugConfig = (): DebugConfig => {
-  return DEBUG_CONFIG;
+  return getRuntimeDebugConfig();
+};
+
+/**
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Runtime configuration management
+ * RUNTIME CONFIG REASON: Official React patterns for dynamic configuration updates
+ */
+let runtimeDebugConfig: Partial<DebugConfig> = {};
+
+/**
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Runtime configuration setter
+ * SETTER REASON: Official React patterns for updating configuration at runtime
+ */
+export const setDebugConfig = (config: Partial<DebugConfig>): void => {
+  runtimeDebugConfig = { ...runtimeDebugConfig, ...config };
+};
+
+/**
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Runtime configuration getter with fallbacks
+ * GETTER REASON: Official React patterns for accessing configuration with runtime overrides
+ */
+export const getRuntimeDebugConfig = (): DebugConfig => {
+  return {
+    ...DEBUG_CONFIG,
+    ...runtimeDebugConfig
+  };
 };
 
 /**
@@ -104,7 +130,8 @@ export const getDebugConfig = (): DebugConfig => {
  * DEV ONLY REASON: Official React patterns for code that only runs in development
  */
 export const debugLog = (message: string, ...args: any[]): void => {
-  if (DEBUG_CONFIG.enabled && DEBUG_CONFIG.enableLogging) {
+  const config = getRuntimeDebugConfig();
+  if (config.enabled && config.enableLogging) {
     // CONTEXT7 SOURCE: /reactjs/react.dev - Console logging best practices
     // LOGGING REASON: Official JavaScript/React patterns for structured console output
     console.log(`[DEBUG ${new Date().toISOString()}]`, message, ...args);
@@ -116,9 +143,20 @@ export const debugLog = (message: string, ...args: any[]): void => {
  * PERFORMANCE REASON: Official React patterns for minimal performance impact when debugging disabled
  */
 export const debugGroup = (label: string, fn: () => void): void => {
-  if (DEBUG_CONFIG.enabled && DEBUG_CONFIG.enableLogging) {
+  const config = getRuntimeDebugConfig();
+  if (config.enabled && config.enableLogging) {
     console.group(`[DEBUG GROUP] ${label}`);
     fn();
     console.groupEnd();
   }
+};
+
+/**
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Simple debug toggle utility
+ * TOGGLE REASON: Official React patterns for providing user-friendly debug controls
+ */
+export const toggleDebug = (): void => {
+  const currentConfig = getRuntimeDebugConfig();
+  setDebugConfig({ enabled: !currentConfig.enabled });
+  debugLog(`Debug mode ${!currentConfig.enabled ? 'enabled' : 'disabled'}`);
 };
