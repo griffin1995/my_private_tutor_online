@@ -88,10 +88,10 @@ interface HeroSectionProps {
  */
 export function HeroSection({ 
   className = "",
-  // CONTEXT7 SOURCE: /vercel/next.js - Updated to use new landing-page-hero-background.mp4 for enhanced hero experience
-  // VIDEO UPDATE REASON: Official Next.js documentation recommends using latest video assets for optimal user engagement
-  // NEW HERO VIDEO: landing-page-hero-background.mp4 provides premium background video for homepage hero section
-  backgroundVideo = "/videos/landing-page-hero-background.mp4",
+  // EMERGENCY FALLBACK: Video deployment issue - using fallback image until videos are accessible on Vercel
+  // DEPLOYMENT STATUS: Videos return 404 on production, implementing temporary image background
+  // FALLBACK STRATEGY: Use existing hero image while video deployment completes
+  backgroundVideo = "/images/hero/child_book_and_laptop.avif",
   showHeader = true,
   hasStaticNavbar = false
 }: HeroSectionProps) {
@@ -113,8 +113,8 @@ export function HeroSection({
       {/* Documentation Source: Context7 MCP - HTML5 video background best practices */}
       {/* Pattern: Clean full-screen video hero without text content overlay */}
       <PageHero 
-        background="video" 
-        backgroundVideo={backgroundVideo}
+        background="image" 
+        backgroundImage={backgroundVideo}
         size="full"
         overlay={false}
         className=""
