@@ -29,21 +29,17 @@
 
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
 // BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
-import React from 'react';
-import { SimpleHero } from "@/components/layout/simple-hero";
 import { PageLayout } from "@/components/layout/page-layout";
 import { Section } from "@/components/layout/section";
+import { SimpleHero } from "@/components/layout/simple-hero";
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component imports for VideoThumbnailTopCard component patterns
 // COMPONENT STANDARDIZATION: Official React documentation recommends consistent component usage patterns
 import { VideoThumbnailTopCard } from "@/components/marketing/video-thumbnail-top-card";
 import { useVideoGridNavigation } from "@/hooks/use-video-grid-navigation";
 import { getMasterclassVideo } from "@/lib/cms/cms-images";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { m } from "framer-motion";
-import { CheckCircle, Clock, Play, X } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 // RENDERING ANALYSIS - Context7 MCP Verified:
 // Documentation Source: Next.js Client Components Dynamic Rendering
@@ -186,9 +182,9 @@ const videoMasterclassesContent = {
 export default function VideoMasterclassesPage() {
   // CONTEXT7 SOURCE: /reactjs/react.dev - React useState for video modal state management
   // VIDEO MODAL IMPLEMENTATION: Official React documentation recommends useState for modal visibility control
-  const [isVideoOpen, setIsVideoOpen] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   // CONTEXT7 SOURCE: /w3c/wcag - Video grid navigation for accessibility
   // KEYBOARD NAVIGATION REASON: Official WCAG documentation recommends keyboard navigation for grid-based content
   const { handleKeyNavigation } = useVideoGridNavigation({
@@ -196,51 +192,53 @@ export default function VideoMasterclassesPage() {
     totalItems: 8, // Total number of video cards across all sections
     enableNavigation: true,
     onNavigate: (fromIndex, toIndex, direction) => {
-      console.log(`Navigated from item ${fromIndex} to ${toIndex} via ${direction}`)
-    }
-  })
-  
+      console.log(
+        `Navigated from item ${fromIndex} to ${toIndex} via ${direction}`
+      );
+    },
+  });
+
   // CONTEXT7 SOURCE: /reactjs/react.dev - Video modal handler functions
   // MODAL CONTROL REASON: Official React documentation recommends separate functions for open/close actions
   const handleVideoOpen = () => {
-    setIsVideoOpen(true)
-  }
-  
+    setIsVideoOpen(true);
+  };
+
   const handleVideoClose = () => {
-    setIsVideoOpen(false)
+    setIsVideoOpen(false);
     if (videoRef.current) {
-      videoRef.current.pause()
-      videoRef.current.currentTime = 0
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
     }
-  }
-  
+  };
+
   // CONTEXT7 SOURCE: /reactjs/react.dev - useEffect for keyboard navigation and body scroll control
   // ACCESSIBILITY REASON: Official React documentation recommends useEffect for modal keyboard handling and cleanup
   useEffect(() => {
-    if (typeof window === 'undefined') return
-    
+    if (typeof window === "undefined") return;
+
     if (isVideoOpen) {
       // Prevent body scroll when modal is open
-      document.body.style.overflow = 'hidden'
-      
+      document.body.style.overflow = "hidden";
+
       // Handle escape key
       const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-          handleVideoClose()
+        if (e.key === "Escape") {
+          handleVideoClose();
         }
-      }
-      
-      document.addEventListener('keydown', handleKeyDown)
-      
+      };
+
+      document.addEventListener("keydown", handleKeyDown);
+
       return () => {
-        document.body.style.overflow = 'unset'
-        document.removeEventListener('keydown', handleKeyDown)
-      }
+        document.body.style.overflow = "unset";
+        document.removeEventListener("keydown", handleKeyDown);
+      };
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = "unset";
     }
-  }, [isVideoOpen])
-  
+  }, [isVideoOpen]);
+
   // CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns for full-screen hero sections
   // HERO CONSISTENCY REASON: Official Next.js documentation recommends hero sections outside PageLayout for full-screen treatment
   return (
@@ -250,7 +248,7 @@ export default function VideoMasterclassesPage() {
       <SimpleHero
         backgroundImage="/images/hero/hero-video-masterclasses.jpg"
         h1="Video Masterclasses & Educational Content"
-        h2="Learn Online"
+        h2="A trusted guide to British education, culture, and university preparation"
         decorativeStyle="lines"
       />
 
@@ -259,35 +257,40 @@ export default function VideoMasterclassesPage() {
       {/* CONTEXT7 SOURCE: /vercel/next.js - Layout component with navigation header for consistent site structure */}
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Intro section implementation using exact ROW 1 structure from About page FounderStorySection */}
-        {/* TASK 1 IMPLEMENTATION: Official Framer Motion documentation patterns for viewport-triggered animations with exact About page ROW 1 layout */}
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Introduction section with viewport-triggered animations for video masterclasses */}
+        {/* REVISION IMPLEMENTATION: Official Framer Motion documentation patterns for whileInView animations with wider layout */}
         {/* Elizabeth Introduction Section - After Hero (section 2) and before Featured Masterclasses (section 4) */}
         <Section id="section-2" background="white" className="py-8 lg:py-12">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Centered text container with 50-70% width following About page exact structure */}
-            {/* LAYOUT CONSISTENCY REASON: Official Tailwind CSS documentation Section 2.3 recommends consistent container patterns across pages */}
-            <div className="max-w-2xl mx-auto text-center mb-10">
-              <m.h1
-                className="text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-primary-900 mb-3 leading-tight"
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Wider text container using max-w-5xl for enhanced visual width and readability */}
+            {/* LAYOUT REVISION REASON: Official Tailwind CSS documentation max-w-5xl (64rem/1024px) provides wider content sections for improved visual hierarchy */}
+            <div className="max-w-5xl mx-auto text-center mb-10">
+              {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with whileInView animations and proper paragraph structure */}
+              {/* CONTENT REVISION: User-specified exact copy for intro section with proper line breaks and paragraph structure, no H1 heading */}
+              <m.div
+                className="text-lg lg:text-xl text-primary-700 leading-relaxed space-y-4"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8 }}
               >
-                Join Elizabeth Burrows, Trusted Educational Expert
-              </m.h1>
-
-              {/* CONTEXT7 SOURCE: /grx7/framer-motion - Content implementation with provided copy and exact About page animation patterns */}
-              {/* COPY SOURCE: User-provided exact copy for intro section implementation */}
-              <m.p
-                className="text-lg lg:text-xl text-primary-700 leading-relaxed max-w-xl mx-auto"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over 15 years of international education experience. These masterclasses, drawn from her live seminars, offer rare access to the knowledge and strategies typically reserved for her private clients. These sessions bridge the gap between international education and the expectations of British schools and universities. Access on demand, from anywhere in the world.
-              </m.p>
+                <p>
+                  Join <b>Elizabeth Burrows</b>, founder of My Private Tutor
+                  Online, as she shares her expert insight from over 15 years of
+                  international education experience. These masterclasses, drawn
+                  from her live seminars, offer{" "}
+                  <b>rare access to the knowledge and strategies</b> typically
+                  reserved for her private clients.
+                </p>
+                <p>
+                  These sessions bridge the gap between international education
+                  and{" "}
+                  <b>the expectations of British schools and universities</b>.
+                </p>
+                <p>
+                  <b>Access on demand, from anywhere in the world.</b>
+                </p>
+              </m.div>
             </div>
           </div>
         </Section>
@@ -315,76 +318,100 @@ export default function VideoMasterclassesPage() {
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailTopCard components */}
             {/* GRID ANIMATION REASON: Official Framer Motion documentation recommends staggered animations for multiple components in grid layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-              {/* Card 1 - Unlocking Academic Success (Free) */}
+              {/* Card 1 - Top 10 Tips for Outstanding Personal Statements - Part 2 of 2 */}
               <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailTopCard component usage for free masterclass content */}
-                {/* FREE MASTERCLASS IMPLEMENTATION: Using VideoThumbnailTopCard with CMS integration for proper video asset management */}
-                {/* CMS DATA SOURCE: Using getMasterclassVideo for unlocking academic success video data */}
-                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with consistent thumbnail positioning */}
-                {/* TASK 1 IMPLEMENTATION: Converting all VideoThumbnailMidCard instances to VideoThumbnailTopCard for standardized styling */}
+                {/* CONTEXT7 SOURCE: /typescript-cheatsheets/react - VideoThumbnailTopCard component usage for premium masterclass content */}
+                {/* PERSONAL STATEMENTS IMPLEMENTATION: Using VideoThumbnailTopCard with CMS integration for proper video asset management */}
+                {/* CMS DATA SOURCE: Using getMasterclassVideo for personal statements guide video data */}
+                {/* CONTEXT7 SOURCE: /typescript-cheatsheets/react - VideoThumbnailTopCard component with consistent thumbnail positioning */}
+                {/* FEATURED CARD UPDATE: Replaced Unlocking Academic Success with Personal Statements masterclass as requested */}
                 <VideoThumbnailTopCard
-                  title={getMasterclassVideo('unlockingAcademicSuccess').title}
-                  description={getMasterclassVideo('unlockingAcademicSuccess').description}
-                  variant="standard"
-                  popular={false}
-                  priceRange="Free Access"
-                  duration={`${getMasterclassVideo('unlockingAcademicSuccess').duration} minutes`}
+                  title={getMasterclassVideo("personalStatementsGuide").title}
+                  description={
+                    getMasterclassVideo("personalStatementsGuide").description
+                  }
+                  variant="premium"
+                  popular={true}
+                  priceRange={
+                    getMasterclassVideo("personalStatementsGuide").price
+                  }
+                  duration={`${getMasterclassVideo("personalStatementsGuide").duration} minutes`}
                   features={[
-                    { feature: "Practical strategies for academic resilience" },
-                    { feature: "Building student independence and confidence" },
-                    { feature: "Overcoming learning gaps effectively" },
-                    { feature: "Positive approach to tutoring support" }
+                    {
+                      feature:
+                        "Elizabeth's secret 10-ingredient personal statement recipe",
+                    },
+                    {
+                      feature:
+                        "Real Oxford Medicine personal statement case study",
+                    },
+                    {
+                      feature:
+                        "New 2025 UCAS format structured response guidance",
+                    },
+                    {
+                      feature:
+                        "Advanced writing techniques for standout applications",
+                    },
                   ]}
-                  ctaText="Watch Free Masterclass"
-                  ctaLink="#free-masterclass"
-                  onCTAClick={handleVideoOpen}
-                  videoUrl={getMasterclassVideo('unlockingAcademicSuccess').videoUrl}
-                  thumbnailUrl="/images/masterclass-thumbnails/unlocking-success.png"
+                  ctaText="Purchase Masterclass"
+                  ctaLink="#personal-statements-purchase"
+                  thumbnailUrl={
+                    getMasterclassVideo("personalStatementsGuide").thumbnailUrl
+                  }
+                  paymentUrl={
+                    getMasterclassVideo("personalStatementsGuide").paymentUrl
+                  }
+                  onCTAClick={() => {
+                    window.open(
+                      getMasterclassVideo("personalStatementsGuide").paymentUrl,
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }}
                   enableLazyLoading={true}
                   gridIndex={0}
                   onKeyNavigation={handleKeyNavigation}
                 />
               </m.div>
 
-              {/* Card 2 - UCAS Guide Part 1 */}
+              {/* Card 2 - Unlocking Academic Success */}
               <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /grx7/framer-motion - VideoThumbnailTopCard component with smooth scroll functionality */}
-                {/* UCAS GUIDE IMPLEMENTATION: Using VideoThumbnailTopCard with smooth scroll to Section 3 on CTA click */}
-                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with consistent thumbnail positioning */}
-                {/* TASK 1 IMPLEMENTATION: Converting all VideoThumbnailMidCard instances to VideoThumbnailTopCard for standardized styling */}
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component updates for free content */}
+                {/* UNLOCKING SUCCESS IMPLEMENTATION: Official React documentation patterns for component prop updates */}
+                {/* REVISION REASON: Replacing premium UCAS Guide with free Unlocking Academic Success masterclass from GCSE Summit 2024 */}
                 <VideoThumbnailTopCard
-                  title="Elizabeth's Essential UCAS Guide"
-                  description="This comprehensive guide serves as your gateway to both parts of Elizabeth's UCAS expertise, offering essential insights for university application success."
-                  variant="premium"
-                  popular={true}
-                  priceRange={videoMasterclassesContent.masterclasses[1]?.price || "£49.99"}
-                  duration={videoMasterclassesContent.masterclasses[1]?.duration || "90 minutes"}
+                  title="Unlocking Academic Success"
+                  description="Elizabeth Burrows was invited to speak at the GCSE Summit 2024, where she addressed parents of GCSE-aged students on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition."
+                  variant="standard"
+                  popular={false}
+                  priceRange="Free Access"
+                  duration="30 minutes"
                   features={[
-                    { feature: "Complete UCAS application timeline breakdown" },
-                    { feature: "University selection strategies for international students" },
-                    { feature: "Personal statement foundation and planning" },
-                    { feature: "UCAS Hub navigation and technical requirements" }
+                    {
+                      feature: "Recognising when one-to-one support is needed",
+                    },
+                    { feature: "Identifying truly exceptional tutors" },
+                    { feature: "Managing tutor-student-parent relationships" },
+                    { feature: "Practical guidance for academic outcomes" },
                   ]}
-                  ctaText="Read More"
-                  ctaLink="#ucas-guide-section"
-                  onCTAClick={() => {
-                    const ucasSection = document.getElementById("ucas-guide-section");
-                    if (ucasSection) {
-                      ucasSection.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                  thumbnailUrl="/images/masterclass-thumbnails/ucas-guide.png"
-                  paymentUrl="#"
+                  ctaText="Watch Free Masterclass"
+                  ctaLink="#free-masterclass"
+                  onCTAClick={handleVideoOpen}
+                  videoUrl={
+                    getMasterclassVideo("unlockingAcademicSuccess").videoUrl
+                  }
+                  thumbnailUrl="/images/masterclass-thumbnails/unlocking-success.png"
                   enableLazyLoading={true}
                   gridIndex={1}
                   onKeyNavigation={handleKeyNavigation}
@@ -433,21 +460,27 @@ export default function VideoMasterclassesPage() {
                 {/* TASK 1 IMPLEMENTATION: Converting all VideoThumbnailMidCard instances to VideoThumbnailTopCard for standardized styling */}
                 <VideoThumbnailTopCard
                   title="Unlocking Academic Success"
-                  description={getMasterclassVideo('unlockingAcademicSuccess').description}
+                  description={
+                    getMasterclassVideo("unlockingAcademicSuccess").description
+                  }
                   variant="standard"
                   popular={false}
                   priceRange="Free Access"
-                  duration={`${getMasterclassVideo('unlockingAcademicSuccess').duration} minutes`}
+                  duration={`${getMasterclassVideo("unlockingAcademicSuccess").duration} minutes`}
                   features={[
-                    { feature: "Recognising when one-to-one support is needed" },
+                    {
+                      feature: "Recognising when one-to-one support is needed",
+                    },
                     { feature: "Identifying truly exceptional tutors" },
                     { feature: "Managing tutor-student-parent relationships" },
-                    { feature: "Practical guidance for academic outcomes" }
+                    { feature: "Practical guidance for academic outcomes" },
                   ]}
                   ctaText="Watch Free Masterclass"
                   ctaLink="#free-masterclass"
                   onCTAClick={handleVideoOpen}
-                  videoUrl={getMasterclassVideo('unlockingAcademicSuccess').videoUrl}
+                  videoUrl={
+                    getMasterclassVideo("unlockingAcademicSuccess").videoUrl
+                  }
                   thumbnailUrl="/images/masterclass-thumbnails/unlocking-success.png"
                 />
               </m.div>
@@ -465,23 +498,27 @@ export default function VideoMasterclassesPage() {
                 {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with consistent thumbnail positioning */}
                 {/* TASK 1 IMPLEMENTATION: Converting all VideoThumbnailMidCard instances to VideoThumbnailTopCard for standardized styling */}
                 <VideoThumbnailTopCard
-                  title={getMasterclassVideo('ucasSummit2024').title}
-                  description={getMasterclassVideo('ucasSummit2024').description}
+                  title={getMasterclassVideo("ucasSummit2024").title}
+                  description={
+                    getMasterclassVideo("ucasSummit2024").description
+                  }
                   variant="standard"
                   popular={false}
                   priceRange="Free Access"
-                  duration={`${getMasterclassVideo('ucasSummit2024').duration} minutes`}
+                  duration={`${getMasterclassVideo("ucasSummit2024").duration} minutes`}
                   features={[
                     { feature: "Complete UCAS Summit 2024 presentation" },
                     { feature: "Live audience Q&A session included" },
                     { feature: "Expert guidance for parents and students" },
-                    { feature: "Comprehensive tutoring landscape insights" }
+                    { feature: "Comprehensive tutoring landscape insights" },
                   ]}
                   ctaText="Watch Summit Recording"
                   ctaLink="#summit-recording"
                   onCTAClick={handleVideoOpen}
-                  videoUrl={getMasterclassVideo('ucasSummit2024').videoUrl}
-                  thumbnailUrl={getMasterclassVideo('ucasSummit2024').thumbnailUrl}
+                  videoUrl={getMasterclassVideo("ucasSummit2024").videoUrl}
+                  thumbnailUrl={
+                    getMasterclassVideo("ucasSummit2024").thumbnailUrl
+                  }
                 />
               </m.div>
             </div>
@@ -491,7 +528,11 @@ export default function VideoMasterclassesPage() {
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - React component patterns and useState for video modal functionality */}
         {/* SECTION IMPLEMENTATION REASON: Official React documentation recommends VideoThumbnailTopCard component for consistent video masterclass presentation */}
         {/* Elizabeth's Essential UCAS Guide Section */}
-        <Section id="ucas-guide-section" background="white" className="py-20 relative">
+        <Section
+          id="ucas-guide-section"
+          background="white"
+          className="py-20 relative"
+        >
           <div className="absolute inset-0 bg-blue-50 opacity-60" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for professional scroll animations */}
@@ -508,7 +549,8 @@ export default function VideoMasterclassesPage() {
               </h2>
               <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full mb-8" />
               <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
-                Master the university application process with Elizabeth's comprehensive two-part UCAS guidance
+                Master the university application process with Elizabeth's
+                comprehensive two-part UCAS guidance
               </p>
             </m.div>
 
@@ -527,26 +569,45 @@ export default function VideoMasterclassesPage() {
                 {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with Stripe payment integration */}
                 {/* TASK 1 & TASK 3 IMPLEMENTATION: Converting to VideoThumbnailTopCard and adding Elizabeth's Essential UCAS Guide payment */}
                 <VideoThumbnailTopCard
-                  title={getMasterclassVideo('elizabethsUcasGuide').title}
-                  description={getMasterclassVideo('elizabethsUcasGuide').description}
+                  title={getMasterclassVideo("elizabethsUcasGuide").title}
+                  description={
+                    getMasterclassVideo("elizabethsUcasGuide").description
+                  }
                   variant="premium"
                   popular={true}
-                  priceRange={getMasterclassVideo('elizabethsUcasGuide').price}
-                  duration={`${getMasterclassVideo('elizabethsUcasGuide').duration} minutes`}
+                  priceRange={getMasterclassVideo("elizabethsUcasGuide").price}
+                  duration={`${getMasterclassVideo("elizabethsUcasGuide").duration} minutes`}
                   features={[
                     { feature: "Complete UCAS application timeline breakdown" },
-                    { feature: "University selection strategies for international students" },
+                    {
+                      feature:
+                        "University selection strategies for international students",
+                    },
                     { feature: "Personal statement foundation and planning" },
-                    { feature: "Reference letter guidance and timeline management" },
-                    { feature: "UCAS Hub navigation and technical requirements" },
-                    { feature: "Common application mistakes and how to avoid them" }
+                    {
+                      feature:
+                        "Reference letter guidance and timeline management",
+                    },
+                    {
+                      feature: "UCAS Hub navigation and technical requirements",
+                    },
+                    {
+                      feature:
+                        "Common application mistakes and how to avoid them",
+                    },
                   ]}
                   ctaText="Purchase Masterclass"
                   ctaLink="#ucas-part-1-purchase"
-                  thumbnailUrl={getMasterclassVideo('elizabethsUcasGuide').thumbnailUrl}
+                  thumbnailUrl={
+                    getMasterclassVideo("elizabethsUcasGuide").thumbnailUrl
+                  }
                   paymentUrl="https://buy.stripe.com/7sY6oGdj767tbtO1Zd38408"
                   onCTAClick={() => {
-                    window.open("https://buy.stripe.com/7sY6oGdj767tbtO1Zd38408", '_blank', 'noopener,noreferrer')
+                    window.open(
+                      "https://buy.stripe.com/7sY6oGdj767tbtO1Zd38408",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
                   }}
                 />
               </m.div>
@@ -563,26 +624,53 @@ export default function VideoMasterclassesPage() {
                 {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with Stripe payment integration */}
                 {/* TASK 1 & TASK 3 IMPLEMENTATION: Converting to VideoThumbnailTopCard and adding Personal Statements payment */}
                 <VideoThumbnailTopCard
-                  title={getMasterclassVideo('personalStatementsGuide').title}
-                  description={getMasterclassVideo('personalStatementsGuide').description}
+                  title={getMasterclassVideo("personalStatementsGuide").title}
+                  description={
+                    getMasterclassVideo("personalStatementsGuide").description
+                  }
                   variant="premium"
                   popular={false}
-                  priceRange={getMasterclassVideo('personalStatementsGuide').price}
-                  duration={`${getMasterclassVideo('personalStatementsGuide').duration} minutes`}
+                  priceRange={
+                    getMasterclassVideo("personalStatementsGuide").price
+                  }
+                  duration={`${getMasterclassVideo("personalStatementsGuide").duration} minutes`}
                   features={[
-                    { feature: "Elizabeth's secret 10-ingredient personal statement recipe" },
-                    { feature: "Real Oxford Medicine personal statement case study" },
-                    { feature: "New 2025 UCAS format structured response guidance" },
-                    { feature: "Advanced writing techniques for standout applications" },
-                    { feature: "Subject-specific personal statement strategies" },
-                    { feature: "Expert review checklist and self-assessment tools" }
+                    {
+                      feature:
+                        "Elizabeth's secret 10-ingredient personal statement recipe",
+                    },
+                    {
+                      feature:
+                        "Real Oxford Medicine personal statement case study",
+                    },
+                    {
+                      feature:
+                        "New 2025 UCAS format structured response guidance",
+                    },
+                    {
+                      feature:
+                        "Advanced writing techniques for standout applications",
+                    },
+                    {
+                      feature: "Subject-specific personal statement strategies",
+                    },
+                    {
+                      feature:
+                        "Expert review checklist and self-assessment tools",
+                    },
                   ]}
                   ctaText="Purchase Masterclass"
                   ctaLink="#personal-statements-purchase"
-                  thumbnailUrl={getMasterclassVideo('personalStatementsGuide').thumbnailUrl}
+                  thumbnailUrl={
+                    getMasterclassVideo("personalStatementsGuide").thumbnailUrl
+                  }
                   paymentUrl="https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409"
                   onCTAClick={() => {
-                    window.open("https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409", '_blank', 'noopener,noreferrer')
+                    window.open(
+                      "https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
                   }}
                 />
               </m.div>
@@ -593,7 +681,11 @@ export default function VideoMasterclassesPage() {
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - React component patterns for British cultural masterclasses */}
         {/* CULTURAL SECTION IMPLEMENTATION REASON: Official React documentation recommends VideoThumbnailTopCard for consistent educational content presentation */}
         {/* Get Confident with British Culture Section */}
-        <Section id="british-culture-section" background="slate" className="py-20 relative">
+        <Section
+          id="british-culture-section"
+          background="slate"
+          className="py-20 relative"
+        >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for professional scroll animations */}
             {/* CULTURE SECTION HEADER: Official Framer Motion documentation recommends whileInView for scroll-triggered animations in section headers */}
@@ -611,7 +703,8 @@ export default function VideoMasterclassesPage() {
               </h2>
               <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full mb-8" />
               <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
-                From literary classics to social customs—everything your child needs to feel at home in a British classroom
+                From literary classics to social customs—everything your child
+                needs to feel at home in a British classroom
               </p>
             </m.div>
 
@@ -630,26 +723,43 @@ export default function VideoMasterclassesPage() {
                 {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with Stripe payment integration */}
                 {/* TASK 1 & TASK 3 IMPLEMENTATION: Converting to VideoThumbnailTopCard and adding British Literary Classics payment */}
                 <VideoThumbnailTopCard
-                  title={getMasterclassVideo('britishLiteraryClassics').title}
-                  description={`${getMasterclassVideo('britishLiteraryClassics').description}, delivered to an international student audience (includes partial Mandarin subtitles)`}
+                  title={getMasterclassVideo("britishLiteraryClassics").title}
+                  description={`${getMasterclassVideo("britishLiteraryClassics").description}, delivered to an international student audience (includes partial Mandarin subtitles)`}
                   variant="standard"
                   popular={false}
-                  priceRange={getMasterclassVideo('britishLiteraryClassics').price}
-                  duration={`${getMasterclassVideo('britishLiteraryClassics').duration} minutes`}
+                  priceRange={
+                    getMasterclassVideo("britishLiteraryClassics").price
+                  }
+                  duration={`${getMasterclassVideo("britishLiteraryClassics").duration} minutes`}
                   features={[
                     { feature: "What defines a literary classic explored" },
                     { feature: "Key British literary genres and conventions" },
                     { feature: "Themes and cultural significance analysis" },
-                    { feature: "60-minute recorded masterclass with Mandarin subtitles" },
-                    { feature: "Interview preparation for British independent schools" },
-                    { feature: "Cultural fluency development for international students" }
+                    {
+                      feature:
+                        "60-minute recorded masterclass with Mandarin subtitles",
+                    },
+                    {
+                      feature:
+                        "Interview preparation for British independent schools",
+                    },
+                    {
+                      feature:
+                        "Cultural fluency development for international students",
+                    },
                   ]}
                   ctaText="Purchase Masterclass"
                   ctaLink="#literary-classics-purchase"
-                  thumbnailUrl={getMasterclassVideo('britishLiteraryClassics').thumbnailUrl}
+                  thumbnailUrl={
+                    getMasterclassVideo("britishLiteraryClassics").thumbnailUrl
+                  }
                   paymentUrl="https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a"
                   onCTAClick={() => {
-                    window.open("https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a", '_blank', 'noopener,noreferrer')
+                    window.open(
+                      "https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
                   }}
                 />
               </m.div>
@@ -666,26 +776,49 @@ export default function VideoMasterclassesPage() {
                 {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoThumbnailTopCard component with Stripe payment integration */}
                 {/* TASK 1 & TASK 3 IMPLEMENTATION: Converting to VideoThumbnailTopCard and adding British Etiquette payment */}
                 <VideoThumbnailTopCard
-                  title={getMasterclassVideo('britishEtiquette').title}
-                  description={`${getMasterclassVideo('britishEtiquette').description}, delivered to an international student audience (includes partial Mandarin subtitles)`}
+                  title={getMasterclassVideo("britishEtiquette").title}
+                  description={`${getMasterclassVideo("britishEtiquette").description}, delivered to an international student audience (includes partial Mandarin subtitles)`}
                   variant="standard"
                   popular={false}
-                  priceRange={getMasterclassVideo('britishEtiquette').price}
-                  duration={`${getMasterclassVideo('britishEtiquette').duration} minutes`}
+                  priceRange={getMasterclassVideo("britishEtiquette").price}
+                  duration={`${getMasterclassVideo("britishEtiquette").duration} minutes`}
                   features={[
-                    { feature: "Greetings, introductions, and dining etiquette mastery" },
-                    { feature: "Cross-cultural etiquette understanding and adaptation" },
-                    { feature: "Common social faux pas avoidance in British settings" },
-                    { feature: "60-minute recorded masterclass with Mandarin subtitles" },
-                    { feature: "Social grace and cultural fluency development" },
-                    { feature: "Confidence-building for formal British environments" }
+                    {
+                      feature:
+                        "Greetings, introductions, and dining etiquette mastery",
+                    },
+                    {
+                      feature:
+                        "Cross-cultural etiquette understanding and adaptation",
+                    },
+                    {
+                      feature:
+                        "Common social faux pas avoidance in British settings",
+                    },
+                    {
+                      feature:
+                        "60-minute recorded masterclass with Mandarin subtitles",
+                    },
+                    {
+                      feature: "Social grace and cultural fluency development",
+                    },
+                    {
+                      feature:
+                        "Confidence-building for formal British environments",
+                    },
                   ]}
                   ctaText="Purchase Masterclass"
                   ctaLink="#british-etiquette-purchase"
-                  thumbnailUrl={getMasterclassVideo('britishEtiquette').thumbnailUrl}
+                  thumbnailUrl={
+                    getMasterclassVideo("britishEtiquette").thumbnailUrl
+                  }
                   paymentUrl="https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b"
                   onCTAClick={() => {
-                    window.open("https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b", '_blank', 'noopener,noreferrer')
+                    window.open(
+                      "https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b",
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
                   }}
                 />
               </m.div>
@@ -710,16 +843,16 @@ export default function VideoMasterclassesPage() {
           </div>
         </Section>
 
-{/* CONTEXT7 SOURCE: /reactjs/react.dev - Section removal for production-ready video masterclass page */}
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section removal for production-ready video masterclass page */}
         {/* TASK 2 IMPLEMENTATION: Removed sections 9, 10, 11 - Design Variations, Single Card Layout, Multi-Card Layout */}
         {/* PRODUCTION READY: Clean implementation focusing on actual masterclass content without demo sections */}
       </PageLayout>
-      
+
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Custom video modal implementation */}
       {/* VIDEO MODAL REASON: Official Tailwind CSS documentation recommends backdrop-blur and overlay patterns for modal dialogs */}
       {/* VIDEO MODAL PATTERN: Copied from hero-section.tsx for consistent modal behavior across the application */}
       {isVideoOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
           onClick={handleVideoClose}
         >
@@ -733,11 +866,11 @@ export default function VideoMasterclassesPage() {
           >
             <X className="w-6 h-6" />
           </button>
-          
+
           {/* Video Container */}
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Responsive video container patterns */}
           {/* RESPONSIVE REASON: Official Tailwind CSS documentation recommends aspect-video for proper video aspect ratios */}
-          <div 
+          <div
             className="relative w-full max-w-6xl mx-4 aspect-video"
             onClick={(e) => e.stopPropagation()}
           >
@@ -746,7 +879,7 @@ export default function VideoMasterclassesPage() {
             {/* VIDEO IMPLEMENTATION REASON: Official MDN documentation recommends controls, autoPlay, and playsInline for optimal video playback */}
             <video
               ref={videoRef}
-              src={getMasterclassVideo('unlockingAcademicSuccess').videoUrl}
+              src={getMasterclassVideo("unlockingAcademicSuccess").videoUrl}
               className="w-full h-full rounded-lg shadow-2xl object-cover"
               controls
               autoPlay
@@ -754,7 +887,7 @@ export default function VideoMasterclassesPage() {
               playsInline
               onLoadedData={() => {
                 if (videoRef.current) {
-                  videoRef.current.play()
+                  videoRef.current.play();
                 }
               }}
             />

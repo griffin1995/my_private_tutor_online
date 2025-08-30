@@ -43,8 +43,48 @@ interface PerformanceMetricsPayload {
 // IMPLEMENTATION: POST endpoint for performance metrics collection
 export async function POST(request: NextRequest) {
   try {
-    // Parse request body
-    const payload: PerformanceMetricsPayload = await request.json();
+    // CONTEXT7 SOURCE: /vercel/next.js - Webhook payload handling with proper error handling for empty/malformed JSON
+    // BUG FIX REASON: Prevent "Unexpected end of JSON input" errors when request body is empty or malformed
+    
+    // Check if request has a body first
+    const hasBody = request.headers.get('content-length') !== '0' && 
+                    request.headers.get('content-type')?.includes('application/json');
+    
+    if (!hasBody) {
+      return NextResponse.json(
+        { 
+          error: 'Request body is required',
+          message: 'Performance metrics data must be provided in JSON format'
+        },
+        { status: 400 }
+      );
+    }
+
+    // Parse request body with proper error handling
+    let payload: PerformanceMetricsPayload;
+    try {
+      const body = await request.text();
+      if (!body.trim()) {
+        return NextResponse.json(
+          { 
+            error: 'Empty request body',
+            message: 'Request body cannot be empty for performance metrics'
+          },
+          { status: 400 }
+        );
+      }
+      payload = JSON.parse(body);
+    } catch (parseError) {
+      console.error('[Performance API] JSON parsing error:', parseError);
+      return NextResponse.json(
+        { 
+          error: 'Invalid JSON format',
+          message: 'Request body must be valid JSON',
+          details: parseError instanceof Error ? parseError.message : 'Unknown parsing error'
+        },
+        { status: 400 }
+      );
+    }
     
     // Validate required fields
     if (!payload.sessionId || !payload.timestamp) {
@@ -107,14 +147,48 @@ export async function POST(request: NextRequest) {
     });
     
   } catch (error) {
-    console.error('[Performance API] Error processing metrics:', error);
+    // CONTEXT7 SOURCE: /vercel/next.js - Comprehensive error handling for API routes with detailed logging
+    // ERROR HANDLING REASON: Provide detailed error information for debugging while maintaining security
+    console.error('[Performance API] Error processing metrics:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      timestamp: new Date().toISOString(),
+      requestUrl: request.url,
+      requestMethod: request.method,
+      userAgent: request.headers.get('user-agent'),
+    });
+    
+    // Determine error type and appropriate status code
+    let statusCode = 500;
+    let errorMessage = 'Internal server error';
+    let errorDetails: string | undefined;
+
+    if (error instanceof SyntaxError) {
+      // JSON parsing errors that somehow escaped the inner try-catch
+      statusCode = 400;
+      errorMessage = 'Invalid request format';
+      errorDetails = 'Request body must be valid JSON';
+    } else if (error instanceof TypeError) {
+      // Type-related errors, likely from missing properties
+      statusCode = 400;
+      errorMessage = 'Invalid request data structure';
+      errorDetails = error.message;
+    } else if (error instanceof Error && error.message.includes('network')) {
+      // Network-related errors from external service calls
+      statusCode = 503;
+      errorMessage = 'External service unavailable';
+      errorDetails = 'Unable to process metrics due to external service issues';
+    }
     
     return NextResponse.json(
       { 
-        error: 'Failed to process metrics',
-        message: error instanceof Error ? error.message : 'Unknown error'
+        error: errorMessage,
+        message: error instanceof Error ? error.message : 'Unknown error occurred',
+        details: errorDetails,
+        timestamp: new Date().toISOString(),
+        requestId: crypto.randomUUID()
       },
-      { status: 500 }
+      { status: statusCode }
     );
   }
 }
@@ -150,10 +224,22 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(mockData);
     
   } catch (error) {
-    console.error('[Performance API] Error retrieving metrics:', error);
+    // CONTEXT7 SOURCE: /vercel/next.js - Consistent error handling pattern for GET endpoint
+    // ERROR HANDLING REASON: Provide detailed error information for metrics retrieval failures
+    console.error('[Performance API] Error retrieving metrics:', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      timestamp: new Date().toISOString(),
+      requestUrl: request.url,
+    });
     
     return NextResponse.json(
-      { error: 'Failed to retrieve metrics' },
+      { 
+        error: 'Failed to retrieve metrics',
+        message: error instanceof Error ? error.message : 'Unknown error occurred',
+        timestamp: new Date().toISOString(),
+        requestId: crypto.randomUUID()
+      },
       { status: 500 }
     );
   }
