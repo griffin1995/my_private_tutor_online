@@ -138,7 +138,7 @@ export default function AboutUsPage() {
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section id="about-testimonials">
-          <TestimonialsSection testimonials={aboutTestimonials} />
+          <TestimonialsSection />
         </section>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal and clean architecture maintenance */}
