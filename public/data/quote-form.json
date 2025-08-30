@@ -1,0 +1,304 @@
+{
+  "hero": {
+    "title": "Request Your Personalised Quote",
+    "subtitle": "Begin Your Child's Academic Excellence Journey",
+    "description": "Complete our comprehensive form to receive a bespoke tutoring proposal tailored to your child's educational needs. All enquiries receive a personal response from Elizabeth Burrows within 24 hours."
+  },
+  "form": {
+    "title": "Tell Us About Your Requirements",
+    "description": "Please provide detailed information about your child's educational needs so we can match them with the perfect tutor and create a personalised learning plan.",
+    "sections": [
+      {
+        "title": "Contact Information",
+        "description": "Your contact details for our response",
+        "fields": [
+          {
+            "id": "parentName",
+            "label": "Parent/Guardian Name",
+            "placeholder": "Enter your full name",
+            "type": "text",
+            "required": true,
+            "validation": {
+              "message": "Please enter your full name"
+            }
+          },
+          {
+            "id": "email",
+            "label": "Email Address",
+            "placeholder": "your.email@example.com",
+            "type": "email",
+            "required": true,
+            "validation": {
+              "message": "Please enter a valid email address",
+              "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+            }
+          },
+          {
+            "id": "phone",
+            "label": "Telephone Number",
+            "placeholder": "01234 567 890",
+            "type": "tel",
+            "required": true,
+            "validation": {
+              "message": "Please enter a valid UK telephone number",
+              "pattern": "^(\\+44|0)[0-9\\s-]{9,}$"
+            }
+          },
+          {
+            "id": "postcode",
+            "label": "Postcode",
+            "placeholder": "SW1A 1AA",
+            "type": "text",
+            "required": false,
+            "validation": {
+              "message": "Please enter a valid UK postcode"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Student Information",
+        "description": "Details about your child's educational requirements",
+        "fields": [
+          {
+            "id": "studentName",
+            "label": "Student's Name",
+            "placeholder": "Enter your child's name",
+            "type": "text",
+            "required": true,
+            "validation": {
+              "message": "Please enter your child's name"
+            }
+          },
+          {
+            "id": "studentAge",
+            "label": "Student's Age",
+            "placeholder": "Enter age in years",
+            "type": "text",
+            "required": true,
+            "validation": {
+              "message": "Please enter your child's age",
+              "pattern": "^[0-9]{1,2}$"
+            }
+          },
+          {
+            "id": "educationLevel",
+            "label": "Current Education Level",
+            "placeholder": "Select education level",
+            "type": "select",
+            "required": true,
+            "validation": {
+              "message": "Please select your child's education level"
+            },
+            "options": [
+              { "value": "primary-ks1", "label": "Primary - Key Stage 1 (Ages 5-7)" },
+              { "value": "primary-ks2", "label": "Primary - Key Stage 2 (Ages 7-11)" },
+              { "value": "secondary-ks3", "label": "Secondary - Key Stage 3 (Ages 11-14)" },
+              { "value": "gcse", "label": "GCSE (Ages 14-16)" },
+              { "value": "a-level", "label": "A-Level (Ages 16-18)" },
+              { "value": "ib", "label": "International Baccalaureate" },
+              { "value": "university", "label": "University Level" },
+              { "value": "adult", "label": "Adult Learner" }
+            ]
+          },
+          {
+            "id": "currentSchool",
+            "label": "Current School",
+            "placeholder": "Enter school name (optional)",
+            "type": "text",
+            "required": false,
+            "validation": {
+              "message": "Please enter the school name"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Tutoring Requirements",
+        "description": "Specific subjects and learning objectives",
+        "fields": [
+          {
+            "id": "subject",
+            "label": "Primary Subject(s) Required",
+            "placeholder": "Select primary subject",
+            "type": "select",
+            "required": true,
+            "validation": {
+              "message": "Please select the primary subject"
+            },
+            "options": [
+              { "value": "mathematics", "label": "Mathematics" },
+              { "value": "english", "label": "English Language & Literature" },
+              { "value": "sciences", "label": "Sciences (Biology, Chemistry, Physics)" },
+              { "value": "biology", "label": "Biology" },
+              { "value": "chemistry", "label": "Chemistry" },
+              { "value": "physics", "label": "Physics" },
+              { "value": "history", "label": "History" },
+              { "value": "geography", "label": "Geography" },
+              { "value": "modern-languages", "label": "Modern Languages" },
+              { "value": "latin", "label": "Latin" },
+              { "value": "classical-civilisation", "label": "Classical Civilisation" },
+              { "value": "economics", "label": "Economics" },
+              { "value": "business-studies", "label": "Business Studies" },
+              { "value": "psychology", "label": "Psychology" },
+              { "value": "art", "label": "Art & Design" },
+              { "value": "music", "label": "Music" },
+              { "value": "drama", "label": "Drama" },
+              { "value": "computer-science", "label": "Computer Science" },
+              { "value": "religious-studies", "label": "Religious Studies" },
+              { "value": "philosophy", "label": "Philosophy" },
+              { "value": "oxbridge-prep", "label": "Oxbridge Preparation" },
+              { "value": "entrance-exams", "label": "School Entrance Examinations" },
+              { "value": "multiple", "label": "Multiple Subjects" },
+              { "value": "other", "label": "Other (Please specify)" }
+            ]
+          },
+          {
+            "id": "additionalSubjects",
+            "label": "Additional Subjects (Optional)",
+            "placeholder": "List any additional subjects or specify 'Other' subjects",
+            "type": "textarea",
+            "required": false,
+            "validation": {
+              "message": "Please provide additional subject details"
+            }
+          },
+          {
+            "id": "learningObjectives",
+            "label": "Learning Objectives",
+            "placeholder": "Describe your child's learning goals, areas for improvement, or specific exam preparation needs",
+            "type": "textarea",
+            "required": true,
+            "validation": {
+              "message": "Please describe your child's learning objectives"
+            }
+          },
+          {
+            "id": "preferredSchedule",
+            "label": "Preferred Schedule",
+            "placeholder": "e.g., Weekday evenings, Saturday mornings, flexible",
+            "type": "text",
+            "required": false,
+            "validation": {
+              "message": "Please describe your preferred schedule"
+            }
+          },
+          {
+            "id": "sessionsPerWeek",
+            "label": "Preferred Sessions Per Week",
+            "placeholder": "Enter number of sessions",
+            "type": "text",
+            "required": false,
+            "validation": {
+              "message": "Please enter number of sessions",
+              "pattern": "^[0-9]{1,2}$"
+            }
+          }
+        ]
+      },
+      {
+        "title": "Additional Information",
+        "description": "Help us understand your requirements better",
+        "fields": [
+          {
+            "id": "previousTutoring",
+            "label": "Previous Tutoring Experience",
+            "placeholder": "Has your child had tutoring before? Please describe their experience",
+            "type": "textarea",
+            "required": false,
+            "validation": {
+              "message": "Please describe previous tutoring experience"
+            }
+          },
+          {
+            "id": "learningStyle",
+            "label": "Learning Style & Preferences",
+            "placeholder": "Describe your child's learning style, personality, and any specific teaching approaches that work well",
+            "type": "textarea",
+            "required": false,
+            "validation": {
+              "message": "Please describe your child's learning style"
+            }
+          },
+          {
+            "id": "specialRequirements",
+            "label": "Special Educational Needs",
+            "placeholder": "Any learning difficulties, disabilities, or special requirements we should be aware of",
+            "type": "textarea",
+            "required": false,
+            "validation": {
+              "message": "Please describe any special requirements"
+            }
+          },
+          {
+            "id": "budget",
+            "label": "Budget Considerations",
+            "placeholder": "Please indicate your budget range or any budget constraints",
+            "type": "text",
+            "required": false,
+            "validation": {
+              "message": "Please provide budget information"
+            }
+          },
+          {
+            "id": "howDidYouHear",
+            "label": "How Did You Hear About Us?",
+            "placeholder": "Select how you found us",
+            "type": "select",
+            "required": false,
+            "validation": {
+              "message": "Please select how you heard about us"
+            },
+            "options": [
+              { "value": "google-search", "label": "Google Search" },
+              { "value": "recommendation", "label": "Personal Recommendation" },
+              { "value": "tatler", "label": "Tatler Address Book" },
+              { "value": "school-guide", "label": "School Guide UK" },
+              { "value": "social-media", "label": "Social Media" },
+              { "value": "educational-consultant", "label": "Educational Consultant" },
+              { "value": "school-referral", "label": "School Referral" },
+              { "value": "previous-client", "label": "Previous Client" },
+              { "value": "website", "label": "Website" },
+              { "value": "other", "label": "Other" }
+            ]
+          },
+          {
+            "id": "additionalComments",
+            "label": "Additional Comments",
+            "placeholder": "Any other information you'd like us to know",
+            "type": "textarea",
+            "required": false,
+            "validation": {
+              "message": "Please provide additional comments"
+            }
+          }
+        ]
+      }
+    ],
+    "submitButton": {
+      "text": "Request Personalised Quote",
+      "loadingText": "Submitting Your Request..."
+    }
+  },
+  "messages": {
+    "success": {
+      "title": "Quote Request Submitted Successfully",
+      "message": "Thank you for your enquiry. Elizabeth Burrows will personally review your requirements and respond within 24 hours with a bespoke tutoring proposal. Please check your email for confirmation."
+    },
+    "error": {
+      "title": "Submission Error",
+      "message": "We apologise, but there was an error submitting your request. Please try again or contact us directly at info@myprivatetutoronline.com or +44 7513 550278."
+    },
+    "validation": {
+      "required": "This field is required",
+      "email": "Please enter a valid email address",
+      "phone": "Please enter a valid telephone number"
+    }
+  },
+  "contact": {
+    "title": "Need Immediate Assistance?",
+    "description": "For urgent enquiries or if you prefer to speak directly with our team, please don't hesitate to contact us.",
+    "phone": "+44 7513 550278",
+    "email": "info@myprivatetutoronline.com"
+  }
+}

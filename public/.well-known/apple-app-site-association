@@ -1,0 +1,50 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["TEAM_ID.com.myprivatetutoronline.app"],
+        "components": [
+          {
+            "/#/faq*": {
+              "comment": "FAQ deep linking - supports all FAQ routes including categories, questions, and search"
+            }
+          },
+          {
+            "/#/faq": {
+              "comment": "FAQ home page deep link"
+            }
+          },
+          {
+            "/#/faq/category/*": {
+              "comment": "FAQ category deep links for specific categories"
+            }
+          },
+          {
+            "/#/faq/question/*": {
+              "comment": "Direct FAQ question deep links"
+            }
+          },
+          {
+            "/#/faq/search": {
+              "comment": "FAQ search deep links with query parameters"
+            }
+          },
+          {
+            "/#/faq/theme/*": {
+              "comment": "FAQ theme preference deep links"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["TEAM_ID.com.myprivatetutoronline.app"]
+  },
+  "appclips": {
+    "apps": ["TEAM_ID.com.myprivatetutoronline.app.Clip"]
+  },
+  "activitycontinuation": {
+    "apps": ["TEAM_ID.com.myprivatetutoronline.app"]
+  }
+}

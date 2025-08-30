@@ -1,0 +1,164 @@
+{
+  "siteConfig": {
+    "name": "My Private Tutor Online",
+    "tagline": "Expert Private Tutoring, Personally Curated by Elizabeth Burrows",
+    "domain": "myprivatetutoronline.com",
+    "foundedYear": "2010",
+    "heritage": "15 years of educational excellence"
+  },
+  "contact": {
+    "primaryEmail": "info@myprivatetutoronline.com",
+    "phone": "+44 7513 550278",
+    "address": {
+      "line1": "123 Education House",
+      "line2": "Kensington",
+      "city": "London",
+      "postcode": "SW7 2AZ",
+      "country": "United Kingdom"
+    },
+    "socialMedia": {
+      "twitter": "@MyPrivateTutorUK",
+      "linkedin": "my-private-tutor-online",
+      "facebook": "MyPrivateTutorOnline"
+    }
+  },
+  "businessDetails": {
+    "companyNumber": "12345678",
+    "vatNumber": "GB123456789",
+    "registeredAddress": {
+      "line1": "123 Education House",
+      "line2": "Kensington", 
+      "city": "London",
+      "postcode": "SW7 2AZ",
+      "country": "United Kingdom"
+    }
+  },
+  "features": {
+    "maintenanceMode": false,
+    "bookingSystem": true,
+    "onlinePayments": true,
+    "progressTracking": true,
+    "parentPortal": true
+  },
+  "pricing": {
+    "currency": "GBP",
+    "baseRate": {
+      "amount": 45,
+      "display": "£45",
+      "unit": "hour"
+    },
+    "tiers": {
+      "tier1": {
+        "name": "Tier 1",
+        "level": "premium",
+        "description": "Official examiners and senior educators with extensive track records",
+        "bestFor": "Top grades, exam strategy",
+        "hourlyRate": {
+          "amount": 85,
+          "display": "£85",
+          "fromDisplay": "From £85/hour"
+        },
+        "colour": {
+          "name": "gold",
+          "primary": "#eab308",
+          "secondary": "#fbbf24",
+          "border": "border-yellow-500",
+          "background": "bg-yellow-50",
+          "text": "text-yellow-800"
+        },
+        "features": [
+          "Official exam board examiners",
+          "Senior educators with track records",
+          "Premium exam strategy guidance",
+          "Exclusive crown designation"
+        ],
+        "hasAccent": true,
+        "hasCrown": true
+      },
+      "tier2": {
+        "name": "Tier 2",
+        "level": "mid",
+        "description": "Qualified, experienced classroom teachers",
+        "bestFor": "Curriculum mastery, consistency",
+        "hourlyRate": {
+          "amount": 65,
+          "display": "£65",
+          "fromDisplay": "From £65/hour"
+        },
+        "colour": {
+          "name": "silver",
+          "primary": "#6b7280",
+          "secondary": "#9ca3af",
+          "border": "border-gray-400",
+          "background": "bg-gray-50",
+          "text": "text-gray-800"
+        },
+        "features": [
+          "Qualified classroom teachers",
+          "5+ years teaching experience",
+          "Heads of Department",
+          "Curriculum expertise"
+        ],
+        "hasAccent": false,
+        "hasCrown": false
+      },
+      "tier3": {
+        "name": "Tier 3",
+        "level": "standard",
+        "description": "Tutors from top UK universities (including Oxbridge), teaching their specialist subject",
+        "bestFor": "Mentoring, subject confidence",
+        "hourlyRate": {
+          "amount": 45,
+          "display": "£45",
+          "fromDisplay": "From £45/hour"
+        },
+        "colour": {
+          "name": "bronze",
+          "primary": "#92400e",
+          "secondary": "#d97706",
+          "border": "border-amber-600",
+          "background": "bg-amber-50",
+          "text": "text-amber-800"
+        },
+        "features": [
+          "Top UK university graduates",
+          "Subject specialist expertise",
+          "Mentoring and confidence building",
+          "Foundation support"
+        ],
+        "hasAccent": false,
+        "hasCrown": false
+      }
+    },
+    "noRegistrationFees": true,
+    "noAdminFees": true,
+    "creditBalance": {
+      "amount": 300,
+      "display": "£300",
+      "description": "Credit balance available"
+    },
+    "discounts": {
+      "blockBookings": true,
+      "siblingEnrolment": true,
+      "minimumLessonsForDiscount": 15
+    },
+    "promotional": {
+      "tagline": "From essential support to premium elite guidance — all starting from just £45 per hour",
+      "feeDisclaimer": "Unlike many other providers, we don't charge registration, placement or administrative fees"
+    }
+  },
+  "qualifications": {
+    "featured": [
+      "Featured in Tatler Address Book 2025",
+      "Royal family testimonials",
+      "15+ years established since 2010",
+      "100% Oxbridge graduate tutors",
+      "Official exam board examiners"
+    ],
+    "successRates": {
+      "gcseImprovement": "94%",
+      "gradeJump": "Grade 5 to 8/9 in months",
+      "universityPlacements": "Consistent Oxbridge placements"
+    }
+  }
+}

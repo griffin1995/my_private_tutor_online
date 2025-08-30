@@ -1,0 +1,86 @@
+{
+  "sections": {
+    "animatedTagline": {
+      "default": "We help students place at top 10 UK schools and universities"
+    },
+    "aboutSection": {
+      "title": "Expert Private Tutoring, Personally Curated by Elizabeth Burrows",
+      "founderImageAlt": "Elizabeth Burrows, Founder of My Private Tutor Online"
+    },
+    "servicesCarousel": {
+      "title": "Who We Support",
+      "description": "We work with a wide range of learners, offering guidance and transformation at every level:",
+      "buttonText": {
+        "initial": "Learn More",
+        "change": "View Details"
+      }
+    },
+    "testimonialsSection": {
+      "title": "Success Stories",
+      "description": "Hear from families who have experienced the transformative power of personalised tutoring"
+    },
+    "resultsSection": {
+      "title": "Results that Speak for Themselves (No styling revisions made yet, only moved)"
+    },
+    "newsletterSection": {
+      "features": [
+        {
+          "title": "Royal-Endorsed Content",
+          "description": "Exclusive insights from tutors trusted by royal families"
+        },
+        {
+          "title": "Tatler 2025 Featured",
+          "description": "Premium educational strategies from award-winning educators"
+        },
+        {
+          "title": "Academic Excellence",
+          "description": "Proven techniques for Oxbridge and elite university preparation"
+        },
+        {
+          "title": "Personalised Insights",
+          "description": "Tailored content based on your child's educational journey"
+        }
+      ]
+    },
+    "homepageHowItWorks": {
+      "title": "How It Works",
+      "subtitle": "Old Homepage Implementation - Kept here for now instead of deleted as may use it again"
+    }
+  },
+  "ariaLabels": {
+    "trustIndicators": "Trust indicators and credentials",
+    "siteFooter": "Site footer",
+    "siteHeader": "Site header with navigation",
+    "mainNavigation": "Main navigation",
+    "mobileNavigation": "Mobile navigation",
+    "mobileMenuOpen": "Open mobile navigation menu",
+    "pageHero": "Page hero section",
+    "backgroundVideo": "Background video",
+    "videoThumbnail": "Video thumbnail",
+    "playVideo": "Play introduction video",
+    "closeVideo": "Close video",
+    "videoPlayer": "Video player",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide",
+    "partnerSchools": "Partner schools carousel",
+    "dismissPerformance": "Dismiss performance warning",
+    "skipLinks": "Skip links",
+    "customLabel": "Custom label",
+    "educationalPathways": "Educational pathways and tutoring options available"
+  },
+  "brandStatements": {
+    "default": "Exact. Effective. Empowering."
+  },
+  "adminContent": {
+    "header": {
+      "title": "Admin Dashboard",
+      "subtitle": "My Private Tutor Online Administration"
+    },
+    "login": {
+      "title": "Admin Login",
+      "subtitle": "Access the My Private Tutor Online administration panel",
+      "loadingText": "Signing In...",
+      "submitText": "Sign In"
+    }
+  }
+}
