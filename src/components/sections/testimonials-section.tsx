@@ -50,8 +50,8 @@ interface TestimonialData {
 }
 
 interface TestimonialsSectionProps {
-  /** Array of testimonial data from CMS */
-  testimonials: TestimonialData[]
+  /** Array of testimonial data from CMS (optional with default empty array) */
+  testimonials?: TestimonialData[]
   /** Additional CSS classes for styling customisation */
   className?: string
   /** Background colour class (default: bg-white) */
@@ -80,7 +80,7 @@ interface TestimonialsSectionProps {
  * - ARIA-compliant accessibility features
  */
 export function TestimonialsSection({ 
-  testimonials,
+  testimonials = [],
   className = "",
   backgroundColor = "bg-white",
   title = "Success Stories",
@@ -88,6 +88,33 @@ export function TestimonialsSection({
   autoPlay = true,
   autoPlayInterval = 5000
 }: TestimonialsSectionProps) {
+  
+  // CONTEXT7 SOURCE: /websites/react_dev - Error handling and default values for component data safety
+  // DEFENSIVE PROGRAMMING REASON: Official React documentation - always validate props to prevent runtime errors
+  // Ensure testimonials is always an array to prevent .map() errors
+  const safeTestimonials = Array.isArray(testimonials) ? testimonials : [];
+  
+  // CONTEXT7 SOURCE: /websites/react_dev - Early return pattern for component error boundaries and graceful fallback
+  // GRACEFUL FALLBACK REASON: Official React documentation - provide user-friendly fallback when no data is available
+  if (safeTestimonials.length === 0) {
+    return (
+      <section className={`py-16 lg:py-24 ${className} relative`}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center">
+            <h2 className="text-4xl lg:text-5xl font-serif font-black text-primary-900 mb-4 tracking-tight">
+              {title}
+            </h2>
+            <p className="text-xl text-primary-700 max-w-3xl mx-auto">
+              {description}
+            </p>
+            <p className="text-lg text-primary-600 mt-6 italic">
+              More testimonials coming soon...
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
   
   return (
     <section 
@@ -164,7 +191,7 @@ export function TestimonialsSection({
           autoPlay={autoPlay}
           autoPlayInterval={autoPlayInterval}
           showDots={true}
-          items={testimonials.map((testimonial, index) => ({
+          items={safeTestimonials.map((testimonial, index) => ({
             id: index,
             content: (
               <>

@@ -34,10 +34,6 @@ import { Menu as MenuIcon, X, ChevronRight, ChevronUp, ChevronDown } from 'lucid
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import ArrowAngularTopRight from '@/components/icons/ArrowAngularTopRight'
-// CONTEXT7 SOURCE: /reactjs/react.dev - Centralized debug configuration import
-// DEBUG_CONFIG_REASON: Official React documentation for centralized state management
-import { isDebugEnabled, getDebugConfig } from '@/lib/debug/debug-config'
-import { DebugControls, useDebugShortcuts } from '@/components/debug/DebugControls'
 
 // CONTEXT7 SOURCE: /typescript/handbook - Type definitions for navigation structure
 // TYPE_REASON: Official TypeScript documentation for interface definitions
@@ -233,28 +229,6 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const { scrollY } = useScroll()
   
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Reactive debug state management
-  // DEBUG_STATE_REASON: Official React documentation for reactive state updates
-  const [debugConfig, setDebugConfig] = useState(() => getDebugConfig())
-  const [debugUpdateKey, setDebugUpdateKey] = useState(0)
-  
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Keyboard shortcut integration
-  // SHORTCUT_REASON: Official React documentation for custom hook usage
-  useDebugShortcuts()
-  
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Reactive debug config updates
-  // REACTIVE_REASON: Official React documentation for polling configuration changes
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const currentConfig = getDebugConfig()
-      if (JSON.stringify(currentConfig) !== JSON.stringify(debugConfig)) {
-        setDebugConfig(currentConfig)
-        setDebugUpdateKey(prev => prev + 1)
-      }
-    }, 100) // Check every 100ms for config changes
-    
-    return () => clearInterval(interval)
-  }, [debugConfig])
 
   // CONTEXT7 SOURCE: /grx7/framer-motion - useMotionValueEvent for scroll detection
   // SCROLL_REASON: Official Framer Motion documentation for scroll-based state changes
@@ -377,119 +351,23 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 
   return (
     <>
-      {/* DEBUG CONTROLS - Easy toggle interface */}
-      <DebugControls position="top-left" />
-      
-      {/* DEBUG OVERLAY - Shows all navigation states */}
-      {debugConfig.enabled && debugConfig.showBorders && (
-        <div className="fixed top-0 left-0 z-[100] bg-black/90 text-white p-4 rounded-br-lg max-w-md">
-          <div className="text-xs font-mono space-y-1">
-            <div className="font-bold text-yellow-300 mb-2">🔍 NAVIGATION DEBUG MODE</div>
-            
-            <div className="grid grid-cols-2 gap-2 text-[10px]">
-              <div>📍 Scroll Position:</div>
-              <div className="text-green-400">{Math.round(scrollY.get())}px</div>
-              
-              <div>📌 Is Scrolled:</div>
-              <div className={isScrolled ? "text-blue-400" : "text-gray-400"}>{isScrolled ? "YES (blue border)" : "NO (red border)"}</div>
-              
-              <div>📂 Dropdown Open:</div>
-              <div className={dropdownState.isOpen ? "text-green-400" : "text-gray-400"}>{dropdownState.isOpen ? "YES (green border)" : "NO"}</div>
-              
-              <div>📋 Active Menu:</div>
-              <div className="text-amber-400">{dropdownState.activeMenu || "none"}</div>
-              
-              <div>🎯 Active Item:</div>
-              <div className="text-amber-400">{activeMenuItem || "none"}</div>
-              
-              <div>📏 Navbar Height:</div>
-              <div className="text-cyan-400">{getNavbarHeight()}px</div>
-              
-              <div>🖥️ Window Width:</div>
-              <div className="text-purple-400">{windowSize.width}px</div>
-            </div>
-            
-            <div className="mt-2 pt-2 border-t border-gray-600">
-              <div className="font-bold text-yellow-300 mb-1">🎨 COLOR KEY:</div>
-              <div className="grid grid-cols-2 gap-1 text-[10px]">
-                <div>🔴 Red Border:</div>
-                <div>Not scrolled, transparent bg</div>
-                
-                <div>🔵 Blue Border:</div>
-                <div>Scrolled, white bg</div>
-                
-                <div>🟢 Green Border:</div>
-                <div>Dropdown open, white bg</div>
-                
-                <div>🟡 Yellow Border:</div>
-                <div>Container div</div>
-                
-                <div>🟣 Purple Border:</div>
-                <div>Nav element</div>
-                
-                <div>🟠 Orange Border:</div>
-                <div>Logo link</div>
-                
-                <div>🔷 Cyan Border:</div>
-                <div>Desktop nav items</div>
-                
-                <div>🩷 Pink Border:</div>
-                <div>Dropdown overlay</div>
-                
-                <div>💙 Indigo Border:</div>
-                <div>Dropdown content</div>
-                
-                <div>🟨 Amber Border:</div>
-                <div>Menu items container</div>
-              </div>
-            </div>
-            
-            <div className="mt-2 text-[10px] text-yellow-300 space-y-1">
-              <div>💡 Debug mode: Environment + Runtime controls</div>
-              <div>🎯 Shortcuts: Ctrl+Shift+D to toggle</div>
-              <div>⚙️ Controls: Top-left debug panel</div>
-            </div>
-          </div>
-        </div>
-      )}
-      
-      <motion.header
-        initial="hidden"
-        animate="visible"
-        variants={navVariants}
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-24 lg:h-28 xl:h-32",
-          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional styling with background colors
-          // BACKGROUND_LOGIC_REASON: Official Tailwind documentation for conditional class application - submenu open state takes priority for white background
-          dropdownState.isOpen ? "bg-white shadow-sm" : (isScrolled ? "bg-white shadow-sm" : "bg-transparent"),
-          // DEBUG: Visual indicators for navbar states
-          debugConfig.enabled && debugConfig.showBorders ? "border-4" : "border-0",
-          debugConfig.enabled && debugConfig.showBorders && (dropdownState.isOpen ? "border-green-500" : (isScrolled ? "border-blue-500" : "border-red-500")),
-          className
-        )}
-        // CONTEXT7 SOURCE: /mdn/web-docs - Data attributes for debug information
-        // DEBUG_ATTRIBUTES_REASON: Official HTML documentation for debug data attributes
-        {...(debugConfig.enabled && debugConfig.addDataAttributes && {
-          'data-debug-scrolled': isScrolled,
-          'data-debug-dropdown-open': dropdownState.isOpen,
-          'data-debug-active-menu': dropdownState.activeMenu || 'none',
-          'data-debug-height': getNavbarHeight()
-        })}
+        <motion.header
+          initial="hidden"
+          animate="visible"
+          variants={navVariants}
+          className={cn(
+            "fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-24 lg:h-28 xl:h-32",
+            // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional styling with background colors
+            // BACKGROUND_LOGIC_REASON: Official Tailwind documentation for conditional class application - submenu open state takes priority for white background
+            dropdownState.isOpen ? "bg-white shadow-sm" : (isScrolled ? "bg-white shadow-sm" : "bg-transparent"),
+            className
+          )}
       >
-        <div className={cn(
-          "container mx-auto px-4 lg:px-6 h-24 lg:h-28 xl:h-32",
-          debugConfig.enabled && debugConfig.showBorders && "border-2 border-yellow-400"
-        )}>
-          <nav className={cn(
-            "flex items-center justify-between h-24 lg:h-28 xl:h-32",
-            debugConfig.enabled && debugConfig.showBorders && "border-2 border-purple-400"
-          )}>
+        <div className="container mx-auto px-4 lg:px-6 h-24 lg:h-28 xl:h-32">
+          <nav className="flex items-center justify-between h-24 lg:h-28 xl:h-32">
             
             {/* Logo */}
-            <Link href="/" className={cn(
-              "flex items-center space-x-2 z-10",
-              debugConfig.enabled && debugConfig.showBorders && "border-2 border-orange-400"
-            )}>
+            <Link href="/" className="flex items-center space-x-2 z-10">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -508,10 +386,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className={cn(
-              "hidden lg:flex items-center space-x-1",
-              debugConfig.enabled && debugConfig.showBorders && "border-2 border-cyan-400"
-            )}>
+            <div className="hidden lg:flex items-center space-x-1">
               {navigationData.map((item) => (
                 <div key={item.label} className="relative">
                   {item.items ? (
@@ -618,7 +493,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
             </button>
           </nav>
         </div>
-      </motion.header>
+        </motion.header>
 
       {/* Full-Screen Dropdown Overlays */}
       <AnimatePresence>
@@ -628,24 +503,12 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
             animate="visible"
             exit="exit"
             variants={overlayVariants}
-            className={cn(
-              "fixed inset-0 z-40",
-              debugConfig.enabled && debugConfig.showBorders && "border-4 border-pink-500"
-            )}
+            className="fixed inset-0 z-40"
             style={{ top: `${getNavbarHeight()}px` }}
-            // CONTEXT7 SOURCE: /mdn/web-docs - Conditional data attributes for debug information
-            // DEBUG_ATTRIBUTES_REASON: Official HTML documentation for conditional debug data
-            {...(debugConfig.enabled && debugConfig.addDataAttributes && {
-              'data-debug-top': getNavbarHeight(),
-              'data-debug-menu': dropdownState.activeMenu
-            })}
           >
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen overlay implementation */}
             {/* OVERLAY_REASON: Official Tailwind documentation for full-screen overlay positioning */}
-            <div className={cn(
-              "absolute inset-0 bg-white",
-              debugConfig.enabled && debugConfig.showBorders && "border-4 border-indigo-500"
-            )}>
+            <div className="absolute inset-0 bg-white">
               {/* Close Button */}
               <div className="absolute top-6 right-6 z-50">
                 <button
@@ -661,10 +524,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
               </div>
 
               {/* Dropdown Content */}
-              <div className={cn(
-                "container mx-auto px-4 lg:px-6 pt-8",
-                debugConfig.enabled && debugConfig.showBorders && "border-2 border-teal-500"
-              )}>
+              <div className="container mx-auto px-4 lg:px-6 pt-8">
                 {navigationData
                   .filter(item => item.label === dropdownState.activeMenu && item.items)
                   .map(item => {
@@ -673,12 +533,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                     const fontSize = menuFontSizes[item.label] || 'text-3xl'
 
                     return (
-                      <div key={item.label} className={cn(
-                        "max-w-6xl mx-auto",
-                        debugConfig.enabled && debugConfig.showBorders && "border-2 border-amber-500"
-                      )} {...(debugConfig.enabled && debugConfig.addDataAttributes && {
-                        'data-debug-font-size': fontSize
-                      })}>
+                      <div key={item.label} className="max-w-6xl mx-auto">
                         
                         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout for navigation items with dynamic spacing */}
                         {/* GRID_REASON: Official Tailwind documentation for responsive grid layout with calculated gaps */}
@@ -721,7 +576,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                     )
                   })
                 }
-              </div>
+                </div>
             </div>
           </motion.div>
         )}
@@ -786,6 +641,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
+
     </>
   )
 }

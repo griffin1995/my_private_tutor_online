@@ -260,7 +260,7 @@ export function SyncManager({
     try {
       let apiEndpoint = '';
       let method = 'POST';
-      let body = item.data;
+      const body = item.data;
 
       // CONTEXT7 SOURCE: /googlechrome/workbox - Action-specific API routing
       // API ROUTING: Map sync actions to appropriate API endpoints

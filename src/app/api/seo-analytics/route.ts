@@ -221,7 +221,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     // CONTEXT7 SOURCE: /vercel/next.js - Conditional response formatting
     // REPORTING: Support for different report formats and filtering
-    let response: any = {
+    const response: any = {
       success: true,
       timestamp: new Date().toISOString(),
       responseTime: `${responseTime}ms`,

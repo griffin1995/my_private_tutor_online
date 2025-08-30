@@ -65,8 +65,8 @@ export function PageHero({
           // 
           // Critical Implementation for Static Header Layouts:
           // - h-[calc(100vh-6rem)]: height: calc(100vh - 96px) - Takes remaining viewport height after navbar
-          // - Navbar height: ~96px (h-20 lg:h-24 xl:h-28 = 80px → 96px → 112px)
-          // - Using 6rem (96px) as reasonable average for responsive navbar height
+          // - Navbar height: Responsive heights (h-24 lg:h-28 xl:h-32 = 96px → 112px → 128px) - 20% increase
+          // - Using 6rem (96px) as mobile baseline for responsive navbar height
           // - w-full: width: 100% - Spans complete viewport width
           // - overflow-hidden: Prevents content spillover and maintains clean edges
           // 

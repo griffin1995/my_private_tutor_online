@@ -40,7 +40,7 @@ export const dynamicImport = <T = any>(
   const { chunkName, prefetch = false, preload = false } = options || {}
   
   // Add webpack magic comments for optimization
-  let importString = importFn.toString()
+  const importString = importFn.toString()
   const comments: string[] = []
   
   if (chunkName) {

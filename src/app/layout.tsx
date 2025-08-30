@@ -66,6 +66,7 @@ import { WebVitalsReporter } from '@/components/performance/WebVitalsReporter';
  */
 import { ServerSEOComponents } from '@/components/seo/SEOPerformanceOptimizer';
 
+
 /**
  * Source Serif 4 & Playfair Display Font Family Implementation
  * Documentation Source: Context7 MCP - Next.js Font Optimization + Google Fonts Official Documentation

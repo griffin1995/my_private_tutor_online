@@ -189,7 +189,10 @@ export default function HomeschoolingPage() {
     <>
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-screen hero section with gradient backgrounds */}
       {/* HERO ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.1 recommends gradient treatments for premium branding */}
-      <PageHero
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homeschooling-hero">
+        <PageHero
         background="gradient"
         size="full"
         className="bg-gradient-to-br from-emerald-700 via-emerald-600 to-accent-600 relative overflow-hidden"
@@ -249,7 +252,8 @@ export default function HomeschoolingPage() {
             </Button>
           </m.div>
         </div>
-      </PageHero>
+        </PageHero>
+      </section>
       
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
@@ -258,7 +262,9 @@ export default function HomeschoolingPage() {
         <WaveSeparator variant="light" className="text-white" />
 
       {/* Benefits Section */}
-      <Section className="py-20 lg:py-28 bg-slate-50/80 relative">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <Section id="homeschooling-benefits" className="py-20 lg:py-28 bg-slate-50/80 relative">
         {/* CONTEXT7 SOURCE: /grx7/framer-motion - Professional pattern overlay for benefits presentation */}
         <div 
           className="absolute inset-0 opacity-[0.01]"
@@ -309,7 +315,9 @@ export default function HomeschoolingPage() {
       </Section>
 
       {/* Programmes Section */}
-      <Section className="py-16 lg:py-24" background="grey">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <Section id="homeschooling-programmes" className="py-16 lg:py-24" background="grey">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <m.div
             initial={{ opacity: 0, y: 30 }}
@@ -463,7 +471,9 @@ export default function HomeschoolingPage() {
       </Section>
 
       {/* Support System Section */}
-      <Section className="py-16 lg:py-24" background="white">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <Section id="homeschooling-support" className="py-16 lg:py-24" background="white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <m.div
             initial={{ opacity: 0, y: 30 }}
@@ -503,7 +513,9 @@ export default function HomeschoolingPage() {
       </Section>
 
       {/* Statistics Section */}
-      <Section className="py-16 lg:py-24" background="grey">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <Section id="homeschooling-statistics" className="py-16 lg:py-24" background="grey">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <m.div
@@ -547,7 +559,9 @@ export default function HomeschoolingPage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-16 lg:py-24" background="primary">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <Section id="homeschooling-cta" className="py-16 lg:py-24" background="primary">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <m.div
             initial={{ opacity: 0, y: 30 }}

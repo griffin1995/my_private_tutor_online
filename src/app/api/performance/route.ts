@@ -153,7 +153,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     // CONTEXT7 SOURCE: /vercel/next.js - Conditional response based on query parameters
     // API DESIGN: Support for filtered metrics based on client needs
-    let response: any = {
+    const response: any = {
       success: true,
       timestamp: new Date().toISOString(),
       responseTime: `${responseTime}ms`,

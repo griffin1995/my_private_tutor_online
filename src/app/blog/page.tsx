@@ -43,12 +43,16 @@ export default function BlogPage() {
     <>
       {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
       {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
-      <SimpleHero
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="blog-hero">
+        <SimpleHero
         backgroundImage="/images/hero/hero-exam-papers.jpg"
         h1="Educational Blog & Resources"
         h2="Coming Soon"
         decorativeStyle="lines"
-      />
+        />
+      </section>
     </>
   )
 }

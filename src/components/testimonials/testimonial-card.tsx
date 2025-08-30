@@ -167,6 +167,8 @@ export function TestimonialCard({
       onClick={handleCardClick}
     >
       <Card className={getCardClasses()}>
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard padding for normal card layout */}
+        {/* PADDING REVERSION REASON: Official Tailwind documentation p-<number> patterns for proper card dimensions */}
         <CardContent className={`p-8 h-full flex flex-col ${layout === 'list' ? 'md:flex-row md:gap-8' : ''}`}>
           
           {/* CONTEXT7 SOURCE: /context7/tailwindcss - Header section with ratings, badges, and verification */}

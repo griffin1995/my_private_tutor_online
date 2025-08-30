@@ -163,7 +163,7 @@ const detectSpam = (content: string, userHistory?: any[]): { isSpam: boolean; sc
 
 // CONTEXT7 SOURCE: /vercel/next.js - Database simulation for development
 // MOCK DATABASE: In-memory storage for development (replace with real database in production)
-let mockSuggestions: FAQSuggestion[] = [
+const mockSuggestions: FAQSuggestion[] = [
   {
     id: 'suggestion-1',
     question: 'How do you handle students with learning difficulties?',
@@ -216,7 +216,7 @@ export async function GET(request: NextRequest) {
     
     // CONTEXT7 SOURCE: /vercel/next.js - Data filtering and sorting logic
     // FILTERING LOGIC: Apply filters and sorting to suggestions
-    let filteredSuggestions = mockSuggestions.filter(suggestion => {
+    const filteredSuggestions = mockSuggestions.filter(suggestion => {
       if (filters.category && suggestion.category !== filters.category) return false
       if (filters.status && suggestion.status !== filters.status) return false
       if (!filters.showAnonymous && suggestion.isAnonymous) return false

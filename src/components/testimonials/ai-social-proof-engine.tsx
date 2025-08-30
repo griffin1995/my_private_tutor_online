@@ -195,7 +195,7 @@ export const AISocialProofEngine: React.FC<AISocialProofEngineProps> = ({
 
   // Track user behavior in real-time
   useEffect(() => {
-    let startTime = Date.now()
+    const startTime = Date.now()
     let interactions = 0
     let maxScroll = 0
 

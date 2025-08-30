@@ -169,7 +169,7 @@ export class ABTestingAutomationEngine {
 
     // Schedule statistical analysis checks
     // First check after 24 hours, then daily
-    let nextStatisticalCheck = new Date(now.getTime() + 24 * 60 * 60 * 1000)
+    const nextStatisticalCheck = new Date(now.getTime() + 24 * 60 * 60 * 1000)
     experimentChecks.push({
       experimentId: experiment.id,
       nextCheckTime: nextStatisticalCheck,
@@ -182,7 +182,7 @@ export class ABTestingAutomationEngine {
 
     // Schedule performance reviews every 4 hours
     if (this.config.enablePerformanceGating) {
-      let nextPerformanceCheck = new Date(now.getTime() + 4 * 60 * 60 * 1000)
+      const nextPerformanceCheck = new Date(now.getTime() + 4 * 60 * 60 * 1000)
       experimentChecks.push({
         experimentId: experiment.id,
         nextCheckTime: nextPerformanceCheck,
@@ -200,7 +200,7 @@ export class ABTestingAutomationEngine {
 
     // Schedule anomaly detection every hour
     if (this.config.enableAnomalyDetection) {
-      let nextAnomalyCheck = new Date(now.getTime() + 60 * 60 * 1000)
+      const nextAnomalyCheck = new Date(now.getTime() + 60 * 60 * 1000)
       experimentChecks.push({
         experimentId: experiment.id,
         nextCheckTime: nextAnomalyCheck,

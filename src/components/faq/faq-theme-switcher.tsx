@@ -222,7 +222,7 @@ export function FAQThemeSwitcher({
   // CONTEXT7 SOURCE: /kajabi/pine - Filter themes based on configuration
   // THEME FILTERING: Show/hide themes based on component props
   const availableThemes = React.useMemo(() => {
-    let themes = FAQ_THEMES.filter(theme => !theme.seasonal || showSeasonalThemes)
+    const themes = FAQ_THEMES.filter(theme => !theme.seasonal || showSeasonalThemes)
     return themes
   }, [showSeasonalThemes])
 

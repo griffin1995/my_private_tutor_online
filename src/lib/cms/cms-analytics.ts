@@ -412,7 +412,7 @@ const useAnalyticsStore = create<AnalyticsStore>()(
             lastUpdated: Date.now()
           }
 
-          let updated = { ...existing, lastUpdated: Date.now() }
+          const updated = { ...existing, lastUpdated: Date.now() }
 
           switch (updateType) {
             case 'interaction':

@@ -62,22 +62,27 @@ import EliteSchoolsCarousel from "@/components/testimonials/elite-schools-carous
 import { TestimonialsFilter } from "@/components/testimonials/testimonials-filter";
 import { TestimonialsGrid } from "@/components/testimonials/testimonials-grid";
 import { SimpleHero } from "@/components/layout/simple-hero";
-import TestimonialsIntro from "@/components/testimonials/testimonials-intro";
-import VideoTestimonials from "@/components/testimonials/video-testimonials";
+// CONTEXT7 SOURCE: /websites/react_dev - Component integration patterns
+// INTEGRATION REASON: Adding testimonials intro section above filter per requirements
+import { TestimonialsIntro } from "@/components/testimonials/testimonials-intro";
+// CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns
+// COPY OPERATION: Adding TestimonialsSection import for duplicated testimonials section
+import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
 import React, { useCallback, useState, useMemo } from "react";
 // TESTIMONIALS OVERHAUL: Removed TestimonialsCTA import for cleaner page boundaries
 import { PageLayout } from "@/components/layout/page-layout";
 import {
   getAllTestimonials,
-  getVideoTestimonials,
   getTextTestimonials,
   getTestimonialsCarouselConfig,
   getTestimonialsContent,
   getTestimonialsHero,
-  getTestimonialsIntroConfig,
   getTestimonialsSchools,
+  type Testimonial
 } from "@/lib/cms/cms-content";
-import { getBackgroundVideo } from "@/lib/cms/cms-images";
+// CONTEXT7 SOURCE: /facebook/react - Import removal pattern for unused CMS functions
+// REMOVAL REASON: getTestimonialsIntroConfig removed as TestimonialsIntro component no longer used
+// CONTEXT7 SOURCE: /facebook/react - Removed getBackgroundVideo import as video testimonials section was removed
 // TESTIMONIALS OVERHAUL: Removed WaveSeparator import for cleaner component boundaries
 
 // RENDERING ANALYSIS - Context7 MCP Verified:
@@ -109,58 +114,38 @@ export default function TestimonialsPage() {
   const heroContent = getTestimonialsHero();
   const schools = getTestimonialsSchools();
   const carouselConfig = getTestimonialsCarouselConfig();
-  const testimonialsVideo = getBackgroundVideo("brandStatement");
-  const introConfig = getTestimonialsIntroConfig();
+  // CONTEXT7 SOURCE: /facebook/react - Variable removal pattern for unused CMS data
+  // REMOVAL REASON: introConfig removed as TestimonialsIntro component no longer used
 
   // TESTIMONIALS DATA - STREAMLINED ARCHITECTURE
   // CMS DATA SOURCE: Using dedicated functions for clean separation
   // ARCHITECTURAL IMPROVEMENT: No manual filtering - functions handle logic internally
 
-  // All testimonials from canonical source (10 total: 2 video + 8 text)
+  // All testimonials from canonical source
   const allTestimonials = getAllTestimonials();
 
-  // Video testimonials only (hasVideo: true) - Currently 2 testimonials
-  const testimonialsWithVideo = getVideoTestimonials();
-
-  // Text testimonials only (hasVideo: false/undefined) - Currently 8 testimonials
+  // Text testimonials only (hasVideo: false/undefined)
   const testimonialsWithoutVideo = getTextTestimonials();
 
-  // ARCHITECTURE VERIFICATION:
-  // - testimonialsWithVideo.length should be 2
-  // - testimonialsWithoutVideo.length should be 8
-  // - allTestimonials.length should be 10
+  // CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns  
+  // COPY OPERATION: Adding aboutTestimonials data loading logic from about page
+  // EMERGENCY FIX: Try-catch wrapper to isolate potential CMS errors
+  let aboutTestimonials: Testimonial[] = [];
+  try {
+    aboutTestimonials = getTextTestimonials()
+  } catch (error) {
+    console.error('Error loading testimonials:', error);
+    aboutTestimonials = []; // Fallback to empty array
+  }
+
+  // CONTEXT7 SOURCE: /facebook/react - Video testimonials section removed per user request
+  // ARCHITECTURE UPDATE: Simplified to focus on text testimonials only
+
+  // CONTEXT7 SOURCE: /facebook/react - Video testimonials data processing removed per user request
+  // REMOVAL REASON: Video testimonials section eliminated to focus on text testimonials only
 
   // CONTEXT7 SOURCE: /websites/react_dev - useMemo for expensive calculations performance optimization
   // PERFORMANCE OPTIMIZATION: Memoized testimonials grid data mapping per Context7 React guide
-  const optimizedVideoTestimonialsData = useMemo(() => {
-    // CONTEXT7 SOURCE: /websites/react_dev - Memoizing expensive computations to prevent re-calculations
-    // DATA TRANSFORMATION REASON: Official React documentation recommends memoizing data transformations
-    return testimonialsWithVideo.map((testimonial) => ({
-      id: `video-testimonial-${testimonial.author.replace(/\s+/g, "-").toLowerCase()}`,
-      quote: testimonial.quote,
-      author: testimonial.author,
-      role: testimonial.role,
-      avatar: testimonial.avatar,
-      rating: testimonial.rating,
-      featured: testimonial.featured || false,
-      expandable: testimonial.quote.length > 150,
-      fullQuote: testimonial.quote.length > 150 ? testimonial.quote : undefined,
-      verificationStatus: testimonial.verified ? "verified" : "unverified",
-      date: testimonial.date || new Date().toISOString(),
-      location: testimonial.location,
-      subject: testimonial.subject,
-      result: testimonial.result,
-      helpfulVotes: Math.floor(Math.random() * 25) + 5,
-      // CONTEXT7 SOURCE: /facebook/react - Fix field name mismatch and case sensitivity for TestimonialsFilter compatibility
-      // FIX REASON: TestimonialsFilter expects 'category' field with normalized capitalization
-      category: testimonial.category 
-        ? testimonial.category.charAt(0).toUpperCase() + testimonial.category.slice(1)
-        : testimonial.category, // Normalize case to match filter configuration
-      categories: testimonial.subject ? [testimonial.subject] : undefined,
-      hasVideo: true,
-    }))
-  }, [testimonialsWithVideo])
-
   const optimizedTextTestimonialsData = useMemo(() => {
     // CONTEXT7 SOURCE: /websites/react_dev - useMemo for preventing expensive recalculations
     // OPTIMIZATION REASON: Context7 React performance guide recommends memoizing data transformations
@@ -188,7 +173,7 @@ export default function TestimonialsPage() {
       categories: testimonial.subject ? [testimonial.subject] : undefined,
       hasVideo: false,
     }))
-  }, [testimonialsWithoutVideo])
+  }, [testimonialsWithoutVideo]);
 
   // CONTEXT7 SOURCE: /facebook/react - Data transformation for optimized testimonials display
   // PERFORMANCE REASON: Memoized data transformations for enhanced rendering performance
@@ -196,28 +181,27 @@ export default function TestimonialsPage() {
   // CONTEXT7 SOURCE: /facebook/react - Dynamic filter configuration generation from actual testimonials data
   // FILTER CONFIG REASON: Generate filter configuration from actual data to avoid mismatch issues
   const dynamicFilterConfig = useMemo(() => {
-    // Extract unique categories from both video and text testimonials
-    const allTestimonials = [...testimonialsWithVideo, ...testimonialsWithoutVideo];
+    // Extract unique categories from text testimonials only (video testimonials removed)
     const uniqueCategories = [...new Set(
-      allTestimonials
+      testimonialsWithoutVideo
         .map(t => t.category)
         .filter(Boolean)
         .map(category => category.charAt(0).toUpperCase() + category.slice(1)) // Normalize case
     )].sort();
 
     const uniqueSubjects = [...new Set(
-      allTestimonials
+      testimonialsWithoutVideo
         .map(t => t.subject)
         .filter(Boolean)
     )].sort();
 
     const uniqueLocations = [...new Set(
-      allTestimonials
+      testimonialsWithoutVideo
         .map(t => t.location)
         .filter(Boolean)
     )].sort();
 
-    const years = allTestimonials
+    const years = testimonialsWithoutVideo
       .map(t => t.year)
       .filter(Boolean)
       .map(Number);
@@ -237,12 +221,9 @@ export default function TestimonialsPage() {
     // FILTER CONFIGURATION REASON: Ensures filter options match actual testimonials categories
 
     return config;
-  }, [testimonialsWithVideo, testimonialsWithoutVideo]);
+  }, [testimonialsWithoutVideo]);
 
-  // State management for filtering within each section
-  const [filteredVideoTestimonials, setFilteredVideoTestimonials] = useState<
-    any[]
-  >(optimizedVideoTestimonialsData);
+  // State management for filtering text testimonials
   const [filteredTextTestimonials, setFilteredTextTestimonials] = useState<
     any[]
   >(optimizedTextTestimonialsData);
@@ -252,13 +233,6 @@ export default function TestimonialsPage() {
 
   // CONTEXT7 SOURCE: /context7/react_dev - useCallback for stable filter change handlers
   // PERFORMANCE OPTIMIZATION REASON: Official React documentation recommends useCallback for component props
-  const handleVideoFilterChange = useCallback(
-    (newFilteredTestimonials: any[]) => {
-      setFilteredVideoTestimonials(newFilteredTestimonials);
-    },
-    []
-  );
-
   const handleTextFilterChange = useCallback(
     (newFilteredTestimonials: any[]) => {
       setFilteredTextTestimonials(newFilteredTestimonials);
@@ -269,10 +243,6 @@ export default function TestimonialsPage() {
   // CONTEXT7 SOURCE: /websites/react_dev - useEffect for syncing derived state
   // PERFORMANCE OPTIMIZATION: Sync filtered state when optimized data changes
   React.useEffect(() => {
-    setFilteredVideoTestimonials(optimizedVideoTestimonialsData);
-  }, [optimizedVideoTestimonialsData]);
-
-  React.useEffect(() => {
     setFilteredTextTestimonials(optimizedTextTestimonialsData);
   }, [optimizedTextTestimonialsData]);
 
@@ -282,12 +252,16 @@ export default function TestimonialsPage() {
     <>
       {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
       {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
-      <SimpleHero
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="testimonials-hero">
+        <SimpleHero
         backgroundImage="/images/hero/child_book_and_laptop.avif"
         h1="Student & Parent Testimonials"
         h2="Read testimonials from families who have achieved exceptional results with My Private Tutor Online."
         decorativeStyle="lines"
-      />
+        />
+      </section>
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - App Router layout patterns with PageHeader integration */}
@@ -299,108 +273,61 @@ export default function TestimonialsPage() {
         showFooter={true}
         containerSize="full"
       >
-        {/* CONTEXT7 SOURCE: /components/testimonials/testimonials-intro - Enhanced modular intro component */}
-        {/* COMPONENT INTEGRATION REASON: Extracted reusable TestimonialsIntro component with enhanced trust indicators */}
-        <TestimonialsIntro
-          introContent={introConfig.introContent}
-          backgroundVariant={introConfig.backgroundVariant}
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Component integration patterns */}
+        {/* INTEGRATION REASON: Adding testimonials intro section above filter per requirements */}
+        <TestimonialsIntro 
+          backgroundVariant="white"
           showTrustIndicators={true}
-          showWaveSeparator={false}
-          trustIndicators={introConfig.trustIndicators}
+          showWaveSeparator={true}
           animationDelay={0.1}
+          className=""
         />
 
-        {/* CONTEXT7 SOURCE: /muxinc/next-video - Enhanced video testimonials component with multi-video gallery support */}
-        {/* CONTEXT7 SOURCE: /cookpete/react-player - Professional video gallery with thumbnail navigation and analytics */}
-        {/* VIDEO GALLERY COMPONENT: VideoTestimonials with enhanced video presentation and engagement tracking */}
-        <VideoTestimonials
-          videos={testimonialsWithVideo}
-          layout="gallery"
-          backgroundVariant="blue"
-          showThumbnails={true}
-          enableAnalytics={true}
-          showCategories={true}
-          title="Video Testimonials - What Families Are Saying"
-          description={`Watch our families share their experiences with My Private Tutor Online (${testimonialsWithVideo.length} video testimonials)`}
-          animationDelay={0.1}
-        />
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns */}
+        {/* COPY OPERATION: Duplicating testimonials section from about page to testimonials page */}
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
+        {/* TESTIMONIALS EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
+        {/* SYNCHRONOUS DATA ACCESS: Direct testimonials data access prevents loading state complexity and homepage failure scenarios */}
+        {/* VIDEO FILTERING: getTextTestimonials() ensures only text testimonials are displayed on About page */}
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="about-testimonials">
+          <TestimonialsSection testimonials={aboutTestimonials} />
+        </section>
 
-        {/* SECTION 1: VIDEO TESTIMONIALS - Testimonials WITH video content */}
-        {testimonialsWithVideo.length > 0 && (
-          <>
-            {/* CONTEXT7 SOURCE: /components/testimonials/testimonials-filter - Advanced testimonials filter component for video testimonials */}
-            {/* VIDEO TESTIMONIALS FILTER: Filtering only testimonials that have video content */}
-
-            <TestimonialsFilter
-              testimonials={testimonialsWithVideo}
-              onFilterChange={handleVideoFilterChange}
-              filterConfig={dynamicFilterConfig}
-              showSearch={true}
-              showAdvancedFilters={true}
-              enableAnalytics={true}
-            />
-
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced TestimonialsGrid Component for Video Testimonials */}
-            {/* VIDEO TESTIMONIALS GRID: Display testimonials that HAVE videoSource field */}
-            <section className="relative bg-slate-50/60 py-16 lg:py-20">
-              {/* Premium Pattern Overlay (1% opacity for very subtle treatment) */}
-              <div
-                className="absolute inset-0 opacity-[0.01] pointer-events-none"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23475569' fill-opacity='1'%3E%3Cpath d='M25 5l-5 5L15 5l5-5L25 5zm10 10l-5 5L25 15l5-5L35 20z'/%3E%3C/g%3E%3C/svg%3E")`,
-                  backgroundSize: "50px 50px",
-                }}
-              />
-
-              <div className="relative">
-                {/* CONTEXT7 SOURCE: /websites/react_dev - Pre-computed testimonials data for performance optimization */}
-                {/* PERFORMANCE REASON: Using memoized data prevents expensive re-calculations on every render */}
-                <TestimonialsGrid
-                  testimonials={filteredVideoTestimonials}
-                  layout="grid"
-                  columns={3}
-                  animationStyle="fade"
-                  showLoadMore={true}
-                  enableVirtualScroll={false}
-                  showModal={true}
-                  showLayoutControls={true}
-                  enableSorting={true}
-                  className=""
-                />
-              </div>
-            </section>
-          </>
-        )}
-
-        {/* SECTION 2: TEXT TESTIMONIALS - Testimonials WITHOUT video content */}
+        {/* TEXT TESTIMONIALS SECTION - Family success stories and reviews */}
         {testimonialsWithoutVideo.length > 0 && (
           <>
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reduced vertical spacing for more compact layout */}
+            {/* SPACING REVISION REASON: Official Tailwind documentation py-<number> patterns for tighter section spacing */}
             {/* CONTEXT7 SOURCE: /components/testimonials/testimonials-filter - Advanced testimonials filter component for text testimonials */}
             {/* TEXT TESTIMONIALS FILTER: Filtering only testimonials that do NOT have video content */}
-            <div className="bg-white py-8">
-              <div className="container mx-auto px-4">
-                <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-slate-800 mb-4">
-                    Find Your Success Story
-                  </h2>
-                  <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                    Discover testimonials from families with similar academic goals and backgrounds
-                  </p>
+            {/* CONTEXT7 SOURCE: /websites/react_dev - Component section removal pattern for content cleanup */}
+            {/* REMOVAL REASON: Testimonials intro section removed per user request to streamline page content */}
+            {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+            {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+            <section id="testimonials-filter">
+              <div className="bg-white py-6">
+                <div className="container mx-auto px-6">
+                  <TestimonialsFilter
+                    testimonials={testimonialsWithoutVideo}
+                    onFilterChange={handleTextFilterChange}
+                    filterConfig={dynamicFilterConfig}
+                    showSearch={true}
+                    showAdvancedFilters={true}
+                    enableAnalytics={true}
+                  />
                 </div>
               </div>
-              <TestimonialsFilter
-                testimonials={testimonialsWithoutVideo}
-                onFilterChange={handleTextFilterChange}
-                filterConfig={dynamicFilterConfig}
-                showSearch={true}
-                showAdvancedFilters={true}
-                enableAnalytics={true}
-              />
-            </div>
+            </section>
 
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container max-width constraint for ~80% screen width */}
+            {/* CONTAINER CONSTRAINT REASON: Official Tailwind documentation max-w-6xl patterns for content width limitation */}
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced TestimonialsGrid Component for Text Testimonials */}
             {/* TEXT TESTIMONIALS GRID: Display testimonials that do NOT have videoSource field */}
-            <section className="relative bg-slate-50/60 py-16 lg:py-20">
+            {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+            {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+            <section id="testimonials-grid" className="relative bg-slate-50/60 py-12 lg:py-16">
               {/* Premium Pattern Overlay (1% opacity for very subtle treatment) */}
               <div
                 className="absolute inset-0 opacity-[0.01] pointer-events-none"
@@ -410,7 +337,9 @@ export default function TestimonialsPage() {
                 }}
               />
 
-              <div className="relative">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container max-width constraint for ~80% screen width */}
+              {/* CONTAINER WIDTH REASON: Official Tailwind documentation max-w-6xl with mx-auto for centered 80% width constraint */}
+              <div className="relative max-w-6xl mx-auto">
                 {/* CONTEXT7 SOURCE: /websites/react_dev - Pre-computed testimonials data for performance optimization */}
                 {/* PERFORMANCE REASON: Using memoized data prevents expensive re-calculations on every render */}
                 <TestimonialsGrid
@@ -423,7 +352,7 @@ export default function TestimonialsPage() {
                   showModal={true}
                   showLayoutControls={true}
                   enableSorting={true}
-                  className=""
+                  className="px-6"
                 />
               </div>
             </section>
@@ -433,7 +362,10 @@ export default function TestimonialsPage() {
         {/* CONTEXT7 SOURCE: /components/testimonials/elite-schools-carousel - Enhanced Elite Schools Carousel Component */}
         {/* CONTEXT7 SOURCE: Official React patterns for component composition and configuration */}
         {/* CAROUSEL COMPONENT REASON: Task 6 implementation - Extracted modular carousel with advanced features */}
-        <EliteSchoolsCarousel
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="testimonials-schools-carousel">
+          <EliteSchoolsCarousel
           schools={carouselConfig.schools}
           title={carouselConfig.title}
           description={carouselConfig.description}
@@ -446,7 +378,8 @@ export default function TestimonialsPage() {
           backgroundVariant={carouselConfig.backgroundVariant}
           showSearch={false}
           showCategoryFilter={false}
-        />
+          />
+        </section>
 
         {/* TESTIMONIALS OVERHAUL: Removed CTA section from testimonials page footer for cleaner page boundaries */}
       </PageLayout>

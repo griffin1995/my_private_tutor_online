@@ -129,7 +129,7 @@ export const OptimizedImage = forwardRef<HTMLImageElement, EnhancedOptimizedImag
     // OPTIMIZATION CALCULATION REASON: Apply intelligent optimization based on context and capabilities
     const calculateOptimizations = useCallback(() => {
       const optimizations: string[] = []
-      let finalProps: any = { ...props }
+      const finalProps: any = { ...props }
       
       // CONTEXT7 SOURCE: /vercel/next.js - Advanced format detection and optimization
       // FORMAT OPTIMIZATION REASON: Use optimal format based on browser capabilities

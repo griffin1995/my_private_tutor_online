@@ -106,7 +106,9 @@ export default function HowItWorksPage() {
       {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component prop modification patterns for enhanced user messaging */}
       {/* H2 PROP UPDATE REASON: Official React documentation Section 4.2 demonstrates prop value updates for improved component messaging and user experience */}
-      <section id="hero">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="how-it-works-hero">
         <SimpleHero
           backgroundImage="/images/hero/hero-how-it-works.jpeg"
           h1="Outstanding Tuition. Tailored Pairing. Ongoing Guidance."
@@ -141,7 +143,9 @@ export default function HowItWorksPage() {
         {/* ANCHOR ID REASON: Official React documentation demonstrates id attribute usage for anchor navigation patterns */}
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Section spacing control to eliminate hero-content gaps */}
         {/* SPACING OPTIMIZATION REASON: Official Tailwind CSS documentation shows using pt-0 to connect sections seamlessly after hero components */}
-        <section id="how-it-works-steps" className="relative bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 pt-0 pb-20 lg:pb-32 border-b border-slate-100/50 overflow-hidden">
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="how-it-works-process-steps" className="relative bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 pt-0 pb-20 lg:pb-32 border-b border-slate-100/50 overflow-hidden">
           {/* Premium Royal Pattern Overlay (enhanced opacity for timeline sophistication) */}
           <div
             className="absolute inset-0 opacity-[0.02] pointer-events-none"
@@ -362,7 +366,9 @@ export default function HowItWorksPage() {
         {/* CONTEXT7 SOURCE: /microsoft/typescript - Remove filtering logic to show all tutors with tier-based sorting */}
         {/* FILTERING REMOVAL REASON: Official TypeScript documentation demonstrates array processing without filter operations - show all 9 tutors sorted by tier only */}
         {/* MEET OUR EXPERT TUTORS - All 9 tutors displayed with tier-based sorting (Tier 1, Tier 2, Tier 3) */}
-        <section id="tutors">
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="how-it-works-tutors">
           <TutorsSection 
             data={tutorProfilesSection}
             showFeaturedOnly={false}
@@ -379,7 +385,9 @@ export default function HowItWorksPage() {
         {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium alternating section backgrounds with sophisticated gradient treatments */}
         {/* ROYAL SECTION REASON: Official Tailwind CSS documentation demonstrates complex gradient backgrounds for premium service differentiation */}
         {/* Tiered Tutoring System - Enhanced with Royal Premium Treatment */}
-        <section id="tutoring-tiers" className="relative bg-gradient-to-b from-blue-50/30 via-slate-50/20 to-amber-50/15 py-20 lg:py-32 overflow-hidden">
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="how-it-works-tutoring-tiers" className="relative bg-gradient-to-b from-blue-50/30 via-slate-50/20 to-amber-50/15 py-20 lg:py-32 overflow-hidden">
           {/* CONTEXT7 SOURCE: /context7/tailwindcss - Enhanced pattern overlay with sophisticated SVG backgrounds */}
           {/* Enhanced Pattern Overlay */}
           <div
@@ -713,7 +721,9 @@ export default function HowItWorksPage() {
         {/* CONTEXT7 SOURCE: /websites/react_dev - HTML anchor id attributes for navigation sections */}
         {/* ANCHOR ID REASON: Official React documentation demonstrates id attribute usage for anchor navigation patterns */}
         {/* Benefits Section - Enhanced with Premium Royal Treatment */}
-        <section id="benefits" className="relative bg-gradient-to-b from-slate-50/80 via-blue-50/40 to-amber-50/30 py-20 lg:py-32 overflow-hidden">
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="how-it-works-benefits" className="relative bg-gradient-to-b from-slate-50/80 via-blue-50/40 to-amber-50/30 py-20 lg:py-32 overflow-hidden">
           {/* Premium Pattern Overlay */}
           <div
             className="absolute inset-0 opacity-[0.02] pointer-events-none"

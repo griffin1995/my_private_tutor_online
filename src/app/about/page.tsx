@@ -77,12 +77,16 @@ export default function AboutUsPage() {
       {/* HERO INTEGRATION REASON: Integrating SimpleHero component for testing purposes with smooth scroll animations */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Background image optimization using CMS data patterns */}
       {/* DECORATIVE STYLE OPTIONS: decorativeStyle="lines" (default), decorativeStyle="dots", decorativeStyle="none" */}
-      <SimpleHero
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="about-hero">
+        <SimpleHero
         backgroundImage={aboutHeroImage.src}
         h1="Our Ethos and Founder"
         h2="Elizabeth's unconventional educational journey has shaped My Private Tutor Online's unique ethos and approach."
         decorativeStyle="none"
-      />
+        />
+      </section>
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
@@ -100,26 +104,38 @@ export default function AboutUsPage() {
       >
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
         {/* FOUNDER STORY EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
-        <FounderStorySection />
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="about-founder-story">
+          <FounderStorySection />
+        </section>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration patterns for modular UI design */}
         {/* QUOTE SECTION INTEGRATION REASON: Official React documentation Section 2.3 recommends component composition for enhanced page structure */}
         {/* CONTEXT7 SOURCE: /magicui/design - MagicUI Highlighter implementation for Academia Insight quote */}
         {/* HIGHLIGHTING IMPLEMENTATION REASON: Official Magic UI documentation demonstrates strategic text highlighting for premium service emphasis */}
-        <QuoteSection 
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="about-quote">
+          <QuoteSection 
           quote="A truly bespoke experience - Elizabeth personally pairs each student with a carefully selected tutor from her boutique team."
           author="Academia Insight"
           role=""
           backgroundColor="bg-primary-50"
           useHighlighting={true}
           useMagicUIEffects={true}
-        />
+          />
+        </section>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
         {/* TESTIMONIALS EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
         {/* SYNCHRONOUS DATA ACCESS: Direct testimonials data access prevents loading state complexity and homepage failure scenarios */}
         {/* VIDEO FILTERING: getTextTestimonials() ensures only text testimonials are displayed on About page */}
-        <TestimonialsSection testimonials={aboutTestimonials} />
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="about-testimonials">
+          <TestimonialsSection testimonials={aboutTestimonials} />
+        </section>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal and clean architecture maintenance */}
         {/* ETHOS SECTION REMOVED: Clean component removal per user requirements while maintaining page structure */}

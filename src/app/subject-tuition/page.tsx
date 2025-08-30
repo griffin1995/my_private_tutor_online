@@ -226,7 +226,9 @@ export default function SubjectTuitionPage() {
     <>
       {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
       {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
-      <section id="hero">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="subject-tuition-hero">
         <SimpleHero
           backgroundImage="/images/hero/hero-subject-tuition-primary.jpg"
           h1="Subject Tutoring & Exam Preparation"
@@ -256,8 +258,10 @@ export default function SubjectTuitionPage() {
         {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
         {/* CONTEXT7 SOURCE: /facebook/react - SubjectAccordion component integration */}
         {/* ACCORDION SECTION REASON: Extracted component for subject category display */}
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <Section
-          id="subject-categories"
+          id="subject-tuition-categories"
           className="py-16 lg:py-24 relative"
           background="white"
         >
@@ -311,7 +315,9 @@ export default function SubjectTuitionPage() {
         {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
         {/* CONTEXT7 SOURCE: /facebook/react - ResultsDocumentation component integration */}
         {/* RESULTS DOCUMENTATION REASON: Task 18 implementation for verifiable outcome tracking */}
-        <Section id="academic-outcomes" className="py-16 lg:py-24 relative" background="white">
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <Section id="subject-tuition-results" className="py-16 lg:py-24 relative" background="white">
           <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for statistical data removal
@@ -340,7 +346,9 @@ export default function SubjectTuitionPage() {
         {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
         {/* CONTEXT7 SOURCE: /facebook/react - HomeschoolingPreview component integration with programme image */}
         {/* HOMESCHOOLING SECTION REASON: Extracted component for preview section with CTA and programme visualization */}
-        <Section id="homeschooling" className="py-16 lg:py-24 relative" background="white">
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <Section id="subject-tuition-homeschooling-preview" className="py-16 lg:py-24 relative" background="white">
           <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-[#CA9E5B]/20" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

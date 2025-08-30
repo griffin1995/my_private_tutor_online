@@ -189,7 +189,9 @@ export default function ElevenPlusBootcampsPage() {
     <>
       {/* CONTEXT7 SOURCE: /joshbuchea/head - HTML anchor ID attributes for navigation support */}
       {/* ANCHOR ID IMPLEMENTATION: Official HTML documentation shows id attributes on section elements for navigation links */}
-      <section id="hero">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="bootcamps-hero">
         {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
         {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
         <SimpleHero
@@ -202,7 +204,9 @@ export default function ElevenPlusBootcampsPage() {
 
       {/* CONTEXT7 SOURCE: /joshbuchea/head - HTML anchor ID attributes for schools section navigation */}
       {/* SCHOOLS ANCHOR IMPLEMENTATION: Official HTML documentation shows id attributes for section identification */}
-      <section id="schools">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="bootcamps-schools">
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration below hero section */}
         {/* SCROLLING SCHOOLS INTEGRATION: Official React documentation shows component composition patterns */}
         <ScrollingSchools schools={[...testimonialsSchools]} />
@@ -210,7 +214,9 @@ export default function ElevenPlusBootcampsPage() {
 
       {/* CONTEXT7 SOURCE: /joshbuchea/head - HTML anchor ID attributes for tagline section navigation */}
       {/* TAGLINE ANCHOR IMPLEMENTATION: Official HTML documentation shows id attributes for content section identification */}
-      <section id="tagline">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="bootcamps-tagline">
         {/* CONTEXT7 SOURCE: /websites/react_dev - AnimatedTagline component integration without props */}
         {/* ANIMATED TAGLINE REVISION: Official React documentation Section 3.2 shows prop removal patterns for component standardization */}
         <AnimatedTagline />
@@ -222,7 +228,9 @@ export default function ElevenPlusBootcampsPage() {
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
         {/* Programme Options - Professional Redesign */}
-        <section id="programme-options" className="py-20 bg-gradient-to-br from-white via-amber-50/30 to-yellow-50/20 relative">
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <section id="bootcamps-programme-options" className="py-20 bg-gradient-to-br from-white via-amber-50/30 to-yellow-50/20 relative">
           {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for programme showcase images */}
           {/* PROGRAMME SHOWCASE REASON: Official Next.js Image documentation recommends optimized images for enhanced user experience */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -497,7 +505,9 @@ export default function ElevenPlusBootcampsPage() {
         {/* BOOTCAMP FEATURES INTEGRATION REASON: Official React documentation Section 3.4 demonstrates content replacement patterns */}
         {/* CONTEXT7 SOURCE: /facebook/react - Content restructuring with extracted Section 6 bootcamp features */}
         {/* CONTENT RESTRUCTURING REVISION: Replaced homeschooling content with 'What Makes Our Bootcamps Different' features for improved page flow */}
-        <Section id="bootcamp-features" className="py-16 lg:py-24 relative" background="white">
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+        <Section id="bootcamps-features" className="py-16 lg:py-24 relative" background="white">
           <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-orange-50/20" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

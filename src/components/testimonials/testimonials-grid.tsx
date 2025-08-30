@@ -169,15 +169,19 @@ const animationVariants = {
   }
 }
 
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Significantly reduced gap spacing for compact grid layout
+// GRID LAYOUT REVISION REASON: Official Tailwind documentation gap-<number> patterns for much tighter spacing and smaller cards
 // CONTEXT7 SOURCE: /context7/tailwindcss - Responsive grid layout patterns with breakpoint variants
-// GRID LAYOUT REASON: Multiple layout options for optimal testimonial presentation across devices
+// GRID LAYOUT REASON: Multiple layout options for optimal testimonial presentation across devices with compact sizing
+{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard grid layout spacing for normal card presentation */}
+{/* SPACING REVERSION REASON: Official Tailwind CSS documentation gap-<number> and space-y-<number> patterns for proper grid spacing */}
 const gridLayoutClasses = {
-  masonry: "columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6",
+  masonry: "columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-8 space-y-6",
   grid: {
-    1: "grid grid-cols-1 gap-6",
-    2: "grid grid-cols-1 md:grid-cols-2 gap-6",
+    1: "grid grid-cols-1 gap-8",
+    2: "grid grid-cols-1 md:grid-cols-2 gap-8",
     3: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
-    4: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+    4: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
   },
   list: "flex flex-col space-y-6",
   carousel: "flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory"
@@ -234,7 +238,7 @@ export function TestimonialsGrid({
   // CONTEXT7 SOURCE: /context7/react_dev - useMemo patterns for expensive computations
   // PERFORMANCE REASON: Optimized sorting and filtering of testimonials with stable references
   const sortedAndFilteredTestimonials = useMemo(() => {
-    let sorted = [...testimonials]
+    const sorted = [...testimonials]
 
     // Sort testimonials
     switch (sortBy) {
@@ -311,7 +315,7 @@ export function TestimonialsGrid({
   }
 
   return (
-    <div className={'testimonials-grid ' + className}>
+    <div className={'testimonials-grid px-6 ' + className}>
         {/* CONTEXT7 SOURCE: /context7/tailwindcss - Layout control interface with responsive buttons */}
         {/* CONTROL INTERFACE REASON: User-friendly layout and sorting controls for testimonial exploration */}
         {/* CONTEXT7 SOURCE: /websites/motion_dev - Enhanced control interface with premium micro-interactions */}

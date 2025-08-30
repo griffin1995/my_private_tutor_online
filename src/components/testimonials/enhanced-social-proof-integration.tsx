@@ -197,7 +197,7 @@ export const EnhancedSocialProofIntegration: React.FC<EnhancedSocialProofIntegra
 
   // Track user behavior
   useEffect(() => {
-    let startTime = Date.now()
+    const startTime = Date.now()
     let interactions = 0
     let focusStart = Date.now()
 

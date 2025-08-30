@@ -52,7 +52,7 @@ interface VoteRecord {
 
 // CONTEXT7 SOURCE: /pmndrs/zustand - Mock database for voting system
 // MOCK DATABASE: In-memory storage for votes (replace with real database in production)
-let mockVotes: VoteRecord[] = [
+const mockVotes: VoteRecord[] = [
   {
     id: 'vote-1',
     suggestionId: 'suggestion-1',
@@ -66,7 +66,7 @@ let mockVotes: VoteRecord[] = [
 ]
 
 // Mock suggestions for vote counting
-let mockSuggestions = [
+const mockSuggestions = [
   {
     id: 'suggestion-1',
     votes: { upvotes: 15, downvotes: 2, netVotes: 13 }

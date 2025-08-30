@@ -162,7 +162,9 @@ export default function HomePage() {
       {/* - HeroSection.showHeader={false} = Prevents DUPLICATE header inside hero section */}
       {/* CRITICAL UNDERSTANDING: These control DIFFERENT headers - navbar vs hero header */}
       {/* ACCESSIBILITY: PageLayout navbar is ESSENTIAL for users to navigate between pages */}
-      <section id="hero">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-hero">
         <HeroSection 
           showHeader={false}
           hasStaticNavbar={true}
@@ -172,7 +174,9 @@ export default function HomePage() {
       {/* 2. "WE HELP STUDENTS PLACE AT TOP 10 UK SCHOOLS AND UNIVERSITIES" */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spacing utilities for vertical rhythm */}
       {/* SPACING ADDITION REASON: Official Tailwind CSS documentation mt-8 utility creates 2rem (32px) top margin for breathing room between Hero and Tagline sections */}
-      <section id="tagline" className="mt-8">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-tagline" className="mt-8">
         <AnimatedTagline />
       </section>
       
@@ -181,7 +185,9 @@ export default function HomePage() {
       {/* SPACING CONSISTENCY REASON: Official Tailwind CSS documentation mt-8 utility maintains same 2rem spacing as Tagline for visual rhythm grouping */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering for async data loading */}
       {/* ASYNC RENDERING REASON: Official React documentation shows conditional rendering patterns for loading states and data availability */}
-      <section id="schools" className="mt-8">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-schools" className="mt-8">
         {testimonialsSchools.length > 0 && (
           <ScrollingSchools 
             schools={[...testimonialsSchools]}
@@ -193,7 +199,9 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component rendering with JSX for modular sections */}
       {/* REVISION REASON: Official React documentation Section 4.1 shows proper conditional rendering for component repositioning */}
       {/* ABOUT SECTION SUBHEADING RELOCATION: Moving highlighted subheading from About Section to dedicated Quote Section for enhanced prominence */}
-      <section id="mission" className="mt-16">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-mission" className="mt-16">
         <QuoteSection 
           quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
           backgroundColor="bg-white"
@@ -208,7 +216,9 @@ export default function HomePage() {
       {/* VISUAL BREAK REASON: Official Tailwind CSS documentation mt-16 utility creates 4rem (64px) top margin for clear separation between introductory group (Hero/Tagline/Schools) and main content sections */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - About section with founder story and company credentials */}
       {/* ABOUT SECTION RESTORATION: Restored from git history - provides company background and founder credibility */}
-      <section id="about" className="mt-16">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-about" className="mt-16">
         <AboutSection />
       </section>
       
@@ -216,7 +226,9 @@ export default function HomePage() {
       {/* 6. RESULTS DOCUMENTATION - QUANTIFIABLE ACADEMIC OUTCOMES */}
       {/* CONTEXT7 SOURCE: /facebook/react - ResultsDocumentation component integration identical to Subject Tuition page */}
       {/* RESULTS DOCUMENTATION REASON: Exact carbon copy of Subject Tuition page section 4 for consistent data presentation */}
-      <section id="results" className="py-16 lg:py-24 relative bg-white">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-results" className="py-16 lg:py-24 relative bg-white">
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for statistical data removal
@@ -232,7 +244,9 @@ export default function HomePage() {
       </section>
       
       {/* 7. WHO WE SUPPORT */}
-      <section id="who-we-support">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-who-we-support">
         <TrustIndicatorsGrid 
           indicators={trustIndicators}
           studentImages={studentImages}
@@ -244,7 +258,9 @@ export default function HomePage() {
       {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Props passing patterns for Next.js components */}
       {/* PROP STRUCTURE FIX: Official Next.js documentation shows props must maintain expected data structures - ServicesCarousel expects Record<string, StudentImageData> not array */}
-      <section id="what-we-offer">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-what-we-offer">
         <HomepageSections 
           services={[...services]}
           studentImages={studentImages}
@@ -254,7 +270,9 @@ export default function HomePage() {
       {/* 9. QUOTE SECTION */}
       {/* CONTEXT7 SOURCE: /magicui/design - Text-only quote with strategic highlighting effects */}
       {/* HIGHLIGHTER ENHANCEMENT REASON: Magic UI documentation enables visual emphasis without photos for clean, professional presentation */}
-      <section id="testimonials">
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-testimonials">
         <QuoteSection 
           quote={founderQuote.quote}
           author={founderQuote.author}
