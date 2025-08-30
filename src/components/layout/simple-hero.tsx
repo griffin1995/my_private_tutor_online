@@ -191,13 +191,13 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
               <motion.h1 
                 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-display font-black leading-[1.618] tracking-tight"
                 style={{
-                  color: '#CA9E5B',
+                  color: '#3F4A7E', // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Royal blue (Metallic Blue) color for video-masterclasses hero h1
                   textShadow: `
-                    0 2px 4px rgba(138, 94, 42, 0.618),
-                    0 4px 8px rgba(138, 94, 42, 0.382),
-                    0 8px 16px rgba(138, 94, 42, 0.236),
-                    inset 0 1px 0 rgba(229, 196, 87, 0.618)
-                  ` // Golden ratio opacity progression with metallic depth
+                    0 2px 4px rgba(63, 74, 126, 0.618),
+                    0 4px 8px rgba(63, 74, 126, 0.382),
+                    0 8px 16px rgba(63, 74, 126, 0.236),
+                    inset 0 1px 0 rgba(95, 111, 158, 0.618)
+                  ` // REVISION REASON: Official Tailwind CSS documentation for custom color styling - Updated text shadows to match royal blue color scheme with proper RGB values
                 }}
                 initial={{ 
                   opacity: 0.9, // Start at 90% opacity for elegant hover transition
@@ -221,11 +221,11 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
                   scale: 1.02, // Minimal scale for layout stability
                   opacity: 1, // Full opacity from initial 0.9
                   textShadow: `
-                    0 0 12px rgba(202, 158, 91, 0.4),
-                    0 4px 8px rgba(138, 94, 42, 0.382),
-                    0 8px 16px rgba(138, 94, 42, 0.236),
-                    inset 0 1px 0 rgba(229, 196, 87, 0.618)
-                  `, // Elegant Aztec Gold glow without layout shift
+                    0 0 12px rgba(63, 74, 126, 0.4),
+                    0 4px 8px rgba(63, 74, 126, 0.382),
+                    0 8px 16px rgba(63, 74, 126, 0.236),
+                    inset 0 1px 0 rgba(95, 111, 158, 0.618)
+                  `, // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Royal blue hover glow effect matching primary color scheme
                   transition: {
                     type: "spring", // Spring physics for refined movement
                     stiffness: 300, // Controlled responsiveness

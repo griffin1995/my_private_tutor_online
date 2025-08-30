@@ -23,7 +23,6 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react'
 import { motion as m, LazyMotion, domAnimation, AnimatePresence } from 'framer-motion'
 import { TestimonialCard } from './testimonial-card'
-import { TestimonialModal } from './testimonial-modal'
 import { SkeletonCard } from '../ui/skeleton-card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -60,7 +59,6 @@ export interface TestimonialsGridProps {
   readonly columns?: 1 | 2 | 3 | 4
   readonly showLoadMore?: boolean
   readonly enableVirtualScroll?: boolean
-  readonly showModal?: boolean
   readonly animationStyle?: 'fade' | 'slide' | 'scale' | 'flip'
   readonly loading?: boolean
   readonly itemsPerPage?: number
@@ -193,7 +191,6 @@ export function TestimonialsGrid({
   columns = 3,
   showLoadMore = false,
   enableVirtualScroll = false,
-  showModal = true,
   animationStyle = 'fade',
   loading = false,
   itemsPerPage = 12,
@@ -207,25 +204,13 @@ export function TestimonialsGrid({
   // STATE MANAGEMENT REASON: Comprehensive state for grid interactions and user preferences
   const [currentLayout, setCurrentLayout] = useState(layout)
   const [currentColumns, setCurrentColumns] = useState(columns)
-  const [selectedTestimonial, setSelectedTestimonial] = useState<EnhancedTestimonial | null>(null)
   const [visibleItems, setVisibleItems] = useState(itemsPerPage)
   const [sortBy, setSortBy] = useState<'date' | 'rating' | 'helpful'>('date')
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const gridRef = useRef<HTMLDivElement>(null)
 
-  // CONTEXT7 SOURCE: /context7/react_dev - useCallback patterns for performance optimization
-  // PERFORMANCE OPTIMIZATION REASON: Stable references for child component props and event handlers
-  const handleTestimonialClick = useCallback((testimonial: EnhancedTestimonial) => {
-    if (showModal) {
-      setSelectedTestimonial(testimonial)
-      setIsModalOpen(true)
-    }
-  }, [showModal])
-
-  const handleCloseModal = useCallback(() => {
-    setIsModalOpen(false)
-    setSelectedTestimonial(null)
-  }, [])
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Event handler removal pattern for non-interactive components
+  // MODAL REMOVAL REASON: Official React documentation Section 4.2 demonstrates component interaction removal by eliminating click handlers
+  // Testimonial cards are no longer clickable - onClick functionality completely removed
 
   const handleLoadMore = useCallback(() => {
     setVisibleItems(prev => Math.min(prev + itemsPerPage, testimonials.length))
@@ -460,7 +445,6 @@ export function TestimonialsGrid({
                     >
                       <TestimonialCard
                         testimonial={testimonial}
-                        onClick={() => handleTestimonialClick(testimonial)}
                         layout={currentLayout}
                         enableHover={true}
                         showFullContent={currentLayout === 'list'}
@@ -504,15 +488,9 @@ export function TestimonialsGrid({
           </m.div>
         )}
 
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Modal component with sophisticated animations */}
-        {/* MODAL REASON: Full-screen testimonial viewing experience with enhanced engagement */}
-        {showModal && selectedTestimonial && (
-          <TestimonialModal
-            testimonial={selectedTestimonial}
-            isOpen={isModalOpen}
-            onClose={handleCloseModal}
-          />
-        )}
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal pattern for modal elimination */}
+        {/* MODAL REMOVAL REASON: Official React documentation demonstrates removing unused components and their state management */}
+        {/* Testimonial modal functionality completely removed - cards are no longer clickable */}
       </div>
   )
 }

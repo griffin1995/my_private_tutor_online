@@ -133,7 +133,12 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
         viewport={{ once: true }}
       >
         <h4 className="text-lg font-serif font-bold text-slate-900 mb-3">{subjectItem.name}</h4>
-        <p className="text-slate-700 mb-4 leading-relaxed">{subjectItem.description}</p>
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - HTML content rendering with dangerouslySetInnerHTML for formatted text display */}
+        {/* CONTENT FORMATTING REASON: Official React documentation patterns for rendering HTML markup within JSX components for improved text readability with paragraph breaks */}
+        <div 
+          className="text-slate-700 mb-4 leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: subjectItem.description }}
+        />
         
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Video thumbnail and PDF download section */}
         {/* MULTIMEDIA CONTENT REASON: Official Tailwind CSS grid patterns for multimedia content display */}
@@ -182,6 +187,12 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
         {/* VIDEO SECTION REASON: Official React patterns for comprehensive video content with click-to-play functionality */}
         {subjectItem.videoSection && (
           <div className="mb-6 relative">
+            {/* CONTEXT7 SOURCE: /facebook/react - Introduction text for Emily's entrance exam specialist video */}
+            {/* EMILY INTRODUCTION REASON: Official React patterns for contextual content introduction above multimedia elements */}
+            <p className="text-slate-700 leading-relaxed mb-4 text-lg">
+              Meet Emily, one of our Entrance Exam specialists. She holds degrees from both Oxford & Cambridge University and worked at a top 10 London grammar school where she helped assess and select the best 11+ candidates
+            </p>
+            
             <div 
               className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
               onClick={() => onVideoClick?.(subjectItem.videoSection!.videoUrl, subjectItem.videoSection!.title, subjectItem.videoSection!.thumbnailUrl)}
@@ -331,7 +342,12 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
       >
         <div className="text-left">
           <h4 id={`nested-header-${parentId}-${index}`} className="text-lg font-serif font-bold text-slate-900">{subjectItem.name}</h4>
-          <p className="text-slate-600 mt-1">{subjectItem.description}</p>
+          {/* CONTEXT7 SOURCE: /reactjs/react.dev - HTML content rendering with dangerouslySetInnerHTML for formatted text display */}
+          {/* CONTENT FORMATTING REASON: Official React documentation patterns for rendering HTML markup within JSX components for improved text readability with paragraph breaks */}
+          <div 
+            className="text-slate-600 mt-1"
+            dangerouslySetInnerHTML={{ __html: subjectItem.description }}
+          />
         </div>
         <div className="text-slate-400 transition-transform duration-200" aria-hidden="true">
           {isNestedOpen ? <ChevronDown className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}

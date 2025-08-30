@@ -79,11 +79,13 @@ export default function AboutUsPage() {
       {/* DECORATIVE STYLE OPTIONS: decorativeStyle="lines" (default), decorativeStyle="dots", decorativeStyle="none" */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      {/* CONTEXT7 SOURCE: /mdn/content - HTML text content updates for hero section headings */}
+      {/* HERO SECTION REVISION REASON: Official MDN documentation Section HTML headings - updating hero section heading and sub-heading text per client feedback requirements */}
       <section id="about-hero">
         <SimpleHero
         backgroundImage={aboutHeroImage.src}
-        h1="Our Ethos and Founder"
-        h2="Elizabeth's unconventional educational journey has shaped My Private Tutor Online's unique ethos and approach."
+        h1="Your journey to academic success"
+        h2="Our bespoke consultation and pairing process ensures an exceptional fit — and seamless support throughout the entire journey."
         decorativeStyle="none"
         />
       </section>
@@ -94,13 +96,15 @@ export default function AboutUsPage() {
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing system implementation for About page */}
       {/* GOLDEN RATIO PAGE SPACING: Official Tailwind CSS documentation supports custom spacing for mathematical harmony */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component props modification patterns for conditional footer display */}
+      {/* FOOTER PROPS UPDATE REASON: Official React documentation demonstrates prop value changes for component behavior control */}
       <PageLayout
         background="white"
         showHeader={true}
         showFooter={true}
         containerSize="full"
         className="space-y-0"
-        footerProps={{ showContactForm: false }}
+        footerProps={{ showContactForm: true }}
       >
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
         {/* FOUNDER STORY EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}

@@ -77,10 +77,10 @@ KEYWORD OPPORTUNITIES:
 - Free download ‘Elizabeth’s Top 10 Tips for Writing an Outstanding Personal Statement’ <https://www.myprivatetutoronline.com/post/10-top-tips-for-writing-an-outstanding-personal-statement> (I’m planning on making this blog post a PDF that people can submit their contact details for to receive as a free download). Probably makes sense to put this somewhere on Homepage or in ‘University & Beyond’ section of ‘PRIVATE TUITION’.
 - ‘Enquiry Form MPTO screenshot’ hyperlinked to <https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k>~ to be in footer of every page
 
-----------
+---
 
 **VIDEO PATHS**
-REVISE BOTH PATHS TO USE _, THE FILE NAMES AND ALSO PATHS N CODE
+REVISE BOTH PATHS TO USE \_, THE FILE NAMES AND ALSO PATHS N CODE
 Silent MPTO background video July 2025.mp4
 Beth introduction MPTO video July 2025.mp4
 
@@ -100,7 +100,7 @@ Here’s what a selection of families have to say about their experience with us
 
 School/university shields - could be same carousel as on Entrance Exam page (like this: [**https://www.ivyeducation.co.uk/tuition/11-plus-tuition**](https://www.ivyeducation.co.uk/tuition/11-plus-tuition))
 
-------------
+---
 
 **OUR ETHOS**
 
@@ -132,11 +132,11 @@ Top 2% placements at elite UK independent schools, with 95% of tutees securing a
 
 Let us help your child find their path — and the courage to walk it with confidence.
 
---------
+---
 
 **HOW IT WORKS:**
 
-### **Outstanding Tuition. Tailored Pairing. Ongoing Guidance.**
+### **Your journey to academic success**
 
 At My Private Tutor Online, we offer more than just tutoring—**we provide thoughtful, expert advice at every stage** of your child’s academic journey. Our service is **consultative, personal, and bespoke** to your family’s individual needs.
 
@@ -144,11 +144,11 @@ At My Private Tutor Online, we offer more than just tutoring—**we provide thou
 
 You begin with a one-to-one conversation with our Founder Elizabeth to understand your child’s academic profile, personality, and goals. This includes:
 
-- Subject strengths and areas for development  
+- Subject strengths and areas for development
 
-- Upcoming exams or milestones  
+- Upcoming exams or milestones
 
-- Preferred learning style  
+- Preferred learning style
 
 - Any school-specific requirements
 
@@ -164,7 +164,7 @@ Our tutors include:
 - **Heads of Department** at top 10 UK schools
 - **Accredited GCSE, A Level and IB examiners**
 - **PhD and Postdocs  
-    **
+   **
 
 Each tutor has **hundreds—if not thousands—of hours of teaching experience** and an expert understanding of how to **personalize the learning experience** to tailor to the **individual student.** Our tutors undergo rigorous vetting, including enhanced DBS checks and reference requests, to ensure the highest standards of safety and integrity.
 
@@ -172,14 +172,14 @@ Each tutor has **hundreds—if not thousands—of hours of teaching experience**
 
 We offer a unique flexible tiered tutoring system, so you can choose the level of support that best fits your child’s needs and goals:
 
-| **Tier** | **Description** | **Best For** |
-| --- | --- | --- |
-| **Tier 3** | **Tutors from top UK universities (including Oxbridge), teaching their specialist subject** | **Mentoring, subject confidence** |
-| --- | --- | --- |
-| **Tier 2** | **Qualified, experienced classroom teachers** | **Curriculum mastery, consistency** |
-| --- | --- | --- |
-| **Tier 1** | **Official examiners and senior educators with extensive track records** | **Top grades, exam strategy** |
-| --- | --- | --- |
+| **Tier**   | **Description**                                                                             | **Best For**                        |
+| ---------- | ------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **Tier 3** | **Tutors from top UK universities (including Oxbridge), teaching their specialist subject** | **Mentoring, subject confidence**   |
+| ---        | ---                                                                                         | ---                                 |
+| **Tier 2** | **Qualified, experienced classroom teachers**                                               | **Curriculum mastery, consistency** |
+| ---        | ---                                                                                         | ---                                 |
+| **Tier 1** | **Official examiners and senior educators with extensive track records**                    | **Top grades, exam strategy**       |
+| ---        | ---                                                                                         | ---                                 |
 
 Whether your child needs light-touch guidance or elite-level preparation, our model allows you to choose the level of support that fits your child’s current needs - and your budget - with the ability to adjust as goals and circumstances change.
 
@@ -217,43 +217,43 @@ To begin, simply complete our short enquiry form, and a member of our team will 
 
 **🎓 ALMA – Maths & Science Specialist**
 
-- First-Class MSci Astrophysics, UCL | PGCE (Secondary Maths), IoE | Cognitive Psychology, Cambridge  
+- First-Class MSci Astrophysics, UCL | PGCE (Secondary Maths), IoE | Cognitive Psychology, Cambridge
 
-- Examiner for GCSE & A Level Maths and Science  
+- Examiner for GCSE & A Level Maths and Science
 
-- International Baccalaureate (IB) expert  
+- International Baccalaureate (IB) expert
 
-- 10,000+ hours of online tutoring  
+- 10,000+ hours of online tutoring
 
 - Classroom experience across independents, grammars, academies & state schools  
-    🗣 _“It’s making a huge difference to both my kids… they come away from lessons really buoyant.”  
-    _
+   🗣 _“It’s making a huge difference to both my kids… they come away from lessons really buoyant.”  
+   _
 
 **📚 AMY – English Language & Literature Specialist**
 
-- LLB (Hons) Law | PGCE Secondary English  
+- LLB (Hons) Law | PGCE Secondary English
 
-- Examiner for GCSE & A Level English  
+- Examiner for GCSE & A Level English
 
-- Head of English and Media Studies  
+- Head of English and Media Studies
 
 - Proven record of rapid grade improvement  
-    🗣 _“Jake has jumped from a U to two marks off a B – incredible progress in just a month.”  
-    _
+   🗣 _“Jake has jumped from a U to two marks off a B – incredible progress in just a month.”  
+   _
 
 **🏛️ EMILY – Entrance Exam Expert, History & Politics**
 
-- BA History, Cambridge | PGCE, Oxford  
+- BA History, Cambridge | PGCE, Oxford
 
-- Examiner for GCSE/A Level/IB History & Politics  
+- Examiner for GCSE/A Level/IB History & Politics
 
-- Former teacher at Latymer, Merchant Taylors, North London Collegiate  
+- Former teacher at Latymer, Merchant Taylors, North London Collegiate
 
-- Official 11+ examiner and assisted identifying top scholars  
+- Official 11+ examiner and assisted identifying top scholars
 
 - Students win places at top schools incl. Eton, Harrow, City of London, Henrietta Barnett, QE Boys and Dame Alice Owen’s  
-    🗣 _“Offers from St Paul’s, Westminster, Highgate and UCS. We can’t believe it!”  
-    _
+   🗣 _“Offers from St Paul’s, Westminster, Highgate and UCS. We can’t believe it!”  
+   _
 
 ### **TIER TWO: Experienced Classroom Professionals**
 
@@ -261,33 +261,33 @@ To begin, simply complete our short enquiry form, and a member of our team will 
 
 **✏️ MICHAEL – Primary & 11+/13+ Specialist**
 
-- PGCE Primary | 22+ years in the classroom  
+- PGCE Primary | 22+ years in the classroom
 
 - English Subject Lead with outstanding success guiding students into competitive grammars and independents (i.e. Tiffin, Sutton, Wallington)  
-    🗣 _“So patient, kind and encouraging. Charlie is so proud of his 11+ offers (as are we!).”  
-    _
+   🗣 _“So patient, kind and encouraging. Charlie is so proud of his 11+ offers (as are we!).”  
+   _
 
 **🧮 JULIET – Maths, SEN & International Teaching Expert**
 
-- BSc Maths | MA Education | PGCE Secondary  
+- BSc Maths | MA Education | PGCE Secondary
 
-- 30+ years international teaching, including Headteacher roles  
+- 30+ years international teaching, including Headteacher roles
 
-- Particularly excels with number-averse and SEN students  
+- Particularly excels with number-averse and SEN students
 
 - Teaches Maths, Business Studies, Economics  
-    🗣 _“If Kate keeps progressing like this, they’ll move her up a set after Christmas – hooray!”  
-    _
+   🗣 _“If Kate keeps progressing like this, they’ll move her up a set after Christmas – hooray!”  
+   _
 
 **🌍 ANDREAS – Modern Languages Specialist**
 
-- BA Spanish & German | QTS in Spanish and German  
+- BA Spanish & German | QTS in Spanish and German
 
-- Fluent in six languages  
+- Fluent in six languages
 
 - Delivers entire A Level language courses where schools do not offer them  
-    🗣 _“I got a 9 in Portuguese and an 8 in Spanish – amazing after being told I’d struggle to get a 7!”  
-    _
+   🗣 _“I got a 9 in Portuguese and an 8 in Spanish – amazing after being told I’d struggle to get a 7!”  
+   _
 
 ### **TIER THREE: Subject-Specific Specialists**
 
@@ -295,41 +295,41 @@ To begin, simply complete our short enquiry form, and a member of our team will 
 
 **🏛️ OPHELIA – 11+, Entrance Exams & Classics Expert**
 
-- BA Classics, Cambridge  
+- BA Classics, Cambridge
 
-- 11+ and entrance exam success across Harrow, Westminster and more  
+- 11+ and entrance exam success across Harrow, Westminster and more
 
-- Improved 11+ student scores from 20% to 80% in 2 months  
+- Improved 11+ student scores from 20% to 80% in 2 months
 
 - Oxbridge personal statement & interview coaching  
-    🗣 _“Without Ophelia there is no way I would have won my place at Cambridge.”  
-    _
+   🗣 _“Without Ophelia there is no way I would have won my place at Cambridge.”  
+   _
 
 **📘 ANNOUSHKA – English & Entrance Exams Specialist**
 
 _Teaches online and in North London area_
 
-- BA English, Oxford | CELTA Qualified  
+- BA English, Oxford | CELTA Qualified
 
-- Students regularly win places at Westminster, Cheltenham Ladies, Benenden  
+- Students regularly win places at Westminster, Cheltenham Ladies, Benenden
 
 - Classroom experience in UK and international private schools  
-    🗣 _“Seb comes out of lessons beaming – I caught him teaching his friends Annoushka’s times tables tricks!”  
-    _
+   🗣 _“Seb comes out of lessons beaming – I caught him teaching his friends Annoushka’s times tables tricks!”  
+   _
 
 **⚖️ ALEX – University Admissions & English Expert**
 
-- BA Law, Cambridge | MA, Harvard (Bioethics & AI Liability)  
+- BA Law, Cambridge | MA, Harvard (Bioethics & AI Liability)
 
-- British & US admissions expert – Oxbridge & Ivy League success  
+- British & US admissions expert – Oxbridge & Ivy League success
 
-- Top 1% SAT scorer | 10,000+ tutoring hours  
+- Top 1% SAT scorer | 10,000+ tutoring hours
 
 - Specialist in SAT, LNAT, IB, A-level, IGCSE, AP, HSC  
-    🗣 _“I got 28 in my LNAT and a UCL offer – please tell her thank you so much!”  
-    _
+   🗣 _“I got 28 in my LNAT and a UCL offer – please tell her thank you so much!”  
+   _
 
-    -----------
+  ***
 
 ## **For over fifteen years, Elizabeth and her team have provided world-class educational support to ambitious families.**
 
@@ -353,15 +353,15 @@ _ICONS: Tatler logo, School Guide UK logo, crown SVG file_
 
 ### **Results that Speak for Themselves**
 
-- **94%** of students improve by at least **two grades** at GCSE  
+- **94%** of students improve by at least **two grades** at GCSE
 
-- **11+** tutees routinely place in the **top 2%** of candidates. **95%** of candidates secure an offer from at least one of their desired schools.  
+- **11+** tutees routinely place in the **top 2%** of candidates. **95%** of candidates secure an offer from at least one of their desired schools.
 
-- Dozens of offers to **St Paul’s**, **Highgate, Westminster,** **Eton**, and more  
+- Dozens of offers to **St Paul’s**, **Highgate, Westminster,** **Eton**, and more
 
-- Placements secured at **Institut Le Rosey** and other elite international boarding schools  
+- Placements secured at **Institut Le Rosey** and other elite international boarding schools
 
-- Consistent success with **Oxbridge** and top Russell Group universities  
+- Consistent success with **Oxbridge** and top Russell Group universities
 
 ### **Why Families Choose Us**
 
@@ -385,34 +385,34 @@ While our families are based in London, Geneva, Dubai, New York, and beyond, our
 
 We work with a wide range of learners, offering guidance and transformation at every level:
 
-- Primary and Secondary school learners, across all subjects  
+- Primary and Secondary school learners, across all subjects
 
-- Competitive UK school entry (4+, 7+, 11+, 13+, 16+)  
+- Competitive UK school entry (4+, 7+, 11+, 13+, 16+)
 
-- GCSE, A-Level and IB excellence  
+- GCSE, A-Level and IB excellence
 
-- UCAS applications, including Oxbridge admissions  
+- UCAS applications, including Oxbridge admissions
 
-- Specialist exams (TMUA, LNAT, BMAT, SAT, ACT, IELTS)  
+- Specialist exams (TMUA, LNAT, BMAT, SAT, ACT, IELTS)
 
-- University level essay and thesis support  
+- University level essay and thesis support
 
 ### **A Word from Elizabeth**
 
-### “Parents come to us when something truly matters—an entrance exam, a lost sense of confidence, a desire for academic stretch. They stay with us because we deliver real progress, quietly and expertly. This is not a tutoring directory. This is a bespoke service for ambitious families looking for trusted partners in their child’s academic career.”  
+### “Parents come to us when something truly matters—an entrance exam, a lost sense of confidence, a desire for academic stretch. They stay with us because we deliver real progress, quietly and expertly. This is not a tutoring directory. This is a bespoke service for ambitious families looking for trusted partners in their child’s academic career.”
 
 — Elizabeth Burrows, Founder
 
 ### **A Tiered System with Precision and Flexibility**
 
-| **Tier** | **Description** | **Best For** | **Price Point** |
-| --- | --- | --- | --- |
-| **Tier 3** | Exceptional graduates tutoring their specialist subject | Mentoring, subject confidence | Affordable |
-| --- | --- | --- | --- |
-| **Tier 2** | Qualified, experienced classroom teachers | Curriculum mastery, consistency | Mid-range |
-| --- | --- | --- | --- |
-| **Tier 1** | Official, accredited examiners and senior educators with extensive track records | Top grades, exam strategy | Premium |
-| --- | --- | --- | --- |
+| **Tier**   | **Description**                                                                  | **Best For**                    | **Price Point** |
+| ---------- | -------------------------------------------------------------------------------- | ------------------------------- | --------------- |
+| **Tier 3** | Exceptional graduates tutoring their specialist subject                          | Mentoring, subject confidence   | Affordable      |
+| ---        | ---                                                                              | ---                             | ---             |
+| **Tier 2** | Qualified, experienced classroom teachers                                        | Curriculum mastery, consistency | Mid-range       |
+| ---        | ---                                                                              | ---                             | ---             |
+| **Tier 1** | Official, accredited examiners and senior educators with extensive track records | Top grades, exam strategy       | Premium         |
+| ---        | ---                                                                              | ---                             | ---             |
 
 This structure ensures the right level of support—tailored to your child’s goals, learning style, and your family’s expectations.
 
@@ -426,13 +426,13 @@ This structure ensures the right level of support—tailored to your child’s g
 
 ### **How It Works**
 
-1. Submit an enquiry or contact Elizabeth’s team directly  
+1. Submit an enquiry or contact Elizabeth’s team directly
 
-2. Schedule a personal consultation call with Elizabeth  
+2. Schedule a personal consultation call with Elizabeth
 
-3. Arrange an initial lesson to ensure it’s a perfect match  
+3. Arrange an initial lesson to ensure it’s a perfect match
 
-4. Start regular tutorials—with ongoing support from our personable team and regular progress updates via our tutoring platform  
+4. Start regular tutorials—with ongoing support from our personable team and regular progress updates via our tutoring platform
 
 ### **This Is Tutoring at Its Best**
 
@@ -445,7 +445,7 @@ From prep school entry to Oxbridge preparation, My Private Tutor Online delivers
 
 PLEASE INCLUDE LINK TO ENQUIRY FORM (currently on bottom of each page as a hyperlinked screenshot of the actual form. Please note the brand colours of the enquiry form are changing - hopefully by Fri 25th - so please wait until it’s refreshed before using) <https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k>~
 
---------
+---
 
 **ELIZABETH’S VIDEO MASTERCLASSES**
 
@@ -461,10 +461,10 @@ These sessions bridge the gap between international education and **the expectat
 
 ### **Featured Masterclasses:**
 
-- **Unlocking Academic Success** _(Free Access)  
-    _Practical strategies to help students develop independence, confidence and academic resilience.
+- **Unlocking Academic Success** \_(Free Access)  
+   \_Practical strategies to help students develop independence, confidence and academic resilience.
 - **Elizabeth’s Essential UCAS Guide  
-    **Navigate the UK university admissions process with clarity and confidence.
+   **Navigate the UK university admissions process with clarity and confidence.
 
 1. **Demystifying UCAS: A Clear Path to UK University Success**
 2. **Elizabeth’s Top 10 Tips for Outstanding Personal Statements**
@@ -480,20 +480,20 @@ From literary classics to social customs—everything your child needs to feel a
 ###
 
 - **Unlocking Academic Success** _(Free Access)  
-    _**Elizabeth was invited to speak at the 2024 UCAS Summit**, where she was called upon to share her expert guidance for parents on navigating the world of private tutoring. In this insightful session, she explores how to recognise when one-to-one support is needed, identify truly exceptional tutors and manage the tutor–student–parent relationship to ensure outstanding academic outcomes.
+   _**Elizabeth was invited to speak at the 2024 UCAS Summit**, where she was called upon to share her expert guidance for parents on navigating the world of private tutoring. In this insightful session, she explores how to recognise when one-to-one support is needed, identify truly exceptional tutors and manage the tutor–student–parent relationship to ensure outstanding academic outcomes.
 - **Elizabeth’s Essential UCAS Guide - Part 1 of 2. £49.99**
 
-_(As delivered at London School of Economics)_Widely recognised for her expertise in the British university admissions process, Elizabeth was invited to speak to international summer school students at LSE. In her session, she demystifies each stage of the UCAS application, offering clear, practical guidance to help students approach the process with confidence.
+\_(As delivered at London School of Economics)\_Widely recognised for her expertise in the British university admissions process, Elizabeth was invited to speak to international summer school students at LSE. In her session, she demystifies each stage of the UCAS application, offering clear, practical guidance to help students approach the process with confidence.
 
 **This 90-minute seminar draws on Elizabeth’s 15 years of experience**, blending expert guidance, practical strategies, and real-world anecdotes to equip students for a successful UCAS application. Ideal for both international and UK-based applicants.
 
 - **Elizabeth’s Top 10 Tips for Outstanding Personal Statements - Part 2 of 2. £89.99**
 
-_(As delivered at London School of Economics)_Elizabeth is renowned for her success in guiding ambitious students into Oxbridge (she was offered a place at Cambridge herself) and top UK universities. Each year her private students secure places at the best British universities, including UCL, LSE, Imperial and Edinburgh. In this masterclass she reveals the 10 ingredients in her secret recipe for personal statement success.
+\_(As delivered at London School of Economics)\_Elizabeth is renowned for her success in guiding ambitious students into Oxbridge (she was offered a place at Cambridge herself) and top UK universities. Each year her private students secure places at the best British universities, including UCL, LSE, Imperial and Edinburgh. In this masterclass she reveals the 10 ingredients in her secret recipe for personal statement success.
 
 In this **70-minute masterclass**, Elizabeth shares insider strategies and expert insights you won’t find anywhere else. You’ll also gain rare access to a Medicine personal statement that helped a student win a place at the University of Oxford.
 
-_\*This masterclass is relevant for students applying from 2025 onwards via the new UCAS personal statement format, which requires applicants to respond to three structured questions.\*_  
+_\*This masterclass is relevant for students applying from 2025 onwards via the new UCAS personal statement format, which requires applicants to respond to three structured questions.\*_
 
 - These masterclasses are ideal for families looking to elevate their child’s preparation for **boarding school entry**, **UK university applications**, or those simply looking to **immerse their child in British academic culture**.
 
@@ -506,10 +506,10 @@ From _Wind in the Willows_ to _Wuthering Heights_, and _Harry Potter_ to _The Lo
 Led by **Elizabeth Burrows**, English Literature graduate and Founder of My Private Tutor Online, this session was originally delivered to an international audience and explores:
 
 - What defines a _literary classic  
-    _
-- Key British literary genres  
+   _
+- Key British literary genres
 
-- The conventions and themes that shape them  
+- The conventions and themes that shape them
 
 Ideal for students aged **8–14 (KS2–KS3)**, this masterclass is designed to foster **cultural fluency, literary appreciation**, and a **lifelong love of reading**—whether your child is already an avid reader or needs encouragement. It is especially valuable for those preparing for **interviews at British independent schools**, where students are often expected to discuss books with confidence and insight.
 
@@ -533,16 +533,16 @@ What is etiquette? Why does it matter? And how can you improve your own presenta
 
 Students will learn:
 
-- The do’s and don’ts of greetings, introductions, and dining  
+- The do’s and don’ts of greetings, introductions, and dining
 
-- How etiquette differs across cultures  
+- How etiquette differs across cultures
 
-- How to avoid common social faux pas in British settings  
+- How to avoid common social faux pas in British settings
 
 ### **What’s Included:**
 
-🎥 **60-minute recorded masterclass**, delivered to an international student audience _(includes partial Mandarin subtitles)  
-_📑 **Accompanying PowerPoint presentation**, with links to further resources and enrichment materials
+🎥 **60-minute recorded masterclass**, delivered to an international student audience *(includes partial Mandarin subtitles)  
+*📑 **Accompanying PowerPoint presentation**, with links to further resources and enrichment materials
 
 £19.99
 
@@ -550,7 +550,7 @@ _📑 **Accompanying PowerPoint presentation**, with links to further resources 
 
 A fun, practical, and confidence-building introduction to navigating British life with ease and elegance.
 
---------
+---
 
 # **Frequently Asked Questions (FAQ)**
 
@@ -703,7 +703,7 @@ A fun, practical, and confidence-building introduction to navigating British lif
 
 ### **20\. How do we pay and when?**
 
-**You’ll receive itemised invoices to pay via secure bank transfer within three working days. We require a £200 credit balance to be maintained throughout tuition. This can be applied towards your final invoice when tuition ends.**
+**You’ll receive itemised invoices to pay via secure bank transfer within three working days. We require a £300 credit balance to be maintained throughout tuition. This can be applied towards your final invoice when tuition ends.**
 
 ### **21\. Can I track payments and attendance?**
 

@@ -189,6 +189,52 @@ export function QuoteSection({
       )
     }
 
+    // CONTEXT7 SOURCE: /magicuidesign/magicui - Subject-tuition page quote with specific underline and highlight effects
+    // SUBJECT-TUITION HIGHLIGHTING REASON: Magic UI documentation enables strategic text emphasis for tutoring service positioning
+    if (quote.includes("Our tutors are examiners, school teachers, and subject specialists")) {
+      // Subject-tuition quote with requested underline and highlight effects
+      return (
+        <>
+          Our tutors are{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+            examiners, school teachers, and subject specialists
+          </Highlighter>
+          {' '}who are not only experienced educators but also motivating mentors. Whether your child is preparing for a school entrance exam, navigating GCSEs/IBs/A-levels, or applying to top universities in the UK, we{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+            guide each family with clarity, care, and expert insight
+          </Highlighter>
+          {' '}at every stage of their educational journey.
+        </>
+      )
+    }
+
+    // CONTEXT7 SOURCE: /magicuidesign/magicui - Meet-our-tutors page quote with strategic highlight and underline effects
+    // MEET-OUR-TUTORS HIGHLIGHTING REASON: Magic UI documentation enables strategic text emphasis for tutor expertise and credibility positioning
+    if (quote.includes("Our tutors are handpicked by Elizabeth for their exceptional education pedigree")) {
+      // Meet-our-tutors quote with requested highlight and underline effects
+      return (
+        <>
+          Our tutors are{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+            handpicked by Elizabeth
+          </Highlighter>
+          {' '}for their{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+            exceptional education pedigree
+          </Highlighter>
+          , personalised approach and{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+            proven track record
+          </Highlighter>
+          . The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools and{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+            official examiners
+          </Highlighter>
+          {' '}for GCSEs, A Levels and IB exams. Each tutor is an expert in their field and has hundreds, if not thousands, of hours teaching experience.
+        </>
+      )
+    }
+
     // Brand-consistent highlighting using only main project colors
     return (
       <>

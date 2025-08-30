@@ -23,6 +23,8 @@
  */
 
 import type { Config } from 'tailwindcss'
+// CONTEXT7 SOURCE: /nicolas-cusan/tailwind-clamp - Tailwind clamp plugin for fluid typography and spacing
+import tailwindClamp from 'tailwind-clamp'
 
 const config: Config = {
   // Enable dark mode via class
@@ -549,6 +551,13 @@ const config: Config = {
     
     // Aspect ratio utilities
     require('@tailwindcss/aspect-ratio'),
+    
+    // CONTEXT7 SOURCE: /nicolas-cusan/tailwind-clamp - Fluid typography and spacing plugin
+    // CONTAINER-RELATIVE SIZING: Custom viewport sizes for premium responsive design
+    tailwindClamp({
+      minSize: '16rem', // 256px - minimum container width
+      maxSize: '80rem', // 1280px - maximum container width for fluid scaling
+    }),
   ],
   
   // Prefix for avoiding conflicts

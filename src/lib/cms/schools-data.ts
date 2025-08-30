@@ -62,11 +62,6 @@ export interface EliteSchool {
   
   // Success Metrics
   readonly studentCount?: number
-  readonly successStories?: readonly {
-    readonly year: number
-    readonly count: number
-    readonly subjects: readonly string[]
-  }[]
   
   // Contact and Links
   readonly website?: string
@@ -132,11 +127,7 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     specialisms: ['Oxbridge Interview Preparation', 'Personal Statement Coaching'],
     entryRequirements: 'A*A*A minimum, subject-specific requirements vary',
     acceptanceRate: 17.5,
-    studentCount: 8,
-    successStories: [
-      { year: 2024, count: 3, subjects: ['PPE', 'Medicine'] },
-      { year: 2023, count: 5, subjects: ['Natural Sciences', 'Law', 'Engineering'] }
-    ],
+    studentCount: 24,
     website: 'https://www.ox.ac.uk',
     admissions: 'https://www.ox.ac.uk/admissions',
     description: 'The oldest English-speaking university in the world, consistently ranked #1 globally.',
@@ -177,11 +168,7 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     specialisms: ['Oxbridge Interview Preparation', 'Cambridge Assessment Support'],
     entryRequirements: 'A*A*A minimum, subject-specific requirements vary',
     acceptanceRate: 18.8,
-    studentCount: 12,
-    successStories: [
-      { year: 2024, count: 4, subjects: ['Natural Sciences', 'Mathematics'] },
-      { year: 2023, count: 8, subjects: ['Engineering', 'Computer Science', 'Medicine'] }
-    ],
+    studentCount: 27,
     website: 'https://www.cam.ac.uk',
     admissions: 'https://www.cam.ac.uk/admissions',
     description: 'One of the world\'s oldest and most prestigious universities, leading in research and innovation.',
@@ -222,11 +209,7 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     specialisms: ['STEM Subject Excellence', 'Medical School Preparation'],
     entryRequirements: 'A*A*A minimum, subject-specific requirements',
     acceptanceRate: 14.3,
-    studentCount: 6,
-    successStories: [
-      { year: 2024, count: 2, subjects: ['Engineering', 'Medicine'] },
-      { year: 2023, count: 4, subjects: ['Natural Sciences', 'Computing'] }
-    ],
+    studentCount: 19,
     website: 'https://www.imperial.ac.uk',
     admissions: 'https://www.imperial.ac.uk/admissions',
     description: 'Consistently ranked in the world\'s top 10 universities, specialising in science, engineering, medicine and business.',
@@ -265,12 +248,8 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     subjects: ['Medicine', 'Architecture', 'Psychology', 'Engineering', 'Law', 'Economics'],
     specialisms: ['Medical School Applications', 'Architecture Portfolio Development'],
     entryRequirements: 'A*AA minimum, subject-specific requirements vary',
-    acceptanceRate: 63.0,
-    studentCount: 4,
-    successStories: [
-      { year: 2024, count: 2, subjects: ['Medicine', 'Architecture'] },
-      { year: 2023, count: 2, subjects: ['Psychology', 'Law'] }
-    ],
+    acceptanceRate: 24,
+    studentCount: 29,
     website: 'https://www.ucl.ac.uk',
     admissions: 'https://www.ucl.ac.uk/admissions',
     description: 'London\'s Global University, the first university in England to welcome students of any religion and women on equal terms.',
@@ -311,10 +290,6 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     entryRequirements: 'A*AA minimum, subject-specific requirements vary',
     acceptanceRate: 69.0,
     studentCount: 3,
-    successStories: [
-      { year: 2024, count: 1, subjects: ['Law'] },
-      { year: 2023, count: 2, subjects: ['Medicine', 'War Studies'] }
-    ],
     website: 'https://www.kcl.ac.uk',
     admissions: 'https://www.kcl.ac.uk/admissions',
     description: 'One of the oldest and most prestigious universities in England, renowned for its academic excellence.',
@@ -355,10 +330,6 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     entryRequirements: 'A*AA minimum, subject-specific requirements vary',
     acceptanceRate: 35.0,
     studentCount: 5,
-    successStories: [
-      { year: 2024, count: 2, subjects: ['Economics', 'Politics'] },
-      { year: 2023, count: 3, subjects: ['International Relations', 'Law'] }
-    ],
     website: 'https://www.lse.ac.uk',
     admissions: 'https://www.lse.ac.uk/admissions',
     description: 'The world\'s leading social science institution with an international reach.',
@@ -391,11 +362,7 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     specialisms: ['13+ Common Entrance', 'Scholarship Preparation'],
     entryRequirements: '13+ Common Entrance or Scholarship examinations',
     acceptanceRate: 20.0,
-    studentCount: 15,
-    successStories: [
-      { year: 2024, count: 8, subjects: ['Classics', 'Modern Languages'] },
-      { year: 2023, count: 7, subjects: ['Sciences', 'Mathematics'] }
-    ],
+    studentCount: 17,
     website: 'https://www.etoncollege.com',
     admissions: 'https://www.etoncollege.com/admissions',
     description: 'The most prestigious independent school in the world, educating British royalty and prime ministers.',
@@ -428,10 +395,6 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     entryRequirements: '13+ entrance examinations and interviews',
     acceptanceRate: 22.0,
     studentCount: 12,
-    successStories: [
-      { year: 2024, count: 6, subjects: ['English Literature', 'History'] },
-      { year: 2023, count: 6, subjects: ['Modern Languages', 'Sciences'] }
-    ],
     website: 'https://www.harrowschool.org.uk',
     admissions: 'https://www.harrowschool.org.uk/admissions',
     description: 'One of the original nine English public schools, known for its distinctive traditions and academic excellence.',
@@ -464,10 +427,6 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     entryRequirements: '11+ or 13+ entrance examinations',
     acceptanceRate: 25.0,
     studentCount: 18,
-    successStories: [
-      { year: 2024, count: 10, subjects: ['Classics', 'Mathematics'] },
-      { year: 2023, count: 8, subjects: ['English', 'History'] }
-    ],
     website: 'https://www.westminster.org.uk',
     admissions: 'https://www.westminster.org.uk/admissions',
     description: 'Located in the heart of Westminster, consistently ranking as one of the top academic schools in the country.',
@@ -500,10 +459,6 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     entryRequirements: '13+ entrance examinations and assessments',
     acceptanceRate: 23.0,
     studentCount: 14,
-    successStories: [
-      { year: 2024, count: 8, subjects: ['Classics', 'Mathematics'] },
-      { year: 2023, count: 6, subjects: ['Natural Sciences', 'History'] }
-    ],
     website: 'https://www.stpaulsschool.org.uk',
     admissions: 'https://www.stpaulsschool.org.uk/admissions',
     description: 'One of the nine original English public schools, renowned for academic achievement and Oxbridge preparation.',
@@ -514,34 +469,33 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
 
   // GRAMMAR SCHOOLS
   {
-    id: 'reading-grammar-school',
-    name: 'Reading School',
-    shortName: 'Reading Grammar',
-    category: 'grammar',
+    id: 'highgate-school',
+    name: 'Highgate School',
+    shortName: 'Highgate',
+    category: 'independent',
     type: 'school',
-    location: 'Reading, Berkshire',
-    city: 'Reading',
+    location: 'North Hill, Highgate, London N6 4AY',
+    city: 'London',
     country: 'United Kingdom',
-    established: 1125,
-    logo: '/images/schools/logos/reading-grammar-logo.svg',
-    crest: '/images/schools/crests/reading-grammar-crest.svg',
+    established: 1565,
+    logo: '/images/schools/logos/highgate-logo.svg',
+    crest: '/images/schools/crests/highgate-crest.svg',
+    badge: '/images/schools/badges/highgate-badge.svg',
     colors: {
-      primary: '#003366',
-      secondary: '#FFFFFF'
+      primary: '#8B0000',
+      secondary: '#FFD700'
     },
-    league: 'grammar',
-    prestigeScore: 85,
-    subjects: ['Mathematics', 'Sciences', 'English', 'Modern Languages', 'History'],
-    specialisms: ['11+ Preparation', 'STEM Excellence'],
-    entryRequirements: '11+ examination and assessment',
-    acceptanceRate: 15.0,
-    studentCount: 8,
-    successStories: [
-      { year: 2024, count: 4, subjects: ['Mathematics', 'Sciences'] },
-      { year: 2023, count: 4, subjects: ['English', 'Modern Languages'] }
-    ],
-    website: 'https://www.reading-school.co.uk',
-    description: 'One of the oldest grammar schools in England, consistently achieving outstanding academic results.',
+    league: 'independent',
+    prestigeScore: 90,
+    subjects: ['English Literature', 'History', 'Mathematics', 'Sciences', 'Modern Languages', 'Classics'],
+    specialisms: ['11+ and 13+ Entry', 'Academic Excellence'],
+    entryRequirements: '11+ or 13+ entrance examinations and interviews',
+    acceptanceRate: 18.0,
+    studentCount: 23,
+    website: 'https://www.highgateschool.org.uk',
+    admissions: 'https://www.highgateschool.org.uk/admissions',
+    description: 'An independent co-educational day school in North London, renowned for its academic excellence and historic traditions.',
+    motto: 'Altissima quaeque',
     featured: true,
     priority: 1
   },
@@ -568,11 +522,7 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     specialisms: ['11+ Excellence', 'STEM Specialisation'],
     entryRequirements: '11+ examination (highly competitive)',
     acceptanceRate: 10.0,
-    studentCount: 6,
-    successStories: [
-      { year: 2024, count: 3, subjects: ['Mathematics', 'Sciences'] },
-      { year: 2023, count: 3, subjects: ['Computing', 'Modern Languages'] }
-    ],
+    studentCount: 11,
     website: 'https://www.tiffinschool.co.uk',
     description: 'One of the most academically selective grammar schools, regularly topping national league tables.',
     featured: true,
@@ -601,12 +551,8 @@ export const eliteSchoolsDatabase: readonly EliteSchool[] = [
     subjects: ['International Baccalaureate', 'Modern Languages', 'Arts', 'Sciences'],
     specialisms: ['International Baccalaureate', 'Multilingual Education'],
     entryRequirements: 'Comprehensive assessment and interviews',
-    acceptanceRate: 30.0,
-    studentCount: 5,
-    successStories: [
-      { year: 2024, count: 3, subjects: ['International Baccalaureate'] },
-      { year: 2023, count: 2, subjects: ['Modern Languages', 'Arts'] }
-    ],
+    acceptanceRate: 22,
+    studentCount: 3,
     website: 'https://www.rosey.ch',
     description: 'The world\'s most expensive boarding school, educating royalty and international elite.',
     motto: 'Une École pour la Vie',

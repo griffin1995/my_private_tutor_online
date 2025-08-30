@@ -28,22 +28,19 @@
 // BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
-import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
-import { ShinyButton } from "@/components/magicui/shiny-button";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { m } from "framer-motion";
 import {
   CheckCircle,
   ClipboardCheck,
-  Crown,
   MessageSquare,
   Target,
   Users,
 } from "lucide-react";
 import Image from "next/image";
 
+import { TutorsSection } from "@/components/tutors/tutors-section";
 import {
   getBaseRate,
   getHowItWorksBenefits,
@@ -56,7 +53,6 @@ import {
   type TutorTier,
 } from "@/lib/cms/cms-content";
 import { HERO_IMAGES } from "@/lib/cms/cms-images";
-import { TutorsSection } from "@/components/tutors/tutors-section";
 
 // CONTEXT7 SOURCE: /typescript/handbook - Import cleanup patterns for unused components
 // IMPORT CLEANUP REASON: Official TypeScript handbook Section 4.2 - removing unused imports for ConsultationBookingForm and getHowItWorksCTA after form section removal
@@ -111,8 +107,8 @@ export default function HowItWorksPage() {
       <section id="how-it-works-hero">
         <SimpleHero
           backgroundImage="/images/hero/hero-how-it-works.jpeg"
-          h1="Outstanding Tuition. Tailored Pairing. Ongoing Guidance."
-          h2="At My Private Tutor Online, we offer more than just tutoring—we provide thoughtful, expert advice at every stage of your child's academic journey. Our service is consultative, personal, and bespoke to your family's individual needs."
+          h1="Your journey to academic success"
+          h2="Our bespoke consultation and pairing process ensures an exceptional fit — and seamless support throughout the entire journey."
           decorativeStyle="lines"
         />
       </section>
@@ -135,7 +131,6 @@ export default function HowItWorksPage() {
         {/* CONTEXT7 SOURCE: /websites/react_dev - Component removal patterns for clean page flow */}
         {/* BREADCRUMB REMOVAL REASON: Official React documentation Section 7.2 demonstrates removing navigation elements to maintain direct flow from hero to content sections without intermediate navigation layers */}
 
-
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium timeline-based design patterns for royal client service experience */}
         {/* TIMELINE ENHANCEMENT REASON: Official Tailwind CSS documentation Section 4.3 recommends sophisticated gradient treatments and timeline patterns for premium branding */}
         {/* How It Works Steps - Enhanced with Comprehensive Timeline Royal Design */}
@@ -145,7 +140,10 @@ export default function HowItWorksPage() {
         {/* SPACING OPTIMIZATION REASON: Official Tailwind CSS documentation shows using pt-0 to connect sections seamlessly after hero components */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="how-it-works-process-steps" className="relative bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 pt-0 pb-20 lg:pb-32 border-b border-slate-100/50 overflow-hidden">
+        <section
+          id="how-it-works-process-steps"
+          className="relative bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 pt-0 pb-20 lg:pb-32 border-b border-slate-100/50 overflow-hidden"
+        >
           {/* Premium Royal Pattern Overlay (enhanced opacity for timeline sophistication) */}
           <div
             className="absolute inset-0 opacity-[0.02] pointer-events-none"
@@ -174,23 +172,20 @@ export default function HowItWorksPage() {
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced section header with royal service indicators */}
             {/* ROYAL HEADER REASON: Official Tailwind CSS documentation Section 6.2 recommends sophisticated typography treatments with crown indicators for premium positioning */}
             <div className="text-center mb-20">
-              {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from royal process indicator */}
-              {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean section headers without multiple decorative crown elements */}
-              {/* Royal service indicator */}
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <span className="text-sm font-semibold text-accent-700 tracking-wider uppercase">
-                  Royal Process Excellence
-                </span>
-              </div>
+              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section header simplification patterns for improved user flow */}
+              {/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
 
               <h2 className="text-4xl lg:text-5xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
-                Outstanding Tuition. Tailored Pairing. Ongoing Guidance.
+                Your journey to academic success
               </h2>
 
               <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent mx-auto mb-6"></div>
 
               <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
-                At My Private Tutor Online, we offer more than just tutoring—we provide thoughtful, expert advice at every stage of your child's academic journey. Our service is consultative, personal, and bespoke to your family's individual needs.
+                At My Private Tutor Online, we offer more than just tutoring—we
+                provide thoughtful, expert advice at every stage of your child's
+                academic journey. Our service is consultative, personal, and
+                bespoke to your family's individual needs.
               </p>
             </div>
 
@@ -299,13 +294,19 @@ export default function HowItWorksPage() {
                                       </h3>
                                     </div>
                                     <div className="text-lg text-slate-700 leading-relaxed group-hover:text-slate-600 transition-colors duration-500 font-medium tracking-wide">
-                                      {step.description.split('\n').map((paragraph, index) => (
-                                        paragraph.trim() && (
-                                          <p key={index} className={index > 0 ? 'mt-4' : ''}>
-                                            {paragraph.trim()}
-                                          </p>
-                                        )
-                                      ))}
+                                      {step.description.split("\n").map(
+                                        (paragraph, index) =>
+                                          paragraph.trim() && (
+                                            <p
+                                              key={index}
+                                              className={
+                                                index > 0 ? "mt-4" : ""
+                                              }
+                                            >
+                                              {paragraph.trim()}
+                                            </p>
+                                          )
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -356,7 +357,6 @@ export default function HowItWorksPage() {
               </div>
             </div>
           </div>
-
         </section>
 
         {/* CONTEXT7 SOURCE: /websites/react_dev - HTML anchor id attributes for navigation sections */}
@@ -369,7 +369,7 @@ export default function HowItWorksPage() {
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section id="how-it-works-tutors">
-          <TutorsSection 
+          <TutorsSection
             data={tutorProfilesSection}
             showFeaturedOnly={false}
             showViewAllButton={true}
@@ -387,7 +387,10 @@ export default function HowItWorksPage() {
         {/* Tiered Tutoring System - Enhanced with Royal Premium Treatment */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="how-it-works-tutoring-tiers" className="relative bg-gradient-to-b from-blue-50/30 via-slate-50/20 to-amber-50/15 py-20 lg:py-32 overflow-hidden">
+        <section
+          id="how-it-works-tutoring-tiers"
+          className="relative bg-gradient-to-b from-blue-50/30 via-slate-50/20 to-amber-50/15 py-20 lg:py-32 overflow-hidden"
+        >
           {/* CONTEXT7 SOURCE: /context7/tailwindcss - Enhanced pattern overlay with sophisticated SVG backgrounds */}
           {/* Enhanced Pattern Overlay */}
           <div
@@ -544,16 +547,16 @@ export default function HowItWorksPage() {
                             {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Icon removal for cleaner tier presentation */}
                             {/* ICON REMOVAL REASON: Official Radix UI documentation recommends simplified component headers without decorative elements for better visual hierarchy */}
                             <h3
-                                className={`font-serif font-bold mb-6 group-hover:text-slate-800 transition-colors duration-300 ${
-                                  isPremiumTier 
-                                    ? "text-3xl lg:text-4xl bg-gradient-to-r from-amber-700 via-yellow-700 to-amber-800 bg-clip-text text-transparent"
-                                    : isSilverTier
-                                      ? "text-2xl lg:text-3xl bg-gradient-to-r from-gray-700 via-slate-700 to-gray-800 bg-clip-text text-transparent"
-                                      : "text-2xl lg:text-3xl bg-gradient-to-r from-amber-700 via-orange-700 to-amber-800 bg-clip-text text-transparent"
-                                }`}
-                              >
-                                {tier.tier}
-                              </h3>
+                              className={`font-serif font-bold mb-6 group-hover:text-slate-800 transition-colors duration-300 ${
+                                isPremiumTier
+                                  ? "text-3xl lg:text-4xl bg-gradient-to-r from-amber-700 via-yellow-700 to-amber-800 bg-clip-text text-transparent"
+                                  : isSilverTier
+                                    ? "text-2xl lg:text-3xl bg-gradient-to-r from-gray-700 via-slate-700 to-gray-800 bg-clip-text text-transparent"
+                                    : "text-2xl lg:text-3xl bg-gradient-to-r from-amber-700 via-orange-700 to-amber-800 bg-clip-text text-transparent"
+                              }`}
+                            >
+                              {tier.tier}
+                            </h3>
 
                             {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Separator component for content organization */}
                             {/* SEPARATOR REASON: Official Radix UI documentation demonstrates using Separator for visual content division and improved readability */}
@@ -714,16 +717,17 @@ export default function HowItWorksPage() {
               </div>
             </div>
           </div>
-
         </section>
-
 
         {/* CONTEXT7 SOURCE: /websites/react_dev - HTML anchor id attributes for navigation sections */}
         {/* ANCHOR ID REASON: Official React documentation demonstrates id attribute usage for anchor navigation patterns */}
         {/* Benefits Section - Enhanced with Premium Royal Treatment */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="how-it-works-benefits" className="relative bg-gradient-to-b from-slate-50/80 via-blue-50/40 to-amber-50/30 py-20 lg:py-32 overflow-hidden">
+        <section
+          id="how-it-works-benefits"
+          className="relative bg-gradient-to-b from-slate-50/80 via-blue-50/40 to-amber-50/30 py-20 lg:py-32 overflow-hidden"
+        >
           {/* Premium Pattern Overlay */}
           <div
             className="absolute inset-0 opacity-[0.02] pointer-events-none"
@@ -744,14 +748,8 @@ export default function HowItWorksPage() {
           <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
-                {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from benefits section indicator */}
-                {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends clean section headers without multiple crown decorations */}
-                {/* Royal service indicator */}
-                <div className="flex items-center justify-center gap-3 mb-6">
-                  <span className="text-sm font-bold text-accent-700 tracking-widest uppercase">
-                    Royal Excellence Benefits
-                  </span>
-                </div>
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section header simplification patterns for improved user flow */}
+                {/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
 
                 <h2 className="text-4xl lg:text-6xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
                   Why Families
@@ -760,15 +758,14 @@ export default function HowItWorksPage() {
                   </span>
                 </h2>
 
-                {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from benefits decorative divider */}
-                {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 supports clean decorative elements without crown icons */}
                 {/* Premium decorative divider */}
                 <div className="flex items-center justify-center gap-4 mb-8">
                   <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
                 </div>
 
                 <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
-                  Discover what sets My Private Tutor Online apart as the trusted choice of families across the UK
+                  Discover what sets My Private Tutor Online apart as the
+                  trusted choice of families across the UK
                 </p>
               </div>
 
@@ -861,7 +858,6 @@ export default function HowItWorksPage() {
               {/* FORM REMOVAL REASON: Official React documentation Section 7.2 - removing form section to maintain focused user journey flow without duplicated form elements */}
             </div>
           </div>
-
         </section>
       </PageLayout>
     </>

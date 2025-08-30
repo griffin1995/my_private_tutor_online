@@ -59,6 +59,8 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
     <section className={`py-16 lg:py-24 ${backgroundClasses} ${className}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive component styles with mobile-first approach */}
+        {/* CONTEXT7 SOURCE: /websites/16_reactjs - dangerouslySetInnerHTML for safe HTML content rendering */}
+        {/* HTML FORMATTING IMPLEMENTATION: Added dangerouslySetInnerHTML to render HTML tags in description text */}
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center mb-12 lg:mb-16">
           <h2
@@ -84,15 +86,16 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
           )}
 
           {data.description && (
-            <p
+            <div
               className={`text-lg leading-relaxed ${
                 data.backgroundStyle === "dark"
                   ? "text-gray-300"
                   : "text-gray-600"
               }`}
-            >
-              {data.description}
-            </p>
+              dangerouslySetInnerHTML={{
+                __html: `<p>${data.description.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br />')}</p>`
+              }}
+            />
           )}
         </div>
 

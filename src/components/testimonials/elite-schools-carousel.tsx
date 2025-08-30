@@ -410,15 +410,17 @@ export function EliteSchoolsCarousel({
                     transform: currentDirection === 'reverse' ? 'scaleX(-1)' : 'scaleX(1)'
                   }}
                 >
+                  {/* CONTEXT7 SOURCE: /reactjs/react.dev - Converting SchoolCard to non-interactive for static display */}
+                  {/* CONTEXT7 SOURCE: Official React documentation for component prop modification to remove interactivity */}
+                  {/* REMOVAL REASON: Making SchoolCard non-interactive by setting interactive=false and removing hover effects */}
                   <SchoolCard
                     school={school}
                     displayMode={displayMode}
                     size="standard"
-                    interactive={true}
-                    showMetadata={true}
-                    onCardClick={handleSchoolClick}
-                    className="transition-all duration-300 hover:shadow-xl"
-                    showHoverStats={showHoverStats}
+                    interactive={false}
+                    showMetadata={false}
+                    className=""
+                    showHoverStats={false}
                   />
                 </div>
               ))}

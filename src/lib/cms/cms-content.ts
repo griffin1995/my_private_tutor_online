@@ -3594,14 +3594,6 @@ export const getServicesContent = cache((): ServicesPageContent => {
             ],
             level: "Year 2-8",
             pricing: { from: "£85", to: "£160", currency: "GBP" },
-            // CONTEXT7 SOURCE: /facebook/react - Video section integration for entrance exam specialist introduction
-            // VIDEO SECTION REASON: Official React patterns for multimedia content display within CMS data structure
-            videoSection: {
-              thumbnailUrl: "/images/tutors/emily.jpg",
-              videoUrl: "/videos/11+ expert intro video MPTO.mp4",
-              title: "Meet Emily - Our 11+ Expert Introduction",
-              alt: "Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach"
-            },
           },
           {
             name: "Expert Tutor Matching",
@@ -3615,6 +3607,14 @@ export const getServicesContent = cache((): ServicesPageContent => {
             ],
             level: "All Levels",
             pricing: { from: "£100", to: "£180", currency: "GBP" },
+            // CONTEXT7 SOURCE: /facebook/react - Video section integration for entrance exam specialist introduction
+            // VIDEO SECTION REASON: Official React patterns for multimedia content display within CMS data structure
+            videoSection: {
+              thumbnailUrl: "/images/tutors/emily.jpg",
+              videoUrl: "/videos/11+ expert intro video MPTO.mp4",
+              title: "Meet Emily - Our 11+ Expert Introduction",
+              alt: "Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach",
+            },
           },
           {
             name: "Tailored, Flexible Programmes",
@@ -3711,15 +3711,16 @@ export const getServicesContent = cache((): ServicesPageContent => {
               video1: {
                 thumbnailUrl: "/images/tutors/emily.jpg",
                 videoUrl: "/videos/11+ expert intro video MPTO.mp4",
-                title: "Meet Emily - University Admissions Specialist Introduction",
-                alt: "Emily's University Admissions Specialist Introduction Video - Meet Emily, our specialist university admissions tutor and learn about our comprehensive application preparation approach"
+                title:
+                  "Meet Emily - University Admissions Specialist Introduction",
+                alt: "Emily's University Admissions Specialist Introduction Video - Meet Emily, our specialist university admissions tutor and learn about our comprehensive application preparation approach",
               },
               video2: {
                 thumbnailUrl: "/images/tutors/emily.jpg",
                 videoUrl: "/videos/11+ expert intro video MPTO.mp4",
                 title: "Meet Emily - Personal Statement & Interview Expert",
-                alt: "Emily's Personal Statement & Interview Expert Video - Learn about our expert personal statement crafting and interview preparation techniques for university applications"
-              }
+                alt: "Emily's Personal Statement & Interview Expert Video - Learn about our expert personal statement crafting and interview preparation techniques for university applications",
+              },
             },
           },
           {
@@ -3869,9 +3870,11 @@ export const getServicesContent = cache((): ServicesPageContent => {
         pricing: { basePriceFrom: "£80", currency: "GBP" },
         subjects: [
           {
+            // CONTEXT7 SOURCE: /reactjs/react.dev - HTML content formatting for improved readability with paragraph breaks and emphasis
+            // CONTENT FORMATTING REASON: Official React documentation demonstrates HTML markup patterns for enhanced text structure and readability
             name: "Why Choose Homeschooling with Us",
             description:
-              "Private‑School Standard, Delivered Virtually: We deliver bespoke online programmes that rival independent schools in quality. Fully Personalised Curriculum & Timetabling: Lessons are crafted around each child's strengths, interests and pace. Consistent Tutor Teams & Academic Continuity: Students benefit from a stable team of expert tutors—subject specialists with years of experience and often examiner credentials. Progress Tracking & Motivation-Focused Design: Regular assessments, achievable goals, and work reviewed in real time ensure the programme adapts to each student's growth. Expert Support for SEN Needs: Our SEN-aligned homeschooling incorporates specially tailored pathways for students with dyslexia, ADHD, processing differences or related needs—delivered with empathy and structure.",
+              "Private‑School Standard, Delivered Virtually: We deliver bespoke online programmes that rival independent schools in quality.<br><br>Fully Personalised Curriculum & Timetabling: Lessons are crafted around each child's strengths, interests and pace. Consistent Tutor Teams & Academic Continuity: Students benefit from a stable team of expert tutors—subject specialists with years of experience and often examiner credentials.<br><br>Progress Tracking & Motivation-Focused Design: Regular assessments, achievable goals, and work reviewed in real time ensure the programme adapts to each student's growth. Expert Support for SEN Needs: Our SEN-aligned homeschooling incorporates specially tailored pathways for students with dyslexia, ADHD, processing differences or related needs—delivered with empathy and structure.",
             keyFeatures: [
               "Private school standard",
               "Personalised curriculum",
@@ -3998,9 +4001,11 @@ export const getServicesContent = cache((): ServicesPageContent => {
             pricing: { from: "£120", to: "£200", currency: "GBP" },
           },
           {
+            // CONTEXT7 SOURCE: /reactjs/react.dev - HTML content formatting for improved readability with paragraph breaks and emphasis
+            // CONTENT FORMATTING REASON: Official React documentation demonstrates HTML markup patterns for enhanced text structure and readability
             name: "Online Homeschooling for SEN & Complex Needs",
             description:
-              "Whether families are travelling, transitioning between schools, or prioritising personalised learning, our homeschooling programme delivers full academic support entirely online—without any in-person tutoring. Curriculum Built Around the Student: We design bespoke programmes around each child's strengths, interests, and pace—seamlessly blending academics with creative and practical learning. Holistic Academic & Emotional Support: We understand daily routines and tutor consistency are especially important for SEN learners. Our tutees are supported by program management and ongoing progress reviews to nurture both academic growth and personal well-being. Why It Works: Both SEN tutoring and full-online homeschooling emphasise individual strength, flexible pacing, and sustained mentorship. This approach enables students to flourish academically while nurturing autonomy, individualism, and confidence—delivered through expert-led, evidence-based practice.",
+              "<p>Whether families are travelling, transitioning between schools, or prioritising personalised learning, our homeschooling programme delivers full academic support entirely online—without any in-person tutoring.</p><p><strong>Curriculum Built Around the Student:</strong><br>We design bespoke programmes around each child's strengths, interests, and pace—seamlessly blending academics with creative and practical learning.</p><p><strong>Holistic Academic & Emotional Support:</strong><br>We understand daily routines and tutor consistency are especially important for SEN learners. Our tutees are supported by program management and ongoing progress reviews to nurture both academic growth and personal well-being.</p><p><strong>Why It Works:</strong><br>Both SEN tutoring and full-online homeschooling emphasise individual strength, flexible pacing, and sustained mentorship. This approach enables students to flourish academically while nurturing autonomy, individualism, and confidence—delivered through expert-led, evidence-based practice.</p>",
             keyFeatures: [
               "Bespoke programmes",
               "Holistic support",
@@ -4877,7 +4882,7 @@ export const getTutorProfilesSectionWithDynamicContent = cache(
     // Create dynamic content with updated counts
     return {
       ...baseSection,
-      title: "Get to Know a Selection of Our Tutors",
+      title: "Meet a snapshot of our expert tutors",
       description:
         "Here's a curated cross-section of our team to give you a sense of the calibre and diversity of educators available across each of our tutoring tiers. While this is just a glimpse, our full team spans every age and academic stage—from Year 1 phonics to postgraduate-level Astrophysics. If you don't see exactly what you're looking for here, rest assured we have the right expert behind the scenes, ready to support your child's learning journey. To begin, simply complete our short enquiry form, and a member of our team will be in touch to start the conversation.",
       showAllButton: {

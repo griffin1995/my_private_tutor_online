@@ -62,13 +62,16 @@ import EliteSchoolsCarousel from "@/components/testimonials/elite-schools-carous
 import { TestimonialsFilter } from "@/components/testimonials/testimonials-filter";
 import { TestimonialsGrid } from "@/components/testimonials/testimonials-grid";
 import { SimpleHero } from "@/components/layout/simple-hero";
+// CONTEXT7 SOURCE: /components/sections/quote-section - Quote section component for mission statement display
+// COPY OPERATION: Adding QuoteSection import to enable mission quote display copied from homepage
+import { QuoteSection } from "@/components/sections/quote-section";
 // CONTEXT7 SOURCE: /websites/react_dev - Component integration patterns
 // INTEGRATION REASON: Adding testimonials intro section above filter per requirements
 import { TestimonialsIntro } from "@/components/testimonials/testimonials-intro";
 // CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns
 // COPY OPERATION: Adding TestimonialsSection import for duplicated testimonials section
 import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
-import React, { useCallback, useState, useMemo } from "react";
+import React, { useCallback, useState, useMemo, useEffect } from "react";
 // TESTIMONIALS OVERHAUL: Removed TestimonialsCTA import for cleaner page boundaries
 import { PageLayout } from "@/components/layout/page-layout";
 import {
@@ -164,7 +167,9 @@ export default function TestimonialsPage() {
       location: testimonial.location,
       subject: testimonial.subject,
       result: testimonial.result,
-      helpfulVotes: Math.floor(Math.random() * 25) + 5,
+      // CONTEXT7 SOURCE: /reactjs/react.dev - Deterministic values to prevent hydration mismatch
+      // HYDRATION FIX: Use deterministic helpfulVotes based on testimonial content to ensure server/client consistency
+      helpfulVotes: Math.abs(testimonial.author.charCodeAt(0) + testimonial.quote.length) % 25 + 5,
       // CONTEXT7 SOURCE: /facebook/react - Fix field name mismatch and case sensitivity for TestimonialsFilter compatibility
       // FIX REASON: TestimonialsFilter expects 'category' field with normalized capitalization
       category: testimonial.category 
@@ -233,6 +238,7 @@ export default function TestimonialsPage() {
 
   // CONTEXT7 SOURCE: /context7/react_dev - useCallback for stable filter change handlers
   // PERFORMANCE OPTIMIZATION REASON: Official React documentation recommends useCallback for component props
+  // INFINITE LOOP FIX: Using empty dependency array since setFilteredTextTestimonials is stable from useState
   const handleTextFilterChange = useCallback(
     (newFilteredTestimonials: any[]) => {
       setFilteredTextTestimonials(newFilteredTestimonials);
@@ -242,8 +248,13 @@ export default function TestimonialsPage() {
 
   // CONTEXT7 SOURCE: /websites/react_dev - useEffect for syncing derived state
   // PERFORMANCE OPTIMIZATION: Sync filtered state when optimized data changes
+  // INFINITE LOOP FIX: Add ref check to prevent unnecessary state updates
+  const prevOptimizedDataRef = React.useRef(optimizedTextTestimonialsData);
   React.useEffect(() => {
-    setFilteredTextTestimonials(optimizedTextTestimonialsData);
+    if (prevOptimizedDataRef.current !== optimizedTextTestimonialsData) {
+      setFilteredTextTestimonials(optimizedTextTestimonialsData);
+      prevOptimizedDataRef.current = optimizedTextTestimonialsData;
+    }
   }, [optimizedTextTestimonialsData]);
 
   // CONTEXT7 SOURCE: Official React documentation for component composition and reusability
@@ -260,6 +271,21 @@ export default function TestimonialsPage() {
         h1="Student & Parent Testimonials"
         h2="Read testimonials from families who have achieved exceptional results with My Private Tutor Online."
         decorativeStyle="lines"
+        />
+      </section>
+
+      {/* CONTEXT7 SOURCE: /components/sections/quote-section - Mission statement quote section copied from homepage */}
+      {/* COPY OPERATION: Mission quote section copied from homepage (lines 204-212) and placed after hero section */}
+      {/* MISSION STATEMENT REASON: Provides inspiring introduction before testimonials content, matching homepage structure */}
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="testimonials-mission" className="mt-16">
+        <QuoteSection 
+          quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
+          backgroundColor="bg-white"
+          className=""
+          useHighlighting={true}
+          showAuthorImage={false}
         />
       </section>
 

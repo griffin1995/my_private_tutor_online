@@ -4,7 +4,7 @@
  * Reference: https://nextjs.org/docs/app/building-your-application/rendering/client-components
  * Reference: /amannn/next-intl - Internationalized homepage implementation
  * Pattern: Modular homepage with extracted section components and internationalization
- * 
+ *
  * Modular Architecture:
  * - Individual section components for better maintainability
  * - CMS integration through modular component props
@@ -12,14 +12,14 @@
  * - Context7 verified component patterns
  * - Reusable components following CLAUDE.md standards
  * - Multi-language support with next-intl
- * 
+ *
  * Performance Optimisations:
  * - Component-level lazy loading potential
  * - Reduced main page complexity
  * - Optimised bundle splitting opportunities
  * - Memory-efficient component imports
  * - Locale-specific content loading
- * 
+ *
  * Maintainability Benefits:
  * - Each section can be modified independently
  * - Easy to test individual components
@@ -32,89 +32,92 @@
 // CLIENT COMPONENT RESTORATION: Official next-intl documentation shows client components use useTranslations hook
 // ARCHITECTURE FIX REASON: Restoring original working client component pattern for useState/useEffect compatibility
 
-"use client"
+"use client";
 
 // CONTEXT7 SOURCE: /websites/react_dev - React import with useState and useEffect for async data loading
 // ASYNC DATA LOADING REASON: Official React documentation Section 3.2 requires useState and useEffect for client-side async operations
-import React, { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
 // Documentation Source: Context7 MCP - CMS Integration Imports
 // Reference: Project CLAUDE.md rules 22-25 for CMS requirements
 // Pattern: Centralized CMS data imports for homepage content
-import { 
-  getTrustIndicators,
-  getTestimonials,
-  getServices,
-  getSiteBranding,
-  getTestimonialsSchools,
+import {
   getFounderQuote,
   getResultsDocumentation,
-} from '../../lib/cms'
-import { getStudentImages } from '../../lib/cms/cms-images'
+  getServices,
+  getSiteBranding,
+  getTestimonials,
+  getTestimonialsSchools,
+  getTrustIndicators,
+} from "../../lib/cms";
+import { getStudentImages } from "../../lib/cms/cms-images";
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Optimized component imports with lazy loading strategy
 // LAZY LOADING REASON: Official React documentation enables code splitting for better performance
 
 // Critical above-the-fold components (immediate load)
-import { PageLayout } from '../../components/layout/page-layout'
-import { HeroSection } from '../../components/sections/hero-section'
-import { AnimatedTagline } from '../../components/sections/animated-tagline'
-import { ScrollingSchools } from '../../components/sections/scrolling-schools'
-import { AboutSection } from '../../components/sections/about-section'
-import { TrustIndicatorsGrid } from '../../components/sections/trust-indicators-grid'
-import { QuoteSection } from '../../components/sections/quote-section'
-import { LanguageSwitcher } from '../../components/ui/language-switcher'
+import { PageLayout } from "../../components/layout/page-layout";
+import { AboutSection } from "../../components/sections/about-section";
+import { HeroSection } from "../../components/sections/hero-section";
+import { QuoteSection } from "../../components/sections/quote-section";
+import { ScrollingSchools } from "../../components/sections/scrolling-schools";
+import { TrustIndicatorsGrid } from "../../components/sections/trust-indicators-grid";
+import { LanguageSwitcher } from "../../components/ui/language-switcher";
 
 // CONTEXT7 SOURCE: /vercel/next.js - Client component wrapper for homepage sections
 // CLIENT WRAPPER REASON: Official Next.js documentation prohibits client components in server components
-import { HomepageSections } from '../../components/homepage/homepage-sections'
+import { HomepageSections } from "../../components/homepage/homepage-sections";
 
 // CONTEXT7 SOURCE: /facebook/react - Results Documentation Section component for business analytics display
 // RESULTS DOCUMENTATION REASON: Official React patterns for quantifiable outcomes section identical to Subject Tuition page
-import { ResultsDocumentation } from '../../components/sections/results-documentation'
+import { ResultsDocumentation } from "../../components/sections/results-documentation";
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage without server-side locale parameters
 // CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations hook in client components
 export default function HomePage() {
-  console.log('[DEBUG-HomePage] Component function executed - client component with synchronous data loading')
-  
+  console.log(
+    "[DEBUG-HomePage] Component function executed - client component with synchronous data loading"
+  );
+
   // CONTEXT7 SOURCE: /amannn/next-intl - Client-side translations for homepage
   // CLIENT HOOK REASON: Official next-intl documentation enables useTranslations hook in client components
-  const t = useTranslations('Navigation');
-  console.log('[DEBUG-HomePage] useTranslations hook completed successfully')
-  
+  const t = useTranslations("Navigation");
+  console.log("[DEBUG-HomePage] useTranslations hook completed successfully");
+
   // CONTEXT7 SOURCE: /websites/react_dev - useState and useEffect for async data loading
   // ASYNC DATA LOADING REASON: Official React documentation for client-side async operations with useState/useEffect pattern
-  const [asyncResultsData, setAsyncResultsData] = useState<any[]>([])
-  
+  const [asyncResultsData, setAsyncResultsData] = useState<any[]>([]);
+
   useEffect(() => {
     async function loadResultsData() {
       try {
-        const data = await getResultsDocumentation()
-        setAsyncResultsData([...data])
+        const data = await getResultsDocumentation();
+        setAsyncResultsData([...data]);
       } catch (error) {
-        console.error('Failed to load results data:', error)
+        console.error("Failed to load results data:", error);
       }
     }
-    
-    loadResultsData()
-  }, [])
-  
+
+    loadResultsData();
+  }, []);
+
   // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access pattern
   // SYNCHRONOUS RESTORATION: Return to proven working pattern with immediate data availability
-  console.log('[DEBUG-HomePage] Loading CMS data synchronously - client component')
-  
+  console.log(
+    "[DEBUG-HomePage] Loading CMS data synchronously - client component"
+  );
+
   // Direct synchronous CMS function calls - no useState/useEffect needed
-  const trustIndicators = getTrustIndicators()
-  const testimonials = getTestimonials()
-  const services = getServices()
-  const branding = getSiteBranding()
-  const founderQuote = getFounderQuote()
-  const studentImages = getStudentImages()
-  const testimonialsSchools = getTestimonialsSchools()
-  
-  console.log('[DEBUG-HomePage] CMS data loaded synchronously:', {
+  const trustIndicators = getTrustIndicators();
+  const testimonials = getTestimonials();
+  const services = getServices();
+  const branding = getSiteBranding();
+  const founderQuote = getFounderQuote();
+  const studentImages = getStudentImages();
+  const testimonialsSchools = getTestimonialsSchools();
+
+  console.log("[DEBUG-HomePage] CMS data loaded synchronously:", {
     trustIndicators: trustIndicators?.length || 0,
     testimonials: testimonials?.length || 0,
     services: services?.length || 0,
@@ -122,13 +125,13 @@ export default function HomePage() {
     branding: !!branding,
     founderQuote: !!founderQuote?.quote,
     testimonialsSchools: testimonialsSchools?.length || 0,
-  })
+  });
 
   return (
-    <PageLayout 
-      showHeader={true} 
-      showFooter={true} 
-      containerSize="full" 
+    <PageLayout
+      showHeader={true}
+      showFooter={true}
+      containerSize="full"
       verticalSpacing="none"
       headerProps={{ isHomepage: true }}
       footerProps={{ showContactForm: true }}
@@ -136,7 +139,7 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - PageLayout spacing control with verticalSpacing="none" */}
       {/* WHITE SPACE FIX REASON: Official Tailwind CSS documentation shows py-12 utility creates 48px top/bottom padding - verticalSpacing="none" eliminates this padding to allow full-screen Hero section to start at viewport top */}
       {/* LAYOUT OPTIMIZATION: Prevents white space above Hero section by removing default PageLayout container padding for premium full-viewport design */}
-      
+
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for header/navbar visibility control */}
       {/* NAVBAR RESTORATION REASON: Official React documentation shows how showHeader controls site NAVIGATION/NAVBAR visibility - this is the main site menu that users need to access other pages */}
       {/* NAVBAR vs HEADER TERMINOLOGY: showHeader=true renders the NAVBAR (main site navigation), showHeader=false hides it completely */}
@@ -144,17 +147,17 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /amannn/next-intl - Language switcher in page header */}
       {/* LANGUAGE SWITCHING: Official next-intl documentation enables easy locale switching */}
       <div className="fixed top-6 right-6 z-50">
-        <LanguageSwitcher 
+        <LanguageSwitcher
           variant="compact"
           position="header"
           showFlags={true}
           showLabels={false}
         />
       </div>
-      
+
       {/* CONTEXT7 SOURCE: /context7/react_dev-learn - Homepage component ordering with JSX structure */}
       {/* COMPONENT ORDERING REASON: Official React documentation enables structured component composition for modular homepage layout */}
-      
+
       {/* 1. HERO SECTION */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns to prevent duplicate component instances */}
       {/* NAVBAR vs HERO HEADER COORDINATION: */}
@@ -165,21 +168,39 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-hero">
-        <HeroSection 
-          showHeader={false}
-          hasStaticNavbar={true}
-        />
+        <HeroSection showHeader={false} hasStaticNavbar={true} />
       </section>
-      
+
       {/* 2. "WE HELP STUDENTS PLACE AT TOP 10 UK SCHOOLS AND UNIVERSITIES" */}
+      {/* CONTEXT7 SOURCE: /websites/react_dev - Static text rendering with semantic HTML elements */}
+      {/* STATIC TEXT REASON: Official React documentation shows h2 element for secondary headings with proper text content */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spacing utilities for vertical rhythm */}
       {/* SPACING ADDITION REASON: Official Tailwind CSS documentation mt-8 utility creates 2rem (32px) top margin for breathing room between Hero and Tagline sections */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-tagline" className="mt-8">
-        <AnimatedTagline />
+        <div className="relative text-center flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center h-full">
+            <div className="relative z-10 px-4">
+              {/* CONTEXT7 SOURCE: /websites/react_dev - Static h2 element for tagline text rendering */}
+              {/* STATIC TAGLINE REASON: Official React documentation shows h2 element usage for secondary headings without animation dependencies */}
+              <h2 className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight text-gray-900 dark:text-white">
+                We help students place at top 10 UK schools and universities
+              </h2>
+            </div>
+            {/* CONTEXT7 SOURCE: /websites/react_dev - Static decorative elements without animation */}
+            {/* STATIC DECORATIONS REASON: Official React documentation shows div elements for visual decoration without motion dependencies */}
+            <div className="flex justify-center items-center space-x-6 mt-6">
+              <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
+              <div className="relative">
+                <div className="w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-500 shadow-lg" />
+              </div>
+              <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
+            </div>
+          </div>
+        </div>
       </section>
-      
+
       {/* 3. SCROLLING SCHOOLS COMPONENT */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for consistent vertical rhythm */}
       {/* SPACING CONSISTENCY REASON: Official Tailwind CSS documentation mt-8 utility maintains same 2rem spacing as Tagline for visual rhythm grouping */}
@@ -189,12 +210,10 @@ export default function HomePage() {
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-schools" className="mt-8">
         {testimonialsSchools.length > 0 && (
-          <ScrollingSchools 
-            schools={[...testimonialsSchools]}
-          />
+          <ScrollingSchools schools={[...testimonialsSchools]} />
         )}
       </section>
-      
+
       {/* 4. NEW QUOTE SECTION - ABOUT SECTION SUBHEADING RELOCATED */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component rendering with JSX for modular sections */}
       {/* REVISION REASON: Official React documentation Section 4.1 shows proper conditional rendering for component repositioning */}
@@ -202,7 +221,7 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-mission" className="mt-16">
-        <QuoteSection 
+        <QuoteSection
           quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
           backgroundColor="bg-white"
           className=""
@@ -210,7 +229,7 @@ export default function HomePage() {
           showAuthorImage={false}
         />
       </section>
-      
+
       {/* 5. ABOUT SECTION */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for visual hierarchy and section separation */}
       {/* VISUAL BREAK REASON: Official Tailwind CSS documentation mt-16 utility creates 4rem (64px) top margin for clear separation between introductory group (Hero/Tagline/Schools) and main content sections */}
@@ -221,38 +240,40 @@ export default function HomePage() {
       <section id="homepage-about" className="mt-16">
         <AboutSection />
       </section>
-      
-      
+
       {/* 6. RESULTS DOCUMENTATION - QUANTIFIABLE ACADEMIC OUTCOMES */}
       {/* CONTEXT7 SOURCE: /facebook/react - ResultsDocumentation component integration identical to Subject Tuition page */}
       {/* RESULTS DOCUMENTATION REASON: Exact carbon copy of Subject Tuition page section 4 for consistent data presentation */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-      <section id="homepage-results" className="py-16 lg:py-24 relative bg-white">
+      <section
+        id="homepage-results"
+        className="py-16 lg:py-24 relative bg-white"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for statistical data removal
                STATISTICAL SIMPLIFICATION: Remove showVerificationBadges and showConfidenceIntervals props to hide granular statistics */}
           <ResultsDocumentation
             title="Quantifiable Academic Outcomes"
-            description="Verified results that demonstrate measurable ROI for logic-driven families and elite service positioning"
+            description=""
             results={asyncResultsData}
             layout="grid"
             maxItems={3}
           />
         </div>
       </section>
-      
+
       {/* 7. WHO WE SUPPORT */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-who-we-support">
-        <TrustIndicatorsGrid 
+        <TrustIndicatorsGrid
           indicators={trustIndicators}
           studentImages={studentImages}
         />
       </section>
-      
+
       {/* 8. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
       {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
@@ -261,27 +282,26 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-what-we-offer">
-        <HomepageSections 
+        <HomepageSections
           services={[...services]}
           studentImages={studentImages}
         />
       </section>
-      
+
       {/* 9. QUOTE SECTION */}
       {/* CONTEXT7 SOURCE: /magicui/design - Text-only quote with strategic highlighting effects */}
       {/* HIGHLIGHTER ENHANCEMENT REASON: Magic UI documentation enables visual emphasis without photos for clean, professional presentation */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-testimonials">
-        <QuoteSection 
+        <QuoteSection
           quote={founderQuote.quote}
           author={founderQuote.author}
           role={founderQuote.role}
           showAuthorImage={false}
         />
       </section>
-      
-      
+
       {/* CONSULTATION FORM SECTION - DISABLED FOR HOMEPAGE REORGANIZATION */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for component visibility control */}
       {/* COMMENT OUT REASON: Official React documentation shows how to disable sections while preserving code structure */}
@@ -302,9 +322,8 @@ export default function HomePage() {
           </div>
         </section>
       */}
-      
     </PageLayout>
-  )
+  );
 }
 
 // CONTEXT7 SOURCE: /vercel/next.js - Client component architecture restoration complete

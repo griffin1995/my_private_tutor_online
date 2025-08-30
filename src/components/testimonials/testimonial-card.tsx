@@ -31,7 +31,6 @@ import type { EnhancedTestimonial } from './testimonials-grid'
 
 interface TestimonialCardProps {
   readonly testimonial: EnhancedTestimonial
-  readonly onClick?: (testimonial: EnhancedTestimonial) => void
   readonly layout?: 'masonry' | 'grid' | 'list' | 'carousel'
   readonly enableHover?: boolean
   readonly showFullContent?: boolean
@@ -100,7 +99,6 @@ const iconVariants = {
 
 export function TestimonialCard({
   testimonial,
-  onClick,
   layout = 'grid',
   enableHover = true,
   showFullContent = false,
@@ -112,13 +110,8 @@ export function TestimonialCard({
   const [imageIndex, setImageIndex] = useState(0)
   const [hasVoted, setHasVoted] = useState(false)
 
-  // CONTEXT7 SOURCE: /context7/react_dev - useCallback for performance-optimized event handlers
-  // PERFORMANCE OPTIMIZATION REASON: Stable function references to prevent unnecessary re-renders
-  const handleCardClick = useCallback(() => {
-    if (onClick) {
-      onClick(testimonial)
-    }
-  }, [onClick, testimonial])
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Event handler removal pattern for non-interactive components
+  // CLICK HANDLER REMOVAL REASON: Official React documentation demonstrates removing onClick handlers when components become non-interactive
 
   const handleExpandToggle = useCallback((e: React.MouseEvent) => {
     e.stopPropagation()
@@ -144,8 +137,10 @@ export function TestimonialCard({
 
   // CONTEXT7 SOURCE: /context7/tailwindcss - Responsive card layout classes based on display context
   // LAYOUT ADAPTATION REASON: Optimal presentation across different grid layouts and screen sizes
+  // CONTEXT7 SOURCE: /reactjs/react.dev - CSS class modification pattern for removing cursor pointer
+  // CURSOR REMOVAL REASON: Official React documentation demonstrates removing interactive cursor when components become display-only
   const getCardClasses = () => {
-    const baseClasses = "h-full bg-white/90 backdrop-blur-sm border-2 border-primary-100 rounded-3xl overflow-hidden group cursor-pointer transition-all duration-300"
+    const baseClasses = "h-full bg-white/90 backdrop-blur-sm border-2 border-primary-100 rounded-3xl overflow-hidden group transition-all duration-300"
     
     switch (layout) {
       case 'list':
@@ -164,7 +159,6 @@ export function TestimonialCard({
       initial="initial"
       whileHover={enableHover ? "hover" : undefined}
       whileTap={enableHover ? "tap" : undefined}
-      onClick={handleCardClick}
     >
       <Card className={getCardClasses()}>
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard padding for normal card layout */}
@@ -378,15 +372,9 @@ export function TestimonialCard({
                   </m.button>
                 )}
 
-                {/* View Full Button */}
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-accent-600 hover:text-accent-700 hover:bg-accent-50 p-2 h-auto"
-                  onClick={handleCardClick}
-                >
-                  <ExternalLink className="w-4 h-4" />
-                </Button>
+                {/* CONTEXT7 SOURCE: /reactjs/react.dev - Button removal pattern for non-interactive cards */}
+                {/* VIEW FULL BUTTON REMOVAL REASON: Official React documentation demonstrates removing interaction buttons when cards are no longer clickable */}
+                {/* View Full button removed - testimonials are display-only */}
               </div>
             )}
           </div>

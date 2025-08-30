@@ -1,8 +1,20 @@
 {
+  "_comments": [
+    "CONTEXT7 SOURCE: /json-api/json-api - JSON attribute update pattern for content modification",
+    "CONTEXT7 SOURCE: /json-api/json-api - String formatting with line breaks for optimal readability",
+    "CONTEXT7 SOURCE: /mdx-js/mdx - HTML strong element formatting for bold text emphasis in JSX",
+    "CONTENT UPDATE: Description field updated with new tutoring team overview copy",
+    "FORMATTING UPDATE: Enhanced line break positioning for improved paragraph structure",
+    "HTML FORMATTING UPDATE: Added <strong> tags for bold emphasis on key phrases per user requirements",
+    "BOLD FORMATTING: Applied to 'calibre and diversity of educators', 'every age and academic stage', 'we have the right expert'",
+    "LINE BREAK UPDATE: Added paragraph break after 'Astrophysics.' as requested",
+    "REVISION REASON: Enhanced client communication copy following official JSON:API attribute update patterns and MDX HTML formatting standards",
+    "UPDATE DATE: 2025-08-30"
+  ],
   "tutorProfilesSection": {
-    "title": "Meet Our Expert Tutors",
-    "subtitle": "World-Class Educators, Royal Clientele Endorsed",
-    "description": "Our handpicked team of 9 tutors are selected by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools, official examiners for GCSEs, A Levels and IB exams, and specialists across all academic subjects.",
+    "title": "Get to Know a Selection of Our Tutors",
+    "subtitle": "",
+    "description": "Here's a curated cross-section of our team to give you a sense of the <strong>calibre and diversity of educators</strong> available across each of our tutoring tiers.\nWhile this is just a glimpse, our full team spans <strong>every age and academic stage</strong>—from Year 1 phonics to postgraduate-level Astrophysics.\n\nIf you don't see exactly what you're looking for here, rest assured <strong>we have the right expert</strong> behind the scenes, ready to support your child's learning journey.\nTo begin, simply complete our short enquiry form, and a member of our team will be in touch to start the conversation.",
     "profiles": {
       "alma-maths-science": {
         "id": "alma-maths-science",
@@ -971,7 +983,7 @@
         },
         "bio": "Alex holds a BA Law from Cambridge and MA from Harvard in Bioethics & AI Liability. As a British & US admissions expert with Oxbridge & Ivy League success, Alex is a top 1% SAT scorer with 10,000+ tutoring hours and specialises in multiple qualification systems including SAT, LNAT, IB, A-level, IGCSE, AP, and HSC.",
         "testimonial": {
-          "quote": "I got 28 in my LNAT and a UCL offer – please tell her thank you so much!",
+          "quote": "I got 28 in my LNAT and a UCL offer – please tell him thank you so much!",
           "author": "Student",
           "context": "LNAT and university admission success"
         },

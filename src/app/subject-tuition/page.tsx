@@ -55,6 +55,10 @@ import { VideoPopup } from "@/components/video/video-popup";
 // BUSINESS ANALYTICS REASON: Results documentation for verifiable academic outcomes display
 import { ResultsDocumentation } from "@/components/sections/results-documentation";
 
+// CONTEXT7 SOURCE: /facebook/react - QuoteSection component import for testimonial content display
+// QUOTE SECTION REASON: Official React patterns for component reuse - copying homepage quote structure for subject-tuition contextual messaging
+import { QuoteSection } from "@/components/sections/quote-section";
+
 // CONTEXT7 SOURCE: /microsoft/typescript - CMS data access patterns for component data consumption
 // CMS INTEGRATION REASON: Official TypeScript patterns for centralized data management and type-safe content access
 import {
@@ -134,12 +138,14 @@ const subjectCategories: SubjectCategory[] = subjectCategoriesData.map(
         : undefined,
       // CONTEXT7 SOURCE: /microsoft/typescript - Video section transformation for multimedia content integration
       // VIDEO SECTION REASON: Official TypeScript patterns for transforming CMS video data to component interface
-      videoSection: subject.videoSection ? {
-        thumbnailUrl: subject.videoSection.thumbnailUrl,
-        videoUrl: subject.videoSection.videoUrl,
-        title: subject.videoSection.title,
-        alt: subject.videoSection.alt,
-      } : undefined,
+      videoSection: subject.videoSection
+        ? {
+            thumbnailUrl: subject.videoSection.thumbnailUrl,
+            videoUrl: subject.videoSection.videoUrl,
+            title: subject.videoSection.title,
+            alt: subject.videoSection.alt,
+          }
+        : undefined,
     })),
     // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials transformation
     // TRANSFORMATION REASON: Official React patterns for converting CMS readonly arrays to component-compatible format
@@ -217,7 +223,11 @@ export default function SubjectTuitionPage() {
 
   // CONTEXT7 SOURCE: /facebook/react - Video click handler for modal video display
   // VIDEO HANDLER REASON: Official React patterns for event handling with state updates
-  const handleVideoClick = (videoUrl: string, title: string, poster?: string) => {
+  const handleVideoClick = (
+    videoUrl: string,
+    title: string,
+    poster?: string
+  ) => {
     setCurrentVideo({ url: videoUrl, title, poster });
     setIsVideoOpen(true);
   };
@@ -234,6 +244,22 @@ export default function SubjectTuitionPage() {
           h1="Subject Tutoring & Exam Preparation"
           h2="From entrance exams to university prep, our expert tutors provide personalised instruction across all subjects and educational stages. "
           decorativeStyle="lines"
+        />
+      </section>
+
+      {/* CONTEXT7 SOURCE: /facebook/react - QuoteSection component integration from homepage for subject-tuition messaging */}
+      {/* QUOTE SECTION COPY REASON: Official React patterns for component reuse - copying homepage quote section structure with subject-tuition specific content */}
+      {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Highlighter component for strategic text emphasis */}
+      {/* TEXT HIGHLIGHTING REASON: Magic UI documentation enables underline and highlight effects for key messaging emphasis */}
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="subject-tuition-mission" className="mt-0">
+        <QuoteSection
+          quote="Our tutors are examiners, school teachers, and subject specialists who are not only experienced educators but also motivating mentors. Whether your child is preparing for a school entrance exam, navigating GCSEs/IBs/A-levels, or applying to top universities in the UK, we guide each family with clarity, care, and expert insight at every stage of their educational journey."
+          backgroundColor="bg-white"
+          className=""
+          useHighlighting={true}
+          showAuthorImage={false}
         />
       </section>
 
@@ -317,14 +343,18 @@ export default function SubjectTuitionPage() {
         {/* RESULTS DOCUMENTATION REASON: Task 18 implementation for verifiable outcome tracking */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <Section id="subject-tuition-results" className="py-16 lg:py-24 relative" background="white">
+        <Section
+          id="subject-tuition-results"
+          className="py-16 lg:py-24 relative"
+          background="white"
+        >
           <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for statistical data removal
                  STATISTICAL SIMPLIFICATION: Remove showVerificationBadges and showConfidenceIntervals props to hide granular statistics */}
             <ResultsDocumentation
               title="Quantifiable Academic Outcomes"
-              description="Verified results that demonstrate measurable ROI for logic-driven families and elite service positioning"
+              description=""
               results={asyncResultsData}
               layout="grid"
               maxItems={3}
@@ -348,7 +378,11 @@ export default function SubjectTuitionPage() {
         {/* HOMESCHOOLING SECTION REASON: Extracted component for preview section with CTA and programme visualization */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <Section id="subject-tuition-homeschooling-preview" className="py-16 lg:py-24 relative" background="white">
+        <Section
+          id="subject-tuition-homeschooling-preview"
+          className="py-16 lg:py-24 relative"
+          background="white"
+        >
           <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-[#CA9E5B]/20" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -394,11 +428,11 @@ export default function SubjectTuitionPage() {
                 >
                   {/* CONTEXT7 SOURCE: /vercel/next.js - Link component for client-side navigation */}
                   {/* BUTTON FIX REASON: Official Next.js documentation recommends Link with asChild for button navigation */}
-                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for white text implementation */}
-                  {/* TEXT COLOR UPDATE REASON: Official Tailwind CSS documentation Section 4.2 text-white utility for consistent white text color with proper contrast */}
+                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Arbitrary background color values and text color utilities */}
+                  {/* AZTEC GOLD STYLING REASON: Official Tailwind CSS documentation demonstrates bg-[<value>] syntax for custom hex colors and text-white utility for accessible white text contrast */}
                   <Button
                     asChild
-                    className="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 !text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
+                    className="bg-[#CA9E5B] hover:bg-[#B8935A] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
                   >
                     <Link href="/homeschooling">
                       {homeschoolingData.buttonText}

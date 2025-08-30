@@ -31,7 +31,6 @@ import { useState } from "react";
 import { PageLayout } from "@/components/layout/page-layout";
 import { Section } from "@/components/layout/section";
 import { SimpleHero } from "@/components/layout/simple-hero";
-import { AnimatedTagline } from "@/components/sections/animated-tagline";
 import { ScrollingSchools } from "@/components/sections/scrolling-schools";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -140,6 +139,28 @@ const homeschoolingData = getHomeschoolingPreview();
 // SCHOOLS DATA REASON: Official React documentation patterns for direct data access without async loading
 const testimonialsSchools = getTestimonialsSchools();
 
+// CONTEXT7 SOURCE: /mdn/content - JavaScript Array.prototype.filter() method for filtering arrays based on conditions
+// FILTERING IMPLEMENTATION REASON: Official MDN documentation demonstrates Array.filter() for creating new arrays with elements that pass a test function
+// BOOTCAMP-SPECIFIC FILTERING: Filter schools data to show only educational schools, excluding universities for 11+ preparation context
+const filterSchoolsOnly = (schools: readonly string[]): readonly string[] => {
+  return schools.filter((school: string) => {
+    // CONTEXT7 SOURCE: /mdn/content - String.prototype.toLowerCase() and String.prototype.includes() methods for case-insensitive string matching
+    // UNIVERSITY FILTERING REASON: Official MDN documentation shows string includes() method for checking substring presence
+    const schoolLower = school.toLowerCase();
+    
+    // Filter out universities and higher education institutions
+    const universityKeywords = ['university', 'college london', 'school of economics', 'harvard', 'lse'];
+    const isUniversity = universityKeywords.some((keyword: string) => schoolLower.includes(keyword));
+    
+    // Return true for schools (keep them), false for universities (exclude them)
+    return !isUniversity;
+  });
+};
+
+// CONTEXT7 SOURCE: /mdn/content - Function application for array processing
+// SCHOOLS FILTERING APPLICATION: Apply filtering function to get only schools for 11+ bootcamp context
+const filteredSchools = filterSchoolsOnly(testimonialsSchools);
+
 export default function ElevenPlusBootcampsPage() {
   // CONTEXT7 SOURCE: /reactjs/react.dev - useState Hook for managing video popup state
   // VIDEO STATE REASON: Official React documentation shows useState for boolean state management in event handlers
@@ -209,17 +230,38 @@ export default function ElevenPlusBootcampsPage() {
       <section id="bootcamps-schools">
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration below hero section */}
         {/* SCROLLING SCHOOLS INTEGRATION: Official React documentation shows component composition patterns */}
-        <ScrollingSchools schools={[...testimonialsSchools]} />
+        {/* CONTEXT7 SOURCE: /mdn/content - Array filtering application in React component props */}
+        {/* FILTERED SCHOOLS REASON: Apply school-only filtering for 11+ bootcamp context, excluding universities for appropriate audience targeting */}
+        <ScrollingSchools schools={[...filteredSchools]} />
       </section>
 
       {/* CONTEXT7 SOURCE: /joshbuchea/head - HTML anchor ID attributes for tagline section navigation */}
       {/* TAGLINE ANCHOR IMPLEMENTATION: Official HTML documentation shows id attributes for content section identification */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-      <section id="bootcamps-tagline">
-        {/* CONTEXT7 SOURCE: /websites/react_dev - AnimatedTagline component integration without props */}
-        {/* ANIMATED TAGLINE REVISION: Official React documentation Section 3.2 shows prop removal patterns for component standardization */}
-        <AnimatedTagline />
+      <section id="bootcamps-tagline" className="bg-white">
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Static text rendering with semantic HTML elements */}
+        {/* STATIC TEXT REASON: Official React documentation shows h2 element for secondary headings with proper text content */}
+        <div className="relative text-center flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center h-full">
+            <div className="relative z-10 px-4">
+              {/* CONTEXT7 SOURCE: /websites/react_dev - Static h2 element for tagline text rendering */}
+              {/* STATIC TAGLINE REASON: Official React documentation shows h2 element usage for secondary headings without animation dependencies */}
+              <h2 className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight text-gray-900 dark:text-white">
+                We help students place at top 10 UK schools and universities
+              </h2>
+            </div>
+            {/* CONTEXT7 SOURCE: /websites/react_dev - Static decorative elements without animation */}
+            {/* STATIC DECORATIONS REASON: Official React documentation shows div elements for visual decoration without motion dependencies */}
+            <div className="flex justify-center items-center space-x-6 mt-6">
+              <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
+              <div className="relative">
+                <div className="w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-500 shadow-lg" />
+              </div>
+              <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
@@ -230,7 +272,10 @@ export default function ElevenPlusBootcampsPage() {
         {/* Programme Options - Professional Redesign */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="bootcamps-programme-options" className="py-20 bg-gradient-to-br from-white via-amber-50/30 to-yellow-50/20 relative">
+        <section
+          id="bootcamps-programme-options"
+          className="py-20 bg-gradient-to-br from-white via-amber-50/30 to-yellow-50/20 relative"
+        >
           {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image optimization for programme showcase images */}
           {/* PROGRAMME SHOWCASE REASON: Official Next.js Image documentation recommends optimized images for enhanced user experience */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -240,8 +285,9 @@ export default function ElevenPlusBootcampsPage() {
                 Our 11+ Programme Options
               </h2>
               <p className="text-xl text-primary-700 max-w-3xl mx-auto leading-relaxed">
-                Discover our comprehensive preparation programmes designed for different learning needs and timelines.
-                Choose the perfect fit for your child's 11+ journey.
+                Discover our comprehensive preparation programmes designed for
+                different learning needs and timelines. Choose the perfect fit
+                for your child's 11+ journey.
               </p>
               {/* CONTEXT7 SOURCE: /radix-ui/website - Separator component for visual section division */}
               {/* SEPARATOR IMPLEMENTATION: Official Radix UI documentation shows horizontal separator for content organization */}
@@ -276,7 +322,7 @@ export default function ElevenPlusBootcampsPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox layout for consistent content alignment */}
                 {/* CONTENT ALIGNMENT IMPLEMENTATION: Official Tailwind CSS flex utilities for maintaining parallel structure */}
                 <div className="p-8">
@@ -297,16 +343,18 @@ export default function ElevenPlusBootcampsPage() {
                   {/* Content description - standardised height */}
                   <div className="mb-6 min-h-[180px]">
                     <p className="text-primary-700 leading-relaxed text-base">
-                      Our 11+ Kickstarter is a fun and thorough introduction to the 11+ curriculum, 
-                      ideal for students with little to no experience of entrance exams. Led by our 
-                      qualified 11+ specialists with decades of experience coaching candidates and 
-                      writing real entrance exam papers.
+                      Our 11+ Kickstarter is a fun and thorough introduction to
+                      the 11+ curriculum, ideal for students with little to no
+                      experience of entrance exams. Led by our qualified 11+
+                      specialists with decades of experience coaching candidates
+                      and writing real entrance exam papers.
                     </p>
                     <br />
                     <p className="text-primary-700 leading-relaxed text-base">
-                      Each day covers a different discipline: English, Maths, Verbal Reasoning, 
-                      Non-Verbal Reasoning, and Interview Technique. A brilliant opportunity for 
-                      Year 4/5 students to lay the groundwork for future success.
+                      Each day covers a different discipline: English, Maths,
+                      Verbal Reasoning, Non-Verbal Reasoning, and Interview
+                      Technique. A brilliant opportunity for Year 4/5 students
+                      to lay the groundwork for future success.
                     </p>
                   </div>
 
@@ -321,20 +369,30 @@ export default function ElevenPlusBootcampsPage() {
                       <div className="flex items-start gap-3">
                         <Calendar className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-primary-900">COURSE ONE:</p>
-                          <p className="text-primary-700">Monday 28th July - Friday 1st August</p>
+                          <p className="font-semibold text-primary-900">
+                            COURSE ONE:
+                          </p>
+                          <p className="text-primary-700">
+                            Monday 28th July - Friday 1st August
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
                         <Calendar className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-primary-900">COURSE TWO:</p>
-                          <p className="text-primary-700">Monday 11th - 15th August</p>
+                          <p className="font-semibold text-primary-900">
+                            COURSE TWO:
+                          </p>
+                          <p className="text-primary-700">
+                            Monday 11th - 15th August
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <Clock className="w-5 h-5 text-amber-600 flex-shrink-0" />
-                        <p className="text-primary-700">9am - 12 noon Monday to Friday</p>
+                        <p className="text-primary-700">
+                          9am - 12 noon Monday to Friday
+                        </p>
                       </div>
                       <div className="flex items-center gap-3">
                         <Target className="w-5 h-5 text-amber-600 flex-shrink-0" />
@@ -344,7 +402,9 @@ export default function ElevenPlusBootcampsPage() {
                       </div>
                       <div className="flex items-center gap-3">
                         <Users className="w-5 h-5 text-amber-600 flex-shrink-0" />
-                        <p className="text-primary-700">Limited spaces - waiting lists available</p>
+                        <p className="text-primary-700">
+                          Limited spaces - waiting lists available
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -357,7 +417,8 @@ export default function ElevenPlusBootcampsPage() {
                     {/* EXTERNAL LINK SECURITY REASON: Official React documentation Section 4.3 recommends secure window.open patterns for external payment providers */}
                     <Button
                       onClick={() => {
-                        const stripeUrl = "https://buy.stripe.com/6oUdR8enb9jF69u1Zd3840c";
+                        const stripeUrl =
+                          "https://buy.stripe.com/6oUdR8enb9jF69u1Zd3840c";
                         window.open(stripeUrl, "_blank", "noopener,noreferrer");
                       }}
                       className="w-full bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4 text-lg font-bold rounded-xl"
@@ -392,7 +453,7 @@ export default function ElevenPlusBootcampsPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox layout for consistent content alignment */}
                 {/* CONTENT ALIGNMENT IMPLEMENTATION: Official Tailwind CSS flex utilities for maintaining parallel structure */}
                 <div className="p-8">
@@ -413,15 +474,17 @@ export default function ElevenPlusBootcampsPage() {
                   {/* Content description - standardised height */}
                   <div className="mb-6 min-h-[180px]">
                     <p className="text-primary-700 leading-relaxed text-base">
-                      Our 11+ Intensive is the perfect runway for students sitting exams in autumn 2025. 
-                      We tackle a different discipline each day: English, Maths, Verbal Reasoning, 
+                      Our 11+ Intensive is the perfect runway for students
+                      sitting exams in autumn 2025. We tackle a different
+                      discipline each day: English, Maths, Verbal Reasoning,
                       Non-Verbal Reasoning, and Interview Technique.
                     </p>
                     <br />
                     <p className="text-primary-700 leading-relaxed text-base">
-                      This advanced course tests existing knowledge, identifies improvement areas, and 
-                      challenges students with 'stretch' tasks. Focus on exam technique with timed 
-                      drills ensures confidence on exam day.
+                      This advanced course tests existing knowledge, identifies
+                      improvement areas, and challenges students with 'stretch'
+                      tasks. Focus on exam technique with timed drills ensures
+                      confidence on exam day.
                     </p>
                   </div>
 
@@ -436,20 +499,30 @@ export default function ElevenPlusBootcampsPage() {
                       <div className="flex items-start gap-3">
                         <Calendar className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-primary-900">COURSE ONE:</p>
-                          <p className="text-primary-700">Monday 4th - Friday 8th August</p>
+                          <p className="font-semibold text-primary-900">
+                            COURSE ONE:
+                          </p>
+                          <p className="text-primary-700">
+                            Monday 4th - Friday 8th August
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-start gap-3">
                         <Calendar className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
                         <div>
-                          <p className="font-semibold text-primary-900">COURSE TWO:</p>
-                          <p className="text-primary-700">Monday 18th - 22nd August</p>
+                          <p className="font-semibold text-primary-900">
+                            COURSE TWO:
+                          </p>
+                          <p className="text-primary-700">
+                            Monday 18th - 22nd August
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-3">
                         <Clock className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <p className="text-primary-700">9am - 12 noon Monday to Friday</p>
+                        <p className="text-primary-700">
+                          9am - 12 noon Monday to Friday
+                        </p>
                       </div>
                       <div className="flex items-center gap-3">
                         <Target className="w-5 h-5 text-blue-600 flex-shrink-0" />
@@ -459,7 +532,9 @@ export default function ElevenPlusBootcampsPage() {
                       </div>
                       <div className="flex items-center gap-3">
                         <Users className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <p className="text-primary-700">Limited spaces - waiting lists available</p>
+                        <p className="text-primary-700">
+                          Limited spaces - waiting lists available
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -472,7 +547,8 @@ export default function ElevenPlusBootcampsPage() {
                     {/* EXTERNAL LINK SECURITY REASON: Official React documentation Section 4.3 recommends secure window.open patterns for external payment providers */}
                     <Button
                       onClick={() => {
-                        const stripeUrl = "https://buy.stripe.com/7sYbJ0cf3brN69u8nB3840d";
+                        const stripeUrl =
+                          "https://buy.stripe.com/7sYbJ0cf3brN69u8nB3840d";
                         window.open(stripeUrl, "_blank", "noopener,noreferrer");
                       }}
                       className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4 text-lg font-bold rounded-xl"
@@ -483,14 +559,6 @@ export default function ElevenPlusBootcampsPage() {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Bottom separator and additional info */}
-            <div className="mt-16 text-center">
-              <Separator className="w-24 bg-gradient-to-r from-primary-500 to-accent-500 h-1 rounded-full mx-auto mb-8" />
-              <p className="text-primary-600 text-lg font-medium">
-                Both programmes include comprehensive course packs with hundreds of practice questions
-              </p>
             </div>
           </div>
         </section>
@@ -507,7 +575,11 @@ export default function ElevenPlusBootcampsPage() {
         {/* CONTENT RESTRUCTURING REVISION: Replaced homeschooling content with 'What Makes Our Bootcamps Different' features for improved page flow */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <Section id="bootcamps-features" className="py-16 lg:py-24 relative" background="white">
+        <Section
+          id="bootcamps-features"
+          className="py-16 lg:py-24 relative"
+          background="white"
+        >
           <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-orange-50/20" />
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -624,8 +696,8 @@ export default function ElevenPlusBootcampsPage() {
                     asChild
                     className="bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 !text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
                   >
-                    <Link href="#programme-options">
-                      Explore Our Programmes
+                    <Link href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~">
+                      Book your free 11+ prep consultation
                     </Link>
                   </Button>
                 </m.div>

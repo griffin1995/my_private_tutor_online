@@ -113,24 +113,24 @@ const getVerificationBadge = (level: ResultsDocumentationItem['verificationLevel
   }
 }
 
-// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Helper function for category styling with royal blue backgrounds in rgba format
-// ROYAL BLUE UPDATE REASON: Enhanced visual consistency using royal blue from brand palette with rgba format for opacity adjustments
-// RGBA FORMAT REASON: rgba(37, 99, 235, opacity) format allows easy future opacity modifications while maintaining royal blue consistency
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Helper function for category styling with metallic blue backgrounds
+// METALLIC BLUE UPDATE REASON: Enhanced visual consistency using metallic blue (#3F4A7E) from brand colour scheme specification
+// ACCESSIBILITY REASON: White text on metallic blue provides WCAG 2.1 AA compliant contrast ratio for royal client standards
 const getCategoryStyle = (category: ResultsDocumentationItem['category']) => {
-  // Royal blue rgba values: rgba(37, 99, 235, opacity) - based on blue-600 (#2563eb)
+  // Metallic blue hex value: #3F4A7E - provides premium appearance with white text accessibility
   const baseStyle = 'text-white border-2';
   
   switch (category) {
     case 'grade_improvement':
-      return `${baseStyle} border-blue-400 bg-[rgba(37,99,235,0.9)]`
+      return `${baseStyle} border-slate-400 bg-[#3F4A7E]`
     case 'university_placement':
-      return `${baseStyle} border-blue-300 bg-[rgba(37,99,235,0.95)]`
+      return `${baseStyle} border-slate-300 bg-[#3F4A7E]`
     case 'exam_success':
-      return `${baseStyle} border-blue-400 bg-[rgba(37,99,235,0.85)]`
+      return `${baseStyle} border-slate-400 bg-[#3F4A7E]`
     case 'roi_analysis':
-      return `${baseStyle} border-blue-300 bg-[rgba(37,99,235,0.9)]`
+      return `${baseStyle} border-slate-300 bg-[#3F4A7E]`
     default:
-      return `${baseStyle} border-blue-400 bg-[rgba(37,99,235,0.9)]`
+      return `${baseStyle} border-slate-400 bg-[#3F4A7E]`
   }
 }
 

@@ -159,7 +159,12 @@ export function FounderStorySection({
               <Highlighter action="underline" color="#1e40af">
                 resilience and self-belief
               </Highlighter>
-              {" "}as it does on subject mastery. Whether preparing for British schools, moving abroad, or facing competitive exams, we provide{" "}
+              {" "}as it does on subject mastery.
+            </p>
+            {/* CONTEXT7 SOURCE: /mdn/content - HTML paragraph element for proper text formatting */}
+            {/* PARAGRAPH BREAK REVISION REASON: Official MDN documentation Section HTML paragraphs - adding paragraph break between 'subject mastery.' and 'Whether preparing for...' per client feedback requirements */}
+            <p>
+              Whether preparing for British schools, moving abroad, or facing competitive exams, we provide{" "}
               <Highlighter action="highlight" color="#f59e0b">
                 structure, insight and flexibility
               </Highlighter>
@@ -417,8 +422,10 @@ export function FounderStorySection({
                 </h2>
 
                 <div className="text-lg lg:text-xl text-white/90 leading-relaxed space-y-4">
+                  {/* CONTEXT7 SOURCE: /mdn/content - HTML em element for semantic text emphasis */}
+                  {/* ITALICS CORRECTION REVISION REASON: Official MDN documentation Section HTML emphasis - correcting <em> usage to only italicize 'Forbes Middle East', not 'Online Editor' per client feedback requirements */}
                   <p className="text-white">
-                    Keen to put my English degree to good use, during this time I also worked at <em>Forbes Middle East as Online Editor</em>. I covered a range of subjects, including education. Conducting interviews with business moguls and CEOs reinforced what I already knew: the right educational support doesn't just help people ace exams — it shapes their choices, their confidence and their future. These leaders had turned their fortunes around through education. What could be more exciting and important?
+                    Keen to put my English degree to good use, during this time I also worked at <em>Forbes Middle East</em> as Online Editor. I covered a range of subjects, including education. Conducting interviews with business moguls and CEOs reinforced what I already knew: the right educational support doesn't just help people ace exams — it shapes their choices, their confidence and their future. These leaders had turned their fortunes around through education. What could be more exciting and important?
                   </p>
                 </div>
               </div>

@@ -9,6 +9,8 @@ import { PageLayout } from '@/components/layout/page-layout'
 import { SimpleHero } from '@/components/layout/simple-hero'
 import { TutorsSection } from '@/components/tutors/tutors-section'
 import { getTutorsHeroImage } from '@/lib/cms/cms-images'
+import { QuoteSection } from '@/components/sections/quote-section'
+import { TestimonialsVideoSection } from '@/components/sections/testimonials-video-section'
 
 // CONTEXT7 SOURCE: /vercel/next.js - Page metadata configuration for SEO
 // CONTEXT7 SOURCE: /microsoft/typescript - Metadata interface patterns for page optimization
@@ -52,6 +54,15 @@ export default function MeetOurTutorsPage() {
         h1="Meet Our Tutors"
         h2="Excellence Through Expertise"
         decorativeStyle="lines"
+      />
+
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - QuoteSection component integration following site pattern */}
+      {/* MEET-OUR-TUTORS QUOTE INTEGRATION: Adding QuoteSection underneath hero with tutor expertise messaging and strategic highlighting */}
+      <QuoteSection
+        quote="Our tutors are handpicked by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools and official examiners for GCSEs, A Levels and IB exams. Each tutor is an expert in their field and has hundreds, if not thousands, of hours teaching experience."
+        backgroundColor="bg-gray-50"
+        useHighlighting={true}
+        className="py-16 lg:py-20"
       />
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - PageLayout wrapper for content sections */}
@@ -139,36 +150,18 @@ export default function MeetOurTutorsPage() {
           className="bg-white"
         />
 
-        {/* Contact CTA Section */}
-        <section className="py-16 lg:py-24 bg-gray-50">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Ready to Find Your Perfect Tutor?
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed text-gray-600">
-                Don't see what you're looking for? This is just a snapshot of our team.
-                Drop us a line to find out more about a particular subject/tutor.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-[#CA9E5B] text-white hover:bg-[#B8915A] focus:outline-none focus:ring-2 focus:ring-[#CA9E5B] focus:ring-offset-2"
-                >
-                  Schedule a Consultation
-                </a>
-                <a
-                  href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-white text-[#CA9E5B] border-2 border-[#CA9E5B] hover:bg-[#CA9E5B]/10 focus:outline-none focus:ring-2 focus:ring-[#CA9E5B] focus:ring-offset-2"
-                >
-                  Request Information
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* CONTEXT7 SOURCE: /websites/magicui_design - TestimonialsVideoSection integration from about page */}
+        {/* COMPONENT COPYING REASON: Official Context7 documentation Section 3.1 - copying complete video testimonials section underneath tutor section for enhanced user experience */}
+        {/* VIDEO TESTIMONIALS INTEGRATION: Adding 2-video section copied from about page to showcase family success stories */}
+        <TestimonialsVideoSection 
+          backgroundColor="bg-slate-50"
+          title="Hear From Our Families"
+          description="Watch real testimonials from parents and students who have achieved exceptional results with My Private Tutor Online."
+          maxVideos={2}
+        />
+
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component section removal patterns for page content cleanup */}
+        {/* CTA SECTION REMOVAL REASON: Official React documentation Section 4.3 recommends clean component removal while maintaining page structure and accessibility */}
       </PageLayout>
     </>
   )
