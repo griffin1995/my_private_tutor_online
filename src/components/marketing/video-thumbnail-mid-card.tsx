@@ -2,8 +2,9 @@
  * CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with aspect-video for video thumbnails
  * VIDEO THUMBNAIL FEATURE: Official Next.js documentation recommends explicit width/height for remote images
  * 
- * CONTEXT7 SOURCE: /lucide-icons/lucide - Play and CreditCard icons for video thumbnail functionality
+ * CONTEXT7 SOURCE: /lucide-icons/lucide - Play icon for consistent video thumbnail functionality
  * VIDEO BUTTON LOGIC: Official Lucide documentation recommends semantic icon usage for user actions
+ * UX DESIGN REVISION: All video thumbnails use Play icon for consistent user experience
  *
  * VideoThumbnailMidCard Component - Video Thumbnail Positioned in Middle
  * This component displays video thumbnails BETWEEN the description and duration sections,
@@ -21,7 +22,7 @@
 
 "use client"
 
-import { ArrowRight, Check, Star, Play, CreditCard } from 'lucide-react'
+import { ArrowRight, Check, Star, Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
@@ -167,8 +168,9 @@ export function VideoThumbnailMidCard({
   }
 
 
-  // CONTEXT7 SOURCE: /lucide-icons/lucide - Play and CreditCard icons for video thumbnail functionality
-  // VIDEO BUTTON LOGIC: Official Lucide documentation recommends semantic icon usage for user actions
+  // CONTEXT7 SOURCE: /lucide-icons/lucide - Play icon for consistent video thumbnail functionality
+  // VIDEO BUTTON LOGIC: Official Lucide documentation recommends semantic icon usage for user actions  
+  // UX DESIGN REVISION: All video thumbnails use Play icon for consistent user experience, regardless of payment status
   const isVideoFree = Boolean(videoUrl && !paymentUrl)
   
   // CONTEXT7 SOURCE: /reactjs/react.dev - useCallback for performance optimization
@@ -336,8 +338,8 @@ export function VideoThumbnailMidCard({
                     </>
                   ) : (
                     <>
-                      <CreditCard className="w-6 h-6 text-primary-900" />
-                      <span className="sr-only">Purchase to Watch - Press Enter or Space to continue</span>
+                      <Play className="w-6 h-6 text-primary-900 fill-current" />
+                      <span className="sr-only">Play Video - Press Enter or Space to continue</span>
                     </>
                   )}
                 </div>

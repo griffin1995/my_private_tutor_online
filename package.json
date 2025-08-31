@@ -69,7 +69,10 @@
     "monitoring:alerts": "node -e \"require('./src/lib/monitoring/performance-alerts').getPerformanceAlertingSystem().getAlertStatistics().then ? console.log : console.log\"",
     "monitoring:test-alert": "node -e \"require('./src/lib/monitoring/enterprise-monitoring').getEnterpriseMonitoring().triggerAlert('test_alert', 'warning', { test: true, timestamp: new Date() })\"",
     "monitoring:health-check": "curl -s http://localhost:3000/api/infrastructure/health | jq '.' || echo 'Health check endpoint not available'",
-    "monitoring:comprehensive": "npm run monitoring:enterprise && npm run monitoring:dashboard && npm run monitoring:alerts"
+    "monitoring:comprehensive": "npm run monitoring:enterprise && npm run monitoring:dashboard && npm run monitoring:alerts",
+    "dev:pesticide": "NEXT_PUBLIC_ENABLE_PESTICIDE=true npm run dev",
+    "dev:pesticide-off": "NEXT_PUBLIC_ENABLE_PESTICIDE=false npm run dev",
+    "dev:debug-layout": "NEXT_PUBLIC_ENABLE_PESTICIDE=true npm run dev"
   },
   "overrides": {
     "@visx/axis": {
@@ -303,6 +306,7 @@
     "jest": "^30.0.4",
     "jest-environment-jsdom": "^30.0.4",
     "lint-staged": "^16.1.2",
+    "pesticide": "^1.3.1",
     "postcss": "^8.4.35",
     "prettier-plugin-tailwindcss": "^0.6.13",
     "react-devtools": "^1.0.5",

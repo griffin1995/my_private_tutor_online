@@ -39,10 +39,12 @@ import {
   getHomeschoolingPreview,
   getTestimonialsSchools,
 } from "@/lib/cms/cms-content";
+import { getProgrammeImage } from "@/lib/cms/cms-images";
 import { m } from "framer-motion";
 import { Calendar, Clock, Play, Target, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 
 /**
  * Bootcamp Programmes - CMS DATA SOURCE: Static content for 11+ bootcamp offerings
@@ -168,6 +170,11 @@ const filterSchoolsOnly = (schools: readonly string[]): readonly string[] => {
 // CONTEXT7 SOURCE: /mdn/content - Function application for array processing
 // SCHOOLS FILTERING APPLICATION: Apply filtering function to get only schools for 11+ bootcamp context
 const filteredSchools = filterSchoolsOnly(testimonialsSchools);
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Synchronous CMS data access for programme showcase images
+// PROGRAMME IMAGES REASON: Official TypeScript patterns for centralized data management and type-safe content access
+const kickstarterImage = getProgrammeImage("eleven-plus-kickstarter");
+const intensiveImage = getProgrammeImage("eleven-plus-intensive");
 
 export default function ElevenPlusBootcampsPage() {
   // CONTEXT7 SOURCE: /reactjs/react.dev - useState Hook for managing video popup state
@@ -309,19 +316,20 @@ export default function ElevenPlusBootcampsPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Kickstarter Programme */}
               <div className="bg-white rounded-3xl shadow-xl border border-amber-100/50 overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for local programme images */}
-                {/* PROGRAMME IMAGE UPDATE: Updated to /11+ Kickstarter pic.jpg - new user-provided image showing mother/child tutoring session */}
-                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized JPG image rendering with descriptive alt text reflecting supportive tutoring approach */}
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with CMS data integration */}
+                {/* PROGRAMME IMAGE UPDATE: Using CMS data for 11+ Kickstarter programme showcase image showing mother/child tutoring session */}
+                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized JPG image rendering with CMS-managed descriptive alt text reflecting supportive online tutoring approach */}
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/11+ Kickstarter pic.jpg"
-                    alt="11+ Kickstarter Programme - Mother and child working together at computer, demonstrating supportive tutoring approach for foundational 11+ preparation"
-                    width={600}
-                    height={300}
+                    src={kickstarterImage.src}
+                    alt={kickstarterImage.alt}
+                    width={kickstarterImage.width || 600}
+                    height={kickstarterImage.height || 300}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
+                    loading={kickstarterImage.loading || "lazy"}
                     quality={90}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                    title={kickstarterImage.title || kickstarterImage.alt}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 via-transparent to-transparent" />
                   <div className="absolute top-4 left-4">
@@ -443,19 +451,20 @@ export default function ElevenPlusBootcampsPage() {
 
               {/* Intensive Programme */}
               <div className="bg-white rounded-3xl shadow-xl border border-blue-100/50 overflow-hidden group hover:shadow-2xl transition-all duration-500">
-                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for alternative programme option */}
-                {/* INTENSIVE PROGRAMME UPDATE: Updated to /11+ Intensive pic.jpg - new user-provided image showing exam answer sheet completion */}
-                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized JPG image rendering with descriptive alt text reflecting exam preparation focus */}
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with CMS data integration */}
+                {/* INTENSIVE PROGRAMME UPDATE: Using CMS data for 11+ Intensive programme showcase image showing exam answer sheet completion */}
+                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized JPG image rendering with CMS-managed descriptive alt text reflecting focused exam preparation and technique */}
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/11+ Intensive pic.jpg"
-                    alt="11+ Intensive Programme - Student hands completing exam answer sheet with pencil, demonstrating focused exam preparation and technique"
-                    width={600}
-                    height={300}
+                    src={intensiveImage.src}
+                    alt={intensiveImage.alt}
+                    width={intensiveImage.width || 600}
+                    height={intensiveImage.height || 300}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
+                    loading={intensiveImage.loading || "lazy"}
                     quality={90}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                    title={intensiveImage.title || intensiveImage.alt}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-900/20 via-transparent to-transparent" />
                   <div className="absolute top-4 left-4">
@@ -725,10 +734,11 @@ export default function ElevenPlusBootcampsPage() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Aspect ratio utilities for 16:9 video format */}
-                {/* ASPECT RATIO IMPLEMENTATION: Official Tailwind CSS documentation for aspect-video utility maintaining 16:9 proportions */}
-                <div
-                  className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
+                {/* CONTEXT7 SOURCE: /radix-ui/website - AspectRatio component with 16:9 ratio for video format */}
+                {/* ASPECT RATIO IMPLEMENTATION: Official Radix UI documentation for AspectRatio.Root maintaining 16:9 proportions */}
+                <AspectRatio.Root
+                  ratio={16 / 9}
+                  className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
                   onClick={() => setIsVideoOpen(true)}
                 >
                   {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Object-cover utility for image optimization */}
@@ -755,7 +765,7 @@ export default function ElevenPlusBootcampsPage() {
                       />
                     </div>
                   </div>
-                </div>
+                </AspectRatio.Root>
 
                 {/* Decorative Elements */}
                 <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />

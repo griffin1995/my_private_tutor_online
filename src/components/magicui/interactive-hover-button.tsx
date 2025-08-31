@@ -1,3 +1,10 @@
+/**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Font family utilities for Playfair Display integration
+ * FONT_STANDARDIZATION_REASON: Updated to use consistent Playfair Display font family across navigation components
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Font weight utilities for refined typography
+ * FONT_WEIGHT_REVISION: Changed from font-semibold to font-normal for thinner, more elegant appearance
+ */
+
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -13,7 +20,7 @@ export const InteractiveHoverButton = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative w-auto cursor-pointer overflow-hidden rounded-lg border bg-white text-[#3F4A7E] p-2 px-6 text-center font-semibold transition-colors duration-300 hover:bg-[#3F4A7E] hover:text-white",
+        "group relative w-auto cursor-pointer overflow-hidden rounded-lg border bg-white text-[#3F4A7E] p-2 px-6 text-center font-normal font-display transition-colors duration-300 hover:bg-[#3F4A7E] hover:text-white",
         className,
       )}
       {...props}

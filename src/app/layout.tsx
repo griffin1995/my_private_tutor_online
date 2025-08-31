@@ -46,6 +46,10 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { CookieConsentManager } from '@/components/legal/CookieConsent';
 import { GlobalErrorBoundary } from '@/components/infrastructure/GlobalErrorBoundary';
 
+// CONTEXT7 SOURCE: /mrmrs/pesticide - CSS layout debugging tool for development environment only
+// DEVELOPMENT TOOL: Pesticide CSS debugger integration for layout development and troubleshooting
+import { PesticideDebugger } from '@/lib/dev-utils';
+
 // CONTEXT7 SOURCE: /sonner/toast - Toast notification system for user feedback
 // TOAST INTEGRATION REASON: Global toast provider for language switching notifications and user feedback
 import { Toaster } from '@/components/ui/toast';
@@ -383,6 +387,11 @@ export default function RootLayout({
         {/* CONTEXT7 SOURCE: /sonner/toast - Global toast notification system
             TOAST PROVIDER REASON: Sonner toaster for user feedback including language switching notifications */}
         <Toaster />
+        
+        {/* CONTEXT7 SOURCE: /mrmrs/pesticide - Development-only CSS layout debugging tool
+            PESTICIDE DEBUGGER: Visual element outline tool for development layout troubleshooting
+            SAFETY: Automatically disabled in production environments */}
+        <PesticideDebugger />
       </body>
     </html>
   );

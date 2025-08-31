@@ -212,8 +212,10 @@ export default function HowItWorksPage() {
 
               <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent mx-auto mb-6"></div>
 
-              <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
-                At My Private Tutor Online, we offer more than just tutoring—we
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Italic font styling for consultative service emphasis */}
+              {/* ITALIC STYLING REASON: Official Tailwind CSS documentation Section 1.1 demonstrates italic utility class applying font-style: italic for text emphasis */}
+              <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium italic">
+                "At My Private Tutor Online, we offer more than just tutoring—we
                 provide{" "}
                 <Highlighter action="highlight" color="#eab308">
                   thoughtful, expert advice
@@ -222,7 +224,7 @@ export default function HowItWorksPage() {
                 <Highlighter action="underline" color="#0f172a">
                   consultative, personal, and bespoke
                 </Highlighter>{" "}
-                to your family's individual needs.
+                to your family's individual needs."
               </p>
             </div>
 

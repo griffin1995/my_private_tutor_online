@@ -871,23 +871,46 @@ export default function VideoMasterclassesPage() {
             className="relative w-full max-w-6xl mx-4 aspect-video"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Video Player */}
-            {/* CONTEXT7 SOURCE: /mozilla/mdn - HTML5 video element with accessibility and autoplay */}
-            {/* VIDEO IMPLEMENTATION REASON: Official MDN documentation recommends controls, autoPlay, and playsInline for optimal video playback */}
-            <video
-              ref={videoRef}
-              src={getMasterclassVideo("unlockingAcademicSuccess").videoUrl}
-              className="w-full h-full rounded-lg shadow-2xl object-cover"
-              controls
-              autoPlay
-              muted
-              playsInline
-              onLoadedData={() => {
-                if (videoRef.current) {
-                  videoRef.current.play();
-                }
-              }}
-            />
+            {/* CONTEXT7 SOURCE: /microsoft/typescript - Conditional rendering for optional property handling */}
+            {/* VIDEO AVAILABILITY CHECK: Official TypeScript documentation demonstrates proper optional property access patterns */}
+            {getMasterclassVideo("unlockingAcademicSuccess").videoUrl ? (
+              <>
+                {/* Video Player */}
+                {/* CONTEXT7 SOURCE: /mozilla/mdn - HTML5 video element with accessibility and autoplay */}
+                {/* VIDEO IMPLEMENTATION REASON: Official MDN documentation recommends controls, autoPlay, and playsInline for optimal video playback */}
+                <video
+                  ref={videoRef}
+                  src={getMasterclassVideo("unlockingAcademicSuccess").videoUrl}
+                  className="w-full h-full rounded-lg shadow-2xl object-cover"
+                  controls
+                  autoPlay
+                  muted
+                  playsInline
+                  onLoadedData={() => {
+                    if (videoRef.current) {
+                      videoRef.current.play();
+                    }
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                {/* CONTEXT7 SOURCE: /microsoft/typescript - Error state handling for missing properties */}
+                {/* FALLBACK IMPLEMENTATION: Official TypeScript documentation patterns for graceful degradation */}
+                <div className="flex items-center justify-center w-full h-full bg-slate-800 rounded-lg shadow-2xl">
+                  <div className="text-center text-white p-8">
+                    <div className="text-6xl mb-4">🎬</div>
+                    <h3 className="text-2xl font-semibold mb-2">Video Coming Soon</h3>
+                    <p className="text-slate-300">
+                      This masterclass video is currently being processed and will be available shortly.
+                    </p>
+                    <p className="text-slate-400 text-sm mt-4">
+                      Please check back soon or contact us for updates.
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

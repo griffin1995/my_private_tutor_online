@@ -919,6 +919,28 @@ export const VIDEO_CONTENT = {
   },
 } as const;
 
+// CONTEXT7 SOURCE: /vercel/next.js - Static asset management patterns for programme showcase images
+// PROGRAMME IMAGES UPDATE: New 11+ bootcamp programme images from user provided assets
+// IMPLEMENTATION REASON: Official Next.js documentation for centralized image asset management
+export const PROGRAMME_IMAGES = {
+  "eleven-plus-kickstarter": {
+    src: "/images/programmes/eleven-plus-kickstarter-online-tutoring.jpg",
+    alt: "11+ Kickstarter Programme - Mother and young son working together at computer, demonstrating supportive online tutoring approach for foundational 11+ preparation with expert guidance",
+    width: 600,
+    height: 300,
+    title: "11+ Kickstarter Programme - Online Tutoring",
+    loading: "lazy" as const,
+  },
+  "eleven-plus-intensive": {
+    src: "/images/programmes/eleven-plus-intensive-exam-preparation.jpg",
+    alt: "11+ Intensive Programme - Student hands completing exam answer sheet with pencil, demonstrating focused exam preparation technique and multiple choice testing skills for entrance examinations",
+    width: 600,
+    height: 300,
+    title: "11+ Intensive Programme - Exam Preparation",
+    loading: "lazy" as const,
+  },
+} as const;
+
 // Marketing materials and documents
 export const MARKETING_ASSETS = {
   "11plusBootcampFlyer": {
@@ -979,7 +1001,7 @@ export const MASTERCLASS_VIDEOS = {
     alt: "Unlocking Academic Success - GCSE Summit 2024 Masterclass by Elizabeth Burrows",
     title: "Unlocking Academic Success (Free Access)",
     description:
-      "Elizabeth was invited to speak at the 2024 UCAS Summit, where she was called upon to share her expert guidance for parents on navigating the world of private tutoring. In this insightful session, she explores how to recognise when one-to-one support is needed, identify truly exceptional tutors and manage the tutor–student–parent relationship to ensure outstanding academic outcomes.",
+      "Elizabeth Burrows was invited to speak at the GCSE Summit 2024, where she addressed parents of GCSE-aged students on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition. In this masterclass Elizabeth shares practical strategies and insights into the most common challenges families face when considering tutoring — from framing tutoring in a positive light for reluctant tutees to determining your child's true potential. Her session offers clear, reassuring guidance to help parents feel more confident in supporting their teens through GCSEs, IBs and A Levels.",
     duration: 30,
     featured: true,
     category: "free" as const,
@@ -987,7 +1009,7 @@ export const MASTERCLASS_VIDEOS = {
     masterclassRole: "Founder, My Private Tutor Online",
     isFree: true,
     thumbnailUrl: "/images/masterclass-thumbnails/gcse-summit.png",
-    videoUrl: "",
+    videoUrl: "", // CONTEXT7 SOURCE: /microsoft/typescript - Optional property pattern for missing video file
   },
   ucasSummit2024: {
     id: "ucas-summit-2024",
@@ -1004,7 +1026,7 @@ export const MASTERCLASS_VIDEOS = {
     masterclassRole: "Founder, My Private Tutor Online",
     isFree: true,
     thumbnailUrl: "/images/masterclass-thumbnails/ucas-summit.png",
-    videoUrl: "",
+    videoUrl: "", // CONTEXT7 SOURCE: /microsoft/typescript - Optional property pattern for missing video file
   },
   elizabethsUcasGuide: {
     id: "elizabeths-ucas-guide",
@@ -1347,6 +1369,10 @@ imageAssetRegistry.set(
 imageAssetRegistry.set(
   "masterclassVideos",
   new Map(Object.entries(MASTERCLASS_VIDEOS))
+);
+imageAssetRegistry.set(
+  "programmes",
+  new Map(Object.entries(PROGRAMME_IMAGES))
 );
 
 /**
@@ -1790,6 +1816,26 @@ export const getMasterclassVideos = (): typeof MASTERCLASS_VIDEOS => {
 };
 
 /**
+ * Get programme showcase images
+ * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
+ * CMS DATA SOURCE: Using PROGRAMME_IMAGES for 11+ bootcamp programme showcase photos
+ */
+export const getProgrammeImages = (): typeof PROGRAMME_IMAGES => {
+  return PROGRAMME_IMAGES;
+};
+
+/**
+ * Get specific programme image by key
+ * CONTEXT7 SOURCE: /microsoft/typescript - Generic keyof operator and return type annotations
+ * CMS DATA SOURCE: Using PROGRAMME_IMAGES for individual programme showcase asset retrieval
+ */
+export const getProgrammeImage = (
+  imageKey: keyof typeof PROGRAMME_IMAGES
+): ImageAsset => {
+  return PROGRAMME_IMAGES[imageKey];
+};
+
+/**
  * Get specific masterclass video by key
  * CONTEXT7 SOURCE: /microsoft/typescript - Generic keyof operator and return type annotations
  * CMS DATA SOURCE: Using MASTERCLASS_VIDEOS for individual video asset retrieval
@@ -2011,6 +2057,7 @@ export const CMSImages = {
   marketing: imageAssetRegistry.get("marketing"),
   videoPlaceholders: imageAssetRegistry.get("videoPlaceholders"),
   masterclassVideos: imageAssetRegistry.get("masterclassVideos"),
+  programmes: imageAssetRegistry.get("programmes"),
   
   // CONTEXT7 SOURCE: /microsoft/typescript - Function export patterns for CMS utility functions
   // TUTOR IMAGE UTILITIES: Functions for accessing tutor photos by profile ID
@@ -2018,6 +2065,10 @@ export const CMSImages = {
   hasTutorImage,
   getNewTutorImageIds,
   isNewTutor,
+  
+  // PROGRAMME IMAGE UTILITIES: Functions for accessing programme showcase images
+  getProgrammeImages,
+  getProgrammeImage,
 } as const;
 
 // Export default for common usage patterns

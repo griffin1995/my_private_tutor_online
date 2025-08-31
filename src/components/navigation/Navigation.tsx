@@ -35,6 +35,7 @@ import React, { useEffect, useRef, useState } from "react";
 // REVERSION REASON: Restoring ChevronDown import for main menu dropdown indicators per user request
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { Separator } from "@/components/ui/separator";
+import ArrowUpward from "@/components/ui/arrow-upward";
 import { cn } from "@/lib/utils";
 import { ChevronRight, ChevronUp, Menu as MenuIcon, X } from "lucide-react";
 
@@ -179,6 +180,60 @@ const navVariants = {
     transition: {
       duration: 0.3,
       ease: "easeOut",
+    },
+  },
+};
+
+// CONTEXT7 SOURCE: /grx7/framer-motion - Staggered container variants for dropdown orchestration
+// STAGGER_REASON: Official Framer Motion documentation for parent container animation control with delayChildren and staggerChildren
+const dropdownContainerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.1,
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+// CONTEXT7 SOURCE: /grx7/framer-motion - Individual item variants for staggered fade-in animation
+// ITEM_REASON: Official Framer Motion documentation for child item animations with opacity and transform
+const dropdownItemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
+// CONTEXT7 SOURCE: /grx7/framer-motion - Arrow grow upward animation variants for elegant bottom-to-top growth effect
+// ARROW_GROW_REASON: Official Framer Motion documentation for transform-based animations using scaleY and y properties with transformOrigin
+const arrowGrowVariants = {
+  hidden: {
+    scaleY: 0,
+    y: 50,
+    opacity: 0,
+    transformOrigin: "bottom",
+  },
+  visible: {
+    scaleY: 1,
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: 0.85,
+      type: "spring",
+      duration: 0.6,
+      bounce: 0.2,
     },
   },
 };
@@ -435,7 +490,14 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                                 activeMenuItem !== item.label &&
                                 "text-[#3F4A7E]"
                             )}
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                              // Clear any hover timeouts and close dropdown immediately when clicking
+                              if (hoverDelayTimeoutRef.current) {
+                                clearTimeout(hoverDelayTimeoutRef.current);
+                                hoverDelayTimeoutRef.current = null;
+                              }
+                              handleCloseDropdown();
+                            }}
                           >
                             {item.label}
                           </Link>
@@ -581,7 +643,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                     
                     {/* Navigation items area - matches navbar centering */}
                     <div className="flex-1 flex justify-center">
-                      <div className="flex justify-start w-full h-full">
+                      <div className="flex justify-start w-full h-full relative">
                     {navigationData
                       .filter(
                         (item) =>
@@ -603,42 +665,56 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                             {/* FLEX_LAYOUT_FIX: Official Tailwind documentation for flex column with h-full and items-stretch for maximum height usage */}
                             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding utilities for optimized top spacing */}
                             {/* SPACING_OPTIMIZATION: Official Tailwind documentation for reduced padding - pt-8 (32px), pt-10 (40px), pt-12 (48px) - approximately half the previous values for better visual balance */}
-                            <div className="flex flex-col h-full items-stretch pt-8 lg:pt-10 xl:pt-12 pb-6">
+                            {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div container with staggered animation variants */}
+                            {/* STAGGER_CONTAINER_REASON: Official Framer Motion documentation for applying parent variants to orchestrate child animations */}
+                            <motion.div
+                              initial="hidden"
+                              animate="visible"
+                              variants={dropdownContainerVariants}
+                              className="flex flex-col h-full items-stretch pt-8 lg:pt-10 xl:pt-12 pb-6"
+                            >
                               {item.items!.map((subItem, subIndex) => (
                                 <React.Fragment key={subItem.label}>
-                                  <Link
-                                    href={subItem.href!}
-                                    onClick={handleCloseDropdown}
-                                    className={cn(
-                                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flex utilities for equal height distribution
-                                      // HEIGHT_DISTRIBUTION_REASON: Official Tailwind documentation for flex-1 to distribute available height equally
-                                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flex alignment utilities for left alignment
-                                      // LEFT_ALIGNMENT_FIX: Official Tailwind documentation for items-center justify-start to left-align content
-                                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding utilities for exact Home link alignment
-                                      // ALIGNMENT_MATCH: Official Tailwind documentation for px-2 padding to match navbar Home link positioning
-                                      "flex-1 flex items-center justify-start px-2 py-4 transition-colors duration-200 group no-underline",
-                                      "hover:text-[#CA9E5B] hover:bg-gray-50 hover:no-underline",
-                                      subItem.featured &&
-                                        "bg-gradient-to-r from-[#3F4A7E]/5 to-[#CA9E5B]/5"
-                                    )}
-                                    style={{ textDecoration: "none" }}
-                                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - no-underline utility class for removing text decorations
-                                    // REVISION_REASON: Enhanced no-underline classes to ensure no underline effects on submenu item hover states
+                                  {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div item with individual animation variants */}
+                                  {/* STAGGER_ITEM_REASON: Official Framer Motion documentation for child item animations that inherit parent orchestration */}
+                                  <motion.div
+                                    variants={dropdownItemVariants}
+                                    className="flex-1"
                                   >
-                                    <h3
+                                    <Link
+                                      href={subItem.href!}
+                                      onClick={handleCloseDropdown}
                                       className={cn(
-                                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Large responsive font sizing for maximum space usage
-                                        // FONT_SIZE_MAXIMIZATION: Official Tailwind documentation for very large typography that fills available space
-                                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Line height utilities for optimal vertical spacing
-                                        // LINE_HEIGHT_FIX: Official Tailwind documentation for leading-tight to optimize vertical space usage
-                                        "text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
-                                        "font-normal font-display text-[#3F4A7E] hover:text-[#CA9E5B] transition-colors no-underline hover:no-underline leading-tight text-left"
+                                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flex utilities for equal height distribution
+                                        // HEIGHT_DISTRIBUTION_REASON: Official Tailwind documentation for flex-1 to distribute available height equally
+                                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flex alignment utilities for left alignment
+                                        // LEFT_ALIGNMENT_FIX: Official Tailwind documentation for items-center justify-start to left-align content
+                                        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding utilities for exact Home link alignment
+                                        // ALIGNMENT_MATCH: Official Tailwind documentation for px-2 padding to match navbar Home link positioning
+                                        "h-full flex items-center justify-start px-2 py-4 transition-colors duration-200 group no-underline",
+                                        "hover:text-[#CA9E5B] hover:bg-gray-50 hover:no-underline",
+                                        subItem.featured &&
+                                          "bg-gradient-to-r from-[#3F4A7E]/5 to-[#CA9E5B]/5"
                                       )}
                                       style={{ textDecoration: "none" }}
+                                      // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - no-underline utility class for removing text decorations
+                                      // REVISION_REASON: Enhanced no-underline classes to ensure no underline effects on submenu item hover states
                                     >
-                                      {subItem.label}
-                                    </h3>
-                                  </Link>
+                                      <h3
+                                        className={cn(
+                                          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Large responsive font sizing for maximum space usage
+                                          // FONT_SIZE_MAXIMIZATION: Official Tailwind documentation for very large typography that fills available space
+                                          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Line height utilities for optimal vertical spacing
+                                          // LINE_HEIGHT_FIX: Official Tailwind documentation for leading-tight to optimize vertical space usage
+                                          "text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
+                                          "font-normal font-display text-[#3F4A7E] hover:text-[#CA9E5B] transition-colors no-underline hover:no-underline leading-tight text-left"
+                                        )}
+                                        style={{ textDecoration: "none" }}
+                                      >
+                                        {subItem.label}
+                                      </h3>
+                                    </Link>
+                                  </motion.div>
                                   {/* CONTEXT7 SOURCE: /radix-ui/react-separator - Separator component for visual organization */}
                                   {/* SEPARATOR_REASON: Official Radix UI documentation for adding clean visual separation between dropdown menu items */}
                                   {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for separator spacing */}
@@ -648,10 +724,38 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                                   )}
                                 </React.Fragment>
                               ))}
-                            </div>
+                            </motion.div>
                           </div>
                         );
                       })}
+                      
+                      {/* CUSTOM ARROW UPWARD COMPONENT: User-provided SVG arrow for collapse functionality */}
+                      {/* COLLAPSE_ARROW_REASON: User requested custom arrow replacement in dropdown for additional close option */}
+                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Large sizing utilities for prominent visual elements */}
+                      {/* SIZE_INCREASE_REASON: Official Tailwind documentation for dramatic size scaling - arrow increased to ~30% screen width for major visual prominence */}
+                      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10">
+                        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Button wrapper with hover interactions for grow upward arrow */}
+                        {/* BUTTON_WRAPPER_REASON: Official Framer Motion documentation for interactive button wrapper around animated SVG elements - transparent background removed */}
+                        <button
+                          onClick={handleCloseDropdown}
+                          className={cn(
+                            "flex items-center justify-center transition-all duration-200 rounded-lg",
+                            "text-[#3F4A7E] hover:text-[#CA9E5B]",
+                            "w-80 h-80 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px] xl:w-[500px] xl:h-[500px]"
+                          )}
+                          aria-label="Collapse dropdown"
+                        >
+                          {/* CONTEXT7 SOURCE: /grx7/framer-motion - ArrowUpward with grow upward animation variants */}
+                          {/* GROW_ANIMATION_INTEGRATION_REASON: Official Framer Motion documentation for integrating scaleY and y transform animations with SVG components */}
+                          <ArrowUpward 
+                            className="w-full h-full p-8" 
+                            variants={arrowGrowVariants}
+                            initial="hidden"
+                            animate="visible"
+                          />
+                        </button>
+                      </div>
+                      
                       </div>
                     </div>
                   </div>
