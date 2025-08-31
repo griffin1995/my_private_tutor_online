@@ -113,8 +113,8 @@ export function HeroSection({
       {/* Documentation Source: Context7 MCP - HTML5 video background best practices */}
       {/* Pattern: Clean full-screen video hero without text content overlay */}
       <PageHero 
-        background="image" 
-        backgroundImage={backgroundVideo}
+        background="video" 
+        backgroundVideo="/videos/landing-page-hero-background.mp4"
         size="full"
         overlay={false}
         className=""

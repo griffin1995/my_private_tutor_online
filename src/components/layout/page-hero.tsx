@@ -190,12 +190,16 @@ export function PageHero({
             aria-label="Background video"
             onError={(e) => {
               console.warn('Video playback error:', e);
-              // Fallback: try to play again after a brief delay
+              // EMERGENCY FALLBACK: Hide video and show background image
               const video = e.currentTarget;
-              setTimeout(() => {
-                video.load();
-                video.play().catch(console.warn);
-              }, 1000);
+              video.style.display = 'none';
+              // Show the static background fallback
+              const section = video.closest('section');
+              if (section) {
+                section.style.backgroundImage = 'url(/images/hero/child_book_and_laptop.avif)';
+                section.style.backgroundSize = 'cover';
+                section.style.backgroundPosition = 'center';
+              }
             }}
             onCanPlayThrough={(e) => {
               // Ensure video plays when it's ready
