@@ -430,9 +430,12 @@ export default function SubjectTuitionPage() {
                   {/* BUTTON FIX REASON: Official Next.js documentation recommends Link with asChild for button navigation */}
                   {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Arbitrary background color values and text color utilities */}
                   {/* AZTEC GOLD STYLING REASON: Official Tailwind CSS documentation demonstrates bg-[<value>] syntax for custom hex colors and text-white utility for accessible white text contrast */}
+                  {/* CONTEXT7 SOURCE: /joe-bell/cva - Button variant ghost with className override for custom background */}
+                  {/* CVA TEXT VISIBILITY FIX: Official CVA documentation Section 2.1 - Using variant="ghost" to prevent default variant text color conflicts, with !text-white for CSS specificity override */}
                   <Button
                     asChild
-                    className="bg-[#CA9E5B] hover:bg-[#B8935A] text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
+                    variant="ghost"
+                    className="bg-[#CA9E5B] hover:bg-[#B8935A] !text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
                   >
                     <Link href="/homeschooling">
                       {homeschoolingData.buttonText}

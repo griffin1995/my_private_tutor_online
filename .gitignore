@@ -173,7 +173,7 @@ cython_debug/
 **/videos/temp/
 **/videos/originals/
 **/videos/uncompressed/
-*testimonials-compilation*.mp4
+# *testimonials-compilation*.mp4  # COMMENTED OUT: Allow testimonial compilation videos for deployment
 # Allow small compressed videos (<5MB) for deployment
 
 # Backup files

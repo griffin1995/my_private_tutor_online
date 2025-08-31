@@ -93,7 +93,7 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
                   : "text-gray-600"
               }`}
               dangerouslySetInnerHTML={{
-                __html: `<p>${data.description.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br />')}</p>`
+                __html: `<p>${data.description.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br />")}</p>`,
               }}
             />
           )}
@@ -121,7 +121,7 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
               >
                 {/* CONTEXT7 SOURCE: /reactjs/react.dev - Dynamic text content with calculated values */}
                 {/* DYNAMIC COUNT: Update button text to reflect actual count of tutors with photos */}
-                View All {profilesToShow.length} Expert Tutors
+                Meet Some of our Team
                 <svg
                   className="ml-2 h-4 w-4"
                   fill="none"

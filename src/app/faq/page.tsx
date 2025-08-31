@@ -40,6 +40,14 @@ import { getFAQCategories, getUnifiedContact } from '@/lib/cms/cms-content'
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Utility function for CSS classes
 import { cn } from "@/lib/utils"
 
+// CONTEXT7 SOURCE: /reactjs/react.dev - PageLayout component import for consistent site navigation
+// PAGELAYOUT IMPORT REASON: Official React documentation demonstrates component composition where PageLayout provides header navigation across all site pages
+import { PageLayout } from '@/components/layout/page-layout'
+
+// CONTEXT7 SOURCE: /facebook/react - SVG icon component imports for FAQ categories
+// SVG ICONS: Using centralized FAQ icon components with proper React patterns
+import { getFaqIconComponent } from '@/components/faq/FaqIcons'
+
 /**
  * FAQ Page Component - Minimal Implementation
  * CONTEXT7 SOURCE: /vercel/next.js - Simple page component patterns
@@ -71,9 +79,10 @@ export default function FAQPage() {
   }, [categories, searchQuery])
 
   return (
-    // CONTEXT7 SOURCE: /w3c/wcag - Semantic HTML structure for accessibility
-    // ACCESSIBILITY: Proper page structure with semantic elements
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    // CONTEXT7 SOURCE: /reactjs/react.dev - PageLayout component composition for consistent site navigation
+    // PAGELAYOUT IMPLEMENTATION REASON: Official React documentation demonstrates component composition patterns where PageLayout provides header navigation to maintain consistent site navigation across all pages
+    <PageLayout background="white" showHeader={true} showFooter={true}>
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       
       {/* Hero Section */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Hero section with gradient background */}
@@ -166,9 +175,19 @@ export default function FAQPage() {
                   {/* Category Header */}
                   {/* CONTEXT7 SOURCE: /w3c/wcag - Category sections with proper headings */}
                   <div className="flex items-center space-x-3 mb-6">
-                    <span className="text-2xl" role="img" aria-label={`${category.title} icon`}>
-                      {category.icon}
-                    </span>
+                    {(() => {
+                      // CONTEXT7 SOURCE: /facebook/react - Dynamic component rendering with proper JSX patterns
+                      // SVG ICON RENDERING: Get appropriate SVG icon component for category
+                      const IconComponent = getFaqIconComponent(category.title)
+                      return (
+                        <IconComponent 
+                          width={32} 
+                          height={32} 
+                          aria-label={`${category.title} icon`}
+                          className="flex-shrink-0"
+                        />
+                      )
+                    })()}
                     <h2 className="text-2xl font-serif font-bold text-slate-900">
                       {category.title}
                     </h2>
@@ -261,6 +280,7 @@ export default function FAQPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </PageLayout>
   )
 }

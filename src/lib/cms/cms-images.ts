@@ -817,7 +817,7 @@ export const TUTOR_IMAGES = {
 export const VIDEO_CONTENT = {
   parentsTestimonials: {
     id: "parents-testimonials-2025",
-    src: "",
+    src: "/videos/elizabeth-introduction-sound.mp4",
     poster: "/images/testimonials/parent-testimonials-thumbnail.jpg?v=20250828",
     alt: "Parent testimonials for My Private Tutor Online - Compilation 2025",
     title: "Parent Success Stories 2025",
@@ -834,7 +834,7 @@ export const VIDEO_CONTENT = {
   },
   studentsTestimonials: {
     id: "students-testimonials-2025",
-    src: "",
+    src: "/videos/compressed-elizabeth-introduction-sound.mp4",
     poster: "/images/testimonials/student-testimonials-thumbnail.jpg?v=20250828",
     alt: "Student testimonials for My Private Tutor Online - Compilation 2025",
     title: "Student Success Stories 2025",

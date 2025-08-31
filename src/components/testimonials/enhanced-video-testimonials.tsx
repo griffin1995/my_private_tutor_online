@@ -147,7 +147,7 @@ const enhancedTestimonialsData: EnhancedTestimonialVideo[] = [
     id: 'oxbridge-success-2025',
     title: 'From Struggling Student to Oxford Medicine',
     description: 'Emily shares her incredible journey from failing A-Level Chemistry to securing a place at Oxford Medical School through personalised tutoring.',
-    videoSrc: '/videos/parent-testimonials-compilation.mp4',
+    videoSrc: '/videos/compressed-elizabeth-introduction-sound.mp4',
     thumbnailSrc: '/images/testimonials/parent-testimonials-thumbnail.jpg',
     posterSrc: '/images/testimonials/parent-testimonials-thumbnail.jpg',
     duration: 285, // 4:45
@@ -273,7 +273,7 @@ const enhancedTestimonialsData: EnhancedTestimonialVideo[] = [
     id: 'gcse-transformation-2025',
     title: '11+ to GCSE Success Journey',
     description: 'Jack\'s complete academic transformation from 11+ preparation through to outstanding GCSE results.',
-    videoSrc: '/videos/student-testimonials-compilation.mp4',
+    videoSrc: '/videos/compressed-elizabeth-introduction-sound.mp4',
     thumbnailSrc: '/images/testimonials/student-testimonials-thumbnail.jpg',
     posterSrc: '/images/testimonials/student-testimonials-thumbnail.jpg',
     duration: 195, // 3:15

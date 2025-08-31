@@ -9,7 +9,6 @@
   "categories": [
     {
       "title": "About the Service",
-      "icon": "🌐",
       "questions": [
         {
           "question": "What is My Private Tutor Online?",
@@ -31,7 +30,6 @@
     },
     {
       "title": "Tutors & Teaching",  
-      "icon": "🧑‍🏫",
       "questions": [
         {
           "question": "How do the tutor tiers work?",
@@ -53,7 +51,6 @@
     },
     {
       "title": "Subjects & Curriculum",
-      "icon": "📚", 
       "questions": [
         {
           "question": "What subjects do you offer tutoring in?",
@@ -71,7 +68,6 @@
     },
     {
       "title": "Progress & Results",
-      "icon": "💡",
       "questions": [
         {
           "question": "What are your success rates?",
@@ -89,7 +85,6 @@
     },
     {
       "title": "Scheduling & Process",
-      "icon": "🗓️",
       "questions": [
         {
           "question": "How do I get started?",
@@ -111,7 +106,6 @@
     },
     {
       "title": "Pricing & Payment",
-      "icon": "💰",
       "questions": [
         {
           "question": "How much does tutoring cost?",
@@ -137,7 +131,6 @@
     },
     {
       "title": "Other Questions",
-      "icon": "❓",
       "questions": [
         {
           "question": "How are tutors selected and verified?",

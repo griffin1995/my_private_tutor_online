@@ -77,6 +77,31 @@ const iconMap = {
   ClipboardCheck,
 } as const;
 
+// CONTEXT7 SOURCE: /quantizor/markdown-to-jsx - Bold markdown formatting conversion utility
+// MARKDOWN BOLD CONVERSION REASON: Official markdown-to-jsx documentation Section 4.3 demonstrates **text** to <strong>text</strong> pattern for bold formatting
+// Utility function to convert **bold** markdown to HTML strong elements
+const convertMarkdownBold = (text: string): React.ReactNode => {
+  // Split text by **bold** patterns while preserving the delimiters
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+
+  return parts
+    .map((part, index) => {
+      // Check if this part is a bold pattern
+      if (part.startsWith("**") && part.endsWith("**")) {
+        // Remove the ** delimiters and wrap in <strong>
+        const boldText = part.slice(2, -2);
+        return (
+          <strong key={index} className="font-semibold">
+            {boldText}
+          </strong>
+        );
+      }
+      // Regular text - return as-is
+      return part || null;
+    })
+    .filter(Boolean);
+};
+
 export default function HowItWorksPage() {
   // CONTEXT7 SOURCE: /vercel/next.js - Client Component synchronous data patterns with CMS integration
   // CLIENT COMPONENT DATA REASON: Official Next.js documentation for Client Components using synchronous CMS function calls
@@ -108,7 +133,7 @@ export default function HowItWorksPage() {
         <SimpleHero
           backgroundImage="/images/hero/hero-how-it-works.jpeg"
           h1="Your journey to academic success"
-          h2="Our bespoke consultation and pairing process ensures an exceptional fit — and seamless support throughout the entire journey."
+          h2="Our bespoke consultation and pairing process ensures the perfect fit and seamless support throughout."
           decorativeStyle="lines"
         />
       </section>
@@ -303,7 +328,9 @@ export default function HowItWorksPage() {
                                                 index > 0 ? "mt-4" : ""
                                               }
                                             >
-                                              {paragraph.trim()}
+                                              {convertMarkdownBold(
+                                                paragraph.trim()
+                                              )}
                                             </p>
                                           )
                                       )}
@@ -329,7 +356,7 @@ export default function HowItWorksPage() {
                                           <CheckCircle className="w-4 h-4 text-white drop-shadow-sm" />
                                         </div>
                                         <span className="text-slate-600 group-hover/feature:text-slate-500 transition-colors duration-300 font-medium leading-relaxed">
-                                          {feature}
+                                          {convertMarkdownBold(feature)}
                                         </span>
                                       </li>
                                     )
@@ -425,7 +452,7 @@ export default function HowItWorksPage() {
               </div>
 
               <h2 className="text-4xl lg:text-6xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
-                Choose Your Perfect
+                Choose Your Unique
                 <span className="block bg-gradient-to-r from-amber-600 via-yellow-700 to-amber-800 bg-clip-text text-transparent">
                   Tutoring Experience
                 </span>

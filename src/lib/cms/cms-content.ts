@@ -840,7 +840,6 @@ export interface FAQCategory {
   readonly title: string;
   readonly name: string; // For display purposes
   readonly description: string;
-  readonly icon: string; // Lucide icon name
   readonly color: string; // Hex color code for theming
   readonly order: number;
   readonly questions: readonly FAQQuestion[];

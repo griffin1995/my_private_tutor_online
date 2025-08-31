@@ -15,6 +15,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
 import { TutorProfile } from "@/lib/cms/cms-content";
 import { getImageAsset } from "@/lib/cms/cms-images";
 import React from "react";
@@ -312,20 +313,26 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                 </div>
               )}
 
+              {/* CONTEXT7 SOURCE: /shadcn-ui/ui - Button variant ghost CVA patterns for avoiding style conflicts */}
               {/* CONTEXT7 SOURCE: /mdn/content - HTML anchor element href attribute patterns for external links */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional styling with hover states and text color utilities */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Hover state styling with variants for interactive button design */}
-              {/* BUG FIX: Fixed white text on light background visibility issue in collapsed state */}
-              {/* CHANGE TYPE: BUG FIX - Updated collapsed button styling to use visible text color on light backgrounds */}
+              {/* BUG FIX: Fixed button text visibility by applying ghost variant pattern and forced white text */}
+              {/* CHANGE TYPE: BUG FIX - Applied ghost variant and !text-white pattern to fix CVA style conflicts */}
               <div className="pt-4">
-                <a
-                  href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`block w-full px-6 py-3 rounded-lg font-display font-medium transition-all duration-300 text-center focus:outline-none ${isOpen ? "bg-[#CA9E5B] text-white hover:bg-[#B8904F] hover:shadow-md focus:ring-2 focus:ring-[#CA9E5B] focus:ring-offset-2" : "bg-transparent text-[#CA9E5B] border-2 border-[#CA9E5B] hover:bg-[#CA9E5B] hover:text-white hover:shadow-md"}`}
+                <Button 
+                  variant="ghost"
+                  asChild
+                  className={`w-full px-6 py-3 rounded-lg font-display font-medium transition-all duration-300 text-center focus:outline-none ${isOpen ? "bg-[#CA9E5B] !text-white hover:bg-[#B8904F] hover:shadow-md focus:ring-2 focus:ring-[#CA9E5B] focus:ring-offset-2" : "bg-transparent !text-[#CA9E5B] border-2 border-[#CA9E5B] hover:bg-[#CA9E5B] hover:!text-white hover:shadow-md"}`}
                 >
-                  Book Consultation with {profile.name.split(" ")[0]}
-                </a>
+                  <a
+                    href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Book Consultation with {profile.name.split(" ")[0]}
+                  </a>
+                </Button>
               </div>
             </div>
           </AccordionContent>

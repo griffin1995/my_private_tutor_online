@@ -193,6 +193,17 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
               Meet Emily, one of our Entrance Exam specialists. She holds degrees from both Oxford & Cambridge University and worked at a top 10 London grammar school where she helped assess and select the best 11+ candidates
             </p>
             
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile-specific Watch Introduction button placement */}
+            {/* MOBILE POSITIONING REASON: Official Tailwind CSS mobile-first approach for better UX on small screens */}
+            <div className="mb-4 md:hidden">
+              <div className="bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg inline-flex">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>
+                </div>
+              </div>
+            </div>
+            
             <div 
               className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
               onClick={() => onVideoClick?.(subjectItem.videoSection!.videoUrl, subjectItem.videoSection!.title, subjectItem.videoSection!.thumbnailUrl)}
@@ -218,8 +229,9 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
             <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
             <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
             
-            {/* Programme Highlight Badge */}
-            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Desktop Programme Highlight Badge */}
+            {/* DESKTOP POSITIONING REASON: Official Tailwind CSS responsive utilities for maintaining desktop layout */}
+            <div className="hidden md:block absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
                 <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>
@@ -234,6 +246,17 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
           <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Video 1 Column */}
             <div className="relative">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile-specific Watch Introduction button for video 1 */}
+              {/* MOBILE POSITIONING REASON: Official Tailwind CSS mobile-first approach for better UX on small screens */}
+              <div className="mb-4 md:hidden">
+                <div className="bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg inline-flex">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>
+                  </div>
+                </div>
+              </div>
+              
               <div 
                 className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
                 onClick={() => onVideoClick?.(subjectItem.twoColumnVideoSection!.video1.videoUrl, subjectItem.twoColumnVideoSection!.video1.title, subjectItem.twoColumnVideoSection!.video1.thumbnailUrl)}
@@ -259,8 +282,9 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
               <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
               <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
               
-              {/* Programme Highlight Badge */}
-              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Desktop Programme Highlight Badge for two-column video 1 */}
+              {/* DESKTOP POSITIONING REASON: Official Tailwind CSS responsive utilities for maintaining desktop layout */}
+              <div className="hidden md:block absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
                   <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>
@@ -270,6 +294,17 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
             
             {/* Video 2 Column */}
             <div className="relative">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Mobile-specific Watch Introduction button for video 2 */}
+              {/* MOBILE POSITIONING REASON: Official Tailwind CSS mobile-first approach for better UX on small screens */}
+              <div className="mb-4 md:hidden">
+                <div className="bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg inline-flex">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>
+                  </div>
+                </div>
+              </div>
+              
               <div 
                 className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
                 onClick={() => onVideoClick?.(subjectItem.twoColumnVideoSection!.video2.videoUrl, subjectItem.twoColumnVideoSection!.video2.title, subjectItem.twoColumnVideoSection!.video2.thumbnailUrl)}
@@ -295,8 +330,9 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
               <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
               <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
               
-              {/* Programme Highlight Badge */}
-              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Desktop Programme Highlight Badge for two-column video 2 */}
+              {/* DESKTOP POSITIONING REASON: Official Tailwind CSS responsive utilities for maintaining desktop layout */}
+              <div className="hidden md:block absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
                   <span className="text-sm font-semibold text-amber-700">Watch Introduction</span>

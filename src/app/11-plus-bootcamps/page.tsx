@@ -147,11 +147,19 @@ const filterSchoolsOnly = (schools: readonly string[]): readonly string[] => {
     // CONTEXT7 SOURCE: /mdn/content - String.prototype.toLowerCase() and String.prototype.includes() methods for case-insensitive string matching
     // UNIVERSITY FILTERING REASON: Official MDN documentation shows string includes() method for checking substring presence
     const schoolLower = school.toLowerCase();
-    
+
     // Filter out universities and higher education institutions
-    const universityKeywords = ['university', 'college london', 'school of economics', 'harvard', 'lse'];
-    const isUniversity = universityKeywords.some((keyword: string) => schoolLower.includes(keyword));
-    
+    const universityKeywords = [
+      "university",
+      "college london",
+      "school of economics",
+      "harvard",
+      "lse",
+    ];
+    const isUniversity = universityKeywords.some((keyword: string) =>
+      schoolLower.includes(keyword)
+    );
+
     // Return true for schools (keep them), false for universities (exclude them)
     return !isUniversity;
   });
@@ -217,8 +225,8 @@ export default function ElevenPlusBootcampsPage() {
         {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
         <SimpleHero
           backgroundImage="/images/hero/hero-11-plus-bootcamp.jpeg"
-          h1="11+ Intensive Bootcamps"
-          h2="Accelerated preparation programmes designed to maximise your child's 11+ potential in focused, intensive sessions"
+          h1="11+ Bootcamps"
+          h2="Accelerated preparation programmes designed to maximise your child's potential"
           decorativeStyle="lines"
         />
       </section>
@@ -302,12 +310,12 @@ export default function ElevenPlusBootcampsPage() {
               {/* Kickstarter Programme */}
               <div className="bg-white rounded-3xl shadow-xl border border-amber-100/50 overflow-hidden group hover:shadow-2xl transition-all duration-500">
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for local programme images */}
-                {/* PROGRAMME IMAGE UPDATE: Updated from programme-eleven-plus-intensive.jpeg to /11_intensive.avif for improved performance */}
-                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized AVIF image rendering with enhanced alt text */}
+                {/* PROGRAMME IMAGE UPDATE: Updated to /11+ Kickstarter pic.jpg - new user-provided image showing mother/child tutoring session */}
+                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized JPG image rendering with descriptive alt text reflecting supportive tutoring approach */}
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/images/11_intensive.avif"
-                    alt="11+ Kickstarter Programme - Foundational preparation for Year 4 & 5 students new to entrance examinations"
+                    src="/11+ Kickstarter pic.jpg"
+                    alt="11+ Kickstarter Programme - Mother and child working together at computer, demonstrating supportive tutoring approach for foundational 11+ preparation"
                     width={600}
                     height={300}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
@@ -415,16 +423,19 @@ export default function ElevenPlusBootcampsPage() {
                     {/* STRIPE INTEGRATION REASON: Official Stripe documentation for external checkout link handling with security attributes */}
                     {/* CONTEXT7 SOURCE: /websites/react_dev - External link security with noopener, noreferrer attributes */}
                     {/* EXTERNAL LINK SECURITY REASON: Official React documentation Section 4.3 recommends secure window.open patterns for external payment providers */}
+                    {/* CONTEXT7 SOURCE: /shadcn-ui/ui - Button variant="ghost" pattern for consistent brand gold styling */}
+                    {/* GOLD BUTTON STANDARDIZATION REVISION: Official shadcn/ui documentation shows variant="ghost" prevents CVA conflicts when using custom bg-[#CA9E5B] colors */}
                     <Button
                       onClick={() => {
                         const stripeUrl =
                           "https://buy.stripe.com/6oUdR8enb9jF69u1Zd3840c";
                         window.open(stripeUrl, "_blank", "noopener,noreferrer");
                       }}
-                      className="w-full bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-700 hover:to-yellow-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4 text-lg font-bold rounded-xl"
+                      variant="ghost"
+                      className="w-full bg-[#CA9E5B] hover:bg-[#B8935A] !text-white font-medium px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                       aria-label="Book Kickstarter Programme for £395 - opens Stripe checkout in new window"
                     >
-                      Book Kickstarter Programme - £395
+                      Book Kickstarter Programme
                     </Button>
                   </div>
                 </div>
@@ -433,12 +444,12 @@ export default function ElevenPlusBootcampsPage() {
               {/* Intensive Programme */}
               <div className="bg-white rounded-3xl shadow-xl border border-blue-100/50 overflow-hidden group hover:shadow-2xl transition-all duration-500">
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for alternative programme option */}
-                {/* INTENSIVE PROGRAMME UPDATE: Updated from programme-eleven-plus-kickstarter.jpg to /11-kickstarter.avif for improved performance */}
-                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized AVIF image rendering with descriptive alt text */}
+                {/* INTENSIVE PROGRAMME UPDATE: Updated to /11+ Intensive pic.jpg - new user-provided image showing exam answer sheet completion */}
+                {/* IMAGE OPTIMIZATION REVISION: Official Next.js documentation for optimized JPG image rendering with descriptive alt text reflecting exam preparation focus */}
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/images/11-kickstarter.avif"
-                    alt="11+ Intensive Programme - Advanced preparation for Year 6 students sitting exams in autumn 2025"
+                    src="/11+ Intensive pic.jpg"
+                    alt="11+ Intensive Programme - Student hands completing exam answer sheet with pencil, demonstrating focused exam preparation and technique"
                     width={600}
                     height={300}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
@@ -545,16 +556,19 @@ export default function ElevenPlusBootcampsPage() {
                     {/* STRIPE INTEGRATION REASON: Official Stripe documentation for external checkout link handling with security attributes */}
                     {/* CONTEXT7 SOURCE: /websites/react_dev - External link security with noopener, noreferrer attributes */}
                     {/* EXTERNAL LINK SECURITY REASON: Official React documentation Section 4.3 recommends secure window.open patterns for external payment providers */}
+                    {/* CONTEXT7 SOURCE: /shadcn-ui/ui - Button variant="ghost" pattern for consistent brand gold styling */}
+                    {/* GOLD BUTTON STANDARDIZATION REVISION: Official shadcn/ui documentation shows variant="ghost" prevents CVA conflicts when using custom bg-[#CA9E5B] colors */}
                     <Button
                       onClick={() => {
                         const stripeUrl =
                           "https://buy.stripe.com/7sYbJ0cf3brN69u8nB3840d";
                         window.open(stripeUrl, "_blank", "noopener,noreferrer");
                       }}
-                      className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4 text-lg font-bold rounded-xl"
+                      variant="ghost"
+                      className="w-full bg-[#CA9E5B] hover:bg-[#B8935A] !text-white font-medium px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                       aria-label="Book Intensive Programme for £395 - opens Stripe checkout in new window"
                     >
-                      Book Intensive Programme - £395
+                      Book Intensive Programme
                     </Button>
                   </div>
                 </div>

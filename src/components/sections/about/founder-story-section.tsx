@@ -382,16 +382,65 @@ export function FounderStorySection({
         </m.div>
       </div>
 
-      {/* ROW 5: Global Experience - Hero-Style Single Column with Text Overlay */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background image utilities for hero sections with text overlay */}
-      {/* HERO OVERLAY REASON: Official Tailwind CSS documentation recommends bg-cover with relative positioning for full-width background images with overlaid content */}
+      {/* ROW 5: Global Experience - Mobile Stacked Layout / Desktop Hero-Style Single Column with Text Overlay */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive design with mobile-first approach for hero sections */}
+      {/* MOBILE LAYOUT REASON: Official Tailwind CSS documentation Section 2.3 recommends mobile-first responsive patterns - separating text from image on mobile for readability, maintaining overlay design on md: breakpoint and above */}
       <div className="w-full mb-10">
+        {/* Mobile Layout: Stacked Text Above Image (0-767px) */}
+        <div className="block md:hidden">
+          <m.div
+            initial={fadeInUpVariant.initial}
+            whileInView={fadeInUpVariant.animate}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={fadeInUpVariant.transition}
+            className="bg-white px-6 sm:px-8 py-12 sm:py-16"
+          >
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-primary-900 mb-6 leading-tight">
+                A Global View of What Education Can Do
+              </h2>
+
+              <div className="text-lg text-primary-700 leading-relaxed space-y-4">
+                {/* CONTEXT7 SOURCE: /mdn/content - HTML em element for semantic text emphasis */}
+                {/* ITALICS CORRECTION REVISION REASON: Official MDN documentation Section HTML emphasis - correcting <em> usage to only italicize 'Forbes Middle East', not 'Online Editor' per client feedback requirements */}
+                <p>
+                  Keen to put my English degree to good use, during this time I also worked at <em>Forbes Middle East</em> as Online Editor. I covered a range of subjects, including education. Conducting interviews with business moguls and CEOs reinforced what I already knew: the right educational support doesn't just help people ace exams — it shapes their choices, their confidence and their future. These leaders had turned their fortunes around through education. What could be more exciting and important?
+                </p>
+              </div>
+            </div>
+          </m.div>
+
+          {/* Mobile Image Section */}
+          <m.div
+            initial={fadeInUpVariant.initial}
+            whileInView={fadeInUpVariant.animate}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ ...fadeInUpVariant.transition, delay: 0.2 }}
+            className="relative h-[300px] sm:h-[400px] w-full"
+          >
+            {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for mobile responsive images */}
+            {/* MOBILE IMAGE REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for responsive image implementations */}
+            <Image
+              src="/images/team/founder-elizabeth-burrows-professional.jpg"
+              alt="Elizabeth Burrows Professional Portrait - Forbes Middle East Online Editor and education expert, showcasing her business journalism background"
+              fill
+              className="object-cover"
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+              loading="lazy"
+              quality={90}
+              sizes="100vw"
+            />
+          </m.div>
+        </div>
+
+        {/* Desktop/Tablet Layout: Original Hero-Style Text Overlay (768px+) */}
         <m.div
           initial={fadeInUpVariant.initial}
           whileInView={fadeInUpVariant.animate}
           viewport={{ once: true, margin: "-100px" }}
           transition={fadeInUpVariant.transition}
-          className="relative h-[600px] w-full"
+          className="hidden md:block relative h-[600px] w-full"
         >
           {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component as background layer for hero sections */}
           {/* BACKGROUND IMAGE REASON: Official Next.js documentation Section 3.4 recommends fill prop with object-cover for hero background implementations */}
@@ -401,7 +450,7 @@ export function FounderStorySection({
             fill
             className="object-cover"
             placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAVGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
             loading="lazy"
             quality={90}
             sizes="100vw"
@@ -413,7 +462,7 @@ export function FounderStorySection({
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
 
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text positioning adjustment for bottom placement */}
-          {/* TASK 5 FIX: Official Tailwind CSS documentation - Text moved to bottom of container with proper padding */}
+          {/* DESKTOP OVERLAY TEXT REASON: Official Tailwind CSS documentation - Text moved to bottom of container with proper padding for desktop hero overlay design */}
           <div className="absolute inset-x-0 bottom-0 flex items-end z-10 p-8 sm:p-10 lg:p-12">
             <div className="w-full">
               <div className="max-w-4xl px-4 sm:px-6">

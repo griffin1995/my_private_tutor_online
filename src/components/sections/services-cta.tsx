@@ -69,7 +69,9 @@ function CTAButtonComponent({
   index: number
   animation: { duration: number; stagger: number }
 }) {
-  const defaultPrimaryClass = "bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-900 font-bold px-10 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-amber-400"
+  // CONTEXT7 SOURCE: /websites/tailwindcss - text-white utility class for white text color on gradient backgrounds
+  // BUG FIX REASON: Changed text-slate-900 to text-white to improve text visibility on gold/amber gradient backgrounds for better accessibility
+  const defaultPrimaryClass = "bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white font-bold px-10 py-4 text-lg shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-amber-400"
   const defaultSecondaryClass = "border-2 border-white text-white hover:bg-white hover:text-slate-900 font-bold px-10 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
   
   return (
