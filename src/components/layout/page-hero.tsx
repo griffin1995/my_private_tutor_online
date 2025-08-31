@@ -207,7 +207,10 @@ export function PageHero({
             }}
           >
             <source src={backgroundVideo} type="video/mp4" />
-            <source src={backgroundVideo.replace('.mp4', '.webm')} type="video/webm" />
+            {/* Only add webm source if not using compressed video */}
+            {!backgroundVideo.includes('compressed-') && (
+              <source src={backgroundVideo.replace('.mp4', '.webm')} type="video/webm" />
+            )}
             Your browser does not support the video tag.
           </video>
           {/* Static fallback background for video loading or failure */}
