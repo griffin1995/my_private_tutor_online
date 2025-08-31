@@ -10,24 +10,16 @@ dist
 coverage
 .nyc_output
 
-# Large files and development assets
-# Allow specific video files for production deployment
-!/public/videos/landing-page-hero-background.mp4
-!/public/videos/elizabeth-introduction-sound.mp4
-!/public/videos/background-video-2025.mp4
-!/public/videos/background-video-2025.webm
-# Block all other video files
-*.mp4
-*.webm
-*.mov
-*.avi
-*.mkv
-!/public/videos/*compressed*.mp4
-!/public/videos/*compressed*.webm
+# Large files and development assets - CRITICAL FIX: Specific exclusions only
+# VERCEL DEPLOYMENT FIX: Remove global video blocks to allow public/videos/* deployment
 introduction-video-with-sound.mp4
 /public/videos/compressed/
 /public/videos/temp/
 /public/videos/originals/
+# Large development video files in root (not for production)
+11*.mp4
+11*.jpeg
+11*.jpg
 /venv/
 __pycache__/
 
