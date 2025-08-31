@@ -6,11 +6,11 @@
  * Provides GitHub raw URLs as temporary CDN solution
  */
 export const VIDEO_FALLBACK_CONFIG = {
-  // Primary Vercel URLs (preferred)
+  // Primary Vercel URLs (preferred) - Updated to use compressed videos
   primary: {
     'background-video-2025.mp4': '/videos/background-video-2025.mp4',
-    'landing-page-hero-background.mp4': '/videos/landing-page-hero-background.mp4', 
-    'elizabeth-introduction-sound.mp4': '/videos/elizabeth-introduction-sound.mp4',
+    'landing-page-hero-background.mp4': '/videos/compressed-landing-page-hero-background.mp4', 
+    'elizabeth-introduction-sound.mp4': '/videos/compressed-elizabeth-introduction-sound.mp4',
   },
   // GitHub raw URLs (fallback)
   fallback: {

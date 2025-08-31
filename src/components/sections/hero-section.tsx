@@ -114,7 +114,7 @@ export function HeroSection({
       {/* Pattern: Clean full-screen video hero without text content overlay */}
       <PageHero 
         background="video" 
-        backgroundVideo="/videos/landing-page-hero-background.mp4"
+        backgroundVideo="/videos/compressed-landing-page-hero-background.mp4"
         size="full"
         overlay={false}
         className=""

@@ -1121,8 +1121,8 @@ export const BACKGROUND_VIDEOS = {
   // CONTEXT7 SOURCE: /vercel/next.js - Added new hero background video for homepage
   // NEW VIDEO INTEGRATION: landing-page-hero-background.mp4 for modern homepage hero backgrounds
   heroBackground: {
-    src: "/videos/landing-page-hero-background.mp4",
-    fallback: "/videos/landing-page-hero-background.mp4",
+    src: "/videos/compressed-landing-page-hero-background.mp4",
+    fallback: "/videos/compressed-landing-page-hero-background.mp4",
     poster:
       "/images/hero/child_book_and_laptop.avif",
     alt: "Premium tutoring hero background video showing educational excellence",
