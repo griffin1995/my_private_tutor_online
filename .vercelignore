@@ -13,9 +13,9 @@ coverage
 # Large files and development assets - CRITICAL FIX: Specific exclusions only
 # VERCEL DEPLOYMENT FIX: Remove global video blocks to allow public/videos/* deployment
 introduction-video-with-sound.mp4
-/public/videos/compressed/
-/public/videos/temp/
-/public/videos/originals/
+public/videos/compressed/
+public/videos/temp/
+public/videos/originals/
 # Large development video files in root (not for production)
 11*.mp4
 11*.jpeg
