@@ -25,6 +25,7 @@
 // CONTEXT7 SOURCE: /muxinc/next-video - Import local video files directly into Next.js components
 // IMPLEMENTATION REASON: Official Next Video documentation demonstrates local video file imports
 import { m } from 'framer-motion'
+import { getVideoUrl } from '@/lib/video-utils'
 
 // CONTEXT7 SOURCE: /muxinc/next-video - Use Video Component with Local Files pattern
 // VIDEO INTEGRATION REASON: Official Next Video documentation shows direct video imports from /videos directory
@@ -67,6 +68,9 @@ export function IntroVideoSection({
   posterSrc = "/images/video-placeholders/placeholder_for_introductionary_video.png",
   videoTitle = "Elizabeth Burrows introduces My Private Tutor Online"
 }: IntroVideoSectionProps) {
+  
+  // CRITICAL FIX: Apply GitHub CDN fallback URL for video deployment issues
+  const resolvedVideoSrc = getVideoUrl('elizabeth-introduction-sound.mp4')
   
   return (
     <section className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
@@ -131,11 +135,11 @@ export function IntroVideoSection({
                   preload="metadata"
                   aria-label={videoTitle}
                 >
-                  <source src={videoSrc} type="video/mp4" />
+                  <source src={resolvedVideoSrc} type="video/mp4" />
                   <p className="text-white p-4">
                     Your browser does not support the video tag. Please{' '}
                     <a 
-                      href={videoSrc} 
+                      href={resolvedVideoSrc} 
                       className="text-accent-400 hover:text-accent-300"
                       download
                     >

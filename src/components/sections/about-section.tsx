@@ -49,6 +49,7 @@ import HeroVideoDialog from "../magicui/hero-video-dialog";
 // CONTEXT7 SOURCE: /magicuidesign/magicui - Magic UI Highlighter component for premium text emphasis effects
 // HIGHLIGHTER INTEGRATION REASON: Official Magic UI documentation shows Highlighter component for strategic text highlighting with animated effects
 import { Highlighter } from "@/components/magicui/highlighter";
+import { getVideoUrl } from '@/lib/video-utils';
 
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
@@ -376,7 +377,7 @@ export function AboutSection({
               {/* VIDEO UPDATE REASON: Official Next.js documentation supports using latest video assets with sound for better user engagement */}
               {/* GRADIENT REMOVAL IMPLEMENTATION: Official Tailwind CSS documentation shows clean component styling without background gradients or decorative overlays */}
               <HeroVideoDialog
-                videoSrc="/videos/elizabeth-introduction-sound.mp4"
+                videoSrc={getVideoUrl('elizabeth-introduction-sound.mp4')}
                 thumbnailSrc="/images/video-thumbnails/introduction-video-thumbnail-2025.png"
                 thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
                 animationStyle="from-center"

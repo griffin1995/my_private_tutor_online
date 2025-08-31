@@ -29,6 +29,7 @@
 import { VideoText } from '@/components/magicui/video-text'
 import { getBackgroundVideo } from '@/lib/cms/cms-images'
 import { cn } from '@/lib/utils'
+import { getVideoUrl } from '@/lib/video-utils'
 
 // CMS DATA SOURCE: Using getBackgroundVideo for video-text background content
 // CLAUDE.md Rule 32: Maintain proper CMS integration for all content
@@ -50,7 +51,8 @@ export function BrandStatementVideo({
   // Fallback to existing video if CMS video not available
   // CONTEXT7 SOURCE: /vercel/next.js - Updated fallback to use new elizabeth-introduction-sound.mp4 with enhanced audio
   // VIDEO UPDATE REASON: Official Next.js documentation supports using latest video assets for consistent user experience
-  const videoSrc = backgroundVideo?.src || '/videos/elizabeth-introduction-sound.mp4'
+  // CRITICAL FIX: Using getVideoUrl() for GitHub CDN fallback during Vercel deployment issues
+  const videoSrc = backgroundVideo?.src ? getVideoUrl('elizabeth-introduction-sound.mp4') : getVideoUrl('elizabeth-introduction-sound.mp4')
   
   return (
     <div className={cn(
