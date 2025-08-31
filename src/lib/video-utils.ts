@@ -26,10 +26,10 @@ export const VIDEO_FALLBACK_CONFIG = {
  * @returns Primary URL or fallback URL if primary fails
  */
 export function getVideoUrl(filename: string): string {
-  // For now, return GitHub raw URL directly to resolve immediate 404 issues
-  // TODO: Implement proper fallback detection once Vercel deployment is resolved
-  const fallbackUrl = VIDEO_FALLBACK_CONFIG.fallback[filename as keyof typeof VIDEO_FALLBACK_CONFIG.fallback];
-  return fallbackUrl || `/videos/${filename}`;
+  // CRITICAL FIX: Return local Vercel URLs instead of blocked GitHub raw URLs
+  // All videos exist in /public/videos/ and are deployed to Vercel
+  const primaryUrl = VIDEO_FALLBACK_CONFIG.primary[filename as keyof typeof VIDEO_FALLBACK_CONFIG.primary];
+  return primaryUrl || `/videos/${filename}`;
 }
 
 /**
