@@ -22,8 +22,12 @@ public/videos/originals/
 11*.jpg
 # Original testimonial videos (moved to external directory)
 *testimonials*MPTO*.mp4
+# ALLOW 2025 testimonials for production: parents-testimonials-2025.mp4 and students-testimonials-2025.mp4
+# Block only old/original parent and student videos (not the 2025 versions)
 Parents*.mp4
+!public/videos/parents-testimonials-2025.mp4
 Students*.mp4
+!public/videos/students-testimonials-2025.mp4
 *-original.jpg
 *-original.jpeg
 *-original.png
