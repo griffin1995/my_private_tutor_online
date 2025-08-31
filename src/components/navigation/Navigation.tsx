@@ -403,7 +403,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
   // DYNAMIC_FONT_REASON: Official React documentation for memoizing expensive calculations that depend on window dimensions
   // Calculate optimal font sizes for main navigation items based on available horizontal space
   const mainNavFontSizes = React.useMemo(() => {
-    const viewportWidth = windowSize.width || window.innerWidth
+    const viewportWidth = windowSize.width || (typeof window !== 'undefined' ? window.innerWidth : 1280)
     
     // Only apply dynamic sizing at desktop/tablet sizes (≥1024px - lg breakpoint)
     // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive breakpoints for mobile-first design

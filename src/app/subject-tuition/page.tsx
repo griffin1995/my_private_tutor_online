@@ -56,7 +56,7 @@ import { VideoPopup } from "@/components/video/video-popup";
 import { ResultsDocumentation } from "@/components/sections/results-documentation";
 
 // CONTEXT7 SOURCE: /facebook/react - QuoteSection component import for testimonial content display
-// QUOTE SECTION REASON: Official React patterns for component reuse - copying homepage quote structure for subject-tuition contextual messaging
+// QUOTE SECTION REASON: Official React patterns for component reuse - replacing duplicate plain text with styled quote section
 import { QuoteSection } from "@/components/sections/quote-section";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - CMS data access patterns for component data consumption
@@ -236,30 +236,16 @@ export default function SubjectTuitionPage() {
     <>
       {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
       {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      {/* CONTEXT7 SOURCE: /facebook/react - JSX Fragment with br tags for multi-line title formatting */}
+      {/* TITLE FORMAT REVISION REASON: Official React documentation JSX patterns for multi-line content using Fragment syntax with br elements */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="subject-tuition-hero">
         <SimpleHero
           backgroundImage="/images/hero/hero-subject-tuition-primary.jpg"
-          h1="Subject Tutoring & Exam Preparation"
+          h1={<>Subject Tutoring<br/>&<br/>Exam Preparation</>}
           h2="From entrance exams to university prep, our expert tutors provide personalised instruction across all subjects and educational stages. "
           decorativeStyle="lines"
-        />
-      </section>
-
-      {/* CONTEXT7 SOURCE: /facebook/react - QuoteSection component integration from homepage for subject-tuition messaging */}
-      {/* QUOTE SECTION COPY REASON: Official React patterns for component reuse - copying homepage quote section structure with subject-tuition specific content */}
-      {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Highlighter component for strategic text emphasis */}
-      {/* TEXT HIGHLIGHTING REASON: Magic UI documentation enables underline and highlight effects for key messaging emphasis */}
-      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
-      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-      <section id="subject-tuition-mission" className="mt-0">
-        <QuoteSection
-          quote="Our tutors are examiners, school teachers, and subject specialists who are not only experienced educators but also motivating mentors. Whether your child is preparing for a school entrance exam, navigating GCSEs/IBs/A-levels, or applying to top universities in the UK, we guide each family with clarity, care, and expert insight at every stage of their educational journey."
-          backgroundColor="bg-white"
-          className=""
-          useHighlighting={true}
-          showAuthorImage={false}
         />
       </section>
 
@@ -303,10 +289,19 @@ export default function SubjectTuitionPage() {
               <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6">
                 {sectionTitles.subjectCategories.title}
               </h2>
-              <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
-                {sectionTitles.subjectCategories.description}
-              </p>
             </m.div>
+            
+            {/* CONTEXT7 SOURCE: /reactjs/react.dev - QuoteSection component replacement for duplicate content elimination */}
+            {/* DUPLICATE CONTENT REPLACEMENT REASON: Official React patterns demonstrate component replacement to eliminate redundant plain text with styled quote section */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utility change from gradient to solid white */}
+            {/* BACKGROUND COLOR CHANGE REASON: Official Tailwind CSS documentation Section 3.1 demonstrates bg-white utility for clean white background styling */}
+            <QuoteSection 
+              quote={sectionTitles.subjectCategories.description}
+              backgroundColor="bg-white"
+              className="py-0 mb-16"
+              useHighlighting={true}
+              useMagicUIEffects={false}
+            />
 
             {/* CONTEXT7 SOURCE: /vercel/next.js - Section anchor mapping for navigation targets */}
             {/* SECTION ANCHOR REASON: Official Next.js documentation enables hash anchor navigation to specific page sections */}
@@ -334,8 +329,6 @@ export default function SubjectTuitionPage() {
             </div>
           </div>
         </Section>
-
-        <WaveSeparator variant="subtle" className="text-slate-100" />
 
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
         {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}

@@ -58,10 +58,13 @@ import { useEffect, useRef, useState } from "react";
 // - Interactivity: Basic UI components, no complex state management
 // - TODO: Migrate videoMasterclassesContent to CMS system for proper content management
 
+// CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component import for text emphasis
+// HIGHLIGHTER IMPORT REASON: Official Magic UI documentation recommends Highlighter for emphasizing key phrases
 // CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations and motion components for professional styling
 // DESIGN ENHANCEMENT: Clean visual branding with WaveSeparator and premium card designs without gradient overlays
 // IMPLEMENTATION REASON: Matching testimonials and landing page professional appearance standards
 // CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll animations
+import { Highlighter } from "@/components/magicui/highlighter";
 
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Background color utilities for solid color implementations
 // GRADIENT REMOVAL REASON: Official Tailwind CSS documentation recommends solid color backgrounds for clean, professional educational content pages
@@ -245,6 +248,8 @@ export default function VideoMasterclassesPage() {
     <>
       {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
       {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - SimpleHero component with built-in padding-top positioning */}
+      {/* HERO TEXT POSITIONING FIX: Official Tailwind CSS documentation pt-12 utility implemented directly in SimpleHero component for clean text positioning */}
       <SimpleHero
         backgroundImage="/images/hero/hero-video-masterclasses.jpg"
         h1="Video Masterclasses & Educational Content"
@@ -257,46 +262,6 @@ export default function VideoMasterclassesPage() {
       {/* CONTEXT7 SOURCE: /vercel/next.js - Layout component with navigation header for consistent site structure */}
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Introduction section with viewport-triggered animations for video masterclasses */}
-        {/* REVISION IMPLEMENTATION: Official Framer Motion documentation patterns for whileInView animations with wider layout */}
-        {/* Elizabeth Introduction Section - After Hero (section 2) and before Featured Masterclasses (section 4) */}
-        <Section id="section-2" background="white" className="py-8 lg:py-12">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Wider text container using max-w-5xl for enhanced visual width and readability */}
-            {/* LAYOUT REVISION REASON: Official Tailwind CSS documentation max-w-5xl (64rem/1024px) provides wider content sections for improved visual hierarchy */}
-            <div className="max-w-5xl mx-auto text-center mb-10">
-              {/* CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with whileInView animations and proper paragraph structure */}
-              {/* CONTENT REVISION: User-specified exact copy for intro section with proper line breaks and paragraph structure, no H1 heading */}
-              <m.div
-                className="text-lg lg:text-xl text-primary-700 leading-relaxed space-y-4"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-              >
-                <p>
-                  Join <b>Elizabeth Burrows</b>, founder of My Private Tutor
-                  Online, as she shares her expert insight from over 15 years of
-                  international education experience. These masterclasses, drawn
-                  from her live seminars, offer{" "}
-                  <b>rare access to the knowledge and strategies</b> typically
-                  reserved for her private clients.
-                </p>
-                <p>
-                  These sessions bridge the gap between international education
-                  and{" "}
-                  <b>the expectations of British schools and universities</b>.
-                </p>
-                <p>
-                  <b>Access on demand, from anywhere in the world.</b>
-                </p>
-              </m.div>
-            </div>
-          </div>
-        </Section>
-
-        {/* Featured Masterclasses - moved example section to bottom */}
-
         {/* Featured Masterclasses */}
         <Section id="section-4" background="slate" className="py-20 relative">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -312,7 +277,39 @@ export default function VideoMasterclassesPage() {
               <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6">
                 Featured Masterclasses
               </h2>
-              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full" />
+              <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full mb-8" />
+              
+              {/* CONTEXT7 SOURCE: /grx7/framer-motion - Introductory text moved from section 2 */}
+              {/* CONTENT POSITIONING: Moving intro text underneath Featured Masterclasses h1 as requested */}
+              <div className="max-w-5xl mx-auto">
+                <div className="text-lg lg:text-xl text-primary-700 leading-relaxed space-y-4">
+                  <p>
+                    Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over{" "}
+                    <Highlighter action="highlight" color="#eab308">
+                      15 years of international education experience
+                    </Highlighter>
+                    . These masterclasses, drawn from her live seminars, offer{" "}
+                    <Highlighter action="underline" color="#0f172a">
+                      rare access
+                    </Highlighter>
+                    {" "}to the knowledge and strategies{" "}
+                    <Highlighter action="underline" color="#0f172a">
+                      typically reserved for her private clients
+                    </Highlighter>
+                    .
+                  </p>
+                  <p>
+                    These sessions bridge the gap between international education and{" "}
+                    <Highlighter action="highlight" color="#eab308">
+                      expectations of British schools and universities
+                    </Highlighter>
+                    .
+                  </p>
+                  <p>
+                    Access on demand, from anywhere in the world.
+                  </p>
+                </div>
+              </div>
             </m.div>
 
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailTopCard components */}

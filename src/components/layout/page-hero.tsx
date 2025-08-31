@@ -64,9 +64,11 @@ export function PageHero({
           // Reference: /tailwindlabs/tailwindcss.com - calc(100vh - value) for remaining viewport height
           // 
           // Critical Implementation for Static Header Layouts:
-          // - h-[calc(100vh-6rem)]: height: calc(100vh - 96px) - Takes remaining viewport height after navbar
-          // - Navbar height: Responsive heights (h-24 lg:h-28 xl:h-32 = 96px → 112px → 128px) - 20% increase
-          // - Using 6rem (96px) as mobile baseline for responsive navbar height
+          // - Responsive navbar height calculations: h-24 (96px) lg:h-28 (112px) xl:h-32 (128px)
+          // - Using responsive height calculations to match the actual navbar heights
+          // - h-[calc(100vh-6rem)]: Mobile baseline (96px navbar height)
+          // - lg:h-[calc(100vh-7rem)]: Large screens (112px navbar height = 7rem)
+          // - xl:h-[calc(100vh-8rem)]: XL screens (128px navbar height = 8rem)
           // - w-full: width: 100% - Spans complete viewport width
           // - overflow-hidden: Prevents content spillover and maintains clean edges
           // 
@@ -75,7 +77,7 @@ export function PageHero({
           // 2. Hero takes remaining viewport height after navbar space
           // 3. No overlay behavior - navbar is part of normal layout
           // 4. Total page height = navbar height + hero height = 100vh
-          'h-[calc(100vh-6rem)] w-full overflow-hidden'
+          'h-[calc(100vh-6rem)] lg:h-[calc(100vh-7rem)] xl:h-[calc(100vh-8rem)] w-full overflow-hidden'
         ].join(' ')
       : [
           // Documentation Source: Context7 Tailwind CSS - Full viewport hero with fixed header integration
@@ -154,6 +156,10 @@ export function PageHero({
         // - -ml-[50vw]: Negative margin of 50vw to shift left edge to viewport edge
         // This combination breaks out of mx-auto centering to achieve true full-screen coverage
         size === 'full' ? 'w-screen min-h-screen -ml-[50vw] left-1/2 relative z-10' : '',
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Top padding utilities for fixed navbar offset
+        // NAVBAR_OFFSET_REASON: Official Tailwind documentation for pt-* utilities to push content below fixed navbar
+        // Add top padding to account for fixed navbar when hasStaticNavbar is true
+        size === 'full' && hasStaticNavbar ? 'pt-24 lg:pt-28 xl:pt-32' : '',
         className
       )}
       style={{

@@ -3610,7 +3610,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
             // VIDEO SECTION REASON: Official React patterns for multimedia content display within CMS data structure
             videoSection: {
               thumbnailUrl: "/images/tutors/emily.jpg",
-              videoUrl: "/videos/elizabeth-introduction-sound.mp4",
+              videoUrl: "/videos/11-plus-expert-intro-video-mpto.mp4",
               title: "Meet Emily - Our 11+ Expert Introduction",
               alt: "Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach",
             },

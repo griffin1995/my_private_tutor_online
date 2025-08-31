@@ -28,6 +28,10 @@ import React from 'react'
 // CROWN ICON REASON: Official Lucide React documentation provides Crown icon for royal/premium branding
 import { Crown, Quote } from 'lucide-react'
 
+// CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component for text emphasis
+// HIGHLIGHTER IMPORT REASON: Official Magic UI documentation demonstrates Highlighter component for dynamic text highlighting effects
+import { Highlighter } from '@/components/magicui/highlighter'
+
 /**
  * CONTEXT7 SOURCE: /microsoft/typescript - Interface definitions for component props
  * Reference: /microsoft/typescript - TypeScript interface patterns for component props
@@ -86,6 +90,33 @@ export function RoyalEndorsementSection({
     navy: 'text-amber-400'
   }
 
+  /**
+   * CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component for royal testimonial emphasis
+   * HIGHLIGHTER IMPLEMENTATION REASON: Official Magic UI documentation demonstrates selective highlighting for premium text emphasis
+   * REVISION REASON: Replacing bold markdown formatting with dynamic highlighter effect for "two princes and the princess"
+   * 
+   * Magic UI Highlighter Pattern:
+   * - action="highlight": Background highlighting effect similar to marker
+   * - color="#eab308": Premium gold accent color for royal context
+   * - strokeWidth={2}: Medium stroke for elegant appearance
+   * - iterations={1}: Single iteration for clean professional look
+   * - padding={4}: Adequate padding for visual comfort
+   */
+  const renderHighlightedQuote = () => {
+    if (testimonial.quote.includes("two princes and the princess")) {
+      return (
+        <>
+          Hi Elizabeth, I found out today that{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={2} iterations={1} padding={4}>
+            the two princes and the princess
+          </Highlighter>
+          {' '}have all been offered places for next year. The family are delighted and would like me to pass on their sincerest thanks for all your hard work.
+        </>
+      )
+    }
+    return testimonial.quote
+  }
+
   return (
     <section 
       className={`py-16 lg:py-24 ${backgroundClasses[background]} ${className}`}
@@ -127,9 +158,11 @@ export function RoyalEndorsementSection({
               </div>
               
               {/* Testimonial content */}
+              {/* CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter integration for royal testimonial */}
+              {/* TESTIMONIAL HIGHLIGHTING REASON: Official Magic UI documentation enables dynamic text emphasis replacing bold markdown */}
               <blockquote className="mb-8">
                 <p className={`text-lg md:text-xl lg:text-2xl ${textColorClasses[background]} leading-relaxed italic font-light`}>
-                  "{testimonial.quote}"
+                  "{renderHighlightedQuote()}"
                 </p>
               </blockquote>
               

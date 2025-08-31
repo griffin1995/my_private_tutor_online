@@ -513,13 +513,13 @@ export const HERO_IMAGES = {
   },
   // CONTEXT7 SOURCE: /microsoft/typescript - Object literal patterns for CMS image asset integration
   // IMPLEMENTATION REASON: Official TypeScript documentation Section 3.2 demonstrates object literal extension patterns
-  // IMAGE INTEGRATION: Adding Going Against the Grain educational philosophy image for About page hero options
+  // IMAGE INTEGRATION: Cambridge University image for Going Against the Grain section showcasing educational excellence
   goingAgainstGrainPhilosophy: {
-    src: "/images/about/going-against-grain-educational-philosophy.webp",
-    alt: "Going Against the Grain educational philosophy - unconventional approach to premium tutoring excellence",
+    src: "/images/about/cambridge-university.jpg",
+    alt: "Cambridge University - prestigious academic institution representing educational excellence and Going Against the Grain philosophy",
     width: 1920,
     height: 1080,
-    title: "Going Against the Grain - Educational Philosophy",
+    title: "Going Against the Grain - Cambridge University",
     loading: "eager" as const,
     priority: true,
   },
@@ -817,37 +817,37 @@ export const TUTOR_IMAGES = {
 export const VIDEO_CONTENT = {
   parentsTestimonials: {
     id: "parents-testimonials-2025",
-    src: "/videos/elizabeth-introduction-sound.mp4",
-    poster: "/images/testimonials/parent-testimonials-thumbnail.jpg?v=20250828",
+    src: "/videos/parents-testimonials-2025.mp4",
+    poster: "/images/testimonials/parent-testimonials-thumbnail.jpg?v=20250831",
     alt: "Parent testimonials for My Private Tutor Online - Compilation 2025",
     title: "Parent Success Stories 2025",
     description:
       "Real parents sharing their transformative experiences with My Private Tutor Online",
-    duration: 300,
+    duration: 109,
     featured: true,
     category: "all" as const,
     testimonialAuthor: "Various Parents",
     testimonialRole: "MPTO Families",
     viewCount: 2847,
     rating: 5,
-    uploadDate: "2025-08-28",
+    uploadDate: "2025-08-31",
   },
   studentsTestimonials: {
     id: "students-testimonials-2025",
-    src: "/videos/compressed-elizabeth-introduction-sound.mp4",
-    poster: "/images/testimonials/student-testimonials-thumbnail.jpg?v=20250828",
+    src: "/videos/students-testimonials-2025.mp4",
+    poster: "/images/testimonials/student-testimonials-thumbnail.jpg?v=20250831",
     alt: "Student testimonials for My Private Tutor Online - Compilation 2025",
     title: "Student Success Stories 2025",
     description:
       "Students sharing their academic achievements with MPTO expert tutors",
-    duration: 280,
+    duration: 137,
     featured: true,
     category: "all" as const,
     testimonialAuthor: "MPTO Students",
     testimonialRole: "Academic Achievers",
     viewCount: 2156,
     rating: 5,
-    uploadDate: "2025-08-28",
+    uploadDate: "2025-08-31",
   },
   oxbridgeSuccess: {
     id: "oxbridge-success-stories",

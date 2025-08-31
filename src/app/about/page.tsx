@@ -83,7 +83,7 @@ export default function AboutUsPage() {
       <section id="about-hero">
         <SimpleHero
           backgroundImage={aboutHeroImage.src}
-          h1="Your journey to academic success"
+          h1="About Our Founder & Ethos"
           h2="Our bespoke consultation and pairing process ensures the perfect fit and seamless support throughout."
           decorativeStyle="none"
         />

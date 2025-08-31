@@ -48,8 +48,14 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
-// CONTEXT7 SOURCE: /reactjs/react.dev - Utility function for parsing simple markdown formatting
+// CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component for royal testimonial emphasis
+// HIGHLIGHTER IMPORT REASON: Official Magic UI documentation demonstrates Highlighter component for dynamic text highlighting effects in trust indicators
+import { Highlighter } from '@/components/magicui/highlighter'
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - Utility function for parsing simple markdown formatting with Magic UI Highlighter integration
 // MARKDOWN PARSING REASON: Official React documentation shows how to create utility functions for text processing
+// CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component integration for royal testimonial text
+// ROYAL TESTIMONIAL HIGHLIGHTING REASON: Official Magic UI documentation enables selective highlighting for premium text emphasis in trust indicators
 const parseDescription = (text: string): JSX.Element => {
   // Split by double newlines to create paragraphs
   const paragraphs = text.split('\n\n')
@@ -57,7 +63,22 @@ const parseDescription = (text: string): JSX.Element => {
   return (
     <>
       {paragraphs.map((paragraph, index) => {
-        // Handle bold formatting within paragraphs
+        // Special handling for royal testimonial content
+        if (paragraph.includes("two princes and the princess")) {
+          // CONTEXT7 SOURCE: /websites/magicui_design - Highlighter component for royal testimonial emphasis
+          // ROYAL TESTIMONIAL HIGHLIGHTING REASON: Replace bold markdown with Magic UI highlighter effect for premium visual emphasis
+          return (
+            <p key={index} className={index > 0 ? "mt-4 text-gray-700" : "text-gray-700"}>
+              "Hi Elizabeth, I found out today that{' '}
+              <Highlighter action="highlight" color="#eab308" strokeWidth={2} iterations={1} padding={4}>
+                the two princes and the princess
+              </Highlighter>
+              {' '}have all been offered places at Le Rosey for next year. The family is delighted and would like me to pass on their sincerest thanks to you and the team for all your hard work."
+            </p>
+          )
+        }
+        
+        // Handle standard bold formatting within paragraphs for other content
         const parts = paragraph.split(/(\*\*[^*]+\*\*)/)
         
         return (

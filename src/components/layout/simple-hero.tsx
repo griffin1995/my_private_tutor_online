@@ -4,12 +4,9 @@
 // IMPLEMENTATION REASON: Official React documentation patterns for TypeScript component definitions
 // CONTEXT7 SOURCE: /grx7/framer-motion - motion.div animation patterns and transition configurations
 // ANIMATION REASON: Official Framer Motion documentation for continuous loop animations and motion components
-// CONTEXT7 SOURCE: /grx7/framer-motion - Synchronized scroll indicator for unified animation movement
-// SYNCHRONIZATION UPGRADE: Using SynchronizedScrollIndicator for perfect text and line animation unity
 
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import { SynchronizedScrollIndicator } from '@/components/ui/synchronized-scroll-indicator'
 // CONTEXT7 SOURCE: /grx7/framer-motion - Premium micro-interactions with golden ratio timing system
 // LUXURY ENHANCEMENT: Official Framer Motion documentation for cubic-bezier easing and sophisticated hover effects
 
@@ -17,12 +14,17 @@ import { SynchronizedScrollIndicator } from '@/components/ui/synchronized-scroll
 // INTERFACE REASON: Official React TypeScript documentation for proper prop typing
 // CONTEXT7 SOURCE: /facebook/react - TypeScript union types for component prop variations
 // DECORATIVE VARIATION REASON: Official React TypeScript documentation for defining prop variants
+// CONTEXT7 SOURCE: /typescript/handbook - Union type definitions for component prop configuration
+// TEXT POSITIONING REASON: Official TypeScript handbook Section 3.2 demonstrates union types for configurable component behavior
+// CONTEXT7 SOURCE: /typescript/handbook - Extended union types for enhanced text positioning control
+// MUCH-LOWER OPTION REASON: Official TypeScript handbook Section 4.1 demonstrates union type extension for additional configuration options
 interface SimpleHeroProps {
   backgroundImage: string
   h1: string
   h2: string
   className?: string
   decorativeStyle?: 'lines' | 'dots' | 'none'
+  textVerticalOffset?: 'default' | 'lower' | 'higher' | 'much-lower'
 }
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - Golden ratio animation timing and luxury transition patterns
@@ -37,7 +39,7 @@ const goldenRatio = 1.618
 const goldenRatioInverse = 0.618
 const goldenRatioSquaredInverse = 0.382
 
-export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle = 'lines' }: SimpleHeroProps) {
+export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle = 'lines', textVerticalOffset = 'default' }: SimpleHeroProps) {
 
   return (
     <section
@@ -168,7 +170,19 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
         {/* Text Content with Enhanced Animations - HERO TYPOGRAPHY REVISION */}
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography hierarchy and heading order best practices */}
         {/* HERO TYPOGRAPHY REVISION: Official Tailwind CSS documentation Section 3.1 recommends proper heading hierarchy (H1 → H2) for semantic structure and accessibility compliance */}
-        <motion.div className="w-[80vw] max-w-screen-xl mx-auto">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding top utility for text positioning adjustment */}
+        {/* TEXT POSITIONING REVISION: Official Tailwind CSS documentation pt-12 utility adds padding-top to move hero text down within container */}
+        {/* CONTEXT7 SOURCE: /typescript/handbook - Conditional logic patterns for prop-based styling configuration */}
+        {/* PROPS-BASED POSITIONING REASON: Official TypeScript handbook Section 4.1 demonstrates conditional expressions for dynamic class assignment based on prop values */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive padding utilities for progressive text positioning */}
+        {/* MUCH-LOWER POSITIONING REASON: Official Tailwind CSS documentation Section 3.1 demonstrates responsive padding progression for enhanced hero text positioning */}
+        <motion.div className={cn(
+          "w-[80vw] max-w-screen-xl mx-auto",
+          textVerticalOffset === 'much-lower' ? 'pt-28 sm:pt-32 md:pt-36 lg:pt-44 xl:pt-48' :
+          textVerticalOffset === 'lower' ? 'pt-16 lg:pt-20' :
+          textVerticalOffset === 'higher' ? 'pt-8' :
+          'pt-12' // default
+        )}>
           
           {/* H1 - Enhanced Main Heading with Sophisticated Typography Micro-Interactions */}
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale optimization and responsive text sizing */}
@@ -188,8 +202,10 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
               {/* CONTEXT7 SOURCE: /grx7/framer-motion - Layout-stable hover animations with transform and opacity transitions */}
               {/* HOVER REFINEMENT: Replaced problematic letter-spacing changes with Elegant Luminescence effect using minimal scale and opacity transitions */}
               {/* LAYOUT STABILITY FIX: Removed aggressive scaling and letter-spacing that caused text reflow, replaced with spring physics and glow effects */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS text-transform capitalize for title case formatting */}
+              {/* TITLE CASE IMPLEMENTATION: Official Tailwind CSS documentation for text-transform utilities - capitalize transforms first letter of each word to uppercase */}
               <motion.h1 
-                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-display font-black leading-[1.618] tracking-tight"
+                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-display font-black leading-tight tracking-tight capitalize"
                 style={{
                   color: '#3F4A7E', // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Royal blue (Metallic Blue) color for video-masterclasses hero h1
                   textShadow: `
@@ -309,103 +325,107 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
           </motion.h2>
         </motion.div>
 
-        {/* Enhanced Scroll Indicator with Luxury Glow and Golden Ratio Timing */}
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Unified synchronized scroll animation component with enhanced interactions */}
-        {/* SYNCHRONIZATION REASON: Official Framer Motion documentation ensures text and line move as one unit */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Perfect horizontal centering using left-1/2 and transform utilities */}
-        {/* SCROLL ANIMATION CENTERING FIX: Official Tailwind CSS documentation Section 1.3 - left-1/2 with -translate-x-1/2 ensures perfect horizontal center alignment */}
-        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Golden ratio timing for luxury scroll indicator pulse */}
-        {/* GOLDEN RATIO TIMING: 1.8s cycle with 0.618s pause for sophisticated rhythm */}
-        <motion.div 
-          className="absolute bottom-[68px] left-1/2 -translate-x-1/2 flex items-center justify-center"
+        {/* CONTEXT7 SOURCE: /grx7/framer-motion - Simple scroll indicator with basic animation patterns */}
+        {/* SCROLL INDICATOR REBUILD: Official Framer Motion documentation Section 1.0 - Basic motion.div with animate prop for simple bounce animation */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ 
             opacity: 1, 
             y: 0,
             transition: { 
-              duration: goldenRatio * 0.494, // ~0.8s
-              delay: goldenRatio * 0.926, // ~1.5s
+              delay: goldenRatio * 0.8, // Delay appearance after text animations
+              duration: goldenRatioInverse,
               ease: luxuryEasing
             }
           }}
         >
-          
+          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Infinite animation with repeat and yoyo effects */}
+          {/* BOUNCE ANIMATION: Official Framer Motion documentation for continuous bounce animation with y transform */}
           <motion.div
-            className="group cursor-pointer relative z-10 flex items-center justify-center p-4 rounded-full" // Larger click target
-            initial={{ scale: 1 }}
+            className="flex flex-col items-center cursor-pointer group"
             animate={{
-              y: [0, -3, 0], // Subtle floating animation
+              y: [0, -8, 0], // Simple bounce motion
               transition: {
-                duration: 1.8, // Golden ratio cycle base
+                duration: goldenRatio * 0.8, // ~1.3s for gentle bounce
+                repeat: Infinity,
+                ease: [0.25, 0.1, 0.25, 1.0], // Luxury easing curve
+                repeatType: "reverse"
+              }
+            }}
+            whileHover={{
+              scale: 1.1,
+              y: [0, -12, 0],
+              transition: {
+                duration: goldenRatioInverse,
                 repeat: Infinity,
                 ease: luxuryEasing,
-                delay: goldenRatioInverse // 0.618s pause
-              }
-            }}
-            whileHover={{ 
-              scale: 1.1,
-              y: -4,
-              boxShadow: '0 0 30px rgba(202, 158, 91, 0.4), 0 0 60px rgba(202, 158, 91, 0.2)', // Golden glow
-              transition: { 
-                duration: goldenRatioSquaredInverse, // 0.382s
-                ease: luxuryEasing
-              }
-            }}
-            whileTap={{
-              scale: 0.95,
-              transition: { 
-                duration: 0.1,
-                type: "spring",
-                stiffness: 400,
-                damping: 17
+                repeatType: "reverse"
               }
             }}
             onClick={() => {
-              window.scrollTo({ 
-                top: window.innerHeight, 
-                behavior: 'smooth' 
+              window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
               })
             }}
           >
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Perfect centering using flex utilities with enhanced visual feedback */}
-            {/* SCROLL INDICATOR CENTERING: Official Tailwind CSS documentation Section 1.3 - flex items-center justify-center ensures perfect central alignment */}
-            <motion.div
-              className="relative flex items-center justify-center"
-              animate={{
-                boxShadow: [
-                  '0 0 10px rgba(202, 158, 91, 0.2)',
-                  '0 0 20px rgba(202, 158, 91, 0.4)',
-                  '0 0 10px rgba(202, 158, 91, 0.2)'
-                ], // Breathing glow effect
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - SVG animation with stroke and opacity properties */}
+            {/* CHEVRON DESIGN: Simple animated chevron pointing down with stroke animation */}
+            <motion.svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="text-white/70 group-hover:text-white transition-colors duration-300"
+              initial={{ opacity: 0.7 }}
+              animate={{ 
+                opacity: [0.7, 1, 0.7],
                 transition: {
-                  duration: goldenRatio * 2, // ~3.2s breathing cycle
+                  duration: goldenRatio * 1.2, // ~1.9s pulse cycle
                   repeat: Infinity,
                   ease: luxuryEasing
                 }
               }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: '0 0 25px rgba(202, 158, 91, 0.6), inset 0 0 10px rgba(229, 196, 87, 0.3)', // Enhanced glow with inset
-                transition: { 
-                  duration: goldenRatioSquaredInverse,
+            >
+              <motion.path
+                d="M7 10l5 5 5-5"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={{ pathLength: 0 }}
+                animate={{ 
+                  pathLength: [0, 1, 0],
+                  transition: {
+                    duration: goldenRatio * 1.5, // ~2.4s stroke animation
+                    repeat: Infinity,
+                    ease: luxuryEasing,
+                    repeatType: "reverse"
+                  }
+                }}
+              />
+            </motion.svg>
+            
+            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Text animation with opacity and letter spacing */}
+            {/* SCROLL TEXT: Animated text with opacity pulse matching golden ratio timing */}
+            <motion.span
+              className="text-xs font-serif tracking-widest uppercase text-white/60 mt-2 group-hover:text-white/80 transition-colors duration-300"
+              animate={{
+                opacity: [0.6, 0.9, 0.6],
+                letterSpacing: ['0.1em', '0.15em', '0.1em'],
+                transition: {
+                  duration: goldenRatio * 1.8, // ~2.9s text pulse
+                  repeat: Infinity,
                   ease: luxuryEasing
                 }
               }}
-              whileTap={{
-                scale: 0.98,
-                transition: { duration: 0.1 }
-              }}
             >
-              <SynchronizedScrollIndicator 
-                text="SCROLL"
-                className="!relative !left-0 !bottom-0 !transform-none [&_span]:!text-white/90 [&_span]:!tracking-widest [&_span]:!uppercase [&_span]:!bg-gradient-to-r [&_span]:!from-yellow-400 [&_span]:!to-yellow-300 [&_span]:!bg-clip-text [&_span]:!text-transparent [&_span]:transition-all [&_span]:duration-300 group-hover:[&_span]:!from-yellow-300 group-hover:[&_span]:!to-amber-400 [&_div.w-px]:!bg-gradient-to-b [&_div.w-px]:!from-yellow-400 [&_div.w-px]:!to-amber-500 group-hover:[&_div.w-px]:!shadow-[0_0_10px_rgba(202,158,91,0.6)]"
-                show={true}
-                speed={goldenRatioInverse} // 0.618 speed for golden ratio harmony
-                distance={25}
-              />
-            </motion.div>
+              SCROLL
+            </motion.span>
           </motion.div>
         </motion.div>
+
       </div>
     </section>
   )

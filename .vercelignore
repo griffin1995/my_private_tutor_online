@@ -17,9 +17,16 @@ public/videos/compressed/
 public/videos/temp/
 public/videos/originals/
 # Large development video files in root (not for production)
-11*.mp4
+# 11*.mp4 - REMOVED: Allow 11+ expert intro video for deployment
 11*.jpeg
 11*.jpg
+# Original testimonial videos (moved to external directory)
+*testimonials*MPTO*.mp4
+Parents*.mp4
+Students*.mp4
+*-original.jpg
+*-original.jpeg
+*-original.png
 /venv/
 __pycache__/
 
@@ -36,6 +43,15 @@ __tests__
 *.spec.*
 coverage/
 .nyc_output/
+.playwright-mcp/
+TO_ORGANISE/
+.claude/
+docs/
+playwright-report/
+autonomous-audit/
+test-results/
+load-tests/
+site_audit/
 
 # IDE and editor files
 .vscode/

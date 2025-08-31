@@ -29,6 +29,7 @@
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Highlighter } from "@/components/magicui/highlighter";
 import { Separator } from "@/components/ui/separator";
 import { m } from "framer-motion";
 import {
@@ -129,12 +130,17 @@ export default function HowItWorksPage() {
       {/* H2 PROP UPDATE REASON: Official React documentation Section 4.2 demonstrates prop value updates for improved component messaging and user experience */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      {/* CONTEXT7 SOURCE: /typescript/handbook - Props-based configuration implementation for enhanced text positioning */}
+      {/* TEXT POSITIONING IMPLEMENTATION REASON: Official TypeScript handbook Section 4.1 demonstrates prop-based component configuration for improved visual hierarchy */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Much-lower text positioning for enhanced hero text placement */}
+      {/* MUCH-LOWER POSITIONING REASON: Official Tailwind CSS documentation demonstrates progressive padding utilities for significant downward text movement */}
       <section id="how-it-works-hero">
         <SimpleHero
           backgroundImage="/images/hero/hero-how-it-works.jpeg"
-          h1="Your journey to academic success"
-          h2="Our bespoke consultation and pairing process ensures the perfect fit and seamless support throughout."
+          h1="Your Journey To Academic Success"
+          h2="Outstanding Tuition. Tailored Pairing. Ongoing Guidance."
           decorativeStyle="lines"
+          textVerticalOffset="much-lower"
         />
       </section>
 
@@ -201,16 +207,22 @@ export default function HowItWorksPage() {
               {/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
 
               <h2 className="text-4xl lg:text-5xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
-                Your journey to academic success
+                Your Journey To Academic Success
               </h2>
 
               <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent mx-auto mb-6"></div>
 
               <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
                 At My Private Tutor Online, we offer more than just tutoring—we
-                provide thoughtful, expert advice at every stage of your child's
-                academic journey. Our service is consultative, personal, and
-                bespoke to your family's individual needs.
+                provide{" "}
+                <Highlighter action="highlight" color="#eab308">
+                  thoughtful, expert advice
+                </Highlighter>{" "}
+                at every stage of your child's academic journey. Our service is{" "}
+                <Highlighter action="underline" color="#0f172a">
+                  consultative, personal, and bespoke
+                </Highlighter>{" "}
+                to your family's individual needs.
               </p>
             </div>
 
