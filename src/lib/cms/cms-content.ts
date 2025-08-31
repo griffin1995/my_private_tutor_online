@@ -2271,7 +2271,7 @@ export const getDetailedTestimonialVideos = cache(
       {
         id: "video-001",
         title: "Westminster School Success - 11+ Achievement",
-        videoUrl: "/videos/testimonials/westminster-success.mp4",
+        videoUrl: "",
         thumbnailUrl: "/videos/testimonials/thumbnails/westminster-success.jpg",
         student: {
           name: "Student A",
@@ -2299,7 +2299,7 @@ export const getDetailedTestimonialVideos = cache(
       {
         id: "video-002",
         title: "Oxford & Cambridge Success - Dual Oxbridge Offers",
-        videoUrl: "/videos/testimonials/oxbridge-dual-success.mp4",
+        videoUrl: "",
         thumbnailUrl:
           "/videos/testimonials/thumbnails/oxbridge-dual-success.jpg",
         student: {
@@ -2328,7 +2328,7 @@ export const getDetailedTestimonialVideos = cache(
       {
         id: "video-003",
         title: "GCSE Grade Improvement - Mathematics Success",
-        videoUrl: "/videos/testimonials/gcse-grade-improvement.mp4",
+        videoUrl: "",
         thumbnailUrl: "/videos/testimonials/thumbnails/gcse-improvement.jpg",
         student: {
           name: "Student L",
@@ -2355,7 +2355,7 @@ export const getDetailedTestimonialVideos = cache(
       {
         id: "video-004",
         title: "Confidence Transformation - Year 9 Success Story",
-        videoUrl: "/videos/testimonials/confidence-transformation.mp4",
+        videoUrl: "",
         thumbnailUrl:
           "/videos/testimonials/thumbnails/confidence-transformation.jpg",
         student: {
@@ -2383,7 +2383,7 @@ export const getDetailedTestimonialVideos = cache(
       {
         id: "video-005",
         title: "International School Success - Le Rosey Acceptance",
-        videoUrl: "/videos/testimonials/le-rosey-success.mp4",
+        videoUrl: "",
         thumbnailUrl: "/videos/testimonials/thumbnails/le-rosey-success.jpg",
         student: {
           name: "Al-Rashid Family",
@@ -3611,7 +3611,7 @@ export const getServicesContent = cache((): ServicesPageContent => {
             // VIDEO SECTION REASON: Official React patterns for multimedia content display within CMS data structure
             videoSection: {
               thumbnailUrl: "/images/tutors/emily.jpg",
-              videoUrl: "/videos/11+ expert intro video MPTO.mp4",
+              videoUrl: "/videos/elizabeth-introduction-sound.mp4",
               title: "Meet Emily - Our 11+ Expert Introduction",
               alt: "Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach",
             },
@@ -3710,14 +3710,14 @@ export const getServicesContent = cache((): ServicesPageContent => {
             twoColumnVideoSection: {
               video1: {
                 thumbnailUrl: "/images/tutors/emily.jpg",
-                videoUrl: "/videos/11+ expert intro video MPTO.mp4",
+                videoUrl: "/videos/elizabeth-introduction-sound.mp4",
                 title:
                   "Meet Emily - University Admissions Specialist Introduction",
                 alt: "Emily's University Admissions Specialist Introduction Video - Meet Emily, our specialist university admissions tutor and learn about our comprehensive application preparation approach",
               },
               video2: {
                 thumbnailUrl: "/images/tutors/emily.jpg",
-                videoUrl: "/videos/11+ expert intro video MPTO.mp4",
+                videoUrl: "/videos/elizabeth-introduction-sound.mp4",
                 title: "Meet Emily - Personal Statement & Interview Expert",
                 alt: "Emily's Personal Statement & Interview Expert Video - Learn about our expert personal statement crafting and interview preparation techniques for university applications",
               },

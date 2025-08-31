@@ -52,8 +52,8 @@
       "result": "Multiple Success Stories",
       "verified": true,
       "date": "2025-08-19",
-      "hasVideo": true,
-      "videoUrl": "/videos/parent-testimonials-compilation.mp4",
+      "hasVideo": false,
+      "videoUrl": "",
       "videoThumbnail": "/images/testimonials/parent-testimonials-thumbnail.jpg",
       "videoDuration": 300
     },
@@ -72,8 +72,8 @@
       "result": "Academic Success & Confidence",
       "verified": true,
       "date": "2025-08-19",
-      "hasVideo": true,
-      "videoUrl": "/videos/student-testimonials-compilation.mp4",
+      "hasVideo": false,
+      "videoUrl": "",
       "videoThumbnail": "/images/testimonials/student-testimonials-thumbnail.jpg",
       "videoDuration": 280
     },
