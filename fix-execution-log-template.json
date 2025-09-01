@@ -1,0 +1,151 @@
+{
+  "executionId": "automated-fixes-YYYY-MM-DDTHH-MM-SS",
+  "startTime": "2025-09-01T12:00:00.000Z",
+  "endTime": null,
+  "totalDuration": null,
+  "totalFiles": 574,
+  "totalFixes": 4365,
+  "processedFiles": 0,
+  "successfulFixes": 0,
+  "failedFixes": 0,
+  "lastUpdated": "2025-09-01T12:00:00.000Z",
+  
+  "targetMetrics": {
+    "brandComplianceTarget": "95%",
+    "issueBreakdown": {
+      "accessibility": { "count": 1966, "priority": "P0", "description": "Missing aria-labels and interactive element accessibility" },
+      "typography": { "count": 927, "priority": "P1", "description": "Font standardization - Playfair Display headers, Source Serif body" },
+      "colors": { "count": 1247, "priority": "P1", "description": "Color standardization to design system tokens" },
+      "buttons": { "count": 2093, "priority": "P2", "description": "Button component standardization to Magic UI patterns" },
+      "videos": { "count": 63, "priority": "P2", "description": "Video AspectRatio wrapper implementation" },
+      "optimization": { "count": 273, "priority": "P3", "description": "Performance and code quality improvements" }
+    }
+  },
+
+  "batchResults": [
+    {
+      "batchNumber": 1,
+      "files": 50,
+      "startTime": "2025-09-01T12:05:00.000Z",
+      "endTime": "2025-09-01T12:08:30.000Z",
+      "duration": 210000,
+      "successful": 48,
+      "failed": 2,
+      "changes": []
+    }
+  ],
+
+  "detailedChanges": [
+    {
+      "file": "/path/to/component.tsx",
+      "line": 15,
+      "type": "typography",
+      "element": "h1",
+      "before": "<h1 className=\"text-4xl font-bold\">Premium Tutoring</h1>",
+      "after": "<h1 className=\"text-4xl font-bold font-playfair text-brand-metallic-blue-700\">Premium Tutoring</h1>",
+      "context7Source": "/radix-ui/website - Typography component patterns",
+      "timestamp": "2025-09-01T12:05:23.000Z",
+      "success": true,
+      "backupPath": "backups/automated-fixes-YYYY-MM-DD/path/to/component.tsx"
+    },
+    {
+      "file": "/path/to/button.tsx",
+      "type": "color-standardization",
+      "before": "bg-blue-600",
+      "after": "bg-brand-metallic-blue-500",
+      "occurrences": 3,
+      "context7Source": "/radix-ui/website - Design system color tokens",
+      "timestamp": "2025-09-01T12:05:45.000Z",
+      "success": true
+    },
+    {
+      "file": "/path/to/video.tsx",
+      "type": "video-aspect-ratio",
+      "before": "<video src=\"hero-video.mp4\" controls className=\"w-full h-auto\" />",
+      "after": "<AspectRatio ratio={16 / 9}>\n  <video src=\"hero-video.mp4\" controls className=\"w-full h-full object-cover\" />\n</AspectRatio>",
+      "context7Source": "/radix-ui/website - AspectRatio component patterns",
+      "timestamp": "2025-09-01T12:06:12.000Z",
+      "success": true
+    },
+    {
+      "file": "/path/to/interactive.tsx",
+      "type": "accessibility-aria-label",
+      "element": "button",
+      "before": "<Button>Submit</Button>",
+      "after": "<Button aria-label=\"Submit form\">Submit</Button>",
+      "ariaLabel": "Submit form",
+      "context7Source": "/jsx-eslint/eslint-plugin-jsx-a11y - Button accessibility patterns",
+      "timestamp": "2025-09-01T12:06:34.000Z",
+      "success": true
+    }
+  ],
+
+  "changesByType": {
+    "typography": {
+      "applied": 0,
+      "target": 927,
+      "success": 0,
+      "failed": 0,
+      "elements": {
+        "h1": 0, "h2": 0, "h3": 0, "h4": 0, "h5": 0, "h6": 0,
+        "p": 0, "span": 0, "div": 0
+      }
+    },
+    "colorStandardization": {
+      "applied": 0,
+      "target": 1247,
+      "success": 0,
+      "failed": 0,
+      "mappings": {
+        "bg-blue-600": 0,
+        "bg-blue-500": 0,
+        "text-blue-600": 0,
+        "bg-yellow-500": 0,
+        "inlineStyles": 0
+      }
+    },
+    "accessibility": {
+      "applied": 0,
+      "target": 1966,
+      "success": 0,
+      "failed": 0,
+      "types": {
+        "buttonAriaLabels": 0,
+        "iconButtonLabels": 0,
+        "interactiveElements": 0
+      }
+    },
+    "videoAspectRatio": {
+      "applied": 0,
+      "target": 63,
+      "success": 0,
+      "failed": 0,
+      "importsAdded": 0
+    }
+  },
+
+  "errorsSummary": {
+    "validationFailures": [],
+    "compilationErrors": [],
+    "rollbacksPerformed": [],
+    "criticalIssues": []
+  },
+
+  "performanceMetrics": {
+    "averageFileProcessingTime": null,
+    "filesPerSecond": null,
+    "batchProcessingTime": null,
+    "validationTime": null
+  },
+
+  "context7Attribution": {
+    "primarySources": [
+      "/unjs/magicast - AST transformations for programmatic code modification",
+      "/michelebertoli/react-design-patterns-and-best-practices - React component patterns",
+      "/radix-ui/website - AspectRatio, typography, and design system patterns",
+      "/jsx-eslint/eslint-plugin-jsx-a11y - Accessibility compliance patterns"
+    ],
+    "totalSourcesUsed": 4,
+    "documentationCompliance": true
+  }
+}
