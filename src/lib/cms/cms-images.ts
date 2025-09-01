@@ -1013,20 +1013,20 @@ export const MASTERCLASS_VIDEOS = {
   },
   ucasSummit2024: {
     id: "ucas-summit-2024",
-    src: "",
-    poster: "/images/masterclass-thumbnails/ucas-summit.png",
-    alt: "UCAS Summit 2024 - Complete Recording by Elizabeth Burrows",
+    src: "/videos/gcse-summit-2024-elizabeth-burrows.mp4",
+    poster: "/images/masterclass-thumbnails/gcse-summit-2024.png",
+    alt: "UCAS Summit 2024 - Complete Recording by Elizabeth Burrows featuring GCSE Summit 2024 content",
     title: "UCAS Summit 2024 (Free Access)",
     description:
-      "Complete recording from Elizabeth's presentation at the UCAS Summit, including audience Q&A and additional insights for parents navigating the tutoring landscape.",
+      "Complete recording from Elizabeth's presentation at the GCSE Summit 2024, where she addressed parents of GCSE-aged students on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition. This comprehensive recording includes audience Q&A and additional insights for parents navigating the tutoring landscape.",
     duration: 45,
     featured: false,
     category: "free" as const,
     masterclassAuthor: "Elizabeth Burrows",
     masterclassRole: "Founder, My Private Tutor Online",
     isFree: true,
-    thumbnailUrl: "/images/masterclass-thumbnails/ucas-summit.png",
-    videoUrl: "", // CONTEXT7 SOURCE: /microsoft/typescript - Optional property pattern for missing video file
+    thumbnailUrl: "/images/masterclass-thumbnails/gcse-summit-2024.png",
+    videoUrl: "/videos/gcse-summit-2024-elizabeth-burrows.mp4", // CONTEXT7 SOURCE: /vercel/next.js - HTML5 video element with local asset serving patterns
   },
   elizabethsUcasGuide: {
     id: "elizabeths-ucas-guide",

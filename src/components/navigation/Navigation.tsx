@@ -389,12 +389,18 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
     };
   }, []);
 
-  // CONTEXT7 SOURCE: /vercel/next.js - usePathname for active link detection
-  // ACTIVE_REASON: Official Next.js documentation for determining active navigation state
+  // CONTEXT7 SOURCE: /amannn/next-intl - usePathname for active link detection with locale routing
+  // ACTIVE_REASON: Official next-intl documentation for determining active navigation state with locale support
+  // LOCALE_FIX_REASON: With locale routing, homepage can be "/" or "/en-GB" depending on configuration
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
+    if (href === "/") return pathname === "/" || pathname === "/en-GB";
     return pathname.startsWith(href);
   };
+
+  // CONTEXT7 SOURCE: /amannn/next-intl - usePathname for locale-aware homepage detection pattern
+  // HOMEPAGE_DETECTION_REASON: Official next-intl documentation for pathname-based conditional rendering with locale routing
+  // LOCALE_FIX_REASON: With localePrefix 'as-needed' and defaultLocale 'en-GB', homepage URL is /en-GB not /
+  const isCurrentHomepage = pathname === "/" || pathname === "/en-GB";
 
   // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive design with standard breakpoints
   // RESPONSIVE_REASON: Simplified responsive design using standard Tailwind breakpoints without dynamic calculations
@@ -435,10 +441,10 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                 // LOGO_SIZE_REASON: Official Tailwind documentation for h-<number> utilities - scaling logo to use 80-85% of navbar height (h-20/h-24 for h-24 navbar, h-24/h-28 for h-28 navbar, h-28/h-32 for h-32 navbar)
                 className="relative w-48 h-20 lg:h-24 xl:h-28"
               >
-                {/* CONTEXT7 SOURCE: /vercel/next.js - Dynamic image src with conditional logic based on state */}
-                {/* REVISION REASON: Implemented logo state management - dark logo when dropdown open OR scrolled, white logo when dropdown closed AND not scrolled */}
+                {/* CONTEXT7 SOURCE: /vercel/next.js - Dynamic image src with conditional logic based on state and homepage detection */}
+                {/* REVISION REASON: Updated logo state management - colored logo on homepage OR when dropdown open OR scrolled, white logo only on non-homepage when dropdown closed AND not scrolled */}
                 <Image
-                  src={`/images/logos/${dropdownState.isOpen || isScrolled ? "logo-with-name.png" : "logo-with-name-white.png"}`}
+                  src={`/images/logos/${isCurrentHomepage || dropdownState.isOpen || isScrolled ? "logo-with-name.png" : "logo-with-name-white.png"}`}
                   alt="My Private Tutor Online"
                   fill
                   className="object-contain"
@@ -474,12 +480,14 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                               // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard responsive font sizing
                               // FONT_SIZE_REASON: Official Tailwind documentation for responsive typography without dynamic calculations
                               "text-base md:text-lg lg:text-lg xl:text-xl",
-                              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flat design color scheme
-                              // COLOR_REASON: Official Tailwind documentation for custom color implementation
+                              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flat design color scheme with homepage-specific brand blue override
+                              // COLOR_REASON: Official Tailwind documentation for custom color implementation with conditional pathname-based styling
                               "text-[#3F4A7E] hover:text-[#CA9E5B]",
-                              isScrolled
-                                ? "text-[#3F4A7E]"
-                                : "text-white hover:text-[#CA9E5B]",
+                              isCurrentHomepage 
+                                ? "text-[#3F4A7E] hover:text-[#CA9E5B]"
+                                : isScrolled
+                                  ? "text-[#3F4A7E]"
+                                  : "text-white hover:text-[#CA9E5B]",
                               isActive(item.href) && "text-[#CA9E5B]",
                               // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional class application
                               // ACTIVE_MENU_REASON: Official Tailwind documentation for conditional styling patterns
@@ -515,9 +523,11 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                               // FONT_SIZE_REASON: Official Tailwind documentation for responsive typography without dynamic calculations
                               "text-base md:text-lg lg:text-lg xl:text-xl",
                               "text-[#3F4A7E] hover:text-[#CA9E5B]",
-                              isScrolled
-                                ? "text-[#3F4A7E]"
-                                : "text-white hover:text-[#CA9E5B]",
+                              isCurrentHomepage 
+                                ? "text-[#3F4A7E] hover:text-[#CA9E5B]"
+                                : isScrolled
+                                  ? "text-[#3F4A7E]"
+                                  : "text-white hover:text-[#CA9E5B]",
                               // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional class application
                               // ACTIVE_MENU_REASON: Official Tailwind documentation for conditional styling patterns
                               activeMenuItem === item.label && "text-[#CA9E5B]",
@@ -548,9 +558,11 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                         // FONT_SIZE_REASON: Official Tailwind documentation for responsive typography without dynamic calculations
                         "text-base md:text-lg lg:text-lg xl:text-xl",
                         "text-[#3F4A7E] hover:text-[#CA9E5B]",
-                        isScrolled
-                          ? "text-[#3F4A7E]"
-                          : "text-white hover:text-[#CA9E5B]",
+                        isCurrentHomepage 
+                          ? "text-[#3F4A7E] hover:text-[#CA9E5B]"
+                          : isScrolled
+                            ? "text-[#3F4A7E]"
+                            : "text-white hover:text-[#CA9E5B]",
                         isActive(item.href!) && "text-[#CA9E5B]",
                         // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional class application
                         // DROPDOWN_STATE_COLOR_REASON: Official Tailwind documentation for conditional class application - navy color when dropdown is open
@@ -581,9 +593,11 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
               onClick={() => setIsMobileMenuOpen(true)}
               className={cn(
                 "lg:hidden p-2 rounded-lg transition-colors duration-200",
-                isScrolled
+                isCurrentHomepage
                   ? "text-[#3F4A7E] hover:bg-gray-100"
-                  : "text-white hover:bg-white/10"
+                  : isScrolled
+                    ? "text-[#3F4A7E] hover:bg-gray-100"
+                    : "text-white hover:bg-white/10"
               )}
               aria-label="Open menu"
             >

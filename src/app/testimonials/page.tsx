@@ -228,34 +228,27 @@ export default function TestimonialsPage() {
     return config;
   }, [testimonialsWithoutVideo]);
 
-  // State management for filtering text testimonials
+  // CONTEXT7 SOURCE: /vercel/next.js - State management for filtering text testimonials with direct initialization
+  // NAVIGATION FIX: Official Next.js documentation shows useState should initialize directly with computed value
   const [filteredTextTestimonials, setFilteredTextTestimonials] = useState<
     any[]
-  >(optimizedTextTestimonialsData);
+  >(() => optimizedTextTestimonialsData); // Lazy initialization to prevent multiple calculations
 
   // CONTEXT7 SOURCE: /facebook/react - Filtered testimonials state management
   // STATE MANAGEMENT REASON: Optimized filtering state for enhanced user experience
 
-  // CONTEXT7 SOURCE: /context7/react_dev - useCallback for stable filter change handlers
-  // PERFORMANCE OPTIMIZATION REASON: Official React documentation recommends useCallback for component props
-  // INFINITE LOOP FIX: Using empty dependency array since setFilteredTextTestimonials is stable from useState
+  // CONTEXT7 SOURCE: /vercel/next.js - useCallback for stable filter change handlers  
+  // NAVIGATION FIX: Official Next.js documentation shows useCallback prevents unnecessary re-renders
   const handleTextFilterChange = useCallback(
     (newFilteredTestimonials: any[]) => {
       setFilteredTextTestimonials(newFilteredTestimonials);
     },
-    []
+    [] // Empty dependency array since setFilteredTextTestimonials is stable from useState
   );
 
-  // CONTEXT7 SOURCE: /websites/react_dev - useEffect for syncing derived state
-  // PERFORMANCE OPTIMIZATION: Sync filtered state when optimized data changes
-  // INFINITE LOOP FIX: Add ref check to prevent unnecessary state updates
-  const prevOptimizedDataRef = React.useRef(optimizedTextTestimonialsData);
-  React.useEffect(() => {
-    if (prevOptimizedDataRef.current !== optimizedTextTestimonialsData) {
-      setFilteredTextTestimonials(optimizedTextTestimonialsData);
-      prevOptimizedDataRef.current = optimizedTextTestimonialsData;
-    }
-  }, [optimizedTextTestimonialsData]);
+  // CONTEXT7 SOURCE: /vercel/next.js - Direct initialization without useEffect to prevent infinite loops
+  // NAVIGATION FIX: Official Next.js documentation shows useState should be initialized directly, not synced with useEffect
+  // INFINITE LOOP FIX: Removed problematic useEffect that caused Maximum update depth exceeded errors preventing navigation
 
   // CONTEXT7 SOURCE: Official React documentation for component composition and reusability
   // COMPONENT EXTRACTION REASON: Following React best practices for modular, reusable component architecture

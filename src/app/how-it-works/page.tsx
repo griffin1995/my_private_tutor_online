@@ -29,7 +29,7 @@
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Highlighter } from "@/components/magicui/highlighter";
+import { QuoteSection } from "@/components/sections/quote-section";
 import { Separator } from "@/components/ui/separator";
 import { m } from "framer-motion";
 import {
@@ -212,20 +212,14 @@ export default function HowItWorksPage() {
 
               <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent mx-auto mb-6"></div>
 
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Italic font styling for consultative service emphasis */}
-              {/* ITALIC STYLING REASON: Official Tailwind CSS documentation Section 1.1 demonstrates italic utility class applying font-style: italic for text emphasis */}
-              <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium italic">
-                "At My Private Tutor Online, we offer more than just tutoring—we
-                provide{" "}
-                <Highlighter action="highlight" color="#eab308">
-                  thoughtful, expert advice
-                </Highlighter>{" "}
-                at every stage of your child's academic journey. Our service is{" "}
-                <Highlighter action="underline" color="#0f172a">
-                  consultative, personal, and bespoke
-                </Highlighter>{" "}
-                to your family's individual needs."
-              </p>
+              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component refactoring patterns for modular QuoteSection usage */}
+              {/* QUOTESECTION CONVERSION REASON: Official React documentation demonstrates component consolidation patterns for consistent highlighting and styling */}
+              <QuoteSection
+                quote="At My Private Tutor Online, we offer more than just tutoring—we provide thoughtful, expert advice at every stage of your child's academic journey. Our service is consultative, personal, and bespoke to your family's individual needs."
+                backgroundColor="bg-transparent"
+                className="pt-0 pb-0"
+                useHighlighting={true}
+              />
             </div>
 
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Timeline-based visual flow patterns for premium service presentation */}

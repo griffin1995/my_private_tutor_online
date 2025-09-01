@@ -235,6 +235,60 @@ export function QuoteSection({
       )
     }
 
+    // CONTEXT7 SOURCE: /magicuidesign/magicui - 11+ Bootcamps page quote with strategic highlighting for programme selection guidance
+    // BOOTCAMP HIGHLIGHTING REASON: Magic UI documentation enables targeted highlighting for comprehensive preparation messaging and perfect fit emphasis
+    if (quote.includes("Discover our comprehensive preparation programmes designed for different learning needs")) {
+      // 11+ Bootcamps quote with gold highlights and navy underlines for programme discovery
+      return (
+        <>
+          Discover our{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+            comprehensive preparation programmes
+          </Highlighter>
+          {' '}designed for{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+            different learning needs and timelines
+          </Highlighter>
+          . Choose the{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+            perfect fit
+          </Highlighter>
+          {' '}for your child's{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+            11+ journey
+          </Highlighter>
+          .
+        </>
+      )
+    }
+
+    // CONTEXT7 SOURCE: /websites/react_dev - Video Masterclasses page quote with strategic highlighting for expertise and access emphasis
+    // VIDEO MASTERCLASSES HIGHLIGHTING REASON: React component refactoring documentation enables targeted highlighting for educational expertise positioning
+    if (quote.includes("Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over 15 years of international education experience")) {
+      // Video Masterclasses intro text with gold highlights and navy underlines for expertise emphasis
+      return (
+        <>
+          Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+            15 years of international education experience
+          </Highlighter>
+          . These masterclasses, drawn from her live seminars, offer{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+            rare access
+          </Highlighter>
+          {' '}to the knowledge and strategies{' '}
+          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+            typically reserved for her private clients
+          </Highlighter>
+          . These sessions bridge the gap between international education and{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+            expectations of British schools and universities
+          </Highlighter>
+          . Access on demand, from anywhere in the world.
+        </>
+      )
+    }
+
     // Brand-consistent highlighting using only main project colors
     return (
       <>

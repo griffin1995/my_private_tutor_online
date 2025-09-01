@@ -146,6 +146,24 @@ const subjectCategories: SubjectCategory[] = subjectCategoriesData.map(
             alt: subject.videoSection.alt,
           }
         : undefined,
+      // CONTEXT7 SOURCE: /microsoft/typescript - Two-column video section transformation for dual video content integration
+      // TWO COLUMN VIDEO REASON: Official TypeScript patterns for transforming CMS dual video data to component interface
+      twoColumnVideoSection: subject.twoColumnVideoSection
+        ? {
+            video1: {
+              thumbnailUrl: subject.twoColumnVideoSection.video1.thumbnailUrl,
+              videoUrl: subject.twoColumnVideoSection.video1.videoUrl,
+              title: subject.twoColumnVideoSection.video1.title,
+              alt: subject.twoColumnVideoSection.video1.alt,
+            },
+            video2: {
+              thumbnailUrl: subject.twoColumnVideoSection.video2.thumbnailUrl,
+              videoUrl: subject.twoColumnVideoSection.video2.videoUrl,
+              title: subject.twoColumnVideoSection.video2.title,
+              alt: subject.twoColumnVideoSection.video2.alt,
+            },
+          }
+        : undefined,
     })),
     // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials transformation
     // TRANSFORMATION REASON: Official React patterns for converting CMS readonly arrays to component-compatible format

@@ -23,6 +23,9 @@ import { ChevronDown, ChevronRight, LucideIcon, Play, Download, ExternalLink } f
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+// CONTEXT7 SOURCE: /radix-ui/primitives - VideoAspectRatio component import for 16:9 video content constraint
+// INTEGRATION REASON: Official Radix UI documentation Section 4.2 pattern - AspectRatio maintains proper video proportions
+import { VideoAspectRatio } from '@/components/ui/aspect-ratio'
 import Link from 'next/link'
 
 // CONTEXT7 SOURCE: /facebook/react - TypeScript interface patterns for component props
@@ -204,26 +207,32 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
               </div>
             </div>
             
-            <div 
+            {/* CONTEXT7 SOURCE: /radix-ui/primitives - VideoAspectRatio wrapper for 16:9 video thumbnail display */}
+            {/* ASPECT RATIO REASON: Official Radix UI documentation - VideoAspectRatio maintains consistent 16:9 proportions across all screen sizes */}
+            <VideoAspectRatio 
               className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
               onClick={() => onVideoClick?.(subjectItem.videoSection!.videoUrl, subjectItem.videoSection!.title, subjectItem.videoSection!.thumbnailUrl)}
             >
               <div className="relative">
+                {/* CONTEXT7 SOURCE: /websites/tailwindcss - object-contain utility for maintaining aspect ratio within container */}
+                {/* IMAGE SCALING REASON: Official Tailwind CSS documentation - object-contain shows full image within 16:9 aspect ratio without cropping */}
                 <img
                   src={subjectItem.videoSection.thumbnailUrl}
                   alt={subjectItem.videoSection.alt}
-                  className="w-full h-[300px] sm:h-[400px] lg:h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent" />
               </div>
               
-              <div className="absolute inset-0 flex items-center justify-center">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive positioning with desktop-specific top offset */}
+              {/* DESKTOP POSITIONING REASON: Official Tailwind CSS absolute positioning patterns for responsive play button placement below top crease */}
+              <div className="absolute inset-0 flex items-center justify-center lg:items-start lg:justify-center lg:pt-20">
                 <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg group-hover:bg-white/95 group-hover:scale-110 transition-all duration-300">
                   <Play className="w-8 h-8 text-amber-700 ml-1" fill="currentColor" />
                 </div>
               </div>
-            </div>
+            </VideoAspectRatio>
             
             {/* Decorative Elements */}
             <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
@@ -257,26 +266,32 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
                 </div>
               </div>
               
-              <div 
+              {/* CONTEXT7 SOURCE: /radix-ui/primitives - VideoAspectRatio wrapper for first video in two-column layout */}
+              {/* TWO COLUMN VIDEO REASON: Official Radix UI documentation - VideoAspectRatio maintains consistent proportions in grid layouts */}
+              <VideoAspectRatio 
                 className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
                 onClick={() => onVideoClick?.(subjectItem.twoColumnVideoSection!.video1.videoUrl, subjectItem.twoColumnVideoSection!.video1.title, subjectItem.twoColumnVideoSection!.video1.thumbnailUrl)}
               >
                 <div className="relative">
+                  {/* CONTEXT7 SOURCE: /websites/tailwindcss - object-contain utility for aspect ratio preservation in two-column video layout */}
+                  {/* TWO COLUMN VIDEO SCALING REASON: Official Tailwind CSS patterns - object-contain prevents cropping in dual video display */}
                   <img
                     src={subjectItem.twoColumnVideoSection.video1.thumbnailUrl}
                     alt={subjectItem.twoColumnVideoSection.video1.alt}
-                    className="w-full h-[300px] sm:h-[400px] lg:h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent" />
                 </div>
                 
-                <div className="absolute inset-0 flex items-center justify-center">
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive positioning with desktop-specific top offset for two-column video 1 */}
+                {/* TWO COLUMN DESKTOP POSITIONING REASON: Official Tailwind CSS absolute positioning patterns for responsive play button placement below top crease in dual video layout */}
+                <div className="absolute inset-0 flex items-center justify-center lg:items-start lg:justify-center lg:pt-20">
                   <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg group-hover:bg-white/95 group-hover:scale-110 transition-all duration-300">
                     <Play className="w-8 h-8 text-amber-700 ml-1" fill="currentColor" />
                   </div>
                 </div>
-              </div>
+              </VideoAspectRatio>
               
               {/* Decorative Elements */}
               <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
@@ -305,26 +320,32 @@ function NestedSubjectItem({ subjectItem, index, parentId, onVideoClick }: Neste
                 </div>
               </div>
               
-              <div 
+              {/* CONTEXT7 SOURCE: /radix-ui/primitives - VideoAspectRatio wrapper for second video in two-column layout */}
+              {/* TWO COLUMN VIDEO REASON: Official Radix UI documentation - VideoAspectRatio ensures uniform aspect ratios across grid items */}
+              <VideoAspectRatio 
                 className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200 cursor-pointer group"
                 onClick={() => onVideoClick?.(subjectItem.twoColumnVideoSection!.video2.videoUrl, subjectItem.twoColumnVideoSection!.video2.title, subjectItem.twoColumnVideoSection!.video2.thumbnailUrl)}
               >
                 <div className="relative">
+                  {/* CONTEXT7 SOURCE: /websites/tailwindcss - object-contain utility for aspect ratio preservation in two-column video layout */}
+                  {/* TWO COLUMN VIDEO SCALING REASON: Official Tailwind CSS patterns - object-contain prevents cropping in dual video display */}
                   <img
                     src={subjectItem.twoColumnVideoSection.video2.thumbnailUrl}
                     alt={subjectItem.twoColumnVideoSection.video2.alt}
-                    className="w-full h-[300px] sm:h-[400px] lg:h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent" />
                 </div>
                 
-                <div className="absolute inset-0 flex items-center justify-center">
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive positioning with desktop-specific top offset for two-column video 2 */}
+                {/* TWO COLUMN DESKTOP POSITIONING REASON: Official Tailwind CSS absolute positioning patterns for responsive play button placement below top crease in dual video layout */}
+                <div className="absolute inset-0 flex items-center justify-center lg:items-start lg:justify-center lg:pt-20">
                   <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-lg group-hover:bg-white/95 group-hover:scale-110 transition-all duration-300">
                     <Play className="w-8 h-8 text-amber-700 ml-1" fill="currentColor" />
                   </div>
                 </div>
-              </div>
+              </VideoAspectRatio>
               
               {/* Decorative Elements */}
               <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />

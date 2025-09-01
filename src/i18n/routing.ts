@@ -59,6 +59,13 @@ export const routing = defineRouting({
       'es-ES': '/servicios',
       'de-DE': '/dienstleistungen',
       'zh-CN': '/服务'
+    },
+    '/testimonials': {
+      'en-GB': '/testimonials',
+      'fr-FR': '/temoignages',
+      'es-ES': '/testimonios',
+      'de-DE': '/erfahrungsberichte',
+      'zh-CN': '/推荐信'
     }
   }
 });

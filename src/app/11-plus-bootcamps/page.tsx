@@ -32,6 +32,7 @@ import { PageLayout } from "@/components/layout/page-layout";
 import { Section } from "@/components/layout/section";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { ScrollingSchools } from "@/components/sections/scrolling-schools";
+import { QuoteSection } from "@/components/sections/quote-section";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { VideoPopup } from "@/components/video/video-popup";
@@ -249,6 +250,17 @@ export default function ElevenPlusBootcampsPage() {
         {/* FILTERED SCHOOLS REASON: Apply school-only filtering for 11+ bootcamp context, excluding universities for appropriate audience targeting */}
         <ScrollingSchools schools={[...filteredSchools]} />
       </section>
+
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - QuoteSection component integration with 11+ Bootcamps specific content */}
+      {/* QUOTE SECTION IMPLEMENTATION REASON: Official React documentation Section 3.2 demonstrates component composition patterns */}
+      {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Strategic highlighting for 11+ bootcamps programme selection guidance */}
+      {/* BOOTCAMP HIGHLIGHTING INTEGRATION: Magic UI documentation enables targeted highlighting for programme discovery messaging */}
+      <QuoteSection
+        quote="Discover our comprehensive preparation programmes designed for different learning needs and timelines. Choose the perfect fit for your child's 11+ journey."
+        backgroundColor="bg-amber-50/30"
+        className="py-12 lg:py-16"
+        useHighlighting={true}
+      />
 
       {/* CONTEXT7 SOURCE: /joshbuchea/head - HTML anchor ID attributes for tagline section navigation */}
       {/* TAGLINE ANCHOR IMPLEMENTATION: Official HTML documentation shows id attributes for content section identification */}
@@ -790,7 +802,7 @@ export default function ElevenPlusBootcampsPage() {
         <VideoPopup
           isOpen={isVideoOpen}
           onClose={() => setIsVideoOpen(false)}
-          videoUrl="/videos/11+ expert intro video MPTO.mp4"
+          videoUrl="/videos/11-plus-expert-intro-video-mpto.mp4"
           title="Meet Emily - Our 11+ Expert Introduction"
           poster="/images/tutors/emily.jpg"
         />

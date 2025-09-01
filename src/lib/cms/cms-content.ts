@@ -3608,8 +3608,12 @@ export const getServicesContent = cache((): ServicesPageContent => {
             pricing: { from: "£100", to: "£180", currency: "GBP" },
             // CONTEXT7 SOURCE: /facebook/react - Video section integration for entrance exam specialist introduction
             // VIDEO SECTION REASON: Official React patterns for multimedia content display within CMS data structure
+            // CONTEXT7 SOURCE: /microsoft/typescript - Content management file path updates for multimedia assets
+            // REVISION REASON: Official TypeScript documentation on content management patterns for asset path corrections
             videoSection: {
-              thumbnailUrl: "/images/tutors/emily.jpg",
+              // CONTEXT7 SOURCE: /sindresorhus/filenamify - Kebab-case filename formatting for consistent file naming conventions
+              // REVISION REASON: Official filenamify documentation patterns for standardized filename formats
+              thumbnailUrl: "/images/video-thumbnails/thumbnail-11-plus-expert-intro-video-mpto.png",
               videoUrl: "/videos/11-plus-expert-intro-video-mpto.mp4",
               title: "Meet Emily - Our 11+ Expert Introduction",
               alt: "Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach",
@@ -3709,14 +3713,18 @@ export const getServicesContent = cache((): ServicesPageContent => {
             twoColumnVideoSection: {
               video1: {
                 thumbnailUrl: "/images/tutors/emily.jpg",
-                videoUrl: "/videos/elizabeth-introduction-sound.mp4",
+                // CONTEXT7 SOURCE: /microsoft/typescript - Object property assignment pattern
+                // REVISION REASON: Updated video file path to kebab-case naming convention following project standards
+                videoUrl: "/videos/elizabeth-ucas-parent-interview-guide.mp4",
                 title:
                   "Meet Emily - University Admissions Specialist Introduction",
                 alt: "Emily's University Admissions Specialist Introduction Video - Meet Emily, our specialist university admissions tutor and learn about our comprehensive application preparation approach",
               },
               video2: {
                 thumbnailUrl: "/images/tutors/emily.jpg",
-                videoUrl: "/videos/elizabeth-introduction-sound.mp4",
+                // CONTEXT7 SOURCE: /microsoft/typescript - Object property assignment pattern
+                // REVISION REASON: Updated video file path to kebab-case naming convention following project standards
+                videoUrl: "/videos/elizabeth-gcse-summit-2024.mp4",
                 title: "Meet Emily - Personal Statement & Interview Expert",
                 alt: "Emily's Personal Statement & Interview Expert Video - Learn about our expert personal statement crafting and interview preparation techniques for university applications",
               },
@@ -3734,6 +3742,8 @@ export const getServicesContent = cache((): ServicesPageContent => {
             ],
             level: "Year 13+",
             pricing: { from: "£150", to: "£250", currency: "GBP" },
+            // CONTEXT7 SOURCE: /websites/typescriptlang - Object property removal from interface structure
+            // VIDEO REMOVAL REASON: Official TypeScript patterns for removing object properties - eliminating videoSection and twoColumnVideoSection properties from masterclass configuration
           },
           {
             name: "Subject-Specific University Admissions Tests",

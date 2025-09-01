@@ -85,22 +85,9 @@ export default function HomePage() {
   const t = useTranslations("Navigation");
   console.log("[DEBUG-HomePage] useTranslations hook completed successfully");
 
-  // CONTEXT7 SOURCE: /websites/react_dev - useState and useEffect for async data loading
-  // ASYNC DATA LOADING REASON: Official React documentation for client-side async operations with useState/useEffect pattern
-  const [asyncResultsData, setAsyncResultsData] = useState<any[]>([]);
-
-  useEffect(() => {
-    async function loadResultsData() {
-      try {
-        const data = await getResultsDocumentation();
-        setAsyncResultsData([...data]);
-      } catch (error) {
-        console.error("Failed to load results data:", error);
-      }
-    }
-
-    loadResultsData();
-  }, []);
+  // CONTEXT7 SOURCE: /vercel/next.js - Direct synchronous data access prevents navigation blocking infinite loops
+  // NAVIGATION FIX: Official Next.js documentation shows synchronous CMS data access eliminates useState/useEffect complexity
+  // Removed async useEffect pattern that was conflicting with synchronous getResultsDocumentation function
 
   // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access pattern
   // SYNCHRONOUS RESTORATION: Return to proven working pattern with immediate data availability
@@ -116,6 +103,7 @@ export default function HomePage() {
   const founderQuote = getFounderQuote();
   const studentImages = getStudentImages();
   const testimonialsSchools = getTestimonialsSchools();
+  const resultsData = getResultsDocumentation();
 
   console.log("[DEBUG-HomePage] CMS data loaded synchronously:", {
     trustIndicators: trustIndicators?.length || 0,
@@ -257,7 +245,7 @@ export default function HomePage() {
           <ResultsDocumentation
             title="Quantifiable Academic Outcomes"
             description=""
-            results={asyncResultsData}
+            results={resultsData}
             layout="grid"
             maxItems={3}
           />
