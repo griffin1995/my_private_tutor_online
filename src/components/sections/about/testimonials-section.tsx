@@ -37,7 +37,7 @@ import { getTestimonialVideos } from '@/lib/cms/cms-content'
  * PROPS INTERFACE REASON: Official React documentation recommends interface definitions for component props with proper type safety
  */
 interface TestimonialsSectionProps {
-  /** Background colour class (default: bg-blue-50/30) */
+  /** Background colour class (default: bg-white) */
   backgroundColor?: string
   /** Additional CSS classes for styling customisation */
   className?: string
@@ -59,7 +59,7 @@ interface TestimonialsSectionProps {
  * Premium testimonials section with professional styling and animations
  * 
  * Component Features:
- * - Professional blue-tinted background treatment
+ * - Clean white background treatment for neutral presentation
  * - Premium pattern overlay for subtle texture
  * - Professional gradient overlays for depth
  * - 2-column responsive grid layout
@@ -73,10 +73,12 @@ interface TestimonialsSectionProps {
  * - ARIA-compliant accessibility features
  */
 export function TestimonialsSection({ 
-  backgroundColor = "bg-blue-50/30",
+  backgroundColor = "bg-white",
   className = ""
 }: TestimonialsSectionProps) {
   
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utility classes for clean presentation
+  // BACKGROUND CHANGE REASON: Updated from bg-blue-50/30 to bg-white for neutral video sections per user requirements
   return (
     <section className={`relative ${backgroundColor} py-12 lg:py-16 ${className}`}>
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio section spacing for visual harmony */}

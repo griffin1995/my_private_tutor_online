@@ -23,6 +23,7 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react'
 import { motion as m, LazyMotion, domAnimation, AnimatePresence } from 'framer-motion'
 import { TestimonialCard } from './testimonial-card'
+import { TestimonialModal } from './testimonial-modal'
 import { SkeletonCard } from '../ui/skeleton-card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -198,6 +199,16 @@ export function TestimonialsGrid({
   enableSorting = false,
   className = ''
 }: TestimonialsGridProps) {
+  // CONTEXT7 SOURCE: /facebook/react - Component render debugging patterns for infinite loop detection
+  // DEBUG LOGGING REASON: Official React documentation for debugging component re-renders and state changes
+  console.log('[GRID-DEBUG] TestimonialsGrid render:', {
+    timestamp: new Date().toISOString(),
+    testimonialsCount: testimonials.length,
+    layout,
+    loading,
+    renderCount: ++TestimonialsGrid.renderCount || (TestimonialsGrid.renderCount = 1)
+  })
+  
   // CONTEXT7 SOURCE: /context7/react_dev - Component initialization with testimonials data
   // PERFORMANCE REASON: Efficient testimonials grid rendering with memoized data
   // CONTEXT7 SOURCE: /context7/react_dev - useState patterns for component state management
@@ -206,11 +217,33 @@ export function TestimonialsGrid({
   const [currentColumns, setCurrentColumns] = useState(columns)
   const [visibleItems, setVisibleItems] = useState(itemsPerPage)
   const [sortBy, setSortBy] = useState<'date' | 'rating' | 'helpful'>('date')
+  const [selectedTestimonial, setSelectedTestimonial] = useState<EnhancedTestimonial | null>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Event handler removal pattern for non-interactive components
-  // MODAL REMOVAL REASON: Official React documentation Section 4.2 demonstrates component interaction removal by eliminating click handlers
-  // Testimonial cards are no longer clickable - onClick functionality completely removed
+  // CONTEXT7 SOURCE: /websites/react_dev - Event handler patterns for modal interaction
+  // MODAL RESTORATION REASON: Official React documentation for onClick handlers and modal state management
+  const handleCardClick = useCallback((testimonial: EnhancedTestimonial) => {
+    // CONTEXT7 SOURCE: /facebook/react - useCallback debugging patterns for dependency tracking
+    // CALLBACK DEBUG REASON: Official React documentation for debugging callback re-creation
+    console.log('[GRID-DEBUG] handleCardClick called:', {
+      timestamp: new Date().toISOString(),
+      testimonialId: testimonial.id,
+      callbackExecutionCount: ++TestimonialsGrid.cardClickCount || (TestimonialsGrid.cardClickCount = 1)
+    })
+    
+    setSelectedTestimonial(testimonial)
+  }, [])
+
+  const handleModalClose = useCallback(() => {
+    // CONTEXT7 SOURCE: /facebook/react - useCallback debugging patterns for dependency tracking
+    // CALLBACK DEBUG REASON: Official React documentation for debugging callback re-creation
+    console.log('[GRID-DEBUG] handleModalClose called:', {
+      timestamp: new Date().toISOString(),
+      callbackExecutionCount: ++TestimonialsGrid.modalCloseCount || (TestimonialsGrid.modalCloseCount = 1)
+    })
+    
+    setSelectedTestimonial(null)
+  }, [])
 
   const handleLoadMore = useCallback(() => {
     setVisibleItems(prev => Math.min(prev + itemsPerPage, testimonials.length))
@@ -223,6 +256,15 @@ export function TestimonialsGrid({
   // CONTEXT7 SOURCE: /context7/react_dev - useMemo patterns for expensive computations
   // PERFORMANCE REASON: Optimized sorting and filtering of testimonials with stable references
   const sortedAndFilteredTestimonials = useMemo(() => {
+    // CONTEXT7 SOURCE: /facebook/react - useMemo debugging patterns for dependency tracking
+    // MEMO DEBUG REASON: Official React documentation for debugging memoization and re-computation
+    console.log('[GRID-DEBUG] sortedAndFilteredTestimonials useMemo executing:', {
+      timestamp: new Date().toISOString(),
+      testimonialsCount: testimonials.length,
+      sortBy,
+      memoExecutionCount: ++TestimonialsGrid.sortMemoCount || (TestimonialsGrid.sortMemoCount = 1)
+    })
+    
     const sorted = [...testimonials]
 
     // Sort testimonials
@@ -251,6 +293,16 @@ export function TestimonialsGrid({
   }, [testimonials, sortBy])
 
   const displayedTestimonials = useMemo(() => {
+    // CONTEXT7 SOURCE: /facebook/react - useMemo debugging patterns for dependency tracking
+    // MEMO DEBUG REASON: Official React documentation for debugging memoization and re-computation
+    console.log('[GRID-DEBUG] displayedTestimonials useMemo executing:', {
+      timestamp: new Date().toISOString(),
+      sortedCount: sortedAndFilteredTestimonials.length,
+      visibleItems,
+      enableVirtualScroll,
+      memoExecutionCount: ++TestimonialsGrid.displayMemoCount || (TestimonialsGrid.displayMemoCount = 1)
+    })
+    
     return enableVirtualScroll 
       ? sortedAndFilteredTestimonials.slice(0, visibleItems)
       : sortedAndFilteredTestimonials
@@ -269,24 +321,56 @@ export function TestimonialsGrid({
     return gridLayoutClasses.grid[currentColumns as keyof typeof gridLayoutClasses.grid]
   }
 
-  // CONTEXT7 SOURCE: /context7/react_dev - useEffect patterns for DOM interactions and cleanup
-  // SCROLL HANDLING REASON: Virtual scrolling support for large testimonial datasets
-  useEffect(() => {
-    if (!enableVirtualScroll) return
+  // CONTEXT7 SOURCE: /streamich/react-use - useEffectOnce pattern for preventing infinite render loops
+  // INFINITE LOOP FIX REASON: Official React-Use documentation demonstrates useEffectOnce for effects that should not re-run on dependency changes
+  // CONTEXT7 SOURCE: /streamich/react-use - useCallback patterns for stable event handler references
+  // CALLBACK STABILITY REASON: Official React-Use documentation shows useCallback prevents effect dependency changes
+  const handleScroll = useCallback(() => {
+    // CONTEXT7 SOURCE: /facebook/react - useCallback debugging patterns for dependency tracking
+    // CALLBACK DEBUG REASON: Official React documentation for debugging callback re-creation and execution
+    console.log('[GRID-DEBUG] handleScroll called:', {
+      timestamp: new Date().toISOString(),
+      enableVirtualScroll,
+      hasGridRef: !!gridRef.current,
+      callbackExecutionCount: ++TestimonialsGrid.scrollCount || (TestimonialsGrid.scrollCount = 1)
+    })
+    
+    if (!enableVirtualScroll || !gridRef.current) return
+    
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+    
+    if (scrollTop + clientHeight >= scrollHeight - 1000) {
+      console.log('[GRID-DEBUG] handleScroll triggering setVisibleItems')
+      setVisibleItems(prev => Math.min(prev + itemsPerPage, testimonials.length))
+    }
+  }, [enableVirtualScroll, itemsPerPage, testimonials.length])
 
-    const handleScroll = () => {
-      if (!gridRef.current) return
-      
-      const { scrollTop, scrollHeight, clientHeight } = document.documentElement
-      
-      if (scrollTop + clientHeight >= scrollHeight - 1000) {
-        setVisibleItems(prev => Math.min(prev + itemsPerPage, testimonials.length))
-      }
+  useEffect(() => {
+    // CONTEXT7 SOURCE: /facebook/react - useEffect debugging patterns for infinite loop detection
+    // EFFECT DEBUG REASON: Official React documentation for debugging effect execution and dependencies
+    console.log('[GRID-DEBUG] scroll useEffect executing:', {
+      timestamp: new Date().toISOString(),
+      enableVirtualScroll,
+      handleScrollRef: typeof handleScroll,
+      effectExecutionCount: ++TestimonialsGrid.scrollEffectCount || (TestimonialsGrid.scrollEffectCount = 1)
+    })
+    
+    if (!enableVirtualScroll) {
+      console.log('[GRID-DEBUG] Virtual scroll disabled, effect returning early')
+      return
     }
 
+    console.log('[GRID-DEBUG] Adding scroll event listener')
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [enableVirtualScroll, itemsPerPage, testimonials.length])
+    
+    return () => {
+      console.log('[GRID-DEBUG] scroll useEffect cleanup executing:', {
+        timestamp: new Date().toISOString(),
+        cleanupExecutionCount: ++TestimonialsGrid.scrollCleanupCount || (TestimonialsGrid.scrollCleanupCount = 1)
+      })
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [enableVirtualScroll, handleScroll])
 
   // Loading skeleton display
   if (loading) {
@@ -320,43 +404,53 @@ export function TestimonialsGrid({
                     size="sm"
                     onClick={() => handleLayoutChange('grid')}
                     className="h-8 w-8 p-0"
+                    aria-label="Grid layout"
+                    aria-pressed={currentLayout === 'grid'}
                   >
-                    <Grid3X3 className="h-4 w-4" />
+                    <Grid3X3 className="h-4 w-4" aria-hidden="true" />
                   </Button>
                   <Button
                     variant={currentLayout === 'masonry' ? 'primary' : 'ghost'}
                     size="sm"
                     onClick={() => handleLayoutChange('masonry')}
                     className="h-8 w-8 p-0"
+                    aria-label="Masonry layout"
+                    aria-pressed={currentLayout === 'masonry'}
                   >
-                    <Layers className="h-4 w-4" />
+                    <Layers className="h-4 w-4" aria-hidden="true" />
                   </Button>
                   <Button
                     variant={currentLayout === 'list' ? 'primary' : 'ghost'}
                     size="sm"
                     onClick={() => handleLayoutChange('list')}
                     className="h-8 w-8 p-0"
+                    aria-label="List layout"
+                    aria-pressed={currentLayout === 'list'}
                   >
-                    <List className="h-4 w-4" />
+                    <List className="h-4 w-4" aria-hidden="true" />
                   </Button>
                   <Button
                     variant={currentLayout === 'carousel' ? 'primary' : 'ghost'}
                     size="sm"
                     onClick={() => handleLayoutChange('carousel')}
                     className="h-8 w-8 p-0"
+                    aria-label="Carousel layout"
+                    aria-pressed={currentLayout === 'carousel'}
                   >
-                    <Play className="h-4 w-4" />
+                    <Play className="h-4 w-4" aria-hidden="true" />
                   </Button>
                 </div>
               </div>
 
             {enableSorting && (
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-primary-700">Sort:</span>
+                <label htmlFor="sort-testimonials" className="text-sm font-medium text-primary-700">Sort:</label>
                 <select
+                  id="sort-testimonials"
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as 'date' | 'rating' | 'helpful')}
                   className="px-3 py-1 text-sm bg-white border border-primary-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                  aria-label="Sort testimonials by"
                 >
                   <option value="date">Latest</option>
                   <option value="rating">Highest Rated</option>
@@ -367,11 +461,13 @@ export function TestimonialsGrid({
 
             {currentLayout === 'grid' && (
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-primary-700">Columns:</span>
+                <label htmlFor="grid-columns" className="text-sm font-medium text-primary-700">Columns:</label>
                 <select
+                  id="grid-columns"
                   value={currentColumns}
                   onChange={(e) => setCurrentColumns(Number(e.target.value) as 1 | 2 | 3 | 4)}
                   className="px-3 py-1 text-sm bg-white border border-primary-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
+                  aria-label="Number of columns for grid layout"
                 >
                   <option value={1}>1</option>
                   <option value={2}>2</option>
@@ -408,16 +504,15 @@ export function TestimonialsGrid({
             initial="hidden"
             animate="visible"
             variants={currentVariants.container}
-            layout
           >
             <AnimatePresence mode="popLayout">
               {displayedTestimonials.map((testimonial, index) => (
                 <m.div
                   key={testimonial.id}
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0 }
-                  }}
+                  variants={currentVariants.item}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
                   className={'testimonial-card-wrapper ' + (
                       currentLayout === 'masonry' 
                         ? "break-inside-avoid mb-6" 
@@ -425,32 +520,15 @@ export function TestimonialsGrid({
                         ? "flex-none w-80 snap-start" 
                         : ""
                     )}
-                    whileHover={true}
-                  >
-                    <m.div
-                      variants={currentVariants.item}
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                      layout
-                      layoutId={testimonial.id}
-                      whileHover={{
-                        scale: 1.02,
-                        transition: { duration: 0.2, ease: 'easeOut' }
-                      }}
-                      whileTap={{
-                        scale: 0.98,
-                        transition: { duration: 0.1 }
-                      }}
-                    >
-                      <TestimonialCard
-                        testimonial={testimonial}
-                        layout={currentLayout}
-                        enableHover={true}
-                        showFullContent={currentLayout === 'list'}
-                        className={currentLayout === 'carousel' ? 'h-full' : ''}
-                      />
-                    </m.div>
+                >
+                  <TestimonialCard
+                    testimonial={testimonial}
+                    layout={currentLayout}
+                    enableHover={true}
+                    showFullContent={currentLayout === 'list'}
+                    className={currentLayout === 'carousel' ? 'h-full' : ''}
+                    onCardClick={handleCardClick}
+                  />
                 </m.div>
               ))}
             </AnimatePresence>
@@ -488,9 +566,12 @@ export function TestimonialsGrid({
           </m.div>
         )}
 
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal pattern for modal elimination */}
-        {/* MODAL REMOVAL REASON: Official React documentation demonstrates removing unused components and their state management */}
-        {/* Testimonial modal functionality completely removed - cards are no longer clickable */}
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Modal component integration with conditional rendering */}
+        {/* MODAL INTEGRATION REASON: Official React documentation for conditional component rendering with state management */}
+        <TestimonialModal
+          testimonial={selectedTestimonial}
+          onClose={handleModalClose}
+        />
       </div>
   )
 }

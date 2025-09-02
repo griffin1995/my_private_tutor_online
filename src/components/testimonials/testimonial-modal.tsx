@@ -1,37 +1,31 @@
 /**
- * CONTEXT7 SOURCE: /grx7/framer-motion - Modal animations with backdrop blur and sophisticated entrance effects
- * CONTEXT7 SOURCE: /context7/react_dev - Modal component patterns with accessibility and keyboard navigation
- * CONTEXT7 SOURCE: /context7/tailwindcss - Full-screen modal styling with backdrop effects and responsive design
+ * CONTEXT7 SOURCE: /websites/react_dev - React modal dialog patterns with portals and event handling
+ * MODAL IMPLEMENTATION REASON: Official React documentation for modal components with accessibility and focus management
  * 
- * COMPONENT CREATION REASON: Task 5 implementation - Full-screen testimonial modal with enhanced viewing experience
- * MODAL ENHANCEMENT REASON: Immersive testimonial presentation for maximum engagement and conversion impact
- * REVENUE IMPACT: Premium modal experience supporting £400,000+ testimonial conversion opportunity
+ * CONTEXT7 SOURCE: /grx7/framer-motion - Motion components for modal animations and backdrop transitions
+ * ANIMATION REASON: Official Framer Motion documentation for modal enter/exit animations and backdrop effects
  * 
  * Features:
- * - Full-screen immersive testimonial viewing experience
- * - Advanced modal animations with backdrop blur effects
- * - Video testimonial integration with controls
- * - Image gallery with navigation and zoom functionality
- * - Keyboard navigation and accessibility support
- * - Social sharing capabilities
- * - Print-friendly testimonial layouts
+ * - Full-screen modal overlay with backdrop blur
+ * - Smooth enter/exit animations with GPU acceleration
+ * - Escape key and backdrop click handling
+ * - Focus management and accessibility support
+ * - Symmetrical spacing between all sections as requested
  * - Royal client-ready premium presentation
  */
 
 'use client'
 
-import { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useRef } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
-import { X, Star, Play, Pause, Volume2, VolumeX, Share2, Printer, ChevronLeft, ChevronRight, Shield, MapPin, Calendar, ThumbsUp, ExternalLink } from 'lucide-react'
+import { X, Star, Shield, MapPin, Calendar, Play, ThumbsUp } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Card, CardContent } from '@/components/ui/card'
 import type { EnhancedTestimonial } from './testimonials-grid'
 
 interface TestimonialModalProps {
-  readonly testimonial: EnhancedTestimonial
-  readonly isOpen: boolean
+  readonly testimonial: EnhancedTestimonial | null
   readonly onClose: () => void
 }
 
@@ -113,360 +107,264 @@ const contentVariants = {
   }
 }
 
-export function TestimonialModal({
-  testimonial,
-  isOpen,
-  onClose
-}: TestimonialModalProps) {
+export function TestimonialModal({ testimonial, onClose }: TestimonialModalProps) {
+  // CONTEXT7 SOURCE: /facebook/react - Component render debugging patterns for infinite loop detection
+  // DEBUG LOGGING REASON: Official React documentation for debugging useEffect dependencies and re-renders
+  console.log('[MODAL-DEBUG] TestimonialModal render:', {
+    timestamp: new Date().toISOString(),
+    testimonialId: testimonial?.id || 'null',
+    onCloseRef: typeof onClose,
+    renderCount: ++TestimonialModal.renderCount || (TestimonialModal.renderCount = 1)
+  })
   
-  // CONTEXT7 SOURCE: /context7/react_dev - useCallback for performance-optimized event handlers
-  // PERFORMANCE OPTIMIZATION REASON: Stable function references prevent unnecessary re-renders
+  // CONTEXT7 SOURCE: /websites/react_dev - Event handler patterns for backdrop click handling
+  // BACKDROP CLICK REASON: Official React documentation for event handling with stopPropagation
+  // STABLE HANDLER REASON: useRef prevents infinite render loops from prop changes
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
+
   const handleBackdropClick = useCallback((e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose()
-    }
-  }, [onClose])
-
-  // CONTEXT7 SOURCE: /lucide-icons/lucide - Enhanced share functionality with social media integration
-  // SHARE FUNCTIONALITY REASON: Context7 documentation for Web APIs and social media sharing patterns
-  const handleShare = useCallback(async () => {
-    const shareData = {
-      title: `Testimonial from ${testimonial.author}`,
-      text: `"${testimonial.quote}" - ${testimonial.author}, ${testimonial.role}`,
-      url: window.location.href
-    }
+    // CONTEXT7 SOURCE: /facebook/react - useCallback debugging patterns for dependency tracking
+    // CALLBACK DEBUG REASON: Official React documentation for debugging callback re-creation
+    console.log('[MODAL-DEBUG] handleBackdropClick called:', {
+      timestamp: new Date().toISOString(),
+      targetEquals: e.target === e.currentTarget
+    })
     
-    try {
-      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-        await navigator.share(shareData)
-      } else {
-        // Enhanced fallback: Try clipboard first, then show share options
-        await navigator.clipboard.writeText(`${shareData.text}\n\nRead more testimonials: ${shareData.url}`)
-        // Optional: Show toast notification for successful copy
-        console.log('Testimonial copied to clipboard')
-      }
-    } catch (error) {
-      console.error('Share failed:', error)
-      // Fallback to manual copy
-      try {
-        await navigator.clipboard.writeText(`${shareData.text}\n\nRead more testimonials: ${shareData.url}`)
-      } catch (clipboardError) {
-        console.error('Clipboard copy failed:', clipboardError)
-      }
+    if (e.target === e.currentTarget) {
+      console.log('[MODAL-DEBUG] handleBackdropClick executing onClose')
+      onCloseRef.current()
     }
-  }, [testimonial])
-
-  const handlePrint = useCallback(() => {
-    window.print()
   }, [])
 
-  // CONTEXT7 SOURCE: /context7/react_dev - useEffect for keyboard event handling and accessibility
-  // ACCESSIBILITY REASON: Proper keyboard navigation and escape key handling for modal
+  // CONTEXT7 SOURCE: /websites/react_dev - useEffect for DOM event management with cleanup
+  // ESCAPE KEY REASON: Official React documentation for subscribing to keyboard events with proper cleanup
+  // DEPENDENCY FIX REASON: useRef prevents infinite render loops from onClose prop changes
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    // CONTEXT7 SOURCE: /facebook/react - useEffect debugging patterns for infinite loop detection
+    // EFFECT DEBUG REASON: Official React documentation for debugging effect execution and dependencies
+    console.log('[MODAL-DEBUG] useEffect executing:', {
+      timestamp: new Date().toISOString(),
+      testimonialPresent: !!testimonial,
+      testimonialId: testimonial?.id || 'null',
+      effectExecutionCount: ++TestimonialModal.effectCount || (TestimonialModal.effectCount = 1)
+    })
+    
+    const handleEscape = (e: KeyboardEvent) => {
+      console.log('[MODAL-DEBUG] handleEscape called:', {
+        timestamp: new Date().toISOString(),
+        key: e.key
+      })
+      
       if (e.key === 'Escape') {
-        onClose()
+        console.log('[MODAL-DEBUG] handleEscape executing onClose')
+        onCloseRef.current()
       }
     }
 
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown)
+    if (testimonial) {
+      console.log('[MODAL-DEBUG] Adding event listeners and setting body overflow')
+      document.addEventListener('keydown', handleEscape)
+      // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden'
+    } else {
+      console.log('[MODAL-DEBUG] Testimonial is null, restoring body overflow')
+      // Ensure body scroll is restored when testimonial is null
+      document.body.style.overflow = 'unset'
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown)
+      console.log('[MODAL-DEBUG] useEffect cleanup executing:', {
+        timestamp: new Date().toISOString(),
+        cleanupExecutionCount: ++TestimonialModal.cleanupCount || (TestimonialModal.cleanupCount = 1)
+      })
+      
+      document.removeEventListener('keydown', handleEscape)
       document.body.style.overflow = 'unset'
     }
-  }, [isOpen, onClose])
+  }, [testimonial]) // Only testimonial dependency, onClose handled via ref
+
+  if (!testimonial) return null
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* CONTEXT7 SOURCE: /grx7/framer-motion - Animated backdrop with blur effects */}
-          {/* BACKDROP REASON: Professional modal backdrop with smooth blur transition */}
-          <m.div
-            className="absolute inset-0 bg-primary-900/80"
-            variants={backdropVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            onClick={handleBackdropClick}
-          />
+    <AnimatePresence mode="wait">
+      <m.div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+        variants={backdropVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        onClick={handleBackdropClick}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="testimonial-modal-title"
+        aria-describedby="testimonial-modal-content"
+      >
+        <m.div
+          className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+          variants={modalVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* SYMMETRICAL SPACING: Each section has consistent 8 spacing (32px) between them */}
+          
+          {/* Header Section */}
+          <div className="sticky top-0 bg-white border-b border-primary-100 p-8 flex items-center justify-between rounded-t-3xl">
+            <div className="flex items-center gap-4">
+              <Avatar className="w-16 h-16 border-2 border-white shadow-lg">
+                <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                <AvatarFallback className="bg-gradient-to-br from-accent-500 to-accent-600 text-white font-semibold text-lg">
+                  {testimonial.author.split(' ').map(n => n[0]).join('')}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <h3 id="testimonial-modal-title" className="text-xl font-semibold text-primary-900 mb-1">
+                  {testimonial.author}
+                </h3>
+                <p className="text-sm text-primary-600">
+                  {testimonial.role}
+                </p>
+              </div>
+            </div>
+            
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                // CONTEXT7 SOURCE: /facebook/react - Event handler debugging patterns for callback tracking
+                // CLICK DEBUG REASON: Official React documentation for debugging onClick handlers
+                console.log('[MODAL-DEBUG] Close button clicked:', {
+                  timestamp: new Date().toISOString()
+                })
+                onClose()
+              }}
+              className="p-2 hover:bg-primary-50 rounded-full"
+              aria-label="Close testimonial modal"
+            >
+              <X className="w-5 h-5" aria-hidden="true" />
+            </Button>
+          </div>
 
-          {/* CONTEXT7 SOURCE: /context7/tailwindcss - Modal container with responsive design and backdrop effects */}
-          {/* MODAL CONTAINER REASON: Full-screen responsive design optimized for testimonial presentation */}
-          <m.div
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden"
-            variants={modalVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            <Card className="bg-white/95 backdrop-blur-sm border-2 border-primary-100 rounded-3xl shadow-2xl">
-              <CardContent className="p-0">
+          {/* SYMMETRICAL SPACING: 8 units (32px) from header */}
+          <div className="p-8 space-y-8">
+            
+            {/* Rating and Badges Section */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star 
+                    key={i}
+                    className={`w-6 h-6 ${
+                      i < testimonial.rating 
+                        ? 'text-accent-500 fill-current' 
+                        : 'text-primary-200'
+                    }`}
+                  />
+                ))}
+                <span className="ml-2 text-lg font-medium text-primary-600">
+                  {testimonial.rating}.0
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {testimonial.verificationStatus === 'verified' && (
+                  <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
+                    <Shield className="w-3 h-3 mr-1" />
+                    Verified
+                  </Badge>
+                )}
                 
-                {/* CONTEXT7 SOURCE: /context7/tailwindcss - Modal header with close button and action controls */}
-                {/* HEADER SECTION REASON: Clear navigation and action controls for modal interaction */}
-                <div className="flex items-center justify-between p-6 border-b border-primary-100">
-                  <div className="flex items-center gap-4">
-                    <Avatar className="w-12 h-12 border-2 border-white shadow-lg">
-                      <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                      <AvatarFallback className="bg-gradient-to-br from-accent-500 to-accent-600 text-white font-semibold">
-                        {testimonial.author.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    
-                    <div>
-                      <h2 className="text-xl font-semibold text-primary-900">
-                        {testimonial.author}
-                      </h2>
-                      <p className="text-primary-600">
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
+                {testimonial.featured && (
+                  <Badge className="bg-gradient-to-r from-accent-500 to-accent-600 text-white">
+                    Featured
+                  </Badge>
+                )}
 
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={handleShare}
-                      className="text-primary-600 hover:text-accent-600 hover:bg-accent-50"
-                    >
-                      <Share2 className="w-4 h-4" />
-                    </Button>
-                    
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={handlePrint}
-                      className="text-primary-600 hover:text-accent-600 hover:bg-accent-50"
-                    >
-                      <Printer className="w-4 h-4" />
-                    </Button>
-                    
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={onClose}
-                      className="text-primary-600 hover:text-primary-800 hover:bg-primary-50"
-                    >
-                      <X className="w-5 h-5" />
-                    </Button>
-                  </div>
-                </div>
-
-                {/* CONTEXT7 SOURCE: /context7/tailwindcss - Scrollable modal content area */}
-                {/* CONTENT AREA REASON: Optimized content presentation with smooth scrolling */}
-                <div className="max-h-[70vh] overflow-y-auto">
-                  <m.div
-                    className="p-8"
-                    variants={contentVariants}
-                    initial="hidden"
-                    animate="visible"
+                {testimonial.videoTestimonial && (
+                  <Button
+                    size="sm"
+                    className="p-2 bg-primary-100 hover:bg-accent-500 text-primary-600 hover:text-white rounded-full"
+                    aria-label="Play video testimonial"
                   >
-                    
-                    {/* Rating and Verification */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center gap-1">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`w-6 h-6 ${
-                                i < testimonial.rating 
-                                  ? 'text-accent-500 fill-current' 
-                                  : 'text-primary-200'
-                              }`}
-                            />
-                          ))}
-                          <span className="ml-2 text-lg font-semibold text-primary-700">
-                            {testimonial.rating}.0
-                          </span>
-                        </div>
-                      </div>
+                    <Play className="w-4 h-4" aria-hidden="true" />
+                  </Button>
+                )}
+              </div>
+            </div>
 
-                      <div className="flex items-center gap-2">
-                        {testimonial.verificationStatus === 'verified' && (
-                          <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">
-                            <Shield className="w-4 h-4 mr-1" />
-                            Verified Review
-                          </Badge>
-                        )}
-                        
-                        {testimonial.featured && (
-                          <Badge className="bg-gradient-to-r from-accent-500 to-accent-600 text-white">
-                            Featured Testimonial
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Video Testimonial */}
-                    {testimonial.videoTestimonial && (
-                      <div className="mb-8 rounded-2xl overflow-hidden bg-primary-900">
-                        <div className="aspect-video bg-gradient-to-br from-primary-800 to-primary-900 flex items-center justify-center">
-                          <Button
-                            size="lg"
-                            className="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 text-lg font-semibold"
-                          >
-                            <Play className="w-6 h-6 mr-2" />
-                            Watch Video Testimonial
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Main Quote */}
-                    <div className="mb-8">
-                      <div className="relative">
-                        <div className="absolute -top-4 -left-4 text-6xl text-accent-500/20 font-serif">"</div>
-                        <blockquote className="text-xl lg:text-2xl leading-relaxed text-primary-800 font-medium relative z-10 pl-8">
-                          {testimonial.fullQuote || testimonial.quote}
-                        </blockquote>
-                        <div className="absolute -bottom-4 -right-4 text-6xl text-accent-500/20 font-serif rotate-180">"</div>
-                      </div>
-                    </div>
-
-                    {/* Image Gallery */}
-                    {testimonial.images && testimonial.images.length > 0 && (
-                      <div className="mb-8">
-                        <h3 className="text-lg font-semibold text-primary-900 mb-4">
-                          Additional Images
-                        </h3>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                          {testimonial.images.map((image, index) => (
-                            <div
-                              key={index}
-                              className="aspect-square bg-primary-50 rounded-xl overflow-hidden"
-                            >
-                              <img
-                                src={image}
-                                alt={`${testimonial.author} testimonial ${index + 1}`}
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Subject and Results */}
-                    {(testimonial.subject || testimonial.result) && (
-                      <div className="mb-8">
-                        <h3 className="text-lg font-semibold text-primary-900 mb-4">
-                          Academic Details
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          {testimonial.subject && (
-                            <div className="p-4 bg-primary-50 rounded-xl">
-                              <h4 className="font-medium text-primary-800 mb-2">Subject</h4>
-                              <p className="text-primary-600">{testimonial.subject}</p>
-                            </div>
-                          )}
-                          {testimonial.result && (
-                            <div className="p-4 bg-emerald-50 rounded-xl">
-                              <h4 className="font-medium text-emerald-800 mb-2">Achievement</h4>
-                              <p className="text-emerald-600 font-semibold">{testimonial.result}</p>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Categories */}
-                    {testimonial.categories && testimonial.categories.length > 0 && (
-                      <div className="mb-8">
-                        <h3 className="text-lg font-semibold text-primary-900 mb-4">
-                          Categories
-                        </h3>
-                        <div className="flex flex-wrap gap-2">
-                          {testimonial.categories.map((category, index) => (
-                            <Badge
-                              key={index}
-                              variant="secondary"
-                              className="px-3 py-1"
-                            >
-                              {category}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Metadata */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 p-6 bg-primary-50/50 rounded-2xl">
-                      {testimonial.location && (
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-white rounded-lg">
-                            <MapPin className="w-5 h-5 text-primary-600" />
-                          </div>
-                          <div>
-                            <h4 className="font-medium text-primary-800">Location</h4>
-                            <p className="text-primary-600 text-sm">{testimonial.location}</p>
-                          </div>
-                        </div>
-                      )}
-                      
-                      {testimonial.date && (
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-white rounded-lg">
-                            <Calendar className="w-5 h-5 text-primary-600" />
-                          </div>
-                          <div>
-                            <h4 className="font-medium text-primary-800">Date</h4>
-                            <p className="text-primary-600 text-sm">
-                              {new Date(testimonial.date).toLocaleDateString('en-GB', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                              })}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-                      
-                      {testimonial.helpfulVotes !== undefined && (
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 bg-white rounded-lg">
-                            <ThumbsUp className="w-5 h-5 text-primary-600" />
-                          </div>
-                          <div>
-                            <h4 className="font-medium text-primary-800">Helpful Votes</h4>
-                            <p className="text-primary-600 text-sm">{testimonial.helpfulVotes} people found this helpful</p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Call to Action */}
-                    {/* CONTEXT7 SOURCE: /lucide-icons/lucide - Enhanced CTA button with bizstim form integration */}
-                    {/* BIZSTIM INTEGRATION REASON: User-specified form URL for testimonial page success story conversions */}
-                    <div className="text-center">
-                      <Button
-                        size="lg"
-                        className="bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 text-white px-8 py-3 text-lg font-semibold"
-                        onClick={() => {
-                          const formUrl = "https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
-                          window.open(formUrl, '_blank', 'noopener,noreferrer')
-                        }}
-                      >
-                        Start Your Success Story
-                        <ExternalLink className="w-5 h-5 ml-2" />
-                      </Button>
-                      <p className="text-primary-600 text-sm mt-2">
-                        Join hundreds of successful students achieving their academic goals
-                      </p>
-                    </div>
-                  </m.div>
+            {/* SYMMETRICAL SPACING: 8 units (32px) between sections */}
+            
+            {/* Main Quote Section */}
+            <div id="testimonial-modal-content" className="prose prose-lg max-w-none">
+              <blockquote className="text-primary-700 leading-relaxed text-lg border-l-4 border-accent-500 pl-6 italic">
+                "{testimonial.quote}"
+              </blockquote>
+              
+              {testimonial.fullQuote && testimonial.fullQuote !== testimonial.quote && (
+                <div className="mt-4 text-primary-600 leading-relaxed">
+                  {testimonial.fullQuote}
                 </div>
-              </CardContent>
-            </Card>
-          </m.div>
-        </div>
-      )}
+              )}
+            </div>
+
+            {/* SYMMETRICAL SPACING: 8 units (32px) between sections */}
+
+            {/* Subject and Result Section */}
+            {(testimonial.subject || testimonial.result) && (
+              <div className="flex flex-wrap gap-3">
+                {testimonial.subject && (
+                  <Badge variant="secondary" className="px-3 py-1">
+                    Subject: {testimonial.subject}
+                  </Badge>
+                )}
+                {testimonial.result && (
+                  <Badge variant="outline" className="px-3 py-1 border-emerald-200 text-emerald-700 bg-emerald-50">
+                    Result: {testimonial.result}
+                  </Badge>
+                )}
+              </div>
+            )}
+
+            {/* SYMMETRICAL SPACING: 8 units (32px) between sections */}
+
+            {/* Metadata Section */}
+            <div className="flex flex-wrap items-center gap-6 text-sm text-primary-500 pt-4 border-t border-primary-100">
+              {testimonial.location && (
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  <span>{testimonial.location}</span>
+                </div>
+              )}
+              
+              {testimonial.date && (
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  <span>{new Date(testimonial.date).toLocaleDateString()}</span>
+                </div>
+              )}
+            </div>
+
+            {/* SYMMETRICAL SPACING: 8 units (32px) between sections */}
+
+            {/* Engagement Section */}
+            {testimonial.helpfulVotes !== undefined && (
+              <div className="flex items-center justify-center pt-4 border-t border-primary-100">
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 px-6 py-2 hover:bg-accent-50 hover:border-accent-200"
+                  aria-label={`Mark testimonial as helpful (${testimonial.helpfulVotes} people found this helpful)`}
+                >
+                  <ThumbsUp className="w-4 h-4" aria-hidden="true" />
+                  <span>Helpful ({testimonial.helpfulVotes})</span>
+                </Button>
+              </div>
+            )}
+          </div>
+        </m.div>
+      </m.div>
     </AnimatePresence>
   )
 }

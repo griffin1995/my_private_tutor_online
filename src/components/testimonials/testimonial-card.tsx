@@ -35,6 +35,7 @@ interface TestimonialCardProps {
   readonly enableHover?: boolean
   readonly showFullContent?: boolean
   readonly className?: string
+  readonly onCardClick?: (testimonial: EnhancedTestimonial) => void
 }
 
 // CONTEXT7 SOURCE: /grx7/framer-motion - Sophisticated hover animation variants for premium card interactions
@@ -102,7 +103,8 @@ export function TestimonialCard({
   layout = 'grid',
   enableHover = true,
   showFullContent = false,
-  className = ''
+  className = '',
+  onCardClick
 }: TestimonialCardProps) {
   // CONTEXT7 SOURCE: /context7/react_dev - useState for interactive component state management
   // STATE MANAGEMENT REASON: Control expandable content and user interactions
@@ -110,8 +112,8 @@ export function TestimonialCard({
   const [imageIndex, setImageIndex] = useState(0)
   const [hasVoted, setHasVoted] = useState(false)
 
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Event handler removal pattern for non-interactive components
-  // CLICK HANDLER REMOVAL REASON: Official React documentation demonstrates removing onClick handlers when components become non-interactive
+  // CONTEXT7 SOURCE: /websites/react_dev - Event handler patterns for interactive components
+  // CLICK HANDLER RESTORATION REASON: Official React documentation demonstrates onClick handlers for user interaction
 
   const handleExpandToggle = useCallback((e: React.MouseEvent) => {
     e.stopPropagation()
@@ -129,18 +131,34 @@ export function TestimonialCard({
     // Video playback would be handled here
   }, [])
 
+  // CONTEXT7 SOURCE: /websites/react_dev - Event handler patterns for card click interaction
+  // CARD CLICK REASON: Official React documentation shows onClick patterns for passing functions as props
+  const handleCardClick = useCallback((e: React.MouseEvent) => {
+    // Prevent click when clicking on interactive elements
+    if (
+      (e.target as Element).closest('button') || 
+      (e.target as Element).closest('[role="button"]')
+    ) {
+      return
+    }
+    
+    if (onCardClick) {
+      onCardClick(testimonial)
+    }
+  }, [onCardClick, testimonial])
+
   // Determine if content should be truncated
   const shouldTruncate = testimonial.quote.length > 150 && !showFullContent && !isExpanded
   const displayQuote = shouldTruncate 
     ? testimonial.quote.substring(0, 150) + "..."
     : testimonial.quote
 
-  // CONTEXT7 SOURCE: /context7/tailwindcss - Responsive card layout classes based on display context
+  // CONTEXT7 SOURCE: /websites/react_dev - Responsive card layout classes based on display context
   // LAYOUT ADAPTATION REASON: Optimal presentation across different grid layouts and screen sizes
-  // CONTEXT7 SOURCE: /reactjs/react.dev - CSS class modification pattern for removing cursor pointer
-  // CURSOR REMOVAL REASON: Official React documentation demonstrates removing interactive cursor when components become display-only
+  // CONTEXT7 SOURCE: /websites/react_dev - CSS class patterns for interactive components
+  // CURSOR RESTORATION REASON: Official React documentation demonstrates cursor pointer for clickable components
   const getCardClasses = () => {
-    const baseClasses = "h-full bg-white/90 backdrop-blur-sm border-2 border-primary-100 rounded-3xl overflow-hidden group transition-all duration-300"
+    const baseClasses = `h-full bg-white/90 backdrop-blur-sm border-2 border-brand-metallic-blue-100 rounded-3xl overflow-hidden group transition-all duration-300 ${onCardClick ? 'cursor-pointer hover:border-brand-metallic-blue-200 hover:shadow-lg' : ''}`
     
     switch (layout) {
       case 'list':
@@ -159,6 +177,7 @@ export function TestimonialCard({
       initial="initial"
       whileHover={enableHover ? "hover" : undefined}
       whileTap={enableHover ? "tap" : undefined}
+      onClick={handleCardClick}
     >
       <Card className={getCardClasses()}>
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard padding for normal card layout */}
@@ -179,13 +198,13 @@ export function TestimonialCard({
                   <Star 
                     className={`w-5 h-5 ${
                       i < testimonial.rating 
-                        ? 'text-accent-500 fill-current' 
-                        : 'text-primary-200'
+                        ? 'text-brand-aztec-gold-600 fill-current' 
+                        : 'text-brand-metallic-blue-200'
                     }`}
                   />
                 </m.div>
               ))}
-              <span className="ml-2 text-sm font-medium text-primary-600">
+              <span className="ml-2 text-sm font-medium text-brand-metallic-blue-600 font-source-serif">
                 {testimonial.rating}.0
               </span>
             </div>
@@ -203,7 +222,7 @@ export function TestimonialCard({
 
               {/* Featured Badge */}
               {testimonial.featured && (
-                <Badge className="bg-gradient-to-r from-accent-500 to-accent-600 text-white">
+                <Badge className="bg-gradient-to-r from-brand-aztec-gold-500 to-brand-aztec-gold-600 text-white font-source-serif">
                   Featured
                 </Badge>
               )}
@@ -212,12 +231,13 @@ export function TestimonialCard({
               {testimonial.videoTestimonial && (
                 <m.button
                   onClick={handleVideoPlay}
-                  className="p-2 bg-primary-100 hover:bg-accent-500 text-primary-600 hover:text-white rounded-full transition-all duration-300"
+                  className="p-2 bg-brand-metallic-blue-100 hover:bg-brand-aztec-gold-500 text-brand-metallic-blue-600 hover:text-white rounded-full transition-all duration-300"
                   variants={iconVariants}
                   whileHover="hover"
                   whileTap={{ scale: 0.9 }}
+                  aria-label="Play video testimonial"
                 >
-                  <Play className="w-4 h-4" />
+                  <Play className="w-4 h-4" aria-hidden="true" />
                 </m.button>
               )}
             </div>
@@ -226,16 +246,17 @@ export function TestimonialCard({
           {/* CONTEXT7 SOURCE: /context7/tailwindcss - Main content area with quote and expandable functionality */}
           {/* CONTENT SECTION REASON: Optimized readability with progressive disclosure for longer testimonials */}
           <div className={`relative flex-1 mb-6 ${layout === 'list' ? 'md:flex-1' : ''}`}>
-            <Quote className="absolute -top-2 -left-2 w-8 h-8 text-accent-500/20" />
+            <Quote className="absolute -top-2 -left-2 w-8 h-8 text-brand-aztec-gold-500/20" />
             
             <div className="relative z-10">
-              <p className="text-primary-700 leading-relaxed font-medium text-base lg:text-lg mb-4">
+              <p className="text-brand-metallic-blue-700 leading-relaxed font-medium text-base lg:text-lg mb-4 font-source-serif">
                 {displayQuote}
               </p>
 
               {/* Expandable Content */}
               {testimonial.expandable && testimonial.fullQuote && !showFullContent && (
                 <m.div
+                  id={`testimonial-content-${testimonial.id}`}
                   initial="collapsed"
                   animate={isExpanded ? "expanded" : "collapsed"}
                   variants={expandVariants}
@@ -254,14 +275,16 @@ export function TestimonialCard({
                   size="sm"
                   onClick={handleExpandToggle}
                   className="mt-2 text-accent-600 hover:text-accent-700 hover:bg-accent-50 p-0 h-auto"
+                  aria-expanded={isExpanded}
+                  aria-controls={`testimonial-content-${testimonial.id}`}
                 >
                   {isExpanded ? (
                     <>
-                      Show Less <ChevronUp className="w-4 h-4 ml-1" />
+                      Show Less <ChevronUp className="w-4 h-4 ml-1" aria-hidden="true" />
                     </>
                   ) : (
                     <>
-                      Read More <ChevronDown className="w-4 h-4 ml-1" />
+                      Read More <ChevronDown className="w-4 h-4 ml-1" aria-hidden="true" />
                     </>
                   )}
                 </Button>
@@ -289,6 +312,8 @@ export function TestimonialCard({
                               ? 'bg-accent-500' 
                               : 'bg-primary-200 hover:bg-primary-300'
                           }`}
+                          aria-label={`View image ${index + 1} of ${testimonial.images.length}`}
+                          aria-pressed={index === imageIndex}
                         />
                       ))}
                     </div>
@@ -366,8 +391,10 @@ export function TestimonialCard({
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    aria-label={`${hasVoted ? 'Remove helpful vote' : 'Mark as helpful'} (${testimonial.helpfulVotes} people found this helpful)`}
+                    aria-pressed={hasVoted}
                   >
-                    <ThumbsUp className="w-4 h-4" />
+                    <ThumbsUp className="w-4 h-4" aria-hidden="true" />
                     <span>{testimonial.helpfulVotes}</span>
                   </m.button>
                 )}
