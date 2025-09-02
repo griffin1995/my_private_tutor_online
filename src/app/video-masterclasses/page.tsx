@@ -36,7 +36,7 @@ import { SimpleHero } from "@/components/layout/simple-hero";
 // COMPONENT STANDARDIZATION: Official React documentation recommends consistent component usage patterns
 import { VideoThumbnailTopCard } from "@/components/marketing/video-thumbnail-top-card";
 import { useVideoGridNavigation } from "@/hooks/use-video-grid-navigation";
-import { getMasterclassVideo, MASTERCLASS_VIDEOS } from "@/lib/cms/cms-images";
+import { getMasterclassVideo } from "@/lib/cms/cms-images";
 import { m } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -58,13 +58,13 @@ import { useEffect, useRef, useState } from "react";
 // - Interactivity: Basic UI components, no complex state management
 // - TODO: Migrate videoMasterclassesContent to CMS system for proper content management
 
-// CONTEXT7 SOURCE: /websites/react_dev - React component refactoring patterns for consistent UI component usage
-// COMPONENT STANDARDIZATION REASON: Official React documentation recommends converting direct component usage to reusable patterns for maintainability
+// CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component import for text emphasis
+// HIGHLIGHTER IMPORT REASON: Official Magic UI documentation recommends Highlighter for emphasizing key phrases
 // CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations and motion components for professional styling
 // DESIGN ENHANCEMENT: Clean visual branding with WaveSeparator and premium card designs without gradient overlays
 // IMPLEMENTATION REASON: Matching testimonials and landing page professional appearance standards
 // CONTEXT7 SOURCE: /grx7/framer-motion - motion.div with initial, whileInView, and viewport props for scroll animations
-import { QuoteSection } from "@/components/sections/quote-section";
+import { Highlighter } from "@/components/magicui/highlighter";
 
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Background color utilities for solid color implementations
 // GRADIENT REMOVAL REASON: Official Tailwind CSS documentation recommends solid color backgrounds for clean, professional educational content pages
@@ -186,7 +186,6 @@ export default function VideoMasterclassesPage() {
   // CONTEXT7 SOURCE: /reactjs/react.dev - React useState for video modal state management
   // VIDEO MODAL IMPLEMENTATION: Official React documentation recommends useState for modal visibility control
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const [currentVideoId, setCurrentVideoId] = useState<string>("unlockingAcademicSuccess");
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // CONTEXT7 SOURCE: /w3c/wcag - Video grid navigation for accessibility
@@ -204,8 +203,7 @@ export default function VideoMasterclassesPage() {
 
   // CONTEXT7 SOURCE: /reactjs/react.dev - Video modal handler functions
   // MODAL CONTROL REASON: Official React documentation recommends separate functions for open/close actions
-  const handleVideoOpen = (videoId: string = "unlockingAcademicSuccess") => {
-    setCurrentVideoId(videoId);
+  const handleVideoOpen = () => {
     setIsVideoOpen(true);
   };
 
@@ -281,15 +279,36 @@ export default function VideoMasterclassesPage() {
               </h2>
               <div className="w-24 h-1 bg-amber-500 mx-auto rounded-full mb-8" />
               
-              {/* CONTEXT7 SOURCE: /websites/react_dev - Component refactoring patterns for standardized QuoteSection usage */}
-              {/* COMPONENT STANDARDIZATION REASON: Official React documentation recommends converting direct Highlighter usage to reusable QuoteSection component for consistency */}
+              {/* CONTEXT7 SOURCE: /grx7/framer-motion - Introductory text moved from section 2 */}
+              {/* CONTENT POSITIONING: Moving intro text underneath Featured Masterclasses h1 as requested */}
               <div className="max-w-5xl mx-auto">
-                <QuoteSection 
-                  quote="Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over 15 years of international education experience. These masterclasses, drawn from her live seminars, offer rare access to the knowledge and strategies typically reserved for her private clients. These sessions bridge the gap between international education and expectations of British schools and universities. Access on demand, from anywhere in the world."
-                  backgroundColor="bg-transparent"
-                  className="py-0"
-                  useHighlighting={true}
-                />
+                <div className="text-lg lg:text-xl text-primary-700 leading-relaxed space-y-4">
+                  <p>
+                    Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over{" "}
+                    <Highlighter action="highlight" color="#eab308">
+                      15 years of international education experience
+                    </Highlighter>
+                    . These masterclasses, drawn from her live seminars, offer{" "}
+                    <Highlighter action="underline" color="#0f172a">
+                      rare access
+                    </Highlighter>
+                    {" "}to the knowledge and strategies{" "}
+                    <Highlighter action="underline" color="#0f172a">
+                      typically reserved for her private clients
+                    </Highlighter>
+                    .
+                  </p>
+                  <p>
+                    These sessions bridge the gap between international education and{" "}
+                    <Highlighter action="highlight" color="#eab308">
+                      expectations of British schools and universities
+                    </Highlighter>
+                    .
+                  </p>
+                  <p>
+                    Access on demand, from anywhere in the world.
+                  </p>
+                </div>
               </div>
             </m.div>
 
@@ -385,7 +404,7 @@ export default function VideoMasterclassesPage() {
                   ]}
                   ctaText="Watch Free Masterclass"
                   ctaLink="#free-masterclass"
-                  onCTAClick={() => handleVideoOpen("unlockingAcademicSuccess")}
+                  onCTAClick={handleVideoOpen}
                   videoUrl={
                     getMasterclassVideo("unlockingAcademicSuccess").videoUrl
                   }
@@ -455,7 +474,7 @@ export default function VideoMasterclassesPage() {
                   ]}
                   ctaText="Watch Free Masterclass"
                   ctaLink="#free-masterclass"
-                  onCTAClick={() => handleVideoOpen("unlockingAcademicSuccess")}
+                  onCTAClick={handleVideoOpen}
                   videoUrl={
                     getMasterclassVideo("unlockingAcademicSuccess").videoUrl
                   }
@@ -492,7 +511,7 @@ export default function VideoMasterclassesPage() {
                   ]}
                   ctaText="Watch Summit Recording"
                   ctaLink="#summit-recording"
-                  onCTAClick={() => handleVideoOpen("ucasSummit2024")}
+                  onCTAClick={handleVideoOpen}
                   videoUrl={getMasterclassVideo("ucasSummit2024").videoUrl}
                   thumbnailUrl={
                     getMasterclassVideo("ucasSummit2024").thumbnailUrl
@@ -854,14 +873,14 @@ export default function VideoMasterclassesPage() {
           >
             {/* CONTEXT7 SOURCE: /microsoft/typescript - Conditional rendering for optional property handling */}
             {/* VIDEO AVAILABILITY CHECK: Official TypeScript documentation demonstrates proper optional property access patterns */}
-            {getMasterclassVideo(currentVideoId as keyof typeof MASTERCLASS_VIDEOS).videoUrl ? (
+            {getMasterclassVideo("unlockingAcademicSuccess").videoUrl ? (
               <>
                 {/* Video Player */}
                 {/* CONTEXT7 SOURCE: /mozilla/mdn - HTML5 video element with accessibility and autoplay */}
                 {/* VIDEO IMPLEMENTATION REASON: Official MDN documentation recommends controls, autoPlay, and playsInline for optimal video playback */}
                 <video
                   ref={videoRef}
-                  src={getMasterclassVideo(currentVideoId as keyof typeof MASTERCLASS_VIDEOS).videoUrl}
+                  src={getMasterclassVideo("unlockingAcademicSuccess").videoUrl}
                   className="w-full h-full rounded-lg shadow-2xl object-cover"
                   controls
                   autoPlay
