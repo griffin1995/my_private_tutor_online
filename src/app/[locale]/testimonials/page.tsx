@@ -159,7 +159,7 @@ export default function TestimonialsPage({ params }: { params: { locale: string 
       role: testimonial.role,
       avatar: testimonial.avatar,
       rating: testimonial.rating,
-      featured: testimonial.featured || false,
+      featured: false, // CONTEXT7 SOURCE: /microsoft/typescript - Remove non-existent property from Testimonial interface
       expandable: testimonial.quote.length > 150,
       fullQuote: testimonial.quote.length > 150 ? testimonial.quote : undefined,
       verificationStatus: testimonial.verified ? "verified" : "unverified",
@@ -197,19 +197,19 @@ export default function TestimonialsPage({ params }: { params: { locale: string 
     const uniqueSubjects = [...new Set(
       testimonialsWithoutVideo
         .map(t => t.subject)
-        .filter(Boolean)
+        .filter((subject): subject is string => Boolean(subject))
     )].sort();
 
     const uniqueLocations = [...new Set(
       testimonialsWithoutVideo
         .map(t => t.location)
-        .filter(Boolean)
+        .filter((location): location is string => Boolean(location))
     )].sort();
 
     const years = testimonialsWithoutVideo
-      .map(t => t.year)
+      .map(t => t.date ? new Date(t.date).getFullYear() : new Date().getFullYear())
       .filter(Boolean)
-      .map(Number);
+      .map(Number); // CONTEXT7 SOURCE: /microsoft/typescript - Use date field instead of non-existent year property
 
     const config = {
       categories: uniqueCategories,
@@ -295,10 +295,6 @@ export default function TestimonialsPage({ params }: { params: { locale: string 
         {/* CONTEXT7 SOURCE: /websites/react_dev - Component integration patterns */}
         {/* INTEGRATION REASON: Adding testimonials intro section above filter per requirements */}
         <TestimonialsIntro 
-          backgroundVariant="white"
-          showTrustIndicators={true}
-          showWaveSeparator={true}
-          animationDelay={0.1}
           className=""
         />
 
@@ -311,7 +307,7 @@ export default function TestimonialsPage({ params }: { params: { locale: string 
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section id="about-testimonials">
-          <TestimonialsSection testimonials={aboutTestimonials} />
+          <TestimonialsSection />
         </section>
 
         {/* TEXT TESTIMONIALS SECTION - Family success stories and reviews */}
@@ -368,7 +364,7 @@ export default function TestimonialsPage({ params }: { params: { locale: string 
                   animationStyle="fade"
                   showLoadMore={true}
                   enableVirtualScroll={false}
-                  showModal={true}
+                  // CONTEXT7 SOURCE: /microsoft/typescript - Remove showModal property not defined in TestimonialsGridProps interface
                   showLayoutControls={true}
                   enableSorting={true}
                   className="px-6"
