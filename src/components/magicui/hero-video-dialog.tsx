@@ -198,17 +198,11 @@ function HeroVideoDialog({
              * - Play button now perfectly centered within its circular container
              */}
             <div className="flex items-center justify-center">
-              {isFree ? (
+              {isFree && (
                 <CirclePlay
                   size={100}
                   strokeWidth={0.5}
                   className="text-white group-hover:text-[#CA9E5B] transition-colors duration-300"
-                />
-              ) : (
-                <CirclePoundSterling 
-                  size={100}
-                  strokeWidth={0.5}
-                  className="text-white group-hover:text-[#CA9E5B] transition-colors duration-300" 
                 />
               )}
             </div>

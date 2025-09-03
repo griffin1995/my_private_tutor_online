@@ -29,7 +29,7 @@ export function TwoRowHeadingTextSection({
     <div className={`bg-${backgroundColor} ${className}`}>
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
         <m.div
-          className="max-w-6xl mx-auto mb-20 px-4 sm:px-6 lg:px-8"
+          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
           initial={fadeInUpVariant.initial}
           whileInView={fadeInUpVariant.animate}
           viewport={{ once: true, margin: "-100px" }}

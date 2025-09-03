@@ -80,22 +80,25 @@ export default function VideoPage() {
           {/* CONTEXT7 SOURCE: /reactjs/react.dev - Direct component rendering with simplified props */}
           {/* SIMPLIFIED RENDERING: Components render directly with title and layout, no CMS loading required */}
           <VideoMasterclassSection
-            title="Unlocking Academic Success"
+            videoId="unlockingAcademicSuccess"
             layout="text-left"
+            className="py-32"
           />
 
           <VideoMasterclassSection
-            title="Elizabeth's Essential UCAS Guide - Part 1/2"
+            videoId="elizabethsUcasGuide"
             layout="text-right"
+            className="py-32"
           />
         </section>
 
+        {/* THIS IS FREE SECTION */}
         <section id="love-at-first-lesson" className="py-16">
           <TwoRowHeadingTextSection
-            headingOne="Two Exceptional FREE Masterclasses with Elizabeth Burrows"
-            paragraphOne="Access Elizabeth's premium educational expertise completely free of charge through these two carefully selected masterclasses. 'Unlocking Academic Success' captures Elizabeth's acclaimed GCSE Summit 2024 presentation, where she addressed parents on navigating knowledge gaps and rebuilding confidence through one-to-one tuition. The 'UCAS Summit 2024 Recording' provides complete access to Elizabeth's comprehensive guidance session, including the live audience Q&A that follows. Both sessions represent £100+ value content, now available as complimentary introductions to Elizabeth's expertise—the same calibre of insight that has earned her recognition in Tatler's Address Book 2025."
-            headingTwo="Professional Guidance from Britain's Leading Education Consultant"
-            paragraphTwo="These free masterclasses deliver practical strategies directly applicable to your family's educational journey. Elizabeth shares her proven approaches for recognising when one-to-one support is needed, identifying truly exceptional tutors, and managing the complex dynamics of educational relationships. You'll learn how to frame tutoring positively for reluctant students, determine your child's genuine potential, and navigate the challenges of supporting teens through GCSEs, IBs and A Levels. These sessions serve as your complimentary introduction to the expertise that has successfully guided hundreds of families through the British education system—watch them to discover why discerning parents consistently choose Elizabeth's guidance."
+            headingOne="Navigating Academic Support: Understanding the Real Challenges Parents Face"
+            paragraphOne="The journey of supporting a child through their education is fraught with complexity and uncertainty. Many parents find themselves grappling with fundamental questions: When does academic struggle require intervention? How do you distinguish between temporary setbacks and genuine learning gaps? The modern educational landscape presents unique challenges, with increasingly competitive environments and evolving curricula that can leave even the most engaged parents feeling unprepared. Understanding when and how to provide effective academic support requires deep insight into child development, learning psychology, and educational systems—knowledge that extends far beyond traditional parenting experience."
+            headingTwo="The Hidden Complexities of Educational Decision-Making"
+            paragraphTwo="Behind every academic decision lies a web of considerations that parents rarely anticipate. Supporting reluctant learners requires sophisticated understanding of motivation psychology and learning styles. Navigating the intricate relationships between schools, tutors, and families demands diplomatic skill and clear communication strategies. The pressure to make the 'right' choices for GCSEs, A Levels, and university pathways can be overwhelming when parents lack insider knowledge of how these systems truly operate. These challenges are compounded by the emotional toll of watching a child struggle, the financial implications of educational support, and the delicate balance between nurturing independence whilst providing necessary guidance."
           />
         </section>
         <section id="free-video-content">
@@ -105,22 +108,25 @@ export default function VideoPage() {
           {/* CONTEXT7 SOURCE: /reactjs/react.dev - Direct component rendering with simplified props */}
           {/* SIMPLIFIED RENDERING: Components render directly with title and layout, no CMS loading required */}
           <VideoMasterclassSection
-            title="Unlocking Academic Success"
+            videoId="ucasSummit2024"
             layout="text-left"
+            className="py-32"
           />
 
           <VideoMasterclassSection
-            title="Elizabeth's Essential UCAS Guide - Part 1/2"
+            videoId="unlockingAcademicSuccess"
             layout="text-right"
+            className="py-32"
           />
         </section>
 
+        {/* THIS IS UCAS SECTION */}
         <section id="love-at-first-lesson" className="py-16">
           <TwoRowHeadingTextSection
-            headingOne="Two Exceptional FREE Masterclasses with Elizabeth Burrows"
-            paragraphOne="Access Elizabeth's premium educational expertise completely free of charge through these two carefully selected masterclasses. 'Unlocking Academic Success' captures Elizabeth's acclaimed GCSE Summit 2024 presentation, where she addressed parents on navigating knowledge gaps and rebuilding confidence through one-to-one tuition. The 'UCAS Summit 2024 Recording' provides complete access to Elizabeth's comprehensive guidance session, including the live audience Q&A that follows. Both sessions represent £100+ value content, now available as complimentary introductions to Elizabeth's expertise—the same calibre of insight that has earned her recognition in Tatler's Address Book 2025."
-            headingTwo="Professional Guidance from Britain's Leading Education Consultant"
-            paragraphTwo="These free masterclasses deliver practical strategies directly applicable to your family's educational journey. Elizabeth shares her proven approaches for recognising when one-to-one support is needed, identifying truly exceptional tutors, and managing the complex dynamics of educational relationships. You'll learn how to frame tutoring positively for reluctant students, determine your child's genuine potential, and navigate the challenges of supporting teens through GCSEs, IBs and A Levels. These sessions serve as your complimentary introduction to the expertise that has successfully guided hundreds of families through the British education system—watch them to discover why discerning parents consistently choose Elizabeth's guidance."
+            headingOne="University Admissions: Decoding Britain's Most Complex Educational Process"
+            paragraphOne="The British university admissions system represents one of the most intricate and high-stakes processes that families will ever navigate. UCAS applications are governed by unwritten rules, implicit expectations, and nuanced requirements that can confound even highly educated parents. The personal statement alone—a single document that can determine a young person's entire future—operates according to criteria that are rarely made explicit. Understanding university selection strategies, reference requirements, and timeline management requires intimate knowledge of how admissions committees actually evaluate candidates, knowledge that remains largely inaccessible to families approaching the process independently."
+            headingTwo="Personal Statements: The Art of Strategic Self-Presentation"
+            paragraphTwo="Crafting a compelling personal statement demands far more than good writing skills—it requires sophisticated understanding of institutional psychology, subject-specific expectations, and competitive positioning. The challenge lies not merely in communicating achievements but in demonstrating intellectual curiosity, academic potential, and cultural fit within just 4,000 characters. Parents often struggle to guide their children through this process because it requires balancing authentic voice with strategic positioning, personal reflection with academic focus, and individual story with institutional expectations. The stakes are particularly high for competitive courses and prestigious institutions, where the margin for error is virtually nonexistent."
           />
         </section>
         <section id="ucas-video-content">
@@ -130,24 +136,29 @@ export default function VideoPage() {
           {/* CONTEXT7 SOURCE: /reactjs/react.dev - Direct component rendering with simplified props */}
           {/* SIMPLIFIED RENDERING: Components render directly with title and layout, no CMS loading required */}
           <VideoMasterclassSection
-            title="Unlocking Academic Success"
+            videoId="elizabethsUcasGuide"
             layout="text-left"
+            className="py-32"
           />
 
           <VideoMasterclassSection
-            title="Elizabeth's Essential UCAS Guide - Part 1/2"
+            videoId="personalStatementsGuide"
             layout="text-right"
+            className="py-32"
           />
         </section>
 
+        {/* THIS IS BRITISH SECTION */}
+
         <section id="love-at-first-lesson" className="py-16">
           <TwoRowHeadingTextSection
-            headingOne="Two Exceptional FREE Masterclasses with Elizabeth Burrows"
-            paragraphOne="Access Elizabeth's premium educational expertise completely free of charge through these two carefully selected masterclasses. 'Unlocking Academic Success' captures Elizabeth's acclaimed GCSE Summit 2024 presentation, where she addressed parents on navigating knowledge gaps and rebuilding confidence through one-to-one tuition. The 'UCAS Summit 2024 Recording' provides complete access to Elizabeth's comprehensive guidance session, including the live audience Q&A that follows. Both sessions represent £100+ value content, now available as complimentary introductions to Elizabeth's expertise—the same calibre of insight that has earned her recognition in Tatler's Address Book 2025."
-            headingTwo="Professional Guidance from Britain's Leading Education Consultant"
-            paragraphTwo="These free masterclasses deliver practical strategies directly applicable to your family's educational journey. Elizabeth shares her proven approaches for recognising when one-to-one support is needed, identifying truly exceptional tutors, and managing the complex dynamics of educational relationships. You'll learn how to frame tutoring positively for reluctant students, determine your child's genuine potential, and navigate the challenges of supporting teens through GCSEs, IBs and A Levels. These sessions serve as your complimentary introduction to the expertise that has successfully guided hundreds of families through the British education system—watch them to discover why discerning parents consistently choose Elizabeth's guidance."
+            headingOne="Cultural Literacy: The Unspoken Foundation of British Educational Success"
+            paragraphOne="British educational culture operates on layers of implicit understanding that can be invisible to outsiders yet critical for academic and social success. Literary knowledge, cultural references, and historical context form the backdrop of classroom discussions, examination questions, and peer interactions throughout the British school system. International families often find their children academically capable yet culturally disadvantaged, missing subtle references and contextual understanding that British students absorb naturally. This cultural capital gap can affect everything from interview performance at independent schools to university seminar participation, creating barriers that academic ability alone cannot overcome."
+            headingTwo="Social Navigation: Understanding Britain's Institutional Protocols"
+            paragraphTwo="The social dynamics of British educational institutions operate according to centuries-old codes of conduct that remain largely unspoken yet powerfully influential. From dining etiquette at boarding schools to interview protocols for university admissions, these social conventions can determine opportunities and outcomes in ways that surprise unprepared families. Parents often underestimate how significantly social fluency impacts their child's educational experience, from peer relationships to teacher perceptions to institutional fit. The challenge is particularly acute for international families who may excel academically whilst struggling to decode the subtle social expectations that permeate Britain's most prestigious educational environments."
           />
         </section>
+
         <section id="british-culture-video-content">
           {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration with props for dynamic content rendering */}
           {/* HERO VIDEO DIALOG INTEGRATION REASON: Official React documentation Section 2.1 recommends component composition patterns for reusable UI elements */}
@@ -155,22 +166,15 @@ export default function VideoPage() {
           {/* CONTEXT7 SOURCE: /reactjs/react.dev - Direct component rendering with simplified props */}
           {/* SIMPLIFIED RENDERING: Components render directly with title and layout, no CMS loading required */}
           <VideoMasterclassSection
-            title="Unlocking Academic Success"
+            videoId="britishLiteraryClassics"
             layout="text-left"
+            className="py-32"
           />
 
           <VideoMasterclassSection
-            title="Elizabeth's Essential UCAS Guide - Part 1/2"
+            videoId="britishEtiquette"
             layout="text-right"
-          />
-        </section>
-
-        <section id="love-at-first-lesson" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="Two Exceptional FREE Masterclasses with Elizabeth Burrows"
-            paragraphOne="Access Elizabeth's premium educational expertise completely free of charge through these two carefully selected masterclasses. 'Unlocking Academic Success' captures Elizabeth's acclaimed GCSE Summit 2024 presentation, where she addressed parents on navigating knowledge gaps and rebuilding confidence through one-to-one tuition. The 'UCAS Summit 2024 Recording' provides complete access to Elizabeth's comprehensive guidance session, including the live audience Q&A that follows. Both sessions represent £100+ value content, now available as complimentary introductions to Elizabeth's expertise—the same calibre of insight that has earned her recognition in Tatler's Address Book 2025."
-            headingTwo="Professional Guidance from Britain's Leading Education Consultant"
-            paragraphTwo="These free masterclasses deliver practical strategies directly applicable to your family's educational journey. Elizabeth shares her proven approaches for recognising when one-to-one support is needed, identifying truly exceptional tutors, and managing the complex dynamics of educational relationships. You'll learn how to frame tutoring positively for reluctant students, determine your child's genuine potential, and navigate the challenges of supporting teens through GCSEs, IBs and A Levels. These sessions serve as your complimentary introduction to the expertise that has successfully guided hundreds of families through the British education system—watch them to discover why discerning parents consistently choose Elizabeth's guidance."
+            className="py-32"
           />
         </section>
       </PageLayout>

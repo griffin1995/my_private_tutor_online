@@ -27,26 +27,28 @@
 
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import { Separator } from "@/components/ui/separator";
-import { getVideoByTitle, getVideoPageData } from "@/lib/cms/cms-images";
+import { getMasterclassVideo } from "@/lib/cms/cms-images";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface with simple prop patterns for component composition
 // COMPONENT SIMPLIFICATION: Simplified props interface following TypeScript object literal patterns
 interface VideoMasterclassSectionProps {
-  readonly title: string;
+  readonly videoId: string;
   readonly layout: "text-left" | "text-right";
+  readonly className?: string;
 }
 
 export function VideoMasterclassSection({ 
-  title,
-  layout
+  videoId,
+  layout,
+  className = ""
 }: VideoMasterclassSectionProps) {
   // MASTER CMS LOOKUP: Get video data from centralized CMS
-  const video = getVideoByTitle(title);
-  const layoutData = getVideoPageData(title);
+  const video = getMasterclassVideo(videoId);
+  const layoutData = video?.layouts?.videoPage;
 
   // ERROR HANDLING: Return null if video or layout data not found
   if (!video || !layoutData) {
-    console.error(`Video or layout data not found for title: "${title}"`);
+    console.error(`Video or layout data not found for videoId: "${videoId}"`);
     return null;
   }
 
@@ -81,34 +83,54 @@ export function VideoMasterclassSection({
 
   return (
     <div 
-      className="relative grid md:grid-cols-2 gap-8 items-center bg-cover bg-center bg-no-repeat py-8"
+      className={`relative grid md:grid-cols-2 gap-8 items-center bg-cover bg-center bg-no-repeat ${className}`}
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
-      <div className="absolute inset-0 bg-black/30"></div>
       {/* Video Section */}
       <div className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
-        <div className="relative group">
-          <div className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
-            <span className="text-white group-hover:text-[#D4AF37] font-medium italic transition-colors duration-300">{isFree ? "Watch." : "Buy."}</span>
-          </div>
-          <div className="relative">
-            <div className="absolute inset-0 bg-black/15 rounded-lg z-10 transition-opacity duration-300 hover:bg-black/0"></div>
+        {isFree ? (
+          <div className="relative group">
+            <div className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
+              <span className="text-white group-hover:text-[#D4AF37] font-medium italic transition-colors duration-300">Watch.</span>
+            </div>
             <HeroVideoDialog
               videoSrc={videoUrl}
               thumbnailSrc={thumbnailUrl}
               thumbnailAlt={alt}
               animationStyle={animationStyle}
               isFree={isFree}
-              className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg shadow-xl shadow-white/30 relative"
+              className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
             />
           </div>
-        </div>
+        ) : (
+          <a 
+            href={video.paymentUrl || '#'} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="relative group cursor-pointer"
+          >
+            <div className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
+              <span className="!text-white group-hover:!text-[#D4AF37] font-medium italic transition-colors duration-300">Buy.</span>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-black/15 rounded-lg z-10 transition-opacity duration-300 group-hover:bg-black/0"></div>
+              <div className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] relative overflow-hidden">
+                <img
+                  src={thumbnailUrl}
+                  alt={alt}
+                  className="w-full h-full object-cover drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                  style={{ aspectRatio: "16/9" }}
+                />
+              </div>
+            </div>
+          </a>
+        )}
       </div>
 
       {/* Text Content Section */}
       <div className={`relative z-10 w-4/5 mx-auto p-8 ${textAlignment} ${textGridOrder}`}>
         <h2 className="text-4xl font-bold text-white mb-3">
-          {title}
+          {video.title}
         </h2>
         
         {/* CONTEXT7 SOURCE: /radix-ui/primitives - Separator component for visual content division */}
@@ -124,6 +146,22 @@ export function VideoMasterclassSection({
             className="flex-shrink-0 bg-gray-300 h-4"
           />
           <span className="text-white text-sm font-medium">{duration} minutes</span>
+          <Separator
+            orientation="vertical"
+            className="flex-shrink-0 bg-gray-300 h-4"
+          />
+          {video.isFree ? (
+            <span className="text-white text-sm font-medium">Watch</span>
+          ) : (
+            <a 
+              href={video.paymentUrl || '#'} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="!text-white text-sm font-medium hover:!text-[#CA9E5B] hover:underline transition-all duration-300 cursor-pointer"
+            >
+              Purchase
+            </a>
+          )}
         </div>
         
         <Separator

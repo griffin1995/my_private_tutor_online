@@ -9,7 +9,7 @@ import { cache } from "react";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Module import patterns for centralized CMS data
 // COMPREHENSIVE VIDEO CMS IMPORT: Import unified video CMS from centralized location
-import { COMPREHENSIVE_VIDEO_CMS } from "../../../COMPREHENSIVE_VIDEO_CMS";
+import { COMPREHENSIVE_VIDEO_CMS, getVideoById } from "../../../COMPREHENSIVE_VIDEO_CMS";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for media asset management
 // CONTEXT7 SOURCE: /microsoft/typescript - Readonly properties for immutable data structures
@@ -1705,8 +1705,8 @@ export const getProgrammeImage = (
  * CONTEXT7 SOURCE: /microsoft/typescript - String parameter patterns for video lookup
  * CMS DATA SOURCE: Using MASTER_VIDEO_CMS for individual video asset retrieval
  */
-export const getMasterclassVideo = (title: string) => {
-  return getVideoByTitle(title);
+export const getMasterclassVideo = (id: string) => {
+  return getVideoById(id);
 };
 
 /**

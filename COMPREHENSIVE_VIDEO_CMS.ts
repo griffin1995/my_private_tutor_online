@@ -116,13 +116,13 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
 
   ucasSummit2024: {
     id: "ucas-summit-2024",
-    title: "UCAS Summit 2024 (Free Access)",
+    title: "UCAS Summit 2024",
     description: "Complete recording from Elizabeth's presentation at the GCSE Summit 2024, where she addressed parents of GCSE-aged students on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition. This comprehensive recording includes audience Q&A and additional insights for parents navigating the tutoring landscape.",
-    videoUrl: "/videos/gcse-summit-2024-elizabeth-burrows.mp4",
+    videoUrl: "https://www.youtube.com/embed/IfF9zSzuceY?si=7_tmYovUVVfqLX0D",
     src: "/videos/gcse-summit-2024-elizabeth-burrows.mp4",
     thumbnailUrl: "/images/masterclass-thumbnails/gcse-summit-2024.png",
     poster: "/images/masterclass-thumbnails/gcse-summit-2024.png",
-    backgroundImage: null,
+    backgroundImage: "/images/pexels-shkrabaanthony-5306492.jpg",
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -139,7 +139,26 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     height: null,
     loading: null,
     usageTypes: ["masterclass"],
-    layouts: null
+    layouts: {
+      videoPage: {
+        position: "text-left",
+        badge: { text: "Free Access", type: "free" },
+        content: {
+          paragraphs: [
+            "Complete recording from Elizabeth's presentation at the GCSE Summit 2024, addressing parents on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition.",
+            "This comprehensive recording includes audience Q&A and additional insights for parents navigating the tutoring landscape.",
+            "Learn practical strategies from Elizabeth's 15+ years of experience helping families through the British education system."
+          ],
+          bulletPoints: [
+            "Complete GCSE Summit 2024 presentation recording",
+            "Live audience Q&A session included", 
+            "Expert guidance for parents and students",
+            "Practical strategies for knowledge gap navigation"
+          ]
+        },
+        animationStyle: "top-in-bottom-out"
+      }
+    }
   },
 
   elizabethsUcasGuide: {
@@ -150,7 +169,7 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     src: null,
     thumbnailUrl: "/images/masterclass-thumbnails/ucas-guide.png", // USER CHOICE: ucas-guide.png
     poster: "/images/masterclass-thumbnails/ucas-guide.png",
-    backgroundImage: "/images/pexels-polina-tankilevitch-6929349.jpg", // Background for this video
+    backgroundImage: "/images/pexels-isabella-mendes-107313-11286592.jpg", // Background for this video
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -197,7 +216,7 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     src: null,
     thumbnailUrl: "/images/masterclass-thumbnails/top-10-tips.png",
     poster: "/images/masterclass-thumbnails/top-10-tips.png",
-    backgroundImage: null,
+    backgroundImage: "/images/pexels-shkrabaanthony-5306492.jpg",
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -214,18 +233,37 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     height: null,
     loading: null,
     usageTypes: ["masterclass"],
-    layouts: null
+    layouts: {
+      videoPage: {
+        position: "text-right",
+        badge: { text: "£89.99", type: "premium" },
+        content: {
+          paragraphs: [
+            "Elizabeth is renowned for her success in guiding ambitious students into Oxbridge and top UK universities. In this masterclass she reveals the 10 ingredients in her secret recipe for personal statement success.",
+            "Each year her private students secure places at the best British universities, including UCL, LSE, Imperial and Edinburgh.",
+            "Learn from Elizabeth's proven track record and discover the strategic approach that has helped hundreds of students achieve their university ambitions."
+          ],
+          bulletPoints: [
+            "Elizabeth's secret 10-ingredient personal statement recipe",
+            "Real Oxford Medicine personal statement case study",
+            "New 2025 UCAS format structured response guidance",
+            "Advanced writing techniques for standout applications"
+          ]
+        },
+        animationStyle: "top-in-bottom-out"
+      }
+    }
   },
 
   britishLiteraryClassics: {
     id: "british-literary-classics",
-    title: "Exploring British Literary Classics (Ages 8–14)",
+    title: "Exploring British Literary Classics (8–14)",
     description: "From Wind in the Willows to The Lord of the Rings, this engaging masterclass introduces students to some of the most celebrated works in British literature. Led by Elizabeth Burrows, this session explores what defines a literary classic.",
     videoUrl: null,
     src: null,
     thumbnailUrl: "/images/masterclass-thumbnails/british-literary-classics.png",
     poster: "/images/masterclass-thumbnails/british-literary-classics.png",
-    backgroundImage: null,
+    backgroundImage: "/images/pexels-this-and-no-internet-25-288559-29659893.jpg",
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -242,7 +280,26 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     height: null,
     loading: null,
     usageTypes: ["masterclass"],
-    layouts: null
+    layouts: {
+      videoPage: {
+        position: "text-left",
+        badge: { text: "£19.99", type: "premium" },
+        content: {
+          paragraphs: [
+            "From Wind in the Willows to The Lord of the Rings, this engaging masterclass introduces students to some of the most celebrated works in British literature.",
+            "Led by Elizabeth Burrows, this session explores what defines a literary classic and examines key themes and cultural significance.",
+            "Perfect for curious and aspiring readers aged 8-14, delivered to an international student audience with partial Mandarin subtitles."
+          ],
+          bulletPoints: [
+            "What defines a literary classic explored",
+            "Key British literary genres and conventions",
+            "Themes and cultural significance analysis",
+            "60-minute recorded masterclass with Mandarin subtitles"
+          ]
+        },
+        animationStyle: "top-in-bottom-out"
+      }
+    }
   },
 
   britishEtiquette: {
@@ -253,7 +310,7 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     src: null,
     thumbnailUrl: "/images/masterclass-thumbnails/british-etiquette.jpg",
     poster: "/images/masterclass-thumbnails/british-etiquette.jpg",
-    backgroundImage: null,
+    backgroundImage: "/images/pexels-gsn-travel-28448938.jpg",
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -270,7 +327,26 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     height: null,
     loading: null,
     usageTypes: ["masterclass"],
-    layouts: null
+    layouts: {
+      videoPage: {
+        position: "text-right",
+        badge: { text: "£19.99", type: "premium" },
+        content: {
+          paragraphs: [
+            "Drawing on her experience working with royalty and high-profile international families, Elizabeth demystifies the social codes that shape life in the UK's most prestigious schools and institutions.",
+            "This masterclass provides essential cultural awareness for international families navigating British educational and social environments.",
+            "Perfect for building confidence and cultural fluency in formal British settings, delivered with partial Mandarin subtitles."
+          ],
+          bulletPoints: [
+            "Greetings, introductions, and dining etiquette mastery",
+            "Cross-cultural etiquette understanding and adaptation",
+            "Social grace and cultural fluency development",
+            "Confidence-building for formal British environments"
+          ]
+        },
+        animationStyle: "top-in-bottom-out"
+      }
+    }
   },
 
   // ===== TESTIMONIAL VIDEOS =====
