@@ -25,6 +25,8 @@
 
 "use client"
 
+// CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component import for video modal functionality
+// IMPORT REASON: Official Magic UI documentation recommends default import for HeroVideoDialog component
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import { Separator } from "@/components/ui/separator";
 import { getMasterclassVideo } from "@/lib/cms/cms-images";

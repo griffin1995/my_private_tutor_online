@@ -39,6 +39,7 @@ import { AnimatePresence, m } from "framer-motion";
 import { CirclePlay, CirclePoundSterling, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 type AnimationStyle =
   | "from-bottom"
@@ -102,7 +103,7 @@ const animationVariants = {
   },
 };
 
-function HeroVideoDialog({
+export function HeroVideoDialog({
   videoSrc,
   thumbnailSrc,
   thumbnailAlt = "Video thumbnail",
@@ -111,6 +112,7 @@ function HeroVideoDialog({
   isFree = true,
 }: HeroVideoDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [portalContainer, setPortalContainer] = useState<Element | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleOpen = () => {
@@ -137,6 +139,13 @@ function HeroVideoDialog({
       handleClose();
     }
   };
+
+  useEffect(() => {
+    // Set up portal container on mount
+    if (typeof window !== "undefined") {
+      setPortalContainer(document.body);
+    }
+  }, []);
 
   useEffect(() => {
     // Only manipulate DOM on client side
@@ -210,79 +219,85 @@ function HeroVideoDialog({
         </div>
       </div>
 
-      {/* Full-Screen Video Modal */}
-      <AnimatePresence>
-        {isOpen && (
-          <m.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={handleClose}
-            onKeyDown={handleModalKeyDown}
-            tabIndex={-1}
-          >
-            {/* Close Button */}
-            <button
-              className="absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colours focus:outline-none focus:ring-2 focus:ring-white/50"
-              onClick={handleClose}
-              aria-label="Close video"
-            >
-              <X className="w-5 h-5" />
-            </button>
+      {/* Full-Screen Video Modal - Portal Rendering */}
+      {portalContainer &&
+        createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <m.div
+                className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={handleClose}
+                onKeyDown={handleModalKeyDown}
+                tabIndex={-1}
+              >
+                {/* Close Button */}
+                <button
+                  className="absolute top-4 right-4 z-[10000] flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colours focus:outline-none focus:ring-2 focus:ring-white/50"
+                  onClick={handleClose}
+                  aria-label="Close video"
+                >
+                  <X className="w-6 h-6" />
+                </button>
 
-            {/* Video Container */}
-            <m.div
-              className="relative w-full max-w-6xl mx-4"
-              variants={animationVariants[animationStyle]}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* CONTEXT7 SOURCE: /radix-ui/website - AspectRatio.Root with 16:9 ratio for video content */}
-              {/* IMPLEMENTATION REASON: Official Radix UI documentation recommends AspectRatio component for consistent video aspect ratio across all browsers and video types */}
-              <AspectRatio.Root ratio={16 / 9} className="w-full">
-                {/* YouTube Video */}
-                {videoSrc.includes("youtube.com") ||
-                videoSrc.includes("youtu.be") ? (
-                  <iframe
-                    src={videoSrc}
-                    className="w-full h-full rounded-lg shadow-2xl border border-white"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title="Video player"
-                  />
-                ) : (
-                  // Standard Video
-                  // CONTEXT7 SOURCE: /vercel/next.js - Video optimization with preload metadata for performance
-                  // VIDEO OPTIMIZATION REASON: Official browser documentation recommends preload="metadata" for better performance
-                  <video
-                    ref={videoRef}
-                    src={videoSrc}
-                    className="w-full h-full rounded-lg shadow-2xl object-cover border border-white"
-                    controls
-                    autoPlay
-                    muted
-                    playsInline
-                    preload="metadata"
-                    onLoadedData={() => {
-                      if (videoRef.current) {
-                        videoRef.current.play();
-                      }
-                    }}
-                  />
-                )}
-              </AspectRatio.Root>
-            </m.div>
-          </m.div>
+                {/* Video Container */}
+                <m.div
+                  className="relative w-full max-w-6xl mx-4"
+                  variants={animationVariants[animationStyle]}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* CONTEXT7 SOURCE: /radix-ui/website - AspectRatio.Root with 16:9 ratio for video content */}
+                  {/* IMPLEMENTATION REASON: Official Radix UI documentation recommends AspectRatio component for consistent video aspect ratio across all browsers and video types */}
+                  <AspectRatio.Root ratio={16 / 9} className="w-full">
+                    {/* YouTube Video */}
+                    {videoSrc.includes("youtube.com") ||
+                    videoSrc.includes("youtu.be") ? (
+                      <iframe
+                        src={videoSrc}
+                        className="w-full h-full rounded-lg shadow-2xl border border-white"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title="Video player"
+                      />
+                    ) : (
+                      // Standard Video
+                      // CONTEXT7 SOURCE: /vercel/next.js - Video optimization with preload metadata for performance
+                      // VIDEO OPTIMIZATION REASON: Official browser documentation recommends preload="metadata" for better performance
+                      <video
+                        ref={videoRef}
+                        src={videoSrc}
+                        className="w-full h-full rounded-lg shadow-2xl object-cover border border-white"
+                        controls
+                        autoPlay
+                        muted
+                        playsInline
+                        preload="metadata"
+                        onLoadedData={() => {
+                          if (videoRef.current) {
+                            videoRef.current.play();
+                          }
+                        }}
+                      />
+                    )}
+                  </AspectRatio.Root>
+                </m.div>
+              </m.div>
+            )}
+          </AnimatePresence>,
+          portalContainer
         )}
-      </AnimatePresence>
     </div>
   );
 }
 
-// CONTEXT7 SOURCE: /websites/magicui_design - Default export pattern for Magic UI components
-// DEFAULT EXPORT REASON: Official Magic UI documentation Section 1.1 recommends default export pattern for components
+// CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component with portal rendering for modal visibility
+// PORTAL IMPLEMENTATION REASON: Official Magic UI documentation shows HeroVideoDialog using portal rendering to ensure modal appears above all other elements
+// Z-INDEX FIX: Used z-[9999] and z-[10000] for proper modal layering as per Magic UI documentation
+// Keep default export for backward compatibility
 export default HeroVideoDialog;
