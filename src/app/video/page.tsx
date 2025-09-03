@@ -80,16 +80,9 @@ export default function VideoPage() {
             {/* VIDEO COMPONENT INTEGRATION REASON: Official React documentation demonstrates passing props to components for dynamic content */}
 
             {/* Free Masterclass - Unlocking Academic Success */}
-            {/* CONTEXT7 SOURCE: /mdn/web-docs - Background image styling with CSS background properties */}
-            {/* BACKGROUND IMAGE REASON: Official MDN documentation for background image positioning and sizing with proper contrast overlay */}
-            <div 
-              className="grid md:grid-cols-2 gap-0 items-center bg-cover bg-center bg-no-repeat relative py-8"
-              style={{backgroundImage: "url('/images/pexels-kindelmedia-7579201.jpg')"}}
-            >
-              {/* CONTEXT7 SOURCE: /mdn/web-docs - Overlay for background image text contrast */}
-              {/* OVERLAY REASON: Official CSS documentation for ensuring WCAG AA contrast ratios over background images using semi-transparent overlays */}
-              
-              <div className="relative z-10 w-4/5 mx-auto p-8">
+            <div className="grid md:grid-cols-2 gap-8 items-center bg-cover bg-center bg-no-repeat py-8"
+                 style={{backgroundImage: "url('/images/pexels-kindelmedia-7579201.jpg')"}}>
+              <div className="w-4/5 mx-auto p-8">
                 <h2 className="text-4xl font-bold text-white mb-3">
                   Unlocking Academic Success
                 </h2>
@@ -143,45 +136,41 @@ export default function VideoPage() {
                 </div>
               </div>
 
-              <div className="relative z-10 flex justify-center items-center p-8">
+              <div className="flex justify-center items-center p-8">
                 <div className="relative">
-                  <HeroVideoDialog
-                    videoSrc="https://youtube.com/embed/unlocking-academic-success"
-                    thumbnailSrc="/images/hero/hero-11-plus-bootcamp.jpeg"
-                    thumbnailAlt="Unlocking Academic Success masterclass thumbnail"
-                    animationStyle="from-center"
-                    className="w-full max-w-sm mx-auto border border-white border-opacity-50 rounded-lg shadow-xl shadow-white/30"
-                  />
-                  <div className="absolute inset-0 bg-black/20 rounded-lg pointer-events-none z-10"></div>
-                  <div className="absolute -right-24 top-1/2 -translate-y-1/2 translate-y-4 w-32 h-32 border border-white rounded-full -z-10 flex items-center justify-center">
+                  <div className="absolute -right-24 top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white rounded-full flex items-center justify-center">
                     <span className="text-white font-medium italic">Watch</span>
                   </div>
+                  <HeroVideoDialog
+                    videoSrc="https://www.youtube.com/embed/r4Ngy75Z4Zg?si=_mfgyzSJM0BIzXTW"
+                    thumbnailSrc="/videos/unlocking-academic-success-thumbnail.png"
+                    thumbnailAlt="Unlocking Academic Success masterclass thumbnail"
+                    animationStyle="top-in-bottom-out"
+                    className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg shadow-xl shadow-white/30 relative"
+                  />
                 </div>
               </div>
             </div>
 
             {/* Premium Masterclass - UCAS Guide */}
-            <div 
-              className="grid md:grid-cols-2 gap-0 items-center bg-cover bg-center bg-no-repeat relative py-8"
-              style={{backgroundImage: "url('/images/pexels-kindelmedia-7579201.jpg')"}}
-            >
-              <div className="relative z-10 flex justify-center items-center p-8">
+            <div className="grid md:grid-cols-2 gap-8 items-center bg-cover bg-center bg-no-repeat py-8"
+                 style={{backgroundImage: "url('/images/pexels-kindelmedia-7579201.jpg')"}}>
+              <div className="flex justify-center items-center p-8">
                 <div className="relative">
+                  <div className="absolute -left-24 top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white rounded-full flex items-center justify-center">
+                    <span className="text-white font-medium italic">Watch</span>
+                  </div>
                   <HeroVideoDialog
                     videoSrc="https://youtube.com/embed/ucas-guide-part-1"
                     thumbnailSrc="/images/hero/hero-11-plus-bootcamp.jpeg"
                     thumbnailAlt="Elizabeth's Essential UCAS Guide masterclass thumbnail"
-                    animationStyle="from-left"
-                    className="w-full max-w-sm mx-auto border border-white border-opacity-50 rounded-lg shadow-xl shadow-white/30"
+                    animationStyle="top-in-bottom-out"
+                    className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg shadow-xl shadow-white/30 relative"
                   />
-                  <div className="absolute inset-0 bg-black/20 rounded-lg pointer-events-none z-10"></div>
-                  <div className="absolute -left-24 top-1/2 -translate-y-1/2 translate-y-4 w-32 h-32 border border-white rounded-full -z-10 flex items-center justify-center">
-                    <span className="text-white font-medium italic">Watch</span>
-                  </div>
                 </div>
               </div>
 
-              <div className="relative z-10 w-4/5 mx-auto p-8 text-right">
+              <div className="w-4/5 mx-auto p-8 text-right">
                 <h2 className="text-4xl font-bold text-white mb-3">
                   Elizabeth's Essential UCAS Guide - Part 1 of 2
                 </h2>

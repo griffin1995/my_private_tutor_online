@@ -179,7 +179,7 @@ function HeroVideoDialog({
             className="w-full h-full object-cover"
             priority
             quality={75}
-            style={{aspectRatio: '4/3'}}
+            style={{aspectRatio: '16/9'}}
           />
           
           {/* Play Button Overlay */}
@@ -240,7 +240,7 @@ function HeroVideoDialog({
                 {videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be') ? (
                   <iframe
                     src={videoSrc}
-                    className="w-full h-full rounded-lg shadow-2xl"
+                    className="w-full h-full rounded-lg shadow-2xl border border-white"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     title="Video player"
@@ -252,7 +252,7 @@ function HeroVideoDialog({
                   <video
                     ref={videoRef}
                     src={videoSrc}
-                    className="w-full h-full rounded-lg shadow-2xl object-cover"
+                    className="w-full h-full rounded-lg shadow-2xl object-cover border border-white"
                     controls
                     autoPlay
                     muted
