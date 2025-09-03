@@ -38,6 +38,7 @@ import { useState, useRef, useEffect } from 'react'
 import { m, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion'
 import { X, Play } from 'lucide-react'
 import Image from 'next/image'
+import * as AspectRatio from '@radix-ui/react-aspect-ratio'
 
 type AnimationStyle = 
   | "from-bottom"
@@ -174,14 +175,15 @@ function HeroVideoDialog({
             src={thumbnailSrc}
             alt={thumbnailAlt}
             width={800}
-            height={450}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            height={600}
+            className="w-full h-full object-cover"
             priority
             quality={75}
+            style={{aspectRatio: '4/3'}}
           />
           
           {/* Play Button Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colours group-hover:bg-black/30">
+          <div className="absolute inset-0 flex items-center justify-center transition-colours z-20">
             {/* Documentation Source: Context7 Tailwind CSS - Perfect Center Alignment for Play Button
              * Reference: /context7/tailwindcss - Flexbox centering utilities for precise alignment
              * Pattern: Using flex items-center justify-center for perfect center alignment
@@ -193,8 +195,8 @@ function HeroVideoDialog({
              * - Visual center achieved by removing any margin/padding offsets on icon
              * - Play button now perfectly centered within its circular container
              */}
-            <div className="flex items-center justify-center w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full shadow-lg transition-all duration-300 group-hover:bg-white group-hover:scale-110">
-              <Play className="w-6 h-6 text-primary-900" fill="currentColor" />
+            <div className="flex items-center justify-center">
+              <Play className="w-10 h-10 text-white group-hover:text-[#CA9E5B] transition-colors duration-300" fill="currentColor" />
             </div>
           </div>
         </div>
@@ -223,7 +225,7 @@ function HeroVideoDialog({
 
             {/* Video Container */}
             <m.div
-              className="relative w-full max-w-6xl mx-4 aspect-video"
+              className="relative w-full max-w-6xl mx-4"
               variants={animationVariants[animationStyle]}
               initial="initial"
               animate="animate"
@@ -231,36 +233,39 @@ function HeroVideoDialog({
               transition={{ duration: 0.4, ease: "easeInOut" }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* YouTube Video */}
-              {videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be') ? (
-                <iframe
-                  src={videoSrc}
-                  className="w-full h-full rounded-lg shadow-2xl"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title="Video player"
-                />
-              ) : (
-                // Standard Video
-                // CONTEXT7 SOURCE: /vercel/next.js - Video optimization with preload metadata for performance
-                // VIDEO OPTIMIZATION REASON: Official browser documentation recommends preload="metadata" for better performance
-                <video
-                  ref={videoRef}
-                  src={videoSrc}
-                  className="w-full h-full rounded-lg shadow-2xl object-cover"
-                  controls
-                  autoPlay
-                  muted
-                  playsInline
-                  preload="metadata"
-                  loading="lazy"
-                  onLoadedData={() => {
-                    if (videoRef.current) {
-                      videoRef.current.play()
-                    }
-                  }}
-                />
-              )}
+              {/* CONTEXT7 SOURCE: /radix-ui/website - AspectRatio.Root with 16:9 ratio for video content */}
+              {/* IMPLEMENTATION REASON: Official Radix UI documentation recommends AspectRatio component for consistent video aspect ratio across all browsers and video types */}
+              <AspectRatio.Root ratio={16 / 9} className="w-full">
+                {/* YouTube Video */}
+                {videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be') ? (
+                  <iframe
+                    src={videoSrc}
+                    className="w-full h-full rounded-lg shadow-2xl"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title="Video player"
+                  />
+                ) : (
+                  // Standard Video
+                  // CONTEXT7 SOURCE: /vercel/next.js - Video optimization with preload metadata for performance
+                  // VIDEO OPTIMIZATION REASON: Official browser documentation recommends preload="metadata" for better performance
+                  <video
+                    ref={videoRef}
+                    src={videoSrc}
+                    className="w-full h-full rounded-lg shadow-2xl object-cover"
+                    controls
+                    autoPlay
+                    muted
+                    playsInline
+                    preload="metadata"
+                    onLoadedData={() => {
+                      if (videoRef.current) {
+                        videoRef.current.play()
+                      }
+                    }}
+                  />
+                )}
+              </AspectRatio.Root>
             </m.div>
           </m.div>
         )}
