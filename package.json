@@ -32,6 +32,7 @@
     "optimize:duplicates": "node scripts/cleanup-duplicates.mjs",
     "optimize:remove-duplicates": "node scripts/remove-duplicates.mjs",
     "optimize:all": "npm run optimize:images && npm run optimize:remove-duplicates",
+    "darken:images": "node scripts/darken-images.mjs",
     "test:accessibility": "playwright test tests/e2e/accessibility.spec.ts",
     "test:performance": "playwright test tests/integration/performance.test.ts",
     "test:all": "npm run test && npm run test:e2e",

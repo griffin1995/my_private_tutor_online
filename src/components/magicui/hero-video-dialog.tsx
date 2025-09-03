@@ -244,7 +244,7 @@ export function HeroVideoDialog({
 
                 {/* Video Container */}
                 <m.div
-                  className="relative w-full max-w-6xl mx-4"
+                  className="relative w-full max-w-5xl mx-4"
                   variants={animationVariants[animationStyle]}
                   initial="initial"
                   animate="animate"
@@ -254,13 +254,13 @@ export function HeroVideoDialog({
                 >
                   {/* CONTEXT7 SOURCE: /radix-ui/website - AspectRatio.Root with 16:9 ratio for video content */}
                   {/* IMPLEMENTATION REASON: Official Radix UI documentation recommends AspectRatio component for consistent video aspect ratio across all browsers and video types */}
-                  <AspectRatio.Root ratio={16 / 9} className="w-full">
+                  <AspectRatio.Root ratio={16 / 9} className="w-full bg-white rounded-2xl overflow-hidden">
                     {/* YouTube Video */}
                     {videoSrc.includes("youtube.com") ||
                     videoSrc.includes("youtu.be") ? (
                       <iframe
                         src={videoSrc}
-                        className="w-full h-full rounded-lg shadow-2xl border border-white"
+                        className="w-full h-full rounded-2xl shadow-2xl border-2 border-white"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         title="Video player"
@@ -272,7 +272,7 @@ export function HeroVideoDialog({
                       <video
                         ref={videoRef}
                         src={videoSrc}
-                        className="w-full h-full rounded-lg shadow-2xl object-cover border border-white"
+                        className="w-full h-full rounded-2xl shadow-2xl object-cover border-2 border-white"
                         controls
                         autoPlay
                         muted

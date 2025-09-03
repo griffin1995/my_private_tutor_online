@@ -73,9 +73,9 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     description: "Elizabeth Burrows was invited to speak at the GCSE Summit 2024, where she addressed parents of GCSE-aged students on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition. In this masterclass Elizabeth shares practical strategies and insights into the most common challenges families face when considering tutoring — from framing tutoring in a positive light for reluctant tutees to determining your child's true potential. Her session offers clear, reassuring guidance to help parents feel more confident in supporting their teens through GCSEs, IBs and A Levels.", // USER CHOICE: Long version
     videoUrl: "https://www.youtube.com/embed/r4Ngy75Z4Zg?si=_mfgyzSJM0BIzXTW", // From Master CMS
     src: null, // MASTERCLASS_VIDEOS had empty src
-    thumbnailUrl: "/videos/unlocking-academic-success-thumbnail.png", // USER CHOICE: Current videos page thumbnail
+    thumbnailUrl: "/images/video-masterclasses/unlocking-academic-success-thumbnail-dark.png", // USER CHOICE: Current videos page thumbnail
     poster: "/images/masterclass-thumbnails/unlocking-success.png", // From MASTERCLASS_VIDEOS
-    backgroundImage: "/images/pexels-kindelmedia-7579201.jpg", // Background for this video
+    backgroundImage: "/images/video-masterclasses/pexels-kindelmedia-7579201-dark.jpg", // Background for this video
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online", 
@@ -120,9 +120,9 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     description: "Complete recording from Elizabeth's presentation at the GCSE Summit 2024, where she addressed parents of GCSE-aged students on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition. This comprehensive recording includes audience Q&A and additional insights for parents navigating the tutoring landscape.",
     videoUrl: "https://www.youtube.com/embed/IfF9zSzuceY?si=7_tmYovUVVfqLX0D",
     src: "/videos/gcse-summit-2024-elizabeth-burrows.mp4",
-    thumbnailUrl: "/images/masterclass-thumbnails/gcse-summit-2024.png",
+    thumbnailUrl: "/images/video-masterclasses/ucas-summit-2024-thumbnail-dark.png",
     poster: "/images/masterclass-thumbnails/gcse-summit-2024.png",
-    backgroundImage: "/images/pexels-shkrabaanthony-5306492.jpg",
+    backgroundImage: "/images/video-masterclasses/pexels-shkrabaanthony-5306492-dark.jpg",
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -167,9 +167,9 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     description: "Widely recognised for her expertise in the British university admissions process, Elizabeth was invited to speak to international summer school students at LSE. In her session, she demystifies each stage of the UCAS application, offering clear, practical guidance to help students approach the process with confidence.",
     videoUrl: null, // USER CHOICE: Empty
     src: null,
-    thumbnailUrl: "/images/masterclass-thumbnails/ucas-guide.png", // USER CHOICE: ucas-guide.png
+    thumbnailUrl: "/images/video-masterclasses/ucas-guide-dark.png", // USER CHOICE: ucas-guide.png
     poster: "/images/masterclass-thumbnails/ucas-guide.png",
-    backgroundImage: "/images/pexels-isabella-mendes-107313-11286592.jpg", // Background for this video
+    backgroundImage: "/images/video-masterclasses/pexels-isabella-mendes-107313-11286592-dark.jpg", // Background for this video
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -214,9 +214,9 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     description: "Elizabeth is renowned for her success in guiding ambitious students into Oxbridge and top UK universities. In this masterclass she reveals the 10 ingredients in her secret recipe for personal statement success.",
     videoUrl: null,
     src: null,
-    thumbnailUrl: "/images/masterclass-thumbnails/top-10-tips.png",
+    thumbnailUrl: "/images/video-masterclasses/top-10-tips-dark.png",
     poster: "/images/masterclass-thumbnails/top-10-tips.png",
-    backgroundImage: "/images/pexels-shkrabaanthony-5306492.jpg",
+    backgroundImage: "/images/video-masterclasses/pexels-shkrabaanthony-5306492-dark.jpg",
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -261,9 +261,9 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     description: "From Wind in the Willows to The Lord of the Rings, this engaging masterclass introduces students to some of the most celebrated works in British literature. Led by Elizabeth Burrows, this session explores what defines a literary classic.",
     videoUrl: null,
     src: null,
-    thumbnailUrl: "/images/masterclass-thumbnails/british-literary-classics.png",
+    thumbnailUrl: "/images/video-masterclasses/british-literary-classics-dark.png",
     poster: "/images/masterclass-thumbnails/british-literary-classics.png",
-    backgroundImage: "/images/pexels-this-and-no-internet-25-288559-29659893.jpg",
+    backgroundImage: "/images/video-masterclasses/pexels-this-and-no-internet-25-288559-29659893-dark.jpg",
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -308,9 +308,9 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     description: "Drawing on her experience working with royalty and high-profile international families, Elizabeth demystifies the social codes that shape life in the UK's most prestigious schools and institutions.",
     videoUrl: null,
     src: null,
-    thumbnailUrl: "/images/masterclass-thumbnails/british-etiquette.jpg",
+    thumbnailUrl: "/images/video-masterclasses/british-etiquette-dark.jpg",
     poster: "/images/masterclass-thumbnails/british-etiquette.jpg",
-    backgroundImage: "/images/pexels-gsn-travel-28448938.jpg",
+    backgroundImage: "/images/video-masterclasses/pexels-gsn-travel-28448938-dark.jpg",
     fallback: null,
     author: "Elizabeth Burrows",
     authorRole: "Founder, My Private Tutor Online",
@@ -414,7 +414,7 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     videoUrl: null,
     src: "/videos/elizabeth-introduction-sound.mp4",
     thumbnailUrl: null,
-    poster: "/images/video-placeholders/placeholder_for_introductionary_video.png",
+    poster: "/images/video-masterclasses/placeholder_for_introductionary_video-dark.png",
     backgroundImage: null,
     fallback: "/videos/elizabeth-introduction-sound.mp4",
     author: "Elizabeth Burrows",
@@ -442,7 +442,7 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     videoUrl: null,
     src: "/videos/elizabeth-introduction-sound.mp4",
     thumbnailUrl: null,
-    poster: "/images/video-placeholders/placeholder_for_introductionary_video.png",
+    poster: "/images/video-masterclasses/placeholder_for_introductionary_video-dark.png",
     backgroundImage: null,
     fallback: "/videos/elizabeth-introduction-sound.mp4",
     author: "Elizabeth Burrows",
@@ -470,7 +470,7 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     videoUrl: null,
     src: "/videos/elizabeth-introduction-sound.mp4",
     thumbnailUrl: null,
-    poster: "/images/video-placeholders/placeholder_for_introductionary_video.png",
+    poster: "/images/video-masterclasses/placeholder_for_introductionary_video-dark.png",
     backgroundImage: null,
     fallback: "/videos/elizabeth-introduction-sound.mp4",
     author: "Elizabeth Burrows",
@@ -497,8 +497,8 @@ export const COMPREHENSIVE_VIDEO_CMS: Record<string, ComprehensiveVideoRecord> =
     title: "Introductory Video",
     description: "Placeholder image for introductory video content",
     videoUrl: null,
-    src: "/images/video-placeholders/placeholder_for_introductionary_video.png",
-    thumbnailUrl: "/images/video-placeholders/placeholder_for_introductionary_video.png",
+    src: "/images/video-masterclasses/placeholder_for_introductionary_video-dark.png",
+    thumbnailUrl: "/images/video-masterclasses/placeholder_for_introductionary_video-dark.png",
     poster: null,
     backgroundImage: null,
     fallback: null,

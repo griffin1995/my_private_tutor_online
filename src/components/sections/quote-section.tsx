@@ -37,6 +37,9 @@ import { Highlighter } from '@/components/magicui/highlighter'
  * - button: Optional button text for call-to-action functionality
  * - authorImage: Optional author photo for founder quotes with attribution
  * - showAuthorImage: Boolean to control author image display
+ * - highlightPhrases: Array of phrases to highlight with gold accent color
+ * - underlinePhrases: Array of phrases to underline with primary blue color
+ * - useHighlighting: Boolean to enable Magic UI Highlighter effects (legacy support)
  */
 interface QuoteSectionProps {
   /** The main quote or testimonial text content */
@@ -61,6 +64,10 @@ interface QuoteSectionProps {
   useHighlighting?: boolean
   /** Whether to use MagicUI effects for Academia Insight quote */
   useMagicUIEffects?: boolean
+  /** Array of phrases to highlight with gold accent color (#CA9E5B) */
+  highlightPhrases?: string[]
+  /** Array of phrases to underline with primary blue color (#3F4A7E) */
+  underlinePhrases?: string[]
 }
 
 /**
@@ -69,7 +76,7 @@ interface QuoteSectionProps {
  * Pattern: Reusable quote section component with consistent typography and spacing
  * 
  * Component Features:
- * - Responsive typography scaling (text-xl lg:text-2xl)
+ * - Responsive typography scaling (text-lg lg:text-xl)
  * - Semantic HTML with blockquote and cite elements
  * - Flexible background color support via props
  * - Consistent padding and spacing system
@@ -93,7 +100,9 @@ export function QuoteSection({
   authorImageAlt,
   showAuthorImage = false,
   useHighlighting = true,
-  useMagicUIEffects = false
+  useMagicUIEffects = false,
+  highlightPhrases = [],
+  underlinePhrases = []
 }: QuoteSectionProps) {
   /**
    * Documentation Source: Context7 MCP - Tailwind CSS Dynamic Class Composition
@@ -139,6 +148,124 @@ export function QuoteSection({
       return quote
     }
 
+    // CONTEXT7 SOURCE: /magicuidesign/magicui - Dynamic phrase highlighting with array-based configuration
+    // DYNAMIC HIGHLIGHTING REASON: Magic UI Highlighter documentation supports programmatic text highlighting for flexible content management
+    if ((highlightPhrases && highlightPhrases.length > 0) || (underlinePhrases && underlinePhrases.length > 0)) {
+      // Create a combined array of all phrases with their actions and colors
+      const allPhrases = [
+        ...(highlightPhrases || []).map(phrase => ({ 
+          phrase, 
+          action: 'highlight' as const, 
+          color: '#CA9E5B', 
+          strokeWidth: 3, 
+          iterations: 2, 
+          padding: 4,
+          animationDuration: 1200,
+          isView: true
+        })),
+        ...(underlinePhrases || []).map(phrase => ({ 
+          phrase, 
+          action: 'underline' as const, 
+          color: '#3F4A7E', 
+          strokeWidth: 2, 
+          iterations: 1, 
+          padding: 1,
+          animationDuration: 1000,
+          isView: true
+        }))
+      ];
+
+      // CONTEXT7 SOURCE: /reactjs/react.dev - Improved text parsing algorithm for reliable phrase highlighting
+      // TEXT PARSING FIX REASON: Official React documentation Section 4.1 recommends stable sorting and comprehensive text processing for reliable component rendering
+      let result: React.ReactNode[] = [];
+      let keyCounter = 0;
+
+      // Create an array of all phrase positions in the original text
+      const phrasePositions: Array<{
+        start: number;
+        end: number;
+        phrase: string;
+        config: typeof allPhrases[0];
+      }> = [];
+
+      // Find all phrase positions in the original quote text
+      allPhrases.forEach(phraseConfig => {
+        let searchIndex = 0;
+        while (searchIndex < quote.length) {
+          const foundIndex = quote.toLowerCase().indexOf(phraseConfig.phrase.toLowerCase(), searchIndex);
+          if (foundIndex === -1) break;
+          
+          // Check if this position doesn't overlap with existing phrases
+          const overlaps = phrasePositions.some(pos => 
+            (foundIndex < pos.end && foundIndex + phraseConfig.phrase.length > pos.start)
+          );
+          
+          if (!overlaps) {
+            phrasePositions.push({
+              start: foundIndex,
+              end: foundIndex + phraseConfig.phrase.length,
+              phrase: quote.substring(foundIndex, foundIndex + phraseConfig.phrase.length),
+              config: phraseConfig
+            });
+          }
+          
+          searchIndex = foundIndex + 1;
+        }
+      });
+
+      // Sort positions by start index
+      phrasePositions.sort((a, b) => a.start - b.start);
+
+      let currentIndex = 0;
+
+      // Build the result with interspersed text and highlighted phrases
+      phrasePositions.forEach(position => {
+        // Add text before this phrase
+        if (currentIndex < position.start) {
+          const textBefore = quote.substring(currentIndex, position.start);
+          if (textBefore.length > 0) {
+            result.push(
+              <React.Fragment key={`text-${keyCounter++}`}>
+                {textBefore}
+              </React.Fragment>
+            );
+          }
+        }
+
+        // Add the highlighted phrase
+        result.push(
+          <Highlighter
+            key={`highlight-${keyCounter++}`}
+            action={position.config.action}
+            color={position.config.color}
+            strokeWidth={position.config.strokeWidth}
+            iterations={position.config.iterations}
+            padding={position.config.padding}
+            animationDuration={position.config.animationDuration}
+            isView={position.config.isView}
+          >
+            {position.phrase}
+          </Highlighter>
+        );
+
+        currentIndex = position.end;
+      });
+
+      // Add any remaining text after the last phrase
+      if (currentIndex < quote.length) {
+        const remainingText = quote.substring(currentIndex);
+        if (remainingText.length > 0) {
+          result.push(
+            <React.Fragment key={`text-${keyCounter++}`}>
+              {remainingText}
+            </React.Fragment>
+          );
+        }
+      }
+
+      return <>{result}</>;
+    }
+
     // CONTEXT7 SOURCE: /magicui/design - Academia Insight quote with specific MagicUI effects
     // IMPLEMENTATION REASON: Magic UI documentation shows highlighter and underline effects for premium emphasis
     if (useMagicUIEffects && quote.includes("A truly bespoke experience")) {
@@ -165,7 +292,7 @@ export function QuoteSection({
         <>
           <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>Expert Private Tutoring</Highlighter>
           , Personally Curated by{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>Elizabeth Burrows</Highlighter>
+          <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>Elizabeth Burrows</Highlighter>
         </>
       )
     }
@@ -181,9 +308,9 @@ export function QuoteSection({
           {' '}that helps students{' '}
           <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>excel academically</Highlighter>
           {' '}and{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>thrive personally</Highlighter>
+          <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>thrive personally</Highlighter>
           , opening doors to{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>greater opportunities</Highlighter>
+          <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>greater opportunities</Highlighter>
           —at school and in life.
         </>
       )
@@ -196,7 +323,7 @@ export function QuoteSection({
       return (
         <>
           Our tutors are{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+          <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>
             examiners, school teachers, and subject specialists
           </Highlighter>
           {' '}who are not only experienced educators but also motivating mentors. Whether your child is preparing for a school entrance exam, navigating GCSEs/IBs/A-levels, or applying to top universities in the UK, we{' '}
@@ -219,11 +346,11 @@ export function QuoteSection({
             handpicked by Elizabeth
           </Highlighter>
           {' '}for their{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+          <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>
             exceptional education pedigree
           </Highlighter>
           , personalised approach and{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+          <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>
             proven track record
           </Highlighter>
           . The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools and{' '}
@@ -246,7 +373,7 @@ export function QuoteSection({
             comprehensive preparation programmes
           </Highlighter>
           {' '}designed for{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+          <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>
             different learning needs and timelines
           </Highlighter>
           . Choose the{' '}
@@ -254,7 +381,7 @@ export function QuoteSection({
             perfect fit
           </Highlighter>
           {' '}for your child's{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
+          <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>
             11+ journey
           </Highlighter>
           .
@@ -262,29 +389,24 @@ export function QuoteSection({
       )
     }
 
-    // CONTEXT7 SOURCE: /websites/react_dev - Video Masterclasses page quote with strategic highlighting for expertise and access emphasis
-    // VIDEO MASTERCLASSES HIGHLIGHTING REASON: React component refactoring documentation enables targeted highlighting for educational expertise positioning
+    // CONTEXT7 SOURCE: /magicuidesign/magicui - Video Masterclasses page quote with strategic highlighting for expertise emphasis
+    // VIDEO MASTERCLASSES HIGHLIGHTING REASON: Magic UI Highlighter documentation enables targeted highlighting for educational expertise positioning
     if (quote.includes("Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over 15 years of international education experience")) {
       // Video Masterclasses intro text with gold highlights and navy underlines for expertise emphasis
       return (
         <>
-          Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over{' '}
+          Join{' '}
+          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+            Elizabeth Burrows, founder of My Private Tutor Online
+          </Highlighter>
+          , as she shares her{' '}
+          <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>
+            expert insight
+          </Highlighter>
+          {' '}from over{' '}
           <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
             15 years of international education experience
           </Highlighter>
-          . These masterclasses, drawn from her live seminars, offer{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
-            rare access
-          </Highlighter>
-          {' '}to the knowledge and strategies{' '}
-          <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>
-            typically reserved for her private clients
-          </Highlighter>
-          . These sessions bridge the gap between international education and{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
-            expectations of British schools and universities
-          </Highlighter>
-          . Access on demand, from anywhere in the world.
         </>
       )
     }
@@ -295,9 +417,9 @@ export function QuoteSection({
         Parents come to us when something truly matters—an entrance exam, a lost sense of confidence, a desire for academic stretch. They stay with us because we{' '}
         <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>deliver real progress, quietly and expertly</Highlighter>
         . This is not a tutoring directory. This is a{' '}
-        <Highlighter action="underline" color="#0f172a" strokeWidth={3} iterations={1} padding={1}>bespoke service</Highlighter>
+        <Highlighter action="underline" color="#3F4A7E" strokeWidth={3} iterations={1} padding={1}>bespoke service</Highlighter>
         {' '}for{' '}
-        <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>ambitious families</Highlighter>
+        <Highlighter action="underline" color="#3F4A7E" strokeWidth={2} iterations={1} padding={1}>ambitious families</Highlighter>
         {' '}looking for{' '}
         <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>trusted partners</Highlighter>
         {' '}in their child's academic career.
@@ -336,14 +458,14 @@ export function QuoteSection({
                  * Pattern: Semantic blockquote with responsive typography and consistent styling
                  * 
                  * Typography Implementation:
-                 * - text-xl lg:text-2xl: Responsive text scaling for readability
+                 * - text-lg lg:text-xl: Responsive text scaling for readability
                  * - font-serif: Consistent with site typography hierarchy
                  * - text-primary-700: Primary color scheme integration
                  * - italic: Visual distinction for quoted content
                  * - leading-relaxed: Enhanced line height for readability
                  * - mb-8: Consistent spacing to citation
                  */}
-                <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed">
+                <blockquote className="text-lg lg:text-xl font-serif text-primary-700 italic leading-relaxed">
                   {renderHighlightedQuote()}
                 </blockquote>
                 
@@ -375,14 +497,14 @@ export function QuoteSection({
                * Pattern: Semantic blockquote with responsive typography and consistent styling
                * 
                * Typography Implementation:
-               * - text-xl lg:text-2xl: Responsive text scaling for readability
+               * - text-lg lg:text-xl: Responsive text scaling for readability
                * - font-serif: Consistent with site typography hierarchy
                * - text-primary-700: Primary color scheme integration
                * - italic: Visual distinction for quoted content
                * - leading-relaxed: Enhanced line height for readability
                * - mb-8: Consistent spacing to citation
                */}
-              <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed">
+              <blockquote className="text-lg lg:text-xl font-serif text-primary-700 italic leading-relaxed">
                 {renderHighlightedQuote()}
               </blockquote>
               

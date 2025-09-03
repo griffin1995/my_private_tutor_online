@@ -173,29 +173,8 @@ export default function HowItWorksPage() {
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section
           id="how-it-works-process-steps"
-          className="relative bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 pt-0 pb-20 lg:pb-32 border-b border-slate-100/50 overflow-hidden"
+          className="relative bg-white pt-0 pb-20 lg:pb-32"
         >
-          {/* Premium Royal Pattern Overlay (enhanced opacity for timeline sophistication) */}
-          <div
-            className="absolute inset-0 opacity-[0.02] pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eab308' fill-opacity='1'%3E%3Cpath d='M15 7.5l-3.75 3.75L7.5 7.5l3.75-3.75L15 7.5zm7.5 7.5l-3.75 3.75L15 11.25l3.75-3.75L22.5 15z'/%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: "30px 30px",
-            }}
-          />
-
-          {/* Professional Radial Gradient Overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-radial from-blue-50/10 via-transparent to-transparent" />
-
-          {/* Premium Gradient Overlays */}
-          <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-50/40 to-transparent" />
-
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for accent borders */}
-          {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-          {/* Premium Accent Borders */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-500/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-300/30 to-transparent" />
 
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container padding for proper content spacing after hero sections */}
           {/* CONTENT SPACING REASON: Official Tailwind CSS documentation demonstrates pt-20 for adequate content breathing room after full-height hero components */}
@@ -206,11 +185,11 @@ export default function HowItWorksPage() {
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section header simplification patterns for improved user flow */}
               {/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
 
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-8 leading-tight">
                 Your Journey To Academic Success
               </h2>
 
-              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent mx-auto mb-6"></div>
+              <div className="w-24 h-1 bg-accent-500 mx-auto mb-6"></div>
 
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component refactoring patterns for modular QuoteSection usage */}
               {/* QUOTESECTION CONVERSION REASON: Official React documentation demonstrates component consolidation patterns for consistent highlighting and styling */}
@@ -225,17 +204,13 @@ export default function HowItWorksPage() {
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Timeline-based visual flow patterns for premium service presentation */}
             {/* TIMELINE REASON: Official Tailwind CSS documentation Section 7.1 recommends sophisticated layout patterns with central spine for premium service flows */}
             <div className="relative max-w-7xl mx-auto">
-              {/* CONTEXT7 SOURCE: /context7/motion_dev - Central Timeline Spine with gradient treatment and royal nodes */}
-              {/* TIMELINE SPINE REASON: Official Motion documentation Section 4.2 recommends sophisticated visual flow elements for premium user experiences */}
               {/* Central Timeline Spine */}
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for timeline spine */}
-              {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-accent-400 via-accent-500 to-accent-600 transform -translate-x-1/2 hidden lg:block">
+              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-accent-500 transform -translate-x-1/2 hidden lg:block">
                 {/* Timeline Nodes */}
-                <div className="absolute top-[12.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-                <div className="absolute top-[37.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-                <div className="absolute top-[62.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-                <div className="absolute top-[87.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
+                <div className="absolute top-[12.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-sm"></div>
+                <div className="absolute top-[37.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-sm"></div>
+                <div className="absolute top-[62.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-sm"></div>
+                <div className="absolute top-[87.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-sm"></div>
               </div>
 
               {/* CONTEXT7 SOURCE: /context7/motion_dev - Alternating Card Layout with spring-based animations */}
@@ -276,42 +251,17 @@ export default function HowItWorksPage() {
                               },
                             }}
                           >
-                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for card hover states */}
-                            {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-                            <Card className="group relative bg-gradient-to-br from-white via-slate-50/30 to-accent-50/10 border-3 border-slate-200 hover:border-accent-500/60 shadow-xl hover:shadow-3xl transition-all duration-700 rounded-2xl overflow-hidden transform hover:scale-[1.02] hover:-translate-y-1">
-                              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Luxury shimmer effects and royal pattern overlays */}
-                              {/* LUXURY SHIMMER REASON: Official Tailwind CSS documentation Section 8.5 recommends gradient overlays for premium card treatments */}
-                              {/* Luxury shimmer effect */}
-                              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-accent-50/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                              {/* Royal pattern overlay */}
-                              <div
-                                className="absolute inset-0 opacity-[0.02] group-hover:opacity-[0.04] transition-opacity duration-700"
-                                style={{
-                                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eab308' fill-opacity='1'%3E%3Cpath d='M15 7.5l-3.75 3.75L7.5 7.5l3.75-3.75L15 7.5zm7.5 7.5l-3.75 3.75L15 11.25l3.75-3.75L22.5 15z'/%3E%3C/g%3E%3C/svg%3E")`,
-                                  backgroundSize: "30px 30px",
-                                }}
-                              />
-
-                              {/* Premium border accent */}
-                              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-accent-500/10 group-hover:ring-accent-500/30 transition-all duration-700" />
+                            <Card className="group relative bg-white border border-slate-200 hover:border-accent-500/60 shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg overflow-hidden">
 
                               <CardHeader className="relative pb-8 p-10 lg:p-12">
                                 <div className="flex items-start gap-6">
                                   {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Royal step number enhancement with premium treatment */}
                                   {/* ROYAL NUMBER REASON: Official Tailwind CSS documentation Section 5.3 recommends sophisticated gradient treatments for premium numbering */}
                                   <div className="flex-shrink-0">
-                                    <div className="relative w-16 h-16 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white flex items-center justify-center font-bold text-xl rounded-xl shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-110">
-                                      {/* Royal inner glow */}
-                                      <div className="absolute inset-0 bg-gradient-to-br from-accent-500/20 via-accent-400/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                                      {/* Premium number */}
-                                      <span className="relative text-2xl font-black tracking-tight drop-shadow-lg">
+                                    <div className="w-16 h-16 bg-slate-800 text-white flex items-center justify-center font-bold text-xl rounded-xl shadow-md transition-all duration-300">
+                                      <span className="text-2xl font-bold">
                                         {step.number}
                                       </span>
-
-                                      {/* Royal corner flourish */}
-                                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
                                     </div>
                                   </div>
                                   <div className="flex-1">
@@ -322,7 +272,7 @@ export default function HowItWorksPage() {
                                       <IconComponent className="w-7 h-7 text-accent-600 group-hover:text-accent-500 transition-colors duration-300" />
                                       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography hierarchy with royal treatment */}
                                       {/* ROYAL TYPOGRAPHY REASON: Official Tailwind CSS documentation Section 2.4 recommends sophisticated text treatments for premium positioning */}
-                                      <h3 className="text-2xl lg:text-3xl font-serif font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent group-hover:from-slate-800 group-hover:to-slate-600 transition-all duration-500 mb-0 leading-tight">
+                                      <h3 className="text-2xl lg:text-3xl font-serif font-bold text-slate-900 mb-0 leading-tight">
                                         {step.title}
                                       </h3>
                                     </div>
@@ -357,11 +307,8 @@ export default function HowItWorksPage() {
                                         key={featureIndex}
                                         className="flex items-start gap-4 group/feature"
                                       >
-                                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for consistent checkmark styling */}
-                                        {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-                                        {/* Royal checkmark with brand color treatment */}
-                                        <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-lg group-hover/feature:shadow-xl transition-all duration-300">
-                                          <CheckCircle className="w-4 h-4 text-white drop-shadow-sm" />
+                                        <div className="flex-shrink-0 w-6 h-6 bg-accent-500 rounded-full flex items-center justify-center shadow-sm transition-all duration-300">
+                                          <CheckCircle className="w-4 h-4 text-white" />
                                         </div>
                                         <span className="text-slate-600 group-hover/feature:text-slate-500 transition-colors duration-300 font-medium leading-relaxed">
                                           {convertMarkdownBold(feature)}
@@ -371,9 +318,6 @@ export default function HowItWorksPage() {
                                   )}
                                 </ul>
                               </CardContent>
-
-                              {/* Premium Bottom Accent */}
-                              <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-accent-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                             </Card>
                           </m.div>
                         </div>
@@ -424,27 +368,8 @@ export default function HowItWorksPage() {
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section
           id="how-it-works-tutoring-tiers"
-          className="relative bg-gradient-to-b from-blue-50/30 via-slate-50/20 to-amber-50/15 py-20 lg:py-32 overflow-hidden"
+          className="relative bg-slate-50 py-20 lg:py-32"
         >
-          {/* CONTEXT7 SOURCE: /context7/tailwindcss - Enhanced pattern overlay with sophisticated SVG backgrounds */}
-          {/* Enhanced Pattern Overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.015] pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23334155' fill-opacity='1'%3E%3Cpath d='M40 20l-10 10L20 20l10-10L40 20zm20 20l-10 10L40 30l10-10L60 40z'/%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: "80px 80px",
-            }}
-          />
-
-          {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium radial gradient overlays for sophisticated visual depth */}
-          {/* Premium Radial Gradients */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-amber-100/20 via-transparent to-transparent rounded-full" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-radial from-blue-100/20 via-transparent to-transparent rounded-full" />
-
-          {/* CONTEXT7 SOURCE: /context7/tailwindcss - Sophisticated border accents with gradient treatments */}
-          {/* Sophisticated Border Accents */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-300/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-300/40 to-transparent" />
 
           <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
             {/* CONTEXT7 SOURCE: /context7/tailwindcss - Enhanced section header with royal service indicators */}
@@ -459,20 +384,14 @@ export default function HowItWorksPage() {
                 </span>
               </div>
 
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
+              <h2 className="text-4xl lg:text-6xl font-serif font-bold text-slate-900 mb-8 leading-tight">
                 Choose Your Unique
-                <span className="block bg-gradient-to-r from-amber-600 via-yellow-700 to-amber-800 bg-clip-text text-transparent">
+                <span className="block text-accent-700">
                   Tutoring Experience
                 </span>
               </h2>
 
-              {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium decorative divider with crown accent */}
-              {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from decorative divider */}
-              {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 supports clean decorative elements without crown icons */}
-              {/* Premium decorative divider */}
-              <div className="flex items-center justify-center gap-4 mb-8">
-                <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
-              </div>
+              <div className="w-24 h-1 bg-accent-500 mx-auto mb-8"></div>
 
               <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
                 From essential academic support to premium elite
@@ -481,45 +400,26 @@ export default function HowItWorksPage() {
               </p>
             </div>
 
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight grid layout with center prominence design */}
-            {/* SPOTLIGHT LAYOUT REASON: Official Tailwind CSS documentation Section 3.1 demonstrates grid-cols-3 with custom ordering and sizing for featured center elements */}
             <div className="relative">
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight design with center tier prominence and side tier positioning */}
-              {/* SPOTLIGHT GRID REASON: Official Tailwind CSS documentation recommends grid-cols-3 with items-center for balanced spotlight layouts */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 {tutorTiers && tutorTiers.length > 0 ? (
                   tutorTiers.map((tier: TutorTier, index: number) => {
-                    const isPremiumTier = tier.tier === "Tier 1"; // Gold - Center position
-                    const isSilverTier = tier.tier === "Tier 2"; // Silver - Left position
-                    const isBronzeTier = tier.tier === "Tier 3"; // Bronze - Right position
-                    const isSpotlightTier = isPremiumTier; // Tier 1 (Gold) gets spotlight treatment
-
-                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid ordering utilities for spotlight layout positioning
-                    // ORDERING REASON: Official Tailwind CSS documentation demonstrates order utilities for responsive tier positioning
-                    let gridOrder = "";
-                    if (isPremiumTier)
-                      gridOrder = "lg:order-2"; // Center position
-                    else if (isSilverTier)
-                      gridOrder = "lg:order-1"; // Left position
-                    else if (isBronzeTier) gridOrder = "lg:order-3"; // Right position
-
                     return (
                       <m.div
                         key={index}
-                        className={`relative ${gridOrder} ${isSpotlightTier ? "lg:scale-90 lg:z-20 lg:-mt-6 lg:-mb-6" : "lg:z-10 lg:scale-75"}`}
+                        className="relative"
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{
                           duration: 0.8,
-                          delay: isSpotlightTier ? 0.1 : index * 0.2,
+                          delay: index * 0.1,
                           type: "spring",
                           stiffness: 100,
                           damping: 20,
                         }}
                         whileHover={{
-                          scale: isSpotlightTier ? 1.02 : 1.05,
-                          y: -12,
+                          y: -8,
                           transition: {
                             type: "spring",
                             stiffness: 300,
@@ -529,45 +429,8 @@ export default function HowItWorksPage() {
                       >
                         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reduced metallic gradient styling with 30% size reduction */}
                         {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation demonstrates responsive scaling for improved viewport utilization */}
-                        <Card
-                          className={`group relative h-full transition-all duration-700 rounded-2xl overflow-hidden border-2 ${
-                            isPremiumTier
-                              ? "bg-gradient-to-br from-amber-50/80 via-yellow-50/60 to-amber-100/40 border-amber-300/60 ring-2 ring-amber-400/30 shadow-lg hover:shadow-xl shadow-amber-200/50"
-                              : isSilverTier
-                                ? "bg-gradient-to-br from-slate-50/80 via-gray-100/60 to-slate-100/40 border-gray-300/60 ring-2 ring-gray-400/30 shadow-lg hover:shadow-xl shadow-gray-200/50"
-                                : "bg-gradient-to-br from-amber-50/60 via-orange-50/40 to-amber-100/30 border-amber-600/40 ring-2 ring-amber-700/20 shadow-lg hover:shadow-xl shadow-amber-300/40"
-                          }`}
+                        <Card className="group relative h-full transition-all duration-300 rounded-lg overflow-hidden border border-slate-200 hover:border-accent-500/60 shadow-lg hover:shadow-xl bg-white"
                         >
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic shimmer overlay with sophisticated gradient treatments */}
-                          {/* METALLIC SHIMMER REASON: Official Tailwind CSS documentation Section 4.3 recommends enhanced gradient overlays with metallic color systems for premium differentiation */}
-                          <div
-                            className={`absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-700 ${
-                              isPremiumTier
-                                ? "bg-gradient-to-br from-amber-100/30 via-yellow-100/20 to-amber-200/15"
-                                : isSilverTier
-                                  ? "bg-gradient-to-br from-gray-100/25 via-slate-100/15 to-gray-200/10"
-                                  : "bg-gradient-to-br from-amber-100/20 via-orange-100/15 to-amber-200/10"
-                            }`}
-                          />
-
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Removed dramatic corner flourishes for softer premium approach */}
-                          {/* SOFTENING REASON: Official Tailwind CSS documentation supports subtle elegance over dramatic visual effects */}
-
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic pattern overlay with tier-specific SVG backgrounds */}
-                          {/* METALLIC PATTERN REASON: Official Tailwind CSS documentation Section 4.3 recommends enhanced pattern treatments with metallic color coordination */}
-                          <div
-                            className={`absolute inset-0 opacity-[0.015] group-hover:opacity-[0.03] transition-opacity duration-700`}
-                            style={{
-                              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23${
-                                isPremiumTier
-                                  ? "d97706" // Amber-600 for gold
-                                  : isSilverTier
-                                    ? "6b7280" // Gray-500 for silver
-                                    : "ea580c" // Orange-600 for bronze
-                              }' fill-opacity='1'%3E%3Cpath d='M20 10l-5 5L10 10l5-5L20 10zm10 10l-5 5L20 15l5-5L30 20z'/%3E%3C/g%3E%3C/svg%3E")`,
-                              backgroundSize: "40px 40px",
-                            }}
-                          />
                           <CardHeader className="relative text-center pb-6 pt-8 px-6 lg:px-8">
                             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Removed aggressive "Most Popular Choice" badge for softer premium approach */}
                             {/* PREMIUM SOFTENING REASON: Official Tailwind CSS documentation supports elegant service presentation without commercial sales messaging */}
@@ -581,112 +444,40 @@ export default function HowItWorksPage() {
                             {/* CROWN IMPLEMENTATION REASON: Official Tailwind CSS documentation demonstrates selective icon implementation for premium tier differentiation */}
                             {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Icon removal for cleaner tier presentation */}
                             {/* ICON REMOVAL REASON: Official Radix UI documentation recommends simplified component headers without decorative elements for better visual hierarchy */}
-                            <h3
-                              className={`font-serif font-bold mb-6 group-hover:text-slate-800 transition-colors duration-300 ${
-                                isPremiumTier
-                                  ? "text-3xl lg:text-4xl bg-gradient-to-r from-amber-700 via-yellow-700 to-amber-800 bg-clip-text text-transparent"
-                                  : isSilverTier
-                                    ? "text-2xl lg:text-3xl bg-gradient-to-r from-gray-700 via-slate-700 to-gray-800 bg-clip-text text-transparent"
-                                    : "text-2xl lg:text-3xl bg-gradient-to-r from-amber-700 via-orange-700 to-amber-800 bg-clip-text text-transparent"
-                              }`}
-                            >
+                            <h3 className="font-serif font-bold mb-6 text-2xl lg:text-3xl text-slate-900 transition-colors duration-300">
                               {tier.tier}
                             </h3>
 
                             {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Separator component for content organization */}
                             {/* SEPARATOR REASON: Official Radix UI documentation demonstrates using Separator for visual content division and improved readability */}
-                            <Separator
-                              className={`my-4 transition-colors duration-300 ${
-                                isPremiumTier
-                                  ? "bg-gradient-to-r from-transparent via-amber-300 to-transparent h-0.5"
-                                  : isSilverTier
-                                    ? "bg-gradient-to-r from-transparent via-gray-300 to-transparent h-0.5"
-                                    : "bg-gradient-to-r from-transparent via-amber-400 to-transparent h-0.5"
-                              }`}
-                            />
+                            <Separator className="my-4 bg-slate-200 h-px" />
 
-                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reduced metallic pricing container with 30% size reduction */}
-                            {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation demonstrates responsive padding adjustments for improved content density */}
-                            {/* Metallic Price Container */}
-                            <div
-                              className={`relative mb-6 rounded-lg border-2 ${
-                                isPremiumTier
-                                  ? "p-4 lg:p-6 bg-gradient-to-br from-amber-50/90 via-yellow-50/70 to-amber-100/50 border-amber-200/70 shadow-md ring-1 ring-amber-300/30"
-                                  : isSilverTier
-                                    ? "p-4 lg:p-6 bg-gradient-to-br from-slate-50/80 via-gray-50/60 to-slate-100/40 border-gray-200/70 shadow-md ring-1 ring-gray-300/30"
-                                    : "p-4 lg:p-6 bg-gradient-to-br from-amber-50/70 via-orange-50/50 to-amber-100/40 border-amber-500/50 shadow-md ring-1 ring-amber-600/20"
-                              }`}
-                            >
+                            <div className="relative mb-6 rounded-lg border border-slate-200 p-4 lg:p-6 bg-slate-50 shadow-sm">
                               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic pricing typography with sophisticated color treatments */}
                               {/* METALLIC PRICING TYPOGRAPHY REASON: Official Tailwind CSS documentation Section 2.4 demonstrates premium text styling with metallic color coordination */}
                               <div className="text-center">
-                                <div
-                                  className={`font-bold mb-3 ${
-                                    isPremiumTier
-                                      ? "text-2xl lg:text-3xl bg-gradient-to-r from-amber-700 via-yellow-700 to-amber-800 bg-clip-text text-transparent"
-                                      : isSilverTier
-                                        ? "text-xl lg:text-2xl bg-gradient-to-r from-gray-700 via-slate-700 to-gray-800 bg-clip-text text-transparent"
-                                        : "text-xl lg:text-2xl bg-gradient-to-r from-amber-700 via-orange-700 to-amber-800 bg-clip-text text-transparent"
-                                  }`}
-                                >
+                                <div className="font-bold mb-3 text-2xl lg:text-3xl text-slate-900">
                                   {tier.pricePoint}
                                 </div>
 
                                 {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic badge styling with coordinated color treatments */}
                                 {/* METALLIC BADGE REASON: Official Tailwind CSS documentation Section 8.3 demonstrates premium badge styling with metallic color systems */}
-                                <div
-                                  className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border ${
-                                    isPremiumTier
-                                      ? "bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 border-amber-300 shadow-sm"
-                                      : isSilverTier
-                                        ? "bg-gradient-to-r from-gray-100 to-slate-100 text-gray-800 border-gray-300 shadow-sm"
-                                        : "bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 border-amber-400 shadow-sm"
-                                  }`}
-                                >
-                                  {isPremiumTier
-                                    ? "Gold Tier"
-                                    : isSilverTier
-                                      ? "Silver Tier"
-                                      : "Bronze Tier"}
+                                <div className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border bg-accent-100 text-accent-800 border-accent-300">
+                                  {tier.tier}
                                 </div>
                               </div>
 
-                              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic accent line with sophisticated gradient treatment */}
-                              {/* METALLIC ACCENT REASON: Official Tailwind CSS documentation Section 4.3 demonstrates enhanced gradient accents with metallic color coordination */}
-                              <div
-                                className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-full ${
-                                  isPremiumTier
-                                    ? "w-16 h-0.5 bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 shadow-sm"
-                                    : isSilverTier
-                                      ? "w-16 h-0.5 bg-gradient-to-r from-gray-300 via-slate-400 to-gray-300 shadow-sm"
-                                      : "w-16 h-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400 shadow-sm"
-                                }`}
-                              />
                             </div>
                           </CardHeader>
 
                           <CardContent className="relative text-center px-6 lg:px-8 pb-6 lg:pb-8">
-                            <p
-                              className={`mb-4 leading-relaxed group-hover:text-slate-600 transition-colors duration-300 ${
-                                isPremiumTier
-                                  ? "text-base font-medium text-slate-700"
-                                  : "text-base text-slate-700"
-                              }`}
-                            >
+                            <p className="mb-4 leading-relaxed text-base text-slate-700 transition-colors duration-300">
                               {tier.description}
                             </p>
 
                             {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Separator component for content organization */}
                             {/* SEPARATOR REASON: Official Radix UI documentation demonstrates using Separator for visual content division between description and features */}
-                            <Separator
-                              className={`my-4 transition-colors duration-300 ${
-                                isPremiumTier
-                                  ? "bg-gradient-to-r from-transparent via-amber-300 to-transparent h-0.5"
-                                  : isSilverTier
-                                    ? "bg-gradient-to-r from-transparent via-gray-300 to-transparent h-0.5"
-                                    : "bg-gradient-to-r from-transparent via-amber-400 to-transparent h-0.5"
-                              }`}
-                            />
+                            <Separator className="my-4 bg-slate-200 h-px" />
 
                             <p className="text-sm font-semibold text-slate-900 mb-3 group-hover:text-slate-800 transition-colors duration-300">
                               Best For:
@@ -707,19 +498,6 @@ export default function HowItWorksPage() {
                               }`}
                             />
                           </CardContent>
-
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reduced metallic bottom accent with size reduction */}
-                          {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation demonstrates proportional accent scaling for improved visual balance */}
-                          {/* Metallic Bottom Accent Border */}
-                          <div
-                            className={`absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
-                              isPremiumTier
-                                ? "h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent shadow-sm"
-                                : isSilverTier
-                                  ? "h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent shadow-sm"
-                                  : "h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent shadow-sm"
-                            }`}
-                          />
                         </Card>
                       </m.div>
                     );
@@ -761,24 +539,12 @@ export default function HowItWorksPage() {
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section
           id="how-it-works-benefits"
-          className="relative bg-gradient-to-b from-slate-50/80 via-blue-50/40 to-amber-50/30 py-20 lg:py-32 overflow-hidden"
+          className="relative bg-cover bg-center py-20 lg:py-32"
+          style={{
+            backgroundImage: 'url(/images/video-masterclasses/pexels-kindelmedia-7579201-dark.jpg)'
+          }}
         >
-          {/* Premium Pattern Overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.02] pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eab308' fill-opacity='1'%3E%3Cpath d='M40 20l-10 10L20 20l10-10L40 20zm20 20l-10 10L40 30l10-10L60 40z'/%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: "80px 80px",
-            }}
-          />
-
-          {/* Premium Radial Gradients */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-amber-100/20 via-transparent to-transparent rounded-full" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-radial from-blue-100/20 via-transparent to-transparent rounded-full" />
-
-          {/* Royal Gradient Accents */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-300/40 to-transparent" />
+          <div className="absolute inset-0 bg-black/40"></div>
 
           <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
@@ -786,19 +552,16 @@ export default function HowItWorksPage() {
                 {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section header simplification patterns for improved user flow */}
                 {/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
 
-                <h2 className="text-4xl lg:text-6xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
+                <h2 className="text-4xl lg:text-6xl font-serif font-bold text-white mb-8 leading-tight">
                   Why Families
-                  <span className="block bg-gradient-to-r from-amber-600 via-yellow-700 to-amber-800 bg-clip-text text-transparent">
+                  <span className="block text-accent-400">
                     Choose Our Approach
                   </span>
                 </h2>
 
-                {/* Premium decorative divider */}
-                <div className="flex items-center justify-center gap-4 mb-8">
-                  <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
-                </div>
+                <div className="w-24 h-1 bg-accent-500 mx-auto mb-8"></div>
 
-                <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
+                <p className="text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed font-medium">
                   Discover what sets My Private Tutor Online apart as the
                   trusted choice of families across the UK
                 </p>
@@ -862,15 +625,12 @@ export default function HowItWorksPage() {
                             ease: [0.25, 0.1, 0.25, 1],
                           }}
                         >
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for premium checkmark elements */}
-                          {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-                          {/* Premium checkmark with brand color treatment */}
-                          <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110 mt-1">
-                            <CheckCircle className="w-5 h-5 text-white drop-shadow-sm" />
+                          <div className="flex-shrink-0 w-8 h-8 bg-accent-500 rounded-full flex items-center justify-center shadow-md transition-all duration-300 mt-1">
+                            <CheckCircle className="w-5 h-5 text-white" />
                           </div>
 
                           <div className="flex-1">
-                            <p className="text-lg font-medium text-slate-700 group-hover:text-slate-600 transition-colors duration-300 leading-relaxed">
+                            <p className="text-lg font-medium text-white/90 transition-colors duration-300 leading-relaxed">
                               {benefit}
                             </p>
                           </div>
