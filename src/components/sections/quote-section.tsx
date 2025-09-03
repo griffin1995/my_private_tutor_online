@@ -310,7 +310,7 @@ export function QuoteSection({
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
       {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {showAuthorImage && authorImage ? (
             /* 
              * CONTEXT7 SOURCE: /vercel/next.js - Image component with responsive layout patterns
@@ -343,8 +343,8 @@ export function QuoteSection({
                  * - leading-relaxed: Enhanced line height for readability
                  * - mb-8: Consistent spacing to citation
                  */}
-                <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed mb-8">
-                  &ldquo;{renderHighlightedQuote()}&rdquo;
+                <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed">
+                  {renderHighlightedQuote()}
                 </blockquote>
                 
                 {/* 
@@ -382,8 +382,8 @@ export function QuoteSection({
                * - leading-relaxed: Enhanced line height for readability
                * - mb-8: Consistent spacing to citation
                */}
-              <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed mb-8">
-                &ldquo;{renderHighlightedQuote()}&rdquo;
+              <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed">
+                {renderHighlightedQuote()}
               </blockquote>
               
               {/* 

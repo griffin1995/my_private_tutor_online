@@ -3,27 +3,27 @@
  * Reference: https://www.framer.com/motion/lazy-motion/
  * Reference: https://www.framer.com/motion/animate-presence/
  * Reference: https://nextjs.org/docs/app/building-your-application/optimizing/images
- * 
+ *
  * Pattern: Optimised Video Dialog with LazyMotion
  * Architecture:
  * - LazyMotion with domAnimation features for 87% smaller bundle
  * - Client component with efficient state management
  * - AnimatePresence for smooth modal transitions
  * - 8 animation variants for different use cases
- * 
+ *
  * Performance Optimisations:
  * - LazyMotion reduces Framer Motion bundle size
  * - Efficient re-renders with useCallback hooks
  * - Next.js Image component for optimised thumbnails
  * - Proper cleanup and memory management
- * 
+ *
  * Features:
  * - Full-screen responsive video modal
  * - Customisable entrance/exit animations
  * - Keyboard navigation (Escape to close)
  * - Click outside to close functionality
  * - Focus trap for accessibility
- * 
+ *
  * Accessibility (WCAG 2.1 AA):
  * - Focus management and restoration
  * - Keyboard navigation support
@@ -32,130 +32,132 @@
  * - Screen reader announcements
  */
 
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from 'react'
-import { m, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion'
-import { X, Play } from 'lucide-react'
-import Image from 'next/image'
-import * as AspectRatio from '@radix-ui/react-aspect-ratio'
+import * as AspectRatio from "@radix-ui/react-aspect-ratio";
+import { AnimatePresence, m } from "framer-motion";
+import { CirclePlay, CirclePoundSterling, X } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
-type AnimationStyle = 
+type AnimationStyle =
   | "from-bottom"
-  | "from-center" 
+  | "from-center"
   | "from-top"
   | "from-left"
   | "from-right"
   | "fade"
   | "top-in-bottom-out"
-  | "left-in-right-out"
+  | "left-in-right-out";
 
 interface HeroVideoDialogProps {
-  videoSrc: string
-  thumbnailSrc: string
-  thumbnailAlt?: string
-  className?: string
-  animationStyle?: AnimationStyle
+  videoSrc: string;
+  thumbnailSrc: string;
+  thumbnailAlt?: string;
+  className?: string;
+  animationStyle?: AnimationStyle;
+  isFree?: boolean;
 }
 
 const animationVariants = {
   "from-bottom": {
     initial: { opacity: 0, y: "100%" },
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: "100%" }
+    exit: { opacity: 0, y: "100%" },
   },
   "from-center": {
     initial: { opacity: 0, scale: 0.8 },
     animate: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.8 }
+    exit: { opacity: 0, scale: 0.8 },
   },
   "from-top": {
     initial: { opacity: 0, y: "-100%" },
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: "-100%" }
+    exit: { opacity: 0, y: "-100%" },
   },
   "from-left": {
     initial: { opacity: 0, x: "-100%" },
     animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: "-100%" }
+    exit: { opacity: 0, x: "-100%" },
   },
   "from-right": {
     initial: { opacity: 0, x: "100%" },
     animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: "100%" }
+    exit: { opacity: 0, x: "100%" },
   },
-  "fade": {
+  fade: {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
-    exit: { opacity: 0 }
+    exit: { opacity: 0 },
   },
   "top-in-bottom-out": {
     initial: { opacity: 0, y: "-100%" },
     animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: "100%" }
+    exit: { opacity: 0, y: "100%" },
   },
   "left-in-right-out": {
     initial: { opacity: 0, x: "-100%" },
     animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: "100%" }
-  }
-}
+    exit: { opacity: 0, x: "100%" },
+  },
+};
 
 function HeroVideoDialog({
   videoSrc,
   thumbnailSrc,
   thumbnailAlt = "Video thumbnail",
   className = "",
-  animationStyle = "from-center"
+  animationStyle = "from-center",
+  isFree = true,
 }: HeroVideoDialogProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleOpen = () => {
-    setIsOpen(true)
-  }
+    setIsOpen(true);
+  };
 
   const handleClose = () => {
-    setIsOpen(false)
+    setIsOpen(false);
     if (videoRef.current) {
-      videoRef.current.pause()
-      videoRef.current.currentTime = 0
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
     }
-  }
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      handleOpen()
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleOpen();
     }
-  }
+  };
 
   const handleModalKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      handleClose()
+    if (e.key === "Escape") {
+      handleClose();
     }
-  }
+  };
 
   useEffect(() => {
     // Only manipulate DOM on client side
-    if (typeof window === 'undefined') return
+    if (typeof window === "undefined") return;
 
     if (isOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
       const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') handleClose()
-      }
-      document.addEventListener('keydown', handleKeyDown)
-      
+        if (e.key === "Escape") handleClose();
+      };
+      document.addEventListener("keydown", handleKeyDown);
+
       return () => {
-        document.body.style.overflow = 'unset'
-        document.removeEventListener('keydown', handleKeyDown)
-      }
+        document.body.style.overflow = "unset";
+        document.removeEventListener("keydown", handleKeyDown);
+      };
     } else {
-      document.body.style.overflow = 'unset'
-      return undefined
+      document.body.style.overflow = "unset";
+      return undefined;
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   return (
     <div className={`relative ${className}`}>
@@ -179,15 +181,15 @@ function HeroVideoDialog({
             className="w-full h-full object-cover"
             priority
             quality={75}
-            style={{aspectRatio: '16/9'}}
+            style={{ aspectRatio: "16/9" }}
           />
-          
+
           {/* Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center transition-colours z-20">
             {/* Documentation Source: Context7 Tailwind CSS - Perfect Center Alignment for Play Button
              * Reference: /context7/tailwindcss - Flexbox centering utilities for precise alignment
              * Pattern: Using flex items-center justify-center for perfect center alignment
-             * 
+             *
              * Alignment Logic:
              * - Parent div: flex items-center justify-center creates perfect centering container
              * - Child Play icon: Removed ml-1 offset that was causing misalignment
@@ -196,7 +198,19 @@ function HeroVideoDialog({
              * - Play button now perfectly centered within its circular container
              */}
             <div className="flex items-center justify-center">
-              <Play className="w-10 h-10 text-white group-hover:text-[#CA9E5B] transition-colors duration-300" fill="currentColor" />
+              {isFree ? (
+                <CirclePlay
+                  size={100}
+                  strokeWidth={0.5}
+                  className="text-white group-hover:text-[#CA9E5B] transition-colors duration-300"
+                />
+              ) : (
+                <CirclePoundSterling 
+                  size={100}
+                  strokeWidth={0.5}
+                  className="text-white group-hover:text-[#CA9E5B] transition-colors duration-300" 
+                />
+              )}
             </div>
           </div>
         </div>
@@ -237,7 +251,8 @@ function HeroVideoDialog({
               {/* IMPLEMENTATION REASON: Official Radix UI documentation recommends AspectRatio component for consistent video aspect ratio across all browsers and video types */}
               <AspectRatio.Root ratio={16 / 9} className="w-full">
                 {/* YouTube Video */}
-                {videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be') ? (
+                {videoSrc.includes("youtube.com") ||
+                videoSrc.includes("youtu.be") ? (
                   <iframe
                     src={videoSrc}
                     className="w-full h-full rounded-lg shadow-2xl border border-white"
@@ -260,7 +275,7 @@ function HeroVideoDialog({
                     preload="metadata"
                     onLoadedData={() => {
                       if (videoRef.current) {
-                        videoRef.current.play()
+                        videoRef.current.play();
                       }
                     }}
                   />
@@ -271,9 +286,9 @@ function HeroVideoDialog({
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
 
 // CONTEXT7 SOURCE: /websites/magicui_design - Default export pattern for Magic UI components
 // DEFAULT EXPORT REASON: Official Magic UI documentation Section 1.1 recommends default export pattern for components
-export default HeroVideoDialog
+export default HeroVideoDialog;

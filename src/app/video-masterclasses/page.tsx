@@ -111,7 +111,7 @@ const videoMasterclassesContent = {
     {
       id: "personal-statements-part-2",
       title:
-        "Elizabeth's Top 10 Tips for Outstanding Personal Statements - Part 2 of 2",
+        "Elizabeth's Top 10 Tips for Outstanding Personal Statements - Part 2/2",
       price: "£89.99",
       duration: "70 minutes",
       venue: "(As delivered at London School of Economics)",
@@ -315,7 +315,7 @@ export default function VideoMasterclassesPage() {
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - Grid layout with staggered animations for VideoThumbnailTopCard components */}
             {/* GRID ANIMATION REASON: Official Framer Motion documentation recommends staggered animations for multiple components in grid layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-              {/* Card 1 - Top 10 Tips for Outstanding Personal Statements - Part 2 of 2 */}
+              {/* Card 1 - Top 10 Tips for Outstanding Personal Statements - Part 2/2 */}
               <m.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

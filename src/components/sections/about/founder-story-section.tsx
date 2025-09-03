@@ -37,6 +37,7 @@ import { Highlighter } from "@/components/magicui/highlighter";
 import { m } from "framer-motion";
 import Image from "next/image";
 import { getGoingAgainstGrainImage } from "@/lib/cms/cms-images";
+import { TwoRowHeadingTextSection } from "@/components/sections/two-row-heading-text-section";
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimised founder story images
 // IMAGE OPTIMISATION REASON: Official Next.js documentation Section 3.4 recommends Image component for performance
 // CONTEXT7 SOURCE: /framer/motion - Motion components for accessibility-compliant animations
@@ -326,60 +327,13 @@ export function FounderStorySection({
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
       {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
-        {/* ROW 4: Career Milestones - Centered Text Container with Sub-sections + Video Integration */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spacing utilities for section organisation */}
-        {/* SUBSECTION SPACING REASON: Official Tailwind CSS documentation Section 2.5 recommends consistent spacing for content hierarchy */}
-        <m.div
-          className="max-w-6xl mx-auto mb-20 px-4 sm:px-6 lg:px-8"
-          initial={fadeInUpVariant.initial}
-          whileInView={fadeInUpVariant.animate}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={fadeInUpVariant.transition}
-        >
-          <div className="space-y-10">
-            {/* Sub-section: Love at First Lesson - Restructured in Golden Circle Format */}
-            {/* CONTEXT7 SOURCE: /radix-ui/website - Separator component for visual content organization */}
-            {/* RESTRUCTURE REASON: Official Radix UI documentation patterns for content separation following Golden Circle Tutors reference format */}
-            <div className="text-left space-y-8">
-              <div>
-                <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6">
-                  Love at First Lesson
-                </h3>
-                
-                <div className="space-y-6">
-                  <p className="text-lg text-primary-700 leading-relaxed">
-                    I started tutoring at Bristol; it was love at first lesson. I've
-                    always had a natural affinity with children and combining that
-                    with academics just made sense. I went on to complete my
-                    Masters, all the while refining my tutoring practice, both in
-                    person and online. I quickly found myself being recommended from
-                    family to family.
-                  </p>
-                </div>
-              </div>
-
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full width separator implementation for section division */}
-              {/* SEPARATOR FULL WIDTH REASON: Official Tailwind CSS documentation Section 2.1 - w-full utility sets width to 100% of parent container for full-width visual separation */}
-              <div className="w-full h-px bg-primary-200"></div>
-
-              <div>
-                <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6">
-                  Global Reach
-                </h3>
-                
-                <div className="space-y-6">
-                  <p className="text-lg text-primary-700 leading-relaxed">
-                    What followed was a series of international placements and the
-                    opportunities to work with VIPs and private families around the
-                    world. By 2017, I had visited all seven continents. I met and
-                    worked alongside some truly exceptional educators — many of whom
-                    are still firm favourites in the tutoring team now.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </m.div>
+        {/* ROW 4: Career Milestones - Love at First Lesson Section */}
+        <TwoRowHeadingTextSection 
+          headingOne="Love at First Lesson"
+          paragraphOne="I started tutoring at Bristol; it was love at first lesson. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family."
+          headingTwo="Global Reach"
+          paragraphTwo="What followed was a series of international placements and the opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents. I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now."
+        />
       </div>
 
       {/* ROW 5: Global Experience - Mobile Stacked Layout / Desktop Hero-Style Single Column with Text Overlay */}

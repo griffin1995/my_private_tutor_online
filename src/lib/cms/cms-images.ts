@@ -7,6 +7,10 @@
 // PERFORMANCE OPTIMIZATION: Map-based architecture with React cache() for 30%+ code reduction
 import { cache } from "react";
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Module import patterns for centralized CMS data
+// COMPREHENSIVE VIDEO CMS IMPORT: Import unified video CMS from centralized location
+import { COMPREHENSIVE_VIDEO_CMS } from "../../../COMPREHENSIVE_VIDEO_CMS";
+
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for media asset management
 // CONTEXT7 SOURCE: /microsoft/typescript - Readonly properties for immutable data structures
 // COMPREHENSIVE IMAGE TYPE SYSTEM - All image assets with type safety
@@ -46,6 +50,38 @@ export interface VideoAsset {
   readonly autoplay?: boolean;
   readonly muted?: boolean;
   readonly loop?: boolean;
+}
+
+/**
+ * Video page section interface extending existing VideoAsset
+ * CONTEXT7 SOURCE: /microsoft/typescript - Interface extension with additional properties
+ * EXTENSION REASON: Adding video page specific fields while maintaining compatibility with existing video system
+ */
+export interface VideoPageSection extends VideoAsset {
+  readonly id: string;
+  readonly videoUrl: string;
+  readonly thumbnailUrl: string;
+  readonly animationStyle: "from-center" | "from-left" | "from-right" | "top-in-bottom-out" | "fade";
+  readonly duration: number;
+  readonly isFree: boolean;
+  readonly price?: string;
+  readonly paymentUrl?: string;
+  readonly featured: boolean;
+  readonly category: "free" | "paid";
+  readonly masterclassAuthor: string;
+  readonly masterclassRole: string;
+  readonly backgroundImage: string;
+  readonly layout: "text-left" | "text-right";
+  readonly badge: {
+    readonly text: string;
+    readonly type: "free" | "premium";
+  };
+  readonly content: {
+    readonly paragraphs: readonly string[];
+    readonly bulletPoints: readonly string[];
+    readonly subtitle?: string;
+    readonly disclaimer?: string;
+  };
 }
 
 /**
@@ -814,110 +850,6 @@ export const TUTOR_IMAGES = {
 // CONTEXT7 SOURCE: /microsoft/typescript - Readonly object patterns for immutable video asset definitions
 // CONTEXT7 SOURCE: /websites/magicui_design - Video testimonials and content enhanced for Magic UI HeroVideoDialog integration
 // CMS VIDEO DATA REASON: Official Magic UI documentation recommends proper video source and thumbnail structure for HeroVideoDialog components
-export const VIDEO_CONTENT = {
-  parentsTestimonials: {
-    id: "parents-testimonials-2025",
-    src: "/videos/parents-testimonials-2025.mp4",
-    poster: "/images/testimonials/parent-testimonials-thumbnail.jpg?v=20250831",
-    alt: "Parent testimonials for My Private Tutor Online - Compilation 2025",
-    title: "Parent Success Stories 2025",
-    description:
-      "Real parents sharing their transformative experiences with My Private Tutor Online",
-    duration: 109,
-    featured: true,
-    category: "all" as const,
-    testimonialAuthor: "Various Parents",
-    testimonialRole: "MPTO Families",
-    viewCount: 2847,
-    rating: 5,
-    uploadDate: "2025-08-31",
-  },
-  studentsTestimonials: {
-    id: "students-testimonials-2025",
-    src: "/videos/students-testimonials-2025.mp4",
-    poster: "/images/testimonials/student-testimonials-thumbnail.jpg?v=20250831",
-    alt: "Student testimonials for My Private Tutor Online - Compilation 2025",
-    title: "Student Success Stories 2025",
-    description:
-      "Students sharing their academic achievements with MPTO expert tutors",
-    duration: 137,
-    featured: true,
-    category: "all" as const,
-    testimonialAuthor: "MPTO Students",
-    testimonialRole: "Academic Achievers",
-    viewCount: 2156,
-    rating: 5,
-    uploadDate: "2025-08-31",
-  },
-  oxbridgeSuccess: {
-    id: "oxbridge-success-stories",
-    src: "",
-    poster: "/images/video-placeholders/oxbridge-success-poster.jpg",
-    alt: "Oxbridge success stories - Cambridge and Oxford admissions",
-    title: "Oxbridge Success Stories",
-    description:
-      "Students sharing their journeys to Cambridge and Oxford with MPTO guidance",
-    duration: 195,
-    featured: true,
-    category: "Oxbridge" as const,
-    testimonialAuthor: "Oxbridge Students",
-    testimonialRole: "University Achievers",
-    viewCount: 1834,
-    rating: 5,
-    uploadDate: "2025-06-28",
-  },
-  elevenPlusResults: {
-    id: "eleven-plus-results-2025",
-    src: "",
-    poster: "/images/video-placeholders/11-plus-results-poster.jpg",
-    alt: "11+ exam success stories and results testimonials",
-    title: "11+ Success Stories",
-    description:
-      "Families celebrating outstanding 11+ results and grammar school places",
-    duration: 145,
-    featured: false,
-    category: "11+" as const,
-    testimonialAuthor: "11+ Families",
-    testimonialRole: "Grammar School Parents",
-    viewCount: 1567,
-    rating: 5,
-    uploadDate: "2025-06-15",
-  },
-  gcseAchievements: {
-    id: "gcse-achievements-2025",
-    src: "",
-    poster: "/images/video-placeholders/gcse-achievements-poster.jpg",
-    alt: "GCSE results and achievements testimonials",
-    title: "GCSE Excellence",
-    description:
-      "Students celebrating exceptional GCSE results with MPTO support",
-    duration: 170,
-    featured: false,
-    category: "GCSE" as const,
-    testimonialAuthor: "GCSE Students",
-    testimonialRole: "High Achievers",
-    viewCount: 1392,
-    rating: 5,
-    uploadDate: "2025-08-25",
-  },
-  aLevelSuccess: {
-    id: "a-level-success-2025",
-    src: "",
-    poster: "/images/video-placeholders/a-level-success-poster.jpg",
-    alt: "A-Level success stories and university admissions",
-    title: "A-Level Excellence",
-    description:
-      "A-Level students sharing their success stories and university admissions",
-    duration: 185,
-    featured: false,
-    category: "A-Level" as const,
-    testimonialAuthor: "A-Level Students",
-    testimonialRole: "University Bound",
-    viewCount: 1678,
-    rating: 5,
-    uploadDate: "2025-08-15",
-  },
-} as const;
 
 // CONTEXT7 SOURCE: /vercel/next.js - Static asset management patterns for programme showcase images
 // PROGRAMME IMAGES UPDATE: New 11+ bootcamp programme images from user provided assets
@@ -993,166 +925,92 @@ export const VIDEO_PLACEHOLDERS = {
 // IMPLEMENTATION REASON: Adding masterclass video asset management following official TypeScript patterns
 // TASK 2 & 3 IMPLEMENTATION: Extended masterclass video system with payment integration and proper video connections
 // Masterclass video assets for educational content with payment links integration
-export const MASTERCLASS_VIDEOS = {
-  unlockingAcademicSuccess: {
-    id: "unlocking-academic-success",
-    src: "",
-    poster: "/images/masterclass-thumbnails/unlocking-success.png",
-    alt: "Unlocking Academic Success - GCSE Summit 2024 Masterclass by Elizabeth Burrows",
-    title: "Unlocking Academic Success (Free Access)",
-    description:
-      "Elizabeth Burrows was invited to speak at the GCSE Summit 2024, where she addressed parents of GCSE-aged students on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition. In this masterclass Elizabeth shares practical strategies and insights into the most common challenges families face when considering tutoring — from framing tutoring in a positive light for reluctant tutees to determining your child's true potential. Her session offers clear, reassuring guidance to help parents feel more confident in supporting their teens through GCSEs, IBs and A Levels.",
-    duration: 30,
-    featured: true,
-    category: "free" as const,
-    masterclassAuthor: "Elizabeth Burrows",
-    masterclassRole: "Founder, My Private Tutor Online",
-    isFree: true,
-    thumbnailUrl: "/images/masterclass-thumbnails/gcse-summit.png",
-    videoUrl: "", // CONTEXT7 SOURCE: /microsoft/typescript - Optional property pattern for missing video file
-  },
-  ucasSummit2024: {
-    id: "ucas-summit-2024",
-    src: "/videos/gcse-summit-2024-elizabeth-burrows.mp4",
-    poster: "/images/masterclass-thumbnails/gcse-summit-2024.png",
-    alt: "UCAS Summit 2024 - Complete Recording by Elizabeth Burrows featuring GCSE Summit 2024 content",
-    title: "UCAS Summit 2024 (Free Access)",
-    description:
-      "Complete recording from Elizabeth's presentation at the GCSE Summit 2024, where she addressed parents of GCSE-aged students on how to effectively navigate gaps in knowledge and rebuild lost confidence through one-to-one tuition. This comprehensive recording includes audience Q&A and additional insights for parents navigating the tutoring landscape.",
-    duration: 45,
-    featured: false,
-    category: "free" as const,
-    masterclassAuthor: "Elizabeth Burrows",
-    masterclassRole: "Founder, My Private Tutor Online",
-    isFree: true,
-    thumbnailUrl: "/images/masterclass-thumbnails/gcse-summit-2024.png",
-    videoUrl: "/videos/gcse-summit-2024-elizabeth-burrows.mp4", // CONTEXT7 SOURCE: /vercel/next.js - HTML5 video element with local asset serving patterns
-  },
-  elizabethsUcasGuide: {
-    id: "elizabeths-ucas-guide",
-    src: "",
-    poster: "/images/masterclass-thumbnails/ucas-guide.png",
-    alt: "Elizabeth's Essential UCAS Guide - Part 1 of 2",
-    title: "Elizabeth's Essential UCAS Guide - Part 1 of 2",
-    description:
-      "Widely recognised for her expertise in the British university admissions process, Elizabeth was invited to speak to international summer school students at LSE. In her session, she demystifies each stage of the UCAS application, offering clear, practical guidance to help students approach the process with confidence.",
-    duration: 90,
-    featured: true,
-    category: "paid" as const,
-    masterclassAuthor: "Elizabeth Burrows",
-    masterclassRole: "Founder, My Private Tutor Online",
-    isFree: false,
-    thumbnailUrl: "/images/masterclass-thumbnails/ucas-guide.png",
-    videoUrl: "",
-    paymentUrl: "https://buy.stripe.com/7sY6oGdj767tbtO1Zd38408",
-    price: "£49.99",
-  },
-  personalStatementsGuide: {
-    id: "personal-statements-guide",
-    src: "",
-    poster: "/images/masterclass-thumbnails/top-10-tips.png",
-    alt: "Elizabeth's Top 10 Tips for Outstanding Personal Statements",
-    title: "Top 10 Tips for Outstanding Personal Statements - Part 2 of 2",
-    description:
-      "Elizabeth is renowned for her success in guiding ambitious students into Oxbridge and top UK universities. In this masterclass she reveals the 10 ingredients in her secret recipe for personal statement success.",
-    duration: 70,
-    featured: true,
-    category: "paid" as const,
-    masterclassAuthor: "Elizabeth Burrows",
-    masterclassRole: "Founder, My Private Tutor Online",
-    isFree: false,
-    thumbnailUrl: "/images/masterclass-thumbnails/top-10-tips.png",
-    videoUrl: "",
-    paymentUrl: "https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409",
-    price: "£89.99",
-  },
-  britishLiteraryClassics: {
-    id: "british-literary-classics",
-    src: "",
-    poster: "/images/masterclass-thumbnails/british-literary-classics.png",
-    alt: "Exploring British Literary Classics - Masterclass for Curious Readers",
-    title: "Exploring British Literary Classics (Ages 8–14)",
-    description:
-      "From Wind in the Willows to The Lord of the Rings, this engaging masterclass introduces students to some of the most celebrated works in British literature. Led by Elizabeth Burrows, this session explores what defines a literary classic.",
-    duration: 60,
-    featured: false,
-    category: "paid" as const,
-    masterclassAuthor: "Elizabeth Burrows",
-    masterclassRole: "Founder, My Private Tutor Online",
-    isFree: false,
-    thumbnailUrl: "/images/masterclass-thumbnails/british-literary-classics.png",
-    videoUrl: "",
-    paymentUrl: "https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a",
-    price: "£19.99",
-  },
-  britishEtiquette: {
-    id: "british-etiquette",
-    src: "",
-    poster: "/images/masterclass-thumbnails/british-etiquette.jpg",
-    alt: "Understanding British Etiquette - Cultural Awareness Masterclass",
-    title: "Understanding British Etiquette",
-    description:
-      "Drawing on her experience working with royalty and high-profile international families, Elizabeth demystifies the social codes that shape life in the UK's most prestigious schools and institutions.",
-    duration: 60,
-    featured: false,
-    category: "paid" as const,
-    masterclassAuthor: "Elizabeth Burrows",
-    masterclassRole: "Founder, My Private Tutor Online",
-    isFree: false,
-    thumbnailUrl: "/images/masterclass-thumbnails/british-etiquette.jpg",
-    videoUrl: "",
-    paymentUrl: "https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b",
-    price: "£19.99",
-  },
-} as const;
+/**
+ * COMPREHENSIVE VIDEO CMS - Single Source of Truth
+ * All video-related data consolidated from all previous structures
+ * Replaces: VIDEO_CONTENT, MASTERCLASS_VIDEOS, BACKGROUND_VIDEOS, VIDEO_PLACEHOLDERS, VIDEO_PAGE_SECTIONS
+ */
 
-// Background videos for video-text effects
-// CONTEXT7 SOURCE: /vercel/next.js - Updated background videos to use new high-quality video assets
-// VIDEO UPDATE REASON: Official Next.js documentation supports using latest video assets for enhanced user experience
-export const BACKGROUND_VIDEOS = {
-  brandStatement: {
-    src: "/videos/elizabeth-introduction-sound.mp4",
-    fallback: "/videos/elizabeth-introduction-sound.mp4",
-    poster:
-      "/images/video-placeholders/placeholder_for_introductionary_video.png",
-    alt: "Elizabeth Burrows introduces My Private Tutor Online - brand statement background with audio",
-    title: "Elizabeth Burrows Introduction Video - Enhanced Audio",
-    description:
-      "Founder introduction video with sound used as background for brand statement text effects",
-  },
-  tutoring: {
-    src: "/videos/elizabeth-introduction-sound.mp4",
-    fallback: "/videos/elizabeth-introduction-sound.mp4",
-    poster:
-      "/images/video-placeholders/placeholder_for_introductionary_video.png",
-    alt: "Professional tutoring introduction video background with enhanced audio",
-    title: "Tutoring Introduction Background - Enhanced",
-    description:
-      "Professional introduction video with sound for tutoring-focused video-text effects",
-  },
-  oxbridge: {
-    src: "/videos/elizabeth-introduction-sound.mp4",
-    fallback: "/videos/elizabeth-introduction-sound.mp4",
-    poster:
-      "/images/video-placeholders/placeholder_for_introductionary_video.png",
-    alt: "Oxford Cambridge preparation introduction video background with enhanced audio",
-    title: "Oxbridge Preparation Background - Enhanced",
-    description:
-      "Educational excellence video with sound for university preparation content",
-  },
-  // CONTEXT7 SOURCE: /vercel/next.js - Added new hero background video for homepage
-  // NEW VIDEO INTEGRATION: landing-page-hero-background.mp4 for modern homepage hero backgrounds
-  heroBackground: {
-    src: "/videos/compressed-landing-page-hero-background.mp4",
-    fallback: "/videos/compressed-landing-page-hero-background.mp4",
-    poster:
-      "/images/hero/child_book_and_laptop.avif",
-    alt: "Premium tutoring hero background video showing educational excellence",
-    title: "Hero Background Video - Premium Tutoring",
-    description:
-      "High-quality hero background video showcasing premium tutoring environment",
-  },
-} as const;
+interface MasterVideoRecord {
+  // Core Identity
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  
+  // Video Sources & Assets
+  readonly videoUrl: string | null;
+  readonly src: string | null;
+  readonly thumbnailUrl: string | null;
+  readonly poster: string | null;
+  readonly backgroundImage: string | null;
+  readonly fallback: string | null;
+  
+  // Content & Metadata  
+  readonly author: string | null;
+  readonly authorRole: string | null;
+  readonly testimonialAuthor: string | null;
+  readonly testimonialRole: string | null;
+  readonly duration: number | null;
+  readonly category: "free" | "premium" | "background" | "testimonial" | "placeholder" | "all" | "Oxbridge" | "paid";
+  
+  // Pricing & Access
+  readonly isFree: boolean;
+  readonly price: string | null;
+  readonly paymentUrl: string | null;
+  
+  // Display Properties
+  readonly alt: string;
+  readonly featured: boolean;
+  readonly width: number | null;
+  readonly height: number | null;
+  readonly loading: "lazy" | "eager" | null;
+  
+  // Usage Context
+  readonly usageTypes: readonly Array<"page-section" | "masterclass" | "background" | "testimonial" | "placeholder">;
+  
+  // Page-Specific Layouts
+  readonly layouts: {
+    readonly videoPage?: {
+      readonly position: "text-left" | "text-right";
+      readonly badge: { readonly text: string; readonly type: "free" | "premium" };
+      readonly content: {
+        readonly paragraphs: readonly string[];
+        readonly bulletPoints: readonly string[];
+      };
+      readonly animationStyle: string;
+    };
+    readonly masterclassPage?: {
+      readonly displayOrder?: number;
+      readonly featuredOnHome?: boolean;
+    };
+  } | null;
+}
+
+/**
+ * Helper functions for accessing Master Video CMS data
+ */
+
+// Get all videos of a specific category
+export const getVideosByCategory = (category: any) => 
+  Object.values(COMPREHENSIVE_VIDEO_CMS).filter(video => video.category === category);
+
+// Get videos for a specific usage type  
+export const getVideosByUsage = (usageType: string) =>
+  Object.values(COMPREHENSIVE_VIDEO_CMS).filter(video => 
+    video.usageTypes.includes(usageType as any)
+  );
+
+// Get video by title (for VideoMasterclassSection)
+export const getVideoByTitle = (title: string) =>
+  Object.values(COMPREHENSIVE_VIDEO_CMS).find(video => video.title === title);
+
+// Get video page layout data
+export const getVideoPageData = (title: string) => {
+  const video = getVideoByTitle(title);
+  return video?.layouts?.videoPage;
+};
+
+
 
 // Fallback images for missing content
 export const FALLBACK_IMAGES = {
@@ -1356,19 +1214,9 @@ imageAssetRegistry.set("media", new Map(Object.entries(MEDIA_IMAGES)));
 imageAssetRegistry.set("tutors", new Map(Object.entries(TUTOR_IMAGES)));
 imageAssetRegistry.set("students", new Map(Object.entries(STUDENT_IMAGES)));
 imageAssetRegistry.set("fallbacks", new Map(Object.entries(FALLBACK_IMAGES)));
-imageAssetRegistry.set("videoContent", new Map(Object.entries(VIDEO_CONTENT)));
-imageAssetRegistry.set(
-  "backgroundVideos",
-  new Map(Object.entries(BACKGROUND_VIDEOS))
-);
-imageAssetRegistry.set("marketing", new Map(Object.entries(MARKETING_ASSETS)));
 imageAssetRegistry.set(
   "videoPlaceholders",
   new Map(Object.entries(VIDEO_PLACEHOLDERS))
-);
-imageAssetRegistry.set(
-  "masterclassVideos",
-  new Map(Object.entries(MASTERCLASS_VIDEOS))
 );
 imageAssetRegistry.set(
   "programmes",
@@ -1666,53 +1514,43 @@ export const isNewTutor = (profileId: string): boolean => {
 /**
  * Get video testimonial content
  * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for video assets
- * CMS DATA SOURCE: Using VIDEO_CONTENT for testimonial videos
+ * CMS DATA SOURCE: Using MASTER_VIDEO_CMS filtered for testimonial videos
  */
-export const getVideoContent = (): typeof VIDEO_CONTENT => {
-  return VIDEO_CONTENT;
+export const getVideoContent = () => {
+  return Object.values(COMPREHENSIVE_VIDEO_CMS).filter(video => video.category === "testimonial");
 };
 
 /**
  * Get testimonial videos as array for Magic UI HeroVideoDialog component integration
  * CONTEXT7 SOURCE: /websites/magicui_design - Video gallery data structure for HeroVideoDialog testimonial presentation
- * CMS DATA SOURCE: Using VIDEO_CONTENT transformed for Magic UI HeroVideoDialog components with proper API structure
+ * CMS DATA SOURCE: Using MASTER_VIDEO_CMS filtered and transformed for Magic UI HeroVideoDialog components with proper API structure
  */
 export const getTestimonialVideos = (): Array<{
   readonly id: string;
   readonly title: string;
   readonly description: string;
-  readonly videoSrc: string;
-  readonly thumbnailSrc: string;
-  readonly duration?: number;
+  readonly videoSrc: string | null;
+  readonly thumbnailSrc: string | null;
+  readonly duration?: number | null;
   readonly featured?: boolean;
-  readonly category?:
-    | "all"
-    | "11+"
-    | "GCSE"
-    | "A-Level"
-    | "Oxbridge"
-    | "International";
-  readonly testimonialAuthor?: string;
-  readonly testimonialRole?: string;
-  readonly viewCount?: number;
-  readonly rating?: number;
-  readonly uploadDate?: string;
+  readonly category?: "free" | "premium" | "background" | "testimonial" | "placeholder" | "all" | "Oxbridge" | "paid";
+  readonly testimonialAuthor?: string | null;
+  readonly testimonialRole?: string | null;
 }> => {
-  return Object.values(VIDEO_CONTENT).map((video) => ({
-    id: video.id,
-    title: video.title,
-    description: video.description,
-    videoSrc: video.src,
-    thumbnailSrc: video.poster,
-    duration: video.duration,
-    featured: video.featured,
-    category: video.category,
-    testimonialAuthor: video.testimonialAuthor,
-    testimonialRole: video.testimonialRole,
-    viewCount: video.viewCount,
-    rating: video.rating,
-    uploadDate: video.uploadDate,
-  }));
+  return Object.values(COMPREHENSIVE_VIDEO_CMS)
+    .filter(video => video.category === "testimonial")
+    .map((video) => ({
+      id: video.id,
+      title: video.title,
+      description: video.description,
+      videoSrc: video.src,
+      thumbnailSrc: video.poster,
+      duration: video.duration,
+      featured: video.featured,
+      category: video.category,
+      testimonialAuthor: video.testimonialAuthor,
+      testimonialRole: video.testimonialRole,
+    }));
 };
 
 /**
@@ -1809,10 +1647,37 @@ export const getVideoPlaceholders = (): typeof VIDEO_PLACEHOLDERS => {
 /**
  * Get masterclass video assets
  * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
- * CMS DATA SOURCE: Using MASTERCLASS_VIDEOS for educational video content
+ * CMS DATA SOURCE: Using MASTER_VIDEO_CMS filtered for masterclass content
  */
-export const getMasterclassVideos = (): typeof MASTERCLASS_VIDEOS => {
-  return MASTERCLASS_VIDEOS;
+export const getMasterclassVideos = () => {
+  return Object.values(COMPREHENSIVE_VIDEO_CMS).filter(video => 
+    video.usageTypes.includes("masterclass")
+  );
+};
+
+/**
+ * Get video page sections for modular video page implementation
+ * CONTEXT7 SOURCE: /microsoft/typescript - Function return type patterns with typeof operator
+ * CMS INTEGRATION: Centralized video page section data following established CMS patterns
+ * 
+ * @returns Video page sections with layout and content configuration
+ */
+export const getVideoPageSections = () => {
+  return Object.values(COMPREHENSIVE_VIDEO_CMS).filter(video => 
+    video.usageTypes.includes("page-section")
+  );
+};
+
+/**
+ * Get individual video page section by title
+ * CONTEXT7 SOURCE: /microsoft/typescript - String parameter patterns for video lookup
+ * SECTION ACCESS: Direct access to individual video sections for component rendering
+ * 
+ * @param title - Video title to find
+ * @returns Video configuration or null if not found
+ */
+export const getVideoPageSection = (title: string) => {
+  return getVideoByTitle(title);
 };
 
 /**
@@ -1836,34 +1701,31 @@ export const getProgrammeImage = (
 };
 
 /**
- * Get specific masterclass video by key
- * CONTEXT7 SOURCE: /microsoft/typescript - Generic keyof operator and return type annotations
- * CMS DATA SOURCE: Using MASTERCLASS_VIDEOS for individual video asset retrieval
+ * Get specific masterclass video by title
+ * CONTEXT7 SOURCE: /microsoft/typescript - String parameter patterns for video lookup
+ * CMS DATA SOURCE: Using MASTER_VIDEO_CMS for individual video asset retrieval
  */
-export const getMasterclassVideo = (
-  videoKey: keyof typeof MASTERCLASS_VIDEOS
-) => {
-  return MASTERCLASS_VIDEOS[videoKey];
+export const getMasterclassVideo = (title: string) => {
+  return getVideoByTitle(title);
 };
 
 /**
  * Get background video for video-text effects
- * CONTEXT7 SOURCE: /microsoft/typescript - Generic keyof operator and return type annotations
- * CMS DATA SOURCE: Using BACKGROUND_VIDEOS for video-text component backgrounds
+ * CONTEXT7 SOURCE: /microsoft/typescript - String parameter patterns for video lookup
+ * CMS DATA SOURCE: Using MASTER_VIDEO_CMS for video-text component backgrounds
  */
-export const getBackgroundVideo = (
-  videoKey: keyof typeof BACKGROUND_VIDEOS
-): BackgroundVideoAsset => {
-  return BACKGROUND_VIDEOS[videoKey];
+export const getBackgroundVideo = (title: string) => {
+  const video = getVideoByTitle(title);
+  return video && video.category === "background" ? video : null;
 };
 
 /**
  * Get all background videos
  * CONTEXT7 SOURCE: /microsoft/typescript - Object return type annotations for const assertions
- * CMS DATA SOURCE: Using BACKGROUND_VIDEOS for complete video inventory
+ * CMS DATA SOURCE: Using MASTER_VIDEO_CMS filtered for background videos
  */
-export const getBackgroundVideos = (): typeof BACKGROUND_VIDEOS => {
-  return BACKGROUND_VIDEOS;
+export const getBackgroundVideos = () => {
+  return Object.values(COMPREHENSIVE_VIDEO_CMS).filter(video => video.category === "background");
 };
 
 /**
@@ -2052,11 +1914,8 @@ export const CMSImages = {
   tutors: imageAssetRegistry.get("tutors"),
   students: imageAssetRegistry.get("students"),
   fallbacks: imageAssetRegistry.get("fallbacks"),
-  videoContent: imageAssetRegistry.get("videoContent"),
-  backgroundVideos: imageAssetRegistry.get("backgroundVideos"),
   marketing: imageAssetRegistry.get("marketing"),
   videoPlaceholders: imageAssetRegistry.get("videoPlaceholders"),
-  masterclassVideos: imageAssetRegistry.get("masterclassVideos"),
   programmes: imageAssetRegistry.get("programmes"),
   
   // CONTEXT7 SOURCE: /microsoft/typescript - Function export patterns for CMS utility functions
