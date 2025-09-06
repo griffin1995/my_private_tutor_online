@@ -490,9 +490,9 @@ export default function HowItWorksPage() {
                             {/* SEPARATOR REASON: Official Radix UI documentation demonstrates multiple separators for clear content organization */}
                             <Separator
                               className={`my-3 transition-colors duration-300 ${
-                                isPremiumTier
+                                tier.tier === "Premium"
                                   ? "bg-gradient-to-r from-transparent via-amber-200 to-transparent h-px"
-                                  : isSilverTier
+                                  : tier.tier === "Silver"
                                     ? "bg-gradient-to-r from-transparent via-gray-200 to-transparent h-px"
                                     : "bg-gradient-to-r from-transparent via-amber-300 to-transparent h-px"
                               }`}

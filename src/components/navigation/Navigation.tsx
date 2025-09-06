@@ -398,7 +398,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
   // RESPONSIVE_FONT_REASON: Industry standard responsive typography without complex calculations
   const getNavbarHeight = () => {
     // Fixed height using standard responsive utilities for overlay positioning
-    return 96; // h-24 equivalent
+    return 88; // h-22 equivalent (10% reduction from h-24)
   };
 
   return (
@@ -408,7 +408,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
         animate="visible"
         variants={navVariants}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-24 lg:h-28 xl:h-32",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-[5.5rem] lg:h-[6.25rem] xl:h-[7rem]",
           // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional styling with background colors
           // BACKGROUND_LOGIC_REASON: Official Tailwind documentation for conditional class application - submenu open state takes priority for white background
           dropdownState.isOpen
@@ -419,8 +419,8 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
           className
         )}
       >
-        <div className="container mx-auto px-4 lg:px-6 h-24 lg:h-28 xl:h-32">
-          <nav className="flex items-center justify-between h-24 lg:h-28 xl:h-32">
+        <div className="container mx-auto px-4 lg:px-6 h-[5.5rem] lg:h-[6.25rem] xl:h-[7rem]">
+          <nav className="flex items-center justify-between h-[5.5rem] lg:h-[6.25rem] xl:h-[7rem]">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 z-10">
               <motion.div
@@ -428,7 +428,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                 whileTap={{ scale: 0.95 }}
                 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive height utilities with navbar proportional scaling
                 // LOGO_SIZE_REASON: Official Tailwind documentation for h-<number> utilities - scaling logo to use 80-85% of navbar height (h-20/h-24 for h-24 navbar, h-24/h-28 for h-28 navbar, h-28/h-32 for h-32 navbar)
-                className="relative w-48 h-20 lg:h-24 xl:h-28"
+                className="relative w-48 h-[4.5rem] lg:h-[5.25rem] xl:h-[6rem]"
               >
                 {/* CONTEXT7 SOURCE: /vercel/next.js - Dynamic image src with conditional logic based on state and homepage detection */}
                 {/* REVISION REASON: Updated logo state management - colored logo on homepage OR when dropdown open OR scrolled, white logo only on non-homepage when dropdown closed AND not scrolled */}
@@ -642,7 +642,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
                   {/* ALIGNMENT_FIX: Official Tailwind documentation for flex layout - replicate exact navbar structure for perfect alignment */}
                   <div className="flex items-start h-full">
                     {/* Logo spacer - matches navbar logo positioning */}
-                    <div className="w-48 h-20 lg:h-24 xl:h-28 flex-shrink-0" />
+                    <div className="w-48 h-[4.5rem] lg:h-[5.25rem] xl:h-[6rem] flex-shrink-0" />
                     
                     {/* Navigation items area - matches navbar centering */}
                     <div className="flex-1 flex justify-center">
