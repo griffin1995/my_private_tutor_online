@@ -67,36 +67,17 @@ export default function VideoPage() {
       >
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for future content sections */}
         {/* CONTENT PLACEHOLDER REASON: Official React documentation Section 2.1 recommends component structure planning for future implementations */}
-        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for future video content sections */}
-        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable structured video content organization */}
-        <section id="featured-video-content">
-          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration with props for dynamic content rendering */}
-          {/* HERO VIDEO DIALOG INTEGRATION REASON: Official React documentation Section 2.1 recommends component composition patterns for reusable UI elements */}
-
-          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Direct component rendering with simplified props */}
-          {/* SIMPLIFIED RENDERING: Components render directly with title and layout, no CMS loading required */}
-          <VideoMasterclassSection
-            videoId="unlockingAcademicSuccess"
-            layout="text-left"
-            className="py-32"
-          />
-
-          <VideoMasterclassSection
-            videoId="elizabethsUcasGuide"
-            layout="text-right"
-            className="py-32"
-          />
-        </section>
-
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with semantic id for academic support content */}
         {/* SECTION ID REASON: Official HTML documentation for unique section identification to enable navigation and accessibility */}
         <section id="academic-support-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="Navigating Academic Support: Understanding the Real Challenges Parents Face"
-            paragraphOne="The journey of supporting a child through their education is fraught with complexity and uncertainty. Many parents find themselves grappling with fundamental questions: When does academic struggle require intervention? How do you distinguish between temporary setbacks and genuine learning gaps? The modern educational landscape presents unique challenges, with increasingly competitive environments and evolving curricula that can leave even the most engaged parents feeling unprepared. Understanding when and how to provide effective academic support requires deep insight into child development, learning psychology, and educational systems—knowledge that extends far beyond traditional parenting experience."
-            headingTwo="The Hidden Complexities of Educational Decision-Making"
-            paragraphTwo="Behind every academic decision lies a web of considerations that parents rarely anticipate. Supporting reluctant learners requires sophisticated understanding of motivation psychology and learning styles. Navigating the intricate relationships between schools, tutors, and families demands diplomatic skill and clear communication strategies. The pressure to make the 'right' choices for GCSEs, A Levels, and university pathways can be overwhelming when parents lack insider knowledge of how these systems truly operate. These challenges are compounded by the emotional toll of watching a child struggle, the financial implications of educational support, and the delicate balance between nurturing independence whilst providing necessary guidance."
-          />
+          <div className="max-w-4xl mx-auto">
+            <TwoRowHeadingTextSection
+              headingOne="Navigating Academic Support: Understanding the Real Challenges Parents Face"
+              paragraphOne="Supporting a child through education involves grappling with fundamental questions: When does struggle require intervention? How do you distinguish temporary setbacks from learning gaps? Modern educational environments and evolving curricula can leave engaged parents feeling unprepared."
+              headingTwo="The Hidden Complexities of Educational Decision-Making"
+              paragraphTwo="Every academic decision involves considerations parents rarely anticipate. Supporting reluctant learners requires understanding motivation and learning styles. Making choices for GCSEs, A Levels, and university pathways proves overwhelming without insider knowledge, compounded by the emotional toll and balancing independence with guidance."
+            />
+          </div>
         </section>
         <section id="free-video-content">
           {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration with props for dynamic content rendering */}
@@ -120,12 +101,14 @@ export default function VideoPage() {
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with semantic id for university admissions content */}
         {/* SECTION ID REASON: Official HTML documentation for unique section identification to enable navigation and accessibility */}
         <section id="university-admissions-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="University Admissions: Decoding Britain's Most Complex Educational Process"
-            paragraphOne="The British university admissions system represents one of the most intricate and high-stakes processes that families will ever navigate. UCAS applications are governed by unwritten rules, implicit expectations, and nuanced requirements that can confound even highly educated parents. The personal statement alone—a single document that can determine a young person's entire future—operates according to criteria that are rarely made explicit. Understanding university selection strategies, reference requirements, and timeline management requires intimate knowledge of how admissions committees actually evaluate candidates, knowledge that remains largely inaccessible to families approaching the process independently."
-            headingTwo="Personal Statements: The Art of Strategic Self-Presentation"
-            paragraphTwo="Crafting a compelling personal statement demands far more than good writing skills—it requires sophisticated understanding of institutional psychology, subject-specific expectations, and competitive positioning. The challenge lies not merely in communicating achievements but in demonstrating intellectual curiosity, academic potential, and cultural fit within just 4,000 characters. Parents often struggle to guide their children through this process because it requires balancing authentic voice with strategic positioning, personal reflection with academic focus, and individual story with institutional expectations. The stakes are particularly high for competitive courses and prestigious institutions, where the margin for error is virtually nonexistent."
-          />
+          <div className="max-w-4xl mx-auto">
+            <TwoRowHeadingTextSection
+              headingOne="University Admissions: Decoding Britain's Most Complex Educational Process"
+              paragraphOne="The British university admissions system involves unwritten rules and nuanced requirements that confound educated parents. The personal statement—determining a young person's future—operates according to rarely explicit criteria. Understanding selection strategies and timeline management requires intimate knowledge of how admissions committees evaluate candidates."
+              headingTwo="Personal Statements: The Art of Strategic Self-Presentation"
+              paragraphTwo="Crafting personal statements demands understanding institutional psychology and subject-specific expectations. The challenge: demonstrating intellectual curiosity within 4,000 characters whilst balancing authentic voice with strategic positioning. Stakes are highest for competitive courses at prestigious institutions."
+            />
+          </div>
         </section>
         <section id="ucas-video-content">
           {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration with props for dynamic content rendering */}
@@ -149,12 +132,14 @@ export default function VideoPage() {
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with semantic id for British culture content */}
         {/* SECTION ID REASON: Official HTML documentation for unique section identification to enable navigation and accessibility */}
         <section id="british-culture-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="Cultural Literacy: The Unspoken Foundation of British Educational Success"
-            paragraphOne="British educational culture operates on layers of implicit understanding that can be invisible to outsiders yet critical for academic and social success. Literary knowledge, cultural references, and historical context form the backdrop of classroom discussions, examination questions, and peer interactions throughout the British school system. International families often find their children academically capable yet culturally disadvantaged, missing subtle references and contextual understanding that British students absorb naturally. This cultural capital gap can affect everything from interview performance at independent schools to university seminar participation, creating barriers that academic ability alone cannot overcome."
-            headingTwo="Social Navigation: Understanding Britain's Institutional Protocols"
-            paragraphTwo="The social dynamics of British educational institutions operate according to centuries-old codes of conduct that remain largely unspoken yet powerfully influential. From dining etiquette at boarding schools to interview protocols for university admissions, these social conventions can determine opportunities and outcomes in ways that surprise unprepared families. Parents often underestimate how significantly social fluency impacts their child's educational experience, from peer relationships to teacher perceptions to institutional fit. The challenge is particularly acute for international families who may excel academically whilst struggling to decode the subtle social expectations that permeate Britain's most prestigious educational environments."
-          />
+          <div className="max-w-4xl mx-auto">
+            <TwoRowHeadingTextSection
+              headingOne="Cultural Literacy: The Unspoken Foundation of British Educational Success"
+              paragraphOne="British educational culture operates through implicit understanding critical for success. Literary knowledge and cultural references form the backdrop of classroom discussions and examinations. International families find their children academically capable yet culturally disadvantaged, affecting everything from school interviews to university participation."
+              headingTwo="Social Navigation: Understanding Britain's Institutional Protocols"
+              paragraphTwo="British educational institutions operate according to centuries-old unspoken codes. From boarding school etiquette to university interview protocols, these conventions determine opportunities. Social fluency impacts peer relationships and teacher perceptions, particularly challenging international families who excel academically whilst struggling with subtle social expectations."
+            />
+          </div>
         </section>
 
         <section id="british-culture-video-content">

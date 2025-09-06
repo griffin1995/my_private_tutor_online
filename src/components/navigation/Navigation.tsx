@@ -67,17 +67,6 @@ interface DropdownState {
 // SUBMENU_REASON: Added comprehensive submenus using section IDs extracted from each page for smooth scrolling navigation
 const navigationData: NavigationItem[] = [
   {
-    label: "Home",
-    href: "/",
-    items: [
-      { label: "Top Schools", href: "/#homepage-schools" },
-      { label: "Results", href: "/#homepage-results" },
-      { label: "Who We Support", href: "/#homepage-who-we-support" },
-      { label: "What We Offer", href: "/#homepage-what-we-offer" },
-      { label: "Testimonials", href: "/#homepage-testimonials" },
-    ],
-  },
-  {
     label: "About Us",
     href: "/about",
     items: [

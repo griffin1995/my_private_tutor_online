@@ -118,6 +118,16 @@ export function VideoMasterclassSection({
       aria-labelledby={`video-title-${videoId}`}
       role="region"
     >
+      {/* Gradient overlay for text readability */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: isTextLeft 
+            ? 'radial-gradient(circle at bottom left, rgba(0,0,0,0.5), rgba(0,0,0,0.3) 35%, rgba(0,0,0,0.15) 65%, transparent 100%)'
+            : 'radial-gradient(circle at bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.3) 35%, rgba(0,0,0,0.15) 65%, transparent 100%)'
+        }}
+        aria-hidden="true"
+      />
       {/* CONTEXT7 SOURCE: /w3c/wcag - Skip link for keyboard navigation */}
       {/* ACCESSIBILITY REASON: Official WCAG 2.1 guidelines recommend skip links for efficient keyboard navigation */}
       <a 
