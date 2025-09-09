@@ -110,7 +110,7 @@ const DEFAULT_SITEMAP_CONFIG: SitemapConfiguration = {
     },
     // EDUCATIONAL RESOURCES
     {
-      path: '/video-masterclasses',
+      path: '/video',
       priority: 0.8,
       changeFrequency: 'weekly',
       tags: ['resources', 'videos'],

@@ -39,6 +39,7 @@ import {
 } from 'lucide-react'
 import { Section } from '@/components/layout/section'
 import { StatsTrio } from './stats-trio'
+import { Separator } from '@/components/ui/separator'
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface definitions for results documentation props
 // PROPS INTERFACE REASON: Official TypeScript patterns for component data structure and type safety
@@ -184,7 +185,7 @@ export function ResultsDocumentation({
             <m.div
               key={`${result.category}-${result.metric}`}
               className={`p-6 rounded-xl border-2 ${getCategoryStyle(result.category)} 
-                         hover:shadow-lg transition-all duration-300`}
+                         hover:shadow-lg transition-all duration-300 flex flex-col h-full`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -193,7 +194,7 @@ export function ResultsDocumentation({
             >
               {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering for UI element visibility control
                    VERIFICATION BADGE REMOVAL: Hide verification badges to simplify statistical presentation */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-6 h-20">
                 <div className="p-3 rounded-lg bg-white/20 backdrop-blur-sm text-white">
                   {result.icon && iconMap[result.icon] 
                     ? iconMap[result.icon] 
@@ -202,26 +203,28 @@ export function ResultsDocumentation({
               </div>
 
               {/* Metric Value */}
-              <div className="mb-4">
-                <div className="text-3xl font-bold mb-2">
+              <div className="mb-6 h-24">
+                <div className="text-3xl font-bold mb-2 text-white">
                   {result.value}
                 </div>
-                <h3 className="text-lg font-semibold">
+                <h3 className="text-lg font-semibold text-white">
                   {result.metric}
                 </h3>
               </div>
 
+              <Separator className="bg-white/30 mb-6" />
+
               {/* Description */}
-              <p className="text-sm leading-relaxed mb-4">
+              <p className="text-sm leading-relaxed mb-6 text-white flex-1">
                 {result.description}
               </p>
 
               {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for UI simplification
                    STATISTICAL DATA REMOVAL: Hide sample sizes, confidence intervals, and specific statistical details per client requirements */}
-              <div className="space-y-2 text-xs">
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-3 h-3" />
-                  <span>{result.timeframe}</span>
+              <div className="space-y-2 text-xs text-white mt-auto">
+                <div className="flex items-center gap-1 text-white">
+                  <Calendar className="w-3 h-3 text-white" />
+                  <span className="text-white">{result.timeframe}</span>
                 </div>
               </div>
             </m.div>

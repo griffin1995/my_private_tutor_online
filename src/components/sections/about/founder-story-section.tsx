@@ -145,19 +145,19 @@ export function FounderStorySection({
           >
             <p>
               We believe every child deserves an education{" "}
-              <Highlighter action="highlight" color="#f59e0b">
+              <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
                 tailored to who they are
               </Highlighter>
               , helping them build{" "}
-              <Highlighter action="underline" color="#1e40af">
+              <Highlighter action="underline" color="#3f4a7e" strokeWidth={2} iterations={1} padding={2}>
                 confidence, curiosity, and clarity
               </Highlighter>
               . We combine{" "}
-              <Highlighter action="highlight" color="#f59e0b">
+              <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
                 academic rigour with personal mentorship
               </Highlighter>
               , knowing that success depends as much on{" "}
-              <Highlighter action="underline" color="#1e40af">
+              <Highlighter action="underline" color="#3f4a7e" strokeWidth={2} iterations={1} padding={2}>
                 resilience and self-belief
               </Highlighter>
               {" "}as it does on subject mastery.
@@ -166,11 +166,11 @@ export function FounderStorySection({
             {/* PARAGRAPH BREAK REVISION REASON: Official MDN documentation Section HTML paragraphs - adding paragraph break between 'subject mastery.' and 'Whether preparing for...' per client feedback requirements */}
             <p>
               Whether preparing for British schools, moving abroad, or facing competitive exams, we provide{" "}
-              <Highlighter action="highlight" color="#f59e0b">
+              <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
                 structure, insight and flexibility
               </Highlighter>
               . Above all, we aim to{" "}
-              <Highlighter action="underline" color="#1e40af">
+              <Highlighter action="underline" color="#3f4a7e" strokeWidth={2} iterations={1} padding={2}>
                 cultivate independence
               </Highlighter>
               {" "}— giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends.

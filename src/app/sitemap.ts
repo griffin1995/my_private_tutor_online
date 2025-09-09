@@ -99,7 +99,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/video-masterclasses`,
+      url: `${baseUrl}/video`,
       lastModified,
       changeFrequency: 'weekly',
       // High priority for educational video content

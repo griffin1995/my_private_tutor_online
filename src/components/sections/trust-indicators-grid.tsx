@@ -68,7 +68,7 @@ const parseDescription = (text: string): JSX.Element => {
           // CONTEXT7 SOURCE: /websites/magicui_design - Highlighter component for royal testimonial emphasis
           // ROYAL TESTIMONIAL HIGHLIGHTING REASON: Replace bold markdown with Magic UI highlighter effect for premium visual emphasis
           return (
-            <p key={index} className={index > 0 ? "mt-4 text-gray-700" : "text-gray-700"}>
+            <p key={index} className={index > 0 ? "mt-4 text-gray-700 italic" : "text-gray-700 italic"}>
               "Hi Elizabeth, I found out today that{' '}
               <Highlighter action="highlight" color="#eab308" strokeWidth={2} iterations={1} padding={4}>
                 the two princes and the princess

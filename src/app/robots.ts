@@ -39,7 +39,7 @@ export default function robots(): MetadataRoute.Robots {
           '/expert-educators/',   // Tutor profiles - expertise showcase
           '/subject-tuition/',    // Subject specializations
           '/11-plus-bootcamps/',  // Specialized programs
-          '/video-masterclasses/', // Educational content
+          '/video/', // Educational content
           '/exam-papers/',        // Resources
           '/homeschooling/',      // Service offerings
           '/faq/',               // Frequently asked questions - enhanced SEO

@@ -117,7 +117,7 @@ export function QuoteSection({
    * PHRASE SELECTION REASON: Official rough-notation patterns enable selective text annotation within larger content blocks
    * 
    * BRAND-CONSISTENT HIGHLIGHTING STRATEGY - TWO MAIN COLORS ONLY:
-   * HIGHLIGHT EFFECT: Gold (#eab308) - Premium background highlighting for key phrases
+   * HIGHLIGHT EFFECT: Gold (#CA9E5B) - Premium background highlighting for key phrases
    * UNDERLINE EFFECT: Navy (#0f172a) - Authority underlines for supporting emphasis
    * 
    * Strategic Application:
@@ -127,7 +127,7 @@ export function QuoteSection({
    * - "trusted partners" - Gold highlight for partnership emphasis
    * 
    * Brand Color Consistency:
-   * - Gold (#eab308): Premium accent color for maximum impact highlights
+   * - Gold (#CA9E5B): Premium accent color for maximum impact highlights
    * - Navy (#0f172a): Primary brand color for professional underlines
    * - Two-color system maintains visual simplicity and brand recognition
    * 
@@ -145,7 +145,7 @@ export function QuoteSection({
       // Academia Insight quote with requested MagicUI effects
       return (
         <>
-          <Highlighter action="highlight" color="#eab308" strokeWidth={2} iterations={1} padding={6}>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={2} iterations={1} padding={6}>
             A truly bespoke
           </Highlighter>
           {' '}experience - Elizabeth personally pairs each student with a{' '}
@@ -163,7 +163,7 @@ export function QuoteSection({
       // Elizabeth Burrows tagline with strategic emphasis
       return (
         <>
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>Expert Private Tutoring</Highlighter>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>Expert Private Tutoring</Highlighter>
           , Personally Curated by{' '}
           <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>Elizabeth Burrows</Highlighter>
         </>
@@ -177,9 +177,9 @@ export function QuoteSection({
       return (
         <>
           We provide{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>exceptional tuition</Highlighter>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>exceptional tuition</Highlighter>
           {' '}that helps students{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>excel academically</Highlighter>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>excel academically</Highlighter>
           {' '}and{' '}
           <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>thrive personally</Highlighter>
           , opening doors to{' '}
@@ -200,7 +200,7 @@ export function QuoteSection({
             examiners, school teachers, and subject specialists
           </Highlighter>
           {' '}who are not only experienced educators but also motivating mentors. Whether your child is preparing for a school entrance exam, navigating GCSEs/IBs/A-levels, or applying to top universities in the UK, we{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
             guide each family with clarity, care, and expert insight
           </Highlighter>
           {' '}at every stage of their educational journey.
@@ -215,7 +215,7 @@ export function QuoteSection({
       return (
         <>
           Our tutors are{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
             handpicked by Elizabeth
           </Highlighter>
           {' '}for their{' '}
@@ -227,7 +227,7 @@ export function QuoteSection({
             proven track record
           </Highlighter>
           . The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools and{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
             official examiners
           </Highlighter>
           {' '}for GCSEs, A Levels and IB exams. Each tutor is an expert in their field and has hundreds, if not thousands, of hours teaching experience.
@@ -242,7 +242,7 @@ export function QuoteSection({
       return (
         <>
           Discover our{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
             comprehensive preparation programmes
           </Highlighter>
           {' '}designed for{' '}
@@ -250,7 +250,7 @@ export function QuoteSection({
             different learning needs and timelines
           </Highlighter>
           . Choose the{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
             perfect fit
           </Highlighter>
           {' '}for your child's{' '}
@@ -269,7 +269,7 @@ export function QuoteSection({
       return (
         <>
           Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
             15 years of international education experience
           </Highlighter>
           . These masterclasses, drawn from her live seminars, offer{' '}
@@ -281,7 +281,7 @@ export function QuoteSection({
             typically reserved for her private clients
           </Highlighter>
           . These sessions bridge the gap between international education and{' '}
-          <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>
+          <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
             expectations of British schools and universities
           </Highlighter>
           . Access on demand, from anywhere in the world.
@@ -293,13 +293,13 @@ export function QuoteSection({
     return (
       <>
         Parents come to us when something truly matters—an entrance exam, a lost sense of confidence, a desire for academic stretch. They stay with us because we{' '}
-        <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>deliver real progress, quietly and expertly</Highlighter>
+        <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>deliver real progress, quietly and expertly</Highlighter>
         . This is not a tutoring directory. This is a{' '}
         <Highlighter action="underline" color="#0f172a" strokeWidth={3} iterations={1} padding={1}>bespoke service</Highlighter>
         {' '}for{' '}
         <Highlighter action="underline" color="#0f172a" strokeWidth={2} iterations={1} padding={1}>ambitious families</Highlighter>
         {' '}looking for{' '}
-        <Highlighter action="highlight" color="#eab308" strokeWidth={3} iterations={2} padding={4}>trusted partners</Highlighter>
+        <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>trusted partners</Highlighter>
         {' '}in their child's academic career.
       </>
     )

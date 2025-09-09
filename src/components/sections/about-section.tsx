@@ -266,7 +266,7 @@ export function AboutSection({
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-medium text-primary-900">
-                  Trusted by Distinguished Families
+                  Trusted by Royal Clientele
                 </span>
               </div>
             </m.div>

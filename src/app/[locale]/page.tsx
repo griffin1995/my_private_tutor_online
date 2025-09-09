@@ -178,7 +178,7 @@ export default function HomePage() {
             </div>
             {/* CONTEXT7 SOURCE: /websites/react_dev - Static decorative elements without animation */}
             {/* STATIC DECORATIONS REASON: Official React documentation shows div elements for visual decoration without motion dependencies */}
-            <div className="flex justify-center items-center space-x-6 mt-6">
+            <div className="flex justify-center items-center space-x-6">
               <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
               <div className="relative">
                 <div className="w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-500 shadow-lg" />
