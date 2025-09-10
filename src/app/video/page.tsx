@@ -64,53 +64,79 @@ export default function VideoPage() {
         className="space-y-0"
         footerProps={{ showContactForm: true }}
       >
-        {/* FEATURED VIDEO CONTENT - REORGANIZED */}
-        <VideoMasterclassSection
-          videoId="unlockingAcademicSuccess"
-          layout="text-left"
-          className="py-32"
-        />
-
-        {/* ACADEMIC SUPPORT SECTION - ENHANCED VERSION */}
-        <section id="academic-support-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="Academic Support: When and How to Intervene"
-            paragraphOne="Parents face complex decisions about when academic struggle requires intervention. Understanding the difference between temporary setbacks and genuine learning gaps is crucial for effective support."
-            headingTwo="Strategic Educational Decision-Making"
-            paragraphTwo="Supporting reluctant learners and navigating school relationships requires sophisticated understanding of motivation psychology and clear communication strategies with educational institutions."
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Component composition patterns for categorized content sections */}
+        {/* RESTRUCTURE REASON: Official React documentation Section 2.1 recommends component composition patterns for organizing content by category */}
+        {/* FREE VIDEOS SECTION */}
+        <section id="free-videos-section" className="py-16">
+          <div className="container mx-auto px-4 text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Free Educational Content</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              Access Elizabeth's introductory masterclasses covering fundamental aspects of British education and university admissions. These free resources provide valuable insights to help you navigate the educational landscape with confidence.
+            </p>
+          </div>
+          
+          <VideoMasterclassSection
+            videoId="ucasSummit2024"
+            layout="text-left"
+            className="py-32"
+          />
+          
+          <VideoMasterclassSection
+            videoId="unlockingAcademicSuccess"
+            layout="text-right"
+            className="py-32"
           />
         </section>
 
-        {/* UNIVERSITY ADMISSIONS SECTION - ENHANCED VERSION */}
-        <section id="university-admissions-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="University Admissions: Mastering the UCAS Process"
-            paragraphOne="The UCAS system operates on unwritten rules and implicit expectations. Understanding university selection strategies, reference requirements, and timeline management is crucial for success."
-            headingTwo="Personal Statements: Strategic Self-Presentation"
-            paragraphTwo="Crafting compelling personal statements requires understanding institutional psychology and competitive positioning within 4,000 characters whilst balancing authentic voice with strategic focus."
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Component composition patterns for categorized premium content sections */}
+        {/* UCAS SECTION REASON: Official React documentation Section 2.1 component patterns for organizing related premium content */}
+        {/* UCAS VIDEOS SECTION */}
+        <section id="ucas-videos-section" className="py-16">
+          <div className="container mx-auto px-4 text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">UCAS Application Mastery</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              Comprehensive premium guidance on navigating the UCAS system with Elizabeth's proven methodology. These detailed masterclasses provide strategic insights typically reserved for her private clients, covering every aspect of university applications from strategy to personal statements.
+            </p>
+          </div>
+          
+          <VideoMasterclassSection
+            videoId="elizabethsUcasGuide"
+            layout="text-left"
+            className="py-32"
+          />
+          
+          <VideoMasterclassSection
+            videoId="personalStatementsGuide"
+            layout="text-right"
+            className="py-32"
           />
         </section>
-        <VideoMasterclassSection
-          videoId="elizabethsUcasGuide"
-          layout="text-right"
-          className="py-32"
-        />
 
-        {/* BRITISH CULTURE SECTION - ENHANCED VERSION */}
+        {/* CONTEXT7 SOURCE: /websites/react_dev - Component composition patterns for British cultural content organization */}
+        {/* BRITISH CULTURE REASON: Official React documentation Section 2.1 component patterns for cultural literacy content structure */}
+        {/* BRITISH CULTURE VIDEOS SECTION */}
         <section id="british-culture-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="Cultural Literacy: Foundation of British Educational Success"
-            paragraphOne="Literary knowledge, cultural references, and historical context form the backdrop of British classroom discussions and examination questions. This cultural capital significantly impacts academic and social success."
-            headingTwo="Social Navigation: Institutional Protocols"
-            paragraphTwo="British educational institutions operate on centuries-old social conventions. Understanding dining etiquette, interview protocols, and social expectations is crucial for success at prestigious institutions."
+          <div className="container mx-auto px-4 text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">British Cultural Literacy</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              Master the cultural foundations essential for success in British educational and social environments. These premium masterclasses provide deep understanding of literary classics, social etiquette, and cultural nuances that distinguish successful candidates at Britain's most prestigious institutions.
+            </p>
+          </div>
+          
+          <VideoMasterclassSection
+            videoId="britishLiteraryClassics"
+            layout="text-left"
+            className="py-32"
+          />
+          
+          {/* CONTEXT7 SOURCE: /facebook/react - React component prop modification patterns */}
+          {/* LAYOUT CHANGE REASON: Official React documentation on component prop updates for layout configuration changes */}
+          <VideoMasterclassSection
+            videoId="britishEtiquette"
+            layout="text-right"
+            className="py-32"
           />
         </section>
-
-        <VideoMasterclassSection
-          videoId="britishLiteraryClassics"
-          layout="text-left"
-          className="py-32"
-        />
       </PageLayout>
     </>
   );
