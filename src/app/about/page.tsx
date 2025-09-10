@@ -38,7 +38,7 @@ import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { FounderStorySection } from "@/components/sections/about/founder-story-section";
 import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
-import { QuoteSection } from "@/components/sections/quote-section";
+import { BrandMessageSection } from "@/components/sections/brand-message-section";
 import { getTextTestimonials, type Testimonial } from "@/lib/cms/cms-content";
 import { getAboutHeroImage } from "@/lib/cms/cms-images";
 
@@ -107,38 +107,35 @@ export default function AboutUsPage() {
       >
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
         {/* FOUNDER STORY EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
-        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
-        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="about-founder-story">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Div wrapper with id for navigation without nesting sections */}
+        {/* SECTION FIX REASON: Official HTML documentation recommends avoiding nested section elements for clean semantic structure */}
+        <div id="about-founder-story">
           <FounderStorySection />
-        </section>
+        </div>
 
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component integration patterns for modular UI design */}
-        {/* QUOTE SECTION INTEGRATION REASON: Official React documentation Section 2.3 recommends component composition for enhanced page structure */}
-        {/* CONTEXT7 SOURCE: /magicui/design - MagicUI Highlighter implementation for Academia Insight quote */}
-        {/* HIGHLIGHTING IMPLEMENTATION REASON: Official Magic UI documentation demonstrates strategic text highlighting for premium service emphasis */}
-        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
-        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="about-quote">
-          <QuoteSection
+        {/* CONTEXT7 SOURCE: /websites/magicui_design - New BrandMessageSection component with vanilla MagicUI Highlighter */}
+        {/* NEW COMPONENT REASON: Official Magic UI documentation demonstrates proper text highlighting with vanilla MagicUI functionality */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Div wrapper with id for navigation without nesting sections */}
+        {/* SECTION FIX REASON: Official HTML documentation recommends avoiding nested section elements for clean semantic structure */}
+        <div id="about-quote">
+          <BrandMessageSection
             quote="A truly bespoke experience - Elizabeth personally pairs each student with a carefully selected tutor from her boutique team."
             author="Academia Insight"
-            role=""
             backgroundColor="bg-primary-50"
             useHighlighting={true}
-            useMagicUIEffects={true}
+            showAuthorImage={false}
           />
-        </section>
+        </div>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
         {/* TESTIMONIALS EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
         {/* SYNCHRONOUS DATA ACCESS: Direct testimonials data access prevents loading state complexity and homepage failure scenarios */}
         {/* VIDEO FILTERING: getTextTestimonials() ensures only text testimonials are displayed on About page */}
-        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
-        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="about-testimonials">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Div wrapper with id for navigation without nesting sections */}
+        {/* SECTION FIX REASON: Official HTML documentation recommends avoiding nested section elements for clean semantic structure */}
+        <div id="about-testimonials">
           <TestimonialsSection />
-        </section>
+        </div>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal and clean architecture maintenance */}
         {/* ETHOS SECTION REMOVED: Clean component removal per user requirements while maintaining page structure */}

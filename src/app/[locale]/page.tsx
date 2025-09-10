@@ -37,7 +37,6 @@
 // CONTEXT7 SOURCE: /websites/react_dev - React import with useState and useEffect for async data loading
 // ASYNC DATA LOADING REASON: Official React documentation Section 3.2 requires useState and useEffect for client-side async operations
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
 
 // Documentation Source: Context7 MCP - CMS Integration Imports
 // Reference: Project CLAUDE.md rules 22-25 for CMS requirements
@@ -60,10 +59,13 @@ import { getStudentImages } from "../../lib/cms/cms-images";
 import { PageLayout } from "../../components/layout/page-layout";
 import { AboutSection } from "../../components/sections/about-section";
 import { HeroSection } from "../../components/sections/hero-section";
-import { QuoteSection } from "../../components/sections/quote-section";
 import { ScrollingSchools } from "../../components/sections/scrolling-schools";
 import { TrustIndicatorsGrid } from "../../components/sections/trust-indicators-grid";
 import { LanguageSwitcher } from "../../components/ui/language-switcher";
+
+// CONTEXT7 SOURCE: /websites/magicui_design - Brand message section with MagicUI Highlighter integration
+// BRAND MESSAGE REASON: Official Magic UI documentation demonstrates text highlighting for consistent brand messaging
+import { BrandMessageSection } from "../../components/sections/brand-message-section";
 
 // CONTEXT7 SOURCE: /vercel/next.js - Client component wrapper for homepage sections
 // CLIENT WRAPPER REASON: Official Next.js documentation prohibits client components in server components
@@ -209,7 +211,7 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-mission" className="mt-16">
-        <QuoteSection
+        <BrandMessageSection
           quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
           backgroundColor="bg-white"
           className=""
@@ -282,7 +284,7 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-testimonials">
-        <QuoteSection
+        <BrandMessageSection
           quote={founderQuote.quote}
           author={founderQuote.author}
           role={founderQuote.role}

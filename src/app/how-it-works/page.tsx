@@ -29,7 +29,7 @@
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { QuoteSection } from "@/components/sections/quote-section";
+import { BrandMessageSection } from "@/components/sections/brand-message-section";
 import { Separator } from "@/components/ui/separator";
 import { m } from "framer-motion";
 import {
@@ -214,7 +214,7 @@ export default function HowItWorksPage() {
 
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component refactoring patterns for modular QuoteSection usage */}
               {/* QUOTESECTION CONVERSION REASON: Official React documentation demonstrates component consolidation patterns for consistent highlighting and styling */}
-              <QuoteSection
+              <BrandMessageSection
                 quote="At My Private Tutor Online, we offer more than just tutoring—we provide thoughtful, expert advice at every stage of your child's academic journey. Our service is consultative, personal, and bespoke to your family's individual needs."
                 backgroundColor="bg-transparent"
                 className="pt-0 pb-0"

@@ -5,7 +5,7 @@
 
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
-import { QuoteSection } from "@/components/sections/quote-section";
+import { BrandMessageSection } from "@/components/sections/brand-message-section";
 import { TwoRowHeadingTextSection } from "@/components/sections/two-row-heading-text-section";
 import { VideoMasterclassSection } from "@/components/video/VideoMasterclassSection";
 
@@ -42,7 +42,7 @@ export default function VideoPage() {
 
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - QuoteSection component for video page introduction */}
       {/* QUOTE INTEGRATION REASON: Official React documentation Section 2.1 recommends component composition for page structure */}
-      <QuoteSection
+      <BrandMessageSection
         quote="Join Elizabeth Burrows, founder of My Private Tutor Online, as she shares her expert insight from over 15 years of international education experience. These masterclasses provide rare access to the nuanced understanding of British education typically reserved for her private clients."
         backgroundColor="bg-white"
         useHighlighting={true}

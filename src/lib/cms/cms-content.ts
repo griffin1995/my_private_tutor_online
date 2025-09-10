@@ -39,7 +39,6 @@ import faqContentJSON from "../../content/faq.json";
 import formContent from "../../content/form-content.json";
 import howItWorksContent from "../../content/how-it-works.json";
 import landingPageContent from "../../content/landing-page.json";
-import quoteFormContent from "../../content/quote-form.json";
 import settingsContent from "../../content/settings.json";
 // CONTEXT7 SOURCE: /microsoft/typescript - Dynamic import patterns for CMS content switching
 // IMPLEMENTATION REASON: Import new tutor structure with fallback to existing structure
@@ -1595,21 +1594,26 @@ export interface QuoteContent {
  * Get unified contact data from all sources (CACHED - #5 most used: 5 times)
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for expensive computation memoization
  * CONTEXT7 SOURCE: /microsoft/typescript - Centralized data access with TypeScript interfaces
- * CMS DATA SOURCE: Consolidates contact data from settings, landing-page, faq, and quote-form
- * REPLACES: getContactContent, getContactInfo, getContactDetails, getFAQContact, getQuoteFormContact
+ * CMS DATA SOURCE: Consolidates contact data from settings, landing-page, and faq
+ * REPLACES: getContactContent, getContactInfo, getContactDetails, getFAQContact
  */
 export const getUnifiedContact = cache((): UnifiedContactData => {
   const siteSettingsData = settingsContent;
   const landingPageData = landingPageContent;
   const faqData = faqContentJSON;
-  const quoteFormData = quoteFormContent;
 
   return {
     primary: siteSettingsData.contact,
     landing: landingPageData.contact,
     landingInfo: landingPageData.contact.contactInfo,
     faq: faqData.contact,
-    quoteForm: quoteFormData.contact,
+    // Quote form contact removed - quote-form.json file deleted
+    quoteForm: {
+      title: "Request Your Personalised Quote",
+      description: "Begin Your Child's Academic Excellence Journey",
+      phone: siteSettingsData.contact.phone,
+      email: siteSettingsData.contact.email
+    },
   };
 });
 
@@ -3613,7 +3617,8 @@ export const getServicesContent = cache((): ServicesPageContent => {
             videoSection: {
               // CONTEXT7 SOURCE: /sindresorhus/filenamify - Kebab-case filename formatting for consistent file naming conventions
               // REVISION REASON: Official filenamify documentation patterns for standardized filename formats
-              thumbnailUrl: "/images/video-thumbnails/thumbnail-11-plus-expert-intro-video-mpto.png",
+              thumbnailUrl:
+                "/images/video-thumbnails/thumbnail-11-plus-expert-intro-video-mpto.png",
               videoUrl: "/videos/11-plus-expert-intro-video-mpto.mp4",
               title: "Meet Emily - Our 11+ Expert Introduction",
               alt: "Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach",
@@ -4239,55 +4244,93 @@ export const getServicesSectionTitles = (): {
 };
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface implementation patterns
-// CMS Functions for quote form content retrieval
+// CMS Functions for quote form content retrieval - DEPRECATED
+// NOTE: quote-form.json file was deleted, these functions now return fallback data
 
 /**
- * Get quote form page content
- * CMS DATA SOURCE: Using quoteFormContent for quote request form
+ * Get quote form page content - FALLBACK IMPLEMENTATION
+ * CMS DATA SOURCE: Fallback data since quote-form.json was deleted
+ * @deprecated Quote form functionality removed
  */
 export const getQuoteFormContent = (): QuoteFormContent => {
-  return quoteFormContent;
+  return {
+    hero: {
+      title: "Request Your Personalised Quote",
+      subtitle: "Begin Your Child's Academic Excellence Journey",
+      description: "Complete our comprehensive form to receive a bespoke tutoring proposal tailored to your child's educational needs."
+    },
+    form: {
+      title: "Tell Us About Your Requirements",
+      description: "Please provide detailed information about your child's educational needs.",
+      sections: [],
+      submitButton: {
+        text: "Request Personalised Quote",
+        loadingText: "Submitting Your Request..."
+      }
+    },
+    messages: {
+      success: {
+        title: "Quote Request Submitted Successfully",
+        message: "Thank you for your enquiry. We will respond within 24 hours."
+      },
+      error: {
+        title: "Submission Error",
+        message: "Please try again or contact us directly."
+      },
+      validation: {
+        required: "This field is required",
+        email: "Please enter a valid email address",
+        phone: "Please enter a valid telephone number"
+      }
+    },
+    contact: {
+      title: "Need Immediate Assistance?",
+      description: "For urgent enquiries, please contact us directly.",
+      phone: "+44 7513 550278",
+      email: "info@myprivatetutoronline.com"
+    }
+  };
 };
 
 /**
- * Get quote form hero section
- * CMS DATA SOURCE: Using quoteFormContent.hero for form hero section
+ * Get quote form hero section - FALLBACK IMPLEMENTATION
+ * @deprecated Quote form functionality removed
  */
 export const getQuoteFormHero = () => {
-  return quoteFormContent.hero;
+  return getQuoteFormContent().hero;
 };
 
 /**
- * Get quote form configuration
- * CMS DATA SOURCE: Using quoteFormContent.form for form fields and sections
+ * Get quote form configuration - FALLBACK IMPLEMENTATION
+ * @deprecated Quote form functionality removed
  */
 export const getQuoteFormConfig = () => {
-  return quoteFormContent.form;
+  return getQuoteFormContent().form;
 };
 
 /**
- * Get quote form validation messages
- * CMS DATA SOURCE: Using quoteFormContent.messages for form validation
+ * Get quote form validation messages - FALLBACK IMPLEMENTATION
+ * @deprecated Quote form functionality removed
  */
 export const getQuoteFormMessages = (): QuoteFormMessages => {
-  return quoteFormContent.messages;
+  return getQuoteFormContent().messages;
 };
 
 /**
- * Get quote form contact information
- * CMS DATA SOURCE: Using quoteFormContent.contact for contact details
+ * Get quote form contact information - FALLBACK IMPLEMENTATION
  * @deprecated Use getUnifiedContact().quoteForm instead
  */
 export const getQuoteFormContact = () => {
-  return quoteFormContent.contact;
+  return getQuoteFormContent().contact;
 };
 
 /**
- * Get form field options for specific field types
- * CMS DATA SOURCE: Extract field options from quoteFormContent form configuration
+ * Get form field options for specific field types - FALLBACK IMPLEMENTATION
+ * CMS DATA SOURCE: Fallback implementation since quote-form.json was deleted
+ * @deprecated Quote form functionality removed
  */
 export const getFormFieldOptions = (fieldId: string): QuoteFormOption[] => {
-  const form = quoteFormContent.form;
+  const form = getQuoteFormContent().form;
   for (const section of form.sections) {
     const field = section.fields.find((f) => f.id === fieldId);
     if (field && field.options) {

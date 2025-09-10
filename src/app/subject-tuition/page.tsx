@@ -57,7 +57,7 @@ import { ResultsDocumentation } from "@/components/sections/results-documentatio
 
 // CONTEXT7 SOURCE: /facebook/react - QuoteSection component import for testimonial content display
 // QUOTE SECTION REASON: Official React patterns for component reuse - replacing duplicate plain text with styled quote section
-import { QuoteSection } from "@/components/sections/quote-section";
+import { BrandMessageSection } from "@/components/sections/brand-message-section";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - CMS data access patterns for component data consumption
 // CMS INTEGRATION REASON: Official TypeScript patterns for centralized data management and type-safe content access
@@ -313,12 +313,14 @@ export default function SubjectTuitionPage() {
             {/* DUPLICATE CONTENT REPLACEMENT REASON: Official React patterns demonstrate component replacement to eliminate redundant plain text with styled quote section */}
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utility change from gradient to solid white */}
             {/* BACKGROUND COLOR CHANGE REASON: Official Tailwind CSS documentation Section 3.1 demonstrates bg-white utility for clean white background styling */}
-            <QuoteSection 
+            {/* CONTEXT7 SOURCE: /websites/magicui_design - BrandMessageSection component with valid props interface */}
+            {/* PROP FIX REASON: Official MagicUI documentation patterns - removed invalid useMagicUIEffects prop, added valid showAuthorImage prop */}
+            <BrandMessageSection 
               quote={sectionTitles.subjectCategories.description}
               backgroundColor="bg-white"
               className="py-0 mb-16"
               useHighlighting={true}
-              useMagicUIEffects={false}
+              showAuthorImage={false}
             />
 
             {/* CONTEXT7 SOURCE: /vercel/next.js - Section anchor mapping for navigation targets */}

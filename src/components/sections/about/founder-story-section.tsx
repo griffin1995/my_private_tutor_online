@@ -422,30 +422,26 @@ I moved through six different schools growing up, across private, state, faith, 
             Results That Matter
           </h2>
 
+          {/* CONTEXT7 SOURCE: /websites/react_dev - Text content updates and paragraph formatting in React components */}
+          {/* CONTENT REPLACEMENT REASON: Official React documentation Section 3.1 demonstrates JSX paragraph structures for improved content presentation with client-specified results-focused messaging */}
           <div className="text-lg text-primary-700 leading-relaxed space-y-6">
             <p>
-              Since founding My Private Tutor Online more than 15 years ago,
-              I've had the privilege of helping thousands of students achieve
-              their academic goals. What drives me isn't just the excellent
-              grades (though we're proud of those), but the transformation in
-              confidence and self-belief that comes with truly understanding a
-              subject.
+              Since founding My Private Tutor Online more than 15 years ago, I've helped hundreds of families through key academic transitions — from early entrance exams to Oxbridge interviews, international moves to last-minute GCSE turnarounds.
             </p>
 
             <p>
-              Every student is unique, with their own learning style, pace, and
-              aspirations. Our approach begins with understanding each child as
-              an individual, not just another exam candidate. We believe that
-              when education is truly personalised, students don't just achieve
-              better grades – they develop a genuine love of learning that
-              serves them throughout their lives.
+              Each year, our students go on to achieve outstanding results:<br />
+              Offers from Oxford and Cambridge<br />
+              Placing in the top 2% of candidates at top five UK independent schools, including Eton, St. Paul's, and Westminster<br />
+              94% of GCSE students improve by two grades or more
             </p>
 
             <p>
-              Education should open doors, not close them. It should build
-              confidence, not crush it. Most importantly, it should give young
-              people the tools to make informed choices about their future —
-              whatever that might look like.
+              Tutoring isn't just about good grades. It's about having someone in your corner who sees what you're capable of, even before you do. That's the kind of guidance I had growing up, and it's what I aim to offer every family who works with us.
+            </p>
+
+            <p>
+              If you're looking for more than a tutor — if you're seeking a trusted partner to help navigate the terrain, whether calm or chaotic — I'd love to hear from you.
             </p>
           </div>
         </m.div>

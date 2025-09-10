@@ -4,7 +4,7 @@
 
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
-import { QuoteSection } from "@/components/sections/quote-section";
+import { BrandMessageSection } from "@/components/sections/brand-message-section";
 import { TestimonialsVideoSection } from "@/components/sections/testimonials-video-section";
 import { TutorsSection } from "@/components/tutors/tutors-section";
 import { getTutorProfilesSectionWithDynamicContent } from "@/lib/cms/cms-content";
@@ -60,7 +60,7 @@ export default function MeetOurTutorsPage() {
 
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - QuoteSection component integration following site pattern */}
       {/* MEET-OUR-TUTORS QUOTE INTEGRATION: Adding QuoteSection underneath hero with tutor expertise messaging and strategic highlighting */}
-      <QuoteSection
+      <BrandMessageSection
         quote="Our tutors are handpicked by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools and official examiners for GCSEs, A Levels and IB exams. Each tutor is an expert in their field and has hundreds, if not thousands, of hours teaching experience."
         backgroundColor="bg-gray-50"
         useHighlighting={true}

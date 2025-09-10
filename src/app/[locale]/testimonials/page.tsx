@@ -64,7 +64,7 @@ import { TestimonialsGrid } from "@/components/testimonials/testimonials-grid";
 import { SimpleHero } from "@/components/layout/simple-hero";
 // CONTEXT7 SOURCE: /components/sections/quote-section - Quote section component for mission statement display
 // COPY OPERATION: Adding QuoteSection import to enable mission quote display copied from homepage
-import { QuoteSection } from "@/components/sections/quote-section";
+import { BrandMessageSection } from "@/components/sections/brand-message-section";
 // CONTEXT7 SOURCE: /websites/react_dev - Component integration patterns
 // INTEGRATION REASON: Adding testimonials intro section above filter per requirements
 import { TestimonialsIntro } from "@/components/testimonials/testimonials-intro";
@@ -273,7 +273,7 @@ export default function TestimonialsPage({ params }: { params: { locale: string 
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="testimonials-mission" className="mt-16">
-        <QuoteSection 
+        <BrandMessageSection 
           quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
           backgroundColor="bg-white"
           className=""

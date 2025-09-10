@@ -32,7 +32,7 @@ import { PageLayout } from "@/components/layout/page-layout";
 import { Section } from "@/components/layout/section";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { ScrollingSchools } from "@/components/sections/scrolling-schools";
-import { QuoteSection } from "@/components/sections/quote-section";
+import { BrandMessageSection } from "@/components/sections/brand-message-section";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { VideoPopup } from "@/components/video/video-popup";
@@ -255,7 +255,7 @@ export default function ElevenPlusBootcampsPage() {
       {/* QUOTE SECTION IMPLEMENTATION REASON: Official React documentation Section 3.2 demonstrates component composition patterns */}
       {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Strategic highlighting for 11+ bootcamps programme selection guidance */}
       {/* BOOTCAMP HIGHLIGHTING INTEGRATION: Magic UI documentation enables targeted highlighting for programme discovery messaging */}
-      <QuoteSection
+      <BrandMessageSection
         quote="Discover our comprehensive preparation programmes designed for different learning needs and timelines. Choose the perfect fit for your child's 11+ journey."
         backgroundColor="bg-amber-50/30"
         className="py-12 lg:py-16"
