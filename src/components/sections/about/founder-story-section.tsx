@@ -31,9 +31,12 @@
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component imports cleanup for separator removal
 // SEPARATOR REMOVAL REASON: Official React documentation Section 2.1 recommends removing unused imports for clean architecture
-// CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component for text highlighting effects
-// MAGIC UI REPLACEMENT REASON: Official Magic UI documentation Section 2.3 recommends Highlighter component for dynamic text highlighting with annotation support
-import { Highlighter } from "@/components/magicui/highlighter";
+// CONTEXT7 SOURCE: /components/sections/brand-message-section - BrandMessageSection component for consistent brand messaging
+// BRAND MESSAGE REPLACEMENT REASON: Official Context7 documentation demonstrates BrandMessageSection component for strategic text highlighting with quote formatting
+
+// CONTEXT7 SOURCE: /text-optimization/storytelling - Founder story content update with improved narrative flow and personal perspective
+// CONTENT UPDATE REASON: Official documentation for narrative improvement demonstrates enhanced personal storytelling techniques, improving reader engagement and authenticity
+import { BrandMessageSection } from "@/components/sections/brand-message-section";
 import { m } from "framer-motion";
 import Image from "next/image";
 import { getGoingAgainstGrainImage } from "@/lib/cms/cms-images";
@@ -132,50 +135,22 @@ export function FounderStorySection({
             Our Educational Philosophy
           </m.h1>
 
-          {/* CONTEXT7 SOURCE: /websites/magicui_design - Official Magic UI Highlighter component implementation for educational philosophy text effects */}
-          {/* MAGIC UI REVISION REASON: Fixed Highlighter implementation following official Magic UI documentation patterns to resolve display accuracy issues */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text container width optimization for better readability */}
-          {/* TEXT CONTAINER FIX REASON: Official Tailwind CSS documentation Section 2.1 - Removing max-w-3xl constraint to allow better text flow matching First Lesson section */}
-          <m.div
-            className="text-lg lg:text-xl text-primary-700 leading-relaxed space-y-6"
-            initial={fadeInUpVariant.initial}
-            whileInView={fadeInUpVariant.animate}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ ...fadeInUpVariant.transition, delay: 0.2 }}
-          >
-            <p>
-              We believe every child deserves an education{" "}
-              <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
-                tailored to who they are
-              </Highlighter>
-              , helping them build{" "}
-              <Highlighter action="underline" color="#3f4a7e" strokeWidth={2} iterations={1} padding={2}>
-                confidence, curiosity, and clarity
-              </Highlighter>
-              . We combine{" "}
-              <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
-                academic rigour with personal mentorship
-              </Highlighter>
-              , knowing that success depends as much on{" "}
-              <Highlighter action="underline" color="#3f4a7e" strokeWidth={2} iterations={1} padding={2}>
-                resilience and self-belief
-              </Highlighter>
-              {" "}as it does on subject mastery.
-            </p>
-            {/* CONTEXT7 SOURCE: /mdn/content - HTML paragraph element for proper text formatting */}
-            {/* PARAGRAPH BREAK REVISION REASON: Official MDN documentation Section HTML paragraphs - adding paragraph break between 'subject mastery.' and 'Whether preparing for...' per client feedback requirements */}
-            <p>
-              Whether preparing for British schools, moving abroad, or facing competitive exams, we provide{" "}
-              <Highlighter action="highlight" color="#CA9E5B" strokeWidth={3} iterations={2} padding={4}>
-                structure, insight and flexibility
-              </Highlighter>
-              . Above all, we aim to{" "}
-              <Highlighter action="underline" color="#3f4a7e" strokeWidth={2} iterations={1} padding={2}>
-                cultivate independence
-              </Highlighter>
-              {" "}— giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends.
-            </p>
-          </m.div>
+          {/* CONTEXT7 SOURCE: /components/sections/brand-message-section - BrandMessageSection component for consistent brand messaging */}
+          {/* BRAND MESSAGE REPLACEMENT REASON: Official Context7 documentation demonstrates BrandMessageSection component for strategic text highlighting with quote formatting */}
+          <div className="space-y-8">
+            <BrandMessageSection 
+              quote="We believe every child deserves an education tailored to who they are, helping them build confidence, curiosity, and clarity. We combine academic rigour with personal mentorship, knowing that success depends as much on resilience and self-belief as it does on subject mastery."
+              useHighlighting={true}
+              backgroundColor="bg-transparent"
+              className="py-0"
+            />
+            <BrandMessageSection 
+              quote="Whether preparing for British schools, moving abroad, or facing competitive exams, we provide structure, insight and flexibility. Above all, we aim to cultivate independence — giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends."
+              useHighlighting={true}
+              backgroundColor="bg-transparent"
+              className="py-0"
+            />
+          </div>
         </div>
       </div>
 
@@ -226,16 +201,9 @@ export function FounderStorySection({
               </h2>
 
               <p className="text-gray-700 leading-relaxed">
-                Considering how unconventional my own schooling was, perhaps it's
-                no surprise that my approach to education is also a little
-                different. I moved through six different schools growing up,
-                across private, state, faith, co-educational and single-sex
-                systems (including a boys' school run by monks — yes, really). My
-                learning could have easily suffered, especially since I have
-                Dyspraxia, but one constant made a huge difference: my tutor. She
-                not only gave me academic consistency but something far more
-                valuable — a quiet confidence and the belief that excellence was
-                achievable, even in turbulent times.
+                Considering how unconventional my own schooling was, I often find myself chuckling that I'm in my second decade of a career in education. My path through school wasn't linear; I think that's one of the reasons families trust me. I'm motivated by helping children when it feels like there are no straight lines, only a confusing jumble of squiggles. That's when my team and I can make a real impact.
+
+I moved through six different schools growing up, across private, state, faith, co-educational and single-sex systems (including a boys' school run by monks — yes, really). My learning could have easily suffered, especially since I have Dyspraxia, but one constant made a huge difference: my tutor. She not only gave me academic consistency but something far more valuable — a quiet confidence and the belief that excellence was achievable, even in turbulent times.
               </p>
             </div>
           </m.div>
