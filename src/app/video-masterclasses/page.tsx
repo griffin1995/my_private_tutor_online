@@ -3,15 +3,13 @@
 // CONTEXT7 SOURCE: /vercel/next.js - Client Component for consistent rendering behavior
 // IMPLEMENTATION REASON: Official Next.js documentation recommends client components for pages with interactive elements
 
+import React from "react";
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 // CONTEXT7 SOURCE: /websites/react_dev - Component removal patterns for JSX cleanup
 // REMOVAL REASON: Official React documentation Section 3.1 recommends removing unused imports to maintain clean component architecture
 import { TwoRowHeadingTextSection } from "@/components/sections/two-row-heading-text-section";
 import { VideoMasterclassSection } from "@/components/video/VideoMasterclassSection";
-// CONTEXT7 SOURCE: /facebook/react - Component import patterns for JSX composition
-// IMPORT REASON: Official React documentation demonstrates component import patterns for modular architecture
-import { HighlightedQuote } from "@/components/ui/highlighted-quote";
 
 export default function VideoPage() {
   // CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access patterns
@@ -29,7 +27,7 @@ export default function VideoPage() {
   // COMPONENT LOOKUP: VideoMasterclassSection will handle CMS data lookup internally
 
   return (
-    <>
+    <React.Fragment>
       {/* CONTEXT7 SOURCE: /framer/motion - SimpleHero integration with scroll-triggered animations */}
       {/* HERO INTEGRATION REASON: Integrating SimpleHero component for consistent site structure with smooth scroll animations */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Background image optimization using CMS data patterns */}
@@ -44,21 +42,6 @@ export default function VideoPage() {
         />
       </section>
 
-      {/* CONTEXT7 SOURCE: /facebook/react - Component composition patterns for quote integration */}
-      {/* QUOTE INTEGRATION REASON: Official React documentation Section 5.3 demonstrates JSX component composition for page structure */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container spacing utilities for section separation */}
-      {/* SPACING REASON: Official Tailwind CSS documentation recommends proper vertical spacing between major page sections */}
-      <section className="py-16 bg-gradient-to-r from-gray-50 to-white">
-        <div className="max-w-4xl mx-auto px-8 text-center">
-          <HighlightedQuote
-            quote="These video masterclasses provide exceptional tuition insights that help families navigate British education with confidence, curiosity and clarity, delivering the expertise parents need for their children's academic success."
-            author="Elizabeth Burrows"
-            role="Educational Consultant & Founder"
-            useHighlighting={true}
-            className="space-y-4"
-          />
-        </div>
-      </section>
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
@@ -73,54 +56,72 @@ export default function VideoPage() {
         className="space-y-0"
         footerProps={{ showContactForm: true }}
       >
-        {/* FEATURED VIDEO CONTENT - REORGANIZED */}
+        {/* FEATURED/FREE SECTION - 2 VIDEOS */}
+        <section id="featured-free-section" className="py-16">
+          <TwoRowHeadingTextSection
+            headingOne="The Parent's Roadmap to Effective Academic Help"
+            paragraphOne="Complimentary masterclasses with Elizabeth Burrows. The journey of supporting a child through their education is fraught with complexity and uncertainty. When is a wobble a warning sign, and when is it just a blip? In a competitive, fast-changing curriculum, even engaged parents can feel unsure. The modern educational landscape presents unique challenges, with increasingly competitive environments. Understanding when and how to provide effective academic support requires deep insight into child development, learning psychology, and educational systems—knowledge that extends far beyond traditional parenting experience. Access two complimentary masterclasses to benefit from Elizabeth Burrows' expert guidance, distilled from 15+ years in international education."
+            headingTwo=""
+            paragraphTwo=""
+          />
+        </section>
+
         <VideoMasterclassSection
           videoId="unlockingAcademicSuccess"
           layout="text-left"
           className="py-32"
         />
 
-        {/* ACADEMIC SUPPORT SECTION - ENHANCED VERSION */}
-        <section id="academic-support-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="Academic Support: When and How to Intervene"
-            paragraphOne="Parents face complex decisions about when academic struggle requires intervention. Understanding the difference between temporary setbacks and genuine learning gaps is crucial for effective support."
-            headingTwo="Strategic Educational Decision-Making"
-            paragraphTwo="Supporting reluctant learners and navigating school relationships requires sophisticated understanding of motivation psychology and clear communication strategies with educational institutions."
-          />
-        </section>
-
-        {/* UNIVERSITY ADMISSIONS SECTION - ENHANCED VERSION */}
-        <section id="university-admissions-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="University Admissions: Mastering the UCAS Process"
-            paragraphOne="The UCAS system operates on unwritten rules and implicit expectations. Understanding university selection strategies, reference requirements, and timeline management is crucial for success."
-            headingTwo="Personal Statements: Strategic Self-Presentation"
-            paragraphTwo="Crafting compelling personal statements requires understanding institutional psychology and competitive positioning within 4,000 characters whilst balancing authentic voice with strategic focus."
-          />
-        </section>
         <VideoMasterclassSection
-          videoId="elizabethsUcasGuide"
+          videoId="ucasSummit2024"
           layout="text-right"
           className="py-32"
         />
 
-        {/* BRITISH CULTURE SECTION - ENHANCED VERSION */}
-        <section id="british-culture-section" className="py-16">
+        {/* UCAS SECTION - 2 VIDEOS */}
+        <section id="ucas-section" className="py-16">
           <TwoRowHeadingTextSection
-            headingOne="Cultural Literacy: Foundation of British Educational Success"
-            paragraphOne="Literary knowledge, cultural references, and historical context form the backdrop of British classroom discussions and examination questions. This cultural capital significantly impacts academic and social success."
-            headingTwo="Social Navigation: Institutional Protocols"
-            paragraphTwo="British educational institutions operate on centuries-old social conventions. Understanding dining etiquette, interview protocols, and social expectations is crucial for success at prestigious institutions."
+            headingOne="B. University Admissions: Decoding Britain's Most Complex Educational Process"
+            paragraphOne="The British university admissions system represents one of the most intricate and high-stakes processes that families will ever navigate. UCAS applications are governed by unwritten rules, implicit expectations, and nuanced requirements that can confound even highly educated parents. The personal statement alone - a 4,000 character document that can determine a young person's entire future - operates according to criteria that are rarely made explicit. The stakes are particularly high for competitive courses and prestigious institutions, where the margin for error is virtually nonexistent. Understanding university selection strategies, reference requirements, and timeline management requires intimate knowledge of how admissions departments actually evaluate candidates. Elizabeth Burrows has helped countless students secure offers from Oxbridge and top Russell Group universities. Unlock her expertise in these two masterclasses, as delivered at London School of Economics."
+            headingTwo=""
+            paragraphTwo=""
           />
         </section>
 
         <VideoMasterclassSection
-          videoId="britishLiteraryClassics"
+          videoId="elizabethsUcasGuide"
           layout="text-left"
           className="py-32"
         />
+
+        <VideoMasterclassSection
+          videoId="personalStatementsGuide"
+          layout="text-right"
+          className="py-32"
+        />
+
+        {/* BRITISH CULTURE SECTION - 2 VIDEOS */}
+        <section id="british-culture-section" className="py-16">
+          <TwoRowHeadingTextSection
+            headingOne="C. Reading Between the Lines: Navigating Britain's Educational Culture"
+            paragraphOne="Cultural literacy is the unspoken foundation of success in British education. Literary knowledge, shared references and historical context quietly shape classroom discussion, exam questions and peer dynamics. International families often find capable children disadvantaged by these invisible cues, affecting interviews, seminar participation and confidence. Equally decisive is social navigation: the centuries-old codes that govern schools and universities - from dining etiquette in boarding houses to admissions protocols and teacher expectations. Social fluency influences opportunities, relationships and perceived fit as much as grades. In these two masterclasses Elizabeth Burrows guide explores the cultural capital and institutional conventions students must decode, helping families bridge gaps academic ability alone cannot close."
+            headingTwo=""
+            paragraphTwo=""
+          />
+        </section>
+
+        <VideoMasterclassSection
+          videoId="britishEtiquette"
+          layout="text-left"
+          className="py-32"
+        />
+
+        <VideoMasterclassSection
+          videoId="britishLiteraryClassics"
+          layout="text-right"
+          className="py-32"
+        />
       </PageLayout>
-    </>
+    </React.Fragment>
   );
 }

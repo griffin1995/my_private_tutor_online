@@ -1094,6 +1094,65 @@ const COMPREHENSIVE_VIDEO_CMS: Record<string, MasterVideoRecord> = {
     videoMasterclasses.map(video => [video.id, transformVideoMasterclassToRecord(video)])
   ),
   
+  // CONTEXT7 SOURCE: /microsoft/typescript - Video testimonials data structure for HeroVideoDialog integration
+  // TESTIMONIAL VIDEOS ADDITION: Adding parent and student testimonial videos with swapped YouTube URLs as requested
+  // URL SWAP IMPLEMENTATION: Parents video gets student YouTube URL, Students video gets parent YouTube URL
+  "parents-testimonials-2025": {
+    id: "parents-testimonials-2025",
+    title: "Parent Testimonials 2025",
+    description: "Hear from parents about their experience with My Private Tutor Online",
+    videoUrl: "https://www.youtube.com/embed/testimonials-students-2025",
+    src: "https://www.youtube.com/embed/testimonials-students-2025",
+    thumbnailUrl: "/images/testimonials/parent-testimonials-thumbnail.jpg",
+    poster: "/images/testimonials/parent-testimonials-thumbnail.jpg",
+    backgroundImage: null,
+    fallback: null,
+    author: null,
+    authorRole: null,
+    testimonialAuthor: null,
+    testimonialRole: null,
+    duration: 180,
+    category: "testimonial",
+    isFree: true,
+    price: null,
+    paymentUrl: null,
+    alt: "Parent testimonials video - My Private Tutor Online",
+    featured: true,
+    width: 800,
+    height: 450,
+    loading: "lazy",
+    usageTypes: ["testimonial"],
+    layouts: null,
+  },
+  
+  "students-testimonials-2025": {
+    id: "students-testimonials-2025", 
+    title: "Student Testimonials 2025",
+    description: "Hear from students about their success with My Private Tutor Online",
+    videoUrl: "https://www.youtube.com/embed/testimonials-parents-2025",
+    src: "https://www.youtube.com/embed/testimonials-parents-2025",
+    thumbnailUrl: "/images/testimonials/student-testimonials-thumbnail.jpg",
+    poster: "/images/testimonials/student-testimonials-thumbnail.jpg",
+    backgroundImage: null,
+    fallback: null,
+    author: null,
+    authorRole: null,
+    testimonialAuthor: null,
+    testimonialRole: null,
+    duration: 150,
+    category: "testimonial",
+    isFree: true,
+    price: null,
+    paymentUrl: null,
+    alt: "Student testimonials video - My Private Tutor Online",
+    featured: true,
+    width: 800,
+    height: 450,
+    loading: "lazy",
+    usageTypes: ["testimonial"],
+    layouts: null,
+  },
+  
   // Keep placeholder for compatibility
   placeholder: {
     id: "placeholder",
@@ -1920,7 +1979,7 @@ function transformVideoMasterclass(video: VideoMasterclass): TransformedVideoMas
         },
         content: {
           paragraphs: [video.description],
-          bulletPoints: [
+          bulletPoints: video.bulletPoints || [
             "Expert guidance from Elizabeth Burrows",
             "Based on 15 years of tutoring experience",
             "Practical strategies for academic success",

@@ -23,6 +23,7 @@ export interface VideoMasterclass {
   readonly id: string
   readonly title: string
   readonly description: string
+  readonly bulletPoints?: readonly string[]
   readonly youtubeUrl: string
   readonly thumbnailImage: string
   readonly backgroundImage: string
@@ -39,47 +40,57 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
     id: "ucasSummit2024",
     title: "UCAS Summit 2024",
     description: "Free access: Elizabeth Burrows shares expert guidance on UCAS applications, personal statements, and university admissions success strategies.",
-    youtubeUrl: "https://www.youtube.com/embed/yoiehQsKj04?si=3kxXl4YGQhU9g7AT",
+    youtubeUrl: "https://www.youtube.com/embed/IfF9zSzuceY?si=7_tmYovUVVfqLX0D",
     // CONTEXT7 SOURCE: /sharp/sharp - Darkened thumbnail processing for enhanced readability over background images
     // DARKENING IMPLEMENTATION: Official Sharp documentation Section 2.3 for automated 30% brightness reduction with 85% quality optimization
-    thumbnailImage: "/images/hero/hero-video-masterclasses.jpg",
+    thumbnailImage: "/videos/ucas-summit-2024-thumbnail.png",
     // CONTEXT7 SOURCE: /sharp/sharp - Background image darkening system for improved text contrast
     // BACKGROUND DARKENING: Official Sharp documentation for web-optimized image processing with progressive JPEG loading
-    backgroundImage: "/images/hero/hero-video-masterclasses.jpg",
+    // UNIQUE ASSIGNMENT: University-focused background for UCAS Summit content
+    backgroundImage: "/images/students/student-university.jpg",
     isPaid: false,
   },
   {
     id: "unlockingAcademicSuccess", 
     title: "Unlocking Academic Success",
-    description: "Free access: Practical strategies for academic excellence, tutor selection, and supporting your child's educational journey with confidence.",
-    youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    description: "In this webinar Elizabeth Burrows distills 15 years of international education experience into a practical, parent-first guide to implementing and managing private tuition that actually moves the needle. In 30 minutes, you'll learn how to make confident, evidence-based decisions—before you select a tutor, during the engagement, and all the way to exam day—so your child gets measurable value and you get peace of mind. Discover best practice for successfully navigating gaps in knowledge and boost confidence through one-to-one tuition.",
+    bulletPoints: ["How to know you need a tutor", "How to spot an excellent tutor", "How to frame tutoring positively with your child", "How to manage the student-tutor-parent dynamic to get real value out of your tutor"],
+    youtubeUrl: "https://www.youtube.com/embed/r4Ngy75Z4Zg?si=_mfgyzSJM0BIzXTW",
     // CONTEXT7 SOURCE: /sharp/sharp - Professional image darkening with Sharp processing
     // PROCESSING DETAILS: 30% brightness reduction, 85% quality JPEG compression, progressive loading optimization
-    thumbnailImage: "/images/masterclass-thumbnails/unlocking-success.png",
-    backgroundImage: "/images/hero/hero-video-masterclasses.jpg",
+    thumbnailImage: "/videos/unlocking-academic-success-thumbnail.png",
+    // CONTEXT7 SOURCE: /sharp/sharp - Academic achievement background for success-focused content
+    // REVISION REASON: Unique background assignment for visual variety and content-appropriate imagery
+    backgroundImage: "/images/students/student-oxbridge.jpg",
     isPaid: false,
   },
   {
     id: "elizabethsUcasGuide",
     title: "Elizabeth's Essential Guide to UCAS - part 1 of 2",
-    description: "Premium content: Comprehensive UCAS guidance from application strategy to personal statement success, featuring Elizabeth's proven methodology.",
+    description: "Widely recognised for her expertise in the British university admissions process, Elizabeth was invited to speak to international summer school students at London School of Economics (LSE). Elizabeth demystifies UCAS: the stages, decisions, and deadlines every applicant must navigate. In 90 minutes, you'll get a step-by-step plan for course selection, timelines, references, predicted grades, and UCAS portal requirements—plus practical tips from 15 years in international education. Perfect for families worldwide, this session turns confusion into confidence. Stream Part 1 today to set a winning strategy, then continue with Part 2 for Elizabeth's secrets for personal statement success.",
+    bulletPoints: ["From clueless to clued up: resources for researching courses/universities", "UCAS made simple: decision-making and deadlines demystified", "Advice around references and predicted grades.", "Insider tactics from 15 years placing students at Oxbridge."],
     youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     // CONTEXT7 SOURCE: /sharp/sharp - Automated darkening system with backup originals
     // BACKUP SYSTEM: Original images preserved in /originals/ subdirectory before Sharp processing
     thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
-    backgroundImage: "/images/hero/hero-video-masterclasses.jpg",
+    // CONTEXT7 SOURCE: /sharp/sharp - Cambridge university background for academic prestige
+    // REVISION REASON: University-specific background for UCAS application guidance content
+    backgroundImage: "/images/about/cambridge-university.jpg",
     isPaid: true,
     purchaseLink: "https://buy.stripe.com/test_6oE9CJ8pA7VNgGAaEE",
   },
   {
     id: "personalStatementsGuide",
     title: "Elizabeth's Essential Guide to UCAS - part 2 of 2", 
-    description: "Premium content: Master personal statement writing with Elizabeth's expert techniques for compelling applications that secure offers.",
+    description: "Recorded at the London School of Economics, this 70-minute masterclass distills Elizabeth Burrows' 15 years guiding ambitious students into Oxbridge and top UK universities (she earned a Cambridge offer herself). Elizabeth reveals the 10 \"secret-recipe\" ingredients for a dynamite personal statement: what admissions tutors really value, how to evidence super-curriculars, structure for impact, find an authentic voice, and avoid the pitfalls that send applicants to the 'reject' pile. See real excerpts from a Medicine statement that won an Oxford offer. Elizabeth's private students regularly secure places at Oxbridge, LSE, Imperial, UCL, Edinburgh and more. In a fiercely competitive arena, make your personal statement the edge—turbocharge your 4,000 characters to unlock your dream university.",
+    bulletPoints: ["The 10 tips you won't find online", "Do's and don'ts. How to keep clear of the 'reject' pile and secure a spot on the 'offer' pile", "Excerpts from a real Medicine personal statement that secured an Oxford offer", "Suitable for candidates applying from 2025 onwards"],
     youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     // CONTEXT7 SOURCE: /sharp/sharp - Enhanced web optimization with Sharp image processing
     // WEB OPTIMIZATION: Official Sharp documentation for progressive JPEG loading and browser compatibility
     thumbnailImage: "/images/video-placeholders/placeholder_for_introductionary_video.png",
-    backgroundImage: "/images/hero/hero-video-masterclasses.jpg",
+    // CONTEXT7 SOURCE: /sharp/sharp - Online tutoring background for personal statement guidance
+    // REVISION REASON: Student-tutor interaction background appropriate for personal statement content
+    backgroundImage: "/images/students/student-on-laptop-teacher-on-screen.jpg",
     isPaid: true,
     purchaseLink: "https://buy.stripe.com/test_6oE9CJ8pA7VNgGAaEE",
   },
@@ -91,7 +102,9 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
     // CONTEXT7 SOURCE: /sharp/sharp - Professional darkening workflow with quality preservation
     // QUALITY PRESERVATION: Official Sharp documentation ensures minimal quality loss with optimized compression
     thumbnailImage: "/images/masterclass-thumbnails/british-literary-classics.png",
-    backgroundImage: "/images/hero/hero-video-masterclasses.jpg",
+    // CONTEXT7 SOURCE: /sharp/sharp - Adult learning background for literary classics content
+    // REVISION REASON: Mature educational setting appropriate for British literary content
+    backgroundImage: "/images/students/adult-student-with-teacher.jpg",
     isPaid: true,
     purchaseLink: "https://buy.stripe.com/test_6oE9CJ8pA7VNgGAaEE",
   },
@@ -103,7 +116,9 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
     // CONTEXT7 SOURCE: /sharp/sharp - Complete darkened image processing system
     // COMPLETE SYSTEM: Automated processing via scripts/darken-images.mjs with Sharp integration
     thumbnailImage: "/images/masterclass-thumbnails/british-etiquette.jpg",
-    backgroundImage: "/images/hero/hero-video-masterclasses.jpg",
+    // CONTEXT7 SOURCE: /sharp/sharp - Comfortable educational environment for etiquette training
+    // REVISION REASON: Refined educational setting appropriate for British etiquette content
+    backgroundImage: "/images/students/student-teacher-inside-comfortable.jpg",
     isPaid: true,
     purchaseLink: "https://buy.stripe.com/test_6oE9CJ8pA7VNgGAaEE",
   }
