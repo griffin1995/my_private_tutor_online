@@ -123,14 +123,14 @@ const navigationData: NavigationItem[] = [
   },
   {
     label: "Video Masterclasses",
-    href: "/video",
+    href: "/video-masterclasses",
     items: [
-      { label: "Introduction", href: "/video#featured-video-content" },
-      { label: "Free Resources", href: "/video#free-video-content" },
-      { label: "UCAS Guide", href: "/video#ucas-video-content" },
+      { label: "Introduction", href: "/video-masterclasses#featured-video-content" },
+      { label: "Free Resources", href: "/video-masterclasses#free-video-content" },
+      { label: "UCAS Guide", href: "/video-masterclasses#ucas-video-content" },
       {
         label: "British Culture",
-        href: "/video#british-culture-video-content",
+        href: "/video-masterclasses#british-culture-video-content",
       },
     ],
   },
