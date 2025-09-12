@@ -37,6 +37,7 @@
 // CONTEXT7 SOURCE: /text-optimization/storytelling - Founder story content update with improved narrative flow and personal perspective
 // CONTENT UPDATE REASON: Official documentation for narrative improvement demonstrates enhanced personal storytelling techniques, improving reader engagement and authenticity
 import { BrandMessageSection } from "@/components/sections/brand-message-section";
+import { Separator } from "@/components/ui/separator";
 import { m } from "framer-motion";
 import Image from "next/image";
 import { getGoingAgainstGrainImage } from "@/lib/cms/cms-images";
@@ -426,25 +427,120 @@ I moved through six different schools growing up, across private, state, faith, 
           {/* CONTENT REPLACEMENT REASON: Official React documentation Section 3.1 demonstrates JSX paragraph structures for improved content presentation with client-specified results-focused messaging */}
           <div className="text-lg text-primary-700 leading-relaxed space-y-6">
             <p>
-              Since founding My Private Tutor Online more than 15 years ago, I've helped hundreds of families through key academic transitions — from early entrance exams to Oxbridge interviews, international moves to last-minute GCSE turnarounds.
-            </p>
-
-            <p>
-              Each year, our students go on to achieve outstanding results:<br />
-              Offers from Oxford and Cambridge<br />
-              Placing in the top 2% of candidates at top five UK independent schools, including Eton, St. Paul's, and Westminster<br />
-              94% of GCSE students improve by two grades or more
-            </p>
-
-            <p>
-              Tutoring isn't just about good grades. It's about having someone in your corner who sees what you're capable of, even before you do. That's the kind of guidance I had growing up, and it's what I aim to offer every family who works with us.
-            </p>
-
-            <p>
-              If you're looking for more than a tutor — if you're seeking a trusted partner to help navigate the terrain, whether calm or chaotic — I'd love to hear from you.
+              Behind every exceptional academic journey lies a strategic, deeply personal approach. With 15 years of elite tutoring expertise, I've guided hundreds of students from potential to pinnacle, transforming academic challenges into extraordinary achievements through meticulously tailored support.
             </p>
           </div>
         </m.div>
+      </div>
+
+      {/* THREE PILLARS SECTION - COPIED FROM HOMEPAGE */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component reuse patterns for consistent UI elements across pages */}
+      {/* SECTION REUSE REASON: Official React documentation Section 2.1 recommends component reuse for maintainability and consistency */}
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none mb-20">
+        <m.section 
+          className="py-16 lg:py-24 bg-white"
+          initial={fadeInUpVariant.initial}
+          whileInView={fadeInUpVariant.animate}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={fadeInUpVariant.transition}
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+              {/* Pillar 1 */}
+              <div className="group">
+                <div className="bg-white shadow-lg overflow-hidden">
+                  <div className="relative">
+                    <div style={{ aspectRatio: "2/3" }}>
+                      <img
+                        src="/images/graphics/feature-royal-endorsement.jpg"
+                        alt="Pillar 1"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/50"></div>
+                    <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
+                      <h1 className="text-3xl font-bold text-white mb-2">
+                        15+ Years of Trusted Academic Guidance
+                      </h1>
+                      <h2 className="text-lg text-white/90 mb-4">
+                        Navigating Educational Transitions with Precision
+                      </h2>
+                      <Separator className="bg-white/30 mb-4" />
+                      <p className="text-white text-base mb-4">
+                        Throughout my 15-year journey, I've been more than just a tutor – I've been a dedicated navigator for families facing critical academic crossroads. From early entrance exams to Oxbridge interviews, I've developed an intuitive approach that transforms academic challenges into pathways of extraordinary success.
+                      </p>
+                      <ul className="text-white text-sm">
+                        <li className="text-white">• Supported over 500 families through pivotal educational milestones</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pillar 2 */}
+              <div className="group">
+                <div className="bg-white shadow-lg overflow-hidden">
+                  <div className="relative">
+                    <div style={{ aspectRatio: "2/3" }}>
+                      <img
+                        src="/images/graphics/feature-exam-insight.jpeg"
+                        alt="Pillar 2"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/50"></div>
+                    <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
+                      <h1 className="text-3xl font-bold text-white mb-2">
+                        94% of Students Achieve Remarkable Grade Improvements
+                      </h1>
+                      <h2 className="text-lg text-white/90 mb-4">
+                        Personalised Learning That Exceeds Expectations
+                      </h2>
+                      <Separator className="bg-white/30 mb-4" />
+                      <p className="text-white text-base mb-4">
+                        Every child has a unique learning landscape, and our methodology is meticulously crafted to illuminate their individual potential. By combining rigorous academic support with empathetic mentorship, we don't just improve grades – we unlock transformative educational experiences that build confidence and academic resilience.
+                      </p>
+                      <ul className="text-white text-sm">
+                        <li className="text-white">• Average of two grade improvement across core subjects</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pillar 3 */}
+              <div className="group">
+                <div className="bg-white shadow-lg overflow-hidden">
+                  <div className="relative">
+                    <div style={{ aspectRatio: "2/3" }}>
+                      <img
+                        src="/images/graphics/feature-built-on-trust.jpeg"
+                        alt="Pillar 3"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/50"></div>
+                    <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
+                      <h1 className="text-3xl font-bold text-white mb-2">
+                        Top 2% Performance in Elite Academic Assessments
+                      </h1>
+                      <h2 className="text-lg text-white/90 mb-4">
+                        Preparing Exceptional Candidates for Prestigious Institutions
+                      </h2>
+                      <Separator className="bg-white/30 mb-4" />
+                      <p className="text-white text-base mb-4">
+                        Our track record speaks volumes – consistently placing students in the top echelons of competitive academic environments. Whether preparing for Eton, St. Paul's, Westminster, or Oxbridge, we provide a bespoke approach that goes beyond traditional tutoring, offering strategic guidance tailored to each student's aspirations.
+                      </p>
+                      <ul className="text-white text-sm">
+                        <li className="text-white">• Consistent success in placements at top five UK independent schools</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </m.section>
       </div>
 
       {/* COMMENTED OUT: ROW 7A - "Personalised. Empowering. World-Class." Section */}
