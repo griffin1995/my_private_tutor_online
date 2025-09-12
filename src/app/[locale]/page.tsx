@@ -254,7 +254,86 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. WHO WE SUPPORT */}
+      {/* 7. THREE PILLARS SECTION */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+            {/* Pillar 1 */}
+            <div className="group">
+              <div className="bg-white shadow-lg overflow-hidden">
+                <div className="relative">
+                  <div style={{ aspectRatio: "2/3" }}>
+                    <img
+                      src="/images/graphics/feature-royal-endorsement.jpg"
+                      alt="Pillar 1"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+                <div className="p-8">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-5">
+                    Excellence
+                  </h3>
+                  <p className="text-gray-600 text-lg">
+                    We maintain the highest standards in everything we do.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Pillar 2 */}
+            <div className="group">
+              <div className="bg-white shadow-lg overflow-hidden">
+                <div className="relative">
+                  <div style={{ aspectRatio: "2/3" }}>
+                    <img
+                      src="/images/graphics/feature-exam-insight.jpeg"
+                      alt="Pillar 2"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+                <div className="p-8">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-5">
+                    Innovation
+                  </h3>
+                  <p className="text-gray-600 text-lg">
+                    Cutting-edge approaches to modern education.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Pillar 3 */}
+            <div className="group">
+              <div className="bg-white shadow-lg overflow-hidden">
+                <div className="relative">
+                  <div style={{ aspectRatio: "2/3" }}>
+                    <img
+                      src="/images/graphics/feature-built-on-trust.jpeg"
+                      alt="Pillar 3"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+                <div className="p-8">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-5">
+                    Results
+                  </h3>
+                  <p className="text-gray-600 text-lg">
+                    Proven outcomes that speak for themselves.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. WHO WE SUPPORT */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-who-we-support">
@@ -264,7 +343,7 @@ export default function HomePage() {
         />
       </section>
 
-      {/* 8. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
+      {/* 9. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
       {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Props passing patterns for Next.js components */}
@@ -278,7 +357,7 @@ export default function HomePage() {
         />
       </section>
 
-      {/* 9. QUOTE SECTION */}
+      {/* 10. QUOTE SECTION */}
       {/* CONTEXT7 SOURCE: /magicui/design - Text-only quote with strategic highlighting effects */}
       {/* HIGHLIGHTER ENHANCEMENT REASON: Magic UI documentation enables visual emphasis without photos for clean, professional presentation */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}

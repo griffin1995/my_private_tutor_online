@@ -121,6 +121,60 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
     backgroundImage: "/images/students/student-teacher-inside-comfortable.jpg",
     isPaid: true,
     purchaseLink: "https://buy.stripe.com/test_6oE9CJ8pA7VNgGAaEE",
+  },
+  {
+    id: "bootcampIntro",
+    title: "11+ Bootcamp Programmes Introduction",
+    description: "Discover our comprehensive 11+ bootcamp preparation programmes designed for different learning needs and timelines. Our expert-led intensive courses provide focused preparation for students targeting competitive grammar school entry, with small group sizes and experienced tutors who understand the unique demands of 11+ examinations.",
+    bulletPoints: [
+      "Kickstarter Programme: Perfect for Year 4 & 5 students with little 11+ experience",
+      "Intensive Programme: Advanced course for Year 6 students sitting autumn 2025 exams", 
+      "Expert tutors with 11+ examiner credentials and proven track records",
+      "Maximum 4-5 students per group ensuring personalised attention",
+      "98% success rate with placements at prestigious independent schools",
+      "Multiple dates available throughout the year to fit your schedule"
+    ],
+    youtubeUrl: "",
+    // CONTEXT7 SOURCE: /microsoft/typescript - Readonly property implementation for CMS image integration
+    // CMS INTEGRATION REASON: Official TypeScript documentation for readonly properties with CMS data access
+    // PROGRAMME IMAGE INTEGRATION: Using existing Kickstarter programme image from CMS for video thumbnail
+    thumbnailImage: "/images/programmes/eleven-plus-kickstarter-online-tutoring.jpg",
+    // CONTEXT7 SOURCE: /microsoft/typescript - Readonly property implementation for CMS image integration  
+    // CMS INTEGRATION REASON: Official TypeScript documentation for readonly properties with CMS data access
+    // BACKGROUND IMAGE SELECTION: Using Intensive programme exam preparation image for professional backdrop
+    backgroundImage: "/images/programmes/eleven-plus-intensive-exam-preparation.jpg",
+    isPaid: true,
+    // CONTEXT7 SOURCE: /stripe-samples/checkout-one-time-payments - Stripe checkout integration for 11+ bootcamp programmes
+    // BOOTCAMP PURCHASE INTEGRATION: Official Stripe documentation for external payment processing with existing bootcamp pricing
+    // KICKSTARTER PROGRAMME LINK: Using existing Stripe URL for £395 Kickstarter programme booking
+    purchaseLink: "https://buy.stripe.com/6oUdR8enb9jF69u1Zd3840c",
+  },
+  {
+    id: "bootcampTestimonial", 
+    title: "11+ Bootcamp Success Stories",
+    description: "Hear directly from parents and students who have experienced remarkable success through our intensive 11+ bootcamp programmes. These testimonials showcase the transformative impact of our expert-led preparation courses and the confidence students gain when working in our supportive small group environment.",
+    bulletPoints: [
+      "Real success stories from families who achieved grammar school placement",
+      "Student testimonials highlighting confidence building and technique mastery",
+      "Parent perspectives on the supportive small group learning environment",
+      "Examples of progress made through our intensive 5-day programme format",
+      "Insights into how our expert tutors make the difference on exam day",
+      "Proof of our 98% success rate with prestigious school placements"
+    ],
+    youtubeUrl: "",
+    // CONTEXT7 SOURCE: /microsoft/typescript - Readonly property implementation for CMS image integration
+    // CMS INTEGRATION REASON: Official TypeScript documentation for readonly properties with CMS data access
+    // TESTIMONIAL IMAGE SELECTION: Using Intensive programme exam preparation image showing focused learning environment
+    thumbnailImage: "/images/programmes/eleven-plus-intensive-exam-preparation.jpg",
+    // CONTEXT7 SOURCE: /microsoft/typescript - Readonly property implementation for CMS image integration
+    // CMS INTEGRATION REASON: Official TypeScript documentation for readonly properties with CMS data access  
+    // BACKGROUND IMAGE SELECTION: Using Kickstarter programme tutoring image for warm, supportive learning backdrop
+    backgroundImage: "/images/programmes/eleven-plus-kickstarter-online-tutoring.jpg",
+    isPaid: true,
+    // CONTEXT7 SOURCE: /stripe-samples/checkout-one-time-payments - Stripe checkout integration for 11+ bootcamp programmes
+    // BOOTCAMP PURCHASE INTEGRATION: Official Stripe documentation for external payment processing with existing bootcamp pricing
+    // INTENSIVE PROGRAMME LINK: Using existing Stripe URL for £395 Intensive programme booking
+    purchaseLink: "https://buy.stripe.com/7sYbJ0cf3brN69u8nB3840d",
   }
 ] as const
 

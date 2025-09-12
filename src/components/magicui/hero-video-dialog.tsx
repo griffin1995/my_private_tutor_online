@@ -267,12 +267,13 @@ export function HeroVideoDialog({
                       />
                     ) : (
                       // Standard Video
-                      // CONTEXT7 SOURCE: /vercel/next.js - Video optimization with preload metadata for performance
+                      // CONTEXT7 SOURCE: /websites/tailwindcss - object-contain utility for complete video content visibility  
+                      // VIDEO SCALING FIX: Changed from object-cover to object-contain to show full video height without cropping
                       // VIDEO OPTIMIZATION REASON: Official browser documentation recommends preload="metadata" for better performance
                       <video
                         ref={videoRef}
                         src={videoSrc}
-                        className="w-full h-full rounded-lg shadow-2xl object-cover border border-white"
+                        className="w-full h-full rounded-lg shadow-2xl object-contain border border-white"
                         controls
                         autoPlay
                         muted

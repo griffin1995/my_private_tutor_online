@@ -66,21 +66,19 @@ import { SimpleHero } from "@/components/layout/simple-hero";
 import { BrandMessageSection } from "@/components/sections/brand-message-section";
 // CONTEXT7 SOURCE: /websites/react_dev - Component integration patterns
 // INTEGRATION REASON: Adding testimonials intro section above filter per requirements
-import { TestimonialsIntro } from "@/components/testimonials/testimonials-intro";
 // CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns
 // COPY OPERATION: Adding TestimonialsSection import for duplicated testimonials section
 import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
-import React from "react";
 // TESTIMONIALS OVERHAUL: Removed TestimonialsCTA import for cleaner page boundaries
 import { PageLayout } from "@/components/layout/page-layout";
 import {
-  getTextTestimonials,
   // DISABLED: getTestimonialsCarouselConfig, getTestimonialsSchools - commented out with Prestigious Schools section
   // getTestimonialsCarouselConfig,
   getTestimonialsContent,
   getTestimonialsHero,
+  getTextTestimonials,
   // getTestimonialsSchools,
-  type Testimonial
+  type Testimonial,
 } from "@/lib/cms/cms-content";
 
 // RENDERING ANALYSIS - Context7 MCP Verified:
@@ -105,58 +103,64 @@ import {
 const hardcodedTestimonials = [
   {
     id: 1,
-    quote: "My son achieved an A* in A-Level Mathematics thanks to the exceptional tutoring. The personalised approach made all the difference.",
+    quote:
+      "My son achieved an A* in A-Level Mathematics thanks to the exceptional tutoring. The personalised approach made all the difference.",
     author: "Mrs. Sarah Johnson",
     role: "Parent",
-    subject: "A-Level Mathematics", 
+    subject: "A-Level Mathematics",
     result: "A*",
-    rating: 5
+    rating: 5,
   },
   {
     id: 2,
-    quote: "Brilliant GCSE English support that helped me improve from a C to an A. The tutor was patient and encouraging throughout.",
+    quote:
+      "Brilliant GCSE English support that helped me improve from a C to an A. The tutor was patient and encouraging throughout.",
     author: "Emma Thompson",
     role: "Student",
     subject: "GCSE English",
     result: "A",
-    rating: 5
+    rating: 5,
   },
   {
     id: 3,
-    quote: "Outstanding 11+ preparation. Our daughter passed her entrance exam for grammar school with flying colours.",
+    quote:
+      "Outstanding 11+ preparation. Our daughter passed her entrance exam for grammar school with flying colours.",
     author: "Mr. David Wilson",
-    role: "Parent", 
+    role: "Parent",
     subject: "11+ Preparation",
     result: "Pass",
-    rating: 5
+    rating: 5,
   },
   {
     id: 4,
-    quote: "The Physics tuition was excellent. Clear explanations and practical examples helped me understand complex concepts.",
+    quote:
+      "The Physics tuition was excellent. Clear explanations and practical examples helped me understand complex concepts.",
     author: "James Mitchell",
     role: "Student",
     subject: "A-Level Physics",
     result: "A",
-    rating: 5
+    rating: 5,
   },
   {
     id: 5,
-    quote: "Professional, reliable, and effective. The French tutoring improved my daughter's confidence dramatically.",
+    quote:
+      "Professional, reliable, and effective. The French tutoring improved my daughter's confidence dramatically.",
     author: "Mrs. Catherine Brown",
     role: "Parent",
-    subject: "GCSE French", 
+    subject: "GCSE French",
     result: "A",
-    rating: 5
+    rating: 5,
   },
   {
     id: 6,
-    quote: "Exceptional Chemistry support that helped me achieve the grade I needed for university. Highly recommended.",
+    quote:
+      "Exceptional Chemistry support that helped me achieve the grade I needed for university. Highly recommended.",
     author: "Sophie Adams",
     role: "Student",
     subject: "A-Level Chemistry",
     result: "A*",
-    rating: 5
-  }
+    rating: 5,
+  },
 ];
 
 export default function TestimonialsPage() {
@@ -176,14 +180,14 @@ export default function TestimonialsPage() {
   // Text testimonials only (hasVideo: false/undefined)
   const testimonialsWithoutVideo = getTextTestimonials();
 
-  // CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns  
+  // CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns
   // COPY OPERATION: Adding aboutTestimonials data loading logic from about page
   // EMERGENCY FIX: Try-catch wrapper to isolate potential CMS errors
   let aboutTestimonials: Testimonial[] = [];
   try {
-    aboutTestimonials = getTextTestimonials()
+    aboutTestimonials = getTextTestimonials();
   } catch (error) {
-    console.error('Error loading testimonials:', error);
+    console.error("Error loading testimonials:", error);
     aboutTestimonials = []; // Fallback to empty array
   }
 
@@ -197,10 +201,10 @@ export default function TestimonialsPage() {
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="testimonials-hero">
         <SimpleHero
-        backgroundImage="/images/hero/testimonials-hero.jpg"
-        h1="Student & Parent Testimonials"
-        h2="Read testimonials from families who have achieved exceptional results with My Private Tutor Online."
-        decorativeStyle="lines"
+          backgroundImage="/images/hero/testimonials-hero.jpg"
+          h1="Student & Parent Testimonials"
+          h2="Read testimonials from families who have achieved exceptional results with My Private Tutor Online."
+          decorativeStyle="lines"
         />
       </section>
 
@@ -210,7 +214,7 @@ export default function TestimonialsPage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="testimonials-mission" className="mt-16">
-        <BrandMessageSection 
+        <BrandMessageSection
           quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
           backgroundColor="bg-white"
           className=""
@@ -241,7 +245,6 @@ export default function TestimonialsPage() {
         showFooter={true}
         containerSize="full"
       >
-
         {/* SIMPLIFIED TESTIMONIALS GRID SECTION - Moved below videos */}
         {testimonialsWithoutVideo.length > 0 && (
           <section className="py-16 bg-white">
@@ -252,13 +255,21 @@ export default function TestimonialsPage() {
                 </h2>
                 <div className="max-w-4xl mx-auto">
                   <p className="text-lg text-gray-600 mb-6">
-                    Since 2010, My Private Tutor Online has helped hundreds of students achieve their academic goals.
+                    Since 2010, My Private Tutor Online has helped hundreds of
+                    students achieve their academic goals.
                   </p>
                   <p className="text-lg text-gray-600 mb-6">
-                    We're proud to say we've never spent a penny on marketing or paid advertising — our tutors are consistently in demand through personal word-of-mouth referrals alone.
+                    We're proud to say we've never spent a penny on marketing or
+                    paid advertising —{" "}
+                    <strong>
+                      our tutors are consistently in demand through personal
+                      word-of-mouth referrals alone.
+                    </strong>
                   </p>
                   <p className="text-lg text-gray-600">
-                    Here's what a selection of families have to say about their experience with us. We are always happy to share references for specific tutors upon request.
+                    Here's what a selection of families have to say about their
+                    experience with us. We are always happy to share references
+                    for specific tutors upon request.
                   </p>
                 </div>
               </div>
@@ -267,13 +278,20 @@ export default function TestimonialsPage() {
               {/* SIMPLIFIED GRID: Basic testimonials display without modals or filtering */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {hardcodedTestimonials.map((testimonial) => (
-                  <div key={testimonial.id} className="bg-white p-6 rounded-lg shadow-lg border border-gray-100">
+                  <div
+                    key={testimonial.id}
+                    className="bg-white p-6 rounded-lg shadow-lg border border-gray-100"
+                  >
                     {/* CONTEXT7 SOURCE: /websites/react_dev - Star rating display */}
                     {/* RATING DISPLAY: Simple stars without interactive functionality */}
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                        <svg
+                          key={i}
+                          className="w-5 h-5 text-yellow-400 fill-current"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                         </svg>
                       ))}
                     </div>
@@ -287,8 +305,12 @@ export default function TestimonialsPage() {
                     {/* CONTEXT7 SOURCE: /websites/react_dev - Author and subject info */}
                     {/* AUTHOR INFO: Simple display without complex styling */}
                     <div className="border-t border-gray-100 pt-4">
-                      <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                      <div className="text-sm text-gray-600">{testimonial.role}</div>
+                      <div className="font-semibold text-gray-900">
+                        {testimonial.author}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        {testimonial.role}
+                      </div>
                       <div className="text-sm text-blue-600 font-medium mt-1">
                         {testimonial.subject} • Grade: {testimonial.result}
                       </div>
@@ -299,7 +321,6 @@ export default function TestimonialsPage() {
             </div>
           </section>
         )}
-
 
         {/* 
         DISABLED: Prestigious Schools & Universities Section

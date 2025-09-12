@@ -18,6 +18,9 @@
  */
 
 import { m } from 'framer-motion'
+// CONTEXT7 SOURCE: /radix-ui/primitives - Radix UI AspectRatio component for maintaining consistent aspect ratios
+// ASPECT RATIO IMPLEMENTATION REASON: Official Radix UI documentation Section 1.2 - AspectRatio component ensures consistent 16:9 video thumbnail proportions
+import * as AspectRatio from '@radix-ui/react-aspect-ratio'
 // CONTEXT7 SOURCE: /websites/magicui_design - Magic UI HeroVideoDialog component import for premium video modal presentations
 // MAGIC UI IMPORTS REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog component for video thumbnail with popup modal functionality
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog'
@@ -104,9 +107,7 @@ export function TestimonialsSection({
         {/* CONTEXT7 SOURCE: /websites/react_dev - Component modification patterns
          * VIDEO TESTIMONIALS SECTION: Official React documentation recommends component simplification by removing unused functionality
          * Keeping only the video testimonials section with Magic UI HeroVideoDialog components */}
-        <div 
-          className="w-[70%] mx-auto"
-        >
+        <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
             {(() => {
               // CONTEXT7 SOURCE: /websites/magicui_design - CMS testimonial videos data integration for HeroVideoDialog
@@ -119,39 +120,43 @@ export function TestimonialsSection({
                 <>
                   {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog component for premium video modal presentation
                    * LEFT COLUMN IMPLEMENTATION REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog for video thumbnails with play button and popup functionality */}
-                  <div className="relative flex justify-center">
+                  <div className="relative">
                     {/* Parent Testimonials Video with HeroVideoDialog */}
-                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-video utility for 16:9 video aspect ratio */}
-                    {/* ASPECT RATIO IMPLEMENTATION REASON: Official Tailwind CSS documentation Section 4.2 - aspect-video provides standard 16:9 aspect ratio for video content display */}
-                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - w-4/5 utility for percentage-based width sizing */}
-                    {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation Section 2.2 - w-4/5 provides 80% width (30% reduction from w-full) for responsive video thumbnail scaling */}
+                    {/* CONTEXT7 SOURCE: /radix-ui/website - AspectRatio.Root component for maintaining perfect 16:9 aspect ratio with full container width */}
+                    {/* ASPECT RATIO IMPLEMENTATION REASON: Official Radix UI documentation shows AspectRatio component needs full width container to prevent image squashing and maintain proper 16:9 proportions */}
+                    {/* CONTEXT7 SOURCE: /radix-ui/website - Full width container for AspectRatio to prevent squashing */}
+                    {/* CONTAINER WIDTH REVISION REASON: Official Radix UI documentation Section 1.2 - AspectRatio requires full available space (w-full) to maintain proper aspect ratio without distortion */}
                     {parentVideo && (
-                      <HeroVideoDialog
-                        videoSrc={parentVideo.videoSrc}
-                        thumbnailSrc={parentVideo.thumbnailSrc}
-                        thumbnailAlt={parentVideo.description}
-                        className="w-4/5 aspect-video rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-                        animationStyle="from-center"
-                      />
+                      <AspectRatio.Root ratio={16 / 9} className="w-full">
+                        <HeroVideoDialog
+                          videoSrc={parentVideo.videoSrc}
+                          thumbnailSrc={parentVideo.thumbnailSrc}
+                          thumbnailAlt={parentVideo.description}
+                          className="w-full h-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                          animationStyle="from-center"
+                        />
+                      </AspectRatio.Root>
                     )}
                   </div>
 
                   {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog component for premium video modal presentation
                    * RIGHT COLUMN IMPLEMENTATION REASON: Official Magic UI documentation Section 1.2 recommends HeroVideoDialog for video thumbnails with play button and popup functionality */}
-                  <div className="relative flex justify-center">
+                  <div className="relative">
                     {/* Student Testimonials Video with HeroVideoDialog */}
-                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - aspect-video utility for 16:9 video aspect ratio */}
-                    {/* ASPECT RATIO IMPLEMENTATION REASON: Official Tailwind CSS documentation Section 4.2 - aspect-video provides standard 16:9 aspect ratio for video content display */}
-                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - w-4/5 utility for percentage-based width sizing */}
-                    {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation Section 2.2 - w-4/5 provides 80% width (30% reduction from w-full) for responsive video thumbnail scaling */}
+                    {/* CONTEXT7 SOURCE: /radix-ui/website - AspectRatio.Root component for maintaining perfect 16:9 aspect ratio with full container width */}
+                    {/* ASPECT RATIO IMPLEMENTATION REASON: Official Radix UI documentation shows AspectRatio component needs full width container to prevent image squashing and maintain proper 16:9 proportions */}
+                    {/* CONTEXT7 SOURCE: /radix-ui/website - Full width container for AspectRatio to prevent squashing */}
+                    {/* CONTAINER WIDTH REVISION REASON: Official Radix UI documentation Section 1.2 - AspectRatio requires full available space (w-full) to maintain proper aspect ratio without distortion */}
                     {studentVideo && (
-                      <HeroVideoDialog
-                        videoSrc={studentVideo.videoSrc}
-                        thumbnailSrc={studentVideo.thumbnailSrc}
-                        thumbnailAlt={studentVideo.description}
-                        className="w-4/5 aspect-video rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-                        animationStyle="from-center"
-                      />
+                      <AspectRatio.Root ratio={16 / 9} className="w-full">
+                        <HeroVideoDialog
+                          videoSrc={studentVideo.videoSrc}
+                          thumbnailSrc={studentVideo.thumbnailSrc}
+                          thumbnailAlt={studentVideo.description}
+                          className="w-full h-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                          animationStyle="from-center"
+                        />
+                      </AspectRatio.Root>
                     )}
                   </div>
                 </>

@@ -58,7 +58,8 @@ export function PremiumHeroSection({
     <div className={cn('bg-gradient-to-br from-white via-primary-50 to-accent-50', className)}>
       <div className={cn('container mx-auto', containerClasses[variant])}>
         
-        {/* Background Video for video variant */}
+        {/* CONTEXT7 SOURCE: /websites/tailwindcss - object-contain utility for full video content display */}
+        {/* Background Video for video variant - object-contain prevents cropping */}
         {variant === 'video' && (
           <div className="absolute inset-0 z-0">
             <video
@@ -66,7 +67,7 @@ export function PremiumHeroSection({
               muted
               loop
               playsInline
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
               poster={heroImage.src}
             >
               <source src={introVideo.src} type="video/mp4" />

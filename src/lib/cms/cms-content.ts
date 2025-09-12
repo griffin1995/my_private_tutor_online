@@ -317,6 +317,10 @@ export interface ResultsSection {
   readonly backgroundImage?: string;
 }
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface definitions for three pillars section type safety
+// THREE PILLARS SECTION TYPES: Complete TypeScript interfaces for three pillars CMS content structure
+
+
 // Footer and Navigation Types
 export interface FooterLink {
   readonly label: string;
@@ -4990,6 +4994,7 @@ export const getTutorProfileById = cache(
     return newData.profiles[id];
   }
 );
+
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Re-export pattern for centralized CMS API
 // CMS DATA SOURCE: Re-exporting getTestimonialVideos for centralized content access

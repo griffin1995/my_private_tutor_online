@@ -57,47 +57,27 @@ export function PageHero({
     lg: 'min-h-[600px] py-24',
     xl: 'min-h-[700px] py-32',
     // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Dynamic viewport height calculations with CSS calc() function
-    // HOMEPAGE_STATIC_NAVBAR_MODIFICATION: Conditional height calculation based on navbar positioning
+    // NAVBAR POSITIONING FIX: Proper height calculation for static navbar layouts
     full: hasStaticNavbar 
       ? [
-          // Documentation Source: Context7 Tailwind CSS - CSS calc() for dynamic height calculation
-          // Reference: /tailwindlabs/tailwindcss.com - calc(100vh - value) for remaining viewport height
+          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS calc() function for remaining viewport height calculation
+          // STATIC NAVBAR POSITIONING: Official Tailwind CSS documentation shows calc(100vh - height) for remaining space
           // 
-          // Critical Implementation for Homepage Static Header Layout:
-          // - Responsive navbar height calculations: h-24 (96px) lg:h-28 (112px) xl:h-32 (128px)
-          // - Using responsive height calculations to match the actual navbar heights
-          // - h-[calc(100vh-6rem)]: Mobile baseline (96px navbar height = 6rem)
-          // - lg:h-[calc(100vh-7rem)]: Large screens (112px navbar height = 7rem)
-          // - xl:h-[calc(100vh-8rem)]: XL screens (128px navbar height = 8rem)
-          // - w-full: width: 100% - Spans complete viewport width
-          // - overflow-hidden: Prevents content spillover and maintains clean edges
-          // 
-          // How it integrates with homepage static header:
-          // 1. mt-24/lg:mt-28/xl:mt-32: Pushes hero below navbar (margin-top approach)
-          // 2. h-[calc(100vh-6rem)] etc: Hero takes remaining viewport height after navbar space
-          // 3. Video fills the calculated remaining space completely
-          // 4. Total visible area = navbar height + hero height = 100vh (no scrolling needed)
+          // Homepage Static Navbar Integration:
+          // - Uses margin-top to push hero below navbar: mt-24 lg:mt-28 xl:mt-32
+          // - Hero takes remaining viewport height: calc(100vh - navbar-height)
+          // - Responsive navbar heights: 96px (6rem) → 112px (7rem) → 128px (8rem)
+          // - Total layout: navbar + hero = 100vh with no overlap
           'h-[calc(100vh-6rem)] lg:h-[calc(100vh-7rem)] xl:h-[calc(100vh-8rem)] w-full overflow-hidden'
         ].join(' ')
       : [
-          // Documentation Source: Context7 Tailwind CSS - Full viewport hero with fixed header integration
-          // Reference: /tailwindlabs/tailwindcss.com - h-screen: height: 100vh
+          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full viewport height for overlay layouts
+          // OVERLAY POSITIONING: Official Tailwind CSS documentation for full viewport coverage
           // 
-          // Critical Implementation for Fixed Header Layouts:
-          // - h-screen: height: 100vh - Takes full viewport height from top to bottom
-          // - w-full: width: 100% - Spans complete viewport width
-          // - overflow-hidden: Prevents content spillover and maintains clean edges
-          // 
-          // How it integrates with fixed header:
-          // 1. Hero starts at viewport top (y=0) - no gap above hero content  
-          // 2. Fixed header overlays transparently on top of hero
-          // 3. Hero content is positioned to be visible under transparent header
-          // 4. When user scrolls, header becomes opaque for readability
-          // 
-          // This eliminates the white space gap issue because:
-          // - No vertical offset or margin pushing hero down
-          // - Header doesn't affect document flow (position: fixed)
-          // - Hero immediately fills viewport from top edge
+          // Fixed/Overlay Header Integration:
+          // - Hero takes full viewport height from top edge
+          // - Header overlays transparently on top of hero
+          // - No margin offset needed as header doesn't affect document flow
           'h-screen w-full overflow-hidden'
         ].join(' ')
   }
@@ -159,9 +139,9 @@ export function PageHero({
         // HEIGHT FIX REASON: Official Tailwind documentation shows min-h-screen sets min-height: 100vh which overrides calculated height values
         // Removed min-h-screen to allow h-[calc(100vh-*)] responsive height calculations to work correctly
         size === 'full' ? 'w-screen -ml-[50vw] left-1/2 relative z-10' : '',
-        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Top margin utilities for static navbar positioning
-        // HOMEPAGE_NAVBAR_INTEGRATION: Official Tailwind documentation for mt-* utilities to position hero below static navbar
-        // Homepage-specific: Hero section starts below navbar rather than overlapping with transparent navbar
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Top margin utilities for static navbar positioning  
+        // STATIC NAVBAR MARGIN: Official Tailwind CSS documentation for margin-top to position hero below navbar
+        // Responsive margins match navbar heights: 96px (mt-24) → 112px (mt-28) → 128px (mt-32)
         size === 'full' && hasStaticNavbar ? 'mt-24 lg:mt-28 xl:mt-32' : '',
         className
       )}
@@ -177,8 +157,8 @@ export function PageHero({
       {/* Reference: https://github.com/thewidlarzgroup/react-native-video/blob/master/docs/pages/component/props.mdx */}
       {/* Reference: https://tailwindcss.com/docs/object-fit */}
       {/* Pattern: Full-screen background video with proper HTML5 attributes, object-fit, and fallbacks */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - object-contain utility for full content visibility */}
-      {/* VIDEO SCALING FIX: Changed from object-cover to object-contain to show full video height and prevent text cropping */}
+      {/* CONTEXT7 SOURCE: /websites/tailwindcss - object-contain utility for full content visibility */}
+      {/* VIDEO SCALING FIX: Applied object-contain to show full video height without cropping - maintains aspect ratio while ensuring complete content visibility */}
       {background === 'video' && backgroundVideo && (
         <>
           {/* Full-screen video background optimized for viewport height stopping */}
@@ -193,14 +173,15 @@ export function PageHero({
             preload="auto"
             disablePictureInPicture
             controls={false}
-            className="absolute inset-0 w-full h-full max-w-none object-cover z-0"
+            className="absolute inset-0 w-full h-full max-w-none object-contain z-0"
             style={{
               filter: 'brightness(0.75) contrast(1.1) saturate(1.1)',
               // CONTEXT7 SOURCE: /websites/tailwindcss - Remove any max-width constraints for proper viewport height behavior
               // MAX_WIDTH_REMOVAL: Official Tailwind CSS documentation shows max-width: none overrides Preflight defaults
               maxWidth: 'none',
-              // VIEWPORT HEIGHT ENFORCEMENT: Ensure video maintains aspect ratio while filling calculated viewport height
-              objectFit: 'cover'
+              // CONTEXT7 SOURCE: /websites/tailwindcss - object-contain CSS property for full content visibility
+              // VIEWPORT HEIGHT ENFORCEMENT: Ensure video maintains aspect ratio while showing complete content without cropping
+              objectFit: 'contain'
             }}
             aria-label="Background video"
             onError={(e) => {
