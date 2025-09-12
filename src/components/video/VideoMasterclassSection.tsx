@@ -30,27 +30,79 @@
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import { Separator } from "@/components/ui/separator";
 import { getMasterclassVideo } from "@/lib/cms/cms-images";
+import { type VideoMasterclass } from "../../../COMPREHENSIVE_VIDEO_CMS";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface with simple prop patterns for component composition
-// COMPONENT SIMPLIFICATION: Simplified props interface following TypeScript object literal patterns
+// PERFORMANCE OPTIMIZATION: Enhanced props interface accepting direct VideoMasterclass object OR videoId for backwards compatibility
 interface VideoMasterclassSectionProps {
-  readonly videoId: string;
+  readonly video?: VideoMasterclass;
+  readonly videoId?: string;
   readonly layout: "text-left" | "text-right";
   readonly className?: string;
 }
 
 export function VideoMasterclassSection({ 
+  video: directVideo,
   videoId,
   layout,
   className = ""
 }: VideoMasterclassSectionProps) {
-  // MASTER CMS LOOKUP: Get video data from centralized CMS
-  const video = getMasterclassVideo(videoId);
+  // PERFORMANCE OPTIMIZATION: Use direct video object if provided (batch mode) or fall back to individual lookup (legacy mode)
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Conditional data access patterns for performance optimization
+  let videoData: VideoMasterclass | undefined;
+  let transformedVideo: any;
+  
+  if (directVideo) {
+    // BATCH MODE: Use direct VideoMasterclass object (no lookup needed)
+    videoData = directVideo;
+    // Transform inline for display
+    transformedVideo = {
+      title: videoData.title,
+      videoUrl: videoData.youtubeUrl,
+      thumbnailUrl: videoData.thumbnailImage,
+      backgroundImage: videoData.backgroundImage,
+      alt: videoData.title,
+      duration: "15", // Default duration
+      author: "Elizabeth Burrows",
+      isFree: !videoData.isPaid,
+      price: videoData.isPaid ? "Premium Content" : undefined,
+      paymentUrl: videoData.purchaseLink,
+      layouts: {
+        videoPage: {
+          badge: {
+            text: videoData.isPaid ? "Premium" : "Free"
+          },
+          content: {
+            paragraphs: [videoData.description],
+            bulletPoints: videoData.bulletPoints || [
+              "Expert guidance from Elizabeth Burrows",
+              "Based on 15 years of tutoring experience",
+              "Practical strategies for academic success",
+              "Proven methodology for educational excellence"
+            ]
+          },
+          animationStyle: "fade"
+        }
+      }
+    };
+  } else if (videoId) {
+    // LEGACY MODE: Individual lookup for backwards compatibility
+    transformedVideo = getMasterclassVideo(videoId);
+    if (!transformedVideo) {
+      console.error(`Video not found for videoId: "${videoId}"`);
+      return null;
+    }
+  } else {
+    console.error("VideoMasterclassSection requires either 'video' or 'videoId' prop");
+    return null;
+  }
+
+  const video = transformedVideo;
   const layoutData = video?.layouts?.videoPage;
 
-  // ERROR HANDLING: Return null if video or layout data not found
-  if (!video || !layoutData) {
-    console.error(`Video or layout data not found for videoId: "${videoId}"`);
+  // ERROR HANDLING: Return null if layout data not found
+  if (!layoutData) {
+    console.error(`Layout data not found for video`);
     return null;
   }
 
@@ -88,6 +140,13 @@ export function VideoMasterclassSection({
       className={`relative grid md:grid-cols-2 gap-8 items-center bg-cover bg-center bg-no-repeat ${className}`}
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
+      {/* Circular gradient overlay for text readability */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: `radial-gradient(circle at ${isTextLeft ? 'bottom left' : 'bottom right'}, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 80%, transparent 90%)`
+        }}
+      />
       {/* Video Section */}
       <div className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
         {isFree ? (
@@ -172,11 +231,23 @@ export function VideoMasterclassSection({
         />
         
         {/* Content Paragraphs */}
-        {content.paragraphs.map((paragraph, index) => (
-          <p key={index} className="text-white mb-4">
-            {paragraph}
-          </p>
-        ))}
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - dangerouslySetInnerHTML for trusted HTML content rendering */}
+        {/* HTML RENDERING IMPLEMENTATION: Official React documentation demonstrates safe HTML rendering using dangerouslySetInnerHTML for trusted content */}
+        {/* LINE BREAK PROCESSING: Convert \n\n to <br><br> tags for proper paragraph separation in HTML */}
+        {content.paragraphs.map((paragraph, index) => {
+          // Process line breaks and create safe HTML markup
+          const processedText = paragraph
+            .replace(/\n\n/g, '<br><br>') // Convert double line breaks to HTML breaks
+            .replace(/\n/g, '<br>'); // Convert single line breaks to HTML breaks
+          
+          return (
+            <div 
+              key={index} 
+              className="text-white mb-4"
+              dangerouslySetInnerHTML={{ __html: processedText }}
+            />
+          );
+        })}
         
         <Separator className="bg-gray-300 my-3" />
         

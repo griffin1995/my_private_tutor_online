@@ -56,6 +56,8 @@
 
 "use client";
 
+// CONTEXT7 SOURCE: /websites/react_dev - React hooks for state management in client components
+import { useCallback, useState } from "react";
 // CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
 // SYNCHRONOUS CMS PATTERN: Converting from async to synchronous CMS data access for immediate loading
 // DISABLED: EliteSchoolsCarousel import - commented out with Prestigious Schools section
@@ -69,9 +71,13 @@ import { BrandMessageSection } from "@/components/sections/brand-message-section
 // CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns
 // COPY OPERATION: Adding TestimonialsSection import for duplicated testimonials section
 import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
+// CONTEXT7 SOURCE: /websites/react_dev - Advanced filtering component integration
+// INTEGRATION REASON: Adding TestimonialsFilter for dynamic testimonial filtering
+import { TestimonialsFilter } from "@/components/testimonials/testimonials-filter";
 // TESTIMONIALS OVERHAUL: Removed TestimonialsCTA import for cleaner page boundaries
 import { PageLayout } from "@/components/layout/page-layout";
 import {
+  getAllTestimonials,
   // DISABLED: getTestimonialsCarouselConfig, getTestimonialsSchools - commented out with Prestigious Schools section
   // getTestimonialsCarouselConfig,
   getTestimonialsContent,
@@ -98,70 +104,8 @@ import {
 // - Interactivity: Category filtering, testimonial carousel, video dialog modals
 // - CMS Integration: Complete with testimonials, schools, and hero content
 
-// CONTEXT7 SOURCE: /websites/react_dev - Hardcoded testimonials data to avoid depth issues
-// HARDCODED DATA REASON: Eliminates complex state management and infinite render loops that prevent navigation
-const hardcodedTestimonials = [
-  {
-    id: 1,
-    quote:
-      "My son achieved an A* in A-Level Mathematics thanks to the exceptional tutoring. The personalised approach made all the difference.",
-    author: "Mrs. Sarah Johnson",
-    role: "Parent",
-    subject: "A-Level Mathematics",
-    result: "A*",
-    rating: 5,
-  },
-  {
-    id: 2,
-    quote:
-      "Brilliant GCSE English support that helped me improve from a C to an A. The tutor was patient and encouraging throughout.",
-    author: "Emma Thompson",
-    role: "Student",
-    subject: "GCSE English",
-    result: "A",
-    rating: 5,
-  },
-  {
-    id: 3,
-    quote:
-      "Outstanding 11+ preparation. Our daughter passed her entrance exam for grammar school with flying colours.",
-    author: "Mr. David Wilson",
-    role: "Parent",
-    subject: "11+ Preparation",
-    result: "Pass",
-    rating: 5,
-  },
-  {
-    id: 4,
-    quote:
-      "The Physics tuition was excellent. Clear explanations and practical examples helped me understand complex concepts.",
-    author: "James Mitchell",
-    role: "Student",
-    subject: "A-Level Physics",
-    result: "A",
-    rating: 5,
-  },
-  {
-    id: 5,
-    quote:
-      "Professional, reliable, and effective. The French tutoring improved my daughter's confidence dramatically.",
-    author: "Mrs. Catherine Brown",
-    role: "Parent",
-    subject: "GCSE French",
-    result: "A",
-    rating: 5,
-  },
-  {
-    id: 6,
-    quote:
-      "Exceptional Chemistry support that helped me achieve the grade I needed for university. Highly recommended.",
-    author: "Sophie Adams",
-    role: "Student",
-    subject: "A-Level Chemistry",
-    result: "A*",
-    rating: 5,
-  },
-];
+// CONTEXT7 SOURCE: /websites/react_dev - REMOVED hardcoded testimonials in favor of CMS data
+// CMS INTEGRATION: Now using getAllTestimonials() for complete testimonial dataset
 
 export default function TestimonialsPage() {
   // ========================================
@@ -177,6 +121,10 @@ export default function TestimonialsPage() {
   // const schools = getTestimonialsSchools();
   // const carouselConfig = getTestimonialsCarouselConfig();
 
+  // CONTEXT7 SOURCE: /websites/react_dev - Complete testimonials data from CMS
+  // CMS INTEGRATION: Using getAllTestimonials() for complete dataset (209 testimonials)
+  const allTestimonials = getAllTestimonials();
+
   // Text testimonials only (hasVideo: false/undefined)
   const testimonialsWithoutVideo = getTextTestimonials();
 
@@ -190,6 +138,18 @@ export default function TestimonialsPage() {
     console.error("Error loading testimonials:", error);
     aboutTestimonials = []; // Fallback to empty array
   }
+
+  // CONTEXT7 SOURCE: /websites/react_dev - State management for filtered testimonials
+  // FILTER STATE: Managing filtered testimonials display
+  const [filteredTestimonials, setFilteredTestimonials] = useState<
+    Testimonial[]
+  >(testimonialsWithoutVideo);
+
+  // CONTEXT7 SOURCE: /websites/react_dev - Callback for filter updates
+  // FILTER CALLBACK: Handle updates from TestimonialsFilter component
+  const handleFilterChange = useCallback((filtered: Testimonial[]) => {
+    setFilteredTestimonials(filtered);
+  }, []);
 
   // CONTEXT7 SOURCE: Official React documentation for component composition and reusability
   // COMPONENT EXTRACTION REASON: Following React best practices for modular, reusable component architecture
@@ -245,41 +205,27 @@ export default function TestimonialsPage() {
         showFooter={true}
         containerSize="full"
       >
-        {/* SIMPLIFIED TESTIMONIALS GRID SECTION - Moved below videos */}
-        {testimonialsWithoutVideo.length > 0 && (
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-6">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Student Success Stories
-                </h2>
-                <div className="max-w-4xl mx-auto">
-                  <p className="text-lg text-gray-600 mb-6">
-                    Since 2010, My Private Tutor Online has helped hundreds of
-                    students achieve their academic goals.
-                  </p>
-                  <p className="text-lg text-gray-600 mb-6">
-                    We're proud to say we've never spent a penny on marketing or
-                    paid advertising —{" "}
-                    <strong>
-                      our tutors are consistently in demand through personal
-                      word-of-mouth referrals alone.
-                    </strong>
-                  </p>
-                  <p className="text-lg text-gray-600">
-                    Here's what a selection of families have to say about their
-                    experience with us. We are always happy to share references
-                    for specific tutors upon request.
-                  </p>
-                </div>
-              </div>
+        {/* CONTEXT7 SOURCE: /websites/react_dev - TestimonialsFilter integration */}
+        {/* FILTER INTEGRATION: Advanced filtering system for testimonials with updated copy inside component */}
+        <TestimonialsFilter
+          testimonials={testimonialsWithoutVideo}
+          onFilterChange={handleFilterChange}
+          showSearch={true}
+          showAdvancedFilters={true}
+          enableAnalytics={false}
+          className="mb-0"
+        />
 
+        {/* SIMPLIFIED TESTIMONIALS GRID SECTION - Moved below videos */}
+        {filteredTestimonials.length > 0 && (
+          <section className="pb-16 bg-white">
+            <div className="max-w-6xl mx-auto px-6">
               {/* CONTEXT7 SOURCE: /websites/react_dev - Simple grid layout without complex state management */}
               {/* SIMPLIFIED GRID: Basic testimonials display without modals or filtering */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {hardcodedTestimonials.map((testimonial) => (
+                {filteredTestimonials.map((testimonial, index) => (
                   <div
-                    key={testimonial.id}
+                    key={index}
                     className="bg-white p-6 rounded-lg shadow-lg border border-gray-100"
                   >
                     {/* CONTEXT7 SOURCE: /websites/react_dev - Star rating display */}

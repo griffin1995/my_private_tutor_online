@@ -611,19 +611,6 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Height utility with calc() for full viewport usage */}
             {/* HEIGHT_FIX_REASON: Official Tailwind documentation for calc() height calculations - ensuring dropdown uses full available viewport height */}
             <div className="bg-white shadow-lg">
-              {/* Close Button */}
-              <div className="absolute top-6 right-6 z-50">
-                <button
-                  onClick={handleCloseDropdown}
-                  className={cn(
-                    "flex items-center justify-center w-10 h-10 rounded-full transition-colors duration-200",
-                    "bg-gray-100 hover:bg-gray-200 text-[#3F4A7E]"
-                  )}
-                  aria-label="Close dropdown"
-                >
-                  <ChevronUp className="h-5 w-5" />
-                </button>
-              </div>
 
               {/* Dropdown Content */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container max-width and left alignment utilities */}

@@ -21,7 +21,7 @@ npm run build
 vercel --prod
 ```
 
-**Production URL**: https://my-tutor-website-6aipxnfeh-jacks-projects-cf5effed.vercel.app
+**Production URL**: https://myprivatetutoronline-f8tv06oa2-jacks-projects-cf5effed.vercel.app
 
 ## 📋 Essential Scripts
 
@@ -36,15 +36,15 @@ npm run test         # Run test suite
 ## 🛠️ Enhanced Tech Stack
 
 **Documentation Source**: Context7 MCP - Modern Web Stack  
-- **Framework**: Next.js 15.4.6 with App Router (91 optimized routes)
+- **Framework**: Next.js 15.3.4 with App Router (91 optimized routes)
 - **React**: React 19 with Client Components architecture (full compatibility)
-- **TypeScript**: TypeScript 5.8.3 with strict mode and comprehensive type coverage
-- **Styling**: Tailwind CSS 4.x with premium design system and image integration
+- **TypeScript**: TypeScript 5.8+ with strict mode and comprehensive type coverage
+- **Styling**: Tailwind CSS 3.4.1 with premium design system and gradient effects
 - **Components**: Radix UI (Context7 verified patterns) with enhanced navigation dropdowns
-- **Animation**: Framer Motion with LazyMotion optimization and tier spotlight design
-- **Icons**: Lucide React + Heroicons with strategic placement
-- **Image Management**: Advanced CMS integration with kebab-case naming system
-- **Content Management**: Enhanced testimonials system with structured data format
+- **Animation**: Framer Motion 12.23.0 with LazyMotion optimization and tier spotlight design
+- **Icons**: Lucide React 0.525.0 + Heroicons with strategic placement
+- **Image Management**: Advanced CMS integration with Sharp-based darkening system (30% brightness reduction)
+- **Content Management**: COMPREHENSIVE_VIDEO_CMS.ts with video masterclasses and enhanced testimonials
 - **Deployment**: Vercel production with dynamic rendering and performance optimization
 
 ## 📚 Documentation
@@ -65,7 +65,7 @@ npm run test         # Run test suite
 
 ## 🎯 Performance Metrics
 
-- **Build Time**: <15 seconds
+- **Build Time**: <25 seconds (91 routes optimized)
 - **First Load JS**: ~229kB (optimized)
 - **Core Web Vitals**: LCP <2.5s, FID <100ms, CLS <0.1
 - **Accessibility**: WCAG 2.1 AA compliant

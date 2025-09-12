@@ -3721,21 +3721,20 @@ export const getServicesContent = cache((): ServicesPageContent => {
             // TWO COLUMN VIDEO REASON: Official React patterns for dual video content following exact working entrance exams videoSection structure
             twoColumnVideoSection: {
               video1: {
-                thumbnailUrl: "/images/tutors/emily.jpg",
+                thumbnailUrl: "/videos/ucas-summit-2024-thumbnail.png",
                 // CONTEXT7 SOURCE: /microsoft/typescript - Object property assignment pattern
-                // REVISION REASON: Updated video file path to kebab-case naming convention following project standards
-                videoUrl: "/videos/elizabeth-ucas-parent-interview-guide.mp4",
-                title:
-                  "Meet Emily - University Admissions Specialist Introduction",
-                alt: "Emily's University Admissions Specialist Introduction Video - Meet Emily, our specialist university admissions tutor and learn about our comprehensive application preparation approach",
+                // REVISION REASON: Updated to use UCAS Summit 2024 video from COMPREHENSIVE_VIDEO_CMS
+                videoUrl: "https://www.youtube.com/embed/IfF9zSzuceY?si=7_tmYovUVVfqLX0D",
+                title: "UCAS Summit 2024",
+                alt: "UCAS Summit 2024 - Elizabeth Burrows shares expert guidance on UCAS applications, personal statements, and university admissions success strategies",
               },
               video2: {
-                thumbnailUrl: "/images/tutors/emily.jpg",
-                // CONTEXT7 SOURCE: /microsoft/typescript - Object property assignment pattern
-                // REVISION REASON: Updated video file path to kebab-case naming convention following project standards
-                videoUrl: "/videos/elizabeth-gcse-summit-2024.mp4",
-                title: "Meet Emily - Personal Statement & Interview Expert",
-                alt: "Emily's Personal Statement & Interview Expert Video - Learn about our expert personal statement crafting and interview preparation techniques for university applications",
+                thumbnailUrl: "/videos/unlocking-academic-success-thumbnail.png",
+                // CONTEXT7 SOURCE: /microsoft/typescript - Object property assignment pattern  
+                // REVISION REASON: Updated to use Unlocking Academic Success video from COMPREHENSIVE_VIDEO_CMS
+                videoUrl: "https://www.youtube.com/embed/r4Ngy75Z4Zg?si=_mfgyzSJM0BIzXTW",
+                title: "Unlocking Academic Success",
+                alt: "Unlocking Academic Success - Elizabeth Burrows distills 15 years of international education experience into a practical, parent-first guide to implementing and managing private tuition",
               },
             },
           },

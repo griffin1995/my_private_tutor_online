@@ -47,9 +47,9 @@ import {
   SubjectCategory,
 } from "@/components/sections/subject-accordion";
 
-// CONTEXT7 SOURCE: /facebook/react - VideoPopup component import for video display functionality
-// VIDEO POPUP REASON: Official React patterns for modal video playback component integration
-import { VideoPopup } from "@/components/video/video-popup";
+// CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component import for professional video display functionality
+// HERO VIDEO DIALOG REASON: Official Magic UI patterns for full-screen modal video playback with portal rendering and professional animations
+import { HeroVideoDialog } from "@/components/magicui/hero-video-dialog";
 
 // CONTEXT7 SOURCE: /facebook/react - Business analytics components for results documentation
 // BUSINESS ANALYTICS REASON: Results documentation for verifiable academic outcomes display
@@ -217,14 +217,8 @@ export default function SubjectTuitionPage() {
   // ASYNC DATA REASON: Official React documentation for managing server-fetched data in client components
   const [asyncResultsData, setAsyncResultsData] = useState<any[]>([]);
 
-  // CONTEXT7 SOURCE: /facebook/react - Video popup state management for modal video playback
-  // VIDEO STATE REASON: Official React patterns for modal video state management with popup controls
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState<{
-    url: string;
-    title: string;
-    poster?: string;
-  }>({ url: "", title: "" });
+  // CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog removes need for manual modal state management
+  // HERO VIDEO DIALOG STATE REASON: Official Magic UI patterns - HeroVideoDialog handles its own modal state internally with portal rendering
 
   useEffect(() => {
     async function loadResultsData() {
@@ -239,16 +233,8 @@ export default function SubjectTuitionPage() {
     loadResultsData();
   }, []);
 
-  // CONTEXT7 SOURCE: /facebook/react - Video click handler for modal video display
-  // VIDEO HANDLER REASON: Official React patterns for event handling with state updates
-  const handleVideoClick = (
-    videoUrl: string,
-    title: string,
-    poster?: string
-  ) => {
-    setCurrentVideo({ url: videoUrl, title, poster });
-    setIsVideoOpen(true);
-  };
+  // CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog removes need for manual video click handling
+  // HERO VIDEO DIALOG HANDLER REASON: Official Magic UI patterns - HeroVideoDialog handles click events internally with built-in state management
 
   return (
     <>
@@ -344,7 +330,8 @@ export default function SubjectTuitionPage() {
                     `Section ${sectionId} ${isOpen ? "opened" : "closed"}`
                   );
                 }}
-                onVideoClick={handleVideoClick}
+                // CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog removes onVideoClick prop dependency
+                // PROP REMOVAL REASON: Official Magic UI patterns - HeroVideoDialog components handle click events internally
               />
             </div>
           </div>
@@ -504,15 +491,8 @@ export default function SubjectTuitionPage() {
         {/* Services CTA Section intentionally removed to streamline Subject Tuition page focus */}
       </PageLayout>
 
-      {/* CONTEXT7 SOURCE: /facebook/react - VideoPopup component integration for modal video display */}
-      {/* VIDEO POPUP REASON: Official React patterns for modal video playback with controlled visibility */}
-      <VideoPopup
-        isOpen={isVideoOpen}
-        onClose={() => setIsVideoOpen(false)}
-        videoUrl={currentVideo.url}
-        title={currentVideo.title}
-        poster={currentVideo.poster}
-      />
+      {/* CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog replaces VideoPopup with professional portal-rendered modals */}
+      {/* HERO VIDEO DIALOG REASON: Official Magic UI patterns for full-screen video modals with advanced animations and accessibility */}
     </>
   );
 }

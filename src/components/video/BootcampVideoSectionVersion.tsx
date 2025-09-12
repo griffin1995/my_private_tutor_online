@@ -3,25 +3,27 @@
  * CONTEXT7 SOURCE: /reactjs/react.dev - Component composition patterns for reusable UI elements
  * IMPLEMENTATION REASON: Official React documentation Section 2.1 recommends component composition patterns for specialized bootcamp video sections
  * 
- * Pattern: Hardcoded Programme Data Video Section Component
+ * Pattern: Comprehensive Programme Data Video Section Component
  * Architecture:
- * - Uses hardcoded bootcamp programme data from page component
- * - Supports flexible text-left/text-right layouts
+ * - Uses comprehensive bootcamp programme data with detailed content sections
+ * - Supports flexible text-left/text-right layouts with Radix UI Separators
  * - Integrates with existing background images from video CMS
- * - Maintains full-screen modal functionality for paid content
+ * - Maintains "Buy" circle functionality for paid bootcamp content
  * 
  * Design Features:
  * - Dynamic layout positioning based on layout prop
- * - Programme-specific content from hardcoded data
- * - "Buy" circle positioning for paid bootcamp content
+ * - Comprehensive programme content with target audience, teaching approach, and assessment information
+ * - "Buy" circle positioning for paid bootcamp content with updated £395 pricing
  * - Background image support with overlay content
- * - Programme pricing and date information display
+ * - Radix UI Separator components for clean content division
+ * - Conditional availability notices for limited spaces
  * 
  * Programme Data Integration:
- * - kickstarterProgramme → Elite School Focus (index 1)
- * - intensiveProgramme → Intensive 11+ Preparation (index 0)
- * - All content driven by hardcoded bootcampProgrammes array
+ * - kickstarterProgramme → 11+ Kickstarter (Y4&5 focus, index 1)
+ * - intensiveProgramme → 11+ Intensive (Y6 focus, index 0)
+ * - All content driven by comprehensive bootcampProgrammes array
  * - Type-safe props with TypeScript interfaces
+ * - Updated Stripe URLs and pricing structure
  */
 
 "use client"
@@ -37,47 +39,33 @@ interface BootcampVideoSectionVersionProps {
 }
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Hardcoded programme data matching page component structure
-// PROGRAMME DATA REASON: Official TypeScript patterns for readonly object literals with programme information
+// PROGRAMME DATA REASON: Official TypeScript patterns for readonly object literals with comprehensive programme information
 const bootcampProgrammes = [
   {
-    title: "Intensive 11+ Preparation",
+    title: "11+ Intensive",
     duration: "5 Days", 
-    format: "In-Person & Online",
-    groupSize: "Max 8 students",
-    description:
-      "Comprehensive preparation covering all 11+ subjects with expert tutors",
-    features: [
-      "Mathematics problem-solving techniques",
-      "English comprehension and creative writing", 
-      "Verbal and non-verbal reasoning",
-      "Mock examinations with detailed feedback",
-      "Confidence building and exam technique",
-    ],
-    price: "£750",
-    dates: [
-      "Half Term: 17-21 February 2025",
-      "Easter: 7-11 April 2025", 
-      "Summer: 28 July - 1 August 2025",
-    ],
-    stripeUrl: "https://buy.stripe.com/6oUdR8enb9jF69u1Zd3840c"
+    target: "Perfect for students entering Y6 September 2025",
+    description: "Our 11+ Intensive is the perfect runway for students sitting exams in autumn 2025. We tackle a different discipline each day: English, Maths, Verbal Reasoning, Non Verbal Reasoning and Interview Technique.",
+    teaching: "This course will test children's existing knowledge - identifying weak spots for improvement - and challenge them with 'stretch' tasks, teaching them how to deal with even the toughest questions.",
+    approach: "Taught by our 11+ specialists, this course will troubleshoot trickier topics and teach tips, tricks and shortcuts for scoring more marks. Particular focus will be paid to exam technique, with timed drills to ensure students walk into the exam feeling confident they can succeed.",
+    assessment: "The course is sculpted around the major 11+ assessment boards - GL, CEM and ISEB - and uses real exam questions from more difficult papers to challenge even the brightest students without overwhelming them.",
+    price: "£395",
+    coursePack: "per 5-day course (including course pack with hundreds of questions)",
+    availability: "",
+    stripeUrl: "https://buy.stripe.com/6oUdR8enb9jF69u395new"
   },
   {
-    title: "Elite School Focus",
-    duration: "3 Days",
-    format: "In-Person Only", 
-    groupSize: "Max 6 students",
-    description:
-      "Targeted preparation for top-tier independent schools (Eton, Westminster, St Paul's)",
-    features: [
-      "School-specific paper analysis",
-      "Advanced problem-solving strategies",
-      "Interview preparation and technique", 
-      "Past paper practice with time management",
-      "Individual feedback sessions",
-    ],
-    price: "£550", 
-    dates: ["February: 24-26 February 2025", "May: 26-28 May 2025"],
-    stripeUrl: "https://buy.stripe.com/7sYbJ0cf3brN69u8nB3840d"
+    title: "11+ Kickstarter",
+    duration: "5 Days",
+    target: "Perfect for students entering Y4 & 5 September 2025",
+    description: "Our 11+ Kickstarter is a fun and thorough introduction to 11+ curriculum, ideal for students will little to no experience of entrance exams.",
+    teaching: "The programme is led by our 11+ specialists. Both qualified teachers, our two experts will share their insider 11+ knowledge, gleaned from decades of coaching candidates and writing real entrance exam papers.",
+    approach: "Each day they will familiarise students with a different discipline: English, Maths, Verbal Reasoning, Non Verbal Reasoning and Interview Technique. It's a brilliant opportunity for Year 4/5 students to lay the groundwork for future success.",
+    assessment: "The course is sculpted around the major 11+ assessment boards - GL, CEM and ISEB - and uses real exam tasks to introduce students to common question types.",
+    price: "£395", 
+    coursePack: "per 5-day course (including course pack with hundreds of questions)",
+    availability: "Spaces are strictly limited. Waiting lists will be in operation.",
+    stripeUrl: "https://buy.stripe.com/7sYbJ0cf3brN69u395new"
   },
 ] as const;
 
@@ -101,7 +89,7 @@ export function BootcampVideoSectionVersion({
   
   // CONTEXT7 SOURCE: /microsoft/typescript - Programme data mapping with array indexing
   // DATA MAPPING REASON: Official TypeScript patterns for hardcoded data lookup with type safety
-  const programmeIndex = videoId === "intensiveProgramme" ? 0 : 1; // Intensive = index 0, Elite School Focus = index 1
+  const programmeIndex = videoId === "intensiveProgramme" ? 0 : 1; // Intensive = index 0, Kickstarter = index 1
   const programme = bootcampProgrammes[programmeIndex];
   
   // CONTEXT7 SOURCE: /microsoft/typescript - Background image lookup with mapped object access
@@ -124,6 +112,15 @@ export function BootcampVideoSectionVersion({
       className={`relative grid md:grid-cols-2 gap-8 items-center bg-cover bg-center bg-no-repeat ${className}`}
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
+      {/* CONTEXT7 SOURCE: /websites/tailwindcss - Circular gradient overlay for corner gradient blur effect */}
+      {/* GRADIENT OVERLAY REASON: Official CSS documentation for radial-gradient patterns matching VideoMasterclassSection visual design */}
+      {/* Circular gradient overlay for text readability and corner blur effect */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: `radial-gradient(circle at ${isTextLeft ? 'bottom left' : 'bottom right'}, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 80%, transparent 90%)`
+        }}
+      />
       {/* Video Section */}
       <div className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
         <a 
@@ -155,10 +152,44 @@ export function BootcampVideoSectionVersion({
           {programme.title}
         </h2>
         
-        {/* CONTEXT7 SOURCE: /radix-ui/primitives - Separator component for visual content division */}
-        {/* SEPARATOR REASON: Official Radix UI documentation demonstrates horizontal separator after headings for content organization */}
+        {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Separator component horizontal usage for visual content division */}
+        {/* SEPARATOR REASON: Official Radix UI Separator documentation demonstrates horizontal separator after headings for content organization */}
         <Separator className="bg-gray-300 my-3" />
         
+        {/* Target Audience */}
+        <p className="text-white text-lg font-semibold mb-4">
+          {programme.target}
+        </p>
+        
+        <Separator className="bg-gray-300 my-4" />
+        
+        {/* Main Description */}
+        <p className="text-white text-base leading-relaxed mb-4">
+          {programme.description}
+        </p>
+        
+        <Separator className="bg-gray-300 my-4" />
+        
+        {/* Teaching Approach */}
+        <p className="text-white text-base leading-relaxed mb-4">
+          {programme.teaching}
+        </p>
+        
+        {/* Additional Approach Information */}
+        <p className="text-white text-base leading-relaxed mb-4">
+          {programme.approach}
+        </p>
+        
+        <Separator className="bg-gray-300 my-4" />
+        
+        {/* Assessment Boards */}
+        <p className="text-white text-base leading-relaxed mb-4">
+          {programme.assessment}
+        </p>
+        
+        <Separator className="bg-gray-300 my-4" />
+        
+        {/* Pricing Information */}
         <div className={`flex items-center gap-4 mb-4 ${badgeAlignment}`}>
           <span className="text-white text-sm font-medium">
             Premium Programme
@@ -178,55 +209,19 @@ export function BootcampVideoSectionVersion({
             rel="noopener noreferrer"
             className="!text-white text-sm font-medium hover:!text-[#CA9E5B] hover:underline transition-all duration-300 cursor-pointer"
           >
-            {programme.price}
+            {programme.price} {programme.coursePack}
           </a>
         </div>
         
-        <Separator
-          orientation="horizontal"
-          className="bg-gray-300 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full my-3"
-        />
-        
-        {/* Content Description */}
-        <p className="text-white mb-4">
-          {programme.description}
-        </p>
-        
-        {/* Programme Details */}
-        <p className="text-white mb-4">
-          <strong>{programme.format}</strong> • <strong>{programme.groupSize}</strong>
-        </p>
-        
-        {/* Available Dates */}
-        <div className="text-white mb-4">
-          <strong>Available Dates:</strong>
-          <ul className="mt-2 space-y-1">
-            {programme.dates.map((date, index) => (
-              <li key={index} className="text-sm">• {date}</li>
-            ))}
-          </ul>
-        </div>
-        
-        <Separator className="bg-gray-300 my-3" />
-        
-        {/* Programme Features */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
-          {programme.features.map((feature, index) => (
-            <div key={index} className={`flex items-start space-x-2 ${bulletAlignment}`}>
-              {isTextLeft ? (
-                <>
-                  <span className="text-white mt-1.5 text-xs">•</span>
-                  <span className="text-white text-sm">{feature}</span>
-                </>
-              ) : (
-                <>
-                  <span className="text-white text-sm">{feature}</span>
-                  <span className="text-white mt-1.5 text-xs">•</span>
-                </>
-              )}
-            </div>
-          ))}
-        </div>
+        {/* Availability Notice (Only for Kickstarter) */}
+        {programme.availability && (
+          <>
+            <Separator className="bg-gray-300 my-4" />
+            <p className="text-white text-sm italic font-medium">
+              {programme.availability}
+            </p>
+          </>
+        )}
       </div>
     </div>
   );

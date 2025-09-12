@@ -36,6 +36,7 @@ import { BrandMessageSection } from "@/components/sections/brand-message-section
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { VideoPopup } from "@/components/video/video-popup";
+import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import { VideoMasterclassSection } from "@/components/video/VideoMasterclassSection";
 import { BootcampVideoSectionVersion } from "@/components/video/BootcampVideoSectionVersion";
 import { TwoRowHeadingTextSection } from "@/components/sections/two-row-heading-text-section";
@@ -251,7 +252,9 @@ export default function ElevenPlusBootcampsPage() {
         {/* SCROLLING SCHOOLS INTEGRATION: Official React documentation shows component composition patterns */}
         {/* CONTEXT7 SOURCE: /mdn/content - Array filtering application in React component props */}
         {/* FILTERED SCHOOLS REASON: Apply school-only filtering for 11+ bootcamp context, excluding universities for appropriate audience targeting */}
-        <ScrollingSchools schools={[...filteredSchools]} />
+        {/* CONTEXT7 SOURCE: /websites/tailwindcss - Minimal padding utility for component breathing room */}
+        {/* MINIMAL PADDING REASON: Official Tailwind CSS documentation py-0.5 utility provides smallest available vertical padding (0.125rem/2px) for component spacing */}
+        <ScrollingSchools schools={[...filteredSchools]} className="py-0.5" />
       </section>
 
 
@@ -347,16 +350,52 @@ export default function ElevenPlusBootcampsPage() {
           className="py-16"
         />
 
-        {/* TEXT SEPARATOR AFTER VIDEOS */}
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - TwoRowHeadingTextSection component integration for content separation */}
-        {/* TEXT SEPARATOR IMPLEMENTATION: Official React documentation shows component composition patterns for content sections after video components */}
+        {/* TEXT SEPARATOR AFTER VIDEOS - TWO COLUMN LAYOUT */}
+        {/* CONTEXT7 SOURCE: /websites/tailwindcss - Responsive flexbox layout with proper container constraints */}
+        {/* RESPONSIVE FLEXBOX IMPLEMENTATION: Official Tailwind documentation shows flex utilities for responsive column layouts with container patterns */}
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - TwoRowHeadingTextSection component integration within responsive container */}
+        {/* TWO COLUMN LAYOUT REASON: Enhanced visual hierarchy using flexbox for 50/50 responsive column distribution */}
+        {/* CONTEXT7 SOURCE: /websites/tailwindcss - Container utility for responsive width constraints */}
+        {/* CONTAINER PATTERN REASON: Official Tailwind documentation shows proper container and max-width patterns for content constraints */}
         <section id="bootcamps-post-video-text-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="Ready to Begin Your Child's 11+ Journey?"
-            paragraphOne="Our bootcamp programmes have helped hundreds of families navigate the 11+ process with confidence. From foundational preparation to intensive exam-focused training, we provide the expert guidance and proven strategies your child needs to succeed. Book a consultation to discuss which programme best suits your child's needs and timeline."
-            headingTwo=""
-            paragraphTwo=""
-          />
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col lg:flex-row lg:gap-8 lg:items-start">
+                <div className="flex-1">
+                  {/* CONTEXT7 SOURCE: /websites/tailwindcss - Custom bullet points list replacing TwoRowHeadingTextSection paragraph */}
+                  {/* BULLET POINTS IMPLEMENTATION: Official Tailwind CSS documentation shows list-disc utility for proper bullet styling */}
+                  <h3 className="text-2xl lg:text-3xl font-serif font-medium text-primary-900 mb-6">
+                    Ready to Begin Your Child's 11+ Journey?
+                  </h3>
+                  {/* CONTEXT7 SOURCE: /websites/tailwindcss - List styling with disc bullets and proper spacing */}
+                  {/* LIST STYLING REASON: Official Tailwind documentation Section 'Styling Lists' shows list-disc and list-inside utilities for proper bullet list presentation */}
+                  <ul className="list-disc list-inside space-y-3 text-base lg:text-lg text-primary-700 leading-relaxed">
+                    <li>All sessions led by experienced specialists with 11+ examiner credentials and/or proven track records at top schools</li>
+                    <li>Exclusive access to curated past papers, practice questions, and revision materials</li>
+                    <li>Maximum 4-5 students per group ensuring personalised attention and focused learning</li>
+                    <li>98% success rate with consistent placements at prestigious independent schools</li>
+                    <li>Focus on exam technique and confidence building alongside academic preparation</li>
+                    <li>Multiple dates available throughout the year to fit your family's schedule</li>
+                  </ul>
+                </div>
+                <div className="flex-1">
+                  {/* CONTEXT7 SOURCE: /magicui/hero-video-dialog - HeroVideoDialog component for 11+ expert introduction video */}
+                  {/* VIDEO INTEGRATION REASON: Official HeroVideoDialog documentation shows props interface for video modal implementation */}
+                  <div className="flex justify-center">
+                    <div className="max-w-lg">
+                      <HeroVideoDialog
+                        videoSrc="/videos/11-plus-expert-intro-video-mpto.mp4"
+                        thumbnailSrc="/images/video-thumbnails/thumbnail-11-plus-expert-intro-video-mpto.png"
+                        thumbnailAlt="Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach"
+                        animationStyle="from-center"
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoPopup component integration with state management */}

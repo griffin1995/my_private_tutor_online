@@ -132,7 +132,7 @@ export function TestimonialsSection({
                           videoSrc={parentVideo.videoSrc}
                           thumbnailSrc={parentVideo.thumbnailSrc}
                           thumbnailAlt={parentVideo.description}
-                          className="w-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200"
+                          className="w-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-[#3F4A7E] hover:border-[#CA9E5B]"
                           animationStyle="from-center"
                         />
                       </div>
@@ -153,7 +153,7 @@ export function TestimonialsSection({
                           videoSrc={studentVideo.videoSrc}
                           thumbnailSrc={studentVideo.thumbnailSrc}
                           thumbnailAlt={studentVideo.description}
-                          className="w-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200"
+                          className="w-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-[#3F4A7E] hover:border-[#CA9E5B]"
                           animationStyle="from-center"
                         />
                       </div>

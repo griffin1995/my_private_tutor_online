@@ -303,12 +303,19 @@ export function TestimonialsFilter({
           {/* Filter Header */}
           <div className="text-center mb-8">
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4">
-              Find Your Success Story
+              Student Success Stories
             </h2>
-            <p className="text-lg text-primary-600 max-w-3xl mx-auto">
-              Discover testimonials from families with similar academic goals
-              and backgrounds
-            </p>
+            <div className="text-lg text-primary-600 max-w-3xl mx-auto space-y-4">
+              <p>
+                Since 2010, My Private Tutor Online has helped hundreds of students achieve their academic goals.
+              </p>
+              <p>
+                We're proud to say we've never spent a penny on marketing or paid advertising — <strong>our tutors are consistently in demand through personal word-of-mouth referrals alone.</strong>
+              </p>
+              <p>
+                Here's what a selection of families have to say about their experience with us. We are always happy to share references for specific tutors upon request.
+              </p>
+            </div>
           </div>
 
           {/* Search Bar */}
