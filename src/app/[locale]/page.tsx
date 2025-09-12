@@ -75,6 +75,10 @@ import { HomepageSections } from "../../components/homepage/homepage-sections";
 // RESULTS DOCUMENTATION REASON: Official React patterns for quantifiable outcomes section identical to Subject Tuition page
 import { ResultsDocumentation } from "../../components/sections/results-documentation";
 
+// CONTEXT7 SOURCE: /radix-ui/primitives - Separator component for visual content division
+// SEPARATOR REASON: Official Radix UI documentation for horizontal separator in pillar cards structure
+import { Separator } from "@/components/ui/separator";
+
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage without server-side locale parameters
 // CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations hook in client components
 export default function HomePage() {
@@ -236,14 +240,14 @@ export default function HomePage() {
       {/* RESULTS DOCUMENTATION REASON: Exact carbon copy of Subject Tuition page section 4 for consistent data presentation */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      {/* TEMPORARILY COMMENTED OUT FOR DEV WORK - ALL CMS CODE REMAINS INTACT */}
+      {/*
       <section
         id="homepage-results"
         className="py-16 lg:py-24 relative bg-white"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for statistical data removal
-               STATISTICAL SIMPLIFICATION: Remove showVerificationBadges and showConfidenceIntervals props to hide granular statistics */}
           <ResultsDocumentation
             title="Quantifiable Academic Outcomes"
             description=""
@@ -253,6 +257,7 @@ export default function HomePage() {
           />
         </div>
       </section>
+      */}
 
       {/* 7. THREE PILLARS SECTION */}
       <section className="py-16 lg:py-24 bg-white">
@@ -269,15 +274,22 @@ export default function HomePage() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/20"></div>
-                </div>
-                <div className="p-8">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-5">
-                    Excellence
-                  </h3>
-                  <p className="text-gray-600 text-lg">
-                    We maintain the highest standards in everything we do.
-                  </p>
+                  <div className="absolute inset-0 bg-black/50"></div>
+                  <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
+                    <h1 className="text-4xl font-bold text-white mb-2">
+                      95% pass rate
+                    </h1>
+                    <h2 className="text-xl text-white/90 mb-4">
+                      11+ Grammar & Independent School Success
+                    </h2>
+                    <Separator className="bg-white/30 mb-4" />
+                    <p className="text-white text-lg mb-4">
+                      Students achieving offers from at least one of their first choice schools, including Eton, St Paul's, Westminster, Highgate, Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's and more.
+                    </p>
+                    <ul className="text-white text-base">
+                      <li className="text-white">• Recent application cycles</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -293,15 +305,22 @@ export default function HomePage() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/20"></div>
-                </div>
-                <div className="p-8">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-5">
-                    Innovation
-                  </h3>
-                  <p className="text-gray-600 text-lg">
-                    Cutting-edge approaches to modern education.
-                  </p>
+                  <div className="absolute inset-0 bg-black/50"></div>
+                  <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
+                    <h1 className="text-4xl font-bold text-white mb-2">
+                      94% 2+ grade growth
+                    </h1>
+                    <h2 className="text-xl text-white/90 mb-4">
+                      GCSE Grade Growth
+                    </h2>
+                    <Separator className="bg-white/30 mb-4" />
+                    <p className="text-white text-lg mb-4">
+                      Our GCSE students consistently improve by two or more full levels during their time with us.
+                    </p>
+                    <ul className="text-white text-base">
+                      <li className="text-white">• Long-term tracking across multiple academic years</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -317,15 +336,22 @@ export default function HomePage() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-black/20"></div>
-                </div>
-                <div className="p-8">
-                  <h3 className="text-3xl font-bold text-gray-900 mb-5">
-                    Results
-                  </h3>
-                  <p className="text-gray-600 text-lg">
-                    Proven outcomes that speak for themselves.
-                  </p>
+                  <div className="absolute inset-0 bg-black/50"></div>
+                  <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
+                    <h1 className="text-4xl font-bold text-white mb-2">
+                      Top 2% of test takers
+                    </h1>
+                    <h2 className="text-xl text-white/90 mb-4">
+                      Top 2% Test Performance
+                    </h2>
+                    <Separator className="bg-white/30 mb-4" />
+                    <p className="text-white text-lg mb-4">
+                      From 7+ entrance all the way through to A Levels, our tutees frequently score in the top 2% of candidates. For example, one of our current students obtained the highest GCSE Science score in all of Asia.
+                    </p>
+                    <ul className="text-white text-base">
+                      <li className="text-white">• Recent examination cycles</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

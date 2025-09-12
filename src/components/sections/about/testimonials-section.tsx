@@ -127,15 +127,15 @@ export function TestimonialsSection({
                     {/* CONTEXT7 SOURCE: /radix-ui/website - Full width container for AspectRatio to prevent squashing */}
                     {/* CONTAINER WIDTH REVISION REASON: Official Radix UI documentation Section 1.2 - AspectRatio requires full available space (w-full) to maintain proper aspect ratio without distortion */}
                     {parentVideo && (
-                      <AspectRatio.Root ratio={16 / 9} className="w-full">
+                      <div className="relative w-full">
                         <HeroVideoDialog
                           videoSrc={parentVideo.videoSrc}
                           thumbnailSrc={parentVideo.thumbnailSrc}
                           thumbnailAlt={parentVideo.description}
-                          className="w-full h-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                          className="w-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200"
                           animationStyle="from-center"
                         />
-                      </AspectRatio.Root>
+                      </div>
                     )}
                   </div>
 
@@ -148,15 +148,15 @@ export function TestimonialsSection({
                     {/* CONTEXT7 SOURCE: /radix-ui/website - Full width container for AspectRatio to prevent squashing */}
                     {/* CONTAINER WIDTH REVISION REASON: Official Radix UI documentation Section 1.2 - AspectRatio requires full available space (w-full) to maintain proper aspect ratio without distortion */}
                     {studentVideo && (
-                      <AspectRatio.Root ratio={16 / 9} className="w-full">
+                      <div className="relative w-full">
                         <HeroVideoDialog
                           videoSrc={studentVideo.videoSrc}
                           thumbnailSrc={studentVideo.thumbnailSrc}
                           thumbnailAlt={studentVideo.description}
-                          className="w-full h-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                          className="w-full rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200"
                           animationStyle="from-center"
                         />
-                      </AspectRatio.Root>
+                      </div>
                     )}
                   </div>
                 </>

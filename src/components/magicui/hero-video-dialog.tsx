@@ -185,12 +185,11 @@ export function HeroVideoDialog({
           <Image
             src={thumbnailSrc}
             alt={thumbnailAlt}
-            width={800}
-            height={600}
-            className="w-full h-full object-cover"
+            width={1080}
+            height={1080}
+            className="w-full h-auto object-contain"
             priority
             quality={75}
-            style={{ aspectRatio: "16/9" }}
           />
 
           {/* Play Button Overlay */}

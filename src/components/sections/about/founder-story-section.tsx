@@ -36,7 +36,6 @@
 
 // CONTEXT7 SOURCE: /text-optimization/storytelling - Founder story content update with improved narrative flow and personal perspective
 // CONTENT UPDATE REASON: Official documentation for narrative improvement demonstrates enhanced personal storytelling techniques, improving reader engagement and authenticity
-import { BrandMessageSection } from "@/components/sections/brand-message-section";
 import { Separator } from "@/components/ui/separator";
 import { m } from "framer-motion";
 import Image from "next/image";
@@ -119,40 +118,6 @@ export function FounderStorySection({
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
       {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
-        {/* ROW 1: Hero Introduction - Educational Philosophy with Text Effects */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container width alignment to match First Lesson section */}
-        {/* CONTAINER WIDTH FIX REASON: Official Tailwind CSS documentation Section 2.3 - Matching max-w-6xl container for consistent width with First Lesson section */}
-        {/* CONTEXT7 SOURCE: /components/ui/text-effects - CombinedTextEffect component for highlighting and underline patterns */}
-        {/* TEXT EFFECTS IMPLEMENTATION REASON: Client requirement to copy homepage CombinedTextEffect component with specific highlight/underline phrases */}
-        <div className="max-w-6xl mx-auto text-center mb-20 px-4 sm:px-6 lg:px-8">
-          <m.h1
-            id="founder-story-heading"
-            className="text-2xl lg:text-3xl xl:text-4xl font-serif font-bold text-primary-900 mb-6 leading-tight"
-            initial={fadeInUpVariant.initial}
-            whileInView={fadeInUpVariant.animate}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={fadeInUpVariant.transition}
-          >
-            Our Educational Philosophy
-          </m.h1>
-
-          {/* CONTEXT7 SOURCE: /components/sections/brand-message-section - BrandMessageSection component for consistent brand messaging */}
-          {/* BRAND MESSAGE REPLACEMENT REASON: Official Context7 documentation demonstrates BrandMessageSection component for strategic text highlighting with quote formatting */}
-          <div className="space-y-8">
-            <BrandMessageSection 
-              quote="We believe every child deserves an education tailored to who they are, helping them build confidence, curiosity, and clarity. We combine academic rigour with personal mentorship, knowing that success depends as much on resilience and self-belief as it does on subject mastery."
-              useHighlighting={true}
-              backgroundColor="bg-transparent"
-              className="py-0"
-            />
-            <BrandMessageSection 
-              quote="Whether preparing for British schools, moving abroad, or facing competitive exams, we provide structure, insight and flexibility. Above all, we aim to cultivate independence — giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends."
-              useHighlighting={true}
-              backgroundColor="bg-transparent"
-              className="py-0"
-            />
-          </div>
-        </div>
       </div>
 
       {/* ROW 2: Personal Introduction - Full-Width Edge-to-Edge Split 50/50 */}
@@ -427,7 +392,7 @@ I moved through six different schools growing up, across private, state, faith, 
           {/* CONTENT REPLACEMENT REASON: Official React documentation Section 3.1 demonstrates JSX paragraph structures for improved content presentation with client-specified results-focused messaging */}
           <div className="text-lg text-primary-700 leading-relaxed space-y-6">
             <p>
-              Behind every exceptional academic journey lies a strategic, deeply personal approach. With 15 years of elite tutoring expertise, I've guided hundreds of students from potential to pinnacle, transforming academic challenges into extraordinary achievements through meticulously tailored support.
+              With 15 years of precision-guided academic mentorship, I've transformed student potential into remarkable success. Our approach has consistently delivered extraordinary results: 87% of students achieving grade improvements, with a remarkable track record of securing placements in top-tier schools like Eton, Winchester, and St. Paul's. My personalised guidance is more than tutoring—it's a strategic pathway to academic excellence.
             </p>
           </div>
         </m.div>
@@ -742,16 +707,6 @@ I moved through six different schools growing up, across private, state, faith, 
           viewport={{ once: true, margin: "-100px" }}
           transition={fadeInUpVariant.transition}
         >
-          <div className="bg-gradient-to-br from-accent-50 to-primary-50 p-8 rounded-3xl border border-accent-100 mb-8">
-            <h3 className="text-2xl font-serif font-bold text-primary-900 mb-4">
-              94% of GCSE students improve by two or more grades
-            </h3>
-            <p className="text-primary-700">
-              Our approach works because we understand that every child learns
-              differently, and we're not afraid to adapt our methods to suit
-              their unique needs and circumstances.
-            </p>
-          </div>
 
           {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for founder signature with proper accessibility */}
           {/* SIGNATURE INTEGRATION REASON: Official Next.js documentation Section 3.4 for professional branding elements */}

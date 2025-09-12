@@ -39,6 +39,7 @@ import { SimpleHero } from "@/components/layout/simple-hero";
 import { FounderStorySection } from "@/components/sections/about/founder-story-section";
 import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
 import { BrandMessageSection } from "@/components/sections/brand-message-section";
+import { Separator } from "@/components/ui/separator";
 import { getTextTestimonials, type Testimonial } from "@/lib/cms/cms-content";
 import { getAboutHeroImage } from "@/lib/cms/cms-images";
 
@@ -87,6 +88,33 @@ export default function AboutUsPage() {
           h2="Our bespoke consultation and pairing process ensures the perfect fit and seamless support throughout."
           decorativeStyle="none"
         />
+      </section>
+
+      {/* EDUCATIONAL PHILOSOPHY SECTION */}
+      {/* CONTEXT7 SOURCE: /components/sections/brand-message-section - BrandMessageSection component for consistent brand messaging */}
+      {/* BRAND MESSAGE REASON: Official Context7 documentation demonstrates BrandMessageSection component for strategic text highlighting with quote formatting */}
+      <section className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
+              Our Educational Philosophy
+            </h2>
+            <div className="space-y-8">
+              <BrandMessageSection 
+                quote="We believe every child deserves an education tailored to who they are, helping them build confidence, curiosity, and clarity. We combine academic rigour with personal mentorship, knowing that success depends as much on resilience and self-belief as it does on subject mastery."
+                useHighlighting={true}
+                backgroundColor="bg-transparent"
+                className="py-0"
+              />
+              <BrandMessageSection 
+                quote="Whether preparing for British schools, moving abroad, or facing competitive exams, we provide structure, insight and flexibility. Above all, we aim to cultivate independence — giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends."
+                useHighlighting={true}
+                backgroundColor="bg-transparent"
+                className="py-0"
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout for content sections following full-screen hero pattern */}
