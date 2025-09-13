@@ -71,13 +71,17 @@ import { BrandMessageSection } from "../../components/sections/brand-message-sec
 // CLIENT WRAPPER REASON: Official Next.js documentation prohibits client components in server components
 import { HomepageSections } from "../../components/homepage/homepage-sections";
 
+// CONTEXT7 SOURCE: /facebook/react - Error boundary for section-level error isolation
+// ERROR BOUNDARY REASON: Official React documentation for production error handling
+import { ErrorBoundaryWrapper } from "../../components/boundaries/homepage-error-boundary";
+
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic imports for below-fold optimization
+// DYNAMIC IMPORT REASON: Official Next.js documentation for code splitting and performance
+import { LazyThreePillarsSection } from "../../components/dynamic/lazy-loaded-components";
+
 // CONTEXT7 SOURCE: /facebook/react - Results Documentation Section component for business analytics display
 // RESULTS DOCUMENTATION REASON: Official React patterns for quantifiable outcomes section identical to Subject Tuition page
 import { ResultsDocumentation } from "../../components/sections/results-documentation";
-
-// CONTEXT7 SOURCE: /radix-ui/primitives - Separator component for visual content division
-// SEPARATOR REASON: Official Radix UI documentation for horizontal separator in pillar cards structure
-import { Separator } from "@/components/ui/separator";
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Client component homepage without server-side locale parameters
 // CLIENT COMPONENT REASON: Official next-intl documentation uses useTranslations hook in client components
@@ -165,7 +169,7 @@ export default function HomePage() {
         <HeroSection showHeader={false} hasStaticNavbar={true} />
       </section>
 
-      {/* 2. "WE HELP STUDENTS PLACE AT TOP 10 UK SCHOOLS AND UNIVERSITIES" */}
+      {/* 2. "WE HELP STUDENTS PLACE AT TOP 10 UK SCHOOLS AND UNIVERSITIES" - WITH ERROR BOUNDARY */}
       {/* CONTEXT7 SOURCE: /websites/react_dev - Static text rendering with semantic HTML elements */}
       {/* STATIC TEXT REASON: Official React documentation shows h2 element for secondary headings with proper text content */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spacing utilities for vertical rhythm */}
@@ -173,29 +177,31 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-tagline" className="mt-8">
-        <div className="relative text-center flex items-center justify-center">
-          <div className="flex flex-col items-center justify-center h-full">
-            <div className="relative z-10 px-4">
-              {/* CONTEXT7 SOURCE: /websites/react_dev - Static h2 element for tagline text rendering */}
-              {/* STATIC TAGLINE REASON: Official React documentation shows h2 element usage for secondary headings without animation dependencies */}
-              <h2 className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight text-gray-900 dark:text-white">
-                We help students place at top 10 UK schools and universities
-              </h2>
-            </div>
-            {/* CONTEXT7 SOURCE: /websites/react_dev - Static decorative elements without animation */}
-            {/* STATIC DECORATIONS REASON: Official React documentation shows div elements for visual decoration without motion dependencies */}
-            <div className="flex justify-center items-center space-x-6">
-              <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
-              <div className="relative">
-                <div className="w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-500 shadow-lg" />
+        <ErrorBoundaryWrapper sectionName="Homepage Tagline">
+          <div className="relative text-center flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="relative z-10 px-4">
+                {/* CONTEXT7 SOURCE: /websites/react_dev - Static h2 element for tagline text rendering */}
+                {/* STATIC TAGLINE REASON: Official React documentation shows h2 element usage for secondary headings without animation dependencies */}
+                <h2 className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight text-gray-900 dark:text-white">
+                  We help students place at top 10 UK schools and universities
+                </h2>
               </div>
-              <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
+              {/* CONTEXT7 SOURCE: /websites/react_dev - Static decorative elements without animation */}
+              {/* STATIC DECORATIONS REASON: Official React documentation shows div elements for visual decoration without motion dependencies */}
+              <div className="flex justify-center items-center space-x-6">
+                <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
+                <div className="relative">
+                  <div className="w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-500 shadow-lg" />
+                </div>
+                <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
+              </div>
             </div>
           </div>
-        </div>
+        </ErrorBoundaryWrapper>
       </section>
 
-      {/* 3. SCROLLING SCHOOLS COMPONENT */}
+      {/* 3. SCROLLING SCHOOLS COMPONENT - WITH ERROR BOUNDARY */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for consistent vertical rhythm */}
       {/* SPACING CONSISTENCY REASON: Official Tailwind CSS documentation mt-8 utility maintains same 2rem spacing as Tagline for visual rhythm grouping */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering for async data loading */}
@@ -203,28 +209,32 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-schools" className="mt-8">
-        {testimonialsSchools.length > 0 && (
-          <ScrollingSchools schools={[...testimonialsSchools]} />
-        )}
+        <ErrorBoundaryWrapper sectionName="Scrolling Schools">
+          {testimonialsSchools.length > 0 && (
+            <ScrollingSchools schools={[...testimonialsSchools]} />
+          )}
+        </ErrorBoundaryWrapper>
       </section>
 
-      {/* 4. NEW QUOTE SECTION - ABOUT SECTION SUBHEADING RELOCATED */}
+      {/* 4. NEW QUOTE SECTION - ABOUT SECTION SUBHEADING RELOCATED WITH ERROR BOUNDARY */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component rendering with JSX for modular sections */}
       {/* REVISION REASON: Official React documentation Section 4.1 shows proper conditional rendering for component repositioning */}
       {/* ABOUT SECTION SUBHEADING RELOCATION: Moving highlighted subheading from About Section to dedicated Quote Section for enhanced prominence */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-mission" className="mt-16">
-        <BrandMessageSection
-          quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
-          backgroundColor="bg-white"
-          className=""
-          useHighlighting={true}
-          showAuthorImage={false}
-        />
+        <ErrorBoundaryWrapper sectionName="Mission Statement">
+          <BrandMessageSection
+            quote="We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life."
+            backgroundColor="bg-white"
+            className=""
+            useHighlighting={true}
+            showAuthorImage={false}
+          />
+        </ErrorBoundaryWrapper>
       </section>
 
-      {/* 5. ABOUT SECTION */}
+      {/* 5. ABOUT SECTION - WITH ERROR BOUNDARY */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for visual hierarchy and section separation */}
       {/* VISUAL BREAK REASON: Official Tailwind CSS documentation mt-16 utility creates 4rem (64px) top margin for clear separation between introductory group (Hero/Tagline/Schools) and main content sections */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - About section with founder story and company credentials */}
@@ -232,7 +242,9 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-about" className="mt-16">
-        <AboutSection />
+        <ErrorBoundaryWrapper sectionName="About Section">
+          <AboutSection />
+        </ErrorBoundaryWrapper>
       </section>
 
       {/* 6. RESULTS DOCUMENTATION - QUANTIFIABLE ACADEMIC OUTCOMES */}
@@ -259,117 +271,30 @@ export default function HomePage() {
       </section>
       */}
 
-      {/* 7. THREE PILLARS SECTION */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-            {/* Pillar 1 */}
-            <div className="group">
-              <div className="bg-white shadow-lg overflow-hidden">
-                <div className="relative">
-                  <div style={{ aspectRatio: "2/3" }}>
-                    <img
-                      src="/images/graphics/feature-royal-endorsement.jpg"
-                      alt="Pillar 1"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-black/50"></div>
-                  <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
-                    <h1 className="text-4xl font-bold text-white mb-2">
-                      95% pass rate
-                    </h1>
-                    <h2 className="text-xl text-white/90 mb-4">
-                      11+ Grammar & Independent School Success
-                    </h2>
-                    <Separator className="bg-white/30 mb-4" />
-                    <p className="text-white text-lg mb-4">
-                      Students achieving offers from at least one of their first choice schools, including Eton, St Paul's, Westminster, Highgate, Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's and more.
-                    </p>
-                    <ul className="text-white text-base">
-                      <li className="text-white">• Recent application cycles</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Pillar 2 */}
-            <div className="group">
-              <div className="bg-white shadow-lg overflow-hidden">
-                <div className="relative">
-                  <div style={{ aspectRatio: "2/3" }}>
-                    <img
-                      src="/images/graphics/feature-exam-insight.jpeg"
-                      alt="Pillar 2"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-black/50"></div>
-                  <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
-                    <h1 className="text-4xl font-bold text-white mb-2">
-                      94% 2+ grade growth
-                    </h1>
-                    <h2 className="text-xl text-white/90 mb-4">
-                      GCSE Grade Growth
-                    </h2>
-                    <Separator className="bg-white/30 mb-4" />
-                    <p className="text-white text-lg mb-4">
-                      Our GCSE students consistently improve by two or more full levels during their time with us.
-                    </p>
-                    <ul className="text-white text-base">
-                      <li className="text-white">• Long-term tracking across multiple academic years</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Pillar 3 */}
-            <div className="group">
-              <div className="bg-white shadow-lg overflow-hidden">
-                <div className="relative">
-                  <div style={{ aspectRatio: "2/3" }}>
-                    <img
-                      src="/images/graphics/feature-built-on-trust.jpeg"
-                      alt="Pillar 3"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-black/50"></div>
-                  <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
-                    <h1 className="text-4xl font-bold text-white mb-2">
-                      Top 2% of test takers
-                    </h1>
-                    <h2 className="text-xl text-white/90 mb-4">
-                      Top 2% Test Performance
-                    </h2>
-                    <Separator className="bg-white/30 mb-4" />
-                    <p className="text-white text-lg mb-4">
-                      From 7+ entrance all the way through to A Levels, our tutees frequently score in the top 2% of candidates. For example, one of our current students obtained the highest GCSE Science score in all of Asia.
-                    </p>
-                    <ul className="text-white text-base">
-                      <li className="text-white">• Recent examination cycles</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* 7. THREE PILLARS SECTION - PHASE 2 OPTIMIZATION */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Dynamic import for below-fold component optimization */}
+      {/* PHASE 2 IMPLEMENTATION: Ultra-lazy loading for heaviest homepage component */}
+      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
+      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
+      <section id="homepage-three-pillars">
+        <ErrorBoundaryWrapper sectionName="Three Pillars Academic Metrics">
+          <LazyThreePillarsSection />
+        </ErrorBoundaryWrapper>
       </section>
 
-      {/* 8. WHO WE SUPPORT */}
+      {/* 8. WHO WE SUPPORT - WITH ERROR BOUNDARY */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-who-we-support">
-        <TrustIndicatorsGrid
-          indicators={trustIndicators}
-          studentImages={studentImages}
-        />
+        <ErrorBoundaryWrapper sectionName="Trust Indicators and Student Gallery">
+          <TrustIndicatorsGrid
+            indicators={trustIndicators}
+            studentImages={studentImages}
+          />
+        </ErrorBoundaryWrapper>
       </section>
 
-      {/* 9. WHAT WE OFFER - CLIENT COMPONENT WRAPPER */}
+      {/* 9. WHAT WE OFFER - CLIENT COMPONENT WRAPPER WITH ERROR BOUNDARY */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Client component for interactive sections */}
       {/* CLIENT WRAPPER REASON: Official Next.js documentation requires client components for useState hooks */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Props passing patterns for Next.js components */}
@@ -377,24 +302,28 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-what-we-offer">
-        <HomepageSections
-          services={[...services]}
-          studentImages={studentImages}
-        />
+        <ErrorBoundaryWrapper sectionName="Services and Offerings">
+          <HomepageSections
+            services={[...services]}
+            studentImages={studentImages}
+          />
+        </ErrorBoundaryWrapper>
       </section>
 
-      {/* 10. QUOTE SECTION */}
+      {/* 10. QUOTE SECTION - WITH ERROR BOUNDARY */}
       {/* CONTEXT7 SOURCE: /magicui/design - Text-only quote with strategic highlighting effects */}
       {/* HIGHLIGHTER ENHANCEMENT REASON: Magic UI documentation enables visual emphasis without photos for clean, professional presentation */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
       {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="homepage-testimonials">
-        <BrandMessageSection
-          quote={founderQuote.quote}
-          author={founderQuote.author}
-          role={founderQuote.role}
-          showAuthorImage={false}
-        />
+        <ErrorBoundaryWrapper sectionName="Founder Quote and Testimonials">
+          <BrandMessageSection
+            quote={founderQuote.quote}
+            author={founderQuote.author}
+            role={founderQuote.role}
+            showAuthorImage={false}
+          />
+        </ErrorBoundaryWrapper>
       </section>
 
       {/* CONSULTATION FORM SECTION - DISABLED FOR HOMEPAGE REORGANIZATION */}

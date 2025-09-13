@@ -36,6 +36,9 @@
     "skipDefaultLibCheck": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip default library checks
     "noEmit": true,
     "incremental": true, // CONTEXT7 SOURCE: /microsoft/typescript - Enable incremental compilation for faster rebuilds
+    "tsBuildInfoFile": ".next/cache/tsconfig.tsbuildinfo", // CONTEXT7 SOURCE: /microsoft/typescript - Optimize incremental build info location
+    "composite": false, // CONTEXT7 SOURCE: /microsoft/typescript - Disable composite for performance in non-monorepo projects
+    "preserveWatchOutput": true, // CONTEXT7 SOURCE: /microsoft/typescript - Preserve watch output for better development experience
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
@@ -59,6 +62,13 @@
     // PERFORMANCE OPTIMIZATION REASON: Only include explicitly needed @types packages
     "types": [], // Disable automatic inclusion of all @types packages
     
+    // CONTEXT7 SOURCE: /microsoft/typescript - Advanced performance optimizations for large projects
+    // PERFORMANCE ENHANCEMENT REASON: Reduce memory usage and improve compilation speed
+    "disableSourceOfProjectReferenceRedirect": true, // Optimize project reference handling
+    "importsNotUsedAsValues": "remove", // Remove unused imports for better tree-shaking
+    "preserveValueImports": false, // Allow removal of value imports used only as types
+    "forceConsistentCasingInFileNames": true, // Prevent casing issues on case-insensitive filesystems
+    
     // Next.js Plugin
     "plugins": [
       {
@@ -79,6 +89,9 @@
     "**/*.test.ts",
     "**/*.test.tsx",
     "tests/**/*",
-    "src/__tests__/**/*"
+    "src/__tests__/**/*",
+    "scripts/**/*", // CONTEXT7 SOURCE: /microsoft/typescript - Exclude performance measurement scripts
+    "*.config.js", // Exclude configuration files from compilation
+    "*.config.ts" // Exclude TypeScript config files
   ]
 }

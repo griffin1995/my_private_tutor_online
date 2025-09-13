@@ -153,6 +153,46 @@ const LazyServicesCarousel = dynamic(
   }
 )
 
+// CONTEXT7 SOURCE: /vercel/next.js - Three Pillars section with ultra-lazy loading
+// ULTRA-LAZY LOADING REASON: Official Next.js documentation for client-side only heavy components
+const LazyThreePillarsSection = dynamic(
+  () => import('../sections/three-pillars-section').then(mod => ({ 
+    default: mod.ThreePillarsSection 
+  })),
+  {
+    loading: () => (
+      <div className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="animate-pulse">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="group">
+                  <div className="bg-slate-200 shadow-lg overflow-hidden">
+                    <div className="relative">
+                      <div style={{ aspectRatio: "2/3" }}>
+                        <div className="w-full h-full bg-slate-300"></div>
+                      </div>
+                      <div className="absolute inset-0 bg-slate-400/30"></div>
+                      <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
+                        <div className="h-10 bg-slate-300 rounded w-3/4 mb-2"></div>
+                        <div className="h-6 bg-slate-300 rounded w-2/3 mb-4"></div>
+                        <div className="h-px bg-slate-300 mb-4"></div>
+                        <div className="h-20 bg-slate-300 rounded mb-4"></div>
+                        <div className="h-4 bg-slate-300 rounded w-1/2"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+    ssr: false // Client-side only for performance
+  }
+)
+
 // Interactive Components
 const LazyConsultationForm = dynamic(
   () => import(/* webpackChunkName: "consultation-form" */ '../forms/consultation-booking-form').then(mod => ({ 
@@ -336,6 +376,7 @@ export {
   LazyTestimonialsSection,
   LazyResultsSection, 
   LazyServicesCarousel,
+  LazyThreePillarsSection,
   LazyConsultationForm,
   LazyCompetitiveAnalysis,
   LazyCaseStudies,
@@ -365,6 +406,9 @@ export const preloadTestimonials = () =>
 
 export const preloadServicesCarousel = () => 
   preloadComponent(() => import(/* webpackPrefetch: true */ '../sections/services-carousel'))
+
+export const preloadThreePillarsSection = () => 
+  preloadComponent(() => import(/* webpackPrefetch: true */ '../sections/three-pillars-section'))
 
 // CONTEXT7 SOURCE: /vercel/next.js - Route-based preloading strategy
 // ROUTE PRELOADING REASON: Official Next.js patterns for route-specific optimization

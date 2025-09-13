@@ -1,0 +1,143 @@
+{
+  "timestamp": "2025-09-12T16:18:23.326Z",
+  "phase": "baseline",
+  "metrics": {
+    "build": {
+      "time": 48217,
+      "routes": 0,
+      "firstLoadJS": 622592,
+      "success": true
+    },
+    "bundles": {
+      "total": 3525931,
+      "chunks": [
+        {
+          "name": "vendors-4b98965a",
+          "size": 201855
+        },
+        {
+          "name": "react-core-36598b9c",
+          "size": 167732
+        },
+        {
+          "name": "page",
+          "size": 157779
+        },
+        {
+          "name": "polyfills",
+          "size": 112594
+        },
+        {
+          "name": "route",
+          "size": 92315
+        },
+        {
+          "name": "page-f3956634",
+          "size": 69393
+        },
+        {
+          "name": "vendors-aa6d47da",
+          "size": 56534
+        },
+        {
+          "name": "form-validation-5785018b",
+          "size": 53311
+        },
+        {
+          "name": "common-7bc70e8b",
+          "size": 46167
+        },
+        {
+          "name": "common-ccb8bed9",
+          "size": 44262
+        }
+      ],
+      "largestChunk": [
+        "vendors-4b98965a",
+        201855
+      ]
+    },
+    "cmsArchitecture": {
+      "synchronous": true,
+      "violations": []
+    },
+    "runtime": {
+      "/": {
+        "loadTime": 144,
+        "status": 200,
+        "size": 0
+      },
+      "/about": {
+        "loadTime": 31,
+        "status": 200,
+        "size": 0
+      },
+      "/testimonials": {
+        "loadTime": 31,
+        "status": 200,
+        "size": 0
+      },
+      "/contact": {
+        "loadTime": 26,
+        "status": 200,
+        "size": 0
+      }
+    }
+  },
+  "warnings": [
+    "Build time 48217ms exceeds budget 30000ms"
+  ],
+  "recommendations": [
+    {
+      "priority": "high",
+      "type": "bundle-split",
+      "chunk": "vendors-4b98965a",
+      "reason": "Chunk vendors-4b98965a is 197.12KB"
+    },
+    {
+      "phase": 1,
+      "component": "VideoTestimonials",
+      "technique": "lazy-loading",
+      "impact": "high",
+      "risk": "low",
+      "estimatedSavings": "~150KB initial bundle"
+    },
+    {
+      "phase": 1,
+      "component": "cms-content.ts",
+      "technique": "add-return-types",
+      "impact": "medium",
+      "risk": "zero",
+      "estimatedSavings": "~500ms compilation time"
+    },
+    {
+      "phase": 1,
+      "component": "Images",
+      "technique": "next/image-optimization",
+      "impact": "high",
+      "risk": "low",
+      "estimatedSavings": "~1s LCP improvement"
+    },
+    {
+      "phase": 1,
+      "component": "Third-party-scripts",
+      "technique": "defer-loading",
+      "impact": "medium",
+      "risk": "low",
+      "estimatedSavings": "~300ms TTI"
+    }
+  ],
+  "summary": {
+    "buildPassed": true,
+    "withinBudget": false,
+    "cmsCompliant": true,
+    "readyForOptimization": true
+  },
+  "nextSteps": [
+    "Review baseline metrics",
+    "Implement Phase 1 optimizations",
+    "Re-run audit after each change",
+    "Monitor for regressions",
+    "Gate Phase 2 on Phase 1 success"
+  ]
+}

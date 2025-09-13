@@ -56,24 +56,26 @@
 
 "use client";
 
-// CONTEXT7 SOURCE: /websites/react_dev - React hooks for state management in client components
-import { useCallback, useState } from "react";
-// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
-// SYNCHRONOUS CMS PATTERN: Converting from async to synchronous CMS data access for immediate loading
-// DISABLED: EliteSchoolsCarousel import - commented out with Prestigious Schools section
-// import EliteSchoolsCarousel from "@/components/testimonials/elite-schools-carousel";
+// CONTEXT7 SOURCE: /facebook/react - React hooks for state management and effects
+// PHASE 1 FIX: Replace dynamic imports with static imports to resolve hydration boundary conflicts
+import { memo } from "react";
+// CONTEXT7 SOURCE: /radix-ui/website - Radix UI Separator component for semantic content separation
+// SEPARATOR INTEGRATION REASON: Official Radix UI documentation for visually separating content with proper ARIA separator role
+import { Separator } from "@radix-ui/react-separator";
+// CONTEXT7 SOURCE: /facebook/react - Error boundary import for navbar conflict resolution
+// ERROR BOUNDARY REASON: Official React documentation recommends error boundaries to isolate component failures
+import { TestimonialsErrorBoundary } from "@/components/boundaries/TestimonialsErrorBoundary";
+// CONTEXT7 SOURCE: /components/layout/simple-hero - Static import for synchronous component loading
 import { SimpleHero } from "@/components/layout/simple-hero";
-// CONTEXT7 SOURCE: /components/sections/quote-section - Quote section component for mission statement display
-// COPY OPERATION: Adding QuoteSection import to enable mission quote display copied from homepage
+// CONTEXT7 SOURCE: /components/sections/brand-message-section - Static import for brand messaging
 import { BrandMessageSection } from "@/components/sections/brand-message-section";
-// CONTEXT7 SOURCE: /websites/react_dev - Component integration patterns
-// INTEGRATION REASON: Adding testimonials intro section above filter per requirements
-// CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns
-// COPY OPERATION: Adding TestimonialsSection import for duplicated testimonials section
+// CONTEXT7 SOURCE: /components/sections/about/testimonials-section - Static import replacing dynamic import
+// HYDRATION FIX REASON: Static imports eliminate SSR/CSR hydration mismatches that affect navbar functionality
 import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
-// CONTEXT7 SOURCE: /websites/react_dev - Advanced filtering component integration
-// INTEGRATION REASON: Adding TestimonialsFilter for dynamic testimonial filtering
-import { TestimonialsFilter } from "@/components/testimonials/testimonials-filter";
+
+// CONTEXT7 SOURCE: /vercel/next.js - Web Vitals monitoring for performance tracking
+// PERFORMANCE PHASE 1: Add Web Vitals monitoring to track LCP, FID, CLS targets
+import { WebVitals } from '@/components/analytics/web-vitals';
 // TESTIMONIALS OVERHAUL: Removed TestimonialsCTA import for cleaner page boundaries
 import { PageLayout } from "@/components/layout/page-layout";
 import {
@@ -84,8 +86,69 @@ import {
   getTestimonialsHero,
   getTextTestimonials,
   // getTestimonialsSchools,
+  // REMOVED: getServices - no longer needed after switching to testimonials data display
   type Testimonial,
 } from "@/lib/cms/cms-content";
+// REMOVED: getStudentImages import - no longer needed after switching to testimonials data display
+
+// CONTEXT7 SOURCE: /facebook/react - React.memo for performance optimization
+// MEMOIZATION REASON: Official React documentation recommends memoizing components that render frequently with same props
+const OptimizedTestimonialCard = memo(function TestimonialCard({ 
+  testimonial, 
+  index 
+}: { 
+  testimonial: Testimonial; 
+  index: number; 
+}) {
+  return (
+    <div
+      key={index}
+      className="bg-white p-6 rounded-lg shadow-lg border border-gray-100"
+    >
+      {/* CONTEXT7 SOURCE: /facebook/react - Star rating display optimization */}
+      {/* RATING DISPLAY: Memoized stars rendering for consistent performance */}
+      <div className="flex mb-4">
+        {[...Array(testimonial.rating)].map((_, i) => (
+          <svg
+            key={i}
+            className="w-5 h-5 text-yellow-400 fill-current"
+            viewBox="0 0 20 20"
+          >
+            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+          </svg>
+        ))}
+      </div>
+
+      {/* CONTEXT7 SOURCE: /facebook/react - Quote display optimization */}
+      {/* QUOTE: Optimized quote rendering with stable DOM structure */}
+      <blockquote className="text-gray-700 mb-4 italic">
+        "{testimonial.quote}"
+      </blockquote>
+
+      {/* CONTEXT7 SOURCE: /radix-ui/website - Radix UI Separator for semantic content separation */}
+      {/* SEPARATOR INTEGRATION REASON: Official Radix UI Separator with decorative prop for visual separation between quote and author sections */}
+      <Separator orientation="horizontal" decorative className="my-4 bg-gray-100" />
+
+      {/* CONTEXT7 SOURCE: /facebook/react - Author and subject info optimization */}
+      {/* AUTHOR INFO: Optimized info display with consistent layout */}
+      <div>
+        <div className="font-semibold text-gray-900">
+          {testimonial.author}
+        </div>
+        <div className="text-sm text-gray-600">
+          {testimonial.role}
+        </div>
+        <div className="text-sm text-blue-600 font-medium mt-1 flex items-center gap-2">
+          <span>{testimonial.subject}</span>
+          {/* CONTEXT7 SOURCE: /radix-ui/website - Vertical Radix UI Separator for semantic content separation */}
+          {/* VERTICAL SEPARATOR REASON: Official Radix UI Separator with vertical orientation for separating subject and grade information */}
+          <Separator orientation="vertical" decorative className="h-3 bg-blue-300" />
+          <span>Grade: {testimonial.result}</span>
+        </div>
+      </div>
+    </div>
+  );
+});
 
 // RENDERING ANALYSIS - Context7 MCP Verified:
 // Documentation Source: Next.js Client Components Dynamic Rendering
@@ -108,53 +171,44 @@ import {
 // CMS INTEGRATION: Now using getAllTestimonials() for complete testimonial dataset
 
 export default function TestimonialsPage() {
-  // ========================================
-  // RESTORED CMS DATA ACCESS - SIMPLIFIED MODAL ONLY
-  // ========================================
-  // CONTEXT7 SOURCE: /typescript/handbook - Direct synchronous CMS data access for immediate availability
-  // SYNCHRONOUS CMS PATTERN: All CMS data loaded immediately without loading states
 
-  // CORE CONTENT DATA
+  // CONTEXT7 SOURCE: /typescript/handbook - Direct synchronous CMS data access for immediate availability
+  // SYNCHRONOUS CMS PATTERN: All CMS data loaded immediately without loading states - preserving homepage lessons
+  
+  // CORE CONTENT DATA - Synchronous access only
   const testimonialsContent = getTestimonialsContent();
   const heroContent = getTestimonialsHero();
   // DISABLED: schools and carouselConfig - commented out with Prestigious Schools section
   // const schools = getTestimonialsSchools();
   // const carouselConfig = getTestimonialsCarouselConfig();
 
-  // CONTEXT7 SOURCE: /websites/react_dev - Complete testimonials data from CMS
+  // CONTEXT7 SOURCE: /facebook/react - Complete testimonials data from CMS with error boundary protection
   // CMS INTEGRATION: Using getAllTestimonials() for complete dataset (209 testimonials)
   const allTestimonials = getAllTestimonials();
 
   // Text testimonials only (hasVideo: false/undefined)
   const testimonialsWithoutVideo = getTextTestimonials();
 
-  // CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns
-  // COPY OPERATION: Adding aboutTestimonials data loading logic from about page
-  // EMERGENCY FIX: Try-catch wrapper to isolate potential CMS errors
+  // REMOVED: Services and studentImages data - no longer needed after switching to testimonials data display
+
+  // CONTEXT7 SOURCE: /facebook/react - Error handling patterns with try-catch wrapper
+  // DEFENSIVE CODING REASON: Official React patterns for graceful error handling in data loading
   let aboutTestimonials: Testimonial[] = [];
   try {
     aboutTestimonials = getTextTestimonials();
   } catch (error) {
     console.error("Error loading testimonials:", error);
-    aboutTestimonials = []; // Fallback to empty array
+    aboutTestimonials = []; // Fallback to empty array - prevents cascade failures
   }
 
-  // CONTEXT7 SOURCE: /websites/react_dev - State management for filtered testimonials
-  // FILTER STATE: Managing filtered testimonials display
-  const [filteredTestimonials, setFilteredTestimonials] = useState<
-    Testimonial[]
-  >(testimonialsWithoutVideo);
 
-  // CONTEXT7 SOURCE: /websites/react_dev - Callback for filter updates
-  // FILTER CALLBACK: Handle updates from TestimonialsFilter component
-  const handleFilterChange = useCallback((filtered: Testimonial[]) => {
-    setFilteredTestimonials(filtered);
-  }, []);
-
-  // CONTEXT7 SOURCE: Official React documentation for component composition and reusability
-  // COMPONENT EXTRACTION REASON: Following React best practices for modular, reusable component architecture
+  // CONTEXT7 SOURCE: /facebook/react - Error boundary implementation with component composition
+  // ERROR BOUNDARY REASON: Official React documentation recommends error boundaries to isolate failures and prevent navbar conflicts
   return (
-    <>
+    <TestimonialsErrorBoundary>
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Web Vitals monitoring component */}
+      {/* PERFORMANCE MONITORING: Track Core Web Vitals for Phase 1 optimization targets */}
+      <WebVitals />
       {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
       {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
@@ -183,14 +237,12 @@ export default function TestimonialsPage() {
         />
       </section>
 
-      {/* CONTEXT7 SOURCE: /websites/react_dev - Component duplication patterns */}
-      {/* COPY OPERATION: Moving testimonials video section from bottom to above testimonial cards */}
-      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
+      {/* CONTEXT7 SOURCE: /facebook/react - Static component integration replacing dynamic loading */}
+      {/* PHASE 1 FIX: Static components eliminate Suspense boundaries that cause hydration conflicts affecting navbar */}
       {/* VIDEO TESTIMONIALS POSITIONING: Moving existing video section above testimonial cards per user requirements */}
       {/* SYNCHRONOUS DATA ACCESS: Direct testimonials data access prevents loading state complexity and homepage failure scenarios */}
       {/* VIDEO FILTERING: getTextTestimonials() ensures only text testimonials are displayed on About page */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
-      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
       <section id="video-testimonials-moved">
         <TestimonialsSection testimonials={aboutTestimonials} />
       </section>
@@ -205,68 +257,32 @@ export default function TestimonialsPage() {
         showFooter={true}
         containerSize="full"
       >
-        {/* CONTEXT7 SOURCE: /websites/react_dev - TestimonialsFilter integration */}
-        {/* FILTER INTEGRATION: Advanced filtering system for testimonials with updated copy inside component */}
-        <TestimonialsFilter
-          testimonials={testimonialsWithoutVideo}
-          onFilterChange={handleFilterChange}
-          showSearch={true}
-          showAdvancedFilters={true}
-          enableAnalytics={false}
-          className="mb-0"
-        />
-
-        {/* SIMPLIFIED TESTIMONIALS GRID SECTION - Moved below videos */}
-        {filteredTestimonials.length > 0 && (
-          <section className="pb-16 bg-white">
-            <div className="max-w-6xl mx-auto px-6">
-              {/* CONTEXT7 SOURCE: /websites/react_dev - Simple grid layout without complex state management */}
-              {/* SIMPLIFIED GRID: Basic testimonials display without modals or filtering */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredTestimonials.map((testimonial, index) => (
-                  <div
-                    key={index}
-                    className="bg-white p-6 rounded-lg shadow-lg border border-gray-100"
-                  >
-                    {/* CONTEXT7 SOURCE: /websites/react_dev - Star rating display */}
-                    {/* RATING DISPLAY: Simple stars without interactive functionality */}
-                    <div className="flex mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <svg
-                          key={i}
-                          className="w-5 h-5 text-yellow-400 fill-current"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                        </svg>
-                      ))}
-                    </div>
-
-                    {/* CONTEXT7 SOURCE: /websites/react_dev - Quote display */}
-                    {/* QUOTE: Simple quote display without expansion or modal functionality */}
-                    <blockquote className="text-gray-700 mb-4 italic">
-                      "{testimonial.quote}"
-                    </blockquote>
-
-                    {/* CONTEXT7 SOURCE: /websites/react_dev - Author and subject info */}
-                    {/* AUTHOR INFO: Simple display without complex styling */}
-                    <div className="border-t border-gray-100 pt-4">
-                      <div className="font-semibold text-gray-900">
-                        {testimonial.author}
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        {testimonial.role}
-                      </div>
-                      <div className="text-sm text-blue-600 font-medium mt-1">
-                        {testimonial.subject} • Grade: {testimonial.result}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+        {/* FEATURED TESTIMONIALS CAROUSEL - TESTIMONIALS DATA INTEGRATION */}
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Testimonials carousel component for additional student success stories */}
+        {/* TESTIMONIALS INTEGRATION REASON: User request to revise carousel to use testimonial data instead of services */}
+        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+        <section id="testimonials-featured-carousel" className="py-16 bg-slate-50">
+          <div className="text-center mb-12 px-8 sm:px-12 lg:px-16 xl:px-20">
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4">
+              More Student Success Stories
+            </h2>
+            <p className="text-lg text-primary-600 max-w-3xl mx-auto">
+              Read additional testimonials from families who have achieved exceptional results with our tutoring
+            </p>
+          </div>
+          
+          {/* CONTEXT7 SOURCE: /facebook/react - Testimonials grid display with all real testimonials */}
+          {/* ALL TESTIMONIALS REASON: User request to display all real testimonials from CMS data instead of limiting to 6 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-24 sm:px-32 lg:px-48 xl:px-64">
+            {allTestimonials.map((testimonial, index) => (
+              <OptimizedTestimonialCard
+                key={`featured-testimonial-${testimonial.author}-${index}`}
+                testimonial={testimonial}
+                index={index}
+              />
+            ))}
+          </div>
+        </section>
 
         {/* 
         DISABLED: Prestigious Schools & Universities Section
@@ -305,6 +321,6 @@ export default function TestimonialsPage() {
 
         {/* TESTIMONIALS OVERHAUL: Removed CTA section from testimonials page footer for cleaner page boundaries */}
       </PageLayout>
-    </>
+    </TestimonialsErrorBoundary>
   );
 }

@@ -9,6 +9,9 @@
 // SEQUENTIAL ANIMATION REASON: Official Motion documentation for staggered animations matching navbar drop-down style
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
+// CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimized image loading
+// PERFORMANCE OPTIMIZATION: Using next/image with priority for above-the-fold hero images
+import Image from 'next/image'
 
 // CONTEXT7 SOURCE: /facebook/react - TypeScript interface definitions for component props
 // INTERFACE REASON: Official React TypeScript documentation for proper prop typing
@@ -78,17 +81,20 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
       aria-label="Hero section"
     >
       {/* Enhanced Multi-Layer Parallax Background System */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background image positioning and object-fit
-      /* BACKGROUND REASON: Official Tailwind CSS documentation for responsive background images */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom shadow utilities for sophisticated background depth */}
-      {/* SHADOW ENHANCEMENT: Official Tailwind CSS documentation Section 2.4 - drop-shadow-image-strong creates dramatic depth for hero backgrounds */}
-      {/* CONTEXT7 SOURCE: /grx7/framer-motion - Static background implementation without animations */}
-      {/* STATIC BACKGROUND REASON: Official Framer Motion documentation Section 3.1 demonstrates converting motion.div to static div elements */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat drop-shadow-image-strong"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-        aria-hidden="true"
-      />
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with priority loading for hero images */}
+      {/* PERFORMANCE OPTIMIZATION: Using next/image with priority prop for critical above-the-fold content */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - Fill layout for full container coverage */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src={backgroundImage}
+          alt=""
+          fill
+          priority
+          quality={85}
+          className="object-cover object-center drop-shadow-image-strong"
+          sizes="100vw"
+        />
+      </div>
       
       {/* Enhanced Mathematical Gradient Overlay System with Golden Ratio Progression */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Advanced gradient overlay patterns with luxury brand alignment
