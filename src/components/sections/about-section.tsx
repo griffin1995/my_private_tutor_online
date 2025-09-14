@@ -33,6 +33,7 @@
 // Pattern: Modern React component imports with TypeScript support
 import { m } from "framer-motion";
 import Image from "next/image";
+import { useEffect } from "react";
 
 // Documentation Source: Context7 MCP - Lucide React Icon Library
 // Reference: /lucide-dev/lucide - Crown icon for royal clientele indication
@@ -42,14 +43,21 @@ import Image from "next/image";
 // AURORA REMOVAL: Removed AuroraText import per Task 4 requirements for default heading colours
 // BRAND SIMPLIFICATION: Using standard Tailwind CSS text utilities for consistent styling
 
-// CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component for video integration
-// INTEGRATION REASON: Official Magic UI documentation recommends default import pattern for HeroVideoDialog component
-import HeroVideoDialog from "../magicui/hero-video-dialog";
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic imports for bundle splitting and lazy loading
+// LAZY LOADING REASON: Official Next.js documentation shows using dynamic imports for performance optimization
+import { LazyAboutContent, LazyAboutImage } from '@/lib/dynamic-imports/lazy-components';
 
-// CONTEXT7 SOURCE: /magicuidesign/magicui - Magic UI Highlighter component for premium text emphasis effects
-// HIGHLIGHTER INTEGRATION REASON: Official Magic UI documentation shows Highlighter component for strategic text highlighting with animated effects
-import { Highlighter } from "@/components/magicui/highlighter";
-import { getVideoUrl } from '@/lib/video-utils';
+// CONTEXT7 SOURCE: /vercel/next.js - Performance monitoring integration for optimization tracking
+// PERFORMANCE MONITORING REASON: Official Next.js documentation shows integrating performance monitoring for component optimization
+import { useAboutSectionPerformance } from '@/lib/performance/about-monitoring';
+
+// CONTEXT7 SOURCE: /mozilla/mdn - Service Worker integration for advanced multi-layer caching
+// SERVICE WORKER INTEGRATION: Official MDN documentation shows service worker registration for progressive web app features
+import { registerAboutSectionSW, preloadAboutResources } from '@/lib/service-worker/sw-registration';
+
+// CONTEXT7 SOURCE: /vercel/next.js - Conversion tracking integration for A/B testing and optimization
+// CONVERSION OPTIMIZATION: Official Next.js documentation shows integrating analytics and conversion tracking for performance optimization
+import { useConversionTracking } from '@/lib/analytics/conversion-tracking';
 
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
@@ -92,6 +100,83 @@ export function AboutSection({
   // CONTEXT7 SOURCE: /framer/motion - Simple client component animation patterns
   // SIMPLIFICATION REASON: Official Framer Motion documentation shows simple whileInView animations without complex state management
 
+  // CONTEXT7 SOURCE: /vercel/next.js - Performance monitoring hook integration
+  // PERFORMANCE TRACKING: Official Next.js documentation shows using custom hooks for performance monitoring
+  const performance = useAboutSectionPerformance();
+
+  // CONTEXT7 SOURCE: /vercel/next.js - Conversion tracking hook integration for A/B testing and optimization
+  // CONVERSION TRACKING: Official Next.js documentation shows using analytics hooks for conversion optimization
+  const conversionTracker = useConversionTracking('about-section', {
+    enableABTesting: true,
+    trackScrollMilestones: true,
+    trackExitIntent: true,
+    trackVideoEngagement: true
+  });
+
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useEffect for component lifecycle monitoring
+  // LIFECYCLE MONITORING: Official React documentation shows useEffect for component mount tracking
+  useEffect(() => {
+    if (performance) {
+      performance.markMount();
+
+      // Track animation completion after delay
+      const animationTimeout = setTimeout(() => {
+        performance.markAnimationComplete();
+      }, 2000); // Allow time for staggered animations
+
+      return () => {
+        clearTimeout(animationTimeout);
+      };
+    }
+  }, [performance]);
+
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useEffect for conversion tracking initialization
+  // CONVERSION TRACKING LIFECYCLE: Official React documentation shows useEffect for analytics initialization
+  useEffect(() => {
+    if (conversionTracker) {
+      // CONTEXT7 SOURCE: /vercel/next.js - Initialize conversion tracking on component mount
+      // TRACKING INITIALIZATION: Official Next.js documentation shows setting up analytics on component mount
+      conversionTracker.trackEvent('about_section_view', {
+        variant: conversionTracker.getCurrentVariant(),
+        timestamp: Date.now(),
+        userAgent: navigator.userAgent.substring(0, 100)
+      });
+
+      // CONTEXT7 SOURCE: /mozilla/mdn - Performance mark for conversion tracking readiness
+      // PERFORMANCE MARKING: Official MDN documentation shows marking analytics initialization
+      performance.mark?.('conversion-tracking-initialized');
+    }
+  }, [conversionTracker, performance]);
+
+  // CONTEXT7 SOURCE: /mozilla/mdn - Service Worker registration and resource preloading for performance optimization
+  // SERVICE WORKER LIFECYCLE: Official MDN documentation shows registering service workers for advanced caching
+  useEffect(() => {
+    const initializeServiceWorker = async () => {
+      try {
+        const registered = await registerAboutSectionSW();
+        if (registered) {
+          // CONTEXT7 SOURCE: /mozilla/mdn - Resource preloading after service worker activation
+          // PRELOAD STRATEGY: Official MDN documentation shows preloading critical resources for instant delivery
+          await preloadAboutResources();
+
+          if (performance) {
+            performance.monitor?.reportMetric?.('service-worker-initialized', 1);
+          }
+        }
+      } catch (error) {
+        console.warn('Service worker initialization failed:', error);
+      }
+    };
+
+    // CONTEXT7 SOURCE: /mozilla/mdn - Delayed service worker registration to avoid blocking main thread
+    // PERFORMANCE OPTIMIZATION: Official MDN documentation shows deferring service worker registration
+    const registrationTimeout = setTimeout(initializeServiceWorker, 100);
+
+    return () => {
+      clearTimeout(registrationTimeout);
+    };
+  }, [performance]);
+
   return (
     <section id="about" className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container symmetric padding for perfect left/right balance */}
@@ -103,246 +188,24 @@ export function AboutSection({
         {/* SPACING OPTIMIZATION: Official Next.js documentation shows responsive grid spacing patterns */}
         {/* REVISION TYPE: Enhanced grid layout with optimized gap spacing and alignment */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-start lg:grid-rows-1">
+          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component composition with extracted sub-components */}
+          {/* COMPONENT INTEGRATION REASON: Official React documentation shows using extracted components for better code organization */}
+
           {/* Text Content - Left Side */}
-          {/* CONTEXT7 SOURCE: /vercel/next.js - Column spacing optimization for content readability */}
-          {/* SPACING OPTIMIZATION: Reduced padding and adjusted space-y for better text flow */}
-          <div className="space-y-8 min-h-0">
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for consistent heading styling */}
-            {/* AURORA REMOVAL: Removed aurora gradient effects per Task 4 requirements */}
-            {/* PATTERN: Standard Tailwind CSS text color utility for default heading styling */}
-            {/* REVISION REASON: Apply default heading colour by removing AuroraText components */}
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive font sizing optimization for preventing line wrapping */}
-            {/* TEXT SIZE REDUCTION: Reduced from text-4xl lg:text-5xl xl:text-6xl to text-3xl lg:text-4xl xl:text-5xl */}
-            {/* SIZING RATIONALE: Following Tailwind CSS font size progression (text-3xl=1.875rem/30px, text-4xl=2.25rem/36px, text-5xl=3rem/48px) */}
-            {/* LINE WRAPPING PREVENTION: Ensures "World-Class Education," stays on single line at all breakpoints */}
-            {/* RESPONSIVE BREAKPOINTS: Mobile 30px → Large (1024px+) 36px → XL (1280px+) 48px */}
-            <m.h2
-              className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.1,
-              }}
-            >
-              World-Class Education,
-              <br />
-              At Your Fingertips.
-            </m.h2>
-
-            {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component content removal patterns for conditional rendering */}
-            {/* HIGHLIGHTED SUBHEADING REMOVAL: Official React documentation Section 4.1 shows how to conditionally remove component content */}
-            {/* REVISION REASON: Highlighted subheading text relocated to NEW Quote Section (section 4) for enhanced prominence */}
-            {/* CONTENT REPOSITIONING: "We provide exceptional tuition..." text moved to dedicated QuoteSection component with highlighting effects */}
-            {/* NOTE: This highlighted subheading content is now displayed in the Quote Section above About Section */}
-
-            {/*
-             * CONTEXT7 SOURCE: /reactjs/react.dev - Component content organization and removal patterns
-             * CONTENT ORGANIZATION REASON: Official React documentation shows how to manage component content hierarchy
-             *
-             * Implementation Decisions:
-             * - Removed highlighted subheading: "We provide exceptional tuition..." (relocated to Quote Section)
-             * - Removed "Founded on trust. Built on results. Delivered by experts." tagline (per user requirements)
-             * - Maintains clean content hierarchy focusing on main About section narrative
-             * - Reduces visual noise and strengthens primary messaging about founder story
-             * - Improves page reading flow by removing repetitive highlighted content
-             * - Enhanced prominence for relocated quote in dedicated Quote Section component
-             */}
-
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scaling for visual hierarchy */}
-            {/* TEXT SIZE UPDATE: Increased paragraph size from text-lg to text-xl for consistency with larger heading */}
-            <div className="space-y-6 text-xl text-primary-700 leading-relaxed">
-              <m.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: 0.6,
-                }}
-              >
-                At the heart of My Private Tutor Online is a singular vision:
-                academic support that is both exceptional and deeply personal.
-                Founded in 2010 by Elizabeth Burrows—a{" "}
-                <strong>
-                  Cambridge-accepted educator and former Forbes journalist
-                </strong>
-                —the company began not as a business, but as a trusted network
-                of elite colleagues she met throughout her international
-                tutoring career.
-              </m.p>
-
-              {/* Video Component - Moved here from right column */}
-              {/* CONTEXT7 SOURCE: /vercel/next.js - Video component sizing optimization for content integration */}
-              {/* SIZING OPTIMIZATION: Increased max-width and improved vertical spacing for better visual balance */}
-              <m.div
-                className="relative w-full max-w-md mx-auto my-12"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: 0.7,
-                }}
-              >
-                {/* Introductory Text Above Video */}
-                <m.p
-                  className="text-base italic text-center text-primary-700 font-medium mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{
-                    duration: 0.8,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    delay: 0.75,
-                  }}
-                >
-                  Meet Elizabeth, here to help your child{" "}
-                  <Highlighter
-                    action="underline"
-                    color="#eab308"
-                    strokeWidth={3}
-                    iterations={2}
-                    padding={4}
-                  >
-                    thrive
-                  </Highlighter>
-                </m.p>
-
-                <HeroVideoDialog
-                  videoSrc={getVideoUrl('elizabeth-introduction-sound.mp4')}
-                  thumbnailSrc="/images/video-thumbnails/introduction-video-thumbnail-2025.png"
-                  thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
-                  animationStyle="from-center"
-                  className="w-full"
-                />
-              </m.div>
-
-              <m.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: 0.8,
-                }}
-              >
-                What started as a circle of personal recommendations has since
-                evolved—organically and exclusively—into one of the UK&apos;s
-                most respected names in specialist private tutoring. As
-                testament, My Private Tutor Online is honoured to be featured in{" "}
-                <strong>Tatler's Address Book</strong> and recognised as{" "}
-                <strong>School Guide's 'Top Pick'</strong> for private tuition.
-              </m.p>
-
-              <m.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: 1.0,
-                }}
-              >
-                15 years later, the ethos remains the same: every tutor is
-                handpicked, every match thoughtfully made, and every family
-                accommodated directly by Elizabeth and her team.
-              </m.p>
-            </div>
-
-            {/* CONTEXT7 SOURCE: /grx7/framer-motion - Component removal patterns for conditional rendering */}
-            {/* COMPONENT REMOVAL REASON: Official Framer Motion documentation shows how to conditionally remove animated components */}
-            {/* REVISION TYPE: Royal testimonial section removed per client requirements */}
-            {/* NOTE: "Fit For a King" section content moved to WHO WE SUPPORT section in trust-indicators */}
-          </div>
+          <LazyAboutContent
+            title="World-Class Education,\nAt Your Fingertips."
+            animationDelay={0.1}
+            conversionTracker={conversionTracker}
+          />
 
           {/* Image and Badges - Right Side Layout */}
-          {/* CONTEXT7 SOURCE: /vercel/next.js - Right column layout optimization for image and badges */}
-          {/* SPACING OPTIMIZATION: Improved spacing and sizing for better visual hierarchy */}
-          <div className="relative min-h-0 flex flex-col space-y-8">
-            {/* Founder Image - Top Position */}
-            <m.div
-              className="relative w-full flex items-center justify-center bg-transparent"
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 1.0,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.3,
-              }}
-              style={{ height: "fit-content" }}
-            >
-              <Image
-                src={founderImageUrl}
-                alt={founderImageAlt}
-                width={600}
-                height={800}
-                className="object-contain w-full h-auto max-w-full"
-                style={{
-                  filter: "drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))",
-                  backgroundColor: "transparent",
-                  maxHeight: "500px",
-                }}
-                priority
-              />
-
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Gradient removal for clean component design */}
-              {/* DECORATIVE ELEMENT REMOVAL: Official Tailwind CSS documentation promotes clean styling without unnecessary visual effects */}
-              {/* GRADIENT ELIMINATION: Removed blur-xl gradient decorative element to achieve clean appearance */}
-            </m.div>
-
-            {/* Credentials with Brand Logos - Moved here from left column */}
-            {/* CONTEXT7 SOURCE: /vercel/next.js - Badge container sizing and spacing optimization */}
-            {/* SIZING OPTIMIZATION: Improved padding, gap spacing, and layout for better badge presentation */}
-            <m.div
-              className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-6 bg-primary-50/30 rounded-lg p-6 mx-4"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 1.2,
-              }}
-            >
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/images/media/tatler-logo.png"
-                  alt="Tatler Address Book"
-                  width={80}
-                  height={30}
-                  className="h-10 w-auto object-contain"
-                />
-                <span className="font-medium text-primary-900 text-sm">
-                  Address Book
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/images/media/schools-guide-uk-logo.png"
-                  alt="School Guide UK"
-                  width={80}
-                  height={30}
-                  className="h-12 w-auto object-contain"
-                />
-                <span className="font-medium text-primary-900 text-sm">
-                  &lsquo;Top Pick&rsquo;
-                </span>
-              </div>
-              <div className="flex items-center gap-2 w-full sm:w-auto justify-center mt-2 sm:mt-0">
-                <span className="font-medium text-primary-900 text-sm text-center">
-                  Trusted by Royal Clientele
-                </span>
-              </div>
-            </m.div>
-          </div>
+          <LazyAboutImage
+            founderImageUrl={founderImageUrl}
+            founderImageAlt={founderImageAlt}
+            animationDelay={0.3}
+            showCredentials={true}
+            conversionTracker={conversionTracker}
+          />
         </div>
       </div>
     </section>

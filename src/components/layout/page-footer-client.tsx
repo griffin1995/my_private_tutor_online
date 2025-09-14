@@ -1,19 +1,36 @@
 "use client"
 
-// CONTEXT7 SOURCE: /reactjs/react.dev - Client Component for interactive functionality with hooks
-// CLIENT COMPONENT REASON: Official React documentation requires "use client" directive for components using useState, useForm, and browser APIs
-import React, { useState } from 'react'
-import { Mail, Phone, ArrowUp, Crown, Award, TrendingUp, Send, CheckCircle, AlertCircle, Loader2, MessageCircle, BarChart3 } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+// CONTEXT7 SOURCE: /reactjs/react.dev - Optimized client component with service integration
+// CLIENT COMPONENT REASON: Official React documentation requires "use client" for components using hooks and browser APIs
+// OPTIMIZATION UPDATE: Integrated service contracts and component decomposition for performance
+import React, { useState, useMemo, lazy, Suspense, useEffect } from 'react'
+import { ArrowUp } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
-// CONTEXT7 SOURCE: /react-hook-form/documentation - Form handling with validation
-// Reference: useForm hook for client-side form management and submission
-import { useForm } from 'react-hook-form'
-import { newsletterSchema, type NewsletterData } from '@/lib/validation/schemas'
-import { zodResolver } from '@hookform/resolvers/zod'
+import FooterErrorBoundary from './footer-error-boundary'
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component decomposition imports
+// DECOMPOSITION REASON: Official React documentation demonstrates component separation for maintainability
+import FooterCompanySection from './footer-components/footer-company-section'
+import FooterNavigationSections from './footer-components/footer-navigation-sections'
+import FooterContactSection from './footer-components/footer-contact-section'
+
+// CONTEXT7 SOURCE: /vercel/next.js - Dynamic imports for code splitting
+// CODE SPLITTING REASON: Official Next.js documentation shows lazy loading for performance optimization
+const FooterNewsletterForm = lazy(() => import('./footer-components/footer-newsletter-form'))
+const FooterNewsletterFormSkeleton = lazy(() => 
+  import('./footer-components/footer-newsletter-form').then(module => ({ 
+    default: module.FooterNewsletterFormSkeleton 
+  }))
+)
+const FooterPerformanceMonitor = lazy(() => import('./footer-components/footer-performance-monitor'))
+
+// CONTEXT7 SOURCE: /wcag/guidelines - Accessibility hooks import
+// ACCESSIBILITY REASON: Import accessibility enhancements for WCAG 2.1 AA compliance
+import { useFooterAccessibility } from '@/lib/hooks/use-footer-accessibility'
+import FooterSkipLink from './footer-components/footer-skip-link'
+import { useFooterPerformanceMarks } from './footer-components/footer-performance-monitor'
 
 // Type definitions for props passed from server component
 interface FooterContent {
@@ -50,8 +67,8 @@ interface PageFooterClientProps {
   showContactForm?: boolean
 }
 
-// CONTEXT7 SOURCE: /reactjs/react.dev - Client Component with React hooks for interactive functionality
-// HOOKS REASON: Official React documentation allows useState and useForm in client components for form handling and state management
+// CONTEXT7 SOURCE: /reactjs/react.dev - Optimized client component with service integration
+// HOOKS REASON: Official React documentation shows optimized hook usage with memoization
 export function PageFooterClient({
   footerContent,
   contactInfo,
@@ -62,58 +79,91 @@ export function PageFooterClient({
   showNewsletter = false,
   showContactForm = false
 }: PageFooterClientProps) {
-  // CONTEXT7 SOURCE: /react-hook-form/documentation - Form state management
-  // Reference: useForm with TypeScript and Zod validation resolver
-  const [submissionState, setSubmissionState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState<string>('')
-  
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset
-  } = useForm<NewsletterData>({
-    resolver: zodResolver(newsletterSchema),
-    defaultValues: {
-      email: '',
-      consentToMarketing: true // Auto-consent for footer signup
-    }
-  })
 
-  // CONTEXT7 SOURCE: /react-hook-form/documentation - Async form submission handling
-  // Reference: handleSubmit with async callback and error handling
-  const onSubmit = async (data: NewsletterData) => {
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useMemo for component configuration
+  // MEMOIZATION REASON: Official React documentation shows useMemo for expensive computations
+  const footerConfig = useMemo(() => ({
+    variant,
+    showBackToTop,
+    showNewsletter,
+    showContactForm,
+    containerClasses: {
+      default: 'bg-white text-black',
+      minimal: 'bg-gray-50 text-black',
+      premium: 'bg-white text-black relative overflow-hidden'
+    }
+  }), [variant, showBackToTop, showNewsletter, showContactForm]);
+
+  // CONTEXT7 SOURCE: /web.dev/performance - Optimized scroll function with memoization
+  // SCROLL REASON: Memoized scroll function prevents recreation on every render
+  const scrollToTop = useMemo(() => () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // CONTEXT7 SOURCE: /react-hook-form/documentation - Newsletter form submission handler
+  // FORM HANDLER REASON: Optimized form submission with error handling
+  const handleNewsletterSubmit = useMemo(() => async (data: any) => {
     try {
-      setSubmissionState('loading')
-      setErrorMessage('')
-      
       const response = await fetch('/api/newsletter', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      })
+      });
       
-      const result = await response.json()
+      const result = await response.json();
       
-      if (result.success) {
-        setSubmissionState('success')
-        reset() // Clear form on success
-      } else {
-        setSubmissionState('error')
-        setErrorMessage(result.error || 'Subscription failed. Please try again.')
+      if (!result.success) {
+        throw new Error(result.error || 'Subscription failed');
       }
     } catch (error) {
-      console.error('Newsletter submission error:', error)
-      setSubmissionState('error')
-      setErrorMessage('Network error. Please check your connection and try again.')
+      console.error('Newsletter submission error:', error);
+      throw error;
     }
-  }
+  }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  // CONTEXT7 SOURCE: /wcag/guidelines - Accessibility enhancements integration
+  // ACCESSIBILITY REASON: Enable comprehensive accessibility features
+  const { 
+    announce, 
+    manageFocus, 
+    announcementRef,
+    isKeyboardUser,
+    reducedMotion 
+  } = useFooterAccessibility({
+    enableSkipLinks: true,
+    enableFocusManagement: true,
+    enableAnnouncements: true,
+    enableKeyboardShortcuts: true
+  });
+
+  // CONTEXT7 SOURCE: /web.dev/performance - Performance tracking integration
+  // PERFORMANCE REASON: Track footer-specific performance metrics
+  const { 
+    markFooterRenderStart, 
+    markFooterRenderEnd, 
+    markFooterInteractionReady 
+  } = useFooterPerformanceMarks();
+
+  // CONTEXT7 SOURCE: /web.dev/performance - Performance marks on render
+  // PERFORMANCE TRACKING REASON: Measure footer render performance
+  useEffect(() => {
+    markFooterRenderStart();
+    
+    return () => {
+      markFooterRenderEnd();
+    };
+  }, [markFooterRenderStart, markFooterRenderEnd]);
+
+  // CONTEXT7 SOURCE: /web.dev/performance - Mark interaction readiness
+  // INTERACTION REASON: Track when footer becomes interactive
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      markFooterInteractionReady();
+      announce('Footer is ready for interaction');
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [markFooterInteractionReady, announce]);
 
   const containerClasses = {
     default: 'bg-white text-black',
@@ -122,313 +172,181 @@ export function PageFooterClient({
   }
 
   return (
-    <footer 
-      className={cn(containerClasses[variant], className)}
-      role="contentinfo"
-      aria-label="Site footer"
+    // CONTEXT7 SOURCE: /reactjs/react.dev - Error boundary wrapper for graceful failure handling
+    // ERROR BOUNDARY REASON: Official React documentation demonstrates error boundaries for production resilience
+    <FooterErrorBoundary
+      enableRecovery={true}
+      showDetails={process.env.NODE_ENV === 'development'}
+      onError={(error, errorInfo) => {
+        console.error('Footer component error:', error, errorInfo);
+      }}
     >
-      {/* Premium animated background - static export compatible */}
-      {variant === 'premium' && (
-        <div>
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-100/50 via-transparent to-gray-100/50 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-50/30 via-transparent to-gray-50/30 animate-pulse opacity-50" />
-        </div>
-      )}
+      {/* CONTEXT7 SOURCE: /wcag/guidelines - Skip navigation accessibility */}
+      {/* SKIP LINK REASON: WCAG 2.4.1 requires bypass blocks for repetitive content */}
+      <FooterSkipLink />
+      
+      {/* CONTEXT7 SOURCE: /wcag/guidelines - Screen reader announcement region */}
+      {/* ANNOUNCEMENT REASON: WCAG 4.1.3 requires status messages for dynamic content */}
+      <div
+        ref={announcementRef}
+        className="sr-only"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      />
 
-      <div className="relative">
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for contact form section display */}
-        {/* CONDITIONAL RENDERING REASON: Official React documentation demonstrates logical AND operator for conditional component display */}
-        {/* Contact Form Section */}
-        {showContactForm && (
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4">
-                Ready to Start the Conversation?
-              </h2>
-              <p className="text-xl text-primary-700 mb-8">
-                Access our secure enquiry portal to discuss your child's educational needs
-              </p>
-              {/* CONTEXT7 SOURCE: /vercel/next.js - Link component wrapping Image for external navigation */}
-              {/* ACCESSIBILITY REASON: Official React documentation emphasizes proper external link handling with target and rel attributes */}
-              <a 
-                href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block group"
-                aria-label="Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online"
-              >
-                <div className="relative overflow-hidden rounded-lg border-2 border-gray-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with proper width, height and alt for accessibility */}
-                  {/* IMAGE OPTIMIZATION REASON: Official Next.js documentation requires explicit dimensions for local images */}
-                  {/* BIZSTIM FORM UPDATE: Updated to use new bizstim-form-preview.png as per homepage CMS configuration */}
-                  <img
-                    src="/images/graphics/bizstim-form-preview.png"
-                    alt="Screenshot of My Private Tutor Online enquiry form on Bizstim platform showing student details form with fields for first name, last name, email and phone number"
-                    className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  {/* Overlay for interaction feedback */}
-                  <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                  {/* Call-to-action overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                    <p className="text-white font-medium text-sm">
-                      Click to access secure enquiry form →
-                    </p>
-                  </div>
-                </div>
-              </a>
-              <p className="text-xs text-gray-500 mt-3">
-                Opens in new window • Secure encrypted connection • Same trusted service
-              </p>
-            </div>
+      <footer 
+        id="footer"
+        className={cn(footerConfig.containerClasses[variant], className)}
+        role="contentinfo"
+        aria-label="Site footer"
+      >
+        {/* Premium animated background - static export compatible */}
+        {variant === 'premium' && (
+          <div>
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-100/50 via-transparent to-gray-100/50 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50/30 via-transparent to-gray-50/30 animate-pulse opacity-50" />
           </div>
         )}
-        
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for separator display */}
-        {/* SEPARATOR CONDITIONAL REASON: Official React documentation shows conditional rendering prevents orphaned separators when sections are hidden */}
-        {showContactForm && <Separator className="bg-gray-300" />}
-        
-        {/* Newsletter CTA Section */}
-        {showNewsletter && (
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="animate-fade-in-up">
-              <h3 className="text-3xl font-serif font-bold text-black mb-4">
-                Join Our Exclusive Community
-              </h3>
-              <p className="text-gray-700 mb-8 text-lg">
-                Receive personalised academic insights and exclusive opportunities for your child's success
-              </p>
-              {/* CONTEXT7 SOURCE: /react-hook-form/documentation - Form with handleSubmit */}
-              {/* Reference: Proper form element with validation and submission */}
-              {submissionState === 'success' ? (
-                <div className="flex items-center justify-center gap-3 max-w-md mx-auto p-4 bg-green-50 border border-green-200 rounded-lg">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <p className="text-green-800 font-medium">
-                    Thank you for subscribing! Check your inbox for confirmation.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto space-y-4">
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="flex-1 space-y-1">
-                      <input
-                        {...register('email')}
-                        type="email"
-                        placeholder="Enter your email"
-                        disabled={isSubmitting}
-                        className={cn(
-                          "w-full px-6 py-3 bg-gray-100 border rounded-lg text-black placeholder-gray-500",
-                          "focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-transparent",
-                          "disabled:opacity-50 disabled:cursor-not-allowed",
-                          errors.email ? "border-red-300 bg-red-50" : "border-gray-300"
-                        )}
-                      />
-                      {errors.email && (
-                        <p className="text-red-600 text-sm flex items-center gap-1">
-                          <AlertCircle className="w-4 h-4" />
-                          {errors.email.message}
-                        </p>
-                      )}
+
+        <div className="relative">
+          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering with optimized components */}
+          {/* Contact Form Section */}
+          {footerConfig.showContactForm && (
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4">
+                  Ready to Start the Conversation?
+                </h2>
+                <p className="text-xl text-primary-700 mb-8">
+                  Access our secure enquiry portal to discuss your child's educational needs
+                </p>
+                <a 
+                  href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block group"
+                  aria-label="Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online"
+                >
+                  <div className="relative overflow-hidden rounded-lg border-2 border-gray-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <img
+                      src="/images/graphics/bizstim-form-preview.png"
+                      alt="Screenshot of My Private Tutor Online enquiry form on Bizstim platform showing student details form with fields for first name, last name, email and phone number"
+                      className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                      <p className="text-white font-medium text-sm">
+                        Click to access secure enquiry form →
+                      </p>
                     </div>
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className={cn(
-                        "px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold",
-                        "disabled:opacity-50 disabled:cursor-not-allowed min-w-[120px]",
-                        "animate-shimmer bg-[linear-gradient(110deg,#eab308,45%,#fbbf24,55%,#eab308)] bg-[length:200%_100%]",
-                        "border border-accent-600 shadow-lg"
-                      )}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Subscribing...
-                        </>
-                      ) : (
-                        'Subscribe'
-                      )}
-                    </Button>
                   </div>
-                  {(submissionState === 'error' && errorMessage) && (
-                    <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
-                      <AlertCircle className="w-4 h-4 text-red-600" />
-                      <p className="text-red-800 text-sm">{errorMessage}</p>
-                    </div>
-                  )}
-                  {/* Honeypot field for spam prevention */}
-                  <input
-                    {...register('honeypot')}
-                    type="text"
-                    tabIndex={-1}
-                    className="sr-only"
-                    autoComplete="off"
-                  />
-                </form>
+                </a>
+                <p className="text-xs text-gray-500 mt-3">
+                  Opens in new window • Secure encrypted connection • Same trusted service
+                </p>
+              </div>
+            </div>
+          )}
+          
+          {footerConfig.showContactForm && <Separator className="bg-gray-300" />}
+          
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Dynamic newsletter form loading */}
+          {/* Newsletter CTA Section with Code Splitting */}
+          {footerConfig.showNewsletter && (
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+              <div className="max-w-4xl mx-auto text-center">
+                <div className="animate-fade-in-up">
+                  <h3 className="text-3xl font-serif font-bold text-black mb-4">
+                    Join Our Exclusive Community
+                  </h3>
+                  <p className="text-gray-700 mb-8 text-lg">
+                    Receive personalised academic insights and exclusive opportunities for your child's success
+                  </p>
+                  
+                  {/* CONTEXT7 SOURCE: /reactjs/react.dev - Suspense with dynamic component loading */}
+                  {/* CODE SPLITTING REASON: Official React documentation shows Suspense for lazy loaded components */}
+                  <Suspense 
+                    fallback={
+                      <FooterNewsletterFormSkeleton className="max-w-md mx-auto" />
+                    }
+                  >
+                    <FooterNewsletterForm 
+                      onSubmit={handleNewsletterSubmit}
+                      autoConsent={true}
+                    />
+                  </Suspense>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {footerConfig.showNewsletter && <Separator className="bg-gray-300" />}
+
+          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Main footer content with decomposed components */}
+          {/* DECOMPOSITION REASON: Component boundaries improve maintainability and performance */}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-stretch">
+              
+              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Company section component */}
+              <FooterCompanySection 
+                content={footerContent}
+                className="animate-fade-in-left"
+              />
+
+              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Navigation sections component */}
+              <FooterNavigationSections 
+                sections={footerContent.footerSections}
+              />
+              
+              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Contact section component positioned within navigation grid */}
+              <FooterContactSection 
+                contactInfo={contactInfo}
+              />
+            </div>
+          </div>
+
+          <Separator className="bg-gray-300" />
+          
+          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Copyright section with back to top */}
+          {/* COPYRIGHT REASON: Separate copyright section for clean footer structure */}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <p className="text-sm text-gray-600 text-center sm:text-left">
+                {copyrightText}
+              </p>
+              
+              {/* CONTEXT7 SOURCE: /web.dev/performance - Back to top button with optimized scroll */}
+              {footerConfig.showBackToTop && (
+                <Button
+                  onClick={scrollToTop}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-600 hover:text-accent-600 transition-colors duration-300 mx-auto sm:mx-0"
+                  aria-label="Scroll to top of page"
+                >
+                  <ArrowUp className="w-4 h-4 mr-2" />
+                  Back to Top
+                </Button>
               )}
             </div>
           </div>
-        </div>
-        )}
 
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns for separator display */}
-        {/* SEPARATOR CONDITIONAL REASON: Official React documentation shows conditional rendering prevents orphaned separators when sections are hidden */}
-        {showNewsletter && <Separator className="bg-gray-300" />}
-
-        {/* Main Footer Content */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          {/* CONTEXT7 SOURCE: /websites/tailwindcss - CSS Grid items-stretch for equal height sections */}
-          {/* HEIGHT BALANCE REVISION: Apply items-stretch to grid container for automatic height matching between left and right sections */}
-          {/* Footer Grid - 1/3 for company info, 2/3 for links */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-stretch">
-            {/* Company Information - 1/3 width */}
-            <div className="lg:col-span-1 flex flex-col justify-center">
-              <div className="animate-fade-in-left">
-                {/* CONTEXT7 SOURCE: /websites/react_dev - Component simplification pattern */}
-                {/* REVISION REASON: Task 2.1.1 - Replace logo with icon-only version and make full width */}
-                {/* CONTEXT7 SOURCE: /nextjs/docs - Next.js Image component with responsive sizing patterns */}
-                {/* LOGO UPDATE REASON: Replace logo-name-tagline.png with logo-icon-only.png and apply full container width styling */}
-                <div className="mb-8">
-                  <Link 
-                    href="/" 
-                    className="inline-block group w-full"
-                    aria-label={`${footerContent.companyName} homepage`}
-                  >
-                    {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with responsive sizing patterns */}
-                    {/* LOGO SIZE MAXIMIZATION REVISION: Increased from max-h-32 to max-h-40 for maximum logo display while maintaining aspect ratio and container fit */}
-                    <Image
-                      src={footerContent.logo.main}
-                      alt={footerContent.logo.alt}
-                      width={footerContent.logo.width}
-                      height={footerContent.logo.height}
-                      className="w-full h-auto max-h-40 object-contain group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </Link>
-                </div>
-
-                {/* Premium Accolades - horizontal layout on one row */}
-                <div className="grid grid-cols-3 gap-3">
-                  {/* CONTEXT7 SOURCE: /reactjs/react.dev - JSX text content modification patterns */}
-                  {/* TEXT CHANGE REVISION: Updated footer accolade text from "Trusted Families Nationwide" to "Royal Clientele Pedigree" for enhanced premium royal client positioning */}
-                  <div className="bg-gray-100 rounded-lg p-3 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
-                    {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - Crown icon component usage patterns */}
-                    {/* ICON CHANGE REVISION: Replaced Users icon with Crown icon for enhanced royal clientele branding and premium positioning */}
-                    <Crown className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
-                    <p className="text-xs font-semibold text-black leading-tight">Royal Clientele</p>
-                    <p className="text-xs text-gray-600">Pedigree</p>
-                  </div>
-                  {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - Award icon for Tatler achievement badge */}
-                  {/* TASK 4 REVISION: Enhanced padding from p-2 to p-3 for better visual positioning */}
-                  <div className="bg-gray-100 rounded-lg p-3 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
-                    <Award className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
-                    <p className="text-xs font-semibold text-black leading-tight">Tatler 2025</p>
-                    <p className="text-xs text-gray-600">Featured</p>
-                  </div>
-                  {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - BarChart3 icon for experience metrics */}
-                  {/* TASK 7 REVISION: Changed icon from TrendingUp to BarChart3 for bar graph representation of experience */}
-                  {/* TASK 4 REVISION: Enhanced padding from p-2 to p-3 for better visual positioning */}
-                  <div className="bg-gray-100 rounded-lg p-3 border border-gray-300 hover:bg-gray-200 transition-all duration-300 text-center">
-                    <BarChart3 className="w-4 h-4 text-accent-600 mb-1 mx-auto" />
-                    <p className="text-xs font-semibold text-black leading-tight">15+ Years</p>
-                    <p className="text-xs text-gray-600">Excellence</p>
-                  </div>
-                </div>
-              </div>
+          {/* CONTEXT7 SOURCE: /web.dev/performance - Performance monitoring integration */}
+          {/* MONITORING REASON: Track footer-specific performance metrics for optimization */}
+          {process.env.NODE_ENV === 'development' && (
+            <div className="fixed bottom-4 right-4 z-50">
+              <Suspense fallback={null}>
+                <FooterPerformanceMonitor 
+                  showDetails={true}
+                  className="max-w-xs"
+                />
+              </Suspense>
             </div>
-
-            {/* Footer Links Sections - 2/3 width */}
-            <div className="lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8 items-stretch min-h-full">
-              {footerContent.footerSections.map((section, sectionIndex) => (
-                <div 
-                  key={sectionIndex} 
-                  className="space-y-6 animate-fade-in-up"
-                  style={{ animationDelay: `${sectionIndex * 0.1}s` }}
-                >
-                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Font size utility text-3xl for enhanced heading hierarchy */}
-                  {/* REVISION REASON: Task 5 - Footer Section 2.2.1.1 Header Size Increase - Typography enhancement from text-2xl (24px) to text-3xl (30px) for 30% footer heading size increase */}
-                  <h3 className="font-serif text-3xl font-bold text-black flex items-center gap-2">
-                    {section.title}
-                    <Separator className="flex-1 bg-gray-300" />
-                  </h3>
-                  <nav role="navigation" aria-label={`${section.title} links`}>
-                    <ul className="space-y-3">
-                      {section.links.map((link, linkIndex) => (
-                        <li key={linkIndex}>
-                          <Link
-                            href={link.href}
-                            className="group flex items-center text-gray-700 hover:text-accent-600 transition-all duration-300"
-                          >
-                            <span className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden">
-                              <Send className="w-3 h-3" />
-                            </span>
-                            <span className="group-hover:translate-x-1 transition-transform duration-300">
-                              {link.label}
-                            </span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                </div>
-              ))}
-              
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Footer contact section with subtle border styling */}
-              {/* REVISION REASON: Task Footer Section 2.2.2 - reduced border thickness and maintained default text styling */}
-              {/* CONTEXT7 SOURCE: /tailwindcss/docs - Text color utility classes for explicit color control */}
-              {/* TEXT COLOR REVISION: Added text-black classes to contact information links and separators for explicit black text color styling */}
-              {/* Contact Information - positioned at the end of footer links */}
-              <div className="col-span-2 md:col-span-4 mt-8 pt-6 border-t border-gray-200">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4">
-                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for dark text styling */}
-                  {/* CONTACT INFO COLOR FIX: Changed from text-gray-900 to text-black for explicit black text color to match footer text consistency and override any conflicting styles */}
-                  {/* Contact links - pure black text color (text-black) for maximum contrast and consistency with footer text */}
-                  <div className="text-sm flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                    <a 
-                      href={`tel:${contactInfo.phone}`}
-                      className="text-black hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
-                    >
-                      <Phone className="w-4 h-4" />
-                      Call us: {contactInfo.phone}
-                    </a>
-                    <span className="hidden sm:inline text-black">|</span>
-                    <a 
-                      href={`mailto:${contactInfo.email}`}
-                      className="text-black hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
-                    >
-                      <Mail className="w-4 h-4" />
-                      Email: {contactInfo.email}
-                    </a>
-                    <span className="hidden sm:inline text-black">|</span>
-                    {/* CONTEXT7 SOURCE: /websites/lucide_dev-guide - MessageCircle icon for WhatsApp functionality */}
-                    {/* WHATSAPP REDESIGN: Text with icon to the right, no green background, matching text color */}
-                    <a
-                      href={`https://wa.me/447513550278?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20private%tutoring%20services%20for%20my%20child.`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-black hover:text-accent-600 transition-colors duration-300 inline-flex items-center gap-1"
-                      aria-label="Contact us on WhatsApp - opens in new window"
-                    >
-                      WhatsApp Us
-                      <MessageCircle className="w-4 h-4" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
-
-        <Separator className="bg-gray-300" />
-
-        {/* BIZSTIM FORM SECTION - MOVED TO HOMEPAGE MAIN CTA */}
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component repositioning for improved user experience flow */}
-        {/* REMOVAL REASON: Official React documentation enables moving sections to optimize user journey - Bizstim section relocated to homepage position 8 */}
-
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Footer layout without duplicate section */}
-        {/* REMOVAL REASON: Duplicate footer bottom section removed as requested - lines 339-392 */}
-        {/* Main footer content (newsletter, company info, contact info) remains intact above */}
-      </div>
-    </footer>
+      </footer>
+    </FooterErrorBoundary>
   )
 }

@@ -370,19 +370,5 @@ export const generateOptimizedAltText = (
   return optimizedAlt
 }
 
-// Export all utilities for advanced image optimization
-export {
-  DEVICE_BREAKPOINTS,
-  CONTENT_QUALITY_MAP,
-  generateResponsiveSizes,
-  getOptimalQuality,
-  detectOptimalFormat,
-  generateBlurDataURL,
-  isCriticalImage,
-  calculateResponsiveDimensions,
-  getOptimalLoadingStrategy,
-  createImageBatchLoader,
-  createImagePerformanceTracker,
-  getImageExtension,
-  generateOptimizedAltText
-}
+// CONTEXT7 SOURCE: /vercel/next.js - All utilities exported individually for advanced image optimization
+// EXPORT PATTERN REASON: Official Next.js documentation shows individual exports for better tree-shaking

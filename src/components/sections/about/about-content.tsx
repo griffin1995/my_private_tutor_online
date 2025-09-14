@@ -1,0 +1,259 @@
+/**
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Component composition patterns with children prop
+ * COMPONENT EXTRACTION REASON: Official React documentation shows extracting components for better testability and reusability
+ * PATTERN: Flexible content component with multiple children prop strategy for complex layouts
+ */
+
+"use client";
+
+import { m } from "framer-motion";
+import { Highlighter } from "@/components/magicui/highlighter";
+import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
+import { getVideoUrl } from '@/lib/video-utils';
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - Enhanced animation hook integration for micro-interactions
+// ENHANCED ANIMATIONS: Official React documentation shows integrating custom hooks for animation management
+import { useEnhancedAnimations } from '@/lib/hooks/useEnhancedAnimations';
+
+// CONTEXT7 SOURCE: /framer/motion - Micro-interaction utilities for enhanced user experience
+// MICRO-INTERACTIONS: Official Framer Motion documentation shows implementing subtle animations for better UX
+import { createScrollVariants, createHoverVariants } from '@/lib/animations/micro-interactions';
+
+// CONTEXT7 SOURCE: /vercel/next.js - Import cached data access functions
+// DATA CACHING INTEGRATION: Official Next.js documentation shows importing cached functions for optimized data access
+import { getAboutContent, getAboutVideoData, getAboutPerformanceConfig } from '@/lib/about-data';
+
+/**
+ * CONTEXT7 SOURCE: /reactjs/react.dev - TypeScript interface patterns for component props
+ * INTERFACE DESIGN REASON: Official React documentation recommends flexible prop interfaces for reusable components
+ */
+interface AboutContentProps {
+  /** Main heading text */
+  title?: string;
+  /** Animation delay offset for staggered reveals */
+  animationDelay?: number;
+  /** Custom className for styling overrides */
+  className?: string;
+  /** Conversion tracker for analytics and A/B testing */
+  conversionTracker?: any;
+}
+
+/**
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Component composition with structured content patterns
+ * EXTRACTION REASON: Official React documentation shows how to extract content components for better testing boundaries
+ * PATTERN: Structured content component with animation timing and video integration
+ */
+export function AboutContent({
+  title,
+  animationDelay = 0.1,
+  className = "",
+  conversionTracker
+}: AboutContentProps) {
+  // CONTEXT7 SOURCE: /vercel/next.js - Using cached data access for performance optimization
+  // CACHED DATA ACCESS: Official Next.js documentation shows accessing cached data to prevent redundant computations
+  const contentData = getAboutContent();
+  const videoData = getAboutVideoData();
+  const performanceConfig = getAboutPerformanceConfig();
+
+  const displayTitle = title || contentData.formattedTitle;
+
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Enhanced animation hook integration for performance optimized animations
+  // ANIMATION HOOK: Official React documentation shows using custom hooks for complex state management
+  const titleAnimation = useEnhancedAnimations({
+    threshold: 0.2,
+    rootMargin: '-50px',
+    delay: animationDelay,
+    trackingName: 'about-title',
+    enableMicroInteractions: true
+  });
+
+  const contentAnimation = useEnhancedAnimations({
+    threshold: 0.1,
+    rootMargin: '-100px',
+    delay: animationDelay + 0.3,
+    trackingName: 'about-content',
+    enableMicroInteractions: false
+  });
+
+  const videoAnimation = useEnhancedAnimations({
+    threshold: 0.3,
+    rootMargin: '-50px',
+    delay: animationDelay + 0.6,
+    trackingName: 'about-video',
+    enableMicroInteractions: true
+  });
+
+  // CONTEXT7 SOURCE: /framer/motion - Scroll variants for enhanced animation performance
+  // SCROLL OPTIMIZATION: Official Framer Motion documentation shows optimized scroll-based animations
+  const scrollVariants = createScrollVariants('up');
+  const hoverVariants = createHoverVariants({ duration: 0.2 });
+
+  return (
+    <div
+      className={`space-y-8 min-h-0 ${className}`}
+      role="region"
+      aria-labelledby="about-content-heading"
+    >
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component title rendering with enhanced micro-interactions */}
+      <m.h2
+        ref={titleAnimation.ref}
+        animate={titleAnimation.controls}
+        variants={titleAnimation.animationPreference === 'full' ? hoverVariants : undefined}
+        whileHover={titleAnimation.animationPreference === 'full' ? 'hover' : undefined}
+        id="about-content-heading"
+        className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 cursor-default"
+        tabIndex={0}
+        aria-live="polite"
+        onAnimationComplete={() => {
+          // CONTEXT7 SOURCE: /framer/motion - Animation completion tracking for performance monitoring
+          // COMPLETION TRACKING: Official Framer Motion documentation shows tracking animation completion
+          titleAnimation.cleanupTracking();
+          if (conversionTracker) {
+            conversionTracker.trackEvent('scroll_milestone', {
+              milestone: 'title_animated',
+              timestamp: Date.now(),
+              variant: conversionTracker.getCurrentVariant()
+            });
+          }
+        }}
+      >
+        {displayTitle.split('\n').map((line, index) => (
+          <span key={index}>
+            {line}
+            {index < displayTitle.split('\n').length - 1 && <br />}
+          </span>
+        ))}
+      </m.h2>
+
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Content composition with structured paragraph elements */}
+      <div className="space-y-6 text-xl text-primary-700 leading-relaxed">
+        <m.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{
+            duration: performanceConfig.animationDurations.content,
+            ease: performanceConfig.animationEase,
+            delay: animationDelay + 0.5,
+          }}
+        >
+          At the heart of My Private Tutor Online is a singular vision:
+          academic support that is both exceptional and deeply personal.
+          Founded in 2010 by Elizabeth Burrows—a{" "}
+          <strong>
+            Cambridge-accepted educator and former Forbes journalist
+          </strong>
+          —the company began not as a business, but as a trusted network
+          of elite colleagues she met throughout her international
+          tutoring career.
+        </m.p>
+
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component composition with enhanced video micro-interactions */}
+        <m.div
+          ref={videoAnimation.ref}
+          animate={videoAnimation.controls}
+          variants={videoAnimation.animationPreference === 'full' ? hoverVariants : undefined}
+          whileHover={videoAnimation.animationPreference === 'full' ? 'hover' : undefined}
+          className="relative w-full max-w-md mx-auto my-12 cursor-pointer"
+          role="region"
+          aria-label="Founder introduction video section"
+          onAnimationComplete={() => {
+            // CONTEXT7 SOURCE: /framer/motion - Video section animation completion tracking
+            // VIDEO TRACKING: Official Framer Motion documentation shows tracking video section animations
+            videoAnimation.cleanupTracking();
+            if (conversionTracker) {
+              conversionTracker.trackEvent('scroll_milestone', {
+                milestone: 'video_section_animated',
+                timestamp: Date.now(),
+                variant: conversionTracker.getCurrentVariant()
+              });
+            }
+          }}
+        >
+          <m.p
+            className="text-base italic text-center text-primary-700 font-medium mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{
+              duration: performanceConfig.animationDurations.content,
+              ease: performanceConfig.animationEase,
+              delay: animationDelay + 0.65,
+            }}
+          >
+            {contentData.videoIntroText.split(' thrive').map((part, index) => (
+              index === 0 ? (
+                <span key={index}>
+                  {part}{" "}
+                  <Highlighter
+                    action="underline"
+                    color="#eab308"
+                    strokeWidth={3}
+                    iterations={2}
+                    padding={4}
+                  >
+                    thrive
+                  </Highlighter>
+                </span>
+              ) : null
+            ))}
+          </m.p>
+
+          <HeroVideoDialog
+            videoSrc={getVideoUrl(videoData.videoSrc)}
+            thumbnailSrc={videoData.thumbnailSrc}
+            thumbnailAlt={videoData.thumbnailAlt}
+            animationStyle={videoData.animationStyle}
+            className="w-full"
+            onClick={() => {
+              // CONTEXT7 SOURCE: /vercel/next.js - Event tracking for video engagement conversion optimization
+              // VIDEO ENGAGEMENT TRACKING: Official Next.js documentation shows tracking user interactions for conversion analysis
+              if (conversionTracker) {
+                conversionTracker.trackEvent('video_engagement', {
+                  videoId: videoData.videoSrc,
+                  action: 'play_initiated',
+                  timestamp: Date.now(),
+                  variant: conversionTracker.getCurrentVariant()
+                });
+              }
+            }}
+          />
+        </m.div>
+
+        <m.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{
+            duration: performanceConfig.animationDurations.content,
+            ease: performanceConfig.animationEase,
+            delay: animationDelay + 0.7,
+          }}
+        >
+          What started as a circle of personal recommendations has since
+          evolved—organically and exclusively—into one of the UK&apos;s
+          most respected names in specialist private tutoring. As
+          testament, My Private Tutor Online is honoured to be featured in{" "}
+          <strong>Tatler&apos;s Address Book</strong> and recognised as{" "}
+          <strong>School Guide&apos;s &lsquo;Top Pick&rsquo;</strong> for private tuition.
+        </m.p>
+
+        <m.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{
+            duration: performanceConfig.animationDurations.content,
+            ease: performanceConfig.animationEase,
+            delay: animationDelay + 0.9,
+          }}
+        >
+          {contentData.currentEthos}
+        </m.p>
+      </div>
+    </div>
+  );
+}
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - TypeScript export patterns for component reusability
+export type { AboutContentProps };
