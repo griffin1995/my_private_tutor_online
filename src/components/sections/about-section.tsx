@@ -93,21 +93,20 @@ export function AboutSection({
   // SIMPLIFICATION REASON: Official Framer Motion documentation shows simple whileInView animations without complex state management
 
   return (
-    <section className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
+    <section id="about" className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container symmetric padding for perfect left/right balance */}
       {/* PADDING SYMMETRY FIX REASON: Official Tailwind CSS documentation shows container with mx-auto for horizontal centering and px-* for equal horizontal padding */}
       {/* REVISION TYPE: Enhanced symmetric spacing by ensuring consistent progressive padding at all responsive breakpoints */}
       {/* VISUAL BALANCE IMPLEMENTATION: Container mx-auto provides perfect centering, px-6 sm:px-8 lg:px-12 xl:px-16 ensures equal left/right spacing */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout with symmetric column distribution and balanced spacing */}
-        {/* GRID SYMMETRY REASON: Official Tailwind CSS documentation shows lg:grid-cols-2 creates equal-width columns with items-center for vertical alignment balance */}
-        {/* REVISION TYPE: Enhanced grid layout with items-center to ensure both columns maintain equal visual weight and balanced spacing */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:grid-rows-1">
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Grid layout with optimized spacing for content hierarchy */}
+        {/* SPACING OPTIMIZATION: Official Next.js documentation shows responsive grid spacing patterns */}
+        {/* REVISION TYPE: Enhanced grid layout with optimized gap spacing and alignment */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-start lg:grid-rows-1">
           {/* Text Content - Left Side */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid column equal width with consistent internal padding */}
-          {/* EQUAL WIDTH FIX REASON: Official Tailwind CSS documentation shows lg:grid-cols-2 creates equal-width columns by default */}
-          {/* PADDING ADDITION: Added p-6 for consistent internal padding matching right column for perfect visual balance */}
-          <div className="space-y-6 min-h-0 p-6">
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Column spacing optimization for content readability */}
+          {/* SPACING OPTIMIZATION: Reduced padding and adjusted space-y for better text flow */}
+          <div className="space-y-8 min-h-0">
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text color utilities for consistent heading styling */}
             {/* AURORA REMOVAL: Removed aurora gradient effects per Task 4 requirements */}
             {/* PATTERN: Standard Tailwind CSS text color utility for default heading styling */}
@@ -154,7 +153,7 @@ export function AboutSection({
 
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scaling for visual hierarchy */}
             {/* TEXT SIZE UPDATE: Increased paragraph size from text-lg to text-xl for consistency with larger heading */}
-            <div className="space-y-4 text-xl text-primary-700 leading-relaxed">
+            <div className="space-y-6 text-xl text-primary-700 leading-relaxed">
               <m.p
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -175,6 +174,53 @@ export function AboutSection({
                 of elite colleagues she met throughout her international
                 tutoring career.
               </m.p>
+
+              {/* Video Component - Moved here from right column */}
+              {/* CONTEXT7 SOURCE: /vercel/next.js - Video component sizing optimization for content integration */}
+              {/* SIZING OPTIMIZATION: Increased max-width and improved vertical spacing for better visual balance */}
+              <m.div
+                className="relative w-full max-w-md mx-auto my-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  duration: 0.8,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  delay: 0.7,
+                }}
+              >
+                {/* Introductory Text Above Video */}
+                <m.p
+                  className="text-base italic text-center text-primary-700 font-medium mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    delay: 0.75,
+                  }}
+                >
+                  Meet Elizabeth, here to help your child{" "}
+                  <Highlighter
+                    action="underline"
+                    color="#eab308"
+                    strokeWidth={3}
+                    iterations={2}
+                    padding={4}
+                  >
+                    thrive
+                  </Highlighter>
+                </m.p>
+
+                <HeroVideoDialog
+                  videoSrc={getVideoUrl('elizabeth-introduction-sound.mp4')}
+                  thumbnailSrc="/images/video-thumbnails/introduction-video-thumbnail-2025.png"
+                  thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
+                  animationStyle="from-center"
+                  className="w-full"
+                />
+              </m.div>
 
               <m.p
                 initial={{ opacity: 0, y: 30 }}
@@ -210,78 +256,16 @@ export function AboutSection({
               </m.p>
             </div>
 
-            {/* Credentials with Brand Logos */}
-            {/* Documentation Source: Context7 MCP - Next.js Image optimization for brand logos */}
-            {/* Pattern: Using actual brand logos instead of generic icons for credibility */}
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding utilities reference for padding removal */}
-            {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation shows p-<number>, py-<number>, px-<number> utilities for padding control */}
-            {/* REVISION TYPE: Complete padding elimination from credentials section container per user requirements */}
-            {/* ZERO PADDING IMPLEMENTATION: Removed py-10 px-8 classes to achieve "0 padding left" and complete padding elimination */}
-            {/* BACKGROUND PRESERVATION: Maintained bg-primary-50/30 rounded-lg for visual styling without spacing */}
-            <m.div
-              className="flex flex-wrap items-center gap-8 bg-primary-50/30 rounded-lg"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 1.2,
-              }}
-            >
-              <div className="flex items-center gap-3">
-                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Height utility classes for logo sizing enhancement */}
-                {/* SIZE INCREASE REASON: Official Tailwind CSS documentation shows h-8 (32px) provides ~33% size increase from h-6 (24px) for enhanced logo prominence */}
-                {/* CREDENTIALS VISIBILITY: Increased Tatler Address Book logo size by 30% while maintaining aspect ratio with w-auto object-contain */}
-                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Vertical padding utilities for minimal breathing room */}
-                {/* VERTICAL PADDING ADDITION: Added py-0.5 (2px) vertical padding per user requirements for small top/bottom spacing */}
-                {/* REVISION TYPE: Minimal vertical padding addition to Tatler logo only for improved visual spacing */}
-                {/* IMPLEMENTATION: py-0.5 applies padding-block: calc(var(--spacing) * 0.5) = 2px top and bottom */}
-                <Image
-                  src="/images/media/tatler-logo.png"
-                  alt="Tatler Address Book"
-                  width={80}
-                  height={30}
-                  className="h-8 w-auto object-contain py-0.5"
-                />
-                <span className="font-medium text-primary-900">
-                  Address Book
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Arbitrary value height utilities for precise logo sizing */}
-                {/* SIZE UPDATE REASON: Official Tailwind CSS documentation shows h-[60px] arbitrary value provides precise 60px height for enhanced School Guide logo prominence */}
-                {/* REVISION TYPE: Updated School Guide UK logo to exactly 60px height while maintaining Tatler logo at h-8 for balanced presentation */}
-                {/* IMPLEMENTATION: Using h-[60px] (60px height) with w-auto object-contain to preserve aspect ratio and professional appearance */}
-                <Image
-                  src="/images/media/schools-guide-uk-logo.png"
-                  alt="School Guide UK"
-                  width={80}
-                  height={30}
-                  className="h-[60px] w-auto object-contain"
-                />
-                <span className="font-medium text-primary-900">
-                  &lsquo;Top Pick&rsquo;
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="font-medium text-primary-900">
-                  Trusted by Royal Clientele
-                </span>
-              </div>
-            </m.div>
-
             {/* CONTEXT7 SOURCE: /grx7/framer-motion - Component removal patterns for conditional rendering */}
             {/* COMPONENT REMOVAL REASON: Official Framer Motion documentation shows how to conditionally remove animated components */}
             {/* REVISION TYPE: Royal testimonial section removed per client requirements */}
             {/* NOTE: "Fit For a King" section content moved to WHO WE SUPPORT section in trust-indicators */}
           </div>
 
-          {/* Image and Video - Right Side Stacked Layout */}
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid column equal width with consistent internal padding */}
-          {/* EQUAL WIDTH FIX REASON: Official Tailwind CSS documentation shows lg:grid-cols-2 creates equal-width columns by default */}
-          {/* PADDING ADDITION: Added p-6 for consistent internal padding matching left column for perfect visual balance */}
-          <div className="relative min-h-0 flex flex-col space-y-6 p-6">
+          {/* Image and Badges - Right Side Layout */}
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Right column layout optimization for image and badges */}
+          {/* SPACING OPTIMIZATION: Improved spacing and sizing for better visual hierarchy */}
+          <div className="relative min-h-0 flex flex-col space-y-8">
             {/* Founder Image - Top Position */}
             <m.div
               className="relative w-full flex items-center justify-center bg-transparent"
@@ -304,7 +288,7 @@ export function AboutSection({
                 style={{
                   filter: "drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))",
                   backgroundColor: "transparent",
-                  maxHeight: "400px",
+                  maxHeight: "500px",
                 }}
                 priority
               />
@@ -314,75 +298,49 @@ export function AboutSection({
               {/* GRADIENT ELIMINATION: Removed blur-xl gradient decorative element to achieve clean appearance */}
             </m.div>
 
-            {/* Introductory Text Above Video */}
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Max-width utility for responsive text container sizing */}
-            {/* SIGNIFICANT SIZE REDUCTION REASON: Official Tailwind CSS documentation shows max-w-3xs (16rem/256px) provides substantial reduction from max-w-2xs (18rem/288px) */}
-            {/* FURTHER FONT REDUCTION: Official Tailwind CSS font-size utilities show text-[10px] sm:text-xs md:text-sm for more aggressive text size control */}
-            {/* WIDTH CONSTRAINT ENHANCEMENT: Using max-w-3xs (16rem) to ensure text is significantly smaller than video max-w-xs container (20rem) */}
-            {/* CONTEXT7 SOURCE: /magicuidesign/magicui - Highlighter component for strategic text emphasis within sentences */}
-            {/* IMPLEMENTATION REASON: Official Magic UI documentation shows Highlighter component can highlight specific words within text content */}
-            {/* HIGHLIGHT PATTERN: Using orange/accent color (#eab308) to emphasize key word "thrive" for brand consistency */}
-            <m.p
-              className="text-[10px] sm:text-xs md:text-sm italic text-center text-primary-700 font-medium mb-2 max-w-3xs mx-auto whitespace-nowrap"
+            {/* Credentials with Brand Logos - Moved here from left column */}
+            {/* CONTEXT7 SOURCE: /vercel/next.js - Badge container sizing and spacing optimization */}
+            {/* SIZING OPTIMIZATION: Improved padding, gap spacing, and layout for better badge presentation */}
+            <m.div
+              className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-6 bg-primary-50/30 rounded-lg p-6 mx-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{
                 duration: 0.8,
                 ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.4,
+                delay: 1.2,
               }}
             >
-              Meet Elizabeth, here to help your child{" "}
-              <Highlighter
-                action="underline"
-                color="#eab308"
-                strokeWidth={3}
-                iterations={2}
-                padding={4}
-              >
-                thrive
-              </Highlighter>
-            </m.p>
-
-            {/* Video Component - Bottom Position */}
-            {/*
-             * CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog stacked layout integration
-             * IMPLEMENTATION REASON: Official Magic UI documentation shows HeroVideoDialog component for video modal functionality
-             * LAYOUT PATTERN: Vertical stack layout with founder image on top, video component below
-             * ANIMATION STYLE: "from-center" for royal client presentation quality
-             * RESPONSIVE DESIGN: Maintains aspect ratio and scaling across all breakpoints
-             *
-             * CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog thumbnailSrc property configuration
-             * THUMBNAIL UPDATE REASON: Official Magic UI documentation Section 3 shows thumbnailSrc prop for video thumbnail image
-             * CHANGE TYPE: Update thumbnailSrc from founder portrait to actual video first frame
-             * IMPLEMENTATION: Using new 2025 video thumbnail Screenshot 2025-08-22 at 11.38.39.png renamed to introduction-video-thumbnail-2025.png
-             * REVISION REASON: Updated homepage video thumbnail with new 2025 screenshot for improved user experience
-             */}
-            <m.div
-              className="relative w-full"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 1.0,
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.6,
-              }}
-            >
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Width constraint utilities for responsive design */}
-              {/* WIDTH CONSTRAINT REASON: Official Tailwind CSS documentation shows max-w-xs (320px) ensures video never exceeds founder photo display width */}
-              {/* ASPECT RATIO MAINTENANCE: Video component maintains 16:9 aspect ratio while respecting maximum width constraint */}
-              {/* CONTEXT7 SOURCE: /vercel/next.js - Updated to use new elizabeth-introduction-sound.mp4 with enhanced audio */}
-              {/* VIDEO UPDATE REASON: Official Next.js documentation supports using latest video assets with sound for better user engagement */}
-              {/* GRADIENT REMOVAL IMPLEMENTATION: Official Tailwind CSS documentation shows clean component styling without background gradients or decorative overlays */}
-              <HeroVideoDialog
-                videoSrc={getVideoUrl('elizabeth-introduction-sound.mp4')}
-                thumbnailSrc="/images/video-thumbnails/introduction-video-thumbnail-2025.png"
-                thumbnailAlt="Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online"
-                animationStyle="from-center"
-                className="w-full max-w-xs mx-auto"
-              />
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/images/media/tatler-logo.png"
+                  alt="Tatler Address Book"
+                  width={80}
+                  height={30}
+                  className="h-10 w-auto object-contain"
+                />
+                <span className="font-medium text-primary-900 text-sm">
+                  Address Book
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/images/media/schools-guide-uk-logo.png"
+                  alt="School Guide UK"
+                  width={80}
+                  height={30}
+                  className="h-12 w-auto object-contain"
+                />
+                <span className="font-medium text-primary-900 text-sm">
+                  &lsquo;Top Pick&rsquo;
+                </span>
+              </div>
+              <div className="flex items-center gap-2 w-full sm:w-auto justify-center mt-2 sm:mt-0">
+                <span className="font-medium text-primary-900 text-sm text-center">
+                  Trusted by Royal Clientele
+                </span>
+              </div>
             </m.div>
           </div>
         </div>
