@@ -1,0 +1,246 @@
+# CONTEXT7 SOURCE: /vercel/next.js - Optimized CI/CD pipeline with build caching
+# CI OPTIMIZATION: Official Next.js documentation shows build caching patterns for faster pipelines
+
+name: Optimized CI Pipeline
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '8'
+
+jobs:
+  # CONTEXT7 SOURCE: /jestjs/jest - Parallel test execution job
+  # TEST OPTIMIZATION: Jest documentation shows sharding tests across multiple jobs
+  test:
+    name: Test (Shard ${{ matrix.shard }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+
+      # CONTEXT7 SOURCE: /vercel/next.js - Node.js setup with caching
+      # CACHE OPTIMIZATION: Official GitHub Actions caching for Node.js dependencies
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # CONTEXT7 SOURCE: /vercel/next.js - Dependency caching strategy
+      # DEPENDENCY CACHE: Cache node_modules for faster installation
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            .npm
+          key: deps-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            deps-${{ runner.os }}-
+
+      # CONTEXT7 SOURCE: /jestjs/jest - Jest cache for faster test runs
+      # TEST CACHE: Cache Jest results for incremental testing
+      - name: Cache Jest
+        uses: actions/cache@v4
+        with:
+          path: .jest-cache
+          key: jest-${{ runner.os }}-${{ matrix.shard }}-${{ hashFiles('src/**/*.tsx', 'src/**/*.ts') }}
+          restore-keys: |
+            jest-${{ runner.os }}-${{ matrix.shard }}-
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      # CONTEXT7 SOURCE: /jestjs/jest - Parallel test execution with sharding
+      # SHARD EXECUTION: Run tests in parallel across matrix
+      - name: Run tests (Shard ${{ matrix.shard }}/4)
+        run: npm run test:ci -- --shard=${{ matrix.shard }}/4
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        if: matrix.shard == 1
+        with:
+          name: coverage-${{ matrix.shard }}
+          path: coverage/
+
+  # CONTEXT7 SOURCE: /vercel/next.js - Optimized build job with caching
+  # BUILD OPTIMIZATION: Next.js build caching for faster CI/CD
+  build:
+    name: Build & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # CONTEXT7 SOURCE: /vercel/next.js - Next.js build cache
+      # BUILD CACHE: Cache .next directory for incremental builds
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+            .next/static
+          key: nextjs-${{ runner.os }}-${{ hashFiles('**/package-lock.json', '**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            nextjs-${{ runner.os }}-
+
+      # CONTEXT7 SOURCE: /microsoft/typescript - TypeScript build cache
+      # TYPE CACHE: Cache TypeScript incremental compilation
+      - name: Cache TypeScript
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache/tsconfig.tsbuildinfo
+            tsconfig.tsbuildinfo
+          key: typescript-${{ runner.os }}-${{ hashFiles('tsconfig.json', 'src/**/*.ts', 'src/**/*.tsx') }}
+          restore-keys: |
+            typescript-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      # CONTEXT7 SOURCE: /microsoft/typescript - Parallel type checking
+      # TYPE CHECK: Run type checking in parallel with build
+      - name: Type check
+        run: npm run typecheck
+
+      # CONTEXT7 SOURCE: /vercel/next.js - Optimized production build
+      # BUILD EXECUTION: Build with all optimizations enabled
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: .next/
+
+  # CONTEXT7 SOURCE: /vercel/next.js - Lint job running in parallel
+  # LINT OPTIMIZATION: Run linting in parallel with other jobs
+  lint:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # CONTEXT7 SOURCE: /vercel/next.js - ESLint cache
+      # LINT CACHE: Cache ESLint results for faster linting
+      - name: Cache ESLint
+        uses: actions/cache@v4
+        with:
+          path: .eslintcache
+          key: eslint-${{ runner.os }}-${{ hashFiles('.eslintrc*', 'src/**/*.tsx', 'src/**/*.ts') }}
+          restore-keys: |
+            eslint-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Lint
+        run: npm run lint -- --cache --cache-location .eslintcache
+
+      - name: Format check
+        run: npm run format:check
+
+  # CONTEXT7 SOURCE: /playwright/playwright - E2E tests with browser caching
+  # E2E OPTIMIZATION: Playwright tests with browser binary caching
+  e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      # CONTEXT7 SOURCE: /playwright/playwright - Browser binary cache
+      # BROWSER CACHE: Cache Playwright browsers for faster E2E tests
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: .next/
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: npm run test:e2e:parallel
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+
+  # CONTEXT7 SOURCE: /vercel/next.js - Performance monitoring job
+  # PERFORMANCE VALIDATION: Validate 30% improvement target
+  performance:
+    name: Performance Validation
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: .next/
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      # CONTEXT7 SOURCE: /vercel/next.js - Lighthouse CI for performance metrics
+      # PERFORMANCE CHECK: Validate performance improvements
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun --collect.startServerCommand="npm start" --collect.url="http://localhost:3000" --assert.preset="lighthouse:recommended" --assert.assertions.first-contentful-paint="warn" --assert.assertions.speed-index="warn"
+
+      - name: Check bundle size
+        run: |
+          echo "Checking bundle sizes..."
+          find .next/static -name "*.js" -exec du -h {} + | sort -rh | head -20

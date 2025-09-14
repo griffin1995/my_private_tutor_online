@@ -23,6 +23,10 @@ import { createScrollVariants, createHoverVariants } from '@/lib/animations/micr
 // DATA CACHING INTEGRATION: Official Next.js documentation shows importing cached functions for optimized data access
 import { getAboutContent, getAboutVideoData, getAboutPerformanceConfig } from '@/lib/about-data';
 
+// CONTEXT7 SOURCE: /vercel/next.js - A/B testing variant type import for component configuration
+// VARIANT INTEGRATION: Official Next.js documentation shows importing variant types for component optimization
+import type { AboutSectionVariant } from '@/lib/ab-testing/about-variants';
+
 /**
  * CONTEXT7 SOURCE: /reactjs/react.dev - TypeScript interface patterns for component props
  * INTERFACE DESIGN REASON: Official React documentation recommends flexible prop interfaces for reusable components
@@ -36,6 +40,10 @@ interface AboutContentProps {
   className?: string;
   /** Conversion tracker for analytics and A/B testing */
   conversionTracker?: any;
+  /** A/B testing variant configuration */
+  variant?: AboutSectionVariant;
+  /** Content alignment style */
+  contentAlignment?: 'left' | 'center' | 'right';
 }
 
 /**
@@ -47,7 +55,9 @@ export function AboutContent({
   title,
   animationDelay = 0.1,
   className = "",
-  conversionTracker
+  conversionTracker,
+  variant,
+  contentAlignment = 'left'
 }: AboutContentProps) {
   // CONTEXT7 SOURCE: /vercel/next.js - Using cached data access for performance optimization
   // CACHED DATA ACCESS: Official Next.js documentation shows accessing cached data to prevent redundant computations
@@ -57,30 +67,46 @@ export function AboutContent({
 
   const displayTitle = title || contentData.formattedTitle;
 
-  // CONTEXT7 SOURCE: /reactjs/react.dev - Enhanced animation hook integration for performance optimized animations
-  // ANIMATION HOOK: Official React documentation shows using custom hooks for complex state management
+  // CONTEXT7 SOURCE: /vercel/next.js - Variant-based content and styling configuration
+  // VARIANT CONFIGURATION: Official Next.js documentation shows dynamic configuration based on A/B testing variants
+  const showVideo = variant?.content.showVideo ?? true;
+  const titleStyle = variant?.content.titleStyle ?? 'standard';
+  const animationMode = variant?.performance.animationMode ?? 'full';
+  const enableMicroInteractions = variant?.animations.enableMicroInteractions ?? true;
+
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Dynamic class generation based on content alignment
+  // ALIGNMENT STYLING: Official Tailwind CSS documentation shows dynamic text alignment classes
+  const alignmentClasses = {
+    left: 'text-left',
+    center: 'text-center mx-auto',
+    right: 'text-right ml-auto'
+  };
+  const contentAlignmentClass = alignmentClasses[contentAlignment];
+
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Variant-aware enhanced animation hook integration for performance optimized animations
+  // VARIANT ANIMATIONS: Official React documentation shows using variant configuration for dynamic animation behavior
   const titleAnimation = useEnhancedAnimations({
-    threshold: 0.2,
-    rootMargin: '-50px',
+    threshold: animationMode === 'minimal' ? 0.1 : 0.2,
+    rootMargin: animationMode === 'minimal' ? '-20px' : '-50px',
     delay: animationDelay,
-    trackingName: 'about-title',
-    enableMicroInteractions: true
+    trackingName: `about-title-${variant?.id || 'default'}`,
+    enableMicroInteractions: enableMicroInteractions && animationMode === 'full'
   });
 
   const contentAnimation = useEnhancedAnimations({
-    threshold: 0.1,
-    rootMargin: '-100px',
-    delay: animationDelay + 0.3,
-    trackingName: 'about-content',
+    threshold: animationMode === 'minimal' ? 0.05 : 0.1,
+    rootMargin: animationMode === 'minimal' ? '-50px' : '-100px',
+    delay: animationDelay + (animationMode === 'minimal' ? 0.1 : 0.3),
+    trackingName: `about-content-${variant?.id || 'default'}`,
     enableMicroInteractions: false
   });
 
   const videoAnimation = useEnhancedAnimations({
-    threshold: 0.3,
-    rootMargin: '-50px',
-    delay: animationDelay + 0.6,
-    trackingName: 'about-video',
-    enableMicroInteractions: true
+    threshold: animationMode === 'minimal' ? 0.1 : 0.3,
+    rootMargin: animationMode === 'minimal' ? '-30px' : '-50px',
+    delay: animationDelay + (animationMode === 'minimal' ? 0.2 : 0.6),
+    trackingName: `about-video-${variant?.id || 'default'}`,
+    enableMicroInteractions: enableMicroInteractions && animationMode === 'full'
   });
 
   // CONTEXT7 SOURCE: /framer/motion - Scroll variants for enhanced animation performance
@@ -90,9 +116,11 @@ export function AboutContent({
 
   return (
     <div
-      className={`space-y-8 min-h-0 ${className}`}
+      className={`space-y-8 min-h-0 ${contentAlignmentClass} ${className}`}
       role="region"
       aria-labelledby="about-content-heading"
+      data-variant={variant?.id}
+      data-title-style={titleStyle}
     >
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component title rendering with enhanced micro-interactions */}
       <m.h2

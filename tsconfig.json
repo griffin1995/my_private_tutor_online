@@ -37,7 +37,7 @@
     "noEmit": true,
     "incremental": true, // CONTEXT7 SOURCE: /microsoft/typescript - Enable incremental compilation for faster rebuilds
     "tsBuildInfoFile": ".next/cache/tsconfig.tsbuildinfo", // CONTEXT7 SOURCE: /microsoft/typescript - Optimize incremental build info location
-    "composite": false, // CONTEXT7 SOURCE: /microsoft/typescript - Disable composite for performance in non-monorepo projects
+    "composite": false, // CONTEXT7 SOURCE: /microsoft/typescript - Phase 3: Disable composite to remove project reference overhead
     "preserveWatchOutput": true, // CONTEXT7 SOURCE: /microsoft/typescript - Preserve watch output for better development experience
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

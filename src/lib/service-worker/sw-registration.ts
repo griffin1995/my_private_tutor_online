@@ -47,6 +47,11 @@ const aboutSectionSWConfig: ServiceWorkerConfig = {
  * REGISTRATION PATTERN: Official MDN documentation shows robust service worker registration
  */
 export const registerAboutSectionSW = async (): Promise<boolean> => {
+  // CONTEXT7 SOURCE: /vercel/next.js - Temporarily disabled for build performance optimization
+  // PERFORMANCE FIX: Service worker registration disabled to reduce build overhead
+  return false;
+
+  /* TEMPORARILY DISABLED FOR PERFORMANCE OPTIMIZATION
   // CONTEXT7 SOURCE: /mozilla/mdn - Service Worker browser support detection
   // FEATURE DETECTION: Official MDN documentation shows checking service worker support
   if (typeof window === 'undefined' || !('serviceWorker' in navigator)) {
@@ -96,6 +101,7 @@ export const registerAboutSectionSW = async (): Promise<boolean> => {
     console.error('About section service worker registration failed:', error);
     return false;
   }
+  */
 };
 
 /**

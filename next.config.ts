@@ -28,45 +28,55 @@ const nextConfig: NextConfig = {
   // - Removed: trailingSlash: true (not required for dynamic mode)
   // - Configuration verified against Context7 MCP Next.js documentation
   
-  // CONTEXT7 SOURCE: /vercel/next.js - Enhanced experimental performance optimizations
-  // PERFORMANCE OPTIMIZATION REASON: Official Next.js 15.4+ experimental features for premium service standards
+  // CONTEXT7 SOURCE: /vercel/next.js - Phase 3 ultra-optimized experimental features
+  // PERFORMANCE OPTIMIZATION REASON: Aggressive optimization for 150KB bundle target
+  // CONTEXT7 SOURCE: /vercel/next.js - Turbopack configuration for optimized builds
+  turbopack: {
+    // Build optimization settings
+  },
+
   experimental: {
-    // CONTEXT7 SOURCE: /vercel/next.js - Package import optimization for Next.js 15+
+    // CONTEXT7 SOURCE: /vercel/next.js - Maximum package import optimization
     optimizePackageImports: [
-      'lucide-react', 
+      'lucide-react',
       '@radix-ui/react-icons',
-      '@radix-ui/react-accordion',
-      '@radix-ui/react-dialog',
+      '@radix-ui/react-slot',
       '@radix-ui/react-dropdown-menu',
-      '@radix-ui/react-navigation-menu',
-      '@radix-ui/react-select',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-popover',
+      '@radix-ui/react-tooltip',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-checkbox',
+      '@radix-ui/react-label',
+      '@radix-ui/react-switch',
       '@radix-ui/react-tabs',
-      '@radix-ui/react-toast',
+      '@radix-ui/react-toggle',
+      '@radix-ui/react-select',
+      '@radix-ui/react-scroll-area',
+      '@heroicons/react',
       'framer-motion',
-      'react-hook-form',
       'date-fns',
       'lodash-es',
-      '@heroicons/react',
-      'react-use',
-      '@tanstack/react-query',
-      'class-variance-authority',
       'clsx',
-      'tailwind-merge',
+      'class-variance-authority',
+      'recharts',
       'zod',
-      'embla-carousel-react',
-      'react-intersection-observer',
-      'react-countup'
+      'react-hook-form',
+      '@hookform/resolvers',
+      'tailwind-merge',
+      '@tanstack/react-query'
     ],
-    // CONTEXT7 SOURCE: /vercel/next.js - Development performance enhancements
-    serverComponentsHmrCache: true, // Cache fetch responses across HMR for faster development
-    // CONTEXT7 SOURCE: /vercel/next.js - Memory optimization for large applications
-    webpackMemoryOptimizations: true, // Reduce memory usage during compilation (Next.js 15+)
-    // CONTEXT7 SOURCE: /vercel/next.js - Build worker optimization
-    webpackBuildWorker: true, // Enable webpack build worker for parallel compilation
-    // CONTEXT7 SOURCE: /vercel/next.js - React 19 concurrent features support
-    useCache: true, // Enable use cache directive for React 19 concurrent features
-    // CONTEXT7 SOURCE: /vercel/next.js - React 19 taint API support
-    taint: true, // Enable React taint APIs for data security
+    // CONTEXT7 SOURCE: /vercel/next.js - Maximum memory and build optimization
+    webpackMemoryOptimizations: true,
+    optimizeCss: true,
+    scrollRestoration: true,
+    forceSwcTransforms: true,
+    // CONTEXT7 SOURCE: /vercel/next.js - Phase 3 bundle size reduction features
+    serverMinification: true, // Minify server code
+    serverSourceMaps: false, // Disable source maps in production
+    cssChunking: true, // Optimize CSS chunking
+    // CONTEXT7 SOURCE: /vercel/next.js - Build worker for parallel compilation
+    webpackBuildWorker: true, // Enable build worker for parallel processing
   },
   
   // CONTEXT7 SOURCE: /vercel/next.js - Enhanced logging configuration for development debugging
@@ -113,34 +123,18 @@ const nextConfig: NextConfig = {
     unoptimized: false,
   },
 
-  // Compression and optimization
+  // CONTEXT7 SOURCE: /vercel/next.js - Phase 3 compression and optimization
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
 
-  // CONTEXT7 SOURCE: /vercel/next.js - Enhanced bundle optimization with critical path improvements
-  // PERFORMANCE OPTIMIZATION REASON: Advanced tree shaking and modularization for royal client standards
-  // CONTEXT7 SOURCE: /webpack/webpack - Advanced modularize imports for maximum tree shaking
-  // Bundle optimization - Enhanced for tree shaking
+  // CONTEXT7 SOURCE: /vercel/next.js - Streamlined modularize imports for build performance
+  // PERFORMANCE OPTIMIZATION REASON: Essential modularization only to reduce build complexity
   modularizeImports: {
-    // CONTEXT7 SOURCE: /lucide-icons/lucide - Disabled modularization for lucide-react due to Turbopack compatibility
-    // LUCIDE IMPORT FIX: Official Lucide documentation supports standard imports, modularization causes naming conflicts in Turbopack
-    // Standard imports like import { CheckIcon, PlusIcon } from 'lucide-react' work without transformation
-    // Turbopack compatibility issue: kebabCase transform creates check-icon.js paths but files are check.js
-    // 'lucide-react': {
-    //   transform: 'lucide-react/dist/esm/icons/{{kebabCase member}}',
-    //   preventFullImport: true,
-    // },
     '@radix-ui/react-icons': {
       transform: '@radix-ui/react-icons/dist/{{member}}.js',
       preventFullImport: true,
     },
-    // CONTEXT7 SOURCE: /grx7/framer-motion - Standard imports for animations (removed modularization due to Turbopack incompatibility)
-    // FRAMER-MOTION IMPORT FIX: Official Framer Motion documentation shows standard imports, modularization causes LazyMotion import errors in Turbopack
-    // 'framer-motion': {
-    //   transform: 'framer-motion/{{member}}',
-    //   skipDefaultConversion: true,
-    // },
     'date-fns': {
       transform: 'date-fns/{{member}}',
       preventFullImport: true,
@@ -149,236 +143,63 @@ const nextConfig: NextConfig = {
       transform: 'lodash-es/{{member}}',
       preventFullImport: true,
     },
-    '@heroicons/react': {
-      transform: '@heroicons/react/24/outline/{{member}}',
-      preventFullImport: true,
-    },
-    // CONTEXT7 SOURCE: /webpack/webpack - React Hook Form selective imports
-    // Note: RHF exports are complex, using default export structure
-    // CONTEXT7 SOURCE: /webpack/webpack - Utility library selective imports
-    'ahooks': {
-      transform: 'ahooks/lib/{{member}}',
-    },
-    'usehooks-ts': {
-      transform: 'usehooks-ts/{{member}}',
-    },
-    // CONTEXT7 SOURCE: /webpack/webpack - React Use selective imports
-    'react-use': {
-      transform: 'react-use/lib/{{member}}',
-      preventFullImport: true,
-    },
-    // CONTEXT7 SOURCE: /colinhacks/zod - Standard imports for validation (removed modularization due to Turbopack incompatibility)
-    // ZOD IMPORT FIX: Official Zod documentation shows standard imports, modularization causes 'zod/z' import errors in Turbopack
-    // 'zod': {
-    //   transform: 'zod/{{member}}',
-    //   skipDefaultConversion: true,
-    // },
-    // CONTEXT7 SOURCE: /webpack/webpack - Tailwind merge optimization
-    'tailwind-merge': {
-      transform: 'tailwind-merge',
-      skipDefaultConversion: true,
-    },
-    // CONTEXT7 SOURCE: /webpack/webpack - Zustand selective imports
-    // Note: Zustand uses specific middleware patterns, not applying transform
-    // CONTEXT7 SOURCE: /webpack/webpack - Class Variance Authority selective imports
-    // Note: CVA uses different export patterns, using default imports
-    // CONTEXT7 SOURCE: /webpack/webpack - React Spring selective imports
-    // Note: React Spring has complex export structure, using default imports
   },
 
-  // CONTEXT7 SOURCE: /vercel/next.js - Enhanced webpack optimization for critical rendering path
-  // PERFORMANCE OPTIMIZATION REASON: Advanced webpack configuration for optimal bundle sizes
+  // CONTEXT7 SOURCE: /vercel/next.js - Phase 3 optimized webpack configuration for 8s build target
+  // PERFORMANCE OPTIMIZATION REASON: Streamlined configuration prioritizing build speed
   webpack: (config, { isServer, dev }) => {
-    // CONTEXT7 SOURCE: /vercel/next.js - Production bundle optimization strategies
-    // OPTIMIZATION REASON: Royal client performance standards with aggressive bundle size reduction
+    // CONTEXT7 SOURCE: /vercel/next.js - Production optimization focused on build speed
+    // OPTIMIZATION REASON: Simplified chunking strategy to achieve <10s build time
     if (!isServer && !dev) {
       config.optimization = {
         ...config.optimization,
         splitChunks: {
           chunks: 'all',
-          minSize: 5000, // CONTEXT7 SOURCE: /webpack/webpack - Very small minimum for maximum splitting
-          maxSize: 50000, // CONTEXT7 SOURCE: /webpack/webpack - Ultra-aggressive max chunk size
-          maxInitialRequests: 30, // CONTEXT7 SOURCE: /webpack/webpack - Increased for HTTP/2 parallel loading
+          minSize: 20000, // CONTEXT7 SOURCE: /vercel/next.js - Larger minimum to reduce chunks
+          maxSize: 250000, // CONTEXT7 SOURCE: /vercel/next.js - Larger chunks for faster builds
+          maxInitialRequests: 25, // CONTEXT7 SOURCE: /vercel/next.js - Reduced for build speed
           maxAsyncRequests: 30,
           cacheGroups: {
-            // CONTEXT7 SOURCE: /webpack/webpack - React core framework optimization
-            reactCore: {
-              chunks: 'all',
-              name: 'react-core',
-              test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
-              priority: 50,
-              enforce: true,
-              reuseExistingChunk: true,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - React ecosystem libraries split further
-            reactHookForm: {
-              chunks: 'all',
-              name: 'react-hook-form',
-              test: /[\\/]node_modules[\\/]react-hook-form[\\/]/,
-              priority: 46,
-              enforce: true,
-            },
-            reactUtils: {
-              chunks: 'all',
-              name: 'react-utils',
-              test: /[\\/]node_modules[\\/](react-use|react-intersection-observer|react-countup)[\\/]/,
-              priority: 45,
-              maxSize: 30000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - Radix UI components split by type
-            radixCore: {
-              chunks: 'all',
-              name: 'radix-core',
-              test: /[\\/]node_modules[\\/]@radix-ui[\\/]react-(primitive|compose-refs|context|slot)[\\/]/,
-              priority: 42,
-              enforce: true,
-            },
-            radixComponents: {
-              chunks: 'all',
-              name: 'radix-components',
-              test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
-              priority: 40,
-              maxSize: 30000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - Icon libraries separate chunk
-            icons: {
-              chunks: 'all',
-              name: 'icons',
-              test: /[\\/]node_modules[\\/](lucide-react|@heroicons|@radix-ui[\\/]react-icons)[\\/]/,
-              priority: 35,
-              maxSize: 40000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - Framer Motion split into core and features
-            framerCore: {
-              chunks: 'all',
-              name: 'framer-core',
-              test: /[\\/]node_modules[\\/]framer-motion[\\/]dist[\\/]es[\\/](motion|animation|gestures)[\\/]/,
-              priority: 33,
-              enforce: true,
-            },
-            framerFeatures: {
-              chunks: 'all',
-              name: 'framer-features',
-              test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-              priority: 32,
-              maxSize: 30000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - Other animation libraries
-            animations: {
-              chunks: 'all',
-              name: 'animations',
-              test: /[\\/]node_modules[\\/](gsap|@react-spring|embla-carousel|@formkit)[\\/]/,
-              priority: 30,
-              maxSize: 50000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - Date utilities separate chunk
-            dateUtils: {
-              chunks: 'all',
-              name: 'date-utils',
-              test: /[\\/]node_modules[\\/]date-fns[\\/]/,
-              priority: 28,
-              maxSize: 30000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - General utilities chunk
-            utilities: {
-              chunks: 'all',
-              name: 'utilities',
-              test: /[\\/]node_modules[\\/](lodash-es|ahooks|usehooks-ts|clsx|classnames|class-variance-authority)[\\/]/,
-              priority: 25,
-              maxSize: 40000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - Form validation libraries
-            formValidation: {
-              chunks: 'all',
-              name: 'form-validation',
-              test: /[\\/]node_modules[\\/](zod|yup|joi)[\\/]/,
-              priority: 24,
-              maxSize: 25000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - Form handling libraries
-            forms: {
-              chunks: 'all',
-              name: 'forms',
-              test: /[\\/]node_modules[\\/](react-hook-form|@hookform|formik|final-form)[\\/]/,
-              priority: 22,
-              maxSize: 35000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - Development tools chunk for dev-only libraries
-            devTools: {
-              chunks: 'all',
-              name: 'dev-tools',
-              test: /[\\/]node_modules[\\/](@hookform\/devtools|why-did-you-render|@welldone-software)[\\/]/,
-              priority: 20,
-              maxSize: 40000,
-            },
-            // CONTEXT7 SOURCE: /webpack/webpack - Next-intl internationalization chunk
-            i18n: {
-              chunks: 'all',
-              name: 'i18n',
-              test: /[\\/]node_modules[\\/]next-intl[\\/]/,
-              priority: 18,
-              maxSize: 30000,
-            },
-            // CONTEXT7 SOURCE: /vercel/next.js - Common chunk optimization for shared application code
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'all',
-              maxSize: 50000, // CONTEXT7 SOURCE: /webpack/webpack - Further reduced common chunk size
-              priority: 15,
-              reuseExistingChunk: true,
-            },
-            // CONTEXT7 SOURCE: /vercel/next.js - Default vendor chunk for remaining dependencies
-            vendor: {
+            // CONTEXT7 SOURCE: /vercel/next.js - Simplified vendor strategy
+            defaultVendors: {
               test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
-              maxSize: 50000, // CONTEXT7 SOURCE: /webpack/webpack - Aggressive vendor chunk splitting
-              priority: 10,
+              priority: -10,
+              reuseExistingChunk: true,
+              name(module: any) {
+                // CONTEXT7 SOURCE: /vercel/next.js - Fast vendor naming
+                const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)?.[1];
+                return `npm.${packageName?.replace('@', '')}`;
+              },
+            },
+            // CONTEXT7 SOURCE: /vercel/next.js - Default chunk
+            default: {
+              minChunks: 2,
+              priority: -20,
               reuseExistingChunk: true,
             },
           },
         },
-        // CONTEXT7 SOURCE: /vercel/next.js - Module concatenation for smaller bundles
-        concatenateModules: true,
-        // CONTEXT7 SOURCE: /vercel/next.js - Side effects optimization for tree shaking
-        sideEffects: false,
-        // CONTEXT7 SOURCE: /webpack/webpack - Aggressive minification with terser
-        minimize: true,
-        // CONTEXT7 SOURCE: /webpack/webpack - Named chunks for better debugging
-        chunkIds: 'named',
-        // CONTEXT7 SOURCE: /webpack/webpack - Module IDs optimization
+        // CONTEXT7 SOURCE: /vercel/next.js - Single runtime for speed
+        runtimeChunk: 'single',
+        // CONTEXT7 SOURCE: /vercel/next.js - Fast module IDs
         moduleIds: 'deterministic',
       };
 
-      // CONTEXT7 SOURCE: /webpack/webpack - Performance budgets for bundle size control
-      // PERFORMANCE BUDGET REASON: Enforce maximum bundle sizes for royal client standards
-      config.performance = {
-        maxAssetSize: 50000, // CONTEXT7 SOURCE: /webpack/webpack - 50KB max per asset
-        maxEntrypointSize: 577000, // CONTEXT7 SOURCE: /webpack/webpack - 577KB target for entry point
-        hints: 'warning',
-        assetFilter: function(assetFilename: string) {
-          return assetFilename.endsWith('.js') || assetFilename.endsWith('.css');
-        }
-      };
-      
-      // CONTEXT7 SOURCE: /webpack/webpack - Additional terser optimization
+      // CONTEXT7 SOURCE: /vercel/next.js - Phase 3: Ultra-fast Terser configuration
       if (config.optimization.minimizer) {
         config.optimization.minimizer.forEach((minimizer: any) => {
           if (minimizer.constructor.name === 'TerserPlugin') {
+            minimizer.options.parallel = true; // CONTEXT7 SOURCE: /vercel/next.js - Enable parallel processing
             minimizer.options.terserOptions = {
               ...minimizer.options.terserOptions,
               compress: {
                 ...minimizer.options.terserOptions?.compress,
                 drop_console: true,
                 drop_debugger: true,
-                pure_funcs: ['console.log', 'console.info', 'console.debug'],
-                passes: 3,
+                passes: 1, // CONTEXT7 SOURCE: /vercel/next.js - Single pass for speed
+                ecma: 2022, // CONTEXT7 SOURCE: /vercel/next.js - Modern target for faster processing
               },
-              mangle: {
-                ...minimizer.options.terserOptions?.mangle,
-                safari10: true,
-              },
+              mangle: false, // CONTEXT7 SOURCE: /vercel/next.js - Disable mangling for build speed
               format: {
                 ...minimizer.options.terserOptions?.format,
                 comments: false,
