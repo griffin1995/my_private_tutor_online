@@ -478,5 +478,6 @@ interface ComplexityBreakdown {
 // Export singleton instance
 export const complexityAssessment = new ComplexityAssessmentEngine()
 
-// Export types
+// Export types and re-export enum
+export { ComplexityTier } from './agent-selection-engine-v2'
 export type { TaskCharacteristics, ComplexityBreakdown }

@@ -596,5 +596,6 @@ interface PerformanceAlert {
 // Export singleton instance
 export const performanceMonitor = new MultiAgentPerformanceMonitor()
 
-// Export types
+// Export types and re-export enum
+export { ComplexityTier } from './agent-selection-engine-v2'
 export type { PerformanceMetrics, PerformanceDashboard, RecursiveImprovementAnalysis }

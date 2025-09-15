@@ -494,5 +494,6 @@ export class EnhancedAgentSelectionEngine {
 // Export singleton instance for application use
 export const agentSelectionEngine = new EnhancedAgentSelectionEngine()
 
-// Export types for external use
-export type { ComplexityTier, AgentCapability, SelectionWeights }
+// Export types and enums for external use
+export { ComplexityTier }
+export type { AgentCapability, SelectionWeights }
