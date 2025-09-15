@@ -59,7 +59,11 @@ class AboutSectionPerformanceMonitor {
     try {
       this.cacheMonitor = getCachePerformanceMonitor();
     } catch (error) {
-      console.warn('Cache monitoring initialization failed:', error);
+      // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without console output
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Cache monitoring initialization failed:', error);
+      }
+      // Production: Silent fallback, cache monitoring disabled
     }
   }
 
@@ -118,7 +122,11 @@ class AboutSectionPerformanceMonitor {
       this.observers.push(clsObserver);
 
     } catch (error) {
-      console.warn('Performance monitoring not available:', error);
+      // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without console output
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Performance monitoring not available:', error);
+      }
+      // Production: Graceful degradation, monitoring disabled
     }
   }
 
@@ -168,10 +176,11 @@ class AboutSectionPerformanceMonitor {
       });
     }
 
-    // Console logging for development
+    // CONTEXT7 SOURCE: /vercel/next.js - Development-only console logging
     if (process.env.NODE_ENV === 'development') {
       console.log(`About Section ${metric}:`, `${Math.round(value)}ms`);
     }
+    // Production: Metrics sent to analytics service only
   }
 
   /**
@@ -187,7 +196,11 @@ class AboutSectionPerformanceMonitor {
       try {
         summary.cacheMetrics = this.cacheMonitor.getMetrics();
       } catch (error) {
-        console.warn('Cache metrics retrieval failed:', error);
+        // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without console output
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Cache metrics retrieval failed:', error);
+        }
+        // Production: Return metrics without cache data
       }
     }
 
@@ -203,7 +216,11 @@ class AboutSectionPerformanceMonitor {
       try {
         observer.disconnect();
       } catch (error) {
-        console.warn('Error disconnecting observer:', error);
+        // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without console output
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Error disconnecting observer:', error);
+        }
+        // Production: Silent cleanup, observer may already be disconnected
       }
     });
     this.observers = [];

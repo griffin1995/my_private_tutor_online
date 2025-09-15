@@ -70,7 +70,7 @@ const nextConfig: NextConfig = {
     webpackMemoryOptimizations: true,
     optimizeCss: true,
     scrollRestoration: true,
-    forceSwcTransforms: true,
+    // REMOVED: forceSwcTransforms (incompatible with Turbopack)
     // CONTEXT7 SOURCE: /vercel/next.js - Phase 3 bundle size reduction features
     serverMinification: true, // Minify server code
     serverSourceMaps: false, // Disable source maps in production

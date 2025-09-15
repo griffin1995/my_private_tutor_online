@@ -187,7 +187,11 @@ class CachePerformanceMonitor {
         this.metrics.cacheStorageUsage = estimate.usage || 0;
       }
     } catch (error) {
-      console.warn('Storage estimation failed:', error);
+      // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without console output
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Storage estimation failed:', error);
+      }
+      // Production: Continue without storage metrics
     }
   }
 

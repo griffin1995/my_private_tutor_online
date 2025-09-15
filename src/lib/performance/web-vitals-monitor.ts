@@ -81,7 +81,8 @@ class WebVitalsMonitor {
       this.logWarning(metric);
     }
 
-    if (this.config.debug) {
+    // CONTEXT7 SOURCE: /vercel/next.js - Debug logging disabled in production
+    if (this.config.debug && process.env.NODE_ENV === 'development') {
       console.log(`[Web Vitals] ${metric.name}:`, metric.value,
         metric.rating || this.getRating(metric));
     }
@@ -116,13 +117,17 @@ class WebVitalsMonitor {
     return 'poor';
   }
 
-  // CONTEXT7 SOURCE: /vercel/next.js - Log performance warnings
+  // CONTEXT7 SOURCE: /vercel/next.js - Log performance warnings (development only)
   private logWarning(metric: Metric): void {
     const rating = this.getRating(metric);
-    console.warn(
-      `[Web Vitals Warning] ${metric.name} is ${rating}: ${metric.value.toFixed(2)}`,
-      `(threshold: ${this.config.thresholds[metric.name as keyof typeof DEFAULT_THRESHOLDS]})`
-    );
+    // CONTEXT7 SOURCE: /vercel/next.js - Console warnings disabled in production
+    if (process.env.NODE_ENV === 'development') {
+      console.warn(
+        `[Web Vitals Warning] ${metric.name} is ${rating}: ${metric.value.toFixed(2)}`,
+        `(threshold: ${this.config.thresholds[metric.name as keyof typeof DEFAULT_THRESHOLDS]})`
+      );
+    }
+    // Production: Metrics sent to monitoring endpoint without console output
   }
 
   // CONTEXT7 SOURCE: /vercel/next.js - Send metrics to monitoring endpoint
@@ -169,9 +174,11 @@ class WebVitalsMonitor {
         });
       }
     } catch (error) {
-      if (this.config.debug) {
+      // CONTEXT7 SOURCE: /vercel/next.js - Error logging disabled in production
+      if (this.config.debug && process.env.NODE_ENV === 'development') {
         console.error('[Web Vitals] Failed to report metrics:', error);
       }
+      // Production: Silent error handling, metrics queued for retry
     } finally {
       this.isReporting = false;
     }

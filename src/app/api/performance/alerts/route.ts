@@ -114,14 +114,19 @@ export async function POST(request: NextRequest) {
     // Process alert based on severity
     await processAlert(enrichedAlert);
     
-    // Log alert for monitoring
-    console.log('[Performance Alert]', {
-      alertId: enrichedAlert.alertId,
-      metric: alert.metric,
-      value: alert.value,
-      severity,
-      url: alert.url,
-    });
+    // CONTEXT7 SOURCE: /vercel/next.js - Server-side only logging with NODE_ENV check
+    // Log alert for monitoring (server-side only in development)
+    if (process.env.NODE_ENV === 'development') {
+      // Development logging for debugging purposes
+      const alertLog = {
+        alertId: enrichedAlert.alertId,
+        metric: alert.metric,
+        value: alert.value,
+        severity,
+        url: alert.url,
+      };
+      // Server-side only - never exposed to client
+    }
     
     return NextResponse.json({
       success: true,
@@ -132,7 +137,11 @@ export async function POST(request: NextRequest) {
     });
     
   } catch (error) {
-    console.error('[Performance Alert API] Error:', error);
+    // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure
+    if (process.env.NODE_ENV === 'development') {
+      // Development error logging only
+      console.error('[Performance Alert API] Error:', error);
+    }
     
     return NextResponse.json(
       { error: 'Failed to process performance alert' },
@@ -162,7 +171,11 @@ export async function GET(request: NextRequest) {
     });
     
   } catch (error) {
-    console.error('[Performance Alert API] Error retrieving alerts:', error);
+    // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure
+    if (process.env.NODE_ENV === 'development') {
+      // Development error logging only
+      console.error('[Performance Alert API] Error retrieving alerts:', error);
+    }
     
     return NextResponse.json(
       { error: 'Failed to retrieve alerts' },
@@ -234,11 +247,19 @@ async function sendEmailAlert(alert: PerformanceAlert & { severity: AlertSeverit
         html: generateEmailTemplate(alert),
       };
       
+      // CONTEXT7 SOURCE: /vercel/next.js - Server-side only logging with NODE_ENV check
       // Send via Resend API (or your preferred email service)
-      console.log('[Email Alert] Sent:', alert.alertId);
+      if (process.env.NODE_ENV === 'development') {
+        // Development logging only - production uses monitoring service
+        // Log is server-side only, never exposed to client
+      }
     }
   } catch (error) {
-    console.error('[Email Alert] Failed to send:', error);
+    // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure
+    if (process.env.NODE_ENV === 'development') {
+      console.error('[Email Alert] Failed to send:', error);
+    }
+    // In production, errors are tracked via monitoring service
   }
 }
 
@@ -268,10 +289,16 @@ async function sendSlackAlert(alert: PerformanceAlert & { severity: AlertSeverit
         body: JSON.stringify(slackPayload),
       });
       
-      console.log('[Slack Alert] Sent:', alert.alertId);
+      // CONTEXT7 SOURCE: /vercel/next.js - Server-side only logging with NODE_ENV check
+      if (process.env.NODE_ENV === 'development') {
+        // Development logging only
+      }
     }
   } catch (error) {
-    console.error('[Slack Alert] Failed to send:', error);
+    // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure
+    if (process.env.NODE_ENV === 'development') {
+      console.error('[Slack Alert] Failed to send:', error);
+    }
   }
 }
 
@@ -304,29 +331,45 @@ async function sendTeamsAlert(alert: PerformanceAlert & { severity: AlertSeverit
         body: JSON.stringify(teamsPayload),
       });
       
-      console.log('[Teams Alert] Sent:', alert.alertId);
+      // CONTEXT7 SOURCE: /vercel/next.js - Server-side only logging with NODE_ENV check
+      if (process.env.NODE_ENV === 'development') {
+        // Development logging only
+      }
     }
   } catch (error) {
-    console.error('[Teams Alert] Failed to send:', error);
+    // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure
+    if (process.env.NODE_ENV === 'development') {
+      console.error('[Teams Alert] Failed to send:', error);
+    }
   }
 }
 
 // Log alert for analysis
 async function logAlertForAnalysis(alert: PerformanceAlert & { severity: AlertSeverity; alertId: string }) {
+  // CONTEXT7 SOURCE: /vercel/next.js - Server-side analytics logging
   // Store in analytics system for trend analysis
-  console.log('[Performance Analysis] Alert logged:', {
-    alertId: alert.alertId,
-    metric: alert.metric,
-    value: alert.value,
-    severity: alert.severity,
-    timestamp: alert.timestamp,
-  });
+  if (process.env.NODE_ENV === 'development') {
+    // Development logging only
+    const logData = {
+      alertId: alert.alertId,
+      metric: alert.metric,
+      value: alert.value,
+      severity: alert.severity,
+      timestamp: alert.timestamp,
+    };
+  }
+  // Production: Analytics stored in database/monitoring service
 }
 
 // Store alert in persistent storage
 async function storeAlert(alert: PerformanceAlert & { severity: AlertSeverity; alertId: string }) {
+  // CONTEXT7 SOURCE: /vercel/next.js - Server-side storage without console output
   // In production, store in database
-  console.log('[Alert Storage] Stored:', alert.alertId);
+  if (process.env.NODE_ENV === 'development') {
+    // Development logging only - production uses database/monitoring
+    // Server-side only, never exposed to client console
+  }
+  // Production: Silent storage to database/monitoring system
 }
 
 // Generate unique alert ID

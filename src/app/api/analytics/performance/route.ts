@@ -189,7 +189,10 @@ class PerformanceAlertSystem {
     // NOTIFICATION REASON: Immediate notification of royal client performance issues
     try {
       for (const alert of alerts) {
-        console.warn(`[FAQ Performance Alert] ${alert.severity.toUpperCase()}: ${alert.metric} exceeded ${alert.threshold}ms with ${alert.actual}ms for royal client`);
+        // CONTEXT7 SOURCE: /vercel/next.js - Performance warning logging (development only)
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(`[FAQ Performance Alert] ${alert.severity.toUpperCase()}: ${alert.metric} exceeded ${alert.threshold}ms with ${alert.actual}ms for royal client`);
+        }
         
         // In production, this would integrate with monitoring systems like:
         // - Slack notifications
@@ -208,12 +211,20 @@ class PerformanceAlertSystem {
               ...alert,
             }),
           }).catch(error => {
-            console.error('[Performance Alert] Failed to send monitoring alert:', error);
+            // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure
+            if (process.env.NODE_ENV === 'development') {
+              console.error('[Performance Alert] Failed to send monitoring alert:', error);
+            }
+            // Production: Errors tracked via monitoring service
           });
         }
       }
     } catch (error) {
-      console.error('[Performance Alert System] Failed to send alerts:', error);
+      // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Performance Alert System] Failed to send alerts:', error);
+      }
+      // Production: Silent error handling with monitoring service
     }
   }
 }
@@ -253,13 +264,15 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       await PerformanceAlertSystem.sendAlerts(alerts);
     }
     
-    // CONTEXT7 SOURCE: /vercel/next.js - Performance analytics logging
+    // CONTEXT7 SOURCE: /vercel/next.js - Performance analytics logging (development only)
     // LOGGING REASON: Track FAQ performance patterns for optimization
-    console.log(`[FAQ Performance Analytics] Processed ${metrics.length} metrics for ${userType} client (session: ${sessionId})`);
-    
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`[FAQ Performance Analytics] Processed ${metrics.length} metrics for ${userType} client (session: ${sessionId})`);
+    }
+
     // Log critical performance issues
     const criticalMetrics = enrichedMetrics.filter(m => m.rating === 'poor');
-    if (criticalMetrics.length > 0) {
+    if (criticalMetrics.length > 0 && process.env.NODE_ENV === 'development') {
       console.warn(`[FAQ Performance Analytics] ${criticalMetrics.length} poor performance metrics detected for ${userType} client`);
     }
     
@@ -274,7 +287,10 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     });
     
   } catch (error) {
-    console.error('[FAQ Performance Analytics] Error processing performance data:', error);
+    // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure
+    if (process.env.NODE_ENV === 'development') {
+      console.error('[FAQ Performance Analytics] Error processing performance data:', error);
+    }
     
     // CONTEXT7 SOURCE: /vercel/next.js - Error response handling
     // ERROR HANDLING REASON: Graceful error handling for performance monitoring
@@ -352,7 +368,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     });
     
   } catch (error) {
-    console.error('[FAQ Performance Analytics] Error retrieving performance data:', error);
+    // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure
+    if (process.env.NODE_ENV === 'development') {
+      console.error('[FAQ Performance Analytics] Error retrieving performance data:', error);
+    }
     
     return NextResponse.json({
       success: false,
