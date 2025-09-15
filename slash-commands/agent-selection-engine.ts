@@ -16,7 +16,7 @@ interface TaskContext {
   urgency: UrgencyLevel;
 }
 
-interface AgentSelection {
+export interface AgentSelection {
   agents: SelectedAgent[];
   reasoning: string;
   confidence: number; // 0-1 confidence in selection
