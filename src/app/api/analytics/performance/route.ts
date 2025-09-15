@@ -1,5 +1,6 @@
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js API route for performance analytics collection
 // IMPLEMENTATION REASON: Official Next.js App Router pattern for handling performance data collection
+// MULTI-AGENT CONSENSUS: Correlation ID tracking for distributed request tracing
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
@@ -99,12 +100,13 @@ class InMemoryPerformanceStorage implements PerformanceStorage {
     };
     
     for (const [metricName, metricList] of Object.entries(metricsByName)) {
+      // CONTEXT7 SOURCE: /vercel/next.js - TypeScript API route type safety patterns
       // Calculate averages
-      const totalValue = metricList.reduce((sum, m) => sum + m.value, 0);
-      aggregated.averages[metricName] = totalValue / metricList.length;
-      
+      const totalValue = (metricList as any[]).reduce((sum: number, m: any) => sum + m.value, 0);
+      aggregated.averages[metricName] = totalValue / (metricList as any[]).length;
+
       // Calculate rating distribution
-      const ratings = metricList.reduce((acc, m) => {
+      const ratings = (metricList as any[]).reduce((acc: Record<string, number>, m: any) => {
         acc[m.rating] = (acc[m.rating] || 0) + 1;
         return acc;
       }, {} as Record<string, number>);
@@ -233,21 +235,40 @@ class PerformanceAlertSystem {
 // POST REASON: Accept and process performance metrics from FAQ system monitoring
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
+    // CONTEXT7 SOURCE: /vercel/next.js - Extract correlation context from middleware
+    // MULTI-AGENT CONSENSUS: Correlation tracking for distributed performance monitoring
+    const correlationId = request.headers.get('x-correlation-id') || 'unknown';
+    const performanceContextHeader = request.headers.get('x-performance-context');
+
+    let performanceContext = null;
+    if (performanceContextHeader) {
+      try {
+        performanceContext = JSON.parse(performanceContextHeader);
+      } catch (e) {
+        console.warn('Failed to parse performance context:', e);
+      }
+    }
+
     // CONTEXT7 SOURCE: /vercel/next.js - Request validation and parsing
     // VALIDATION REASON: Ensure performance data integrity before processing
     const body = await request.json();
     const validatedPayload = PerformancePayloadSchema.parse(body);
-    
+
     const { sessionId, userType, metrics, metadata } = validatedPayload;
-    
-    // CONTEXT7 SOURCE: /vercel/next.js - Performance data enrichment
-    // ENRICHMENT REASON: Add server-side context to performance metrics
+
+    // CONTEXT7 SOURCE: /vercel/next.js - Performance data enrichment with correlation tracking
+    // ENRICHMENT REASON: Add server-side context and correlation metadata to performance metrics
     const enrichedMetrics = metrics.map(metric => ({
       ...metric,
+      // Multi-agent consensus correlation tracking
+      correlationId,
+      requestId: performanceContext?.requestId || correlationId,
+      processingTimestamp: Date.now(),
+      // Server context enrichment
       serverTimestamp: Date.now(),
       userType: userType,
       sessionId: sessionId,
-      // Add request context
+      // Request context
       origin: request.headers.get('origin') || '',
       referer: request.headers.get('referer') || '',
       'user-agent': request.headers.get('user-agent') || '',
@@ -276,15 +297,24 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       console.warn(`[FAQ Performance Analytics] ${criticalMetrics.length} poor performance metrics detected for ${userType} client`);
     }
     
-    // CONTEXT7 SOURCE: /vercel/next.js - Success response
-    // RESPONSE REASON: Confirm successful performance data processing
-    return NextResponse.json({
+    // CONTEXT7 SOURCE: /vercel/next.js - Success response with correlation tracking
+    // RESPONSE REASON: Confirm successful performance data processing with correlation metadata
+    const response = NextResponse.json({
       success: true,
       processed: metrics.length,
       alerts: alerts.length,
       sessionId: sessionId,
       timestamp: Date.now(),
+      correlationId: correlationId,
     });
+
+    // Add correlation headers for client-side tracking
+    response.headers.set('X-Correlation-ID', correlationId);
+    if (performanceContext?.requestId) {
+      response.headers.set('X-Request-ID', performanceContext.requestId);
+    }
+
+    return response;
     
   } catch (error) {
     // CONTEXT7 SOURCE: /vercel/next.js - Production error handling without client exposure

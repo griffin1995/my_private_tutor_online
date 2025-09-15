@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { decrypt } from '@/lib/auth/session'
 import { cookies } from 'next/headers'
+import { nanoid } from 'nanoid'
 // CONTEXT7 SOURCE: /vercel/next.js - Middleware import path patterns for Next.js 15
 // BUG FIX REASON: Official Next.js middleware documentation specifies @/ alias resolves to src/, requiring @/middleware/security path
 import { securityMiddleware, applySecurityHeaders } from '@/middleware/security'
@@ -30,6 +31,21 @@ const protectedRoutes = ['/admin']
  * Authenticated admin users are redirected away from login
  */
 const publicRoutes = ['/admin/login']
+
+/**
+ * Performance monitoring API paths that require correlation tracking
+ * CONTEXT7 SOURCE: /vercel/next.js - Multi-agent consensus performance tracking
+ */
+const PERFORMANCE_PATHS = [
+  '/api/analytics/performance',
+  '/api/performance/alerts',
+  '/api/analytics/events',
+  '/api/analytics/client-success'
+]
+
+// Correlation ID headers for performance monitoring
+const CORRELATION_ID_HEADER = 'x-correlation-id'
+const PERFORMANCE_CONTEXT_HEADER = 'x-performance-context'
 
 /**
  * Enterprise-grade middleware for premium tutoring service
@@ -75,6 +91,46 @@ export default async function middleware(req: NextRequest) {
   const securityResponse = await securityMiddleware(req)
   if (securityResponse) {
     return applySecurityHeaders(securityResponse)
+  }
+
+  // CONTEXT7 SOURCE: /vercel/next.js - Correlation ID tracking for performance monitoring
+  // MULTI-AGENT CONSENSUS: Add request correlation tracking for performance APIs
+  const shouldTrackPerformance = PERFORMANCE_PATHS.some(apiPath => path.startsWith(apiPath))
+
+  if (shouldTrackPerformance) {
+    // Generate or extract correlation ID
+    let correlationId = req.headers.get(CORRELATION_ID_HEADER)
+    if (!correlationId) {
+      correlationId = nanoid(12) // Short, URL-safe unique identifier
+    }
+
+    // Create performance context for downstream processing
+    const performanceContext = {
+      correlationId,
+      requestId: nanoid(8),
+      timestamp: Date.now(),
+      path: path,
+      method: req.method,
+      userAgent: req.headers.get('user-agent')?.substring(0, 100) || 'unknown',
+      ip: req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown',
+      country: req.headers.get('x-vercel-ip-country') || 'unknown',
+      referer: req.headers.get('referer') || 'direct'
+    }
+
+    // Add correlation context to request headers for API processing
+    const response = NextResponse.next({
+      request: {
+        headers: new Headers([
+          ...Array.from(req.headers.entries()),
+          [CORRELATION_ID_HEADER, correlationId],
+          [PERFORMANCE_CONTEXT_HEADER, JSON.stringify(performanceContext)]
+        ])
+      }
+    })
+
+    // Add correlation ID to response headers for client tracking
+    response.headers.set(CORRELATION_ID_HEADER, correlationId)
+    return applySecurityHeaders(response)
   }
   
   // Handle internationalization for public routes

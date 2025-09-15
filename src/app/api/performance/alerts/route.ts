@@ -54,9 +54,45 @@ const ALERT_CONFIG = {
 // Alert storage (in production, use Redis or database)
 const alertCache = new Map<string, { count: number; lastAlert: number }>();
 
-// CONTEXT7 SOURCE: /vercel/next.js - POST endpoint for performance alert processing
+// Helper functions for context determination
+function determineUserType(userAgent: string, context: any): 'premium' | 'standard' | 'royal' {
+  // In production, this would check user session/subscription data
+  // For now, use heuristics based on context
+  if (context?.country === 'GB' && userAgent.includes('Safari')) {
+    return 'royal' // Royal clients often use Safari on UK connections
+  }
+  return 'standard' // Default classification
+}
+
+function extractPageType(url: string): string {
+  if (url.includes('/faq')) return 'faq'
+  if (url.includes('/admin')) return 'admin'
+  if (url.includes('/booking')) return 'booking'
+  return 'general'
+}
+
+function extractDeviceType(userAgent: string): 'mobile' | 'desktop' | 'tablet' {
+  if (/Mobile|Android|iPhone/i.test(userAgent)) return 'mobile'
+  if (/iPad|Tablet/i.test(userAgent)) return 'tablet'
+  return 'desktop'
+}
+
+// CONTEXT7 SOURCE: /vercel/next.js - POST endpoint for performance alert processing with correlation
 export async function POST(request: NextRequest) {
   try {
+    // Extract correlation context from middleware
+    const correlationId = request.headers.get('x-correlation-id') || 'unknown'
+    const performanceContextHeader = request.headers.get('x-performance-context')
+
+    let performanceContext = null
+    if (performanceContextHeader) {
+      try {
+        performanceContext = JSON.parse(performanceContextHeader)
+      } catch (e) {
+        console.warn('Failed to parse performance context:', e)
+      }
+    }
+
     const alert: PerformanceAlert = await request.json();
     
     // Validate alert data
@@ -111,8 +147,8 @@ export async function POST(request: NextRequest) {
       alertId: generateAlertId(alert),
     };
     
-    // Process alert based on severity
-    await processAlert(enrichedAlert);
+    // Process alert with correlation context through event-driven architecture
+    await processAlert(enrichedAlert, correlationId, performanceContext);
     
     // CONTEXT7 SOURCE: /vercel/next.js - Server-side only logging with NODE_ENV check
     // Log alert for monitoring (server-side only in development)
@@ -206,10 +242,67 @@ function determineAlertSeverity(alert: PerformanceAlert): AlertSeverity {
   return AlertSeverity.LOW;
 }
 
-// Process alert based on severity
-async function processAlert(alert: PerformanceAlert & { severity: AlertSeverity; alertId: string }) {
+// CONTEXT7 SOURCE: /vercel/next.js - Event-driven alert processing with Edge Functions
+// MULTI-AGENT CONSENSUS: Dispatch alerts to Edge Function for priority-based processing
+async function processAlert(
+  alert: PerformanceAlert & { severity: AlertSeverity; alertId: string },
+  correlationId: string,
+  context: any
+) {
+  try {
+    // Create alert event for edge processing
+    const alertEvent = {
+      type: 'performance_alert',
+      correlationId,
+      requestId: alert.alertId,
+      timestamp: Date.now(),
+      alert: {
+        metric: alert.metric,
+        value: alert.value,
+        threshold: alert.threshold,
+        severity: alert.severity.toLowerCase(),
+        url: alert.url,
+        sessionId: alert.sessionId,
+        userAgent: alert.userAgent,
+        ip: context?.ip || 'unknown',
+        country: context?.country || 'unknown'
+      },
+      context: {
+        userType: determineUserType(alert.userAgent, context),
+        pageType: extractPageType(alert.url),
+        deviceType: extractDeviceType(alert.userAgent)
+      }
+    }
+
+    // Dispatch to Edge Function for event-driven processing
+    const edgeResponse = await fetch('/api/performance/alerts/process', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Correlation-ID': correlationId,
+        'X-Request-ID': alert.alertId
+      },
+      body: JSON.stringify(alertEvent)
+    })
+
+    if (!edgeResponse.ok) {
+      console.error('Edge Function processing failed, falling back to legacy processing')
+      return legacyProcessAlert(alert)
+    }
+
+    const result = await edgeResponse.json()
+    return result
+
+  } catch (error) {
+    console.error('Event-driven processing failed, using fallback:', error)
+    return legacyProcessAlert(alert)
+  }
+}
+
+// Fallback to legacy processing if Edge Function fails
+async function legacyProcessAlert(alert: PerformanceAlert & { severity: AlertSeverity; alertId: string }) {
   const { severity } = alert;
-  
+
   // Critical alerts require immediate notification
   if (severity === AlertSeverity.CRITICAL) {
     await Promise.allSettled([
@@ -218,7 +311,7 @@ async function processAlert(alert: PerformanceAlert & { severity: AlertSeverity;
       sendTeamsAlert(alert),
     ]);
   }
-  
+
   // High severity alerts need prompt attention
   else if (severity === AlertSeverity.HIGH) {
     await Promise.allSettled([
