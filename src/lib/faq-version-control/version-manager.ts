@@ -389,6 +389,15 @@ export class DiffEngine {
    * Escape HTML characters for safe display in browser
    */
   private static escapeHtml(text: string): string {
+    if (typeof window === 'undefined') {
+      // Server-side HTML escaping
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+    }
     const div = document.createElement('div')
     div.textContent = text
     return div.innerHTML

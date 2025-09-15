@@ -75,6 +75,10 @@ import { HomepageSections } from "../../components/homepage/homepage-sections";
 // ERROR BOUNDARY REASON: Official React documentation for production error handling
 import { ErrorBoundaryWrapper } from "../../components/boundaries/homepage-error-boundary";
 
+// CONTEXT7 SOURCE: /garmeeh/next-seo - Schema markup for comprehensive SEO optimization
+// SCHEMA MARKUP REASON: Official next-seo documentation enables structured data for search engines
+import { SchemaMarkup } from "../../components/seo/SchemaMarkup";
+
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic imports for below-fold optimization
 // DYNAMIC IMPORT REASON: Official Next.js documentation for code splitting and performance
 import { LazyThreePillarsSection } from "../../components/dynamic/lazy-loaded-components";
@@ -126,14 +130,27 @@ export default function HomePage() {
   });
 
   return (
-    <PageLayout
-      showHeader={true}
-      showFooter={true}
-      containerSize="full"
-      verticalSpacing="none"
-      headerProps={{ isHomepage: true }}
-      footerProps={{ showContactForm: true }}
-    >
+    <>
+      {/* CONTEXT7 SOURCE: /garmeeh/next-seo - Homepage schema markup for SEO optimization */}
+      {/* SEO INTEGRATION: Comprehensive structured data for homepage search engine visibility */}
+      <SchemaMarkup
+        pageTitle="Premium Tutoring with Royal Endorsements | My Private Tutor Online"
+        pageDescription="Royal endorsed premium tutoring service in London. 15+ years experience, Oxbridge specialists, proven results. Featured in Tatler Address Book 2025."
+        pageUrl="https://myprivatetutoronline.co.uk"
+        pageType="HomePage"
+        includeOrganization={true}
+        includeLocalBusiness={true}
+        includeSocialProfile={true}
+      />
+
+      <PageLayout
+        showHeader={true}
+        showFooter={true}
+        containerSize="full"
+        verticalSpacing="none"
+        headerProps={{ isHomepage: true }}
+        footerProps={{ showContactForm: true }}
+      >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - PageLayout spacing control with verticalSpacing="none" */}
       {/* WHITE SPACE FIX REASON: Official Tailwind CSS documentation shows py-12 utility creates 48px top/bottom padding - verticalSpacing="none" eliminates this padding to allow full-screen Hero section to start at viewport top */}
       {/* LAYOUT OPTIMIZATION: Prevents white space above Hero section by removing default PageLayout container padding for premium full-viewport design */}
@@ -346,7 +363,8 @@ export default function HomePage() {
           </div>
         </section>
       */}
-    </PageLayout>
+      </PageLayout>
+    </>
   );
 }
 

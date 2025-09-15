@@ -218,6 +218,10 @@ export class MultiAgentWorkflow {
     console.log(`🚀 Starting /multi-agent-review for: "${config.taskDescription}"`);
     const workflowStartTime = Date.now();
 
+    // PHASE 2: Clear previous metrics and start streaming
+    taskToolIntegration.clearPerformanceMetrics();
+    taskToolIntegration.streamProgressUpdate('Multi-agent workflow initializing...', 'info');
+
     // Step 1: Dynamic Agent Selection
     const agentSelection = this.agentSelector.selectAgents(config.taskDescription);
     console.log(`🎯 Selected ${agentSelection.agents.length} agents with ${Math.round(agentSelection.confidence * 100)}% confidence`);
@@ -264,6 +268,10 @@ export class MultiAgentWorkflow {
     console.log(`\n${'='.repeat(60)}`);
     console.log(`DEBATE COMPLETE - GENERATING DOCUMENTATION`);
     console.log(`${'='.repeat(60)}\n`);
+
+    // PHASE 2: Display performance report
+    console.log(taskToolIntegration.getPerformanceReport());
+    console.log(`\n${'='.repeat(60)}\n`);
 
     // Step 3: Generate Comprehensive Documentation
     const consensus = this.generateFinalConsensus(rounds, agentSelection);
@@ -319,38 +327,41 @@ export class MultiAgentWorkflow {
     console.log(`📋 Round 1: Initial Assessment - ${selection.agents.length} agents analyzing task`);
     const roundStartTime = Date.now();
 
-    const exchanges: Exchange[] = [];
-    const outcomes: string[] = [];
+    const basePrompt = `Provide your initial assessment of this task from your expertise perspective. Include:
+    - Key challenges and opportunities you identify
+    - Current state analysis within your domain
+    - Initial recommendations
+    - Baseline metrics where applicable
 
-    // CONSENSUS: Execute agents in parallel for efficiency
-    const agentPromises = selection.agents.map(async (agent) => {
-      const exchange = await this.generateAgentResponse(
-        agent.type,
-        'assessment',
-        config.taskDescription,
-        `Provide your initial assessment of this task from your ${agent.capabilities[0]} expertise perspective. Include:
-        - Key challenges and opportunities you identify
-        - Current state analysis within your domain
-        - Initial recommendations
-        - Baseline metrics where applicable`
-      );
+    Task: ${config.taskDescription}`;
 
-      return { agent, exchange };
+    // PHASE 2: Use hybrid execution (parallel for Round 1)
+    const agentTypes = selection.agents.map(agent => agent.type);
+    const responses = await taskToolIntegration.executeHybridRounds(
+      1,
+      agentTypes,
+      'assessment',
+      basePrompt
+    );
+
+    // Process responses into exchanges
+    const exchanges: Exchange[] = responses.map((content, index) => ({
+      agentType: agentTypes[index],
+      timestamp: new Date().toISOString(),
+      content,
+      tags: ['assessment', agentTypes[index]],
+      confidence: this.calculateResponseConfidence(content)
+    }));
+
+    const outcomes: string[] = responses.map((content, index) => {
+      const keyPoints = this.extractKeyPoints(content);
+      return `${agentTypes[index]}: ${keyPoints[0] || 'Assessment complete'}`;
     });
 
-    // Wait for all agents to complete (parallel execution)
-    console.log(`⏳ Waiting for ${selection.agents.length} agents to complete assessment...`);
-    const results = await Promise.all(agentPromises);
-
-    // Process results in order
-    for (const { agent, exchange } of results) {
-      exchanges.push(exchange);
-      const keyPoints = this.extractKeyPoints(exchange.content);
-      outcomes.push(`${agent.type}: ${keyPoints[0] || 'Assessment complete'}`);
-    }
-
     const actualDuration = Math.round((Date.now() - roundStartTime) / 1000);
-    console.log(`✅ Round 1 completed in ${actualDuration} seconds`);
+
+    // PHASE 2: Collect performance metrics
+    taskToolIntegration.collectPerformanceMetrics(1, actualDuration, agentTypes.length, responses);
 
     return {
       roundNumber: 1,
@@ -368,34 +379,49 @@ export class MultiAgentWorkflow {
     previousRound: RoundResult
   ): Promise<RoundResult> {
     console.log(`💡 Round 2: Detailed Proposals - Each agent presenting specific strategies`);
+    const roundStartTime = Date.now();
 
-    const exchanges: Exchange[] = [];
-    const outcomes: string[] = [];
+    const basePrompt = `Based on Round 1 findings, present your detailed implementation strategy including:
+    - Specific technical approaches and solutions
+    - Expected performance improvements and metrics
+    - Resource requirements and timeline estimates
+    - Risk assessment for your proposed approach
+    - Integration points with other domains
 
-    // Each agent presents detailed proposals
-    for (const agent of selection.agents) {
-      const exchange = await this.generateAgentResponse(
-        agent.type,
-        'proposals',
-        config.taskDescription,
-        `Based on Round 1 findings, present your detailed implementation strategy including:
-        - Specific technical approaches and solutions
-        - Expected performance improvements and metrics
-        - Resource requirements and timeline estimates
-        - Risk assessment for your proposed approach
-        - Integration points with other domains
+    Task: ${config.taskDescription}
+    Previous assessments for context: ${this.summarizePreviousRound(previousRound)}`;
 
-        Previous assessments for context: ${this.summarizePreviousRound(previousRound)}`
-      );
+    // PHASE 2: Use hybrid execution (parallel for Round 2)
+    const agentTypes = selection.agents.map(agent => agent.type);
+    const responses = await taskToolIntegration.executeHybridRounds(
+      2,
+      agentTypes,
+      'proposals',
+      basePrompt
+    );
 
-      exchanges.push(exchange);
-      outcomes.push(`${agent.type}: ${this.extractProposalSummary(exchange.content)}`);
-    }
+    // Process responses into exchanges
+    const exchanges: Exchange[] = responses.map((content, index) => ({
+      agentType: agentTypes[index],
+      timestamp: new Date().toISOString(),
+      content,
+      tags: ['proposals', agentTypes[index]],
+      confidence: this.calculateResponseConfidence(content)
+    }));
+
+    const outcomes: string[] = responses.map((content, index) => {
+      return `${agentTypes[index]}: ${this.extractProposalSummary(content)}`;
+    });
+
+    const actualDuration = Math.round((Date.now() - roundStartTime) / 1000);
+
+    // PHASE 2: Collect performance metrics
+    taskToolIntegration.collectPerformanceMetrics(2, actualDuration, agentTypes.length, responses);
 
     return {
       roundNumber: 2,
       roundType: 'proposals',
-      duration: 20,
+      duration: actualDuration,
       exchanges,
       outcomes,
       consensusLevel: this.calculateConsensusLevel(exchanges)
