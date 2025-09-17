@@ -147,46 +147,55 @@ export function VideoMasterclassSection({
           background: `radial-gradient(circle at ${isTextLeft ? 'bottom left' : 'bottom right'}, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 80%, transparent 90%)`
         }}
       />
-      {/* Video Section */}
-      <div className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
-        {isFree ? (
-          <div className="relative group">
-            <div className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
-              <span className="text-white group-hover:text-[#D4AF37] font-medium italic transition-colors duration-300">Watch.</span>
-            </div>
-            <HeroVideoDialog
-              videoSrc={videoUrl}
-              thumbnailSrc={thumbnailUrl}
-              thumbnailAlt={alt}
-              animationStyle={animationStyle}
-              isFree={isFree}
-              className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-            />
-          </div>
-        ) : (
-          <a 
-            href={video.paymentUrl || '#'} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="relative group cursor-pointer"
-          >
-            <div className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
-              <span className="!text-white group-hover:!text-[#D4AF37] font-medium italic transition-colors duration-300">Buy.</span>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-black/15 rounded-lg z-10 transition-opacity duration-300 group-hover:bg-black/0"></div>
-              <div className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] relative overflow-hidden">
-                <img
-                  src={thumbnailUrl}
-                  alt={alt}
-                  className="w-full h-full object-cover drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-                  style={{ aspectRatio: "16/9" }}
-                />
+      {/* Video Section - Only show if video URL exists */}
+      {videoUrl && videoUrl.trim() !== '' ? (
+        <div className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
+          {isFree ? (
+            <div className="relative group">
+              <div className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
+                <span className="text-white group-hover:text-[#D4AF37] font-medium italic transition-colors duration-300">Watch.</span>
               </div>
+              <HeroVideoDialog
+                videoSrc={videoUrl}
+                thumbnailSrc={thumbnailUrl}
+                thumbnailAlt={alt}
+                animationStyle={animationStyle}
+                isFree={isFree}
+                className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+              />
             </div>
-          </a>
-        )}
-      </div>
+          ) : (
+            <a
+              href={video.paymentUrl || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative group cursor-pointer"
+            >
+              <div className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
+                <span className="!text-white group-hover:!text-[#D4AF37] font-medium italic transition-colors duration-300">Buy.</span>
+              </div>
+              <div className="relative">
+                <div className="absolute inset-0 bg-black/15 rounded-lg z-10 transition-opacity duration-300 group-hover:bg-black/0"></div>
+                <div className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] relative overflow-hidden">
+                  <img
+                    src={thumbnailUrl}
+                    alt={alt}
+                    className="w-full h-full object-cover drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                    style={{ aspectRatio: "16/9" }}
+                  />
+                </div>
+              </div>
+            </a>
+          )}
+        </div>
+      ) : (
+        /* Hide video section but keep layout structure */
+        <div className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
+          <div className="w-full max-w-lg mx-auto h-0">
+            {/* Empty placeholder to maintain layout */}
+          </div>
+        </div>
+      )}
 
       {/* Text Content Section */}
       <div className={`relative z-10 w-4/5 mx-auto p-8 ${textAlignment} ${textGridOrder}`}>

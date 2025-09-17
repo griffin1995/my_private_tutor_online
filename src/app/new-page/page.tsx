@@ -15,6 +15,23 @@ import { type StandardizedContent, type StandardizedHeadingContent, type Standar
 import { standardizedPageContent, getStandardizedContentById } from "./standardized-data";
 import React from "react";
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Type predicate for runtime type safety and null video path handling
+// TYPE PREDICATE REASON: Official TypeScript documentation demonstrates type predicates for narrowing discriminated unions and preventing runtime errors
+type ValidVideoMasterclass = VideoMasterclass & { youtubeUrl: string };
+
+const isValidVideo = (video: VideoMasterclass): video is ValidVideoMasterclass => {
+  const isValid = Boolean(video.youtubeUrl && video.youtubeUrl.trim() !== '');
+  console.log('🎥 Video Filter Debug:', {
+    videoId: video.id,
+    videoTitle: video.title,
+    youtubeUrl: video.youtubeUrl,
+    isValid: isValid,
+    urlType: typeof video.youtubeUrl,
+    urlTrimmed: video.youtubeUrl?.trim?.() || 'N/A'
+  });
+  return isValid;
+};
+
 // CONTEXT7 SOURCE: /vercel/next.js - Client component pattern without metadata export
 // CLIENT COMPONENT REASON: Official Next.js documentation states client components cannot export metadata
 
@@ -46,9 +63,11 @@ export default function NewPage() {
   // CONTEXT7 SOURCE: /reactjs/react.dev - React cache() memoization for expensive operations
   // BATCH FETCH: Get all video masterclasses in single optimized operation
   const allVideos = getVideoMasterclassPage();
+  console.log('📊 All Videos Fetched:', allVideos?.length || 0, 'videos');
 
   // Split videos into sections for organized display
   const ucasVideos = allVideos.slice(2, 4); // Next 2 videos for UCAS section
+  console.log('🎓 UCAS Videos:', ucasVideos?.length || 0, 'videos');
 
   // CONTEXT7 SOURCE: /microsoft/typescript - Standardized data structure access patterns
   // STANDARDIZED DATA ACCESS: Get content sections using standardized data structure
@@ -58,6 +77,25 @@ export default function NewPage() {
   const secondarySchoolHeading = getStandardizedContentById("secondary-school-heading") as StandardizedHeadingContent;
   const secondarySchoolVideos1 = getStandardizedContentById("secondary-school-videos-1") as StandardizedVideoContent;
   const secondarySchoolVideos2 = getStandardizedContentById("secondary-school-videos-2") as StandardizedVideoContent;
+
+  console.log('📋 Standardized Data Debug:', {
+    primarySchoolHeading: !!primarySchoolHeading,
+    primarySchoolVideos1: primarySchoolVideos1?.videos?.length || 0,
+    primarySchoolVideos2: primarySchoolVideos2?.videos?.length || 0,
+    secondarySchoolHeading: !!secondarySchoolHeading,
+    secondarySchoolVideos1: secondarySchoolVideos1?.videos?.length || 0,
+    secondarySchoolVideos2: secondarySchoolVideos2?.videos?.length || 0
+  });
+
+  // Additional debugging for data structure
+  console.log('🔧 Raw Data Debug:', {
+    primarySchoolHeading,
+    primarySchoolVideos1,
+    primarySchoolVideos2,
+    secondarySchoolHeading,
+    secondarySchoolVideos1,
+    secondarySchoolVideos2
+  });
 
   return (
     <React.Fragment>
@@ -154,7 +192,7 @@ export default function NewPage() {
               title: "Aligned With Every Major Exam Board",
               description: "Our team works with GL, CEM, ISEB, CAT4, and internal papers set by individual schools.",
               bulletPoints: ["GL Assessment expertise", "CEM preparation", "ISEB Common Entrance", "School-specific papers"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/aligned-with-every-major-exam-board.jpg",
               backgroundImage: "/images/features/aligned-with-every-major-exam-board.jpg",
               isPaid: true,
@@ -172,7 +210,7 @@ export default function NewPage() {
               title: "Expert Tutor Matching",
               description: "Paired with a specialist tutor—often a former school examiner or prep school teacher—carefully chosen to meet the family's school ambitions.\n\nMeet Emily, one of our Entrance Exam specialists. She holds degrees from both Oxford & Cambridge University and worked at a top 10 London grammar school where she helped assess and select the best 11+ candidates\n\nEmily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach",
               bulletPoints: ["Former examiners", "Prep school teachers", "School-specific expertise", "Personalised matching"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/expert-tutor-matching.jpg",
               backgroundImage: "/images/features/expert-tutor-matching.jpg",
               isPaid: true,
@@ -190,7 +228,7 @@ export default function NewPage() {
               title: "Tailored, Flexible Programmes",
               description: "Each programme is personalised to the target schools, exam formats and the student's pace—ensuring effective progress without overwhelm.",
               bulletPoints: ["Target school focus", "Exam format preparation", "Individual pacing", "Stress management"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/tailored-flexible-programmes.jpg",
               backgroundImage: "/images/features/tailored-flexible-programmes.jpg",
               isPaid: true,
@@ -208,7 +246,7 @@ export default function NewPage() {
               title: "Parent Guidance & School Selection",
               description: "We support families throughout—from helping create a shortlist of schools through to preparing for interviews.",
               bulletPoints: ["School selection advice", "Application guidance", "Timeline planning", "Interview preparation"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/parent-guidance-school-selection.jpg",
               backgroundImage: "/images/features/parent-guidance-school-selection.jpg",
               isPaid: false,
@@ -225,7 +263,7 @@ export default function NewPage() {
               title: "Mock Exams & Interview Practice",
               description: "Students gain confidence through realistic mock tests and 1-2-1 interview rehearsals, with detailed feedback to improve performance.",
               bulletPoints: ["Realistic mock exams", "Interview rehearsals", "Detailed feedback", "Performance analysis"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/mock-exams-interview-practice.jpg",
               backgroundImage: "/images/features/mock-exams-interview-practice.jpg",
               isPaid: true,
@@ -243,7 +281,7 @@ export default function NewPage() {
               title: "Deep Expertise From Selective Schools",
               description: "Our team includes qualified teachers at top 10 London grammar schools and leading UK boarding schools. Many have written and marked real entrance exam papers.",
               bulletPoints: ["Grammar school teachers", "Boarding school expertise", "Exam paper writers", "Marking experience"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/deep-expertise-selective-schools.jpg",
               backgroundImage: "/images/features/deep-expertise-selective-schools.jpg",
               isPaid: true,
@@ -274,7 +312,7 @@ export default function NewPage() {
               title: "Subject-Specific University Admissions Tests",
               description: "Targeted preparation for high-stakes exams that form a crucial part of university and course-specific admissions. Our experienced tutors offer intensive, focused tuition that sharpens core skills and exam-specific techniques.\n\nTMUA: Test of Mathematics for University Admission - for mathematics-based university courses in the UK including Mathematics, Computer Science, and Engineering degrees.\n\nLNAT: National Admissions Test for Law - required for law courses at top UK universities including Oxford, Cambridge, UCL, and other leading institutions.\n\nSAT/ACT: Standardised tests used for US university admissions, covering mathematics, English, and reasoning skills essential for American higher education applications.\n\nBMAT/UCAT: BioMedical Admissions Test and University Clinical Aptitude Test - required for medical and dental school applications in the UK and internationally.\n\nIELTS/TOEFL: International English Language Testing System and Test of English as a Foreign Language - English proficiency exams required by universities for non-native speakers.\n\nTSA: Thinking Skills Assessment for courses at Oxford, Cambridge, and UCL requiring advanced critical thinking and problem-solving abilities.\n\nELAT: English Literature Admissions Test for Oxford applicants studying English Language and Literature, requiring advanced literary analysis skills.",
               bulletPoints: ["Mathematics-based courses", "Law course applications", "US university admissions", "Medical school applications"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/subject-specific-university-admissions-tests.jpg",
               backgroundImage: "/images/features/subject-specific-university-admissions-tests.jpg",
               isPaid: true,
@@ -302,7 +340,7 @@ export default function NewPage() {
               title: "Why Choose Homeschooling with Us",
               description: "Private‑School Standard, Delivered Virtually: We deliver bespoke online programmes that rival independent schools in quality.\n\nFully Personalised Curriculum & Timetabling: Lessons are crafted around each child's strengths, interests and pace. Consistent Tutor Teams & Academic Continuity: Students benefit from a stable team of expert tutors—subject specialists with years of experience and often examiner credentials.\n\nProgress Tracking & Motivation-Focused Design: Regular assessments, achievable goals, and work reviewed in real time ensure the programme adapts to each student's growth. Expert Support for SEN Needs: Our SEN-aligned homeschooling incorporates specially tailored pathways for students with dyslexia, ADHD, processing differences or related needs—delivered with empathy and structure.",
               bulletPoints: ["Private school standard", "Personalised curriculum", "Expert tutor teams", "Progress tracking", "SEN support"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/why-choose-homeschooling-with-us.jpg",
               backgroundImage: "/images/features/why-choose-homeschooling-with-us.jpg",
               isPaid: false,
@@ -319,7 +357,7 @@ export default function NewPage() {
               title: "A Unique Pathway for Global & Gifted Learners",
               description: "Academic excellence without the need for physical classrooms. Personal schedules built around elite sports, arts commitments or world experiences. A supportive, curated tutor programme that encourages curiosity, autonomy, and confidence.",
               bulletPoints: ["Global accessibility", "Elite sports compatibility", "Arts-focused schedules", "Curated tutoring"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/unique-pathway-global-gifted-learners.jpg",
               backgroundImage: "/images/features/unique-pathway-global-gifted-learners.jpg",
               isPaid: false,
@@ -336,7 +374,7 @@ export default function NewPage() {
               title: "How We Work",
               description: "Individual Onboarding: We begin with a comprehensive academic and interests profile. Goal Setting & Curriculum Design: Tutors build flexible lesson plans aligned with national standards or bespoke learning aims. Structured Delivery: Students engage in live online sessions, maintain daily routines, and receive regular tutoring feedback. Ongoing Review: Progress is tracked, objectives reset, and adjustments made with parental involvement.",
               bulletPoints: ["Individual onboarding", "Goal setting", "Structured delivery", "Ongoing review"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/how-we-work.jpg",
               backgroundImage: "/images/features/how-we-work.jpg",
               isPaid: false,
@@ -353,7 +391,7 @@ export default function NewPage() {
               title: "Why It Works",
               description: "Our programmes blend flexible schedules, engaging pedagogy, and specialist expertise to deliver transformative education—regardless of geography. Students develop strong academic habits, enjoy tailored attention, and experience significant progress. If you're considering online homeschooling, our expert-led structure ensures both confidence and credibility every step of the way.",
               bulletPoints: ["Flexible schedules", "Engaging pedagogy", "Specialist expertise", "Academic habits"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/why-it-works.jpg",
               backgroundImage: "/images/features/why-it-works.jpg",
               isPaid: false,
@@ -380,7 +418,7 @@ export default function NewPage() {
               title: "Individualised Learning",
               description: "Tutors conduct detailed assessments to identify strengths, challenges, and personal learning styles.",
               bulletPoints: ["Detailed assessments", "Strength identification", "Learning style analysis", "Personal approach"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/individualised-learning.jpg",
               backgroundImage: "/images/features/individualised-learning.jpg",
               isPaid: true,
@@ -391,7 +429,7 @@ export default function NewPage() {
               title: "Expert SEN Tutor Teams",
               description: "Every student is supported by highly experienced tutors trained in neurodiversity-aware pedagogy.",
               bulletPoints: ["Experienced tutors", "Neurodiversity training", "Specialist knowledge", "SEN expertise"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/features/expert-sen-tutor-teams.jpg",
               backgroundImage: "/images/features/expert-sen-tutor-teams.jpg",
               isPaid: true,
@@ -409,7 +447,7 @@ export default function NewPage() {
               title: "Exam Access Advice",
               description: "We guide families through exam access arrangements and make recommendations to improve fairness and outcomes.",
               bulletPoints: ["Access arrangements", "Exam guidance", "Fairness improvements", "Outcome optimisation"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
               backgroundImage: "/images/unlocking-academic-success-background.jpg",
               isPaid: true,
@@ -420,7 +458,7 @@ export default function NewPage() {
               title: "Full Coordination & Professional Oversight",
               description: "Our homeschooling clients benefit from a dedicated tutor team, tailored learning schedules, and education consultancy to manage continuity—especially vital for SEN learners and families working across time zones.",
               bulletPoints: ["Dedicated tutor teams", "Tailored schedules", "Education consultancy", "Continuity management"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
               backgroundImage: "/images/ucas-summit-background.jpg",
               isPaid: true,
@@ -438,7 +476,7 @@ export default function NewPage() {
               title: "Online Homeschooling for SEN & Complex Needs",
               description: "Whether families are travelling, transitioning between schools, or prioritising personalised learning, our homeschooling programme delivers full academic support entirely online—without any in-person tutoring.\n\nCurriculum Built Around the Student: We design bespoke programmes around each child's strengths, interests, and pace—seamlessly blending academics with creative and practical learning.\n\nHolistic Academic & Emotional Support: We understand daily routines and tutor consistency are especially important for SEN learners. Our tutees are supported by program management and ongoing progress reviews to nurture both academic growth and personal well-being.\n\nWhy It Works: Both SEN tutoring and full-online homeschooling emphasise individual strength, flexible pacing, and sustained mentorship. This approach enables students to flourish academically while nurturing autonomy, individualism, and confidence—delivered through expert-led, evidence-based practice.",
               bulletPoints: ["Bespoke programmes", "Holistic support", "Routine consistency", "Evidence-based practice"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
               backgroundImage: "/images/ucas-part-1-mortar-board-background.jpg",
               isPaid: true,
@@ -466,7 +504,7 @@ export default function NewPage() {
               title: "DBS-Checked Specialist Tutors",
               description: "Sessions delivered by DBS-checked, specialist tutors with experience of the London independent and state school sectors.",
               bulletPoints: ["DBS-checked tutors", "Specialist expertise", "London school experience", "Independent sector knowledge"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
               backgroundImage: "/images/ucas-part-2-library-background.jpg",
               isPaid: true,
@@ -477,7 +515,7 @@ export default function NewPage() {
               title: "Entrance Exam & Subject-Specific Support",
               description: "Ideal for entrance exam preparation, subject-specific tuition, or ongoing academic support.",
               bulletPoints: ["Entrance exam prep", "Subject specialisation", "Ongoing support", "Academic excellence"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
               backgroundImage: "/images/ucas-summit-background.jpg",
               isPaid: true,
@@ -495,7 +533,7 @@ export default function NewPage() {
               title: "Continuity & Trust",
               description: "We prioritise continuity—families typically work with the same tutor throughout for consistency and trust.",
               bulletPoints: ["Same tutor continuity", "Trust building", "Consistency", "Long-term relationships"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
               backgroundImage: "/images/unlocking-academic-success-background.jpg",
               isPaid: true,
@@ -506,7 +544,7 @@ export default function NewPage() {
               title: "Limited Availability & Best Matching",
               description: "In-person availability is limited and arranged on a case-by-case basis to ensure the best possible match.",
               bulletPoints: ["Limited availability", "Case-by-case basis", "Best matching", "Quality over quantity"],
-              youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+              youtubeUrl: null,
               thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
               backgroundImage: "/images/ucas-part-1-mortar-board-background.jpg",
               isPaid: true,

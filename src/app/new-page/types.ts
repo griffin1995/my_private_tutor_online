@@ -32,7 +32,7 @@ export interface StandardizedVideoMasterclass {
   readonly title: string;
   readonly description: string;
   readonly bulletPoints?: readonly string[];
-  readonly youtubeUrl: string;
+  readonly youtubeUrl: string | null;
   readonly thumbnailImage: string;
   readonly backgroundImage: string;
   readonly isPaid: boolean;

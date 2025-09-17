@@ -24,7 +24,7 @@ export interface VideoMasterclass {
   readonly title: string
   readonly description: string
   readonly bulletPoints?: readonly string[]
-  readonly youtubeUrl: string
+  readonly youtubeUrl: string | null
   readonly thumbnailImage: string
   readonly backgroundImage: string
   readonly isPaid: boolean
@@ -69,7 +69,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
     title: "Elizabeth's Essential Guide to UCAS",
     description: "Widely recognised for her expertise in the British university admissions process, Elizabeth was invited to speak to international summer school students at London School of Economics (LSE). Elizabeth demystifies UCAS: the stages, decisions, and deadlines every applicant must navigate.\n\nIn 90 minutes, you'll get a step-by-step plan for course selection, timelines, references, predicted grades, and UCAS portal requirements—plus practical tips from 15 years in international education. Perfect for families worldwide, this session turns confusion into confidence.\n\nStream Part 1 today to set a winning strategy, then continue with Part 2 for Elizabeth's secrets for personal statement success.",
     bulletPoints: ["From clueless to clued up: resources for researching courses/universities", "UCAS made simple: decision-making and deadlines demystified", "Advice around references and predicted grades.", "Insider tactics from 15 years placing students at Oxbridge."],
-    youtubeUrl: "",
+    youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     // CONTEXT7 SOURCE: /sharp/sharp - Automated darkening system with backup originals
     // BACKUP SYSTEM: Original images preserved in /originals/ subdirectory before Sharp processing
     thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
@@ -83,10 +83,10 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
   },
   {
     id: "personalStatementsGuide",
-    title: "Elizabeth's Top 10 Tips for Exceptional Personal Statements", 
+    title: "Elizabeth's Top 10 Tips for Exceptional Personal Statements",
     description: "Recorded at the London School of Economics, this 70-minute masterclass distills Elizabeth Burrows' 15 years guiding ambitious students into Oxbridge and top UK universities (she earned a Cambridge offer herself). Elizabeth reveals the 10 \"secret-recipe\" ingredients for a dynamite personal statement: what admissions tutors really value, how to evidence super-curriculars, structure for impact, find an authentic voice, and avoid the pitfalls that send applicants to the 'reject' pile. See real excerpts from a Medicine statement that won an Oxford offer. Elizabeth's private students regularly secure places at Oxbridge, LSE, Imperial, UCL, Edinburgh and more. In a fiercely competitive arena, make your personal statement the edge—turbocharge your 4,000 characters to unlock your dream university.",
     bulletPoints: ["The 10 tips you won't find online", "Do's and don'ts. How to keep clear of the 'reject' pile and secure a spot on the 'offer' pile", "Excerpts from a real Medicine personal statement that secured an Oxford offer", "Suitable for candidates applying from 2025 onwards"],
-    youtubeUrl: "",
+    youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     // CONTEXT7 SOURCE: /microsoft/typescript - Object property assignment for thumbnail image path updates
     // PROPERTY UPDATE REASON: Official TypeScript documentation Section 5.2 for direct property assignment patterns
     thumbnailImage: "/images/video-thumbnails/top-10-tips-thumbnail.png",
