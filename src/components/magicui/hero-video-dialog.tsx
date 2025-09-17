@@ -179,7 +179,7 @@ export function HeroVideoDialog({
         role="button"
         aria-label={`Play video: ${thumbnailAlt}`}
       >
-        <div className="relative overflow-hidden rounded-lg">
+        <div className="relative overflow-hidden">
           {/* CONTEXT7 SOURCE: /vercel/next.js - Image optimization with fixed dimensions for consistent thumbnail display */}
           {/* REVERSION REASON: Restoring original working implementation with fixed width/height instead of fill prop */}
           <Image
@@ -259,7 +259,7 @@ export function HeroVideoDialog({
                     videoSrc.includes("youtu.be") ? (
                       <iframe
                         src={videoSrc}
-                        className="w-full h-full rounded-lg shadow-2xl border border-white"
+                        className="w-full h-full shadow-2xl border border-white"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                         title="Video player"
@@ -272,7 +272,7 @@ export function HeroVideoDialog({
                       <video
                         ref={videoRef}
                         src={videoSrc}
-                        className="w-full h-full rounded-lg shadow-2xl object-contain border border-white"
+                        className="w-full h-full shadow-2xl object-contain border border-white"
                         controls
                         autoPlay
                         muted

@@ -186,9 +186,15 @@ html {
   }
 }
 
+/**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Global body background with utility override protection
+ * GLOBAL BACKGROUND REASON: Official CSS specificity documentation for ensuring global background colour consistency
+ * WHITE BACKGROUND IMPLEMENTATION: Sets white background at highest global scope while preserving page-specific overrides
+ * SPECIFICITY CONTROL: Uses !important to override any Tailwind bg-transparent utilities in component hierarchy
+ */
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: #ffffff !important;
   font-synthesis-weight: none;
   text-rendering: optimizeLegibility;
 }

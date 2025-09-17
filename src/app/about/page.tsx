@@ -27,7 +27,7 @@
  * SEO IMPLEMENTATION: Client component cannot export metadata directly, handled by dynamic updates
  * PREMIUM SERVICE: About page with enhanced client-side functionality for animations
  */
-
+import { Highlighter } from "@/components/magicui/highlighter";
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component removal and clean import management
 // COMPONENT SIMPLIFICATION REASON: Official React documentation recommends removing unused imports to maintain clean component architecture
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component cleanup and removal patterns
@@ -38,8 +38,6 @@ import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import { FounderStorySection } from "@/components/sections/about/founder-story-section";
 import { TestimonialsSection } from "@/components/sections/about/testimonials-section";
-import { BrandMessageSection } from "@/components/sections/brand-message-section";
-import { Separator } from "@/components/ui/separator";
 import { getTextTestimonials, type Testimonial } from "@/lib/cms/cms-content";
 import { getAboutHeroImage } from "@/lib/cms/cms-images";
 
@@ -90,30 +88,33 @@ export default function AboutUsPage() {
         />
       </section>
 
-      {/* EDUCATIONAL PHILOSOPHY SECTION */}
-      {/* CONTEXT7 SOURCE: /components/sections/brand-message-section - BrandMessageSection component for consistent brand messaging */}
-      {/* BRAND MESSAGE REASON: Official Context7 documentation demonstrates BrandMessageSection component for strategic text highlighting with quote formatting */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
-              Our Educational Philosophy
-            </h2>
-            <div className="space-y-8">
-              <BrandMessageSection 
-                quote="We believe every child deserves an education tailored to who they are, helping them build confidence, curiosity, and clarity. We combine academic rigour with personal mentorship, knowing that success depends as much on resilience and self-belief as it does on subject mastery."
-                useHighlighting={true}
-                backgroundColor="bg-transparent"
-                className="py-0"
-              />
-              <BrandMessageSection 
-                quote="Whether preparing for British schools, moving abroad, or facing competitive exams, we provide structure, insight and flexibility. Above all, we aim to cultivate independence — giving students the tools and courage to walk their path with confidence and thrive long after tutoring ends."
-                useHighlighting={true}
-                backgroundColor="bg-transparent"
-                className="py-0"
-              />
-            </div>
-          </div>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for visual hierarchy and section separation */}
+      {/* VISUAL BREAK REASON: Official Tailwind CSS documentation mt-16 utility creates 4rem (64px) top margin for clear separation between introductory group (Hero/Tagline/Schools) and main content sections */}
+      {/* CONTEXT7 SOURCE: /vercel/next.js - About section with founder story and company credentials */}
+      {/* NEW HIGHLIGHTER SECTION - IMMEDIATELY ABOVE ABOUT */}
+      {/* CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter implementation section */}
+      {/* HIGHLIGHTER SECTION REASON: Official Magic UI documentation implementation with proper highlight and underline effects */}
+      <section id="about-highlighter-intro" className="pt-5 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <p style={{ fontSize: "1.4rem" }}>
+            We believe every child deserves an education{" "}
+            <Highlighter action="highlight" color="#CA9E5B">
+              tailored to who they are
+            </Highlighter>{" "}
+            , helping them build confidence, curiosity, and clarity. We combine
+            academic rigour with personal mentorship, knowing that success
+            depends as much on resilience and self-belief as it does on subject
+            mastery. <br />
+            <br />
+            Whether preparing for British schools, moving abroad, or facing
+            competitive exams, we provide{" "}
+            <Highlighter action="highlight" color="#CA9E5B">
+              structure, insight and flexibility
+            </Highlighter>{" "}
+            . Above all, we aim to cultivate independence — giving students the
+            tools and courage to walk their path with confidence and thrive long
+            after tutoring ends.
+          </p>
         </div>
       </section>
 
@@ -141,19 +142,20 @@ export default function AboutUsPage() {
           <FounderStorySection />
         </div>
 
-        {/* CONTEXT7 SOURCE: /websites/magicui_design - New BrandMessageSection component with vanilla MagicUI Highlighter */}
-        {/* NEW COMPONENT REASON: Official Magic UI documentation demonstrates proper text highlighting with vanilla MagicUI functionality */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Div wrapper with id for navigation without nesting sections */}
-        {/* SECTION FIX REASON: Official HTML documentation recommends avoiding nested section elements for clean semantic structure */}
-        <div id="about-quote">
-          <BrandMessageSection
-            quote="A truly bespoke experience - Elizabeth personally pairs each student with a carefully selected tutor from her boutique team."
-            author="Academia Insight"
-            backgroundColor="bg-primary-50"
-            useHighlighting={true}
-            showAuthorImage={false}
-          />
-        </div>
+        <section id="about-quote" className="py-0">
+          <div className="max-w-4xl mx-auto text-center">
+            <p style={{ fontSize: "1.6rem" }}>
+              <Highlighter action="highlight" color="#CA9E5B">
+                A truly bespoke
+              </Highlighter>{" "}
+              experience — Elizabeth personally pairs each student with a{" "}
+              <Highlighter action="underline" color="#3F4A7E">
+                carefully selected tutor
+              </Highlighter>{" "}
+              from her boutique team.
+            </p>
+          </div>
+        </section>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
         {/* TESTIMONIALS EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}

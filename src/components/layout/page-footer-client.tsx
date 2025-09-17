@@ -333,18 +333,17 @@ export function PageFooterClient({
             </div>
           </div>
 
-          {/* CONTEXT7 SOURCE: /web.dev/performance - Performance monitoring integration */}
-          {/* MONITORING REASON: Track footer-specific performance metrics for optimization */}
-          {process.env.NODE_ENV === 'development' && (
+          {/* DISABLED: FooterPerformanceMonitor causing issues */}
+          {/* {process.env.NODE_ENV === 'development' && (
             <div className="fixed bottom-4 right-4 z-50">
               <Suspense fallback={null}>
-                <FooterPerformanceMonitor 
+                <FooterPerformanceMonitor
                   showDetails={true}
                   className="max-w-xs"
                 />
               </Suspense>
             </div>
-          )}
+          )} */}
         </div>
       </footer>
     </FooterErrorBoundary>

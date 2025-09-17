@@ -21,8 +21,6 @@ interface DebugState {
   isActive: boolean
   metrics: PerformanceMetric[]
   renderCount: number
-  errorCount: number
-  warningCount: number
 }
 
 /**
@@ -31,12 +29,14 @@ interface DebugState {
  * PURPOSE: Extensive terminal debugging for performance analysis
  */
 export function PerformanceDebugPanel({ enabled = true }: { enabled?: boolean }) {
+  // TEMPORARILY DISABLED - Performance debug panel is causing infinite loops
+  console.log('⚠️ [DEBUG-Panel] Performance Debug Panel is DISABLED to prevent infinite loops')
+  return null
+
   const [debugState, setDebugState] = useState<DebugState>({
     isActive: false,
     metrics: [],
-    renderCount: 0,
-    errorCount: 0,
-    warningCount: 0
+    renderCount: 0
   })
 
   const startTime = useRef(performance.now())
@@ -48,6 +48,7 @@ export function PerformanceDebugPanel({ enabled = true }: { enabled?: boolean })
   }
 
   useEffect(() => {
+    console.log('🔍 [DEBUG-TRACE] ===== MAIN USEEFFECT STARTING =====')
     console.log('🔧 [DEBUG-Panel] Performance Debug Panel ACTIVATED')
     console.log('📊 [DEBUG-Panel] Starting comprehensive performance monitoring...')
 
@@ -165,42 +166,72 @@ export function PerformanceDebugPanel({ enabled = true }: { enabled?: boolean })
     }
 
     // Track React re-renders
+    console.log('🔍 [DEBUG-TRACE] About to update renderCount via setState')
     setDebugState(prev => ({
       ...prev,
       renderCount: prev.renderCount + 1
     }))
+    console.log('🔍 [DEBUG-TRACE] ===== MAIN USEEFFECT ENDING =====')
   })
 
   // Intercept console methods for error/warning tracking
+  const errorCount = useRef(0)
+  const warningCount = useRef(0)
+  const consoleInterceptionSetup = useRef(false)
+  const effectRunCount = useRef(0)
+
   useEffect(() => {
+    effectRunCount.current++
+    console.log(`🔍 [DEBUG-TRACE] Console interception useEffect run #${effectRunCount.current}`)
+    console.log(`🔍 [DEBUG-TRACE] consoleInterceptionSetup.current: ${consoleInterceptionSetup.current}`)
+    console.log(`🔍 [DEBUG-TRACE] errorCount.current: ${errorCount.current}`)
+    console.log(`🔍 [DEBUG-TRACE] warningCount.current: ${warningCount.current}`)
+
+    // Prevent multiple console interceptions
+    if (consoleInterceptionSetup.current) {
+      console.log(`🔍 [DEBUG-TRACE] Skipping console interception - already set up`)
+      return
+    }
+
+    console.log(`🔍 [DEBUG-TRACE] Setting up console interception...`)
     const originalError = console.error
     const originalWarn = console.warn
 
     console.error = (...args) => {
+      console.log(`🔍 [DEBUG-TRACE] Console.error intercepted - about to increment errorCount from ${errorCount.current}`)
       originalError(...args)
-      setDebugState(prev => ({ ...prev, errorCount: prev.errorCount + 1 }))
-      console.log(`❌ [DEBUG-Error] Error #${debugState.errorCount + 1} detected`)
+      errorCount.current++
+      console.log(`🔍 [DEBUG-TRACE] errorCount incremented to ${errorCount.current}`)
+      console.log(`❌ [DEBUG-Error] Error #${errorCount.current} detected`)
     }
 
     console.warn = (...args) => {
+      console.log(`🔍 [DEBUG-TRACE] Console.warn intercepted - about to increment warningCount from ${warningCount.current}`)
       originalWarn(...args)
-      setDebugState(prev => ({ ...prev, warningCount: prev.warningCount + 1 }))
-      console.log(`⚠️ [DEBUG-Warning] Warning #${debugState.warningCount + 1} detected`)
+      warningCount.current++
+      console.log(`🔍 [DEBUG-TRACE] warningCount incremented to ${warningCount.current}`)
+      console.log(`⚠️ [DEBUG-Warning] Warning #${warningCount.current} detected`)
     }
 
+    consoleInterceptionSetup.current = true
+    console.log(`🔍 [DEBUG-TRACE] Console interception setup complete`)
+
     return () => {
+      console.log(`🔍 [DEBUG-TRACE] Cleaning up console interception`)
       console.error = originalError
       console.warn = originalWarn
+      consoleInterceptionSetup.current = false
+      console.log(`🔍 [DEBUG-TRACE] Console interception cleanup complete`)
     }
-  }, [debugState.errorCount, debugState.warningCount])
+  }, []) // Empty dependency array - run only once
 
   // Performance summary on unmount
   useEffect(() => {
     return () => {
       console.log('📊 [DEBUG-Panel] ===== PERFORMANCE SUMMARY =====')
       console.log(`   Total renders: ${debugState.renderCount}`)
-      console.log(`   Errors encountered: ${debugState.errorCount}`)
-      console.log(`   Warnings encountered: ${debugState.warningCount}`)
+      console.log(`   Errors encountered: ${errorCount.current}`)
+      console.log(`   Warnings encountered: ${warningCount.current}`)
 
       if (renderTimes.current.length > 0) {
         const avgTime = renderTimes.current.reduce((a, b) => a + b, 0) / renderTimes.current.length
@@ -213,7 +244,7 @@ export function PerformanceDebugPanel({ enabled = true }: { enabled?: boolean })
         console.log(`     - Max: ${maxTime.toFixed(2)}ms`)
       }
     }
-  }, [debugState])
+  }, []) // Remove debugState dependency to prevent re-runs
 
   // Hidden component - all output goes to terminal
   return null

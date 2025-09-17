@@ -262,7 +262,7 @@ export function AboutSection({
           {/* Text Content - Dynamic Positioning Based on Variant */}
           <div className={contentOrder}>
             <LazyAboutContent
-              title="World-Class Education,\nAt Your Fingertips."
+              title="World-Class Education, At Your Fingertips."
               animationDelay={0.1 * currentVariant.animations.delayMultiplier}
               conversionTracker={conversionTracker}
               variant={currentVariant}

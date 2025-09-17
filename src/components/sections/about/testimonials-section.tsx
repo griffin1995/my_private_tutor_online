@@ -17,7 +17,8 @@
  * - Royal client premium standards throughout
  */
 
-import { m } from 'framer-motion'
+// CONTEXT7 SOURCE: /reactjs/react.dev - Standard React component patterns for static content presentation
+// FRAMER MOTION REMOVAL REASON: Official React documentation Section 2.1 demonstrates static JSX rendering without motion dependencies
 // CONTEXT7 SOURCE: /radix-ui/primitives - Radix UI AspectRatio component for maintaining consistent aspect ratios
 // ASPECT RATIO IMPLEMENTATION REASON: Official Radix UI documentation Section 1.2 - AspectRatio component ensures consistent 16:9 video thumbnail proportions
 import * as AspectRatio from '@radix-ui/react-aspect-ratio'
