@@ -124,7 +124,7 @@
         "title": "Fit For a King",
         "subtitle": "",
         "description": "Our services are trusted by prominent families, **including VIPs and royalty**.\n\n\"Hi Elizabeth, I found out today that the two princes and the princess have all been offered places at Le Rosey for next year. The family is delighted and would like me to pass on their sincerest thanks to you and the team for all your hard work.\"",
-        "imageUrl": "/images/graphics/feature-royal-endorsement.jpg",
+        "imageUrl": "/images/graphics/stat-pass-rate-new.jpg",
         "imageAlt": "Royal endorsement - Invitation-only service trusted by royal families and high-profile clients"
       },
       {
@@ -132,7 +132,7 @@
         "title": "Examiner insight",
         "subtitle": "",
         "description": "Our Tier 1 tutors **actually write/mark the real tests your child takes**. Such insider perspective is rare.",
-        "imageUrl": "/images/graphics/feature-exam-insight.jpeg",
+        "imageUrl": "/images/graphics/stat-grade-improvement-new.jpg",
         "imageAlt": "Examiner insight - Tutors who are actual examiners providing unique academic advantage"
       },
       {
@@ -140,7 +140,7 @@
         "title": "By Invitation Only",
         "subtitle": "",
         "description": "Elizabeth's international career has allowed her to **personally work alongside almost all our tutors**, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team.",
-        "imageUrl": "/images/graphics/feature-built-on-trust.jpeg",
+        "imageUrl": "/images/graphics/stat-top-performers-new.jpg",
         "imageAlt": "Built on trust - Premium tutoring service with vetted educators and proven track record"
       },
       {
@@ -434,7 +434,7 @@
         "icon": "🎯",
         "lucideIcon": "School",
         "imageKey": "teenager",
-        "imageUrl": "/images/graphics/stat-eleven-plus-success.jpg",
+        "imageUrl": "/images/graphics/stat-pass-rate-new.jpg",
         "imageAlt": "11+ Success Rate - 95% of students receive offers from top choice schools"
       },
       {
@@ -444,7 +444,7 @@
         "icon": "📈",
         "lucideIcon": "TrendingUp",
         "imageKey": "aLevel",
-        "imageUrl": "/images/graphics/stat-student-success.jpg",
+        "imageUrl": "/images/graphics/stat-grade-improvement-new.jpg",
         "imageAlt": "Student success rate - 94% of students improved by at least 2 grades at GCSE"
       },
       {

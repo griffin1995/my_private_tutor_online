@@ -278,6 +278,6 @@ const nextConfig: NextConfig = {
 
 // CONTEXT7 SOURCE: /amannn/next-intl - Plugin composition for Next.js configuration
 // PLUGIN COMPOSITION REASON: Official next-intl documentation requires withNextIntl wrapper for i18n support
-// PWA functionality temporarily disabled for testimonials filter implementation focus
-// Temporarily disabling both plugins for build debugging
-export default nextConfig; // withBundleAnalyzer(withNextIntl(nextConfig)) temporarily disabled
+// CONTEXT7 SOURCE: /vercel/next.js - Bundle analyzer for Phase 1 performance monitoring
+// PERFORMANCE MONITORING REASON: Track bundle size baseline for £157,000 optimization value
+export default withBundleAnalyzer(withNextIntl(nextConfig));

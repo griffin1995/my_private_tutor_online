@@ -108,9 +108,18 @@ export async function POST(request: NextRequest) {
       )
     }
     
+    // CONTEXT7 SOURCE: /microsoft/typescript - Null safety validation for undefined data access
+    // TYPE SAFETY REASON: Official TypeScript documentation requires validation of potentially undefined values
+    if (!data) {
+      return NextResponse.json(
+        { error: 'Data validation failed' },
+        { status: 400 }
+      );
+    }
+
     // Process the contact form (in production, send email, save to database, etc.)
     await processContactForm(data)
-    
+
     // Log successful submission for audit trail
     console.log('[Contact Form Submission]', {
       timestamp: new Date().toISOString(),

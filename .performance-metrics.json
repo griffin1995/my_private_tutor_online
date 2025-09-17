@@ -1,0 +1,28 @@
+{
+  "history": [
+    {
+      "timestamp": 1757958347829,
+      "buildTime": 0,
+      "buildSuccess": false,
+      "typeErrorCount": 0,
+      "bundleSize": 0,
+      "routeCount": 0,
+      "memoryUsage": 0,
+      "errors": [
+        "Command failed: npm run build 2>&1\n"
+      ]
+    }
+  ],
+  "baseline": {
+    "timestamp": 1757958347829,
+    "buildTime": 0,
+    "buildSuccess": false,
+    "typeErrorCount": 0,
+    "bundleSize": 0,
+    "routeCount": 0,
+    "memoryUsage": 0,
+    "errors": [
+      "Command failed: npm run build 2>&1\n"
+    ]
+  }
+}

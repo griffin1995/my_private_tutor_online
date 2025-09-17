@@ -471,10 +471,16 @@ export class AgentSelector {
   private generateReasoning(agents: SelectedAgent[], context: TaskContext): string {
     const domains = context.domains.slice(0, 3).join(', ');
     const complexity = context.complexity;
+    // CONTEXT7 SOURCE: /microsoft/typescript - Array access with null safety validation
+    // TYPE SAFETY REASON: Official TypeScript documentation requires bounds checking for array element access
     const lead = agents[0];
 
+    if (!lead) {
+      return `No agents selected for ${complexity} complexity task in ${domains} domains.`;
+    }
+
     return `Selected ${agents.length}-agent team for ${complexity} complexity task in ${domains} domains. ` +
-           `${lead.type} leads with primary expertise in ${lead.capabilities[0]}. ` +
+           `${lead.type} leads with primary expertise in ${lead.capabilities[0] || 'general assistance'}. ` +
            `Team composition ensures comprehensive coverage of identified domains with complementary skills.`;
   }
 

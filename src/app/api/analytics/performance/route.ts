@@ -130,7 +130,11 @@ class InMemoryPerformanceStorage implements PerformanceStorage {
   private calculatePercentile(values: number[], percentile: number): number {
     const sorted = values.sort((a, b) => a - b);
     const index = Math.ceil((percentile / 100) * sorted.length) - 1;
-    return sorted[Math.max(0, index)];
+    const safeIndex = Math.max(0, index);
+    // CONTEXT7 SOURCE: /microsoft/typescript - Array access with bounds checking for null safety
+    // TYPE SAFETY REASON: Official TypeScript documentation requires validation of array element existence
+    const value = sorted[safeIndex];
+    return value !== undefined ? value : 0;
   }
 }
 

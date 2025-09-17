@@ -112,7 +112,9 @@ export async function GET(request: NextRequest) {
       label: 'client_success_analytics',
       metadata: {
         error: error instanceof Error ? error.message : 'Unknown error',
-        stack: error instanceof Error ? error.stack : undefined,
+        // CONTEXT7 SOURCE: /microsoft/typescript - Null safety for Error stack property access
+        // TYPE SAFETY REASON: Official TypeScript documentation requires handling undefined Error.stack property
+        stack: error instanceof Error ? (error.stack || 'No stack trace available') : 'No stack trace available',
         processingTime: performance.now() - startTime
       }
     })

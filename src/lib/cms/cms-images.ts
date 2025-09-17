@@ -244,19 +244,6 @@ export const INSTITUTION_LOGOS = {
     level: "university" as const,
     location: "Cambridge, England",
   },
-  harvard: {
-    src: "/images/logos/harvard-university-logo.png",
-    alt: "Harvard University logo",
-    width: 120,
-    height: 80,
-    title: "Harvard University",
-    loading: "lazy" as const,
-    institution: "Harvard University",
-    category: "university" as const,
-    prestige: "high" as const,
-    level: "university" as const,
-    location: "Cambridge, Massachusetts, USA",
-  },
   durham: {
     src: "/images/logos/durham-university-logo.png",
     alt: "Durham University logo",
@@ -1331,7 +1318,7 @@ export const STUDENT_IMAGES = {
   // IMPLEMENTATION REASON: Adding new "Who We Support" section images following official TypeScript interface patterns
   // New 2025 "Who We Support" section images
   "entrance-exam-preparation": {
-    src: "/images/students/entrance-exam-preparation.png",
+    src: "/images/students/entrance-exam-preparation-new.jpg",
     alt: "Professional student preparing for entrance examinations with expert tutoring support",
     width: 600,
     height: 400,
@@ -1557,7 +1544,6 @@ export const getScrollingSchoolLogos = cache((level?: 'primary-school' | 'second
     "Brighton College": INSTITUTION_LOGOS.brightonCollege as InstitutionLogo,
     "Durham University": INSTITUTION_LOGOS.durham as InstitutionLogo,
     "University of Edinburgh": INSTITUTION_LOGOS.edinburgh as InstitutionLogo,
-    "Harvard University": INSTITUTION_LOGOS.harvard as InstitutionLogo,
     "Highgate School": INSTITUTION_LOGOS.highgate as InstitutionLogo,
     "Le Rosey School": INSTITUTION_LOGOS.leRosey as InstitutionLogo,
     "University of St Andrews": INSTITUTION_LOGOS.stAndrews as InstitutionLogo,

@@ -112,7 +112,15 @@ export default async function middleware(req: NextRequest) {
       path: path,
       method: req.method,
       userAgent: req.headers.get('user-agent')?.substring(0, 100) || 'unknown',
-      ip: req.headers.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown',
+      // CONTEXT7 SOURCE: /microsoft/typescript - Null safety with explicit null and undefined checks
+      // NULL SAFETY REASON: Official TypeScript documentation requires comprehensive null/undefined checks before method chaining
+      ip: (() => {
+        const forwardedFor = req.headers.get('x-forwarded-for');
+        if (forwardedFor !== null && forwardedFor !== undefined) {
+          return forwardedFor.split(',')[0]?.trim() || 'unknown';
+        }
+        return 'unknown';
+      })(),
       country: req.headers.get('x-vercel-ip-country') || 'unknown',
       referer: req.headers.get('referer') || 'direct'
     }

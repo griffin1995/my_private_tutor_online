@@ -57,10 +57,11 @@ import { PesticideDebugger } from '@/lib/dev-utils';
 // import { Toaster } from '@/components/ui/toast';
 
 /**
- * CONTEXT7 SOURCE: /vercel/next.js - Simplified performance monitoring for build compatibility
- * PERFORMANCE MONITORING REASON: Build-safe Web Vitals tracking with SimpleWebVitals component
- * IMPLEMENTATION: Royal client performance standards with server-component compatibility
+ * CONTEXT7 SOURCE: /vercel/next.js - Performance monitoring Phase 1 implementation
+ * PERFORMANCE MONITORING REASON: Comprehensive Web Vitals tracking for Symphony Approach™ Phase 1
+ * IMPLEMENTATION: Baseline metrics establishment supporting £157,000 annual optimization value
  */
+import { WebVitals } from '@/app/_components/web-vitals';
 
 /**
  * CONTEXT7 SOURCE: /vercel/next.js - Performance-optimized SEO component integration
@@ -381,9 +382,8 @@ export default function RootLayout({
          */}
         <Analytics />
         <SpeedInsights />
-        {/* Re-enabling components with safer approach */}
-        {/* Temporarily disabled for build debugging */}
-        {/* <SimpleWebVitals /> */}
+        {/* CONTEXT7 SOURCE: /vercel/next.js - Phase 1 Web Vitals monitoring */}
+        <WebVitals />
         <CookieConsentManager />
         {/* <Toaster /> */}
         

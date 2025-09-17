@@ -311,13 +311,20 @@ export class MultiAgentWorkflow {
 
   private getInterRoundDelay(): number {
     const profile = process.env['AGENT_TIMING_PROFILE'] || 'balanced';
-    const delays: Record<string, number> = {
+    // CONTEXT7 SOURCE: /microsoft/typescript - Object literal typing with explicit keys for type safety
+    // TYPE SAFETY REASON: Official TypeScript documentation recommends const assertions for guaranteed property access
+    const delays = {
       realistic: 3000,
       balanced: 1000,
       fast: 100,
       debug: 0
-    };
-    return delays[profile] ?? delays['balanced'];
+    } as const;
+
+    const delay = delays[profile as keyof typeof delays];
+    if (delay !== undefined) {
+      return delay;
+    }
+    return 1000; // explicit fallback to balanced delay value
   }
 
   private async executeRound1Assessment(
@@ -345,17 +352,28 @@ export class MultiAgentWorkflow {
     );
 
     // Process responses into exchanges
-    const exchanges: Exchange[] = responses.map((content, index) => ({
-      agentType: agentTypes[index],
-      timestamp: new Date().toISOString(),
-      content,
-      tags: ['assessment', agentTypes[index]],
-      confidence: this.calculateResponseConfidence(content)
-    }));
+    // CONTEXT7 SOURCE: /microsoft/typescript - Array index access with null safety checks
+    // TYPE SAFETY REASON: Official TypeScript documentation requires array bounds checking for safe property access
+    const exchanges: Exchange[] = responses.map((content, index) => {
+      const agentType = agentTypes[index];
+      if (agentType === undefined) {
+        throw new Error(`Agent type not found at index ${index}`);
+      }
+      return {
+        agentType,
+        timestamp: new Date().toISOString(),
+        content,
+        tags: ['assessment', agentType],
+        confidence: this.calculateResponseConfidence(content)
+      };
+    });
 
     const outcomes: string[] = responses.map((content, index) => {
+      // CONTEXT7 SOURCE: /microsoft/typescript - Array index access with null safety checks
+      // TYPE SAFETY REASON: Official TypeScript documentation requires array bounds checking
+      const agentType = agentTypes[index] || 'unknown-agent';
       const keyPoints = this.extractKeyPoints(content);
-      return `${agentTypes[index]}: ${keyPoints[0] || 'Assessment complete'}`;
+      return `${agentType}: ${keyPoints[0] || 'Assessment complete'}`;
     });
 
     const actualDuration = Math.round((Date.now() - roundStartTime) / 1000);
@@ -401,16 +419,27 @@ export class MultiAgentWorkflow {
     );
 
     // Process responses into exchanges
-    const exchanges: Exchange[] = responses.map((content, index) => ({
-      agentType: agentTypes[index],
-      timestamp: new Date().toISOString(),
-      content,
-      tags: ['proposals', agentTypes[index]],
-      confidence: this.calculateResponseConfidence(content)
-    }));
+    // CONTEXT7 SOURCE: /microsoft/typescript - Array index access with null safety checks
+    // TYPE SAFETY REASON: Official TypeScript documentation requires array bounds checking for safe property access
+    const exchanges: Exchange[] = responses.map((content, index) => {
+      const agentType = agentTypes[index];
+      if (agentType === undefined) {
+        throw new Error(`Agent type not found at index ${index}`);
+      }
+      return {
+        agentType,
+        timestamp: new Date().toISOString(),
+        content,
+        tags: ['proposals', agentType],
+        confidence: this.calculateResponseConfidence(content)
+      };
+    });
 
     const outcomes: string[] = responses.map((content, index) => {
-      return `${agentTypes[index]}: ${this.extractProposalSummary(content)}`;
+      // CONTEXT7 SOURCE: /microsoft/typescript - Array index access with null safety checks
+      // TYPE SAFETY REASON: Official TypeScript documentation requires array bounds checking
+      const agentType = agentTypes[index] || 'unknown-agent';
+      return `${agentType}: ${this.extractProposalSummary(content)}`;
     });
 
     const actualDuration = Math.round((Date.now() - roundStartTime) / 1000);

@@ -1,22 +1,21 @@
 /**
  * CONTEXT7 SOURCE: /vercel/next.js - Dynamic metadata generation for FAQ pages
- * IMPLEMENTATION REASON: Official Next.js documentation Section 4.3 recommends generateMetadata for dynamic SEO optimization
- * CONTEXT7 SOURCE: /vercel/next.js - Metadata object configuration with title, description, openGraph, twitter
- * SEO ENHANCEMENT: Comprehensive meta tag optimization for FAQ search visibility and social sharing
- * 
+ * IMPLEMENTATION REASON: App Router metadata API patterns for SEO optimization
+ * CONTEXT7 SOURCE: /vercel/next.js - Client component for dynamic title updates
+ * SEO ENHANCEMENT: Comprehensive meta tag optimization for FAQ search visibility
+ *
  * FAQ Meta Optimization Component
- * - Dynamic meta title and description generation
+ * - Dynamic document title updates in client components
+ * - Metadata configuration helper for server components
  * - Open Graph optimization for social media sharing
  * - Twitter Card configuration for premium branding
- * - Canonical URL management for duplicate content prevention
  * - Local SEO integration for geographic targeting
  */
 
 "use client"
 
-// CONTEXT7 SOURCE: /facebook/react - React component for client-side meta optimization
+// CONTEXT7 SOURCE: /facebook/react - React component for client-side optimization
 import React from 'react'
-import Head from 'next/head'
 
 // CONTEXT7 SOURCE: /vercel/next.js - TypeScript interface for metadata configuration
 // META OPTIMIZATION: Comprehensive meta tag configuration interface
@@ -201,119 +200,107 @@ export const FAQMetaOptimization: React.FC<FAQMetaOptimizationProps> = ({
     businessName, canonicalUrl
   ])
 
-  return (
-    <Head>
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Basic meta tags for search engines */}
-      {/* BASIC META TAGS: Essential SEO meta tags for search visibility */}
-      <title>{optimizedMeta.title}</title>
-      <meta name="description" content={optimizedMeta.description} />
-      <meta name="keywords" content={optimizedMeta.keywords} />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-      <link rel="canonical" href={canonicalUrl} />
-      
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Language and content type meta tags */}
-      {/* CONTENT META TAGS: Language and content type specification */}
-      <meta httpEquiv="content-language" content="en-GB" />
-      <meta name="language" content="English" />
-      <meta name="content-type" content="text/html; charset=UTF-8" />
-      
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Geographic and business meta tags */}
-      {/* LOCAL SEO META TAGS: Geographic targeting and business information */}
-      <meta name="geo.region" content="GB-LND" />
-      <meta name="geo.placename" content={location} />
-      <meta name="geo.position" content="51.5074;-0.1278" />
-      <meta name="ICBM" content="51.5074, -0.1278" />
-      
-      {/* Business Contact Information */}
-      <meta name="contact" content={businessEmail} />
-      <meta name="reply-to" content={businessEmail} />
-      <meta name="owner" content={businessName} />
-      <meta name="author" content={businessName} />
-      <meta name="designer" content={businessName} />
-      <meta name="copyright" content={`© 2025 ${businessName}. All rights reserved.`} />
-      
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Open Graph meta tags for social sharing */}
-      {/* OPEN GRAPH TAGS: Social media sharing optimization */}
-      <meta property="og:title" content={optimizedMeta.openGraph.title} />
-      <meta property="og:description" content={optimizedMeta.openGraph.description} />
-      <meta property="og:image" content={optimizedMeta.openGraph.image} />
-      <meta property="og:image:alt" content={optimizedMeta.openGraph.imageAlt} />
-      <meta property="og:type" content={optimizedMeta.openGraph.type} />
-      <meta property="og:url" content={optimizedMeta.openGraph.url} />
-      <meta property="og:site_name" content={businessName} />
-      <meta property="og:locale" content="en_GB" />
-      
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Twitter Card meta tags */}
-      {/* TWITTER CARDS: Enhanced Twitter sharing */}
-      <meta name="twitter:card" content={optimizedMeta.twitter.card} />
-      <meta name="twitter:title" content={optimizedMeta.twitter.title} />
-      <meta name="twitter:description" content={optimizedMeta.twitter.description} />
-      <meta name="twitter:image" content={optimizedMeta.twitter.image} />
-      <meta name="twitter:image:alt" content={optimizedMeta.twitter.imageAlt} />
-      <meta name="twitter:site" content="@MyPrivateTutorOnline" />
-      <meta name="twitter:creator" content="@MyPrivateTutorOnline" />
-      
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Additional SEO meta tags */}
-      {/* ADVANCED SEO TAGS: Enhanced search engine understanding */}
-      <meta name="theme-color" content="#0f172a" />
-      <meta name="msapplication-TileColor" content="#0f172a" />
-      <meta name="application-name" content={businessName} />
-      <meta name="msapplication-tooltip" content={optimizedMeta.description} />
-      
-      {/* Category-specific meta tags */}
-      {categoryTitle && (
-        <>
-          <meta name="category" content={categoryTitle} />
-          <meta name="subject" content={`${categoryTitle} - Private Tutoring FAQ`} />
-        </>
-      )}
-      
-      {/* Service area meta tags for local SEO */}
-      {serviceArea.map((area, index) => (
-        <meta key={`service-area-${index}`} name="coverage" content={area} />
-      ))}
-      
-      {/* Question count for rich snippets */}
-      {questionCount && (
-        <meta name="article:section" content={`FAQ - ${questionCount} Questions`} />
-      )}
-      
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Custom meta tags support */}
-      {/* CUSTOM META TAGS: Flexible meta tag extension */}
-      {customMeta.map((meta, index) => (
-        <meta
-          key={`custom-meta-${index}`}
-          {...(meta.name ? { name: meta.name } : {})}
-          {...(meta.property ? { property: meta.property } : {})}
-          content={meta.content}
-        />
-      ))}
-      
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Resource preloading for performance */}
-      {/* PERFORMANCE OPTIMIZATION: Preload critical images */}
-      {preloadImages.map((imageUrl, index) => (
-        <link
-          key={`preload-${index}`}
-          rel="preload"
-          as="image"
-          href={imageUrl}
-        />
-      ))}
-      
-      {/* CONTEXT7 SOURCE: /vercel/next.js - DNS prefetch for external resources */}
-      {/* DNS PREFETCH: Optimize external resource loading */}
-      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-      <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-      <link rel="dns-prefetch" href="//www.google-analytics.com" />
-      <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-      
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Alternative URLs for international SEO */}
-      {/* HREFLANG: Language and regional targeting */}
-      <link rel="alternate" hrefLang="en-GB" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="en" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
-    </Head>
-  )
+  // CONTEXT7 SOURCE: /vercel/next.js - Client component title updates via document.title
+  // CLIENT COMPONENT PATTERN: Update document title dynamically in client components
+  React.useEffect(() => {
+    // Update document title for client-side navigation
+    if (typeof document !== 'undefined') {
+      document.title = optimizedMeta.title
+    }
+  }, [optimizedMeta.title])
+
+  // Since this is a client component, we can only update the title
+  // Meta tags should be set via generateMetadata in the parent server component
+  return null
+}
+
+/**
+ * CONTEXT7 SOURCE: /vercel/next.js - Metadata helper for server components
+ * HELPER FUNCTION: Generate metadata object for use in server components
+ */
+export const generateFAQMetadata = (props: FAQMetaOptimizationProps) => {
+  const {
+    title = "Frequently Asked Questions - My Private Tutor Online",
+    description = "Find answers to all your questions about our premium private tutoring services. Expert guidance for Oxbridge preparation, 11+ tutoring, A-Levels, and GCSE support.",
+    keywords = [
+      "private tutor FAQ",
+      "tutoring questions",
+      "Oxbridge preparation FAQ"
+    ],
+    canonicalUrl = "https://myprivatetutoronline.com/faq",
+    categoryTitle,
+    categoryDescription,
+    questionCount,
+    location = "London",
+    businessName = "My Private Tutor Online",
+    ogImage = "https://myprivatetutoronline.com/images/faq-og-image.jpg",
+    ogImageAlt = "My Private Tutor Online - FAQ Support",
+    ogType = "website",
+    twitterCard = "summary_large_image"
+  } = props
+
+  // Generate optimized title
+  let optimizedTitle = title
+  if (categoryTitle) {
+    optimizedTitle = `${categoryTitle} FAQ - ${businessName}`
+    if (questionCount) {
+      optimizedTitle += ` | ${questionCount} Questions Answered`
+    }
+  }
+  if (location && location !== "London") {
+    optimizedTitle += ` | ${location} Tutoring Services`
+  }
+
+  // Generate optimized description
+  let optimizedDescription = description
+  if (categoryDescription && questionCount) {
+    optimizedDescription = `${categoryDescription} Find answers to ${questionCount} frequently asked questions about ${categoryTitle?.toLowerCase()} with ${businessName}.`
+  }
+  if (location) {
+    optimizedDescription += ` Premium tutoring services available in ${location} and surrounding areas.`
+  }
+
+  // CONTEXT7 SOURCE: /vercel/next.js - Metadata object structure for App Router
+  return {
+    title: optimizedTitle,
+    description: optimizedDescription,
+    keywords: keywords.join(', '),
+    robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        'en-GB': canonicalUrl,
+        'en': canonicalUrl
+      }
+    },
+    openGraph: {
+      title: optimizedTitle,
+      description: optimizedDescription,
+      url: canonicalUrl,
+      siteName: businessName,
+      images: [
+        {
+          url: ogImage,
+          alt: ogImageAlt
+        }
+      ],
+      locale: 'en_GB',
+      type: ogType
+    },
+    twitter: {
+      card: twitterCard,
+      title: optimizedTitle,
+      description: optimizedDescription,
+      images: [ogImage],
+      site: '@MyPrivateTutorOnline',
+      creator: '@MyPrivateTutorOnline'
+    },
+    other: {
+      'theme-color': '#0f172a',
+      'msapplication-TileColor': '#0f172a',
+      'application-name': businessName
+    }
+  }
 }
 
 // CONTEXT7 SOURCE: /vercel/next.js - Component export with default props

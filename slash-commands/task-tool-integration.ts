@@ -245,14 +245,24 @@ export class TaskToolIntegration {
   private getTimingProfile(): TimingProfile {
     const profileName = process.env['AGENT_TIMING_PROFILE'] || 'balanced';
 
-    const profiles: Record<string, TimingProfile> = {
+    // CONTEXT7 SOURCE: /microsoft/typescript - Explicit type narrowing for object property access
+    // TYPE SAFETY REASON: Official TypeScript documentation requires explicit type validation for safe object access
+    interface ProfileMap {
+      realistic: TimingProfile;
+      balanced: TimingProfile;
+      fast: TimingProfile;
+      debug: TimingProfile;
+    }
+
+    const profiles: ProfileMap = {
       realistic: { agentDelay: [5000, 15000], roundDelay: 3000 },
       balanced: { agentDelay: [3000, 5000], roundDelay: 1000 },  // DEFAULT
       fast: { agentDelay: [500, 1000], roundDelay: 100 },
       debug: { agentDelay: [0, 0], roundDelay: 0 }
     };
 
-    return profiles[profileName] || profiles['balanced'];
+    const profile = profiles[profileName as keyof ProfileMap];
+    return profile || profiles.balanced;
   }
 
   /**

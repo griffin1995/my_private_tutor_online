@@ -53,27 +53,207 @@ export class HomepageErrorBoundary extends Component<
     };
   }
 
-  // CONTEXT7 SOURCE: /facebook/react - Static getDerivedStateFromError method
-  // ERROR DERIVATION REASON: Official React documentation for error state management
+  // CONTEXT7 SOURCE: /facebook/react - Enhanced static getDerivedStateFromError method with debugging
+  // ERROR DERIVATION REASON: Official React documentation for error state management with comprehensive debugging
   static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
-    console.error('[HomepageErrorBoundary] Error caught:', error);
-    
+    const errorId = `homepage-error-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
+    const timestamp = new Date().toISOString();
+
+    // Comprehensive error logging with debugging details
+    console.error('🚨 [ERROR-BOUNDARY] ===== COMPONENT ERROR DETECTED =====');
+    console.error(`🆔 [ERROR-ID] ${errorId}`);
+    console.error(`⏰ [ERROR-TIME] ${timestamp}`);
+    console.error('📊 [ERROR-DETAILS] Error object analysis:', {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+      constructor: error.constructor.name,
+      isReactError: error.stack?.includes('React') || false,
+      isContextError: error.message?.includes('context') || false,
+      isHookError: error.message?.includes('hook') || error.message?.includes('Hook') || false,
+    });
+
+    // React-specific error analysis
+    if (error.stack?.includes('React')) {
+      console.error('⚛️ [ERROR-REACT] React-specific error detected:', {
+        reactFrameworkError: true,
+        possibleCauses: [
+          'Component lifecycle violations',
+          'Invalid hook usage',
+          'State update after unmount',
+          'Render function side effects',
+        ],
+      });
+    }
+
+    // Context-specific error analysis
+    if (error.message?.includes('context') || error.message?.toLowerCase().includes('provider')) {
+      console.error('🔗 [ERROR-CONTEXT] React Context error detected:', {
+        contextError: true,
+        errorMessage: error.message,
+        possibleCauses: [
+          'useContext called outside Provider',
+          'Context value is null/undefined',
+          'Provider not properly wrapped',
+          'Multiple context instances',
+        ],
+        debuggingSteps: [
+          'Check if component is wrapped in correct Provider',
+          'Verify Provider value is not null',
+          'Ensure single React instance',
+          'Check for circular dependencies',
+        ],
+      });
+    }
+
+    // Hook-specific error analysis
+    if (error.message?.includes('hook') || error.message?.includes('Hook')) {
+      console.error('🪝 [ERROR-HOOKS] React Hooks error detected:', {
+        hooksError: true,
+        errorMessage: error.message,
+        possibleCauses: [
+          'Hooks called conditionally',
+          'Hooks called in non-component function',
+          'Hooks called after early return',
+          'Custom hook violating rules',
+        ],
+        debuggingSteps: [
+          'Check hooks are called at top level',
+          'Verify hooks are in React function component',
+          'Check for conditional hook calls',
+          'Review custom hook implementation',
+        ],
+      });
+    }
+
+    // Memory analysis at error time
+    if (typeof window !== 'undefined' && (window as any).performance?.memory) {
+      const memory = (window as any).performance.memory;
+      console.error('💾 [ERROR-MEMORY] Memory state at error:', {
+        usedJSHeapSize: `${(memory.usedJSHeapSize / 1024 / 1024).toFixed(2)} MB`,
+        totalJSHeapSize: `${(memory.totalJSHeapSize / 1024 / 1024).toFixed(2)} MB`,
+        jsHeapSizeLimit: `${(memory.jsHeapSizeLimit / 1024 / 1024).toFixed(2)} MB`,
+        memoryPressure: memory.usedJSHeapSize / memory.jsHeapSizeLimit > 0.8,
+      });
+    }
+
     return {
       hasError: true,
       error,
-      errorId: `homepage-error-${Date.now()}`,
+      errorId,
     };
   }
 
-  // CONTEXT7 SOURCE: /facebook/react - componentDidCatch lifecycle for error handling
-  // ERROR CATCHING REASON: Official React documentation for error info capture and reporting
+  // CONTEXT7 SOURCE: /facebook/react - Enhanced componentDidCatch lifecycle with comprehensive debugging
+  // ERROR CATCHING REASON: Official React documentation for error info capture and detailed analysis
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('[HomepageErrorBoundary] Component error details:', {
+    const timestamp = Date.now();
+
+    console.error('🔍 [ERROR-ANALYSIS] ===== COMPONENT ERROR ANALYSIS =====');
+    console.error(`📍 [ERROR-SECTION] Section: ${this.props.sectionName}`);
+    console.error(`🆔 [ERROR-ID] ${this.state.errorId}`);
+
+    // Enhanced error details analysis
+    console.error('📊 [ERROR-DETAILS] Comprehensive error information:', {
       section: this.props.sectionName,
-      error: error.message,
-      componentStack: errorInfo.componentStack,
+      errorName: error.name,
+      errorMessage: error.message,
       errorId: this.state.errorId,
+      timestamp: new Date(timestamp).toISOString(),
+      userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : 'Server',
+      url: typeof window !== 'undefined' ? window.location.href : 'Unknown',
+      viewport: typeof window !== 'undefined' ?
+        `${window.innerWidth}x${window.innerHeight}` : 'Unknown',
     });
+
+    // Component stack analysis
+    if (errorInfo.componentStack) {
+      const stackLines = errorInfo.componentStack.split('\n').filter(line => line.trim());
+      console.error('🏗️ [ERROR-STACK] Component stack analysis:', {
+        totalComponents: stackLines.length,
+        topLevelComponent: stackLines[0]?.trim() || 'Unknown',
+        stackDepth: stackLines.length,
+        hasNextJsComponents: stackLines.some(line => line.includes('Next')),
+        hasCustomComponents: stackLines.some(line => !line.includes('div') && !line.includes('section')),
+      });
+
+      console.error('📋 [ERROR-STACK] Full component stack:');
+      stackLines.forEach((line, index) => {
+        const indent = '  '.repeat(index);
+        console.error(`${indent}${index + 1}. ${line.trim()}`);
+      });
+    }
+
+    // JavaScript error stack analysis
+    if (error.stack) {
+      const jsStackLines = error.stack.split('\n')
+        .filter(line => line.trim() && !line.includes('node_modules'))
+        .slice(0, 10); // Top 10 relevant frames
+
+      console.error('🔧 [ERROR-JS-STACK] JavaScript error stack (filtered):', {
+        relevantFrames: jsStackLines.length,
+        hasSourceFiles: jsStackLines.some(line => line.includes('.tsx') || line.includes('.ts')),
+        hasReactFiles: jsStackLines.some(line => line.includes('react')),
+      });
+
+      jsStackLines.forEach((line, index) => {
+        console.error(`  ${index + 1}. ${line.trim()}`);
+      });
+    }
+
+    // Error frequency tracking
+    const errorKey = `${this.props.sectionName}-${error.name}`;
+    if (typeof window !== 'undefined') {
+      if (!window.__errorBoundaryStats) {
+        window.__errorBoundaryStats = {};
+      }
+
+      if (!window.__errorBoundaryStats[errorKey]) {
+        window.__errorBoundaryStats[errorKey] = {
+          count: 0,
+          firstOccurrence: timestamp,
+          lastOccurrence: timestamp,
+          errorDetails: [],
+        };
+      }
+
+      window.__errorBoundaryStats[errorKey].count++;
+      window.__errorBoundaryStats[errorKey].lastOccurrence = timestamp;
+      window.__errorBoundaryStats[errorKey].errorDetails.push({
+        timestamp,
+        message: error.message,
+        stack: error.stack?.substring(0, 500), // First 500 chars
+      });
+
+      console.error('📈 [ERROR-FREQUENCY] Error occurrence tracking:', {
+        errorType: errorKey,
+        totalOccurrences: window.__errorBoundaryStats[errorKey].count,
+        firstSeen: new Date(window.__errorBoundaryStats[errorKey].firstOccurrence).toISOString(),
+        timeSinceFirst: `${(timestamp - window.__errorBoundaryStats[errorKey].firstOccurrence) / 1000}s`,
+        isRecurring: window.__errorBoundaryStats[errorKey].count > 1,
+      });
+
+      // Alert on recurring errors
+      if (window.__errorBoundaryStats[errorKey].count > 3) {
+        console.error('🚨 [ERROR-RECURRING] RECURRING ERROR DETECTED!', {
+          errorType: errorKey,
+          occurrences: window.__errorBoundaryStats[errorKey].count,
+          section: this.props.sectionName,
+          recommendation: 'This error is happening repeatedly. Check for infinite re-render loops or unstable component state.',
+        });
+      }
+    }
+
+    // Performance impact analysis
+    if (typeof window !== 'undefined' && window.performance) {
+      const now = performance.now();
+      console.error('⚡ [ERROR-PERFORMANCE] Performance impact analysis:', {
+        errorTimestamp: now,
+        navigationStart: window.performance.timing?.navigationStart || 0,
+        timeSincePageLoad: `${(now - (window.performance.timing?.navigationStart || 0))}ms`,
+        possiblePerformanceImpact: now > 5000 ? 'High - Error occurred after significant time' : 'Low - Early error',
+      });
+    }
 
     this.setState({
       errorInfo,
@@ -81,28 +261,172 @@ export class HomepageErrorBoundary extends Component<
 
     // Call custom error handler if provided
     if (this.props.onError) {
-      this.props.onError(error, errorInfo);
+      try {
+        this.props.onError(error, errorInfo);
+        console.log('✅ [ERROR-HANDLER] Custom error handler executed successfully');
+      } catch (handlerError) {
+        console.error('❌ [ERROR-HANDLER] Custom error handler failed:', handlerError);
+      }
     }
 
-    // Report to error monitoring service (future enhancement)
+    // Enhanced error reporting
     this.reportError(error, errorInfo);
   }
 
-  // CONTEXT7 SOURCE: /facebook/react - Error reporting pattern for monitoring
-  // ERROR REPORTING REASON: Official React patterns for production error tracking
+  // CONTEXT7 SOURCE: /facebook/react - Enhanced error reporting pattern with comprehensive debugging data
+  // ERROR REPORTING REASON: Official React patterns for production error tracking with detailed debugging information
   private reportError = (error: Error, errorInfo: React.ErrorInfo) => {
-    // Future: Send to error monitoring service
+    const timestamp = new Date().toISOString();
+
+    // Comprehensive error report with debugging context
     const errorReport = {
+      // Basic error information
       section: this.props.sectionName,
+      errorId: this.state.errorId,
       message: error.message,
+      name: error.name,
       stack: error.stack,
       componentStack: errorInfo.componentStack,
-      timestamp: new Date().toISOString(),
-      userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : 'Unknown',
-      url: typeof window !== 'undefined' ? window.location.href : 'Unknown',
+      timestamp,
+
+      // Environment information
+      environment: {
+        userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : 'Server',
+        url: typeof window !== 'undefined' ? window.location.href : 'Unknown',
+        referrer: typeof window !== 'undefined' ? document.referrer : 'Unknown',
+        viewport: typeof window !== 'undefined' ?
+          `${window.innerWidth}x${window.innerHeight}` : 'Unknown',
+        colorDepth: typeof window !== 'undefined' ? screen.colorDepth : 'Unknown',
+        pixelRatio: typeof window !== 'undefined' ? window.devicePixelRatio : 'Unknown',
+        language: typeof window !== 'undefined' ? navigator.language : 'Unknown',
+        platform: typeof window !== 'undefined' ? navigator.platform : 'Unknown',
+        onLine: typeof window !== 'undefined' ? navigator.onLine : 'Unknown',
+      },
+
+      // React-specific debugging information
+      react: {
+        version: React.version,
+        isReactError: error.stack?.includes('React') || false,
+        isContextError: error.message?.includes('context') || false,
+        isHookError: error.message?.includes('hook') || error.message?.includes('Hook') || false,
+        componentStackDepth: errorInfo.componentStack?.split('\n').filter(line => line.trim()).length || 0,
+      },
+
+      // Performance context
+      performance: {
+        memory: typeof window !== 'undefined' && (window as any).performance?.memory ? {
+          usedJSHeapSize: `${((window as any).performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(2)} MB`,
+          totalJSHeapSize: `${((window as any).performance.memory.totalJSHeapSize / 1024 / 1024).toFixed(2)} MB`,
+          jsHeapSizeLimit: `${((window as any).performance.memory.jsHeapSizeLimit / 1024 / 1024).toFixed(2)} MB`,
+        } : 'Memory API not available',
+        timing: typeof window !== 'undefined' && window.performance?.timing ? {
+          domContentLoaded: window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart,
+          loadComplete: window.performance.timing.loadEventEnd - window.performance.timing.navigationStart,
+        } : 'Performance timing not available',
+      },
+
+      // Error frequency data
+      frequency: typeof window !== 'undefined' && window.__errorBoundaryStats ? {
+        totalErrorTypes: Object.keys(window.__errorBoundaryStats).length,
+        currentErrorOccurrences: window.__errorBoundaryStats[`${this.props.sectionName}-${error.name}`]?.count || 1,
+      } : 'Frequency tracking not available',
+
+      // Debugging recommendations
+      debugging: {
+        recommendations: this.generateDebuggingRecommendations(error, errorInfo),
+        priority: this.assessErrorPriority(error, errorInfo),
+        category: this.categorizeError(error, errorInfo),
+      },
     };
 
-    console.warn('[HomepageErrorBoundary] Error report generated:', errorReport);
+    console.warn('📋 [ERROR-REPORT] ===== COMPREHENSIVE ERROR REPORT =====');
+    console.warn('📊 [ERROR-REPORT] Full error report:', errorReport);
+
+    // Generate debugging action items
+    console.warn('🔧 [ERROR-DEBUGGING] Recommended debugging steps:');
+    errorReport.debugging.recommendations.forEach((recommendation, index) => {
+      console.warn(`  ${index + 1}. ${recommendation}`);
+    });
+
+    console.warn(`🚨 [ERROR-PRIORITY] Error priority: ${errorReport.debugging.priority}`);
+    console.warn(`📂 [ERROR-CATEGORY] Error category: ${errorReport.debugging.category}`);
+
+    // Future enhancement: Send to error monitoring service
+    if (process.env.NODE_ENV === 'production') {
+      // TODO: Send to error monitoring service (Sentry, LogRocket, etc.)
+      console.log('📤 [ERROR-REPORT] Ready for error monitoring service transmission');
+    }
+  };
+
+  // Enhanced debugging recommendation generator
+  private generateDebuggingRecommendations = (error: Error, errorInfo: React.ErrorInfo): string[] => {
+    const recommendations: string[] = [];
+
+    // React-specific recommendations
+    if (error.stack?.includes('React')) {
+      recommendations.push('Check React component lifecycle and state management');
+      recommendations.push('Verify proper hook usage and dependency arrays');
+    }
+
+    // Context-specific recommendations
+    if (error.message?.includes('context') || error.message?.toLowerCase().includes('provider')) {
+      recommendations.push('Verify React Context Provider is properly wrapping the component tree');
+      recommendations.push('Check if useContext is called within the correct Provider scope');
+      recommendations.push('Ensure Context value is not null or undefined');
+    }
+
+    // Hook-specific recommendations
+    if (error.message?.includes('hook') || error.message?.includes('Hook')) {
+      recommendations.push('Review React Hooks rules - ensure hooks are called at top level only');
+      recommendations.push('Check for conditional hook calls or hooks called after early returns');
+      recommendations.push('Verify custom hooks follow React Hooks conventions');
+    }
+
+    // Section-specific recommendations
+    recommendations.push(`Review ${this.props.sectionName} component implementation`);
+    recommendations.push('Check for recent code changes in this section');
+    recommendations.push('Verify all required props are being passed correctly');
+
+    // General recommendations
+    recommendations.push('Review browser console for additional error details');
+    recommendations.push('Test in different browsers and devices');
+    recommendations.push('Check network requests and API responses');
+
+    return recommendations;
+  };
+
+  // Error priority assessment
+  private assessErrorPriority = (error: Error, errorInfo: React.ErrorInfo): string => {
+    // High priority conditions
+    if (error.message?.includes('context') || error.message?.includes('Cannot read property')) {
+      return 'HIGH - Core functionality impacted';
+    }
+
+    if (this.props.sectionName.toLowerCase().includes('hero') ||
+        this.props.sectionName.toLowerCase().includes('payment') ||
+        this.props.sectionName.toLowerCase().includes('form')) {
+      return 'HIGH - Critical section affected';
+    }
+
+    // Medium priority conditions
+    if (errorInfo.componentStack?.split('\n').length > 10) {
+      return 'MEDIUM - Deep component stack affected';
+    }
+
+    // Default to medium
+    return 'MEDIUM - Standard error handling required';
+  };
+
+  // Error categorization
+  private categorizeError = (error: Error, errorInfo: React.ErrorInfo): string => {
+    if (error.message?.includes('context')) return 'React Context Error';
+    if (error.message?.includes('hook') || error.message?.includes('Hook')) return 'React Hooks Error';
+    if (error.message?.includes('Cannot read property')) return 'JavaScript Reference Error';
+    if (error.message?.includes('fetch') || error.message?.includes('network')) return 'Network/API Error';
+    if (error.message?.includes('render')) return 'React Render Error';
+    if (error.stack?.includes('React')) return 'React Framework Error';
+
+    return 'General JavaScript Error';
   };
 
   // CONTEXT7 SOURCE: /facebook/react - Error recovery method
