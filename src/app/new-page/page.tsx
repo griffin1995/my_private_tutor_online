@@ -74,6 +74,11 @@ export default function NewPage() {
   const primarySchoolHeading = getStandardizedContentById("primary-school-heading") as StandardizedHeadingContent;
   const primarySchoolVideos1 = getStandardizedContentById("primary-school-videos-1") as StandardizedVideoContent;
   const primarySchoolVideos2 = getStandardizedContentById("primary-school-videos-2") as StandardizedVideoContent;
+
+  // Extract individual videos for the 2-row layout
+  const primaryVideo3B = primarySchoolVideos1.videos[0]; // "Confidence-building lessons designed for early learners"
+  const primaryVideo3C = primarySchoolVideos1.videos[1]; // "7+, 8+ and 11+ specialists with a track record of top school offers"
+  const primaryVideo3D = primarySchoolVideos2.videos[0]; // "Individual learning plans shaped by expert assessment"
   const secondarySchoolHeading = getStandardizedContentById("secondary-school-heading") as StandardizedHeadingContent;
   const secondarySchoolVideos1 = getStandardizedContentById("secondary-school-videos-1") as StandardizedVideoContent;
   const secondarySchoolVideos2 = getStandardizedContentById("secondary-school-videos-2") as StandardizedVideoContent;
@@ -139,17 +144,45 @@ export default function NewPage() {
           className={primarySchoolHeading.className}
         />
 
-        {/* 2. VideoMasterclassGrid (Primary School Sections) */}
-        <VideoMasterclassGrid
-          videos={primarySchoolVideos1.videos.map(convertToVideoMasterclass)}
-          className={primarySchoolVideos1.className}
-        />
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Arbitrary value width with viewport-relative sizing for 85% page width */}
+        {/* CONTAINER OPTIMIZATION REASON: Official Tailwind CSS documentation demonstrates w-[...] arbitrary values for precise viewport-relative width control */}
+        {/* WIDTH EXPANSION TO 85%: Changed from max-w-7xl (80rem/1280px) to w-[85%] with max-w-none for 85% viewport width per user requirement */}
+        <div className="mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+          <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-width responsive container for single column layout */}
+            {/* ROW 1 OPTIMIZATION REASON: Official Tailwind CSS documentation for responsive container width with proper breathing room */}
+            {/* Row 1: Full-width single column (3B) - "Confidence-building lessons designed for early learners" */}
+            <div className="w-full">
+              <VideoMasterclassGrid
+                videos={[convertToVideoMasterclass(primaryVideo3B)]}
+                className="py-0"
+              />
+            </div>
 
-        {/* 3. VideoMasterclassGrid (Primary School Sections) */}
-        <VideoMasterclassGrid
-          videos={primarySchoolVideos2.videos.map(convertToVideoMasterclass)}
-          className={primarySchoolVideos2.className}
-        />
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive grid layout with mobile-first approach */}
+            {/* ROW 2 RESPONSIVE REASON: Official Tailwind CSS documentation demonstrates responsive grid with mobile stacking and desktop columns */}
+            {/* Row 2: Two equal columns (3C and 3D) - Responsive: stack on mobile, side-by-side on desktop */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Individual grid item with responsive spacing */}
+              {/* GRID ITEM REASON: Official Tailwind CSS documentation for proper grid item structure */}
+              {/* Left column (3C) - "7+, 8+ and 11+ specialists with a track record of top school offers" */}
+              <div>
+                <VideoMasterclassGrid
+                  videos={[convertToVideoMasterclass(primaryVideo3C)]}
+                  className="py-0"
+                />
+              </div>
+
+              {/* Right column (3D) - "Individual learning plans shaped by expert assessment" */}
+              <div>
+                <VideoMasterclassGrid
+                  videos={[convertToVideoMasterclass(primaryVideo3D)]}
+                  className="py-0"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* 4. TwoRowHeadingTextSection (Secondary School) */}
         <TwoRowHeadingTextSection
