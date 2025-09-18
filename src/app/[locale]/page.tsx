@@ -2018,7 +2018,7 @@ export default function HomePage() {
         {/* SPACING ADDITION REASON: Official Tailwind CSS documentation mt-8 utility creates 2rem (32px) top margin for breathing room between Hero and Tagline sections */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="homepage-tagline" className="mt-8">
+        <section id="homepage-tagline" className="pt-12 pb-8">
           <ErrorBoundaryWrapper sectionName="Homepage Tagline">
             <div className="relative text-center flex items-center justify-center">
               <div className="flex flex-col items-center justify-center h-full">
@@ -2065,8 +2065,8 @@ export default function HomePage() {
         {/* NEW HIGHLIGHTER SECTION - IMMEDIATELY ABOVE ABOUT */}
         {/* CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter implementation section */}
         {/* HIGHLIGHTER SECTION REASON: Official Magic UI documentation implementation with proper highlight and underline effects */}
-        <section id="homepage-highlighter" className="py-24 bg-slate-50">
-          <div className="max-w-4xl mx-auto text-center">
+        <section id="homepage-highlighter" className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto text-center px-6">
             <p style={{ fontSize: "1.6rem" }}>
               We provide{" "}
               <Highlighter action="highlight" color="#CA9E5B">
@@ -2093,7 +2093,7 @@ export default function HomePage() {
         {/* ABOUT SECTION RESTORATION: Restored from git history - provides company background and founder credibility */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="homepage-about" className="pt-0 mt-0">
+        <section id="homepage-about" className="pt-0 mt-0 bg-slate-50">
           <ErrorBoundaryWrapper sectionName="About Section">
             <AboutSection />
           </ErrorBoundaryWrapper>
@@ -2109,13 +2109,16 @@ export default function HomePage() {
           <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
             <div className="max-w-4xl mx-auto text-center">
               {/* Row 1: H1 Heading */}
-              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 mb-6">
+              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 mb-4">
                 Meet Elizabeth
               </h1>
 
               {/* Row 2: Paragraph */}
               <p className="text-xl text-primary-700 leading-relaxed mb-12">
-                Here to help your child thrive
+                Here to help your child{" "}
+                <Highlighter action="highlight" color="#CA9E5B" strokeWidth={2} iterations={1}>
+                  thrive
+                </Highlighter>
               </p>
 
               {/* Row 3: Copy of video component from About section */}
@@ -2166,7 +2169,7 @@ export default function HomePage() {
 
               {/* Badge 3 - Royal Clientele Text */}
               <div className="flex justify-center items-center">
-                <p className="text-center text-sm font-medium text-primary-700">
+                <p className="text-center text-lg font-medium text-primary-700">
                   Trusted by Royal Clientele
                 </p>
               </div>
@@ -2212,7 +2215,7 @@ export default function HomePage() {
         {/* 8. WHO WE SUPPORT - WITH ERROR BOUNDARY */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="homepage-who-we-support">
+        <section id="homepage-who-we-support" className="py-16">
           <ErrorBoundaryWrapper sectionName="Trust Indicators and Student Gallery">
             <TrustIndicatorsGrid
               indicators={trustIndicators}

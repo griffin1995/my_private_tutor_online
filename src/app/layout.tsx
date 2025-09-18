@@ -47,7 +47,9 @@ import { CookieConsentManager } from '@/components/legal/CookieConsent';
 // Temporarily disabled for build debugging
 // import { GlobalErrorBoundary } from '@/components/infrastructure/GlobalErrorBoundary';
 
-// CONTEXT7 SOURCE: /mrmrs/pesticide - CSS layout debugging tool for development environment only
+// CONTEXT7 SOURCE: /vercel/next.js - Development tools provider for debugging
+// DEBUGGING TOOL REASON: Pesticide CSS debugging tool for development environment only
+import { DevToolsProvider } from '@/providers/DevToolsProvider';
 // DEVELOPMENT TOOL: Pesticide CSS debugger integration for layout development and troubleshooting
 import { PesticideDebugger } from '@/lib/dev-utils';
 
@@ -361,7 +363,9 @@ export default function RootLayout({
           componentName="RootLayout"
         > */}
           <LazyMotionProvider>
-            {children}
+            <DevToolsProvider>
+              {children}
+            </DevToolsProvider>
           </LazyMotionProvider>
         {/* </GlobalErrorBoundary> */}
         {/* Performance Monitor loaded client-side only */}

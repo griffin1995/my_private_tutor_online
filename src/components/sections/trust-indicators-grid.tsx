@@ -240,7 +240,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
   }
 
   return (
-    <div 
+    <div
       className="w-full"
     >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Edge-to-edge layout with zero padding */}
@@ -265,8 +265,8 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
               {isOddRow ? (
                 <>
                   {/* Odd rows: Image on left */}
-                  <motion.div 
-                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] overflow-hidden group"
+                  <motion.div
+                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-[22rem] xl:h-[24rem] overflow-hidden group"
                     initial={{ opacity: 0, scale: 1.05 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -288,7 +288,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                       // CONTEXT7 SOURCE: /websites/tailwindcss - aspect-square with explicit height constraints
                       // PERFECT SQUARE REASON: Combining aspect-square with responsive height ensures images are always
                       // perfectly square regardless of source dimensions (landscape, portrait, or square)
-                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-110"
+                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       priority={index < 2}
                     />
@@ -393,8 +393,8 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                   </motion.div>
                   
                   {/* Image on right */}
-                  <motion.div 
-                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] order-1 lg:order-2 overflow-hidden group"
+                  <motion.div
+                    className="trust-image relative aspect-square w-full h-64 sm:h-72 md:h-80 lg:h-[22rem] xl:h-[24rem] order-1 lg:order-2 overflow-hidden group"
                     initial={{ opacity: 0, scale: 1.05 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
@@ -416,7 +416,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                       // CONTEXT7 SOURCE: /websites/tailwindcss - aspect-square with explicit height constraints
                       // PERFECT SQUARE REASON: Combining aspect-square with responsive height ensures images are always
                       // perfectly square regardless of source dimensions (landscape, portrait, or square)
-                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-110"
+                      className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                       priority={index < 2}
                     />

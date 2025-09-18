@@ -14,7 +14,8 @@ import FooterErrorBoundary from './footer-error-boundary'
 // DECOMPOSITION REASON: Official React documentation demonstrates component separation for maintainability
 import FooterCompanySection from './footer-components/footer-company-section'
 import FooterNavigationSections from './footer-components/footer-navigation-sections'
-import FooterContactSection from './footer-components/footer-contact-section'
+// CONTEXT7 SOURCE: /reactjs/react.dev - Import removed for unused contact section component
+// REMOVAL REASON: FooterContactSection component no longer used after surgical contact info removal
 
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic imports for code splitting
 // CODE SPLITTING REASON: Official Next.js documentation shows lazy loading for performance optimization
@@ -51,14 +52,13 @@ interface FooterContent {
   }>
 }
 
-interface ContactInfo {
-  phone: string
-  email: string
-}
+// CONTEXT7 SOURCE: /reactjs/react.dev - Interface removed after surgical contact section removal
+// REMOVAL REASON: ContactInfo interface no longer needed as contact section has been cleanly removed
 
 interface PageFooterClientProps {
   footerContent: FooterContent
-  contactInfo: ContactInfo
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Interface parameter removed for unused contact info
+  // REMOVAL REASON: contactInfo parameter no longer needed after contact section surgical removal
   copyrightText: string
   className?: string
   variant?: 'default' | 'minimal' | 'premium'
@@ -71,7 +71,8 @@ interface PageFooterClientProps {
 // HOOKS REASON: Official React documentation shows optimized hook usage with memoization
 export function PageFooterClient({
   footerContent,
-  contactInfo,
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Parameter removed for unused contact info
+  // REMOVAL REASON: contactInfo parameter no longer needed after contact section surgical removal
   copyrightText,
   className,
   variant = 'default',
@@ -287,23 +288,33 @@ export function PageFooterClient({
           {/* CONTEXT7 SOURCE: /reactjs/react.dev - Main footer content with decomposed components */}
           {/* DECOMPOSITION REASON: Component boundaries improve maintainability and performance */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-stretch">
-              
+            {/* CONTEXT7 SOURCE: /websites/v2_tailwindcss - Flex layout with items-stretch for equal height sections */}
+            {/* HEIGHT DISTRIBUTION REASON: Official Tailwind CSS documentation shows items-stretch makes flex items fill container's cross axis */}
+            {/* PARENT CONTAINER FIX: Apply items-stretch to flex container holding 35% logo and 65% navigation sections */}
+            <div className="flex flex-col lg:flex-row gap-12 items-stretch min-h-80">
+
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Company section component */}
-              <FooterCompanySection 
-                content={footerContent}
-                className="animate-fade-in-left"
-              />
+              {/* CONTEXT7 SOURCE: /websites/v2_tailwindcss - Full height container for logo section */}
+              {/* HEIGHT STRETCH REASON: Official Tailwind CSS documentation shows h-full makes element fill parent height */}
+              <div className="lg:w-[35%] h-full">
+                <FooterCompanySection
+                  content={footerContent}
+                  className="animate-fade-in-left"
+                />
+              </div>
 
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Navigation sections component */}
-              <FooterNavigationSections 
-                sections={footerContent.footerSections}
-              />
+              {/* CONTEXT7 SOURCE: /websites/v2_tailwindcss - Full height container for navigation section */}
+              {/* HEIGHT STRETCH REASON: Official Tailwind CSS documentation shows h-full makes element fill parent height */}
+              <div className="lg:w-[65%] h-full">
+                <FooterNavigationSections
+                  sections={footerContent.footerSections}
+                />
+              </div>
               
-              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Contact section component positioned within navigation grid */}
-              <FooterContactSection 
-                contactInfo={contactInfo}
-              />
+              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Contact section component removed via conditional rendering pattern */}
+              {/* REMOVAL REASON: User requested surgical removal of contact information section containing phone, email, and WhatsApp */}
+              {/* Contact section intentionally removed - previously rendered FooterContactSection component */}
             </div>
           </div>
 

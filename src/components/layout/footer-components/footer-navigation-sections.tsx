@@ -47,8 +47,10 @@ export const FooterNavigationSections = React.memo<FooterNavigationSectionsProps
     return null;
   }
 
+  // CONTEXT7 SOURCE: /websites/v2_tailwindcss - Grid layout with full height and height distribution
+  // HEIGHT DISTRIBUTION REASON: Official Tailwind CSS documentation shows h-full with items-stretch for equal height columns
   return (
-    <div className={`lg:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-8 items-stretch min-h-full ${className}`}>
+    <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 items-stretch h-full ${className}`}>
       {processedSections.map((section) => (
         <FooterNavigationSection
           key={section.id}
@@ -90,30 +92,32 @@ const FooterNavigationSection = React.memo<FooterNavigationSectionProps>(({
   sectionIndex
 }) => {
   return (
-    <div 
-      className="space-y-6 animate-fade-in-up"
+    <div
+      className="flex flex-col h-full animate-fade-in-up"
       style={{ animationDelay: `${sectionIndex * 0.1}s` }}
     >
       {/* CONTEXT7 SOURCE: /wcag/guidelines - Heading hierarchy and landmark roles */}
       {/* ACCESSIBILITY REASON: Official WCAG guidelines require proper heading structure and landmarks */}
-      <h3 
+      <h3
         id={section.id}
-        className="font-serif text-3xl font-bold text-black flex items-center gap-2"
+        className="font-serif text-4xl font-bold text-black flex items-center gap-2 mb-6 flex-shrink-0"
       >
         {section.title}
         <Separator className="flex-1 bg-gray-300" />
       </h3>
-      
-      {/* CONTEXT7 SOURCE: /wcag/guidelines - Navigation landmark with proper labeling */}
-      {/* NAVIGATION REASON: Official WCAG guidelines require navigation landmarks for screen readers */}
-      <nav 
-        role="navigation" 
+
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox with height distribution */}
+      {/* FLEXBOX REASON: Official Tailwind CSS documentation shows flex-1 for remaining space and justify-between for even distribution */}
+      {/* HEIGHT DISTRIBUTION REASON: Links distribute evenly across available vertical space after header */}
+      <nav
+        role="navigation"
         aria-labelledby={section.id}
         aria-label={`${section.title} links`}
+        className="flex-1 flex flex-col"
       >
-        <ul className="space-y-3">
+        <ul className="flex flex-col justify-between h-full">
           {section.processedLinks.map((link) => (
-            <li key={link.id}>
+            <li key={link.id} className="flex-shrink-0">
               <FooterNavigationLink link={link} />
             </li>
           ))}
@@ -150,7 +154,7 @@ const FooterNavigationLink = React.memo<FooterNavigationLinkProps>(({
         href={link.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center text-gray-700 hover:text-accent-600 transition-all duration-300"
+        className="group flex items-center text-gray-700 hover:text-accent-600 transition-all duration-300 text-xl"
         aria-label={`${link.accessibleLabel} - opens in new tab`}
       >
         <span className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden">

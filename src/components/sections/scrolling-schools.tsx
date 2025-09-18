@@ -91,8 +91,8 @@ export function ScrollingSchools({
   const schoolLogos = getScrollingSchoolLogos()
 
   return (
-    <section 
-      className={`bg-white ${className}`} 
+    <section
+      className={`bg-white py-8 px-4 sm:px-6 lg:px-8 ${className}`}
       aria-label="Partner schools carousel"
     >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities */}

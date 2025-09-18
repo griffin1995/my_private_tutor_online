@@ -94,9 +94,9 @@ export default function AboutUsPage() {
       {/* NEW HIGHLIGHTER SECTION - IMMEDIATELY ABOVE ABOUT */}
       {/* CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter implementation section */}
       {/* HIGHLIGHTER SECTION REASON: Official Magic UI documentation implementation with proper highlight and underline effects */}
-      <section id="about-highlighter-intro" className="pt-5 bg-white">
+      <section id="about-highlighter-intro" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto text-center">
-          <p style={{ fontSize: "1.4rem" }}>
+          <p style={{ fontSize: "1.2rem" }}>
             We believe every child deserves an education{" "}
             <Highlighter action="highlight" color="#CA9E5B">
               tailored to who they are

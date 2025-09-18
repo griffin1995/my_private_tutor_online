@@ -89,7 +89,7 @@ export function FounderStorySection({
   return (
     <section
       id="founder-story"
-      className={`relative bg-${backgroundColor} pt-8 pb-16 lg:pt-12 lg:pb-24 ${className}`}
+      className={`relative bg-${backgroundColor} pb-16 lg:pb-24 ${className}`}
       aria-labelledby="founder-story-heading"
     >
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section separator removal for clean layout flow */}
@@ -126,7 +126,7 @@ export function FounderStorySection({
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center">
+          <div className="order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-6 sm:px-8 lg:px-12 xl:px-16 pb-12 lg:pb-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center items-end">
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
             {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
             {/* ACCENT BAR REASON: For text-right sections, accent bar goes on right side (border-r-4) to match text alignment */}

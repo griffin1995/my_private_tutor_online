@@ -2,7 +2,9 @@
 // SYNCHRONOUS ARCHITECTURE RESTORATION: Return to working pattern from August 14, 2025
 // WORKING PATTERN REASON: Direct CMS function calls eliminate async complexity
 import React from 'react'
-import { getFooterContent, getUnifiedContact, getCopyrightText } from '@/lib/cms'
+// CONTEXT7 SOURCE: /reactjs/react.dev - Import updated after surgical contact section removal
+// REMOVAL REASON: getUnifiedContact import removed as contact info no longer needed
+import { getFooterContent, getCopyrightText } from '@/lib/cms'
 
 // Client Component for interactive functionality
 import { PageFooterClient } from './page-footer-client'
@@ -30,17 +32,17 @@ export function PageFooter({
   // SYNCHRONOUS CMS REASON: Direct function calls eliminate async complexity and loading states
   // CMS DATA SOURCE: Using synchronous getFooterContent for footer structure and links
   const footerContent = getFooterContent()
-  // CONTEXT7 SOURCE: /microsoft/typescript - Unified data access pattern with interface extraction
-  const unifiedContact = getUnifiedContact()
-  const contactInfo = unifiedContact.landingInfo
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Contact data access removed after surgical contact section removal
+  // REMOVAL REASON: unifiedContact and contactInfo no longer needed as contact section has been removed
   const copyrightText = getCopyrightText()
 
   // CONTEXT7 SOURCE: /reactjs/react.dev - Client Component composition pattern
   // COMPOSITION REASON: Official React documentation demonstrates passing synchronous data as props to client components
   return (
-    <PageFooterClient 
+    <PageFooterClient
       footerContent={footerContent}
-      contactInfo={contactInfo}
+      // CONTEXT7 SOURCE: /reactjs/react.dev - contactInfo prop removed after surgical contact section removal
+      // REMOVAL REASON: contactInfo no longer passed as prop since contact section has been cleanly removed
       copyrightText={copyrightText}
       className={className}
       variant={variant}

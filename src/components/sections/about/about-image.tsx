@@ -1,7 +1,8 @@
 /**
- * CONTEXT7 SOURCE: /reactjs/react.dev - Component composition patterns for image and credential display
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Component composition patterns for founder image display
  * COMPONENT EXTRACTION REASON: Official React documentation shows separating complex UI elements for better testability
- * PATTERN: Reusable image component with integrated credential badges
+ * PATTERN: Reusable founder image component with responsive animations and magnetic interactions
+ * MODIFICATION: Credentials section removed (Tatler, School Guide UK, Royal Clientele badges) per requirements
  */
 
 "use client";
@@ -48,23 +49,23 @@ interface AboutImageProps {
   animationDelay?: number;
   /** Custom className for styling overrides */
   className?: string;
-  /** Show credential badges */
+  /** Show credential badges - DEPRECATED: Credentials section removed */
   showCredentials?: boolean;
   /** Conversion tracker for analytics and A/B testing */
   conversionTracker?: any;
 }
 
 /**
- * CONTEXT7 SOURCE: /reactjs/react.dev - Component composition for complex image layouts with credential integration
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Component composition for founder image display
  * EXTRACTION REASON: Official React documentation shows how to extract visual components for better separation of concerns
- * PATTERN: Image component with integrated credential system and responsive animations
+ * PATTERN: Founder image component with responsive animations and magnetic interactions
  */
 export function AboutImage({
   founderImageUrl,
   founderImageAlt,
   animationDelay = 0.3,
   className = "",
-  showCredentials = true,
+  showCredentials = false,
   conversionTracker
 }: AboutImageProps) {
   // CONTEXT7 SOURCE: /vercel/next.js - Using cached data access for performance optimization
@@ -108,13 +109,8 @@ export function AboutImage({
     enableMicroInteractions: true
   });
 
-  const credentialsAnimation = useEnhancedAnimations({
-    threshold: 0.2,
-    rootMargin: '-100px',
-    delay: animationDelay + 0.4,
-    trackingName: 'credentials-section',
-    enableMicroInteractions: true
-  });
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Component cleanup patterns for unused state management
+  // CLEANUP REASON: Official React documentation shows removing unused animation hooks when conditional content is removed
 
   // CONTEXT7 SOURCE: /framer/motion - Magnetic effect configuration for founder image interaction
   // MAGNETIC INTERACTION: Official Framer Motion documentation shows implementing magnetic cursor effects
@@ -140,7 +136,7 @@ export function AboutImage({
       {/* CONTEXT7 SOURCE: /mozilla/mdn - Hidden heading for accessibility context */}
       {/* ACCESSIBILITY INTEGRATION: Official MDN documentation shows using hidden headings for screen reader context */}
       <h3 id="about-image-heading" className="sr-only">
-        About My Private Tutor Online - Founder and Credentials
+        About My Private Tutor Online - Founder
       </h3>
 
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Image component with enhanced micro-interactions and magnetic effects */}
@@ -186,109 +182,10 @@ export function AboutImage({
         />
       </m.div>
 
-      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering patterns with enhanced micro-interactions */}
-      {showCredentials && (
-        <m.div
-          ref={credentialsAnimation.ref}
-          animate={credentialsAnimation.controls}
-          className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-6 bg-primary-50/30 rounded-lg p-6 mx-4 cursor-default"
-          role="group"
-          aria-labelledby="credentials-heading"
-          onAnimationComplete={() => {
-            // CONTEXT7 SOURCE: /framer/motion - Credentials animation completion tracking
-            // CREDENTIALS TRACKING: Official Framer Motion documentation shows tracking section animation completion
-            credentialsAnimation.cleanupTracking();
-            if (conversionTracker) {
-              conversionTracker.trackEvent('scroll_milestone', {
-                milestone: 'credentials_animated',
-                timestamp: Date.now(),
-                variant: conversionTracker.getCurrentVariant()
-              });
-            }
-          }}
-        >
-          {/* CONTEXT7 SOURCE: /mozilla/mdn - Hidden heading for accessibility context */}
-          {/* ACCESSIBILITY INTEGRATION: Official MDN documentation shows using hidden headings for grouped content */}
-          <h4 id="credentials-heading" className="sr-only">
-            Professional Credentials and Media Recognition
-          </h4>
-          <ul
-            role="list"
-            className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-6 w-full"
-          >
-            <li
-              className="flex items-center gap-3 cursor-pointer hover:bg-primary-100/50 rounded-lg p-2 transition-colors"
-              aria-label="Tatler Address Book recognition"
-              onClick={() => {
-                // CONTEXT7 SOURCE: /vercel/next.js - Credential interaction tracking for conversion optimization
-                // CREDENTIAL TRACKING: Official Next.js documentation shows tracking trust signal interactions for conversion analysis
-                if (conversionTracker) {
-                  conversionTracker.trackEvent('credentials_interaction', {
-                    credential: 'tatler',
-                    action: 'click',
-                    timestamp: Date.now(),
-                    variant: conversionTracker.getCurrentVariant()
-                  });
-                }
-              }}
-            >
-            <Image
-              src="/images/media/tatler-logo.png"
-              alt={generateOptimizedAltText("Tatler Address Book", 'logo', 'My Private Tutor Online')}
-              width={80}
-              height={30}
-              className="h-10 w-auto object-contain"
-              sizes={generateResponsiveSizes('logo')}
-              quality={getOptimalQuality('logo', 'avif')}
-              loading="lazy"
-              role="img"
-            />
-              <span className="font-medium text-primary-900 text-sm">
-                {contentData.credentials.tatler}
-              </span>
-            </li>
-            <li
-              className="flex items-center gap-3 cursor-pointer hover:bg-primary-100/50 rounded-lg p-2 transition-colors"
-              aria-label="School Guide UK top pick recognition"
-              onClick={() => {
-                // CONTEXT7 SOURCE: /vercel/next.js - Credential interaction tracking for conversion optimization
-                // CREDENTIAL TRACKING: Official Next.js documentation shows tracking trust signal interactions for conversion analysis
-                if (conversionTracker) {
-                  conversionTracker.trackEvent('credentials_interaction', {
-                    credential: 'school-guide',
-                    action: 'click',
-                    timestamp: Date.now(),
-                    variant: conversionTracker.getCurrentVariant()
-                  });
-                }
-              }}
-            >
-              <Image
-                src="/images/media/schools-guide-uk-logo.png"
-                alt={generateOptimizedAltText("School Guide UK", 'logo', 'My Private Tutor Online')}
-                width={80}
-                height={30}
-                className="h-12 w-auto object-contain"
-                sizes={generateResponsiveSizes('logo')}
-                quality={getOptimalQuality('logo', 'avif')}
-                loading="lazy"
-                role="img"
-              />
-              <span className="font-medium text-primary-900 text-sm">
-                {contentData.credentials.schoolGuide}
-              </span>
-            </li>
-            <li
-              className="flex items-center gap-2 w-full sm:w-auto justify-center mt-2 sm:mt-0"
-              aria-label="Royal clientele service"
-            >
-              <span className="font-medium text-primary-900 text-sm text-center">
-                {contentData.credentials.royal}
-              </span>
-            </li>
-          </ul>
-        </m.div>
-      )}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component modification patterns for element removal
+       * REMOVAL REASON: Official React documentation Section on conditional rendering shows removing conditional content blocks
+       * CREDENTIALS SECTION REMOVED: Tatler Address Book badge, School Guide UK 'Top Pick' badge, and "Trusted by Royal Clientele" text removed per requirements
+       */}
     </div>
   );
 }
