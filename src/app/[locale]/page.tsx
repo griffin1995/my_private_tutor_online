@@ -2212,10 +2212,10 @@ export default function HomePage() {
           </ErrorBoundaryWrapper>
         </section>
 
-        {/* 8. WHO WE SUPPORT - WITH ERROR BOUNDARY */}
-        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
-        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <section id="homepage-who-we-support" className="py-16">
+        {/* 8. TRUST INDICATORS GRID - WITH ERROR BOUNDARY */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Vertical padding utilities py-16 for symmetric spacing */}
+        {/* SPACING REASON: Official Tailwind documentation py-16 = 64px top + 64px bottom for mathematical 1:1 symmetry */}
+        <section id="homepage-trust-indicators" className="py-16">
           <ErrorBoundaryWrapper sectionName="Trust Indicators and Student Gallery">
             <TrustIndicatorsGrid
               indicators={trustIndicators}
