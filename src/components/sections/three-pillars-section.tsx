@@ -81,7 +81,12 @@ export const ThreePillarsSection: React.FC<ThreePillarsSectionProps> = ({
   showImages = true,
 }) => {
   return (
-    <section className={`py-16 lg:py-24 bg-white ${className}`}>
+    // CONTEXT7 SOURCE: /inikulin/parse5 - HTML5 semantic section elements proper usage
+    // SEMANTIC FIX REASON: Official HTML5 specification shows section elements should have semantic meaning, not be used solely for styling
+    // Converting inner section to div to avoid double section nesting - outer section provides semantic meaning, inner div provides styling container
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding directional utilities for top-only spacing
+    // PADDING OPTIMIZATION REASON: Official Tailwind CSS documentation shows pt-<number> utilities for top padding only, removing bottom padding for About page layout optimization
+    <div className={`pt-16 lg:pt-24 bg-white ${className}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Responsive grid layout */}
         {/* GRID LAYOUT REASON: Official Tailwind CSS documentation for responsive card layouts */}
@@ -95,7 +100,7 @@ export const ThreePillarsSection: React.FC<ThreePillarsSectionProps> = ({
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

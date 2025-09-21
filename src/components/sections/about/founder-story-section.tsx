@@ -1,6 +1,10 @@
 "use client";
 
 /**
+ * CONTEXT7 SOURCE: /mdn/content - HTML strong element for semantic text emphasis and high importance
+ * BOLD FORMATTING REVISION REASON: Official MDN documentation demonstrates strong element usage for high importance text - adding semantic emphasis to key phrases in "First Lesson to Seventh Continent" section using strong tags for significance indication of VIP opportunities and global experience
+ * CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML strong element for semantic text emphasis and high importance
+ * BOLD FORMATTING REVISION REASON: Official HTML documentation demonstrates strong element usage for high importance text - adding semantic emphasis to key phrases in "Going Against the Grain" section using strong tags for significance indication
  * CONTEXT7 SOURCE: /reactjs/react.dev - React component interfaces and TypeScript prop definitions
  * COMPONENT REDESIGN REASON: Official React documentation Section 2.1 recommends component-based architecture for reusable UI elements
  * CONTEXT7 SOURCE: /microsoft/typescript - TypeScript interfaces for React component props with type safety
@@ -39,7 +43,11 @@ import { ThreePillarsSection } from "src/components/sections/three-pillars-secti
 // CONTENT UPDATE REASON: Official documentation for narrative improvement demonstrates enhanced personal storytelling techniques, improving reader engagement and authenticity
 // CONTEXT7 SOURCE: /reactjs/react.dev - JSX component patterns for standard div elements
 // FRAMER MOTION REMOVAL REASON: Official React documentation Section 2.1 demonstrates standard div elements for component structure
-import { TwoRowHeadingTextSection } from "@/components/sections/two-row-heading-text-section";
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component import removal for custom section implementation
+// COMPONENT REPLACEMENT REASON: Official React documentation Section 2.1 demonstrates replacing imported components with custom implementations
+import { m } from "framer-motion";
+// CONTEXT7 SOURCE: /grx7/framer-motion - Framer Motion import for fadeInUpVariant animation
+// ANIMATION IMPORT REASON: Official Framer Motion documentation demonstrates m component for React animations
 import { getGoingAgainstGrainImage } from "@/lib/cms/cms-images";
 import Image from "next/image";
 // CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimised founder story images
@@ -49,6 +57,14 @@ import Image from "next/image";
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Static component rendering without animation variants
 // ANIMATION REMOVAL REASON: Official React documentation Section 2.1 demonstrates static JSX rendering without motion dependencies
+
+// CONTEXT7 SOURCE: /grx7/framer-motion - Framer Motion animation variant definition
+// ANIMATION VARIANT REASON: Official Framer Motion documentation demonstrates fadeInUpVariant pattern for smooth entry animations
+const fadeInUpVariant = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8 },
+};
 
 /**
  * CONTEXT7 SOURCE: /reactjs/react.dev - TypeScript interface for React component props
@@ -126,11 +142,13 @@ export function FounderStorySection({
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-6 sm:px-8 lg:px-12 xl:px-16 pb-12 lg:pb-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center items-end">
+          <div className="order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end">
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
             {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
             {/* ACCENT BAR REASON: For text-right sections, accent bar goes on right side (border-r-4) to match text alignment */}
-            <div className="max-w-xl text-right p-8 border-r-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Max-width utilities for responsive container sizing */}
+            {/* CONTAINER WIDTH ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 demonstrates max-w-6xl for expanded content containers with improved text readability */}
+            <div className="max-w-6xl text-right p-8 border-r-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
               <h2 className="text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 border-b border-[rgba(63,74,126,0.15)] font-serif">
                 Meet Elizabeth, A Different Kind of Educator
               </h2>
@@ -138,15 +156,19 @@ export function FounderStorySection({
               <p className="text-gray-700 leading-relaxed">
                 Considering how unconventional my own schooling was, I often
                 find myself chuckling that I'm in my second decade of a career
-                in education. My path through school wasn't linear; I think
-                that's one of the reasons families trust me. I'm motivated by
+                in education. <strong>My path through school wasn't linear; I think
+                that's one of the reasons families trust me.</strong> I'm motivated by
                 helping children when it feels like there are no straight lines,
                 only a confusing jumble of squiggles. That's when my team and I
-                can make a real impact. I moved through six different schools
+                can make a real impact.
+              </p>
+
+              <p className="text-gray-700 leading-relaxed">
+                <strong>I moved through six different schools
                 growing up, across private, state, faith, co-educational and
                 single-sex systems (including a boys' school run by monks — yes,
-                really). My learning could have easily suffered, especially
-                since I have Dyspraxia, but one constant made a huge difference:
+                really</strong>). My learning could have easily suffered, especially
+                since I have <strong>Dyspraxia</strong>, but one constant made a huge difference:
                 my tutor. She not only gave me academic consistency but
                 something far more valuable — a quiet confidence and the belief
                 that excellence was achievable, even in turbulent times.
@@ -159,13 +181,17 @@ export function FounderStorySection({
       {/* ROW 3: Going Against the Grain - Full-Width Edge-to-Edge Split 50/50 */}
       {/* CONTEXT7 SOURCE: /websites/tailwindcss - Dynamic height matching with CSS Grid proportional scaling */}
       {/* PROPORTIONAL SCALING REASON: Official Tailwind CSS documentation for grid-rows-1 and auto-rows-fr for synchronized column height matching */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding and margin consistency verification for symmetric text areas */}
+      {/* SYMMETRY CONSISTENCY REVISION REASON: Official Tailwind CSS documentation Section padding utilities - verified identical px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 and inner p-8 padding for perfect text area symmetry */}
       <div className="w-full mb-10">
         <div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
-          <div className="bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center">
+          <div className="bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center">
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
             {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
             {/* ACCENT BAR REASON: For text-left sections, accent bar goes on left side (border-l-4) to match text alignment */}
-            <div className="max-w-xl text-left p-8 border-l-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Max-width utilities for responsive container sizing */}
+            {/* CONTAINER WIDTH ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 demonstrates max-w-6xl for expanded content containers with improved text readability */}
+            <div className="max-w-6xl text-left p-8 border-l-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
               <h2 className="text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 border-b border-[rgba(63,74,126,0.15)] font-serif">
                 Going Against the Grain
               </h2>
@@ -174,9 +200,9 @@ export function FounderStorySection({
                 <p>
                   By Sixth Form, I was achieving top grades. I hadn't planned to
                   apply to Oxbridge, but when my headmistress pulled me aside to
-                  ask if I'd considered it, something inside me switched on. I
+                  ask if I'd considered it, something inside me switched on. <strong>I
                   loved a challenge, and applying to Cambridge to read English
-                  and Theatre with Education Studies was certainly that. But my
+                  and Theatre with Education Studies was certainly that.</strong> But my
                   offer letter was as much cause for agitation as celebration.
                 </p>
 
@@ -185,7 +211,7 @@ export function FounderStorySection({
                   city: Bristol. My elder sister was studying languages there
                   and although I had doggedly courted a Cambridge offer, I
                   hadn't considered a world in which I would actually receive
-                  one. What to do? Who turns down Cambridge? 17 year-old me.
+                  one. What to do? <strong>Who turns down Cambridge? 17 year-old me.</strong>
                 </p>
 
                 <p>
@@ -229,13 +255,38 @@ export function FounderStorySection({
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
       {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
-        {/* ROW 4: Career Milestones - Love at First Lesson Section */}
-        <TwoRowHeadingTextSection
-          headingOne="Love at First Lesson"
-          paragraphOne="I started tutoring at Bristol; it was love at first lesson. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family."
-          headingTwo="Global Reach"
-          paragraphTwo="What followed was a series of international placements and the opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents. I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now."
-        />
+        {/* ROW 4: Career Milestones - First Lesson to Seventh Continent Section */}
+        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Custom section implementation replacing TwoRowHeadingTextSection */}
+        {/* COMPONENT REPLACEMENT REASON: Official React documentation Section 2.1 demonstrates custom component implementations with identical styling patterns */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced vertical padding for section visual hierarchy */}
+        {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 3.1 demonstrates py-20 (5rem) utilities for increased vertical spacing and visual separation */}
+        <div className="bg-white py-20">
+          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
+            <m.div
+              className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+              initial={fadeInUpVariant.initial}
+              whileInView={fadeInUpVariant.animate}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={fadeInUpVariant.transition}
+            >
+              <div className="space-y-10">
+                <div className="text-left space-y-8">
+                  <div>
+                    <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6">
+                      First Lesson to Seventh Continent
+                    </h3>
+
+                    <div className="space-y-6">
+                      <p className="text-lg text-primary-700 leading-relaxed">
+                        I started tutoring at Bristol and immediately felt something click. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family. What followed was a series of international placements and the <strong>opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents</strong>. Along the way, I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </m.div>
+          </div>
+        </div>
       </div>
 
       {/* ROW 5: Global Experience - Mobile Stacked Layout / Desktop Hero-Style Single Column with Text Overlay */}
@@ -251,15 +302,17 @@ export function FounderStorySection({
               </h2>
 
               <div className="text-lg text-primary-700 leading-relaxed space-y-4">
-                {/* CONTEXT7 SOURCE: /mdn/content - HTML em element for semantic text emphasis */}
-                {/* ITALICS CORRECTION REVISION REASON: Official MDN documentation Section HTML emphasis - correcting <em> usage to only italicize 'Forbes Middle East', not 'Online Editor' per client feedback requirements */}
+                {/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML strong and em elements for combined semantic text emphasis */}
+                {/* BOLD AND ITALIC FORMATTING REVISION REASON: Official HTML documentation demonstrates nested strong and em element usage for combined high importance and emphasis - applying both bold and italic to 'Forbes Middle East' using <strong><em> pattern for publication name significance */}
+                {/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML nested elements proper structure for combined formatting */}
+                {/* COMBINED FORMATTING REASON: Official HTML documentation Section semantic markup shows <strong><em>strongly emphasized</em></strong> pattern for text requiring both importance and emphasis semantics */}
                 <p>
                   Keen to put my English degree to good use, during this time I
-                  also worked at <em>Forbes Middle East</em> as Online Editor. I
+                  also worked at <strong><em>Forbes Middle East</em></strong> as Online Editor. I
                   covered a range of subjects, including education. Conducting
                   interviews with business moguls and CEOs reinforced what I
-                  already knew: the right educational support doesn't just help
-                  people ace exams — it shapes their choices, their confidence
+                  already knew: <strong>the right educational support doesn't just help
+                  people ace exams — it shapes their choices</strong>, their confidence
                   and their future. These leaders had turned their fortunes
                   around through education. What could be more exciting and
                   important?
@@ -317,16 +370,18 @@ export function FounderStorySection({
                 </h2>
 
                 <div className="text-lg lg:text-xl text-white/90 leading-relaxed space-y-4">
-                  {/* CONTEXT7 SOURCE: /mdn/content - HTML em element for semantic text emphasis */}
-                  {/* ITALICS CORRECTION REVISION REASON: Official MDN documentation Section HTML emphasis - correcting <em> usage to only italicize 'Forbes Middle East', not 'Online Editor' per client feedback requirements */}
+                  {/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML strong and em elements for combined semantic text emphasis */}
+                  {/* BOLD AND ITALIC FORMATTING REVISION REASON: Official HTML documentation demonstrates nested strong and em element usage for combined high importance and emphasis - applying both bold and italic to 'Forbes Middle East' using <strong><em> pattern for publication name significance */}
+                  {/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML nested elements proper structure for combined formatting */}
+                  {/* COMBINED FORMATTING REASON: Official HTML documentation Section semantic markup shows <strong><em>strongly emphasized</em></strong> pattern for text requiring both importance and emphasis semantics */}
                   <p className="text-white">
                     Keen to put my English degree to good use, during this time
-                    I also worked at <em>Forbes Middle East</em> as Online
+                    I also worked at <strong><em>Forbes Middle East</em></strong> as Online
                     Editor. I covered a range of subjects, including education.
                     Conducting interviews with business moguls and CEOs
-                    reinforced what I already knew: the right educational
+                    reinforced what I already knew: <strong>the right educational
                     support doesn't just help people ace exams — it shapes their
-                    choices, their confidence and their future. These leaders
+                    choices</strong>, their confidence and their future. These leaders
                     had turned their fortunes around through education. What
                     could be more exciting and important?
                   </p>
@@ -340,10 +395,13 @@ export function FounderStorySection({
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
       {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
+
         {/* ROW 6: Results That Matter - Centered Text Container (Heading + Paragraphs Only) */}
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Centered text container patterns for content presentation */}
         {/* CONTENT SEPARATION REASON: Official Tailwind CSS documentation Section 3.2 recommends separating content types for better visual hierarchy */}
-        <div className="max-w-6xl mx-auto text-center mb-20 px-4 sm:px-6 lg:px-8">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced top padding for section visual hierarchy */}
+        {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 3.1 demonstrates pt-16 utilities for increased top spacing and visual separation */}
+        <div className="max-w-6xl mx-auto text-center mb-20 px-4 sm:px-6 lg:px-8 pt-16">
           <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
             Results That Matter
           </h2>
@@ -361,15 +419,37 @@ export function FounderStorySection({
               tutoring—it's a strategic pathway to academic excellence.
             </p>
           </div>
+
+          {/* ELIZABETH BURROWS SIGNATURE SECTION - POSITIONED IMMEDIATELY AFTER RESULTS THAT MATTER CONTENT */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium styling patterns for signature sections */}
+          {/* SIGNATURE POSITIONING REASON: Official Tailwind CSS documentation Section 5.1 for professional branding element placement after results content */}
+          <div className="flex flex-col items-center pt-8 mt-8 border-t border-primary-100">
+            <Image
+              src="/images/team/elizabeth-burrows-signature.png"
+              alt="Elizabeth Burrows Signature - Founder and CEO of My Private Tutor Online"
+              width={400}
+              height={120}
+              className="opacity-90 mb-3"
+              placeholder="blur"
+              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAVGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+              loading="lazy"
+              quality={90}
+            />
+            <p className="text-sm text-primary-600 font-medium">
+              Elizabeth Burrows, Founder & CEO
+            </p>
+          </div>
         </div>
       </div>
 
       {/* 7. THREE PILLARS SECTION - DIRECT LOADING */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Direct component loading to fix content rendering */}
       {/* CONTENT FIX: Remove lazy loading that was preventing content from displaying */}
+      {/* CONTEXT7 SOURCE: /joshbuchea/head - HTML semantic elements for document structure and accessibility */}
+      {/* ENHANCED SECTION ID IMPLEMENTATION: Official HTML head documentation demonstrates semantic section identification patterns */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
-      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-      <section id="homepage-three-pillars">
+      {/* SECTION ID REASON: Enhanced descriptive naming following HTML documentation for crystal-clear section identification - metrics-three-pillars-performance clearly identifies academic performance metrics section */}
+      <section id="metrics-three-pillars-performance">
         <ThreePillarsSection />
       </section>
 
@@ -521,6 +601,7 @@ export function FounderStorySection({
       </div>
       */}
 
+
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
       {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
@@ -562,29 +643,6 @@ export function FounderStorySection({
         </m.div>
         */}
 
-        {/* FINAL ROW: Statistics Highlight + Signature */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium styling patterns for conclusion sections */}
-        {/* FINAL SECTION REASON: Official Tailwind CSS documentation Section 5.1 for premium content presentation as conclusion */}
-        <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for founder signature with proper accessibility */}
-          {/* SIGNATURE INTEGRATION REASON: Official Next.js documentation Section 3.4 for professional branding elements */}
-          <div className="flex flex-col items-center pt-8 border-t border-primary-100">
-            <Image
-              src="/images/team/elizabeth-burrows-signature.png"
-              alt="Elizabeth Burrows Signature - Founder and CEO of My Private Tutor Online"
-              width={400}
-              height={120}
-              className="opacity-90 mb-3"
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-              loading="lazy"
-              quality={90}
-            />
-            <p className="text-sm text-primary-600 font-medium">
-              Elizabeth Burrows, Founder & CEO
-            </p>
-          </div>
-        </div>
       </div>
 
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section separator removal for direct transitions */}

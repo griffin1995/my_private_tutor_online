@@ -9,12 +9,17 @@
     "BOLD FORMATTING: Applied to 'calibre and diversity of educators', 'every age and academic stage', 'we have the right expert'",
     "LINE BREAK UPDATE: Added paragraph break after 'Astrophysics.' as requested",
     "REVISION REASON: Enhanced client communication copy following official JSON:API attribute update patterns and MDX HTML formatting standards",
-    "UPDATE DATE: 2025-08-30"
+    "UPDATE DATE: 2025-08-30",
+    "CONTEXT7 SOURCE: /json-api/json-api - Attribute update patterns for JSON content modification Section 1.0",
+    "BOLD FORMATTING REVISION: Updated strong tag placement per user specifications September 2025",
+    "CHANGES APPLIED: Removed bold from 'a sense of' and 'we have the right expert behind the scenes'",
+    "NEW BOLD PHRASES: 'the calibre and diversity of educators', 'our full team spans every age, subject and academic stage', 'complete our short enquiry form'",
+    "REVISION REASON: Content formatting update following JSON:API attribute modification patterns for improved emphasis hierarchy"
   ],
   "tutorProfilesSection": {
     "title": "Get to Know a Selection of Our Tutors",
     "subtitle": "",
-    "description": "Here's a curated cross-section of our team to give you <strong>a sense of the calibre and diversity of educators</strong> available across each of our tutoring tiers. While this is just a glimpse, our full team spans every age and academic stage—from Year 1 phonics to postgraduate-level Astrophysics.\n\nIf you don't see exactly what you're looking for here, rest assured <strong>we have the right expert behind the scenes</strong>, ready to support your child's learning journey.\n\nTo begin, simply complete our short enquiry form, and a member of our team will be in touch to start the conversation.",
+    "description": "Here's a curated cross-section of our team to give you a sense of <strong>the calibre and diversity of educators</strong> available across each of our tutoring tiers. While this is just a glimpse, <strong>our full team spans every age, subject and academic stage</strong>—from Year 1 phonics to postgraduate-level Astrophysics.\n\nIf you don't see exactly what you're looking for here, rest assured we have the right expert behind the scenes, ready to support your child's learning journey.\n\nTo begin, simply <strong>complete our short enquiry form</strong>, and a member of our team will be in touch to start the conversation.",
     "profiles": {
       "alma-maths-science": {
         "id": "alma-maths-science",
