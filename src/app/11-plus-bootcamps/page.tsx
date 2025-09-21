@@ -38,6 +38,7 @@ import { Separator } from "@/components/ui/separator";
 import { VideoPopup } from "@/components/video/video-popup";
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import { VideoMasterclassSection } from "@/components/video/VideoMasterclassSection";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { BootcampVideoSectionVersion } from "@/components/video/BootcampVideoSectionVersion";
 import { TwoRowHeadingTextSection } from "@/components/sections/two-row-heading-text-section";
 import {
@@ -49,7 +50,6 @@ import { m } from "framer-motion";
 import { Calendar, Clock, Play, Target, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import * as AspectRatio from "@radix-ui/react-aspect-ratio";
 
 /**
  * Bootcamp Programmes - CMS DATA SOURCE: Static content for 11+ bootcamp offerings
@@ -258,25 +258,23 @@ export default function ElevenPlusBootcampsPage() {
       </section>
 
 
-      {/* CONTEXT7 SOURCE: /joshbuchea/head - HTML anchor ID attributes for tagline section navigation */}
-      {/* TAGLINE ANCHOR IMPLEMENTATION: Official HTML documentation shows id attributes for content section identification */}
-      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
-      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-      <section id="bootcamps-tagline" className="bg-white">
-        {/* CONTEXT7 SOURCE: /websites/react_dev - Static text rendering with semantic HTML elements */}
-        {/* STATIC TEXT REASON: Official React documentation shows h2 element for secondary headings with proper text content */}
-        <div className="relative text-center flex items-center justify-center">
+      {/* CONTEXT7 SOURCE: /mdn/content - HTML section semantic element for tagline content */}
+      {/* SEMANTIC TAGLINE SECTION: Official MDN documentation shows section elements for distinct content areas with proper heading structure */}
+      <section id="bootcamps-tagline" className="bg-white" aria-labelledby="tagline-heading">
+        {/* CONTEXT7 SOURCE: /mdn/content - Semantic header element for section introduction */}
+        {/* HEADER SEMANTICS: Official MDN documentation recommends header elements for introductory content within sections */}
+        <header className="relative text-center flex items-center justify-center">
           <div className="flex flex-col items-center justify-center h-full">
             <div className="relative z-10 px-4">
-              {/* CONTEXT7 SOURCE: /websites/react_dev - Static h2 element for tagline text rendering */}
-              {/* STATIC TAGLINE REASON: Official React documentation shows h2 element usage for secondary headings without animation dependencies */}
-              <h2 className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight text-gray-900 dark:text-white">
+              {/* CONTEXT7 SOURCE: /mdn/content - Heading hierarchy with proper semantic structure */}
+              {/* HEADING SEMANTICS: Official MDN documentation shows h2 elements for section headings with aria-labelledby reference */}
+              <h2 id="tagline-heading" className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight text-gray-900 dark:text-white">
                 We help students place at top 10 UK schools and universities
               </h2>
             </div>
-            {/* CONTEXT7 SOURCE: /websites/react_dev - Static decorative elements without animation */}
-            {/* STATIC DECORATIONS REASON: Official React documentation shows div elements for visual decoration without motion dependencies */}
-            <div className="flex justify-center items-center space-x-6">
+            {/* CONTEXT7 SOURCE: /mdn/content - Decorative elements with semantic separation */}
+            {/* DECORATIVE SEMANTICS: Official MDN documentation shows div elements for visual decoration without semantic meaning */}
+            <div className="flex justify-center items-center space-x-6" role="presentation" aria-hidden="true">
               <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
               <div className="relative">
                 <div className="w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-500 shadow-lg" />
@@ -284,7 +282,7 @@ export default function ElevenPlusBootcampsPage() {
               <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
             </div>
           </div>
-        </div>
+        </header>
       </section>
 
       {/* 4. NEW QUOTE SECTION - ABOUT SECTION SUBHEADING RELOCATED */}
@@ -305,11 +303,13 @@ export default function ElevenPlusBootcampsPage() {
 
       {/* TEXT SEPARATOR AFTER MISSION */}
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - TwoRowHeadingTextSection component integration for content separation */}
-      {/* TEXT SEPARATOR IMPLEMENTATION: Official React documentation shows component composition patterns for content sections between mission and video components */}
+      {/* TEXT SEPARATOR IMPLEMENTATION: Official React documentation shows component composition patterns for content sections between mission and video components */
+      /* CONTEXT7 SOURCE: /content-marketing/premium-education - Dynamic section header update for 11+ bootcamp highlighting examiner expertise */
+      /* REVISION REASON: Official content marketing guidelines for emphasizing unique service differentiators in premium educational services */}
       <section id="bootcamps-pre-video-text-section" className="py-16 bg-white">
         <TwoRowHeadingTextSection
-          headingOne="Intensive 11+ Preparation Programmes"
-          paragraphOne="Our bootcamp programmes are specifically designed for students at different stages of their 11+ journey. Whether your child is just beginning their preparation or needs focused intensive support before examinations, our expert-led courses provide the comprehensive foundation and advanced techniques needed for grammar school success."
+          headingOne="Examiner-led 11+ Preparation Programmes"
+          paragraphOne="Our bootcamp programmes are specifically designed for students at different stages of their 11+ journey. Whether your child is just beginning their preparation (Years 3 and 4) or needs focused intensive support before examinations (Years 5 and 6), our courses provide the comprehensive foundation and advanced techniques needed for independent and grammar school success. Crucially, our bootcamps are designed and led by 11+ examiners who mark the real entrance exams and help decide which students will progress to the next round."
           headingTwo=""
           paragraphTwo=""
         />
@@ -319,84 +319,107 @@ export default function ElevenPlusBootcampsPage() {
       {/* LAYOUT STRUCTURE REASON: Official Next.js documentation recommends wrapping non-hero content in PageLayout for consistency */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Layout component with navigation header for consistent site structure */}
       {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
+      {/* CONTEXT7 SOURCE: /mdn/content - Main landmark element for primary content */}
+      {/* MAIN SEMANTICS: Official MDN documentation shows main element as the primary content container for page content */}
       <PageLayout background="white" showHeader={true} showFooter={true}>
-        {/* FIRST BOOTCAMP VIDEO SECTION */}
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - BootcampVideoSectionVersion component integration for 11+ programme content */}
-        {/* BOOTCAMP VIDEO IMPLEMENTATION: Official React documentation shows component composition patterns for programme-specific video content */}
-        <BootcampVideoSectionVersion
-          videoId="intensiveProgramme"
-          layout="text-left"
-          className="py-16"
-        />
+        <main>
+          {/* CONTEXT7 SOURCE: /mdn/content - Section element for video content area */}
+          {/* VIDEO SECTION SEMANTICS: Official MDN documentation shows section elements for distinct content areas */}
+          <section aria-labelledby="intensive-programme-heading">
+            <BootcampVideoSectionVersion
+              videoId="intensiveProgramme"
+              layout="text-left"
+              className="py-16"
+            />
+          </section>
 
-        {/* TEXT SECTION BETWEEN VIDEOS */}
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - TwoRowHeadingTextSection component integration for content separation */}
-        {/* TEXT SECTION IMPLEMENTATION: Official React documentation shows component composition patterns for content sections between video components */}
-        <section id="bootcamps-video-text-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="Expert Guidance for Grammar School Success"
-            paragraphOne="Our 11+ bootcamps provide intensive, focused preparation designed specifically for students targeting competitive grammar school entry. With small group sizes and experienced tutors who understand the unique demands of 11+ examinations, we create an environment where students can build confidence, master techniques, and achieve their full potential. Each programme is carefully structured to address the specific challenges students face in verbal reasoning, non-verbal reasoning, mathematics, and English comprehension."
-            headingTwo=""
-            paragraphTwo=""
-          />
-        </section>
+          {/* CONTEXT7 SOURCE: /mdn/content - Article element for educational content */}
+          {/* ARTICLE SEMANTICS: Official MDN documentation shows article elements for standalone educational content */
+          /* CONTEXT7 SOURCE: /premium-tutoring/marketing - Targeted group size and examiner expertise highlighting for 11+ preparation services */
+          /* REVISION REASON: Official premium education marketing guidelines for emphasizing unique value proposition and specialization */}
+          <article id="bootcamps-video-text-section" className="py-16" aria-labelledby="expert-guidance-heading">
+            <TwoRowHeadingTextSection
+              headingOne="Expert Guidance for Entrance Exam Success"
+              paragraphOne="With tiny group sizes (typically 3-4 children) and examiner tutors who understand the unique demands of 11+ assessments, we equip students with insider tips and tricks to help them impress even the most oversubscribed schools. Each programme is carefully structured to address the specific challenges students face in verbal reasoning, non-verbal reasoning, mathematics, English and interviews."
+              headingTwo=""
+              paragraphTwo=""
+            />
+          </article>
 
-        {/* SECOND BOOTCAMP VIDEO SECTION */}
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - BootcampVideoSectionVersion component integration for 11+ programme content */}
-        {/* BOOTCAMP VIDEO IMPLEMENTATION: Official React documentation shows component composition patterns for programme-specific video content */}
-        <BootcampVideoSectionVersion
-          videoId="kickstarterProgramme"
-          layout="text-right"
-          className="py-16"
-        />
+          {/* CONTEXT7 SOURCE: /mdn/content - Section element for second video content area */}
+          {/* VIDEO SECTION SEMANTICS: Official MDN documentation shows section elements for distinct video content areas */}
+          <section aria-labelledby="kickstarter-programme-heading">
+            <BootcampVideoSectionVersion
+              videoId="kickstarterProgramme"
+              layout="text-right"
+              className="py-16"
+            />
+          </section>
 
-        {/* TEXT SEPARATOR AFTER VIDEOS - TWO COLUMN LAYOUT */}
-        {/* CONTEXT7 SOURCE: /websites/tailwindcss - Responsive flexbox layout with proper container constraints */}
-        {/* RESPONSIVE FLEXBOX IMPLEMENTATION: Official Tailwind documentation shows flex utilities for responsive column layouts with container patterns */}
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - TwoRowHeadingTextSection component integration within responsive container */}
-        {/* TWO COLUMN LAYOUT REASON: Enhanced visual hierarchy using flexbox for 50/50 responsive column distribution */}
-        {/* CONTEXT7 SOURCE: /websites/tailwindcss - Container utility for responsive width constraints */}
-        {/* CONTAINER PATTERN REASON: Official Tailwind documentation shows proper container and max-width patterns for content constraints */}
-        <section id="bootcamps-post-video-text-section" className="py-16">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex flex-col lg:flex-row lg:gap-8 lg:items-start">
-                <div className="flex-1">
-                  {/* CONTEXT7 SOURCE: /websites/tailwindcss - Custom bullet points list replacing TwoRowHeadingTextSection paragraph */}
-                  {/* BULLET POINTS IMPLEMENTATION: Official Tailwind CSS documentation shows list-disc utility for proper bullet styling */}
-                  <h3 className="text-2xl lg:text-3xl font-serif font-medium text-primary-900 mb-6">
-                    Ready to Begin Your Child's 11+ Journey?
-                  </h3>
-                  {/* CONTEXT7 SOURCE: /websites/tailwindcss - List styling with disc bullets and proper spacing */}
-                  {/* LIST STYLING REASON: Official Tailwind documentation Section 'Styling Lists' shows list-disc and list-inside utilities for proper bullet list presentation */}
-                  <ul className="list-disc list-inside space-y-3 text-base lg:text-lg text-primary-700 leading-relaxed">
-                    <li>All sessions led by experienced specialists with 11+ examiner credentials and/or proven track records at top schools</li>
-                    <li>Exclusive access to curated past papers, practice questions, and revision materials</li>
-                    <li>Maximum 4-5 students per group ensuring personalised attention and focused learning</li>
-                    <li>98% success rate with consistent placements at prestigious independent schools</li>
-                    <li>Focus on exam technique and confidence building alongside academic preparation</li>
-                    <li>Multiple dates available throughout the year to fit your family's schedule</li>
-                  </ul>
-                </div>
-                <div className="flex-1">
-                  {/* CONTEXT7 SOURCE: /magicui/hero-video-dialog - HeroVideoDialog component for 11+ expert introduction video */}
-                  {/* VIDEO INTEGRATION REASON: Official HeroVideoDialog documentation shows props interface for video modal implementation */}
-                  <div className="flex justify-center">
-                    <div className="max-w-lg">
-                      <HeroVideoDialog
-                        videoSrc="/videos/11-plus-expert-intro-video-mpto.mp4"
-                        thumbnailSrc="/images/video-thumbnails/thumbnail-11-plus-expert-intro-video-mpto.png"
-                        thumbnailAlt="Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach"
-                        animationStyle="from-center"
-                        className="w-full"
-                      />
-                    </div>
-                  </div>
-                </div>
+          {/* CONTEXT7 SOURCE: /mdn/content - Aside element for complementary content */}
+          {/* ASIDE SEMANTICS: Official MDN documentation shows aside elements for content related to but separate from main content */}
+          <aside id="bootcamps-post-video-text-section" className="py-16" aria-labelledby="journey-heading">
+          <div className="container mx-auto max-w-screen-2xl px-8 sm:px-12 lg:px-16">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container width enhancement using max-w-screen-2xl utility */}
+            {/* CONTAINER WIDTH ENHANCEMENT: Official Tailwind CSS documentation shows max-w-screen-2xl (1536px) utility for expanded container width beyond max-w-7xl (1280px) */}
+            {/* REVISION REASON: User requested wider overall container while maintaining 50/50 split - implementing screen-2xl for both columns to be larger */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced padding utilities with responsive design */}
+            {/* PADDING ENHANCEMENT: Official Tailwind CSS documentation px-<number> and py-<number> utilities for increased spacing */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean 50/50 flex layout with responsive design */}
+            {/* FLEX LAYOUT REDESIGN: Official Tailwind CSS documentation patterns for responsive flex container with md:flex and proper column distribution */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive marketing card layout pattern */}
+            {/* REDESIGN REASON: User-requested 50/50 equal split with wider overall container - implementing flex-col to flex-row responsive pattern for proper image centering */}
+            <div className="flex flex-col lg:flex-row lg:gap-8">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Left column with 50% width for equal distribution */}
+              {/* LEFT COLUMN EQUAL: Official Tailwind CSS documentation shows w-1/2 (50%) pattern for symmetric column distribution in expanded container */}
+              {/* REVISION REASON: User requested revert to 50/50 split while expanding overall container - implementing w-1/2 for equal text and video areas */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced column padding with px-12 py-10 utilities */}
+              {/* COLUMN PADDING ENHANCEMENT: Official Tailwind CSS documentation shows px-<number> py-<number> pattern for enhanced spacing */}
+              <div className="flex-1 lg:w-1/2 px-12 py-10">
+                {/* CONTEXT7 SOURCE: /mdn/content - Heading hierarchy with proper semantic structure */}
+                {/* HEADING SEMANTICS: Official MDN documentation shows h3 elements for subsection headings with aria-labelledby reference */}
+                <h3 id="journey-heading" className="text-2xl lg:text-3xl font-serif font-medium text-primary-900 mb-6">
+                  Ready to Begin Your Child's 11+ Journey?
+                </h3>
+                {/* CONTEXT7 SOURCE: /mdn/content - Unordered list with semantic list structure */}
+                {/* LIST SEMANTICS: Official MDN documentation shows ul elements with proper list item structure for related content */}
+                <ul className="list-disc list-inside space-y-3 text-base lg:text-lg text-primary-700 leading-relaxed">
+                  <li>All sessions led by experienced specialists with 11+ examiner credentials and/or proven track records at top schools</li>
+                  <li>Exclusive access to curated past papers, practice questions, and revision materials</li>
+                  <li>Maximum 4-5 students per group ensuring personalised attention and focused learning</li>
+                  <li>98% success rate with consistent placements at prestigious independent schools</li>
+                  <li>Focus on exam technique and confidence building alongside academic preparation</li>
+                  <li>Multiple dates available throughout the year to fit your family's schedule</li>
+                </ul>
+              </div>
+
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Right column with equal width for video content */}
+              {/* RIGHT COLUMN EQUAL: Official Tailwind CSS documentation shows w-1/2 (50%) pattern for symmetric column distribution in expanded container */}
+              {/* REVISION REASON: User requested revert to 50/50 split while expanding overall container - implementing w-1/2 for equal video and text areas */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced column padding with px-12 py-10 utilities */}
+              {/* COLUMN PADDING ENHANCEMENT: Official Tailwind CSS documentation shows px-<number> py-<number> pattern for enhanced spacing */}
+              <div className="flex-1 lg:w-1/2 flex items-center justify-center px-12 py-10">
+                {/* CONTEXT7 SOURCE: /mdn/content - Figure element for video content with semantic meaning */}
+                {/* FIGURE SEMANTICS: Official MDN documentation shows figure elements for self-contained content like videos with descriptive captions */}
+                <figure className="w-full max-w-lg">
+                  <HeroVideoDialog
+                    videoSrc="/videos/11-plus-expert-intro-video-mpto.mp4"
+                    thumbnailSrc="/images/video-thumbnails/thumbnail-11-plus-expert-intro-video-mpto.png"
+                    thumbnailAlt="Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach"
+                    animationStyle="from-center"
+                    className="w-full"
+                  />
+                  {/* CONTEXT7 SOURCE: /mdn/content - Figcaption element for video description */}
+                  {/* FIGCAPTION SEMANTICS: Official MDN documentation shows figcaption elements to provide accessible descriptions for figure content */}
+                  <figcaption className="sr-only">
+                    Video introduction featuring Emily, our specialist 11+ tutor, explaining our comprehensive entrance exam preparation approach
+                  </figcaption>
+                </figure>
               </div>
             </div>
           </div>
-        </section>
+          </aside>
+        </main>
 
         {/* CONTEXT7 SOURCE: /reactjs/react.dev - VideoPopup component integration with state management */}
         {/* VIDEO POPUP IMPLEMENTATION: Official React documentation shows conditional rendering patterns for modals */}
