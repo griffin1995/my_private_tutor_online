@@ -154,6 +154,14 @@ html {
  */
 html {
   scroll-behavior: smooth;
+  /* CONTEXT7 SOURCE: /mdn/content - CSS scrollbar-gutter property for preventing layout shifts
+   * SCROLLBAR GUTTER REASON: Official MDN CSS specification for scrollbar-gutter: stable property
+   * LAYOUT STABILITY: Reserves space for scrollbars to prevent horizontal overflow and content jumping
+   * IMPLEMENTATION: Stable scrollbar gutter prevents layout shifts when content changes dynamically
+   * BROWSER SUPPORT: Modern browsers (Firefox 97+, Chrome 94+, Safari 15+) with graceful degradation
+   * VIEWPORT OPTIMIZATION: Works alongside dvh units to eliminate horizontal scrolling issues
+   */
+  scrollbar-gutter: stable;
   /* CONTEXT7 SOURCE: /w3c/css-scroll-snap - CSS scroll-padding-top for fixed header anchor offset
    * ANCHOR SCROLL FIX REASON: Official W3C CSS spec for scroll-padding-top prevents fixed headers from overlapping anchor content
    * RESPONSIVE HEADER FIX: Accounts for navbar height variations across breakpoints (30% increase from original design)
@@ -197,6 +205,38 @@ body {
   background: #ffffff !important;
   font-synthesis-weight: none;
   text-rendering: optimizeLegibility;
+  /* CONTEXT7 SOURCE: /mdn/content - Overflow-x hidden to prevent horizontal scrolling issues
+   * OVERFLOW CONTROL REASON: Official CSS overflow specification to complement scrollbar-gutter implementation
+   * HORIZONTAL SCROLL PREVENTION: Prevents accidental horizontal overflow that conflicts with stable scrollbar gutter
+   * INTEGRATION: Works with scrollbar-gutter: stable to ensure consistent viewport width calculations
+   */
+  overflow-x: hidden;
+}
+
+/**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Viewport width utilities with scrollbar compensation
+ * VIEWPORT WIDTH REASON: Official Tailwind CSS documentation for handling viewport width calculations
+ * SCROLLBAR COMPENSATION: Prevents layout issues when using 100vw with scrollbar-gutter: stable
+ * BROWSER COMPATIBILITY: Provides fallback for browsers that don't support scrollbar-gutter
+ */
+
+/* Fallback for browsers without scrollbar-gutter support */
+@supports not (scrollbar-gutter: stable) {
+  /* CONTEXT7 SOURCE: /mdn/content - CSS @supports feature detection for progressive enhancement
+   * PROGRESSIVE ENHANCEMENT REASON: Official CSS specification for feature detection and fallback support
+   * FALLBACK IMPLEMENTATION: Alternative approach for browsers lacking scrollbar-gutter support
+   * COMPATIBILITY: Ensures layout stability across all browser versions
+   */
+  html {
+    /* Compensate for potential scrollbar width on older browsers */
+    padding-right: 0;
+  }
+
+  body {
+    /* Prevent horizontal overflow on older browsers */
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 }
 
 /**

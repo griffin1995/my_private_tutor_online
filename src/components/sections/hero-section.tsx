@@ -112,12 +112,12 @@ export function HeroSection({
       {/* Minimalist Hero Section with Full-Screen Video Background */}
       {/* Documentation Source: Context7 MCP - HTML5 video background best practices */}
       {/* Pattern: Clean full-screen video hero without text content overlay */}
-      <PageHero 
-        background="video" 
+      <PageHero
+        background="video"
         backgroundVideo="/videos/landing-page-hero-background.mp4"
-        size="full"
+        size={hasStaticNavbar ? "full" : "xl"}
         overlay={false}
-        className=""
+        className={hasStaticNavbar ? "" : "h-full"}
         hasStaticNavbar={hasStaticNavbar}
       >
         {/* CONTEXT7 SOURCE: /websites/react_dev - Video background isolation pattern */}

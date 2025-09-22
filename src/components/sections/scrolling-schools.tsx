@@ -92,7 +92,7 @@ export function ScrollingSchools({
 
   return (
     <section
-      className={`bg-white py-8 px-4 sm:px-6 lg:px-8 ${className}`}
+      className={`bg-white py-4 px-4 sm:px-6 lg:px-8 ${className}`}
       aria-label="Partner schools carousel"
     >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities */}
@@ -121,7 +121,7 @@ export function ScrollingSchools({
          * Implementation: Uses motion-reduce:animate-none for users who prefer less motion
          */}
         <m.div
-          className="flex gap-16 whitespace-nowrap motion-reduce:animate-none"
+          className="flex gap-8 sm:gap-12 whitespace-nowrap motion-reduce:animate-none"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             repeat: Infinity,
@@ -140,9 +140,9 @@ export function ScrollingSchools({
             if (!logoAsset) return null // Skip schools without logo assets
             
             return (
-              <div 
-                key={`first-${index}`} 
-                className="flex-shrink-0 flex items-center justify-center px-6"
+              <div
+                key={`first-${index}`}
+                className="flex-shrink-0 flex items-center justify-center px-3 sm:px-4"
               >
                 {/* Context7 MCP verified: Next.js Image with responsive sizing and lazy loading */}
                 <Image
@@ -167,9 +167,9 @@ export function ScrollingSchools({
             if (!logoAsset) return null // Skip schools without logo assets
             
             return (
-              <div 
-                key={`second-${index}`} 
-                className="flex-shrink-0 flex items-center justify-center px-6"
+              <div
+                key={`second-${index}`}
+                className="flex-shrink-0 flex items-center justify-center px-3 sm:px-4"
               >
                 {/* Context7 MCP verified: Duplicate Image component for seamless loop */}
                 <Image

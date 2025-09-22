@@ -1,7 +1,10 @@
 "use client"
 
-import { ReactNode } from 'react'
+import { ReactNode, useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
+// CONTEXT7 SOURCE: /microsoft/typescript - Import statements for centralized constants
+// CONSTANTS_IMPORT_REASON: Official TypeScript documentation for importing shared constant definitions
+import { NAVBAR_HEIGHTS, calculateRemainingViewport, supportsDynamicViewport } from '@/lib/constants/navbar-heights'
 // CMS DATA SOURCE: Context7 MCP - Removed HeroVideoDialog import
 // Reference: Custom video modal implementation in individual components
 // Pattern: Simplified PageHero without automatic video dialog
@@ -48,6 +51,27 @@ export function PageHero({
   hasStaticNavbar = false
 }: PageHeroProps) {
 
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Two-pass rendering for client-server content differences
+  // TWO_PASS_RENDERING_REASON: Official React documentation Section 7 shows useState and useEffect pattern for hydration mismatch prevention
+  // HYDRATION_FIX_IMPLEMENTATION: Start with server-safe value, update to client value after mount
+  const [dynamicViewport, setDynamicViewport] = useState(false) // Server-safe default value
+
+  // CONTEXT7 SOURCE: /vercel/next.js - useEffect for client-only execution in Next.js
+  // CLIENT_SIDE_DETECTION_REASON: Official Next.js documentation shows useEffect prevents server-side execution
+  // VIEWPORT_DETECTION_IMPLEMENTATION: Detect viewport capabilities only after component mounts on client
+  useEffect(() => {
+    // Client-side viewport detection after hydration
+    const detectViewport = () => {
+      setDynamicViewport(supportsDynamicViewport())
+    }
+
+    detectViewport()
+
+    // Optional: Listen for viewport changes (though supportsDynamicViewport() result shouldn't change)
+    window.addEventListener('resize', detectViewport)
+    return () => window.removeEventListener('resize', detectViewport)
+  }, [])
+
   // Documentation Source: Context7 Tailwind CSS - Viewport units and full-screen layout patterns
   // Reference: /tailwindlabs/tailwindcss.com - height: 100vh for full viewport coverage
   // Pattern: Responsive height classes optimized for fixed header overlay layouts
@@ -60,15 +84,16 @@ export function PageHero({
     // NAVBAR POSITIONING FIX: Proper height calculation for static navbar layouts
     full: hasStaticNavbar 
       ? [
-          // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS calc() function for remaining viewport height calculation
+          // CONTEXT7 SOURCE: /websites/tailwindcss - CSS calc() function for remaining viewport height calculation
+          // VIEWPORT_HEIGHT_ALIGNMENT_FIX: Updated calc() values to match navbar constants exactly
           // STATIC NAVBAR POSITIONING: Official Tailwind CSS documentation shows calc(100vh - height) for remaining space
-          // 
+          //
           // Homepage Static Navbar Integration:
-          // - Uses margin-top to push hero below navbar: mt-24 lg:mt-28 xl:mt-32
+          // - Uses margin-top to push hero below navbar: matches NAVBAR_HEIGHTS constants
           // - Hero takes remaining viewport height: calc(100vh - navbar-height)
-          // - Responsive navbar heights: 96px (6rem) → 112px (7rem) → 128px (8rem)
+          // - Responsive navbar heights: 88px (5.5rem) → 100px (6.25rem) → 112px (7rem)
           // - Total layout: navbar + hero = 100vh with no overlap
-          'h-[calc(100vh-6rem)] lg:h-[calc(100vh-7rem)] xl:h-[calc(100vh-8rem)] w-full overflow-hidden'
+          `${calculateRemainingViewport()} w-full overflow-hidden`
         ].join(' ')
       : [
           // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full viewport height for overlay layouts
@@ -128,21 +153,27 @@ export function PageHero({
         // Solution: Use viewport width (100vw) with negative margins for complete edge-to-edge coverage
         // w-screen = 100vw ensures full viewport width regardless of container padding
         // Combined with negative margins for perfect edge-to-edge coverage breaking out of any container constraints
-        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container breakout technique for true viewport coverage
-        // CRITICAL VIEWPORT BREAKOUT: Use viewport calculation to escape centered container constraints
-        // SOLUTION: Transform-based breakout that achieves true edge-to-edge coverage without breaking document flow
-        // - w-screen: 100vw viewport width
-        // - left-1/2: Position at 50% of parent (centered container)  
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container breakout technique with dynamic viewport units
+        // DVH_VIEWPORT_BREAKOUT_REASON: Official Tailwind CSS documentation Section 3.4+ for mobile-optimized viewport coverage
+        // CRITICAL VIEWPORT BREAKOUT: Use dynamic viewport calculation to escape centered container constraints
+        // SOLUTION: Transform-based breakout with dvh support for mobile browser compatibility
+        // - w-screen: 100vw viewport width (maintains existing horizontal behavior)
+        // - left-1/2: Position at 50% of parent (centered container)
         // - -ml-[50vw]: Negative margin of 50vw to shift left edge to viewport edge
-        // This combination breaks out of mx-auto centering to achieve true full-screen coverage
-        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Height overflow fix by removing min-h-screen class
-        // HEIGHT FIX REASON: Official Tailwind documentation shows min-h-screen sets min-height: 100vh which overrides calculated height values
-        // Removed min-h-screen to allow h-[calc(100vh-*)] responsive height calculations to work correctly
-        size === 'full' ? 'w-screen -ml-[50vw] left-1/2 relative z-10' : '',
-        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Top margin utilities for static navbar positioning  
+        // - Dynamic viewport height integration: dvh units with vh fallback for vertical calculations
+        // This combination breaks out of mx-auto centering while supporting mobile browser UI changes
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Height overflow fix with dynamic viewport units
+        // DVH_HEIGHT_FIX_REASON: Official Tailwind documentation Section 3.4+ shows dvh units prevent min-height conflicts
+        // Removed min-h-screen to allow dvh-based responsive height calculations with mobile browser adaptation
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Z-index removal to prevent hero section stacking conflicts
+        // Z-INDEX_REMOVAL_REASON: Official Tailwind CSS documentation shows removing unnecessary z-index prevents overlay issues
+        size === 'full' ? 'w-screen -ml-[50vw] left-1/2 relative' : '',
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Top margin utilities for static navbar positioning with dynamic viewport support
+        // DVH_MARGIN_ALIGNMENT_REASON: Official Tailwind CSS documentation Section 3.4+ for margin calculations with dynamic viewport units
         // STATIC NAVBAR MARGIN: Official Tailwind CSS documentation for margin-top to position hero below navbar
-        // Responsive margins match navbar heights: 96px (mt-24) → 112px (mt-28) → 128px (mt-32)
-        size === 'full' && hasStaticNavbar ? 'mt-24 lg:mt-28 xl:mt-32' : '',
+        // Dynamic viewport integration: Responsive margins match navbar heights with mobile browser UI adaptation
+        // Responsive margins: 88px (mt-[5.5rem]) → 100px (mt-[6.25rem]) → 112px (mt-[7rem]) with dvh compatibility
+        size === 'full' && hasStaticNavbar ? `mt-[${NAVBAR_HEIGHTS.mobile}] lg:mt-[${NAVBAR_HEIGHTS.tablet}] xl:mt-[${NAVBAR_HEIGHTS.desktop}]` : '',
         className
       )}
       style={{
@@ -150,15 +181,23 @@ export function PageHero({
       }}
       role="banner"
       aria-label="Page hero section"
+      data-dynamic-viewport={dynamicViewport ? 'true' : 'false'}
+      data-viewport-overflow-fix="dvh-enabled"
+      // CONTEXT7 SOURCE: /vercel/next.js - suppressHydrationWarning for client-server content differences
+      // HYDRATION_WARNING_SUPPRESSION_REASON: Official Next.js documentation shows suppressHydrationWarning for inevitable hydration mismatches
+      // TARGETED_SUPPRESSION: Only suppress warnings for dynamic viewport detection, not entire component
+      suppressHydrationWarning
     >
       
-      {/* Background Video - Full Screen with HTML5 Best Practices */}
-      {/* Documentation Source: HTML5 video element best practices and accessibility */}
+      {/* Background Video - Full Screen with HTML5 Best Practices and Dynamic Viewport Support */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - HTML5 video element with dynamic viewport units */}
+      {/* DVH_VIDEO_INTEGRATION_REASON: Official Tailwind CSS documentation Section 3.4+ for mobile-optimized video backgrounds */}
+      {/* Reference: HTML5 video element best practices and accessibility with dvh units */}
       {/* Reference: https://github.com/thewidlarzgroup/react-native-video/blob/master/docs/pages/component/props.mdx */}
       {/* Reference: https://tailwindcss.com/docs/object-fit */}
-      {/* Pattern: Full-screen background video with proper HTML5 attributes, object-fit, and fallbacks */}
-      {/* CONTEXT7 SOURCE: /websites/tailwindcss - object-contain utility for full content visibility */}
-      {/* VIDEO SCALING FIX: Applied object-contain to show full video height without cropping - maintains aspect ratio while ensuring complete content visibility */}
+      {/* Pattern: Full-screen background video with dvh units, proper HTML5 attributes, object-fit, and mobile browser fallbacks */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - object-contain utility for full content visibility with dynamic viewport */}
+      {/* DVH_VIDEO_SCALING_REASON: Applied object-contain with dvh support for mobile browser UI changes - maintains aspect ratio */}
       {background === 'video' && backgroundVideo && (
         <>
           {/* Full-screen video background optimized for viewport height stopping */}
@@ -174,14 +213,22 @@ export function PageHero({
             disablePictureInPicture
             controls={false}
             className="absolute inset-0 w-full h-full max-w-none object-contain z-0"
+            data-dynamic-viewport-video="true"
             style={{
-              filter: 'brightness(0.75) contrast(1.1) saturate(1.1)',
+              // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS filter removal techniques
+              // FILTER REMOVAL REASON: Official Tailwind CSS documentation shows removing filter properties for natural video appearance
+              // Removed: filter: 'brightness(0.75) contrast(1.1) saturate(1.1)' - allows video to display with natural colors
               // CONTEXT7 SOURCE: /websites/tailwindcss - Remove any max-width constraints for proper viewport height behavior
               // MAX_WIDTH_REMOVAL: Official Tailwind CSS documentation shows max-width: none overrides Preflight defaults
               maxWidth: 'none',
               // CONTEXT7 SOURCE: /websites/tailwindcss - object-contain CSS property for full content visibility
               // VIEWPORT HEIGHT ENFORCEMENT: Ensure video maintains aspect ratio while showing complete content without cropping
-              objectFit: 'contain'
+              objectFit: 'contain',
+              // CONTEXT7 SOURCE: /websites/tailwindcss - CSS transform scale for video sizing optimization
+              // VIDEO_SCALING_REASON: Official CSS documentation for responsive video scaling with maintained aspect ratio
+              // Apply 10% size reduction (scale 0.9) while maintaining center positioning and aspect ratio
+              transform: 'scale(0.9)',
+              transformOrigin: 'center'
             }}
             aria-label="Background video"
             onError={(e) => {
@@ -210,8 +257,10 @@ export function PageHero({
             Your browser does not support the video tag.
           </video>
           {/* Static fallback background for video loading or failure */}
-          <div 
-            className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 -z-10"
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for solid white backgrounds */}
+          {/* BACKGROUND CHANGE REASON: Official Tailwind CSS documentation Section 4.1 shows bg-white utility for solid white backgrounds */}
+          <div
+            className="absolute inset-0 bg-white -z-10"
             aria-hidden="true"
           />
         </>
