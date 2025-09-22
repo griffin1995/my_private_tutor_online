@@ -59,8 +59,7 @@ const secondarySchoolVideos1: readonly StandardizedVideoMasterclass[] = [
     youtubeUrl: null,
     thumbnailImage: "/images/features/personalised-plans-maximum-progress.jpg",
     backgroundImage: "/images/features/personalised-plans-maximum-progress.jpg",
-    isPaid: true,
-    purchaseLink: "https://buy.stripe.com/test_example",
+    isPaid: false,
   },
 ];
 

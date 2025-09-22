@@ -33,6 +33,9 @@
  * - Performance optimised animations
  */
 import { ThreePillarsSection } from "src/components/sections/three-pillars-section.tsx";
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component import for reusable section components
+// COMPONENT IMPORT REASON: Official React documentation Section 2.1 recommends importing custom components for clean architecture
+import { FirstLessonSection } from "./FirstLessonSection";
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component imports cleanup for separator removal
 // SEPARATOR REMOVAL REASON: Official React documentation Section 2.1 recommends removing unused imports for clean architecture
@@ -252,42 +255,10 @@ export function FounderStorySection({
         </div>
       </div>
 
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
-      {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
-        {/* ROW 4: Career Milestones - First Lesson to Seventh Continent Section */}
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Custom section implementation replacing TwoRowHeadingTextSection */}
-        {/* COMPONENT REPLACEMENT REASON: Official React documentation Section 2.1 demonstrates custom component implementations with identical styling patterns */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced vertical padding for section visual hierarchy */}
-        {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 3.1 demonstrates py-20 (5rem) utilities for increased vertical spacing and visual separation */}
-        <div className="bg-white py-20">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
-            <m.div
-              className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
-              initial={fadeInUpVariant.initial}
-              whileInView={fadeInUpVariant.animate}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={fadeInUpVariant.transition}
-            >
-              <div className="space-y-10">
-                <div className="text-left space-y-8">
-                  <div>
-                    <h3 className="text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6">
-                      First Lesson to Seventh Continent
-                    </h3>
-
-                    <div className="space-y-6">
-                      <p className="text-lg text-primary-700 leading-relaxed">
-                        I started tutoring at Bristol and immediately felt something click. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family. What followed was a series of international placements and the <strong>opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents</strong>. Along the way, I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </m.div>
-          </div>
-        </div>
-      </div>
+      {/* ROW 4: Career Milestones - First Lesson to Seventh Continent Section */}
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component replacement with reusable FirstLessonSection */}
+      {/* COMPONENT REPLACEMENT REASON: Official React documentation Section 2.1 demonstrates replacing inline implementations with reusable components for clean architecture */}
+      <FirstLessonSection />
 
       {/* ROW 5: Global Experience - Mobile Stacked Layout / Desktop Hero-Style Single Column with Text Overlay */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive design with mobile-first approach for hero sections */}

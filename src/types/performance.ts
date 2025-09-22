@@ -8,22 +8,61 @@
  * Build-Time Validation: Performance budgets enforced during TypeScript compilation
  */
 
-// CONTEXT7 SOURCE: /microsoft/typescript - Template literal types for branded performance metrics
-// PERFORMANCE TYPING REASON: Prevent mixing different performance metric types
-export type PerformanceMetricBrand<T extends string> = T & { readonly __brand: unique symbol };
+// CONTEXT7 SOURCE: /microsoft/typescript - Intersection types for branded performance metrics
+// PERFORMANCE TYPING REASON: Prevent mixing different performance metric types using nominal typing
+declare const __brand: unique symbol;
+type Brand<K, T> = K & { readonly [__brand]: T };
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Branded types for performance measurement safety
-export type Milliseconds = PerformanceMetricBrand<'milliseconds'>;
-export type Bytes = PerformanceMetricBrand<'bytes'>;
-export type Kilobytes = PerformanceMetricBrand<'kilobytes'>;
-export type Percentage = PerformanceMetricBrand<'percentage'>;
+export type Milliseconds = Brand<number, 'milliseconds'>;
+export type Bytes = Brand<number, 'bytes'>;
+export type Kilobytes = Brand<number, 'kilobytes'>;
+export type Percentage = Brand<number, 'percentage'>;
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Branded type constructor patterns for type safety
+// REVISION REASON: Fix TS2352 errors using intersection types with proper branded conversion
+export const createMilliseconds = (value: number): Milliseconds => {
+  if (value < 0) throw new Error('Milliseconds must be non-negative');
+  return value as unknown as Milliseconds;
+};
+
+export const createBytes = (value: number): Bytes => {
+  if (value < 0) throw new Error('Bytes must be non-negative');
+  return value as unknown as Bytes;
+};
+
+export const createKilobytes = (value: number): Kilobytes => {
+  if (value < 0) throw new Error('Kilobytes must be non-negative');
+  return value as unknown as Kilobytes;
+};
+
+export const createPercentage = (value: number): Percentage => {
+  if (value < 0 || value > 100) throw new Error('Percentage must be between 0 and 100');
+  return value as unknown as Percentage;
+};
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Utility type patterns for performance metric conversion
 // TYPE SAFETY REASON: Compile-time conversion validation for performance units
+// REVISION REASON: Use branded type constructors for type-safe metric conversion
 export type PerformanceConverter = {
   readonly msToSeconds: (ms: Milliseconds) => number;
   readonly bytesToKb: (bytes: Bytes) => Kilobytes;
   readonly calculatePercentage: (value: number, total: number) => Percentage;
+};
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Implementation patterns for branded type converters
+// IMPLEMENTATION REASON: Provide concrete converter functions using branded type constructors
+export const performanceConverter: PerformanceConverter = {
+  msToSeconds: (ms: Milliseconds): number => {
+    return (ms as unknown as number) / 1000;
+  },
+  bytesToKb: (bytes: Bytes): Kilobytes => {
+    return createKilobytes((bytes as unknown as number) / 1024);
+  },
+  calculatePercentage: (value: number, total: number): Percentage => {
+    if (total === 0) throw new Error('Total cannot be zero for percentage calculation');
+    return createPercentage((value / total) * 100);
+  },
 };
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface patterns for performance budgets
@@ -193,7 +232,6 @@ export interface PerformanceAssertion {
 // EXTERNAL ACCESS REASON: Allow other modules to consume performance types
 export type {
   PerformanceBudget as Budget,
-  PerformanceMetricBrand as MetricBrand,
   PerformanceCategory as Category,
   CMSPerformanceMetrics as CMSMetrics,
   TypeScriptPerformanceMetrics as TSMetrics,
@@ -203,21 +241,22 @@ export type {
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Const assertion patterns for default budgets
 // DEFAULT CONFIGURATION REASON: Type-safe default performance budgets
+// REVISION REASON: Replace unsafe type assertions with branded type constructors
 export const DEFAULT_PERFORMANCE_BUDGET = {
   buildTime: {
-    max: 30000 as Milliseconds, // 30 seconds max build time
-    warning: 25000 as Milliseconds, // 25 seconds warning threshold
-    target: 20000 as Milliseconds, // 20 seconds target
+    max: createMilliseconds(30000), // 30 seconds max build time
+    warning: createMilliseconds(25000), // 25 seconds warning threshold
+    target: createMilliseconds(20000), // 20 seconds target
   },
   bundleSize: {
-    maxFirstLoad: 250 as Kilobytes, // 250KB max first load
-    maxChunk: 150 as Kilobytes, // 150KB max chunk size
-    warningThreshold: 80 as Percentage, // 80% warning threshold
+    maxFirstLoad: createKilobytes(250), // 250KB max first load
+    maxChunk: createKilobytes(150), // 150KB max chunk size
+    warningThreshold: createPercentage(80), // 80% warning threshold
   },
   compilation: {
-    maxTypeCheckTime: 15000 as Milliseconds, // 15 seconds max type check
+    maxTypeCheckTime: createMilliseconds(15000), // 15 seconds max type check
     maxFileCount: 1000, // 1000 files max
-    targetImprovement: 20 as Percentage, // 20% improvement target
+    targetImprovement: createPercentage(20), // 20% improvement target
   },
 } as const satisfies PerformanceBudget;
 

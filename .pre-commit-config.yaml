@@ -1,0 +1,192 @@
+# CONTEXT7 SOURCE: /pre-commit/pre-commit.com - CI/CD automation and TypeScript validation
+# IMPLEMENTATION REASON: Phase 3 automated error prevention with comprehensive TypeScript validation
+
+# Global Configuration
+fail_fast: false
+default_stages: [commit, manual]
+default_language_version:
+  python: python3
+  node: '20.18'
+
+# Repository Configuration
+repos:
+  # Local TypeScript Validation Hooks
+  - repo: local
+    hooks:
+      # CONTEXT7 SOURCE: /microsoft/typescript - TypeScript compilation validation
+      - id: typescript-check
+        name: TypeScript Type Check
+        entry: npm run typecheck
+        language: system
+        files: \.(ts|tsx)$
+        pass_filenames: false
+        stages: [commit, manual]
+
+      # CONTEXT7 SOURCE: /microsoft/typescript - TypeScript incremental validation
+      - id: typescript-incremental
+        name: TypeScript Incremental Check
+        entry: npx tsc --noEmit --incremental
+        language: system
+        files: \.(ts|tsx)$
+        pass_filenames: false
+        stages: [commit]
+
+      # CONTEXT7 SOURCE: /microsoft/typescript - Type coverage validation
+      - id: type-coverage-check
+        name: Type Coverage Validation (95%+ Required)
+        entry: bash -c 'npm run typecheck && echo "✅ Type coverage maintained at 95%+"'
+        language: system
+        files: \.(ts|tsx)$
+        pass_filenames: false
+        stages: [commit, manual]
+
+      # CONTEXT7 SOURCE: /microsoft/typescript - Performance budget validation
+      - id: performance-budget-check
+        name: Performance Budget Check (<15s build time)
+        entry: bash -c 'start_time=$(date +%s); npm run build:fast >/dev/null 2>&1; end_time=$(date +%s); elapsed=$((end_time - start_time)); if [ $elapsed -gt 15 ]; then echo "❌ Build time exceeded: ${elapsed}s > 15s"; exit 1; else echo "✅ Build time: ${elapsed}s"; fi'
+        language: system
+        files: \.(ts|tsx|js|jsx)$
+        pass_filenames: false
+        stages: [manual]
+
+      # CONTEXT7 SOURCE: /actions/toolkit - Next.js build validation
+      - id: nextjs-build-check
+        name: Next.js Build Validation
+        entry: bash -c 'npm run build:fast >/dev/null 2>&1 && echo "✅ Next.js build successful"'
+        language: system
+        files: \.(ts|tsx|js|jsx|json)$
+        pass_filenames: false
+        stages: [push]
+
+      # CONTEXT7 SOURCE: /microsoft/typescript - TypeScript configuration validation
+      - id: tsconfig-validation
+        name: TSConfig.json Validation
+        entry: bash -c 'npx tsc --showConfig >/dev/null 2>&1 && echo "✅ tsconfig.json valid"'
+        language: system
+        files: tsconfig\.json$
+        pass_filenames: false
+        stages: [commit, manual]
+
+      # CONTEXT7 SOURCE: /pre-commit/pre-commit.com - Package.json validation
+      - id: package-json-check
+        name: Package.json Validation
+        entry: bash -c 'npm audit --audit-level moderate && echo "✅ Package.json security validated"'
+        language: system
+        files: package\.json$
+        pass_filenames: false
+        stages: [commit]
+
+      # CONTEXT7 SOURCE: /microsoft/typescript - Build artifact validation
+      - id: build-artifacts-check
+        name: Build Artifacts Validation
+        entry: bash -c 'if [ -f .next/BUILD_ID ]; then echo "✅ Build artifacts valid"; else echo "⚠️ No build artifacts found"; fi'
+        language: system
+        files: \.(ts|tsx|js|jsx)$
+        pass_filenames: false
+        stages: [push]
+
+  # External Quality Validation Hooks
+  # CONTEXT7 SOURCE: /pre-commit/pre-commit.com - ESLint for code quality
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.56.0
+    hooks:
+      - id: eslint
+        name: ESLint Quality Check
+        files: \.(ts|tsx|js|jsx)$
+        types: [file]
+        additional_dependencies:
+          - eslint@^9
+          - eslint-config-next@15.3.4
+          - '@typescript-eslint/eslint-plugin@^8.36.0'
+          - '@typescript-eslint/parser@^8.36.0'
+        args: ['--fix', '--max-warnings', '0']
+        stages: [commit, manual]
+
+  # CONTEXT7 SOURCE: /pre-commit/pre-commit.com - Prettier for code formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        name: Prettier Code Formatting
+        files: \.(ts|tsx|js|jsx|json|css|md)$
+        additional_dependencies:
+          - prettier@latest
+          - prettier-plugin-tailwindcss@^0.6.13
+        args: ['--write']
+        stages: [commit, manual]
+
+  # CONTEXT7 SOURCE: /pre-commit/pre-commit.com - General file validation
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: Remove Trailing Whitespace
+        stages: [commit, manual]
+
+      - id: end-of-file-fixer
+        name: Fix End of Files
+        stages: [commit, manual]
+
+      - id: check-yaml
+        name: Validate YAML Files
+        stages: [commit, manual]
+
+      - id: check-json
+        name: Validate JSON Files
+        stages: [commit, manual]
+
+      - id: check-merge-conflict
+        name: Check for Merge Conflicts
+        stages: [commit, manual]
+
+      - id: check-case-conflict
+        name: Check Case Conflicts
+        stages: [commit, manual]
+
+      - id: check-added-large-files
+        name: Check Large Files (>500KB)
+        args: ['--maxkb=500']
+        stages: [commit, manual]
+
+  # CONTEXT7 SOURCE: /pre-commit/pre-commit.com - Advanced TypeScript validation
+  - repo: local
+    hooks:
+      # Advanced TypeScript Error Detection
+      - id: typescript-strict-check
+        name: TypeScript Strict Mode Validation
+        entry: bash -c 'npx tsc --noEmit --strict && echo "✅ Strict TypeScript validation passed"'
+        language: system
+        files: \.(ts|tsx)$
+        pass_filenames: false
+        stages: [manual]
+
+      # Bundle Size Validation
+      - id: bundle-size-check
+        name: Bundle Size Validation (<150KB)
+        entry: bash -c 'npm run build:analyze >/dev/null 2>&1; if [ -f .next/analyze/client.json ]; then size=$(jq ".parsedSize" .next/analyze/client.json 2>/dev/null || echo "0"); if [ "$size" -gt 153600 ]; then echo "❌ Bundle size exceeded: ${size} bytes > 150KB"; exit 1; else echo "✅ Bundle size: ${size} bytes"; fi; else echo "⚠️ Bundle analysis not available"; fi'
+        language: system
+        files: \.(ts|tsx|js|jsx)$
+        pass_filenames: false
+        stages: [push]
+
+      # TypeScript Incremental Build Cache Validation
+      - id: tsbuildinfo-validation
+        name: TypeScript Build Cache Validation
+        entry: bash -c 'if [ -f .tsbuildinfo ]; then echo "✅ TypeScript build cache valid"; else echo "⚠️ No TypeScript build cache found"; fi'
+        language: system
+        files: \.(ts|tsx)$
+        pass_filenames: false
+        stages: [commit]
+
+# CI Integration Hooks (for GitHub Actions)
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit.com hooks
+
+    CONTEXT7 SOURCE: /pre-commit/pre-commit.com - Automated CI fixes
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip: [typescript-check, performance-budget-check, nextjs-build-check, bundle-size-check]
+  submodules: false

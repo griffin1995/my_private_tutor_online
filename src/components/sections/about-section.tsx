@@ -59,14 +59,8 @@ import { registerAboutSectionSW, preloadAboutResources } from '@/lib/service-wor
 // CONVERSION OPTIMIZATION: Official Next.js documentation shows integrating analytics and conversion tracking for performance optimization
 import { useConversionTracking } from '@/lib/analytics/conversion-tracking';
 
-// CONTEXT7 SOURCE: /vercel/next.js - A/B testing variant selection and application
-// AB TESTING INTEGRATION: Official Next.js documentation shows implementing A/B testing for conversion optimization
-import {
-  selectVariantForUser,
-  detectDeviceType,
-  ABOUT_SECTION_VARIANTS,
-  type AboutSectionVariant
-} from '@/lib/ab-testing/about-variants';
+// CONTEXT7 SOURCE: /vercel/next.js - Simplified component without A/B testing complexity
+// SIMPLIFICATION REASON: Official Next.js documentation shows clean component patterns without complex variant logic
 
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
@@ -113,41 +107,16 @@ export function AboutSection({
   // PERFORMANCE TRACKING: Official Next.js documentation shows using custom hooks for performance monitoring
   const performance = useAboutSectionPerformance();
 
-  // CONTEXT7 SOURCE: /vercel/next.js - A/B testing variant selection for optimization experiments
-  // VARIANT SELECTION: Official Next.js documentation shows implementing variant selection for conversion optimization
-  const [currentVariant, setCurrentVariant] = useState<AboutSectionVariant | null>(null);
-  const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Simplified component state management
+  // SIMPLIFICATION REASON: Official React documentation shows clean component patterns without complex variant state
 
-  // CONTEXT7 SOURCE: /reactjs/react.dev - useEffect for variant selection and device detection
-  // VARIANT INITIALIZATION: Official React documentation shows using useEffect for component initialization
-  useEffect(() => {
-    const detectedDeviceType = detectDeviceType();
-    setDeviceType(detectedDeviceType);
-
-    // CONTEXT7 SOURCE: /vercel/next.js - User session-based variant assignment
-    // SESSION ASSIGNMENT: Official Next.js documentation shows consistent variant assignment per session
-    const sessionId = sessionStorage.getItem('ab-test-session-id') ||
-                     `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-
-    if (!sessionStorage.getItem('ab-test-session-id')) {
-      sessionStorage.setItem('ab-test-session-id', sessionId);
-    }
-
-    const selectedVariant = selectVariantForUser(sessionId, detectedDeviceType);
-    setCurrentVariant(selectedVariant);
-
-    // Mark variant selection for tracking
-    performance.mark?.('variant-selected');
-  }, [performance]);
-
-  // CONTEXT7 SOURCE: /vercel/next.js - Conversion tracking hook integration for A/B testing and optimization
-  // CONVERSION TRACKING: Official Next.js documentation shows using analytics hooks for conversion optimization
+  // CONTEXT7 SOURCE: /vercel/next.js - Simplified conversion tracking without A/B testing complexity
+  // CONVERSION TRACKING: Official Next.js documentation shows basic analytics integration for performance monitoring
   const conversionTracker = useConversionTracking('about-section', {
-    enableABTesting: true,
+    enableABTesting: false,
     trackScrollMilestones: true,
     trackExitIntent: true,
-    trackVideoEngagement: true,
-    abTestVariant: currentVariant?.id
+    trackVideoEngagement: true
   });
 
   // CONTEXT7 SOURCE: /reactjs/react.dev - useEffect for component lifecycle monitoring
@@ -174,7 +143,6 @@ export function AboutSection({
       // CONTEXT7 SOURCE: /vercel/next.js - Initialize conversion tracking on component mount
       // TRACKING INITIALIZATION: Official Next.js documentation shows setting up analytics on component mount
       conversionTracker.trackEvent('about_section_view', {
-        variant: conversionTracker.getCurrentVariant(),
         timestamp: Date.now(),
         userAgent: navigator.userAgent.substring(0, 100)
       });
@@ -214,73 +182,48 @@ export function AboutSection({
     };
   }, [performance]);
 
-  // CONTEXT7 SOURCE: /vercel/next.js - Early return pattern for loading states
-  // LOADING OPTIMIZATION: Official Next.js documentation shows preventing render until data is ready
-  if (!currentVariant) {
-    return (
-      <section id="about" className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-          <div className="animate-pulse space-y-8">
-            <div className="h-12 bg-primary-200 rounded-md w-3/4"></div>
-            <div className="space-y-4">
-              <div className="h-6 bg-primary-200 rounded w-full"></div>
-              <div className="h-6 bg-primary-200 rounded w-5/6"></div>
-              <div className="h-6 bg-primary-200 rounded w-4/6"></div>
-            </div>
-            <div className="h-64 bg-primary-200 rounded-md"></div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // CONTEXT7 SOURCE: /vercel/next.js - Variant-based dynamic class generation
-  // VARIANT STYLING: Official Next.js documentation shows dynamic class application based on configuration
-  const gridLayoutClasses = `grid ${currentVariant.layout.gridCols} ${currentVariant.layout.gap} items-start lg:grid-rows-1`;
-  const contentOrder = currentVariant.layout.imagePosition === 'left' ? 'order-2 lg:order-2' : 'order-1 lg:order-1';
-  const imageOrder = currentVariant.layout.imagePosition === 'left' ? 'order-1 lg:order-1' : 'order-2 lg:order-2';
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Asymmetric 60/40 grid layout for dynamic composition
+  // LAYOUT ENHANCEMENT: Official Tailwind CSS documentation shows custom grid fractions for visual interest
+  const gridLayoutClasses = 'grid lg:grid-cols-[3fr_2fr] gap-8 lg:gap-12 items-start lg:grid-rows-1 relative';
+  const contentOrder = 'order-1 lg:order-1';
+  const imageOrder = 'order-2 lg:order-2';
 
   return (
     <section
       id="about"
-      className={`py-16 lg:py-24 ${backgroundColor} ${className}`}
-      data-variant={currentVariant.id}
-      data-device-type={deviceType}
+      className={`py-20 lg:py-28 bg-gradient-to-br from-primary-50 to-primary-100 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] ${className}`}
     >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container symmetric padding for perfect left/right balance */}
       {/* PADDING SYMMETRY FIX REASON: Official Tailwind CSS documentation shows container with mx-auto for horizontal centering and px-* for equal horizontal padding */}
       {/* REVISION TYPE: Enhanced symmetric spacing by ensuring consistent progressive padding at all responsive breakpoints */}
       {/* VISUAL BALANCE IMPLEMENTATION: Container mx-auto provides perfect centering, px-6 sm:px-8 lg:px-12 xl:px-16 ensures equal left/right spacing */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-        {/* CONTEXT7 SOURCE: /vercel/next.js - Variant-based dynamic grid layout configuration */}
-        {/* VARIANT LAYOUT: Official Next.js documentation shows dynamic layout application based on A/B testing variants */}
-        {/* REVISION TYPE: Dynamic grid layout with variant-specific spacing and positioning */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Fixed 50/50 grid layout for balanced column distribution */}
+        {/* LAYOUT SIMPLIFICATION: Official Tailwind CSS documentation shows grid-cols-2 with consistent gap for equal width columns */}
         <div className={gridLayoutClasses}>
-          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component composition with variant-aware extracted sub-components */}
-          {/* VARIANT INTEGRATION REASON: Official React documentation shows passing variant configuration to child components */}
+          {/* Decorative accent line between columns */}
+          <div className="absolute right-[40%] top-1/4 w-0.5 h-1/2 bg-primary-200 hidden lg:block"></div>
 
-          {/* Text Content - Dynamic Positioning Based on Variant */}
-          <div className={contentOrder}>
+          {/* Text Content - Left Column (60% width) */}
+          <div className={`${contentOrder} transition-transform duration-300 hover:scale-[1.02]`}>
             <LazyAboutContent
               title="World-Class Education, At Your Fingertips."
-              animationDelay={0.1 * currentVariant.animations.delayMultiplier}
+              animationDelay={0.1}
               conversionTracker={conversionTracker}
-              variant={currentVariant}
-              contentAlignment={currentVariant.layout.contentAlignment}
+              contentAlignment="left"
             />
           </div>
 
-          {/* Image and Badges - Dynamic Positioning Based on Variant */}
-          <div className={imageOrder}>
+          {/* Image and Badges - Right Column (40% width) */}
+          <div className={`${imageOrder} transition-transform duration-300 hover:scale-[1.02]`}>
             <LazyAboutImage
               founderImageUrl={founderImageUrl}
               founderImageAlt={founderImageAlt}
-              animationDelay={0.3 * currentVariant.animations.delayMultiplier}
-              showCredentials={currentVariant.content.credentialsStyle !== 'minimal'}
-              credentialsStyle={currentVariant.content.credentialsStyle}
-              imageStyle={currentVariant.content.imageStyle}
+              animationDelay={0.3}
+              showCredentials={true}
+              credentialsStyle="badges"
+              imageStyle="standard"
               conversionTracker={conversionTracker}
-              variant={currentVariant}
             />
           </div>
         </div>

@@ -594,7 +594,8 @@ system depends on real expert analysis to generate valuable consensus solutions.
    * Maps agent types to their actual Task tool identifiers
    * CONSENSUS: Support both known and custom agents
    */
-  private mapToActualAgentId(agentType: string | KnownAgent): string {
+  private mapToActualAgentId(agentType: string | KnownAgent | AgentInvocation): string {
+    // CONTEXT7 SOURCE: /microsoft/typescript - Type narrowing with typeof and in operators
     // Handle custom agent objects
     if (typeof agentType === 'object' && agentType && 'custom' in agentType) {
       return agentType.custom;

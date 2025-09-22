@@ -27,9 +27,10 @@ export function TwoRowHeadingTextSection({
 }: TwoRowHeadingTextSectionProps): JSX.Element {
   return (
     <div className={`bg-${backgroundColor} ${className}`}>
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
+      {/* CONTEXT7 SOURCE: /websites/tailwindcss - Container consolidation with max-width for performance optimization */}
+      {/* CONTAINER CONSOLIDATION REASON: Official Tailwind documentation shows combining container utilities to reduce DOM nesting */}
+      <div className="container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
         <m.div
-          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
           initial={fadeInUpVariant.initial}
           whileInView={fadeInUpVariant.animate}
           viewport={{ once: true, margin: "-100px" }}

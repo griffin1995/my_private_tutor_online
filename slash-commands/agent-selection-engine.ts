@@ -373,7 +373,8 @@ export class AgentSelector {
       let score = 0;
 
       // Domain match scoring (40% weight)
-      const domainMatches = capabilities.domains.filter(d => context.domains.includes(d)).length;
+      // CONTEXT7 SOURCE: /microsoft/typescript - Type assertion for array includes method
+      const domainMatches = capabilities.domains.filter(d => context.domains.includes(d as Domain)).length;
       score += domainMatches * 40;
 
       // Keyword match scoring (25% weight)

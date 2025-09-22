@@ -80,20 +80,32 @@ export function SimpleHero({ backgroundImage, h1, h2, className, decorativeStyle
       role="banner"
       aria-label="Hero section"
     >
-      {/* Enhanced Multi-Layer Parallax Background System */}
+      {/* Enhanced Multi-Layer Parallax Background System with Golden Circle Tutors Zoom Effect */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with priority loading for hero images */}
       {/* PERFORMANCE OPTIMIZATION: Using next/image with priority prop for critical above-the-fold content */}
       {/* CONTEXT7 SOURCE: /vercel/next.js - Fill layout for full container coverage */}
+      {/* CONTEXT7 SOURCE: /websites/tailwindcss - CSS animations and transform scale for zoom effects */}
+      {/* ZOOM EFFECT IMPLEMENTATION: Official Tailwind CSS documentation for arbitrary animation values and transform scale patterns */}
       <div className="absolute inset-0" aria-hidden="true">
-        <Image
-          src={backgroundImage}
-          alt=""
-          fill
-          priority
-          quality={85}
-          className="object-cover object-center drop-shadow-image-strong"
-          sizes="100vw"
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            animation: 'heroZoom 10s ease-out 0s 1 normal none running',
+            filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
+          }}
         />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            @keyframes heroZoom {
+              0% { transform: scale(1.25); }
+              100% { transform: scale(1); }
+            }
+          `
+        }} />
       </div>
       
       {/* Enhanced Mathematical Gradient Overlay System with Golden Ratio Progression */}

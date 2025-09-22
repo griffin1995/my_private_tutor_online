@@ -115,11 +115,12 @@ export function WebVitals() {
 
     // Log locally for now (Phase 1 - measurement only)
     if (process.env.NODE_ENV === 'development') {
+      // CONTEXT7 SOURCE: /microsoft/typescript - Web Vitals metric type handling
       console.table(metrics.map(m => ({
         metric: m.name,
         value: `${m.value.toFixed(2)}ms`,
         rating: m.rating,
-        target: `${m.target?.target}ms`
+        target: 'N/A' // Target property not available on WebVitalsMetric
       })));
     }
 

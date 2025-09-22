@@ -43,12 +43,12 @@ export function HighlightedMessageSection({
   
   return (
     <section className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed">
-              {children}
-            </div>
+      {/* CONTEXT7 SOURCE: /websites/tailwindcss - Container optimization with consolidated max-width utilities */}
+      {/* CONTAINER CONSOLIDATION REASON: Official Tailwind documentation demonstrates reducing nesting by combining container and max-width */}
+      <div className="container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+        <div className="text-center">
+          <div className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-relaxed">
+            {children}
           </div>
         </div>
       </div>

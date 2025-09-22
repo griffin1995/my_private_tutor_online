@@ -169,54 +169,60 @@ export function HeroVideoDialog({
   }, [isOpen]);
 
   return (
-    <div className={`relative ${className}`}>
-      {/* Thumbnail/Trigger */}
-      <div
-        className="relative cursor-pointer group"
-        onClick={handleOpen}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        role="button"
-        aria-label={`Play video: ${thumbnailAlt}`}
+    <>
+      {/* CONTEXT7 SOURCE: /radix-ui/website - AspectRatio.Root as container with direct className application */}
+      {/* COMPONENT OPTIMIZATION: Remove unnecessary relative wrapper div and apply classes directly to AspectRatio.Root */}
+      <AspectRatio.Root
+        ratio={16 / 9}
+        className={`relative w-full ${className}`}
       >
-        <div className="relative overflow-hidden">
-          {/* CONTEXT7 SOURCE: /vercel/next.js - Image optimization with fixed dimensions for consistent thumbnail display */}
-          {/* REVERSION REASON: Restoring original working implementation with fixed width/height instead of fill prop */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Border utilities with hover states and transitions */}
+        {/* BORDER ENHANCEMENT: Official Tailwind CSS documentation shows border border-gray-* utilities for subtle borders */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Rounded corners with rounded-lg utility */}
+        {/* ROUNDED CORNERS: Official Tailwind CSS documentation shows rounded-lg for medium border radius */}
+        <div
+          className="relative cursor-pointer group w-full h-full overflow-hidden border border-gray-300 hover:border-gray-400 transition-colors duration-300 rounded-lg"
+          onClick={handleOpen}
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+          role="button"
+          aria-label={`Play video: ${thumbnailAlt}`}
+        >
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Image optimization with fill layout and absolute positioning for proper centering */}
+          {/* VERTICAL CENTERING FIX: Official Next.js documentation shows using absolute positioning with transform for precise centering */}
+          {/* CONTEXT7 SOURCE: /vercel/next.js - Image positioning with object-contain maintains aspect ratio while showing full content */}
+          {/* CENTERING SOLUTION: Using absolute positioning with top/left/transform ensures image is vertically and horizontally centered within parent */}
           <Image
             src={thumbnailSrc}
             alt={thumbnailAlt}
-            width={1080}
-            height={1080}
-            className="w-full h-auto object-contain"
+            fill
+            className="object-contain bg-black/5"
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "100%",
+              height: "100%"
+            }}
             priority
             quality={75}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
 
-          {/* Play Button Overlay */}
+          {/* CONTEXT7 SOURCE: /radix-ui/website - Optimized overlay structure with consolidated centering */}
+          {/* STRUCTURAL OPTIMIZATION: Removed redundant wrapper div and consolidated centering classes */}
           <div className="absolute inset-0 flex items-center justify-center transition-colours z-20">
-            {/* Documentation Source: Context7 Tailwind CSS - Perfect Center Alignment for Play Button
-             * Reference: /context7/tailwindcss - Flexbox centering utilities for precise alignment
-             * Pattern: Using flex items-center justify-center for perfect center alignment
-             *
-             * Alignment Logic:
-             * - Parent div: flex items-center justify-center creates perfect centering container
-             * - Child Play icon: Removed ml-1 offset that was causing misalignment
-             * - flex items-center justify-center on both parent and button ensures true center
-             * - Visual center achieved by removing any margin/padding offsets on icon
-             * - Play button now perfectly centered within its circular container
-             */}
-            <div className="flex items-center justify-center">
-              {isFree && (
-                <CirclePlay
-                  size={100}
-                  strokeWidth={0.5}
-                  className="text-white group-hover:text-[#CA9E5B] transition-colors duration-300"
-                />
-              )}
-            </div>
+            {isFree && (
+              <CirclePlay
+                size={100}
+                strokeWidth={0.5}
+                className="text-white group-hover:text-[#CA9E5B] transition-colors duration-300"
+              />
+            )}
           </div>
         </div>
-      </div>
+      </AspectRatio.Root>
 
       {/* Full-Screen Video Modal - Portal Rendering */}
       {portalContainer &&
@@ -266,7 +272,7 @@ export function HeroVideoDialog({
                       />
                     ) : (
                       // Standard Video
-                      // CONTEXT7 SOURCE: /websites/tailwindcss - object-contain utility for complete video content visibility  
+                      // CONTEXT7 SOURCE: /websites/tailwindcss - object-contain utility for complete video content visibility
                       // VIDEO SCALING FIX: Changed from object-cover to object-contain to show full video height without cropping
                       // VIDEO OPTIMIZATION REASON: Official browser documentation recommends preload="metadata" for better performance
                       <video
@@ -292,7 +298,7 @@ export function HeroVideoDialog({
           </AnimatePresence>,
           portalContainer
         )}
-    </div>
+    </>
   );
 }
 

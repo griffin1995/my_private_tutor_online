@@ -143,7 +143,7 @@ export function AboutImage({
       <m.div
         ref={imageAnimation.ref}
         animate={imageAnimation.controls}
-        className="relative w-full flex items-center justify-center bg-transparent cursor-pointer"
+        className="relative w-full flex items-center justify-center bg-transparent cursor-pointer border-2 border-primary-100 transition-all duration-300 hover:border-primary-200 hover:scale-[1.02]"
         style={{ height: "fit-content" }}
         role="img"
         aria-label="Founder portrait section"

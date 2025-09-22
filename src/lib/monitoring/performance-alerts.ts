@@ -615,8 +615,13 @@ export class PerformanceAlertingSystem {
     const webVitalsMetrics = webVitalsTracker.getMetrics();
     const metrics = ['LCP', 'FID', 'CLS', 'FCP', 'TTFB'];
     
+    // CONTEXT7 SOURCE: /microsoft/typescript - Type-safe object property access with utilities
+    // STANDARDIZATION REASON: Official TypeScript documentation Section 5.1 - Type-safe property access eliminates TS7053 errors
+    const { getCMSProperty } = await import('@/lib/cms/cms-utils');
+
     for (const metric of metrics) {
-      const value = webVitalsMetrics[metric]?.value;
+      const metricData = getCMSProperty(webVitalsMetrics, metric);
+      const value = metricData?.value;
       if (value === undefined) continue;
       
       let baseline = this.performanceBaselines.get(metric);

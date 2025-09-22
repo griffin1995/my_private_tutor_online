@@ -46,7 +46,10 @@ export function VideoMasterclassGrid({
         // CONTEXT7 SOURCE: /microsoft/typescript - Conditional logic patterns for layout alternation
         // LAYOUT LOGIC: Alternate between text-left and text-right for visual variety
         const layout = index % 2 === 0 ? "text-left" : "text-right";
-        
+
+        // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean component layout patterns
+        // COMPONENT LAYOUT: Official Tailwind CSS documentation for production-ready component structure
+
         return (
           <VideoMasterclassSection
             key={video.id}

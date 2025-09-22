@@ -129,7 +129,7 @@ export function AboutContent({
         variants={titleAnimation.animationPreference === 'full' ? hoverVariants : undefined}
         whileHover={titleAnimation.animationPreference === 'full' ? 'hover' : undefined}
         id="about-content-heading"
-        className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 cursor-default"
+        className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 cursor-default tracking-tight"
         tabIndex={0}
         aria-live="polite"
         onAnimationComplete={() => {

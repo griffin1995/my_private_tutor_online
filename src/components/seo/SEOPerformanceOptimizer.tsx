@@ -56,18 +56,22 @@ export const SEOPerformanceOptimizer: FC<SEOPerformanceOptimizerProps> = ({
       if (loadStrategy === 'interaction') {
         const handleInteraction = () => {
           setShouldLoadNonCritical(true)
+          // CONTEXT7 SOURCE: /microsoft/typescript - Type-safe array iteration with DOM events
+          // STANDARDIZATION REASON: Official TypeScript documentation Section 5.2 - Type assertions for DOM event handling
           // Clean up listeners after first interaction
-          ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(event => {
-            document.removeEventListener(event, handleInteraction, { passive: true })
+          const events = ['mousedown', 'touchstart', 'keydown', 'scroll'] as const;
+          events.forEach(event => {
+            document.removeEventListener(event, handleInteraction, { passive: true } as AddEventListenerOptions)
           })
         }
 
-        ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(event => {
+        const events = ['mousedown', 'touchstart', 'keydown', 'scroll'] as const;
+        events.forEach(event => {
           document.addEventListener(event, handleInteraction, { passive: true })
         })
 
         return () => {
-          ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(event => {
+          events.forEach(event => {
             document.removeEventListener(event, handleInteraction)
           })
         }

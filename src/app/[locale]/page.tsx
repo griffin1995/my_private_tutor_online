@@ -12,7 +12,6 @@ import React from "react";
 // CMS DATA LOADING REASON: Official React patterns for synchronous content access
 import {
   getFounderQuote,
-  getResultsDocumentation,
   getServices,
   getSiteBranding,
   getTestimonials,
@@ -31,7 +30,9 @@ import { TrustIndicatorsGrid } from "../../components/sections/trust-indicators-
 import { BrandMessageSection } from "../../components/sections/brand-message-section";
 import { HomepageSections } from "../../components/homepage/homepage-sections";
 import { ErrorBoundaryWrapper } from "../../components/boundaries/homepage-error-boundary";
-import { ResultsDocumentation } from "../../components/sections/results-documentation";
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component replacement using named imports
+// REVISION REASON: Official React documentation patterns for component substitution and clean import management
+import { ThreePillarsSection } from "../../components/sections/three-pillars-section";
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Extracted section components for homepage componentization
 // COMPONENT EXTRACTION REASON: Official React documentation patterns for modular section components
@@ -50,7 +51,6 @@ export default function HomePage() {
   const trustIndicators = getTrustIndicators();
   const testimonialsSchools = getTestimonialsSchools();
   const studentImages = getStudentImages();
-  const resultsData = getResultsDocumentation();
 
   return (
     <>
@@ -91,19 +91,11 @@ export default function HomePage() {
         <FounderIntroductionSection />
 
         {/* SECTION 5: QUANTIFIABLE RESULTS - ACADEMIC OUTCOMES */}
-        {resultsData && resultsData.length > 0 && (
-          <section id="quantifiable-results-documentation">
-            <ErrorBoundaryWrapper sectionName="Results Documentation">
-              <ResultsDocumentation
-                results={resultsData}
-                layout="grid"
-                maxItems={3}
-                title="Results That Drive Decisions"
-                description="Verifiable outcomes and competitive advantages that justify premium investment"
-              />
-            </ErrorBoundaryWrapper>
-          </section>
-        )}
+        <section id="quantifiable-results-documentation">
+          <ErrorBoundaryWrapper sectionName="Results Documentation">
+            <ThreePillarsSection />
+          </ErrorBoundaryWrapper>
+        </section>
 
         {/* SECTION 6: TRUST INDICATORS - CREDIBILITY AND SOCIAL PROOF */}
         <section id="trust-indicators-social-proof">

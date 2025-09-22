@@ -86,8 +86,13 @@ export function ResourcePreloader({
 
     // CONTEXT7 SOURCE: /vercel/next.js - Page-specific critical image preloading
     // IMAGE OPTIMIZATION: Preload above-fold images for faster LCP
-    if (preloadCriticalImages && CRITICAL_RESOURCES[page]) {
-      const resources = CRITICAL_RESOURCES[page]
+    // CONTEXT7 SOURCE: /microsoft/typescript - Type-safe object property access with utilities
+    // STANDARDIZATION REASON: Official TypeScript documentation Section 5.1 - Type-safe property access eliminates TS7053 errors
+    if (preloadCriticalImages) {
+      const { getCMSProperty } = await import('@/lib/cms/cms-utils');
+      const resources = getCMSProperty(CRITICAL_RESOURCES, page)
+
+      if (resources) {
 
       resources.images.forEach(imageSrc => {
         ReactDOM.preload(imageSrc, { as: 'image' })
@@ -98,6 +103,7 @@ export function ResourcePreloader({
       resources.scripts?.forEach(scriptSrc => {
         ReactDOM.preload(scriptSrc, { as: 'script' })
       })
+      }
     }
 
     // CONTEXT7 SOURCE: /vercel/next.js - Service Worker registration with preloading

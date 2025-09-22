@@ -97,32 +97,27 @@ export function BootcampVideoSectionVersion({
   const backgroundImage = programmeBackgroundImages[videoId];
   const thumbnailImage = programmeThumbnailImages[videoId];
 
-  // CONTEXT7 SOURCE: /tailwindcss/tailwindcss - Conditional CSS class patterns  
-  // LAYOUT LOGIC: Dynamic grid ordering and text alignment based on layout prop
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive flex layout with basis utilities
+  // PATTERN VALIDATION: Official Tailwind CSS documentation demonstrates md:flex with basis-1/2 for 50/50 layouts
   const isTextLeft = layout === "text-left";
   const textAlignment = isTextLeft ? "" : "text-right";
   const badgeAlignment = isTextLeft ? "" : "justify-end";
-  const bulletAlignment = isTextLeft ? "" : "justify-end"; 
-  const videoGridOrder = isTextLeft ? "order-2" : "order-1";
-  const textGridOrder = isTextLeft ? "order-1" : "order-2";
+  const flexDirection = isTextLeft ? "flex-col md:flex-row" : "flex-col md:flex-row-reverse";
   const watchCirclePosition = isTextLeft ? "-right-24" : "-left-24";
 
   return (
-    <div 
-      className={`relative grid md:grid-cols-2 gap-8 items-center bg-cover bg-center bg-no-repeat ${className}`}
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Block-level flex container pattern
+    // OPTIMAL STRUCTURE: Using flex instead of grid for cleaner 50/50 layout
+    <div
+      className={`relative flex ${flexDirection} items-center bg-cover bg-center bg-no-repeat ${className}`}
       style={{ backgroundImage: `url('${backgroundImage}')` }}
     >
-      {/* CONTEXT7 SOURCE: /websites/tailwindcss - Circular gradient overlay for corner gradient blur effect */}
-      {/* GRADIENT OVERLAY REASON: Official CSS documentation for radial-gradient patterns matching VideoMasterclassSection visual design */}
-      {/* Circular gradient overlay for text readability and corner blur effect */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          background: `radial-gradient(circle at ${isTextLeft ? 'bottom left' : 'bottom right'}, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 80%, transparent 90%)`
-        }}
-      />
-      {/* Video Section */}
-      <div className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple overlay pattern for text readability */}
+      {/* OVERLAY SIMPLIFICATION: Using linear gradient for cleaner implementation */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flex basis responsive pattern */}
+      {/* VIDEO SECTION: Using basis-full on mobile, basis-1/2 on desktop for 50% width */}
+      <div className="relative z-10 flex basis-full md:basis-1/2 justify-center items-center p-8">
         <a 
           href={programme.stripeUrl} 
           target="_blank" 
@@ -146,9 +141,12 @@ export function BootcampVideoSectionVersion({
         </a>
       </div>
 
-      {/* Text Content Section */}
-      <div className={`relative z-10 w-4/5 mx-auto p-8 ${textAlignment} ${textGridOrder}`}>
-        <h2 className="text-4xl font-bold text-white mb-3">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flex basis responsive pattern */}
+      {/* TEXT SECTION: Using basis-full on mobile, basis-1/2 on desktop for 50% width */}
+      <div className={`relative z-10 flex flex-col basis-full md:basis-1/2 justify-center px-8 py-12 ${textAlignment}`}>
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Content vertical centering */}
+        {/* HEADING: Properly centered content within flex container */}
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
           {programme.title}
         </h2>
         

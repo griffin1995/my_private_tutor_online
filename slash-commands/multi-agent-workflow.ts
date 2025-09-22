@@ -5,7 +5,8 @@
  * with dynamic agent selection based on task context
  */
 
-import { AgentSelector, AgentSelection } from './agent-selection-engine';
+// CONTEXT7 SOURCE: /microsoft/typescript - Type-only imports for interface types
+import { AgentSelector, type AgentSelection } from './agent-selection-engine';
 import { taskToolIntegration } from './task-tool-integration';
 
 interface WorkflowConfig {

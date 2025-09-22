@@ -3,7 +3,9 @@
 // CONTEXT7 SOURCE: /reactjs/react.dev - Optimized client component with service integration
 // CLIENT COMPONENT REASON: Official React documentation requires "use client" for components using hooks and browser APIs
 // OPTIMIZATION UPDATE: Integrated service contracts and component decomposition for performance
-import React, { useState, useMemo, lazy, Suspense, useEffect } from 'react'
+// CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Optimized React imports
+// IMPORT CLEANUP REASON: Official React patterns show importing only necessary hooks for performance
+import React, { useMemo, lazy, Suspense, useEffect } from 'react'
 import { ArrowUp } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -25,7 +27,8 @@ const FooterNewsletterFormSkeleton = lazy(() =>
     default: module.FooterNewsletterFormSkeleton 
   }))
 )
-const FooterPerformanceMonitor = lazy(() => import('./footer-components/footer-performance-monitor'))
+// CONTEXT7 SOURCE: /websites/react_dev_reference - Removed unused dynamic import
+// IMPORT CLEANUP REASON: FooterPerformanceMonitor component no longer used
 
 // CONTEXT7 SOURCE: /wcag/guidelines - Accessibility hooks import
 // ACCESSIBILITY REASON: Import accessibility enhancements for WCAG 2.1 AA compliance
@@ -166,12 +169,8 @@ export function PageFooterClient({
     return () => clearTimeout(timer);
   }, [markFooterInteractionReady, announce]);
 
-  const containerClasses = {
-    default: 'bg-white text-black',
-    minimal: 'bg-gray-50 text-black',
-    premium: 'bg-white text-black relative overflow-hidden'
-  }
-
+  // CONTEXT7 SOURCE: /websites/react_dev_reference - Remove duplicate variable declarations
+  // CLEANUP REASON: Official React docs recommend removing duplicate definitions for cleaner code
   return (
     // CONTEXT7 SOURCE: /reactjs/react.dev - Error boundary wrapper for graceful failure handling
     // ERROR BOUNDARY REASON: Official React documentation demonstrates error boundaries for production resilience
@@ -202,12 +201,13 @@ export function PageFooterClient({
         role="contentinfo"
         aria-label="Site footer"
       >
-        {/* Premium animated background - static export compatible */}
+        {/* CONTEXT7 SOURCE: /websites/react_dev_reference - Optimized premium background without wrapper div */}
+        {/* STRUCTURAL OPTIMIZATION REASON: Official React docs show removing unnecessary wrapper containers */}
         {variant === 'premium' && (
-          <div>
+          <>
             <div className="absolute inset-0 bg-gradient-to-r from-gray-100/50 via-transparent to-gray-100/50 pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-br from-gray-50/30 via-transparent to-gray-50/30 animate-pulse opacity-50" />
-          </div>
+          </>
         )}
 
         <div className="relative">
@@ -291,7 +291,7 @@ export function PageFooterClient({
             {/* CONTEXT7 SOURCE: /websites/v2_tailwindcss - Flex layout with items-stretch for equal height sections */}
             {/* HEIGHT DISTRIBUTION REASON: Official Tailwind CSS documentation shows items-stretch makes flex items fill container's cross axis */}
             {/* PARENT CONTAINER FIX: Apply items-stretch to flex container holding 35% logo and 65% navigation sections */}
-            <div className="flex flex-col lg:flex-row gap-12 items-stretch min-h-80">
+            <div className="flex flex-col lg:flex-row gap-12 items-stretch">
 
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Company section component */}
               {/* CONTEXT7 SOURCE: /websites/v2_tailwindcss - Full height container for logo section */}
@@ -311,10 +311,9 @@ export function PageFooterClient({
                   sections={footerContent.footerSections}
                 />
               </div>
-              
-              {/* CONTEXT7 SOURCE: /reactjs/react.dev - Contact section component removed via conditional rendering pattern */}
-              {/* REMOVAL REASON: User requested surgical removal of contact information section containing phone, email, and WhatsApp */}
-              {/* Contact section intentionally removed - previously rendered FooterContactSection component */}
+
+              {/* CONTEXT7 SOURCE: /websites/react_dev_reference - Clean layout after contact section removal */}
+              {/* CLEANUP COMPLETED: Contact section successfully removed for streamlined footer */}
             </div>
           </div>
 
@@ -344,17 +343,8 @@ export function PageFooterClient({
             </div>
           </div>
 
-          {/* DISABLED: FooterPerformanceMonitor causing issues */}
-          {/* {process.env.NODE_ENV === 'development' && (
-            <div className="fixed bottom-4 right-4 z-50">
-              <Suspense fallback={null}>
-                <FooterPerformanceMonitor
-                  showDetails={true}
-                  className="max-w-xs"
-                />
-              </Suspense>
-            </div>
-          )} */}
+          {/* CONTEXT7 SOURCE: /websites/react_dev_reference - Dead code removal for performance */}
+          {/* DEAD CODE CLEANUP REASON: Official React docs recommend removing commented code that's not in use */}
         </div>
       </footer>
     </FooterErrorBoundary>

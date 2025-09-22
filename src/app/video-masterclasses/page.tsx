@@ -6,9 +6,9 @@
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
 import React from "react";
-// CONTEXT7 SOURCE: /websites/react_dev - Component removal patterns for JSX cleanup
-// REMOVAL REASON: Official React documentation Section 3.1 recommends removing unused imports to maintain clean component architecture
-import { TwoRowHeadingTextSection } from "@/components/sections/two-row-heading-text-section";
+// CONTEXT7 SOURCE: /typescript-cheatsheets/react - Component replacement patterns for enhanced reusability
+// REPLACEMENT REASON: Official TypeScript React documentation demonstrates replacing specialized components with enhanced generic components for better maintainability
+import { FirstLessonSection } from "@/components/sections/about/FirstLessonSection";
 import { VideoMasterclassGrid } from "@/components/video/VideoMasterclassGrid";
 import { getVideoMasterclassPage } from "@/lib/cms/cms-images";
 
@@ -62,12 +62,12 @@ export default function VideoPage() {
         footerProps={{ showContactForm: true }}
       >
         {/* FEATURED/FREE SECTION - 2 VIDEOS */}
+        {/* CONTEXT7 SOURCE: /typescript-cheatsheets/react - Component replacement with custom props for enhanced reusability */}
+        {/* COMPONENT REPLACEMENT REASON: Official TypeScript React documentation demonstrates using enhanced components with custom props instead of specialized single-purpose components */}
         <section id="featured-free-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="The Parent's Roadmap to Effective Academic Help"
-            paragraphOne="Complimentary masterclasses with Elizabeth Burrows. The journey of supporting a child through their education is fraught with complexity and uncertainty. When is a wobble a warning sign, and when is it just a blip? In a competitive, fast-changing curriculum, even engaged parents can feel unsure. The modern educational landscape presents unique challenges, with increasingly competitive environments. Understanding when and how to provide effective academic support requires deep insight into child development, learning psychology, and educational systems—knowledge that extends far beyond traditional parenting experience. Access two complimentary masterclasses to benefit from Elizabeth Burrows' expert guidance, distilled from 15+ years in international education."
-            headingTwo=""
-            paragraphTwo=""
+          <FirstLessonSection
+            heading="The Parent's Roadmap to Effective Academic Help"
+            paragraph="Complimentary masterclasses with Elizabeth Burrows. The journey of supporting a child through their education is fraught with complexity and uncertainty. When is a wobble a warning sign, and when is it just a blip? In a competitive, fast-changing curriculum, even engaged parents can feel unsure. The modern educational landscape presents unique challenges, with increasingly competitive environments. Understanding when and how to provide effective academic support requires deep insight into child development, learning psychology, and educational systems—knowledge that extends far beyond traditional parenting experience. Access two complimentary masterclasses to benefit from Elizabeth Burrows' expert guidance, distilled from 15+ years in international education."
           />
         </section>
 
@@ -76,11 +76,9 @@ export default function VideoPage() {
 
         {/* UCAS SECTION - 2 VIDEOS */}
         <section id="ucas-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="University Admissions: Decoding Britain's Most Complex Educational Process"
-            paragraphOne="The British university admissions system represents one of the most intricate and high-stakes processes that families will ever navigate. UCAS applications are governed by unwritten rules, implicit expectations, and nuanced requirements that can confound even highly educated parents. The personal statement alone - a 4,000 character document that can determine a young person's entire future - operates according to criteria that are rarely made explicit. The stakes are particularly high for competitive courses and prestigious institutions, where the margin for error is virtually nonexistent. Understanding university selection strategies, reference requirements, and timeline management requires intimate knowledge of how admissions departments actually evaluate candidates. Elizabeth Burrows has helped countless students secure offers from Oxbridge and top Russell Group universities. Unlock her expertise in these two masterclasses, as delivered at London School of Economics."
-            headingTwo=""
-            paragraphTwo=""
+          <FirstLessonSection
+            heading="University Admissions: Decoding Britain's Most Complex Educational Process"
+            paragraph="The British university admissions system represents one of the most intricate and high-stakes processes that families will ever navigate. UCAS applications are governed by unwritten rules, implicit expectations, and nuanced requirements that can confound even highly educated parents. The personal statement alone - a 4,000 character document that can determine a young person's entire future - operates according to criteria that are rarely made explicit. The stakes are particularly high for competitive courses and prestigious institutions, where the margin for error is virtually nonexistent. Understanding university selection strategies, reference requirements, and timeline management requires intimate knowledge of how admissions departments actually evaluate candidates. Elizabeth Burrows has helped countless students secure offers from Oxbridge and top Russell Group universities. Unlock her expertise in these two masterclasses, as delivered at London School of Economics."
           />
         </section>
 
@@ -89,11 +87,9 @@ export default function VideoPage() {
 
         {/* BRITISH CULTURE SECTION - 2 VIDEOS */}
         <section id="british-culture-section" className="py-16">
-          <TwoRowHeadingTextSection
-            headingOne="Reading Between the Lines: Navigating Britain's Educational Culture"
-            paragraphOne="Cultural literacy is the unspoken foundation of success in British education. Literary knowledge, shared references and historical context quietly shape classroom discussion, exam questions and peer dynamics. International families often find capable children disadvantaged by these invisible cues, affecting interviews, seminar participation and confidence. Equally decisive is social navigation: the centuries-old codes that govern schools and universities - from dining etiquette in boarding houses to admissions protocols and teacher expectations. Social fluency influences opportunities, relationships and perceived fit as much as grades. In these two masterclasses Elizabeth Burrows guide explores the cultural capital and institutional conventions students must decode, helping families bridge gaps academic ability alone cannot close."
-            headingTwo=""
-            paragraphTwo=""
+          <FirstLessonSection
+            heading="Reading Between the Lines: Navigating Britain's Educational Culture"
+            paragraph="Cultural literacy is the unspoken foundation of success in British education. Literary knowledge, shared references and historical context quietly shape classroom discussion, exam questions and peer dynamics. International families often find capable children disadvantaged by these invisible cues, affecting interviews, seminar participation and confidence. Equally decisive is social navigation: the centuries-old codes that govern schools and universities - from dining etiquette in boarding houses to admissions protocols and teacher expectations. Social fluency influences opportunities, relationships and perceived fit as much as grades. In these two masterclasses Elizabeth Burrows guide explores the cultural capital and institutional conventions students must decode, helping families bridge gaps academic ability alone cannot close."
           />
         </section>
 

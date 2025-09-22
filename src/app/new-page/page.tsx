@@ -7,13 +7,28 @@
 
 import { PageLayout } from "@/components/layout/page-layout";
 import { SimpleHero } from "@/components/layout/simple-hero";
-import { TwoRowHeadingTextSection } from "@/components/sections/two-row-heading-text-section";
+import { FirstLessonSection } from "@/components/sections/about/FirstLessonSection";
 import { VideoMasterclassGrid } from "@/components/video/VideoMasterclassGrid";
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component import patterns for modular React architecture
+// COMPONENT IMPORT REASON: Official React documentation demonstrates importing custom components for enhanced UI functionality
+import { VideoMasterclassSectionTextFullWidth } from "@/components/video/VideoMasterclassSectionTextFullWidth";
+import { VideoMasterclassSectionImageFullWidthTextHalfWidth } from "@/components/video/VideoMasterclassSectionImageFullWidthTextHalfWidth";
+// CONTEXT7 SOURCE: /radix-ui/primitives - Radix UI Accordion component for accessible collapsible sections
+// ACCORDION IMPORT REASON: Official Radix UI documentation demonstrates importing accordion primitive components
+import * as Accordion from "@radix-ui/react-accordion";
+
+// CONTEXT7 SOURCE: /lucide-dev/lucide - Lucide React icon library for chevron indicator
+// ICON IMPORT REASON: Official Lucide documentation demonstrates ChevronDown icon for accordion triggers
+import { ChevronDown } from "lucide-react";
+// CONTEXT7 SOURCE: /grx7/framer-motion - Framer Motion for additional animations in content sections
+// ANIMATION IMPORT REASON: Official Framer Motion documentation demonstrates motion.div for content animations
+import { motion } from "framer-motion";
+import React, { useCallback, useState, useRef, useMemo } from "react";
+import { useRenderGuard, useMemoryGuard, useFPSMonitor } from "@/lib/performance/crash-prevention";
 import { type VideoMasterclass } from "../../../COMPREHENSIVE_VIDEO_CMS";
 import { getVideoMasterclassPage } from "@/lib/cms/cms-images";
 import { type StandardizedContent, type StandardizedHeadingContent, type StandardizedVideoContent } from "./types";
 import { standardizedPageContent, getStandardizedContentById } from "./standardized-data";
-import React from "react";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Type predicate for runtime type safety and null video path handling
 // TYPE PREDICATE REASON: Official TypeScript documentation demonstrates type predicates for narrowing discriminated unions and preventing runtime errors
@@ -54,56 +69,125 @@ function convertToVideoMasterclass(standardizedVideo: any): VideoMasterclass {
 }
 
 export default function NewPage() {
+  // CONTEXT7 SOURCE: /reactjs/react.dev - Performance monitoring guards for crash prevention
+  // SAFETY REASON: Official React documentation for performance monitoring and infinite loop prevention
+  useRenderGuard("NewPage");
+  useMemoryGuard();
+  useFPSMonitor("NewPage");
+
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean component layout without debug borders
+  // COMPONENT LAYOUT: Official Tailwind CSS documentation for production-ready layouts
+
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useState for tracking previous accordion values
+  // STATE MANAGEMENT REASON: Official React documentation demonstrates useState for component state management
+  const [previousValues, setPreviousValues] = useState<string[]>([]);
+
   // CONTEXT7 SOURCE: /vercel/next.js - Static hero image patterns for consistent branding
   // HERO IMAGE REASON: Official Next.js documentation for static asset referencing in public directory
   const heroImage = {
     src: "/images/hero/hero-about-us.jpg", // Using existing hero image as placeholder
   };
 
-  // CONTEXT7 SOURCE: /reactjs/react.dev - React cache() memoization for expensive operations
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useMemo for memoizing expensive operations
   // BATCH FETCH: Get all video masterclasses in single optimized operation
-  const allVideos = getVideoMasterclassPage();
-  console.log('📊 All Videos Fetched:', allVideos?.length || 0, 'videos');
+  const allVideos = useMemo(() => {
+    const videos = getVideoMasterclassPage();
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📊 All Videos Fetched:', videos?.length || 0, 'videos');
+    }
+    return videos;
+  }, []);
 
   // Split videos into sections for organized display
-  const ucasVideos = allVideos.slice(2, 4); // Next 2 videos for UCAS section
-  console.log('🎓 UCAS Videos:', ucasVideos?.length || 0, 'videos');
+  const ucasVideos = useMemo(() => {
+    const videos = allVideos.slice(2, 4); // Next 2 videos for UCAS section
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🎓 UCAS Videos:', videos?.length || 0, 'videos');
+    }
+    return videos;
+  }, [allVideos]);
 
   // CONTEXT7 SOURCE: /microsoft/typescript - Standardized data structure access patterns
   // STANDARDIZED DATA ACCESS: Get content sections using standardized data structure
-  const primarySchoolHeading = getStandardizedContentById("primary-school-heading") as StandardizedHeadingContent;
-  const primarySchoolVideos1 = getStandardizedContentById("primary-school-videos-1") as StandardizedVideoContent;
-  const primarySchoolVideos2 = getStandardizedContentById("primary-school-videos-2") as StandardizedVideoContent;
+  const standardizedData = useMemo(() => {
+    const primarySchoolHeading = getStandardizedContentById("primary-school-heading") as StandardizedHeadingContent;
+    const primarySchoolVideos1 = getStandardizedContentById("primary-school-videos-1") as StandardizedVideoContent;
+    const primarySchoolVideos2 = getStandardizedContentById("primary-school-videos-2") as StandardizedVideoContent;
+    const secondarySchoolHeading = getStandardizedContentById("secondary-school-heading") as StandardizedHeadingContent;
+    const secondarySchoolVideos1 = getStandardizedContentById("secondary-school-videos-1") as StandardizedVideoContent;
+    const secondarySchoolVideos2 = getStandardizedContentById("secondary-school-videos-2") as StandardizedVideoContent;
+
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📋 Standardized Data Debug:', {
+        primarySchoolHeading: !!primarySchoolHeading,
+        primarySchoolVideos1: primarySchoolVideos1?.videos?.length || 0,
+        primarySchoolVideos2: primarySchoolVideos2?.videos?.length || 0,
+        secondarySchoolHeading: !!secondarySchoolHeading,
+        secondarySchoolVideos1: secondarySchoolVideos1?.videos?.length || 0,
+        secondarySchoolVideos2: secondarySchoolVideos2?.videos?.length || 0
+      });
+    }
+
+    return {
+      primarySchoolHeading,
+      primarySchoolVideos1,
+      primarySchoolVideos2,
+      secondarySchoolHeading,
+      secondarySchoolVideos1,
+      secondarySchoolVideos2
+    };
+  }, []);
 
   // Extract individual videos for the 2-row layout
+  const { primarySchoolHeading, primarySchoolVideos1, primarySchoolVideos2, secondarySchoolHeading, secondarySchoolVideos1, secondarySchoolVideos2 } = standardizedData;
   const primaryVideo3B = primarySchoolVideos1.videos[0]; // "Confidence-building lessons designed for early learners"
   const primaryVideo3C = primarySchoolVideos1.videos[1]; // "7+, 8+ and 11+ specialists with a track record of top school offers"
   const primaryVideo3D = primarySchoolVideos2.videos[0]; // "Individual learning plans shaped by expert assessment"
-  const secondarySchoolHeading = getStandardizedContentById("secondary-school-heading") as StandardizedHeadingContent;
-  const secondarySchoolVideos1 = getStandardizedContentById("secondary-school-videos-1") as StandardizedVideoContent;
-  const secondarySchoolVideos2 = getStandardizedContentById("secondary-school-videos-2") as StandardizedVideoContent;
 
-  console.log('📋 Standardized Data Debug:', {
-    primarySchoolHeading: !!primarySchoolHeading,
-    primarySchoolVideos1: primarySchoolVideos1?.videos?.length || 0,
-    primarySchoolVideos2: primarySchoolVideos2?.videos?.length || 0,
-    secondarySchoolHeading: !!secondarySchoolHeading,
-    secondarySchoolVideos1: secondarySchoolVideos1?.videos?.length || 0,
-    secondarySchoolVideos2: secondarySchoolVideos2?.videos?.length || 0
-  });
+  // CONTEXT7 SOURCE: /mdn/content - Element.scrollIntoView() method for smooth scrolling behavior
+  // SCROLL FUNCTIONALITY REASON: Official MDN documentation demonstrates scrollIntoView with behavior options
+  const scrollToSection = useCallback((sectionId: string) => {
+    // CONTEXT7 SOURCE: /mdn/content - prefers-reduced-motion media query for accessibility
+    // ACCESSIBILITY REASON: Official MDN documentation demonstrates respecting user motion preferences
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const element = document.getElementById(sectionId);
 
-  // Additional debugging for data structure
-  console.log('🔧 Raw Data Debug:', {
-    primarySchoolHeading,
-    primarySchoolVideos1,
-    primarySchoolVideos2,
-    secondarySchoolHeading,
-    secondarySchoolVideos1,
-    secondarySchoolVideos2
-  });
+    if (element) {
+      element.scrollIntoView({
+        behavior: prefersReducedMotion ? 'instant' : 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      });
+    }
+  }, []);
+
+  // CONTEXT7 SOURCE: /reactjs/react.dev - useCallback for memoizing event handlers
+  // EVENT HANDLER REASON: Official React documentation demonstrates useCallback for stable function references
+  // CONTEXT7 SOURCE: /radix-ui/primitives - Accordion content targeting for scroll behavior
+  // SCROLL FIX REASON: Official Radix UI documentation shows content elements have data attributes for state management
+  const handleAccordionChange = useCallback((newValues: string[]) => {
+    setPreviousValues(prevValues => {
+      // Find newly opened sections by comparing with previous values
+      const newlyOpened = newValues.filter(value => !prevValues.includes(value));
+
+      // If there's a newly opened section, scroll to the most recent one
+      if (newlyOpened.length > 0) {
+        const mostRecentSection = newlyOpened[newlyOpened.length - 1];
+
+        // CONTEXT7 SOURCE: /radix-ui/primitives - Accordion animation timing for content expansion
+        // TIMING REASON: Official Radix UI documentation shows accordion content animations take 300ms for slideDown
+        setTimeout(() => {
+          scrollToSection(`accordion-content-${mostRecentSection}`);
+        }, 350);
+      }
+
+      // Return new values for state update
+      return newValues;
+    });
+  }, [scrollToSection]);
 
   return (
-    <React.Fragment>
+    <div>
       {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero integration with full-screen layout pattern */}
       {/* HERO INTEGRATION REASON: Official Next.js documentation for component composition and layout consistency */}
       {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation integration */}
@@ -131,462 +215,397 @@ export default function NewPage() {
         className="space-y-0"
         footerProps={{ showContactForm: true }}
       >
-        {/* CONTEXT7 SOURCE: /brijr/components - Sequential component implementation following exact order specification */}
-        {/* COMPONENT ORDER REASON: Official React component composition patterns for structured page layout */}
+        {/* CONTEXT7 SOURCE: /radix-ui/primitives - Single Accordion.Root with type="multiple" for all sections visible simultaneously */}
+        {/* MULTIPLE ACCORDION REASON: Official Radix UI documentation demonstrates type="multiple" to allow multiple items open at once */}
+        <Accordion.Root
+          type="multiple"
+          defaultValue={[]}
+          className="w-full"
+          onValueChange={handleAccordionChange}
+        >
+          {/* Primary School Accordion Item */}
+          <Accordion.Item value="primary-school" className="border-none" id="accordion-item-primary-school">
+            <Accordion.Header className="flex">
+              <Accordion.Trigger className="flex flex-1 items-center justify-between py-0 text-left font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180 group">
+                <div className="flex-1">
+                  <motion.div
+                    initial={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <FirstLessonSection
+                      heading={primarySchoolHeading.title}
+                      paragraph={primarySchoolHeading.description}
+                      backgroundColor={primarySchoolHeading.backgroundColor}
+                      className={primarySchoolHeading.className}
+                    />
+                  </motion.div>
+                </div>
+                <ChevronDown className="h-8 w-8 shrink-0 text-gray-600 transition-transform duration-300 ease-in-out mr-8 group-data-[state=open]:rotate-180" />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down" id="accordion-content-primary-school">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+              >
+                <div className="mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+                  <motion.div className="space-y-8 sm:space-y-12 lg:space-y-16">
+                    <motion.div className="w-full">
+                      <VideoMasterclassSectionImageFullWidthTextHalfWidth
+                        video={convertToVideoMasterclass(primaryVideo3B)}
+                        className="py-0"
+                      />
+                    </motion.div>
+                    <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+                      <motion.div>
+                        <VideoMasterclassSectionTextFullWidth
+                          video={convertToVideoMasterclass(primaryVideo3C)}
+                          layout="text-left"
+                          className="py-0"
+                        />
+                      </motion.div>
+                      <motion.div>
+                        <VideoMasterclassSectionTextFullWidth
+                          video={convertToVideoMasterclass(primaryVideo3D)}
+                          layout="text-right"
+                          className="py-0"
+                        />
+                      </motion.div>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </Accordion.Content>
+          </Accordion.Item>
 
-        {/* 1. TwoRowHeadingTextSection (Primary School) */}
-        <TwoRowHeadingTextSection
-          headingOne={primarySchoolHeading.title}
-          paragraphOne={primarySchoolHeading.description}
-          headingTwo={primarySchoolHeading.subtitle || ""}
-          paragraphTwo={primarySchoolHeading.secondaryDescription || ""}
-          backgroundColor={primarySchoolHeading.backgroundColor}
-          className={primarySchoolHeading.className}
-        />
+          {/* Secondary School Accordion Item */}
+          <Accordion.Item value="secondary-school" className="border-none" id="accordion-item-secondary-school">
+            <Accordion.Header className="flex">
+              <Accordion.Trigger className="flex flex-1 items-center justify-between py-0 text-left font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180 group">
+                <div className="flex-1">
+                  <motion.div
+                    initial={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <FirstLessonSection
+                      heading={secondarySchoolHeading.title}
+                      paragraph={secondarySchoolHeading.description}
+                      backgroundColor={secondarySchoolHeading.backgroundColor}
+                      className={secondarySchoolHeading.className}
+                    />
+                  </motion.div>
+                </div>
+                <ChevronDown className="h-8 w-8 shrink-0 text-gray-600 transition-transform duration-300 ease-in-out mr-8 group-data-[state=open]:rotate-180" />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down" id="accordion-content-secondary-school">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+              >
+                <div className="mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+                  <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+                    <div className="w-full">
+                      <VideoMasterclassSectionImageFullWidthTextHalfWidth
+                        video={convertToVideoMasterclass(secondarySchoolVideos1.videos[1])}
+                        className="py-0"
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+                      <div>
+                        <VideoMasterclassSectionTextFullWidth
+                          video={convertToVideoMasterclass(secondarySchoolVideos2.videos[0])}
+                          layout="text-left"
+                          className="py-0"
+                        />
+                      </div>
+                      <div>
+                        <VideoMasterclassSectionTextFullWidth
+                          video={secondarySchoolVideos1.videos[0] ? convertToVideoMasterclass(secondarySchoolVideos1.videos[0]) : undefined}
+                          layout="text-right"
+                          className="py-0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </Accordion.Content>
+          </Accordion.Item>
 
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Arbitrary value width with viewport-relative sizing for 85% page width */}
-        {/* CONTAINER OPTIMIZATION REASON: Official Tailwind CSS documentation demonstrates w-[...] arbitrary values for precise viewport-relative width control */}
-        {/* WIDTH EXPANSION TO 85%: Changed from max-w-7xl (80rem/1280px) to w-[85%] with max-w-none for 85% viewport width per user requirement */}
-        <div className="mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
-          <div className="space-y-8 sm:space-y-12 lg:space-y-16">
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-width responsive container for single column layout */}
-            {/* ROW 1 OPTIMIZATION REASON: Official Tailwind CSS documentation for responsive container width with proper breathing room */}
-            {/* Row 1: Full-width single column (3B) - "Confidence-building lessons designed for early learners" */}
-            <div className="w-full">
-              <VideoMasterclassGrid
-                videos={[convertToVideoMasterclass(primaryVideo3B)]}
-                className="py-0"
-              />
-            </div>
+          {/* Entrance Exams Accordion Item */}
+          <Accordion.Item value="entrance-exams" className="border-none" id="accordion-item-entrance-exams">
+            <Accordion.Header className="flex">
+              <Accordion.Trigger className="flex flex-1 items-center justify-between py-0 text-left font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180 group">
+                <div className="flex-1">
+                  <motion.div
+                    initial={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <FirstLessonSection
+                      heading="Entrance Exams"
+                      paragraph="Specialised preparation for competitive entrance examinations across all age groups."
+                      backgroundColor="white"
+                      className="py-16"
+                    />
+                  </motion.div>
+                </div>
+                <ChevronDown className="h-8 w-8 shrink-0 text-gray-600 transition-transform duration-300 ease-in-out mr-8 group-data-[state=open]:rotate-180" />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down" id="accordion-content-entrance-exams">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+              >
+                <div className="mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+                  <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+                    <div className="w-full">
+                      <VideoMasterclassSectionImageFullWidthTextHalfWidth
+                        video={{
+                          id: "11plus-preparation",
+                          title: "Aligned With Every Major Exam Board",
+                          description: "Our team works with GL, CEM, ISEB, CAT4, and internal papers set by individual schools.",
+                          bulletPoints: ["GL Assessment expertise", "CEM preparation", "ISEB Common Entrance", "School-specific papers"],
+                          youtubeUrl: null,
+                          thumbnailImage: "/images/features/aligned-with-every-major-exam-board.jpg",
+                          backgroundImage: "/images/features/aligned-with-every-major-exam-board.jpg",
+                          isPaid: true,
+                          purchaseLink: "https://buy.stripe.com/test_example",
+                        }}
+                        className="py-0"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </Accordion.Content>
+          </Accordion.Item>
 
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive grid layout with mobile-first approach */}
-            {/* ROW 2 RESPONSIVE REASON: Official Tailwind CSS documentation demonstrates responsive grid with mobile stacking and desktop columns */}
-            {/* Row 2: Two equal columns (3C and 3D) - Responsive: stack on mobile, side-by-side on desktop */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Individual grid item with responsive spacing */}
-              {/* GRID ITEM REASON: Official Tailwind CSS documentation for proper grid item structure */}
-              {/* Left column (3C) - "7+, 8+ and 11+ specialists with a track record of top school offers" */}
-              <div>
-                <VideoMasterclassGrid
-                  videos={[convertToVideoMasterclass(primaryVideo3C)]}
-                  className="py-0"
-                />
-              </div>
+          {/* University Admissions Accordion Item */}
+          <Accordion.Item value="university-admissions" className="border-none" id="accordion-item-university-admissions">
+            <Accordion.Header className="flex">
+              <Accordion.Trigger className="flex flex-1 items-center justify-between py-0 text-left font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180 group">
+                <div className="flex-1">
+                  <motion.div
+                    initial={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <FirstLessonSection
+                      heading="University Admissions & English Proficiency"
+                      paragraph="Expert academic support for undergraduates and postgraduates, including essay coaching, dissertations, and subject-specific tutoring."
+                      backgroundColor="gray-50"
+                      className="py-16"
+                    />
+                  </motion.div>
+                </div>
+                <ChevronDown className="h-8 w-8 shrink-0 text-gray-600 transition-transform duration-300 ease-in-out mr-8 group-data-[state=open]:rotate-180" />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down" id="accordion-content-university-admissions">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+              >
+                <div className="mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+                  <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+                    {ucasVideos.length > 0 && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+                        {ucasVideos.slice(0, 2).map((video, index) => (
+                          <div key={video.id}>
+                            <VideoMasterclassSectionTextFullWidth
+                              video={video}
+                              layout={index === 0 ? "text-left" : "text-right"}
+                              className="py-0"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </Accordion.Content>
+          </Accordion.Item>
 
-              {/* Right column (3D) - "Individual learning plans shaped by expert assessment" */}
-              <div>
-                <VideoMasterclassGrid
-                  videos={[convertToVideoMasterclass(primaryVideo3D)]}
-                  className="py-0"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+          {/* Online Homeschooling Accordion Item */}
+          <Accordion.Item value="online-homeschooling" className="border-none" id="accordion-item-online-homeschooling">
+            <Accordion.Header className="flex">
+              <Accordion.Trigger className="flex flex-1 items-center justify-between py-0 text-left font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180 group">
+                <div className="flex-1">
+                  <motion.div
+                    initial={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <FirstLessonSection
+                      heading="Online Homeschooling"
+                      paragraph="Comprehensive one-to-one homeschooling for families seeking both academic structure and flexibility."
+                      backgroundColor="white"
+                      className="py-16"
+                    />
+                  </motion.div>
+                </div>
+                <ChevronDown className="h-8 w-8 shrink-0 text-gray-600 transition-transform duration-300 ease-in-out mr-8 group-data-[state=open]:rotate-180" />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down" id="accordion-content-online-homeschooling">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+              >
+                <div className="mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+                  <VideoMasterclassSectionImageFullWidthTextHalfWidth
+                    video={{
+                      id: "homeschool-curriculum",
+                      title: "Why Choose Homeschooling with Us",
+                      description: "Private‑School Standard, Delivered Virtually: We deliver bespoke online programmes that rival independent schools in quality.",
+                      bulletPoints: ["Private school standard", "Personalised curriculum", "Expert tutor teams"],
+                      youtubeUrl: null,
+                      thumbnailImage: "/images/features/why-choose-homeschooling-with-us.jpg",
+                      backgroundImage: "/images/features/why-choose-homeschooling-with-us.jpg",
+                      isPaid: false,
+                    }}
+                    className="py-0"
+                  />
+                </div>
+              </motion.div>
+            </Accordion.Content>
+          </Accordion.Item>
 
-        {/* 4. TwoRowHeadingTextSection (Secondary School) */}
-        <TwoRowHeadingTextSection
-          headingOne={secondarySchoolHeading.title}
-          paragraphOne={secondarySchoolHeading.description}
-          headingTwo={secondarySchoolHeading.subtitle || ""}
-          paragraphTwo={secondarySchoolHeading.secondaryDescription || ""}
-          backgroundColor={secondarySchoolHeading.backgroundColor}
-          className={secondarySchoolHeading.className}
-        />
+          {/* SEN Support Accordion Item */}
+          <Accordion.Item value="sen-support" className="border-none" id="accordion-item-sen-support">
+            <Accordion.Header className="flex">
+              <Accordion.Trigger className="flex flex-1 items-center justify-between py-0 text-left font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180 group">
+                <div className="flex-1">
+                  <motion.div
+                    initial={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <FirstLessonSection
+                      heading="SEN Support & Neurodiverse Learning"
+                      paragraph="Our Founder Elizabeth's own neurodiversity (dyspraxia) means she's especially passionate about equipping students with gamechanging SEN support."
+                      backgroundColor="gray-50"
+                      className="py-16"
+                    />
+                  </motion.div>
+                </div>
+                <ChevronDown className="h-8 w-8 shrink-0 text-gray-600 transition-transform duration-300 ease-in-out mr-8 group-data-[state=open]:rotate-180" />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down" id="accordion-content-sen-support">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+              >
+                <div className="mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
+                    <div>
+                      <VideoMasterclassSectionTextFullWidth
+                        video={{
+                          id: "individualised-learning",
+                          title: "Individualised Learning",
+                          description: "Tutors conduct detailed assessments to identify strengths, challenges, and personal learning styles.",
+                          bulletPoints: ["Detailed assessments", "Strength identification", "Learning style analysis"],
+                          youtubeUrl: null,
+                          thumbnailImage: "/images/features/individualised-learning.jpg",
+                          backgroundImage: "/images/features/individualised-learning.jpg",
+                          isPaid: true,
+                          purchaseLink: "https://buy.stripe.com/test_example",
+                        }}
+                        layout="text-left"
+                        className="py-0"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </Accordion.Content>
+          </Accordion.Item>
 
-        {/* 5. VideoMasterclassGrid (Secondary School Sections) */}
-        <VideoMasterclassGrid
-          videos={secondarySchoolVideos1.videos.map(convertToVideoMasterclass)}
-          className={secondarySchoolVideos1.className}
-        />
-
-        {/* 6. VideoMasterclassGrid (Secondary School Sections) */}
-        <VideoMasterclassGrid
-          videos={secondarySchoolVideos2.videos.map(convertToVideoMasterclass)}
-          className={secondarySchoolVideos2.className}
-        />
-
-        {/* 7. TwoRowHeadingTextSection (Entrance Exams) */}
-        <TwoRowHeadingTextSection
-          headingOne="Entrance Exams"
-          paragraphOne="Specialised preparation for competitive entrance examinations across all age groups."
-          headingTwo=""
-          paragraphTwo=""
-          backgroundColor="white"
-          className="py-16"
-        />
-
-        {/* 8. VideoMasterclassGrid (Entrance Exams Sections) */}
-        {/* Note: Using hardcoded data until entrance exam sections added to standardized data */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "11plus-preparation",
-              title: "Aligned With Every Major Exam Board",
-              description: "Our team works with GL, CEM, ISEB, CAT4, and internal papers set by individual schools.",
-              bulletPoints: ["GL Assessment expertise", "CEM preparation", "ISEB Common Entrance", "School-specific papers"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/aligned-with-every-major-exam-board.jpg",
-              backgroundImage: "/images/features/aligned-with-every-major-exam-board.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 9. VideoMasterclassGrid (Entrance Exams Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "13plus-strategies",
-              title: "Expert Tutor Matching",
-              description: "Paired with a specialist tutor—often a former school examiner or prep school teacher—carefully chosen to meet the family's school ambitions.\n\nMeet Emily, one of our Entrance Exam specialists. She holds degrees from both Oxford & Cambridge University and worked at a top 10 London grammar school where she helped assess and select the best 11+ candidates\n\nEmily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach",
-              bulletPoints: ["Former examiners", "Prep school teachers", "School-specific expertise", "Personalised matching"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/expert-tutor-matching.jpg",
-              backgroundImage: "/images/features/expert-tutor-matching.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 10. VideoMasterclassGrid (Entrance Exams Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "independent-school-prep",
-              title: "Tailored, Flexible Programmes",
-              description: "Each programme is personalised to the target schools, exam formats and the student's pace—ensuring effective progress without overwhelm.",
-              bulletPoints: ["Target school focus", "Exam format preparation", "Individual pacing", "Stress management"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/tailored-flexible-programmes.jpg",
-              backgroundImage: "/images/features/tailored-flexible-programmes.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 11. VideoMasterclassGrid (Entrance Exams Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "grammar-school-success",
-              title: "Parent Guidance & School Selection",
-              description: "We support families throughout—from helping create a shortlist of schools through to preparing for interviews.",
-              bulletPoints: ["School selection advice", "Application guidance", "Timeline planning", "Interview preparation"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/parent-guidance-school-selection.jpg",
-              backgroundImage: "/images/features/parent-guidance-school-selection.jpg",
-              isPaid: false,
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 12. VideoMasterclassGrid (Entrance Exams Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "mock-exams-interview",
-              title: "Mock Exams & Interview Practice",
-              description: "Students gain confidence through realistic mock tests and 1-2-1 interview rehearsals, with detailed feedback to improve performance.",
-              bulletPoints: ["Realistic mock exams", "Interview rehearsals", "Detailed feedback", "Performance analysis"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/mock-exams-interview-practice.jpg",
-              backgroundImage: "/images/features/mock-exams-interview-practice.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 13. VideoMasterclassGrid (Entrance Exams Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "deep-expertise-selective",
-              title: "Deep Expertise From Selective Schools",
-              description: "Our team includes qualified teachers at top 10 London grammar schools and leading UK boarding schools. Many have written and marked real entrance exam papers.",
-              bulletPoints: ["Grammar school teachers", "Boarding school expertise", "Exam paper writers", "Marking experience"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/deep-expertise-selective-schools.jpg",
-              backgroundImage: "/images/features/deep-expertise-selective-schools.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 14. TwoRowHeadingTextSection (University Admissions Exams & English Proficiency Tests) */}
-        <TwoRowHeadingTextSection
-          headingOne="University Admissions Exams & English Proficiency Tests"
-          paragraphOne="Expert academic support for undergraduates and postgraduates, including essay coaching, dissertations, and subject-specific tutoring. University admissions guidance for UK, US, Oxbridge and other global institutions—personal statements, interview prep, admissions tests."
-          headingTwo=""
-          paragraphTwo=""
-          backgroundColor="gray-50"
-          className="py-16"
-        />
-
-        {/* PERFORMANCE OPTIMIZED: Batch render UCAS videos with VideoMasterclassGrid */}
-        <VideoMasterclassGrid videos={ucasVideos} className="py-32" />
-
-        {/* SUBJECT-SPECIFIC ADMISSIONS TESTS SECTION */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "oxbridge-preparation",
-              title: "Subject-Specific University Admissions Tests",
-              description: "Targeted preparation for high-stakes exams that form a crucial part of university and course-specific admissions. Our experienced tutors offer intensive, focused tuition that sharpens core skills and exam-specific techniques.\n\nTMUA: Test of Mathematics for University Admission - for mathematics-based university courses in the UK including Mathematics, Computer Science, and Engineering degrees.\n\nLNAT: National Admissions Test for Law - required for law courses at top UK universities including Oxford, Cambridge, UCL, and other leading institutions.\n\nSAT/ACT: Standardised tests used for US university admissions, covering mathematics, English, and reasoning skills essential for American higher education applications.\n\nBMAT/UCAT: BioMedical Admissions Test and University Clinical Aptitude Test - required for medical and dental school applications in the UK and internationally.\n\nIELTS/TOEFL: International English Language Testing System and Test of English as a Foreign Language - English proficiency exams required by universities for non-native speakers.\n\nTSA: Thinking Skills Assessment for courses at Oxford, Cambridge, and UCL requiring advanced critical thinking and problem-solving abilities.\n\nELAT: English Literature Admissions Test for Oxford applicants studying English Language and Literature, requiring advanced literary analysis skills.",
-              bulletPoints: ["Mathematics-based courses", "Law course applications", "US university admissions", "Medical school applications"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/subject-specific-university-admissions-tests.jpg",
-              backgroundImage: "/images/features/subject-specific-university-admissions-tests.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 15. TwoRowHeadingTextSection (Online Homeschooling) */}
-        <TwoRowHeadingTextSection
-          headingOne="Online Homeschooling"
-          paragraphOne="Comprehensive one-to-one homeschooling for families seeking both academic structure and flexibility."
-          headingTwo=""
-          paragraphTwo=""
-          backgroundColor="white"
-          className="py-16"
-        />
-
-        {/* 16. VideoMasterclassGrid (Online Homeschooling sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "homeschool-curriculum",
-              title: "Why Choose Homeschooling with Us",
-              description: "Private‑School Standard, Delivered Virtually: We deliver bespoke online programmes that rival independent schools in quality.\n\nFully Personalised Curriculum & Timetabling: Lessons are crafted around each child's strengths, interests and pace. Consistent Tutor Teams & Academic Continuity: Students benefit from a stable team of expert tutors—subject specialists with years of experience and often examiner credentials.\n\nProgress Tracking & Motivation-Focused Design: Regular assessments, achievable goals, and work reviewed in real time ensure the programme adapts to each student's growth. Expert Support for SEN Needs: Our SEN-aligned homeschooling incorporates specially tailored pathways for students with dyslexia, ADHD, processing differences or related needs—delivered with empathy and structure.",
-              bulletPoints: ["Private school standard", "Personalised curriculum", "Expert tutor teams", "Progress tracking", "SEN support"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/why-choose-homeschooling-with-us.jpg",
-              backgroundImage: "/images/features/why-choose-homeschooling-with-us.jpg",
-              isPaid: false,
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 17. VideoMasterclassGrid (Online Homeschooling sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "online-learning-tools",
-              title: "A Unique Pathway for Global & Gifted Learners",
-              description: "Academic excellence without the need for physical classrooms. Personal schedules built around elite sports, arts commitments or world experiences. A supportive, curated tutor programme that encourages curiosity, autonomy, and confidence.",
-              bulletPoints: ["Global accessibility", "Elite sports compatibility", "Arts-focused schedules", "Curated tutoring"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/unique-pathway-global-gifted-learners.jpg",
-              backgroundImage: "/images/features/unique-pathway-global-gifted-learners.jpg",
-              isPaid: false,
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 18. VideoMasterclassGrid (Online Homeschooling sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "homeschool-socialisation",
-              title: "How We Work",
-              description: "Individual Onboarding: We begin with a comprehensive academic and interests profile. Goal Setting & Curriculum Design: Tutors build flexible lesson plans aligned with national standards or bespoke learning aims. Structured Delivery: Students engage in live online sessions, maintain daily routines, and receive regular tutoring feedback. Ongoing Review: Progress is tracked, objectives reset, and adjustments made with parental involvement.",
-              bulletPoints: ["Individual onboarding", "Goal setting", "Structured delivery", "Ongoing review"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/how-we-work.jpg",
-              backgroundImage: "/images/features/how-we-work.jpg",
-              isPaid: false,
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 19. VideoMasterclassGrid (Online Homeschooling sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "why-it-works",
-              title: "Why It Works",
-              description: "Our programmes blend flexible schedules, engaging pedagogy, and specialist expertise to deliver transformative education—regardless of geography. Students develop strong academic habits, enjoy tailored attention, and experience significant progress. If you're considering online homeschooling, our expert-led structure ensures both confidence and credibility every step of the way.",
-              bulletPoints: ["Flexible schedules", "Engaging pedagogy", "Specialist expertise", "Academic habits"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/why-it-works.jpg",
-              backgroundImage: "/images/features/why-it-works.jpg",
-              isPaid: false,
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 20. TwoRowHeadingTextSection (SEN Support & Neurodiverse Learning) */}
-        <TwoRowHeadingTextSection
-          headingOne="SEN Support & Neurodiverse Learning"
-          paragraphOne="Our Founder Elizabeth's own neurodiversity (dyspraxia) means she's especially passionate about equipping students with gamechanging SEN support. Our work is tailored to empower students with dyslexia, dyspraxia, ADHD, autism spectrum conditions, speech or processing differences, and related profiles. We create a focused learning environment where individual strengths are championed and confidence is rebuilt."
-          headingTwo=""
-          paragraphTwo=""
-          backgroundColor="gray-50"
-          className="py-16"
-        />
-
-        {/* 20. VideoMasterclassGrid (SEN Support & Neurodiverse Learning Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "individualised-learning",
-              title: "Individualised Learning",
-              description: "Tutors conduct detailed assessments to identify strengths, challenges, and personal learning styles.",
-              bulletPoints: ["Detailed assessments", "Strength identification", "Learning style analysis", "Personal approach"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/individualised-learning.jpg",
-              backgroundImage: "/images/features/individualised-learning.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-            {
-              id: "expert-sen-tutors",
-              title: "Expert SEN Tutor Teams",
-              description: "Every student is supported by highly experienced tutors trained in neurodiversity-aware pedagogy.",
-              bulletPoints: ["Experienced tutors", "Neurodiversity training", "Specialist knowledge", "SEN expertise"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/features/expert-sen-tutor-teams.jpg",
-              backgroundImage: "/images/features/expert-sen-tutor-teams.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 21. VideoMasterclassGrid (SEN Support & Neurodiverse Learning Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "exam-access-advice",
-              title: "Exam Access Advice",
-              description: "We guide families through exam access arrangements and make recommendations to improve fairness and outcomes.",
-              bulletPoints: ["Access arrangements", "Exam guidance", "Fairness improvements", "Outcome optimisation"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
-              backgroundImage: "/images/unlocking-academic-success-background.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-            {
-              id: "full-coordination",
-              title: "Full Coordination & Professional Oversight",
-              description: "Our homeschooling clients benefit from a dedicated tutor team, tailored learning schedules, and education consultancy to manage continuity—especially vital for SEN learners and families working across time zones.",
-              bulletPoints: ["Dedicated tutor teams", "Tailored schedules", "Education consultancy", "Continuity management"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
-              backgroundImage: "/images/ucas-summit-background.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 22. VideoMasterclassGrid (SEN Support & Neurodiverse Learning Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "online-homeschooling-sen",
-              title: "Online Homeschooling for SEN & Complex Needs",
-              description: "Whether families are travelling, transitioning between schools, or prioritising personalised learning, our homeschooling programme delivers full academic support entirely online—without any in-person tutoring.\n\nCurriculum Built Around the Student: We design bespoke programmes around each child's strengths, interests, and pace—seamlessly blending academics with creative and practical learning.\n\nHolistic Academic & Emotional Support: We understand daily routines and tutor consistency are especially important for SEN learners. Our tutees are supported by program management and ongoing progress reviews to nurture both academic growth and personal well-being.\n\nWhy It Works: Both SEN tutoring and full-online homeschooling emphasise individual strength, flexible pacing, and sustained mentorship. This approach enables students to flourish academically while nurturing autonomy, individualism, and confidence—delivered through expert-led, evidence-based practice.",
-              bulletPoints: ["Bespoke programmes", "Holistic support", "Routine consistency", "Evidence-based practice"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
-              backgroundImage: "/images/ucas-part-1-mortar-board-background.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 23. TwoRowHeadingTextSection (London In-Person Tutoring) */}
-        <TwoRowHeadingTextSection
-          headingOne="London In-Person Tutoring"
-          paragraphOne="In-person tutoring typically available across Zones 1–5, depending on student location and tutor availability."
-          headingTwo=""
-          paragraphTwo=""
-          backgroundColor="white"
-          className="py-16"
-        />
-
-        {/* 24. VideoMasterclassGrid (London In-Person Tutoring Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "dbs-checked-tutors",
-              title: "DBS-Checked Specialist Tutors",
-              description: "Sessions delivered by DBS-checked, specialist tutors with experience of the London independent and state school sectors.",
-              bulletPoints: ["DBS-checked tutors", "Specialist expertise", "London school experience", "Independent sector knowledge"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
-              backgroundImage: "/images/ucas-part-2-library-background.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-            {
-              id: "entrance-exam-subject-support",
-              title: "Entrance Exam & Subject-Specific Support",
-              description: "Ideal for entrance exam preparation, subject-specific tuition, or ongoing academic support.",
-              bulletPoints: ["Entrance exam prep", "Subject specialisation", "Ongoing support", "Academic excellence"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
-              backgroundImage: "/images/ucas-summit-background.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
-
-        {/* 25. VideoMasterclassGrid (London In-Person Tutoring Sections) */}
-        <VideoMasterclassGrid
-          videos={[
-            {
-              id: "continuity-trust",
-              title: "Continuity & Trust",
-              description: "We prioritise continuity—families typically work with the same tutor throughout for consistency and trust.",
-              bulletPoints: ["Same tutor continuity", "Trust building", "Consistency", "Long-term relationships"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
-              backgroundImage: "/images/unlocking-academic-success-background.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-            {
-              id: "limited-availability",
-              title: "Limited Availability & Best Matching",
-              description: "In-person availability is limited and arranged on a case-by-case basis to ensure the best possible match.",
-              bulletPoints: ["Limited availability", "Case-by-case basis", "Best matching", "Quality over quantity"],
-              youtubeUrl: null,
-              thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
-              backgroundImage: "/images/ucas-part-1-mortar-board-background.jpg",
-              isPaid: true,
-              purchaseLink: "https://buy.stripe.com/test_example",
-            },
-          ]}
-          className="py-16"
-        />
+          {/* London Tutoring Accordion Item */}
+          <Accordion.Item value="london-tutoring" className="border-none" id="accordion-item-london-tutoring">
+            <Accordion.Header className="flex">
+              <Accordion.Trigger className="flex flex-1 items-center justify-between py-0 text-left font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180 group">
+                <div className="flex-1">
+                  <motion.div
+                    initial={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <FirstLessonSection
+                      heading="London In-Person Tutoring"
+                      paragraph="In-person tutoring typically available across Zones 1–5, depending on student location and tutor availability."
+                      backgroundColor="white"
+                      className="py-16"
+                    />
+                  </motion.div>
+                </div>
+                <ChevronDown className="h-8 w-8 shrink-0 text-gray-600 transition-transform duration-300 ease-in-out mr-8 group-data-[state=open]:rotate-180" />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down" id="accordion-content-london-tutoring">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+              >
+                <div className="mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+                  <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+                      <div>
+                        <VideoMasterclassSectionTextFullWidth
+                          video={{
+                            id: "dbs-checked-tutors",
+                            title: "DBS-Checked Specialist Tutors",
+                            description: "Sessions delivered by DBS-checked, specialist tutors with experience of the London independent and state school sectors.",
+                            bulletPoints: ["DBS-checked tutors", "Specialist expertise", "London school experience"],
+                            youtubeUrl: null,
+                            thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
+                            backgroundImage: "/images/ucas-part-2-library-background.jpg",
+                            isPaid: true,
+                            purchaseLink: "https://buy.stripe.com/test_example",
+                          }}
+                          layout="text-right"
+                          className="py-0"
+                        />
+                      </div>
+                      <div>
+                        <VideoMasterclassSectionTextFullWidth
+                          video={{
+                            id: "entrance-exam-subject-support",
+                            title: "Entrance Exam & Subject-Specific Support",
+                            description: "Ideal for entrance exam preparation, subject-specific tuition, or ongoing academic support.",
+                            bulletPoints: ["Entrance exam prep", "Subject specialisation", "Ongoing support"],
+                            youtubeUrl: null,
+                            thumbnailImage: "/images/masterclass-thumbnails/ucas-guide.png",
+                            backgroundImage: "/images/ucas-summit-background.jpg",
+                            isPaid: true,
+                            purchaseLink: "https://buy.stripe.com/test_example",
+                          }}
+                          layout="text-left"
+                          className="py-0"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </Accordion.Content>
+          </Accordion.Item>
+        </Accordion.Root>
       </PageLayout>
-    </React.Fragment>
+    </div>
   );
 }

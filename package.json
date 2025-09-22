@@ -10,6 +10,7 @@
     "clean": "rm -rf .next cache node_modules/.cache",
     "clean:full": "rm -rf .next cache node_modules/.cache .tsbuildinfo coverage playwright-report test-results",
     "build": "next build",
+    "build:fast": "NODE_ENV=production next build",
     "build:trace": "NEXT_TURBOPACK_TRACING=1 next build --turbopack",
     "build:analyze": "ANALYZE=true next build",
     "build:profile": "NODE_OPTIONS=--heap-prof next build",
@@ -86,7 +87,16 @@
     "deploy:dev": "node scripts/deploy-environment.mjs development",
     "deploy:staging": "node scripts/deploy-environment.mjs staging",
     "deploy:production": "node scripts/deploy-environment.mjs production",
-    "deploy:analyze": "node scripts/deploy-environment.mjs staging --analyze"
+    "deploy:analyze": "node scripts/deploy-environment.mjs staging --analyze",
+    "error-prevention": "node scripts/error-prevention-cli.js",
+    "error-prevention:start": "node scripts/error-prevention-cli.js start",
+    "error-prevention:stop": "node scripts/error-prevention-cli.js stop",
+    "error-prevention:status": "node scripts/error-prevention-cli.js status",
+    "error-prevention:check": "node scripts/error-prevention-cli.js check",
+    "error-prevention:benchmark": "node scripts/error-prevention-cli.js benchmark",
+    "error-prevention:health": "node scripts/error-prevention-cli.js health",
+    "error-prevention:install": "node scripts/error-prevention-cli.js install",
+    "error-prevention:validate": "node scripts/error-prevention-cli.js validate"
   },
   "overrides": {
     "@visx/axis": {

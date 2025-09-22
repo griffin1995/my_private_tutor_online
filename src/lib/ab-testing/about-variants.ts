@@ -71,7 +71,7 @@ export const CONTROL_VARIANT: AboutSectionVariant = {
   description: 'Current about section implementation serving as baseline',
   layout: {
     gridCols: 'lg:grid-cols-2',
-    gap: 'gap-8 lg:gap-20',
+    gap: 'gap-8 lg:gap-12',
     imagePosition: 'right',
     contentAlignment: 'left'
   },
@@ -103,8 +103,8 @@ export const TRUST_VARIANT: AboutSectionVariant = {
   name: 'Trust Focused - Enhanced Credibility',
   description: 'Emphasizes credentials and trust signals for higher conversion',
   layout: {
-    gridCols: 'lg:grid-cols-3',
-    gap: 'gap-6 lg:gap-12',
+    gridCols: 'lg:grid-cols-2',
+    gap: 'gap-8 lg:gap-12',
     imagePosition: 'left',
     contentAlignment: 'center'
   },
@@ -137,7 +137,7 @@ export const SPEED_VARIANT: AboutSectionVariant = {
   description: 'Minimal animations and aggressive optimization for fastest loading',
   layout: {
     gridCols: 'lg:grid-cols-2',
-    gap: 'gap-6 lg:gap-16',
+    gap: 'gap-8 lg:gap-12',
     imagePosition: 'right',
     contentAlignment: 'left'
   },
@@ -170,7 +170,7 @@ export const ENGAGEMENT_VARIANT: AboutSectionVariant = {
   description: 'Enhanced interactions and visual appeal for maximum engagement',
   layout: {
     gridCols: 'lg:grid-cols-2',
-    gap: 'gap-10 lg:gap-24',
+    gap: 'gap-8 lg:gap-12',
     imagePosition: 'right',
     contentAlignment: 'left'
   },

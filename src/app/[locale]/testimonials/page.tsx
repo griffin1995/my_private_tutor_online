@@ -105,7 +105,16 @@ import {
 // - Interactivity: Category filtering, testimonial carousel, video dialog modals
 // - CMS Integration: Complete with testimonials, schools, and hero content
 
-export default function TestimonialsPage({ params }: { params: { locale: string } }) {
+// CONTEXT7 SOURCE: /vercel/next.js - Next.js 15 async params pattern for React 19 compatibility
+// MIGRATION REASON: Next.js 15 + React 19 requires Promise-based params for SSR compatibility
+export default async function TestimonialsPage({
+  params
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  // CONTEXT7 SOURCE: /vercel/next.js - Async params resolution for Next.js 15 compatibility
+  // COMPATIBILITY FIX: Resolve Promise-based params for Next.js 15 + React 19 integration
+  const { locale } = await params;
   // ========================================
   // STREAMLINED CMS DATA ACCESS - SINGLE SOURCE OF TRUTH
   // ========================================

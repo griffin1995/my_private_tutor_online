@@ -9,14 +9,16 @@
  */
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Import type patterns for compile-time only imports
-import type { 
-  PerformanceBudget, 
-  Milliseconds, 
-  Kilobytes, 
+// REVISION REASON: Import branded type constructors for type-safe value creation
+import type {
+  PerformanceBudget,
+  Milliseconds,
+  Kilobytes,
   Percentage,
   TypeScriptPerformanceMetrics,
-  DEFAULT_PERFORMANCE_BUDGET 
+  DEFAULT_PERFORMANCE_BUDGET
 } from '../../types/performance';
+import { createPercentage } from '../../types/performance';
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Type-level computation patterns for budget validation
 // COMPILE-TIME VALIDATION REASON: Prevent builds that exceed performance budgets
@@ -182,12 +184,13 @@ export type AssertPerformanceImprovement<
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Const assertion patterns for performance thresholds
 // THRESHOLD CONFIGURATION REASON: Type-safe performance thresholds
+// REVISION REASON: Replace unsafe type assertions with branded type constructors
 export const PERFORMANCE_THRESHOLDS = {
-  EXCELLENT: 90 as Percentage,
-  GOOD: 75 as Percentage,
-  ACCEPTABLE: 60 as Percentage,
-  POOR: 45 as Percentage,
-  UNACCEPTABLE: 30 as Percentage,
+  EXCELLENT: createPercentage(90),
+  GOOD: createPercentage(75),
+  ACCEPTABLE: createPercentage(60),
+  POOR: createPercentage(45),
+  UNACCEPTABLE: createPercentage(30),
 } as const;
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Type predicate patterns for performance classification
@@ -205,14 +208,15 @@ export type ClassifyPerformance<T extends Percentage> =
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Export type patterns for build tool integration
 // BUILD INTEGRATION REASON: Allow build tools to use performance validation types
+// REVISION REASON: Remove duplicate type exports to fix TS2484 errors
 export type {
-  ValidateBuildPerformance,
-  EnforceBuildPerformance,
-  CheckPerformanceBudgets,
-  BuildPerformanceImprovement,
-  CalculateImprovement,
-  AssertPerformanceImprovement,
-  ClassifyPerformance
+  ValidateBuildPerformance as BuildValidation,
+  EnforceBuildPerformance as BuildEnforcement,
+  CheckPerformanceBudgets as BudgetChecker,
+  BuildPerformanceImprovement as PerformanceImprovement,
+  CalculateImprovement as ImprovementCalculator,
+  AssertPerformanceImprovement as ImprovementAssertion,
+  ClassifyPerformance as PerformanceClassifier
 };
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Type-only export patterns for compile-time validation

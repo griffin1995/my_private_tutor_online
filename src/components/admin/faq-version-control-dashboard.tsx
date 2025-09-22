@@ -415,12 +415,12 @@ export const FAQVersionControlDashboard: React.FC<FAQVersionControlDashboardProp
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg border shadow-sm p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Workflow Efficiency</h3>
-          <WorkflowMetrics metrics={metrics.workflowEfficiency} />
+          <WorkflowMetricsComponent metrics={metrics.workflowEfficiency} />
         </div>
-        
+
         <div className="bg-white rounded-lg border shadow-sm p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">System Health</h3>
-          <SystemHealthMetrics metrics={metrics.systemHealth} />
+          <SystemHealthMetricsComponent metrics={metrics.systemHealth} />
         </div>
       </div>
     </div>
@@ -506,6 +506,75 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, subtitle, trend, 
     <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
     <p className="text-sm text-gray-600 mt-1">{subtitle}</p>
     <p className="text-xs text-green-600 font-medium mt-2">{trend}</p>
+  </div>
+)
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Performance monitoring component types
+interface WorkflowMetrics {
+  readonly executionTime: number
+  readonly stepsCompleted: number
+  readonly stepsTotal: number
+  readonly successRate: number
+  readonly averageStepTime: number
+}
+
+interface SystemHealthMetrics {
+  readonly cpuUsage: number
+  readonly memoryUsage: number
+  readonly diskUsage: number
+  readonly networkLatency: number
+  readonly uptime: number
+  readonly errorRate: number
+}
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - React functional components for metrics display
+const WorkflowMetricsComponent: React.FC<{ metrics: WorkflowMetrics }> = ({ metrics }) => (
+  <div className="space-y-3">
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">Execution Time</span>
+      <span className="text-sm font-medium">{metrics.executionTime}ms</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">Progress</span>
+      <span className="text-sm font-medium">{metrics.stepsCompleted}/{metrics.stepsTotal}</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">Success Rate</span>
+      <span className="text-sm font-medium">{metrics.successRate}%</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">Avg Step Time</span>
+      <span className="text-sm font-medium">{metrics.averageStepTime}ms</span>
+    </div>
+  </div>
+)
+
+const SystemHealthMetricsComponent: React.FC<{ metrics: SystemHealthMetrics }> = ({ metrics }) => (
+  <div className="space-y-3">
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">CPU Usage</span>
+      <span className="text-sm font-medium">{metrics.cpuUsage}%</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">Memory Usage</span>
+      <span className="text-sm font-medium">{metrics.memoryUsage}%</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">Disk Usage</span>
+      <span className="text-sm font-medium">{metrics.diskUsage}%</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">Network Latency</span>
+      <span className="text-sm font-medium">{metrics.networkLatency}ms</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">Uptime</span>
+      <span className="text-sm font-medium">{metrics.uptime}h</span>
+    </div>
+    <div className="flex justify-between">
+      <span className="text-sm text-gray-600">Error Rate</span>
+      <span className="text-sm font-medium">{metrics.errorRate}%</span>
+    </div>
   </div>
 )
 

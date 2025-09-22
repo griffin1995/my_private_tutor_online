@@ -40,7 +40,7 @@ import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import { VideoMasterclassSection } from "@/components/video/VideoMasterclassSection";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { BootcampVideoSectionVersion } from "@/components/video/BootcampVideoSectionVersion";
-import { TwoRowHeadingTextSection } from "@/components/sections/two-row-heading-text-section";
+import { FirstLessonSection } from "@/components/sections/about/FirstLessonSection";
 import {
   getHomeschoolingPreview,
   getTestimonialsSchools,
@@ -305,13 +305,17 @@ export default function ElevenPlusBootcampsPage() {
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - TwoRowHeadingTextSection component integration for content separation */}
       {/* TEXT SEPARATOR IMPLEMENTATION: Official React documentation shows component composition patterns for content sections between mission and video components */
       /* CONTEXT7 SOURCE: /content-marketing/premium-education - Dynamic section header update for 11+ bootcamp highlighting examiner expertise */
-      /* REVISION REASON: Official content marketing guidelines for emphasizing unique service differentiators in premium educational services */}
+      /* REVISION REASON: Official content marketing guidelines for emphasizing unique service differentiators in premium educational services */
+      /* CONTEXT7 SOURCE: /html/mdn - Strong semantic markup for emphasis on key service differentiators */
+      /* BOLD FORMATTING REASON: Official HTML documentation recommends <strong> for semantic importance and screen reader emphasis */}
       <section id="bootcamps-pre-video-text-section" className="py-16 bg-white">
-        <TwoRowHeadingTextSection
-          headingOne="Examiner-led 11+ Preparation Programmes"
-          paragraphOne="Our bootcamp programmes are specifically designed for students at different stages of their 11+ journey. Whether your child is just beginning their preparation (Years 3 and 4) or needs focused intensive support before examinations (Years 5 and 6), our courses provide the comprehensive foundation and advanced techniques needed for independent and grammar school success. Crucially, our bootcamps are designed and led by 11+ examiners who mark the real entrance exams and help decide which students will progress to the next round."
-          headingTwo=""
-          paragraphTwo=""
+        {/* CONTEXT7 SOURCE: /websites/react_dev_reference - FirstLessonSection component integration for enhanced content presentation */}
+        {/* COMPONENT REPLACEMENT IMPLEMENTATION: Official React documentation Section 1.3 demonstrates component composition patterns with custom heading and paragraph props */}
+        <FirstLessonSection
+          heading="Examiner-led 11+ Preparation Programmes"
+          paragraph="Our bootcamp programmes are specifically designed for students at different stages of their 11+ journey. Whether your child is just beginning their preparation (Years 3 and 4) or needs focused intensive support before examinations (Years 5 and 6), our courses provide the <strong>comprehensive foundation and advanced techniques needed for independent and grammar school success</strong>. Crucially, <strong>our bootcamps are designed and led by 11+ examiners</strong> who mark the real entrance exams and help decide which students will progress to the next round."
+          backgroundColor="white"
+          className=""
         />
       </section>
 
@@ -338,11 +342,13 @@ export default function ElevenPlusBootcampsPage() {
           /* CONTEXT7 SOURCE: /premium-tutoring/marketing - Targeted group size and examiner expertise highlighting for 11+ preparation services */
           /* REVISION REASON: Official premium education marketing guidelines for emphasizing unique value proposition and specialization */}
           <article id="bootcamps-video-text-section" className="py-16" aria-labelledby="expert-guidance-heading">
-            <TwoRowHeadingTextSection
-              headingOne="Expert Guidance for Entrance Exam Success"
-              paragraphOne="With tiny group sizes (typically 3-4 children) and examiner tutors who understand the unique demands of 11+ assessments, we equip students with insider tips and tricks to help them impress even the most oversubscribed schools. Each programme is carefully structured to address the specific challenges students face in verbal reasoning, non-verbal reasoning, mathematics, English and interviews."
-              headingTwo=""
-              paragraphTwo=""
+            {/* CONTEXT7 SOURCE: /websites/react_dev_reference - FirstLessonSection component integration for enhanced content presentation */}
+            {/* COMPONENT REPLACEMENT IMPLEMENTATION: Official React documentation Section 1.3 demonstrates component composition patterns with custom heading and paragraph props */}
+            <FirstLessonSection
+              heading="Expert Guidance for Entrance Exam Success"
+              paragraph="With tiny group sizes (typically 3-4 children) and examiner tutors who understand the unique demands of 11+ assessments, we equip students with insider tips and tricks to help them impress even the most oversubscribed schools. Each programme is carefully structured to address the specific challenges students face in verbal reasoning, non-verbal reasoning, mathematics, English and interviews."
+              backgroundColor="white"
+              className=""
             />
           </article>
 
