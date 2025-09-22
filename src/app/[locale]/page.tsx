@@ -26,7 +26,8 @@ import { layoutMonitor } from "../../lib/performance/layout-performance-monitor"
 // COMPONENT IMPORT REASON: Official React documentation for modular component architecture
 import { ErrorBoundaryWrapper } from "../../components/boundaries/homepage-error-boundary";
 import { HomepageSections } from "../../components/homepage/homepage-sections";
-import { PageLayout } from "../../components/layout/page-layout";
+import { Navigation } from "../../components/navigation/Navigation";
+import { PageFooter } from "../../components/layout/page-footer";
 import { AboutSection } from "../../components/sections/about-section";
 import { BrandMessageSection } from "../../components/sections/brand-message-section";
 import { HeroSection } from "../../components/sections/hero-section";
@@ -44,6 +45,10 @@ import { TaglineSection } from "../../components/sections/tagline-section";
 // CONTEXT7 SOURCE: /microsoft/typescript - Centralized navbar height constants for maintainable spacing
 // CONSTANTS_IMPORT_REASON: Official TypeScript documentation patterns for centralized constant management
 import { getHeroSectionClasses, getNavbarSpacerHeight } from "../../lib/constants/navbar-heights";
+
+// CONTEXT7 SOURCE: /websites/nextjs - Utility imports for component structure
+// UTILITY_IMPORT_REASON: Official Next.js documentation for utility function imports
+import { cn } from "../../lib/utils";
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Homepage component with 8-section structure
 // HOMEPAGE STRUCTURE REASON: Official React patterns for component-based architecture
@@ -90,15 +95,14 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
-      <PageLayout
-        showHeader={true}
-        showFooter={true}
-        containerSize="full"
-        verticalSpacing="none"
-        headerProps={{ isHomepage: true }}
-        footerProps={{ showContactForm: true }}
-      >
+    // CONTEXT7 SOURCE: /vercel/next.js - Direct component structure pattern
+    // PAGELAYOUT_REMOVAL_REASON: Official Next.js documentation for semantic HTML structure without wrapper components
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-white">
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Navigation component with homepage props */}
+      {/* NAVIGATION_INTEGRATION_REASON: Official React documentation for direct component integration */}
+      <Navigation isHomepage={true} />
+      <main className="flex-1" role="main" id="main-content" tabIndex={-1}>
+        <div className="mx-auto">
         {/* CONTEXT7 SOURCE: /websites/tailwindcss - Spacer div for fixed header layout positioning */}
         {/* SPACER_DIV_REASON: Official Tailwind CSS documentation for spacing elements to push content below fixed headers */}
         {/* Navbar spacer to push content below fixed navbar */}
@@ -191,8 +195,12 @@ export default function HomePage() {
             />
           </ErrorBoundaryWrapper>
         </section>
-      </PageLayout>
-    </>
+        </div>
+      </main>
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - Footer component with contact form props */}
+      {/* FOOTER_INTEGRATION_REASON: Official React documentation for direct component integration */}
+      <PageFooter showContactForm={true} />
+    </div>
   );
 }
 

@@ -241,7 +241,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
 
   return (
     <div
-      className="w-full"
+      className="w-full pt-16"
     >
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Edge-to-edge layout with zero padding */}
       {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation shows w-full with no padding creates full-width edge-to-edge layouts */}
