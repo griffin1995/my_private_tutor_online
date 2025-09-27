@@ -1,0 +1,40 @@
+
+> my-private-tutor-online@2.1.0 dev
+> next dev
+
+   ▲ Next.js 15.4.6
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.107:3000
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Ready in 1821ms
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 4.8s (1935 modules)
+ ✓ Compiled in 791ms (853 modules)
+🚀 CMSService initialized with configuration: { cacheEnabled: true, validationEnabled: true, debugMode: true }
+ ⨯ TypeError: Cannot read properties of undefined (reading 'primary-school-support')
+    at eval (src/components/sections/services-carousel.tsx:311:54)
+    at Array.map (<anonymous>)
+    at ServicesCarousel (src/components/sections/services-carousel.tsx:278:26)
+  309 |                   // CONTEXT7 SOURCE: /context7/react_dev - Defensive programming with object property checks
+  310 |                   // ERROR HANDLING REASON: React error handling patterns recommend checking for undefined object properties before access
+> 311 |                   const selectedImage = studentImages[imageKey]
+      |                                                      ^
+  312 |                   let studentImage
+  313 |                   if (!selectedImage) {
+  314 |                     console.warn(`ServicesCarousel: Image key '${imageKey}' not found in studentImages, using fallback`) {
+  digest: '340920130'
+}
+ GET /en-GB 500 in 6516ms
+ ✓ Compiled in 1002ms (853 modules)
+ ✓ Compiled in 415ms (853 modules)
+ ✓ Compiled in 406ms (853 modules)
+ ✓ Compiled in 390ms (853 modules)
+ ✓ Compiled in 379ms (853 modules)
+ ✓ Compiled in 383ms (853 modules)
+ ✓ Compiled in 367ms (853 modules)
+ ✓ Compiled in 357ms (853 modules)
+[?25h

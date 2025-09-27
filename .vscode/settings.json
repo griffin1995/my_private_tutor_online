@@ -1,0 +1,86 @@
+{
+  // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced VS Code TypeScript integration
+  // DEVELOPMENT TOOLING REASON: Official TypeScript and Next.js VS Code optimization settings
+
+  "cSpell.words": ["anymore", "Kiset"],
+
+  // TypeScript Configuration
+  "typescript.tsserver.log": "verbose",
+  "typescript.tsserver.enableTracing": true,
+  "typescript.preferences.useAliasesForRenames": false,
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.inlayHints.enableForParameters": true,
+  "typescript.inlayHints.enableForVariableTypes": true,
+  "typescript.inlayHints.enableForPropertyDeclarationTypes": true,
+  "typescript.inlayHints.enableForFunctionLikeReturnTypes": true,
+
+  // Editor Configuration for Royal Client Standards
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+
+  // Performance Optimized File Exclusions
+  "files.exclude": {
+    "**/.next": true,
+    "**/node_modules": true,
+    "**/.tsbuildinfo": true,
+    "**/coverage": true,
+    "**/playwright-report": true,
+    "**/test-results": true
+  },
+
+  "search.exclude": {
+    "**/.next": true,
+    "**/node_modules": true,
+    "**/coverage": true,
+    "**/playwright-report": true,
+    "**/test-results": true,
+    "**/*.log": true
+  },
+
+  // Git Configuration
+  "git.ignoreLimitWarning": true,
+  "git.autofetch": true,
+
+  // Language Specific Formatting
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Enhanced Development Experience
+  "emmet.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  },
+
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "$(capture).js, $(capture).d.ts",
+    "*.tsx": "$(capture).js, $(capture).d.ts",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml",
+    "tsconfig.json": "tsconfig.*.json",
+    ".env": ".env.*",
+    "tailwind.config.*": "tailwind.config.*",
+    "next.config.*": "next-env.d.ts"
+  }
+}

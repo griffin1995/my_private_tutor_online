@@ -1,0 +1,197 @@
+{
+  "agentCapabilities": {
+    "context-manager": {
+      "role": "Project coordinator and architect",
+      "responsibilities": [
+        "Maintain project-wide context",
+        "Delegate tasks to specialized agents",
+        "Coordinate worktree activities",
+        "Manage integration planning",
+        "Track dependencies and conflicts"
+      ],
+      "access": [
+        "all-worktrees",
+        "all-documentation",
+        "deployment-review"
+      ],
+      "tools": [
+        "git-worktree",
+        "context-aggregator",
+        "dependency-analyzer"
+      ]
+    },
+    "frontend-developer": {
+      "role": "React/Next.js component development",
+      "expertise": [
+        "React 19 Server/Client Components",
+        "Next.js 15 App Router",
+        "TypeScript implementation",
+        "State management with Zustand",
+        "API integration patterns"
+      ],
+      "access": [
+        "src/components",
+        "src/app",
+        "src/lib",
+        "src/hooks"
+      ],
+      "specializations": [
+        "component-architecture",
+        "state-management",
+        "routing"
+      ]
+    },
+    "ui-ux-designer": {
+      "role": "User interface and experience design",
+      "expertise": [
+        "Component design systems",
+        "Accessibility compliance (WCAG 2.1 AA)",
+        "User flow optimization",
+        "Responsive design patterns",
+        "Framer Motion animations"
+      ],
+      "access": [
+        "src/components/ui",
+        "tailwind.config.ts",
+        "globals.css"
+      ],
+      "specializations": [
+        "design-system",
+        "accessibility",
+        "animations"
+      ]
+    },
+    "backend-developer": {
+      "role": "API and server-side development",
+      "expertise": [
+        "Next.js API routes",
+        "Server actions",
+        "Database integration",
+        "Authentication systems",
+        "Third-party integrations"
+      ],
+      "access": [
+        "src/app/api",
+        "src/lib/auth",
+        "src/lib/db"
+      ],
+      "specializations": [
+        "api-development",
+        "authentication",
+        "integrations"
+      ]
+    },
+    "performance-engineer": {
+      "role": "Performance optimization specialist",
+      "expertise": [
+        "Core Web Vitals optimization",
+        "Bundle analysis and reduction",
+        "Image optimization",
+        "Caching strategies",
+        "Loading performance"
+      ],
+      "access": [
+        "next.config.ts",
+        "webpack configs",
+        "image optimization"
+      ],
+      "specializations": [
+        "web-vitals",
+        "bundle-optimization",
+        "caching"
+      ]
+    },
+    "content-specialist": {
+      "role": "CMS and content management",
+      "expertise": [
+        "CMS architecture design",
+        "Content modeling",
+        "JSON schema design",
+        "SEO optimization",
+        "Content workflow design"
+      ],
+      "access": [
+        "src/content",
+        "src/lib/cms",
+        "cms-content.ts",
+        "cms-images.ts"
+      ],
+      "specializations": [
+        "cms-design",
+        "content-modeling",
+        "seo"
+      ]
+    },
+    "accessibility-specialist": {
+      "role": "Accessibility compliance and testing",
+      "expertise": [
+        "WCAG 2.1 AA compliance",
+        "Screen reader testing",
+        "Keyboard navigation",
+        "ARIA implementation",
+        "Accessibility automation"
+      ],
+      "access": [
+        "all-components",
+        "accessibility-configs",
+        "test-files"
+      ],
+      "specializations": [
+        "wcag-compliance",
+        "screen-readers",
+        "keyboard-nav"
+      ]
+    }
+  },
+  "workflowPatterns": {
+    "feature-development": {
+      "primaryAgent": "frontend-developer",
+      "supportAgents": [
+        "ui-ux-designer"
+      ],
+      "reviewers": [
+        "context-manager",
+        "accessibility-specialist"
+      ]
+    },
+    "cms-enhancement": {
+      "primaryAgent": "content-specialist",
+      "supportAgents": [
+        "frontend-developer",
+        "ui-ux-designer"
+      ],
+      "reviewers": [
+        "context-manager"
+      ]
+    },
+    "performance-optimization": {
+      "primaryAgent": "performance-engineer",
+      "supportAgents": [
+        "frontend-developer"
+      ],
+      "reviewers": [
+        "context-manager"
+      ]
+    },
+    "accessibility-audit": {
+      "primaryAgent": "accessibility-specialist",
+      "supportAgents": [
+        "ui-ux-designer",
+        "frontend-developer"
+      ],
+      "reviewers": [
+        "context-manager"
+      ]
+    }
+  },
+  "assignments": [
+    {
+      "worktree": "test-performance",
+      "primaryAgent": "frontend-developer",
+      "supportAgents": [],
+      "scope": "Optimize React component performance and reduce bundle size",
+      "status": "active",
+      "created": "2025-08-05T11:57:40.775Z"
+    }
+  ]
+}

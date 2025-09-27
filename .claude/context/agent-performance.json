@@ -1,0 +1,191 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-08-05T12:00:00Z",
+  "performanceMetrics": {
+    "general-purpose": {
+      "successRate": 0.85,
+      "taskCount": 0,
+      "avgComplexityHandled": "medium",
+      "strengths": ["versatility", "project-setup", "prototyping"],
+      "weaknesses": [],
+      "preferredCombinations": ["frontend-developer", "test-automator"],
+      "domains": ["general-development", "exploratory-work"]
+    },
+    "context-manager": {
+      "successRate": 0.95,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["coordination", "multi-agent-workflows", "context-preservation"],
+      "weaknesses": [],
+      "preferredCombinations": ["all-agents"],
+      "domains": ["coordination", "complex-projects"]
+    },
+    "frontend-developer": {
+      "successRate": 0.92,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["react-development", "typescript", "performance-optimization"],
+      "weaknesses": [],
+      "preferredCombinations": ["ui-ux-designer", "performance-engineer", "test-automator"],
+      "domains": ["user-interface", "react-development", "web-performance"]
+    },
+    "backend-architect": {
+      "successRate": 0.90,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["api-design", "system-architecture", "database-integration"],
+      "weaknesses": [],
+      "preferredCombinations": ["database-admin", "security-auditor", "test-automator"],
+      "domains": ["api-development", "system-architecture", "database-design"]
+    },
+    "ui-ux-designer": {
+      "successRate": 0.88,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["user-experience", "accessibility", "design-systems"],
+      "weaknesses": [],
+      "preferredCombinations": ["frontend-developer", "content-marketer"],
+      "domains": ["user-experience", "visual-design", "accessibility"]
+    },
+    "typescript-pro": {
+      "successRate": 0.93,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["type-safety", "advanced-patterns", "api-contracts"],
+      "weaknesses": [],
+      "preferredCombinations": ["frontend-developer", "backend-architect", "api-documenter"],
+      "domains": ["type-systems", "code-safety", "developer-experience"]
+    },
+    "python-pro": {
+      "successRate": 0.91,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["backend-development", "data-processing", "automation"],
+      "weaknesses": [],
+      "preferredCombinations": ["backend-architect", "data-scientist", "database-admin"],
+      "domains": ["backend-development", "data-processing", "automation"]
+    },
+    "performance-engineer": {
+      "successRate": 0.89,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["optimization", "monitoring", "web-vitals"],
+      "weaknesses": [],
+      "preferredCombinations": ["frontend-developer", "database-optimizer", "devops-troubleshooter"],
+      "domains": ["performance-optimization", "monitoring", "system-optimization"]
+    },
+    "security-auditor": {
+      "successRate": 0.94,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["vulnerability-assessment", "secure-coding", "compliance"],
+      "weaknesses": [],
+      "preferredCombinations": ["backend-architect", "risk-manager", "legal-advisor"],
+      "domains": ["security", "compliance", "risk-assessment"]
+    },
+    "test-automator": {
+      "successRate": 0.87,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["test-automation", "qa-processes", "ci-cd-integration"],
+      "weaknesses": [],
+      "preferredCombinations": ["frontend-developer", "backend-architect", "performance-engineer"],
+      "domains": ["quality-assurance", "test-automation", "ci-cd"]
+    },
+    "devops-troubleshooter": {
+      "successRate": 0.86,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["deployment", "infrastructure", "troubleshooting"],
+      "weaknesses": [],
+      "preferredCombinations": ["cloud-architect", "performance-engineer", "security-auditor"],
+      "domains": ["deployment", "infrastructure", "operational-issues"]
+    },
+    "database-admin": {
+      "successRate": 0.88,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["database-design", "optimization", "data-modeling"],
+      "weaknesses": [],
+      "preferredCombinations": ["backend-architect", "database-optimizer", "performance-engineer"],
+      "domains": ["database-design", "data-modeling", "query-optimization"]
+    },
+    "content-marketer": {
+      "successRate": 0.84,
+      "taskCount": 0,
+      "avgComplexityHandled": "medium",
+      "strengths": ["content-strategy", "seo", "copywriting"],
+      "weaknesses": [],
+      "preferredCombinations": ["ui-ux-designer", "frontend-developer", "business-analyst"],
+      "domains": ["content-marketing", "seo", "brand-messaging"]
+    },
+    "api-documenter": {
+      "successRate": 0.85,
+      "taskCount": 0,
+      "avgComplexityHandled": "medium",
+      "strengths": ["technical-writing", "api-documentation", "developer-experience"],
+      "weaknesses": [],
+      "preferredCombinations": ["backend-architect", "typescript-pro", "dx-optimizer"],
+      "domains": ["technical-documentation", "api-design", "developer-experience"]
+    },
+    "code-reviewer": {
+      "successRate": 0.90,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["code-quality", "best-practices", "architecture-review"],
+      "weaknesses": [],
+      "preferredCombinations": ["all-technical-agents"],
+      "domains": ["code-quality", "architecture-review", "best-practices"]
+    },
+    "error-detective": {
+      "successRate": 0.92,
+      "taskCount": 0,
+      "avgComplexityHandled": "high",
+      "strengths": ["debugging", "error-analysis", "root-cause-analysis"],
+      "weaknesses": [],
+      "preferredCombinations": ["debugger", "performance-engineer", "devops-troubleshooter"],
+      "domains": ["debugging", "troubleshooting", "error-resolution"]
+    }
+  },
+  "workflowPatterns": {
+    "successful-combinations": [
+      {
+        "agents": ["frontend-developer", "ui-ux-designer", "performance-engineer"],
+        "successRate": 0.94,
+        "useCase": "User-facing feature development",
+        "avgDuration": "12-16 hours"
+      },
+      {
+        "agents": ["backend-architect", "security-auditor", "database-admin"],
+        "successRate": 0.91,
+        "useCase": "API development and data systems",
+        "avgDuration": "16-24 hours"
+      },
+      {
+        "agents": ["context-manager", "performance-engineer", "frontend-developer", "devops-troubleshooter"],
+        "successRate": 0.89,
+        "useCase": "Performance optimization workflows",
+        "avgDuration": "8-12 hours"
+      }
+    ],
+    "antiPatterns": [
+      {
+        "description": "Multiple generalists on same task",
+        "reason": "Creates coordination overhead",
+        "alternative": "Use one generalist with specialists"
+      },
+      {
+        "description": "Specialists without context-manager (4+ agents)",
+        "reason": "Communication breakdowns",
+        "alternative": "Always use context-manager for 4+ agent workflows"
+      }
+    ]
+  },
+  "systemMetrics": {
+    "totalRecommendations": 0,
+    "recommendationAccuracy": 0.0,
+    "avgTaskCompletionTime": "0 hours",
+    "mostRequestedAgents": [],
+    "peakUtilizationHours": []
+  }
+}

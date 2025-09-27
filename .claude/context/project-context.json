@@ -1,0 +1,78 @@
+{
+  "projectName": "My Private Tutor Online",
+  "version": "2025.1.0",
+  "status": "production-ready",
+  "lastUpdated": "2025-08-05T12:00:00Z",
+  "activeWorktrees": [],
+  "completedTasks": [],
+  "architecturalDecisions": [
+    {
+      "id": "AD-001",
+      "title": "Client Components with Dynamic Rendering",
+      "decision": "Use 'use client' directive for all pages with global force-dynamic",
+      "rationale": "Required for Framer Motion compatibility on Vercel",
+      "status": "implemented",
+      "date": "2025-08-05"
+    },
+    {
+      "id": "AD-002", 
+      "title": "Radix UI with Slot Pattern",
+      "decision": "Use Radix UI Slot components for compound components",
+      "rationale": "Provides accessible primitives with flexible composition",
+      "status": "implemented",
+      "date": "2025-08-05"
+    },
+    {
+      "id": "AD-003",
+      "title": "Context7 MCP for Documentation",
+      "decision": "All library documentation must use Context7 MCP",
+      "rationale": "Ensures up-to-date official documentation",
+      "status": "implemented", 
+      "date": "2025-08-05"
+    }
+  ],
+  "technicalStack": {
+    "frontend": {
+      "framework": "Next.js 15+",
+      "language": "TypeScript 5.3+",
+      "styling": "Tailwind CSS 4.x",
+      "components": "Radix UI + Shadcn/UI pattern",
+      "animation": "Framer Motion with LazyMotion",
+      "forms": "React Hook Form + Zod",
+      "state": "Zustand for complex state"
+    },
+    "backend": {
+      "runtime": "Next.js API Routes",
+      "database": "PostgreSQL (planned)",
+      "auth": "JWT with HTTP-only cookies",
+      "validation": "Zod schemas"
+    },
+    "deployment": {
+      "platform": "Vercel",
+      "url": "https://my-tutor-website-6aipxnfeh-jacks-projects-cf5effed.vercel.app",
+      "strategy": "Dynamic rendering"
+    },
+    "testing": {
+      "unit": "Jest",
+      "integration": "Playwright", 
+      "accessibility": "axe-core"
+    }
+  },
+  "performanceTargets": {
+    "lcp": "<2.5s",
+    "fid": "<100ms", 
+    "cls": "<0.1",
+    "bundleSize": "<150kB gzipped"
+  },
+  "complianceRequirements": {
+    "accessibility": "WCAG 2.1 AA",
+    "language": "British English",
+    "aiAttributions": "forbidden"
+  },
+  "agentEcosystem": {
+    "totalAgents": 50,
+    "activeWorkflows": 0,
+    "coordinationMode": "intelligent-selection",
+    "performanceTracking": "enabled"
+  }
+}

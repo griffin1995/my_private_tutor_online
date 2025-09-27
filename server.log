@@ -1,0 +1,22 @@
+
+> my-tutor-website@0.1.0 dev
+> next dev --turbopack
+
+ ⚠ Port 3000 is in use, using available port 3001 instead.
+   ▲ Next.js 15.3.4 (Turbopack)
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.1.107:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     ✓ useCache
+     ✓ webpackBuildWorker
+     ✓ webpackMemoryOptimizations
+
+ ✓ Starting...
+ ○ Compiling middleware ...
+ ✓ Compiled middleware in 8.7s
+ ✓ Ready in 9.8s
+ ○ Compiling /testimonials ...
+ ✓ Compiled /testimonials in 1235ms
+ GET /testimonials 200 in 1948ms
+ GET /testimonials 200 in 417ms

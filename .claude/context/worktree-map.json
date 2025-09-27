@@ -1,0 +1,105 @@
+{
+  "worktreeDirectory": "/home/jack/Documents/mpto-worktrees",
+  "mainRepository": "/home/jack/Documents/my_private_tutor_online",
+  "worktreeCategories": {
+    "feature": {
+      "prefix": "feature-",
+      "description": "New feature development",
+      "examples": [
+        "feature-cms-enhancement",
+        "feature-booking-system",
+        "feature-student-dashboard",
+        "feature-payment-integration"
+      ]
+    },
+    "optimization": {
+      "prefix": "opt-",
+      "description": "Performance and optimization work",
+      "examples": [
+        "opt-performance",
+        "opt-bundle-size",
+        "opt-seo",
+        "opt-accessibility"
+      ]
+    },
+    "bugfix": {
+      "prefix": "bugfix-",
+      "description": "Bug fixes and patches",
+      "examples": [
+        "bugfix-safari-compatibility",
+        "bugfix-mobile-nav",
+        "bugfix-form-validation"
+      ]
+    },
+    "experimental": {
+      "prefix": "exp-",
+      "description": "Experimental features and prototypes",
+      "examples": [
+        "exp-ai-features",
+        "exp-new-framework",
+        "exp-design-system"
+      ]
+    }
+  },
+  "recommendedWorktrees": [
+    {
+      "name": "feature-cms-enhancement",
+      "category": "feature",
+      "description": "Improve CMS admin interface for non-technical users",
+      "primaryAgent": "content-specialist",
+      "supportAgents": [
+        "frontend-developer",
+        "ui-ux-designer"
+      ],
+      "estimatedDuration": "1-2 weeks",
+      "dependencies": []
+    },
+    {
+      "name": "opt-performance",
+      "category": "optimization",
+      "description": "Overall performance optimization to meet Core Web Vitals",
+      "primaryAgent": "performance-engineer",
+      "supportAgents": [
+        "frontend-developer"
+      ],
+      "estimatedDuration": "1 week",
+      "dependencies": []
+    },
+    {
+      "name": "feature-booking-system",
+      "category": "feature",
+      "description": "Implement online booking system integration",
+      "primaryAgent": "backend-developer",
+      "supportAgents": [
+        "frontend-developer",
+        "ui-ux-designer"
+      ],
+      "estimatedDuration": "2-3 weeks",
+      "dependencies": [
+        "feature-cms-enhancement"
+      ]
+    },
+    {
+      "name": "opt-accessibility",
+      "category": "optimization",
+      "description": "Comprehensive accessibility audit and improvements",
+      "primaryAgent": "accessibility-specialist",
+      "supportAgents": [
+        "ui-ux-designer",
+        "frontend-developer"
+      ],
+      "estimatedDuration": "1-2 weeks",
+      "dependencies": []
+    }
+  ],
+  "activeWorktrees": [
+    {
+      "name": "test-performance",
+      "category": "other",
+      "primaryAgent": "frontend-developer",
+      "status": "active",
+      "created": "2025-08-05T11:57:40.775Z"
+    }
+  ],
+  "completedWorktrees": []
+}

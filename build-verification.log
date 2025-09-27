@@ -1,0 +1,131 @@
+
+> my-tutor-website@0.1.0 build
+> next build
+
+   ▲ Next.js 15.3.4
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings in 21.0s
+
+DefinePlugin
+Conflicting values for 'process.env.__NEXT_OPTIMIZE_CSS'
+
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/91) ...
+   Generating static pages (22/91) 
+Sitemap Status API Error: Error: Dynamic server usage: Route /api/sitemap/status couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+    at p (.next/server/app/api/sitemap/status/route.js:1:695) {
+  description: "Route /api/sitemap/status couldn't be rendered statically because it used `request.url`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
+  digest: 'DYNAMIC_SERVER_USAGE'
+}
+   Generating static pages (45/91) 
+   Generating static pages (68/91) 
+ ✓ Generating static pages (91/91)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                         Size  First Load JS
+┌ ○ /                                              334 B         699 kB
+├ ○ /_not-found                                    418 B         699 kB
+├ ● /[locale]                                    36.4 kB         735 kB
+├   ├ /en-GB
+├   ├ /fr-FR
+├   ├ /es-ES
+├   └ [+2 more paths]
+├ ● /[locale]/faq                                  432 B         758 kB
+├   ├ /en-GB/faq
+├   ├ /fr-FR/faq
+├   ├ /es-ES/faq
+├   └ [+2 more paths]
+├ ƒ /[locale]/sitemap.xml                          334 B         699 kB
+├ ○ /11-plus-bootcamps                            5.1 kB         704 kB
+├ ○ /about                                       9.81 kB         709 kB
+├ ƒ /admin                                       2.31 kB         701 kB
+├ ○ /admin/login                                 1.91 kB         701 kB
+├ ƒ /api/admin/auth/login                          334 B         699 kB
+├ ƒ /api/admin/auth/logout                         334 B         699 kB
+├ ƒ /api/admin/security/events                     334 B         699 kB
+├ ƒ /api/admin/security/metrics                    334 B         699 kB
+├ ƒ /api/analytics/client-success                  334 B         699 kB
+├ ƒ /api/analytics/events                          333 B         699 kB
+├ ƒ /api/analytics/performance                     334 B         699 kB
+├ ƒ /api/analytics/testimonials                    334 B         699 kB
+├ ƒ /api/contact                                   334 B         699 kB
+├ ƒ /api/csrf-token                                333 B         699 kB
+├ ƒ /api/errors                                    334 B         699 kB
+├ ƒ /api/faq/errors                                334 B         699 kB
+├ ƒ /api/faq/suggestions                           334 B         699 kB
+├ ƒ /api/faq/suggestions/[id]/vote                 334 B         699 kB
+├ ƒ /api/infrastructure/health                     334 B         699 kB
+├ ƒ /api/newsletter                                334 B         699 kB
+├ ƒ /api/performance                               334 B         699 kB
+├ ƒ /api/performance/alerts                        334 B         699 kB
+├ ƒ /api/performance/metrics                       334 B         699 kB
+├ ƒ /api/seo                                       334 B         699 kB
+├ ƒ /api/seo-analytics                             334 B         699 kB
+├ ƒ /api/sitemap                                   334 B         699 kB
+├ ƒ /api/sitemap/status                            333 B         699 kB
+├ ƒ /api/vitals                                    333 B         699 kB
+├ ○ /blog                                         3.1 kB         702 kB
+├ ƒ /dashboard                                   5.21 kB         704 kB
+├ ○ /dashboard/faq-analytics                      1.4 kB         700 kB
+├ ○ /dashboard/testimonials-analytics            11.4 kB         710 kB
+├ ○ /exam-papers                                 3.84 kB         703 kB
+├ ○ /expert-educators                             4.8 kB         704 kB
+├ ƒ /faq                                         16.9 kB         716 kB
+├ ● /faq/[category]                                415 B         699 kB
+├   ├ /faq/service-overview
+├   ├ /faq/our-expert-tutors
+├   ├ /faq/academic-subjects
+├   └ [+4 more paths]
+├ ● /faq/[category]/[subcategory]                  415 B         699 kB
+├   ├ /faq/service-overview/service-overview
+├   ├ /faq/service-overview/key-benefits
+├   ├ /faq/service-overview/delivery-methods
+├   └ [+23 more paths]
+├ ƒ /faq/search                                  2.47 kB         760 kB
+├ ○ /homeschooling                               4.57 kB         703 kB
+├ ○ /how-it-works                                7.97 kB         707 kB
+├ ○ /legal/cookie-policy                          5.7 kB         704 kB
+├ ○ /legal/privacy-policy                        5.87 kB         705 kB
+├ ○ /legal/terms-of-service                      6.44 kB         705 kB
+├ ○ /offline                                     2.77 kB         702 kB
+├ ○ /opengraph-image                               334 B         699 kB
+├ ○ /robots.txt                                    334 B         699 kB
+├ ○ /services                                    7.07 kB         706 kB
+├ ○ /sitemap.xml                                   334 B         699 kB
+├ ○ /subject-tuition                              8.6 kB         707 kB
+├ ○ /testimonials                                25.1 kB         724 kB
+└ ○ /video-masterclasses                          6.6 kB         705 kB
++ First Load JS shared by all                     704 kB
+  ├ chunks/common-c3e87f8f-40fec3bc67cf4875.js   25.4 kB
+  ├ chunks/common-ccb8bed9-3093f096538e7234.js   13.6 kB
+  ├ chunks/common-ef963bb1-240febf2681395fe.js   10.7 kB
+  ├ chunks/npm.next-cd1ca9d794d56e93.js          53.2 kB
+  ├ chunks/vendors-00833fa6-89eafcba612d3fbf.js  11.9 kB
+  ├ chunks/vendors-034d6e40-3108a95a578636d5.js  12.9 kB
+  ├ chunks/vendors-4305cb47-7a4c157b34e19777.js  10.6 kB
+  ├ chunks/vendors-493c5c7c-18f19afc36fee84d.js  13.9 kB
+  ├ chunks/vendors-4a7382ad-001ff7e21bc8947d.js  11.9 kB
+  ├ chunks/vendors-6185be05-814240aa6f5c5356.js  18.2 kB
+  ├ chunks/vendors-6391b56b-07549f0b02358244.js  24.7 kB
+  ├ chunks/vendors-9a66d3c2-aac368645a99ff32.js  15.1 kB
+  ├ chunks/vendors-9f1beca7-d61efd3dc166ff8a.js  17.8 kB
+  ├ chunks/vendors-a0d0bc08-a18bc3ee3f40df48.js  15.1 kB
+  ├ chunks/vendors-ad6a2f20-3337b220f7481081.js  12.2 kB
+  ├ chunks/vendors-b752a131-2190b72b29478e0b.js  10.4 kB
+  ├ chunks/vendors-bc050c32-1b1b0804db8e1a0b.js  13.2 kB
+  ├ chunks/vendors-bc0ba893-503307c073bb2bcf.js  13.2 kB
+  ├ chunks/vendors-c4d2e9b7-5ea25e5fbb190e3d.js  13.2 kB
+  ├ chunks/vendors-cfb98476-5f53a300484e21fd.js  14.4 kB
+  ├ chunks/vendors-fb9adf30-268c669b50ba9978.js  16.1 kB
+  └ other shared chunks (total)                   356 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
