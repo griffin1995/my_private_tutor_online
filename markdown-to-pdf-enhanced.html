@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Enhanced PDF Conversion Template</title>
+    <style>
+        /* Enhanced styles for PDF conversion */
+        .red-comment {
+            color: #ff0000 !important;
+            font-weight: bold !important;
+            font-size: 1.2em !important;
+            background-color: rgba(255, 0, 0, 0.1);
+            padding: 2px 4px;
+            border-left: 3px solid #ff0000;
+        }
+
+        .black-response {
+            color: #000000 !important;
+            font-weight: bold !important;
+            font-size: 1.2em !important;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 2px 4px;
+            border-left: 3px solid #000000;
+        }
+
+        /* Ensure colors appear in print/PDF */
+        @media print {
+            .red-comment {
+                color: #ff0000 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .black-response {
+                color: #000000 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Your markdown content will be converted and placed here -->
+<!-- Use this as a template for enhanced PDF generation -->
+</body>
+</html>
