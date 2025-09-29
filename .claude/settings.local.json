@@ -179,7 +179,12 @@
       "Bash(pdfinfo:*)",
       "Bash(pipx install:*)",
       "mcp__filesystem__read_media_file",
-      "Bash(./convert_images.sh:*)"
+      "Bash(./convert_images.sh:*)",
+      "mcp__git-mcp__branch_list",
+      "Bash(./node_modules/.bin/tsc:*)",
+      "Read(//home/jack/.npm/_logs/**)",
+      "Bash(yarn install)",
+      "SlashCommand(/ma-complex:*)"
     ],
     "deny": []
   },
