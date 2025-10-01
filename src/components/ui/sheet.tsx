@@ -1,3 +1,6 @@
+// CONTEXT7 SOURCE: /websites/radix-ui-primitives - Dialog primitive for sheet/drawer patterns
+// IMPLEMENTATION REASON: Official Radix UI documentation for accessible slide-out panels
+
 "use client"
 
 import * as React from "react"
@@ -6,6 +9,29 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+
+/**
+ * Sheet Component (Drawer/Sidebar Pattern)
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Dialog adapted for sheet behavior
+ * Pattern: Side panel implementation using Dialog primitive
+ * - Slide animations from edges (top, right, bottom, left)
+ * - Focus trap and keyboard navigation
+ * - Overlay backdrop for modal behavior
+ * - Escape key and overlay click to dismiss
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Portal and overlay patterns
+ * Accessibility Features:
+ * - ARIA modal semantics
+ * - Focus management and restoration
+ * - Screen reader announcements
+ * - Keyboard-only operation support
+ *
+ * CVA Variants:
+ * - Multiple side positions
+ * - Responsive sizing
+ * - Animation directions
+ */
 
 const Sheet = SheetPrimitive.Root
 

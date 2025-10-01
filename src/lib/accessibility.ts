@@ -1,5 +1,17 @@
+// CONTEXT7 SOURCE: /w3c/wcag - Web Content Accessibility Guidelines 2.1 AA
+// IMPLEMENTATION REASON: Official WCAG documentation for accessibility compliance
+
 // Accessibility Utilities for WCAG 2.1 AA Compliance
 // CLAUDE.md rule 30-33: Accessibility compliance requirements
+
+/**
+ * CONTEXT7 SOURCE: /w3c/wcag - Keyboard accessibility patterns
+ * Focus Management and Keyboard Navigation Utilities
+ * - Keyboard event constants for consistent handling
+ * - Focus trap implementation for modals/dialogs
+ * - Focusable element queries
+ * - ARIA attribute management
+ */
 
 // Keyboard navigation utilities
 export const KEYBOARD_KEYS = {

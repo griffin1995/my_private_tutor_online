@@ -1,3 +1,6 @@
+// CONTEXT7 SOURCE: /gpbl/react-day-picker - Date picker component for React
+// IMPLEMENTATION REASON: Official react-day-picker documentation for accessible calendar
+
 "use client"
 
 import * as React from "react"
@@ -6,6 +9,30 @@ import { DayPicker } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+
+/**
+ * Calendar Component with react-day-picker
+ *
+ * CONTEXT7 SOURCE: /gpbl/react-day-picker - DayPicker component documentation
+ * Pattern: Accessible date selection calendar
+ * - Keyboard navigation with arrow keys
+ * - ARIA labels for screen readers
+ * - Month/year navigation controls
+ * - Single and range selection support
+ *
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Component composition patterns
+ * Features:
+ * - Custom styling with Tailwind classes
+ * - Button variants for consistent design
+ * - Chevron icons for navigation
+ * - Responsive layout
+ *
+ * Accessibility:
+ * - Proper ARIA roles and labels
+ * - Keyboard-only operation
+ * - Focus management
+ * - Screen reader announcements
+ */
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 

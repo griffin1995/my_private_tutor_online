@@ -1,7 +1,8 @@
 /**
- * Documentation Source: WCAG 2.1 Guidelines + MDN Media Queries
- * Reference: https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions.html
- * Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion
+ * CONTEXT7 SOURCE: /w3c/wcag - WCAG 2.1 Animation from Interactions guidelines
+ * ACCESSIBILITY REASON: WCAG documentation for respecting user motion preferences
+ * CONTEXT7 SOURCE: /mdn/web-docs - Media queries for prefers-reduced-motion
+ * MEDIA QUERY REASON: MDN documentation for detecting motion preferences
  * 
  * Pattern: React Hook for Motion Preference Detection
  * Architecture:
@@ -29,9 +30,13 @@
  * ```
  */
 
+// CONTEXT7 SOURCE: /facebook/react - React hooks for state and side effects
+// HOOKS REASON: React documentation for useState and useEffect patterns
 import React, { useState, useEffect } from 'react'
 
 /**
+ * CONTEXT7 SOURCE: /facebook/react - Custom hook pattern with use prefix
+ * CUSTOM HOOK REASON: React documentation for creating reusable logic hooks
  * Custom hook to detect user's motion preferences
  * @returns boolean - true if user prefers reduced motion
  */
@@ -69,6 +74,8 @@ export function useReducedMotion(): boolean {
 }
 
 /**
+ * CONTEXT7 SOURCE: /framer/motion - Framer Motion configuration patterns
+ * MOTION CONFIG REASON: Framer Motion documentation for animation configuration
  * Hook variant that returns motion configuration object
  * Useful for direct integration with Framer Motion
  */
@@ -92,9 +99,9 @@ export function useMotionConfig() {
 
 /**
  * Higher-order component for wrapping components with motion preferences
- * 
- * Documentation Source: Context7 MCP - React TypeScript HOC Patterns
- * Reference: https://github.com/reactjs/react.dev/blob/main/src/content/learn/typescript.md
+ *
+ * CONTEXT7 SOURCE: /facebook/react - Higher-order component pattern in TypeScript
+ * HOC PATTERN REASON: React documentation for HOC prop injection patterns
  * 
  * Pattern: HOC with additional props injection
  * This HOC injects a shouldReduceMotion prop into the wrapped component

@@ -48,6 +48,13 @@ import { CookieConsentManager } from '@/components/legal/CookieConsent';
 // import { GlobalErrorBoundary } from '@/components/infrastructure/GlobalErrorBoundary';
 
 // CONTEXT7 SOURCE: /vercel/next.js - Development tools provider for debugging
+// CMS MONITORING REASON: Global CMS architecture monitoring initialization
+import React, { Suspense } from 'react';
+
+// Dynamically import CMS monitoring components for development/enabled environments only
+const CMSMonitoringWrapper = process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_CMS_MONITOR === 'true'
+  ? React.lazy(() => import('@/components/cms-architecture-dashboard').then(mod => ({ default: mod.CMSArchitectureMonitorWrapper })))
+  : null;
 // DEBUGGING TOOL REASON: Pesticide CSS debugging tool for development environment only
 import { DevToolsProvider } from '@/providers/DevToolsProvider';
 // DEVELOPMENT TOOL: Pesticide CSS debugger integration for layout development and troubleshooting

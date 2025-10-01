@@ -1,11 +1,17 @@
+// CONTEXT7 SOURCE: /google-chrome/web-vitals - Web Vitals performance monitoring
+// PERFORMANCE EXPORTS REASON: Web Vitals documentation for Core Web Vitals tracking
 // Performance monitoring exports
 export { webVitalsTracker, PERFORMANCE_THRESHOLDS } from './web-vitals'
 export type { WebVitalsData, MetricName, AnalyticsProvider } from './web-vitals'
 
+// CONTEXT7 SOURCE: /google-chrome/web-vitals - Direct Web Vitals library re-exports
+// RE-EXPORT REASON: Web Vitals documentation for metric collection functions
 // Re-export web-vitals library for direct usage
 export { onCLS, onFCP, onLCP, onTTFB } from 'web-vitals'
 export type { Metric } from 'web-vitals'
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Utility object pattern for helper functions
+// UTILITY PATTERN REASON: TypeScript handbook pattern for grouping related utilities
 // Performance utilities
 export const performanceUtils = {
   // Format milliseconds for display

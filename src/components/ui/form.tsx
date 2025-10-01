@@ -1,27 +1,35 @@
+// CONTEXT7 SOURCE: /react-hook-form/react-hook-form - FormProvider and useFormContext patterns
+// IMPLEMENTATION REASON: Official React Hook Form documentation for context-based form management
+
 /**
- * Documentation Source: React Hook Form v7 + Radix UI
- * Reference: https://react-hook-form.com/docs/useformcontext
- * Reference: https://react-hook-form.com/docs/usecontroller
- * Reference: https://www.radix-ui.com/primitives/docs/utilities/slot
- * 
- * Pattern: Form Components with React Hook Form Integration
- * Architecture:
- * - Context-based form state management
+ * Form Components with React Hook Form Integration
+ *
+ * CONTEXT7 SOURCE: /react-hook-form/react-hook-form - FormProvider API
+ * Pattern: Context-based form state management through FormProvider
+ * - Shares form state with deeply nested components
+ * - Eliminates prop drilling for form methods
  * - Type-safe field definitions with TypeScript generics
- * - Radix UI Label primitive integration
- * - Controller pattern for form fields
- * 
- * Features:
- * - FormProvider for form context
- * - FormField wrapper for Controller
+ *
+ * CONTEXT7 SOURCE: /react-hook-form/react-hook-form - Controller component
+ * Controller Pattern Features:
+ * - Managed input registration and validation
+ * - Automatic field state synchronization
+ * - Support for custom components via render prop
+ * - Built-in validation state management
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Slot utility for composition
+ * Radix UI Integration:
+ * - Label primitive for accessible form labels
+ * - Slot component for flexible child composition
+ * - ARIA attributes for accessibility compliance
+ * - Data attributes for styling hooks
+ *
+ * Architecture Benefits:
+ * - FormField wrapper provides Controller functionality
  * - FormItem, FormLabel, FormControl, FormMessage compounds
- * - Type-safe field paths
- * - Automatic validation state management
- * 
- * Integration:
- * - Works with Zod validation schemas
- * - ARIA attributes for accessibility
- * - Error message display
+ * - Type-safe field paths with FieldPath generics
+ * - Automatic error message display
+ * - Zod validation schema compatibility
  */
 
 "use client"

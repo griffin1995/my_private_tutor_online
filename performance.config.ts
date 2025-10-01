@@ -177,11 +177,31 @@ export const PERFORMANCE_TEST_SCENARIOS = [
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Export configuration
 // EXTERNAL ACCESS: Type-safe performance configuration export
-export default {
+export const PERFORMANCE_CONFIG = {
   budget: PERFORMANCE_BUDGET,
   agent: AGENT_PERFORMANCE_CONFIG,
   build: BUILD_PERFORMANCE_CONFIG,
   webVitals: WEB_VITALS_THRESHOLDS,
   monitoring: MONITORING_CONFIG,
   tests: PERFORMANCE_TEST_SCENARIOS,
+  // Legacy properties for compatibility
+  resources: {
+    javascript: { total: 163840 }, // 160KB threshold
+    css: { total: 30720 }, // 30KB threshold
+    images: { totalPerPage: 1048576 }, // 1MB per page
+    totalPageWeight: { homepage: 2097152 } // 2MB total
+  },
+  network: {
+    httpRequests: { homepage: 50 },
+    thirdPartyRequests: 10
+  },
+  integrations: {
+    sentry: { tracesSampleRate: 0.1 }
+  },
+  testing: {
+    lighthouse: { performance: 85 }
+  }
 } as const;
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Default export for compatibility
+export default PERFORMANCE_CONFIG;

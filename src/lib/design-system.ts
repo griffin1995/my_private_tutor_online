@@ -1,6 +1,13 @@
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Design system tokens for consistent styling
+// DESIGN SYSTEM REASON: Tailwind CSS documentation pattern for centralized design tokens
+// CONTEXT7 SOURCE: /microsoft/typescript - Const assertions for type safety
+// TYPE SAFETY REASON: TypeScript handbook recommends const assertions for immutable objects
+
 // Design System Tokens for My Private Tutor Online
 // CLAUDE.md rule 29: Centralised design tokens for spacing, colours, typography
 
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Color palette configuration
+// COLOR SYSTEM REASON: Tailwind CSS documentation pattern for color scales
 // Brand Colors - CLAUDE.md rule 26
 export const colors = {
   // Primary navy/slate-900 (#0f172a)
@@ -53,6 +60,8 @@ export const colors = {
   black: '#000000'
 } as const
 
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Typography configuration system
+// TYPOGRAPHY REASON: Tailwind CSS documentation for font family and size scales
 // Typography System - CLAUDE.md rule 27
 export const typography = {
   fontFamilies: {
@@ -99,6 +108,8 @@ export const typography = {
   }
 } as const
 
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Spacing scale configuration
+// SPACING REASON: Tailwind CSS documentation pattern for consistent spacing
 // Spacing System - CLAUDE.md rule 29
 export const spacing = {
   0: '0px',
@@ -196,6 +207,8 @@ export const zIndex = {
   tooltip: 1800
 } as const
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Utility functions for token access
+// UTILITY REASON: TypeScript handbook pattern for type-safe property access
 // Design Token Utilities
 export const getColor = (colorPath: string): string => {
   const keys = colorPath.split('.')
@@ -283,6 +296,8 @@ export const generateUtilityClasses = () => {
   }
 }
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Generic type parameters for variant props
+// GENERICS REASON: TypeScript handbook pattern for component variant typing
 // Component Variant Helpers - CLAUDE.md rule 28
 export type VariantProps<T> = {
   variant?: keyof T

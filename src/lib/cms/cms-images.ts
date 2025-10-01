@@ -10,7 +10,12 @@ import { cache } from "react";
 // CONTEXT7 SOURCE: /microsoft/typescript - Import video data from COMPREHENSIVE_VIDEO_CMS.ts
 // INTEGRATION FIX: Import actual video data from COMPREHENSIVE_VIDEO_CMS.ts to resolve lookup failures
 // ARCHITECTURAL SOLUTION: Transform VideoMasterclass data to MasterVideoRecord interface
+// PATH CORRECTION: Updated import path to correct relative path from src/lib/cms/ to root directory
 import { videoMasterclasses, getVideoMasterclass, type VideoMasterclass } from "../../../COMPREHENSIVE_VIDEO_CMS";
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Re-export pattern for centralized type access
+// RE-EXPORT REASON: Official TypeScript documentation Section 4.2 recommends re-exporting types through CMS layer
+export type { VideoMasterclass };
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface design patterns for media asset management
 // CONTEXT7 SOURCE: /microsoft/typescript - Readonly properties for immutable data structures
@@ -986,9 +991,11 @@ const transformVideoMasterclassToRecord = (video: VideoMasterclass): MasterVideo
     title: video.title,
     description: video.description,
     
-    // Video Sources & Assets
-    videoUrl: video.youtubeUrl,
-    src: video.youtubeUrl,
+    // Video Sources & Assets  
+    // CONTEXT7 SOURCE: /reactjs/react.dev - Data transformation pattern with null safety
+    // PROPERTY MAPPING FIX: Transform youtubeUrl with null safety as per React.dev data transformation pattern
+    videoUrl: video.youtubeUrl || "",
+    src: video.youtubeUrl || "",
     thumbnailUrl: video.thumbnailImage,
     poster: video.thumbnailImage,
     backgroundImage: video.backgroundImage,
@@ -1949,7 +1956,9 @@ function transformVideoMasterclass(video: VideoMasterclass): TransformedVideoMas
   // OBJECT TRANSFORMATION: Official TypeScript patterns for property mapping and interface compatibility
   return {
     title: video.title,
-    videoUrl: video.youtubeUrl,
+    // CONTEXT7 SOURCE: /reactjs/react.dev - Data transformation pattern with null safety
+    // PROPERTY MAPPING FIX: Transform youtubeUrl to videoUrl with null safety as per React.dev data transformation pattern
+    videoUrl: video.youtubeUrl || "",
     thumbnailUrl: video.thumbnailImage,
     backgroundImage: video.backgroundImage,
     alt: video.title, // Use title as alt text

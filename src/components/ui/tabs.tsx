@@ -1,9 +1,35 @@
+// CONTEXT7 SOURCE: /websites/radix-ui-primitives - Tabs component for tabbed interfaces
+// IMPLEMENTATION REASON: Official Radix UI documentation for accessible tab navigation
+
 "use client"
 
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 
 import { cn } from "@/lib/utils"
+
+/**
+ * Tabs Component System
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Tabs primitive documentation
+ * Pattern: Accessible tabbed interface implementation
+ * - Keyboard navigation with arrow keys
+ * - ARIA roles and attributes for screen readers
+ * - Automatic tab panel association
+ * - Focus management between tabs and panels
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Tab interaction patterns
+ * Accessibility Features:
+ * - Tab/Shift+Tab for navigation
+ * - Arrow keys for tab selection
+ * - Home/End keys for first/last tab
+ * - Proper ARIA labeling and roles
+ *
+ * Styling:
+ * - Data attributes for active states
+ * - Smooth transitions between tabs
+ * - Consistent focus indicators
+ */
 
 const Tabs = TabsPrimitive.Root
 

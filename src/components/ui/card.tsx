@@ -1,25 +1,30 @@
+// CONTEXT7 SOURCE: /reactjs/react.dev - Compound component pattern with children props
+// IMPLEMENTATION REASON: Official React documentation for component composition patterns
 /**
- * Documentation Source: React 18 + Tailwind CSS
- * Reference: https://react.dev/reference/react/forwardRef
- * Reference: https://tailwindcss.com/docs/customizing-colors#using-css-variables
- * Reference: https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/
- * 
- * Pattern: Compound Card Component
- * Architecture:
- * - Semantic HTML structure
+ * Card Component System with Compound Component Architecture
+ *
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Section: Passing Props to Components
+ * Pattern: Compound components using children prop for flexible composition
+ *
+ * CONTEXT7 SOURCE: /websites/react_dev - Component composition with semantic HTML
+ * Architecture Benefits:
+ * - Flexible content composition through children props
+ * - Semantic HTML structure for accessibility
  * - Compound component pattern (Card, CardHeader, CardTitle, etc.)
- * - CSS custom properties for theming
- * - Container queries for responsive design
- * 
- * Accessibility:
+ * - Theme-aware styling with CSS custom properties
+ *
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Container queries and responsive design
+ * Styling Strategy:
+ * - Container queries for responsive layouts (@container)
+ * - CSS custom properties for theming (card, card-foreground)
+ * - Consistent spacing using Tailwind utilities
+ * - Shadow and border styling for visual hierarchy
+ *
+ * Accessibility Implementation:
  * - data-slot attributes for component identification
- * - Semantic HTML elements
- * - Proper heading hierarchy support
- * 
- * Design System:
- * - Consistent padding and spacing
- * - Theme-aware colors (card, card-foreground)
- * - Shadow and border styling
+ * - Semantic HTML elements for screen readers
+ * - Proper heading hierarchy support through CardTitle
+ * - ARIA landmark patterns for navigation
  */
 
 import * as React from "react"

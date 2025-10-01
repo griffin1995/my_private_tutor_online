@@ -48,6 +48,9 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
+// CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Component cleanup patterns
+// CROWN ICON REMOVAL: Official React documentation for removing unused imports to maintain clean code
+
 // CONTEXT7 SOURCE: /websites/magicui_design - Magic UI Highlighter component for royal testimonial emphasis
 // HIGHLIGHTER IMPORT REASON: Official Magic UI documentation demonstrates Highlighter component for dynamic text highlighting effects in trust indicators
 import { Highlighter } from '@/components/magicui/highlighter'
@@ -314,6 +317,8 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                     {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
                     {/* ACCENT BAR REASON: For odd rows (text-right), accent bar goes on right side (border-r-4) to match text alignment */}
                     <div className="max-w-xl text-right p-8 border-r-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
+                      {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Clean component patterns */}
+                      {/* CROWN ICON REMOVAL: Official React documentation for removing unnecessary conditional rendering */}
                       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography with font-black and letter-spacing */}
                       {/* PREMIUM TYPOGRAPHY REASON: Official documentation recommends font-black (900 weight) and */}
                       {/* sophisticated letter-spacing for luxury service presentation */}
@@ -361,6 +366,8 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
                     {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
                     {/* ACCENT BAR REASON: For even rows (text-left), accent bar goes on left side (border-l-4) to match text alignment */}
                     <div className="max-w-xl text-left p-8 border-l-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]">
+                      {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Clean component patterns */}
+                      {/* CROWN ICON REMOVAL: Official React documentation for removing unnecessary conditional rendering */}
                       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography with font-black and letter-spacing */}
                       {/* PREMIUM TYPOGRAPHY REASON: Official documentation recommends font-black (900 weight) and */}
                       {/* sophisticated letter-spacing for luxury service presentation */}

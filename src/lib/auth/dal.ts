@@ -1,11 +1,17 @@
+// CONTEXT7 SOURCE: /vercel/next.js - Server-only module for server-side code protection
+// SERVER PROTECTION REASON: Next.js documentation ensures DAL runs only on server
 import 'server-only'
+// CONTEXT7 SOURCE: /facebook/react - Cache function for request deduplication
+// CACHE REASON: React documentation for caching expensive operations
 import { cache } from 'react'
+// CONTEXT7 SOURCE: /vercel/next.js - Cookies and redirect from Next.js headers
+// NAVIGATION REASON: Next.js documentation for cookie access and navigation
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { decrypt, isValidSessionPayload, SessionPayload } from './session'
 
-// CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 Data Access Layer patterns
-// Reference: /vercel/next.js authentication DAL with session verification and caching
+// CONTEXT7 SOURCE: /vercel/next.js - Data Access Layer pattern for authentication
+// DAL PATTERN REASON: Next.js documentation for session verification and caching
 
 /**
  * Verified admin session data structure

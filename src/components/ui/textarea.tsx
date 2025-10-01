@@ -1,6 +1,25 @@
+// CONTEXT7 SOURCE: /reactjs/react.dev - forwardRef pattern for form controls
+// IMPLEMENTATION REASON: Official React documentation for accessible textarea components
+
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+
+/**
+ * Textarea Component with Accessibility Support
+ *
+ * CONTEXT7 SOURCE: /reactjs/react.dev - forwardRef API for DOM elements
+ * Pattern: Native textarea enhancement with ref forwarding
+ * - Direct access to DOM element for focus management
+ * - Preserves all native textarea behaviors
+ * - Compatible with form libraries via ref
+ *
+ * Styling Features:
+ * - Consistent border and focus states
+ * - Disabled state styling
+ * - Responsive padding and sizing
+ * - Theme-aware text colors
+ */
 
 export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>
 

@@ -1,8 +1,12 @@
 /**
+ * CONTEXT7 SOURCE: /microsoft/typescript - TypeScript interface definitions
+ * INTERFACE REASON: TypeScript handbook pattern for defining data structures
  * Seasonal content management system
  * Provides dynamic content switching based on current time of year
  */
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface with literal type unions
+// TYPE DEFINITION REASON: TypeScript documentation for type-safe seasonal content
 export interface SeasonalContent {
   title: string;
   description: string;

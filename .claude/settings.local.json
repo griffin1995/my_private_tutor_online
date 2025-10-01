@@ -184,7 +184,18 @@
       "Bash(./node_modules/.bin/tsc:*)",
       "Read(//home/jack/.npm/_logs/**)",
       "Bash(yarn install)",
-      "SlashCommand(/ma-complex:*)"
+      "SlashCommand(/ma-complex:*)",
+      "Bash(do if ! grep -q \"^// CONTEXT7 SOURCE:\" \"$file\")",
+      "Bash(bc)",
+      "Bash(do if ! grep -q \"CONTEXT7 SOURCE:\" \"$file\")",
+      "Bash(then basename \"$file\")",
+      "Bash(fi)",
+      "Bash(do if [ -f \"$file\" ])",
+      "Bash(! grep -q \"CONTEXT7 SOURCE:\" \"$file\")",
+      "Bash(bc:*)",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_snapshot"
     ],
     "deny": []
   },

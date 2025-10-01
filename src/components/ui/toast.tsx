@@ -1,6 +1,31 @@
+// CONTEXT7 SOURCE: /emilkowalski/sonner - Toast notification library for React
+// IMPLEMENTATION REASON: Production-ready toast notifications with accessibility
+
 "use client"
 
 import { Toaster as Sonner } from "sonner"
+
+/**
+ * Toast Notification Component using Sonner
+ *
+ * CONTEXT7 SOURCE: /emilkowalski/sonner - Modern toast notification library
+ * Pattern: Accessible and performant notification system
+ * - ARIA live regions for screen reader announcements
+ * - Stacking and positioning management
+ * - Auto-dismiss with pause on hover
+ * - Swipe gestures on mobile devices
+ *
+ * Features:
+ * - Promise-based API for async operations
+ * - Custom rendering with className
+ * - Theme-aware styling
+ * - Keyboard navigation support
+ *
+ * Styling:
+ * - Tailwind classes for consistent design
+ * - Group modifiers for state-based styles
+ * - Shadow and border customization
+ */
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 

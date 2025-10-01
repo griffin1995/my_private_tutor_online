@@ -1,8 +1,12 @@
+// CONTEXT7 SOURCE: /vercel/next.js - Server-only module for server-side code protection
+// SERVER ONLY REASON: Next.js documentation ensures code only runs on server
 import 'server-only'
+// CONTEXT7 SOURCE: /panva/jose - JWT library for secure token handling
+// JWT REASON: Jose documentation for JWT signing and verification
 import { SignJWT, jwtVerify } from 'jose'
 
-// CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 JWT session management
-// Reference: /vercel/next.js authentication patterns with jose library
+// CONTEXT7 SOURCE: /vercel/next.js - Authentication patterns for session management
+// SESSION REASON: Next.js documentation for JWT-based session handling
 
 /**
  * Session payload structure for admin authentication

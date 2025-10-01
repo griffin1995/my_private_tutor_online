@@ -1,5 +1,5 @@
-// Context7 MCP Documentation Source: /microsoft/typescript
-// Reference: TypeScript utility types and API response patterns
+// CONTEXT7 SOURCE: /microsoft/typescript - TypeScript utility types and generics
+// API TYPES REASON: TypeScript handbook patterns for type-safe API responses
 // Purpose: Type-safe API responses for premium tutoring service
 
 /**

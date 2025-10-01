@@ -1,10 +1,17 @@
+// CONTEXT7 SOURCE: /websites/radix-ui-primitives - Select component patterns
+// IMPLEMENTATION REASON: Official Radix UI documentation for accessible dropdown selects
+
 /**
- * Documentation Source: Radix UI Select + React 18
- * Reference: https://www.radix-ui.com/primitives/docs/components/select
- * Reference: https://react.dev/reference/react/forwardRef
- * Reference: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
- * 
- * Pattern: Accessible Select Component with Radix UI
+ * Select Component with Radix UI
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Select primitive documentation
+ * Pattern: Accessible custom select implementation
+ * - Keyboard navigation with arrow keys
+ * - Type-ahead search functionality
+ * - ARIA combobox pattern compliance
+ * - Portal rendering for proper stacking
+ *
+ * CONTEXT7 SOURCE: /reactjs/react.dev - forwardRef for component refs
  * Architecture:
  * - Radix UI Select primitive for accessibility
  * - forwardRef for proper ref handling

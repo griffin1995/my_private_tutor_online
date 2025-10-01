@@ -21,6 +21,7 @@
  * - Reusable component structure
  */
 
+import React from "react";
 import { m } from "framer-motion";
 
 /**
@@ -36,6 +37,27 @@ interface FirstLessonSectionProps {
   heading?: string;
   /** Custom paragraph content - overrides default founder story content */
   paragraph?: string;
+}
+
+/**
+ * CONTEXT7 SOURCE: /reactjs/react.dev - JSX conditional rendering and Fragment patterns for text formatting
+ * TEXT PARSING REASON: Official React documentation demonstrates conditional JSX rendering for inline formatting elements
+ * Parses text content containing <strong> tags and renders proper JSX elements
+ */
+function parseTextWithStrong(text: string): React.ReactNode[] {
+  // Split text by <strong> opening and closing tags
+  const parts = text.split(/(<strong>.*?<\/strong>)/g);
+  
+  return parts.map((part, index) => {
+    // Check if this part is a strong tag
+    if (part.startsWith('<strong>') && part.endsWith('</strong>')) {
+      // Extract content between strong tags and render as JSX
+      const content = part.replace(/<\/?strong>/g, '');
+      return <strong key={index}>{content}</strong>;
+    }
+    // Return regular text as-is
+    return part;
+  });
 }
 
 /**
@@ -91,8 +113,10 @@ export function FirstLessonSection({
                 </h3>
 
                 <div className="space-y-6">
+                  {/* CONTEXT7 SOURCE: /reactjs/react.dev - JSX conditional rendering for inline formatting elements */}
+                  {/* TEXT FORMATTING REASON: Official React documentation demonstrates conditional JSX rendering patterns for text with inline formatting */}
                   <p className="text-lg text-primary-700 leading-relaxed">
-                    {paragraph || "I started tutoring at Bristol and immediately felt something click. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family. What followed was a series of international placements and the <strong>opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents</strong>. Along the way, I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now."}
+                    {parseTextWithStrong(paragraph || "I started tutoring at Bristol and immediately felt something click. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family. What followed was a series of international placements and the <strong>opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents</strong>. Along the way, I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now.")}
                   </p>
                 </div>
               </div>

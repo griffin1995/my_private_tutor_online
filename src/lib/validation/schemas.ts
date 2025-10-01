@@ -1,7 +1,9 @@
-// Context7 MCP Documentation Source: /colinhacks/zod
-// Reference: TypeScript-first schema validation with static type inference
+// CONTEXT7 SOURCE: /colinhacks/zod - TypeScript-first schema validation library
+// VALIDATION REASON: Zod documentation for static type inference and runtime validation
 // Purpose: Production-ready form validation for premium tutoring service
 
+// CONTEXT7 SOURCE: /colinhacks/zod - Importing Zod for schema definitions
+// IMPORT REASON: Zod documentation shows importing z namespace for all validators
 import { z } from 'zod'
 
 /**

@@ -27,7 +27,7 @@
  * IMPLEMENTATION REASON: Official TypeScript handbook Section 5.1 - Index signatures with type safety
  */
 export interface SafeIndexAccess {
-  [key: string]: any;
+  readonly [key: string]: unknown;
 }
 
 /**
@@ -35,8 +35,8 @@ export interface SafeIndexAccess {
  * CONTEXT7 SOURCE: /microsoft/typescript - Generic functions with type constraints
  * GENERIC UTILITY REASON: Official TypeScript documentation demonstrates generic functions for type-safe property access
  */
-export function getCMSProperty<T = any>(
-  content: SafeIndexAccess | Record<string, any>,
+export function getCMSProperty<T = unknown>(
+  content: SafeIndexAccess | Record<string, unknown>,
   key: string,
   defaultValue?: T
 ): T | undefined {
@@ -54,8 +54,8 @@ export function getCMSProperty<T = any>(
  * CONTEXT7 SOURCE: /microsoft/typescript - Nested object property access patterns
  * NESTED ACCESS REASON: Official TypeScript documentation demonstrates safe navigation for nested properties
  */
-export function getCMSNestedProperty<T = any>(
-  content: SafeIndexAccess | Record<string, any>,
+export function getCMSNestedProperty<T = unknown>(
+  content: SafeIndexAccess | Record<string, unknown>,
   path: string[],
   defaultValue?: T
 ): T | undefined {
@@ -74,8 +74,8 @@ export function getCMSNestedProperty<T = any>(
  * CONTEXT7 SOURCE: /reactjs/react.dev - Array handling in React components
  * ARRAY SAFETY REASON: Official React documentation demonstrates safe array property access for component rendering
  */
-export function getCMSArrayProperty<T = any>(
-  content: SafeIndexAccess | Record<string, any>,
+export function getCMSArrayProperty<T = unknown>(
+  content: SafeIndexAccess | Record<string, unknown>,
   key: string,
   defaultValue: T[] = []
 ): T[] {
@@ -129,8 +129,8 @@ export function isCMSContentValid(content: unknown): content is SafeIndexAccess 
  * CONTEXT7 SOURCE: /microsoft/typescript - Object manipulation with type safety
  * BATCH ACCESS REASON: Official TypeScript documentation demonstrates efficient object property extraction
  */
-export function getCMSProperties<T extends Record<string, any>>(
-  content: SafeIndexAccess | Record<string, any>,
+export function getCMSProperties<T extends Record<string, unknown>>(
+  content: SafeIndexAccess | Record<string, unknown>,
   keys: (keyof T)[],
   defaults: Partial<T> = {}
 ): Partial<T> {
@@ -149,7 +149,7 @@ export function getCMSProperties<T extends Record<string, any>>(
  * STRING SAFETY REASON: Common pattern for CMS text content with guaranteed string return
  */
 export function getCMSStringProperty(
-  content: SafeIndexAccess | Record<string, any>,
+  content: SafeIndexAccess | Record<string, unknown>,
   key: string,
   defaultValue: string = ''
 ): string {
@@ -163,7 +163,7 @@ export function getCMSStringProperty(
  * NUMBER SAFETY REASON: Common pattern for CMS numeric content with guaranteed number return
  */
 export function getCMSNumberProperty(
-  content: SafeIndexAccess | Record<string, any>,
+  content: SafeIndexAccess | Record<string, unknown>,
   key: string,
   defaultValue: number = 0
 ): number {
@@ -189,7 +189,7 @@ export function getCMSNumberProperty(
  * BOOLEAN SAFETY REASON: Common pattern for CMS boolean flags with guaranteed boolean return
  */
 export function getCMSBooleanProperty(
-  content: SafeIndexAccess | Record<string, any>,
+  content: SafeIndexAccess | Record<string, unknown>,
   key: string,
   defaultValue: boolean = false
 ): boolean {
@@ -229,7 +229,7 @@ export interface EnhancedCMSContent extends SafeIndexAccess {
   readonly version?: string;
 
   // Index signature for dynamic content access
-  [key: string]: any;
+  readonly [key: string]: unknown;
 }
 
 /**
@@ -243,7 +243,7 @@ export interface CMSComponentProps {
   children?: React.ReactNode;
 
   // Index signature for flexible prop access
-  [key: string]: any;
+  readonly [key: string]: unknown;
 }
 
 /**
@@ -258,7 +258,7 @@ export interface CMSCollection<T = EnhancedCMSContent> extends SafeIndexAccess {
   readonly limit?: number;
 
   // Index signature for metadata
-  [key: string]: any;
+  readonly [key: string]: unknown;
 }
 
 /**

@@ -1,5 +1,9 @@
+// CONTEXT7 SOURCE: /vercel/next.js - Client component directive for interactive UI
+// CLIENT UI REASON: Next.js documentation for client-side interactive testimonial cards
 "use client"
 
+// CONTEXT7 SOURCE: /lucide-icons/lucide - Icon imports from Lucide React library
+// ICON LIBRARY REASON: Lucide documentation for Quote and Star icons
 import { Quote, Star } from 'lucide-react'
 import { getAvatarPlaceholder } from '@/lib/cms'
 import { cn } from '@/lib/utils'

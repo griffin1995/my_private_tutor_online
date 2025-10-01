@@ -8,6 +8,15 @@ import { webVitalsTracker } from '@/lib/performance/web-vitals';
 import { businessAnalytics } from '@/lib/analytics/business-analytics';
 import { PERFORMANCE_CONFIG } from '../../../performance.config';
 import { createInfrastructureMonitor } from '@/lib/infrastructure/monitoring';
+import {
+  AlertData,
+  AlertSeverity,
+  AlertType,
+  ErrorContext,
+  NotificationConfiguration,
+  SystemStatus,
+  InfrastructureMonitor
+} from './types';
 
 // CONTEXT7 SOURCE: /getsentry/sentry-docs - Performance monitoring alerting configuration
 // ALERT REASON: Enterprise monitoring requires immediate response to performance degradation
@@ -145,7 +154,7 @@ interface AlertNotificationChannels {
 export class EnterpriseMonitoringSystem {
   private alertConfig: EnterpriseAlertConfig;
   private notificationChannels: AlertNotificationChannels;
-  private infrastructureMonitor: any;
+  private infrastructureMonitor: InfrastructureMonitor | null = null;
   private performanceBudgetMonitor: PerformanceBudgetMonitor | null = null;
   private realUserMonitoring: RealUserMonitoringData | null = null;
   
@@ -345,7 +354,7 @@ export class EnterpriseMonitoringSystem {
   
   // CONTEXT7 SOURCE: /getsentry/sentry-docs - Alert system with multi-channel notifications
   // ALERT REASON: Immediate notification ensures rapid response to critical issues
-  async triggerAlert(alertType: string, severity: 'critical' | 'warning', data: any): Promise<void> {
+  async triggerAlert(alertType: string, severity: 'critical' | 'warning', data: AlertData): Promise<void> {
     const alertId = `${alertType}_${Date.now()}`;
     const timestamp = new Date();
     
@@ -387,7 +396,7 @@ export class EnterpriseMonitoringSystem {
   }
   
   // Multi-channel notification system
-  private async sendNotifications(alertType: string, severity: 'critical' | 'warning', data: any, alertId: string): Promise<void> {
+  private async sendNotifications(alertType: string, severity: 'critical' | 'warning', data: AlertData, alertId: string): Promise<void> {
     const promises: Promise<void>[] = [];
     
     // Email notifications
@@ -415,7 +424,7 @@ export class EnterpriseMonitoringSystem {
   }
   
   // Email notification implementation
-  private async sendEmailNotification(alertType: string, severity: 'critical' | 'warning', data: any, alertId: string): Promise<void> {
+  private async sendEmailNotification(alertType: string, severity: 'critical' | 'warning', data: AlertData, alertId: string): Promise<void> {
     try {
       const template = severity === 'critical' 
         ? this.notificationChannels.email.templates.critical
@@ -443,7 +452,7 @@ export class EnterpriseMonitoringSystem {
   }
   
   // Slack notification implementation
-  private async sendSlackNotification(alertType: string, severity: 'critical' | 'warning', data: any, alertId: string): Promise<void> {
+  private async sendSlackNotification(alertType: string, severity: 'critical' | 'warning', data: AlertData, alertId: string): Promise<void> {
     try {
       const channel = severity === 'critical' 
         ? this.notificationChannels.slack.channels.critical
@@ -495,7 +504,7 @@ export class EnterpriseMonitoringSystem {
   }
   
   // SMS notification implementation
-  private async sendSMSNotification(alertType: string, severity: 'critical' | 'warning', data: any, alertId: string): Promise<void> {
+  private async sendSMSNotification(alertType: string, severity: 'critical' | 'warning', data: AlertData, alertId: string): Promise<void> {
     try {
       const message = `🚨 CRITICAL ALERT: ${alertType} - My Private Tutor Online. Alert ID: ${alertId}. Immediate attention required.`;
       
@@ -517,7 +526,7 @@ export class EnterpriseMonitoringSystem {
   }
   
   // Webhook notification implementation
-  private async sendWebhookNotification(alertType: string, severity: 'critical' | 'warning', data: any, alertId: string): Promise<void> {
+  private async sendWebhookNotification(alertType: string, severity: 'critical' | 'warning', data: AlertData, alertId: string): Promise<void> {
     try {
       const payload = {
         alertId,
@@ -725,7 +734,7 @@ export class EnterpriseMonitoringSystem {
     }
   }
   
-  private formatEmailAlert(alertType: string, severity: string, data: any, template: string): string {
+  private formatEmailAlert(alertType: string, severity: string, data: AlertData, template: string): string {
     // Basic email template formatting
     return `
       <h2>🚨 ${severity.toUpperCase()} Alert: ${alertType}</h2>

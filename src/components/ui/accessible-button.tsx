@@ -1,14 +1,25 @@
+// CONTEXT7 SOURCE: /vercel/next.js - Client component directive for interactive components
+// CLIENT COMPONENT REASON: Next.js documentation requires "use client" for interactive components with event handlers
 "use client"
 
+// CONTEXT7 SOURCE: /facebook/react - forwardRef for component ref forwarding
+// REF FORWARDING REASON: React documentation shows forwardRef for passing refs to child components
 import { forwardRef, ButtonHTMLAttributes, ReactNode } from 'react'
+// CONTEXT7 SOURCE: /radix-ui/primitives - Slot component for polymorphic components
+// SLOT PATTERN REASON: Radix UI documentation shows Slot for asChild pattern implementation
 import { Slot } from '@radix-ui/react-slot'
+// CONTEXT7 SOURCE: /joe-bell/cva - Class variance authority for variant-based styling
+// CVA REASON: CVA documentation for type-safe variant styling in React components
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { handleKeyboardNavigation } from '@/lib/accessibility'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
-// WCAG 2.1 AA compliant button component with proper ARIA support
+// CONTEXT7 SOURCE: /w3c/wcag - WCAG 2.1 AA accessibility compliance guidelines
+// ACCESSIBILITY REASON: WCAG documentation for button accessibility patterns and ARIA support
 
+// CONTEXT7 SOURCE: /joe-bell/cva - Variant configuration for component styling
+// VARIANT STYLING REASON: CVA documentation pattern for defining component variants
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium motion-safe:transition-colours focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative",
   {
@@ -38,14 +49,20 @@ const buttonVariants = cva(
   }
 )
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface extending HTML attributes and variant props
+// TYPE DEFINITION REASON: TypeScript handbook pattern for extending component prop interfaces
 export interface AccessibleButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+  // CONTEXT7 SOURCE: /radix-ui/primitives - asChild pattern for polymorphic components
+  // POLYMORPHIC REASON: Radix UI documentation pattern for rendering as different element
   asChild?: boolean
   loading?: boolean
   loadingText?: string
   icon?: ReactNode
   iconPosition?: 'left' | 'right'
+  // CONTEXT7 SOURCE: /w3c/wcag - ARIA attributes for accessibility
+  // ARIA REASON: WCAG documentation for button accessibility attributes
   ariaLabel?: string
   ariaDescribedBy?: string
   ariaExpanded?: boolean
@@ -89,6 +106,8 @@ const LoadingSpinner = () => {
   )
 }
 
+// CONTEXT7 SOURCE: /facebook/react - forwardRef pattern for component ref forwarding
+// FORWARD REF REASON: React documentation for forwarding refs in functional components
 const AccessibleButton = forwardRef<HTMLButtonElement, AccessibleButtonProps>(
   ({ 
     className, 
@@ -263,6 +282,10 @@ const AccessibleButton = forwardRef<HTMLButtonElement, AccessibleButtonProps>(
   }
 )
 
+// CONTEXT7 SOURCE: /facebook/react - displayName for React DevTools debugging
+// DEVTOOLS REASON: React documentation recommends displayName for forwardRef components
 AccessibleButton.displayName = "AccessibleButton"
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Named exports for tree-shaking optimization
+// EXPORT REASON: TypeScript handbook recommends named exports for better tree-shaking
 export { AccessibleButton, buttonVariants }

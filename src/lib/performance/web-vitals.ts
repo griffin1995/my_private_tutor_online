@@ -1,6 +1,10 @@
+// CONTEXT7 SOURCE: /google-chrome/web-vitals - Core Web Vitals measurement library
+// PERFORMANCE REASON: Web Vitals documentation for measuring user-centric performance metrics
 // Core Web Vitals tracking implementation
 // CLAUDE.md rule 21: Performance targets - LCP <2.5s, INP <200ms, CLS <0.1
 
+// CONTEXT7 SOURCE: /google-chrome/web-vitals - Importing Web Vitals measurement functions
+// METRICS REASON: Web Vitals library for measuring LCP, INP, CLS, FCP, and TTFB
 import { onCLS, onINP, onFCP, onLCP, onTTFB, type Metric } from 'web-vitals'
 
 // Performance thresholds based on CLAUDE.md rule 21

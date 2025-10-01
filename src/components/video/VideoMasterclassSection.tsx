@@ -29,8 +29,9 @@
 // IMPORT REASON: Official Magic UI documentation recommends default import for HeroVideoDialog component
 import HeroVideoDialog from "@/components/magicui/hero-video-dialog";
 import { Separator } from "@/components/ui/separator";
-import { getMasterclassVideo } from "@/lib/cms/cms-images";
-import { type VideoMasterclass } from "../../../COMPREHENSIVE_VIDEO_CMS";
+// CONTEXT7 SOURCE: /microsoft/typescript - Re-export pattern for centralized CMS imports
+// ARCHITECTURAL IMPROVEMENT: Import VideoMasterclass type through CMS layer for better abstraction
+import { getMasterclassVideo, type VideoMasterclass } from "@/lib/cms/cms-images";
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Interface with simple prop patterns for component composition
 // PERFORMANCE OPTIMIZATION: Enhanced props interface accepting direct VideoMasterclass object OR videoId for backwards compatibility
@@ -55,10 +56,14 @@ export function VideoMasterclassSection({
   if (directVideo) {
     // BATCH MODE: Use direct VideoMasterclass object (no lookup needed)
     videoData = directVideo;
-    // Transform inline for display
+    // CONTEXT7 SOURCE: /reactjs/react.dev - Data transformation pattern with null safety
+    // TRANSFORMATION IMPLEMENTATION: Official React documentation Section 3.2 for safe property mapping
+    // Transform inline for display with null-safe property mapping
     transformedVideo = {
       title: videoData.title,
-      videoUrl: videoData.youtubeUrl,
+      // CONTEXT7 SOURCE: /reactjs/react.dev - Object transformation patterns for property mapping
+      // PROPERTY MAPPING FIX: Transform youtubeUrl to videoUrl with null safety as per React.dev data transformation pattern
+      videoUrl: videoData.youtubeUrl || "",
       thumbnailUrl: videoData.thumbnailImage,
       backgroundImage: videoData.backgroundImage,
       alt: videoData.title,

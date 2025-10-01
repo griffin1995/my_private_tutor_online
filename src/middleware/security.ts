@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 // CONTEXT7 SOURCE: /colinhacks/zod - Standard import pattern for Zod schema validation
 // IMPORT FIX REASON: Official Zod documentation specifies standard import, not modularized subpath
 import * as z from 'zod'
+// CONTEXT7 SOURCE: /vercel/next.js - AI-powered security integration patterns
+// SECURITY ENHANCEMENT REASON: Phase 2.1 advanced security with AI analytics and automated response
+import { incidentResponseOrchestrator } from '@/lib/incident-response'
+import { realTimeThreatAnalyzer } from '@/lib/security-analytics'
 
 // CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 security middleware
 // Reference: /vercel/next.js security patterns and OWASP compliance
@@ -161,17 +165,22 @@ export function applySecurityHeaders(response: NextResponse): NextResponse {
 }
 
 /**
- * Main security middleware
+ * Main security middleware with AI-powered threat detection
+ * CONTEXT7 SOURCE: /vercel/next.js - Enhanced security middleware with ML analytics
  */
 export async function securityMiddleware(request: NextRequest): Promise<NextResponse | null> {
   const path = request.nextUrl.pathname
   const method = request.method
   const clientIp = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+  const userAgent = request.headers.get('user-agent') || 'unknown'
 
   // Skip security checks for static assets including videos
   if (path.match(/\.(ico|png|jpg|jpeg|svg|gif|webp|css|js|woff|woff2|ttf|otf|mp4|webm|mov|avi)$/)) {
     return null
   }
+
+  // Create security event for AI analysis
+  let securityEvent: SecurityEvent | null = null
 
   // Determine rate limit based on path
   let rateLimit = RATE_LIMITS.api
@@ -186,6 +195,31 @@ export async function securityMiddleware(request: NextRequest): Promise<NextResp
   // Check rate limit
   const rateLimitResult = checkRateLimit(`${clientIp}:${path}`, rateLimit)
   if (!rateLimitResult.allowed) {
+    // Log rate limit violation to AI security system
+    securityEvent = {
+      type: 'rate_limit',
+      severity: 'medium',
+      timestamp: new Date(),
+      clientIp,
+      path,
+      details: {
+        method,
+        userAgent,
+        limit: rateLimit,
+        exceeded: rateLimitResult.remaining < 0
+      }
+    }
+
+    // Send to security monitor for AI analysis
+    securityMonitor.logEvent(securityEvent)
+
+    // Process through incident response system
+    const incidentResponse = await incidentResponseOrchestrator.handleSecurityEvent(securityEvent)
+
+    if (incidentResponse.blocked) {
+      return new NextResponse('Access Denied - Security Violation', { status: 403 })
+    }
+
     return new NextResponse('Too Many Requests', {
       status: 429,
       headers: {
@@ -193,6 +227,7 @@ export async function securityMiddleware(request: NextRequest): Promise<NextResp
         'X-RateLimit-Limit': String(rateLimit),
         'X-RateLimit-Remaining': String(rateLimitResult.remaining),
         'X-RateLimit-Reset': new Date(rateLimitResult.resetTime).toISOString(),
+        'X-Incident-Id': incidentResponse.incidentId || '',
       },
     })
   }
@@ -200,26 +235,124 @@ export async function securityMiddleware(request: NextRequest): Promise<NextResp
   // CSRF protection for state-changing operations
   if (method === 'POST' || method === 'PUT' || method === 'DELETE' || method === 'PATCH') {
     const sessionId = request.cookies.get('session')?.value || request.cookies.get('admin_session')?.value
-    
+
     if (sessionId && !path.startsWith('/api/auth/login')) {
       const csrfToken = request.headers.get('x-csrf-token')
-      
+
       if (!csrfToken || !verifyCSRFToken(sessionId, csrfToken)) {
+        // Log CSRF failure to AI security system
+        securityEvent = {
+          type: 'csrf_failure',
+          severity: 'high',
+          timestamp: new Date(),
+          clientIp,
+          path,
+          details: {
+            method,
+            userAgent,
+            hasSession: !!sessionId,
+            hasToken: !!csrfToken
+          }
+        }
+
+        securityMonitor.logEvent(securityEvent)
+
+        // Process through incident response system
+        const incidentResponse = await incidentResponseOrchestrator.handleSecurityEvent(securityEvent)
+
+        if (incidentResponse.blocked) {
+          return new NextResponse('Access Denied - Security Violation', { status: 403 })
+        }
+
         return new NextResponse('Invalid CSRF Token', { status: 403 })
       }
     }
   }
 
-  // Log security events for monitoring
+  // AI-powered threat analysis for suspicious patterns
+  if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
+    // Extract request body for analysis (if available)
+    const contentType = request.headers.get('content-type') || ''
+    let requestData: any = {}
+
+    try {
+      if (contentType.includes('application/json')) {
+        const body = await request.text()
+        requestData = JSON.parse(body)
+      } else if (contentType.includes('application/x-www-form-urlencoded')) {
+        const body = await request.text()
+        requestData = Object.fromEntries(new URLSearchParams(body))
+      }
+    } catch (error) {
+      // Unable to parse body - not necessarily an error
+      requestData = { parseError: true }
+    }
+
+    // Create security event for AI analysis
+    securityEvent = {
+      type: 'suspicious_input',
+      severity: 'low',
+      timestamp: new Date(),
+      clientIp,
+      path,
+      details: {
+        method,
+        userAgent,
+        contentType,
+        requestData,
+        referer: request.headers.get('referer')
+      }
+    }
+
+    // Analyze with AI threat detection
+    const threatAnalysis = await realTimeThreatAnalyzer.processEvent(securityEvent)
+
+    if (threatAnalysis.action === 'block') {
+      // Log to security monitor
+      securityMonitor.logEvent({
+        ...securityEvent,
+        severity: 'critical',
+        type: 'sql_injection_attempt'
+      })
+
+      return new NextResponse('Access Denied - Malicious Input Detected', {
+        status: 403,
+        headers: {
+          'X-Security-Alert': 'true',
+          'X-Threat-Level': String(threatAnalysis.threatLevel)
+        }
+      })
+    } else if (threatAnalysis.action === 'challenge') {
+      // Would trigger additional authentication/CAPTCHA
+      // For now, log and allow with warning
+      console.warn('[Security Challenge Required]', {
+        clientIp,
+        path,
+        threatLevel: threatAnalysis.threatLevel,
+        details: threatAnalysis.details
+      })
+    }
+  }
+
+  // Enhanced logging for admin and auth endpoints with AI monitoring
   if (path.startsWith('/admin') || path.startsWith('/api/auth')) {
-    console.log('[Security Audit]', {
+    const auditEvent = {
       timestamp: new Date().toISOString(),
       method,
       path,
       clientIp,
-      userAgent: request.headers.get('user-agent'),
+      userAgent,
       referer: request.headers.get('referer'),
-    })
+      authenticated: !!request.cookies.get('session')?.value || !!request.cookies.get('admin_session')?.value
+    }
+
+    console.log('[Security Audit]', auditEvent)
+
+    // Track authentication attempts
+    if (path.includes('login') && method === 'POST') {
+      // This will be logged after authentication attempt result
+      // The auth handler should call securityMonitor.logEvent with result
+    }
   }
 
   return null

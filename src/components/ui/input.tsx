@@ -1,27 +1,29 @@
+// CONTEXT7 SOURCE: /reactjs/react.dev - Native form input patterns
+// IMPLEMENTATION REASON: Official React documentation for accessible input components
+
 /**
- * Documentation Source: HTML Input Element + WCAG 2.1 AA
- * Reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
- * Reference: https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html
- * Reference: https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html
- * 
- * Pattern: Accessible Input Component with Validation States
- * Architecture:
- * - Native HTML input element
- * - WCAG 2.1 AA compliant focus management
+ * Input Component with WCAG 2.1 AA Compliance
+ *
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Component props for native elements
+ * Pattern: Enhanced native input with validation states
+ * - Native HTML input element preservation
+ * - Type-safe ComponentProps pattern
+ * - File input specific styling
  * - Validation state indicators
- * - File input styling
- * 
+ *
+ * CONTEXT7 SOURCE: /w3c/wcag - Focus and error identification guidelines
  * Accessibility Features:
- * - Focus visible ring indicators
- * - ARIA invalid state support
- * - High contrast ratios
- * - Disabled state handling
- * - Screen reader friendly
- * 
- * Design System:
+ * - Focus visible ring indicators (2.4.7)
+ * - ARIA invalid state support (3.3.1)
+ * - High contrast ratios (1.4.3)
+ * - Disabled state handling (1.4.11)
+ * - Screen reader friendly announcements
+ *
+ * Design System Implementation:
  * - Consistent height and padding
- * - Theme-aware color system
- * - Shadow and border styling
+ * - Theme-aware color system via CSS variables
+ * - Shadow and border styling for depth
+ * - Selection color customization
  */
 
 import * as React from "react"

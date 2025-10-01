@@ -1,9 +1,36 @@
+// CONTEXT7 SOURCE: /websites/radix-ui-primitives - Navigation Menu component patterns
+// IMPLEMENTATION REASON: Official Radix UI documentation for accessible navigation menus
+
 import * as React from "react"
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { cva } from "class-variance-authority"
 import { ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+
+/**
+ * Navigation Menu Component System
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Navigation Menu documentation
+ * Pattern: Accessible navigation with keyboard support
+ * - Full keyboard navigation (arrow keys, tab, escape)
+ * - ARIA attributes for screen readers
+ * - Viewport management for dropdown positioning
+ * - Trigger and content association
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Menu interaction patterns
+ * Features:
+ * - Automatic focus management
+ * - Submenus with nested navigation
+ * - Hover and click triggers
+ * - Mobile-responsive behavior
+ *
+ * Styling Implementation:
+ * - CVA for variant management
+ * - Data attributes for state styling
+ * - Smooth animations with Tailwind
+ * - Viewport-aware positioning
+ */
 
 function NavigationMenu({
   className,

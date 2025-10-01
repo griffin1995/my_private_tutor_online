@@ -18,6 +18,7 @@
     "clean-cache": "rm -rf .next/cache cache",
     "start": "next start",
     "lint": "next lint",
+    "validate:cms-architecture": "node scripts/validate-cms-architecture.js",
     "lint:fix": "next lint --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
@@ -96,7 +97,16 @@
     "error-prevention:benchmark": "node scripts/error-prevention-cli.js benchmark",
     "error-prevention:health": "node scripts/error-prevention-cli.js health",
     "error-prevention:install": "node scripts/error-prevention-cli.js install",
-    "error-prevention:validate": "node scripts/error-prevention-cli.js validate"
+    "error-prevention:validate": "node scripts/error-prevention-cli.js validate",
+    "perf:monitor": "node scripts/performance-monitor.js monitor",
+    "perf:benchmark": "node scripts/performance-monitor.js benchmark",
+    "perf:report": "node scripts/performance-monitor.js report",
+    "perf:status": "node scripts/performance-status.mjs",
+    "perf:dashboard": "node scripts/performance-monitor.js dashboard",
+    "perf:protect": "node scripts/performance-monitor.js protect",
+    "perf:quick": "node scripts/performance-status.mjs",
+    "build:monitor": "npm run build && npm run perf:report",
+    "build:benchmark": "npm run build && npm run perf:benchmark"
   },
   "overrides": {
     "@visx/axis": {

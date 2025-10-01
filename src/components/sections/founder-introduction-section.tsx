@@ -6,6 +6,7 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
+import { Crown } from 'lucide-react';
 import HeroVideoDialog from '../magicui/hero-video-dialog';
 import { Highlighter } from '../magicui/highlighter';
 
@@ -197,20 +198,39 @@ export function FounderIntroductionSection({}: FounderIntroductionSectionProps =
               transition: { duration: 0.3, ease: "easeOut" }
             }}
           >
-            <m.p
-              className="text-center font-medium text-[#1E3A5F] tracking-tight"
-              style={{
-                fontSize: '16px',
-                fontWeight: '600',
-                color: '#1E3A5F',
-                lineHeight: '1.4'
-              }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 1.1, ease: "easeOut" }}
-            >
-              Trusted by Royal Clientele
-            </m.p>
+            <div className="flex flex-col items-center justify-center text-center">
+              {/* CONTEXT7 SOURCE: /lucide-icons/lucide - Crown icon implementation with color and size props */}
+              {/* CROWN ICON REASON: Official Lucide React documentation for icon components with SVG attributes */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Icon sizing with size prop for 300% increase (24px → 72px) */}
+              {/* SIZE REVISION REASON: Official Lucide React documentation supports direct size prop for icon scaling */}
+              <m.div
+                initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 1.0, ease: "easeOut" }}
+                className="mb-2"
+              >
+                <Crown
+                  size={72}
+                  color="#1E3A5F"
+                  aria-label="Royal Crown Icon"
+                  className="transition-all duration-300 group-hover:scale-110"
+                />
+              </m.div>
+              <m.p
+                className="text-center font-medium text-[#1E3A5F] tracking-tight"
+                style={{
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  color: '#1E3A5F',
+                  lineHeight: '1.4'
+                }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 1.1, ease: "easeOut" }}
+              >
+                Trusted by Royal Clientele
+              </m.p>
+            </div>
           </m.div>
         </m.div>
       </div>

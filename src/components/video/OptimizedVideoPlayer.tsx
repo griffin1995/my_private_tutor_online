@@ -39,10 +39,11 @@ import { cn } from '@/lib/utils'
 
 // CONTEXT7 SOURCE: /typescript/handbook - Import comprehensive type definitions
 // TYPE ORGANIZATION: Official TypeScript documentation recommends organizing types in separate files
-import type { 
-  OptimizedVideoPlayerProps, 
-  VideoPlayerState, 
-  VideoPlayerError 
+import type {
+  OptimizedVideoPlayerProps,
+  VideoPlayerState,
+  VideoPlayerError,
+  ReactPlayerInstance
 } from './OptimizedVideoPlayer.types'
 
 // CONTEXT7 SOURCE: /cookpete/react-player - Lazy loading import to reduce bundle size
@@ -131,7 +132,7 @@ export const OptimizedVideoPlayer = React.memo<OptimizedVideoPlayerProps>(({
 
   // CONTEXT7 SOURCE: /reactjs/react.dev - useCallback for performance optimization with comprehensive state updates
   // CALLBACK OPTIMIZATION: Official React documentation recommends useCallback for event handlers with proper state management
-  const handleReady = useCallback((player: any) => {
+  const handleReady = useCallback((player: ReactPlayerInstance) => {
     setPlayerState(prev => ({ ...prev, isReady: true, isLoading: false }))
     if (onReady) {
       onReady()
@@ -164,7 +165,7 @@ export const OptimizedVideoPlayer = React.memo<OptimizedVideoPlayerProps>(({
     setPlayerState(prev => ({ ...prev, duration }))
   }, [])
 
-  const handleError = useCallback((error: any) => {
+  const handleError = useCallback((error: VideoPlayerError | Error | string) => {
     console.error('OptimizedVideoPlayer error:', error)
     
     // CONTEXT7 SOURCE: /typescript/handbook - Comprehensive error object creation

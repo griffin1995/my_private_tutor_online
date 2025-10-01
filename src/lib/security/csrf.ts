@@ -1,8 +1,12 @@
+// CONTEXT7 SOURCE: /nodejs/node - Crypto module for secure token generation
+// CRYPTO REASON: Node.js crypto module provides cryptographically secure random values
 import crypto from 'crypto'
+// CONTEXT7 SOURCE: /vercel/next.js - Cookies function from next/headers for server-side cookie management
+// COOKIE MANAGEMENT REASON: Next.js documentation shows cookies() for secure server-side cookie handling
 import { cookies } from 'next/headers'
 
-// CMS DATA SOURCE: Using Context7 MCP documentation for Next.js 15 CSRF protection
-// Reference: /vercel/next.js security patterns for form protection
+// CONTEXT7 SOURCE: /vercel/next.js - Security patterns for CSRF protection in Next.js applications
+// CSRF PROTECTION REASON: Next.js documentation recommends CSRF tokens for form security
 
 /**
  * CSRF token management for premium tutoring service
@@ -20,10 +24,14 @@ const TOKEN_EXPIRY = 3600000 // 1 hour
  * Generate a new CSRF token and store it in a secure cookie
  */
 export async function generateCSRFToken(): Promise<string> {
+  // CONTEXT7 SOURCE: /nodejs/node - randomBytes for cryptographically secure random values
+  // TOKEN GENERATION REASON: Node.js crypto.randomBytes ensures unpredictable token generation
   const token = crypto.randomBytes(TOKEN_LENGTH).toString('hex')
   const expires = new Date(Date.now() + TOKEN_EXPIRY)
-  
+
   const cookieStore = await cookies()
+  // CONTEXT7 SOURCE: /vercel/next.js - Secure cookie settings for session management
+  // COOKIE SECURITY REASON: Next.js documentation shows httpOnly, secure, sameSite for CSRF protection
   cookieStore.set(CSRF_COOKIE_NAME, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',

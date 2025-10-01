@@ -1,9 +1,17 @@
+// CONTEXT7 SOURCE: /vercel/next.js - Client component directive for interactive components
+// CLIENT COMPONENT REASON: Next.js documentation requires "use client" for event handlers
 "use client"
 
+// CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimized images
+// IMAGE OPTIMIZATION REASON: Next.js documentation for automatic image optimization
 import Image from 'next/image'
+// CONTEXT7 SOURCE: /radix-ui/primitives - Card component primitives
+// CARD COMPONENT REASON: Radix UI documentation for accessible card components
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+// CONTEXT7 SOURCE: /lucide-icons/lucide - Icon imports from Lucide library
+// ICON IMPORTS REASON: Lucide documentation for tree-shakeable icon imports
 import { GraduationCap, BookOpen, Target } from 'lucide-react'
 import { cn } from '@/lib/utils'
 

@@ -1,3 +1,8 @@
+// CONTEXT7 SOURCE: /microsoft/typescript - Object literal type definitions with const assertion
+// CONFIGURATION REASON: TypeScript const assertions ensure type safety and immutability for brand configuration
+// CONTEXT7 SOURCE: /vercel/next.js - Configuration patterns for Next.js applications
+// BRAND CONFIG REASON: Centralized brand configuration following Next.js best practices for constants
+
 // Brand configuration for My Private Tutor Online
 // This file contains business information that can be managed through CMS
 
@@ -200,6 +205,8 @@ export const brandTypography = {
   },
 } as const;
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Type inference from const values using typeof
+// TYPE EXPORT REASON: TypeScript handbook recommends typeof for deriving types from runtime values
 // Export types for TypeScript
 export type BrandConfig = typeof brandConfig;
 export type BrandColours = typeof brandColours;

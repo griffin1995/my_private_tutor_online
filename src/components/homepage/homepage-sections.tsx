@@ -20,13 +20,34 @@ import {
   LazyServicesCarousel
 } from '../dynamic/lazy-loaded-components'
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Service content interface definitions
+// TYPE SAFETY: Official TypeScript documentation requires comprehensive interface definitions
+interface ServiceContent {
+  readonly id: string
+  readonly title: string
+  readonly description: string
+  readonly icon?: string
+  readonly href: string
+  readonly featured: boolean
+  readonly category: string
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - Student image metadata interface
+// IMAGE METADATA: Comprehensive typing for student image data structures
+interface StudentImageData {
+  readonly src: string
+  readonly alt: string
+  readonly width?: number
+  readonly height?: number
+  readonly placeholder?: string
+  readonly optimized: boolean
+}
+
 // CONTEXT7 SOURCE: /vercel/next.js - Props interface for client component wrapper
 // TYPE SAFETY REASON: Official Next.js documentation ensures proper prop typing
-// CONTEXT7 SOURCE: /vercel/next.js - Props passing patterns for proper data structure types
-// INTERFACE FIX: Official Next.js documentation requires matching interface types - ServicesCarousel expects Record<string, StudentImageData> not array
 interface HomepageSectionsProps {
-  services: any[]
-  studentImages: Record<string, any>
+  readonly services: readonly ServiceContent[]
+  readonly studentImages: Record<string, StudentImageData>
 }
 
 // CONTEXT7 SOURCE: /vercel/next.js - Client component wrapper for homepage sections

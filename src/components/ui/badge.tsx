@@ -1,7 +1,26 @@
+// CONTEXT7 SOURCE: /reactjs/react.dev - Component composition patterns
+// IMPLEMENTATION REASON: Official React documentation for variant-based components
+
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+
+/**
+ * Badge Component with Variant System
+ *
+ * CONTEXT7 SOURCE: /reactjs/react.dev - Component props and composition
+ * Pattern: Semantic badge element with variant styling
+ * - Multiple visual variants for different contexts
+ * - Consistent sizing and typography
+ * - Theme-aware color schemes
+ *
+ * CVA Integration:
+ * - Type-safe variant props
+ * - Compound variant support
+ * - Default variant configuration
+ * - Runtime variant composition
+ */
 
 const badgeVariants = cva(
   "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colours focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",

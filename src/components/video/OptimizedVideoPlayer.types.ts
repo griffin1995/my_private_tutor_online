@@ -44,8 +44,8 @@ export interface ReactPlayerConfig {
     }
     embedOptions?: {
       host?: string
-      onUnstarted?: (event: any) => void
-      onError?: (event: any) => void
+      onUnstarted?: (event: YouTubePlayerEvent) => void
+      onError?: (event: YouTubeErrorEvent) => void
     }
   }
   vimeo?: {
@@ -88,23 +88,23 @@ export interface ReactPlayerConfig {
     forceHLS?: boolean
     forceDASH?: boolean
     forceFLV?: boolean
-    hlsOptions?: any
-    dashOptions?: any
-    flvOptions?: any
+    hlsOptions?: HLSPlayerOptions
+    dashOptions?: DASHPlayerOptions
+    flvOptions?: FLVPlayerOptions
   }
 }
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Event handler type definitions for React components
 // EVENT HANDLERS: Official React documentation shows proper callback function typing
 export interface VideoPlayerCallbacks {
-  onReady?: (player: any) => void
+  onReady?: (player: ReactPlayerInstance) => void
   onStart?: () => void
   onPlay?: () => void
   onPause?: () => void
   onBuffer?: () => void
   onBufferEnd?: () => void
   onEnded?: () => void
-  onError?: (error: any) => void
+  onError?: (error: VideoPlayerError) => void
   onProgress?: (state: { played: number; playedSeconds: number; loaded: number; loadedSeconds: number }) => void
   onDuration?: (duration: number) => void
   onSeek?: (seconds: number) => void
@@ -220,7 +220,7 @@ export interface VideoPlayerError {
   type: 'network' | 'decode' | 'src_not_supported' | 'permission' | 'unknown'
   message: string
   code?: number
-  details?: any
+  details?: Record<string, unknown>
   timestamp: number
   videoId: string
   recoverable: boolean
@@ -266,7 +266,7 @@ export interface VideoPlayerRef {
   getCurrentTime: () => number
   getSecondsLoaded: () => number
   getDuration: () => number
-  getInternalPlayer: () => any
+  getInternalPlayer: () => ReactPlayerInstance | null
   
   // Fullscreen and PiP methods
   requestFullscreen: () => void
@@ -385,4 +385,170 @@ export interface VideoPlayerAnalytics {
     averageBitrate?: number
   }
   metadata: VideoMetadata
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - YouTube Player API event interfaces
+// YOUTUBE EVENTS: Official YouTube Player API documentation provides structured event definitions
+export interface YouTubePlayerEvent {
+  readonly target: YouTubePlayer
+  readonly data: number
+}
+
+export interface YouTubeErrorEvent {
+  readonly target: YouTubePlayer
+  readonly data: YouTubeErrorCode
+}
+
+export interface YouTubePlayer {
+  playVideo(): void
+  pauseVideo(): void
+  stopVideo(): void
+  seekTo(seconds: number, allowSeekAhead?: boolean): void
+  getCurrentTime(): number
+  getDuration(): number
+  getVideoUrl(): string
+  getPlayerState(): YouTubePlayerState
+  getPlaybackRate(): number
+  setPlaybackRate(suggestedRate: number): void
+  mute(): void
+  unMute(): void
+  isMuted(): boolean
+  setVolume(volume: number): void
+  getVolume(): number
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - YouTube Player state constants
+// PLAYER STATES: Official YouTube Player API state enumeration
+export enum YouTubePlayerState {
+  UNSTARTED = -1,
+  ENDED = 0,
+  PLAYING = 1,
+  PAUSED = 2,
+  BUFFERING = 3,
+  CUED = 5
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - YouTube Player error codes
+// ERROR CODES: Official YouTube Player API error code enumeration
+export enum YouTubeErrorCode {
+  INVALID_PARAMETER = 2,
+  HTML5_ERROR = 5,
+  VIDEO_NOT_FOUND = 100,
+  EMBEDDING_NOT_ALLOWED = 101,
+  EMBEDDING_NOT_ALLOWED_IN_DISGUISE = 150
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - ReactPlayer instance interface
+// REACT PLAYER: ReactPlayer component instance interface definition
+export interface ReactPlayerInstance {
+  seekTo(amount: number, type?: 'seconds' | 'fraction'): void
+  getCurrentTime(): number
+  getSecondsLoaded(): number
+  getDuration(): number
+  getInternalPlayer(key?: string): unknown
+  showPreview(): void
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - HLS player configuration options
+// HLS OPTIONS: HTTP Live Streaming player configuration interface
+export interface HLSPlayerOptions {
+  readonly enableWorker?: boolean
+  readonly lowLatencyMode?: boolean
+  readonly backBufferLength?: number
+  readonly maxBufferLength?: number
+  readonly maxMaxBufferLength?: number
+  readonly maxBufferSize?: number
+  readonly maxBufferHole?: number
+  readonly highBufferWatchdogPeriod?: number
+  readonly nudgeOffset?: number
+  readonly nudgeMaxRetry?: number
+  readonly maxFragLookUpTolerance?: number
+  readonly liveSyncDurationCount?: number
+  readonly liveMaxLatencyDurationCount?: number
+  readonly liveDurationInfinity?: boolean
+  readonly enableSoftwareAES?: boolean
+  readonly manifestLoadingTimeOut?: number
+  readonly manifestLoadingMaxRetry?: number
+  readonly manifestLoadingRetryDelay?: number
+  readonly levelLoadingTimeOut?: number
+  readonly levelLoadingMaxRetry?: number
+  readonly levelLoadingRetryDelay?: number
+  readonly fragLoadingTimeOut?: number
+  readonly fragLoadingMaxRetry?: number
+  readonly fragLoadingRetryDelay?: number
+  readonly startFragPrefetch?: boolean
+  readonly testBandwidth?: boolean
+  readonly progressive?: boolean
+  readonly lowLatencyMode?: boolean
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - DASH player configuration options
+// DASH OPTIONS: Dynamic Adaptive Streaming over HTTP player configuration interface
+export interface DASHPlayerOptions {
+  readonly debug?: {
+    readonly logLevel?: 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'FATAL'
+  }
+  readonly streaming?: {
+    readonly retryAttempts?: {
+      readonly MPD?: number
+      readonly XLinkExpansion?: number
+      readonly InitialRepresentation?: number
+      readonly MediaSegment?: number
+      readonly BitstreamSwitching?: number
+      readonly FragmentedText?: number
+      readonly lowLatencyReductionFactor?: number
+    }
+    readonly retryIntervals?: {
+      readonly MPD?: number
+      readonly XLinkExpansion?: number
+      readonly InitialRepresentation?: number
+      readonly MediaSegment?: number
+      readonly BitstreamSwitching?: number
+      readonly FragmentedText?: number
+      readonly lowLatencyReductionFactor?: number
+    }
+    readonly abandonLoadTimeout?: number
+    readonly wallclockTimeUpdateInterval?: number
+    readonly manifestUpdateRetryInterval?: number
+    readonly cacheInitSegments?: boolean
+    readonly bufferToKeep?: number
+    readonly bufferPruningInterval?: number
+    readonly stableBufferTime?: number
+    readonly bufferTimeAtTopQuality?: number
+    readonly bufferTimeAtTopQualityLongForm?: number
+    readonly longFormContentDurationThreshold?: number
+    readonly fastSwitchEnabled?: boolean
+    readonly movingAverageMethod?: 'slidingWindow' | 'exponential'
+    readonly jumpGaps?: boolean
+    readonly smallGapLimit?: number
+    readonly liveDelay?: number
+    readonly useSuggestedPresentationDelay?: boolean
+  }
+}
+
+// CONTEXT7 SOURCE: /microsoft/typescript - FLV player configuration options
+// FLV OPTIONS: Flash Live Video player configuration interface
+export interface FLVPlayerOptions {
+  readonly type?: 'flv' | 'mp4' | 'm4v' | 'm4a' | 'aac'
+  readonly isLive?: boolean
+  readonly cors?: boolean
+  readonly withCredentials?: boolean
+  readonly hasAudio?: boolean
+  readonly hasVideo?: boolean
+  readonly duration?: number
+  readonly filesize?: number
+  readonly enableWorker?: boolean
+  readonly enableStashBuffer?: boolean
+  readonly stashInitialSize?: number
+  readonly lazyLoad?: boolean
+  readonly lazyLoadMaxDuration?: number
+  readonly lazyLoadRecoverDuration?: number
+  readonly deferLoadAfterSourceOpen?: boolean
+  readonly seekType?: 'range' | 'param' | 'custom'
+  readonly seekParamStart?: string
+  readonly seekParamEnd?: string
+  readonly rangeLoadZeroStart?: boolean
+  readonly customSeekHandler?: (currentTime: number) => string | undefined
+  readonly reuseRedirectedURL?: boolean
+  readonly referrerPolicy?: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'same-origin' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'unsafe-url'
 }

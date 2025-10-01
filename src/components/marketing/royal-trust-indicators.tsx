@@ -1,23 +1,35 @@
+// CONTEXT7 SOURCE: /vercel/next.js - Client component directive for interactive components
+// CLIENT COMPONENT REASON: Next.js documentation requires "use client" for components with client-side interactivity
 "use client"
 
+// CONTEXT7 SOURCE: /lucide-icons/lucide - Icon imports from Lucide React library
+// ICON LIBRARY REASON: Lucide documentation shows importing individual icons for tree-shaking
 import { Crown, Award, TrendingUp } from 'lucide-react'
+// CONTEXT7 SOURCE: /vercel/next.js - CMS data fetching pattern for static content
+// CMS PATTERN REASON: Next.js documentation pattern for synchronous CMS data access
 import { getTrustIndicators } from '@/lib/cms'
 import { cn } from '@/lib/utils'
 
 // CMS DATA SOURCE: Using getTrustIndicators for trust indicator content
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface definition for component props
+// TYPE SAFETY REASON: TypeScript handbook pattern for defining component prop interfaces
 interface RoyalTrustIndicatorsProps {
   className?: string
   variant?: 'horizontal' | 'vertical' | 'grid' | 'premium'
   showDescription?: boolean
 }
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Object literal with const assertion for type inference
+// ICON MAPPING REASON: TypeScript handbook pattern for mapping strings to component types
 const iconMap = {
   '👑': Crown,
   '⭐': Award,
   '📊': TrendingUp,
 }
 
+// CONTEXT7 SOURCE: /facebook/react - Function component with TypeScript props
+// COMPONENT PATTERN REASON: React documentation pattern for typed functional components
 export function RoyalTrustIndicators({ 
   className, 
   variant = 'premium',

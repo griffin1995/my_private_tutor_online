@@ -520,12 +520,23 @@ interface FunnelData {
   dropOffRate: number;
 }
 
+// CONTEXT7 SOURCE: /microsoft/typescript - Analytics metrics interface definitions
+// METRICS INTERFACE: Official TypeScript documentation shows structured metric data interfaces
+interface PerformanceMetrics {
+  readonly conversionRate: number
+  readonly performanceScore: number
+  readonly loadTime: number
+  readonly userEngagement: number
+  readonly errorRate: number
+  readonly timestamp: number
+}
+
 interface OptimizationStrategyReport {
-  strategyId: string;
-  appliedAt: number;
-  beforeMetrics: any;
-  afterMetrics: any;
-  impact: number;
+  readonly strategyId: string
+  readonly appliedAt: number
+  readonly beforeMetrics: PerformanceMetrics
+  readonly afterMetrics: PerformanceMetrics
+  readonly impact: number
 }
 
 interface OptimizationImpact {

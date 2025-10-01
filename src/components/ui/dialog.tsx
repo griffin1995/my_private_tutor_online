@@ -1,11 +1,34 @@
-// Context7 MCP Documentation Source: Using /radix-ui/website for official Dialog component patterns
-// GDPR and WCAG 2.1 AA compliant dialog implementation for premium tutoring service
+// CONTEXT7 SOURCE: /websites/radix-ui-primitives - Dialog component patterns
+// IMPLEMENTATION REASON: Official Radix UI documentation for accessible modal dialogs
 
 'use client'
 
 import * as React from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { cn } from '@/lib/utils'
+
+/**
+ * Dialog Component System with Radix UI
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Dialog primitive documentation
+ * Pattern: Accessible modal dialog implementation
+ * - Focus trap for keyboard navigation
+ * - Portal rendering for proper stacking
+ * - Escape key and overlay click to close
+ * - Screen reader announcements
+ *
+ * CONTEXT7 SOURCE: /websites/radix-ui-primitives - Overlay and content patterns
+ * Accessibility Features:
+ * - ARIA modal role and attributes
+ * - Focus restoration on close
+ * - Scroll lock when open
+ * - Animated transitions with motion preferences
+ *
+ * WCAG 2.1 AA Compliance:
+ * - Keyboard navigation support
+ * - Focus indicators meeting contrast requirements
+ * - Proper heading hierarchy in content
+ */
 
 const Dialog = DialogPrimitive.Root
 

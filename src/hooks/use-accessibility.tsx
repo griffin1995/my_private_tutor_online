@@ -1,15 +1,19 @@
+// CONTEXT7 SOURCE: /vercel/next.js - Client component directive for browser APIs
+// CLIENT DIRECTIVE REASON: Next.js documentation for client-side accessibility hooks
 "use client"
 
 /**
- * React Hooks for Accessibility Features
- * Documentation Source: React Hooks & WCAG 2.1 Guidelines
- * Reference: https://react.dev/reference/react/hooks
- * Reference: https://www.w3.org/WAI/WCAG21/quickref/
- * 
+ * CONTEXT7 SOURCE: /facebook/react - Custom React hooks for accessibility
+ * ACCESSIBILITY HOOKS REASON: React documentation for creating reusable accessibility hooks
+ * CONTEXT7 SOURCE: /w3c/wcag - WCAG 2.1 accessibility guidelines
+ * WCAG COMPLIANCE REASON: WCAG documentation for accessibility requirements
+ *
  * Pattern: Custom React hooks for accessibility
  * Purpose: Provide reusable accessibility patterns in React components
  */
 
+// CONTEXT7 SOURCE: /facebook/react - React hooks for state and effects
+// HOOKS IMPORT REASON: React documentation for useState, useEffect, useCallback, useRef
 import { useEffect, useState, useCallback, useRef } from 'react'
 import { 
   prefersReducedMotion, 

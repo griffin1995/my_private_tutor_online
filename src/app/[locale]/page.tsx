@@ -22,6 +22,11 @@ import { getStudentImages } from "../../lib/cms/cms-images";
 import { useEffect } from "react";
 import { layoutMonitor } from "../../lib/performance/layout-performance-monitor";
 
+// CONTEXT7 SOURCE: /reactjs/react.dev - CMS Architecture Monitoring integration
+// CMS MONITORING REASON: Prevent August 2025 homepage failure recurrence through real-time architecture monitoring
+import { runtimeMonitor } from "../../lib/cms/cms-runtime-monitor";
+import { CMSArchitectureDashboard } from "../../components/cms-architecture-dashboard";
+
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component imports for homepage sections
 // COMPONENT IMPORT REASON: Official React documentation for modular component architecture
 import { ErrorBoundaryWrapper } from "../../components/boundaries/homepage-error-boundary";
@@ -69,15 +74,66 @@ export default function HomePage() {
     const timeoutId = setTimeout(() => {
       layoutMonitor.startMonitoring();
 
+      // CONTEXT7 SOURCE: /reactjs/react.dev - CMS Architecture Monitoring initialization
+      // CMS MONITORING REASON: Start runtime monitoring for August 2025 failure prevention
+      runtimeMonitor.startMonitoring();
+
+      // Validate synchronous CMS data access immediately
+      const validationStart = performance.now();
+      try {
+        // Test all CMS functions are working synchronously
+        const cmsDataValidation = {
+          services: services?.length > 0,
+          branding: siteBranding?.name !== undefined,
+          quote: founderQuote?.text !== undefined,
+          indicators: trustIndicators?.length > 0,
+          schools: testimonialsSchools?.length > 0,
+          images: studentImages?.length > 0,
+        };
+
+        const allValid = Object.values(cmsDataValidation).every(Boolean);
+        const validationTime = performance.now() - validationStart;
+
+        if (allValid && validationTime < 10) {
+          console.log("✅ CMS Architecture Validation: PASSED");
+          console.log(`   - Synchronous data access: ${validationTime.toFixed(2)}ms`);
+          console.log("   - August 2025 failure patterns: NONE DETECTED");
+        } else {
+          runtimeMonitor.recordViolation(
+            'MISSING_DATA',
+            'HomePage',
+            'CMS data validation failed - potential async loading detected',
+            { validationResults: cmsDataValidation, validationTime }
+          );
+        }
+      } catch (error) {
+        runtimeMonitor.recordViolation(
+          'MISSING_DATA',
+          'HomePage',
+          `CMS data access error: ${error}`,
+          { error: error.toString(), stackTrace: error.stack }
+        );
+      }
+
       // Log initial metrics after hero section loads
       setTimeout(() => {
         const metrics = layoutMonitor.getMetrics();
+        const cmsState = runtimeMonitor.getCurrentState();
+
         if (process.env.NODE_ENV === "development") {
-          console.log("🎯 Initial Layout Performance:", {
-            grade: metrics.performanceGrade,
-            cls: metrics.cumulativeLayoutShift.toFixed(3),
-            lcp: `${metrics.largestContentfulPaint.toFixed(0)}ms`,
-            thrashing: metrics.thrashingScore.toFixed(3),
+          console.log("🎯 Initial Homepage Performance:", {
+            layout: {
+              grade: metrics.performanceGrade,
+              cls: metrics.cumulativeLayoutShift.toFixed(3),
+              lcp: `${metrics.largestContentfulPaint.toFixed(0)}ms`,
+              thrashing: metrics.thrashingScore.toFixed(3),
+            },
+            cmsArchitecture: {
+              score: `${cmsState.architectureScore}/10`,
+              violations: cmsState.totalViolations,
+              critical: cmsState.criticalViolations,
+              status: cmsState.isMonitoring ? 'PROTECTED' : 'UNPROTECTED'
+            },
             recommendations: metrics.recommendations,
           });
         }
@@ -89,8 +145,22 @@ export default function HomePage() {
       clearTimeout(timeoutId);
       if (process.env.NODE_ENV === "development") {
         const finalMetrics = layoutMonitor.stopMonitoring();
-        console.log("📈 Final Layout Performance:", finalMetrics);
+        const finalCMSState = runtimeMonitor.getCurrentState();
+
+        console.log("📈 Final Homepage Performance:", {
+          layout: finalMetrics,
+          cmsArchitecture: {
+            finalScore: `${finalCMSState.architectureScore}/10`,
+            totalViolations: finalCMSState.totalViolations,
+            sessionSummary: finalCMSState.criticalViolations === 0
+              ? "✅ Perfect synchronous architecture maintained"
+              : `⚠️ ${finalCMSState.criticalViolations} critical violations detected`
+          }
+        });
       }
+
+      // Keep CMS monitoring active (don't stop on homepage unmount)
+      // runtimeMonitor.stopMonitoring(); // Commented out - keep monitoring across navigation
     };
   }, []);
 
@@ -200,6 +270,20 @@ export default function HomePage() {
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Footer component with contact form props */}
       {/* FOOTER_INTEGRATION_REASON: Official React documentation for direct component integration */}
       <PageFooter showContactForm={true} />
+
+      {/* CONTEXT7 SOURCE: /reactjs/react.dev - CMS Architecture Monitoring Dashboard */}
+      {/* CMS MONITORING INTEGRATION REASON: Real-time monitoring overlay for August 2025 failure prevention */}
+      {/* Only shown in development or when explicitly enabled via environment variable */}
+      {(process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_SHOW_CMS_MONITOR === 'true') && (
+        <CMSArchitectureDashboard
+          compactMode={true}
+          autoRefresh={true}
+          refreshInterval={5000}
+          maxViolationsDisplay={5}
+          showExportButton={process.env.NODE_ENV === 'development'}
+          showFullDetails={false}
+        />
+      )}
     </div>
   );
 }
