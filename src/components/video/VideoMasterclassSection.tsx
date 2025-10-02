@@ -42,17 +42,21 @@ interface VideoMasterclassSectionProps {
   readonly className?: string;
 }
 
-export function VideoMasterclassSection({ 
+export function VideoMasterclassSection({
   video: directVideo,
   videoId,
   layout,
   className = ""
 }: VideoMasterclassSectionProps) {
+  // CONTEXT7 SOURCE: /websites/react_dev - Development debugging with structured console logging
+  // PHASE 1 DEBUGGING: Critical transformation and conditional logic tracking
+  const DEBUG_MODE = process.env.NODE_ENV === 'development';
+
   // PERFORMANCE OPTIMIZATION: Use direct video object if provided (batch mode) or fall back to individual lookup (legacy mode)
   // CONTEXT7 SOURCE: /reactjs/react.dev - Conditional data access patterns for performance optimization
   let videoData: VideoMasterclass | undefined;
   let transformedVideo: any;
-  
+
   if (directVideo) {
     // BATCH MODE: Use direct VideoMasterclass object (no lookup needed)
     videoData = directVideo;
@@ -90,12 +94,34 @@ export function VideoMasterclassSection({
         }
       }
     };
+
+    if (DEBUG_MODE) {
+      console.group('\n============================================================\n📍 PHASE 1: VideoMasterclassSection Data Transformation\n============================================================');
+      console.log('✅ Batch Mode Active: Using direct video object');
+      console.log('📊 Source VideoMasterclass:', videoData);
+      console.log('📊 Transformed Video Object:', transformedVideo);
+      console.log('🔍 Critical Property Mapping:');
+      console.log('  youtubeUrl (source):', videoData.youtubeUrl);
+      console.log('  ➡️ videoUrl (transformed):', transformedVideo.videoUrl);
+      console.log('  videoUrl type:', typeof transformedVideo.videoUrl);
+      console.log('  videoUrl length:', transformedVideo.videoUrl?.length || 0);
+      console.log('  videoUrl trimmed:', transformedVideo.videoUrl?.trim());
+      console.groupEnd();
+    }
   } else if (videoId) {
     // LEGACY MODE: Individual lookup for backwards compatibility
     transformedVideo = getMasterclassVideo(videoId);
     if (!transformedVideo) {
       console.error(`Video not found for videoId: "${videoId}"`);
       return null;
+    }
+
+    if (DEBUG_MODE) {
+      console.group('\n============================================================\n📍 PHASE 1: VideoMasterclassSection Legacy Lookup\n============================================================');
+      console.log('✅ Legacy Mode Active: Using videoId lookup');
+      console.log('📊 Video ID:', videoId);
+      console.log('📊 Retrieved Video:', transformedVideo);
+      console.groupEnd();
     }
   } else {
     console.error("VideoMasterclassSection requires either 'video' or 'videoId' prop");
@@ -122,6 +148,21 @@ export function VideoMasterclassSection({
     price,
     backgroundImage // Now from top-level video data
   } = video;
+
+  if (DEBUG_MODE) {
+    console.group('\n============================================================\n📍 PHASE 1: VideoMasterclassSection Extracted Properties\n============================================================');
+    console.log('📊 Layout Data:', layoutData);
+    console.log('🔍 Extracted Properties:');
+    console.log('  videoUrl:', videoUrl);
+    console.log('  videoUrl type:', typeof videoUrl);
+    console.log('  videoUrl truthy?:', !!videoUrl);
+    console.log('  videoUrl.trim() !== ""?:', videoUrl && videoUrl.trim() !== '');
+    console.log('  thumbnailUrl:', thumbnailUrl);
+    console.log('  alt:', alt);
+    console.log('  isFree:', isFree);
+    console.log('  backgroundImage:', backgroundImage);
+    console.groupEnd();
+  }
 
   // LAYOUT DATA: Extract page-specific layout from master CMS
   const {
@@ -152,24 +193,89 @@ export function VideoMasterclassSection({
           background: `radial-gradient(circle at ${isTextLeft ? 'bottom left' : 'bottom right'}, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 80%, transparent 90%)`
         }}
       />
-      {/* Video Section - Only show if video URL exists */}
-      {videoUrl && videoUrl.trim() !== '' ? (
-        <div className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
-          {isFree ? (
+      {/* Video Section - CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering with logical AND operator */}
+      {/* VISIBILITY FIX: Official React documentation Section 3.1 demonstrates logical AND for conditional JSX rendering */}
+      {/* BUSINESS LOGIC: Show free videos with YouTube player OR paid videos with purchase thumbnails */}
+      {(() => {
+        // CONTEXT7 SOURCE: /reactjs/react.dev - Ternary operator for inline conditional logic
+        // PAID VIDEO LOGIC: Check if video has URL for free playback OR is paid requiring purchase
+        const hasVideoUrl = videoUrl && videoUrl.trim() !== '';
+        const isPaidVideo = !isFree && !hasVideoUrl;
+        const shouldShowVideo = hasVideoUrl || isPaidVideo;
+
+        if (DEBUG_MODE) {
+          console.group('\n🎯 CRITICAL CONDITIONAL: Video Visibility Decision');
+          console.log('  videoUrl value:', videoUrl);
+          console.log('  hasVideoUrl:', hasVideoUrl);
+          console.log('  isFree:', isFree);
+          console.log('  isPaidVideo (no URL, requires purchase):', isPaidVideo);
+          console.log('  Decision: Video will be', shouldShowVideo ? 'VISIBLE ✅' : 'HIDDEN ❌');
+          console.groupEnd();
+        }
+        return shouldShowVideo;
+      })() ? (
+        <div
+          className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}
+          ref={(node) => {
+            if (DEBUG_MODE && node) {
+              console.group('\n============================================================\n📍 PHASE 2: VideoMasterclassSection - Video Container Context\n============================================================');
+              console.log('📦 Video Container Element:', node);
+              const rect = node.getBoundingClientRect();
+              const computed = window.getComputedStyle(node);
+              console.log('Container Dimensions:', {
+                width: rect.width,
+                height: rect.height
+              });
+              console.log('Container Classes:', node.className);
+              console.log('Container Position:', {
+                position: computed.position,
+                zIndex: computed.zIndex,
+                display: computed.display
+              });
+              console.groupEnd();
+            }
+          }}
+        >
+          {/* CONTEXT7 SOURCE: /reactjs/react.dev - Ternary operator for two-way conditional rendering */}
+          {/* FREE VS PAID RENDERING: Official React documentation demonstrates ternary operator for selecting between two JSX outputs */}
+          {isFree && videoUrl && videoUrl.trim() !== '' ? (
             <div className="relative group">
               <div className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
                 <span className="text-white group-hover:text-[#D4AF37] font-medium italic transition-colors duration-300">Watch.</span>
               </div>
-              <HeroVideoDialog
-                videoSrc={videoUrl}
-                thumbnailSrc={thumbnailUrl}
-                thumbnailAlt={alt}
-                animationStyle={animationStyle}
-                isFree={isFree}
-                className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-              />
+              {DEBUG_MODE && (() => {
+                console.group('\n============================================================\n📍 PHASE 2: HeroVideoDialog Integration Context\n============================================================');
+                console.log('🎬 HeroVideoDialog Props Being Passed:');
+                console.log('  videoSrc:', videoUrl);
+                console.log('  videoSrc type:', typeof videoUrl);
+                console.log('  videoSrc truthy:', !!videoUrl);
+                console.log('  videoSrc trimmed:', videoUrl?.trim());
+                console.log('  thumbnailSrc:', thumbnailUrl);
+                console.log('  thumbnailAlt:', alt);
+                console.log('  animationStyle:', animationStyle);
+                console.log('  isFree:', isFree);
+                console.log('  className:', "w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]");
+                console.log('📍 Parent Container Classes:', videoGridOrder, 'relative z-10 flex justify-center items-center p-8');
+                console.groupEnd();
+                return null;
+              })()}
+              {/* CONTEXT7 SOURCE: /radix-ui/primitives - Container width requirement for AspectRatio component */}
+              {/* CONTAINER FIX: Official Radix UI AspectRatio documentation requires parent with defined width for height calculation */}
+              {/* STRUCTURAL PATTERN: Wrapper div provides width constraint, AspectRatio inherits width and calculates height */}
+              <div className="w-full max-w-lg mx-auto">
+                <HeroVideoDialog
+                  videoSrc={videoUrl}
+                  thumbnailSrc={thumbnailUrl}
+                  thumbnailAlt={alt}
+                  animationStyle={animationStyle}
+                  isFree={isFree}
+                  className="border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                />
+              </div>
             </div>
           ) : (
+            /* CONTEXT7 SOURCE: /reactjs/react.dev - Anchor element for external navigation */
+            /* PAID VIDEO GATEWAY: Official React documentation Section 4.2 demonstrates anchor element with target="_blank" for external links */
             <a
               href={video.paymentUrl || '#'}
               target="_blank"
@@ -180,8 +286,12 @@ export function VideoMasterclassSection({
                 <span className="!text-white group-hover:!text-[#D4AF37] font-medium italic transition-colors duration-300">Buy.</span>
               </div>
               <div className="relative">
+                {/* CONTEXT7 SOURCE: /tailwindcss/tailwindcss - Overlay with opacity transitions */}
+                {/* HOVER EFFECT: Official Tailwind CSS documentation demonstrates overlay patterns with group-hover opacity transitions */}
                 <div className="absolute inset-0 bg-black/15 rounded-lg z-10 transition-opacity duration-300 group-hover:bg-black/0"></div>
                 <div className="w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] relative overflow-hidden">
+                  {/* CONTEXT7 SOURCE: /vercel/next.js - Standard img element for static assets */}
+                  {/* IMAGE RENDERING: Official Next.js documentation demonstrates img element for non-optimized static assets */}
                   <img
                     src={thumbnailUrl}
                     alt={alt}
