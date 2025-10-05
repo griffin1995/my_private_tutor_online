@@ -247,10 +247,12 @@ export function HeroVideoDialog({
 
   return (
     <>
-      {/* CONTEXT7 SOURCE: /radix-ui/primitives - AspectRatio container requires parent with defined width */}
-      {/* WIDTH INHERITANCE FIX: Official Radix UI AspectRatio documentation - component calculates height from parent width */}
-      {/* ARCHITECTURAL PATTERN: AspectRatio.Root must have width (inherits from parent via w-full) to calculate proper height */}
-      <AspectRatio.Root
+      {/* CONTEXT7 SOURCE: /radix-ui/primitives - AspectRatio width inheritance pattern */}
+      {/* CRITICAL FIX: Container width constraints moved INSIDE component boundary for proper AspectRatio inheritance */}
+      {/* ARCHITECTURAL PATTERN: Wrapper div provides guaranteed width, AspectRatio.Root inherits and calculates height */}
+      {/* FIX REASON: AspectRatio.Root requires parent with defined width - self-contained wrapper ensures reliability */}
+      <div className="w-full">
+        <AspectRatio.Root
           ratio={16 / 9}
           className={`relative w-full ${className}`}
           ref={(node) => {
@@ -374,7 +376,8 @@ export function HeroVideoDialog({
             )}
           </div>
         </div>
-      </AspectRatio.Root>
+        </AspectRatio.Root>
+      </div>
 
       {/* Full-Screen Video Modal - Portal Rendering */}
       {portalContainer &&
