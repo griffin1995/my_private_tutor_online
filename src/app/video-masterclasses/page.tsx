@@ -21,10 +21,47 @@ export default function VideoPage() {
   // BATCH FETCH: Get all video masterclasses in single optimized operation
   const allVideos = getVideoMasterclassPage();
 
+  // CONTEXT7 SOURCE: /websites/react_dev - Development debugging with structured console logging
+  // PHASE 0 DEBUGGING: CMS data validation at source before component rendering
+  // DEBUG LOGGER: Structured logging pattern from React.dev documentation for development diagnostics
+  const DEBUG_MODE = process.env.NODE_ENV === 'development';
+
+  if (DEBUG_MODE) {
+    console.group('\n============================================================\n📍 PHASE 0: CMS DATA VALIDATION\n============================================================');
+    console.log('✅ CMS Function Called: getVideoMasterclassPage()');
+    console.log('📊 Total Videos Returned:', allVideos?.length || 0);
+    console.log('📊 All Videos Data:', allVideos);
+
+    if (allVideos && allVideos.length > 0) {
+      allVideos.forEach((video, index) => {
+        console.group(`\n📹 Video ${index + 1} Validation:`);
+        console.log('  ✓ ID:', video.id || '❌ MISSING');
+        console.log('  ✓ Title:', video.title || '❌ MISSING');
+        console.log('  ✓ YouTube URL:', video.youtubeUrl || '❌ MISSING');
+        console.log('  ✓ Thumbnail Image:', video.thumbnailImage || '❌ MISSING');
+        console.log('  ✓ Description:', video.description ? `${video.description.substring(0, 50)}...` : '❌ MISSING');
+        console.log('  ✓ Full Video Data:', video);
+        console.groupEnd();
+      });
+    } else {
+      console.error('❌ No videos returned from CMS or allVideos is undefined/null');
+    }
+
+    console.groupEnd();
+  }
+
   // Split videos into sections for organized display
   const featuredVideos = allVideos.slice(0, 2); // First 2 videos for featured section
   const ucasVideos = allVideos.slice(2, 4); // Next 2 videos for UCAS section
   const cultureVideos = allVideos.slice(4, 6); // Last 2 videos for British culture section
+
+  if (DEBUG_MODE) {
+    console.group('\n📦 Video Section Distribution:');
+    console.log('Featured Videos (0-1):', featuredVideos);
+    console.log('UCAS Videos (2-3):', ucasVideos);
+    console.log('Culture Videos (4-5):', cultureVideos);
+    console.groupEnd();
+  }
 
   // CONTEXT7 SOURCE: /facebook/react - Direct object literal patterns for component data
   // ENHANCED HERO IMAGE: Updated to use video masterclasses hero image from commit ceabfc4

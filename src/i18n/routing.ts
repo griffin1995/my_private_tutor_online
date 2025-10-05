@@ -24,9 +24,11 @@ export const routing = defineRouting({
   // BRITISH STANDARD: Official next-intl documentation recommends defaultLocale for fallback routing
   defaultLocale: 'en-GB',
 
-  // CONTEXT7 SOURCE: /amannn/next-intl - Locale prefix configuration for SEO optimization
-  // SEO OPTIMIZATION REASON: Official next-intl documentation Section 5.2 'as-needed' provides clean URLs for default locale
-  localePrefix: 'as-needed',
+  // CONTEXT7 SOURCE: /amannn/next-intl - Locale prefix configuration with 'always' mode
+  // LOCALE PREFIX FIX: Official next-intl documentation recommends 'always' to enforce locale prefix in all URLs
+  // PREVENTS 404 ERRORS: Ensures /en-GB/ works correctly (was failing with 'as-needed' mode)
+  // REFERENCE: https://github.com/amannn/next-intl/blob/main/docs/src/pages/docs/routing/configuration.mdx#_snippet_1
+  localePrefix: 'always',
 
   // CONTEXT7 SOURCE: /amannn/next-intl - Pathnames localization for enhanced SEO
   // INTERNATIONALIZATION REASON: Official next-intl documentation supports localized pathnames for better local SEO
