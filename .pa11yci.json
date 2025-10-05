@@ -1,0 +1,20 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "runners": ["axe"],
+    "timeout": 30000,
+    "includeWarnings": true,
+    "includeNotices": false,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    }
+  },
+  "urls": [
+    "http://localhost:3000",
+    "http://localhost:3000/about",
+    "http://localhost:3000/subjects",
+    "http://localhost:3000/video-masterclasses",
+    "http://localhost:3000/11-plus-bootcamps",
+    "http://localhost:3000/how-it-works"
+  ]
+}

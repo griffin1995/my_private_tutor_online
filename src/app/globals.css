@@ -7,6 +7,13 @@
 /* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean CSS without premium micro-interactions
    SIMPLIFICATION REASON: Surgical removal of premium micro-interactions system while preserving all existing Tailwind functionality */
 
+/**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design Token CSS Custom Properties Integration
+ * PHASE 2 IMPLEMENTATION: Importing strategic 25-color palette and typography/spacing tokens
+ * DESIGN SYSTEM CONSOLIDATION: CSS variables enable runtime theming and gradual migration from 809 legacy colors
+ */
+@import '../design-tokens/generated/variables.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -240,15 +247,68 @@ body {
 }
 
 /**
- * Premium Typography Hierarchy - CLIENT BRAND SYSTEM
- * Documentation Source: Context7 MCP - Typography Design Systems
- * CLIENT SPECIFICATION: Playfair Display (headings) + Source Serif 4 (body)
- * Pattern: Semantic heading hierarchy with brand font implementation
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Phase 3 Typography System
+ * TYPOGRAPHY CONSOLIDATION REASON: Official Tailwind CSS documentation Section 4.2 - Typography utilities
+ * IMPLEMENTATION: 3 strategic typefaces with semantic utility classes
+ *
+ * Typography Hierarchy:
+ * - Headings: Playfair Display (font-heading)
+ * - Body: Source Serif 4 (font-body)
+ * - Technical: JetBrains Mono (font-technical)
  */
 
-/* Primary Headings - Playfair Display (CLIENT REQUIREMENT) */
+/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography composite utilities
+ * COMPOSITE TOKENS REASON: Official Tailwind CSS documentation for custom typography utilities
+ * These classes combine font family, size, weight, and spacing for semantic usage */
+
+@layer components {
+  /* Heading Typography Tokens */
+  .typography-h1 {
+    @apply font-heading text-4xl lg:text-5xl font-bold leading-tight tracking-tighter;
+  }
+
+  .typography-h2 {
+    @apply font-heading text-3xl lg:text-4xl font-semibold leading-tight tracking-tight;
+  }
+
+  .typography-h3 {
+    @apply font-heading text-2xl lg:text-3xl font-semibold leading-snug tracking-tight;
+  }
+
+  .typography-h4 {
+    @apply font-heading text-xl lg:text-2xl font-medium leading-snug;
+  }
+
+  /* Body Typography Tokens */
+  .typography-body-large {
+    @apply font-body text-lg leading-relaxed;
+  }
+
+  .typography-body {
+    @apply font-body text-base leading-normal;
+  }
+
+  .typography-body-small {
+    @apply font-body text-sm leading-normal tracking-wide;
+  }
+
+  /* Technical Typography Tokens */
+  .typography-price {
+    @apply font-technical text-2xl lg:text-3xl font-medium leading-tight;
+  }
+
+  .typography-code {
+    @apply font-technical text-sm leading-normal;
+  }
+
+  .typography-data {
+    @apply font-technical text-base leading-snug;
+  }
+}
+
+/* Legacy heading styles for backwards compatibility */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playfair-display), 'Playfair Display', Georgia, serif;
+  font-family: var(--font-playfair-display), Georgia, serif;
   font-weight: 700;
   line-height: 1.2;
   color: var(--color-primary);

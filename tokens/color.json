@@ -1,0 +1,24 @@
+{
+  "color": {
+    "brand": {
+      "primary": { "value": "#0066cc", "description": "Primary brand blue" },
+      "secondary": { "value": "#6c757d", "description": "Secondary grey" },
+      "accent": { "value": "#ffd700", "description": "Gold accent for premium features" }
+    },
+    "text": {
+      "primary": { "value": "#212529", "description": "Primary text color" },
+      "secondary": { "value": "#6c757d", "description": "Secondary text color" },
+      "inverse": { "value": "#ffffff", "description": "Text on dark backgrounds" }
+    },
+    "background": {
+      "primary": { "value": "#ffffff", "description": "Primary background" },
+      "secondary": { "value": "#f8f9fa", "description": "Secondary background" },
+      "tertiary": { "value": "#e9ecef", "description": "Tertiary background" }
+    },
+    "border": {
+      "primary": { "value": "#dee2e6", "description": "Primary border color" },
+      "secondary": { "value": "#ced4da", "description": "Secondary border color" },
+      "accent": { "value": "#0066cc", "description": "Accent border color" }
+    }
+  }
+}

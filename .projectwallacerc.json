@@ -1,0 +1,23 @@
+{
+  "analytics": {
+    "complexity": {
+      "enabled": true,
+      "thresholds": {
+        "selectors": 50,
+        "declarations": 500,
+        "rules": 300
+      }
+    }
+  },
+  "output": {
+    "format": "json",
+    "destination": "reports/audits/wallace-analysis.json"
+  },
+  "thresholds": {
+    "values.colors.unique": 25,
+    "values.fontFamilies.unique": 3,
+    "values.fontSizes.unique": 12,
+    "selectors.id.total": 0,
+    "declarations.importants.total": 10
+  }
+}

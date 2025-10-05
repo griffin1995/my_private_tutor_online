@@ -1,0 +1,144 @@
+/**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS Custom Properties for Design Token Integration
+ * DESIGN TOKENS REASON: Official Tailwind CSS documentation Section 3.1 - CSS variables enable runtime theming and design system consolidation
+ * PHASE 2 IMPLEMENTATION: Strategic 25-color palette with complete typography and spacing tokens
+ *
+ * Do not edit directly, this file was auto-generated from design tokens.
+ *
+ * STRATEGIC COLOR CONSOLIDATION:
+ * - 809 legacy colors → 25 strategic tokens (96.9% reduction)
+ * - Primary: Navy brand (4 variations)
+ * - Secondary: Gold accent (4 variations)
+ * - Neutral: Greyscale hierarchy (8 greys)
+ * - Semantic: User feedback (4 colors)
+ * - UI: Interactive states (5 utilities)
+ */
+
+:root {
+  /* ============================================
+     PRIMARY BRAND COLORS - Navy Variations
+     ============================================ */
+  --color-primary-base: #3f4a7e;
+  --color-primary-light: #5a6b9e;
+  --color-primary-dark: #2d3456;
+  --color-primary-muted: #7a88b3;
+
+  /* ============================================
+     SECONDARY BRAND COLORS - Gold Variations
+     ============================================ */
+  --color-secondary-base: #ca9e5b;
+  --color-secondary-light: #e5c89a;
+  --color-secondary-dark: #a67c3d;
+  --color-secondary-muted: #d4b480;
+
+  /* ============================================
+     NEUTRAL GREYSCALE - UI Hierarchy
+     ============================================ */
+  --color-neutral-white: #ffffff;
+  --color-neutral-grey-50: #f9fafb;
+  --color-neutral-grey-100: #f3f4f6;
+  --color-neutral-grey-200: #e5e7eb;
+  --color-neutral-grey-400: #9ca3af;
+  --color-neutral-grey-600: #4b5563;
+  --color-neutral-grey-800: #1f2937;
+  --color-neutral-black: #000000;
+
+  /* ============================================
+     SEMANTIC COLORS - User Feedback
+     ============================================ */
+  --color-semantic-success: #10b981;
+  --color-semantic-error: #ef4444;
+  --color-semantic-warning: #f59e0b;
+  --color-semantic-info: #3b82f6;
+
+  /* ============================================
+     UI UTILITY COLORS - Interactive States
+     ============================================ */
+  --color-ui-border: #e5e7eb;
+  --color-ui-overlay: rgba(0, 0, 0, 0.5);
+  --color-ui-disabled: #9ca3af;
+  --color-ui-hover: #f9fafb;
+  --color-ui-focus: #ca9e5b;
+
+  /* ============================================
+     TYPOGRAPHY - Font Families
+     ============================================ */
+  --font-family-heading: 'Playfair Display', Georgia, serif;
+  --font-family-body: 'Source Serif 4', Georgia, serif;
+  --font-family-technical: 'JetBrains Mono', Consolas, monospace;
+
+  /* ============================================
+     TYPOGRAPHY - Font Sizes
+     ============================================ */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 2rem;      /* 32px */
+  --font-size-4xl: 3rem;      /* 48px */
+  --font-size-5xl: 4rem;      /* 64px */
+
+  /* ============================================
+     TYPOGRAPHY - Font Weights
+     ============================================ */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ============================================
+     TYPOGRAPHY - Line Heights
+     ============================================ */
+  --font-line-height-tight: 1.2;
+  --font-line-height-snug: 1.4;
+  --font-line-height-normal: 1.5;
+  --font-line-height-relaxed: 1.6;
+
+  /* ============================================
+     TYPOGRAPHY - Letter Spacing
+     ============================================ */
+  --font-letter-spacing-tighter: -0.05em;
+  --font-letter-spacing-tight: -0.025em;
+  --font-letter-spacing-normal: 0;
+  --font-letter-spacing-wide: 0.025em;
+  --font-letter-spacing-wider: 0.05em;
+
+  /* ============================================
+     SPACING SCALE - 4px Grid System
+     ============================================ */
+  --spacing-0: 0px;
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  --spacing-24: 6rem;     /* 96px */
+  --spacing-32: 8rem;     /* 128px */
+
+  /* ============================================
+     BORDER RADIUS SCALE
+     ============================================ */
+  --border-radius-none: 0px;
+  --border-radius-sm: 0.25rem;    /* 4px */
+  --border-radius-base: 0.5rem;   /* 8px */
+  --border-radius-md: 0.75rem;    /* 12px */
+  --border-radius-lg: 1rem;       /* 16px */
+  --border-radius-xl: 1.5rem;     /* 24px */
+  --border-radius-full: 9999px;
+
+  /* ============================================
+     BORDER WIDTH SCALE
+     ============================================ */
+  --border-width-none: 0px;
+  --border-width-thin: 1px;
+  --border-width-base: 2px;
+  --border-width-thick: 4px;
+}

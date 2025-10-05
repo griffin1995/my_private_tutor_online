@@ -1,0 +1,132 @@
+{
+  "$description": "My Private Tutor Online - Strategic 25-Color Design Token Palette",
+  "$comment": "CONTEXT7 SOURCE: /design-tokens/community-group - DTCG format with $type and $value properties",
+  "$comment2": "CONTEXT7 SOURCE: /amzn/style-dictionary - Token structure with references and type definitions",
+  "$comment3": "IMPLEMENTATION REASON: Enterprise design system consolidation - reducing 809 colors to 25 strategic tokens",
+
+  "color": {
+    "$type": "color",
+
+    "primary": {
+      "$description": "Primary brand navy variations - core brand identity",
+      "base": {
+        "$value": "#3F4A7E",
+        "$description": "Primary navy - main brand colour for headers, CTAs, and primary UI elements"
+      },
+      "light": {
+        "$value": "#5A6B9E",
+        "$description": "Light navy - hover states and secondary elements"
+      },
+      "dark": {
+        "$value": "#2D3456",
+        "$description": "Dark navy - text on light backgrounds, emphasis"
+      },
+      "muted": {
+        "$value": "#7A88B3",
+        "$description": "Muted navy - disabled states, subtle backgrounds"
+      }
+    },
+
+    "secondary": {
+      "$description": "Secondary brand gold variations - premium accent colour",
+      "base": {
+        "$value": "#CA9E5B",
+        "$description": "Gold - royal client accent, premium highlights, CTAs"
+      },
+      "light": {
+        "$value": "#E5C89A",
+        "$description": "Light gold - hover states, subtle accents"
+      },
+      "dark": {
+        "$value": "#A67C3D",
+        "$description": "Dark gold - emphasis, borders, focus states"
+      },
+      "muted": {
+        "$value": "#D4B480",
+        "$description": "Muted gold - backgrounds, subtle premium touches"
+      }
+    },
+
+    "neutral": {
+      "$description": "Neutral greyscale - 8 strategic greys for UI hierarchy",
+      "white": {
+        "$value": "#FFFFFF",
+        "$description": "Pure white - page backgrounds, cards"
+      },
+      "grey-50": {
+        "$value": "#F9FAFB",
+        "$description": "Lightest grey - subtle backgrounds, hover states"
+      },
+      "grey-100": {
+        "$value": "#F3F4F6",
+        "$description": "Very light grey - section backgrounds"
+      },
+      "grey-200": {
+        "$value": "#E5E7EB",
+        "$description": "Light grey - borders, dividers"
+      },
+      "grey-400": {
+        "$value": "#9CA3AF",
+        "$description": "Medium grey - placeholder text, disabled elements"
+      },
+      "grey-600": {
+        "$value": "#4B5563",
+        "$description": "Dark grey - secondary text"
+      },
+      "grey-800": {
+        "$value": "#1F2937",
+        "$description": "Very dark grey - primary text"
+      },
+      "black": {
+        "$value": "#000000",
+        "$description": "Pure black - maximum contrast headings"
+      }
+    },
+
+    "semantic": {
+      "$description": "Semantic colours for user feedback",
+      "$type": "color",
+      "success": {
+        "$value": "#10B981",
+        "$description": "Success green - confirmation messages, success states"
+      },
+      "error": {
+        "$value": "#EF4444",
+        "$description": "Error red - validation errors, destructive actions"
+      },
+      "warning": {
+        "$value": "#F59E0B",
+        "$description": "Warning amber - caution messages, important notices"
+      },
+      "info": {
+        "$value": "#3B82F6",
+        "$description": "Info blue - informational messages, hints"
+      }
+    },
+
+    "ui": {
+      "$description": "UI utility colours for interactive states",
+      "$type": "color",
+      "border": {
+        "$value": "{color.neutral.grey-200}",
+        "$description": "Standard border colour - cards, inputs, dividers"
+      },
+      "overlay": {
+        "$value": "rgba(0, 0, 0, 0.5)",
+        "$description": "Modal overlay - semi-transparent black backdrop"
+      },
+      "disabled": {
+        "$value": "{color.neutral.grey-400}",
+        "$description": "Disabled state - inactive buttons, disabled inputs"
+      },
+      "hover": {
+        "$value": "{color.neutral.grey-50}",
+        "$description": "Hover background - interactive element hover states"
+      },
+      "focus": {
+        "$value": "{color.secondary.base}",
+        "$description": "Focus ring - keyboard navigation, accessibility"
+      }
+    }
+  }
+}

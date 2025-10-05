@@ -1,0 +1,9 @@
+{
+  "values.colors.totalUnique": 25,
+  "values.fontfamilies.totalUnique": 3,
+  "values.fontsizes.totalUnique": 12,
+  "values.zindexes.totalUnique": 10,
+  "selectors.id.total": 0,
+  "declarations.importants.total": 10,
+  "rules.total": 500
+}

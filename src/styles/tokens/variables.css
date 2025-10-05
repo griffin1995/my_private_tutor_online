@@ -1,0 +1,89 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-primary-base: #3f4a7e; /** Primary navy - main brand colour for headers, CTAs, and primary UI elements */
+  --color-primary-light: #5a6b9e; /** Light navy - hover states and secondary elements */
+  --color-primary-dark: #2d3456; /** Dark navy - text on light backgrounds, emphasis */
+  --color-primary-muted: #7a88b3; /** Muted navy - disabled states, subtle backgrounds */
+  --color-secondary-base: #ca9e5b; /** Gold - royal client accent, premium highlights, CTAs */
+  --color-secondary-light: #e5c89a; /** Light gold - hover states, subtle accents */
+  --color-secondary-dark: #a67c3d; /** Dark gold - emphasis, borders, focus states */
+  --color-secondary-muted: #d4b480; /** Muted gold - backgrounds, subtle premium touches */
+  --color-neutral-white: #ffffff; /** Pure white - page backgrounds, cards */
+  --color-neutral-grey-50: #f9fafb; /** Lightest grey - subtle backgrounds, hover states */
+  --color-neutral-grey-100: #f3f4f6; /** Very light grey - section backgrounds */
+  --color-neutral-grey-200: #e5e7eb; /** Light grey - borders, dividers */
+  --color-neutral-grey-400: #9ca3af; /** Medium grey - placeholder text, disabled elements */
+  --color-neutral-grey-600: #4b5563; /** Dark grey - secondary text */
+  --color-neutral-grey-800: #1f2937; /** Very dark grey - primary text */
+  --color-neutral-black: #000000; /** Pure black - maximum contrast headings */
+  --color-semantic-success: #10b981; /** Success green - confirmation messages, success states */
+  --color-semantic-error: #ef4444; /** Error red - validation errors, destructive actions */
+  --color-semantic-warning: #f59e0b; /** Warning amber - caution messages, important notices */
+  --color-semantic-info: #3b82f6; /** Info blue - informational messages, hints */
+  --color-ui-overlay: rgba(0, 0, 0, 0.5); /** Modal overlay - semi-transparent black backdrop */
+  --font-family-heading: 'Playfair Display', Georgia, serif; /** Premium serif for headings - royal client aesthetic */
+  --font-family-body: 'Source Serif 4', Georgia, serif; /** Readable serif for body text - professional warmth */
+  --font-family-technical: 'JetBrains Mono', Consolas, monospace; /** Monospace for pricing, data, and technical content */
+  --font-size-xs: 12px; /** Extra small - captions, labels, fine print */
+  --font-size-sm: 14px; /** Small - secondary text, metadata */
+  --font-size-base: 16px; /** Base - primary body text, standard UI elements */
+  --font-size-lg: 18px; /** Large - emphasized body text, lead paragraphs */
+  --font-size-xl: 20px; /** Extra large - small headings, subheadings */
+  --font-size-2xl: 24px; /** H4 headings */
+  --font-size-3xl: 32px; /** H3 headings */
+  --font-size-4xl: 48px; /** H2 headings - section titles */
+  --font-size-5xl: 64px; /** H1 headings - hero titles, page headers */
+  --font-weight-normal: 400; /** Normal weight - body text */
+  --font-weight-medium: 500; /** Medium weight - emphasized text */
+  --font-weight-semibold: 600; /** Semibold - subheadings */
+  --font-weight-bold: 700; /** Bold - headings, strong emphasis */
+  --font-line-height-tight: 1.2; /** Tight - large headings */
+  --font-line-height-snug: 1.4; /** Snug - small headings */
+  --font-line-height-normal: 1.5; /** Normal - body text */
+  --font-line-height-relaxed: 1.6; /** Relaxed - long-form content */
+  --font-letter-spacing-tighter: -0.05em; /** Tighter - large display headings */
+  --font-letter-spacing-tight: -0.025em; /** Tight - medium headings */
+  --font-letter-spacing-normal: 0; /** Normal - body text */
+  --font-letter-spacing-wide: 0.025em; /** Wide - small uppercase labels */
+  --font-letter-spacing-wider: 0.05em; /** Wider - button text, navigation */
+  --spacing-0: 0px; /** Zero spacing - reset margins/padding */
+  --spacing-1: 4px; /** 4px - minimal spacing, tight elements */
+  --spacing-2: 8px; /** 8px - small spacing, compact layouts */
+  --spacing-3: 12px; /** 12px - small-medium spacing */
+  --spacing-4: 16px; /** 16px - base spacing unit, standard margins */
+  --spacing-5: 20px; /** 20px - medium spacing */
+  --spacing-6: 24px; /** 24px - comfortable spacing between elements */
+  --spacing-8: 32px; /** 32px - section spacing */
+  --spacing-10: 40px; /** 40px - large section spacing */
+  --spacing-12: 48px; /** 48px - extra large spacing */
+  --spacing-16: 64px; /** 64px - major section breaks */
+  --spacing-20: 80px; /** 80px - page section spacing */
+  --spacing-24: 96px; /** 96px - hero spacing */
+  --spacing-32: 128px; /** 128px - maximum spacing, major page divisions */
+  --border-radius-none: 0px; /** No rounding - sharp corners */
+  --border-radius-sm: 4px; /** Small radius - buttons, inputs */
+  --border-radius-base: 8px; /** Base radius - cards, containers */
+  --border-radius-md: 12px; /** Medium radius - larger cards */
+  --border-radius-lg: 16px; /** Large radius - prominent cards */
+  --border-radius-xl: 24px; /** Extra large radius - hero elements */
+  --border-radius-full: 9999px; /** Full rounding - pills, avatars */
+  --border-width-none: 0px; /** No border */
+  --border-width-thin: 1px; /** Thin border - subtle dividers */
+  --border-width-base: 2px; /** Base border - standard elements */
+  --border-width-thick: 4px; /** Thick border - emphasis, focus states */
+  --color-ui-border: var(--color-neutral-grey-200); /** Standard border colour - cards, inputs, dividers */
+  --color-ui-disabled: var(--color-neutral-grey-400); /** Disabled state - inactive buttons, disabled inputs */
+  --color-ui-hover: var(--color-neutral-grey-50); /** Hover background - interactive element hover states */
+  --color-ui-focus: var(--color-secondary-base); /** Focus ring - keyboard navigation, accessibility */
+  --typography-heading-h1: var(--font-weight-bold) var(--font-size-5xl)/var(--font-line-height-tight) var(--font-family-heading); /** H1 style - hero headings, page titles */
+  --typography-heading-h2: var(--font-weight-bold) var(--font-size-4xl)/var(--font-line-height-tight) var(--font-family-heading); /** H2 style - section headings */
+  --typography-heading-h3: var(--font-weight-semibold) var(--font-size-3xl)/var(--font-line-height-snug) var(--font-family-heading); /** H3 style - subsection headings */
+  --typography-heading-h4: var(--font-weight-semibold) var(--font-size-2xl)/var(--font-line-height-snug) var(--font-family-heading); /** H4 style - card headings */
+  --typography-body-base: var(--font-weight-normal) var(--font-size-base)/var(--font-line-height-normal) var(--font-family-body); /** Base body text style */
+  --typography-body-large: var(--font-weight-normal) var(--font-size-lg)/var(--font-line-height-relaxed) var(--font-family-body); /** Large body text - lead paragraphs */
+  --typography-body-small: var(--font-weight-normal) var(--font-size-sm)/var(--font-line-height-normal) var(--font-family-body); /** Small body text - captions, metadata */
+  --typography-technical-base: var(--font-weight-medium) var(--font-size-base)/var(--font-line-height-normal) var(--font-family-technical); /** Technical text - pricing, data display */
+}
