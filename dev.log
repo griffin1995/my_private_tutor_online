@@ -6,14 +6,20 @@
    ▲ Next.js 15.3.4 (Turbopack)
    - Local:        http://localhost:3001
    - Network:      http://192.168.1.107:3001
-   - Environments: .env.local
+   - Environments: .env.local, .env.development
    - Experiments (use with caution):
-     ✓ useCache
+     ✓ optimizeCss
+     ✓ scrollRestoration
      ✓ webpackBuildWorker
-     ✓ webpackMemoryOptimizations
+     · ...
 
  ✓ Starting...
+   Using tsconfig file: ./tsconfig.json
  ○ Compiling middleware ...
- ✓ Compiled middleware in 8.2s
- ✓ Ready in 9.3s
+ ✓ Compiled middleware in 8.7s
+ ✓ Ready in 9.7s
+ ○ Compiling / ...
+ ✓ Compiled / in 840ms
+ GET / 307 in 1210ms
+ GET / 307 in 85ms
 [?25h

@@ -1,0 +1,295 @@
+/**
+ * EMERGENCY TOKEN OVERRIDE FILE
+ * ================================
+ *
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS cascade override patterns for emergency rollback
+ * ROLLBACK REASON: Official Tailwind CSS documentation Section 3.1 - Override custom properties for instant recovery
+ *
+ * CRITICAL: This file provides emergency rollback capability for design token issues.
+ * If token classes cause breaking changes, import this file in globals.css to restore legacy colors.
+ *
+ * TO ACTIVATE EMERGENCY ROLLBACK:
+ * 1. Add this line to globals.css after the token import:
+ *    @import './emergency-token-override.css';
+ * 2. This will override token classes with legacy brand colors
+ * 3. Remove the import once issues are resolved
+ *
+ * BUSINESS CONTINUITY: Protects £400k+ revenue opportunity during token migration
+ */
+
+/* EMERGENCY OVERRIDE: Restore legacy brand colors if tokens fail */
+@layer utilities {
+  /* Primary Navy Brand Overrides */
+  .bg-token-primary,
+  .bg-token-primary-base {
+    background-color: #3f4a7e !important;
+  }
+
+  .bg-token-primary-light {
+    background-color: #5a6b9e !important;
+  }
+
+  .bg-token-primary-dark {
+    background-color: #2d3456 !important;
+  }
+
+  .bg-token-primary-muted {
+    background-color: #7a88b3 !important;
+  }
+
+  .text-token-primary,
+  .text-token-primary-base {
+    color: #3f4a7e !important;
+  }
+
+  .text-token-primary-light {
+    color: #5a6b9e !important;
+  }
+
+  .text-token-primary-dark {
+    color: #2d3456 !important;
+  }
+
+  .text-token-primary-muted {
+    color: #7a88b3 !important;
+  }
+
+  .border-token-primary,
+  .border-token-primary-base {
+    border-color: #3f4a7e !important;
+  }
+
+  .border-token-primary-light {
+    border-color: #5a6b9e !important;
+  }
+
+  .border-token-primary-dark {
+    border-color: #2d3456 !important;
+  }
+
+  /* Secondary Gold Brand Overrides */
+  .bg-token-secondary,
+  .bg-token-secondary-base {
+    background-color: #ca9e5b !important;
+  }
+
+  .bg-token-secondary-light {
+    background-color: #e5c89a !important;
+  }
+
+  .bg-token-secondary-dark {
+    background-color: #a67c3d !important;
+  }
+
+  .bg-token-secondary-muted {
+    background-color: #d4b480 !important;
+  }
+
+  .text-token-secondary,
+  .text-token-secondary-base {
+    color: #ca9e5b !important;
+  }
+
+  .text-token-secondary-light {
+    color: #e5c89a !important;
+  }
+
+  .text-token-secondary-dark {
+    color: #a67c3d !important;
+  }
+
+  .text-token-secondary-muted {
+    color: #d4b480 !important;
+  }
+
+  .border-token-secondary,
+  .border-token-secondary-base {
+    border-color: #ca9e5b !important;
+  }
+
+  .border-token-secondary-light {
+    border-color: #e5c89a !important;
+  }
+
+  .border-token-secondary-dark {
+    border-color: #a67c3d !important;
+  }
+
+  /* Neutral Greyscale Overrides */
+  .bg-token-neutral-white {
+    background-color: #ffffff !important;
+  }
+
+  .bg-token-neutral-50 {
+    background-color: #f9fafb !important;
+  }
+
+  .bg-token-neutral-100 {
+    background-color: #f3f4f6 !important;
+  }
+
+  .bg-token-neutral-200 {
+    background-color: #e5e7eb !important;
+  }
+
+  .bg-token-neutral-400 {
+    background-color: #9ca3af !important;
+  }
+
+  .bg-token-neutral-600 {
+    background-color: #4b5563 !important;
+  }
+
+  .bg-token-neutral-800 {
+    background-color: #1f2937 !important;
+  }
+
+  .bg-token-neutral-black {
+    background-color: #000000 !important;
+  }
+
+  .text-token-neutral-white {
+    color: #ffffff !important;
+  }
+
+  .text-token-neutral-50 {
+    color: #f9fafb !important;
+  }
+
+  .text-token-neutral-100 {
+    color: #f3f4f6 !important;
+  }
+
+  .text-token-neutral-200 {
+    color: #e5e7eb !important;
+  }
+
+  .text-token-neutral-400 {
+    color: #9ca3af !important;
+  }
+
+  .text-token-neutral-600 {
+    color: #4b5563 !important;
+  }
+
+  .text-token-neutral-800 {
+    color: #1f2937 !important;
+  }
+
+  .text-token-neutral-black {
+    color: #000000 !important;
+  }
+
+  /* Semantic Color Overrides */
+  .bg-token-semantic-success {
+    background-color: #10b981 !important;
+  }
+
+  .bg-token-semantic-error {
+    background-color: #ef4444 !important;
+  }
+
+  .bg-token-semantic-warning {
+    background-color: #f59e0b !important;
+  }
+
+  .bg-token-semantic-info {
+    background-color: #3b82f6 !important;
+  }
+
+  .text-token-semantic-success {
+    color: #10b981 !important;
+  }
+
+  .text-token-semantic-error {
+    color: #ef4444 !important;
+  }
+
+  .text-token-semantic-warning {
+    color: #f59e0b !important;
+  }
+
+  .text-token-semantic-info {
+    color: #3b82f6 !important;
+  }
+
+  .border-token-semantic-success {
+    border-color: #10b981 !important;
+  }
+
+  .border-token-semantic-error {
+    border-color: #ef4444 !important;
+  }
+
+  .border-token-semantic-warning {
+    border-color: #f59e0b !important;
+  }
+
+  .border-token-semantic-info {
+    border-color: #3b82f6 !important;
+  }
+
+  /* UI Utility Color Overrides */
+  .bg-token-ui-border {
+    background-color: #e5e7eb !important;
+  }
+
+  .bg-token-ui-overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .bg-token-ui-disabled {
+    background-color: #9ca3af !important;
+  }
+
+  .bg-token-ui-hover {
+    background-color: #f9fafb !important;
+  }
+
+  .bg-token-ui-focus {
+    background-color: #ca9e5b !important;
+  }
+
+  .text-token-ui-border {
+    color: #e5e7eb !important;
+  }
+
+  .text-token-ui-disabled {
+    color: #9ca3af !important;
+  }
+
+  .text-token-ui-hover {
+    color: #f9fafb !important;
+  }
+
+  .text-token-ui-focus {
+    color: #ca9e5b !important;
+  }
+
+  .border-token-ui-border {
+    border-color: #e5e7eb !important;
+  }
+
+  .border-token-ui-overlay {
+    border-color: rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .border-token-ui-disabled {
+    border-color: #9ca3af !important;
+  }
+
+  .border-token-ui-hover {
+    border-color: #f9fafb !important;
+  }
+
+  .border-token-ui-focus {
+    border-color: #ca9e5b !important;
+  }
+}
+
+/* EMERGENCY NOTICE */
+/*
+ * This override file is ONLY for emergency rollback.
+ * Do NOT use in normal production.
+ * Fix the underlying token issues and remove this import.
+ */
