@@ -182,8 +182,9 @@ export default function HowItWorksPage() {
           <div className="absolute inset-0 opacity-[0.015] pointer-events-none" />
 
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standardised container padding matching /about page progressive scaling */}
-          {/* CONTAINER STANDARDISATION REASON: Official Tailwind CSS documentation demonstrates px-6 sm:px-8 lg:px-12 xl:px-16 progressive padding for consistent horizontal spacing */}
-          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+          {/* CONTAINER STANDARDISATION REASON: Official Tailwind CSS documentation demonstrates px-4 sm:px-6 lg:px-8 progressive padding for consistent horizontal spacing */}
+          {/* REVISION REASON: Design system compliance - match About page container padding pattern for consistent whitespace */}
+          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent content gap spacing for visual rhythm */}
             {/* CONTENT SPACING REASON: Official Tailwind CSS documentation demonstrates mb-16 lg:mb-20 for major section breaks matching /about page standards */}
             <div className="text-center mb-16 lg:mb-20">
@@ -191,8 +192,10 @@ export default function HowItWorksPage() {
               {/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
 
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent H2 typography standardization */}
-              {/* TYPOGRAPHY STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-4xl lg:text-5xl font-serif font-bold text-slate-900 pattern for consistent section headings matching /about page standards */}
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-8 leading-tight">
+              {/* TYPOGRAPHY STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-4xl lg:text-5xl font-serif font-bold pattern for consistent section headings matching /about page standards */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system migration */}
+              {/* REVISION REASON: Design system compliance - migrate text-slate-900 to text-token-primary-dark for consistent heading colors */}
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-token-primary-dark mb-8 leading-tight">
                 Your Journey To Academic Success
               </h2>
 
@@ -258,7 +261,9 @@ export default function HowItWorksPage() {
                           </div>
 
                           {/* Content Section - Alternates left/right based on index */}
-                          <div className={`bg-white flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 ${isEven ? 'order-2 lg:order-2' : 'order-2 lg:order-1'}`}>
+                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standardized content padding matching design system */}
+                          {/* REVISION REASON: Design system compliance - standardize internal content padding to match About page patterns */}
+                          <div className={`bg-white flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-16 lg:py-20 ${isEven ? 'order-2 lg:order-2' : 'order-2 lg:order-1'}`}>
                             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Border utilities for brand color accents */}
                             {/* BORDER ACCENT REASON: Official Tailwind CSS documentation demonstrates border-l-4 and border-r-4 for directional accent bars */}
                             <div className={`${isEven ? 'border-l-4' : 'border-r-4'} border-[#3F4A7E] ${isEven ? 'pl-8' : 'pr-8'}`}>
@@ -275,7 +280,9 @@ export default function HowItWorksPage() {
                                 <div className="flex-1">
                                   <div className="flex items-center gap-2 mb-2">
                                     <IconComponent className="w-5 h-5 text-accent-600" />
-                                    <h3 className="text-2xl lg:text-3xl font-serif font-bold text-slate-900">
+                                    {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system migration */}
+                                    {/* REVISION REASON: Design system compliance - migrate text-slate-900 to text-token-primary-dark for consistent heading colors */}
+                                    <h3 className="text-2xl lg:text-3xl font-serif font-bold text-token-primary-dark">
                                       {step.title}
                                     </h3>
                                   </div>

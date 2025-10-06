@@ -409,7 +409,9 @@ export function HighlightedQuote({
        * - Royal client visual quality expectations
        * Arbitrary value syntax from Context7: "leading-[<value>]" pattern allows custom numeric multipliers.
        */}
-      <blockquote className="text-xl lg:text-2xl font-serif text-primary-700 italic leading-[2.5]">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system migration */}
+      {/* REVISION REASON: Design system compliance - migrate text-primary-700 to text-token-neutral-700 for consistent body text colors */}
+      <blockquote className="text-xl lg:text-2xl font-serif text-token-neutral-700 italic leading-[2.5]">
         {renderHighlightedMessage(quote, useHighlighting)}
       </blockquote>
 
@@ -417,8 +419,10 @@ export function HighlightedQuote({
        * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional rendering pattern for attribution
        * CITE ELEMENT REASON: Official HTML documentation shows cite element for proper attribution
        */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system migration */}
+      {/* REVISION REASON: Design system compliance - migrate text-primary-900 to text-token-primary-dark for consistent heading colors */}
       {author && (
-        <cite className="text-lg font-semibold text-primary-900 not-italic">
+        <cite className="text-lg font-semibold text-token-primary-dark not-italic">
           &mdash; {author}{role && `, ${role}`}
         </cite>
       )}
