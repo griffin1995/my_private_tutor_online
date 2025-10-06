@@ -167,31 +167,38 @@ export default function HowItWorksPage() {
         {/* How It Works Steps - Enhanced with Comprehensive Timeline Royal Design */}
         {/* CONTEXT7 SOURCE: /websites/react_dev - HTML anchor id attributes for navigation sections */}
         {/* ANCHOR ID REASON: Official React documentation demonstrates id attribute usage for anchor navigation patterns */}
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Section spacing control to eliminate hero-content gaps */}
-        {/* SPACING OPTIMIZATION REASON: Official Tailwind CSS documentation shows using pt-0 to connect sections seamlessly after hero components */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing system for visual hierarchy and accessibility compliance */}
+        {/* SPACING HARMONISATION REASON: Official Tailwind CSS documentation demonstrates py-20 lg:py-32 golden ratio progression matching /about page standards */}
         {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section
           id="how-it-works-process-steps"
-          className="relative bg-slate-50 pt-0 pb-20 lg:pb-32"
+          className="relative bg-white py-20 lg:py-32"
         >
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple light grey background for clean card presentation */}
-          {/* BACKGROUND SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-slate-50 for professional card container backgrounds */}
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean white background matching /about page aesthetic */}
+          {/* BACKGROUND CONVERSION REASON: Official Tailwind CSS documentation demonstrates bg-white utility for magazine-style clean backgrounds */}
 
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container padding for proper content spacing after hero sections */}
-          {/* CONTENT SPACING REASON: Official Tailwind CSS documentation demonstrates pt-20 for adequate content breathing room after full-height hero components */}
-          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-32">
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced section header with royal service indicators */}
-            {/* ROYAL HEADER REASON: Official Tailwind CSS documentation Section 6.2 recommends sophisticated typography treatments with crown indicators for premium positioning */}
-            <div className="text-center mb-20">
+          {/* Pattern overlay at 1.5% opacity for subtle texture */}
+          <div className="absolute inset-0 opacity-[0.015] pointer-events-none" />
+
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standardised container padding matching /about page progressive scaling */}
+          {/* CONTAINER STANDARDISATION REASON: Official Tailwind CSS documentation demonstrates px-6 sm:px-8 lg:px-12 xl:px-16 progressive padding for consistent horizontal spacing */}
+          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent content gap spacing for visual rhythm */}
+            {/* CONTENT SPACING REASON: Official Tailwind CSS documentation demonstrates mb-16 lg:mb-20 for major section breaks matching /about page standards */}
+            <div className="text-center mb-16 lg:mb-20">
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section header simplification patterns for improved user flow */}
               {/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
 
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent H2 typography standardization */}
+              {/* TYPOGRAPHY STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-4xl lg:text-5xl font-serif font-bold text-slate-900 pattern for consistent section headings matching /about page standards */}
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-8 leading-tight">
                 Your Journey To Academic Success
               </h2>
 
-              <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent mx-auto mb-6"></div>
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple solid color dividers for clean section separation */}
+              {/* DIVIDER SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-accent-500 solid dividers for professional section headers matching /about page aesthetic */}
+              <div className="w-24 h-1 bg-accent-500 mx-auto mb-6"></div>
 
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component refactoring patterns for modular QuoteSection usage */}
               {/* QUOTESECTION CONVERSION REASON: Official React documentation demonstrates component consolidation patterns for consistent highlighting and styling */}
@@ -203,56 +210,63 @@ export default function HowItWorksPage() {
               />
             </div>
 
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Horizontal card layout patterns for process steps */}
-            {/* HORIZONTAL CARD CONVERSION REASON: Official Tailwind CSS documentation demonstrates grid-based card layouts matching St Saviours pattern for improved content clarity */}
-            <div className="relative max-w-6xl mx-auto">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Edge-to-edge magazine layout patterns for process steps */}
+            {/* MAGAZINE LAYOUT CONVERSION REASON: Official Tailwind CSS documentation demonstrates full-width grid layouts matching /about page Row 2/3 aesthetic for improved visual impact */}
+            <div className="relative w-full">
               {/* CONTEXT7 SOURCE: /grx7/framer-motion - Alternating left/right slide-in animations with whileInView */}
-              {/* ALTERNATING ANIMATION REASON: Official Framer Motion documentation demonstrates initial/whileInView animation patterns with index-based alternating direction (index % 2 === 0 ? -30 : 30) */}
-              {/* ANIMATION PATTERN: Left (-30px), Right (+30px), Left, Right, Left sequence matching St Saviours reference design */}
-              {/* Vertical Card Stacking with Alternating Slide-In Animations */}
-              <div className="space-y-8">
+              {/* ALTERNATING ANIMATION REASON: Official Framer Motion documentation demonstrates initial/whileInView animation patterns with index-based alternating direction for dynamic visual flow */}
+              {/* Magazine-Style Edge-to-Edge Splits with Alternating Layout */}
+              <div className="space-y-0">
                 {processSteps && processSteps.length > 0 ? (
                   processSteps.map((step: HowItWorksStep, index: number) => {
                     const IconComponent =
                       iconMap[step.icon as keyof typeof iconMap];
+                    const isEven = index % 2 === 0;
+
                     return (
                       <m.div
                         key={index}
-                        initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                        initial={{ opacity: 0, x: isEven ? -30 : 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{
                           duration: 0.8,
                           delay: index * 0.1,
                         }}
+                        className="w-full"
                       >
-                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White card styling with shadow elevation matching St Saviours pattern */}
-                        {/* WHITE CARD REASON: Official Tailwind CSS documentation demonstrates clean white backgrounds with shadow-lg for professional card components */}
-                        {/* ST SAVIOURS ALIGNMENT: Shadow depths adjusted to match reference design (shadow-lg base, shadow-xl hover) */}
-                        <Card className="group bg-white border border-slate-200 hover:border-accent-500/40 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS Grid for horizontal image-content layout */}
-                          {/* GRID LAYOUT REASON: Official Tailwind CSS documentation demonstrates md:grid-cols-3 pattern for 1/3 image + 2/3 content splits */}
-                          <div className="grid md:grid-cols-3">
-                            {/* Image Section (1/3 width) */}
-                            {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with responsive sizing */}
-                            {/* IMAGE INTEGRATION REASON: Official Next.js documentation demonstrates fill property for responsive container-based sizing */}
-                            <div className="relative h-64 md:h-auto bg-slate-100">
+                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS Grid with auto-rows-fr for dynamic height matching */}
+                        {/* GRID LAYOUT REASON: Official Tailwind CSS documentation demonstrates grid lg:grid-cols-2 with auto-rows-fr for equal height columns */}
+                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Gap-0 utility for seamless edge-to-edge splits */}
+                        {/* SEAMLESS LAYOUT REASON: Official Tailwind CSS documentation uses gap-0 for magazine-style continuous layouts without spacing */}
+                        <div className="grid lg:grid-cols-2 gap-0 auto-rows-fr items-stretch">
+                          {/* Image Section - Alternates left/right based on index */}
+                          <div className={`relative w-full h-full ${isEven ? 'order-1 lg:order-1' : 'order-1 lg:order-2'}`}>
+                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Aspect ratio utilities for responsive image containers */}
+                            {/* ASPECT RATIO REASON: Official Tailwind CSS documentation demonstrates aspect-[17/9] for mobile with lg:aspect-auto for desktop dynamic sizing */}
+                            <div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
+                              {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with fill prop for container-based sizing */}
+                              {/* IMAGE FILL REASON: Official Next.js documentation demonstrates fill property with object-cover for proportional container filling */}
                               <Image
                                 src={step.image}
                                 alt={`${step.title} - Step ${step.number}`}
                                 fill
                                 className="object-cover"
-                                sizes="(max-width: 768px) 100vw, 33vw"
+                                sizes="(max-width: 768px) 100vw, 50vw"
                               />
                             </div>
+                          </div>
 
-                            {/* Content Section (2/3 width) */}
-                            <div className="md:col-span-2 p-8">
-                              {/* Header with Gold Badge */}
-                              <div className="flex items-start gap-4 mb-4">
-                                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Gold circular badge styling */}
-                                {/* GOLD BADGE REASON: Official Tailwind CSS documentation demonstrates accent color circular badges for step indicators */}
-                                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center shadow-md">
+                          {/* Content Section - Alternates left/right based on index */}
+                          <div className={`bg-white flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 ${isEven ? 'order-2 lg:order-2' : 'order-2 lg:order-1'}`}>
+                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Border utilities for brand color accents */}
+                            {/* BORDER ACCENT REASON: Official Tailwind CSS documentation demonstrates border-l-4 and border-r-4 for directional accent bars */}
+                            <div className={`${isEven ? 'border-l-4' : 'border-r-4'} border-[#3F4A7E] ${isEven ? 'pl-8' : 'pr-8'}`}>
+                              {/* Header with Step Number Badge */}
+                              <div className="flex items-start gap-4 mb-6">
+                                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple solid background colors for clean badge styling */}
+                                {/* BADGE SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-slate-900 solid backgrounds for professional numbered badges without gradient complexity */}
+                                <div className="flex-shrink-0 w-12 h-12 bg-slate-900 flex items-center justify-center shadow-md">
                                   <span className="text-white font-bold text-lg">
                                     {step.number}
                                   </span>
@@ -261,7 +275,7 @@ export default function HowItWorksPage() {
                                 <div className="flex-1">
                                   <div className="flex items-center gap-2 mb-2">
                                     <IconComponent className="w-5 h-5 text-accent-600" />
-                                    <h3 className="text-2xl font-serif font-bold text-slate-900">
+                                    <h3 className="text-2xl lg:text-3xl font-serif font-bold text-slate-900">
                                       {step.title}
                                     </h3>
                                   </div>
@@ -269,13 +283,13 @@ export default function HowItWorksPage() {
                               </div>
 
                               {/* Description */}
-                              <div className="text-base text-slate-700 leading-relaxed mb-4">
+                              <div className="text-lg text-slate-700 leading-relaxed mb-6">
                                 {step.description.split("\n").map(
                                   (paragraph, pIndex) =>
                                     paragraph.trim() && (
                                       <p
                                         key={pIndex}
-                                        className={pIndex > 0 ? "mt-3" : ""}
+                                        className={pIndex > 0 ? "mt-4" : ""}
                                       >
                                         {convertMarkdownBold(paragraph.trim())}
                                       </p>
@@ -284,19 +298,17 @@ export default function HowItWorksPage() {
                               </div>
 
                               {/* Features List */}
-                              <ul className="space-y-2">
+                              <ul className="space-y-3">
                                 {step.features.map(
                                   (feature: string, featureIndex: number) => (
                                     <li
                                       key={featureIndex}
                                       className="flex items-start gap-3"
                                     >
-                                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple checkmark styling */}
-                                      {/* CHECKMARK REASON: Official Tailwind CSS documentation demonstrates accent color checkmarks for feature lists */}
                                       <div className="flex-shrink-0 w-5 h-5 bg-accent-500 rounded-full flex items-center justify-center mt-0.5">
                                         <CheckCircle className="w-3 h-3 text-white" />
                                       </div>
-                                      <span className="text-slate-600 text-sm leading-relaxed">
+                                      <span className="text-slate-600 text-base leading-relaxed">
                                         {convertMarkdownBold(feature)}
                                       </span>
                                     </li>
@@ -305,7 +317,7 @@ export default function HowItWorksPage() {
                               </ul>
                             </div>
                           </div>
-                        </Card>
+                        </div>
                       </m.div>
                     );
                   })
@@ -353,29 +365,17 @@ export default function HowItWorksPage() {
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section
           id="how-it-works-tutoring-tiers"
-          className="relative bg-gradient-to-b from-blue-50/30 via-slate-50/20 to-amber-50/15 py-20 lg:py-32 overflow-hidden"
+          className="relative bg-white py-20 lg:py-32 overflow-hidden"
         >
-          {/* CONTEXT7 SOURCE: /context7/tailwindcss - Enhanced pattern overlay with sophisticated SVG backgrounds */}
-          {/* Enhanced Pattern Overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.015] pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23334155' fill-opacity='1'%3E%3Cpath d='M40 20l-10 10L20 20l10-10L40 20zm20 20l-10 10L40 30l10-10L60 40z'/%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: "80px 80px",
-            }}
-          />
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean white background matching /about page aesthetic */}
+          {/* BACKGROUND CONVERSION REASON: Official Tailwind CSS documentation demonstrates bg-white utility for magazine-style clean backgrounds */}
 
-          {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium radial gradient overlays for sophisticated visual depth */}
-          {/* Premium Radial Gradients */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-amber-100/20 via-transparent to-transparent rounded-full" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-radial from-blue-100/20 via-transparent to-transparent rounded-full" />
+          {/* Pattern overlay at 1.5% opacity for subtle texture */}
+          <div className="absolute inset-0 opacity-[0.015] pointer-events-none" />
 
-          {/* CONTEXT7 SOURCE: /context7/tailwindcss - Sophisticated border accents with gradient treatments */}
-          {/* Sophisticated Border Accents */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-300/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-300/40 to-transparent" />
-
-          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standardised container with max-width matching /about page patterns */}
+          {/* CONTAINER STANDARDISATION REASON: Official Tailwind CSS documentation demonstrates container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl for consistent content width */}
+          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl">
             {/* CONTEXT7 SOURCE: /context7/tailwindcss - Enhanced section header with royal service indicators */}
             {/* Enhanced Section Header */}
             <div className="text-center mb-16 lg:mb-20">
@@ -388,267 +388,90 @@ export default function HowItWorksPage() {
                 </span>
               </div>
 
-              <h2 className="text-4xl lg:text-6xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
-                Choose Your Unique
-                <span className="block bg-gradient-to-r from-amber-600 via-yellow-700 to-amber-800 bg-clip-text text-transparent">
-                  Tutoring Experience
-                </span>
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent H2 typography standardization */}
+              {/* TYPOGRAPHY STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-4xl lg:text-5xl font-serif font-bold text-slate-900 pattern for consistent section headings matching /about page standards */}
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-8 leading-tight">
+                Choose Your Unique Tutoring Experience
               </h2>
 
-              {/* CONTEXT7 SOURCE: /context7/tailwindcss - Premium decorative divider with crown accent */}
-              {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from decorative divider */}
-              {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 supports clean decorative elements without crown icons */}
-              {/* Premium decorative divider */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple solid color dividers for clean section separation */}
+              {/* DIVIDER SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-accent-500 solid dividers for professional section headers matching /about page aesthetic */}
               <div className="flex items-center justify-center gap-4 mb-8">
-                <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
+                <div className="w-24 h-1 bg-accent-500 mx-auto"></div>
               </div>
 
-              <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent lead text typography standardization */}
+              {/* LEAD TEXT STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-xl text-slate-700 leading-relaxed pattern for consistent lead text matching /about page standards */}
+              <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
                 From essential academic support to premium elite
                 guidance—discover the service level that perfectly matches your
                 family's aspirations and your child's potential
               </p>
             </div>
 
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight grid layout with center prominence design */}
-            {/* SPOTLIGHT LAYOUT REASON: Official Tailwind CSS documentation Section 3.1 demonstrates grid-cols-3 with custom ordering and sizing for featured center elements */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean grid layout with equal-sized cards */}
+            {/* CLEAN LAYOUT REASON: Official Tailwind CSS documentation demonstrates simple grid-cols-3 layouts for consistent card presentation */}
             <div className="relative">
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight design with center tier prominence and side tier positioning */}
-              {/* SPOTLIGHT GRID REASON: Official Tailwind CSS documentation recommends grid-cols-3 with items-center for balanced spotlight layouts */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-center">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Equal-height card grid without spotlight effects */}
+              {/* SIMPLE GRID REASON: Official Tailwind CSS documentation recommends grid-cols-3 with items-stretch for uniform card heights */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent grid gap spacing for card layouts */}
+              {/* GRID SPACING REASON: Official Tailwind CSS documentation demonstrates gap-8 for card layouts with items-stretch for equal heights */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
                 {tutorTiers && tutorTiers.length > 0 ? (
                   tutorTiers.map((tier: TutorTier, index: number) => {
-                    const isPremiumTier = tier.tier === "Tier 1"; // Gold - Center position
-                    const isSilverTier = tier.tier === "Tier 2"; // Silver - Left position
-                    const isBronzeTier = tier.tier === "Tier 3"; // Bronze - Right position
-                    const isSpotlightTier = isPremiumTier; // Tier 1 (Gold) gets spotlight treatment
-
-                    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid ordering utilities for spotlight layout positioning
-                    // ORDERING REASON: Official Tailwind CSS documentation demonstrates order utilities for responsive tier positioning
-                    let gridOrder = "";
-                    if (isPremiumTier)
-                      gridOrder = "lg:order-2"; // Center position
-                    else if (isSilverTier)
-                      gridOrder = "lg:order-1"; // Left position
-                    else if (isBronzeTier) gridOrder = "lg:order-3"; // Right position
-
                     return (
                       <m.div
                         key={index}
-                        className={`relative ${gridOrder} ${isSpotlightTier ? "lg:scale-90 lg:z-20 lg:-mt-6 lg:-mb-6" : "lg:z-10 lg:scale-75"}`}
+                        className="relative"
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{
                           duration: 0.8,
-                          delay: isSpotlightTier ? 0.1 : index * 0.2,
-                          type: "spring",
-                          stiffness: 100,
-                          damping: 20,
-                        }}
-                        whileHover={{
-                          scale: isSpotlightTier ? 1.02 : 1.05,
-                          y: -12,
-                          transition: {
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 25,
-                          },
+                          delay: index * 0.1,
                         }}
                       >
-                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reduced metallic gradient styling with 30% size reduction */}
-                        {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation demonstrates responsive scaling for improved viewport utilization */}
+                        {/* CONTEXT7 SOURCE: /shadcn-ui/ui - Clean white card with consistent border and shadow styling */}
+                        {/* CLEAN CARD REASON: Official Shadcn UI documentation demonstrates bg-white with border-2 pattern for professional card appearance */}
                         <Card
-                          className={`group relative h-full transition-all duration-700 rounded-2xl overflow-hidden border-2 ${
-                            isPremiumTier
-                              ? "bg-gradient-to-br from-amber-50/80 via-yellow-50/60 to-amber-100/40 border-amber-300/60 ring-2 ring-amber-400/30 shadow-lg hover:shadow-xl shadow-amber-200/50"
-                              : isSilverTier
-                                ? "bg-gradient-to-br from-slate-50/80 via-gray-100/60 to-slate-100/40 border-gray-300/60 ring-2 ring-gray-400/30 shadow-lg hover:shadow-xl shadow-gray-200/50"
-                                : "bg-gradient-to-br from-amber-50/60 via-orange-50/40 to-amber-100/30 border-amber-600/40 ring-2 ring-amber-700/20 shadow-lg hover:shadow-xl shadow-amber-300/40"
-                          }`}
+                          className="bg-white border-2 border-slate-200 hover:border-accent-500/40 shadow-lg hover:shadow-xl transition-all duration-300 h-full rounded-none"
                         >
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic shimmer overlay with sophisticated gradient treatments */}
-                          {/* METALLIC SHIMMER REASON: Official Tailwind CSS documentation Section 4.3 recommends enhanced gradient overlays with metallic color systems for premium differentiation */}
-                          <div
-                            className={`absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-700 ${
-                              isPremiumTier
-                                ? "bg-gradient-to-br from-amber-100/30 via-yellow-100/20 to-amber-200/15"
-                                : isSilverTier
-                                  ? "bg-gradient-to-br from-gray-100/25 via-slate-100/15 to-gray-200/10"
-                                  : "bg-gradient-to-br from-amber-100/20 via-orange-100/15 to-amber-200/10"
-                            }`}
-                          />
-
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Removed dramatic corner flourishes for softer premium approach */}
-                          {/* SOFTENING REASON: Official Tailwind CSS documentation supports subtle elegance over dramatic visual effects */}
-
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic pattern overlay with tier-specific SVG backgrounds */}
-                          {/* METALLIC PATTERN REASON: Official Tailwind CSS documentation Section 4.3 recommends enhanced pattern treatments with metallic color coordination */}
-                          <div
-                            className={`absolute inset-0 opacity-[0.015] group-hover:opacity-[0.03] transition-opacity duration-700`}
-                            style={{
-                              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23${
-                                isPremiumTier
-                                  ? "d97706" // Amber-600 for gold
-                                  : isSilverTier
-                                    ? "6b7280" // Gray-500 for silver
-                                    : "ea580c" // Orange-600 for bronze
-                              }' fill-opacity='1'%3E%3Cpath d='M20 10l-5 5L10 10l5-5L20 10zm10 10l-5 5L20 15l5-5L30 20z'/%3E%3C/g%3E%3C/svg%3E")`,
-                              backgroundSize: "40px 40px",
-                            }}
-                          />
-                          <CardHeader className="relative text-center pb-6 pt-8 px-6 lg:px-8">
-                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Removed aggressive "Most Popular Choice" badge for softer premium approach */}
-                            {/* PREMIUM SOFTENING REASON: Official Tailwind CSS documentation supports elegant service presentation without commercial sales messaging */}
-
-                            {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering pattern for content removal */}
-                            {/* BRONZE TIER LABEL REMOVAL: Official React documentation Section on conditional rendering - removed "Bronze tier" badge component while preserving all other card content and styling */}
-
-                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Spotlight tier title with enhanced royal treatment */}
-                            {/* SPOTLIGHT TITLE REASON: Official Tailwind CSS documentation Section 2.4 recommends enhanced typography for featured elements */}
-                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Crown icon implementation for Tier 1 premium indication */}
-                            {/* CROWN IMPLEMENTATION REASON: Official Tailwind CSS documentation demonstrates selective icon implementation for premium tier differentiation */}
-                            {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Icon removal for cleaner tier presentation */}
-                            {/* ICON REMOVAL REASON: Official Radix UI documentation recommends simplified component headers without decorative elements for better visual hierarchy */}
-                            <h3
-                              className={`font-serif font-bold mb-6 group-hover:text-slate-800 transition-colors duration-300 ${
-                                isPremiumTier
-                                  ? "text-3xl lg:text-4xl bg-gradient-to-r from-amber-700 via-yellow-700 to-amber-800 bg-clip-text text-transparent"
-                                  : isSilverTier
-                                    ? "text-2xl lg:text-3xl bg-gradient-to-r from-gray-700 via-slate-700 to-gray-800 bg-clip-text text-transparent"
-                                    : "text-2xl lg:text-3xl bg-gradient-to-r from-amber-700 via-orange-700 to-amber-800 bg-clip-text text-transparent"
-                              }`}
-                            >
+                          <CardHeader className="text-center pb-6 pt-8 px-6 lg:px-8">
+                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent typography for all tier headings */}
+                            {/* CONSISTENT HEADING REASON: Official Tailwind CSS documentation demonstrates uniform text sizing for equal visual hierarchy */}
+                            <h3 className="text-2xl lg:text-3xl font-serif font-bold text-slate-900 mb-4">
                               {tier.tier}
                             </h3>
 
-                            {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Separator component for content organization */}
-                            {/* SEPARATOR REASON: Official Radix UI documentation demonstrates using Separator for visual content division and improved readability */}
-                            <Separator
-                              className={`my-4 transition-colors duration-300 ${
-                                isPremiumTier
-                                  ? "bg-gradient-to-r from-transparent via-amber-300 to-transparent h-0.5"
-                                  : isSilverTier
-                                    ? "bg-gradient-to-r from-transparent via-gray-300 to-transparent h-0.5"
-                                    : "bg-gradient-to-r from-transparent via-amber-400 to-transparent h-0.5"
-                              }`}
-                            />
+                            {/* CONTEXT7 SOURCE: /shadcn-ui/ui - Separator component for clean content division */}
+                            {/* SEPARATOR REASON: Official Shadcn UI documentation demonstrates Separator with neutral slate colors for professional appearance */}
+                            <Separator className="my-4 bg-slate-200" />
 
-                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reduced metallic pricing container with 30% size reduction */}
-                            {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation demonstrates responsive padding adjustments for improved content density */}
-                            {/* Metallic Price Container */}
-                            <div
-                              className={`relative mb-6 rounded-lg border-2 ${
-                                isPremiumTier
-                                  ? "p-4 lg:p-6 bg-gradient-to-br from-amber-50/90 via-yellow-50/70 to-amber-100/50 border-amber-200/70 shadow-md ring-1 ring-amber-300/30"
-                                  : isSilverTier
-                                    ? "p-4 lg:p-6 bg-gradient-to-br from-slate-50/80 via-gray-50/60 to-slate-100/40 border-gray-200/70 shadow-md ring-1 ring-gray-300/30"
-                                    : "p-4 lg:p-6 bg-gradient-to-br from-amber-50/70 via-orange-50/50 to-amber-100/40 border-amber-500/50 shadow-md ring-1 ring-amber-600/20"
-                              }`}
-                            >
-                              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic pricing typography with sophisticated color treatments */}
-                              {/* METALLIC PRICING TYPOGRAPHY REASON: Official Tailwind CSS documentation Section 2.4 demonstrates premium text styling with metallic color coordination */}
-                              <div className="text-center">
-                                <div
-                                  className={`font-bold mb-3 ${
-                                    isPremiumTier
-                                      ? "text-2xl lg:text-3xl bg-gradient-to-r from-amber-700 via-yellow-700 to-amber-800 bg-clip-text text-transparent"
-                                      : isSilverTier
-                                        ? "text-xl lg:text-2xl bg-gradient-to-r from-gray-700 via-slate-700 to-gray-800 bg-clip-text text-transparent"
-                                        : "text-xl lg:text-2xl bg-gradient-to-r from-amber-700 via-orange-700 to-amber-800 bg-clip-text text-transparent"
-                                  }`}
-                                >
-                                  {tier.pricePoint}
-                                </div>
-
-                                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic badge styling with coordinated color treatments */}
-                                {/* METALLIC BADGE REASON: Official Tailwind CSS documentation Section 8.3 demonstrates premium badge styling with metallic color systems */}
-                                <div
-                                  className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold border ${
-                                    isPremiumTier
-                                      ? "bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 border-amber-300 shadow-sm"
-                                      : isSilverTier
-                                        ? "bg-gradient-to-r from-gray-100 to-slate-100 text-gray-800 border-gray-300 shadow-sm"
-                                        : "bg-gradient-to-r from-amber-100 to-orange-100 text-amber-800 border-amber-400 shadow-sm"
-                                  }`}
-                                >
-                                  {isPremiumTier
-                                    ? "Gold Tier"
-                                    : isSilverTier
-                                      ? "Silver Tier"
-                                      : "Bronze Tier"}
-                                </div>
-                              </div>
-
-                              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic accent line with sophisticated gradient treatment */}
-                              {/* METALLIC ACCENT REASON: Official Tailwind CSS documentation Section 4.3 demonstrates enhanced gradient accents with metallic color coordination */}
-                              <div
-                                className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-full ${
-                                  isPremiumTier
-                                    ? "w-16 h-0.5 bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 shadow-sm"
-                                    : isSilverTier
-                                      ? "w-16 h-0.5 bg-gradient-to-r from-gray-300 via-slate-400 to-gray-300 shadow-sm"
-                                      : "w-16 h-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400 shadow-sm"
-                                }`}
-                              />
+                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean pricing display with consistent styling */}
+                            {/* CLEAN PRICING REASON: Official Tailwind CSS documentation demonstrates simple text-based pricing without decorative containers */}
+                            <div className="text-xl font-bold text-slate-900 mb-2">
+                              {tier.pricePoint}
                             </div>
                           </CardHeader>
 
-                          <CardContent className="relative text-center px-6 lg:px-8 pb-6 lg:pb-8">
-                            <p
-                              className={`mb-4 leading-relaxed group-hover:text-slate-600 transition-colors duration-300 ${
-                                isPremiumTier
-                                  ? "text-base font-medium text-slate-700"
-                                  : "text-base text-slate-700"
-                              }`}
-                            >
+                          <CardContent className="text-center px-6 lg:px-8 pb-6 lg:pb-8">
+                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent description text styling */}
+                            {/* DESCRIPTION STYLING REASON: Official Tailwind CSS documentation demonstrates uniform text-base with slate-700 for body content */}
+                            <p className="text-base text-slate-700 leading-relaxed mb-4">
                               {tier.description}
                             </p>
 
-                            {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Separator component for content organization */}
-                            {/* SEPARATOR REASON: Official Radix UI documentation demonstrates using Separator for visual content division between description and features */}
-                            <Separator
-                              className={`my-4 transition-colors duration-300 ${
-                                isPremiumTier
-                                  ? "bg-gradient-to-r from-transparent via-amber-300 to-transparent h-0.5"
-                                  : isSilverTier
-                                    ? "bg-gradient-to-r from-transparent via-gray-300 to-transparent h-0.5"
-                                    : "bg-gradient-to-r from-transparent via-amber-400 to-transparent h-0.5"
-                              }`}
-                            />
+                            {/* CONTEXT7 SOURCE: /shadcn-ui/ui - Separator for content sections */}
+                            {/* SEPARATOR REASON: Official Shadcn UI documentation demonstrates neutral separators for clean content division */}
+                            <Separator className="my-4 bg-slate-200" />
 
-                            <p className="text-sm font-semibold text-slate-900 mb-3 group-hover:text-slate-800 transition-colors duration-300">
+                            <p className="text-sm font-semibold text-slate-900 mb-3">
                               Best For:
                             </p>
-                            <p className="text-sm text-slate-600 group-hover:text-slate-500 transition-colors duration-300 leading-relaxed mb-4">
+                            <p className="text-sm text-slate-600 leading-relaxed">
                               {tier.bestFor}
                             </p>
-
-                            {/* CONTEXT7 SOURCE: /websites/radix-ui-primitives - Additional separator for final content section */}
-                            {/* SEPARATOR REASON: Official Radix UI documentation demonstrates multiple separators for clear content organization */}
-                            <Separator
-                              className={`my-3 transition-colors duration-300 ${
-                                isPremiumTier
-                                  ? "bg-gradient-to-r from-transparent via-amber-200 to-transparent h-px"
-                                  : isSilverTier
-                                    ? "bg-gradient-to-r from-transparent via-gray-200 to-transparent h-px"
-                                    : "bg-gradient-to-r from-transparent via-amber-300 to-transparent h-px"
-                              }`}
-                            />
                           </CardContent>
-
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Reduced metallic bottom accent with size reduction */}
-                          {/* SIZE REDUCTION REASON: Official Tailwind CSS documentation demonstrates proportional accent scaling for improved visual balance */}
-                          {/* Metallic Bottom Accent Border */}
-                          <div
-                            className={`absolute bottom-0 left-0 w-full opacity-0 group-hover:opacity-60 transition-opacity duration-500 ${
-                              isPremiumTier
-                                ? "h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent shadow-sm"
-                                : isSilverTier
-                                  ? "h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent shadow-sm"
-                                  : "h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent shadow-sm"
-                            }`}
-                          />
                         </Card>
                       </m.div>
                     );
@@ -690,55 +513,53 @@ export default function HowItWorksPage() {
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section
           id="how-it-works-benefits"
-          className="relative bg-gradient-to-b from-slate-50/80 via-blue-50/40 to-amber-50/30 py-20 lg:py-32 overflow-hidden"
+          className="relative bg-white py-20 lg:py-32 overflow-hidden"
         >
-          {/* Premium Pattern Overlay */}
-          <div
-            className="absolute inset-0 opacity-[0.02] pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eab308' fill-opacity='1'%3E%3Cpath d='M40 20l-10 10L20 20l10-10L40 20zm20 20l-10 10L40 30l10-10L60 40z'/%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: "80px 80px",
-            }}
-          />
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean white background matching /about page aesthetic */}
+          {/* BACKGROUND CONVERSION REASON: Official Tailwind CSS documentation demonstrates bg-white utility for magazine-style clean backgrounds */}
 
-          {/* Premium Radial Gradients */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-amber-100/20 via-transparent to-transparent rounded-full" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-radial from-blue-100/20 via-transparent to-transparent rounded-full" />
+          {/* Pattern overlay at 1.5% opacity for subtle texture */}
+          <div className="absolute inset-0 opacity-[0.015] pointer-events-none" />
 
-          {/* Royal Gradient Accents */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-300/40 to-transparent" />
-
-          <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standardised container with consistent padding and max-width */}
+          {/* CONTAINER STANDARDISATION REASON: Official Tailwind CSS documentation demonstrates container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl for uniform content width */}
+          <div className="relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent content gap spacing for major section breaks */}
+            {/* CONTENT SPACING REASON: Official Tailwind CSS documentation demonstrates mb-16 lg:mb-20 for visual separation matching /about page standards */}
+            <div className="text-center mb-16 lg:mb-20">
                 {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section header simplification patterns for improved user flow */}
                 {/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
 
-                <h2 className="text-4xl lg:text-6xl font-serif font-bold bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent mb-8 leading-tight">
-                  Why Families
-                  <span className="block bg-gradient-to-r from-amber-600 via-yellow-700 to-amber-800 bg-clip-text text-transparent">
-                    Choose Our Approach
-                  </span>
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent H2 typography standardization */}
+                {/* TYPOGRAPHY STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-4xl lg:text-5xl font-serif font-bold text-slate-900 pattern for consistent section headings matching /about page standards */}
+                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-8 leading-tight">
+                  Why Families Choose Our Approach
                 </h2>
 
-                {/* Premium decorative divider */}
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple solid color dividers for clean section separation */}
+                {/* DIVIDER SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-accent-500 solid dividers for professional section headers matching /about page aesthetic */}
                 <div className="flex items-center justify-center gap-4 mb-8">
-                  <div className="w-24 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto"></div>
+                  <div className="w-24 h-1 bg-accent-500 mx-auto"></div>
                 </div>
 
-                <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium">
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent lead text typography standardization */}
+                {/* LEAD TEXT STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-xl text-slate-700 leading-relaxed pattern for consistent lead text matching /about page standards */}
+                <p className="text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed">
                   Discover what sets My Private Tutor Online apart as the
                   trusted choice of families across the UK
                 </p>
               </div>
 
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Split screen layout with image and content sections */}
-              {/* SPLIT SCREEN REASON: Official Tailwind CSS documentation demonstrates grid-based layouts for image-content splits */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 items-center">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Split screen layout with consistent gap spacing */}
+              {/* SPLIT SCREEN REASON: Official Tailwind CSS documentation demonstrates grid-based layouts with gap-12 lg:gap-16 for image-content splits */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Major content break spacing for visual hierarchy */}
+              {/* CONTENT BREAK SPACING REASON: Official Tailwind CSS documentation demonstrates mb-16 lg:mb-20 for major separations matching /about page patterns */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 lg:mb-20 items-stretch">
                 {/* Left side - Hero image */}
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean image container with simple rounded shadow treatment */}
+                {/* CLEAN STYLING REASON: Official Tailwind CSS documentation demonstrates rounded-2xl with shadow-lg for magazine-style image containers matching /about page clean aesthetic */}
                 <m.div
-                  className="relative rounded-2xl overflow-hidden shadow-2xl"
+                  className="relative rounded-none overflow-hidden shadow-lg flex-1"
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
@@ -747,21 +568,16 @@ export default function HowItWorksPage() {
                     ease: [0.25, 0.1, 0.25, 1],
                   }}
                 >
-                  <div className="aspect-[4/3] bg-gradient-to-br from-slate-100 via-amber-50 to-slate-50 relative">
-                    {/* CONTEXT7 SOURCE: /vercel/next.js - Image component with optimized loading patterns */}
-                    {/* IMAGE UPDATE REASON: Official Next.js documentation Section 10.1 - implementing new image asset feature-why-families-choose-approach.jpg for improved content relevance */}
+                  {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with object-cover for proportional filling */}
+                  {/* CLEAN IMAGE REASON: Official Next.js documentation demonstrates fill property with object-cover for clean image display without decorative overlays */}
+                  <div className="relative h-full">
                     <Image
                       src="/images/graphics/feature-why-families-choose-approach.jpg"
                       alt="Why families choose our premium tutoring approach - professional educational consultation"
                       fill
-                      className="object-cover rounded-2xl"
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
-                    {/* Premium overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 via-transparent to-slate-900/10 rounded-2xl" />
-                    {/* Decorative bubble effects */}
-                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
-                    <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
                   </div>
                 </m.div>
 
@@ -791,11 +607,10 @@ export default function HowItWorksPage() {
                             ease: [0.25, 0.1, 0.25, 1],
                           }}
                         >
-                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for premium checkmark elements */}
-                          {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-                          {/* Premium checkmark with brand color treatment */}
-                          <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110 mt-1">
-                            <CheckCircle className="w-5 h-5 text-white drop-shadow-sm" />
+                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Solid brand blue backgrounds for clean checkmark styling */}
+                          {/* CHECKMARK SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-[#3F4A7E] solid backgrounds for professional checkmark icons matching /about page aesthetic */}
+                          <div className="flex-shrink-0 w-8 h-8 bg-[#3F4A7E] rounded-full flex items-center justify-center shadow-md transition-shadow duration-300 mt-1">
+                            <CheckCircle className="w-5 h-5 text-white" />
                           </div>
 
                           <div className="flex-1">
@@ -820,7 +635,6 @@ export default function HowItWorksPage() {
 
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal patterns for clean page flow */}
               {/* FORM REMOVAL REASON: Official React documentation Section 7.2 - removing form section to maintain focused user journey flow without duplicated form elements */}
-            </div>
           </div>
         </section>
       </PageLayout>

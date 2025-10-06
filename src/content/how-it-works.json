@@ -29,7 +29,7 @@
         "Any **school-specific requirements**"
       ],
       "icon": "MessageSquare",
-      "image": "/images/timeline/timeline-step-1.jpg"
+      "image": "/images/initial-consultation.jpg"
     },
     {
       "number": "02",
@@ -42,7 +42,7 @@
         "Starting from just **£45 per hour**"
       ],
       "icon": "Target",
-      "image": "/images/timeline/timeline-step-2.jpg"
+      "image": "/images/personalised-learning-plan.jpg"
     },
     {
       "number": "03",
@@ -55,7 +55,7 @@
         "**PhD and Postdocs**"
       ],
       "icon": "Users",
-      "image": "/images/timeline/timeline-step-3.jpg"
+      "image": "/images/expert-tutor-matching.jpg"
     },
     {
       "number": "04",
@@ -68,7 +68,7 @@
         "**Secure login access** to all reports"
       ],
       "icon": "ClipboardCheck",
-      "image": "/images/timeline/timeline-step-4.jpg"
+      "image": "/images/flexible-scheduling.jpg"
     },
     {
       "number": "05",
@@ -81,18 +81,10 @@
         "**Long-term educational partnership** from early years to university"
       ],
       "icon": "MessageSquare",
-      "image": "/images/timeline/timeline-step-5.jpg"
+      "image": "/images/progress-tracking.jpg"
     }
   ],
   "tutorTiers": [
-    {
-      "tier": "Tier 3",
-      "description": "Tutors from top UK universities (including Oxbridge), teaching their specialist subject",
-      "bestFor": "Mentoring, subject confidence",
-      "pricePoint": "From £45/hour",
-      "level": "standard",
-      "colour": "bronze"
-    },
     {
       "tier": "Tier 2",
       "description": "Qualified, experienced classroom teachers",
@@ -109,6 +101,14 @@
       "level": "premium",
       "colour": "gold",
       "hasCrown": true
+    },
+    {
+      "tier": "Tier 3",
+      "description": "Tutors from top UK universities (including Oxbridge), teaching their specialist subject",
+      "bestFor": "Mentoring, subject confidence",
+      "pricePoint": "From £45/hour",
+      "level": "standard",
+      "colour": "bronze"
     }
   ],
   "benefits": [

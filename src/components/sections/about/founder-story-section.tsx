@@ -48,7 +48,6 @@ import { FirstLessonSection } from "./FirstLessonSection";
 // FRAMER MOTION REMOVAL REASON: Official React documentation Section 2.1 demonstrates standard div elements for component structure
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component import removal for custom section implementation
 // COMPONENT REPLACEMENT REASON: Official React documentation Section 2.1 demonstrates replacing imported components with custom implementations
-import { m } from "framer-motion";
 // CONTEXT7 SOURCE: /grx7/framer-motion - Framer Motion import for fadeInUpVariant animation
 // ANIMATION IMPORT REASON: Official Framer Motion documentation demonstrates m component for React animations
 import { getGoingAgainstGrainImage } from "@/lib/cms/cms-images";
@@ -145,7 +144,9 @@ export function FounderStorySection({
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end">
+          <div className="order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] transition-all duration-300 rounded-2xl shadow-lg hover:shadow-xl px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Component styling alignment with shadow-lg → shadow-xl hover pattern */}
+            {/* STYLING STANDARDIZATION REVISION: Official Tailwind CSS documentation demonstrates shadow-lg base with hover:shadow-xl for consistent elevation hierarchy matching /about page aesthetic, rounded-2xl for uniform border radius (1rem/16px), and duration-300 for standard 300ms transitions */}
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
             {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
             {/* ACCENT BAR REASON: For text-right sections, accent bar goes on right side (border-r-4) to match text alignment */}
@@ -159,22 +160,27 @@ export function FounderStorySection({
               <p className="text-gray-700 leading-relaxed">
                 Considering how unconventional my own schooling was, I often
                 find myself chuckling that I'm in my second decade of a career
-                in education. <strong>My path through school wasn't linear; I think
-                that's one of the reasons families trust me.</strong> I'm motivated by
-                helping children when it feels like there are no straight lines,
-                only a confusing jumble of squiggles. That's when my team and I
-                can make a real impact.
+                in education.{" "}
+                <strong>
+                  My path through school wasn't linear; I think that's one of
+                  the reasons families trust me.
+                </strong>{" "}
+                I'm motivated by helping children when it feels like there are
+                no straight lines, only a confusing jumble of squiggles. That's
+                when my team and I can make a real impact.
               </p>
 
               <p className="text-gray-700 leading-relaxed">
-                <strong>I moved through six different schools
-                growing up, across private, state, faith, co-educational and
-                single-sex systems (including a boys' school run by monks — yes,
-                really</strong>). My learning could have easily suffered, especially
-                since I have <strong>Dyspraxia</strong>, but one constant made a huge difference:
-                my tutor. She not only gave me academic consistency but
-                something far more valuable — a quiet confidence and the belief
-                that excellence was achievable, even in turbulent times.
+                <strong>
+                  I moved through six different schools growing up, across
+                  private, state, faith, co-educational and single-sex systems
+                  (including a boys' school run by monks — yes, really
+                </strong>
+                ). My learning could have easily suffered, especially since I
+                have <strong>Dyspraxia</strong>, but one constant made a huge
+                difference: my tutor. She not only gave me academic consistency
+                but something far more valuable — a quiet confidence and the
+                belief that excellence was achievable, even in turbulent times.
               </p>
             </div>
           </div>
@@ -188,7 +194,9 @@ export function FounderStorySection({
       {/* SYMMETRY CONSISTENCY REVISION REASON: Official Tailwind CSS documentation Section padding utilities - verified identical px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 and inner p-8 padding for perfect text area symmetry */}
       <div className="w-full mb-10">
         <div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
-          <div className="bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center">
+          <div className="bg-[rgba(63,74,126,0.03)] transition-all duration-300 rounded-2xl shadow-lg hover:shadow-xl px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Component styling alignment with shadow-lg → shadow-xl hover pattern */}
+            {/* STYLING STANDARDIZATION REVISION: Official Tailwind CSS documentation demonstrates shadow-lg base with hover:shadow-xl for consistent elevation hierarchy matching /about page aesthetic, rounded-2xl for uniform border radius (1rem/16px), and duration-300 for standard 300ms transitions */}
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
             {/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
             {/* ACCENT BAR REASON: For text-left sections, accent bar goes on left side (border-l-4) to match text alignment */}
@@ -203,21 +211,22 @@ export function FounderStorySection({
                 <p>
                   By Sixth Form, I was achieving top grades. I hadn't planned to
                   apply to Oxbridge, but when my headmistress pulled me aside to
-                  ask if I'd considered it, something inside me switched on. <strong>I
-                  loved a challenge, and applying to Cambridge to read English
-                  and Theatre with Education Studies was certainly that.</strong> But my
-                  offer letter was as much cause for agitation as celebration.
+                  ask if I'd considered it, something inside me switched on.{" "}
+                  <strong>
+                    I loved a challenge, and applying to Cambridge to read
+                    English and Theatre with Education Studies was certainly
+                    that.
+                  </strong>
                 </p>
 
                 <p>
-                  You see, I had already fallen in love with another course and
-                  city: Bristol. My elder sister was studying languages there
-                  and although I had doggedly courted a Cambridge offer, I
-                  hadn't considered a world in which I would actually receive
-                  one. What to do? <strong>Who turns down Cambridge? 17 year-old me.</strong>
-                </p>
-
-                <p>
+                  But my offer letter was as much cause for agitation as
+                  celebration. You see, I had already fallen in love with
+                  another course and city: Bristol. My elder sister was studying
+                  languages there and although I had doggedly courted a
+                  Cambridge offer, I hadn't considered a world in which I would
+                  actually receive one. What to do?{" "}
+                  <strong>Who turns down Cambridge? 17 year-old me.</strong>
                   It was an agonising decision, but even then I knew it was the
                   right one. Looking back, I realise that dilemma helped define
                   my ethos towards education:{" "}
@@ -279,14 +288,20 @@ export function FounderStorySection({
                 {/* COMBINED FORMATTING REASON: Official HTML documentation Section semantic markup shows <strong><em>strongly emphasized</em></strong> pattern for text requiring both importance and emphasis semantics */}
                 <p>
                   Keen to put my English degree to good use, during this time I
-                  also worked at <strong><em>Forbes Middle East</em></strong> as Online Editor. I
-                  covered a range of subjects, including education. Conducting
-                  interviews with business moguls and CEOs reinforced what I
-                  already knew: <strong>the right educational support doesn't just help
-                  people ace exams — it shapes their choices</strong>, their confidence
-                  and their future. These leaders had turned their fortunes
-                  around through education. What could be more exciting and
-                  important?
+                  also worked at{" "}
+                  <strong>
+                    <em>Forbes Middle East</em>
+                  </strong>{" "}
+                  as Online Editor. I covered a range of subjects, including
+                  education. Conducting interviews with business moguls and CEOs
+                  reinforced what I already knew:{" "}
+                  <strong>
+                    the right educational support doesn't just help people ace
+                    exams — it shapes their choices
+                  </strong>
+                  , their confidence and their future. These leaders had turned
+                  their fortunes around through education. What could be more
+                  exciting and important?
                 </p>
               </div>
             </div>
@@ -347,14 +362,20 @@ export function FounderStorySection({
                   {/* COMBINED FORMATTING REASON: Official HTML documentation Section semantic markup shows <strong><em>strongly emphasized</em></strong> pattern for text requiring both importance and emphasis semantics */}
                   <p className="text-white">
                     Keen to put my English degree to good use, during this time
-                    I also worked at <strong><em>Forbes Middle East</em></strong> as Online
-                    Editor. I covered a range of subjects, including education.
-                    Conducting interviews with business moguls and CEOs
-                    reinforced what I already knew: <strong>the right educational
-                    support doesn't just help people ace exams — it shapes their
-                    choices</strong>, their confidence and their future. These leaders
-                    had turned their fortunes around through education. What
-                    could be more exciting and important?
+                    I also worked at{" "}
+                    <strong>
+                      <em>Forbes Middle East</em>
+                    </strong>{" "}
+                    as Online Editor. I covered a range of subjects, including
+                    education. Conducting interviews with business moguls and
+                    CEOs reinforced what I already knew:{" "}
+                    <strong>
+                      the right educational support doesn't just help people ace
+                      exams — it shapes their choices
+                    </strong>
+                    , their confidence and their future. These leaders had
+                    turned their fortunes around through education. What could
+                    be more exciting and important?
                   </p>
                 </div>
               </div>
@@ -366,7 +387,6 @@ export function FounderStorySection({
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
       {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
-
         {/* ROW 6: Results That Matter - Centered Text Container (Heading + Paragraphs Only) */}
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Centered text container patterns for content presentation */}
         {/* CONTENT SEPARATION REASON: Official Tailwind CSS documentation Section 3.2 recommends separating content types for better visual hierarchy */}
@@ -572,7 +592,6 @@ export function FounderStorySection({
       </div>
       */}
 
-
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
       {/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none">
@@ -613,7 +632,6 @@ export function FounderStorySection({
           </div>
         </m.div>
         */}
-
       </div>
 
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section separator removal for direct transitions */}
