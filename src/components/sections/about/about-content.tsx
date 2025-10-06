@@ -123,13 +123,17 @@ export function AboutContent({
       data-title-style={titleStyle}
     >
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Component title rendering with enhanced micro-interactions */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - H2 typography scale with responsive text sizing */}
+      {/* REVISION REASON: Design system compliance - H2 should use text-4xl lg:text-5xl pattern per established standards */}
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system migration */}
+      {/* REVISION REASON: Design system compliance - migrate text-primary-900 to text-token-primary-dark for consistent heading colors */}
       <m.h2
         ref={titleAnimation.ref}
         animate={titleAnimation.controls}
         variants={titleAnimation.animationPreference === 'full' ? hoverVariants : undefined}
         whileHover={titleAnimation.animationPreference === 'full' ? 'hover' : undefined}
         id="about-content-heading"
-        className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 cursor-default tracking-tight"
+        className="text-4xl lg:text-5xl font-serif font-bold text-token-primary-dark cursor-default tracking-tight"
         tabIndex={0}
         aria-live="polite"
         onAnimationComplete={() => {
@@ -154,7 +158,9 @@ export function AboutContent({
       </m.h2>
 
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - Content composition with structured paragraph elements */}
-      <div className="space-y-6 text-xl text-primary-700 leading-relaxed">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system for neutral colors */}
+      {/* REVISION REASON: Phase 4 design system audit HP-007 - Migrate paragraph text from legacy primary-700 to text-token-neutral-700 for complete design token compliance */}
+      <div className="space-y-6 text-xl text-token-neutral-700 leading-relaxed">
         <m.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

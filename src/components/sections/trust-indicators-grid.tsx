@@ -246,11 +246,14 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
     <div
       className="w-full pt-16"
     >
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Edge-to-edge layout with zero padding */}
-      {/* PADDING REMOVAL REASON: Official Tailwind CSS documentation shows w-full with no padding creates full-width edge-to-edge layouts */}
-      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox with gap-0 for no spacing between items */}
-      {/* GAP ELIMINATION REASON: Official Tailwind CSS gap documentation shows gap-0 removes all spacing between flex/grid items */}
-      <div className="flex flex-col gap-0">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container with horizontal padding for visual breathing room */}
+      {/* PADDING ADDITION REASON: Official Tailwind CSS documentation shows container mx-auto px-* pattern for centered content with horizontal spacing */}
+      {/* REVISION REASON: User request - add same padding as About page magazine grids for consistent whitespace */}
+      {/* CORRECTION: Using About page padding pattern px-4 sm:px-6 lg:px-8 to match magazine grid whitespace */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox with gap-0 for no spacing between items */}
+        {/* GAP ELIMINATION REASON: Official Tailwind CSS gap documentation shows gap-0 removes all spacing between flex/grid items */}
+        <div className="flex flex-col gap-0">
         {indicators.slice(0, 4).map((indicator, index) => {
           const studentImage = getImageForIndicator(indicator, index)
           const isOddRow = index % 2 === 0
@@ -439,6 +442,7 @@ export function TrustIndicatorsGrid({ indicators, studentImages }: TrustIndicato
             </div>
           )
         })}
+        </div>
       </div>
     </div>
   )

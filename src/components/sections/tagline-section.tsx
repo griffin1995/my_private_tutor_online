@@ -26,18 +26,24 @@ export function TaglineSection({}: TaglineSectionProps = {}) {
               {/* Z-INDEX REMOVAL REASON: Official Tailwind CSS documentation shows removing unnecessary z-index declarations prevents stacking context conflicts with subsequent sections */}
               {/* CONTEXT7 SOURCE: /reactjs/react.dev - Static h2 element for tagline text rendering */}
               {/* STATIC TAGLINE REASON: Official React documentation shows h2 element usage for secondary headings without animation dependencies */}
-              <h2 className="text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight text-gray-900 dark:text-white">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system with CSS custom properties */}
+              {/* REVISION REASON: Phase 3 design system audit HP-001 - Migrate legacy text-gray-900 to text-token-neutral-900 for design token compliance */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale with responsive text sizing */}
+              {/* REVISION REASON: Phase 3 design system audit HP-002 - Upgrade H2 from text-xl to text-2xl lg:text-3xl for proper typography hierarchy */}
+              <h2 className="text-2xl lg:text-3xl font-serif font-medium tracking-wide leading-tight text-token-neutral-900 dark:text-white">
                 We help students place at top 10 UK schools and universities
               </h2>
             </div>
             {/* CONTEXT7 SOURCE: /reactjs/react.dev - Static decorative elements without animation */}
             {/* STATIC DECORATIONS REASON: Official React documentation shows div elements for visual decoration without motion dependencies */}
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system for neutral colors */}
+            {/* REVISION REASON: Phase 3 design system audit HP-003 - Migrate decorative gray-* classes to token-neutral-* for design token compliance */}
             <div className="flex justify-center items-center space-x-6 mt-2 sm:mt-3">
-              <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
+              <div className="w-12 h-px bg-token-neutral-300 dark:bg-token-neutral-600" />
               <div className="relative">
-                <div className="w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-500 shadow-lg" />
+                <div className="w-3 h-3 rounded-full bg-token-neutral-400 dark:bg-token-neutral-500 shadow-lg" />
               </div>
-              <div className="w-12 h-px bg-gray-300 dark:bg-gray-600" />
+              <div className="w-12 h-px bg-token-neutral-300 dark:bg-token-neutral-600" />
             </div>
           </div>
         </div>

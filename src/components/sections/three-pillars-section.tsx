@@ -86,7 +86,9 @@ export const ThreePillarsSection: React.FC<ThreePillarsSectionProps> = ({
     // Converting inner section to div to avoid double section nesting - outer section provides semantic meaning, inner div provides styling container
     // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Padding directional utilities for top-only spacing
     // PADDING OPTIMIZATION REASON: Official Tailwind CSS documentation shows pt-<number> utilities for top padding only, removing bottom padding for About page layout optimization
-    <div className={`pt-16 lg:pt-24 bg-white ${className}`}>
+    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing pattern for section rhythm
+    // REVISION REASON: Phase 3 design system audit HP-008 - Standardize section padding to py-20 lg:py-32 for consistent vertical rhythm
+    <div className={`py-20 lg:py-32 bg-white ${className}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Responsive grid layout */}
         {/* GRID LAYOUT REASON: Official Tailwind CSS documentation for responsive card layouts */}
@@ -114,7 +116,9 @@ interface PillarCardProps {
 const PillarCard: React.FC<PillarCardProps> = ({ pillar, showImage }) => {
   return (
     <div className="group">
-      <div className="bg-white shadow-lg overflow-hidden">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Shadow hierarchy for component depth */}
+      {/* REVISION REASON: Phase 3 design system audit HP-009 - Upgrade shadow-lg to shadow-xl for consistent card shadow hierarchy */}
+      <div className="bg-white shadow-xl overflow-hidden">
         <div className="relative">
           {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for optimization */}
           {/* IMAGE OPTIMIZATION REASON: Official Next.js documentation for performance */}
@@ -133,17 +137,23 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, showImage }) => {
           )}
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50"></div>
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system with opacity overlays */}
+          {/* REVISION REASON: Phase 3 design system audit HP-006 - Migrate bg-black/50 to bg-token-neutral-900/50 for design token compliance */}
+          <div className="absolute inset-0 bg-token-neutral-900/50"></div>
 
           {/* Content */}
           <div className="absolute inset-0 p-8 pt-32 flex flex-col justify-end">
             {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Typography hierarchy */}
             {/* TYPOGRAPHY REASON: Official Tailwind CSS documentation for text scaling */}
-            <h1 className="text-4xl font-bold text-white mb-2">
+            {/* CONTEXT7 SOURCE: /inikulin/parse5 - HTML5 semantic heading hierarchy */}
+            {/* REVISION REASON: Phase 3 design system audit HP-005 - Convert inappropriate H1 to H3 for proper semantic HTML hierarchy */}
+            <h3 className="text-4xl font-bold text-white mb-2">
               {pillar.title}
-            </h1>
+            </h3>
 
-            <h2 className="text-xl text-white/90 mb-4">{pillar.subtitle}</h2>
+            {/* CONTEXT7 SOURCE: /inikulin/parse5 - HTML5 semantic heading hierarchy */}
+            {/* REVISION REASON: Phase 3 design system audit HP-005 - Convert inappropriate H2 to H4 for proper semantic HTML hierarchy */}
+            <h4 className="text-xl text-white/90 mb-4">{pillar.subtitle}</h4>
 
             {/* CONTEXT7 SOURCE: /radix-ui/primitives - Separator component for visual division */}
             {/* SEPARATOR REASON: Official Radix UI documentation for horizontal separator */}

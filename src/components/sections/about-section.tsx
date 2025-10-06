@@ -70,7 +70,7 @@ import { useConversionTracking } from '@/lib/analytics/conversion-tracking';
 interface AboutSectionProps {
   /** Additional CSS classes for styling customisation */
   className?: string;
-  /** Background colour class (default: bg-primary-50) */
+  /** Background colour class (default: bg-token-brand-50) */
   backgroundColor?: string;
   /** Custom title override */
   title?: string;
@@ -95,7 +95,7 @@ interface AboutSectionProps {
  */
 export function AboutSection({
   className = "",
-  backgroundColor = "bg-primary-50",
+  backgroundColor = "bg-token-brand-50",
   title = "World-Class Education, At Your Fingertips",
   founderImageUrl = "/images/team/elizabeth-burrows-founder-spare.jpg",
   founderImageAlt = "Elizabeth Burrows, Founder of My Private Tutor Online",
@@ -191,18 +191,24 @@ export function AboutSection({
   return (
     <section
       id="about"
-      className={`py-20 lg:py-28 bg-gradient-to-br from-primary-50 to-primary-100 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] ${className}`}
+      className={`py-20 lg:py-28 bg-gradient-to-br from-token-brand-50 to-token-brand-100 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] ${className}`}
     >
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system for brand colors */}
+      {/* REVISION REASON: Phase 3 design system audit HP-004 - Migrate legacy primary-50/100 to token-brand-* for brand color consistency */}
       {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container symmetric padding for perfect left/right balance */}
       {/* PADDING SYMMETRY FIX REASON: Official Tailwind CSS documentation shows container with mx-auto for horizontal centering and px-* for equal horizontal padding */}
       {/* REVISION TYPE: Enhanced symmetric spacing by ensuring consistent progressive padding at all responsive breakpoints */}
-      {/* VISUAL BALANCE IMPLEMENTATION: Container mx-auto provides perfect centering, px-6 sm:px-8 lg:px-12 xl:px-16 ensures equal left/right spacing */}
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Increased horizontal padding for better content compression */}
+      {/* REVISION REASON: User request - increase left/right padding to compress content and create more whitespace */}
+      {/* ADDITIONAL COMPRESSION: Further increased padding per user request for more visual breathing room */}
+      <div className="container mx-auto px-12 sm:px-16 lg:px-24 xl:px-32 2xl:px-40">
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Fixed 50/50 grid layout for balanced column distribution */}
         {/* LAYOUT SIMPLIFICATION: Official Tailwind CSS documentation shows grid-cols-2 with consistent gap for equal width columns */}
         <div className={gridLayoutClasses}>
           {/* Decorative accent line between columns */}
-          <div className="absolute right-[40%] top-1/4 w-0.5 h-1/2 bg-primary-200 hidden lg:block"></div>
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system for brand colors */}
+          {/* REVISION REASON: Phase 3 design system audit HP-004 - Migrate decorative primary-200 to token-brand-200 */}
+          <div className="absolute right-[40%] top-1/4 w-0.5 h-1/2 bg-token-brand-200 hidden lg:block"></div>
 
           {/* Text Content - Left Column (60% width) */}
           <div className={`${contentOrder} transition-transform duration-300 hover:scale-[1.02]`}>

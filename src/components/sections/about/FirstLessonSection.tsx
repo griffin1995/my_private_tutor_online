@@ -21,8 +21,8 @@
  * - Reusable component structure
  */
 
-import React from "react";
 import { m } from "framer-motion";
+import React from "react";
 
 /**
  * CONTEXT7 SOURCE: /typescript-cheatsheets/react - TypeScript interface for React component props with optional properties
@@ -47,12 +47,12 @@ interface FirstLessonSectionProps {
 function parseTextWithStrong(text: string): React.ReactNode[] {
   // Split text by <strong> opening and closing tags
   const parts = text.split(/(<strong>.*?<\/strong>)/g);
-  
+
   return parts.map((part, index) => {
     // Check if this part is a strong tag
-    if (part.startsWith('<strong>') && part.endsWith('</strong>')) {
+    if (part.startsWith("<strong>") && part.endsWith("</strong>")) {
       // Extract content between strong tags and render as JSX
-      const content = part.replace(/<\/?strong>/g, '');
+      const content = part.replace(/<\/?strong>/g, "");
       return <strong key={index}>{content}</strong>;
     }
     // Return regular text as-is
@@ -116,7 +116,10 @@ export function FirstLessonSection({
                   {/* CONTEXT7 SOURCE: /reactjs/react.dev - JSX conditional rendering for inline formatting elements */}
                   {/* TEXT FORMATTING REASON: Official React documentation demonstrates conditional JSX rendering patterns for text with inline formatting */}
                   <p className="text-lg text-primary-700 leading-relaxed">
-                    {parseTextWithStrong(paragraph || "I started tutoring at Bristol and immediately felt something click. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family. What followed was a series of international placements and the <strong>opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents</strong>. Along the way, I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now.")}
+                    {parseTextWithStrong(
+                      paragraph ||
+                        "I started tutoring at Bristol and immediately felt something click. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family. \n\n What followed was a series of international placements and the <strong>opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents</strong>. Along the way, I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now."
+                    )}
                   </p>
                 </div>
               </div>
