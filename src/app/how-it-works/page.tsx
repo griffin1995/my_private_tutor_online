@@ -173,29 +173,10 @@ export default function HowItWorksPage() {
         {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
         <section
           id="how-it-works-process-steps"
-          className="relative bg-gradient-to-b from-slate-50/80 via-white to-slate-50/60 pt-0 pb-20 lg:pb-32 border-b border-slate-100/50 overflow-hidden"
+          className="relative bg-slate-50 pt-0 pb-20 lg:pb-32"
         >
-          {/* Premium Royal Pattern Overlay (enhanced opacity for timeline sophistication) */}
-          <div
-            className="absolute inset-0 opacity-[0.02] pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eab308' fill-opacity='1'%3E%3Cpath d='M15 7.5l-3.75 3.75L7.5 7.5l3.75-3.75L15 7.5zm7.5 7.5l-3.75 3.75L15 11.25l3.75-3.75L22.5 15z'/%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: "30px 30px",
-            }}
-          />
-
-          {/* Professional Radial Gradient Overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-radial from-blue-50/10 via-transparent to-transparent" />
-
-          {/* Premium Gradient Overlays */}
-          <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-50/40 to-transparent" />
-
-          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for accent borders */}
-          {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-          {/* Premium Accent Borders */}
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-500/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-300/30 to-transparent" />
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple light grey background for clean card presentation */}
+          {/* BACKGROUND SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-slate-50 for professional card container backgrounds */}
 
           {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container padding for proper content spacing after hero sections */}
           {/* CONTENT SPACING REASON: Official Tailwind CSS documentation demonstrates pt-20 for adequate content breathing room after full-height hero components */}
@@ -222,161 +203,109 @@ export default function HowItWorksPage() {
               />
             </div>
 
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Timeline-based visual flow patterns for premium service presentation */}
-            {/* TIMELINE REASON: Official Tailwind CSS documentation Section 7.1 recommends sophisticated layout patterns with central spine for premium service flows */}
-            <div className="relative max-w-7xl mx-auto">
-              {/* CONTEXT7 SOURCE: /context7/motion_dev - Central Timeline Spine with gradient treatment and royal nodes */}
-              {/* TIMELINE SPINE REASON: Official Motion documentation Section 4.2 recommends sophisticated visual flow elements for premium user experiences */}
-              {/* Central Timeline Spine */}
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for timeline spine */}
-              {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-accent-400 via-accent-500 to-accent-600 transform -translate-x-1/2 hidden lg:block">
-                {/* Timeline Nodes */}
-                <div className="absolute top-[12.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-                <div className="absolute top-[37.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-                <div className="absolute top-[62.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-                <div className="absolute top-[87.5%] w-4 h-4 bg-accent-500 rounded-full transform -translate-x-1/2 ring-4 ring-white shadow-lg"></div>
-              </div>
-
-              {/* CONTEXT7 SOURCE: /context7/motion_dev - Alternating Card Layout with spring-based animations */}
-              {/* ALTERNATING LAYOUT REASON: Official Motion documentation Section 3.1 recommends staggered animations for sophisticated user experiences */}
-              {/* Alternating Card Layout */}
-              <div className="space-y-16">
+            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Horizontal card layout patterns for process steps */}
+            {/* HORIZONTAL CARD CONVERSION REASON: Official Tailwind CSS documentation demonstrates grid-based card layouts matching St Saviours pattern for improved content clarity */}
+            <div className="relative max-w-6xl mx-auto">
+              {/* CONTEXT7 SOURCE: /grx7/framer-motion - Alternating left/right slide-in animations with whileInView */}
+              {/* ALTERNATING ANIMATION REASON: Official Framer Motion documentation demonstrates initial/whileInView animation patterns with index-based alternating direction (index % 2 === 0 ? -30 : 30) */}
+              {/* ANIMATION PATTERN: Left (-30px), Right (+30px), Left, Right, Left sequence matching St Saviours reference design */}
+              {/* Vertical Card Stacking with Alternating Slide-In Animations */}
+              <div className="space-y-8">
                 {processSteps && processSteps.length > 0 ? (
                   processSteps.map((step: HowItWorksStep, index: number) => {
                     const IconComponent =
                       iconMap[step.icon as keyof typeof iconMap];
-                    const isEven = index % 2 === 0;
                     return (
                       <m.div
                         key={index}
-                        className={`flex flex-col lg:flex-row items-center gap-12 ${
-                          isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-                        }`}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
+                        initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
                         transition={{
-                          type: "spring",
-                          stiffness: 80,
-                          damping: 20,
-                          delay: index * 0.15,
+                          duration: 0.8,
+                          delay: index * 0.1,
                         }}
                       >
-                        {/* Step Card with enhanced styling */}
-                        <div className="flex-1 max-w-lg">
-                          <m.div
-                            whileHover={{
-                              scale: 1.02,
-                              y: -8,
-                              transition: {
-                                type: "spring",
-                                stiffness: 400,
-                                damping: 30,
-                              },
-                            }}
-                          >
-                            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for card hover states */}
-                            {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-                            <Card className="group relative bg-gradient-to-br from-white via-slate-50/30 to-accent-50/10 border-3 border-slate-200 hover:border-accent-500/60 shadow-xl hover:shadow-3xl transition-all duration-700 rounded-2xl overflow-hidden transform hover:scale-[1.02] hover:-translate-y-1">
-                              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Luxury shimmer effects and royal pattern overlays */}
-                              {/* LUXURY SHIMMER REASON: Official Tailwind CSS documentation Section 8.5 recommends gradient overlays for premium card treatments */}
-                              {/* Luxury shimmer effect */}
-                              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-accent-50/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                              {/* Royal pattern overlay */}
-                              <div
-                                className="absolute inset-0 opacity-[0.02] group-hover:opacity-[0.04] transition-opacity duration-700"
-                                style={{
-                                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eab308' fill-opacity='1'%3E%3Cpath d='M15 7.5l-3.75 3.75L7.5 7.5l3.75-3.75L15 7.5zm7.5 7.5l-3.75 3.75L15 11.25l3.75-3.75L22.5 15z'/%3E%3C/g%3E%3C/svg%3E")`,
-                                  backgroundSize: "30px 30px",
-                                }}
+                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White card styling with shadow elevation matching St Saviours pattern */}
+                        {/* WHITE CARD REASON: Official Tailwind CSS documentation demonstrates clean white backgrounds with shadow-lg for professional card components */}
+                        {/* ST SAVIOURS ALIGNMENT: Shadow depths adjusted to match reference design (shadow-lg base, shadow-xl hover) */}
+                        <Card className="group bg-white border border-slate-200 hover:border-accent-500/40 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS Grid for horizontal image-content layout */}
+                          {/* GRID LAYOUT REASON: Official Tailwind CSS documentation demonstrates md:grid-cols-3 pattern for 1/3 image + 2/3 content splits */}
+                          <div className="grid md:grid-cols-3">
+                            {/* Image Section (1/3 width) */}
+                            {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component with responsive sizing */}
+                            {/* IMAGE INTEGRATION REASON: Official Next.js documentation demonstrates fill property for responsive container-based sizing */}
+                            <div className="relative h-64 md:h-auto bg-slate-100">
+                              <Image
+                                src={step.image}
+                                alt={`${step.title} - Step ${step.number}`}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 33vw"
                               />
+                            </div>
 
-                              {/* Premium border accent */}
-                              <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-accent-500/10 group-hover:ring-accent-500/30 transition-all duration-700" />
+                            {/* Content Section (2/3 width) */}
+                            <div className="md:col-span-2 p-8">
+                              {/* Header with Gold Badge */}
+                              <div className="flex items-start gap-4 mb-4">
+                                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Gold circular badge styling */}
+                                {/* GOLD BADGE REASON: Official Tailwind CSS documentation demonstrates accent color circular badges for step indicators */}
+                                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center shadow-md">
+                                  <span className="text-white font-bold text-lg">
+                                    {step.number}
+                                  </span>
+                                </div>
 
-                              <CardHeader className="relative pb-8 p-10 lg:p-12">
-                                <div className="flex items-start gap-6">
-                                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Royal step number enhancement with premium treatment */}
-                                  {/* ROYAL NUMBER REASON: Official Tailwind CSS documentation Section 5.3 recommends sophisticated gradient treatments for premium numbering */}
-                                  <div className="flex-shrink-0">
-                                    <div className="relative w-16 h-16 bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 text-white flex items-center justify-center font-bold text-xl rounded-xl shadow-2xl group-hover:shadow-3xl transition-all duration-500 transform group-hover:scale-110">
-                                      {/* Royal inner glow */}
-                                      <div className="absolute inset-0 bg-gradient-to-br from-accent-500/20 via-accent-400/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                                      {/* Premium number */}
-                                      <span className="relative text-2xl font-black tracking-tight drop-shadow-lg">
-                                        {step.number}
-                                      </span>
-
-                                      {/* Royal corner flourish */}
-                                      <div className="absolute -top-1 -right-1 w-3 h-3 bg-accent-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
-                                    </div>
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="flex items-center gap-3 mb-4">
-                                      {/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal for consistent step icons */}
-                                      {/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 5.1 recommends consistent icon mapping without special case crown enhancements */}
-                                      {/* Premium Icon with Consistent Design */}
-                                      <IconComponent className="w-7 h-7 text-accent-600 group-hover:text-accent-500 transition-colors duration-300" />
-                                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography hierarchy with royal treatment */}
-                                      {/* ROYAL TYPOGRAPHY REASON: Official Tailwind CSS documentation Section 2.4 recommends sophisticated text treatments for premium positioning */}
-                                      <h3 className="text-2xl lg:text-3xl font-serif font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent group-hover:from-slate-800 group-hover:to-slate-600 transition-all duration-500 mb-0 leading-tight">
-                                        {step.title}
-                                      </h3>
-                                    </div>
-                                    <div className="text-lg text-slate-700 leading-relaxed group-hover:text-slate-600 transition-colors duration-500 font-medium tracking-wide">
-                                      {step.description.split("\n").map(
-                                        (paragraph, index) =>
-                                          paragraph.trim() && (
-                                            <p
-                                              key={index}
-                                              className={
-                                                index > 0 ? "mt-4" : ""
-                                              }
-                                            >
-                                              {convertMarkdownBold(
-                                                paragraph.trim()
-                                              )}
-                                            </p>
-                                          )
-                                      )}
-                                    </div>
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <IconComponent className="w-5 h-5 text-accent-600" />
+                                    <h3 className="text-2xl font-serif font-bold text-slate-900">
+                                      {step.title}
+                                    </h3>
                                   </div>
                                 </div>
-                              </CardHeader>
+                              </div>
 
-                              <CardContent className="relative px-10 lg:px-12 pb-10 lg:pb-12">
-                                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium feature list enhancement with royal checkmarks */}
-                                {/* PREMIUM FEATURES REASON: Official Tailwind CSS documentation Section 6.5 recommends sophisticated list treatments for premium feature presentation */}
-                                <ul className="space-y-4">
-                                  {step.features.map(
-                                    (feature: string, featureIndex: number) => (
-                                      <li
-                                        key={featureIndex}
-                                        className="flex items-start gap-4 group/feature"
+                              {/* Description */}
+                              <div className="text-base text-slate-700 leading-relaxed mb-4">
+                                {step.description.split("\n").map(
+                                  (paragraph, pIndex) =>
+                                    paragraph.trim() && (
+                                      <p
+                                        key={pIndex}
+                                        className={pIndex > 0 ? "mt-3" : ""}
                                       >
-                                        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for consistent checkmark styling */}
-                                        {/* BRAND COLOR FIX: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency */}
-                                        {/* Royal checkmark with brand color treatment */}
-                                        <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-lg group-hover/feature:shadow-xl transition-all duration-300">
-                                          <CheckCircle className="w-4 h-4 text-white drop-shadow-sm" />
-                                        </div>
-                                        <span className="text-slate-600 group-hover/feature:text-slate-500 transition-colors duration-300 font-medium leading-relaxed">
-                                          {convertMarkdownBold(feature)}
-                                        </span>
-                                      </li>
+                                        {convertMarkdownBold(paragraph.trim())}
+                                      </p>
                                     )
-                                  )}
-                                </ul>
-                              </CardContent>
+                                )}
+                              </div>
 
-                              {/* Premium Bottom Accent */}
-                              <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-accent-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            </Card>
-                          </m.div>
-                        </div>
+                              {/* Features List */}
+                              <ul className="space-y-2">
+                                {step.features.map(
+                                  (feature: string, featureIndex: number) => (
+                                    <li
+                                      key={featureIndex}
+                                      className="flex items-start gap-3"
+                                    >
+                                      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple checkmark styling */}
+                                      {/* CHECKMARK REASON: Official Tailwind CSS documentation demonstrates accent color checkmarks for feature lists */}
+                                      <div className="flex-shrink-0 w-5 h-5 bg-accent-500 rounded-full flex items-center justify-center mt-0.5">
+                                        <CheckCircle className="w-3 h-3 text-white" />
+                                      </div>
+                                      <span className="text-slate-600 text-sm leading-relaxed">
+                                        {convertMarkdownBold(feature)}
+                                      </span>
+                                    </li>
+                                  )
+                                )}
+                              </ul>
+                            </div>
+                          </div>
+                        </Card>
                       </m.div>
                     );
                   })

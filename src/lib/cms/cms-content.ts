@@ -347,12 +347,15 @@ export interface FooterContent {
 }
 
 // How It Works and Process Types
+// CONTEXT7 SOURCE: /microsoft/typescript - Interface extension with type-safe property addition
+// REVISION REASON: Adding image field to support St Saviours timeline conversion while maintaining type safety
 export interface HowItWorksStep {
   readonly number: string;
   readonly title: string;
   readonly description: string;
   readonly features: readonly string[];
   readonly icon: string;
+  readonly image: string;
 }
 
 export interface HowItWorksContent {

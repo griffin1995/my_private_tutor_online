@@ -17,7 +17,6 @@
       }
     ]
   },
-
   "steps": [
     {
       "number": "01",
@@ -29,7 +28,8 @@
         "**Preferred learning style**",
         "Any **school-specific requirements**"
       ],
-      "icon": "MessageSquare"
+      "icon": "MessageSquare",
+      "image": "/images/timeline/timeline-step-1.jpg"
     },
     {
       "number": "02",
@@ -41,7 +41,8 @@
         "**Tier 3:** University graduates - **Mentoring from experts in their specific subject**",
         "Starting from just **£45 per hour**"
       ],
-      "icon": "Target"
+      "icon": "Target",
+      "image": "/images/timeline/timeline-step-2.jpg"
     },
     {
       "number": "03",
@@ -53,7 +54,8 @@
         "**Accredited GCSE, A Level and IB examiners**",
         "**PhD and Postdocs**"
       ],
-      "icon": "Users"
+      "icon": "Users",
+      "image": "/images/timeline/timeline-step-3.jpg"
     },
     {
       "number": "04",
@@ -65,22 +67,23 @@
         "**Automated lesson reminders** 36 hours before sessions",
         "**Secure login access** to all reports"
       ],
-      "icon": "ClipboardCheck"
+      "icon": "ClipboardCheck",
+      "image": "/images/timeline/timeline-step-4.jpg"
     },
     {
       "number": "05",
       "title": "Ongoing Support & Educational Partnership",
-      "description": "At My Private Tutor Online, our commitment doesn't end with a successful tutor match—**it begins there**. We offer **Ongoing consultative support** to ensure your child continues to thrive.\n\nOur **Highly responsive team** is always available to assist, whether it's rescheduling a session or tweaking lesson focus in light of a school report or parents' evening feedback. We work closely with you to ensure each tutorial remains **purposeful and aligned** with your child's evolving needs.\n\nAbove all, we see tutoring as a **Long-term educational partnership**. **Many of our families remain with us for years**, trusting us to guide their children through every stage—from **foundational learning in the early years** to **university preparation and beyond**.\n\nWe offer more than just tutoring; we offer **experienced expert educational guidance**, tailored to the demands of modern family life. And when you need us, **we're never far—just a call, message or email away**.",
+      "description": "At My Private Tutor Online, our commitment doesn't end with a successful tutor match—**it begins there**. We offer **Ongoing consultative support** to ensure your child continues to thrive.\n\nOur **Highly responsive team** is always available to assist, whether it's rescheduling a session or tweaking lesson focus in light of a school report or parents' evening feedback. We work closely with you to ensure each tutorial remains **purposeful and aligned** with your child's evolving needs.",
       "features": [
         "**Ongoing consultative support** throughout your journey",
         "**Highly responsive team** always available to assist",
         "**Flexible lesson adjustments** based on school feedback",
         "**Long-term educational partnership** from early years to university"
       ],
-      "icon": "MessageSquare"
+      "icon": "MessageSquare",
+      "image": "/images/timeline/timeline-step-5.jpg"
     }
   ],
-
   "tutorTiers": [
     {
       "tier": "Tier 3",
@@ -108,7 +111,6 @@
       "hasCrown": true
     }
   ],
-
   "benefits": [
     "No registration or administrative fees",
     "Rigorous vetting including enhanced DBS checks",
@@ -116,7 +118,6 @@
     "Remarkable results. Our tutees secure top marks year in, year out",
     "Automated lesson reminders 36 hours before tutorials and progress reports emailed the minute they're completed afterwards"
   ],
-
   "cta": {
     "title": "Ready to Begin?",
     "description": "Send us your enquiry and we'll get back to you within 24 hours to discuss your child's needs and goals",
