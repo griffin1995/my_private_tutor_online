@@ -211,7 +211,8 @@
       "Bash(bash:*)",
       "Read(//home/jack/Documents/st_saviours_lewisham/**)",
       "Read(//home/jack/Documents/**)",
-      "Read(//root/**)"
+      "Read(//root/**)",
+      "WebFetch(domain:www.justinmind.com)"
     ],
     "deny": []
   },

@@ -2,14 +2,14 @@
 // PURPOSE: Centralized exports for section components to improve build performance
 
 // Homepage Sections
-export * from './hero-section';
 export * from './about-section';
-export * from './three-pillars-section';
+export * from './cta-section';
+export * from './hero-section';
+export * from './newsletter-section';
 export * from './services-carousel';
 export * from './testimonials-section';
 export * from './testimonials-video-section';
-export * from './cta-section';
-export * from './newsletter-section';
+export * from './three-pillars-section';
 
 // Content Sections
 export * from './animated-tagline';
@@ -25,8 +25,8 @@ export * from './results-documentation';
 export * from './results-section';
 export * from './royal-endorsement-section';
 export * from './scrolling-schools';
-export * from './services-cta';
 export * from './service-statistics';
+export * from './services-cta';
 export * from './stats-trio';
 export * from './subject-accordion';
 export * from './trust-indicators-grid';

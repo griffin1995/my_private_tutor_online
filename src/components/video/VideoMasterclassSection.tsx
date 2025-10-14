@@ -457,13 +457,13 @@ export function VideoMasterclassSection({
             <div key={index} className={`flex items-start space-x-2 ${bulletAlignment}`}>
               {isTextLeft ? (
                 <>
-                  <span className="text-white mt-1.5 text-xs">•</span>
-                  <span className="text-white text-sm">{bulletPoint}</span>
+                  <span className="text-[#D4AF37] mt-1.5 text-xs">•</span>
+                  <span className="text-[#D4AF37] text-sm">{bulletPoint}</span>
                 </>
               ) : (
                 <>
-                  <span className="text-white text-sm">{bulletPoint}</span>
-                  <span className="text-white mt-1.5 text-xs">•</span>
+                  <span className="text-[#D4AF37] text-sm">{bulletPoint}</span>
+                  <span className="text-[#D4AF37] mt-1.5 text-xs">•</span>
                 </>
               )}
             </div>

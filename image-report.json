@@ -1,0 +1,349 @@
+[
+  {
+    "url": "http://localhost:3000/",
+    "images": [
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Flogo-with-name.png&w=3840&q=75",
+        "width": 192,
+        "height": 72,
+        "aspectRatio": "2.67"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Feton-college-logo-new.webp&w=3840&q=75",
+        "width": 68,
+        "height": 48,
+        "aspectRatio": "1.42"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fwestminster-school-logo-new.png&w=3840&q=75",
+        "width": 48,
+        "height": 48,
+        "aspectRatio": "1.00"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fst-pauls-school-logo-new.jpg&w=3840&q=75",
+        "width": 55,
+        "height": 48,
+        "aspectRatio": "1.15"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fharrow-school-logo.avif&w=3840&q=75",
+        "width": 48,
+        "height": 48,
+        "aspectRatio": "1.00"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Foxford-university-logo.jpeg&w=3840&q=75",
+        "width": 40,
+        "height": 48,
+        "aspectRatio": "0.83"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fcambridge-university-logo.png&w=3840&q=75",
+        "width": 48,
+        "height": 48,
+        "aspectRatio": "1.00"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Flse-logo.png&w=3840&q=75",
+        "width": 134,
+        "height": 48,
+        "aspectRatio": "2.79"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fkings-college-logo.jpeg&w=3840&q=75",
+        "width": 85,
+        "height": 48,
+        "aspectRatio": "1.77"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fbrighton-college-logo.png&w=3840&q=75",
+        "width": 48,
+        "height": 48,
+        "aspectRatio": "1.00"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fdurham-university-logo.png&w=3840&q=75",
+        "width": 112,
+        "height": 48,
+        "aspectRatio": "2.33"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fedinburgh-university-logo.png&w=3840&q=75",
+        "width": 72,
+        "height": 48,
+        "aspectRatio": "1.50"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fhighgate-school-logo.png&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Flerosey-school-logo.avif&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fst-andrews-university-logo.png&w=3840&q=75",
+        "width": 72,
+        "height": 48,
+        "aspectRatio": "1.50"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fwarwick-university-logo.gif&w=3840&q=75",
+        "width": 72,
+        "height": 48,
+        "aspectRatio": "1.50"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fschool-henrietta-barnett.png&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fschool-latymer-shield.svg&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fschool-queen-elizabeths.png&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fschool-tiffins-shield.jpeg&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Feton-college-logo-new.webp&w=3840&q=75",
+        "width": 68,
+        "height": 48,
+        "aspectRatio": "1.42"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fwestminster-school-logo-new.png&w=3840&q=75",
+        "width": 48,
+        "height": 48,
+        "aspectRatio": "1.00"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fst-pauls-school-logo-new.jpg&w=3840&q=75",
+        "width": 55,
+        "height": 48,
+        "aspectRatio": "1.15"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fharrow-school-logo.avif&w=3840&q=75",
+        "width": 48,
+        "height": 48,
+        "aspectRatio": "1.00"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Foxford-university-logo.jpeg&w=3840&q=75",
+        "width": 40,
+        "height": 48,
+        "aspectRatio": "0.83"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fcambridge-university-logo.png&w=3840&q=75",
+        "width": 48,
+        "height": 48,
+        "aspectRatio": "1.00"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Flse-logo.png&w=3840&q=75",
+        "width": 134,
+        "height": 48,
+        "aspectRatio": "2.79"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fkings-college-logo.jpeg&w=3840&q=75",
+        "width": 85,
+        "height": 48,
+        "aspectRatio": "1.77"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fbrighton-college-logo.png&w=3840&q=75",
+        "width": 48,
+        "height": 48,
+        "aspectRatio": "1.00"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fdurham-university-logo.png&w=3840&q=75",
+        "width": 112,
+        "height": 48,
+        "aspectRatio": "2.33"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fedinburgh-university-logo.png&w=3840&q=75",
+        "width": 72,
+        "height": 48,
+        "aspectRatio": "1.50"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fhighgate-school-logo.png&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Flerosey-school-logo.avif&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fst-andrews-university-logo.png&w=3840&q=75",
+        "width": 72,
+        "height": 48,
+        "aspectRatio": "1.50"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fwarwick-university-logo.gif&w=3840&q=75",
+        "width": 72,
+        "height": 48,
+        "aspectRatio": "1.50"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fschool-henrietta-barnett.png&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fschool-latymer-shield.svg&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fschool-queen-elizabeths.png&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Fschool-tiffins-shield.jpeg&w=3840&q=75",
+        "width": 60,
+        "height": 48,
+        "aspectRatio": "1.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fteam%2Felizabeth-burrows-founder-spare.jpg&w=3840&q=90",
+        "width": 636,
+        "height": 500,
+        "aspectRatio": "1.27"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fvideo-thumbnails%2Fintroduction-video-thumbnail-2025.png&w=3840&q=75",
+        "width": 614,
+        "height": 345,
+        "aspectRatio": "1.78"
+      },
+      {
+        "src": "http://localhost:3000/images/media/tatler-logo-alt.png",
+        "width": 156,
+        "height": 204,
+        "aspectRatio": "0.76"
+      },
+      {
+        "src": "http://localhost:3000/images/media/schools-guide-uk-logo.png",
+        "width": 156,
+        "height": 204,
+        "aspectRatio": "0.76"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Ficons%2Froyal-crown.svg&w=3840&q=75",
+        "width": 100,
+        "height": 100,
+        "aspectRatio": "1.00"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fgraphics%2Ffeature-royal-endorsement.jpg&w=3840&q=75",
+        "width": 720,
+        "height": 320,
+        "aspectRatio": "2.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fgraphics%2Ffeature-exam-insight.jpeg&w=3840&q=75",
+        "width": 720,
+        "height": 320,
+        "aspectRatio": "2.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fgraphics%2Ffeature-built-on-trust.jpeg&w=3840&q=75",
+        "width": 720,
+        "height": 320,
+        "aspectRatio": "2.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fgraphics%2Ffeature-british-heritage.jpeg&w=3840&q=75",
+        "width": 720,
+        "height": 320,
+        "aspectRatio": "2.25"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fstudents%2Fprimary-school-support.jpg&w=3840&q=75",
+        "width": 352,
+        "height": 400,
+        "aspectRatio": "0.88"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fstudents%2Fsecondary-school-support.jpg&w=3840&q=75",
+        "width": 352,
+        "height": 400,
+        "aspectRatio": "0.88"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fstudents%2Fentrance-exam-preparation-new.jpg&w=3840&q=75",
+        "width": 352,
+        "height": 400,
+        "aspectRatio": "0.88"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fgraphics%2Ffeature-oxbridge-success.jpg&w=3840&q=75",
+        "width": 352,
+        "height": 400,
+        "aspectRatio": "0.88"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fstudents%2Fonline-homeschooling.jpg&w=3840&q=75",
+        "width": 352,
+        "height": 400,
+        "aspectRatio": "0.88"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fstudents%2Fsen-support.jpg&w=3840&q=75",
+        "width": 352,
+        "height": 400,
+        "aspectRatio": "0.88"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fstudents%2Fstudent-teacher-inside-comfortable.jpg&w=3840&q=75",
+        "width": 352,
+        "height": 400,
+        "aspectRatio": "0.88"
+      },
+      {
+        "src": "http://localhost:3000/images/graphics/bizstim-form-preview.png",
+        "width": 0,
+        "height": 0,
+        "aspectRatio": "NaN"
+      },
+      {
+        "src": "http://localhost:3000/_next/image?url=%2Fimages%2Flogos%2Flogo-with-name.png&w=828&q=75",
+        "width": 720,
+        "height": 160,
+        "aspectRatio": "4.50"
+      }
+    ]
+  }
+]
