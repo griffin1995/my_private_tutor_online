@@ -28,7 +28,6 @@
 // BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
-import { BrandMessageSection } from '@/components/sections/brand-message-section';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { m } from 'framer-motion';
@@ -174,44 +173,37 @@ export default function HowItWorksPage() {
 				{/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
 				<section
 					id='how-it-works-process-steps'
-					className='relative bg-white py-20 lg:py-32'>
+					className='relative bg-white pt-12 lg:pt-16 pb-20 lg:pb-32'>
 					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean white background matching /about page aesthetic */}
 					{/* BACKGROUND CONVERSION REASON: Official Tailwind CSS documentation demonstrates bg-white utility for magazine-style clean backgrounds */}
-
-					{/* Pattern overlay at 1.5% opacity for subtle texture */}
-					<div className='absolute inset-0 opacity-[0.015] pointer-events-none' />
 
 					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standardised container padding matching /about page progressive scaling */}
 					{/* CONTAINER STANDARDISATION REASON: Official Tailwind CSS documentation demonstrates px-4 sm:px-6 lg:px-8 progressive padding for consistent horizontal spacing */}
 					{/* REVISION REASON: Design system compliance - match About page container padding pattern for consistent whitespace */}
 					<div className='relative container mx-auto px-4 sm:px-6 lg:px-8'>
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent content gap spacing for visual rhythm */}
-						{/* CONTENT SPACING REASON: Official Tailwind CSS documentation demonstrates mb-16 lg:mb-20 for major section breaks matching /about page standards */}
-						<div className='text-center mb-16 lg:mb-20'>
-							{/* CONTEXT7 SOURCE: /reactjs/react.dev - Section header simplification patterns for improved user flow */}
-							{/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
-
-							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent H2 typography standardization */}
-							{/* TYPOGRAPHY STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-4xl lg:text-5xl font-serif font-bold pattern for consistent section headings matching /about page standards */}
-							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design token color system migration */}
-							{/* REVISION REASON: Design system compliance - migrate text-slate-900 to text-token-primary-dark for consistent heading colors */}
-							<h2 className='text-4xl lg:text-5xl font-serif font-bold text-token-primary-dark mb-8 leading-tight'>
+						{/* Section heading above the quote */}
+						<div className='text-center mb-4'>
+							<h2 className='text-4xl lg:text-5xl font-serif font-bold text-token-primary-dark leading-tight'>
 								Your Journey To Academic Success
 							</h2>
-
-							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Simple solid color dividers for clean section separation */}
-							{/* DIVIDER SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-accent-500 solid dividers for professional section headers matching /about page aesthetic */}
-							<div className='w-24 h-1 bg-accent-500 mx-auto mb-6'></div>
-
-							{/* CONTEXT7 SOURCE: /reactjs/react.dev - Component refactoring patterns for modular QuoteSection usage */}
-							{/* QUOTESECTION CONVERSION REASON: Official React documentation demonstrates component consolidation patterns for consistent highlighting and styling */}
-							<BrandMessageSection
-								quote="At My Private Tutor Online, we offer more than just tutoring—we provide thoughtful, expert advice at every stage of your child's academic journey. Our service is consultative, personal, and bespoke to your family's individual needs."
-								backgroundColor='bg-transparent'
-								className='pt-0 pb-0'
-								useHighlighting={true}
-							/>
 						</div>
+
+						<section
+							id='journey-quote'
+							className='py-8 lg:py-12'>
+							<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
+								<blockquote className='text-xl lg:text-2xl font-serif italic text-token-primary-dark'>
+									&quot;At My Private Tutor Online, we offer more than just tutoring—we
+									provide thoughtful, expert advice at every stage of your child&apos;s
+									academic journey. Our service is consultative, personal, and{' '}
+									<strong>bespoke to your family&apos;s individual needs</strong>.&quot;
+								</blockquote>
+								<cite className='block mt-4 text-lg not-italic font-medium text-gray-700'>
+									- My Private Tutor Online
+								</cite>
+							</div>
+						</section>
+
 						<div className='relative w-full'>
 							<div className='space-y-0'>
 								{processSteps && processSteps.length > 0 ?

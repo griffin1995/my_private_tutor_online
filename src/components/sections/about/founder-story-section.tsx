@@ -157,29 +157,28 @@ export function FounderStorySection({
 							</h2>
 
 							<p className='text-gray-700 leading-relaxed'>
-								Considering how unconventional my own schooling was, I often
-								find myself chuckling that I'm in my second decade of a career
-								in education.{' '}
+								Considering how unconventional my own schooling was, I often find myself
+								chuckling that I'm in my second decade of a career in education.{' '}
 								<strong>
-									My path through school wasn't linear; I think that's one of
-									the reasons families trust me.
+									My path through school wasn't linear; I think that's one of the reasons
+									families trust me.
 								</strong>{' '}
-								I'm motivated by helping children when it feels like there are
-								no straight lines, only a confusing jumble of squiggles. That's
-								when my team and I can make a real impact.
+								I'm motivated by helping children when it feels like there are no
+								straight lines, only a confusing jumble of squiggles. That's when my
+								team and I can make a real impact.
 							</p>
 
 							<p className='text-gray-700 leading-relaxed'>
 								<strong>
-									I moved through six different schools growing up, across
-									private, state, faith, co-educational and single-sex systems
-									(including a boys' school run by monks — yes, really
+									I moved through six different schools growing up, across private,
+									state, faith, co-educational and single-sex systems (including a boys'
+									school run by monks — yes, really
 								</strong>
-								). My learning could have easily suffered, especially since I
-								have <strong>Dyspraxia</strong>, but one constant made a huge
-								difference: my tutor. She not only gave me academic consistency
-								but something far more valuable — a quiet confidence and the
-								belief that excellence was achievable, even in turbulent times.
+								). My learning could have easily suffered, especially since I have{' '}
+								<strong>Dyspraxia</strong>, but one constant made a huge difference: my
+								tutor. She not only gave me academic consistency but something far more
+								valuable — a quiet confidence and the belief that excellence was
+								achievable, even in turbulent times.
 							</p>
 						</div>
 					</div>
@@ -208,31 +207,29 @@ export function FounderStorySection({
 
 							<div className='text-gray-700 leading-relaxed space-y-6'>
 								<p>
-									By Sixth Form, I was achieving top grades. I hadn't planned to
-									apply to Oxbridge, but when my headmistress pulled me aside to
-									ask if I'd considered it, something inside me switched on.{' '}
+									By Sixth Form, I was achieving top grades. I hadn't planned to apply to
+									Oxbridge, but when my headmistress pulled me aside to ask if I'd
+									considered it, something inside me switched on.{' '}
 									<strong>
-										I loved a challenge, and applying to Cambridge to read
-										English and Theatre with Education Studies was certainly
-										that.
+										I loved a challenge, and applying to Cambridge to read English and
+										Theatre with Education Studies was certainly that.
 									</strong>
 								</p>
 
 								<p>
-									But my offer letter was as much cause for agitation as
-									celebration. You see, I had already fallen in love with
-									another course and city: Bristol. My elder sister was studying
-									languages there and although I had doggedly courted a
-									Cambridge offer, I hadn't considered a world in which I would
-									actually receive one. What to do?{' '}
+									But my offer letter was as much cause for agitation as celebration. You
+									see, I had already fallen in love with another course and city:
+									Bristol. My elder sister was studying languages there and although I
+									had doggedly courted a Cambridge offer, I hadn't considered a world in
+									which I would actually receive one. What to do?{' '}
 									<strong>Who turns down Cambridge? 17 year-old me.</strong>
-									It was an agonising decision, but even then I knew it was the
-									right one. Looking back, I realise that dilemma helped define
-									my ethos towards education:{' '}
+									It was an agonising decision, but even then I knew it was the right
+									one. Looking back, I realise that dilemma helped define my ethos
+									towards education:{' '}
 									<strong>
-										work as hard as you can to give yourself the luxury of
-										choice, then have the confidence to pick what's right for
-										you — even if it's not what's expected.
+										work as hard as you can to give yourself the luxury of choice, then
+										have the confidence to pick what's right for you — even if it's not
+										what's expected.
 									</strong>
 								</p>
 							</div>
@@ -286,21 +283,21 @@ export function FounderStorySection({
 								{/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML nested elements proper structure for combined formatting */}
 								{/* COMBINED FORMATTING REASON: Official HTML documentation Section semantic markup shows <strong><em>strongly emphasized</em></strong> pattern for text requiring both importance and emphasis semantics */}
 								<p>
-									Keen to put my English degree to good use, during this time I
-									also worked at{' '}
+									Keen to put my English degree to good use, during this time I also
+									worked at{' '}
 									<strong>
 										<em>Forbes Middle East</em>
 									</strong>{' '}
-									as Online Editor. I covered a range of subjects, including
-									education. Conducting interviews with business moguls and CEOs
-									reinforced what I already knew:{' '}
+									as Online Editor. I covered a range of subjects, including education.
+									Conducting interviews with business moguls and CEOs reinforced what I
+									already knew:{' '}
 									<strong>
-										the right educational support doesn't just help people ace
-										exams — it shapes their choices
+										the right educational support doesn't just help people ace exams — it
+										shapes their choices
 									</strong>
-									, their confidence and their future. These leaders had turned
-									their fortunes around through education. What could be more
-									exciting and important?
+									, their confidence and their future. These leaders had turned their
+									fortunes around through education. What could be more exciting and
+									important?
 								</p>
 							</div>
 						</div>
@@ -360,21 +357,21 @@ export function FounderStorySection({
 									{/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML nested elements proper structure for combined formatting */}
 									{/* COMBINED FORMATTING REASON: Official HTML documentation Section semantic markup shows <strong><em>strongly emphasized</em></strong> pattern for text requiring both importance and emphasis semantics */}
 									<p className='text-white'>
-										Keen to put my English degree to good use, during this time
-										I also worked at{' '}
+										Keen to put my English degree to good use, during this time I also
+										worked at{' '}
 										<strong>
 											<em>Forbes Middle East</em>
 										</strong>{' '}
-										as Online Editor. I covered a range of subjects, including
-										education. Conducting interviews with business moguls and
-										CEOs reinforced what I already knew:{' '}
+										as Online Editor. I covered a range of subjects, including education.
+										Conducting interviews with business moguls and CEOs reinforced what I
+										already knew:{' '}
 										<strong>
-											the right educational support doesn't just help people ace
-											exams — it shapes their choices
+											the right educational support doesn&apos;t just help people ace exams
+											— it shapes their choices
 										</strong>
-										, their confidence and their future. These leaders had
-										turned their fortunes around through education. What could
-										be more exciting and important?
+										, their confidence and their future. These leaders had turned their
+										fortunes around through education. What could be more exciting and
+										important?
 									</p>
 								</div>
 							</div>
@@ -400,10 +397,10 @@ export function FounderStorySection({
 					{/* CONTENT REPLACEMENT REASON: Official React documentation Section 3.1 demonstrates JSX paragraph structures for improved content presentation with client-specified results-focused messaging */}
 					<div className='text-lg text-primary-700 leading-relaxed space-y-6'>
 						<p>
-							Since founding My Private Tutor Online more than 15 years ago, my
-							team and I have helped hundreds of families through key academic
-							transitions — from early entrance exams to Oxbridge interviews,
-							international moves to last-minute GCSE turnarounds.
+							Since founding My Private Tutor Online more than 15 years ago, my team
+							and I have helped hundreds of families through key academic transitions —
+							from early entrance exams to Oxbridge interviews, international moves to
+							last-minute GCSE turnarounds.
 						</p>
 					</div>
 					{/* 7. THREE PILLARS SECTION - DIRECT LOADING */}
@@ -420,20 +417,20 @@ export function FounderStorySection({
 					{/* CONTENT REPLACEMENT REASON: Official React documentation Section 3.1 demonstrates JSX paragraph structures for improved content presentation with client-specified results-focused messaging */}
 					<div className='text-lg text-primary-700 leading-relaxed space-y-6'>
 						<p>
-							Tutoring isn’t just about good grades. It’s about having someone
-							in your corner who sees what you’re capable of, even before you
-							do. That’s the kind of guidance I had growing up, and it’s what I
-							aim to offer every family who works with us. <br></br>
-							<br></br>If you're looking for more than a tutor — if you’re
-							seeking a trusted partner to help navigate the terrain, whether
-							calm or chaotic — I’d love to hear from you.
+							Tutoring isn’t just about good grades. It’s about having someone in your
+							corner who sees what you’re capable of, even before you do. That’s the
+							kind of guidance I had growing up, and it’s what I aim to offer every
+							family who works with us. <br></br>
+							<br></br>If you're looking for more than a tutor — if you’re seeking a
+							trusted partner to help navigate the terrain, whether calm or chaotic —
+							I’d love to hear from you.
 						</p>
 					</div>
 					{/* ELIZABETH BURROWS SIGNATURE SECTION - POSITIONED IMMEDIATELY AFTER RESULTS THAT MATTER CONTENT */}
 					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium styling patterns for signature sections */}
 					{/* SIGNATURE POSITIONING REASON: Official Tailwind CSS documentation Section 5.1 for professional branding element placement after results content */}
 					<div className='flex flex-col items-center pt-8 mt-8 border-t border-primary-100'>
-						<p className='text-sm text-primary-600 font-medium'>
+						<p className='w-full text-base text-primary-600 font-medium'>
 							<strong>Elizabeth Burrows, Founder & CEO</strong>
 						</p>
 						<Image
@@ -441,7 +438,7 @@ export function FounderStorySection({
 							alt='Elizabeth Burrows Signature - Founder and CEO of My Private Tutor Online'
 							width={400}
 							height={120}
-							className='opacity-90 mb-3'
+							className='w-2/3 opacity-90 mb-3' //removed w-full as low quality image
 							placeholder='blur'
 							blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAVGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
 							loading='lazy'

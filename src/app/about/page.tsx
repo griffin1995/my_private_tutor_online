@@ -42,7 +42,6 @@ import { getTextTestimonials, type Testimonial } from '@/lib/cms/cms-content';
 import { getAboutHeroImage } from '@/lib/cms/cms-images';
 // CONTEXT7 SOURCE: /reactjs/react.dev - Named import pattern for React components
 // IMPORT RESTORATION REASON: Official React documentation demonstrates named import syntax with curly braces for component imports
-import { Highlighter } from '@/components/magicui/highlighter';
 // CONTEXT7 SOURCE: /reactjs/react.dev - Utility function imports for component styling
 // UTILITY IMPORT REASON: Official React documentation shows cn utility import for conditional styling
 import { cn } from '@/lib/utils';
@@ -76,8 +75,7 @@ export default function AboutUsPage() {
 	}
 
 	return (
-		<div
-			className={cn('min-h-screen flex flex-col overflow-x-hidden bg-white')}>
+		<div className={cn('min-h-screen flex flex-col overflow-x-hidden bg-white')}>
 			{/* CONTEXT7 SOURCE: /reactjs/react.dev - Component removal patterns maintaining header functionality */}
 			{/* PAGELAYOUT REMOVAL REASON: Official React documentation Section 3.2 shows direct component rendering after layout removal */}
 			{/* SITE NAVIGATION BAR - CRITICAL FOR USER ACCESS */}
@@ -120,41 +118,16 @@ export default function AboutUsPage() {
 
 				<section
 					id='about-quote'
-					className='py-20 lg:py-32 bg-white'>
-					<div className='max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8'>
-						<p
-							style={{
-								fontSize: '1.6rem',
-								color: '#000',
-								fontFamily: 'inherit',
-								lineHeight: '1.5',
-							}}>
-							<Highlighter
-								action='highlight'
-								color='#CA9E5B'>
-								"A truly bespoke
-							</Highlighter>{' '}
-							experience — Elizabeth personally pairs each student with a{' '}
-							<Highlighter
-								action='underline'
-								color='#3F4A7E'>
-								carefully selected tutor
-							</Highlighter>{' '}
-							from her boutique team.
-						</p>
-
-						{/* Attribution below the quote */}
-						<p
-							className='mt-4'
-							style={{
-								fontSize: '1.25rem', // slightly smaller than main quote but bigger than text-sm
-								color: '#000', // same colour as main quote
-								fontFamily: 'inherit',
-								fontWeight: '400', // normal weight, adjust if needed
-								lineHeight: '1.5',
-							}}>
-							- Academic Insight
-						</p>
+					className='py-16 lg:py-24 bg-primary-50'>
+					<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
+						<blockquote className='text-xl lg:text-2xl font-serif italic text-gray-900'>
+							&quot;<strong>A truly bespoke</strong> experience — Elizabeth personally
+							pairs each student with a <u>carefully selected tutor</u> from her
+							boutique team.&quot;
+						</blockquote>
+						<cite className='block mt-4 text-lg not-italic font-medium text-gray-700'>
+							Academic Insight
+						</cite>
 					</div>
 				</section>
 
@@ -174,22 +147,21 @@ export default function AboutUsPage() {
 							Our Educational Philosophy
 						</h1>
 						<p className='text-lg text-gray-700 leading-relaxed'>
-							We believe every child deserves an education tailored to who they
-							are, helping them{' '}
-							<strong>build confidence, curiosity, and clarity</strong>. We
-							combine academic rigour with personal mentorship, knowing that{' '}
+							We believe every child deserves an education tailored to who they are,
+							helping them <strong>build confidence, curiosity, and clarity</strong>.
+							We combine academic rigour with personal mentorship, knowing that{' '}
 							<strong>
-								success depends as much on resilience and self-belief as it does
-								on subject mastery
+								success depends as much on resilience and self-belief as it does on
+								subject mastery
 							</strong>
 							.
 						</p>
 						<p className='text-lg text-gray-700 leading-relaxed mt-4'>
 							Whether preparing for British schools, moving abroad, or facing
-							competitive exams, we provide structure, insight and flexibility.
-							Above all, <strong>we aim to cultivate independence</strong> —
-							giving students the tools and courage to walk their path with
-							confidence and <strong>thrive long after tutoring ends</strong>.
+							competitive exams, we provide structure, insight and flexibility. Above
+							all, <strong>we aim to cultivate independence</strong> — giving students
+							the tools and courage to walk their path with confidence and{' '}
+							<strong>thrive long after tutoring ends</strong>.
 						</p>
 					</div>
 				</section>

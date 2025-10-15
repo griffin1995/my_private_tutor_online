@@ -32,16 +32,11 @@ import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { FirstLessonSection } from '@/components/sections/about/FirstLessonSection';
-import { BrandMessageSection } from '@/components/sections/brand-message-section';
 import { ScrollingSchools } from '@/components/sections/scrolling-schools';
 import { Button } from '@/components/ui/button';
 import { BootcampVideoSectionVersion } from '@/components/video/BootcampVideoSectionVersion';
 import { VideoPopup } from '@/components/video/video-popup';
-import {
-	getHomeschoolingPreview,
-	getTestimonialsSchools,
-} from '@/lib/cms/cms-content';
-import { getProgrammeImage } from '@/lib/cms/cms-images';
+import { getTestimonialsSchools } from '@/lib/cms/cms-content';
 
 /**
  * Bootcamp Programmes - CMS DATA SOURCE: Static content for 11+ bootcamp offerings
@@ -130,10 +125,6 @@ const successStats = [
 	},
 ];
 
-// CONTEXT7 SOURCE: /microsoft/typescript - CMS data access patterns for homeschooling preview content
-// HOMESCHOOLING DATA REASON: Official TypeScript patterns for centralized data management and type-safe content access
-const homeschoolingData = getHomeschoolingPreview();
-
 // CONTEXT7 SOURCE: /reactjs/react.dev - Synchronous CMS data access for testimonials schools
 // SCHOOLS DATA REASON: Official React documentation patterns for direct data access without async loading
 const testimonialsSchools = getTestimonialsSchools();
@@ -170,8 +161,6 @@ const filteredSchools = filterSchoolsOnly(testimonialsSchools);
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Synchronous CMS data access for programme showcase images
 // PROGRAMME IMAGES REASON: Official TypeScript patterns for centralized data management and type-safe content access
-const kickstarterImage = getProgrammeImage('eleven-plus-kickstarter');
-const intensiveImage = getProgrammeImage('eleven-plus-intensive');
 
 export default function ElevenPlusBootcampsPage() {
 	// CONTEXT7 SOURCE: /reactjs/react.dev - useState Hook for managing video popup state
@@ -193,9 +182,8 @@ export default function ElevenPlusBootcampsPage() {
 							11+ Bootcamps
 						</h1>
 						<p className='text-xl text-primary-700 mb-8'>
-							Our intensive 11+ preparation bootcamps will return for the 2025
-							season. Please check back later or contact us for more
-							information.
+							Our intensive 11+ preparation bootcamps will return for the 2025 season.
+							Please check back later or contact us for more information.
 						</p>
 						{/* CONTEXT7 SOURCE: /websites/react_dev - Button with onClick event handler for contact updates */}
 						{/* CONTACT UPDATES REASON: Official React documentation recommends onClick handlers for contact actions */}
@@ -297,14 +285,14 @@ export default function ElevenPlusBootcampsPage() {
 			{/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
 			<section
 				id='bootcamps-mission'
-				className=''>
-				<BrandMessageSection
-					quote="Discover our comprehensive preparation programmes designed for different learning needs and timelines. Choose the perfect fit for your child's 11+ journey."
-					backgroundColor='bg-white'
-					className=''
-					useHighlighting={true}
-					showAuthorImage={false}
-				/>
+				className='mt-16'>
+				<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
+					<blockquote className='text-xl lg:text-2xl font-serif italic text-gray-900'>
+						&quot;Discover our comprehensive preparation programmes designed for
+						different learning needs and timelines. Choose the perfect fit for your
+						child&apos;s 11+ journey.&quot;
+					</blockquote>
+				</div>
 			</section>
 
 			{/* TEXT SEPARATOR AFTER MISSION */}
@@ -410,29 +398,28 @@ export default function ElevenPlusBootcampsPage() {
 									{/* LIST SEMANTICS: Official MDN documentation shows ul elements with proper list item structure for related content */}
 									<ul className='list-disc list-inside space-y-3 text-base lg:text-lg text-primary-700 leading-relaxed'>
 										<li>
-											All sessions led by experienced specialists with 11+
-											examiner credentials and/or proven track records at top
-											schools
+											All sessions led by experienced specialists with 11+ examiner
+											credentials and/or proven track records at top schools
 										</li>
 										<li>
-											Exclusive access to curated past papers, practice
-											questions, and revision materials
+											Exclusive access to curated past papers, practice questions, and
+											revision materials
 										</li>
 										<li>
-											Maximum 4-5 students per group ensuring personalised
-											attention and focused learning
+											Maximum 4-5 students per group ensuring personalised attention and
+											focused learning
 										</li>
 										<li>
 											98% success rate with consistent placements at prestigious
 											independent schools
 										</li>
 										<li>
-											Focus on exam technique and confidence building alongside
-											academic preparation
+											Focus on exam technique and confidence building alongside academic
+											preparation
 										</li>
 										<li>
-											Multiple dates available throughout the year to fit your
-											family's schedule
+											Multiple dates available throughout the year to fit your family's
+											schedule
 										</li>
 									</ul>
 								</div>
@@ -456,9 +443,8 @@ export default function ElevenPlusBootcampsPage() {
 										{/* CONTEXT7 SOURCE: /mdn/content - Figcaption element for video description */}
 										{/* FIGCAPTION SEMANTICS: Official MDN documentation shows figcaption elements to provide accessible descriptions for figure content */}
 										<figcaption className='sr-only'>
-											Video introduction featuring Emily, our specialist 11+
-											tutor, explaining our comprehensive entrance exam
-											preparation approach
+											Video introduction featuring Emily, our specialist 11+ tutor,
+											explaining our comprehensive entrance exam preparation approach
 										</figcaption>
 									</figure>
 								</div>

@@ -8,9 +8,9 @@
 // CONTEXT7 SOURCE: /microsoft/typescript - Type-safe constant object with readonly properties
 // TYPE_SAFETY_REASON: Official TypeScript documentation for creating immutable constant definitions
 export const NAVBAR_HEIGHTS = {
-  mobile: '5.5rem',   // 88px - base mobile navbar height
-  tablet: '6.25rem',  // 100px - large screens breakpoint
-  desktop: '7rem'     // 112px - extra large screens breakpoint
+	mobile: '5.5rem', // 88px - base mobile navbar height
+	tablet: '6.25rem', // 100px - large screens breakpoint
+	desktop: '7rem', // 112px - extra large screens breakpoint
 } as const;
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Keyof type operator for type-safe key access
@@ -32,26 +32,26 @@ export type ViewportCalcExpression = `h-[calc(100${ViewportUnit}-${string})]`;
  * Returns responsive className string with browser fallbacks and dvh support
  */
 export const calculateRemainingViewport = (): string => {
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Progressive enhancement with fallback patterns
-  // PROGRESSIVE_ENHANCEMENT_REASON: Official Tailwind CSS documentation for browser compatibility strategies
-  //
-  // BROWSER SUPPORT STRATEGY:
-  // 1. vh fallback for older browsers (iOS Safari < 15.4, Chrome < 108)
-  // 2. dvh units for modern browsers with dynamic viewport support
-  // 3. Tailwind CSS 3.4+ native support for dvh utilities
-  //
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS custom properties for multiple value declarations
-  // FALLBACK_IMPLEMENTATION_REASON: Official CSS documentation shows multiple value declarations for progressive enhancement
-  return [
-    // Legacy viewport height fallback
-    `h-[calc(100vh-${NAVBAR_HEIGHTS.mobile})]`,
-    `lg:h-[calc(100vh-${NAVBAR_HEIGHTS.tablet})]`,
-    `xl:h-[calc(100vh-${NAVBAR_HEIGHTS.desktop})]`,
-    // Modern dynamic viewport height (overrides fallback when supported)
-    `h-[calc(100dvh-${NAVBAR_HEIGHTS.mobile})]`,
-    `lg:h-[calc(100dvh-${NAVBAR_HEIGHTS.tablet})]`,
-    `xl:h-[calc(100dvh-${NAVBAR_HEIGHTS.desktop})]`
-  ].join(' ');
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Progressive enhancement with fallback patterns
+	// PROGRESSIVE_ENHANCEMENT_REASON: Official Tailwind CSS documentation for browser compatibility strategies
+	//
+	// BROWSER SUPPORT STRATEGY:
+	// 1. vh fallback for older browsers (iOS Safari < 15.4, Chrome < 108)
+	// 2. dvh units for modern browsers with dynamic viewport support
+	// 3. Tailwind CSS 3.4+ native support for dvh utilities
+	//
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS custom properties for multiple value declarations
+	// FALLBACK_IMPLEMENTATION_REASON: Official CSS documentation shows multiple value declarations for progressive enhancement
+	return [
+		// Legacy viewport height fallback
+		`h-[calc(100vh-${NAVBAR_HEIGHTS.mobile})]`,
+		`lg:h-[calc(100vh-${NAVBAR_HEIGHTS.tablet})]`,
+		`xl:h-[calc(100vh-${NAVBAR_HEIGHTS.desktop})]`,
+		// Modern dynamic viewport height (overrides fallback when supported)
+		`h-[calc(100dvh-${NAVBAR_HEIGHTS.mobile})]`,
+		`lg:h-[calc(100dvh-${NAVBAR_HEIGHTS.tablet})]`,
+		`xl:h-[calc(100dvh-${NAVBAR_HEIGHTS.desktop})]`,
+	].join(' ');
 };
 
 /**
@@ -62,9 +62,9 @@ export const calculateRemainingViewport = (): string => {
  * Returns responsive className string for proper navbar clearance
  */
 export const getNavbarClearance = (): string => {
-  // CONTEXT7 SOURCE: /websites/tailwindcss - Margin utilities with responsive breakpoints
-  // SPACING_UTILITIES_REASON: Official Tailwind CSS documentation for responsive margin calculations
-  return `mt-[${NAVBAR_HEIGHTS.mobile}] lg:mt-[${NAVBAR_HEIGHTS.tablet}] xl:mt-[${NAVBAR_HEIGHTS.desktop}]`;
+	// CONTEXT7 SOURCE: /websites/tailwindcss - Margin utilities with responsive breakpoints
+	// SPACING_UTILITIES_REASON: Official Tailwind CSS documentation for responsive margin calculations
+	return `mt-[${NAVBAR_HEIGHTS.mobile}] lg:mt-[${NAVBAR_HEIGHTS.tablet}] xl:mt-[${NAVBAR_HEIGHTS.desktop}]`;
 };
 
 /**
@@ -76,9 +76,9 @@ export const getNavbarClearance = (): string => {
  * Returns complete className string for full section positioning with mobile browser compatibility
  */
 export const getFullSectionClasses = (): string => {
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Overflow handling with dynamic viewport units
-  // VIEWPORT_OVERFLOW_FIX_REASON: Dynamic viewport units with overflow-hidden prevent mobile browser scroll issues
-  return `w-full ${calculateRemainingViewport()} ${getNavbarClearance()} flex flex-col overflow-hidden`;
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Overflow handling with dynamic viewport units
+	// VIEWPORT_OVERFLOW_FIX_REASON: Dynamic viewport units with overflow-hidden prevent mobile browser scroll issues
+	return `w-full ${calculateRemainingViewport()} ${getNavbarClearance()} flex flex-col overflow-hidden`;
 };
 
 /**
@@ -89,9 +89,9 @@ export const getFullSectionClasses = (): string => {
  * Returns responsive className string matching navbar height for content positioning
  */
 export const getNavbarSpacerHeight = (): string => {
-  // CONTEXT7 SOURCE: /websites/tailwindcss - Height utilities with responsive breakpoints
-  // SPACER_HEIGHT_REASON: Official Tailwind CSS documentation for consistent spacing with fixed headers
-  return `h-[${NAVBAR_HEIGHTS.mobile}] lg:h-[${NAVBAR_HEIGHTS.tablet}] xl:h-[${NAVBAR_HEIGHTS.desktop}]`;
+	// CONTEXT7 SOURCE: /websites/tailwindcss - Height utilities with responsive breakpoints
+	// SPACER_HEIGHT_REASON: Official Tailwind CSS documentation for consistent spacing with fixed headers
+	return `h-[${NAVBAR_HEIGHTS.mobile}] lg:h-[${NAVBAR_HEIGHTS.tablet}] xl:h-[${NAVBAR_HEIGHTS.desktop}]`;
 };
 
 /**
@@ -103,9 +103,9 @@ export const getNavbarSpacerHeight = (): string => {
  * Returns section classes with dvh units and browser fallbacks, without margin-top clearance (handled by spacer div)
  */
 export const getHeroSectionClasses = (): string => {
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox layout with dynamic viewport height calculations
-  // MOBILE_OPTIMIZATION_REASON: Dynamic viewport units solve iOS Safari address bar and Android keyboard overlay issues
-  return `w-full ${calculateRemainingViewport()} flex flex-col overflow-hidden`;
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Flexbox layout with dynamic viewport height calculations
+	// MOBILE_OPTIMIZATION_REASON: Dynamic viewport units solve iOS Safari address bar and Android keyboard overlay issues
+	return `w-full ${calculateRemainingViewport()} flex flex-col overflow-hidden`;
 };
 
 /**
@@ -117,7 +117,7 @@ export const getHeroSectionClasses = (): string => {
  * @returns The navbar height value for the specified breakpoint
  */
 export const getNavbarHeight = (key: NavbarHeightKey): string => {
-  return NAVBAR_HEIGHTS[key];
+	return NAVBAR_HEIGHTS[key];
 };
 
 /**
@@ -128,7 +128,7 @@ export const getNavbarHeight = (key: NavbarHeightKey): string => {
  * @returns Array of navbar height entries for programmatic access
  */
 export const getNavbarHeightEntries = (): Array<[NavbarHeightKey, string]> => {
-  return Object.entries(NAVBAR_HEIGHTS) as Array<[NavbarHeightKey, string]>;
+	return Object.entries(NAVBAR_HEIGHTS) as Array<[NavbarHeightKey, string]>;
 };
 
 /**
@@ -150,29 +150,29 @@ export type ViewportUnit = 'vh' | 'dvh' | 'lvh' | 'svh';
  * @returns Responsive className string with specified viewport unit
  */
 export const calculateRemainingViewportWithUnit = (
-  unit: ViewportUnit = 'dvh',
-  includeFallback: boolean = true
+	unit: ViewportUnit = 'dvh',
+	includeFallback: boolean = true,
 ): string => {
-  // CONTEXT7 SOURCE: /microsoft/typescript - Conditional logic with type-safe string literal unions
-  // TYPE_SAFETY_REASON: Official TypeScript documentation for exhaustive conditional checks
-  const baseClasses = [
-    `h-[calc(100${unit}-${NAVBAR_HEIGHTS.mobile})]`,
-    `lg:h-[calc(100${unit}-${NAVBAR_HEIGHTS.tablet})]`,
-    `xl:h-[calc(100${unit}-${NAVBAR_HEIGHTS.desktop})]`
-  ];
+	// CONTEXT7 SOURCE: /microsoft/typescript - Conditional logic with type-safe string literal unions
+	// TYPE_SAFETY_REASON: Official TypeScript documentation for exhaustive conditional checks
+	const baseClasses = [
+		`h-[calc(100${unit}-${NAVBAR_HEIGHTS.mobile})]`,
+		`lg:h-[calc(100${unit}-${NAVBAR_HEIGHTS.tablet})]`,
+		`xl:h-[calc(100${unit}-${NAVBAR_HEIGHTS.desktop})]`,
+	];
 
-  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Progressive enhancement patterns
-  // FALLBACK_STRATEGY_REASON: Official Tailwind CSS documentation for browser compatibility implementation
-  if (includeFallback && (unit === 'dvh' || unit === 'lvh' || unit === 'svh')) {
-    const fallbackClasses = [
-      `h-[calc(100vh-${NAVBAR_HEIGHTS.mobile})]`,
-      `lg:h-[calc(100vh-${NAVBAR_HEIGHTS.tablet})]`,
-      `xl:h-[calc(100vh-${NAVBAR_HEIGHTS.desktop})]`
-    ];
-    return [...fallbackClasses, ...baseClasses].join(' ');
-  }
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Progressive enhancement patterns
+	// FALLBACK_STRATEGY_REASON: Official Tailwind CSS documentation for browser compatibility implementation
+	if (includeFallback && (unit === 'dvh' || unit === 'lvh' || unit === 'svh')) {
+		const fallbackClasses = [
+			`h-[calc(100vh-${NAVBAR_HEIGHTS.mobile})]`,
+			`lg:h-[calc(100vh-${NAVBAR_HEIGHTS.tablet})]`,
+			`xl:h-[calc(100vh-${NAVBAR_HEIGHTS.desktop})]`,
+		];
+		return [...fallbackClasses, ...baseClasses].join(' ');
+	}
 
-  return baseClasses.join(' ');
+	return baseClasses.join(' ');
 };
 
 /**
@@ -184,20 +184,20 @@ export const calculateRemainingViewportWithUnit = (
  * @returns Boolean indicating dvh support availability
  */
 export const supportsDynamicViewport = (): boolean => {
-  // CONTEXT7 SOURCE: /microsoft/typescript - Type guards and runtime feature detection
-  // RUNTIME_SAFETY_REASON: Official TypeScript documentation for safe DOM API access
-  if (typeof window === 'undefined' || typeof document === 'undefined') {
-    return false; // SSR environment - assume no support for safety
-  }
+	// CONTEXT7 SOURCE: /microsoft/typescript - Type guards and runtime feature detection
+	// RUNTIME_SAFETY_REASON: Official TypeScript documentation for safe DOM API access
+	if (typeof window === 'undefined' || typeof document === 'undefined') {
+		return false; // SSR environment - assume no support for safety
+	}
 
-  try {
-    // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS.supports API for feature detection
-    // FEATURE_DETECTION_IMPLEMENTATION_REASON: Official Web APIs documentation for CSS feature queries
-    return CSS.supports('height', '100dvh');
-  } catch (error) {
-    // Fallback for browsers without CSS.supports
-    return false;
-  }
+	try {
+		// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS.supports API for feature detection
+		// FEATURE_DETECTION_IMPLEMENTATION_REASON: Official Web APIs documentation for CSS feature queries
+		return CSS.supports('height', '100dvh');
+	} catch (error) {
+		// Fallback for browsers without CSS.supports
+		return false;
+	}
 };
 
 /**
@@ -208,10 +208,10 @@ export const supportsDynamicViewport = (): boolean => {
  * @returns Responsive className string with optimal viewport unit for current browser
  */
 export const calculateAdaptiveViewport = (): string => {
-  // CONTEXT7 SOURCE: /microsoft/typescript - Conditional logic based on runtime feature detection
-  // RUNTIME_ADAPTATION_REASON: Official TypeScript documentation for dynamic behavior based on environment capabilities
-  const useDvh = supportsDynamicViewport();
-  return useDvh
-    ? calculateRemainingViewportWithUnit('dvh', true)
-    : calculateRemainingViewportWithUnit('vh', false);
+	// CONTEXT7 SOURCE: /microsoft/typescript - Conditional logic based on runtime feature detection
+	// RUNTIME_ADAPTATION_REASON: Official TypeScript documentation for dynamic behavior based on environment capabilities
+	const useDvh = supportsDynamicViewport();
+	return useDvh ?
+			calculateRemainingViewportWithUnit('dvh', true)
+		:	calculateRemainingViewportWithUnit('vh', false);
 };

@@ -8,6 +8,8 @@
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - CMS Integration Imports
 // CMS DATA LOADING REASON: Official React patterns for synchronous content access
+import Image from 'next/image';
+import { LazyServicesCarousel } from '../../components/dynamic/lazy-loaded-components';
 import {
 	getFounderQuote,
 	getServices,
@@ -15,8 +17,10 @@ import {
 	getTestimonialsSchools,
 	getTrustIndicators,
 } from '../../lib/cms';
-import { getStudentImages } from '../../lib/cms/cms-images';
-
+import {
+	getScrollingSchoolLogos,
+	getStudentImages,
+} from '../../lib/cms/cms-images';
 // CONTEXT7 SOURCE: /websites/web.dev - Performance monitoring for layout optimization
 // PERFORMANCE_MONITORING_REASON: Official Web Performance documentation for tracking layout thrashing
 import { useEffect } from 'react';
@@ -30,13 +34,9 @@ import { runtimeMonitor } from '../../lib/cms/cms-runtime-monitor';
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component imports for homepage sections
 // COMPONENT IMPORT REASON: Official React documentation for modular component architecture
 import { ErrorBoundaryWrapper } from '../../components/boundaries/homepage-error-boundary';
-import { HomepageSections } from '../../components/homepage/homepage-sections';
 import { PageFooter } from '../../components/layout/page-footer';
 import { Navigation } from '../../components/navigation/Navigation';
 import { AboutSection } from '../../components/sections/about-section';
-import { BrandMessageSection } from '../../components/sections/brand-message-section';
-import { HeroSection } from '../../components/sections/hero-section';
-import { ScrollingSchools } from '../../components/sections/scrolling-schools';
 import { TrustIndicatorsGrid } from '../../components/sections/trust-indicators-grid';
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component replacement using named imports
 // REVISION REASON: Official React documentation patterns for component substitution and clean import management
@@ -45,14 +45,10 @@ import { ThreePillarsSection } from '../../components/sections/three-pillars-sec
 // CONTEXT7 SOURCE: /reactjs/react.dev - Extracted section components for homepage componentization
 // COMPONENT EXTRACTION REASON: Official React documentation patterns for modular section components
 import { FounderIntroductionSection } from '../../components/sections/founder-introduction-section';
-import { TaglineSection } from '../../components/sections/tagline-section';
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Centralized navbar height constants for maintainable spacing
 // CONSTANTS_IMPORT_REASON: Official TypeScript documentation patterns for centralized constant management
-import {
-	getHeroSectionClasses,
-	getNavbarSpacerHeight,
-} from '../../lib/constants/navbar-heights';
+import { m } from 'framer-motion';
 
 // CONTEXT7 SOURCE: /websites/nextjs - Utility imports for component structure
 // UTILITY_IMPORT_REASON: Official Next.js documentation for utility function imports
@@ -170,9 +166,10 @@ export default function HomePage() {
 		};
 	}, [
 		founderQuote?.text,
+		numStudentImages,
 		services?.length,
 		siteBranding?.name,
-		studentImages?.length,
+		studentImages.length,
 		testimonialsSchools?.length,
 		trustIndicators?.length,
 	]);
@@ -183,54 +180,137 @@ export default function HomePage() {
 		<div className='min-h-screen flex flex-col overflow-x-hidden bg-white'>
 			{/* CONTEXT7 SOURCE: /reactjs/react.dev - Navigation component with homepage props */}
 			{/* NAVIGATION_INTEGRATION_REASON: Official React documentation for direct component integration */}
-			<Navigation isHomepage={true} />
+			<Navigation isHomepage={false} />
 			<main
 				className='flex-1'
 				role='main'
 				id='main-content'
 				tabIndex={-1}>
 				<div className='mx-auto'>
-					{/* CONTEXT7 SOURCE: /websites/tailwindcss - Spacer div for fixed header layout positioning */}
-					{/* SPACER_DIV_REASON: Official Tailwind CSS documentation for spacing elements to push content below fixed headers */}
-					{/* Navbar spacer to push content below fixed navbar */}
-					<div className={getNavbarSpacerHeight()} />
+					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Inline styles for dynamic viewport calculations */}
+					{/* INLINE_STYLE_REASON: Official Tailwind CSS documentation shows JIT compiler requires static class strings; dynamic heights must use inline styles */}
+					{/* REVISION REASON: Replaced getNavbarSpacerHeight() className with inline styles - Tailwind JIT cannot process runtime template literal classes */}
+					{/* Spacer for fixed navbar (with bottom border) */}
+					<div
+						style={{ height: 'var(--navbar-height, 5.5rem)' }}
+						className='lg:hidden border-b border-token-border-medium'
+					/>
+					<div
+						style={{ height: 'var(--navbar-height, 6.25rem)' }}
+						className='hidden lg:block xl:hidden border-b border-token-border-medium'
+					/>
+					<div
+						style={{ height: 'var(--navbar-height, 7rem)' }}
+						className='hidden xl:block border-b border-token-border-medium'
+					/>
 
-					{/* SECTION 1: COMBINED HERO WITH TAGLINE AND SCROLLING SCHOOLS - FULL VIEWPORT */}
-					{/* CONTEXT7 SOURCE: /websites/tailwindcss - Sequential positioning using spacer div for fixed navbar clearance */}
-					{/* SPACER_POSITIONING_REASON: Official Tailwind documentation for clean container positioning using spacer elements */}
-					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS calc() function for accurate viewport height calculations */}
-					{/* NAVBAR_ACCOMMODATION_REASON: Official Tailwind documentation for calc() with responsive breakpoints ensuring exact viewport usage */}
+					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Dynamic viewport height with calc and responsive arbitrary values */}
+					{/* DVH_CALC_REASON: Official Tailwind CSS documentation Section 3.4+ shows h-dvh with calc() for remaining viewport height after fixed headers */}
+					{/* ARBITRARY_VALUE_REASON: Official Tailwind CSS documentation shows h-[value] syntax processes static calc expressions at build time */}
+					{/* FLEX_BASIS_REASON: Official Tailwind CSS documentation shows flex-[0_0_value] creates fixed-height flex items that don't grow or shrink */}
+					{/* REVISION REASON: Using Tailwind responsive arbitrary values instead of dynamic template literals - JIT compiler requires static class strings */}
+					{/* REVISION REASON: Section height accounts for navbar spacer + fixed gap flex item - video gets full proportional space without cropping */}
+					{/* Hero section fills remaining viewport space (gap + 70% video + 15% tagline + 15% schools) */}
 					<section
 						id='hero-premium-tutoring-landing-combined'
-						className={getHeroSectionClasses()}>
-						{/* CONTEXT7 SOURCE: /thingsym/flexbox-grid-mixins - Flexbox ratio optimization for content hierarchy */}
-						{/* RATIO_OPTIMIZATION_REASON: Official flexbox documentation patterns for viewport space allocation */}
-						{/* Hero Section - Takes up 50% of available viewport height (10/20 units) */}
-						<HeroSection
-							showHeader={false}
-							hasStaticNavbar={false}
-							className='flex-[10] h-full'
-						/>
+						className='flex flex-col w-full h-[calc(100dvh-5.5rem)] lg:h-[calc(100dvh-6.25rem)] xl:h-[calc(100dvh-7rem)]'>
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Fixed-height flex item for navbar gap spacing */}
+						{/* FIXED_FLEX_ITEM_REASON: Official Tailwind CSS documentation shows flex-[0_0_auto] with fixed height creates non-flexible spacer */}
+						{/* Gap spacer between navbar and video content */}
+						<div className='flex-[0_0_3rem]' />
 
-						{/* Tagline Section - Takes up 20% of available viewport height */}
-						<div className='flex-[4] flex items-center justify-center'>
-							<div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-								<TaglineSection />
+						{/* ----------------------------- Hero Video (70%) ----------------------------- */}
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - object-contain for aspect ratio preservation */}
+						{/* OBJECT_CONTAIN_REASON: Official Tailwind CSS documentation shows object-contain scales content to fit within container while preserving aspect ratio */}
+						{/* HEIGHT_INHERITANCE_REASON: Official Tailwind CSS documentation shows h-full on nested elements requires parent height for proper calculation */}
+						{/* REVISION REASON: Changed from object-cover to object-contain - allows whitespace to preserve video's native aspect ratio without cropping */}
+						{/* REVISION REASON: Added h-full to wrapper div so video's h-full has defined parent height to reference */}
+						<div className='flex-[7] relative w-full overflow-hidden'>
+							<div className='w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center'>
+								<video
+									src='/videos/background-video-2025.mp4'
+									autoPlay
+									muted
+									loop
+									playsInline
+									preload='auto'
+									className='w-full h-full object-contain'
+									aria-label='Hero background video'
+								/>
 							</div>
 						</div>
 
-						{/* CONTEXT7 SOURCE: /thingsym/flexbox-grid-mixins - Flexbox ratio optimization for content hierarchy */}
-						{/* RATIO_OPTIMIZATION_REASON: Official flexbox documentation patterns for viewport space allocation */}
-						{/* Scrolling Schools Section - Takes up 30% of available viewport height (6/20 units) */}
-						<div className='flex-[6] flex items-center justify-center'>
-							<div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-								{/* CONTEXT7 SOURCE: /reactjs/react.dev - Conditional rendering using logical AND operator */}
-								{/* ERROR_BOUNDARY_REMOVAL_REASON: Official React documentation patterns for direct conditional component rendering */}
-								{testimonialsSchools.length > 0 && (
-									<ScrollingSchools schools={[...testimonialsSchools]} />
-								)}
+						{/* --------------------------- Tagline Section (15%) -------------------------- */}
+						<div className='flex-[1.5] flex items-center justify-center'>
+							<div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+								<h2 className='text-2xl lg:text-3xl font-serif font-medium tracking-wide leading-tight text-token-neutral-900 dark:text-white'>
+									We help students place at top 10 UK schools and universities
+								</h2>
+								<div className='flex justify-center items-center space-x-6 mt-2 sm:mt-3'>
+									<div className='w-12 h-px bg-token-neutral-300 dark:bg-token-neutral-600' />
+									<div className='w-3 h-3 rounded-full bg-token-neutral-400 dark:bg-token-neutral-500 shadow-lg' />
+									<div className='w-12 h-px bg-token-neutral-300 dark:bg-token-neutral-600' />
+								</div>
 							</div>
 						</div>
+
+						{/* ----------------------- Scrolling Schools (15%) --------------------------- */}
+						{testimonialsSchools.length > 0 && (
+							<div className='flex-[1.5] flex items-center justify-center'>
+								{/* Stronger gradient mask for fade-in/out edges */}
+								<div
+									className='w-full max-w-7xl mx-auto overflow-hidden bg-white px-4 sm:px-6 lg:px-8 relative'
+									style={{
+										WebkitMaskImage:
+											'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
+										maskImage:
+											'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
+										WebkitMaskRepeat: 'no-repeat',
+										maskRepeat: 'no-repeat',
+									}}>
+									<m.div
+										className='flex gap-8 sm:gap-12 whitespace-nowrap motion-reduce:animate-none'
+										animate={{ x: ['0%', '-50%'] }}
+										transition={{
+											repeat: Infinity,
+											repeatType: 'loop',
+											ease: 'linear',
+											duration: 15,
+										}}>
+										{testimonialsSchools
+											.concat(testimonialsSchools)
+											.map((school, index) => {
+												const schoolName =
+													typeof school === 'string' ? school : (
+														school.name || school.title || 'School'
+													);
+												const logoAsset =
+													getScrollingSchoolLogos()[
+														schoolName as keyof ReturnType<typeof getScrollingSchoolLogos>
+													];
+												if (!logoAsset) return null;
+
+												return (
+													<div
+														key={index}
+														className='flex-shrink-0 flex items-center justify-center px-3 sm:px-4'>
+														<Image
+															src={logoAsset.src}
+															alt={logoAsset.alt}
+															width={logoAsset.width || 120}
+															height={logoAsset.height || 80}
+															title={logoAsset.title}
+															loading='lazy'
+															className='h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300'
+															sizes='(max-width: 768px) 80px, (max-width: 1200px) 100px, 120px'
+														/>
+													</div>
+												);
+											})}
+									</m.div>
+								</div>
+							</div>
+						)}
 					</section>
 
 					{/* SECTION 3: OPENING STATEMENT - EXCEPTIONAL TUITION
@@ -265,22 +345,30 @@ export default function HomePage() {
 					{/* SECTION 7: WHO WE SUPPORT - SERVICE CATEGORIES SHOWCASE */}
 					<section id='who-we-support-services'>
 						<ErrorBoundaryWrapper sectionName='Who We Support Services'>
-							<HomepageSections
-								services={[...services]}
+							<LazyServicesCarousel
+								services={services}
 								studentImages={studentImages}
 							/>
 						</ErrorBoundaryWrapper>
 					</section>
 					{/* SECTION 8: QUOTE - FOUNDER TESTIMONIAL AND MISSION STATEMENT */}
-					<section id='founder-quote-testimonials'>
-						<ErrorBoundaryWrapper sectionName='Founder Quote and Testimonials'>
-							<BrandMessageSection
-								quote={founderQuote.quote}
-								author={founderQuote.author}
-								role={founderQuote.role}
-								showAuthorImage={false}
-							/>
-						</ErrorBoundaryWrapper>
+					<section
+						id='founder-quote-testimonials'
+						className='py-16 lg:py-24 bg-primary-50'>
+						<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
+							<blockquote className='text-xl lg:text-2xl font-serif italic text-gray-900'>
+								Parents come to us when something <strong>truly</strong> matters—an
+								entrance exam, a lost sense of confidence, a desire for academic
+								stretch. They stay with us because{' '}
+								<strong>we deliver real progress, quietly and expertly</strong>. This is
+								not a tutoring directory. This is{' '}
+								<u>a bespoke service for ambitious families</u> looking for t
+								<strong>rusted partners in their child&apos;s academic career</strong>.
+							</blockquote>
+							<cite className='block mt-4 text-lg not-italic font-medium text-gray-700'>
+								Elizabeth Burrows, Founder
+							</cite>
+						</div>
 					</section>
 				</div>
 			</main>
