@@ -42,10 +42,8 @@ import tailwindClamp from 'tailwind-clamp';
  */
 
 const config: Config = {
-	// Enable dark mode via class
-	darkMode: 'class',
-
-	// Content paths for Tailwind CSS 3.x
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Content configuration for JIT engine
+	// Content paths for Tailwind CSS 3.x - scanned for class names
 	content: [
 		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -53,6 +51,51 @@ const config: Config = {
 		'./src/lib/**/*.{js,ts,jsx,tsx,mdx}',
 		'./content/**/*.{json,md,mdx}',
 	],
+
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Dark mode configuration
+	// 'class' enables manual dark mode via class name, 'media' uses system preference
+	darkMode: 'class',
+
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Safelist configuration
+	// Force generation of specific classes that might not be detected in content files
+	// Useful for dynamically generated class names from CMS or databases
+	safelist: [
+		// Add patterns here if needed for dynamic classes
+		// Example: { pattern: /bg-(red|green|blue)-(100|200|300)/ }
+	],
+
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Blocklist configuration
+	// Prevent specific classes from being generated (rarely needed)
+	// blocklist: [],
+
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Presets configuration
+	// Base configuration to extend from - useful for sharing configs across projects
+	// presets: [require('./tailwind-preset.js')],
+
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Prefix configuration
+	// Add custom prefix to all Tailwind utility classes (e.g., 'tw-' → 'tw-flex')
+	// Currently set to empty string for standard class names
+	prefix: '',
+
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Important configuration
+	// Make all Tailwind utilities !important or target specific selector
+	// Set to false for standard CSS specificity, or '#app' to scope importance
+	important: false,
+
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Separator configuration
+	// Character used to separate variant modifiers from utility names
+	// Default ':' allows 'hover:bg-blue-500', change to '_' for 'hover_bg-blue-500'
+	separator: ':',
+
+	// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Core plugins configuration
+	// Selectively disable specific Tailwind core plugins to reduce bundle size
+	// Uncomment and add plugins to disable (e.g., { float: false, objectFit: false })
+	// corePlugins: {
+	//   // Example: Disable unused utilities
+	//   // float: false,
+	//   // clear: false,
+	//   // skew: false,
+	// },
 
 	theme: {
 		extend: {
@@ -568,6 +611,41 @@ const config: Config = {
 					'3xl': '1780px',
 				},
 			},
+
+			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - ARIA attribute variant shortcuts
+			// Create custom variants based on ARIA attributes for accessibility-focused styling
+			// Usage: aria-checked:bg-blue-500, aria-expanded:rotate-180
+			aria: {
+				checked: 'checked',
+				disabled: 'disabled',
+				expanded: 'expanded',
+				hidden: 'hidden',
+				pressed: 'pressed',
+				readonly: 'readonly',
+				required: 'required',
+				selected: 'selected',
+			},
+
+			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Data attribute variant shortcuts
+			// Create custom variants based on data attributes for state-based styling
+			// Usage: data-active:bg-blue-500, data-state-open:block
+			data: {
+				active: 'active~="true"',
+				inactive: 'active~="false"',
+				open: 'state~="open"',
+				closed: 'state~="closed"',
+				loading: 'loading~="true"',
+				error: 'error~="true"',
+			},
+
+			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @supports variant shortcuts
+			// Create custom variants based on CSS feature support detection
+			// Usage: supports-grid:grid, supports-backdrop-blur:backdrop-blur-sm
+			supports: {
+				grid: 'display: grid',
+				flex: 'display: flex',
+				'backdrop-blur': 'backdrop-filter: blur(0px)',
+			},
 		},
 	},
 
@@ -593,12 +671,6 @@ const config: Config = {
 			maxSize: '80rem', // 1280px - maximum container width for fluid scaling
 		}),
 	],
-
-	// Prefix for avoiding conflicts
-	prefix: '',
-
-	// Important configuration
-	important: false,
 };
 
 export default config;

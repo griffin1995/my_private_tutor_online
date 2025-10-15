@@ -8,11 +8,10 @@
    SIMPLIFICATION REASON: Surgical removal of premium micro-interactions system while preserving all existing Tailwind functionality */
 
 /**
- * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design Token CSS Custom Properties Integration
- * PHASE 2 IMPLEMENTATION: Importing strategic 25-color palette and typography/spacing tokens
- * DESIGN SYSTEM CONSOLIDATION: CSS variables enable runtime theming and gradual migration from 809 legacy colors
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Tailwind CSS v4 Core Directives
+ * TAILWIND MIGRATION: All design tokens now managed via tailwind.config.ts (single source of truth)
+ * SIMPLIFICATION: Removed CSS variable imports - all styling via Tailwind utility classes
  */
-@import '../design-tokens/generated/variables.css';
 
 @tailwind base;
 @tailwind components;
@@ -125,33 +124,212 @@ html {
  * Reference: /tailwindlabs/tailwindcss.com - Custom Color Palette Implementation
  * CLIENT BRAND SPECIFICATION: Luxury Gold & Blue Color Scheme
  */
+/**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Comprehensive CSS Custom Properties
+ * DESIGN TOKENS: Complete design system variables for runtime access and JavaScript integration
+ * ARCHITECTURE: CSS variables complement Tailwind config - use Tailwind classes when possible, CSS vars for dynamic/JS usage
+ */
 :root {
-  /* Brand Color System - CLIENT SPECIFICATION */
-  /* Documentation Source: https://www.schemecolor.com/luxury-gold-blue.php */
-  
-  /* Primary Colors - Metallic Blue (#3F4A7E) */
-  --color-primary: #3f4a7e;
-  --color-primary-dark: #353d68;
+  /* ============================================
+     PRIMARY BRAND COLORS - Navy Variations
+     ============================================ */
+  --color-primary-base: #3f4a7e;
   --color-primary-light: #5b6bb3;
-  
-  /* Accent Colors - Aztec Gold (#CA9E5B) */
+  --color-primary-dark: #2d3456;
+  --color-primary-muted: #7a88b3;
+
+  /* Legacy aliases for backward compatibility */
+  --color-primary: #3f4a7e;
+
+  /* ============================================
+     SECONDARY BRAND COLORS - Gold Variations
+     ============================================ */
+  --color-secondary-base: #ca9e5b;
+  --color-secondary-light: #e5c89a;
+  --color-secondary-dark: #a67c3d;
+  --color-secondary-muted: #d4b480;
+
+  /* Legacy aliases for backward compatibility */
   --color-accent: #ca9e5b;
   --color-accent-dark: #b5853e;
   --color-accent-light: #e5c457;
-  
-  /* Semantic Color Variables */
+
+  /* ============================================
+     NEUTRAL GREYSCALE - UI Hierarchy
+     ============================================ */
+  --color-neutral-white: #ffffff;
+  --color-neutral-grey-50: #f9fafb;
+  --color-neutral-grey-100: #f3f4f6;
+  --color-neutral-grey-200: #e5e7eb;
+  --color-neutral-grey-400: #9ca3af;
+  --color-neutral-grey-600: #4b5563;
+  --color-neutral-grey-800: #1f2937;
+  --color-neutral-black: #000000;
+
+  /* ============================================
+     SEMANTIC COLORS - User Feedback
+     ============================================ */
+  --color-semantic-success: #10b981;
+  --color-semantic-error: #ef4444;
+  --color-semantic-warning: #f59e0b;
+  --color-semantic-info: #3b82f6;
+
+  /* ============================================
+     UI UTILITY COLORS - Interactive States
+     ============================================ */
+  --color-ui-border: #e5e7eb;
+  --color-ui-overlay: rgba(0, 0, 0, 0.5);
+  --color-ui-disabled: #9ca3af;
+  --color-ui-hover: #f9fafb;
+  --color-ui-focus: #ca9e5b;
+
+  /* Legacy semantic variables */
   --background: #ffffff;
-  --foreground: #1e293b;  /* Fixed to proper dark color for readable text on light backgrounds */
-  --muted: #f8f9fc;       /* Lightest brand tint */
+  --foreground: #1e293b;
+  --muted: #f8f9fc;
   --muted-foreground: #737373;
-  --border: #e3e7f0;      /* Light brand tint */
+  --border: #e3e7f0;
   --input: #ffffff;
-  --ring: #ca9e5b;        /* Brand accent for focus states */
-  
-  /* Premium Brand Gradients */
+  --ring: #ca9e5b;
+
+  /* ============================================
+     TYPOGRAPHY - Font Families
+     ============================================ */
+  --font-family-heading: 'Playfair Display', Georgia, serif;
+  --font-family-body: 'Source Serif 4', Georgia, serif;
+  --font-family-technical: 'JetBrains Mono', Consolas, monospace;
+
+  /* ============================================
+     TYPOGRAPHY - Font Sizes
+     ============================================ */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 2rem;      /* 32px */
+  --font-size-4xl: 3rem;      /* 48px */
+  --font-size-5xl: 4rem;      /* 64px */
+
+  /* ============================================
+     TYPOGRAPHY - Font Weights
+     ============================================ */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ============================================
+     TYPOGRAPHY - Line Heights
+     ============================================ */
+  --font-line-height-tight: 1.2;
+  --font-line-height-snug: 1.4;
+  --font-line-height-normal: 1.5;
+  --font-line-height-relaxed: 1.6;
+
+  /* ============================================
+     TYPOGRAPHY - Letter Spacing
+     ============================================ */
+  --font-letter-spacing-tighter: -0.05em;
+  --font-letter-spacing-tight: -0.025em;
+  --font-letter-spacing-normal: 0;
+  --font-letter-spacing-wide: 0.025em;
+  --font-letter-spacing-wider: 0.05em;
+
+  /* ============================================
+     SPACING SCALE - 4px Grid System
+     ============================================ */
+  --spacing-0: 0px;
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  --spacing-24: 6rem;     /* 96px */
+  --spacing-32: 8rem;     /* 128px */
+
+  /* ============================================
+     BORDER RADIUS SCALE
+     ============================================ */
+  --border-radius-none: 0px;
+  --border-radius-sm: 0.25rem;    /* 4px */
+  --border-radius-base: 0.5rem;   /* 8px */
+  --border-radius-md: 0.75rem;    /* 12px */
+  --border-radius-lg: 1rem;       /* 16px */
+  --border-radius-xl: 1.5rem;     /* 24px */
+  --border-radius-full: 9999px;
+
+  /* ============================================
+     BORDER WIDTH SCALE
+     ============================================ */
+  --border-width-none: 0px;
+  --border-width-thin: 1px;
+  --border-width-base: 2px;
+  --border-width-thick: 4px;
+
+  /* ============================================
+     SHADOW SYSTEM
+     ============================================ */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* ============================================
+     TRANSITION SYSTEM
+     ============================================ */
+  --transition-duration-75: 75ms;
+  --transition-duration-100: 100ms;
+  --transition-duration-150: 150ms;
+  --transition-duration-200: 200ms;
+  --transition-duration-300: 300ms;
+  --transition-duration-500: 500ms;
+
+  --transition-timing-linear: linear;
+  --transition-timing-in: cubic-bezier(0.4, 0, 1, 1);
+  --transition-timing-out: cubic-bezier(0, 0, 0.2, 1);
+  --transition-timing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ============================================
+     Z-INDEX LAYERS
+     ============================================ */
+  --z-index-auto: auto;
+  --z-index-0: 0;
+  --z-index-10: 10;
+  --z-index-20: 20;
+  --z-index-30: 30;
+  --z-index-40: 40;
+  --z-index-50: 50;
+  --z-index-modal: 1000;
+  --z-index-popover: 1010;
+  --z-index-tooltip: 1020;
+  --z-index-overlay: 1030;
+
+  /* ============================================
+     PREMIUM BRAND GRADIENTS
+     ============================================ */
   --gradient-brand: linear-gradient(135deg, #3f4a7e 0%, #ca9e5b 100%);
   --gradient-brand-subtle: linear-gradient(135deg, #f8f9fc 0%, #fefcf7 100%);
   --gradient-luxury: linear-gradient(135deg, #ca9e5b 0%, #b5853e 50%, #3f4a7e 100%);
+
+  /* ============================================
+     BREAKPOINTS (for JavaScript access)
+     ============================================ */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1400px;
+  --breakpoint-desktop: 1500px;
+  --breakpoint-3xl: 1780px;
 }
 
 /**

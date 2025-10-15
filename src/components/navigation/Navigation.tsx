@@ -130,10 +130,6 @@ const navigationData: NavigationItem[] = [
 		href: '/video-masterclasses',
 		items: [
 			{ label: 'Introduction', href: '/video-masterclasses' },
-			{
-				label: 'Introduction',
-				href: '/video-masterclasses#featured-video-content',
-			},
 			{ label: 'Free Resources', href: '/video-masterclasses#free-video-content' },
 			{ label: 'UCAS Guide', href: '/video-masterclasses#ucas-video-content' },
 			{

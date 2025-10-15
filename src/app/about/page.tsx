@@ -45,7 +45,7 @@ import { getAboutHeroImage } from '@/lib/cms/cms-images';
 // CONTEXT7 SOURCE: /reactjs/react.dev - Utility function imports for component styling
 // UTILITY IMPORT REASON: Official React documentation shows cn utility import for conditional styling
 import { cn } from '@/lib/utils';
-import { Avatar, Blockquote } from 'flowbite-react';
+import { Blockquote } from 'flowbite-react';
 
 export default function AboutUsPage() {
 	// CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access patterns
@@ -136,24 +136,6 @@ export default function AboutUsPage() {
 								pairs each student with a <u>carefully selected tutor</u> from her
 								boutique team.&quot;
 							</p>
-
-							{/* Author with avatar (inline name | title) */}
-							<figcaption className='mt-4 flex items-center justify-center space-x-3'>
-								<Avatar
-									rounded
-									size='xs'
-									img='/images/team/elizabeth-burrows-founder-main.jpg'
-									alt='Elizabeth Burrows'
-								/>
-								<div className='flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700'>
-									<cite className='pr-3 font-medium text-gray-900 dark:text-white'>
-										Example Name/Image
-									</cite>
-									<cite className='pl-3 text-sm text-gray-500 dark:text-gray-400'>
-										Role @ Academic Insight
-									</cite>
-								</div>
-							</figcaption>
 						</Blockquote>
 					</div>
 				</section>
