@@ -224,6 +224,7 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "final-form": "^5.0.0",
+    "flowbite-react": "^0.12.9",
     "focus-trap-react": "^11.0.4",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.21",

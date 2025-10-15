@@ -48,7 +48,7 @@ export const ThreePillarsSection: React.FC<{ className?: string }> = ({
 	className = '',
 }) => {
 	return (
-		<div className={`py-20 lg:py-32 ${className}`}>
+		<div className={`py-7 lg:py-10 ${className}`}>
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto'>
 					{pillarsData.map((pillar) => (

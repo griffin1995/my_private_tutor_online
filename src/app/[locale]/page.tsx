@@ -23,9 +23,9 @@ import {
 } from '../../lib/cms/cms-images';
 // CONTEXT7 SOURCE: /websites/web.dev - Performance monitoring for layout optimization
 // PERFORMANCE_MONITORING_REASON: Official Web Performance documentation for tracking layout thrashing
+import { Avatar, Blockquote } from 'flowbite-react';
 import { useEffect } from 'react';
 import { layoutMonitor } from '../../lib/performance/layout-performance-monitor';
-
 // CONTEXT7 SOURCE: /reactjs/react.dev - CMS Architecture Monitoring integration
 // CMS MONITORING REASON: Prevent August 2025 homepage failure recurrence through real-time architecture monitoring
 import { CMSArchitectureDashboard } from '../../components/cms-architecture-dashboard';
@@ -322,7 +322,9 @@ export default function HomePage() {
 					{/* SECTION 4.2: FOUNDER INTRODUCTION - MEET ELIZABETH VIDEO */}
 					<FounderIntroductionSection />
 					{/* SECTION 5: QUANTIFIABLE RESULTS - ACADEMIC OUTCOMES */}
-					<section id='quantifiable-results-documentation'>
+					<section
+						id='quantifiable-results-documentation'
+						className='py-13 lg:py-32'>
 						<ErrorBoundaryWrapper sectionName='Results Documentation'>
 							<ThreePillarsSection />
 						</ErrorBoundaryWrapper>
@@ -354,20 +356,49 @@ export default function HomePage() {
 					{/* SECTION 8: QUOTE - FOUNDER TESTIMONIAL AND MISSION STATEMENT */}
 					<section
 						id='founder-quote-testimonials'
-						className='py-16 lg:py-24 bg-primary-50'>
+						className='py-16 lg:py-24 bg-[rgba(202,158,91,0.15)]'>
 						<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
-							<blockquote className='text-xl lg:text-2xl font-serif italic text-gray-900'>
-								Parents come to us when something <strong>truly</strong> matters—an
-								entrance exam, a lost sense of confidence, a desire for academic
-								stretch. They stay with us because{' '}
-								<strong>we deliver real progress, quietly and expertly</strong>. This is
-								not a tutoring directory. This is{' '}
-								<u>a bespoke service for ambitious families</u> looking for t
-								<strong>rusted partners in their child&apos;s academic career</strong>.
-							</blockquote>
-							<cite className='block mt-4 text-lg not-italic font-medium text-gray-700'>
-								Elizabeth Burrows, Founder
-							</cite>
+							<Blockquote>
+								{/* Quote SVG top-left */}
+								<svg
+									className='mb-6 h-14 w-14'
+									aria-hidden='true'
+									xmlns='http://www.w3.org/2000/svg'
+									fill='#3F4A7E'
+									viewBox='0 0 18 14'>
+									<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+								</svg>
+
+								{/* Quote content */}
+								<p className='text-xl lg:text-2xl font-serif italic text-gray-900'>
+									Parents come to us when something <strong>truly</strong> matters—an
+									entrance exam, a lost sense of confidence, a desire for academic
+									stretch. They stay with us because{' '}
+									<strong>we deliver real progress, quietly and expertly</strong>. This
+									is not a tutoring directory. This is{' '}
+									<u>a bespoke service for ambitious families</u> looking for{' '}
+									<strong>trusted partners in their child&apos;s academic career</strong>
+									.
+								</p>
+
+								{/* Author with avatar (inline name | title) */}
+								<figcaption className='mt-4 flex items-center justify-center space-x-3'>
+									<Avatar
+										rounded
+										size='xs'
+										img='/images/team/elizabeth-burrows-founder-main.jpg'
+										alt='Elizabeth Burrows'
+									/>
+									<div className='flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700'>
+										<cite className='pr-3 font-medium text-gray-900 dark:text-white'>
+											Elizabeth Burrows
+										</cite>
+										<cite className='pl-3 text-sm text-gray-500 dark:text-gray-400'>
+											Founder
+										</cite>
+									</div>
+								</figcaption>
+							</Blockquote>
 						</div>
 					</section>
 				</div>

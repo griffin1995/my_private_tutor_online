@@ -18,31 +18,26 @@ import { SimpleHero } from '@/components/layout/simple-hero';
 import { cn } from '@/lib/utils';
 import * as Tabs from '@radix-ui/react-tabs';
 import { AnimatePresence } from 'framer-motion';
-import { memo, useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 // CONTEXT7 SOURCE: /radix-ui/primitives - Additional imports for exact content migration
 // CONTENT MIGRATION REASON: Official Radix UI documentation for component composition and video integration
-import { VideoMasterclassSectionImageFullWidthTextHalfWidth } from '@/components/video/VideoMasterclassSectionImageFullWidthTextHalfWidth';
-import { VideoMasterclassSectionTextFullWidth } from '@/components/video/VideoMasterclassSectionTextFullWidth';
-import { getVideoMasterclassPage } from '@/lib/cms/cms-images';
 import { motion } from 'framer-motion';
-import { type VideoMasterclass } from '../../../COMPREHENSIVE_VIDEO_CMS';
 
 // CONTEXT7 SOURCE: /websites/react_dev - Clean card component for brand-compliant tab content
 // CLEAN CARD REASON: Official React documentation pattern for scannable, accessible component composition
-import { EducationLevelCleanCard } from '@/components/education/EducationLevelCleanCard';
 // CONTEXT7 SOURCE: /websites/react_dev - Standardized tab content component for education levels
 // EDUCATION TAB CONTENT REASON: Official React documentation for composite container components
 import { EducationLevelTabContent } from '@/components/education/EducationLevelTabContent';
 // CONTEXT7 SOURCE: /lib/cms/education-tabs-cms - CMS data for standardized tab content
 // CMS IMPORT REASON: Synchronous CMS data access for education level tabs
 import {
-  getPrimarySchoolContent,
-  getSecondarySchoolContent,
-  getEntranceExamsContent,
-  getUniversityAdmissionsContent,
-  getOnlineHomeschoolingContent,
-  getSenSupportContent,
-  getLondonInPersonContent
+	getEntranceExamsContent,
+	getLondonInPersonContent,
+	getOnlineHomeschoolingContent,
+	getPrimarySchoolContent,
+	getSecondarySchoolContent,
+	getSenSupportContent,
+	getUniversityAdmissionsContent,
 } from '@/lib/cms/education-tabs-cms';
 
 // CONTEXT7 SOURCE: /typescript/handbook - TypeScript interface definitions for component props
@@ -82,19 +77,19 @@ interface StrictEducationLevel {
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Helper function for video masterclass conversion
 // CONVERSION REASON: Official TypeScript documentation for interface compatibility patterns
-function convertToVideoMasterclass(standardizedVideo: any): VideoMasterclass {
-	return {
-		id: standardizedVideo.id,
-		title: standardizedVideo.title,
-		description: standardizedVideo.description,
-		bulletPoints: standardizedVideo.bulletPoints,
-		youtubeUrl: standardizedVideo.youtubeUrl,
-		thumbnailImage: standardizedVideo.thumbnailImage,
-		backgroundImage: standardizedVideo.backgroundImage,
-		isPaid: standardizedVideo.isPaid,
-		purchaseLink: standardizedVideo.purchaseLink,
-	};
-}
+// function convertToVideoMasterclass(standardizedVideo: any): VideoMasterclass {
+// 	return {
+// 		id: standardizedVideo.id,
+// 		title: standardizedVideo.title,
+// 		description: standardizedVideo.description,
+// 		bulletPoints: standardizedVideo.bulletPoints,
+// 		youtubeUrl: standardizedVideo.youtubeUrl,
+// 		thumbnailImage: standardizedVideo.thumbnailImage,
+// 		backgroundImage: standardizedVideo.backgroundImage,
+// 		isPaid: standardizedVideo.isPaid,
+// 		purchaseLink: standardizedVideo.purchaseLink,
+// 	};
+// }
 
 // Education levels data with EXACT titles from /new-page accordion sections
 // CONTEXT7 SOURCE: /microsoft/typescript - Const assertions for immutable array patterns
@@ -242,9 +237,7 @@ const educationLevels = [
 // CONTEXT7 SOURCE: /radix-ui/primitives - Tabs Content component with exact accordion content migration
 // CONTENT MIGRATION REASON: Official Radix UI documentation for Tabs.Content structure with complex nested content
 
-export default function SubjectTuitionTabsPage({
-	className,
-}: SubjectTuitionTabsProps) {
+export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 	// CONTEXT7 SOURCE: /facebook/react - useState for controlled component pattern
 	// STATE MANAGEMENT REASON: Official React documentation for controlled Tabs component
 	const [selectedTab, setSelectedTab] =
@@ -258,288 +251,284 @@ export default function SubjectTuitionTabsPage({
 	}, []);
 	// CONTEXT7 SOURCE: /reactjs/react.dev - useMemo for memoizing expensive operations
 	// VIDEO FETCH REASON: Official React documentation for performance optimization with expensive data fetching
-	const allVideos = useMemo(() => {
-		const videos = getVideoMasterclassPage();
-		return videos;
-	}, []);
+	// const allVideos = useMemo(() => {
+	// 	const videos = getVideoMasterclassPage();
+	// 	return videos;
+	// }, []);
 
 	// Split videos into sections for organized display - matching /new-page structure
-	const ucasVideos = useMemo(() => {
-		return allVideos.slice(2, 4); // UCAS section videos
-	}, [allVideos]);
+	// const ucasVideos = useMemo(() => {
+	// 	return allVideos.slice(2, 4); // UCAS section videos
+	// }, [allVideos]);
 
 	// CONTEXT7 SOURCE: /microsoft/typescript - Standardized data structure access patterns
 	// PRIMARY SCHOOL DATA: Extract exact content from accordion structure
-	const primarySchoolData = {
-		heading: {
-			title: 'Primary School',
-			description:
-				"The primary curriculum is the scaffolding upon which secondary success plays out; we're passionate about plugging gaps and getting it right. We understand that early education experiences are formative, so we prioritise curiosity, resilience, and a love of learning.",
-			backgroundColor: 'white',
-			className: 'py-16',
-		},
-		videos: [
-			{
-				id: 'primary-confidence-building',
-				title: 'Confidence-building lessons designed for early learners',
-				description:
-					'Our primary tutoring focuses on nurturing natural curiosity whilst building essential academic foundations. We understand that young learners need encouragement and support to develop confidence in their abilities, creating positive associations with learning that will serve them throughout their educational journey.',
-				bulletPoints: [
-					'Age-appropriate teaching methods',
-					'Confidence building activities',
-					'Positive reinforcement techniques',
-					'Play-based learning integration',
-				],
-				youtubeUrl: null,
-				thumbnailImage:
-					'/images/features/confidence-building-lessons-early-learners.jpg',
-				backgroundImage:
-					'/images/features/confidence-building-lessons-early-learners.jpg',
-				isPaid: false,
-			},
-			{
-				id: 'primary-entrance-specialists',
-				title:
-					'7+, 8+ and 11+ specialists with a track record of top school offers',
-				description:
-					'Our experienced tutors specialise in preparing young students for competitive entrance examinations. With proven success rates at leading preparatory and grammar schools, we provide targeted preparation that builds both academic competence and examination confidence.',
-				bulletPoints: [
-					'Entrance exam expertise',
-					'Grammar school preparation',
-					'Preparatory school success',
-					'Examination confidence building',
-				],
-				youtubeUrl: null,
-				thumbnailImage:
-					'/images/features/7-8-11-plus-specialists-track-record-top-school-offers.jpg',
-				backgroundImage:
-					'/images/features/7-8-11-plus-specialists-track-record-top-school-offers.jpg',
-				isPaid: false,
-			},
-			{
-				id: 'primary-individual-learning',
-				title: 'Individual learning plans shaped by expert assessment',
-				description:
-					"Every primary student receives a comprehensive initial assessment to identify their unique learning style, strengths, and areas for development. Our expert tutors then create personalised learning plans that adapt to each child's pace and preferred learning methods.",
-				bulletPoints: [
-					'Comprehensive initial assessment',
-					'Personalised learning plans',
-					'Regular progress monitoring',
-					'Adaptive teaching methods',
-				],
-				youtubeUrl: null,
-				thumbnailImage:
-					'/images/features/individual-learning-plans-expert-assessment.jpg',
-				backgroundImage:
-					'/images/features/individual-learning-plans-expert-assessment.jpg',
-				isPaid: false,
-			},
-		],
-	};
+	// const primarySchoolData = {
+	// 	heading: {
+	// 		title: 'Primary School',
+	// 		description:
+	// 			"The primary curriculum is the scaffolding upon which secondary success plays out; we're passionate about plugging gaps and getting it right. We understand that early education experiences are formative, so we prioritise curiosity, resilience, and a love of learning.",
+	// 		backgroundColor: 'white',
+	// 		className: 'py-16',
+	// 	},
+	// 	videos: [
+	// 		{
+	// 			id: 'primary-confidence-building',
+	// 			title: 'Confidence-building lessons designed for early learners',
+	// 			description:
+	// 				'Our primary tutoring focuses on nurturing natural curiosity whilst building essential academic foundations. We understand that young learners need encouragement and support to develop confidence in their abilities, creating positive associations with learning that will serve them throughout their educational journey.',
+	// 			bulletPoints: [
+	// 				'Age-appropriate teaching methods',
+	// 				'Confidence building activities',
+	// 				'Positive reinforcement techniques',
+	// 				'Play-based learning integration',
+	// 			],
+	// 			youtubeUrl: null,
+	// 			thumbnailImage:
+	// 				'/images/features/confidence-building-lessons-early-learners.jpg',
+	// 			backgroundImage:
+	// 				'/images/features/confidence-building-lessons-early-learners.jpg',
+	// 			isPaid: false,
+	// 		},
+	// 		{
+	// 			id: 'primary-entrance-specialists',
+	// 			title:
+	// 				'7+, 8+ and 11+ specialists with a track record of top school offers',
+	// 			description:
+	// 				'Our experienced tutors specialise in preparing young students for competitive entrance examinations. With proven success rates at leading preparatory and grammar schools, we provide targeted preparation that builds both academic competence and examination confidence.',
+	// 			bulletPoints: [
+	// 				'Entrance exam expertise',
+	// 				'Grammar school preparation',
+	// 				'Preparatory school success',
+	// 				'Examination confidence building',
+	// 			],
+	// 			youtubeUrl: null,
+	// 			thumbnailImage:
+	// 				'/images/features/7-8-11-plus-specialists-track-record-top-school-offers.jpg',
+	// 			backgroundImage:
+	// 				'/images/features/7-8-11-plus-specialists-track-record-top-school-offers.jpg',
+	// 			isPaid: false,
+	// 		},
+	// 		{
+	// 			id: 'primary-individual-learning',
+	// 			title: 'Individual learning plans shaped by expert assessment',
+	// 			description:
+	// 				"Every primary student receives a comprehensive initial assessment to identify their unique learning style, strengths, and areas for development. Our expert tutors then create personalised learning plans that adapt to each child's pace and preferred learning methods.",
+	// 			bulletPoints: [
+	// 				'Comprehensive initial assessment',
+	// 				'Personalised learning plans',
+	// 				'Regular progress monitoring',
+	// 				'Adaptive teaching methods',
+	// 			],
+	// 			youtubeUrl: null,
+	// 			thumbnailImage:
+	// 				'/images/features/individual-learning-plans-expert-assessment.jpg',
+	// 			backgroundImage:
+	// 				'/images/features/individual-learning-plans-expert-assessment.jpg',
+	// 			isPaid: false,
+	// 		},
+	// 	],
+	// };
 
-	// SECONDARY SCHOOL DATA: Extract exact content from accordion structure
-	const secondarySchoolData = {
-		heading: {
-			title: 'Secondary School',
-			description:
-				'One-to-one tutoring for KS3, GCSE, A-Level and IB, delivered by experienced subject specialists and examiners. Our support goes beyond the syllabus, equipping students with effective revision strategies, time management skills and structured study plans. 94% of students improve by at least two grades at GCSE.',
-			backgroundColor: 'gray-50',
-			className: 'py-16',
-		},
-		videos: [
-			{
-				id: 'secondary-tutoring-today',
-				title: 'Tutoring Today for Success Tomorrow',
-				description:
-					'GCSEs, A-Levels and IB exams mark crucial academic transition points. As subjects become more complex, results in these qualifications play a defining role in shaping university pathways. A minimum requirement of 7s at GCSE is now standard at many top-tier universities. Personalised, one-to-one tuition can make a significant difference at both GCSE and A Level, helping students strengthen their academic record, ready to present a dynamite profile when it matters most.',
-				bulletPoints: [
-					'GCSE & A-Level expertise',
-					'University pathway planning',
-					'Grade improvement strategies',
-					'Profile strengthening',
-				],
-				youtubeUrl: null,
-				thumbnailImage: '/images/features/tutoring-today-success-tomorrow.jpg',
-				backgroundImage: '/images/features/tutoring-today-success-tomorrow.jpg',
-				isPaid: true,
-				purchaseLink: 'https://buy.stripe.com/test_example',
-			},
-			{
-				id: 'secondary-personalised-plans',
-				title: 'Personalised Plans to Ensure Maximum Progress',
-				description:
-					'Each student is initially assessed to identify their individual strengths, learning style and areas for growth. Regular progress check-ins and measurable academic outcomes ensure students stay on track for success.',
-				bulletPoints: [
-					'Individual assessment',
-					'Learning style identification',
-					'Progress monitoring',
-					'Measurable outcomes',
-				],
-				youtubeUrl: null,
-				thumbnailImage:
-					'/images/features/personalised-plans-maximum-progress.jpg',
-				backgroundImage:
-					'/images/features/personalised-plans-maximum-progress.jpg',
-				isPaid: false,
-			},
-			{
-				id: 'secondary-subjects-coverage',
-				title: 'Subjects We Tutor',
-				description:
-					'Comprehensive subject coverage across all key academic areas including STEM subjects, humanities, languages, and creative disciplines. Our tutors are subject specialists with extensive examination experience.\n\nSTEM & Mathematical Subjects: Advanced mathematics and scientific disciplines taught by specialists with extensive examination board experience.\n\nHumanities & Social Sciences: Comprehensive humanities education covering literature, history, politics, and social sciences with expert guidance.\n\nLanguages: Modern and classical language tuition with native speakers and qualified language specialists.\n\nCreative & Arts-Based Subjects: Creative disciplines taught by practising professionals and experienced arts educators.\n\nAdditional Academic Support: Specialised academic skills and examination preparation beyond core curriculum subjects.',
-				bulletPoints: [
-					'Mathematics & Further Mathematics',
-					'Biology',
-					'Chemistry',
-					'Physics',
-				],
-				youtubeUrl: null,
-				thumbnailImage: '/images/features/subjects-we-tutor.jpg',
-				backgroundImage: '/images/features/subjects-we-tutor.jpg',
-				isPaid: false,
-			},
-		],
-	};
+	// // SECONDARY SCHOOL DATA: Extract exact content from accordion structure
+	// const secondarySchoolData = {
+	// 	heading: {
+	// 		title: 'Secondary School',
+	// 		description:
+	// 			'One-to-one tutoring for KS3, GCSE, A-Level and IB, delivered by experienced subject specialists and examiners. Our support goes beyond the syllabus, equipping students with effective revision strategies, time management skills and structured study plans. 94% of students improve by at least two grades at GCSE.',
+	// 		backgroundColor: 'gray-50',
+	// 		className: 'py-16',
+	// 	},
+	// 	videos: [
+	// 		{
+	// 			id: 'secondary-tutoring-today',
+	// 			title: 'Tutoring Today for Success Tomorrow',
+	// 			description:
+	// 				'GCSEs, A-Levels and IB exams mark crucial academic transition points. As subjects become more complex, results in these qualifications play a defining role in shaping university pathways. A minimum requirement of 7s at GCSE is now standard at many top-tier universities. Personalised, one-to-one tuition can make a significant difference at both GCSE and A Level, helping students strengthen their academic record, ready to present a dynamite profile when it matters most.',
+	// 			bulletPoints: [
+	// 				'GCSE & A-Level expertise',
+	// 				'University pathway planning',
+	// 				'Grade improvement strategies',
+	// 				'Profile strengthening',
+	// 			],
+	// 			youtubeUrl: null,
+	// 			thumbnailImage: '/images/features/tutoring-today-success-tomorrow.jpg',
+	// 			backgroundImage: '/images/features/tutoring-today-success-tomorrow.jpg',
+	// 			isPaid: true,
+	// 			purchaseLink: 'https://buy.stripe.com/test_example',
+	// 		},
+	// 		{
+	// 			id: 'secondary-personalised-plans',
+	// 			title: 'Personalised Plans to Ensure Maximum Progress',
+	// 			description:
+	// 				'Each student is initially assessed to identify their individual strengths, learning style and areas for growth. Regular progress check-ins and measurable academic outcomes ensure students stay on track for success.',
+	// 			bulletPoints: [
+	// 				'Individual assessment',
+	// 				'Learning style identification',
+	// 				'Progress monitoring',
+	// 				'Measurable outcomes',
+	// 			],
+	// 			youtubeUrl: null,
+	// 			thumbnailImage: '/images/features/personalised-plans-maximum-progress.jpg',
+	// 			backgroundImage: '/images/features/personalised-plans-maximum-progress.jpg',
+	// 			isPaid: false,
+	// 		},
+	// 		{
+	// 			id: 'secondary-subjects-coverage',
+	// 			title: 'Subjects We Tutor',
+	// 			description:
+	// 				'Comprehensive subject coverage across all key academic areas including STEM subjects, humanities, languages, and creative disciplines. Our tutors are subject specialists with extensive examination experience.\n\nSTEM & Mathematical Subjects: Advanced mathematics and scientific disciplines taught by specialists with extensive examination board experience.\n\nHumanities & Social Sciences: Comprehensive humanities education covering literature, history, politics, and social sciences with expert guidance.\n\nLanguages: Modern and classical language tuition with native speakers and qualified language specialists.\n\nCreative & Arts-Based Subjects: Creative disciplines taught by practising professionals and experienced arts educators.\n\nAdditional Academic Support: Specialised academic skills and examination preparation beyond core curriculum subjects.',
+	// 			bulletPoints: [
+	// 				'Mathematics & Further Mathematics',
+	// 				'Biology',
+	// 				'Chemistry',
+	// 				'Physics',
+	// 			],
+	// 			youtubeUrl: null,
+	// 			thumbnailImage: '/images/features/subjects-we-tutor.jpg',
+	// 			backgroundImage: '/images/features/subjects-we-tutor.jpg',
+	// 			isPaid: false,
+	// 		},
+	// 	],
+	// };
 
-	// ENTRANCE EXAMS DATA: Extract exact content from Entrance Exams accordion
-	const entranceExamsData = {
-		heading: {
-			title: 'Entrance Exams',
-			description:
-				'Specialised preparation for competitive entrance examinations across all age groups.',
-			backgroundColor: 'white',
-			className: 'py-16',
-		},
-		video: {
-			id: '11plus-preparation',
-			title: 'Aligned With Every Major Exam Board',
-			description:
-				'Our team works with GL, CEM, ISEB, CAT4, and internal papers set by individual schools.',
-			bulletPoints: [
-				'GL Assessment expertise',
-				'CEM preparation',
-				'ISEB Common Entrance',
-				'School-specific papers',
-			],
-			youtubeUrl: null,
-			thumbnailImage:
-				'/images/features/aligned-with-every-major-exam-board.jpg',
-			backgroundImage:
-				'/images/features/aligned-with-every-major-exam-board.jpg',
-			isPaid: true,
-			purchaseLink: 'https://buy.stripe.com/test_example',
-		},
-	};
+	// // ENTRANCE EXAMS DATA: Extract exact content from Entrance Exams accordion
+	// const entranceExamsData = {
+	// 	heading: {
+	// 		title: 'Entrance Exams',
+	// 		description:
+	// 			'Specialised preparation for competitive entrance examinations across all age groups.',
+	// 		backgroundColor: 'white',
+	// 		className: 'py-16',
+	// 	},
+	// 	video: {
+	// 		id: '11plus-preparation',
+	// 		title: 'Aligned With Every Major Exam Board',
+	// 		description:
+	// 			'Our team works with GL, CEM, ISEB, CAT4, and internal papers set by individual schools.',
+	// 		bulletPoints: [
+	// 			'GL Assessment expertise',
+	// 			'CEM preparation',
+	// 			'ISEB Common Entrance',
+	// 			'School-specific papers',
+	// 		],
+	// 		youtubeUrl: null,
+	// 		thumbnailImage: '/images/features/aligned-with-every-major-exam-board.jpg',
+	// 		backgroundImage: '/images/features/aligned-with-every-major-exam-board.jpg',
+	// 		isPaid: true,
+	// 		purchaseLink: 'https://buy.stripe.com/test_example',
+	// 	},
+	// };
 
-	// UNIVERSITY ADMISSIONS DATA: Extract exact content from University Admissions accordion
-	const universityAdmissionsData = {
-		heading: {
-			title: 'University Admissions & English Proficiency',
-			description:
-				'Expert academic support for undergraduates and postgraduates, including essay coaching, dissertations, and subject-specific tutoring.',
-			backgroundColor: 'gray-50',
-			className: 'py-16',
-		},
-		videos: ucasVideos,
-	};
+	// // UNIVERSITY ADMISSIONS DATA: Extract exact content from University Admissions accordion
+	// const universityAdmissionsData = {
+	// 	heading: {
+	// 		title: 'University Admissions & English Proficiency',
+	// 		description:
+	// 			'Expert academic support for undergraduates and postgraduates, including essay coaching, dissertations, and subject-specific tutoring.',
+	// 		backgroundColor: 'gray-50',
+	// 		className: 'py-16',
+	// 	},
+	// 	videos: ucasVideos,
+	// };
 
-	// ONLINE HOMESCHOOLING DATA: Extract exact content from Online Homeschooling accordion
-	const onlineHomeschoolingData = {
-		heading: {
-			title: 'Online Homeschooling',
-			description:
-				'Comprehensive one-to-one homeschooling for families seeking both academic structure and flexibility.',
-			backgroundColor: 'white',
-			className: 'py-16',
-		},
-		video: {
-			id: 'homeschool-curriculum',
-			title: 'Why Choose Homeschooling with Us',
-			description:
-				'Private‑School Standard, Delivered Virtually: We deliver bespoke online programmes that rival independent schools in quality.',
-			bulletPoints: [
-				'Private school standard',
-				'Personalised curriculum',
-				'Expert tutor teams',
-			],
-			youtubeUrl: null,
-			thumbnailImage: '/images/features/why-choose-homeschooling-with-us.jpg',
-			backgroundImage: '/images/features/why-choose-homeschooling-with-us.jpg',
-			isPaid: false,
-		},
-	};
+	// // ONLINE HOMESCHOOLING DATA: Extract exact content from Online Homeschooling accordion
+	// const onlineHomeschoolingData = {
+	// 	heading: {
+	// 		title: 'Online Homeschooling',
+	// 		description:
+	// 			'Comprehensive one-to-one homeschooling for families seeking both academic structure and flexibility.',
+	// 		backgroundColor: 'white',
+	// 		className: 'py-16',
+	// 	},
+	// 	video: {
+	// 		id: 'homeschool-curriculum',
+	// 		title: 'Why Choose Homeschooling with Us',
+	// 		description:
+	// 			'Private‑School Standard, Delivered Virtually: We deliver bespoke online programmes that rival independent schools in quality.',
+	// 		bulletPoints: [
+	// 			'Private school standard',
+	// 			'Personalised curriculum',
+	// 			'Expert tutor teams',
+	// 		],
+	// 		youtubeUrl: null,
+	// 		thumbnailImage: '/images/features/why-choose-homeschooling-with-us.jpg',
+	// 		backgroundImage: '/images/features/why-choose-homeschooling-with-us.jpg',
+	// 		isPaid: false,
+	// 	},
+	// };
 
-	// SEN SUPPORT DATA: Extract exact content from SEN Support accordion
-	const senSupportData = {
-		heading: {
-			title: 'SEN Support & Neurodiverse Learning',
-			description:
-				"Our Founder Elizabeth's own neurodiversity (dyspraxia) means she's especially passionate about equipping students with gamechanging SEN support.",
-			backgroundColor: 'gray-50',
-			className: 'py-16',
-		},
-		video: {
-			id: 'individualised-learning',
-			title: 'Individualised Learning',
-			description:
-				'Tutors conduct detailed assessments to identify strengths, challenges, and personal learning styles.',
-			bulletPoints: [
-				'Detailed assessments',
-				'Strength identification',
-				'Learning style analysis',
-			],
-			youtubeUrl: null,
-			thumbnailImage: '/images/features/individualised-learning.jpg',
-			backgroundImage: '/images/features/individualised-learning.jpg',
-			isPaid: true,
-			purchaseLink: 'https://buy.stripe.com/test_example',
-		},
-	};
+	// // SEN SUPPORT DATA: Extract exact content from SEN Support accordion
+	// const senSupportData = {
+	// 	heading: {
+	// 		title: 'SEN Support & Neurodiverse Learning',
+	// 		description:
+	// 			"Our Founder Elizabeth's own neurodiversity (dyspraxia) means she's especially passionate about equipping students with gamechanging SEN support.",
+	// 		backgroundColor: 'gray-50',
+	// 		className: 'py-16',
+	// 	},
+	// 	video: {
+	// 		id: 'individualised-learning',
+	// 		title: 'Individualised Learning',
+	// 		description:
+	// 			'Tutors conduct detailed assessments to identify strengths, challenges, and personal learning styles.',
+	// 		bulletPoints: [
+	// 			'Detailed assessments',
+	// 			'Strength identification',
+	// 			'Learning style analysis',
+	// 		],
+	// 		youtubeUrl: null,
+	// 		thumbnailImage: '/images/features/individualised-learning.jpg',
+	// 		backgroundImage: '/images/features/individualised-learning.jpg',
+	// 		isPaid: true,
+	// 		purchaseLink: 'https://buy.stripe.com/test_example',
+	// 	},
+	// };
 
-	// LONDON IN-PERSON DATA: Extract exact content from London Tutoring accordion
-	const londonData = {
-		heading: {
-			title: 'London In-Person Tutoring',
-			description:
-				'In-person tutoring typically available across Zones 1–5, depending on student location and tutor availability.',
-			backgroundColor: 'white',
-			className: 'py-16',
-		},
-		videos: [
-			{
-				id: 'dbs-checked-tutors',
-				title: 'DBS-Checked Specialist Tutors',
-				description:
-					'Sessions delivered by DBS-checked, specialist tutors with experience of the London independent and state school sectors.',
-				bulletPoints: [
-					'DBS-checked tutors',
-					'Specialist expertise',
-					'London school experience',
-				],
-				youtubeUrl: null,
-				thumbnailImage: '/images/masterclass-thumbnails/ucas-guide.png',
-				backgroundImage: '/images/ucas-part-2-library-background.jpg',
-				isPaid: true,
-				purchaseLink: 'https://buy.stripe.com/test_example',
-			},
-			{
-				id: 'entrance-exam-subject-support',
-				title: 'Entrance Exam & Subject-Specific Support',
-				description:
-					'Ideal for entrance exam preparation, subject-specific tuition, or ongoing academic support.',
-				bulletPoints: [
-					'Entrance exam prep',
-					'Subject specialisation',
-					'Ongoing support',
-				],
-				youtubeUrl: null,
-				thumbnailImage: '/images/masterclass-thumbnails/ucas-guide.png',
-				backgroundImage: '/images/ucas-summit-background.jpg',
-				isPaid: true,
-				purchaseLink: 'https://buy.stripe.com/test_example',
-			},
-		],
-	};
+	// // LONDON IN-PERSON DATA: Extract exact content from London Tutoring accordion
+	// const londonData = {
+	// 	heading: {
+	// 		title: 'London In-Person Tutoring',
+	// 		description:
+	// 			'In-person tutoring typically available across Zones 1–5, depending on student location and tutor availability.',
+	// 		backgroundColor: 'white',
+	// 		className: 'py-16',
+	// 	},
+	// 	videos: [
+	// 		{
+	// 			id: 'dbs-checked-tutors',
+	// 			title: 'DBS-Checked Specialist Tutors',
+	// 			description:
+	// 				'Sessions delivered by DBS-checked, specialist tutors with experience of the London independent and state school sectors.',
+	// 			bulletPoints: [
+	// 				'DBS-checked tutors',
+	// 				'Specialist expertise',
+	// 				'London school experience',
+	// 			],
+	// 			youtubeUrl: null,
+	// 			thumbnailImage: '/images/masterclass-thumbnails/ucas-guide.png',
+	// 			backgroundImage: '/images/ucas-part-2-library-background.jpg',
+	// 			isPaid: true,
+	// 			purchaseLink: 'https://buy.stripe.com/test_example',
+	// 		},
+	// 		{
+	// 			id: 'entrance-exam-subject-support',
+	// 			title: 'Entrance Exam & Subject-Specific Support',
+	// 			description:
+	// 				'Ideal for entrance exam preparation, subject-specific tuition, or ongoing academic support.',
+	// 			bulletPoints: [
+	// 				'Entrance exam prep',
+	// 				'Subject specialisation',
+	// 				'Ongoing support',
+	// 			],
+	// 			youtubeUrl: null,
+	// 			thumbnailImage: '/images/masterclass-thumbnails/ucas-guide.png',
+	// 			backgroundImage: '/images/ucas-summit-background.jpg',
+	// 			isPaid: true,
+	// 			purchaseLink: 'https://buy.stripe.com/test_example',
+	// 		},
+	// 	],
+	// };
 
 	// CONTEXT7 SOURCE: /radix-ui/primitives - Tabs Content component with exact accordion content structure
 	// TAB CONTENT REASON: Official Radix UI documentation for Tabs.Content with complex nested layouts
@@ -573,7 +562,7 @@ export default function SubjectTuitionTabsPage({
 							transition={{ duration: 0.4, ease: 'easeOut' }}>
 							{/* CONTEXT7 SOURCE: /radix-ui/website - Consistent container width pattern matching tabs list */}
 							{/* CONTAINER ALIGNMENT REASON: Official Radix UI documentation for aligning tab list and content containers */}
-							<div className='mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32'>
+							<div className='mx-auto w-[85%] max-w-none px-4 sm:px-6 lg:px-8 '>
 								{contentData}
 							</div>
 						</motion.div>
@@ -591,11 +580,16 @@ export default function SubjectTuitionTabsPage({
 			{/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
 			{/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
 			<SimpleHero
-				backgroundImage='/images/education-hero.jpg'
-				h1='Subject Tuition Programmes'
-				h2='Excellence Across All Educational Levels'
+				backgroundImage='/images/hero/hero-subject-tuition-primary.jpg'
+				h1={
+					<>
+						Subject Tutoring
+						<br />&<br />
+						Exam Preparation
+					</>
+				}
+				h2='From entrance exams to university prep, our expert tutors provide personalised instruction across all subjects and educational stages. '
 				decorativeStyle='lines'
-				textVerticalOffset='default'
 			/>
 
 			{/* CONTEXT7 SOURCE: /vercel/next.js - Page layout wrapper for content sections */}
@@ -610,21 +604,20 @@ export default function SubjectTuitionTabsPage({
 				{/* Main Content Section */}
 				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container and spacing utilities */}
 				{/* LAYOUT REASON: Official Tailwind CSS documentation for responsive container layouts */}
-				<main className='flex-1 py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white'>
+				<main className='flex-1  px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white'>
 					<div className='w-full mx-auto'>
 						{/* Page Introduction */}
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography and text styling utilities */}
 						{/* TEXT STYLING REASON: Official Tailwind CSS documentation for typography hierarchy */}
-						<div className='text-center mb-12'>
+						{/* <div className='text-center mb-12'>
 							<p className='text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed'>
-								Our expert tutors provide specialised support across all
-								educational stages, from primary school foundations to
-								university-level excellence.
+								Our expert tutors provide specialised support across all educational
+								stages, from primary school foundations to university-level excellence.
 							</p>
 							<h2 className='text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4'>
 								Choose Your Educational Level
-							</h2>
-						</div>
+							</h2>F
+						</div> */}
 
 						{/* Radix UI Tabs Component */}
 						{/* CONTEXT7 SOURCE: /radix-ui/website - Radix UI Tabs Anatomy and Basic Tabs Example */}
@@ -651,7 +644,7 @@ export default function SubjectTuitionTabsPage({
 							{/* WIDTH ALIGNMENT REASON: Official Radix UI documentation for consistent container patterns between List and Content */}
 							<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
 								<Tabs.List
-									className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2 mb-8 p-2 bg-slate-100 rounded-lg'
+									className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2 p-2 bg-slate-800 '
 									aria-label='Educational level tabs'
 									aria-orientation='horizontal'
 									role='tablist'
@@ -666,10 +659,9 @@ export default function SubjectTuitionTabsPage({
 												aria-selected={selectedTab === level.value}
 												tabIndex={selectedTab === level.value ? 0 : -1}
 												className={cn(
-													'px-4 py-3 rounded-md text-sm font-semibold transition-all duration-200 ease-in-out',
+													'px-4 py-3  text-sm font-semibold transition-all duration-200 ease-in-out',
 													'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-													'hover:bg-white hover:text-blue-600 hover:shadow-sm',
-													'data-[state=active]:bg-white data-[state=active]:text-blue-700 data-[state=active]:shadow-md data-[state=active]:font-bold',
+													'data-[state=active]:bg-white data-[state=active]:text-blue-700 data-[state=active]:font-bold',
 													'data-[state=inactive]:text-slate-600 data-[state=inactive]:bg-transparent',
 													'disabled:opacity-50 disabled:cursor-not-allowed',
 												)}>
@@ -684,45 +676,33 @@ export default function SubjectTuitionTabsPage({
 							{/* CONTEXT7 SOURCE: /radix-ui/primitives - Tabs.Content with exact accordion structure */}
 							{/* EXACT CONTENT REASON: Official Radix UI documentation for complex nested content in tabs */}
 
-														{/* PRIMARY SCHOOL TAB - NEW STANDARDIZED SYSTEM */}
+							{/* PRIMARY SCHOOL TAB - NEW STANDARDIZED SYSTEM */}
 							{/* CONTEXT7 SOURCE: /websites/react_dev - Standardized tab content component */}
 							{/* STANDARDIZED REASON: Official React documentation demonstrates composite component patterns for maintainable tab content */}
 							<TabContent
-								level={
-									educationLevels.find((l) => l.value === 'primary-school')!
-								}
+								level={educationLevels.find((l) => l.value === 'primary-school')!}
 								contentData={
-									<EducationLevelTabContent
-										content={getPrimarySchoolContent()}
-									/>
+									<EducationLevelTabContent content={getPrimarySchoolContent()} />
 								}
 							/>
 
-														{/* SECONDARY SCHOOL TAB - NEW STANDARDIZED SYSTEM */}
+							{/* SECONDARY SCHOOL TAB - NEW STANDARDIZED SYSTEM */}
 							{/* CONTEXT7 SOURCE: /websites/react_dev - Standardized tab content component */}
 							{/* STANDARDIZED REASON: Official React documentation demonstrates composite component patterns for maintainable tab content */}
 							<TabContent
-								level={
-									educationLevels.find((l) => l.value === 'secondary-school')!
-								}
+								level={educationLevels.find((l) => l.value === 'secondary-school')!}
 								contentData={
-									<EducationLevelTabContent
-										content={getSecondarySchoolContent()}
-									/>
+									<EducationLevelTabContent content={getSecondarySchoolContent()} />
 								}
 							/>
 
-														{/* ENTRANCE EXAMS TAB - NEW STANDARDIZED SYSTEM */}
+							{/* ENTRANCE EXAMS TAB - NEW STANDARDIZED SYSTEM */}
 							{/* CONTEXT7 SOURCE: /websites/react_dev - Standardized tab content component */}
 							{/* STANDARDIZED REASON: Official React documentation demonstrates composite component patterns for maintainable tab content */}
 							<TabContent
-								level={
-									educationLevels.find((l) => l.value === 'entrance-exams')!
-								}
+								level={educationLevels.find((l) => l.value === 'entrance-exams')!}
 								contentData={
-									<EducationLevelTabContent
-										content={getEntranceExamsContent()}
-									/>
+									<EducationLevelTabContent content={getEntranceExamsContent()} />
 								}
 							/>
 
@@ -733,56 +713,40 @@ export default function SubjectTuitionTabsPage({
 							{/* STANDARDIZED REASON: Official React documentation demonstrates composite component patterns for maintainable tab content */}
 							<TabContent
 								level={
-									educationLevels.find(
-										(l) => l.value === 'university-admissions',
-									)!
+									educationLevels.find((l) => l.value === 'university-admissions')!
 								}
 								contentData={
-									<EducationLevelTabContent
-										content={getUniversityAdmissionsContent()}
-									/>
+									<EducationLevelTabContent content={getUniversityAdmissionsContent()} />
 								}
 							/>
 
-														{/* ONLINE HOMESCHOOLING TAB - NEW STANDARDIZED SYSTEM */}
+							{/* ONLINE HOMESCHOOLING TAB - NEW STANDARDIZED SYSTEM */}
 							{/* CONTEXT7 SOURCE: /websites/react_dev - Standardized tab content component */}
 							{/* STANDARDIZED REASON: Official React documentation demonstrates composite component patterns for maintainable tab content */}
 							<TabContent
-								level={
-									educationLevels.find(
-										(l) => l.value === 'online-homeschooling',
-									)!
-								}
+								level={educationLevels.find((l) => l.value === 'online-homeschooling')!}
 								contentData={
-									<EducationLevelTabContent
-										content={getOnlineHomeschoolingContent()}
-									/>
+									<EducationLevelTabContent content={getOnlineHomeschoolingContent()} />
 								}
 							/>
 
-														{/* SEN SUPPORT TAB - NEW STANDARDIZED SYSTEM */}
+							{/* SEN SUPPORT TAB - NEW STANDARDIZED SYSTEM */}
 							{/* CONTEXT7 SOURCE: /websites/react_dev - Standardized tab content component */}
 							{/* STANDARDIZED REASON: Official React documentation demonstrates composite component patterns for maintainable tab content */}
 							<TabContent
 								level={educationLevels.find((l) => l.value === 'sen-support')!}
 								contentData={
-									<EducationLevelTabContent
-										content={getSenSupportContent()}
-									/>
+									<EducationLevelTabContent content={getSenSupportContent()} />
 								}
 							/>
 
-														{/* LONDON IN-PERSON TAB - NEW STANDARDIZED SYSTEM */}
+							{/* LONDON IN-PERSON TAB - NEW STANDARDIZED SYSTEM */}
 							{/* CONTEXT7 SOURCE: /websites/react_dev - Standardized tab content component */}
 							{/* STANDARDIZED REASON: Official React documentation demonstrates composite component patterns for maintainable tab content */}
 							<TabContent
-								level={
-									educationLevels.find((l) => l.value === 'london-in-person')!
-								}
+								level={educationLevels.find((l) => l.value === 'london-in-person')!}
 								contentData={
-									<EducationLevelTabContent
-										content={getLondonInPersonContent()}
-									/>
+									<EducationLevelTabContent content={getLondonInPersonContent()} />
 								}
 							/>
 						</Tabs.Root>

@@ -35,6 +35,7 @@
 import { ThreePillarsSection } from 'src/components/sections/three-pillars-section.tsx';
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component import for reusable section components
 // COMPONENT IMPORT REASON: Official React documentation Section 2.1 recommends importing custom components for clean architecture
+import { Blockquote } from 'flowbite-react';
 import { FirstLessonSection } from './FirstLessonSection';
 
 // CONTEXT7 SOURCE: /reactjs/react.dev - Component imports cleanup for separator removal
@@ -107,7 +108,7 @@ export function FounderStorySection({
 	return (
 		<section
 			id='founder-story'
-			className={`relative bg-${backgroundColor} pb-16 lg:pb-24 ${className}`}
+			className={`relative bg-${backgroundColor} pb-8 lg:pb-12 ${className}`}
 			aria-labelledby='founder-story-heading'>
 			{/* CONTEXT7 SOURCE: /reactjs/react.dev - Section separator removal for clean layout flow */}
 			{/* SEPARATOR REMOVAL REASON: Official React documentation recommends clean section transitions without decorative overlays */}
@@ -121,7 +122,7 @@ export function FounderStorySection({
 			{/* ROW 2: Personal Introduction - Full-Width Edge-to-Edge Split 50/50 */}
 			{/* CONTEXT7 SOURCE: /websites/tailwindcss - Dynamic height matching with CSS Grid auto-sizing patterns */}
 			{/* DYNAMIC HEIGHT REASON: Official Tailwind CSS documentation for grid-auto-rows and min-height responsive scaling for proportional column synchronization */}
-			<div className='w-full mb-0'>
+			<div className='w-full '>
 				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch'>
 					<div className='order-2 lg:order-1'>
 						{/* CONTEXT7 SOURCE: /websites/tailwindcss - Image aspect ratio optimization for content fitting */}
@@ -143,7 +144,7 @@ export function FounderStorySection({
 						</div>
 					</div>
 
-					<div className='order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] transition-all duration-300 rounded-2xl shadow-lg hover:shadow-xl px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end'>
+					<div className='order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end'>
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Component styling alignment with shadow-lg → shadow-xl hover pattern */}
 						{/* STYLING STANDARDIZATION REVISION: Official Tailwind CSS documentation demonstrates shadow-lg base with hover:shadow-xl for consistent elevation hierarchy matching /about page aesthetic, rounded-2xl for uniform border radius (1rem/16px), and duration-300 for standard 300ms transitions */}
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
@@ -151,28 +152,55 @@ export function FounderStorySection({
 						{/* ACCENT BAR REASON: For text-right sections, accent bar goes on right side (border-r-4) to match text alignment */}
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Max-width utilities for responsive container sizing */}
 						{/* CONTAINER WIDTH ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 demonstrates max-w-6xl for expanded content containers with improved text readability */}
-						<div className='max-w-6xl text-right p-8 border-r-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]'>
-							<h2 className='text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 border-b border-[rgba(63,74,126,0.15)] font-serif'>
+						<div className='max-w-6xl text-right p-8 '>
+							<h2 className='text-4xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 '>
 								Meet Elizabeth, A Different Kind of Educator
 							</h2>
-
 							<p className='text-gray-700 leading-relaxed'>
 								Considering how unconventional my own schooling was, I often find myself
-								chuckling that I'm in my second decade of a career in education.{' '}
+								chuckling that I&apos;m in my second decade of a career in education.{' '}
 								<strong>
-									My path through school wasn't linear; I think that's one of the reasons
-									families trust me.
+									My path through school wasn&apos;t linear; I think that&apos;s one of
+									the reasons families trust me.
 								</strong>{' '}
-								I'm motivated by helping children when it feels like there are no
-								straight lines, only a confusing jumble of squiggles. That's when my
-								team and I can make a real impact.
-							</p>
-
-							<p className='text-gray-700 leading-relaxed'>
+								I&apos;m motivated by helping children when it feels like there are no
+								straight lines, only a confusing jumble of squiggles. That&apos;s when
+								my team and I can make a real impact.
+							</p>{' '}
+							<div className='grid grid-cols-1 md:grid-cols-2 md:gap-6'>
+								<p className='text-gray-700 leading-relaxed'>
+									<strong>
+										I moved through six different schools growing up, across private,
+										state, faith, co-educational and single-sex systems (including a
+										boys&apos; school run by monks — yes, really
+									</strong>
+									). My learning could have easily suffered, especially since I have{' '}
+									<strong>Dyspraxia</strong>, but one constant made a huge difference: my
+									tutor. She not only gave me academic consistency but something far more
+									valuable — a quiet confidence and the belief that excellence was
+									achievable, even in turbulent times.
+								</p>
+								<Blockquote>
+									<svg
+										className='mb-3 h-14 w-14 ml-auto'
+										aria-hidden='true'
+										xmlns='http://www.w3.org/2000/svg'
+										fill='#3f497e60'
+										viewBox='0 0 18 14'>
+										<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+									</svg>
+									<p className='text-xl lg:text-3xl'>
+										This is an example Pull Quote for Beth! That is roughly the same
+										amount of characters as the bolded section provided! and some extra
+										characters to actually reach roughly the same!
+									</p>
+								</Blockquote>
+							</div>
+							<p>
 								<strong>
 									I moved through six different schools growing up, across private,
-									state, faith, co-educational and single-sex systems (including a boys'
-									school run by monks — yes, really
+									state, faith, co-educational and single-sex systems (including a
+									boys&apos; school run by monks — yes, really
 								</strong>
 								). My learning could have easily suffered, especially since I have{' '}
 								<strong>Dyspraxia</strong>, but one constant made a huge difference: my
@@ -192,7 +220,7 @@ export function FounderStorySection({
 			{/* SYMMETRY CONSISTENCY REVISION REASON: Official Tailwind CSS documentation Section padding utilities - verified identical px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 and inner p-8 padding for perfect text area symmetry */}
 			<div className='w-full mb-10'>
 				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch'>
-					<div className='bg-[rgba(63,74,126,0.03)] transition-all duration-300 rounded-2xl shadow-lg hover:shadow-xl px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center'>
+					<div className='bg-[rgba(63,74,126,0.03)] transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center'>
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Component styling alignment with shadow-lg → shadow-xl hover pattern */}
 						{/* STYLING STANDARDIZATION REVISION: Official Tailwind CSS documentation demonstrates shadow-lg base with hover:shadow-xl for consistent elevation hierarchy matching /about page aesthetic, rounded-2xl for uniform border radius (1rem/16px), and duration-300 for standard 300ms transitions */}
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
@@ -200,16 +228,16 @@ export function FounderStorySection({
 						{/* ACCENT BAR REASON: For text-left sections, accent bar goes on left side (border-l-4) to match text alignment */}
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Max-width utilities for responsive container sizing */}
 						{/* CONTAINER WIDTH ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 demonstrates max-w-6xl for expanded content containers with improved text readability */}
-						<div className='max-w-6xl text-left p-8 border-l-4 border-[rgba(63,74,126,1)] hover:border-[rgba(63,74,126,1)]'>
-							<h2 className='text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 border-b border-[rgba(63,74,126,0.15)] font-serif'>
+						<div className='max-w-6xl text-left p-8'>
+							<h2 className='text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 font-serif'>
 								Going Against the Grain
 							</h2>
 
 							<div className='text-gray-700 leading-relaxed space-y-6'>
 								<p>
-									By Sixth Form, I was achieving top grades. I hadn't planned to apply to
-									Oxbridge, but when my headmistress pulled me aside to ask if I'd
-									considered it, something inside me switched on.{' '}
+									By Sixth Form, I was achieving top grades. I hadn&apos;t planned to
+									apply to Oxbridge, but when my headmistress pulled me aside to ask if
+									I&apos;d considered it, something inside me switched on.{' '}
 									<strong>
 										I loved a challenge, and applying to Cambridge to read English and
 										Theatre with Education Studies was certainly that.
@@ -220,16 +248,16 @@ export function FounderStorySection({
 									But my offer letter was as much cause for agitation as celebration. You
 									see, I had already fallen in love with another course and city:
 									Bristol. My elder sister was studying languages there and although I
-									had doggedly courted a Cambridge offer, I hadn't considered a world in
-									which I would actually receive one. What to do?{' '}
+									had doggedly courted a Cambridge offer, I hadn&apos;t considered a
+									world in which I would actually receive one. What to do?{' '}
 									<strong>Who turns down Cambridge? 17 year-old me.</strong>
 									It was an agonising decision, but even then I knew it was the right
 									one. Looking back, I realise that dilemma helped define my ethos
 									towards education:{' '}
 									<strong>
 										work as hard as you can to give yourself the luxury of choice, then
-										have the confidence to pick what's right for you — even if it's not
-										what's expected.
+										have the confidence to pick what&apos;s right for you — even if
+										it&apos;s not what&apos;s expected.
 									</strong>
 								</p>
 							</div>
@@ -268,7 +296,7 @@ export function FounderStorySection({
 			{/* ROW 5: Global Experience - Mobile Stacked Layout / Desktop Hero-Style Single Column with Text Overlay */}
 			{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive design with mobile-first approach for hero sections */}
 			{/* MOBILE LAYOUT REASON: Official Tailwind CSS documentation Section 2.3 recommends mobile-first responsive patterns - separating text from image on mobile for readability, maintaining overlay design on md: breakpoint and above */}
-			<div className='w-full mb-10'>
+			<div className='w-full'>
 				{/* Mobile Layout: Stacked Text Above Image (0-767px) */}
 				<div className='block md:hidden'>
 					<div className='bg-white px-6 sm:px-8 py-12 sm:py-16'>
@@ -292,8 +320,8 @@ export function FounderStorySection({
 									Conducting interviews with business moguls and CEOs reinforced what I
 									already knew:{' '}
 									<strong>
-										the right educational support doesn't just help people ace exams — it
-										shapes their choices
+										the right educational support doesn&apos;t just help people ace exams
+										— it shapes their choices
 									</strong>
 									, their confidence and their future. These leaders had turned their
 									fortunes around through education. What could be more exciting and
@@ -347,7 +375,7 @@ export function FounderStorySection({
 					<div className='absolute inset-x-0 bottom-0 flex items-end z-10 p-8 sm:p-10 lg:p-12'>
 						<div className='w-full'>
 							<div className='max-w-4xl px-4 sm:px-6'>
-								<h2 className='text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-white mb-6 leading-tight'>
+								<h2 className='text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-white leading-tight'>
 									A Global View of What Education Can Do
 								</h2>
 
@@ -380,71 +408,47 @@ export function FounderStorySection({
 				</div>
 			</div>
 
-			{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
-			{/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
-			<div className='container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none'>
-				{/* ROW 6: Results That Matter - Centered Text Container (Heading + Paragraphs Only) */}
-				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Centered text container patterns for content presentation */}
-				{/* CONTENT SEPARATION REASON: Official Tailwind CSS documentation Section 3.2 recommends separating content types for better visual hierarchy */}
-				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced top padding for section visual hierarchy */}
-				{/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 3.1 demonstrates pt-16 utilities for increased top spacing and visual separation */}
-				<div className='max-w-6xl mx-auto text-center mb-20 px-4 sm:px-6 lg:px-8 pt-16'>
-					<h2 className='text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8'>
-						Results That Matter
-					</h2>
+			{/* Normal centred section */}
+			<div className='mx-auto max-w-6xl text-center py-8 sm:px-6 lg:px-8 mt-7 lg:mt-10'>
+				<h2 className='text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8'>
+					Results That Matter
+				</h2>
 
-					{/* CONTEXT7 SOURCE: /websites/react_dev - Text content updates and paragraph formatting in React components */}
-					{/* CONTENT REPLACEMENT REASON: Official React documentation Section 3.1 demonstrates JSX paragraph structures for improved content presentation with client-specified results-focused messaging */}
-					<div className='text-lg text-primary-700 leading-relaxed space-y-6'>
-						<p>
-							Since founding My Private Tutor Online more than 15 years ago, my team
-							and I have helped hundreds of families through key academic transitions —
-							from early entrance exams to Oxbridge interviews, international moves to
-							last-minute GCSE turnarounds.
-						</p>
-					</div>
-					{/* 7. THREE PILLARS SECTION - DIRECT LOADING */}
-					{/* CONTEXT7 SOURCE: /vercel/next.js - Direct component loading to fix content rendering */}
-					{/* CONTENT FIX: Remove lazy loading that was preventing content from displaying */}
-					{/* CONTEXT7 SOURCE: /joshbuchea/head - HTML semantic elements for document structure and accessibility */}
-					{/* ENHANCED SECTION ID IMPLEMENTATION: Official HTML head documentation demonstrates semantic section identification patterns */}
-					{/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
-					{/* SECTION ID REASON: Enhanced descriptive naming following HTML documentation for crystal-clear section identification - metrics-three-pillars-performance clearly identifies academic performance metrics section */}
-					<section id='metrics-three-pillars-performance'>
-						<ThreePillarsSection />
-					</section>
-					{/* CONTEXT7 SOURCE: /websites/react_dev - Text content updates and paragraph formatting in React components */}
-					{/* CONTENT REPLACEMENT REASON: Official React documentation Section 3.1 demonstrates JSX paragraph structures for improved content presentation with client-specified results-focused messaging */}
-					<div className='text-lg text-primary-700 leading-relaxed space-y-6'>
-						<p>
-							Tutoring isn’t just about good grades. It’s about having someone in your
-							corner who sees what you’re capable of, even before you do. That’s the
-							kind of guidance I had growing up, and it’s what I aim to offer every
-							family who works with us. <br></br>
-							<br></br>If you're looking for more than a tutor — if you’re seeking a
-							trusted partner to help navigate the terrain, whether calm or chaotic —
-							I’d love to hear from you.
-						</p>
-					</div>
-					{/* ELIZABETH BURROWS SIGNATURE SECTION - POSITIONED IMMEDIATELY AFTER RESULTS THAT MATTER CONTENT */}
-					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium styling patterns for signature sections */}
-					{/* SIGNATURE POSITIONING REASON: Official Tailwind CSS documentation Section 5.1 for professional branding element placement after results content */}
-					<div className='flex flex-col items-center pt-8 mt-8 border-t border-primary-100'>
-						<p className='w-full text-base text-primary-600 font-medium'>
-							<strong>Elizabeth Burrows, Founder & CEO</strong>
-						</p>
-						<Image
-							src='/images/team/elizabeth-burrows-signature.png'
-							alt='Elizabeth Burrows Signature - Founder and CEO of My Private Tutor Online'
-							width={400}
-							height={120}
-							className='w-2/3 opacity-90 mb-3' //removed w-full as low quality image
-							placeholder='blur'
-							blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAVGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
-							loading='lazy'
-							quality={90}
-						/>
-					</div>
+				<div className='text-lg text-primary-700 leading-relaxed space-y-6'>
+					<p>
+						Since founding My Private Tutor Online more than 15 years ago, my team and
+						I have helped hundreds of families through key academic transitions …
+					</p>
+				</div>
+			</div>
+
+			{/* Three Pillars Section — full width */}
+			<section className='w-full bg-primary-50 py-0'>
+				<div className='mx-auto  px-4 sm:px-6 lg:px-12'>
+					<ThreePillarsSection />
+				</div>
+			</section>
+
+			{/* Normal centred section again */}
+			<div className='mx-auto max-w-6xl text-center px-4 sm:px-6 lg:px-8'>
+				<div className='text-lg text-primary-700 leading-relaxed space-y-6'>
+					<p>
+						Tutoring isn’t just about good grades. It’s about having someone in your
+						corner who sees what you’re capable of …
+					</p>
+				</div>
+
+				<div className='flex flex-col items-center pt-8 mt-8 border-t border-primary-100'>
+					<p className='text-base text-primary-600 font-medium'>
+						<strong>Elizabeth Burrows, Founder & CEO</strong>
+					</p>
+					<Image
+						src='/images/team/elizabeth-burrows-signature.png'
+						alt='Elizabeth Burrows Signature'
+						width={400}
+						height={120}
+						className='w-2/3 opacity-90 mb-3'
+					/>
 				</div>
 			</div>
 
@@ -452,149 +456,149 @@ export function FounderStorySection({
 			{/* CONTEXT7 SOURCE: /websites/react_dev - JSX comment patterns for temporary content removal */}
 			{/* COMMENT REASON: Official React documentation Section JSX syntax - using comment blocks to temporarily hide content sections */}
 			{/*
-      ROW 7A: Personalised. Empowering. World-Class. - Full-Width Edge-to-Edge Split 50/50
-      CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout patterns for responsive design matching ROW 2 styling
-      LAYOUT CONSISTENCY REASON: Official Tailwind CSS documentation Section 2.3 - Using identical grid lg:grid-cols-2 pattern as ROW 2 for visual consistency
-      <div className="w-full mb-0">
-        <div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
-          <m.div
-            initial={fadeInLeftVariant.initial}
-            whileInView={fadeInLeftVariant.animate}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={fadeInLeftVariant.transition}
-            className="order-2 lg:order-1"
-          >
-            // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Image aspect ratio optimization for content fitting
-            // IMAGE LAYOUT REASON: Official Tailwind CSS documentation - 17:9 aspect ratio with 100% container filling for optimal image presentation
-            <div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
-              <Image
-                src="/images/team/founder-elizabeth-burrows-portrait.jpg"
-                alt="Elizabeth Burrows - Personalised Empowering World-Class Education, showcasing our founder's commitment to individual student success"
-                fill
-                className="object-cover"
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                loading="lazy"
-                quality={90}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </m.div>
+ROW 7A: Personalised. Empowering. World-Class. - Full-Width Edge-to-Edge Split 50/50
+CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout patterns for responsive design matching ROW 2 styling
+LAYOUT CONSISTENCY REASON: Official Tailwind CSS documentation Section 2.3 - Using identical grid lg:grid-cols-2 pattern as ROW 2 for visual consistency
+<div className="w-full mb-0">
+<div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
+<m.div
+initial={fadeInLeftVariant.initial}
+whileInView={fadeInLeftVariant.animate}
+viewport={{ once: true, margin: "-100px" }}
+transition={fadeInLeftVariant.transition}
+className="order-2 lg:order-1"
+>
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Image aspect ratio optimization for content fitting
+// IMAGE LAYOUT REASON: Official Tailwind CSS documentation - 17:9 aspect ratio with 100% container filling for optimal image presentation
+<div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
+<Image
+src="/images/team/founder-elizabeth-burrows-portrait.jpg"
+alt="Elizabeth Burrows - Personalised Empowering World-Class Education, showcasing our founder's commitment to individual student success"
+fill
+className="object-cover"
+placeholder="blur"
+blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+loading="lazy"
+quality={90}
+sizes="(max-width: 768px) 100vw, 50vw"
+/>
+</div>
+</m.div>
 
-          <m.div
-            initial={fadeInRightVariant.initial}
-            whileInView={fadeInRightVariant.animate}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={fadeInRightVariant.transition}
-            className="order-1 lg:order-2 px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
-          >
-            // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts
-            // PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
-              Personalised. Empowering. World-Class.
-            </h2>
+<m.div
+initial={fadeInRightVariant.initial}
+whileInView={fadeInRightVariant.animate}
+viewport={{ once: true, margin: "-100px" }}
+transition={fadeInRightVariant.transition}
+className="order-1 lg:order-2 px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[400px] lg:min-h-[500px] flex flex-col justify-center"
+>
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts
+// PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations
+<h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-6">
+Personalised. Empowering. World-Class.
+</h2>
 
-            <div className="text-lg text-primary-700 leading-relaxed space-y-6">
-              <p>
-                Empowerment comes through building confidence alongside
-                competence. We don't just teach subject content; we teach
-                students how to think critically, approach problems
-                systematically, and believe in their own abilities. This mindset
-                shift is often more transformative than any grade improvement.
-              </p>
+<div className="text-lg text-primary-700 leading-relaxed space-y-6">
+<p>
+Empowerment comes through building confidence alongside
+competence. We don't just teach subject content; we teach
+students how to think critically, approach problems
+systematically, and believe in their own abilities. This mindset
+shift is often more transformative than any grade improvement.
+</p>
 
-              <p>
-                Our world-class standards aren't just about academic excellence
-                – though our results speak for themselves. It's about
-                maintaining the highest professional standards while remaining
-                approachable and supportive. Every interaction, every lesson,
-                every piece of feedback reflects our commitment to excellence in
-                education.
-              </p>
-            </div>
-          </m.div>
-        </div>
-      </div>
-      */}
+<p>
+Our world-class standards aren't just about academic excellence
+– though our results speak for themselves. It's about
+maintaining the highest professional standards while remaining
+approachable and supportive. Every interaction, every lesson,
+every piece of feedback reflects our commitment to excellence in
+education.
+</p>
+</div>
+</m.div>
+</div>
+</div>
+*/}
 
 			{/* COMMENTED OUT: ROW 7B - "Global Perspective, Local Sensitivity" Section */}
 			{/* CONTEXT7 SOURCE: /websites/react_dev - JSX comment patterns for temporary content removal */}
 			{/* COMMENT REASON: Official React documentation Section JSX syntax - using comment blocks to temporarily hide content sections */}
 			{/*
-      ROW 7B: Global Perspective, Local Sensitivity - Full-Width Edge-to-Edge Split 50/50
-      CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout patterns for responsive design matching ROW 3 styling
-      LAYOUT CONSISTENCY REASON: Official Tailwind CSS documentation Section 2.3 - Using identical grid lg:grid-cols-2 pattern as ROW 3 for visual consistency
-      <div className="w-full mb-10">
-        <div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
-          <m.div
-            initial={fadeInLeftVariant.initial}
-            whileInView={fadeInLeftVariant.animate}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={fadeInLeftVariant.transition}
-            className="px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
-          >
-            // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts
-            // PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
-              Global Perspective, Local Sensitivity
-            </h2>
+ROW 7B: Global Perspective, Local Sensitivity - Full-Width Edge-to-Edge Split 50/50
+CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Grid layout patterns for responsive design matching ROW 3 styling
+LAYOUT CONSISTENCY REASON: Official Tailwind CSS documentation Section 2.3 - Using identical grid lg:grid-cols-2 pattern as ROW 3 for visual consistency
+<div className="w-full mb-10">
+<div className="grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch">
+<m.div
+initial={fadeInLeftVariant.initial}
+whileInView={fadeInLeftVariant.animate}
+viewport={{ once: true, margin: "-100px" }}
+transition={fadeInLeftVariant.transition}
+className="px-6 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center"
+>
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability in image/text layouts
+// PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation px-6 sm:px-8 lg:px-12 xl:px-16 pattern for increased text spacing in two-column image/text combinations
+<h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
+Global Perspective, Local Sensitivity
+</h2>
 
-            <div className="text-lg text-primary-700 leading-relaxed space-y-6">
-              <p>
-                Having worked across seven continents, I've seen educational
-                systems from every angle. This global exposure has given me
-                insights into what works universally and what needs to be
-                adapted for different contexts. Whether we're preparing a
-                student for UK GCSEs, International Baccalaureate, or university
-                entrance in any country, we understand the nuances that make the
-                difference.
-              </p>
+<div className="text-lg text-primary-700 leading-relaxed space-y-6">
+<p>
+Having worked across seven continents, I've seen educational
+systems from every angle. This global exposure has given me
+insights into what works universally and what needs to be
+adapted for different contexts. Whether we're preparing a
+student for UK GCSEs, International Baccalaureate, or university
+entrance in any country, we understand the nuances that make the
+difference.
+</p>
 
-              <p>
-                Yet with all this international experience comes the
-                understanding that education is deeply personal and cultural. A
-                child from London may have different needs, pressures, and
-                motivations than one from Hong Kong or Dubai. We combine our
-                global expertise with genuine sensitivity to local contexts,
-                family values, and individual circumstances.
-              </p>
+<p>
+Yet with all this international experience comes the
+understanding that education is deeply personal and cultural. A
+child from London may have different needs, pressures, and
+motivations than one from Hong Kong or Dubai. We combine our
+global expertise with genuine sensitivity to local contexts,
+family values, and individual circumstances.
+</p>
 
-              <p>
-                This balance – thinking globally while acting locally – ensures
-                that our students receive education that is both world-class in
-                its standards and perfectly suited to their unique situation.
-                It's this combination that has made us the trusted choice for
-                families across the globe.
-              </p>
-            </div>
-          </m.div>
+<p>
+This balance – thinking globally while acting locally – ensures
+that our students receive education that is both world-class in
+its standards and perfectly suited to their unique situation.
+It's this combination that has made us the trusted choice for
+families across the globe.
+</p>
+</div>
+</m.div>
 
-          <m.div
-            initial={fadeInRightVariant.initial}
-            whileInView={fadeInRightVariant.animate}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={fadeInRightVariant.transition}
-            className="order-1 lg:order-2"
-          >
-            // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Image aspect ratio optimization for content fitting
-            // IMAGE LAYOUT REASON: Official Tailwind CSS documentation - 17:9 aspect ratio with 100% container filling for optimal image presentation
-            <div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
-              <Image
-                src="/images/team/founder-elizabeth-burrows-secondary.jpg"
-                alt="Elizabeth Burrows - Global Perspective Local Sensitivity, representing our founder's international experience and cultural understanding"
-                fill
-                className="object-cover"
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                loading="lazy"
-                quality={90}
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </m.div>
-        </div>
-      </div>
-      */}
+<m.div
+initial={fadeInRightVariant.initial}
+whileInView={fadeInRightVariant.animate}
+viewport={{ once: true, margin: "-100px" }}
+transition={fadeInRightVariant.transition}
+className="order-1 lg:order-2"
+>
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Image aspect ratio optimization for content fitting
+// IMAGE LAYOUT REASON: Official Tailwind CSS documentation - 17:9 aspect ratio with 100% container filling for optimal image presentation
+<div className="relative w-full h-full aspect-[17/9] lg:aspect-auto">
+<Image
+src="/images/team/founder-elizabeth-burrows-secondary.jpg"
+alt="Elizabeth Burrows - Global Perspective Local Sensitivity, representing our founder's international experience and cultural understanding"
+fill
+className="object-cover"
+placeholder="blur"
+blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+loading="lazy"
+quality={90}
+sizes="(max-width: 768px) 100vw, 50vw"
+/>
+</div>
+</m.div>
+</div>
+</div>
+*/}
 
 			{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced horizontal padding for improved text readability */}
 			{/* PADDING ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 recommends increased horizontal padding for better text spacing and readability */}
@@ -603,39 +607,39 @@ export function FounderStorySection({
 				{/* CONTEXT7 SOURCE: /websites/react_dev - JSX comment patterns for temporary content removal */}
 				{/* COMMENT REASON: Official React documentation Section JSX syntax - using comment blocks to temporarily hide content sections */}
 				{/*
-        NEW ROW: Supportive Guidance, Independent Growth - Centered Text Container
-        CONTEXT7 SOURCE: /websites/react_dev - React component patterns with TypeScript prop definitions for centered text sections
-        IMPLEMENTATION REASON: Official React documentation Section component-based architecture for reusable UI elements matching ROW 6 styling patterns
-        <m.div
-          className="max-w-6xl mx-auto text-center mb-20 px-4 sm:px-6 lg:px-8"
-          initial={fadeInUpVariant.initial}
-          whileInView={fadeInUpVariant.animate}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={fadeInUpVariant.transition}
-        >
-          <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
-            Supportive Guidance, Independent Growth
-          </h2>
+NEW ROW: Supportive Guidance, Independent Growth - Centered Text Container
+CONTEXT7 SOURCE: /websites/react_dev - React component patterns with TypeScript prop definitions for centered text sections
+IMPLEMENTATION REASON: Official React documentation Section component-based architecture for reusable UI elements matching ROW 6 styling patterns
+<m.div
+className="max-w-6xl mx-auto text-center mb-20 px-4 sm:px-6 lg:px-8"
+initial={fadeInUpVariant.initial}
+whileInView={fadeInUpVariant.animate}
+viewport={{ once: true, margin: "-100px" }}
+transition={fadeInUpVariant.transition}
+>
+<h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8">
+Supportive Guidance, Independent Growth
+</h2>
 
-          <div className="text-lg text-primary-700 leading-relaxed space-y-6">
-            <p>
-              Great tutoring begins with trust. That's why we take the time to
-              understand your child — not just academically, but personally. We
-              want to know what makes them tick so we can build a relationship
-              where they feel seen, motivated, and empowered. Our goal isn't
-              long-term dependence — it's lasting confidence.
-            </p>
+<div className="text-lg text-primary-700 leading-relaxed space-y-6">
+<p>
+Great tutoring begins with trust. That's why we take the time to
+understand your child — not just academically, but personally. We
+want to know what makes them tick so we can build a relationship
+where they feel seen, motivated, and empowered. Our goal isn't
+long-term dependence — it's lasting confidence.
+</p>
 
-            <p>
-              We aim to become a victim of our own success: equipping students
-              with the tools, strategies, and mindset to become independent
-              learners. Tutoring should never be a crutch. We act as a guide and
-              advocate during challenging moments, always with the aim of
-              leading students back toward self-sufficiency.
-            </p>
-          </div>
-        </m.div>
-        */}
+<p>
+We aim to become a victim of our own success: equipping students
+with the tools, strategies, and mindset to become independent
+learners. Tutoring should never be a crutch. We act as a guide and
+advocate during challenging moments, always with the aim of
+leading students back toward self-sufficiency.
+</p>
+</div>
+</m.div>
+*/}
 			</div>
 
 			{/* CONTEXT7 SOURCE: /reactjs/react.dev - Section separator removal for direct transitions */}

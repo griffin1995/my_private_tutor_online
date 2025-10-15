@@ -70,6 +70,7 @@ const navigationData: NavigationItem[] = [
 		label: 'About Us',
 		href: '/about',
 		items: [
+			{ label: 'Introduction', href: '/about' },
 			{ label: "Founder's Story", href: '/about#about-founder-story' },
 			{ label: 'Our Ethos', href: '/about#about-quote' },
 			{ label: 'Client Reviews', href: '/about#about-testimonials' },
@@ -79,6 +80,7 @@ const navigationData: NavigationItem[] = [
 		label: 'Subject Tuition',
 		href: '/subject-tuition',
 		items: [
+			{ label: 'Introduction', href: '/subject-tuition' },
 			{
 				label: 'Subject Categories',
 				href: '/subject-tuition#subject-tuition-categories',
@@ -97,6 +99,7 @@ const navigationData: NavigationItem[] = [
 		label: 'How It Works',
 		href: '/how-it-works',
 		items: [
+			{ label: 'Introduction', href: '/how-it-works' },
 			{
 				label: 'Our Process',
 				href: '/how-it-works#how-it-works-process-steps',
@@ -113,6 +116,7 @@ const navigationData: NavigationItem[] = [
 		label: 'Testimonials',
 		href: '/testimonials',
 		items: [
+			{ label: 'Introduction', href: '/testimonials' },
 			{ label: 'Filter Reviews', href: '/testimonials#testimonials-filter' },
 			{ label: 'All Reviews', href: '/testimonials#testimonials-grid' },
 			{
@@ -125,6 +129,7 @@ const navigationData: NavigationItem[] = [
 		label: 'Video Masterclasses',
 		href: '/video-masterclasses',
 		items: [
+			{ label: 'Introduction', href: '/video-masterclasses' },
 			{
 				label: 'Introduction',
 				href: '/video-masterclasses#featured-video-content',
@@ -141,6 +146,7 @@ const navigationData: NavigationItem[] = [
 		label: '11+ Bootcamps',
 		href: '/11-plus-bootcamps',
 		items: [
+			{ label: 'Introduction', href: '/11-plus-bootcamps' },
 			{ label: 'Elite Schools', href: '/11-plus-bootcamps#bootcamps-schools' },
 			{ label: 'Our Promise', href: '/11-plus-bootcamps#bootcamps-tagline' },
 			{
@@ -153,6 +159,7 @@ const navigationData: NavigationItem[] = [
 			},
 		],
 	},
+
 	// CONTEXT7 SOURCE: /mdn/content - Array.prototype.filter() method for removing elements from arrays
 	// REMOVAL_REASON: Official MDN documentation for filtering arrays - FAQ navigation item removed per user request
 	// FAQ navigation item removed from navigationData array
@@ -336,6 +343,30 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 		}, 100);
 	};
 
+	// CONTEXT7 SOURCE: /reactjs/react.dev - onClick toggle pattern for dropdown state management
+	// TOGGLE_REASON: Official React documentation for toggle pattern - clicking menu item opens if closed, closes if already open
+	// HOVER-TO-CLICK CONVERSION: New click-based handler replaces hover behavior while preserving all animations and styles
+	const handleToggleDropdown = (menuLabel: string) => {
+		// Clear any existing hover timeouts
+		if (hoverDelayTimeoutRef.current) {
+			clearTimeout(hoverDelayTimeoutRef.current);
+			hoverDelayTimeoutRef.current = null;
+		}
+		if (dropdownTimeoutRef.current) {
+			clearTimeout(dropdownTimeoutRef.current);
+			dropdownTimeoutRef.current = null;
+		}
+
+		// Toggle logic: if this menu is already open, close it; otherwise open it
+		if (dropdownState.isOpen && dropdownState.activeMenu === menuLabel) {
+			setDropdownState({ isOpen: false, activeMenu: null });
+			setActiveMenuItem(null);
+		} else {
+			setDropdownState({ isOpen: true, activeMenu: menuLabel });
+			setActiveMenuItem(menuLabel);
+		}
+	};
+
 	const handleCloseDropdown = () => {
 		// CONTEXT7 SOURCE: /reactjs/react.dev - clearTimeout for comprehensive timeout cleanup
 		// CLEANUP_REASON: Official React documentation for clearing all pending timeouts when closing dropdown explicitly
@@ -449,10 +480,13 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 									{item.items ?
 										<div
 											className='relative'
-											onMouseEnter={() => handleMouseEnter(item.label)}
-											onMouseLeave={handleMouseLeave}>
+											// HOVER-TO-CLICK CONVERSION: Hover handlers commented for future re-enablement
+											// Original hover behavior: onMouseEnter={() => handleMouseEnter(item.label)}
+											// Original hover behavior: onMouseLeave={handleMouseLeave}
+										>
 											{/* CONTEXT7 SOURCE: /tailwindlabs/headlessui - MenuButton with custom trigger behavior */}
 											{/* TRIGGER_REASON: Official Headless UI documentation for MenuButton with custom hover triggers */}
+											{/* HOVER-TO-CLICK CONVERSION: Changed from hover-based to click-based dropdown toggle */}
 											<div className='flex items-center'>
 												{item.href ?
 													<Link
@@ -485,12 +519,11 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 																'text-[#3F4A7E]',
 														)}
 														onClick={(e) => {
-															// Clear any hover timeouts and close dropdown immediately when clicking
-															if (hoverDelayTimeoutRef.current) {
-																clearTimeout(hoverDelayTimeoutRef.current);
-																hoverDelayTimeoutRef.current = null;
-															}
-															handleCloseDropdown();
+															// CONTEXT7 SOURCE: /reactjs/react.dev - preventDefault for link navigation control
+															// PREVENT_DEFAULT_REASON: Official React documentation for preventing default link navigation when toggling dropdown
+															// HOVER-TO-CLICK CONVERSION: Changed from close-only to toggle behavior
+															e.preventDefault();
+															handleToggleDropdown(item.label);
 														}}>
 														{item.label}
 													</Link>
@@ -518,7 +551,13 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 															dropdownState.isOpen &&
 																activeMenuItem !== item.label &&
 																'text-[#3F4A7E]',
-														)}>
+														)}
+														onClick={() => {
+															// CONTEXT7 SOURCE: /reactjs/react.dev - onClick handler for toggle state management
+															// CLICK_HANDLER_REASON: Official React documentation for button onClick handlers with toggle logic
+															// HOVER-TO-CLICK CONVERSION: New click handler for dropdown toggle
+															handleToggleDropdown(item.label);
+														}}>
 														{item.label}
 													</button>
 												}

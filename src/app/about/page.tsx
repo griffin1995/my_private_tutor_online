@@ -45,6 +45,7 @@ import { getAboutHeroImage } from '@/lib/cms/cms-images';
 // CONTEXT7 SOURCE: /reactjs/react.dev - Utility function imports for component styling
 // UTILITY IMPORT REASON: Official React documentation shows cn utility import for conditional styling
 import { cn } from '@/lib/utils';
+import { Avatar, Blockquote } from 'flowbite-react';
 
 export default function AboutUsPage() {
 	// CONTEXT7 SOURCE: /reactjs/react.dev - Direct synchronous data access patterns
@@ -108,29 +109,54 @@ export default function AboutUsPage() {
 				{/* FOUNDER STORY EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
 				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Div wrapper with id for navigation without nesting sections */}
 				{/* SECTION FIX REASON: Official HTML documentation recommends avoiding nested section elements for clean semantic structure */}
-				<div
-					id='about-founder-story'
-					className='px-4 sm:px-6 lg:px-8'>
+				<div id='about-founder-story'>
 					<div className='mx-auto'>
 						<FounderStorySection />
 					</div>
 				</div>
 
 				<section
-					id='about-quote'
-					className='py-16 lg:py-24 bg-primary-50'>
-					<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
-						<blockquote className='text-xl lg:text-2xl font-serif italic text-gray-900'>
-							&quot;<strong>A truly bespoke</strong> experience — Elizabeth personally
-							pairs each student with a <u>carefully selected tutor</u> from her
-							boutique team.&quot;
-						</blockquote>
-						<cite className='block mt-4 text-lg not-italic font-medium text-gray-700'>
-							Academic Insight
-						</cite>
+					id='founder-quote-testimonials'
+					className='py-8 lg:py-12 bg-primary-50'>
+					<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
+						<Blockquote>
+							{/* Quote SVG top-left */}
+							<svg
+								className='mb-6 h-14 w-14'
+								aria-hidden='true'
+								xmlns='http://www.w3.org/2000/svg'
+								fill='#3F4A7E'
+								viewBox='0 0 18 14'>
+								<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+							</svg>
+
+							{/* Quote content */}
+							<p className='text-xl lg:text-2xl font-serif italic text-gray-900'>
+								&quot;<strong>A truly bespoke</strong> experience — Elizabeth personally
+								pairs each student with a <u>carefully selected tutor</u> from her
+								boutique team.&quot;
+							</p>
+
+							{/* Author with avatar (inline name | title) */}
+							<figcaption className='mt-4 flex items-center justify-center space-x-3'>
+								<Avatar
+									rounded
+									size='xs'
+									img='/images/team/elizabeth-burrows-founder-main.jpg'
+									alt='Elizabeth Burrows'
+								/>
+								<div className='flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700'>
+									<cite className='pr-3 font-medium text-gray-900 dark:text-white'>
+										Example Name/Image
+									</cite>
+									<cite className='pl-3 text-sm text-gray-500 dark:text-gray-400'>
+										Role @ Academic Insight
+									</cite>
+								</div>
+							</figcaption>
+						</Blockquote>
 					</div>
 				</section>
-
 				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Margin utilities for visual hierarchy and section separation */}
 				{/* VISUAL BREAK REASON: Official Tailwind CSS documentation mt-16 utility creates 4rem (64px) top margin for clear separation between introductory group (Hero/Tagline/Schools) and main content sections */}
 				{/* CONTEXT7 SOURCE: /vercel/next.js - About section with founder story and company credentials */}
@@ -141,8 +167,8 @@ export default function AboutUsPage() {
 				{/* CONTENT FORMATTING REASON: Official MDN documentation demonstrates strong element usage for indicating strong importance, seriousness, or urgency in educational philosophy text */}
 				<section
 					id='about-highlighter-intro'
-					className='py-20 bg-white'>
-					<div className='max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8'>
+					className='pt-20 bg-white'>
+					<div className='max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8'>
 						<h1 className='text-4xl font-bold text-gray-900 mb-6'>
 							Our Educational Philosophy
 						</h1>
@@ -165,6 +191,7 @@ export default function AboutUsPage() {
 						</p>
 					</div>
 				</section>
+
 				{/* CONTEXT7 SOURCE: /reactjs/react.dev - Component-based architecture for reusable UI elements */}
 				{/* TESTIMONIALS EXTRACTION REASON: Official React documentation Section 2.1 recommends component extraction for maintainability */}
 				{/* SYNCHRONOUS DATA ACCESS: Direct testimonials data access prevents loading state complexity and homepage failure scenarios */}
