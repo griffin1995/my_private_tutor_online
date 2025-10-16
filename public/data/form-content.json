@@ -1,61 +1,61 @@
 {
-  "newsletter": {
-    "title": "Join Our Exclusive Community",
-    "description": "Receive personalised academic insights and exclusive opportunities for your child's success",
-    "successMessage": "Thank you for subscribing! You'll receive personalised academic insights and exclusive opportunities.",
-    "buttonText": "Subscribe",
-    "fields": {
-      "firstName": {
-        "label": "First Name",
-        "placeholder": "Enter your first name"
-      },
-      "email": {
-        "label": "Email Address",
-        "placeholder": "Enter your email address"
-      }
-    }
-  },
-  "consultation": {
-    "fields": {
-      "parentName": {
-        "placeholder": "Your full name"
-      },
-      "studentName": {
-        "placeholder": "Student's name"
-      },
-      "academicLevel": {
-        "selectValue": "Select level"
-      },
-      "timescale": {
-        "selectValue": "When do you need support?"
-      },
-      "requirements": {
-        "placeholder": "Any specific learning needs, exam targets, or special requirements..."
-      },
-      "contactMethod": {
-        "selectValue": "How should we contact you?"
-      },
-      "serviceLevel": {
-        "selectValue": "Select service level"
-      }
-    },
-    "ariaLabels": {
-      "academicLevel": "Select academic level",
-      "timescale": "Select timescale for tutoring support",
-      "contactMethod": "Select preferred contact method",
-      "serviceLevel": "Select service level and budget"
-    }
-  },
-  "common": {
-    "loadingText": "Loading...",
-    "submitText": "Submit",
-    "processingText": "Submitting...",
-    "successText": "Success",
-    "errorText": "Error"
-  },
-  "footer": {
-    "newsletter": {
-      "placeholder": "Enter your email"
-    }
-  }
+	"newsletter": {
+		"title": "Join Our Exclusive Community",
+		"description": "Receive personalised academic insights and exclusive opportunities for your child's success",
+		"successMessage": "Thank you for subscribing! You'll receive personalised academic insights and exclusive opportunities.",
+		"buttonText": "Subscribe",
+		"fields": {
+			"firstName": {
+				"label": "First Name",
+				"placeholder": "Enter your first name"
+			},
+			"email": {
+				"label": "Email Address",
+				"placeholder": "Enter your email address"
+			}
+		}
+	},
+	"consultation": {
+		"fields": {
+			"parentName": {
+				"placeholder": "Your full name"
+			},
+			"studentName": {
+				"placeholder": "Student's name"
+			},
+			"academicLevel": {
+				"selectValue": "Select level"
+			},
+			"timescale": {
+				"selectValue": "When do you need support?"
+			},
+			"requirements": {
+				"placeholder": "Any specific learning needs, exam targets, or special requirements..."
+			},
+			"contactMethod": {
+				"selectValue": "How should we contact you?"
+			},
+			"serviceLevel": {
+				"selectValue": "Select service level"
+			}
+		},
+		"ariaLabels": {
+			"academicLevel": "Select academic level",
+			"timescale": "Select timescale for tutoring support",
+			"contactMethod": "Select preferred contact method",
+			"serviceLevel": "Select service level and budget"
+		}
+	},
+	"common": {
+		"loadingText": "Loading...",
+		"submitText": "Submit",
+		"processingText": "Submitting...",
+		"successText": "Success",
+		"errorText": "Error"
+	},
+	"footer": {
+		"newsletter": {
+			"placeholder": "Enter your email"
+		}
+	}
 }

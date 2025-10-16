@@ -1,0 +1,12 @@
+{
+	"bracketSameLine": true,
+	"experimentalTernaries": true,
+	"jsxSingleQuote": true,
+	"proseWrap": "always",
+	"singleAttributePerLine": true,
+	"singleQuote": true,
+	"trailingComma": "all",
+	"vueIndentScriptAndStyle": true,
+	"tabWidth": 1,
+	"useTabs": true
+}

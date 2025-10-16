@@ -6,8 +6,8 @@
 
 /* Universal selector for debugging - disabled by default */
 .pesticide-debug * {
-  outline: 1px solid rgba(255, 0, 0, 0.2) !important;
-  outline-offset: -1px !important;
+	outline: 1px solid rgba(255, 0, 0, 0.2) !important;
+	outline-offset: -1px !important;
 }
 
 /* Heading elements - Blue gradient */
@@ -17,13 +17,13 @@
 .pesticide-debug h4,
 .pesticide-debug h5,
 .pesticide-debug h6 {
-  outline: 1px solid rgba(0, 100, 255, 0.5) !important;
-  background-color: rgba(0, 100, 255, 0.05) !important;
+	outline: 1px solid rgba(0, 100, 255, 0.5) !important;
+	background-color: rgba(0, 100, 255, 0.05) !important;
 }
 
 /* Block-level containers - Green */
 .pesticide-debug div {
-  outline: 1px solid rgba(0, 255, 0, 0.3) !important;
+	outline: 1px solid rgba(0, 255, 0, 0.3) !important;
 }
 
 .pesticide-debug section,
@@ -33,55 +33,55 @@
 .pesticide-debug header,
 .pesticide-debug footer,
 .pesticide-debug nav {
-  outline: 2px solid rgba(0, 200, 0, 0.4) !important;
-  background-color: rgba(0, 200, 0, 0.03) !important;
+	outline: 2px solid rgba(0, 200, 0, 0.4) !important;
+	background-color: rgba(0, 200, 0, 0.03) !important;
 }
 
 /* Form elements - Purple */
 .pesticide-debug form,
 .pesticide-debug fieldset,
 .pesticide-debug legend {
-  outline: 1px solid rgba(128, 0, 128, 0.4) !important;
-  background-color: rgba(128, 0, 128, 0.05) !important;
+	outline: 1px solid rgba(128, 0, 128, 0.4) !important;
+	background-color: rgba(128, 0, 128, 0.05) !important;
 }
 
 .pesticide-debug input,
 .pesticide-debug textarea,
 .pesticide-debug select,
 .pesticide-debug button {
-  outline: 1px solid rgba(200, 0, 200, 0.5) !important;
-  background-color: rgba(200, 0, 200, 0.05) !important;
+	outline: 1px solid rgba(200, 0, 200, 0.5) !important;
+	background-color: rgba(200, 0, 200, 0.05) !important;
 }
 
 /* List elements - Orange */
 .pesticide-debug ul,
 .pesticide-debug ol,
 .pesticide-debug dl {
-  outline: 1px solid rgba(255, 140, 0, 0.4) !important;
-  background-color: rgba(255, 140, 0, 0.03) !important;
+	outline: 1px solid rgba(255, 140, 0, 0.4) !important;
+	background-color: rgba(255, 140, 0, 0.03) !important;
 }
 
 .pesticide-debug li,
 .pesticide-debug dt,
 .pesticide-debug dd {
-  outline: 1px solid rgba(255, 180, 0, 0.3) !important;
+	outline: 1px solid rgba(255, 180, 0, 0.3) !important;
 }
 
 /* Table elements - Brown */
 .pesticide-debug table {
-  outline: 2px solid rgba(139, 69, 19, 0.5) !important;
-  background-color: rgba(139, 69, 19, 0.05) !important;
+	outline: 2px solid rgba(139, 69, 19, 0.5) !important;
+	background-color: rgba(139, 69, 19, 0.05) !important;
 }
 
 .pesticide-debug thead,
 .pesticide-debug tbody,
 .pesticide-debug tfoot {
-  outline: 1px solid rgba(160, 82, 45, 0.4) !important;
+	outline: 1px solid rgba(160, 82, 45, 0.4) !important;
 }
 
 .pesticide-debug th,
 .pesticide-debug td {
-  outline: 1px solid rgba(205, 133, 63, 0.3) !important;
+	outline: 1px solid rgba(205, 133, 63, 0.3) !important;
 }
 
 /* Media elements - Pink */
@@ -91,8 +91,8 @@
 .pesticide-debug picture,
 .pesticide-debug canvas,
 .pesticide-debug svg {
-  outline: 2px solid rgba(255, 20, 147, 0.5) !important;
-  background-color: rgba(255, 20, 147, 0.05) !important;
+	outline: 2px solid rgba(255, 20, 147, 0.5) !important;
+	background-color: rgba(255, 20, 147, 0.05) !important;
 }
 
 /* Text elements - Yellow */
@@ -102,14 +102,14 @@
 .pesticide-debug strong,
 .pesticide-debug mark,
 .pesticide-debug small {
-  outline: 1px solid rgba(255, 255, 0, 0.3) !important;
-  background-color: rgba(255, 255, 0, 0.02) !important;
+	outline: 1px solid rgba(255, 255, 0, 0.3) !important;
+	background-color: rgba(255, 255, 0, 0.02) !important;
 }
 
 /* Links - Cyan */
 .pesticide-debug a {
-  outline: 1px solid rgba(0, 255, 255, 0.5) !important;
-  background-color: rgba(0, 255, 255, 0.05) !important;
+	outline: 1px solid rgba(0, 255, 255, 0.5) !important;
+	background-color: rgba(0, 255, 255, 0.05) !important;
 }
 
 /* Code elements - Gray */
@@ -117,64 +117,64 @@
 .pesticide-debug code,
 .pesticide-debug kbd,
 .pesticide-debug samp {
-  outline: 1px solid rgba(128, 128, 128, 0.5) !important;
-  background-color: rgba(128, 128, 128, 0.05) !important;
+	outline: 1px solid rgba(128, 128, 128, 0.5) !important;
+	background-color: rgba(128, 128, 128, 0.05) !important;
 }
 
 /* Flexbox containers - Teal */
 .pesticide-debug .flex,
-.pesticide-debug [style*="display: flex"],
-.pesticide-debug [style*="display:flex"] {
-  outline: 2px dashed rgba(0, 128, 128, 0.6) !important;
-  background-color: rgba(0, 128, 128, 0.05) !important;
+.pesticide-debug [style*='display: flex'],
+.pesticide-debug [style*='display:flex'] {
+	outline: 2px dashed rgba(0, 128, 128, 0.6) !important;
+	background-color: rgba(0, 128, 128, 0.05) !important;
 }
 
 /* Grid containers - Navy */
 .pesticide-debug .grid,
-.pesticide-debug [style*="display: grid"],
-.pesticide-debug [style*="display:grid"] {
-  outline: 2px dashed rgba(0, 0, 128, 0.6) !important;
-  background-color: rgba(0, 0, 128, 0.05) !important;
+.pesticide-debug [style*='display: grid'],
+.pesticide-debug [style*='display:grid'] {
+	outline: 2px dashed rgba(0, 0, 128, 0.6) !important;
+	background-color: rgba(0, 0, 128, 0.05) !important;
 }
 
 /* Hidden elements indicator - Red striped */
 .pesticide-debug .hidden,
 .pesticide-debug [hidden],
-.pesticide-debug [style*="display: none"],
-.pesticide-debug [style*="display:none"] {
-  outline: 3px dashed rgba(255, 0, 0, 0.8) !important;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(255, 0, 0, 0.1),
-    rgba(255, 0, 0, 0.1) 10px,
-    rgba(255, 0, 0, 0.2) 10px,
-    rgba(255, 0, 0, 0.2) 20px
-  ) !important;
+.pesticide-debug [style*='display: none'],
+.pesticide-debug [style*='display:none'] {
+	outline: 3px dashed rgba(255, 0, 0, 0.8) !important;
+	background: repeating-linear-gradient(
+		45deg,
+		rgba(255, 0, 0, 0.1),
+		rgba(255, 0, 0, 0.1) 10px,
+		rgba(255, 0, 0, 0.2) 10px,
+		rgba(255, 0, 0, 0.2) 20px
+	) !important;
 }
 
 /* Absolute/Fixed positioned elements - Gold */
-.pesticide-debug [style*="position: absolute"],
-.pesticide-debug [style*="position:absolute"],
-.pesticide-debug [style*="position: fixed"],
-.pesticide-debug [style*="position:fixed"],
+.pesticide-debug [style*='position: absolute'],
+.pesticide-debug [style*='position:absolute'],
+.pesticide-debug [style*='position: fixed'],
+.pesticide-debug [style*='position:fixed'],
 .pesticide-debug .absolute,
 .pesticide-debug .fixed {
-  outline: 2px solid rgba(255, 215, 0, 0.8) !important;
-  background-color: rgba(255, 215, 0, 0.1) !important;
+	outline: 2px solid rgba(255, 215, 0, 0.8) !important;
+	background-color: rgba(255, 215, 0, 0.1) !important;
 }
 
 /* Development mode indicator */
 .pesticide-debug::before {
-  content: "🐛 Pesticide Debug Mode Active" !important;
-  position: fixed !important;
-  top: 10px !important;
-  right: 10px !important;
-  background: rgba(255, 0, 0, 0.9) !important;
-  color: white !important;
-  padding: 5px 10px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  z-index: 99999 !important;
-  border-radius: 3px !important;
-  pointer-events: none !important;
+	content: '🐛 Pesticide Debug Mode Active' !important;
+	position: fixed !important;
+	top: 10px !important;
+	right: 10px !important;
+	background: rgba(255, 0, 0, 0.9) !important;
+	color: white !important;
+	padding: 5px 10px !important;
+	font-size: 12px !important;
+	font-weight: bold !important;
+	z-index: 99999 !important;
+	border-radius: 3px !important;
+	pointer-events: none !important;
 }

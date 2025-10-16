@@ -1,0 +1,64 @@
+# Obvious Cleanup Candidates
+# Review this list and remove any lines for files you want to KEEP
+# Then run: bash scripts/safe-cleanup.sh obvious-cleanup-candidates.txt --dry-run
+# If dry-run looks good, run: bash scripts/safe-cleanup.sh obvious-cleanup-candidates.txt
+
+# Build logs
+./build-performance-current.log
+./build-phase4.log
+./build-verification-phase1.log
+./build.log
+./deployment-output.log
+./dev_output.log
+./dev_check.log
+./server.log
+./src/dev_output.log
+./src/dev_test.log
+./dev.log
+./build-validation.log
+./accessibility-performance-validation.log
+./build-verification.log
+./build-test-verification.log
+./build-verification-hp007.log
+./build-output.log
+./build-after-unused-files.log
+./build-after-restore.log
+./build-after-deps-removal.log
+./build-after-critters.log
+
+# Unused dependency tracking files
+./unused-files.txt
+./unused-files-list.txt
+./unused-files-clean.txt
+./unused-deps.txt
+./unused-devdeps.txt
+./unused-devdeps-clean.txt
+./unused-devdeps-final.txt
+./all-unused-deps.txt
+./knip-output.txt
+./knip-final-check.txt
+
+# Test HTML files
+./sept-22-intermediate.html
+./test-overflow-fix.html
+./test-viewport-comprehensive.html
+./test-thumbnail-visibility.html
+./markdown-to-pdf-enhanced.html
+
+# Analysis reports (keep if you need these)
+./MASTER_ANALYSIS_REPORT.json
+./QUALITY_TRANSFORMATION_METRICS.json
+./accessibility-compliance-report.json
+./build-performance-results.json
+
+# Temporary performance reports
+./performance-reports/week-5-performance-report-1757961698839.txt
+
+# Temporary prompt files
+./TAILWIND CSS MIGRATION PROMPT.txt
+
+# Temporary config/test files (review carefully!)
+# Uncomment lines below if you're sure you don't need them
+# ./playwright-mcp-config.json
+# ./viewport-test-report.json
+# ./performance-budget.json

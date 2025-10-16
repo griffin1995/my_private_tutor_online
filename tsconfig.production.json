@@ -1,103 +1,93 @@
 {
-  "compilerOptions": {
-    // CONTEXT7 SOURCE: /microsoft/typescript - Ultra-fast production build configuration
-    // CRITICAL PERFORMANCE: Absolute minimum checking for sub-15s builds
-    // CONTEXT7 SOURCE: /microsoft/typescript - Minimal target for fastest transpilation
-    "target": "ES2022",
-    "module": "esnext",
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
-    "jsx": "preserve",
-    // CONTEXT7 SOURCE: /microsoft/typescript - All checking disabled for speed
-    "strict": false,
-    "noImplicitAny": false,
-    "strictNullChecks": false,
-    "strictFunctionTypes": false,
-    "strictBindCallApply": false,
-    "strictPropertyInitialization": false,
-    "noImplicitThis": false,
-    "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noUncheckedIndexedAccess": false,
-    "noPropertyAccessFromIndexSignature": false,
-    "exactOptionalPropertyTypes": false,
-    "allowUnusedLabels": true,
-    "allowUnreachableCode": true,
-    // CONTEXT7 SOURCE: /microsoft/typescript - Maximum performance flags
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "assumeChangesOnlyAffectDirectDependencies": true,
-    "incremental": true,
-    "tsBuildInfoFile": ".tsbuildinfo-prod",
-    "composite": false,
-    // CONTEXT7 SOURCE: /microsoft/typescript - Essential compatibility only
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "moduleResolution": "bundler",
-    "allowJs": true,
-    "noEmit": true,
-    // CONTEXT7 SOURCE: /microsoft/typescript - Disable all extra features
-    "declaration": false,
-    "declarationMap": false,
-    "sourceMap": false,
-    "removeComments": true,
-    "noEmitOnError": false,
-    "preserveConstEnums": false,
-    "preserveWatchOutput": true,
-    // CONTEXT7 SOURCE: /microsoft/typescript - Path resolution optimization
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-    // CONTEXT7 SOURCE: /microsoft/typescript - Disable type roots scanning
-    "types": [],
-    "typeRoots": [],
-    // CONTEXT7 SOURCE: /microsoft/typescript - Maximum optimization flags
-    "disableSourceOfProjectReferenceRedirect": true,
-    "disableSolutionSearching": true,
-    "disableReferencedProjectLoad": true,
-    "importsNotUsedAsValues": "remove",
-    "preserveValueImports": false,
-    "verbatimModuleSyntax": false,
-    "forceConsistentCasingInFileNames": false,
-    // Next.js plugin
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "exclude": [
-    "node_modules/**/*",
-    ".next/**/*",
-    "out/**/*",
-    "**/*.test.*",
-    "**/*.spec.*",
-    "**/__tests__/**/*",
-    "**/__mocks__/**/*",
-    "tests/**/*",
-    "scripts/**/*",
-    "coverage/**/*",
-    "playwright-report/**/*",
-    "test-results/**/*",
-    "*.config.*",
-    "**/*.d.ts",
-    ".playwright-mcp/**/*",
-    "logs/**/*",
-    "public/**/*" // CONTEXT7 SOURCE: /microsoft/typescript - Skip static assets
-  ],
-  "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+	"compilerOptions": {
+		// CONTEXT7 SOURCE: /microsoft/typescript - Ultra-fast production build configuration
+		// CRITICAL PERFORMANCE: Absolute minimum checking for sub-15s builds
+		// CONTEXT7 SOURCE: /microsoft/typescript - Minimal target for fastest transpilation
+		"target": "ES2022",
+		"module": "esnext",
+		"lib": ["ES2022", "dom"],
+		"jsx": "preserve",
+		// CONTEXT7 SOURCE: /microsoft/typescript - All checking disabled for speed
+		"strict": false,
+		"noImplicitAny": false,
+		"strictNullChecks": false,
+		"strictFunctionTypes": false,
+		"strictBindCallApply": false,
+		"strictPropertyInitialization": false,
+		"noImplicitThis": false,
+		"noImplicitReturns": false,
+		"noFallthroughCasesInSwitch": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"noUncheckedIndexedAccess": false,
+		"noPropertyAccessFromIndexSignature": false,
+		"exactOptionalPropertyTypes": false,
+		"allowUnusedLabels": true,
+		"allowUnreachableCode": true,
+		// CONTEXT7 SOURCE: /microsoft/typescript - Maximum performance flags
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"assumeChangesOnlyAffectDirectDependencies": true,
+		"incremental": true,
+		"tsBuildInfoFile": ".tsbuildinfo-prod",
+		"composite": false,
+		// CONTEXT7 SOURCE: /microsoft/typescript - Essential compatibility only
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"moduleResolution": "bundler",
+		"allowJs": true,
+		"noEmit": true,
+		// CONTEXT7 SOURCE: /microsoft/typescript - Disable all extra features
+		"declaration": false,
+		"declarationMap": false,
+		"sourceMap": false,
+		"removeComments": true,
+		"noEmitOnError": false,
+		"preserveConstEnums": false,
+		"preserveWatchOutput": true,
+		// CONTEXT7 SOURCE: /microsoft/typescript - Path resolution optimization
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		// CONTEXT7 SOURCE: /microsoft/typescript - Disable type roots scanning
+		"types": [],
+		"typeRoots": [],
+		// CONTEXT7 SOURCE: /microsoft/typescript - Maximum optimization flags
+		"disableSourceOfProjectReferenceRedirect": true,
+		"disableSolutionSearching": true,
+		"disableReferencedProjectLoad": true,
+		"importsNotUsedAsValues": "remove",
+		"preserveValueImports": false,
+		"verbatimModuleSyntax": false,
+		"forceConsistentCasingInFileNames": false,
+		// Next.js plugin
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
+	},
+	"exclude": [
+		"node_modules/**/*",
+		".next/**/*",
+		"out/**/*",
+		"**/*.test.*",
+		"**/*.spec.*",
+		"**/__tests__/**/*",
+		"**/__mocks__/**/*",
+		"tests/**/*",
+		"scripts/**/*",
+		"coverage/**/*",
+		"playwright-report/**/*",
+		"test-results/**/*",
+		"*.config.*",
+		"**/*.d.ts",
+		".playwright-mcp/**/*",
+		"logs/**/*",
+		"public/**/*" // CONTEXT7 SOURCE: /microsoft/typescript - Skip static assets
+	],
+	"include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"]
 }

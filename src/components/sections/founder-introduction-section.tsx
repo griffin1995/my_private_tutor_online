@@ -1,19 +1,25 @@
-// CONTEXT7 SOURCE: /reactjs/react.dev - React component for founder introduction section with video integration
-// COMPONENT EXTRACTION REASON: Official React documentation patterns for extracting reusable section components
-// REVISION REASON: Homepage componentization to achieve modular 8-section structure with video and badge elements
-
 'use client';
 
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 import HeroVideoDialog from '../magicui/hero-video-dialog';
-
-// inside your component
 <m.div
-	initial={{ opacity: 0, scale: 0.8, y: -10 }}
-	whileInView={{ opacity: 1, scale: 1, y: 0 }}
-	transition={{ duration: 0.4, delay: 1.0, ease: 'easeOut' }}
+	initial={{
+		opacity: 0,
+		scale: 0.8,
+		y: -10,
+	}}
+	whileInView={{
+		opacity: 1,
+		scale: 1,
+		y: 0,
+	}}
+	transition={{
+		duration: 0.4,
+		delay: 1.0,
+		ease: 'easeOut',
+	}}
 	className='mb-2 relative w-[100px] h-[100px]'>
 	<Image
 		src='/icons/royal-crown.svg'
@@ -22,15 +28,9 @@ import HeroVideoDialog from '../magicui/hero-video-dialog';
 		className='transition-all duration-300 group-hover:scale-110'
 	/>
 </m.div>;
-
-// CONTEXT7 SOURCE: /reactjs/react.dev - TypeScript interface for component props with explicit children
-// INTERFACE REASON: Official React 18+ documentation requires explicit children prop declaration for type safety
 interface FounderIntroductionSectionProps {
 	children?: React.ReactNode;
 }
-
-// CONTEXT7 SOURCE: /reactjs/react.dev - Functional component pattern for section extraction
-// SECTION COMPONENT REASON: Official React documentation shows section components for better maintainability
 export function FounderIntroductionSection({}: FounderIntroductionSectionProps = {}) {
 	return (
 		<section
@@ -49,17 +49,21 @@ export function FounderIntroductionSection({}: FounderIntroductionSectionProps =
 					with a carefully selected tutor from her boutique team.&quot;
 				</h2>
 				<p className='text-sm mt-2'>– Academic Insight</p>
-				{/* Decorative golden ratio positioned elements */}
+				{}
 				<div
 					className='absolute top-3/4 right-1/4 w-1 h-1 bg-[#D4AF37] opacity-40 hidden lg:block animate-pulse'
-					style={{ animationDelay: '1s' }}></div>
+					style={{
+						animationDelay: '1s',
+					}}></div>
 				<div
 					className='absolute top-1/2 left-1/6 w-1.5 h-1.5 bg-[#D4AF37] opacity-25 hidden lg:block animate-pulse'
-					style={{ animationDelay: '2s' }}></div>
-				{/* Additional geometric accent elements */}
+					style={{
+						animationDelay: '2s',
+					}}></div>
+				{}
 				<div className='absolute top-1/6 right-1/3 w-3 h-0.5 bg-[#D4AF37] opacity-20 hidden lg:block transform rotate-45'></div>
 				<div className='absolute bottom-1/6 left-1/3 w-0.5 h-3 bg-[#D4AF37] opacity-20 hidden lg:block'></div>
-				{/* Enhanced centered video section with comprehensive 2025 design */}
+				{}
 				<div
 					className='max-w-4xl mx-auto text-center relative z-10'
 					style={{
@@ -67,15 +71,30 @@ export function FounderIntroductionSection({}: FounderIntroductionSectionProps =
 						marginBottom: '64px',
 						gap: '21px',
 					}}>
-					{/* Enhanced video component with comprehensive premium styling */}
+					{}
 					<m.div
 						className='relative w-full max-w-2xl mx-auto cursor-pointer group'
 						role='region'
 						aria-label='Elizabeth Burrows introduction video section'
-						initial={{ opacity: 0, y: 20, scale: 0.95 }}
-						whileInView={{ opacity: 1, y: 0, scale: 1 }}
-						viewport={{ once: true, margin: '-100px' }}
-						transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+						initial={{
+							opacity: 0,
+							y: 20,
+							scale: 0.95,
+						}}
+						whileInView={{
+							opacity: 1,
+							y: 0,
+							scale: 1,
+						}}
+						viewport={{
+							once: true,
+							margin: '-100px',
+						}}
+						transition={{
+							duration: 0.6,
+							delay: 0.1,
+							ease: 'easeOut',
+						}}
 						style={{
 							background: 'transparent',
 							border: 'none',
@@ -93,7 +112,10 @@ export function FounderIntroductionSection({}: FounderIntroductionSectionProps =
                 6px 12px 24px rgba(30,58,95,0.3),
                 0 0 30px rgba(212,175,55,0.3)
               `,
-							transition: { duration: 0.3, ease: 'easeOut' },
+							transition: {
+								duration: 0.3,
+								ease: 'easeOut',
+							},
 						}}>
 						<HeroVideoDialog
 							videoSrc='/videos/compressed-elizabeth-introduction-sound.mp4'

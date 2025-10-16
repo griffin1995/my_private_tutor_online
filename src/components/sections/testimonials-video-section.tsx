@@ -1,300 +1,294 @@
-/**
- * CONTEXT7 SOURCE: /websites/magicui_design - Magic UI HeroVideoDialog integration for testimonial videos
- * Reference: HeroVideoDialog component API for video testimonial display
- * Pattern: Video testimonials gallery with Magic UI HeroVideoDialog components
- * 
- * Component Architecture:
- * - Client Component boundary for video interactions
- * - Magic UI HeroVideoDialog for enhanced video modals
- * - CMS integration for testimonial video data
- * - Responsive design with mobile-first approach
- * - Context7 verified Magic UI component patterns
- * 
- * Performance Optimisations:
- * - Magic UI optimized video dialogs with lazy loading
- * - Framer Motion LazyMotion for reduced bundle size
- * - CMS-driven video thumbnails and metadata
- * - Grid layout with proper spacing
- * 
- * Interactive Features:
- * - Magic UI HeroVideoDialog with customizable animations
- * - Video thumbnails with professional overlays
- * - Responsive grid for different screen sizes
- * - Accessibility-first design with screen reader support
- */
+'use client';
 
-"use client"
-
-// CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog component import for video testimonials
-// IMPLEMENTATION REASON: Official Magic UI documentation recommends default import pattern for HeroVideoDialog component
-import HeroVideoDialog from '@/components/magicui/hero-video-dialog'
-import { m } from 'framer-motion'
-import { Star } from 'lucide-react'
-
-// CONTEXT7 SOURCE: /websites/magicui_design - CMS integration for video testimonial data
-// CMS DATA SOURCE: Using getTestimonialVideos function for synchronized video testimonial content
-import { getTestimonialVideos } from '@/lib/cms/cms-images'
-
-// CONTEXT7 SOURCE: /websites/magicui_design - Video testimonial data structure for Magic UI integration
-// VIDEO DATA REASON: Using CMS video content structure compatible with HeroVideoDialog component
+import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
+import { m } from 'framer-motion';
+import { Star } from 'lucide-react';
+import { getTestimonialVideos } from '@/lib/cms/cms-images';
 interface TestimonialVideo {
-  readonly id: string
-  readonly title: string
-  readonly description: string
-  readonly videoSrc: string
-  readonly thumbnailSrc: string
-  readonly duration?: number
-  readonly featured?: boolean
-  readonly category?: 'all' | '11+' | 'GCSE' | 'A-Level' | 'Oxbridge' | 'International'
-  readonly testimonialAuthor?: string
-  readonly testimonialRole?: string
-  readonly viewCount?: number
-  readonly rating?: number
-  readonly uploadDate?: string
+	readonly id: string;
+	readonly title: string;
+	readonly description: string;
+	readonly videoSrc: string;
+	readonly thumbnailSrc: string;
+	readonly duration?: number;
+	readonly featured?: boolean;
+	readonly category?:
+		| 'all'
+		| '11+'
+		| 'GCSE'
+		| 'A-Level'
+		| 'Oxbridge'
+		| 'International';
+	readonly testimonialAuthor?: string;
+	readonly testimonialRole?: string;
+	readonly viewCount?: number;
+	readonly rating?: number;
+	readonly uploadDate?: string;
 }
-
 interface TestimonialsVideoSectionProps {
-  /** Additional CSS classes for styling customisation */
-  className?: string
-  /** Background colour class (default: bg-slate-50) */
-  backgroundColor?: string
-  /** Custom section title */
-  title?: string
-  /** Custom section description */
-  description?: string
-  /** Array of testimonial videos */
-  videos?: TestimonialVideo[]
-  /** Maximum number of videos to display */
-  maxVideos?: number
+	className?: string;
+	backgroundColor?: string;
+	title?: string;
+	description?: string;
+	videos?: TestimonialVideo[];
+	maxVideos?: number;
 }
-
-/**
- * CONTEXT7 SOURCE: /websites/magicui_design - React functional component with Magic UI HeroVideoDialog integration
- * TESTIMONIAL VIDEOS REASON: Official Magic UI patterns enable professional testimonial video display with enhanced user experience
- * 
- * Component Features:
- * - Grid layout for multiple testimonial videos with Magic UI HeroVideoDialog
- * - Professional video modals with customizable animations
- * - Responsive design for all device sizes with enhanced accessibility
- * - Featured video highlighting with premium styling
- * - Video metadata display (author, role, rating) with CMS integration
- * - Magic UI accessibility-first design with proper ARIA labels and keyboard navigation
- * - CMS-driven content with synchronous data loading
- */
-export function TestimonialsVideoSection({ 
-  className = "",
-  backgroundColor = "bg-slate-50",
-  title = "Hear From Our Families",
-  description = "Watch real testimonials from parents and students who have achieved exceptional results with My Private Tutor Online.",
-  videos,
-  maxVideos = 4
+export function TestimonialsVideoSection({
+	className = '',
+	backgroundColor = 'bg-slate-50',
+	title = 'Hear From Our Families',
+	description = 'Watch real testimonials from parents and students who have achieved exceptional results with My Private Tutor Online.',
+	videos,
+	maxVideos = 4,
 }: TestimonialsVideoSectionProps) {
-  
-  // CONTEXT7 SOURCE: /websites/magicui_design - CMS data integration for video testimonials
-  // CMS INTEGRATION REASON: Official Magic UI patterns recommend dynamic content loading for video components
-  const cmsVideos = videos || getTestimonialVideos()
-  
-  // Limit videos to display
-  const displayVideos = cmsVideos.slice(0, maxVideos)
-  
-  const formatDuration = (seconds: number): string => {
-    const minutes = Math.floor(seconds / 60)
-    const remainingSeconds = seconds % 60
-    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
-  }
-  
-  return (
-    <section className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <m.h2 
-              className="text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.1
-              }}
-            >
-              {title}
-            </m.h2>
-            
-            <m.p
-              className="text-xl text-primary-700 leading-relaxed max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.3
-              }}
-            >
-              {description}
-            </m.p>
-          </div>
+	const cmsVideos = videos || getTestimonialVideos();
+	const displayVideos = cmsVideos.slice(0, maxVideos);
+	const formatDuration = (seconds: number): string => {
+		const minutes = Math.floor(seconds / 60);
+		const remainingSeconds = seconds % 60;
+		return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+	};
+	return (
+		<section className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
+			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
+				<div className='max-w-7xl mx-auto'>
+					{}
+					<div className='text-center mb-16'>
+						<m.h2
+							className='text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 mb-6'
+							initial={{
+								opacity: 0,
+								y: 30,
+							}}
+							whileInView={{
+								opacity: 1,
+								y: 0,
+							}}
+							viewport={{
+								once: true,
+								margin: '-100px',
+							}}
+							transition={{
+								duration: 0.8,
+								ease: [0.25, 0.46, 0.45, 0.94],
+								delay: 0.1,
+							}}>
+							{title}
+						</m.h2>
 
-          {/* Video Grid with Magic UI HeroVideoDialog */}
-          {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog grid layout for testimonial videos */}
-          {/* MAGIC UI IMPLEMENTATION REASON: Official Magic UI documentation demonstrates HeroVideoDialog for professional video testimonial presentation */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {displayVideos.map((video, index) => (
-              <m.div
-                key={video.id}
-                className="group relative"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
-                  duration: 0.8, 
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: index * 0.2
-                }}
-                whileHover={{
-                  scale: 1.02,
-                  y: -8,
-                  transition: { type: "spring", stiffness: 400, damping: 30 }
-                }}
-              >
-                {/* Video Container with Featured Badge */}
-                {/* CONTEXT7 SOURCE: /websites/magicui_design - Accessibility-enhanced video container with proper ARIA labels */}
-                {/* ACCESSIBILITY ENHANCEMENT REASON: Official Magic UI documentation emphasizes accessibility-first design for video components */}
-                <div 
-                  className="relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-slate-200 group-hover:border-accent-400/60 transition-all duration-500"
-                  role="region"
-                  aria-labelledby={`video-title-${video.id}`}
-                  aria-describedby={`video-description-${video.id}`}
-                >
-                  
-                  {/* Featured Badge */}
-                  {video.featured && (
-                    <div className="absolute top-4 left-4 z-20">
-                      <div 
-                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-accent-600 text-white rounded-full text-sm font-semibold shadow-lg"
-                        role="badge"
-                        aria-label={`Featured testimonial video: ${video.title}`}
-                      >
-                        <Star className="w-4 h-4 fill-current" aria-hidden="true" />
-                        Featured
-                      </div>
-                    </div>
-                  )}
-                  
-                  {/* Duration Badge */}
-                  {video.duration && (
-                    <div className="absolute top-4 right-4 z-20">
-                      <div 
-                        className="px-2 py-1 bg-black/70 text-white rounded text-sm font-medium"
-                        role="timer"
-                        aria-label={`Video duration: ${formatDuration(video.duration)}`}
-                      >
-                        {formatDuration(video.duration)}
-                      </div>
-                    </div>
-                  )}
-                  
-                  {/* Magic UI HeroVideoDialog Integration */}
-                  {/* CONTEXT7 SOURCE: /websites/magicui_design - HeroVideoDialog with from-center animation for testimonial videos */}
-                  {/* TESTIMONIAL VIDEO ENHANCEMENT REASON: Official Magic UI documentation Section API - HeroVideoDialog provides professional video modal experience */}
-                  <div className="relative" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
-                    <div className="absolute inset-0">
-                      <HeroVideoDialog
-                        videoSrc={video.videoSrc}
-                        thumbnailSrc={video.thumbnailSrc}
-                        thumbnailAlt={video.title}
-                        animationStyle="from-center"
-                        className="w-full h-full"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Video Content */}
-                  <div className="p-6">
-                    <h3 
-                      id={`video-title-${video.id}`}
-                      className="text-xl font-serif font-bold text-primary-900 mb-3 group-hover:text-primary-800 transition-colors duration-300"
-                    >
-                      {video.title}
-                    </h3>
-                    
-                    <p 
-                      id={`video-description-${video.id}`}
-                      className="text-primary-700 leading-relaxed mb-4"
-                    >
-                      {video.description}
-                    </p>
-                    
-                    {/* Video Metadata */}
-                    <div className="flex items-center justify-between text-sm text-primary-600">
-                      <div className="flex items-center gap-2">
-                        {video.testimonialAuthor && (
-                          <span className="font-medium">{video.testimonialAuthor}</span>
-                        )}
-                        {video.testimonialRole && (
-                          <span className="text-primary-500">• {video.testimonialRole}</span>
-                        )}
-                      </div>
-                      
-                      {video.rating && (
-                        <div 
-                          className="flex items-center gap-1"
-                          role="img"
-                          aria-label={`Rating: ${video.rating} out of 5 stars`}
-                        >
-                          {[...Array(video.rating)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 text-accent-500 fill-current" aria-hidden="true" />
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </m.div>
-            ))}
-          </div>
-          
-          {/* Call to Action */}
-          <div className="text-center mt-12">
-            <m.p
-              className="text-lg text-primary-700 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.6
-              }}
-            >
-              Ready to join our community of successful families?
-            </m.p>
-            
-            <m.button
-              className="inline-flex items-center gap-2 px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: [0.25, 0.46, 0.45, 0.94],
-                delay: 0.8
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start Your Journey
-            </m.button>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+						<m.p
+							className='text-xl text-primary-700 leading-relaxed max-w-3xl mx-auto'
+							initial={{
+								opacity: 0,
+								y: 30,
+							}}
+							whileInView={{
+								opacity: 1,
+								y: 0,
+							}}
+							viewport={{
+								once: true,
+								margin: '-100px',
+							}}
+							transition={{
+								duration: 0.8,
+								ease: [0.25, 0.46, 0.45, 0.94],
+								delay: 0.3,
+							}}>
+							{description}
+						</m.p>
+					</div>
+
+					{}
+					{}
+					{}
+					<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+						{displayVideos.map((video, index) => (
+							<m.div
+								key={video.id}
+								className='group relative'
+								initial={{
+									opacity: 0,
+									y: 50,
+								}}
+								whileInView={{
+									opacity: 1,
+									y: 0,
+								}}
+								viewport={{
+									once: true,
+									margin: '-100px',
+								}}
+								transition={{
+									duration: 0.8,
+									ease: [0.25, 0.46, 0.45, 0.94],
+									delay: index * 0.2,
+								}}
+								whileHover={{
+									scale: 1.02,
+									y: -8,
+									transition: {
+										type: 'spring',
+										stiffness: 400,
+										damping: 30,
+									},
+								}}>
+								{}
+								{}
+								{}
+								<div
+									className='relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-slate-200 group-hover:border-accent-400/60 transition-all duration-500'
+									role='region'
+									aria-labelledby={`video-title-${video.id}`}
+									aria-describedby={`video-description-${video.id}`}>
+									{}
+									{video.featured && (
+										<div className='absolute top-4 left-4 z-20'>
+											<div
+												className='inline-flex items-center gap-1 px-3 py-1.5 bg-accent-600 text-white rounded-full text-sm font-semibold shadow-lg'
+												role='badge'
+												aria-label={`Featured testimonial video: ${video.title}`}>
+												<Star
+													className='w-4 h-4 fill-current'
+													aria-hidden='true'
+												/>
+												Featured
+											</div>
+										</div>
+									)}
+
+									{}
+									{video.duration && (
+										<div className='absolute top-4 right-4 z-20'>
+											<div
+												className='px-2 py-1 bg-black/70 text-white rounded text-sm font-medium'
+												role='timer'
+												aria-label={`Video duration: ${formatDuration(video.duration)}`}>
+												{formatDuration(video.duration)}
+											</div>
+										</div>
+									)}
+
+									{}
+									{}
+									{}
+									<div
+										className='relative'
+										style={{
+											paddingBottom: '56.25%',
+										}}>
+										<div className='absolute inset-0'>
+											<HeroVideoDialog
+												videoSrc={video.videoSrc}
+												thumbnailSrc={video.thumbnailSrc}
+												thumbnailAlt={video.title}
+												animationStyle='from-center'
+												className='w-full h-full'
+											/>
+										</div>
+									</div>
+
+									{}
+									<div className='p-6'>
+										<h3
+											id={`video-title-${video.id}`}
+											className='text-xl font-serif font-bold text-primary-900 mb-3 group-hover:text-primary-800 transition-colors duration-300'>
+											{video.title}
+										</h3>
+
+										<p
+											id={`video-description-${video.id}`}
+											className='text-primary-700 leading-relaxed mb-4'>
+											{video.description}
+										</p>
+
+										{}
+										<div className='flex items-center justify-between text-sm text-primary-600'>
+											<div className='flex items-center gap-2'>
+												{video.testimonialAuthor && (
+													<span className='font-medium'>{video.testimonialAuthor}</span>
+												)}
+												{video.testimonialRole && (
+													<span className='text-primary-500'>• {video.testimonialRole}</span>
+												)}
+											</div>
+
+											{video.rating && (
+												<div
+													className='flex items-center gap-1'
+													role='img'
+													aria-label={`Rating: ${video.rating} out of 5 stars`}>
+													{[...Array(video.rating)].map((_, i) => (
+														<Star
+															key={i}
+															className='w-4 h-4 text-accent-500 fill-current'
+															aria-hidden='true'
+														/>
+													))}
+												</div>
+											)}
+										</div>
+									</div>
+								</div>
+							</m.div>
+						))}
+					</div>
+
+					{}
+					<div className='text-center mt-12'>
+						<m.p
+							className='text-lg text-primary-700 mb-6'
+							initial={{
+								opacity: 0,
+								y: 20,
+							}}
+							whileInView={{
+								opacity: 1,
+								y: 0,
+							}}
+							viewport={{
+								once: true,
+								margin: '-100px',
+							}}
+							transition={{
+								duration: 0.8,
+								ease: [0.25, 0.46, 0.45, 0.94],
+								delay: 0.6,
+							}}>
+							Ready to join our community of successful families?
+						</m.p>
+
+						<m.button
+							className='inline-flex items-center gap-2 px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'
+							initial={{
+								opacity: 0,
+								y: 20,
+							}}
+							whileInView={{
+								opacity: 1,
+								y: 0,
+							}}
+							viewport={{
+								once: true,
+								margin: '-100px',
+							}}
+							transition={{
+								duration: 0.8,
+								ease: [0.25, 0.46, 0.45, 0.94],
+								delay: 0.8,
+							}}
+							whileHover={{
+								scale: 1.05,
+							}}
+							whileTap={{
+								scale: 0.95,
+							}}>
+							Start Your Journey
+						</m.button>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
 }
-
-// Export types for documentation and reuse
-export type { TestimonialsVideoSectionProps, TestimonialVideo }
+export type { TestimonialsVideoSectionProps, TestimonialVideo };

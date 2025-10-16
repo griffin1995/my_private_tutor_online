@@ -1,94 +1,94 @@
 {
-  "$description": "Style Dictionary Configuration - My Private Tutor Online Design System",
-  "$comment": "CONTEXT7 SOURCE: /amzn/style-dictionary - Configuration structure with source, platforms, transforms, and build paths",
-  "$comment2": "IMPLEMENTATION REASON: Multi-platform token generation - CSS custom properties, Tailwind config, TypeScript types",
+	"$description": "Style Dictionary Configuration - My Private Tutor Online Design System",
+	"$comment": "CONTEXT7 SOURCE: /amzn/style-dictionary - Configuration structure with source, platforms, transforms, and build paths",
+	"$comment2": "IMPLEMENTATION REASON: Multi-platform token generation - CSS custom properties, Tailwind config, TypeScript types",
 
-  "source": [
-    "src/design-tokens/colors.json",
-    "src/design-tokens/typography.json",
-    "src/design-tokens/spacing.json"
-  ],
+	"source": [
+		"src/design-tokens/colors.json",
+		"src/design-tokens/typography.json",
+		"src/design-tokens/spacing.json"
+	],
 
-  "platforms": {
-    "css": {
-      "transformGroup": "css",
-      "buildPath": "src/styles/tokens/",
-      "files": [
-        {
-          "destination": "variables.css",
-          "format": "css/variables",
-          "options": {
-            "outputReferences": true,
-            "showFileHeader": true
-          }
-        }
-      ]
-    },
+	"platforms": {
+		"css": {
+			"transformGroup": "css",
+			"buildPath": "src/styles/tokens/",
+			"files": [
+				{
+					"destination": "variables.css",
+					"format": "css/variables",
+					"options": {
+						"outputReferences": true,
+						"showFileHeader": true
+					}
+				}
+			]
+		},
 
-    "js": {
-      "transformGroup": "js",
-      "buildPath": "src/design-tokens/generated/",
-      "files": [
-        {
-          "destination": "tokens.js",
-          "format": "javascript/es6",
-          "options": {
-            "outputReferences": true,
-            "showFileHeader": true
-          }
-        }
-      ]
-    },
+		"js": {
+			"transformGroup": "js",
+			"buildPath": "src/design-tokens/generated/",
+			"files": [
+				{
+					"destination": "tokens.js",
+					"format": "javascript/es6",
+					"options": {
+						"outputReferences": true,
+						"showFileHeader": true
+					}
+				}
+			]
+		},
 
-    "typescript": {
-      "transformGroup": "js",
-      "buildPath": "src/design-tokens/generated/",
-      "files": [
-        {
-          "destination": "tokens.ts",
-          "format": "javascript/es6",
-          "options": {
-            "outputReferences": true,
-            "showFileHeader": true
-          }
-        },
-        {
-          "destination": "types.d.ts",
-          "format": "typescript/es6-declarations",
-          "options": {
-            "showFileHeader": true
-          }
-        }
-      ]
-    },
+		"typescript": {
+			"transformGroup": "js",
+			"buildPath": "src/design-tokens/generated/",
+			"files": [
+				{
+					"destination": "tokens.ts",
+					"format": "javascript/es6",
+					"options": {
+						"outputReferences": true,
+						"showFileHeader": true
+					}
+				},
+				{
+					"destination": "types.d.ts",
+					"format": "typescript/es6-declarations",
+					"options": {
+						"showFileHeader": true
+					}
+				}
+			]
+		},
 
-    "tailwind": {
-      "transformGroup": "js",
-      "buildPath": "./",
-      "files": [
-        {
-          "destination": "tailwind.config.tokens.js",
-          "format": "javascript/module-flat",
-          "options": {
-            "outputReferences": false,
-            "showFileHeader": true
-          }
-        }
-      ]
-    },
+		"tailwind": {
+			"transformGroup": "js",
+			"buildPath": "./",
+			"files": [
+				{
+					"destination": "tailwind.config.tokens.js",
+					"format": "javascript/module-flat",
+					"options": {
+						"outputReferences": false,
+						"showFileHeader": true
+					}
+				}
+			]
+		},
 
-    "json": {
-      "transformGroup": "js",
-      "buildPath": "src/design-tokens/generated/",
-      "files": [
-        {
-          "destination": "tokens.json",
-          "format": "json/nested",
-          "options": {
-            "showFileHeader": false
-          }
-        }
-      ]
-    }
-  }
+		"json": {
+			"transformGroup": "js",
+			"buildPath": "src/design-tokens/generated/",
+			"files": [
+				{
+					"destination": "tokens.json",
+					"format": "json/nested",
+					"options": {
+						"showFileHeader": false
+					}
+				}
+			]
+		}
+	}
 }

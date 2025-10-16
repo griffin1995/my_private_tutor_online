@@ -2,4 +2,4 @@
 // FILE PURPOSE: Mock file for static assets (images, fonts, etc.) in Jest tests
 // This prevents Jest from trying to process binary files during testing
 
-module.exports = 'test-file-stub'
+module.exports = 'test-file-stub';

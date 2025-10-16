@@ -1,7 +1,9 @@
 # Git Worktrees with Agent Coordination Workflow
+
 ## My Private Tutor Online Project
 
 ### Table of Contents
+
 1. [Overview](#overview)
 2. [Git Worktree Architecture](#git-worktree-architecture)
 3. [Central Context Manager Role](#central-context-manager-role)
@@ -15,13 +17,19 @@
 
 ## Overview
 
-This document outlines an advanced development workflow using git worktrees with coordinated agent specialization for the My Private Tutor Online project. The workflow enables parallel development streams while maintaining project coherence through a central context management system.
+This document outlines an advanced development workflow using git worktrees with
+coordinated agent specialization for the My Private Tutor Online project. The
+workflow enables parallel development streams while maintaining project
+coherence through a central context management system.
 
 ### Key Benefits
-- **Parallel Development**: Multiple features developed simultaneously without branch switching
+
+- **Parallel Development**: Multiple features developed simultaneously without
+  branch switching
 - **Agent Specialization**: Each worktree can have dedicated specialized agents
 - **Context Preservation**: Central manager maintains project-wide context
-- **Reduced Conflicts**: Isolated development environments minimize merge conflicts
+- **Reduced Conflicts**: Isolated development environments minimize merge
+  conflicts
 - **Faster Iteration**: No need to stash/commit when switching between features
 
 ---
@@ -45,22 +53,26 @@ This document outlines an advanced development workflow using git worktrees with
 ### Worktree Categories
 
 #### 1. **Feature Development Worktrees**
+
 - `feature-cms-enhancement`: Content management system improvements
 - `feature-booking-system`: Online booking integration
 - `feature-student-dashboard`: Student progress tracking
 - `feature-payment-integration`: Payment system implementation
 
 #### 2. **Optimization Worktrees**
+
 - `performance-optimization`: Core Web Vitals improvements
 - `seo-enhancement`: Search engine optimization
 - `bundle-optimization`: JavaScript bundle size reduction
 
 #### 3. **Maintenance Worktrees**
+
 - `bugfix-*`: Isolated bug fixes
 - `security-patches`: Security updates
 - `dependency-updates`: Package updates
 
 #### 4. **Experimental Worktrees**
+
 - `experimental-*`: New technology trials
 - `prototype-*`: Feature prototypes
 
@@ -71,24 +83,28 @@ This document outlines an advanced development workflow using git worktrees with
 ### Core Responsibilities
 
 #### 1. **Project Architecture Guardian**
+
 - Maintains overall system architecture vision
 - Ensures consistency across all worktrees
 - Reviews architectural decisions before implementation
 - Manages technical debt tracking
 
 #### 2. **Context Preservation**
+
 - Maintains `.claude/project-context.json` with current state
 - Updates `CUSTOM_DOCS.md` with proven patterns
 - Tracks dependencies between worktrees
 - Documents key decisions and rationale
 
 #### 3. **Work Distribution**
+
 - Analyzes incoming requirements
 - Delegates to appropriate specialized agents
 - Coordinates multi-worktree features
 - Manages priority and scheduling
 
 #### 4. **Integration Oversight**
+
 - Plans merge strategies
 - Identifies potential conflicts early
 - Coordinates testing across features
@@ -98,24 +114,24 @@ This document outlines an advanced development workflow using git worktrees with
 
 ```json
 {
-  "role": "context-manager",
-  "responsibilities": [
-    "project-architecture",
-    "context-preservation",
-    "work-delegation",
-    "integration-planning"
-  ],
-  "access": {
-    "worktrees": "all",
-    "documentation": "read-write",
-    "deployment": "review-only"
-  },
-  "tools": [
-    "git-worktree",
-    "context-aggregator",
-    "dependency-analyzer",
-    "progress-tracker"
-  ]
+	"role": "context-manager",
+	"responsibilities": [
+		"project-architecture",
+		"context-preservation",
+		"work-delegation",
+		"integration-planning"
+	],
+	"access": {
+		"worktrees": "all",
+		"documentation": "read-write",
+		"deployment": "review-only"
+	},
+	"tools": [
+		"git-worktree",
+		"context-aggregator",
+		"dependency-analyzer",
+		"progress-tracker"
+	]
 }
 ```
 
@@ -127,61 +143,62 @@ This document outlines an advanced development workflow using git worktrees with
 
 ```yaml
 agents:
-  frontend-developer:
-    worktrees:
-      - feature-student-dashboard
-      - feature-mobile-experience
-    expertise:
-      - React/Next.js components
-      - State management
-      - API integration
-    
-  ui-ux-designer:
-    worktrees:
-      - feature-mobile-experience
-      - experimental-ai-features
-    expertise:
-      - Component design
-      - User flow optimization
-      - Accessibility compliance
-    
-  backend-developer:
-    worktrees:
-      - feature-booking-system
-      - feature-payment-integration
-    expertise:
-      - API development
-      - Database design
-      - Authentication
-    
-  performance-engineer:
-    worktrees:
-      - performance-optimization
-      - bundle-optimization
-    expertise:
-      - Core Web Vitals
-      - Bundle analysis
-      - Caching strategies
-    
-  content-specialist:
-    worktrees:
-      - feature-cms-enhancement
-      - seo-enhancement
-    expertise:
-      - CMS configuration
-      - Content structure
-      - SEO optimization
+ frontend-developer:
+  worktrees:
+   - feature-student-dashboard
+   - feature-mobile-experience
+  expertise:
+   - React/Next.js components
+   - State management
+   - API integration
+
+ ui-ux-designer:
+  worktrees:
+   - feature-mobile-experience
+   - experimental-ai-features
+  expertise:
+   - Component design
+   - User flow optimization
+   - Accessibility compliance
+
+ backend-developer:
+  worktrees:
+   - feature-booking-system
+   - feature-payment-integration
+  expertise:
+   - API development
+   - Database design
+   - Authentication
+
+ performance-engineer:
+  worktrees:
+   - performance-optimization
+   - bundle-optimization
+  expertise:
+   - Core Web Vitals
+   - Bundle analysis
+   - Caching strategies
+
+ content-specialist:
+  worktrees:
+   - feature-cms-enhancement
+   - seo-enhancement
+  expertise:
+   - CMS configuration
+   - Content structure
+   - SEO optimization
 ```
 
 ### Communication Patterns
 
 #### 1. **Context Handoff Protocol**
+
 ```markdown
 ## Context Handoff Template
-**From**: context-manager
-**To**: frontend-developer
-**Worktree**: feature-student-dashboard
-**Context**:
+
+**From**: context-manager **To**: frontend-developer **Worktree**:
+feature-student-dashboard **Context**:
+
 - Current state: [Description]
 - Dependencies: [List]
 - Constraints: [List]
@@ -190,29 +207,28 @@ agents:
 ```
 
 #### 2. **Progress Update Format**
+
 ```markdown
 ## Progress Update
-**Agent**: frontend-developer
-**Worktree**: feature-student-dashboard
-**Status**: in-progress
-**Completed**:
+
+**Agent**: frontend-developer **Worktree**: feature-student-dashboard
+**Status**: in-progress **Completed**:
+
 - [x] Component structure
-- [x] API integration
-**Pending**:
+- [x] API integration **Pending**:
 - [ ] State management
-- [ ] Testing
-**Blockers**: None
-**Context changes**: Updated component patterns in CUSTOM_DOCS.md
+- [ ] Testing **Blockers**: None **Context changes**: Updated component patterns
+      in CUSTOM_DOCS.md
 ```
 
 #### 3. **Integration Request**
+
 ```markdown
 ## Integration Request
-**Requesting worktree**: feature-booking-system
-**Target worktree**: main
-**Changes summary**: [Description]
-**Testing status**: [Pass/Fail]
-**Migration notes**: [Any special considerations]
+
+**Requesting worktree**: feature-booking-system **Target worktree**: main
+**Changes summary**: [Description] **Testing status**: [Pass/Fail] **Migration
+notes**: [Any special considerations]
 ```
 
 ---
@@ -350,20 +366,23 @@ chmod +x .claude/scripts/create-worktree.sh
 ### Example 1: CMS Enhancement Feature
 
 #### Context Manager Initiates
+
 ```markdown
 ## Task Analysis
+
 **Requirement**: Improve CMS admin interface for non-technical users
-**Complexity**: Medium
-**Dependencies**: None
-**Recommended approach**: Dedicated worktree with content-specialist lead
+**Complexity**: Medium **Dependencies**: None **Recommended approach**:
+Dedicated worktree with content-specialist lead
 
 ## Delegation
+
 1. Create worktree: `feature-cms-enhancement`
 2. Assign primary: `content-specialist`
 3. Assign support: `frontend-developer`
 ```
 
 #### Content Specialist Execution
+
 ```bash
 # In feature-cms-enhancement worktree
 cd /home/jack/Documents/mpto-worktrees/feature-cms-enhancement
@@ -376,8 +395,10 @@ cd /home/jack/Documents/mpto-worktrees/feature-cms-enhancement
 ```
 
 #### Integration Flow
+
 ```markdown
 ## Integration Checklist
+
 - [ ] All tests passing
 - [ ] Documentation updated
 - [ ] CUSTOM_DOCS.md patterns documented
@@ -388,17 +409,21 @@ cd /home/jack/Documents/mpto-worktrees/feature-cms-enhancement
 ### Example 2: Parallel Performance Optimization
 
 #### Context Manager Coordinates
+
 ```markdown
 ## Multi-Worktree Coordination
-**Goal**: Improve Core Web Vitals across the site
-**Strategy**: Parallel optimization efforts
+
+**Goal**: Improve Core Web Vitals across the site **Strategy**: Parallel
+optimization efforts
 
 ### Worktree Distribution
+
 1. `performance-optimization`: Overall performance audit
 2. `bundle-optimization`: JavaScript bundle reduction
 3. `feature-mobile-experience`: Mobile-specific optimizations
 
 ### Coordination Points
+
 - Shared performance budget
 - Unified testing methodology
 - Coordinated deployment
@@ -407,6 +432,7 @@ cd /home/jack/Documents/mpto-worktrees/feature-cms-enhancement
 ### Example 3: Emergency Bug Fix
 
 #### Rapid Response Protocol
+
 ```bash
 # Context manager creates hotfix worktree
 ./claude/scripts/create-worktree.sh bugfix-safari-video urgent
@@ -427,30 +453,35 @@ echo "PRIORITY: HIGH" >> ../mpto-worktrees/bugfix-safari-video/.worktree-context
 ## Best Practices
 
 ### 1. **Worktree Hygiene**
+
 - Keep worktrees focused on single features/fixes
 - Clean up completed worktrees promptly
 - Regular sync with main branch
 - Document worktree purpose clearly
 
 ### 2. **Context Management**
+
 - Update context files after significant changes
 - Use structured formats for context sharing
 - Maintain clear dependency tracking
 - Regular context synchronization meetings
 
 ### 3. **Agent Coordination**
+
 - Clear handoff protocols
 - Regular progress updates
 - Documented decision rationale
 - Shared pattern library (CUSTOM_DOCS.md)
 
 ### 4. **Integration Strategy**
+
 - Feature flags for gradual rollout
 - Comprehensive testing before merge
 - Staged integration for complex features
 - Rollback plans for all changes
 
 ### 5. **Documentation Standards**
+
 - Context7 MCP for all library docs
 - In-code documentation for decisions
 - Updated CUSTOM_DOCS.md with patterns
@@ -464,20 +495,24 @@ echo "PRIORITY: HIGH" >> ../mpto-worktrees/bugfix-safari-video/.worktree-context
 
 ```markdown
 ## Project Status Dashboard
+
 **Last Updated**: [Timestamp]
 
 ### Active Worktrees
-| Worktree | Agent | Status | Progress | Next Milestone |
-|----------|-------|--------|----------|----------------|
-| feature-cms | content-specialist | Active | 60% | Admin UI complete |
-| performance | performance-engineer | Active | 40% | LCP <2.5s |
-| bugfix-safari | frontend-developer | Testing | 90% | Deploy ready |
+
+| Worktree      | Agent                | Status  | Progress | Next Milestone    |
+| ------------- | -------------------- | ------- | -------- | ----------------- |
+| feature-cms   | content-specialist   | Active  | 60%      | Admin UI complete |
+| performance   | performance-engineer | Active  | 40%      | LCP <2.5s         |
+| bugfix-safari | frontend-developer   | Testing | 90%      | Deploy ready      |
 
 ### Dependencies
+
 - feature-cms → performance (shared components)
 - bugfix-safari → main (critical fix)
 
 ### Upcoming Integrations
+
 1. bugfix-safari → main (Today)
 2. performance → main (This week)
 3. feature-cms → main (Next week)
@@ -486,6 +521,7 @@ echo "PRIORITY: HIGH" >> ../mpto-worktrees/bugfix-safari-video/.worktree-context
 ### Progress Tracking Tools
 
 #### 1. **Git Worktree Status Script**
+
 ```bash
 cat > .claude/scripts/worktree-status.sh << 'EOF'
 #!/bin/bash
@@ -505,33 +541,34 @@ EOF
 ```
 
 #### 2. **Context Sync Verification**
+
 ```javascript
 // .claude/scripts/verify-context.js
 const fs = require('fs');
 const path = require('path');
 
 function verifyContextSync() {
-  const projectState = JSON.parse(
-    fs.readFileSync('.claude/context/project-state.json', 'utf8')
-  );
-  
-  const worktrees = projectState.activeWorktrees;
-  const issues = [];
-  
-  worktrees.forEach(wt => {
-    const wtPath = `../mpto-worktrees/${wt.name}`;
-    if (!fs.existsSync(wtPath)) {
-      issues.push(`Missing worktree: ${wt.name}`);
-    }
-    
-    // Check for context file
-    const contextFile = `${wtPath}/.worktree-context`;
-    if (!fs.existsSync(contextFile)) {
-      issues.push(`Missing context file: ${wt.name}`);
-    }
-  });
-  
-  return issues;
+	const projectState = JSON.parse(
+		fs.readFileSync('.claude/context/project-state.json', 'utf8'),
+	);
+
+	const worktrees = projectState.activeWorktrees;
+	const issues = [];
+
+	worktrees.forEach((wt) => {
+		const wtPath = `../mpto-worktrees/${wt.name}`;
+		if (!fs.existsSync(wtPath)) {
+			issues.push(`Missing worktree: ${wt.name}`);
+		}
+
+		// Check for context file
+		const contextFile = `${wtPath}/.worktree-context`;
+		if (!fs.existsSync(contextFile)) {
+			issues.push(`Missing context file: ${wt.name}`);
+		}
+	});
+
+	return issues;
 }
 ```
 
@@ -539,35 +576,39 @@ function verifyContextSync() {
 
 ```markdown
 ## Pre-Integration Checklist
-**Worktree**: [Name]
-**Target Branch**: main
-**Agent**: [Agent name]
+
+**Worktree**: [Name] **Target Branch**: main **Agent**: [Agent name]
 
 ### Code Quality
+
 - [ ] All tests passing
 - [ ] Linting clean
 - [ ] Type checking passes
 - [ ] Bundle size within limits
 
 ### Documentation
+
 - [ ] Code comments updated
 - [ ] CUSTOM_DOCS.md patterns added
 - [ ] API changes documented
 - [ ] Migration guide (if needed)
 
 ### Context Updates
+
 - [ ] Project state updated
 - [ ] Dependencies documented
 - [ ] Breaking changes noted
 - [ ] Agent handoff complete
 
 ### Testing
+
 - [ ] Unit tests coverage >80%
 - [ ] E2E tests passing
 - [ ] Accessibility audit passed
 - [ ] Performance benchmarks met
 
 ### Approval
+
 - [ ] Context manager review
 - [ ] Technical review
 - [ ] Business stakeholder approval
@@ -606,13 +647,18 @@ node .claude/scripts/update-context.js [action] [params]
 
 ## Conclusion
 
-This workflow enables sophisticated parallel development while maintaining project coherence through centralized context management. The combination of git worktrees and specialized agents allows for faster iteration, reduced conflicts, and better code quality.
+This workflow enables sophisticated parallel development while maintaining
+project coherence through centralized context management. The combination of git
+worktrees and specialized agents allows for faster iteration, reduced conflicts,
+and better code quality.
 
 Key success factors:
+
 1. Disciplined context management
 2. Clear agent responsibilities
 3. Regular synchronization
 4. Comprehensive documentation
 5. Automated tooling support
 
-Start with a single feature worktree to validate the workflow, then expand as the team becomes comfortable with the process.
+Start with a single feature worktree to validate the workflow, then expand as
+the team becomes comfortable with the process.

@@ -1,594 +1,594 @@
 {
-  "_comments": {
-    "lastUpdated": "2025-08-20",
-    "recentChanges": [
-      {
-        "change": "TASK 6: Footer Section 2.2.1.2 CMS Links Verification - Fixed all broken footer navigation links",
-        "reason": "CONTEXT7 SOURCE: /vercel/next.js - App Router file-based routing compliance for proper navigation",
-        "date": "2025-08-20",
-        "source": "Footer links audit - corrected 10 broken links to working Next.js routes",
-        "details": {
-          "brokenLinksFixed": 10,
-          "workingLinksConfirmed": 6,
-          "redirectStrategy": "Map broken service links to /subject-tuition, team/results to /about, resources to /blog, legal links to proper /legal/* paths"
-        }
-      },
-      {
-        "change": "Updated aboutSection.title to 'World-Class Education, At Your Fingertips'",
-        "reason": "CONTEXT7 SOURCE: /vercel/next.js - Consistent headline strategy across homepage components",
-        "date": "2025-01-16",
-        "source": "Homepage audit findings - critical UX improvement"
-      },
-      {
-        "change": "CONTENT MISMATCH RESOLUTION: Updated By Invitation Only section description",
-        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - Content management JSON structure patterns for client feedback alignment",
-        "date": "2025-08-20",
-        "source": "August 20th client feedback - By Invitation Only copy correction to focus on Elizabeth's international career",
-        "details": "Replaced royal family references with content about Elizabeth's educational background and global experience per client feedback"
-      },
-      {
-        "change": "CONTENT UPDATE: Updated By Invitation Only section with Elizabeth's international career text",
-        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - JSON content management patterns for client-specified copy updates",
-        "date": "2025-08-26",
-        "source": "Client request - exact copy replacement with Elizabeth's international career text",
-        "details": "Replaced longer educational background description with focused text about Elizabeth's personal tutoring relationships and vetting process"
-      }
-    ]
-  },
-  "header": {
-    "siteName": "My Private Tutor Online",
-    "logo": {
-      "main": "/images/logos/logo-with-name.png",
-      "alt": "My Private Tutor Online - Premium Educational Services",
-      "width": 200,
-      "height": 80
-    },
-    "navigation": [
-      {
-        "label": "How It Works",
-        "href": "/how-it-works"
-      },
-      {
-        "label": "About Us",
-        "href": "/about"
-      },
-      {
-        "label": "Subject Tuition",
-        "href": "/subject-tuition"
-      },
-      {
-        "label": "11+ Bootcamps",
-        "href": "/11-plus-bootcamps"
-      },
-      {
-        "label": "Video Masterclasses",
-        "href": "/video"
-      },
-      {
-        "label": "Exam Papers",
-        "href": "/exam-papers"
-      },
-      {
-        "label": "FAQ",
-        "href": "/faq"
-      }
-    ]
-  },
-  "hero": {
-    "title": "World-Class Education, At Your Fingertips",
-    "subtitle": "Expert Private Tutoring, Personally Curated by Elizabeth Burrows",
-    "description": "",
-    "primaryButtonText": "Enquire Now",
-    "secondaryButtonText": "Request a Consultation",
-    "videoPlaceholder": "/videos/elizabeth-introduction-sound.mp4",
-    "videoPlaceholderAlt": "Elizabeth Burrows introduces My Private Tutor Online"
-  },
-  "schoolShields": {
-    "sectionTitle": "We help students place at top 10 UK schools and universities",
-    "schools": [
-      "Eton College",
-      "Westminster School",
-      "St Paul's School",
-      "Highgate School",
-      "Oxford University",
-      "Cambridge University",
-      "Imperial College London",
-      "London School of Economics",
-      "University College London",
-      "King's College London"
-    ]
-  },
-  "aboutSection": {
-    "title": "World-Class Education, At Your Fingertips",
-    "subtitle": "Founded on trust. Built on results. Delivered by experts.",
-    "description": "At the heart of My Private Tutor Online is a singular vision: academic support that is both exceptional and deeply personal. Founded in 2010 by Elizabeth Burrows—a Cambridge-accepted educator and former Forbes journalist—the company began not as a business, but as a trusted network of elite colleagues she met throughout her international tutoring career.",
-    "continuedDescription": "What started as a circle of personal recommendations has since evolved—organically and exclusively—into one of the UK's most respected names in specialist private tutoring. As testament, My Private Tutor Online is honoured to be featured in Tatler's Address Book and recognised as School Guide UK's 'Top Pick' for private tuition.",
-    "finalDescription": "Today, the ethos remains the same: every tutor is handpicked, every match thoughtfully made, and every family accommodated directly by Elizabeth and her team.",
-    "credentials": [
-      {
-        "name": "Tatler Address Book",
-        "logo": "tatler-logo.svg"
-      },
-      {
-        "name": "School Guide UK Top Pick",
-        "logo": "school-guide-uk-logo.svg"
-      }
-    ]
-  },
-  "trustIndicators": {
-    "sectionTitle": "Royal Endorsement",
-    "sectionDescription": "Trusted by Britain's Most Distinguished Families",
-    "indicators": [
-      {
-        "icon": "",
-        "title": "Fit For a King",
-        "subtitle": "",
-        "description": "Our services are trusted by prominent families, **including VIPs and royalty**.\n\n\"Hi Elizabeth, I found out today that the two princes and the princess have all been offered places at Le Rosey for next year. The family is delighted and would like me to pass on their sincerest thanks to you and the team for all your hard work.\"",
-        "imageUrl": "/images/graphics/feature-royal-endorsement.jpg",
-        "imageAlt": "Royal endorsement - Invitation-only service trusted by royal families and high-profile clients"
-      },
-      {
-        "icon": "",
-        "title": "Examiner insight",
-        "subtitle": "",
-        "description": "Our Tier 1 tutors **actually write/mark the real tests your child takes**. Such insider perspective is rare.",
-        "imageUrl": "/images/graphics/feature-exam-insight.jpeg",
-        "imageAlt": "Examiner insight - Tutors who are actual examiners providing unique academic advantage"
-      },
-      {
-        "icon": "",
-        "title": "By Invitation Only",
-        "subtitle": "",
-        "description": "Elizabeth's international career has allowed her to **personally work alongside almost all our tutors**, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team.",
-        "imageUrl": "/images/graphics/feature-built-on-trust.jpeg",
-        "imageAlt": "Built on trust - Premium tutoring service with vetted educators and proven track record"
-      },
-      {
-        "icon": "",
-        "title": "Rooted in Britain, Appreciated Worldwide",
-        "subtitle": "",
-        "description": "We know British education **inside and out** and bring that knowledge to families across the globe.",
-        "imageUrl": "/images/graphics/feature-british-heritage.jpeg",
-        "imageAlt": "British heritage and global network - Personal tutoring approach with international reach"
-      }
-    ]
-  },
-  "studentJourney": {
-    "sectionTitle": "Your Academic Journey",
-    "sectionSubtitle": "From First Enquiry to Outstanding Results",
-    "sectionDescription": "Our proven 5-step process ensures every student receives the personalised attention they deserve, leading to exceptional academic outcomes.",
-    "steps": [
-      {
-        "step": "1",
-        "title": "Initial Enquiry",
-        "icon": "📞",
-        "description": "Get in touch with our educational consultants to discuss your specific needs and academic goals.",
-        "duration": "Free 15-minute consultation"
-      },
-      {
-        "step": "2",
-        "title": "Personalised Assessment",
-        "icon": "📋",
-        "description": "Comprehensive evaluation of current knowledge, learning style, and areas for improvement.",
-        "duration": "60-minute assessment"
-      },
-      {
-        "step": "3",
-        "title": "Tailored Learning Plan",
-        "icon": "🎯",
-        "description": "Custom curriculum designed specifically for your needs, with clear milestones and objectives.",
-        "duration": "Within 24 hours"
-      },
-      {
-        "step": "4",
-        "title": "Expert Tutoring",
-        "icon": "🎓",
-        "description": "One-to-one sessions with our Oxbridge-educated tutors using our interactive online platform.",
-        "duration": "Ongoing weekly sessions"
-      },
-      {
-        "step": "5",
-        "title": "Outstanding Results",
-        "icon": "🏆",
-        "description": "Achieve your academic goals with proven grade improvements and enhanced confidence.",
-        "duration": "Typically 6-12 weeks"
-      }
-    ]
-  },
-  "testimonials": {
-    "sectionTitle": "What Families Say About Us",
-    "sectionSubtitle": "Discover why parents and students trust us with their most important educational goals. Real testimonials from real families.",
-    "testimonials": [
-      {
-        "quote": "The transformation in our daughter's confidence and grades has been remarkable. From struggling with mathematics to achieving A* grades, the personalised approach made all the difference.",
-        "author": "Lady Catherine Wellington",
-        "role": "Parent, Year 11 Student",
-        "avatar": "/images/testimonials/parent-1.jpg",
-        "rating": 5
-      },
-      {
-        "quote": "As featured in Tatler, My Private Tutor Online represents the gold standard in educational excellence. The calibre of tutors and results speak for themselves.",
-        "author": "The Hon. James Pemberton",
-        "role": "Educational Consultant",
-        "avatar": "/images/testimonials/consultant-1.jpg",
-        "rating": 5
-      },
-      {
-        "quote": "Our son went from predicted C grades to achieving A*A*A at A-Level. The Oxbridge preparation was exceptional - he's now reading Natural Sciences at Cambridge.",
-        "author": "Mrs Sarah Fitzgerald",
-        "role": "Parent, Cambridge Undergraduate",
-        "avatar": "/images/testimonials/parent-2.jpg",
-        "rating": 5
-      }
-    ]
-  },
-  "services": {
-    "sectionTitle": "Who We Support",
-    "sectionDescription": "We work with a wide range of learners, offering guidance and transformation at every level:",
-    "services": [
-      {
-        "title": "Primary",
-        "description": "Comprehensive support for primary school students across all core subjects and entrance exam preparation",
-        "icon": "🌟",
-        "features": [
-          {
-            "feature": "All core subjects covered"
-          },
-          {
-            "feature": "Early exam preparation"
-          },
-          {
-            "feature": "Learning foundation building"
-          },
-          {
-            "feature": "Progress tracking"
-          }
-        ],
-        "ctaText": "Learn More",
-        "ctaLink": "#contact"
-      },
-      {
-        "title": "Secondary",
-        "description": "Expert secondary education support covering GCSE, A-Level and IB programmes for academic excellence",
-        "icon": "📚",
-        "features": [
-          {
-            "feature": "GCSE & A-Level mastery"
-          },
-          {
-            "feature": "IB programme support"
-          },
-          {
-            "feature": "Exam technique development"
-          },
-          {
-            "feature": "Subject specialist tutors"
-          }
-        ],
-        "ctaText": "Learn More",
-        "ctaLink": "#contact"
-      },
-      {
-        "title": "Entrance Exams",
-        "description": "Specialist preparation for competitive UK school entry examinations (4+, 7+, 11+, 13+, 16+)",
-        "icon": "🎯",
-        "features": [
-          {
-            "feature": "Mathematical reasoning"
-          },
-          {
-            "feature": "English comprehension"
-          },
-          {
-            "feature": "Verbal & non-verbal reasoning"
-          },
-          {
-            "feature": "Mock exam practice"
-          }
-        ],
-        "ctaText": "Learn More",
-        "ctaLink": "#contact"
-      },
-      {
-        "title": "Uni & Beyond",
-        "description": "Complete university application support including Oxbridge admissions and undergraduate academic writing",
-        "icon": "🎓",
-        "features": [
-          {
-            "feature": "UCAS application support"
-          },
-          {
-            "feature": "Oxbridge interview coaching"
-          },
-          {
-            "feature": "Personal statement guidance"
-          },
-          {
-            "feature": "University essay support"
-          }
-        ],
-        "ctaText": "Learn More",
-        "ctaLink": "#contact",
-        "featureImageUrl": "/images/graphics/feature-oxbridge-success.jpg",
-        "featureImageAlt": "Oxbridge success - University admissions coaching and academic writing support"
-      },
-      {
-        "title": "Online Homeschooling",
-        "description": "Comprehensive online education programmes providing structured homeschooling with qualified teachers",
-        "icon": "💻",
-        "features": [
-          {
-            "feature": "Full curriculum delivery"
-          },
-          {
-            "feature": "Qualified teacher support"
-          },
-          {
-            "feature": "Flexible learning schedules"
-          },
-          {
-            "feature": "Progress monitoring"
-          }
-        ],
-        "ctaText": "Learn More",
-        "ctaLink": "#contact"
-      },
-      {
-        "title": "SEN Support",
-        "description": "Specialist educational needs support with experienced tutors trained in learning differences and disabilities",
-        "icon": "🤝",
-        "features": [
-          {
-            "feature": "Learning differences expertise"
-          },
-          {
-            "feature": "Individualised learning plans"
-          },
-          {
-            "feature": "Multi-sensory teaching"
-          },
-          {
-            "feature": "Confidence building"
-          }
-        ],
-        "ctaText": "Learn More",
-        "ctaLink": "#contact"
-      },
-      {
-        "title": "London In-Person",
-        "description": "Premium face-to-face tutoring sessions available across London",
-        "icon": "🏛️",
-        "features": [
-          {
-            "feature": "Elite London tutors"
-          },
-          {
-            "feature": "Flexible location options"
-          },
-          {
-            "feature": "Premium service level"
-          },
-          {
-            "feature": "Immediate availability"
-          }
-        ],
-        "ctaText": "Learn More",
-        "ctaLink": "#contact"
-      }
-    ]
-  },
-  "whoWeSupport": {
-    "sectionTitle": "Who We Support",
-    "sectionDescription": "We work with a wide range of learners, offering guidance and transformation at every level:",
-    "supportAreas": [
-      {
-        "title": "Primary and Secondary school learners, across all subjects",
-        "icon": "📚",
-        "description": "Comprehensive support for students from early years through secondary education in all subject areas"
-      },
-      {
-        "title": "Competitive UK school entry (4+, 7+, 11+, 13+, 16+)",
-        "icon": "🎯",
-        "description": "Expert preparation for all major UK independent school entrance examinations"
-      },
-      {
-        "title": "GCSE, A-Level and IB excellence",
-        "icon": "🏆",
-        "description": "Specialist tutoring to achieve top grades in GCSE, A-Level and International Baccalaureate programmes"
-      },
-      {
-        "title": "UCAS applications, including Oxbridge admissions",
-        "icon": "🎓",
-        "description": "Complete university application support with particular expertise in Oxford and Cambridge admissions"
-      },
-      {
-        "title": "Specialist exams (TMUA, LNAT, BMAT, SAT, ACT, IELTS)",
-        "icon": "📝",
-        "description": "Targeted preparation for specialist university entrance and aptitude tests"
-      },
-      {
-        "title": "University level essay and thesis support",
-        "icon": "📖",
-        "description": "Academic writing support for undergraduate and postgraduate students"
-      }
-    ]
-  },
-  "results": {
-    "sectionTitle": "Results that Speak for Themselves (No styling revisions made yet, only moved)",
-    "sectionDescription": "Our track record speaks for itself. Real results from real students who have achieved their academic goals through our personalised tutoring approach.",
-    "statistics": [
-      {
-        "number": "500+",
-        "label": "Families Guided",
-        "description": "families we've successfully guided to academic excellence",
-        "icon": "👥",
-        "lucideIcon": "Users",
-        "imageKey": "child",
-        "imageUrl": "/images/graphics/stat-families-served.jpg",
-        "imageAlt": "Families served by My Private Tutor Online - 500+ families guided to academic excellence"
-      },
-      {
-        "number": "95%",
-        "label": "11+ Success Rate",
-        "description": "of 11+ candidates receive an offer from at least one of their top choices, with some students scoring in the top 2% of test takers",
-        "icon": "🎯",
-        "lucideIcon": "School",
-        "imageKey": "teenager",
-        "imageUrl": "/images/graphics/stat-pass-rate-new.jpg",
-        "imageAlt": "11+ Success Rate - 95% of students receive offers from top choice schools"
-      },
-      {
-        "number": "94%",
-        "label": "GCSE Grade Improvement",
-        "description": "of students improved by at least 2 grades at GCSE",
-        "icon": "📈",
-        "lucideIcon": "TrendingUp",
-        "imageKey": "aLevel",
-        "imageUrl": "/images/graphics/stat-grade-improvement-new.jpg",
-        "imageAlt": "Student success rate - 94% of students improved by at least 2 grades at GCSE"
-      },
-      {
-        "number": "<10%",
-        "label": "Tutor Acceptance Rate",
-        "description": "Elizabeth accepts less than 10% of tutors looking to work with us",
-        "icon": "🏆",
-        "lucideIcon": "Shield",
-        "imageKey": "oxbridge",
-        "imageUrl": "/images/graphics/stat-selective-tutors.jpg",
-        "imageAlt": "Selective tutor acceptance - Less than 10% of tutors accepted for our premium service"
-      }
-    ]
-  },
-  "contact": {
-    "sectionTitle": "Begin Your Academic Journey",
-    "sectionDescription": "Ready to unlock your child's potential? Contact us today for a free consultation and discover how we can help achieve academic excellence.",
-    "formTitle": "Book Your Free Consultation",
-    "formDescription": "Complete the form below and we'll be in touch within 24 hours to discuss your child's educational goals.",
-    "submitButtonText": "Book Free Consultation",
-    "contactInfo": {
-      "email": "info@myprivatetutoronline.com",
-      "phone": "+44 7513 550278",
-      "address": "Mayfair Educational Centre\n123 Berkeley Square\nLondon W1J 6BR\nUnited Kingdom"
-    }
-  },
-  "footer": {
-    "companyName": "My Private Tutor Online",
-    "logo": {
-      "main": "/images/logos/logo-with-name.png",
-      "alt": "My Private Tutor Online - Premium Educational Services",
-      "width": 400,
-      "height": 400
-    },
-    "description": "Exceptional online tutoring trusted by families worldwide. From GCSE excellence to Oxbridge success.",
-    "footerSections": [
-      {
-        "title": "Services",
-        "links": [
-          {
-            "label": "GCSE Tutoring",
-            "href": "/subject-tuition"
-          },
-          {
-            "label": "A-Level Support",
-            "href": "/subject-tuition"
-          },
-          {
-            "label": "Oxbridge Preparation",
-            "href": "/subject-tuition"
-          },
-          {
-            "label": "11+ Preparation",
-            "href": "/11-plus-bootcamps"
-          }
-        ]
-      },
-      {
-        "title": "Company",
-        "links": [
-          {
-            "label": "About Us",
-            "href": "/about"
-          },
-          {
-            "label": "Meet the Team",
-            "href": "/about"
-          },
-          {
-            "label": "Testimonials",
-            "href": "/testimonials"
-          },
-          {
-            "label": "Results",
-            "href": "/about"
-          }
-        ]
-      },
-      {
-        "title": "Resources",
-        "links": [
-          {
-            "label": "Study Guides",
-            "href": "/blog"
-          },
-          {
-            "label": "Exam Tips",
-            "href": "/blog"
-          },
-          {
-            "label": "Blog",
-            "href": "/blog"
-          },
-          {
-            "label": "FAQ",
-            "href": "/faq"
-          }
-        ]
-      },
-      {
-        "title": "Contact",
-        "links": [
-          {
-            "label": "Book Consultation",
-            "href": "/contact"
-          },
-          {
-            "label": "Support",
-            "href": "/contact"
-          },
-          {
-            "label": "Privacy Policy",
-            "href": "/legal/privacy-policy"
-          },
-          {
-            "label": "Terms of Service",
-            "href": "/legal/terms-of-service"
-          }
-        ]
-      }
-    ],
-    "copyrightText": "© 2024 My Private Tutor Online. All rights reserved."
-  },
-  "cta": {
-    "title": "This Is Tutoring at Its Best",
-    "brandStatement": "Exact. Effective. Empowering.",
-    "description": "From prep school entry to Oxbridge preparation, {siteName} delivers expert tuition for exceptional futures.",
-    "primaryButtonText": "Contact Elizabeth's Team",
-    "secondaryButtonText": "Request a Consultation",
-    "siteName": "My Private Tutor Online",
-    "showVideo": true,
-    "videoHeight": "h-[120px]",
-    "backgroundColor": "bg-primary-900"
-  },
-  "quotes": {
-    "founderQuote": {
-      "quote": "Parents come to us when something truly matters—an entrance exam, a lost sense of confidence, a desire for academic stretch. They stay with us because we deliver real progress, quietly and expertly. This is not a tutoring directory. This is a bespoke service for ambitious families looking for trusted partners in their child's academic career.",
-      "author": "Elizabeth Burrows",
-      "role": "Founder"
-    },
-    "royalTestimonial": {
-      "quote": "Hi Elizabeth, I found out today that the two princes and the princess have all been offered places for next year. The family are delighted and would like me to pass on their sincerest thanks for all your hard work.",
-      "author": "Royal Representative",
-      "role": "Button To Be Included"
-    }
-  }
+	"_comments": {
+		"lastUpdated": "2025-08-20",
+		"recentChanges": [
+			{
+				"change": "TASK 6: Footer Section 2.2.1.2 CMS Links Verification - Fixed all broken footer navigation links",
+				"reason": "CONTEXT7 SOURCE: /vercel/next.js - App Router file-based routing compliance for proper navigation",
+				"date": "2025-08-20",
+				"source": "Footer links audit - corrected 10 broken links to working Next.js routes",
+				"details": {
+					"brokenLinksFixed": 10,
+					"workingLinksConfirmed": 6,
+					"redirectStrategy": "Map broken service links to /subject-tuition, team/results to /about, resources to /blog, legal links to proper /legal/* paths"
+				}
+			},
+			{
+				"change": "Updated aboutSection.title to 'World-Class Education, At Your Fingertips'",
+				"reason": "CONTEXT7 SOURCE: /vercel/next.js - Consistent headline strategy across homepage components",
+				"date": "2025-01-16",
+				"source": "Homepage audit findings - critical UX improvement"
+			},
+			{
+				"change": "CONTENT MISMATCH RESOLUTION: Updated By Invitation Only section description",
+				"reason": "CONTEXT7 SOURCE: /microsoft/typescript - Content management JSON structure patterns for client feedback alignment",
+				"date": "2025-08-20",
+				"source": "August 20th client feedback - By Invitation Only copy correction to focus on Elizabeth's international career",
+				"details": "Replaced royal family references with content about Elizabeth's educational background and global experience per client feedback"
+			},
+			{
+				"change": "CONTENT UPDATE: Updated By Invitation Only section with Elizabeth's international career text",
+				"reason": "CONTEXT7 SOURCE: /microsoft/typescript - JSON content management patterns for client-specified copy updates",
+				"date": "2025-08-26",
+				"source": "Client request - exact copy replacement with Elizabeth's international career text",
+				"details": "Replaced longer educational background description with focused text about Elizabeth's personal tutoring relationships and vetting process"
+			}
+		]
+	},
+	"header": {
+		"siteName": "My Private Tutor Online",
+		"logo": {
+			"main": "/images/logos/logo-with-name.png",
+			"alt": "My Private Tutor Online - Premium Educational Services",
+			"width": 200,
+			"height": 80
+		},
+		"navigation": [
+			{
+				"label": "How It Works",
+				"href": "/how-it-works"
+			},
+			{
+				"label": "About Us",
+				"href": "/about"
+			},
+			{
+				"label": "Subject Tuition",
+				"href": "/subject-tuition"
+			},
+			{
+				"label": "11+ Bootcamps",
+				"href": "/11-plus-bootcamps"
+			},
+			{
+				"label": "Video Masterclasses",
+				"href": "/video"
+			},
+			{
+				"label": "Exam Papers",
+				"href": "/exam-papers"
+			},
+			{
+				"label": "FAQ",
+				"href": "/faq"
+			}
+		]
+	},
+	"hero": {
+		"title": "World-Class Education, At Your Fingertips",
+		"subtitle": "Expert Private Tutoring, Personally Curated by Elizabeth Burrows",
+		"description": "",
+		"primaryButtonText": "Enquire Now",
+		"secondaryButtonText": "Request a Consultation",
+		"videoPlaceholder": "/videos/elizabeth-introduction-sound.mp4",
+		"videoPlaceholderAlt": "Elizabeth Burrows introduces My Private Tutor Online"
+	},
+	"schoolShields": {
+		"sectionTitle": "We help students place at top 10 UK schools and universities",
+		"schools": [
+			"Eton College",
+			"Westminster School",
+			"St Paul's School",
+			"Highgate School",
+			"Oxford University",
+			"Cambridge University",
+			"Imperial College London",
+			"London School of Economics",
+			"University College London",
+			"King's College London"
+		]
+	},
+	"aboutSection": {
+		"title": "World-Class Education, At Your Fingertips",
+		"subtitle": "Founded on trust. Built on results. Delivered by experts.",
+		"description": "At the heart of My Private Tutor Online is a singular vision: academic support that is both exceptional and deeply personal. Founded in 2010 by Elizabeth Burrows—a Cambridge-accepted educator and former Forbes journalist—the company began not as a business, but as a trusted network of elite colleagues she met throughout her international tutoring career.",
+		"continuedDescription": "What started as a circle of personal recommendations has since evolved—organically and exclusively—into one of the UK's most respected names in specialist private tutoring. As testament, My Private Tutor Online is honoured to be featured in Tatler's Address Book and recognised as School Guide UK's 'Top Pick' for private tuition.",
+		"finalDescription": "Today, the ethos remains the same: every tutor is handpicked, every match thoughtfully made, and every family accommodated directly by Elizabeth and her team.",
+		"credentials": [
+			{
+				"name": "Tatler Address Book",
+				"logo": "tatler-logo.svg"
+			},
+			{
+				"name": "School Guide UK Top Pick",
+				"logo": "school-guide-uk-logo.svg"
+			}
+		]
+	},
+	"trustIndicators": {
+		"sectionTitle": "Royal Endorsement",
+		"sectionDescription": "Trusted by Britain's Most Distinguished Families",
+		"indicators": [
+			{
+				"icon": "",
+				"title": "Fit For a King",
+				"subtitle": "",
+				"description": "Our services are trusted by prominent families, **including VIPs and royalty**.\n\n\"Hi Elizabeth, I found out today that the two princes and the princess have all been offered places at Le Rosey for next year. The family is delighted and would like me to pass on their sincerest thanks to you and the team for all your hard work.\"",
+				"imageUrl": "/images/graphics/feature-royal-endorsement.jpg",
+				"imageAlt": "Royal endorsement - Invitation-only service trusted by royal families and high-profile clients"
+			},
+			{
+				"icon": "",
+				"title": "Examiner insight",
+				"subtitle": "",
+				"description": "Our Tier 1 tutors **actually write/mark the real tests your child takes**. Such insider perspective is rare.",
+				"imageUrl": "/images/graphics/feature-exam-insight.jpeg",
+				"imageAlt": "Examiner insight - Tutors who are actual examiners providing unique academic advantage"
+			},
+			{
+				"icon": "",
+				"title": "By Invitation Only",
+				"subtitle": "",
+				"description": "Elizabeth's international career has allowed her to **personally work alongside almost all our tutors**, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team.",
+				"imageUrl": "/images/graphics/feature-built-on-trust.jpeg",
+				"imageAlt": "Built on trust - Premium tutoring service with vetted educators and proven track record"
+			},
+			{
+				"icon": "",
+				"title": "Rooted in Britain, Appreciated Worldwide",
+				"subtitle": "",
+				"description": "We know British education **inside and out** and bring that knowledge to families across the globe.",
+				"imageUrl": "/images/graphics/feature-british-heritage.jpeg",
+				"imageAlt": "British heritage and global network - Personal tutoring approach with international reach"
+			}
+		]
+	},
+	"studentJourney": {
+		"sectionTitle": "Your Academic Journey",
+		"sectionSubtitle": "From First Enquiry to Outstanding Results",
+		"sectionDescription": "Our proven 5-step process ensures every student receives the personalised attention they deserve, leading to exceptional academic outcomes.",
+		"steps": [
+			{
+				"step": "1",
+				"title": "Initial Enquiry",
+				"icon": "📞",
+				"description": "Get in touch with our educational consultants to discuss your specific needs and academic goals.",
+				"duration": "Free 15-minute consultation"
+			},
+			{
+				"step": "2",
+				"title": "Personalised Assessment",
+				"icon": "📋",
+				"description": "Comprehensive evaluation of current knowledge, learning style, and areas for improvement.",
+				"duration": "60-minute assessment"
+			},
+			{
+				"step": "3",
+				"title": "Tailored Learning Plan",
+				"icon": "🎯",
+				"description": "Custom curriculum designed specifically for your needs, with clear milestones and objectives.",
+				"duration": "Within 24 hours"
+			},
+			{
+				"step": "4",
+				"title": "Expert Tutoring",
+				"icon": "🎓",
+				"description": "One-to-one sessions with our Oxbridge-educated tutors using our interactive online platform.",
+				"duration": "Ongoing weekly sessions"
+			},
+			{
+				"step": "5",
+				"title": "Outstanding Results",
+				"icon": "🏆",
+				"description": "Achieve your academic goals with proven grade improvements and enhanced confidence.",
+				"duration": "Typically 6-12 weeks"
+			}
+		]
+	},
+	"testimonials": {
+		"sectionTitle": "What Families Say About Us",
+		"sectionSubtitle": "Discover why parents and students trust us with their most important educational goals. Real testimonials from real families.",
+		"testimonials": [
+			{
+				"quote": "The transformation in our daughter's confidence and grades has been remarkable. From struggling with mathematics to achieving A* grades, the personalised approach made all the difference.",
+				"author": "Lady Catherine Wellington",
+				"role": "Parent, Year 11 Student",
+				"avatar": "/images/testimonials/parent-1.jpg",
+				"rating": 5
+			},
+			{
+				"quote": "As featured in Tatler, My Private Tutor Online represents the gold standard in educational excellence. The calibre of tutors and results speak for themselves.",
+				"author": "The Hon. James Pemberton",
+				"role": "Educational Consultant",
+				"avatar": "/images/testimonials/consultant-1.jpg",
+				"rating": 5
+			},
+			{
+				"quote": "Our son went from predicted C grades to achieving A*A*A at A-Level. The Oxbridge preparation was exceptional - he's now reading Natural Sciences at Cambridge.",
+				"author": "Mrs Sarah Fitzgerald",
+				"role": "Parent, Cambridge Undergraduate",
+				"avatar": "/images/testimonials/parent-2.jpg",
+				"rating": 5
+			}
+		]
+	},
+	"services": {
+		"sectionTitle": "Who We Support",
+		"sectionDescription": "We work with a wide range of learners, offering guidance and transformation at every level:",
+		"services": [
+			{
+				"title": "Primary",
+				"description": "Comprehensive support for primary school students across all core subjects and entrance exam preparation",
+				"icon": "🌟",
+				"features": [
+					{
+						"feature": "All core subjects covered"
+					},
+					{
+						"feature": "Early exam preparation"
+					},
+					{
+						"feature": "Learning foundation building"
+					},
+					{
+						"feature": "Progress tracking"
+					}
+				],
+				"ctaText": "Learn More",
+				"ctaLink": "#contact"
+			},
+			{
+				"title": "Secondary",
+				"description": "Expert secondary education support covering GCSE, A-Level and IB programmes for academic excellence",
+				"icon": "📚",
+				"features": [
+					{
+						"feature": "GCSE & A-Level mastery"
+					},
+					{
+						"feature": "IB programme support"
+					},
+					{
+						"feature": "Exam technique development"
+					},
+					{
+						"feature": "Subject specialist tutors"
+					}
+				],
+				"ctaText": "Learn More",
+				"ctaLink": "#contact"
+			},
+			{
+				"title": "Entrance Exams",
+				"description": "Specialist preparation for competitive UK school entry examinations (4+, 7+, 11+, 13+, 16+)",
+				"icon": "🎯",
+				"features": [
+					{
+						"feature": "Mathematical reasoning"
+					},
+					{
+						"feature": "English comprehension"
+					},
+					{
+						"feature": "Verbal & non-verbal reasoning"
+					},
+					{
+						"feature": "Mock exam practice"
+					}
+				],
+				"ctaText": "Learn More",
+				"ctaLink": "#contact"
+			},
+			{
+				"title": "Uni & Beyond",
+				"description": "Complete university application support including Oxbridge admissions and undergraduate academic writing",
+				"icon": "🎓",
+				"features": [
+					{
+						"feature": "UCAS application support"
+					},
+					{
+						"feature": "Oxbridge interview coaching"
+					},
+					{
+						"feature": "Personal statement guidance"
+					},
+					{
+						"feature": "University essay support"
+					}
+				],
+				"ctaText": "Learn More",
+				"ctaLink": "#contact",
+				"featureImageUrl": "/images/graphics/feature-oxbridge-success.jpg",
+				"featureImageAlt": "Oxbridge success - University admissions coaching and academic writing support"
+			},
+			{
+				"title": "Online Homeschooling",
+				"description": "Comprehensive online education programmes providing structured homeschooling with qualified teachers",
+				"icon": "💻",
+				"features": [
+					{
+						"feature": "Full curriculum delivery"
+					},
+					{
+						"feature": "Qualified teacher support"
+					},
+					{
+						"feature": "Flexible learning schedules"
+					},
+					{
+						"feature": "Progress monitoring"
+					}
+				],
+				"ctaText": "Learn More",
+				"ctaLink": "#contact"
+			},
+			{
+				"title": "SEN Support",
+				"description": "Specialist educational needs support with experienced tutors trained in learning differences and disabilities",
+				"icon": "🤝",
+				"features": [
+					{
+						"feature": "Learning differences expertise"
+					},
+					{
+						"feature": "Individualised learning plans"
+					},
+					{
+						"feature": "Multi-sensory teaching"
+					},
+					{
+						"feature": "Confidence building"
+					}
+				],
+				"ctaText": "Learn More",
+				"ctaLink": "#contact"
+			},
+			{
+				"title": "London In-Person",
+				"description": "Premium face-to-face tutoring sessions available across London",
+				"icon": "🏛️",
+				"features": [
+					{
+						"feature": "Elite London tutors"
+					},
+					{
+						"feature": "Flexible location options"
+					},
+					{
+						"feature": "Premium service level"
+					},
+					{
+						"feature": "Immediate availability"
+					}
+				],
+				"ctaText": "Learn More",
+				"ctaLink": "#contact"
+			}
+		]
+	},
+	"whoWeSupport": {
+		"sectionTitle": "Who We Support",
+		"sectionDescription": "We work with a wide range of learners, offering guidance and transformation at every level:",
+		"supportAreas": [
+			{
+				"title": "Primary and Secondary school learners, across all subjects",
+				"icon": "📚",
+				"description": "Comprehensive support for students from early years through secondary education in all subject areas"
+			},
+			{
+				"title": "Competitive UK school entry (4+, 7+, 11+, 13+, 16+)",
+				"icon": "🎯",
+				"description": "Expert preparation for all major UK independent school entrance examinations"
+			},
+			{
+				"title": "GCSE, A-Level and IB excellence",
+				"icon": "🏆",
+				"description": "Specialist tutoring to achieve top grades in GCSE, A-Level and International Baccalaureate programmes"
+			},
+			{
+				"title": "UCAS applications, including Oxbridge admissions",
+				"icon": "🎓",
+				"description": "Complete university application support with particular expertise in Oxford and Cambridge admissions"
+			},
+			{
+				"title": "Specialist exams (TMUA, LNAT, BMAT, SAT, ACT, IELTS)",
+				"icon": "📝",
+				"description": "Targeted preparation for specialist university entrance and aptitude tests"
+			},
+			{
+				"title": "University level essay and thesis support",
+				"icon": "📖",
+				"description": "Academic writing support for undergraduate and postgraduate students"
+			}
+		]
+	},
+	"results": {
+		"sectionTitle": "Results that Speak for Themselves (No styling revisions made yet, only moved)",
+		"sectionDescription": "Our track record speaks for itself. Real results from real students who have achieved their academic goals through our personalised tutoring approach.",
+		"statistics": [
+			{
+				"number": "500+",
+				"label": "Families Guided",
+				"description": "families we've successfully guided to academic excellence",
+				"icon": "👥",
+				"lucideIcon": "Users",
+				"imageKey": "child",
+				"imageUrl": "/images/graphics/stat-families-served.jpg",
+				"imageAlt": "Families served by My Private Tutor Online - 500+ families guided to academic excellence"
+			},
+			{
+				"number": "95%",
+				"label": "11+ Success Rate",
+				"description": "of 11+ candidates receive an offer from at least one of their top choices, with some students scoring in the top 2% of test takers",
+				"icon": "🎯",
+				"lucideIcon": "School",
+				"imageKey": "teenager",
+				"imageUrl": "/images/graphics/stat-pass-rate-new.jpg",
+				"imageAlt": "11+ Success Rate - 95% of students receive offers from top choice schools"
+			},
+			{
+				"number": "94%",
+				"label": "GCSE Grade Improvement",
+				"description": "of students improved by at least 2 grades at GCSE",
+				"icon": "📈",
+				"lucideIcon": "TrendingUp",
+				"imageKey": "aLevel",
+				"imageUrl": "/images/graphics/stat-grade-improvement-new.jpg",
+				"imageAlt": "Student success rate - 94% of students improved by at least 2 grades at GCSE"
+			},
+			{
+				"number": "<10%",
+				"label": "Tutor Acceptance Rate",
+				"description": "Elizabeth accepts less than 10% of tutors looking to work with us",
+				"icon": "🏆",
+				"lucideIcon": "Shield",
+				"imageKey": "oxbridge",
+				"imageUrl": "/images/graphics/stat-selective-tutors.jpg",
+				"imageAlt": "Selective tutor acceptance - Less than 10% of tutors accepted for our premium service"
+			}
+		]
+	},
+	"contact": {
+		"sectionTitle": "Begin Your Academic Journey",
+		"sectionDescription": "Ready to unlock your child's potential? Contact us today for a free consultation and discover how we can help achieve academic excellence.",
+		"formTitle": "Book Your Free Consultation",
+		"formDescription": "Complete the form below and we'll be in touch within 24 hours to discuss your child's educational goals.",
+		"submitButtonText": "Book Free Consultation",
+		"contactInfo": {
+			"email": "info@myprivatetutoronline.com",
+			"phone": "+44 7513 550278",
+			"address": "Mayfair Educational Centre\n123 Berkeley Square\nLondon W1J 6BR\nUnited Kingdom"
+		}
+	},
+	"footer": {
+		"companyName": "My Private Tutor Online",
+		"logo": {
+			"main": "/images/logos/logo-with-name.png",
+			"alt": "My Private Tutor Online - Premium Educational Services",
+			"width": 400,
+			"height": 400
+		},
+		"description": "Exceptional online tutoring trusted by families worldwide. From GCSE excellence to Oxbridge success.",
+		"footerSections": [
+			{
+				"title": "Services",
+				"links": [
+					{
+						"label": "GCSE Tutoring",
+						"href": "/subject-tuition"
+					},
+					{
+						"label": "A-Level Support",
+						"href": "/subject-tuition"
+					},
+					{
+						"label": "Oxbridge Preparation",
+						"href": "/subject-tuition"
+					},
+					{
+						"label": "11+ Preparation",
+						"href": "/11-plus-bootcamps"
+					}
+				]
+			},
+			{
+				"title": "Company",
+				"links": [
+					{
+						"label": "About Us",
+						"href": "/about"
+					},
+					{
+						"label": "Meet the Team",
+						"href": "/about"
+					},
+					{
+						"label": "Testimonials",
+						"href": "/testimonials"
+					},
+					{
+						"label": "Results",
+						"href": "/about"
+					}
+				]
+			},
+			{
+				"title": "Resources",
+				"links": [
+					{
+						"label": "Study Guides",
+						"href": "/blog"
+					},
+					{
+						"label": "Exam Tips",
+						"href": "/blog"
+					},
+					{
+						"label": "Blog",
+						"href": "/blog"
+					},
+					{
+						"label": "FAQ",
+						"href": "/faq"
+					}
+				]
+			},
+			{
+				"title": "Contact",
+				"links": [
+					{
+						"label": "Book Consultation",
+						"href": "/contact"
+					},
+					{
+						"label": "Support",
+						"href": "/contact"
+					},
+					{
+						"label": "Privacy Policy",
+						"href": "/legal/privacy-policy"
+					},
+					{
+						"label": "Terms of Service",
+						"href": "/legal/terms-of-service"
+					}
+				]
+			}
+		],
+		"copyrightText": "© 2024 My Private Tutor Online. All rights reserved."
+	},
+	"cta": {
+		"title": "This Is Tutoring at Its Best",
+		"brandStatement": "Exact. Effective. Empowering.",
+		"description": "From prep school entry to Oxbridge preparation, {siteName} delivers expert tuition for exceptional futures.",
+		"primaryButtonText": "Contact Elizabeth's Team",
+		"secondaryButtonText": "Request a Consultation",
+		"siteName": "My Private Tutor Online",
+		"showVideo": true,
+		"videoHeight": "h-[120px]",
+		"backgroundColor": "bg-primary-900"
+	},
+	"quotes": {
+		"founderQuote": {
+			"quote": "Parents come to us when something truly matters—an entrance exam, a lost sense of confidence, a desire for academic stretch. They stay with us because we deliver real progress, quietly and expertly. This is not a tutoring directory. This is a bespoke service for ambitious families looking for trusted partners in their child's academic career.",
+			"author": "Elizabeth Burrows",
+			"role": "Founder"
+		},
+		"royalTestimonial": {
+			"quote": "Hi Elizabeth, I found out today that the two princes and the princess have all been offered places for next year. The family are delighted and would like me to pass on their sincerest thanks for all your hard work.",
+			"author": "Royal Representative",
+			"role": "Button To Be Included"
+		}
+	}
 }

@@ -2,7 +2,9 @@
 
 ## 1. Commitment to Data Protection
 
-My Private Tutor Online is committed to protecting the personal data of our clients, students, and tutors. We adhere to the highest standards of data protection in compliance with:
+My Private Tutor Online is committed to protecting the personal data of our
+clients, students, and tutors. We adhere to the highest standards of data
+protection in compliance with:
 
 - UK General Data Protection Regulation (UK GDPR)
 - Data Protection Act 2018
@@ -41,6 +43,7 @@ We process personal data in accordance with the following principles:
 We may process the following categories of personal data:
 
 ### 3.1 Student Data
+
 - Name and contact details
 - Date of birth
 - Academic history
@@ -48,11 +51,13 @@ We may process the following categories of personal data:
 - Special educational needs
 
 ### 3.2 Parent/Guardian Data
+
 - Name and contact information
 - Billing details
 - Consent information
 
 ### 3.3 Tutor Data
+
 - Professional qualifications
 - Background check information
 - Performance records
@@ -101,6 +106,7 @@ We implement comprehensive security protocols:
 ## 7. International Data Transfers
 
 For international data transfers, we ensure:
+
 - Standard Contractual Clauses
 - Appropriate safeguards
 - Compliance with UK GDPR requirements
@@ -108,6 +114,7 @@ For international data transfers, we ensure:
 ## 8. Special Category Data
 
 For sensitive personal data (e.g., educational records), we apply:
+
 - Enhanced protection measures
 - Explicit consent
 - Strict access controls
@@ -115,6 +122,7 @@ For sensitive personal data (e.g., educational records), we apply:
 ## 9. Children's Data Protection
 
 Special protections for under-18 data:
+
 - Parental consent required
 - Minimal data collection
 - Enhanced security measures
@@ -122,18 +130,17 @@ Special protections for under-18 data:
 ## 10. Data Breach Response
 
 In the event of a data breach, we:
+
 - Notify affected individuals
 - Report to regulatory authorities
 - Implement remediation measures
 
 ## 11. Contact Information
 
-Data Protection Officer:
-[Contact Details]
+Data Protection Officer: [Contact Details]
 
-Information Commissioner's Office:
-Wycliffe House, Water Lane, Wilmslow, Cheshire SK9 5AF
-Telephone: 0303 123 1113
+Information Commissioner's Office: Wycliffe House, Water Lane, Wilmslow,
+Cheshire SK9 5AF Telephone: 0303 123 1113
 
 ## 12. Updates to Notice
 
@@ -143,4 +150,5 @@ We may update this notice periodically. We recommend reviewing it regularly.
 
 ## Disclaimer
 
-This is a legal document providing information about our data protection practices. For specific legal advice, consult a qualified legal professional.
+This is a legal document providing information about our data protection
+practices. For specific legal advice, consult a qualified legal professional.

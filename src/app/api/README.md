@@ -1,27 +1,33 @@
 # Backend SEO Optimization System
 
-**CONTEXT7 SOURCE**: All implementations based on official Next.js documentation via Context7 MCP
-**ENTERPRISE GRADE**: Royal client standards with comprehensive SEO infrastructure
+**CONTEXT7 SOURCE**: All implementations based on official Next.js documentation
+via Context7 MCP **ENTERPRISE GRADE**: Royal client standards with comprehensive
+SEO infrastructure
 
 ## System Overview
 
-This comprehensive backend SEO optimization system provides enterprise-grade SEO management, performance monitoring, and analytics for premium tutoring services. Built with Next.js 15+ App Router patterns and Context7 MCP compliance.
+This comprehensive backend SEO optimization system provides enterprise-grade SEO
+management, performance monitoring, and analytics for premium tutoring services.
+Built with Next.js 15+ App Router patterns and Context7 MCP compliance.
 
 ## API Architecture
 
 ### 🗺️ Sitemap Management API
-**Endpoint**: `/api/sitemap`
-**Purpose**: Dynamic sitemap generation and real-time updates
+
+**Endpoint**: `/api/sitemap` **Purpose**: Dynamic sitemap generation and
+real-time updates
 
 #### Features:
+
 - **GET**: Retrieve dynamic XML/JSON sitemaps with filtering
-- **POST**: Update individual page priorities and frequencies  
+- **POST**: Update individual page priorities and frequencies
 - **PUT**: Bulk sitemap configuration updates
 - **Real-time cache invalidation** with `revalidatePath`
 - **Multi-format support** (XML for search engines, JSON for APIs)
 - **Tag-based filtering** for targeted sitemap segments
 
 #### Example Usage:
+
 ```bash
 # Get XML sitemap for search engines
 GET /api/sitemap?format=xml
@@ -43,18 +49,22 @@ PUT /api/sitemap
 ```
 
 ### 📊 SEO Data Management API
-**Endpoint**: `/api/seo`
-**Purpose**: Comprehensive metadata and structured data management
+
+**Endpoint**: `/api/seo` **Purpose**: Comprehensive metadata and structured data
+management
 
 #### Features:
+
 - **GET**: Retrieve page metadata, Open Graph, Twitter Cards
 - **PUT**: Update meta descriptions, titles, structured data
 - **POST**: Create new SEO entries for pages
 - **DELETE**: Clean up outdated metadata
-- **Validation**: SEO best practices validation (title length, description length)
+- **Validation**: SEO best practices validation (title length, description
+  length)
 - **Schema.org Integration**: Structured data management
 
 #### Example Usage:
+
 ```bash
 # Get page metadata
 GET /api/seo?path=/about&type=metadata
@@ -70,10 +80,12 @@ PUT /api/seo
 ```
 
 ### ⚡ Performance Optimization API
-**Endpoint**: `/api/performance`
-**Purpose**: Advanced caching strategies and performance optimization
+
+**Endpoint**: `/api/performance` **Purpose**: Advanced caching strategies and
+performance optimization
 
 #### Features:
+
 - **GET**: Performance metrics and optimization recommendations
 - **POST**: Trigger cache warm-up and optimization procedures
 - **PUT**: Update performance configurations
@@ -82,6 +94,7 @@ PUT /api/seo
 - **Resource Optimization**: Image, CSS, JS optimization tracking
 
 #### Example Usage:
+
 ```bash
 # Get performance metrics
 GET /api/performance?metric=core-vitals&range=24h
@@ -104,10 +117,12 @@ PUT /api/performance
 ```
 
 ### 📈 Core Web Vitals Monitoring
-**Endpoint**: `/api/vitals`
-**Purpose**: Real-time Web Vitals tracking and analysis
+
+**Endpoint**: `/api/vitals` **Purpose**: Real-time Web Vitals tracking and
+analysis
 
 #### Features:
+
 - **POST**: Ingest Web Vitals metrics from client-side
 - **GET**: Retrieve aggregated performance analytics
 - **PUT**: Update performance thresholds
@@ -116,6 +131,7 @@ PUT /api/performance
 - **Device-specific Analysis**: Desktop, mobile, tablet performance
 
 #### Example Usage:
+
 ```bash
 # Submit Web Vitals metric
 POST /api/vitals
@@ -131,10 +147,12 @@ GET /api/vitals?period=7d&device=mobile
 ```
 
 ### 📊 SEO Analytics & Reporting
-**Endpoint**: `/api/seo-analytics`
-**Purpose**: Comprehensive SEO performance tracking and reporting
+
+**Endpoint**: `/api/seo-analytics` **Purpose**: Comprehensive SEO performance
+tracking and reporting
 
 #### Features:
+
 - **GET**: Multi-dimensional SEO analytics reports
 - **POST**: Process SEO events and user interactions
 - **PUT**: Update analytics configuration
@@ -143,6 +161,7 @@ GET /api/vitals?period=7d&device=mobile
 - **Competitive Analysis**: Market positioning and opportunity identification
 
 #### Example Usage:
+
 ```bash
 # Get comprehensive SEO report
 GET /api/seo-analytics?period=30d&report=rankings
@@ -160,7 +179,9 @@ POST /api/seo-analytics
 ## Health Monitoring
 
 ### Sitemap Health Check
+
 **Endpoint**: `/api/sitemap/status`
+
 - Service status and performance metrics
 - Sitemap generation time tracking
 - Cache hit rate analysis
@@ -169,7 +190,9 @@ POST /api/seo-analytics
 ## Implementation Standards
 
 ### Context7 MCP Compliance
+
 All endpoints implement official Next.js patterns:
+
 - ✅ Route handlers with proper HTTP method support
 - ✅ NextRequest/NextResponse for type safety
 - ✅ Advanced caching strategies with revalidation
@@ -177,19 +200,22 @@ All endpoints implement official Next.js patterns:
 - ✅ Performance optimization patterns
 
 ### Caching Strategy
+
 ```typescript
 // Performance-optimized caching headers
-export const revalidate = 3600 // 1 hour base cache
+export const revalidate = 3600; // 1 hour base cache
 ```
 
 - **Sitemap API**: 1 hour cache with stale-while-revalidate
-- **SEO Data**: 30 minutes cache for metadata freshness  
+- **SEO Data**: 30 minutes cache for metadata freshness
 - **Performance**: 10 minutes cache for real-time metrics
 - **Analytics**: 15 minutes cache for reporting balance
 - **Web Vitals**: 3 minutes cache for near real-time tracking
 
 ### Error Handling
+
 Comprehensive error handling with proper HTTP status codes:
+
 - **400**: Bad Request (validation errors)
 - **404**: Not Found (missing resources)
 - **409**: Conflict (duplicate resources)
@@ -197,6 +223,7 @@ Comprehensive error handling with proper HTTP status codes:
 - **503**: Service Unavailable (system maintenance)
 
 ### Royal Client Standards
+
 - **Enterprise-grade reliability** with 99.9% uptime
 - **Premium performance** with <500ms response times
 - **British English** terminology throughout
@@ -206,17 +233,20 @@ Comprehensive error handling with proper HTTP status codes:
 ## Security Features
 
 ### Input Validation
+
 - Request body validation for all POST/PUT endpoints
 - Parameter validation for query strings
 - SQL injection prevention (parameterized queries)
 - XSS protection with proper encoding
 
 ### Rate Limiting
+
 - API rate limiting to prevent abuse
 - Per-endpoint throttling based on usage patterns
 - Graceful degradation under high load
 
 ### Authentication (Future Enhancement)
+
 - Admin API key authentication for configuration endpoints
 - Role-based access control for different API operations
 - Audit logging for all administrative actions
@@ -224,12 +254,14 @@ Comprehensive error handling with proper HTTP status codes:
 ## Performance Optimizations
 
 ### Database Efficiency
+
 - Optimized queries with proper indexing
 - Connection pooling for database performance
 - Read replicas for analytics queries
 - Caching layer for frequently accessed data
 
 ### CDN Integration
+
 - Static asset optimization
 - Geographic distribution for global performance
 - Edge caching for API responses where appropriate
@@ -237,12 +269,14 @@ Comprehensive error handling with proper HTTP status codes:
 ## Monitoring & Alerting
 
 ### Real-time Monitoring
+
 - Performance metrics collection
 - Error rate tracking
 - Usage analytics
 - Capacity monitoring
 
 ### Automated Alerts
+
 - Performance regression detection
 - Error threshold breaches
 - Capacity warnings
@@ -251,6 +285,7 @@ Comprehensive error handling with proper HTTP status codes:
 ## Development Workflow
 
 ### API Development Standards
+
 1. **Context7 Documentation**: All patterns backed by official docs
 2. **TypeScript Interfaces**: Comprehensive type definitions
 3. **Error Handling**: Consistent error response formats
@@ -258,6 +293,7 @@ Comprehensive error handling with proper HTTP status codes:
 5. **Documentation**: Comprehensive API documentation
 
 ### Deployment Process
+
 1. **Local Testing**: Full test suite execution
 2. **Staging Deployment**: Production-like environment testing
 3. **Performance Validation**: Load testing and optimization
@@ -302,48 +338,52 @@ GET /api/seo-analytics?period=30d&page=/new-service
 ## Integration with Frontend
 
 ### Client-side Web Vitals Collection
+
 ```typescript
-import { getCLS, getFCP, getFID, getLCP, getTTFB } from 'web-vitals'
+import { getCLS, getFCP, getFID, getLCP, getTTFB } from 'web-vitals';
 
 function sendToAnalytics(metric) {
-  fetch('/api/vitals', {
-    method: 'POST',
-    body: JSON.stringify(metric),
-    headers: { 'Content-Type': 'application/json' }
-  })
+	fetch('/api/vitals', {
+		method: 'POST',
+		body: JSON.stringify(metric),
+		headers: { 'Content-Type': 'application/json' },
+	});
 }
 
-getCLS(sendToAnalytics)
-getFCP(sendToAnalytics)
-getFID(sendToAnalytics)
-getLCP(sendToAnalytics)
-getTTFB(sendToAnalytics)
+getCLS(sendToAnalytics);
+getFCP(sendToAnalytics);
+getFID(sendToAnalytics);
+getLCP(sendToAnalytics);
+getTTFB(sendToAnalytics);
 ```
 
 ### SEO Event Tracking
+
 ```typescript
 // Track conversions
 fetch('/api/seo-analytics', {
-  method: 'POST',
-  body: JSON.stringify({
-    type: 'conversion',
-    url: window.location.pathname,
-    source: 'organic',
-    sessionId: getSessionId()
-  })
-})
+	method: 'POST',
+	body: JSON.stringify({
+		type: 'conversion',
+		url: window.location.pathname,
+		source: 'organic',
+		sessionId: getSessionId(),
+	}),
+});
 ```
 
 ## Future Enhancements
 
 ### Planned Features
+
 - **AI-powered SEO Recommendations**: Machine learning insights
-- **Advanced Competitive Analysis**: Real-time competitor monitoring  
+- **Advanced Competitive Analysis**: Real-time competitor monitoring
 - **International SEO Support**: Multi-language and geo-targeting
 - **Voice Search Optimization**: Featured snippet optimization
 - **Technical SEO Automation**: Automatic issue detection and resolution
 
 ### Scalability Improvements
+
 - **Microservices Architecture**: Service decomposition for scale
 - **Event-driven Architecture**: Asynchronous processing
 - **Multi-region Deployment**: Global performance optimization
@@ -352,12 +392,14 @@ fetch('/api/seo-analytics', {
 ## Support & Maintenance
 
 ### Production Support
+
 - **24/7 Monitoring**: Automated alerting and response
 - **Performance SLA**: 99.9% uptime guarantee
 - **Regular Updates**: Monthly feature and security updates
 - **Backup & Recovery**: Automated backup with point-in-time recovery
 
 ### Documentation Updates
+
 - **API Changes**: Comprehensive change logs
 - **Integration Guides**: Step-by-step implementation guides
 - **Best Practices**: SEO optimization recommendations
@@ -366,4 +408,5 @@ fetch('/api/seo-analytics', {
 ---
 
 **Built with Enterprise Standards for Royal Client Service Excellence**
-*Comprehensive SEO optimization infrastructure supporting premium tutoring services*
+_Comprehensive SEO optimization infrastructure supporting premium tutoring
+services_

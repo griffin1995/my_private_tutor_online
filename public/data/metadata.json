@@ -1,51 +1,51 @@
 {
-  "site": {
-    "title": {
-      "default": "My Private Tutor Online | Premium Academic Tutoring | Oxbridge & 11+ Specialists",
-      "template": "%s | My Private Tutor Online"
-    },
-    "description": "Premium private tutoring services with 15+ years experience. Royal family endorsed, Tatler-listed tutors specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels. Trusted by elite families across the UK.",
-    "keywords": [
-      "private tutoring",
-      "Oxbridge preparation",
-      "11+ entry",
-      "GCSE tuition", 
-      "A-level tutoring",
-      "Cambridge International",
-      "elite education",
-      "premium tutoring",
-      "royal tutor",
-      "Tatler tutor",
-      "academic excellence"
-    ],
-    "authors": [{ "name": "My Private Tutor Online" }],
-    "creator": "My Private Tutor Online",
-    "publisher": "My Private Tutor Online",
-    "category": "Education"
-  },
-  "openGraph": {
-    "siteName": "My Private Tutor Online",
-    "title": "My Private Tutor Online | Premium Academic Tutoring Services",
-    "description": "Premium private tutoring with royal endorsements. 15+ years experience in Oxbridge prep, 11+ entry, GCSE & A-levels. Featured in Tatler Address Book.",
-    "images": [
-      {
-        "url": "https://myprivatetutoronline.co.uk/images/opengraph/hero-meta.jpg",
-        "width": 1200,
-        "height": 630,
-        "alt": "My Private Tutor Online - Premium Academic Tutoring Services",
-        "type": "image/jpeg"
-      }
-    ]
-  },
-  "twitter": {
-    "title": "My Private Tutor Online | Premium Academic Tutoring",
-    "description": "Royal family endorsed private tutoring. Oxbridge preparation, 11+ entry, GCSE & A-levels. 15+ years experience.",
-    "images": [
-      "https://myprivatetutoronline.co.uk/images/opengraph/hero-meta.jpg"
-    ]
-  },
-  "opengraphImage": {
-    "alt": "My Private Tutor Online - Premium Academic Tutoring",
-    "title": "My Private Tutor Online"
-  }
+	"site": {
+		"title": {
+			"default": "My Private Tutor Online | Premium Academic Tutoring | Oxbridge & 11+ Specialists",
+			"template": "%s | My Private Tutor Online"
+		},
+		"description": "Premium private tutoring services with 15+ years experience. Royal family endorsed, Tatler-listed tutors specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels. Trusted by elite families across the UK.",
+		"keywords": [
+			"private tutoring",
+			"Oxbridge preparation",
+			"11+ entry",
+			"GCSE tuition",
+			"A-level tutoring",
+			"Cambridge International",
+			"elite education",
+			"premium tutoring",
+			"royal tutor",
+			"Tatler tutor",
+			"academic excellence"
+		],
+		"authors": [{ "name": "My Private Tutor Online" }],
+		"creator": "My Private Tutor Online",
+		"publisher": "My Private Tutor Online",
+		"category": "Education"
+	},
+	"openGraph": {
+		"siteName": "My Private Tutor Online",
+		"title": "My Private Tutor Online | Premium Academic Tutoring Services",
+		"description": "Premium private tutoring with royal endorsements. 15+ years experience in Oxbridge prep, 11+ entry, GCSE & A-levels. Featured in Tatler Address Book.",
+		"images": [
+			{
+				"url": "https://myprivatetutoronline.co.uk/images/opengraph/hero-meta.jpg",
+				"width": 1200,
+				"height": 630,
+				"alt": "My Private Tutor Online - Premium Academic Tutoring Services",
+				"type": "image/jpeg"
+			}
+		]
+	},
+	"twitter": {
+		"title": "My Private Tutor Online | Premium Academic Tutoring",
+		"description": "Royal family endorsed private tutoring. Oxbridge preparation, 11+ entry, GCSE & A-levels. 15+ years experience.",
+		"images": [
+			"https://myprivatetutoronline.co.uk/images/opengraph/hero-meta.jpg"
+		]
+	},
+	"opengraphImage": {
+		"alt": "My Private Tutor Online - Premium Academic Tutoring",
+		"title": "My Private Tutor Online"
+	}
 }

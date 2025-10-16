@@ -2,7 +2,10 @@
 
 ## Overview
 
-This document details the comprehensive interactive animation system implemented for the FAQ page enhancement. The system provides sophisticated animations for all FAQ interactions using Framer Motion, achieving royal client quality standards with 60fps performance and full accessibility compliance.
+This document details the comprehensive interactive animation system implemented
+for the FAQ page enhancement. The system provides sophisticated animations for
+all FAQ interactions using Framer Motion, achieving royal client quality
+standards with 60fps performance and full accessibility compliance.
 
 ## Implementation Summary
 
@@ -40,6 +43,7 @@ src/components/faq/
 **Location**: `src/components/faq/faq-interactive-animations.tsx`
 
 The main animation wrapper component providing:
+
 - GPU-accelerated animations
 - Gesture support with swipe detection
 - Loading states with shimmer effects
@@ -48,12 +52,11 @@ The main animation wrapper component providing:
 
 ```tsx
 <FAQInteractiveAnimations
-  animationType="stagger"
-  enableGestures={true}
-  onSwipeLeft={() => console.log('Swiped left')}
-  onSwipeRight={() => console.log('Swiped right')}
->
-  {content}
+	animationType='stagger'
+	enableGestures={true}
+	onSwipeLeft={() => console.log('Swiped left')}
+	onSwipeRight={() => console.log('Swiped right')}>
+	{content}
 </FAQInteractiveAnimations>
 ```
 
@@ -62,6 +65,7 @@ The main animation wrapper component providing:
 **Location**: `src/components/faq/faq-modal-animations.tsx`
 
 Advanced modal system featuring:
+
 - Backdrop blur effects
 - Gesture dismissal (swipe down)
 - Stagger content reveals
@@ -70,12 +74,11 @@ Advanced modal system featuring:
 
 ```tsx
 <FAQModalAnimations
-  isOpen={isModalOpen}
-  onClose={() => setIsModalOpen(false)}
-  variant="drawer"
-  enableGestureDismissal={true}
->
-  <ModalContent />
+	isOpen={isModalOpen}
+	onClose={() => setIsModalOpen(false)}
+	variant='drawer'
+	enableGestureDismissal={true}>
+	<ModalContent />
 </FAQModalAnimations>
 ```
 
@@ -84,6 +87,7 @@ Advanced modal system featuring:
 **Location**: `src/components/faq/faq-animation-performance.tsx`
 
 Performance optimization wrapper providing:
+
 - 60fps monitoring
 - GPU acceleration enforcement
 - Reduced motion support
@@ -92,69 +96,74 @@ Performance optimization wrapper providing:
 
 ```tsx
 <FAQAnimationPerformance enableMonitoring={true}>
-  <FAQComponents />
+	<FAQComponents />
 </FAQAnimationPerformance>
 ```
 
 ## Animation Variants
 
 ### Stagger Container Animations
+
 ```tsx
 const staggerContainerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-      when: "beforeChildren"
-    }
-  }
-}
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.12,
+			delayChildren: 0.1,
+			when: 'beforeChildren',
+		},
+	},
+};
 ```
 
 ### Interactive Item Animations
+
 ```tsx
 const interactiveItemVariants = {
-  rest: { scale: 1, y: 0 },
-  hover: {
-    scale: 1.03,
-    y: -8,
-    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)",
-    transition: { type: "spring", stiffness: 400, damping: 25 }
-  },
-  tap: { scale: 0.97, y: -2 }
-}
+	rest: { scale: 1, y: 0 },
+	hover: {
+		scale: 1.03,
+		y: -8,
+		boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+		transition: { type: 'spring', stiffness: 400, damping: 25 },
+	},
+	tap: { scale: 0.97, y: -2 },
+};
 ```
 
 ### Accordion Height Transitions
+
 ```tsx
 const accordionVariants = {
-  collapsed: {
-    height: 0,
-    opacity: 0,
-    transition: {
-      height: { duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] },
-      opacity: { duration: 0.25, ease: "easeInOut" }
-    }
-  },
-  expanded: {
-    height: "auto",
-    opacity: 1,
-    transition: {
-      height: { duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] },
-      opacity: { duration: 0.35, delay: 0.15, ease: "easeInOut" }
-    }
-  }
-}
+	collapsed: {
+		height: 0,
+		opacity: 0,
+		transition: {
+			height: { duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] },
+			opacity: { duration: 0.25, ease: 'easeInOut' },
+		},
+	},
+	expanded: {
+		height: 'auto',
+		opacity: 1,
+		transition: {
+			height: { duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] },
+			opacity: { duration: 0.35, delay: 0.15, ease: 'easeInOut' },
+		},
+	},
+};
 ```
 
 ## Enhanced Components
 
 ### 1. FAQ Category Section
+
 **File**: `faq-category-section.tsx`
 
 **Enhancements**:
+
 - Container orchestration with stagger animations
 - Enhanced accordion state management
 - Gesture-based interactions (hover, drag, swipe)
@@ -162,15 +171,18 @@ const accordionVariants = {
 - Bulk expand/collapse with stagger sequences
 
 **Key Features**:
+
 - Stagger delays of 0.08s for smooth reveals
 - Spring physics for natural motion
 - Touch-friendly gesture recognition
 - Performance-optimized rendering
 
 ### 2. FAQ Enhanced Search
+
 **File**: `faq-enhanced-search.tsx`
 
 **Enhancements**:
+
 - Animated search input with breathing effects
 - Real-time suggestion dropdown with stagger reveals
 - Filter panel animations with height transitions
@@ -178,6 +190,7 @@ const accordionVariants = {
 - Performance indicators and status badges
 
 **Key Features**:
+
 - Motion values for fluid input tracking
 - Suggestion hover animations with rotation effects
 - Search completion feedback animations
@@ -186,30 +199,33 @@ const accordionVariants = {
 ## Performance Specifications
 
 ### Frame Rate Targets
+
 - **Target**: 60fps (16.67ms per frame)
 - **Tolerance**: 55fps minimum (18.18ms per frame)
 - **Monitoring**: Real-time FPS tracking in development
 - **Optimization**: GPU acceleration for all transforms
 
 ### Animation Properties
+
 ```tsx
 // GPU-Accelerated Properties Only
 const optimizedVariants = {
-  hidden: {
-    opacity: 0,
-    transform: "translate3d(0, 30px, 0) scale3d(0.9, 0.9, 1)",
-  },
-  visible: {
-    opacity: 1,
-    transform: "translate3d(0, 0, 0) scale3d(1, 1, 1)",
-    transition: {
-      willChange: "transform, opacity" // Hardware acceleration hint
-    }
-  }
-}
+	hidden: {
+		opacity: 0,
+		transform: 'translate3d(0, 30px, 0) scale3d(0.9, 0.9, 1)',
+	},
+	visible: {
+		opacity: 1,
+		transform: 'translate3d(0, 0, 0) scale3d(1, 1, 1)',
+		transition: {
+			willChange: 'transform, opacity', // Hardware acceleration hint
+		},
+	},
+};
 ```
 
 ### Memory Management
+
 - Automatic cleanup on component unmount
 - Intersection observer optimization
 - Animation cleanup hooks
@@ -220,9 +236,10 @@ const optimizedVariants = {
 ### WCAG 2.1 AA Standards Met
 
 1. **Reduced Motion Support**
+
    ```tsx
-   const shouldReduceMotion = useReducedMotion()
-   const variants = shouldReduceMotion ? reducedMotionVariants : fullVariants
+   const shouldReduceMotion = useReducedMotion();
+   const variants = shouldReduceMotion ? reducedMotionVariants : fullVariants;
    ```
 
 2. **Keyboard Navigation**
@@ -239,14 +256,15 @@ const optimizedVariants = {
    - No auto-playing motion without user consent
 
 ### Reduced Motion Implementation
+
 ```tsx
 const reducedMotionVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 0.2, ease: "easeOut" }
-  }
-}
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: { duration: 0.2, ease: 'easeOut' },
+	},
+};
 ```
 
 ## Gesture Interactions
@@ -272,18 +290,19 @@ const reducedMotionVariants = {
    - Gesture hints for discoverability
 
 ### Implementation Example
+
 ```tsx
 const handleDragEnd = (event: any, info: any) => {
-  const { offset, velocity } = info
-  
-  if (Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500) {
-    if (offset.x < 0 && onSwipeLeft) {
-      onSwipeLeft()
-    } else if (offset.x > 0 && onSwipeRight) {
-      onSwipeRight()
-    }
-  }
-}
+	const { offset, velocity } = info;
+
+	if (Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500) {
+		if (offset.x < 0 && onSwipeLeft) {
+			onSwipeLeft();
+		} else if (offset.x > 0 && onSwipeRight) {
+			onSwipeRight();
+		}
+	}
+};
 ```
 
 ## Loading States
@@ -291,20 +310,22 @@ const handleDragEnd = (event: any, info: any) => {
 ### Skeleton Animation System
 
 **Shimmer Effect Implementation**:
+
 ```tsx
 const skeletonShimmerVariants = {
-  loading: {
-    background: [
-      "linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)",
-      "linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 75%, #f0f0f0 100%)",
-      "linear-gradient(90deg, #e0e0e0 0%, #f0f0f0 50%, #e0e0e0 100%)"
-    ],
-    transition: { duration: 2, repeat: Infinity, ease: "linear" }
-  }
-}
+	loading: {
+		background: [
+			'linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%)',
+			'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 75%, #f0f0f0 100%)',
+			'linear-gradient(90deg, #e0e0e0 0%, #f0f0f0 50%, #e0e0e0 100%)',
+		],
+		transition: { duration: 2, repeat: Infinity, ease: 'linear' },
+	},
+};
 ```
 
 **Skeleton Variants**:
+
 - Card skeletons for FAQ items
 - List skeletons for search results
 - Search input skeletons
@@ -313,16 +334,18 @@ const skeletonShimmerVariants = {
 ## Browser Support
 
 ### Compatibility Matrix
-| Browser | Version | Support Level |
-|---------|---------|---------------|
-| Chrome  | 88+     | Full Support  |
-| Firefox | 85+     | Full Support  |
-| Safari  | 14.1+   | Full Support  |
-| Edge    | 88+     | Full Support  |
-| iOS Safari | 14.4+ | Full Support |
-| Chrome Mobile | 88+ | Full Support |
+
+| Browser       | Version | Support Level |
+| ------------- | ------- | ------------- |
+| Chrome        | 88+     | Full Support  |
+| Firefox       | 85+     | Full Support  |
+| Safari        | 14.1+   | Full Support  |
+| Edge          | 88+     | Full Support  |
+| iOS Safari    | 14.4+   | Full Support  |
+| Chrome Mobile | 88+     | Full Support  |
 
 ### Fallbacks
+
 - CSS transform fallbacks for older browsers
 - Progressive enhancement approach
 - Graceful degradation for unsupported features
@@ -330,14 +353,16 @@ const skeletonShimmerVariants = {
 ## Performance Monitoring
 
 ### Development Tools
+
 ```tsx
-<FAQAnimationPerformanceTest 
-  itemCount={50}
-  enableStress={true}
+<FAQAnimationPerformanceTest
+	itemCount={50}
+	enableStress={true}
 />
 ```
 
 ### Metrics Tracked
+
 - Frames per second (FPS)
 - Animation completion times
 - Memory usage during animations
@@ -345,6 +370,7 @@ const skeletonShimmerVariants = {
 - User interaction response times
 
 ### Performance Budgets
+
 - Initial animation: <500ms
 - Hover feedback: <100ms
 - Modal animations: <400ms
@@ -354,58 +380,63 @@ const skeletonShimmerVariants = {
 ## Usage Examples
 
 ### Basic FAQ Item Animation
+
 ```tsx
-import { FAQInteractiveAnimations } from '@/components/faq/faq-interactive-animations'
+import { FAQInteractiveAnimations } from '@/components/faq/faq-interactive-animations';
 
 <FAQInteractiveAnimations
-  animationType="fadeInUp"
-  enableGestures={true}
-  onSwipeLeft={() => handleCollapse()}
-  onSwipeRight={() => handleExpand()}
->
-  <FAQItem />
-</FAQInteractiveAnimations>
+	animationType='fadeInUp'
+	enableGestures={true}
+	onSwipeLeft={() => handleCollapse()}
+	onSwipeRight={() => handleExpand()}>
+	<FAQItem />
+</FAQInteractiveAnimations>;
 ```
 
 ### Stagger Container
-```tsx
-import { FAQStaggerContainer } from '@/components/faq/faq-interactive-animations'
 
-<FAQStaggerContainer staggerDelay={0.1} initialDelay={0.2}>
-  {faqItems.map((item, index) => (
-    <FAQInteractiveAnimations key={item.id} delay={index * 0.1}>
-      <FAQItem {...item} />
-    </FAQInteractiveAnimations>
-  ))}
-</FAQStaggerContainer>
+```tsx
+import { FAQStaggerContainer } from '@/components/faq/faq-interactive-animations';
+
+<FAQStaggerContainer
+	staggerDelay={0.1}
+	initialDelay={0.2}>
+	{faqItems.map((item, index) => (
+		<FAQInteractiveAnimations
+			key={item.id}
+			delay={index * 0.1}>
+			<FAQItem {...item} />
+		</FAQInteractiveAnimations>
+	))}
+</FAQStaggerContainer>;
 ```
 
 ### Performance-Optimized Animation
+
 ```tsx
-import { FAQOptimizedAnimation } from '@/components/faq/faq-animation-performance'
+import { FAQOptimizedAnimation } from '@/components/faq/faq-animation-performance';
 
 <FAQOptimizedAnimation
-  enableInView={true}
-  threshold={0.1}
-  triggerOnce={true}
->
-  <FAQContent />
-</FAQOptimizedAnimation>
+	enableInView={true}
+	threshold={0.1}
+	triggerOnce={true}>
+	<FAQContent />
+</FAQOptimizedAnimation>;
 ```
 
 ### Modal with Animations
+
 ```tsx
-import { FAQModalAnimations } from '@/components/faq/faq-modal-animations'
+import { FAQModalAnimations } from '@/components/faq/faq-modal-animations';
 
 <FAQModalAnimations
-  isOpen={showModal}
-  onClose={() => setShowModal(false)}
-  variant="drawer"
-  enableGestureDismissal={true}
-  title="FAQ Details"
->
-  <FAQModalContent />
-</FAQModalAnimations>
+	isOpen={showModal}
+	onClose={() => setShowModal(false)}
+	variant='drawer'
+	enableGestureDismissal={true}
+	title='FAQ Details'>
+	<FAQModalContent />
+</FAQModalAnimations>;
 ```
 
 ## Testing Guidelines
@@ -439,15 +470,22 @@ import { FAQModalAnimations } from '@/components/faq/faq-modal-animations'
 
 All animation implementations are based on official Context7 MCP documentation:
 
-- **Core Animations**: `/context7/motion_dev` - Animation patterns with stagger effects and gesture-based interactions
-- **Performance**: `/context7/motion_dev` - Performance optimization patterns for high-performance animations  
-- **Accessibility**: `/context7/motion_dev` - Reduced motion patterns and accessibility compliance
-- **Gestures**: `/context7/motion_dev` - Touch gesture patterns and drag interaction handling
-- **Modals**: `/context7/motion_dev` - Modal animation patterns with backdrop and content orchestration
+- **Core Animations**: `/context7/motion_dev` - Animation patterns with stagger
+  effects and gesture-based interactions
+- **Performance**: `/context7/motion_dev` - Performance optimization patterns
+  for high-performance animations
+- **Accessibility**: `/context7/motion_dev` - Reduced motion patterns and
+  accessibility compliance
+- **Gestures**: `/context7/motion_dev` - Touch gesture patterns and drag
+  interaction handling
+- **Modals**: `/context7/motion_dev` - Modal animation patterns with backdrop
+  and content orchestration
 
 ## British English Standards
 
-All component interfaces, documentation, and user-facing text follow British English conventions:
+All component interfaces, documentation, and user-facing text follow British
+English conventions:
+
 - "colour" instead of "color"
 - "optimise" instead of "optimize"
 - "behaviour" instead of "behavior"
@@ -455,6 +493,10 @@ All component interfaces, documentation, and user-facing text follow British Eng
 
 ## Conclusion
 
-The FAQ Interactive Animations system provides a comprehensive, performant, and accessible animation solution for the royal client-quality FAQ interface. The implementation achieves all Task 18 requirements while maintaining 60fps performance and full WCAG 2.1 AA compliance.
+The FAQ Interactive Animations system provides a comprehensive, performant, and
+accessible animation solution for the royal client-quality FAQ interface. The
+implementation achieves all Task 18 requirements while maintaining 60fps
+performance and full WCAG 2.1 AA compliance.
 
-The modular architecture allows for easy extension and customization while providing consistent animation patterns across all FAQ components.
+The modular architecture allows for easy extension and customization while
+providing consistent animation patterns across all FAQ components.

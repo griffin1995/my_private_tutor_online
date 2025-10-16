@@ -2,328 +2,333 @@
 # IMPLEMENTATION REASON: Artillery.js specializes in complex user journey simulation that complements k6 load testing
 
 config:
-  target: "{{ $processEnvironment.BASE_URL || 'http://localhost:3000' }}"
-  phases:
-    # CONTEXT7 SOURCE: /grafana/k6-docs - Multi-phase load testing for realistic traffic patterns
-    # PHASE REASON: Model actual FAQ usage patterns throughout the day
-    - duration: 300  # 5 minutes - Morning initial usage
-      arrivalRate: 10
-      name: "morning_faq_browsing"
-    - duration: 600  # 10 minutes - Mid-morning peak (exam preparation queries)
+ target: "{{ $processEnvironment.BASE_URL || 'http://localhost:3000' }}"
+ phases:
+  # CONTEXT7 SOURCE: /grafana/k6-docs - Multi-phase load testing for realistic traffic patterns
+  # PHASE REASON: Model actual FAQ usage patterns throughout the day
+  - duration: 300 # 5 minutes - Morning initial usage
+    arrivalRate: 10
+    name: 'morning_faq_browsing'
+  - duration: 600 # 10 minutes - Mid-morning peak (exam preparation queries)
+    arrivalRate: 25
+    name: 'exam_preparation_peak'
+  - duration: 900 # 15 minutes - Lunch hour royal client queries
+    arrivalRate: 40
+    name: 'royal_client_lunch_hour'
+  - duration: 1200 # 20 minutes - Afternoon sustained load
+    arrivalRate: 35
+    name: 'afternoon_sustained_usage'
+  - duration: 600 # 10 minutes - Evening wind-down
+    arrivalRate: 15
+    name: 'evening_wind_down'
+
+ # CONTEXT7 SOURCE: /grafana/k6-docs - Performance thresholds for complex user journeys
+ # THRESHOLD REASON: End-to-end user journey performance must meet royal client standards
+ ensure:
+  thresholds:
+   - http.response_time.p95: 200 # 95% of responses under 200ms
+   - http.response_time.p99: 500 # 99% under 500ms for consistency
+   - http.response_time.max: 2000 # Maximum 2s for any request
+   - http.request_rate: 40 # Sustain 40 requests/second
+  conditions:
+   - expression: 'http.codes.200 > 99.5' # 99.5%+ success rate
+     strict: false
+   - expression: 'http.codes.4xx < 0.1' # <0.1% client errors
+     strict: true
+   - expression: 'http.codes.5xx < 0.01' # <0.01% server errors
+     strict: true
+
+ # CONTEXT7 SOURCE: /grafana/k6-docs - Artillery.js environment configuration
+ # CONFIGURATION REASON: Flexible test configuration for different environments
+ environments:
+  production:
+   target: '{{ $processEnvironment.PROD_URL }}'
+   phases:
+    - duration: 600
+      arrivalRate: 50 # Higher load for production testing
+  staging:
+   target: '{{ $processEnvironment.STAGING_URL }}'
+   phases:
+    - duration: 300
       arrivalRate: 25
-      name: "exam_preparation_peak"
-    - duration: 900  # 15 minutes - Lunch hour royal client queries
-      arrivalRate: 40  
-      name: "royal_client_lunch_hour"
-    - duration: 1200 # 20 minutes - Afternoon sustained load
-      arrivalRate: 35
-      name: "afternoon_sustained_usage"
-    - duration: 600  # 10 minutes - Evening wind-down
-      arrivalRate: 15
-      name: "evening_wind_down"
-  
-  # CONTEXT7 SOURCE: /grafana/k6-docs - Performance thresholds for complex user journeys
-  # THRESHOLD REASON: End-to-end user journey performance must meet royal client standards
-  ensure:
-    thresholds:
-      - http.response_time.p95: 200  # 95% of responses under 200ms
-      - http.response_time.p99: 500  # 99% under 500ms for consistency
-      - http.response_time.max: 2000 # Maximum 2s for any request
-      - http.request_rate: 40        # Sustain 40 requests/second
-    conditions:
-      - expression: "http.codes.200 > 99.5"    # 99.5%+ success rate
-        strict: false
-      - expression: "http.codes.4xx < 0.1"     # <0.1% client errors
-        strict: true
-      - expression: "http.codes.5xx < 0.01"    # <0.01% server errors
-        strict: true
 
-  # CONTEXT7 SOURCE: /grafana/k6-docs - Artillery.js environment configuration
-  # CONFIGURATION REASON: Flexible test configuration for different environments
-  environments:
-    production:
-      target: "{{ $processEnvironment.PROD_URL }}"
-      phases:
-        - duration: 600
-          arrivalRate: 50  # Higher load for production testing
-    staging:
-      target: "{{ $processEnvironment.STAGING_URL }}"
-      phases:
-        - duration: 300
-          arrivalRate: 25
+ # CONTEXT7 SOURCE: /grafana/k6-docs - Plugin configuration for enhanced reporting
+ # PLUGIN REASON: Comprehensive metrics collection and analysis
+ plugins:
+  publish-metrics:
+   - type: 'statsd'
+     host: 'localhost'
+     port: 8125
+     prefix: 'faq.artillery'
+  ensure: {}
+  metrics-by-endpoint: {}
 
-  # CONTEXT7 SOURCE: /grafana/k6-docs - Plugin configuration for enhanced reporting
-  # PLUGIN REASON: Comprehensive metrics collection and analysis
-  plugins:
-    publish-metrics:
-      - type: "statsd"
-        host: "localhost"
-        port: 8125
-        prefix: "faq.artillery"
-    ensure: {}
-    metrics-by-endpoint: {}
+ # CONTEXT7 SOURCE: /grafana/k6-docs - Artillery.js processor for custom logic
+ # PROCESSOR REASON: Custom test data generation and validation
+ processor: './faq-artillery-processor.js'
 
-  # CONTEXT7 SOURCE: /grafana/k6-docs - Artillery.js processor for custom logic
-  # PROCESSOR REASON: Custom test data generation and validation
-  processor: "./faq-artillery-processor.js"
-
-  # CONTEXT7 SOURCE: /grafana/k6-docs - Payload configuration for realistic test data
-  # PAYLOAD REASON: Dynamic test data generation for authentic user simulation
-  payload:
-    - path: "./data/faq-search-terms.csv"
-      fields:
-        - "search_term"
-        - "category"
-        - "user_type"
-        - "expected_results"
-    - path: "./data/royal-client-queries.csv"
-      fields:
-        - "royal_query"
-        - "service_tier"
-        - "urgency_level"
-        - "confidentiality_required"
+ # CONTEXT7 SOURCE: /grafana/k6-docs - Payload configuration for realistic test data
+ # PAYLOAD REASON: Dynamic test data generation for authentic user simulation
+ payload:
+  - path: './data/faq-search-terms.csv'
+    fields:
+     - 'search_term'
+     - 'category'
+     - 'user_type'
+     - 'expected_results'
+  - path: './data/royal-client-queries.csv'
+    fields:
+     - 'royal_query'
+     - 'service_tier'
+     - 'urgency_level'
+     - 'confidentiality_required'
 
 # CONTEXT7 SOURCE: /grafana/k6-docs - Complex FAQ user journey scenarios
 # SCENARIOS REASON: Model realistic multi-step user interactions with FAQ system
 scenarios:
-  # Royal Client Premium FAQ Journey
-  - weight: 30  # 30% of users follow royal client pattern
-    name: "Royal Client Premium FAQ Journey"
-    before:
-      # CONTEXT7 SOURCE: /grafana/k6-docs - User session setup with premium context
-      # SETUP REASON: Establish royal client context for personalized FAQ experience
-      - log: "Starting Royal Client FAQ Journey - Premium Service Tier"
-    flow:
-      # CONTEXT7 SOURCE: /grafana/k6-docs - Landing page with royal client identification
-      # LANDING REASON: Royal clients expect immediate premium content visibility
-      - get:
-          url: "/faq?tier=royal&source=direct"
-          headers:
-            User-Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 RoyalClient"
-            Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-            Accept-Language: "en-GB,en;q=0.9"
-            X-Client-Tier: "royal"
-          capture:
-            - json: "$.user_session_id"
-              as: "session_id"
-            - json: "$.csrf_token"
-              as: "csrf_token"
-          expect:
-            - statusCode: 200
-            - contentType: "text/html"
-            - hasHeader: "x-royal-client-detected"
-          think: 8  # Royal clients spend more time reviewing content
+ # Royal Client Premium FAQ Journey
+ - weight: 30 # 30% of users follow royal client pattern
+   name: 'Royal Client Premium FAQ Journey'
+   before:
+    # CONTEXT7 SOURCE: /grafana/k6-docs - User session setup with premium context
+    # SETUP REASON: Establish royal client context for personalized FAQ experience
+    - log: 'Starting Royal Client FAQ Journey - Premium Service Tier'
+   flow:
+    # CONTEXT7 SOURCE: /grafana/k6-docs - Landing page with royal client identification
+    # LANDING REASON: Royal clients expect immediate premium content visibility
+    - get:
+       url: '/faq?tier=royal&source=direct'
+       headers:
+        User-Agent:
+         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+         RoyalClient'
+        Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+        Accept-Language: 'en-GB,en;q=0.9'
+        X-Client-Tier: 'royal'
+       capture:
+        - json: '$.user_session_id'
+          as: 'session_id'
+        - json: '$.csrf_token'
+          as: 'csrf_token'
+       expect:
+        - statusCode: 200
+        - contentType: 'text/html'
+        - hasHeader: 'x-royal-client-detected'
+       think: 8 # Royal clients spend more time reviewing content
 
-      # Royal endorsement verification
-      - get:
-          url: "/api/faq/royal-endorsements"
-          headers:
-            X-Session-ID: "{{ session_id }}"
-            X-Client-Tier: "royal"
-            Accept: "application/json"
-          expect:
-            - statusCode: 200
-            - equals:
-              - "{{ json.verified }}"
-              - true
-          think: 5
+    # Royal endorsement verification
+    - get:
+       url: '/api/faq/royal-endorsements'
+       headers:
+        X-Session-ID: '{{ session_id }}'
+        X-Client-Tier: 'royal'
+        Accept: 'application/json'
+       expect:
+        - statusCode: 200
+        - equals:
+           - '{{ json.verified }}'
+           - true
+       think: 5
 
-      # Premium search with royal priority
-      - get:
-          url: "/api/faq/search?q={{ royal_query }}&tier=royal&priority=high"
-          headers:
-            X-Session-ID: "{{ session_id }}"
-            X-Client-Tier: "royal"
-            Content-Type: "application/json"
-          expect:
-            - statusCode: 200
-            - hasProperty: "results"
-            - equals:
-              - "{{ json.priority }}"
-              - "royal"
-          think: 12  # Thorough review of premium search results
+    # Premium search with royal priority
+    - get:
+       url: '/api/faq/search?q={{ royal_query }}&tier=royal&priority=high'
+       headers:
+        X-Session-ID: '{{ session_id }}'
+        X-Client-Tier: 'royal'
+        Content-Type: 'application/json'
+       expect:
+        - statusCode: 200
+        - hasProperty: 'results'
+        - equals:
+           - '{{ json.priority }}'
+           - 'royal'
+       think: 12 # Thorough review of premium search results
 
-      # Oxbridge preparation access (core royal client service)
-      - get:
-          url: "/api/faq/category/oxbridge-preparation"
-          headers:
-            X-Session-ID: "{{ session_id }}"
-            X-Service-Access: "premium"
-          expect:
-            - statusCode: 200
-            - contentLength: ">"
-            - contentType: "application/json"
-          think: 15  # Detailed review of Oxbridge content
+    # Oxbridge preparation access (core royal client service)
+    - get:
+       url: '/api/faq/category/oxbridge-preparation'
+       headers:
+        X-Session-ID: '{{ session_id }}'
+        X-Service-Access: 'premium'
+       expect:
+        - statusCode: 200
+        - contentLength: '>'
+        - contentType: 'application/json'
+       think: 15 # Detailed review of Oxbridge content
 
-      # Premium booking enquiry
-      - post:
-          url: "/api/faq/booking-enquiry"
-          headers:
-            X-Session-ID: "{{ session_id }}"
-            X-CSRF-Token: "{{ csrf_token }}"
-            Content-Type: "application/json"
-          json:
-            clientTier: "royal"
-            serviceType: "oxbridge-preparation"
-            urgency: "{{ urgency_level }}"
-            confidentiality: "{{ confidentiality_required }}"
-            budget: "premium"
-          expect:
-            - statusCode: [200, 202]  # Accept async processing
-            - hasProperty: "enquiry_id"
-          think: 5
+    # Premium booking enquiry
+    - post:
+       url: '/api/faq/booking-enquiry'
+       headers:
+        X-Session-ID: '{{ session_id }}'
+        X-CSRF-Token: '{{ csrf_token }}'
+        Content-Type: 'application/json'
+       json:
+        clientTier: 'royal'
+        serviceType: 'oxbridge-preparation'
+        urgency: '{{ urgency_level }}'
+        confidentiality: '{{ confidentiality_required }}'
+        budget: 'premium'
+       expect:
+        - statusCode: [200, 202] # Accept async processing
+        - hasProperty: 'enquiry_id'
+       think: 5
 
-  # Standard Client FAQ Journey
-  - weight: 50  # 50% standard client usage
-    name: "Standard Client FAQ Journey"
-    before:
-      - log: "Starting Standard Client FAQ Journey"
-    flow:
-      # Homepage access
-      - get:
-          url: "/faq"
-          headers:
-            User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-            Accept: "text/html,application/xhtml+xml"
-          capture:
-            - json: "$.session_id"
-              as: "session_id"
-          expect:
-            - statusCode: 200
-          think: 3
+ # Standard Client FAQ Journey
+ - weight: 50 # 50% standard client usage
+   name: 'Standard Client FAQ Journey'
+   before:
+    - log: 'Starting Standard Client FAQ Journey'
+   flow:
+    # Homepage access
+    - get:
+       url: '/faq'
+       headers:
+        User-Agent:
+         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        Accept: 'text/html,application/xhtml+xml'
+       capture:
+        - json: '$.session_id'
+          as: 'session_id'
+       expect:
+        - statusCode: 200
+       think: 3
 
-      # Category browsing
-      - get:
-          url: "/api/faq/category/{{ category }}"
-          headers:
-            Accept: "application/json"
-          expect:
-            - statusCode: 200
-            - hasProperty: "items"
-          think: 4
+    # Category browsing
+    - get:
+       url: '/api/faq/category/{{ category }}'
+       headers:
+        Accept: 'application/json'
+       expect:
+        - statusCode: 200
+        - hasProperty: 'items'
+       think: 4
 
-      # Standard search
-      - get:
-          url: "/api/faq/search?q={{ search_term }}"
-          headers:
-            Accept: "application/json"
-          expect:
-            - statusCode: 200
-            - hasProperty: "results"
-          think: 6
+    # Standard search
+    - get:
+       url: '/api/faq/search?q={{ search_term }}'
+       headers:
+        Accept: 'application/json'
+       expect:
+        - statusCode: 200
+        - hasProperty: 'results'
+       think: 6
 
-      # Popular FAQ access
-      - get:
-          url: "/api/faq/popular"
-          expect:
-            - statusCode: 200
-          think: 4
+    # Popular FAQ access
+    - get:
+       url: '/api/faq/popular'
+       expect:
+        - statusCode: 200
+       think: 4
 
-  # Mobile Accessibility Journey
-  - weight: 20  # 20% mobile accessibility users
-    name: "Mobile Accessibility FAQ Journey"
-    before:
-      - log: "Starting Mobile Accessibility FAQ Journey"
-    flow:
-      # Mobile-optimized homepage
-      - get:
-          url: "/faq?mobile=true&accessibility=enhanced"
-          headers:
-            User-Agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Safari/604.1"
-            Accept: "text/html,application/xhtml+xml"
-            X-Accessibility-Mode: "true"
-          capture:
-            - json: "$.session_id"
-              as: "mobile_session_id"
-          expect:
-            - statusCode: 200
-            - hasHeader: "x-mobile-optimized"
-          think: 5  # Mobile users often need more processing time
+ # Mobile Accessibility Journey
+ - weight: 20 # 20% mobile accessibility users
+   name: 'Mobile Accessibility FAQ Journey'
+   before:
+    - log: 'Starting Mobile Accessibility FAQ Journey'
+   flow:
+    # Mobile-optimized homepage
+    - get:
+       url: '/faq?mobile=true&accessibility=enhanced'
+       headers:
+        User-Agent:
+         'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)
+         AppleWebKit/605.1.15 Safari/604.1'
+        Accept: 'text/html,application/xhtml+xml'
+        X-Accessibility-Mode: 'true'
+       capture:
+        - json: '$.session_id'
+          as: 'mobile_session_id'
+       expect:
+        - statusCode: 200
+        - hasHeader: 'x-mobile-optimized'
+       think: 5 # Mobile users often need more processing time
 
-      # Accessibility features check
-      - get:
-          url: "/api/faq/accessibility-report"
-          headers:
-            X-Session-ID: "{{ mobile_session_id }}"
-            Accept: "application/json"
-          expect:
-            - statusCode: 200
-            - greaterThan:
-              - "{{ json.compliance_score }}"
-              - 95
-          think: 3
+    # Accessibility features check
+    - get:
+       url: '/api/faq/accessibility-report'
+       headers:
+        X-Session-ID: '{{ mobile_session_id }}'
+        Accept: 'application/json'
+       expect:
+        - statusCode: 200
+        - greaterThan:
+           - '{{ json.compliance_score }}'
+           - 95
+       think: 3
 
-      # Voice search (mobile accessibility feature)
-      - post:
-          url: "/api/faq/voice-search"
-          headers:
-            X-Session-ID: "{{ mobile_session_id }}"
-            Content-Type: "application/json"
-          json:
-            audioData: "mock_audio_data_placeholder"
-            language: "en-GB"
-            accessibility_mode: true
-          expect:
-            - statusCode: [200, 202]  # Accept async voice processing
-          think: 8  # Voice processing and review time
+    # Voice search (mobile accessibility feature)
+    - post:
+       url: '/api/faq/voice-search'
+       headers:
+        X-Session-ID: '{{ mobile_session_id }}'
+        Content-Type: 'application/json'
+       json:
+        audioData: 'mock_audio_data_placeholder'
+        language: 'en-GB'
+        accessibility_mode: true
+       expect:
+        - statusCode: [200, 202] # Accept async voice processing
+       think: 8 # Voice processing and review time
 
-      # High contrast mode toggle
-      - post:
-          url: "/api/faq/theme"
-          headers:
-            X-Session-ID: "{{ mobile_session_id }}"
-            Content-Type: "application/json"
-          json:
-            theme: "high_contrast"
-            accessibility: true
-          expect:
-            - statusCode: [200, 204]
-          think: 2
+    # High contrast mode toggle
+    - post:
+       url: '/api/faq/theme'
+       headers:
+        X-Session-ID: '{{ mobile_session_id }}'
+        Content-Type: 'application/json'
+       json:
+        theme: 'high_contrast'
+        accessibility: true
+       expect:
+        - statusCode: [200, 204]
+       think: 2
 
-      # Mobile-optimized search
-      - get:
-          url: "/api/faq/search?q={{ search_term }}&mobile=true&accessible=true"
-          headers:
-            X-Session-ID: "{{ mobile_session_id }}"
-            Accept: "application/json"
-          expect:
-            - statusCode: 200
-            - hasProperty: "mobile_optimized"
-          think: 6
+    # Mobile-optimized search
+    - get:
+       url: '/api/faq/search?q={{ search_term }}&mobile=true&accessible=true'
+       headers:
+        X-Session-ID: '{{ mobile_session_id }}'
+        Accept: 'application/json'
+       expect:
+        - statusCode: 200
+        - hasProperty: 'mobile_optimized'
+       think: 6
 
 # CONTEXT7 SOURCE: /grafana/k6-docs - Before/after hooks for test lifecycle management
 # HOOKS REASON: Setup and teardown for comprehensive test execution
 before:
-  flow:
-    # CONTEXT7 SOURCE: /grafana/k6-docs - Test environment validation
-    # VALIDATION REASON: Ensure FAQ system is ready for complex journey testing
-    - log: "FAQ Complex User Journey Test - Starting Environment Validation"
-    - get:
-        url: "/api/health"
-        expect:
-          - statusCode: 200
-          - hasProperty: "status"
-          - equals:
-            - "{{ json.status }}"
-            - "healthy"
-    - log: "Environment validated - FAQ system ready for complex user journeys"
+ flow:
+  # CONTEXT7 SOURCE: /grafana/k6-docs - Test environment validation
+  # VALIDATION REASON: Ensure FAQ system is ready for complex journey testing
+  - log: 'FAQ Complex User Journey Test - Starting Environment Validation'
+  - get:
+     url: '/api/health'
+     expect:
+      - statusCode: 200
+      - hasProperty: 'status'
+      - equals:
+         - '{{ json.status }}'
+         - 'healthy'
+  - log: 'Environment validated - FAQ system ready for complex user journeys'
 
 after:
-  flow:
-    # Test completion logging
-    - log: "FAQ Complex User Journey Test - Completed Successfully"
-    - get:
-        url: "/api/faq/test-metrics"
-        headers:
-          X-Test-Completion: "complex_user_journeys"
-        expect:
-          - statusCode: 200
+ flow:
+  # Test completion logging
+  - log: 'FAQ Complex User Journey Test - Completed Successfully'
+  - get:
+     url: '/api/faq/test-metrics'
+     headers:
+      X-Test-Completion: 'complex_user_journeys'
+     expect:
+      - statusCode: 200
 
 # CONTEXT7 SOURCE: /grafana/k6-docs - Custom think times for realistic user behavior
 # THINK TIME REASON: Model authentic user interaction patterns with FAQ content
 think:
-  # Dynamic think time based on user type and content complexity
-  default: 3
-  royal_client: 8    # Royal clients spend more time reviewing premium content
-  accessibility: 5   # Accessibility users need processing time
-  mobile: 4          # Mobile users may have slower interaction speeds
+ # Dynamic think time based on user type and content complexity
+ default: 3
+ royal_client: 8 # Royal clients spend more time reviewing premium content
+ accessibility: 5 # Accessibility users need processing time
+ mobile: 4 # Mobile users may have slower interaction speeds

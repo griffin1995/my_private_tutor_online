@@ -1,171 +1,171 @@
 {
-  "hero": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Everything you need to know about My Private Tutor Online",
-    "description": "Welcome to the My Private Tutor Online FAQ section. This guide offers detailed answers to the most commonly asked questions about our tutors, process, pricing, and more.",
-    "backgroundImageKey": "childWithLaptop"
-  },
+	"hero": {
+		"title": "Frequently Asked Questions",
+		"subtitle": "Everything you need to know about My Private Tutor Online",
+		"description": "Welcome to the My Private Tutor Online FAQ section. This guide offers detailed answers to the most commonly asked questions about our tutors, process, pricing, and more.",
+		"backgroundImageKey": "childWithLaptop"
+	},
 
-  "categories": [
-    {
-      "title": "About the Service",
-      "questions": [
-        {
-          "question": "What is My Private Tutor Online?",
-          "answer": "My Private Tutor Online is a boutique, specialist tutoring company founded in 2010 by Bristol-educated, Cambridge-accepted educator and ex-Forbes journalist Elizabeth Burrows. We deliver premium one-to-one tuition for students from KS1 to A-Level and IB. Our carefully selected tutors include Oxbridge graduates, experienced teachers, and official examiners."
-        },
-        {
-          "question": "Why do parents choose My Private Tutor Online?",
-          "answer": "Personalised Experience: Our model is highly curated. My Private Tutor Online was born from Elizabeth's personal network of colleagues she worked with throughout her international tutoring career. She personally guides the tutor selection process, ensuring every family receives attentive, professional service. Expert Examiners: Our Tier 1 tutors are official examiners who write and/or mark real 11+, GCSE, A-Level, and IB assessments. Their insight into the marking process gives our students a competitive edge. Track Record: We have deep expertise in UK education, having advised on secondary school entrance exams and university admissions, including Oxbridge. Outstanding Results: 11+ candidates often place in the top 2%, 94% of GCSE students improve by two or more grades, many jump from grade 5 to grade 8/9 in a matter of months."
-        },
-        {
-          "question": "What are the benefits of online tutoring?",
-          "answer": "Access to elite tutors from anywhere in the world (e.g. a student in Malaysia being coached for a Medicine application by a scientist working at the University of Oxford), flexible scheduling, use of interactive tools like whiteboards and screen-sharing, optional recorded lessons, and safe, secure learning from home."
-        },
-        {
-          "question": "Do you offer in-person tutoring?",
-          "answer": "Our focus is online tutoring to maximise quality and match. However, we do have a select group of trusted educators who offer in-person sessions in London. Please contact info@myprivatetutoronline.com to enquire about availability."
-        }
-      ]
-    },
-    {
-      "title": "Tutors & Teaching",  
-      "questions": [
-        {
-          "question": "How do the tutor tiers work?",
-          "answer": "Tier 1: Official examiners and senior educators (From £85/hour) – ideal for top grades and exam strategy. Tier 2: Qualified teachers with 5+ years of classroom experience (From £65/hour) – perfect for curriculum mastery and consistency. Tier 3: Graduate subject specialists from top UK universities (From £45/hour) – ideal for mentoring, confidence building, and foundational support. All tutoring starts from just £45 per hour. Unlike many other providers, we don't charge registration or administrative fees—you pay solely for your time with a carefully matched, dedicated tutor."
-        },
-        {
-          "question": "Which tutor tier is right for me or my child?",
-          "answer": "Tier 1 (From £85/hour): Official examiners and senior educators - Best for top grades and exam strategy. Tier 2 (From £65/hour): Qualified, experienced classroom teachers - Best for curriculum mastery and consistency. Tier 3 (From £45/hour): Exceptional graduates from top UK universities - Best for mentoring and building subject confidence."
-        },
-        {
-          "question": "What if I don't like my tutor?",
-          "answer": "No problem. We'll quickly match you with another educator until we find the ideal fit."
-        },
-        {
-          "question": "Do you have tutors for creative subjects too?",
-          "answer": "Yes. We provide expert tutoring in subjects like Art, Drama, Music, Creative Writing, Journalism, Media Studies, and Film. Many of these tutors are working professionals in their fields."
-        }
-      ]
-    },
-    {
-      "title": "Subjects & Curriculum",
-      "questions": [
-        {
-          "question": "What subjects do you offer tutoring in?",
-          "answer": "We cover all major academic and entrance exam subjects, including: Entrance exams: 4+, 7+, 11+, 13+, 16+. GL, CEM, ISEB, UKiset. Core subjects: English, Maths, Sciences. Languages: EFL, French, Spanish, German, Italian, Arabic, Mandarin, Russian. Humanities: History, Geography, Law, Religion, Philosophy. Sciences: Biology, Chemistry, Physics, Engineering, Computer Science. Social Sciences: Politics, Business, Economics, Psychology, Sociology. Arts: Drama, Music, Art, Public Speaking, Creative Writing, Film Studies. Higher education prep: UCAS, Oxbridge, Common App. Specialist tests: TMUA, LNAT, SAT/ACT, BMAT/UCAT. English language exams: IELTS, TOEFL, Cambridge English. SEN and mentoring support."
-        },
-        {
-          "question": "Do you cover international exam boards and US college applications?",
-          "answer": "Yes, we support students preparing for: IB, iGCSE, A Levels, French Baccalaureate, SATs, ACT, AP exams, UCAS, Common App, and Oxbridge applications."
-        },
-        {
-          "question": "Do you offer university admissions support?",
-          "answer": "Yes. Our support includes: Personal statement coaching, interview preparation, subject-specific entrance tests (e.g. UCAT, BMAT, LNAT, TMUA, ESAT), and Oxbridge and Ivy League strategy masterclasses."
-        }
-      ]
-    },
-    {
-      "title": "Progress & Results",
-      "questions": [
-        {
-          "question": "What are your success rates?",
-          "answer": "94% of GCSE students improve by at least two grades. Many progress from grade 5 to 8/9 within months. Consistent placements at Oxbridge and other top-tier universities."
-        },
-        {
-          "question": "Do you have recommendations or testimonials?",
-          "answer": "Yes. We're proud to be featured in Tatler's Address Book and listed as School Guide UK's top pick. Some verified feedback includes: 'We can't believe it—offers from St Paul's, Westminster, Highgate and UCS.' 'Jake jumped from a U to almost a B in just 3 weeks. More importantly, he believes in himself again.' 'The world of tutoring is a minefield, but your tutors are next level.' 'Our family is delighted—offers from Le Rosey confirmed for all three children.'"
-        },
-        {
-          "question": "How do we know if tutoring is making a difference?",
-          "answer": "Each tutor provides structured feedback, session summaries, and progress updates. Parents frequently report noticeable improvements in academic performance and motivation."
-        }
-      ]
-    },
-    {
-      "title": "Scheduling & Process",
-      "questions": [
-        {
-          "question": "How do I get started?",
-          "answer": "We keep the onboarding process simple: 1. Complete our enquiry form 2. Schedule a consultation with Elizabeth, our Founder 3. Receive a tailored tutor recommendation 4. Book an initial lesson 5. Begin regular sessions 6. Receive ongoing support and advice as your tutoring needs evolve"
-        },
-        {
-          "question": "Is there a way to track our tutoring schedule?",
-          "answer": "Yes. You'll receive access to your personal client dashboard where you can: View the lesson calendar, track progress reports, access invoices, and receive automated email reminders 36 hours before each session."
-        },
-        {
-          "question": "How do we manage the schedule?",
-          "answer": "Our admin team is always available to assist via email, phone and WhatsApp. Lessons can be rescheduled with at least 24 hours' notice. You'll receive automatic reminders to help stay on track."
-        },
-        {
-          "question": "Can I try a tutor before committing?",
-          "answer": "Yes. While we don't offer free trials, we encourage booking an obligation-free initial lesson to assess compatibility."
-        }
-      ]
-    },
-    {
-      "title": "Pricing & Payment",
-      "questions": [
-        {
-          "question": "How much does tutoring cost?",
-          "answer": "Bespoke 1-2-1 tutoring starts from just £45 per hour. Unlike many other providers, we don't charge registration, placement or administrative fees."
-        },
-        {
-          "question": "How do we pay and when?",
-          "answer": "You'll receive itemised invoices to pay via secure bank transfer within three working days. We require a £300 credit balance to be maintained throughout tuition. This can be applied towards your final invoice when tuition ends."
-        },
-        {
-          "question": "Can I track payments and attendance?",
-          "answer": "Yes. Your dashboard provides a transparent overview of lesson history, payments, and any credit balance."
-        },
-        {
-          "question": "Do you offer discounts?",
-          "answer": "Yes, discounts are available for: Block bookings (15+ lessons/month) and sibling enrolment."
-        },
-        {
-          "question": "Do you offer a referral scheme?",
-          "answer": "Absolutely. For each family you refer who books a minimum of three lessons, you'll receive one free lesson credit as a thank-you."
-        }
-      ]
-    },
-    {
-      "title": "Other Questions",
-      "questions": [
-        {
-          "question": "How are tutors selected and verified?",
-          "answer": "All our tutors come from the highest academic backgrounds, specialising in a full array of subjects at all levels. We work with a small group of highly trusted tutors from Elizabeth's personal network and only actively seek out new tutors when our clients have specific needs. When we do look to introduce new educators to the pool they are carefully screened, DBS checked and personally interviewed by Elizabeth. Our recruitment process is in-depth; less than 10% of tutors who apply to our exclusive network are accepted."
-        },
-        {
-          "question": "Do you have a safeguarding policy?",
-          "answer": "Yes. Safeguarding is a top priority. All tutors are DBS-checked and our full safeguarding policy is available upon request."
-        },
-        {
-          "question": "What is your cancellation policy?",
-          "answer": "Lessons cancelled with more than 24 hours' notice incur no charge. Cancellations within 24 hours are charged in full. We require a minimum of three weeks notice in writing to terminate regular tutoring arrangements."
-        },
-        {
-          "question": "I have more questions. What should I do?",
-          "answer": "We're happy to help. Please email us at info@myprivatetutoronline.com or submit an enquiry form to schedule a consultation."
-        }
-      ]
-    }
-  ],
+	"categories": [
+		{
+			"title": "About the Service",
+			"questions": [
+				{
+					"question": "What is My Private Tutor Online?",
+					"answer": "My Private Tutor Online is a boutique, specialist tutoring company founded in 2010 by Bristol-educated, Cambridge-accepted educator and ex-Forbes journalist Elizabeth Burrows. We deliver premium one-to-one tuition for students from KS1 to A-Level and IB. Our carefully selected tutors include Oxbridge graduates, experienced teachers, and official examiners."
+				},
+				{
+					"question": "Why do parents choose My Private Tutor Online?",
+					"answer": "Personalised Experience: Our model is highly curated. My Private Tutor Online was born from Elizabeth's personal network of colleagues she worked with throughout her international tutoring career. She personally guides the tutor selection process, ensuring every family receives attentive, professional service. Expert Examiners: Our Tier 1 tutors are official examiners who write and/or mark real 11+, GCSE, A-Level, and IB assessments. Their insight into the marking process gives our students a competitive edge. Track Record: We have deep expertise in UK education, having advised on secondary school entrance exams and university admissions, including Oxbridge. Outstanding Results: 11+ candidates often place in the top 2%, 94% of GCSE students improve by two or more grades, many jump from grade 5 to grade 8/9 in a matter of months."
+				},
+				{
+					"question": "What are the benefits of online tutoring?",
+					"answer": "Access to elite tutors from anywhere in the world (e.g. a student in Malaysia being coached for a Medicine application by a scientist working at the University of Oxford), flexible scheduling, use of interactive tools like whiteboards and screen-sharing, optional recorded lessons, and safe, secure learning from home."
+				},
+				{
+					"question": "Do you offer in-person tutoring?",
+					"answer": "Our focus is online tutoring to maximise quality and match. However, we do have a select group of trusted educators who offer in-person sessions in London. Please contact info@myprivatetutoronline.com to enquire about availability."
+				}
+			]
+		},
+		{
+			"title": "Tutors & Teaching",
+			"questions": [
+				{
+					"question": "How do the tutor tiers work?",
+					"answer": "Tier 1: Official examiners and senior educators (From £85/hour) – ideal for top grades and exam strategy. Tier 2: Qualified teachers with 5+ years of classroom experience (From £65/hour) – perfect for curriculum mastery and consistency. Tier 3: Graduate subject specialists from top UK universities (From £45/hour) – ideal for mentoring, confidence building, and foundational support. All tutoring starts from just £45 per hour. Unlike many other providers, we don't charge registration or administrative fees—you pay solely for your time with a carefully matched, dedicated tutor."
+				},
+				{
+					"question": "Which tutor tier is right for me or my child?",
+					"answer": "Tier 1 (From £85/hour): Official examiners and senior educators - Best for top grades and exam strategy. Tier 2 (From £65/hour): Qualified, experienced classroom teachers - Best for curriculum mastery and consistency. Tier 3 (From £45/hour): Exceptional graduates from top UK universities - Best for mentoring and building subject confidence."
+				},
+				{
+					"question": "What if I don't like my tutor?",
+					"answer": "No problem. We'll quickly match you with another educator until we find the ideal fit."
+				},
+				{
+					"question": "Do you have tutors for creative subjects too?",
+					"answer": "Yes. We provide expert tutoring in subjects like Art, Drama, Music, Creative Writing, Journalism, Media Studies, and Film. Many of these tutors are working professionals in their fields."
+				}
+			]
+		},
+		{
+			"title": "Subjects & Curriculum",
+			"questions": [
+				{
+					"question": "What subjects do you offer tutoring in?",
+					"answer": "We cover all major academic and entrance exam subjects, including: Entrance exams: 4+, 7+, 11+, 13+, 16+. GL, CEM, ISEB, UKiset. Core subjects: English, Maths, Sciences. Languages: EFL, French, Spanish, German, Italian, Arabic, Mandarin, Russian. Humanities: History, Geography, Law, Religion, Philosophy. Sciences: Biology, Chemistry, Physics, Engineering, Computer Science. Social Sciences: Politics, Business, Economics, Psychology, Sociology. Arts: Drama, Music, Art, Public Speaking, Creative Writing, Film Studies. Higher education prep: UCAS, Oxbridge, Common App. Specialist tests: TMUA, LNAT, SAT/ACT, BMAT/UCAT. English language exams: IELTS, TOEFL, Cambridge English. SEN and mentoring support."
+				},
+				{
+					"question": "Do you cover international exam boards and US college applications?",
+					"answer": "Yes, we support students preparing for: IB, iGCSE, A Levels, French Baccalaureate, SATs, ACT, AP exams, UCAS, Common App, and Oxbridge applications."
+				},
+				{
+					"question": "Do you offer university admissions support?",
+					"answer": "Yes. Our support includes: Personal statement coaching, interview preparation, subject-specific entrance tests (e.g. UCAT, BMAT, LNAT, TMUA, ESAT), and Oxbridge and Ivy League strategy masterclasses."
+				}
+			]
+		},
+		{
+			"title": "Progress & Results",
+			"questions": [
+				{
+					"question": "What are your success rates?",
+					"answer": "94% of GCSE students improve by at least two grades. Many progress from grade 5 to 8/9 within months. Consistent placements at Oxbridge and other top-tier universities."
+				},
+				{
+					"question": "Do you have recommendations or testimonials?",
+					"answer": "Yes. We're proud to be featured in Tatler's Address Book and listed as School Guide UK's top pick. Some verified feedback includes: 'We can't believe it—offers from St Paul's, Westminster, Highgate and UCS.' 'Jake jumped from a U to almost a B in just 3 weeks. More importantly, he believes in himself again.' 'The world of tutoring is a minefield, but your tutors are next level.' 'Our family is delighted—offers from Le Rosey confirmed for all three children.'"
+				},
+				{
+					"question": "How do we know if tutoring is making a difference?",
+					"answer": "Each tutor provides structured feedback, session summaries, and progress updates. Parents frequently report noticeable improvements in academic performance and motivation."
+				}
+			]
+		},
+		{
+			"title": "Scheduling & Process",
+			"questions": [
+				{
+					"question": "How do I get started?",
+					"answer": "We keep the onboarding process simple: 1. Complete our enquiry form 2. Schedule a consultation with Elizabeth, our Founder 3. Receive a tailored tutor recommendation 4. Book an initial lesson 5. Begin regular sessions 6. Receive ongoing support and advice as your tutoring needs evolve"
+				},
+				{
+					"question": "Is there a way to track our tutoring schedule?",
+					"answer": "Yes. You'll receive access to your personal client dashboard where you can: View the lesson calendar, track progress reports, access invoices, and receive automated email reminders 36 hours before each session."
+				},
+				{
+					"question": "How do we manage the schedule?",
+					"answer": "Our admin team is always available to assist via email, phone and WhatsApp. Lessons can be rescheduled with at least 24 hours' notice. You'll receive automatic reminders to help stay on track."
+				},
+				{
+					"question": "Can I try a tutor before committing?",
+					"answer": "Yes. While we don't offer free trials, we encourage booking an obligation-free initial lesson to assess compatibility."
+				}
+			]
+		},
+		{
+			"title": "Pricing & Payment",
+			"questions": [
+				{
+					"question": "How much does tutoring cost?",
+					"answer": "Bespoke 1-2-1 tutoring starts from just £45 per hour. Unlike many other providers, we don't charge registration, placement or administrative fees."
+				},
+				{
+					"question": "How do we pay and when?",
+					"answer": "You'll receive itemised invoices to pay via secure bank transfer within three working days. We require a £300 credit balance to be maintained throughout tuition. This can be applied towards your final invoice when tuition ends."
+				},
+				{
+					"question": "Can I track payments and attendance?",
+					"answer": "Yes. Your dashboard provides a transparent overview of lesson history, payments, and any credit balance."
+				},
+				{
+					"question": "Do you offer discounts?",
+					"answer": "Yes, discounts are available for: Block bookings (15+ lessons/month) and sibling enrolment."
+				},
+				{
+					"question": "Do you offer a referral scheme?",
+					"answer": "Absolutely. For each family you refer who books a minimum of three lessons, you'll receive one free lesson credit as a thank-you."
+				}
+			]
+		},
+		{
+			"title": "Other Questions",
+			"questions": [
+				{
+					"question": "How are tutors selected and verified?",
+					"answer": "All our tutors come from the highest academic backgrounds, specialising in a full array of subjects at all levels. We work with a small group of highly trusted tutors from Elizabeth's personal network and only actively seek out new tutors when our clients have specific needs. When we do look to introduce new educators to the pool they are carefully screened, DBS checked and personally interviewed by Elizabeth. Our recruitment process is in-depth; less than 10% of tutors who apply to our exclusive network are accepted."
+				},
+				{
+					"question": "Do you have a safeguarding policy?",
+					"answer": "Yes. Safeguarding is a top priority. All tutors are DBS-checked and our full safeguarding policy is available upon request."
+				},
+				{
+					"question": "What is your cancellation policy?",
+					"answer": "Lessons cancelled with more than 24 hours' notice incur no charge. Cancellations within 24 hours are charged in full. We require a minimum of three weeks notice in writing to terminate regular tutoring arrangements."
+				},
+				{
+					"question": "I have more questions. What should I do?",
+					"answer": "We're happy to help. Please email us at info@myprivatetutoronline.com or submit an enquiry form to schedule a consultation."
+				}
+			]
+		}
+	],
 
-  "contact": {
-    "title": "Still Have Questions?",
-    "description": "Our team is always happy to help. Get in touch to discuss your specific needs or schedule a consultation with Elizabeth.",
-    "buttons": [
-      {
-        "text": "Schedule Consultation",
-        "type": "primary",
-        "href": "/consultation"
-      },
-      {
-        "text": "Email Our Team",
-        "type": "secondary",
-        "action": "contactEmail"
-      }
-    ]
-  }
+	"contact": {
+		"title": "Still Have Questions?",
+		"description": "Our team is always happy to help. Get in touch to discuss your specific needs or schedule a consultation with Elizabeth.",
+		"buttons": [
+			{
+				"text": "Schedule Consultation",
+				"type": "primary",
+				"href": "/consultation"
+			},
+			{
+				"text": "Email Our Team",
+				"type": "secondary",
+				"action": "contactEmail"
+			}
+		]
+	}
 }

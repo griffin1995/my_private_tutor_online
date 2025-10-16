@@ -2,45 +2,46 @@ const fs = require('fs');
 const path = require('path');
 
 async function generateAuditReport() {
-  const reportsDir = 'reports/audits';
-  const timestamp = new Date().toISOString();
+	const reportsDir = 'reports/audits';
+	const timestamp = new Date().toISOString();
 
-  // Ensure reports directory exists
-  if (!fs.existsSync(reportsDir)) {
-    console.log('⚠️  No audit reports found. Run audit:full first.');
-    return;
-  }
+	// Ensure reports directory exists
+	if (!fs.existsSync(reportsDir)) {
+		console.log('⚠️  No audit reports found. Run audit:full first.');
+		return;
+	}
 
-  let cssAnalysis = {};
-  let colors = [];
+	let cssAnalysis = {};
+	let colors = [];
 
-  // Read CSS analysis if exists
-  const cssAnalysisPath = `${reportsDir}/css-analysis.json`;
-  if (fs.existsSync(cssAnalysisPath)) {
-    try {
-      cssAnalysis = JSON.parse(fs.readFileSync(cssAnalysisPath, 'utf8'));
-    } catch (e) {
-      console.warn('Could not parse CSS analysis:', e.message);
-    }
-  }
+	// Read CSS analysis if exists
+	const cssAnalysisPath = `${reportsDir}/css-analysis.json`;
+	if (fs.existsSync(cssAnalysisPath)) {
+		try {
+			cssAnalysis = JSON.parse(fs.readFileSync(cssAnalysisPath, 'utf8'));
+		} catch (e) {
+			console.warn('Could not parse CSS analysis:', e.message);
+		}
+	}
 
-  // Read colors if exists
-  const colorsPath = `${reportsDir}/colors.json`;
-  if (fs.existsSync(colorsPath)) {
-    try {
-      colors = JSON.parse(fs.readFileSync(colorsPath, 'utf8'));
-    } catch (e) {
-      console.warn('Could not parse colors:', e.message);
-    }
-  }
+	// Read colors if exists
+	const colorsPath = `${reportsDir}/colors.json`;
+	if (fs.existsSync(colorsPath)) {
+		try {
+			colors = JSON.parse(fs.readFileSync(colorsPath, 'utf8'));
+		} catch (e) {
+			console.warn('Could not parse colors:', e.message);
+		}
+	}
 
-  // Extract values from Wallace analysis structure
-  const uniqueColors = cssAnalysis?.stylesheet?.embeddedContent?.types?.totalUnique || 0;
-  const fontFamilies = cssAnalysis?.atrules?.fontface?.totalUnique || 0;
-  const selectors = cssAnalysis?.selectors?.totalUnique || 0;
-  const rules = cssAnalysis?.rules?.total || 0;
+	// Extract values from Wallace analysis structure
+	const uniqueColors =
+		cssAnalysis?.stylesheet?.embeddedContent?.types?.totalUnique || 0;
+	const fontFamilies = cssAnalysis?.atrules?.fontface?.totalUnique || 0;
+	const selectors = cssAnalysis?.selectors?.totalUnique || 0;
+	const rules = cssAnalysis?.rules?.total || 0;
 
-  const report = `
+	const report = `
 # Design System Audit Report - My Private Tutor Online
 Generated: ${timestamp}
 
@@ -57,7 +58,10 @@ Generated: ${timestamp}
 - Status: ${colors.length > 25 ? '⚠️  **EXCEEDS THRESHOLD** - Recommend consolidation' : '✅ **WITHIN LIMITS**'}
 
 ### Color Distribution
-${colors.slice(0, 10).map(c => `- ${c.color}`).join('\n')}
+${colors
+	.slice(0, 10)
+	.map((c) => `- ${c.color}`)
+	.join('\n')}
 ${colors.length > 10 ? `\n... and ${colors.length - 10} more colors` : ''}
 
 ## Typography Analysis
@@ -84,14 +88,14 @@ ${colors.length > 25 ? '1. **Color Consolidation**: Reduce color palette to 25 o
 4. Implement automated design consistency checks in CI/CD
   `;
 
-  const reportPath = `${reportsDir}/audit-report-${Date.now()}.md`;
-  fs.writeFileSync(reportPath, report);
-  console.log('✅ Audit report generated:', reportPath);
-  console.log('\nKey Metrics:');
-  console.log(`  - Colors: ${colors.length} (target: ≤25)`);
-  console.log(`  - Font Families: ${fontFamilies} (target: ≤3)`);
-  console.log(`  - CSS Rules: ${rules}`);
-  console.log(`  - Unique Selectors: ${selectors}`);
+	const reportPath = `${reportsDir}/audit-report-${Date.now()}.md`;
+	fs.writeFileSync(reportPath, report);
+	console.log('✅ Audit report generated:', reportPath);
+	console.log('\nKey Metrics:');
+	console.log(`  - Colors: ${colors.length} (target: ≤25)`);
+	console.log(`  - Font Families: ${fontFamilies} (target: ≤3)`);
+	console.log(`  - CSS Rules: ${rules}`);
+	console.log(`  - Unique Selectors: ${selectors}`);
 }
 
 generateAuditReport().catch(console.error);

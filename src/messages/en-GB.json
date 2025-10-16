@@ -1,114 +1,114 @@
 {
-  "Common": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "search": "Search",
-    "cancel": "Cancel",
-    "save": "Save",
-    "edit": "Edit",
-    "delete": "Delete",
-    "close": "Close",
-    "back": "Back",
-    "next": "Next",
-    "previous": "Previous",
-    "submit": "Submit",
-    "reset": "Reset"
-  },
-  "Navigation": {
-    "home": "Home",
-    "about": "About",
-    "services": "Services", 
-    "faq": "FAQ",
-    "contact": "Contact",
-    "menu": "Menu",
-    "closeMenu": "Close menu",
-    "skipToContent": "Skip to main content"
-  },
-  "LanguageSwitcher": {
-    "selectLanguage": "Select language",
-    "currentLanguage": "Current language",
-    "switchTo": "Switch to {language}",
-    "languages": "Languages"
-  },
-  "FAQ": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Expert Guidance for Your Academic Journey",
-    "description": "Find answers to common questions about our premium tutoring services, from admissions support to personalised learning programmes.",
-    "searchPlaceholder": "Search FAQ questions...",
-    "searchResults": "Search Results",
-    "noResults": "No results found for \"{query}\"",
-    "noResultsDescription": "Try adjusting your search terms or browse our categories below.",
-    "categories": "Categories",
-    "quickSearch": "Quick Search",
-    "backToTop": "Back to Top",
-    "printFAQ": "Print FAQ",
-    "contactUs": "Contact Us",
-    "showAll": "Show All Questions",
-    "hideAll": "Hide All Questions",
-    "readMore": "Read more",
-    "readLess": "Read less",
-    "lastUpdated": "Last updated: {date}",
-    "helpfulQuestion": "Was this helpful?",
-    "yes": "Yes",
-    "no": "No",
-    "thankYou": "Thank you for your feedback!",
-    "relatedQuestions": "Related Questions",
-    "popularQuestions": "Popular Questions",
-    "recentlyUpdated": "Recently Updated"
-  },
-  "FAQCategories": {
-    "general": "General Information",
-    "generalDescription": "Basic information about our services and approach",
-    "tutoring": "Tutoring Services", 
-    "tutoringDescription": "Questions about our tutoring programmes and methods",
-    "admissions": "Admissions Support",
-    "admissionsDescription": "University and school admissions guidance",
-    "pricing": "Pricing & Packages",
-    "pricingDescription": "Information about our fees and service packages",
-    "technical": "Technical Support",
-    "technicalDescription": "Help with our online platform and technical issues",
-    "booking": "Booking & Scheduling",
-    "bookingDescription": "How to book sessions and manage your schedule"
-  },
-  "FAQQuestions": {
-    "whatIsTutoring": "What makes your tutoring different from others?",
-    "whatIsTutoringAnswer": "Our tutoring is distinguished by our royal endorsements, 15 years of excellence, and personalised approach. We match students with expert educators who specialise in their specific needs, whether that's Oxbridge preparation, 11+ support, or A-Level excellence.",
-    
-    "howBookSession": "How do I book a tutoring session?",
-    "howBookSessionAnswer": "Booking is simple through our online platform. You can select your preferred tutor, choose available time slots, and book instantly. We also offer a free consultation to discuss your specific requirements and match you with the perfect educator.",
-    
-    "whatSubjects": "What subjects do you cover?",
-    "whatSubjectsAnswer": "We cover all major academic subjects including Mathematics, English, Sciences (Biology, Chemistry, Physics), Languages, History, Geography, and specialised areas like Economics and Psychology. We also provide specific preparation for entrance exams and university applications.",
-    
-    "onlineInPerson": "Do you offer both online and in-person tutoring?",
-    "onlineInPersonAnswer": "Yes, we offer both flexible online tutoring through our advanced virtual classroom platform and in-person tutoring for clients in London and surrounding areas. Our online sessions are just as effective, using interactive tools and personalised attention.",
-    
-    "tutorQualifications": "What are your tutors' qualifications?",
-    "tutorQualificationsAnswer": "All our tutors hold relevant degrees from prestigious universities, many with postgraduate qualifications. They undergo rigorous screening including academic verification, background checks, and teaching assessments. Many have teaching experience in top independent schools.",
-    
-    "pricingStructure": "How is your pricing structured?",
-    "pricingStructureAnswer": "Our pricing reflects the premium quality of our service, starting from £60 per hour for standard tutoring. We offer package deals for regular sessions and specialised programmes like Oxbridge preparation may have different rates. Contact us for a personalised quote.",
-    
-    "cancellationPolicy": "What is your cancellation policy?",
-    "cancellationPolicyAnswer": "We require 24 hours' notice for cancellations to avoid charges. For short-notice cancellations due to genuine emergencies, we handle these on a case-by-case basis. Regular clients benefit from more flexible arrangements.",
-    
-    "progressTracking": "How do you track student progress?",
-    "progressTrackingAnswer": "We provide detailed progress reports after each session, including areas covered, strengths identified, and recommendations for improvement. Parents receive regular updates and have access to our online portal to monitor their child's development.",
-    
-    "groupSessions": "Do you offer group tutoring sessions?",
-    "groupSessionsAnswer": "Yes, we offer small group sessions (2-4 students) at reduced rates per student. These work particularly well for exam preparation and allow students to learn from each other whilst receiving expert guidance.",
-    
-    "emergencySupport": "Can I get last-minute tutoring support?",
-    "emergencySupportAnswer": "Subject to tutor availability, we can arrange urgent tutoring sessions. We understand that academic needs can arise unexpectedly, especially during exam periods. Contact us and we'll do our best to accommodate urgent requests."
-  },
-  "ContactSection": {
-    "title": "Still Need Help?",
-    "description": "Can't find the answer you're looking for? Our expert team is here to help with personalised guidance for your academic journey.",
-    "getInTouch": "Get in Touch",
-    "phone": "Phone",
-    "email": "Email", 
-    "consultationButton": "Book Free Consultation",
-    "consultationDescription": "Schedule a complimentary 15-minute consultation to discuss your specific requirements.",
-    "responseTime": "We typically respond within 2 hours during business hours."
-  }
+	"Common": {
+		"loading": "Loading...",
+		"error": "An error occurred",
+		"search": "Search",
+		"cancel": "Cancel",
+		"save": "Save",
+		"edit": "Edit",
+		"delete": "Delete",
+		"close": "Close",
+		"back": "Back",
+		"next": "Next",
+		"previous": "Previous",
+		"submit": "Submit",
+		"reset": "Reset"
+	},
+	"Navigation": {
+		"home": "Home",
+		"about": "About",
+		"services": "Services",
+		"faq": "FAQ",
+		"contact": "Contact",
+		"menu": "Menu",
+		"closeMenu": "Close menu",
+		"skipToContent": "Skip to main content"
+	},
+	"LanguageSwitcher": {
+		"selectLanguage": "Select language",
+		"currentLanguage": "Current language",
+		"switchTo": "Switch to {language}",
+		"languages": "Languages"
+	},
+	"FAQ": {
+		"title": "Frequently Asked Questions",
+		"subtitle": "Expert Guidance for Your Academic Journey",
+		"description": "Find answers to common questions about our premium tutoring services, from admissions support to personalised learning programmes.",
+		"searchPlaceholder": "Search FAQ questions...",
+		"searchResults": "Search Results",
+		"noResults": "No results found for \"{query}\"",
+		"noResultsDescription": "Try adjusting your search terms or browse our categories below.",
+		"categories": "Categories",
+		"quickSearch": "Quick Search",
+		"backToTop": "Back to Top",
+		"printFAQ": "Print FAQ",
+		"contactUs": "Contact Us",
+		"showAll": "Show All Questions",
+		"hideAll": "Hide All Questions",
+		"readMore": "Read more",
+		"readLess": "Read less",
+		"lastUpdated": "Last updated: {date}",
+		"helpfulQuestion": "Was this helpful?",
+		"yes": "Yes",
+		"no": "No",
+		"thankYou": "Thank you for your feedback!",
+		"relatedQuestions": "Related Questions",
+		"popularQuestions": "Popular Questions",
+		"recentlyUpdated": "Recently Updated"
+	},
+	"FAQCategories": {
+		"general": "General Information",
+		"generalDescription": "Basic information about our services and approach",
+		"tutoring": "Tutoring Services",
+		"tutoringDescription": "Questions about our tutoring programmes and methods",
+		"admissions": "Admissions Support",
+		"admissionsDescription": "University and school admissions guidance",
+		"pricing": "Pricing & Packages",
+		"pricingDescription": "Information about our fees and service packages",
+		"technical": "Technical Support",
+		"technicalDescription": "Help with our online platform and technical issues",
+		"booking": "Booking & Scheduling",
+		"bookingDescription": "How to book sessions and manage your schedule"
+	},
+	"FAQQuestions": {
+		"whatIsTutoring": "What makes your tutoring different from others?",
+		"whatIsTutoringAnswer": "Our tutoring is distinguished by our royal endorsements, 15 years of excellence, and personalised approach. We match students with expert educators who specialise in their specific needs, whether that's Oxbridge preparation, 11+ support, or A-Level excellence.",
+
+		"howBookSession": "How do I book a tutoring session?",
+		"howBookSessionAnswer": "Booking is simple through our online platform. You can select your preferred tutor, choose available time slots, and book instantly. We also offer a free consultation to discuss your specific requirements and match you with the perfect educator.",
+
+		"whatSubjects": "What subjects do you cover?",
+		"whatSubjectsAnswer": "We cover all major academic subjects including Mathematics, English, Sciences (Biology, Chemistry, Physics), Languages, History, Geography, and specialised areas like Economics and Psychology. We also provide specific preparation for entrance exams and university applications.",
+
+		"onlineInPerson": "Do you offer both online and in-person tutoring?",
+		"onlineInPersonAnswer": "Yes, we offer both flexible online tutoring through our advanced virtual classroom platform and in-person tutoring for clients in London and surrounding areas. Our online sessions are just as effective, using interactive tools and personalised attention.",
+
+		"tutorQualifications": "What are your tutors' qualifications?",
+		"tutorQualificationsAnswer": "All our tutors hold relevant degrees from prestigious universities, many with postgraduate qualifications. They undergo rigorous screening including academic verification, background checks, and teaching assessments. Many have teaching experience in top independent schools.",
+
+		"pricingStructure": "How is your pricing structured?",
+		"pricingStructureAnswer": "Our pricing reflects the premium quality of our service, starting from £60 per hour for standard tutoring. We offer package deals for regular sessions and specialised programmes like Oxbridge preparation may have different rates. Contact us for a personalised quote.",
+
+		"cancellationPolicy": "What is your cancellation policy?",
+		"cancellationPolicyAnswer": "We require 24 hours' notice for cancellations to avoid charges. For short-notice cancellations due to genuine emergencies, we handle these on a case-by-case basis. Regular clients benefit from more flexible arrangements.",
+
+		"progressTracking": "How do you track student progress?",
+		"progressTrackingAnswer": "We provide detailed progress reports after each session, including areas covered, strengths identified, and recommendations for improvement. Parents receive regular updates and have access to our online portal to monitor their child's development.",
+
+		"groupSessions": "Do you offer group tutoring sessions?",
+		"groupSessionsAnswer": "Yes, we offer small group sessions (2-4 students) at reduced rates per student. These work particularly well for exam preparation and allow students to learn from each other whilst receiving expert guidance.",
+
+		"emergencySupport": "Can I get last-minute tutoring support?",
+		"emergencySupportAnswer": "Subject to tutor availability, we can arrange urgent tutoring sessions. We understand that academic needs can arise unexpectedly, especially during exam periods. Contact us and we'll do our best to accommodate urgent requests."
+	},
+	"ContactSection": {
+		"title": "Still Need Help?",
+		"description": "Can't find the answer you're looking for? Our expert team is here to help with personalised guidance for your academic journey.",
+		"getInTouch": "Get in Touch",
+		"phone": "Phone",
+		"email": "Email",
+		"consultationButton": "Book Free Consultation",
+		"consultationDescription": "Schedule a complimentary 15-minute consultation to discuss your specific requirements.",
+		"responseTime": "We typically respond within 2 hours during business hours."
+	}
 }

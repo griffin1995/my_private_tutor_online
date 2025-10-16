@@ -1,114 +1,105 @@
 {
-  "compilerOptions": {
-    // CONTEXT7 SOURCE: /microsoft/typescript - Performance-optimized build configuration
-    // OPTIMIZATION REASON: Achieving sub-15s build time from 46s baseline
+	"compilerOptions": {
+		// CONTEXT7 SOURCE: /microsoft/typescript - Performance-optimized build configuration
+		// OPTIMIZATION REASON: Achieving sub-15s build time from 46s baseline
 
-    // Target and Module Configuration - Optimized for fastest compilation
-    "target": "ES2022", // Modern target for optimal performance
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "ES2022"
-    ],
-    "module": "esnext",
-    "moduleResolution": "bundler", // CONTEXT7 SOURCE: /microsoft/typescript - Faster resolution for bundlers
+		// Target and Module Configuration - Optimized for fastest compilation
+		"target": "ES2022", // Modern target for optimal performance
+		"lib": ["dom", "dom.iterable", "ES2022"],
+		"module": "esnext",
+		"moduleResolution": "bundler", // CONTEXT7 SOURCE: /microsoft/typescript - Faster resolution for bundlers
 
-    // CONTEXT7 SOURCE: /microsoft/typescript - Enhanced strict mode for 95%+ coverage
-    // PHASE 2.2 ENHANCEMENT: Optimized strict settings for maximum type safety
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true, // CONTEXT7 SOURCE: /microsoft/typescript - Enable strict function type checking
-    "strictBindCallApply": true, // CONTEXT7 SOURCE: /microsoft/typescript - Strict bind/call/apply checking
-    "strictPropertyInitialization": true, // CONTEXT7 SOURCE: /microsoft/typescript - Ensure class property initialization
-    "noImplicitReturns": true, // CONTEXT7 SOURCE: /microsoft/typescript - Require explicit return types
-    "noImplicitThis": true, // CONTEXT7 SOURCE: /microsoft/typescript - Strict 'this' context checking
-    "noUncheckedIndexedAccess": true, // CONTEXT7 SOURCE: /microsoft/typescript - Enable indexed access checking
-    "noImplicitOverride": true, // CONTEXT7 SOURCE: /microsoft/typescript - Require explicit override keywords
-    "useUnknownInCatchVariables": true, // CONTEXT7 SOURCE: /microsoft/typescript - Use unknown in catch variables
-    "exactOptionalPropertyTypes": true, // CONTEXT7 SOURCE: /microsoft/typescript - Exact optional property matching
-    "noPropertyAccessFromIndexSignature": true, // CONTEXT7 SOURCE: /microsoft/typescript - Prevent index signature property access
+		// CONTEXT7 SOURCE: /microsoft/typescript - Enhanced strict mode for 95%+ coverage
+		// PHASE 2.2 ENHANCEMENT: Optimized strict settings for maximum type safety
+		"strict": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true, // CONTEXT7 SOURCE: /microsoft/typescript - Enable strict function type checking
+		"strictBindCallApply": true, // CONTEXT7 SOURCE: /microsoft/typescript - Strict bind/call/apply checking
+		"strictPropertyInitialization": true, // CONTEXT7 SOURCE: /microsoft/typescript - Ensure class property initialization
+		"noImplicitReturns": true, // CONTEXT7 SOURCE: /microsoft/typescript - Require explicit return types
+		"noImplicitThis": true, // CONTEXT7 SOURCE: /microsoft/typescript - Strict 'this' context checking
+		"noUncheckedIndexedAccess": true, // CONTEXT7 SOURCE: /microsoft/typescript - Enable indexed access checking
+		"noImplicitOverride": true, // CONTEXT7 SOURCE: /microsoft/typescript - Require explicit override keywords
+		"useUnknownInCatchVariables": true, // CONTEXT7 SOURCE: /microsoft/typescript - Use unknown in catch variables
+		"exactOptionalPropertyTypes": true, // CONTEXT7 SOURCE: /microsoft/typescript - Exact optional property matching
+		"noPropertyAccessFromIndexSignature": true, // CONTEXT7 SOURCE: /microsoft/typescript - Prevent index signature property access
 
-    // CONTEXT7 SOURCE: /microsoft/typescript - Additional type safety enhancements
-    "noFallthroughCasesInSwitch": true, // CONTEXT7 SOURCE: /microsoft/typescript - Prevent switch fallthrough
-    "allowUnreachableCode": false, // CONTEXT7 SOURCE: /microsoft/typescript - Flag unreachable code
-    "allowUnusedLabels": false, // CONTEXT7 SOURCE: /microsoft/typescript - Flag unused labels
-    "noUnusedLocals": true, // CONTEXT7 SOURCE: /microsoft/typescript - Flag unused local variables
-    "noUnusedParameters": true, // CONTEXT7 SOURCE: /microsoft/typescript - Flag unused function parameters
+		// CONTEXT7 SOURCE: /microsoft/typescript - Additional type safety enhancements
+		"noFallthroughCasesInSwitch": true, // CONTEXT7 SOURCE: /microsoft/typescript - Prevent switch fallthrough
+		"allowUnreachableCode": false, // CONTEXT7 SOURCE: /microsoft/typescript - Flag unreachable code
+		"allowUnusedLabels": false, // CONTEXT7 SOURCE: /microsoft/typescript - Flag unused labels
+		"noUnusedLocals": true, // CONTEXT7 SOURCE: /microsoft/typescript - Flag unused local variables
+		"noUnusedParameters": true, // CONTEXT7 SOURCE: /microsoft/typescript - Flag unused function parameters
 
-    // CONTEXT7 SOURCE: /microsoft/typescript - Maximum build speed optimizations
-    // CRITICAL PERFORMANCE: These settings provide the biggest compilation speed improvements
-    "allowJs": true,
-    "skipLibCheck": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip all .d.ts type checking
-    "skipDefaultLibCheck": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip default library checks
-    "noEmit": true,
-    "incremental": true, // CONTEXT7 SOURCE: /microsoft/typescript - Enable incremental compilation
-    "tsBuildInfoFile": ".tsbuildinfo", // CONTEXT7 SOURCE: /microsoft/typescript - Cache compilation state
-    "composite": false, // CONTEXT7 SOURCE: /microsoft/typescript - Disable for reduced overhead
-    "preserveWatchOutput": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true, // CONTEXT7 SOURCE: /microsoft/typescript - Reduce parsing
-    "resolveJsonModule": true, // CONTEXT7 SOURCE: /microsoft/typescript - Optimize JSON imports
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true, // CONTEXT7 SOURCE: /microsoft/typescript - Replace deprecated import options
+		// CONTEXT7 SOURCE: /microsoft/typescript - Maximum build speed optimizations
+		// CRITICAL PERFORMANCE: These settings provide the biggest compilation speed improvements
+		"allowJs": true,
+		"skipLibCheck": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip all .d.ts type checking
+		"skipDefaultLibCheck": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip default library checks
+		"noEmit": true,
+		"incremental": true, // CONTEXT7 SOURCE: /microsoft/typescript - Enable incremental compilation
+		"tsBuildInfoFile": ".tsbuildinfo", // CONTEXT7 SOURCE: /microsoft/typescript - Cache compilation state
+		"composite": false, // CONTEXT7 SOURCE: /microsoft/typescript - Disable for reduced overhead
+		"preserveWatchOutput": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true, // CONTEXT7 SOURCE: /microsoft/typescript - Reduce parsing
+		"resolveJsonModule": true, // CONTEXT7 SOURCE: /microsoft/typescript - Optimize JSON imports
+		"isolatedModules": true,
+		"verbatimModuleSyntax": true, // CONTEXT7 SOURCE: /microsoft/typescript - Replace deprecated import options
 
-    // JSX Configuration
-    "jsx": "preserve",
-    "jsxImportSource": "react",
+		// JSX Configuration
+		"jsx": "preserve",
+		"jsxImportSource": "react",
 
-    // CONTEXT7 SOURCE: /microsoft/typescript - Optimized path resolution
-    // MODULE PERFORMANCE: Faster module lookups with simplified paths
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
+		// CONTEXT7 SOURCE: /microsoft/typescript - Optimized path resolution
+		// MODULE PERFORMANCE: Faster module lookups with simplified paths
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
 
-    // CONTEXT7 SOURCE: /microsoft/typescript - Disable automatic @types inclusion
-    // PERFORMANCE CRITICAL: Only explicitly imported types are checked
-    "types": [], // No automatic @types inclusion
+		// CONTEXT7 SOURCE: /microsoft/typescript - Disable automatic @types inclusion
+		// PERFORMANCE CRITICAL: Only explicitly imported types are checked
+		"types": [], // No automatic @types inclusion
 
-    // CONTEXT7 SOURCE: /microsoft/typescript - Advanced performance flags
-    // BUILD OPTIMIZATION: Maximum speed settings for production builds
-    "disableSourceOfProjectReferenceRedirect": true,
-    "disableSolutionSearching": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip solution searching
-    "disableReferencedProjectLoad": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip loading referenced projects
-    // DEPRECATED OPTIONS REMOVED: importsNotUsedAsValues and preserveValueImports
-    // CONTEXT7 SOURCE: /microsoft/typescript - Replaced with verbatimModuleSyntax for TS5102 resolution
-    "forceConsistentCasingInFileNames": true,
+		// CONTEXT7 SOURCE: /microsoft/typescript - Advanced performance flags
+		// BUILD OPTIMIZATION: Maximum speed settings for production builds
+		"disableSourceOfProjectReferenceRedirect": true,
+		"disableSolutionSearching": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip solution searching
+		"disableReferencedProjectLoad": true, // CONTEXT7 SOURCE: /microsoft/typescript - Skip loading referenced projects
+		// DEPRECATED OPTIONS REMOVED: importsNotUsedAsValues and preserveValueImports
+		// CONTEXT7 SOURCE: /microsoft/typescript - Replaced with verbatimModuleSyntax for TS5102 resolution
+		"forceConsistentCasingInFileNames": true,
 
-    // CONTEXT7 SOURCE: /microsoft/typescript - Performance monitoring disabled in production
-    "generateTrace": "", // Disabled for production builds
-    "explainFiles": false, // CONTEXT7 SOURCE: /microsoft/typescript - Disable verbose logging
+		// CONTEXT7 SOURCE: /microsoft/typescript - Performance monitoring disabled in production
+		"generateTrace": "", // Disabled for production builds
+		"explainFiles": false, // CONTEXT7 SOURCE: /microsoft/typescript - Disable verbose logging
 
-    // Next.js Plugin
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules/**/*", // CONTEXT7 SOURCE: /microsoft/typescript - Exclude unnecessary files
-    ".next/**/*", // Exclude build output
-    "out/**/*",
-    "**/*.test.ts", // CONTEXT7 SOURCE: /microsoft/typescript - Skip tests in production build
-    "**/*.test.tsx",
-    "**/*.spec.ts", // CONTEXT7 SOURCE: /microsoft/typescript - Skip tests in production build
-    "**/*.spec.tsx",
-    "tests/**/*",
-    "src/__tests__/**/*",
-    "scripts/**/*",
-    "coverage/**/*",
-    "playwright-report/**/*",
-    "test-results/**/*",
-    "*.config.js",
-    "*.config.ts",
-    "**/*.d.ts" // Skip declaration files for faster builds
-  ]
+		// Next.js Plugin
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
+	},
+	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+	"exclude": [
+		"node_modules/**/*", // CONTEXT7 SOURCE: /microsoft/typescript - Exclude unnecessary files
+		".next/**/*", // Exclude build output
+		"out/**/*",
+		"**/*.test.ts", // CONTEXT7 SOURCE: /microsoft/typescript - Skip tests in production build
+		"**/*.test.tsx",
+		"**/*.spec.ts", // CONTEXT7 SOURCE: /microsoft/typescript - Skip tests in production build
+		"**/*.spec.tsx",
+		"tests/**/*",
+		"src/__tests__/**/*",
+		"scripts/**/*",
+		"coverage/**/*",
+		"playwright-report/**/*",
+		"test-results/**/*",
+		"*.config.js",
+		"*.config.ts",
+		"**/*.d.ts" // Skip declaration files for faster builds
+	]
 }

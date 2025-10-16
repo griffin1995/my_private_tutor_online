@@ -1,21 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TinaCMS</title>
-    <script type="module" crossorigin src="/admin/assets/index-eb7280c3.js"></script>
-    <link rel="stylesheet" href="/admin/assets/index-43554a1d.css">
-  </head>
-  <body class="tina-tailwind">
-    <div id="root"></div>
-    <script>
-      function handleLoadError() {
-        console.error('Failed to load assets')
-        // Assets have failed to load
-        document.getElementById('root').innerHTML =
-          '<style type="text/css">\
+	<head>
+		<meta charset="UTF-8" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/vite.svg" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>TinaCMS</title>
+		<script
+			type="module"
+			crossorigin
+			src="/admin/assets/index-eb7280c3.js"></script>
+		<link
+			rel="stylesheet"
+			href="/admin/assets/index-43554a1d.css" />
+	</head>
+	<body class="tina-tailwind">
+		<div id="root"></div>
+		<script>
+			function handleLoadError() {
+				console.error('Failed to load assets');
+				// Assets have failed to load
+				document.getElementById('root').innerHTML =
+					'<style type="text/css">\
         #no-assets-placeholder body {\
           font-family: sans-serif;\
           font-size: 16px;\
@@ -55,17 +65,16 @@
           <p>\
             Please visit <a href="https://tina.io/docs/tina-cloud/faq/#how-do-i-resolve-failed-loading-tinacms-assets-error">this doc</a> for help.\
           </p>\
-        </div>'
-      }
+        </div>';
+			}
 
-      // Check if #root has childen after 2 seconds
-      // If not, we assume that the assets have failed to load
-      setTimeout(() => {
-        if (!document.getElementById('root').children.length) {
-          handleLoadError()
-        }
-      }, 2000)
-    </script>
-    
-  </body>
+			// Check if #root has childen after 2 seconds
+			// If not, we assume that the assets have failed to load
+			setTimeout(() => {
+				if (!document.getElementById('root').children.length) {
+					handleLoadError();
+				}
+			}, 2000);
+		</script>
+	</body>
 </html>

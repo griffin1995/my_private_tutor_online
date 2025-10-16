@@ -2,7 +2,9 @@
 
 ## Overview
 
-This directory contains comprehensive load testing and performance optimization tools for the My Private Tutor Online FAQ system. The suite ensures enterprise-grade performance that meets royal client service standards.
+This directory contains comprehensive load testing and performance optimization
+tools for the My Private Tutor Online FAQ system. The suite ensures
+enterprise-grade performance that meets royal client service standards.
 
 ## Quick Start
 
@@ -81,56 +83,57 @@ artillery run load-tests/artillery/faq-complex-user-journeys.yml
 
 Comprehensive performance testing with realistic user scenarios:
 
-| Test File | Purpose | Duration | Target Load |
-|-----------|---------|----------|-------------|
-| `faq-baseline-load.js` | Standard FAQ performance validation | 14 minutes | 500 concurrent users |
-| `faq-royal-peak-load.js` | Royal client peak load simulation | 57 minutes | 1000+ users with royal priority |
+| Test File                      | Purpose                              | Duration    | Target Load                     |
+| ------------------------------ | ------------------------------------ | ----------- | ------------------------------- |
+| `faq-baseline-load.js`         | Standard FAQ performance validation  | 14 minutes  | 500 concurrent users            |
+| `faq-royal-peak-load.js`       | Royal client peak load simulation    | 57 minutes  | 1000+ users with royal priority |
 | `faq-stress-breaking-point.js` | System capacity limit identification | 40+ minutes | Progressive load to 2000+ users |
-| `faq-accessibility-load.js` | Accessibility feature validation | 22 minutes | 300 assistive technology users |
+| `faq-accessibility-load.js`    | Accessibility feature validation     | 22 minutes  | 300 assistive technology users  |
 
 ### 🎭 Artillery Complex Journeys (`/artillery/`)
 
 Multi-step user workflow simulation:
 
-| Component | Purpose |
-|-----------|---------|
+| Component                       | Purpose                                                             |
+| ------------------------------- | ------------------------------------------------------------------- |
 | `faq-complex-user-journeys.yml` | Royal client, standard user, and accessibility user journey testing |
-| `faq-artillery-processor.js` | Custom test data generation and response validation |
+| `faq-artillery-processor.js`    | Custom test data generation and response validation                 |
 
 ### 📊 Performance Monitoring (`/src/lib/monitoring/`)
 
 Real-time performance tracking:
 
-| Component | Purpose |
-|-----------|---------|
-| `performance-monitor.ts` | Client-side Web Vitals collection and FAQ-specific metrics |
-| `/api/analytics/performance/` | Server-side performance data processing and alerting |
+| Component                     | Purpose                                                    |
+| ----------------------------- | ---------------------------------------------------------- |
+| `performance-monitor.ts`      | Client-side Web Vitals collection and FAQ-specific metrics |
+| `/api/analytics/performance/` | Server-side performance data processing and alerting       |
 
 ## Performance Targets
 
 ### Royal Client Service Standards
 
-Our FAQ system is tested against the following royal client performance standards:
+Our FAQ system is tested against the following royal client performance
+standards:
 
-| Metric | Royal Target | Standard Target | Test Coverage |
-|--------|-------------|----------------|---------------|
-| **Response Time (p95)** | <50ms | <100ms | All K6 tests |
-| **Response Time (p99)** | <100ms | <200ms | All K6 tests |
-| **Error Rate** | <0.01% | <0.1% | All load tests |
-| **Availability** | 99.99% | 99.9% | Stress testing |
-| **FAQ Search** | <100ms | <200ms | Search-specific tests |
-| **Theme Toggle** | <200ms | <400ms | Accessibility tests |
-| **Voice Search** | <2000ms | <3000ms | Accessibility tests |
+| Metric                  | Royal Target | Standard Target | Test Coverage         |
+| ----------------------- | ------------ | --------------- | --------------------- |
+| **Response Time (p95)** | <50ms        | <100ms          | All K6 tests          |
+| **Response Time (p99)** | <100ms       | <200ms          | All K6 tests          |
+| **Error Rate**          | <0.01%       | <0.1%           | All load tests        |
+| **Availability**        | 99.99%       | 99.9%           | Stress testing        |
+| **FAQ Search**          | <100ms       | <200ms          | Search-specific tests |
+| **Theme Toggle**        | <200ms       | <400ms          | Accessibility tests   |
+| **Voice Search**        | <2000ms      | <3000ms         | Accessibility tests   |
 
 ### Core Web Vitals Compliance
 
-| Metric | Royal Target | Standard Target | Lighthouse CI |
-|--------|-------------|----------------|---------------|
-| **FCP** (First Contentful Paint) | <1000ms | <1800ms | ✓ Automated |
-| **LCP** (Largest Contentful Paint) | <1500ms | <2500ms | ✓ Automated |
-| **FID** (First Input Delay) | <50ms | <100ms | ✓ Automated |
-| **CLS** (Cumulative Layout Shift) | <0.05 | <0.1 | ✓ Automated |
-| **INP** (Interaction to Next Paint) | <100ms | <200ms | ✓ Automated |
+| Metric                              | Royal Target | Standard Target | Lighthouse CI |
+| ----------------------------------- | ------------ | --------------- | ------------- |
+| **FCP** (First Contentful Paint)    | <1000ms      | <1800ms         | ✓ Automated   |
+| **LCP** (Largest Contentful Paint)  | <1500ms      | <2500ms         | ✓ Automated   |
+| **FID** (First Input Delay)         | <50ms        | <100ms          | ✓ Automated   |
+| **CLS** (Cumulative Layout Shift)   | <0.05        | <0.1            | ✓ Automated   |
+| **INP** (Interaction to Next Paint) | <100ms       | <200ms          | ✓ Automated   |
 
 ## Test Scenarios
 
@@ -139,6 +142,7 @@ Our FAQ system is tested against the following royal client performance standard
 **Simulates**: Normal FAQ usage patterns with realistic user behavior
 
 **Key Features**:
+
 - 500 concurrent users over 12 minutes
 - FAQ homepage, search, and category browsing
 - Theme switching and offline recovery testing
@@ -146,6 +150,7 @@ Our FAQ system is tested against the following royal client performance standard
 - Royal client identification and prioritization
 
 **Success Criteria**:
+
 - 95% of requests under 100ms
 - <0.1% error rate
 - All FAQ functionality operational under load
@@ -155,6 +160,7 @@ Our FAQ system is tested against the following royal client performance standard
 **Simulates**: Exam period traffic spikes with royal endorsement announcements
 
 **Key Features**:
+
 - Progressive load up to 1000+ concurrent users
 - 30% royal client traffic simulation
 - Premium service feature testing
@@ -162,6 +168,7 @@ Our FAQ system is tested against the following royal client performance standard
 - International royal client support
 
 **Success Criteria**:
+
 - Royal client responses <50ms (p95)
 - Premium feature availability >99.99%
 - Booking conversion rate maintained
@@ -171,12 +178,14 @@ Our FAQ system is tested against the following royal client performance standard
 **Simulates**: Extreme load conditions to identify capacity limits
 
 **Key Features**:
+
 - Progressive load increase from 50 to 2000+ users
 - Automatic abort at 15% failure rate
 - System degradation pattern analysis
 - Memory pressure and cascade failure detection
 
 **Success Criteria**:
+
 - Breaking point identification
 - Graceful degradation validation
 - Recovery capability confirmation
@@ -186,6 +195,7 @@ Our FAQ system is tested against the following royal client performance standard
 **Simulates**: Concurrent assistive technology usage
 
 **Key Features**:
+
 - Screen reader compatibility (15% of users)
 - Keyboard-only navigation (25% of users)
 - High contrast mode (20% of users)
@@ -193,13 +203,15 @@ Our FAQ system is tested against the following royal client performance standard
 - WCAG 2.1 AA compliance validation
 
 **Success Criteria**:
+
 - Screen reader response time <150ms
 - Keyboard navigation <75ms average
 - 95%+ accessibility compliance maintained
 
 ## GitHub Actions Integration
 
-The load testing suite is fully integrated with GitHub Actions for continuous performance monitoring:
+The load testing suite is fully integrated with GitHub Actions for continuous
+performance monitoring:
 
 ### Automated Triggers
 
@@ -214,12 +226,12 @@ The CI pipeline executes tests in parallel for efficiency:
 
 ```yaml
 strategy:
-  matrix:
-    test-scenario:
-      - { name: 'baseline', file: 'faq-baseline-load.js' }
-      - { name: 'royal-peak', file: 'faq-royal-peak-load.js' }
-      - { name: 'stress-breaking-point', file: 'faq-stress-breaking-point.js' }
-      - { name: 'accessibility', file: 'faq-accessibility-load.js' }
+ matrix:
+  test-scenario:
+   - { name: 'baseline', file: 'faq-baseline-load.js' }
+   - { name: 'royal-peak', file: 'faq-royal-peak-load.js' }
+   - { name: 'stress-breaking-point', file: 'faq-stress-breaking-point.js' }
+   - { name: 'accessibility', file: 'faq-accessibility-load.js' }
 ```
 
 ### Artifacts Generated
@@ -238,16 +250,16 @@ strategy:
 
 ```json
 {
-  "test_type": "FAQ Baseline Load Test",
-  "duration_minutes": 12,
-  "peak_concurrent_users": 500,
-  "total_requests": 45000,
-  "avg_response_time_ms": 45,
-  "p95_response_time_ms": 85,
-  "p99_response_time_ms": 150,
-  "error_rate_percent": "0.002",
-  "royal_client_success_rate": "99.98%",
-  "accessibility_compliance": "97.5%"
+	"test_type": "FAQ Baseline Load Test",
+	"duration_minutes": 12,
+	"peak_concurrent_users": 500,
+	"total_requests": 45000,
+	"avg_response_time_ms": 45,
+	"p95_response_time_ms": 85,
+	"p99_response_time_ms": 150,
+	"error_rate_percent": "0.002",
+	"royal_client_success_rate": "99.98%",
+	"accessibility_compliance": "97.5%"
 }
 ```
 
@@ -283,8 +295,8 @@ Real-time performance metrics are available through:
 
 #### 1. Slow Test Execution
 
-**Symptoms**: Tests taking longer than expected
-**Solution**: Check system resources and network connectivity
+**Symptoms**: Tests taking longer than expected **Solution**: Check system
+resources and network connectivity
 
 ```bash
 # Check system resources
@@ -297,8 +309,8 @@ BASE_URL=http://localhost:3000 TARGET_VUS=100 k6 run load-tests/k6/faq-baseline-
 
 #### 2. High Error Rates
 
-**Symptoms**: >1% error rate in results
-**Solution**: Validate target URL and system health
+**Symptoms**: >1% error rate in results **Solution**: Validate target URL and
+system health
 
 ```bash
 # Check FAQ system health
@@ -311,8 +323,8 @@ curl -I http://localhost:3000/api/faq/health
 
 #### 3. Lighthouse CI Failures
 
-**Symptoms**: Performance budget violations
-**Solution**: Review specific metrics and optimize
+**Symptoms**: Performance budget violations **Solution**: Review specific
+metrics and optimize
 
 ```bash
 # Run isolated Lighthouse audit
@@ -336,23 +348,24 @@ If tests identify performance issues:
 
 ### Environment Variables
 
-| Variable | Purpose | Default |
-|----------|---------|---------|
-| `BASE_URL` | Target URL for testing | `http://localhost:3000` |
-| `TARGET_VUS` | Override virtual users | Test-specific |
-| `RAMP_DURATION` | Override ramp-up time | Test-specific |
-| `ROYAL_CLIENT_RATIO` | Royal client percentage | `0.3` (30%) |
-| `ACCESSIBILITY_MODE` | Enhanced accessibility testing | `false` |
+| Variable             | Purpose                        | Default                 |
+| -------------------- | ------------------------------ | ----------------------- |
+| `BASE_URL`           | Target URL for testing         | `http://localhost:3000` |
+| `TARGET_VUS`         | Override virtual users         | Test-specific           |
+| `RAMP_DURATION`      | Override ramp-up time          | Test-specific           |
+| `ROYAL_CLIENT_RATIO` | Royal client percentage        | `0.3` (30%)             |
+| `ACCESSIBILITY_MODE` | Enhanced accessibility testing | `false`                 |
 
 ### Custom Configuration
 
-Create custom test configurations by modifying test files or using environment variables:
+Create custom test configurations by modifying test files or using environment
+variables:
 
 ```bash
 # Custom baseline test with higher load
 TARGET_VUS=1000 RAMP_DURATION=5m k6 run load-tests/k6/faq-baseline-load.js
 
-# Royal client focused testing  
+# Royal client focused testing
 ROYAL_CLIENT_RATIO=0.8 k6 run load-tests/k6/faq-royal-peak-load.js
 
 # Extended accessibility testing
@@ -379,6 +392,7 @@ SCREEN_READER_RATIO=0.3 VOICE_CONTROL_RATIO=0.2 k6 run load-tests/k6/faq-accessi
 ### Performance Standards
 
 All new tests must validate against:
+
 - Royal client service standards (<50ms p95 response)
 - Accessibility compliance (WCAG 2.1 AA)
 - Error rate targets (<0.01% for royal clients)
@@ -388,7 +402,8 @@ All new tests must validate against:
 
 For issues, questions, or contributions:
 
-1. **Documentation**: Review this README and `/docs/performance/FAQ-LOAD-TESTING-GUIDE.md`
+1. **Documentation**: Review this README and
+   `/docs/performance/FAQ-LOAD-TESTING-GUIDE.md`
 2. **Test Results**: Check generated artifacts in `test-results/load-tests/`
 3. **GitHub Actions**: Review workflow logs for CI/CD issues
 4. **Performance Monitoring**: Check `/api/analytics/performance` endpoints
@@ -396,4 +411,4 @@ For issues, questions, or contributions:
 ---
 
 **FAQ Load Testing Suite - My Private Tutor Online**  
-*Enterprise-grade performance validation for royal client service excellence*
+_Enterprise-grade performance validation for royal client service excellence_

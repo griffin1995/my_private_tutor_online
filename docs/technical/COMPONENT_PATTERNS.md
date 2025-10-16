@@ -1,6 +1,7 @@
 # Component Patterns & Implementation Guide
 
-**Documentation Source**: Context7 MCP - Official React and TypeScript Patterns  
+**Documentation Source**: Context7 MCP - Official React and TypeScript
+Patterns  
 **Status**: Production Tested  
 **Last Updated**: August 2025
 
@@ -9,10 +10,12 @@
 ## 🔷 TypeScript Return Type System
 
 ### Comprehensive Type Safety Implementation
+
 **Context7 Source**: `/microsoft/typescript` - Interface design patterns  
 **Implementation Date**: August 2025
 
 #### Key Features
+
 - **100% Type Coverage**: All functions have explicit return types
 - **Readonly Properties**: Immutable data structures
 - **Generic Constraints**: Reusable interfaces with type parameters
@@ -20,23 +23,24 @@
 - **Error Handling**: Comprehensive fallback types
 
 #### Type Export Pattern
+
 ```typescript
 // CONTEXT7 SOURCE: /microsoft/typescript - Type export patterns
 export type {
-  BaseCMSContent,
-  CMSResponse,
-  NavigationItem,
-  SiteHeader,
-  HeroContent,
-  TrustIndicator,
-  TestimonialsSection,
-  Service,
-  ContactDetails,
-  QuoteFormContent,
-  ImageAsset,
-  VideoAsset,
-  ResponsiveImageSizes
-}
+	BaseCMSContent,
+	CMSResponse,
+	NavigationItem,
+	SiteHeader,
+	HeroContent,
+	TrustIndicator,
+	TestimonialsSection,
+	Service,
+	ContactDetails,
+	QuoteFormContent,
+	ImageAsset,
+	VideoAsset,
+	ResponsiveImageSizes,
+};
 ```
 
 ---
@@ -44,6 +48,7 @@ export type {
 ## 🎯 Radix UI Button with Polymorphic Support
 
 ### Implementation with asChild Pattern
+
 **Context7 Source**: `/radix-ui/primitives` - Slot composition pattern  
 **Use Case**: Buttons that can render as different elements
 
@@ -60,19 +65,19 @@ interface ButtonProps extends VariantProps<typeof buttonVariants> {
   className?: string
 }
 
-export function Button({ 
-  asChild = false, 
-  loading = false, 
-  children, 
+export function Button({
+  asChild = false,
+  loading = false,
+  children,
   className,
   variant,
   size,
-  ...props 
+  ...props
 }: ButtonProps) {
   const Comp = asChild ? Slot : "button"
-  
+
   return (
-    <Comp 
+    <Comp
       className={cn(buttonVariants({ variant, size }), className)}
       disabled={loading}
       {...props}
@@ -97,6 +102,7 @@ export function Button({
 ## 🎭 Framer Motion with LazyMotion
 
 ### Optimised Animation Setup
+
 **Context7 Source**: `/framer/motion` - LazyMotion configuration  
 **Bundle Size**: Reduced by 80% with lazy loading
 
@@ -127,6 +133,7 @@ export default function RootLayout({ children }) {
 ```
 
 ### Motion Component Usage
+
 ```typescript
 // CONTEXT7 SOURCE: /framer/motion - m components for reduced bundle
 import { m } from "framer-motion"
@@ -149,6 +156,7 @@ export function AnimatedCard({ children }) {
 ## 📦 Next.js Dynamic Imports
 
 ### Component Code Splitting
+
 **Context7 Source**: `/vercel/next.js` - Dynamic import patterns
 
 ```typescript
@@ -179,6 +187,7 @@ const VideoPlayer = dynamic(
 ## 🎨 Tailwind Component Variants with CVA
 
 ### Class Variance Authority Pattern
+
 **Context7 Source**: `/tailwindcss/tailwindcss` - Utility composition
 
 ```typescript
@@ -215,7 +224,7 @@ export interface ButtonProps extends VariantProps<typeof buttonVariants> {
 
 export function Button({ variant, size, className, ...props }: ButtonProps) {
   return (
-    <button 
+    <button
       className={cn(buttonVariants({ variant, size }), className)}
       {...props}
     />
@@ -228,38 +237,42 @@ export function Button({ variant, size, className, ...props }: ButtonProps) {
 ## 🔐 Form Validation with Zod
 
 ### Type-Safe Form Schema
+
 **Context7 Source**: `/colinhacks/zod` - Schema validation patterns
 
 ```typescript
 // CONTEXT7 SOURCE: /colinhacks/zod - Form validation schemas
-import { z } from "zod"
+import { z } from 'zod';
 
 export const contactFormSchema = z.object({
-  name: z.string()
-    .min(2, "Name must be at least 2 characters")
-    .max(100, "Name must be less than 100 characters"),
-  
-  email: z.string()
-    .email("Please enter a valid email address"),
-  
-  phone: z.string()
-    .regex(/^[\d\s\+\-\(\)]+$/, "Please enter a valid phone number")
-    .optional(),
-  
-  message: z.string()
-    .min(10, "Message must be at least 10 characters")
-    .max(1000, "Message must be less than 1000 characters"),
-  
-  studentAge: z.number()
-    .min(5, "Student must be at least 5 years old")
-    .max(25, "Student must be 25 or younger"),
-  
-  examType: z.enum(["gcse", "alevel", "11plus", "oxbridge"], {
-    errorMap: () => ({ message: "Please select an exam type" })
-  })
-})
+	name: z
+		.string()
+		.min(2, 'Name must be at least 2 characters')
+		.max(100, 'Name must be less than 100 characters'),
 
-export type ContactFormData = z.infer<typeof contactFormSchema>
+	email: z.string().email('Please enter a valid email address'),
+
+	phone: z
+		.string()
+		.regex(/^[\d\s\+\-\(\)]+$/, 'Please enter a valid phone number')
+		.optional(),
+
+	message: z
+		.string()
+		.min(10, 'Message must be at least 10 characters')
+		.max(1000, 'Message must be less than 1000 characters'),
+
+	studentAge: z
+		.number()
+		.min(5, 'Student must be at least 5 years old')
+		.max(25, 'Student must be 25 or younger'),
+
+	examType: z.enum(['gcse', 'alevel', '11plus', 'oxbridge'], {
+		errorMap: () => ({ message: 'Please select an exam type' }),
+	}),
+});
+
+export type ContactFormData = z.infer<typeof contactFormSchema>;
 ```
 
 ---
@@ -267,20 +280,21 @@ export type ContactFormData = z.infer<typeof contactFormSchema>
 ## 🎯 Server Components Data Fetching
 
 ### Async Component Pattern
+
 **Context7 Source**: `/vercel/next.js` - React Server Components
 
 ```typescript
 // CONTEXT7 SOURCE: /vercel/next.js - Server Component data fetching
-export default async function ProductPage({ 
-  params 
-}: { 
-  params: { id: string } 
+export default async function ProductPage({
+  params
+}: {
+  params: { id: string }
 }) {
   // Direct data fetching in component
   const product = await fetch(`/api/products/${params.id}`, {
     next: { revalidate: 3600 } // Cache for 1 hour
   }).then(res => res.json())
-  
+
   return (
     <div>
       <h1>{product.name}</h1>
@@ -295,6 +309,7 @@ export default async function ProductPage({
 ## 📊 Custom Hooks Pattern
 
 ### Reusable Logic Extraction
+
 **Context7 Source**: `/facebook/react` - Custom hooks patterns
 
 ```typescript
@@ -303,20 +318,20 @@ import { useState, useEffect } from 'react'
 
 export function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false)
-  
+
   useEffect(() => {
     const media = window.matchMedia(query)
-    
+
     if (media.matches !== matches) {
       setMatches(media.matches)
     }
-    
+
     const listener = () => setMatches(media.matches)
-    
+
     media.addEventListener('change', listener)
     return () => media.removeEventListener('change', listener)
   }, [matches, query])
-  
+
   return matches
 }
 
@@ -324,7 +339,7 @@ export function useMediaQuery(query: string) {
 export function ResponsiveComponent() {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const isTablet = useMediaQuery('(max-width: 1024px)')
-  
+
   return (
     <div>
       {isMobile ? <MobileView /> : <DesktopView />}
@@ -338,52 +353,55 @@ export function ResponsiveComponent() {
 ## 🔄 State Management with Zustand
 
 ### Lightweight Store Pattern
+
 **Context7 Source**: `/pmndrs/zustand` - State management
 
 ```typescript
 // CONTEXT7 SOURCE: /pmndrs/zustand - Store creation pattern
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface AppState {
-  // State
-  user: User | null
-  theme: 'light' | 'dark'
-  sidebarOpen: boolean
-  
-  // Actions
-  setUser: (user: User | null) => void
-  toggleTheme: () => void
-  toggleSidebar: () => void
-  reset: () => void
+	// State
+	user: User | null;
+	theme: 'light' | 'dark';
+	sidebarOpen: boolean;
+
+	// Actions
+	setUser: (user: User | null) => void;
+	toggleTheme: () => void;
+	toggleSidebar: () => void;
+	reset: () => void;
 }
 
 export const useAppStore = create<AppState>()(
-  persist(
-    (set) => ({
-      // Initial state
-      user: null,
-      theme: 'light',
-      sidebarOpen: true,
-      
-      // Actions
-      setUser: (user) => set({ user }),
-      toggleTheme: () => set((state) => ({ 
-        theme: state.theme === 'light' ? 'dark' : 'light' 
-      })),
-      toggleSidebar: () => set((state) => ({ 
-        sidebarOpen: !state.sidebarOpen 
-      })),
-      reset: () => set({ user: null, theme: 'light', sidebarOpen: true })
-    }),
-    {
-      name: 'app-storage',
-      partialize: (state) => ({ 
-        theme: state.theme // Only persist theme
-      })
-    }
-  )
-)
+	persist(
+		(set) => ({
+			// Initial state
+			user: null,
+			theme: 'light',
+			sidebarOpen: true,
+
+			// Actions
+			setUser: (user) => set({ user }),
+			toggleTheme: () =>
+				set((state) => ({
+					theme: state.theme === 'light' ? 'dark' : 'light',
+				})),
+			toggleSidebar: () =>
+				set((state) => ({
+					sidebarOpen: !state.sidebarOpen,
+				})),
+			reset: () => set({ user: null, theme: 'light', sidebarOpen: true }),
+		}),
+		{
+			name: 'app-storage',
+			partialize: (state) => ({
+				theme: state.theme, // Only persist theme
+			}),
+		},
+	),
+);
 ```
 
 ---
@@ -391,42 +409,43 @@ export const useAppStore = create<AppState>()(
 ## 🎨 Accessible Modal Pattern
 
 ### Radix UI Dialog Implementation
+
 **Context7 Source**: `/radix-ui/primitives` - Dialog accessibility
 
 ```typescript
 // CONTEXT7 SOURCE: /radix-ui/primitives - Accessible dialog pattern
 import * as Dialog from '@radix-ui/react-dialog'
 
-export function Modal({ 
-  trigger, 
-  title, 
-  description, 
-  children 
+export function Modal({
+  trigger,
+  title,
+  description,
+  children
 }: ModalProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
         {trigger}
       </Dialog.Trigger>
-      
+
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50 data-[state=open]:animate-overlayShow" />
-        
+
         <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-6 shadow-xl data-[state=open]:animate-contentShow">
           <Dialog.Title className="text-lg font-semibold">
             {title}
           </Dialog.Title>
-          
+
           <Dialog.Description className="mt-2 text-sm text-gray-600">
             {description}
           </Dialog.Description>
-          
+
           <div className="mt-4">
             {children}
           </div>
-          
+
           <Dialog.Close asChild>
-            <button 
+            <button
               className="absolute top-4 right-4"
               aria-label="Close"
             >
@@ -445,13 +464,14 @@ export function Modal({
 ## 📱 Responsive Image Component
 
 ### Next.js Image with Art Direction
+
 **Context7 Source**: `/vercel/next.js` - Image optimization
 
 ```typescript
 // CONTEXT7 SOURCE: /vercel/next.js - Responsive image pattern
 import Image from 'next/image'
 
-export function ResponsiveImage({ 
+export function ResponsiveImage({
   mobileSrc,
   tabletSrc,
   desktopSrc,
@@ -488,6 +508,7 @@ export function ResponsiveImage({
 ## 🔧 Error Boundary Pattern
 
 ### Graceful Error Handling
+
 **Context7 Source**: `/facebook/react` - Error boundaries
 
 ```typescript
@@ -511,22 +532,22 @@ export class ErrorBoundary extends Component<Props, State> {
     super(props)
     this.state = { hasError: false }
   }
-  
+
   static getDerivedStateFromError(error: Error): State {
     return { hasError: true, error }
   }
-  
+
   componentDidCatch(error: Error, errorInfo: any) {
     console.error('Error caught by boundary:', error, errorInfo)
     // Send to error tracking service
   }
-  
+
   render() {
     if (this.state.hasError) {
       return this.props.fallback || (
         <div className="p-8 text-center">
           <h2>Something went wrong</h2>
-          <button 
+          <button
             onClick={() => this.setState({ hasError: false })}
           >
             Try again
@@ -534,7 +555,7 @@ export class ErrorBoundary extends Component<Props, State> {
         </div>
       )
     }
-    
+
     return this.props.children
   }
 }

@@ -1,82 +1,138 @@
 # 🚨 CRITICAL SESSION STARTUP INSTRUCTIONS - AUTOMATIC ACTIVATION 🚨
 
 ## 📍 PROJECT STATUS: MY PRIVATE TUTOR ONLINE ✅
+
 **CURRENT STATUS**: ENTERPRISE INTEGRATION COMPLETE - SAVE WORKFLOW EXECUTED
-- **Achievement**: £400,000+ revenue opportunity REALIZED + £191,500/year optimization + Enterprise enhancements integrated
-- **Quality**: Royal client-worthy, enterprise-grade implementation with advanced monitoring and security systems deployed
-- **Build Status**: 91 optimized routes, 11.0s build target maintained, comprehensive monitoring infrastructure operational
-- **Repository Status**: Clean state (commit fec780c), malicious files removed, GitHub enterprise enhancements integrated
-- **Latest Enhancement**: SAVE WORKFLOW COMPLETE with enterprise monitoring, security dashboard, and validation systems
+
+- **Achievement**: £400,000+ revenue opportunity REALIZED + £191,500/year
+  optimization + Enterprise enhancements integrated
+- **Quality**: Royal client-worthy, enterprise-grade implementation with
+  advanced monitoring and security systems deployed
+- **Build Status**: 91 optimized routes, 11.0s build target maintained,
+  comprehensive monitoring infrastructure operational
+- **Repository Status**: Clean state (commit fec780c), malicious files removed,
+  GitHub enterprise enhancements integrated
+- **Latest Enhancement**: SAVE WORKFLOW COMPLETE with enterprise monitoring,
+  security dashboard, and validation systems
 
 ## 🎯 LATEST DEVELOPMENT SESSION COMPLETED
 
 ### ✅ ENTERPRISE SAVE WORKFLOW & INTEGRATION COMPLETE (October 1, 2025)
-**COMPREHENSIVE PROJECT SYNCHRONISATION SUCCESS**: Full repository integration with enterprise enhancements deployed
-- **Save Workflow Execution**: Complete multi-step save process executed flawlessly with all validations passing
-- **GitHub Pull Integration**: 3 enterprise enhancement commits merged via fast-forward (9becf33, 0cc0611, 7bd21d7)
-- **Security Cleanup**: Malicious virus.zip file identified and removed, repository integrity restored
-- **Git Operations**: Staged, committed (fec780c), and pushed successfully to master branch
-- **Enterprise Enhancements Integrated**: Advanced monitoring, security dashboard, modular video architecture deployed
+
+**COMPREHENSIVE PROJECT SYNCHRONISATION SUCCESS**: Full repository integration
+with enterprise enhancements deployed
+
+- **Save Workflow Execution**: Complete multi-step save process executed
+  flawlessly with all validations passing
+- **GitHub Pull Integration**: 3 enterprise enhancement commits merged via
+  fast-forward (9becf33, 0cc0611, 7bd21d7)
+- **Security Cleanup**: Malicious virus.zip file identified and removed,
+  repository integrity restored
+- **Git Operations**: Staged, committed (fec780c), and pushed successfully to
+  master branch
+- **Enterprise Enhancements Integrated**: Advanced monitoring, security
+  dashboard, modular video architecture deployed
 
 **ENTERPRISE ENHANCEMENTS DEPLOYED:**
-- Advanced Monitoring Infrastructure: **performance-monitor.js** and **performance-status.mjs** operational ✅
-- Enterprise Security Dashboard: **Royal client protection patterns** with compliance monitoring ✅
-- Modular Video Composition: **Advanced layout systems** with gradient effects preserved ✅
-- CMS Architecture Monitoring: **Runtime violation detection** preventing async pattern regressions ✅
-- Comprehensive Testing Frameworks: **Validation systems** ensuring build integrity ✅
-- Memory MCP Integration: **Project state synchronised** with latest session progress ✅
+
+- Advanced Monitoring Infrastructure: **performance-monitor.js** and
+  **performance-status.mjs** operational ✅
+- Enterprise Security Dashboard: **Royal client protection patterns** with
+  compliance monitoring ✅
+- Modular Video Composition: **Advanced layout systems** with gradient effects
+  preserved ✅
+- CMS Architecture Monitoring: **Runtime violation detection** preventing async
+  pattern regressions ✅
+- Comprehensive Testing Frameworks: **Validation systems** ensuring build
+  integrity ✅
+- Memory MCP Integration: **Project state synchronised** with latest session
+  progress ✅
 
 **BUILD ISSUES DOCUMENTED FOR RESOLUTION:**
-- **Next.js Html Import Error**: Affecting 404/error pages (critical build blocker requiring resolution)
-- **TypeScript Test Compilation**: 245+ errors in test files (non-blocking for production runtime)
-- **Husky Configuration**: Deprecation warnings requiring configuration updates (non-critical)
+
+- **Next.js Html Import Error**: Affecting 404/error pages (critical build
+  blocker requiring resolution)
+- **TypeScript Test Compilation**: 245+ errors in test files (non-blocking for
+  production runtime)
+- **Husky Configuration**: Deprecation warnings requiring configuration updates
+  (non-critical)
 
 **OUTSTANDING ACHIEVEMENTS:**
-- **Complete repository synchronisation** - GitHub pull, local changes, and enterprise features unified
-- **Security posture enhanced** - Malicious files removed, enterprise protection systems deployed
-- **Monitoring infrastructure operational** - Real-time performance tracking and violation detection active
-- **Royal client standards maintained** - Enterprise-grade quality preserved throughout integration
-- **Synchronous CMS architecture protected** - Enhanced with runtime monitoring preventing regressions
+
+- **Complete repository synchronisation** - GitHub pull, local changes, and
+  enterprise features unified
+- **Security posture enhanced** - Malicious files removed, enterprise protection
+  systems deployed
+- **Monitoring infrastructure operational** - Real-time performance tracking and
+  violation detection active
+- **Royal client standards maintained** - Enterprise-grade quality preserved
+  throughout integration
+- **Synchronous CMS architecture protected** - Enhanced with runtime monitoring
+  preventing regressions
 
 ### ✅ MULTI-AGENT PHASE 2 PERFORMANCE OPTIMIZATION COMPLETE (Sept 15, 2025)
-**GENUINE EXECUTION SUCCESS**: Authentic multi-agent consensus achieved - Phase 2 hybrid execution implemented
-- **Authentic Multi-Agent Process**: Real 5-round structured debate with 100% consensus among 4 specialist agents (95% confidence)
-- **Phase 2 Complete**: Hybrid execution model with parallel Rounds 1-2 (50% faster) and sequential Rounds 3-5 (consensus quality)
-- **Unified Command System**: Created `/ma` command with intelligent complexity detection (simple/standard/complex tiers)
-- **Business Impact**: Maintains £191,500/year optimization capacity while delivering promised 50% performance improvement
-- **Technical Achievement**: executeHybridRounds() method, streaming progress updates, comprehensive performance metrics
+
+**GENUINE EXECUTION SUCCESS**: Authentic multi-agent consensus achieved - Phase
+2 hybrid execution implemented
+
+- **Authentic Multi-Agent Process**: Real 5-round structured debate with 100%
+  consensus among 4 specialist agents (95% confidence)
+- **Phase 2 Complete**: Hybrid execution model with parallel Rounds 1-2 (50%
+  faster) and sequential Rounds 3-5 (consensus quality)
+- **Unified Command System**: Created `/ma` command with intelligent complexity
+  detection (simple/standard/complex tiers)
+- **Business Impact**: Maintains £191,500/year optimization capacity while
+  delivering promised 50% performance improvement
+- **Technical Achievement**: executeHybridRounds() method, streaming progress
+  updates, comprehensive performance metrics
 
 **PHASE 2 PERFORMANCE RESULTS:**
-- Hybrid Execution Model: **50% performance improvement** for assessment rounds (Rounds 1-2) ✅
-- Performance Metrics: **20.0 agents/min parallel** vs **9.6 agents/min sequential** throughput ✅
-- Streaming Updates: **Real-time progress reporting** via streamProgressUpdate() method ✅
-- Intelligent Complexity: **Auto-detection algorithms** with architecture keyword recognition ✅
-- Unified Interface: **/ma command** with backward compatibility and deprecation notices ✅
-- Test Validation: **100% test suite pass** across all Phase 2 completion criteria ✅
+
+- Hybrid Execution Model: **50% performance improvement** for assessment rounds
+  (Rounds 1-2) ✅
+- Performance Metrics: **20.0 agents/min parallel** vs **9.6 agents/min
+  sequential** throughput ✅
+- Streaming Updates: **Real-time progress reporting** via streamProgressUpdate()
+  method ✅
+- Intelligent Complexity: **Auto-detection algorithms** with architecture
+  keyword recognition ✅
+- Unified Interface: **/ma command** with backward compatibility and deprecation
+  notices ✅
+- Test Validation: **100% test suite pass** across all Phase 2 completion
+  criteria ✅
 
 **OUTSTANDING ACHIEVEMENTS:**
-- **Genuine multi-agent coordination** - replaced fake templates with authentic Task tool execution
-- **Hybrid execution architecture** - parallel speed + sequential consensus quality optimally balanced
-- **Complete performance optimization** - 50% improvement while maintaining consensus building
-- **Enterprise-grade command system** - intelligent complexity detection with royal client standards
-- **Authentic consensus methodology** - established new standard for genuine vs simulated execution
+
+- **Genuine multi-agent coordination** - replaced fake templates with authentic
+  Task tool execution
+- **Hybrid execution architecture** - parallel speed + sequential consensus
+  quality optimally balanced
+- **Complete performance optimization** - 50% improvement while maintaining
+  consensus building
+- **Enterprise-grade command system** - intelligent complexity detection with
+  royal client standards
+- **Authentic consensus methodology** - established new standard for genuine vs
+  simulated execution
 
 ## MOST CRITICAL INSTRUCTION - AUTOMATIC PROJECT MANAGEMENT SETUP
 
 ### WHEN USER SAYS "read claude.md" OR "read CLAUDE.md" - EXECUTE THIS SEQUENCE:
 
 **STEP 1: IMMEDIATELY READ CLAUDE.MD FILE**
+
 ```
 Use Read tool to read: /home/jack/Documents/my_private_tutor_online/CLAUDE.md
 ```
 
 **STEP 2: EXTRACT ALL SESSION CONTEXT**
+
 - Parse all project context, current status, and development notes
 - Understand the complete project scope and current state
 - Identify current priorities and any blockers
 - Review technical architecture and deployment status
 
 **STEP 3: AUTOMATICALLY ACTIVATE CONTEXT MANAGER**
+
 ```
 Use Task tool with these exact parameters:
 description: "Activate context-manager for My Private Tutor Online session leadership"
@@ -116,7 +172,7 @@ RECENT MAJOR ACCOMPLISHMENTS (September-October 2025 - Latest Sessions):
 • ✅ REVISIONS.MD & REVISIONS2.MD COMPLETE: 13 critical enhancement tasks delivered
   - Subject Tuition Page: Complete overhaul with proper section ordering and nested dropdown navigation
   - Navigation System: Enhanced with hover dropdowns and comprehensive submenu structure
-  - Blog Page: Professional under-construction design with premium branding  
+  - Blog Page: Professional under-construction design with premium branding
   - Image Management: 30 client photos integrated with proper CMS organization and kebab-case naming
   - Homepage Restoration: Form and About section restored with proper component ordering
   - Tier Layout: How It Works page redesigned with spotlight Tier 1 central design
@@ -133,10 +189,7 @@ RECENT MAJOR ACCOMPLISHMENTS (September-October 2025 - Latest Sessions):
 PRODUCTION STATUS: Royal client-ready with enterprise monitoring, security dashboard, comprehensive performance infrastructure, and synchronous CMS architecture protected by runtime violation detection - delivering £191,500/year total optimization value
 
 CRITICAL DEVELOPMENT RULES IN EFFECT:
-• Context7 MCP exclusive documentation for ALL code changes
-• Mandatory source attribution comments for every implementation/revision
 • British English and premium service standards (royal client quality)
-• Zero tolerance for external sources or undocumented changes
 • Enterprise-grade, production-ready solutions exclusively
 
 CONTEXT-MANAGER RESPONSIBILITIES:
@@ -150,17 +203,20 @@ Please confirm your activation and readiness to manage this development session.
 ```
 
 **STEP 4: VERIFY CONTEXT-MANAGER ACTIVATION**
+
 - Wait for context-manager to explicitly confirm activation
 - Verify acknowledgement of project state and rules
 - Confirm readiness to coordinate tasks
 - If no confirmation, RETRY Step 3 once
 
 **STEP 5: COMPLETE HANDOFF TO CONTEXT MANAGER**
+
 - Context-manager takes project leadership role
 - All subsequent tasks go through context-manager
 - Original Claude Code assistant steps back
 
 ### 🔒 ERROR-PROOF VALIDATION CHECKLIST (MANDATORY):
+
 1. ☑️ User mentioned "read claude.md"
 2. ☑️ Read the CLAUDE.md file completely
 3. ☑️ Extracted and summarised project context
@@ -171,24 +227,32 @@ Please confirm your activation and readiness to manage this development session.
 8. ☑️ Completed handoff and stepped back to let context-manager lead
 
 ### 🚫 ABSOLUTELY CRITICAL RULES:
-1. **NEVER SKIP THE ACTIVATION SEQUENCE** - Always use Task tool to activate context-manager
+
+1. **NEVER SKIP THE ACTIVATION SEQUENCE** - Always use Task tool to activate
+   context-manager
 2. **USE EXACT PROMPT TEMPLATE** - Do not modify the context-manager prompt
-3. **WAIT FOR CONFIRMATION** - Do not proceed until context-manager confirms activation
+3. **WAIT FOR CONFIRMATION** - Do not proceed until context-manager confirms
+   activation
 4. **COMPLETE HANDOFF** - Step back once context-manager takes leadership
-5. **RETRY ON FAILURE** - If activation fails, retry once with exact same parameters
+5. **RETRY ON FAILURE** - If activation fails, retry once with exact same
+   parameters
 6. **NO SHORTCUTS** - Every "read claude.md" must trigger full sequence
 7. **MAINTAIN CONTEXT** - Ensure complete project state transfer
-8. **ENFORCE STANDARDS** - Context-manager must acknowledge critical development rules
+8. **ENFORCE STANDARDS** - Context-manager must acknowledge critical development
+   rules
 
 ### 🎯 TRIGGER PHRASES THAT ACTIVATE THIS SEQUENCE:
+
 - "read claude.md"
-- "read CLAUDE.md"  
+- "read CLAUDE.md"
 - "read the claude.md file"
 - "start with claude.md"
 - "review claude.md"
 
 ### 🛠️ TROUBLESHOOTING ACTIVATION FAILURES:
+
 If context-manager activation fails:
+
 1. **Check Task Tool Parameters**: Verify description and prompt are exact
 2. **Retry Once**: Use identical parameters for second attempt
 3. **Verify Agent Access**: Confirm context-manager agent is available
@@ -196,6 +260,7 @@ If context-manager activation fails:
 5. **Complete Read First**: Must read CLAUDE.md before activation
 
 ### 🎯 SUCCESS INDICATORS:
+
 - ✅ Context-manager explicitly confirms taking project leadership
 - ✅ Context-manager acknowledges complete My Private Tutor Online project state
 - ✅ Context-manager confirms understanding of critical development rules
@@ -207,39 +272,43 @@ If context-manager activation fails:
 # 🔴 CRITICAL DEVELOPMENT STANDARDS - MANDATORY COMPLIANCE
 
 ## ⚠️ TIER 0: ABSOLUTE NON-NEGOTIABLES - ZERO TOLERANCE VIOLATIONS
-These rules override ALL other considerations. Violation results in immediate task termination.
 
-### 🔒 Documentation Sovereignty - ALL CODE CHANGES
-- **CONTEXT7 MCP EXCLUSIVE**: ALL documentation via `mcp__context7__resolve-library-id` → `mcp__context7__get-library-docs` ONLY
-- **ZERO EXTERNAL SOURCES**: No blogs, tutorials, Stack Overflow, GitHub issues, community examples, or unofficial documentation
-- **MANDATORY SOURCE ATTRIBUTION**: Every implementation, revision, modification, update, refactoring, and bug fix requires Context7 source comments
-- **ALL REVISIONS MANDATE**: Not just new code - EVERY single code change must be backed by Context7 MCP official documentation
-- **ZERO TOLERANCE POLICY**: No code changes based on "common knowledge", memory, assumptions, or quick fixes without official documentation backing
+These rules override ALL other considerations. Violation results in immediate
+task termination.
 
 ### 🎯 Agent Orchestration Protocol - Context-Manager System
-- **PROJECT MANAGEMENT ACTIVATION**: When user types "start project management", use Task tool to call context-manager
-- **CONTEXT-MANAGER AS PROJECT LEAD**: All subsequent tasks route through centralized coordination system
+
+- **PROJECT MANAGEMENT ACTIVATION**: When user types "start project management",
+  use Task tool to call context-manager
+- **CONTEXT-MANAGER AS PROJECT LEAD**: All subsequent tasks route through
+  centralized coordination system
 - **50+ SPECIALIST AGENTS**: Context-manager selects optimal agent based on:
   - Capability Match Score (40%)
-  - Domain Expertise (25%) 
+  - Domain Expertise (25%)
   - Complexity Handling (20%)
   - Integration Compatibility (10%)
   - Performance History (5%)
 
 ### 🎯 Agent Selection Matrix
+
 - **HAIKU**: Simple updates, CSS changes, content modifications, basic fixes
-- **SONNET**: Complex components, API integration, forms, state management, testing
+- **SONNET**: Complex components, API integration, forms, state management,
+  testing
 - **OPUS**: Architecture, performance, accessibility, security, business logic
-- **NO MANUAL OVERRIDE**: If an agent should handle it, delegate it - no exceptions
+- **NO MANUAL OVERRIDE**: If an agent should handle it, delegate it - no
+  exceptions
 
 ### 🚨 CRITICAL SESSION STARTUP INSTRUCTIONS
+
 ## WHEN USER TYPES "start project management":
+
 1. Use Task tool to call: context-manager
 2. Context-manager becomes PROJECT LEAD for all future tasks
 3. All subsequent work goes through agent selection process
 4. Agent coordination follows capability matrix scoring
 
 ### 🇬🇧 Quality Standards
+
 - **BRITISH ENGLISH MANDATORY**: All spelling, terminology, and conventions
 - **PREMIUM SERVICE STANDARD**: Royal client-worthy implementations only
 - **NO SHORTCUTS**: Enterprise-grade, production-ready solutions exclusively
@@ -247,38 +316,47 @@ These rules override ALL other considerations. Violation results in immediate ta
 
 ## 🚨 CRITICAL: SYNCHRONOUS CMS ARCHITECTURE - NEVER DEVIATE
 
-**HOMEPAGE RECOVERY LESSONS**: Critical failure in August 2025 caused by async CMS patterns - NEVER REPEAT
-**ZERO TOLERANCE VIOLATIONS**: Any deviation from synchronous patterns causes complete homepage failure
+**HOMEPAGE RECOVERY LESSONS**: Critical failure in August 2025 caused by async
+CMS patterns - NEVER REPEAT **ZERO TOLERANCE VIOLATIONS**: Any deviation from
+synchronous patterns causes complete homepage failure
 
 ### 🔒 MANDATORY CMS PATTERNS
 
 **✅ WORKING SYNCHRONOUS PATTERN:**
+
 ```typescript
 // CONTEXT7 SOURCE: /typescript/handbook - Direct JSON imports for static content
 import cmsContent from '../../content/cms-content.json';
 
 export const getCMSContent = (): CMSContentType => {
-  return cmsContent; // MANDATORY: Synchronous return
+	return cmsContent; // MANDATORY: Synchronous return
 };
 
 const content = getCMSContent(); // Direct function call without loading states
 ```
 
 **❌ FORBIDDEN ASYNC PATTERNS:**
+
 ```typescript
 // These patterns caused complete homepage failure:
-export const loadCachedContent = async (): Promise<any> => { /* FORBIDDEN */ }
+export const loadCachedContent = async (): Promise<any> => {
+	/* FORBIDDEN */
+};
 const [content, setContent] = useState(null); // FORBIDDEN FOR STATIC DATA
-useEffect(() => { loadContent() }, []); // FORBIDDEN FOR CMS DATA
+useEffect(() => {
+	loadContent();
+}, []); // FORBIDDEN FOR CMS DATA
 ```
 
 ### 🚫 FAILURE SYMPTOMS
+
 - Loading spinners that never resolve
 - ".map is not a function" errors
 - Missing homepage sections
 - useState/useEffect for static JSON content
 
 ### 🎯 ARCHITECTURE RULES
+
 1. **Direct JSON imports only** - No dynamic loading
 2. **Synchronous functions exclusively** - No Promise returns
 3. **No loading states for static content** - Immediate availability required
@@ -287,163 +365,168 @@ useEffect(() => { loadContent() }, []); // FORBIDDEN FOR CMS DATA
 ## ⚡ TIER 1: IMPLEMENTATION WORKFLOW
 
 ### 📋 Pre-Development Checklist
+
 1. Identify appropriate agent for task complexity
-2. Retrieve Context7 MCP documentation for all dependencies
-3. Verify implementation patterns against official docs
-4. Prepare agent context with relevant documentation
-
-### 🔄 CONTEXT7 MCP MANDATORY WORKFLOW
-EVERY code change MUST follow this process:
-
-1. **Documentation Retrieval**: `mcp__context7__resolve-library-id` → `mcp__context7__get-library-docs`
-2. **Pattern Verification**: Confirm exact official approach for the specific change
-3. **Implementation**: Follow official patterns with mandatory source comments
-4. **Verification**: Ensure Context7 compliance and source attribution
-
-### 📝 MANDATORY COMMENT STANDARDS
-ALL code changes MUST include Context7 source citations:
-```typescript
-// CONTEXT7 SOURCE: /radix-ui/primitives - Button with asChild pattern
-// REVISION REASON: Official Radix UI documentation Section 3.2 pattern
-```
-
-**Comment Format Requirements:**
-1. **CONTEXT7 SOURCE**: `/library/project - specific pattern/feature name`
-2. **CHANGE TYPE**: Implementation/Revision/Update/Refactoring/Bug Fix + REASON
-
-### 🚫 FORBIDDEN SOURCES (ZERO TOLERANCE)
-- External documentation websites (even official ones outside Context7 MCP)
-- Community tutorials, blog posts, Stack Overflow, GitHub issues
-- "Quick fixes" without documentation backing
-- General knowledge, memory, or assumptions
+2. Verify implementation patterns against best practices
+3. Prepare agent context with relevant requirements
 
 ### 📁 File Management Protocol
+
 - **EDIT-FIRST POLICY**: Prefer modifying existing files over creating new ones
 - **NO PROACTIVE DOCS**: Only create documentation when explicitly requested
 - **NECESSITY GATE**: New files only when absolutely essential
 
-## ⚠️ REVISION ENFORCEMENT RULES
-- **SINGLE LINE CHANGES**: Even one-character modifications require Context7 documentation
-- **ALL CHANGE TYPES**: CSS tweaks, bug fixes, refactoring, performance optimisation, accessibility fixes ALL require official documentation backing
-
 ## 🏛️ TIER 3: AGENT SPECIALISATION MATRIX
 
 ### ⚡ Haiku Agent (Fast, Efficient)
-**Optimal For**: Content updates, CSS tweaks, simple component changes, documentation updates, bug fixes
-**Context Required**: Minimal - current file context, specific change requirements, AND relevant Context7 MCP documentation
-**MANDATORY**: ALL changes require Context7 documentation retrieval and source comments
-**Output Expected**: Quick, precise modifications with Context7 source comments and change reasoning
+
+**Optimal For**: Content updates, CSS tweaks, simple component changes,
+documentation updates, bug fixes **Context Required**: Minimal - current file
+context, specific change requirements **Output Expected**: Quick, precise
+modifications with clear reasoning
 
 ### ⚖️ Sonnet Agent (Balanced, Complex)
-**Optimal For**: Component architecture, API integrations, form implementations, state management, testing suites
-**Context Required**: Moderate - relevant Context7 docs, component relationships, business requirements
-**MANDATORY**: ALL implementations, modifications, and refactoring require Context7 MCP documentation
-**Output Expected**: Well-structured implementations following official patterns with comprehensive source citations
+
+**Optimal For**: Component architecture, API integrations, form implementations,
+state management, testing suites **Context Required**: Moderate - component
+relationships, business requirements **Output Expected**: Well-structured
+implementations following best practices
 
 ### 🧠 Opus Agent (Advanced, Strategic)
-**Optimal For**: System architecture, performance optimisation, accessibility compliance, security implementations, complex business logic
-**Context Required**: Comprehensive - full Context7 documentation, system architecture, business context
-**MANDATORY**: ALL architectural decisions, optimisations, and security implementations require Context7 MCP backing
-**Output Expected**: Enterprise-grade solutions with detailed Context7 pattern justification and extensive source documentation
+
+**Optimal For**: System architecture, performance optimisation, accessibility
+compliance, security implementations, complex business logic **Context
+Required**: Comprehensive - system architecture, business context **Output
+Expected**: Enterprise-grade solutions with detailed architectural justification
 
 ## 🔧 TIER 4: WORKFLOW OPTIMISATION
 
 ### 📊 Task Classification
+
 - **Simple** → Haiku → Quick execution with minimal context
 - **Complex** → Sonnet → Structured implementation with moderate context
 - **Strategic** → Opus → Comprehensive solution with full context
 
 ### 🎯 Context Preparation
-- Retrieve all relevant Context7 MCP documentation before agent invocation
+
 - Prepare project-specific requirements and constraints
 - Include business context for premium tutoring service standards
 - Specify British English and royal client quality expectations
 
-### ✅ OUTPUT VERIFICATION - CONTEXT7 COMPLIANCE MANDATORY
+### ✅ OUTPUT VERIFICATION
+
 EVERY code change must pass these verification checks:
-- **Context7 MCP Pattern Compliance**: All changes follow official documentation patterns
-- **Mandatory Source Comments**: Context7 source citations present for ALL modifications
-- **Documentation Traceability**: Logic can be traced back to specific official guidance
-- **Change Type Documentation**: Clear reasoning for revision/update/refactoring approach
+
 - **British English Usage**: Consistent throughout all implementations
 - **Premium Service Standards**: Royal client-worthy quality maintained
+- **Code Quality**: Clean, maintainable, production-ready code
 
 ### 🔴 IMMEDIATE TERMINATION CONDITIONS
+
 These violations result in immediate task termination:
-- Any code change without Context7 MCP documentation backing
-- Missing source comments on any modification (including single-line changes)  
-- Use of external sources, tutorials, or "common knowledge" for implementation decisions
-- Quick fixes or shortcuts without official documentation verification
-- Assumptions about best practices without Context7 MCP confirmation
-- **ANY ASYNC CMS PATTERNS**: Promise-based functions, useState/useEffect for static content
-- **ANY FORBIDDEN ARCHITECTURAL PATTERNS**: Dynamic imports, loading states for JSON data
-- **ANY HOMEPAGE FAILURE INDICATORS**: Loading spinners that don't resolve, missing content sections
+
+- **ANY ASYNC CMS PATTERNS**: Promise-based functions, useState/useEffect for
+  static content
+- **ANY FORBIDDEN ARCHITECTURAL PATTERNS**: Dynamic imports, loading states for
+  JSON data
+- **ANY HOMEPAGE FAILURE INDICATORS**: Loading spinners that don't resolve,
+  missing content sections
 
 ---
 
 # 🎓 PROJECT: MY PRIVATE TUTOR ONLINE - PREMIUM REDESIGN 2025
 
 ## 🎯 PROJECT CONTEXT
-**Business**: Premium tutoring service with royal endorsements, serving elite families
-**Heritage**: 15 years established (2010), featured in Tatler Address Book 2025
-**Standards**: Royal client quality, enterprise-grade implementations, British English
+
+**Business**: Premium tutoring service with royal endorsements, serving elite
+families **Heritage**: 15 years established (2010), featured in Tatler Address
+Book 2025 **Standards**: Royal client quality, enterprise-grade implementations,
+British English
 
 ## 📊 PRODUCTION SPECIFICATIONS
-- **Tech Stack**: Next.js 15.3.4 App Router, React 19, TypeScript 5.8+, Tailwind CSS 3.4.1
-- **Performance**: 11.0s build time target, 91 optimized routes, comprehensive monitoring infrastructure
-- **Architecture**: SYNCHRONOUS CMS MANDATORY - Centralised via cms-content.ts and cms-images.ts with runtime violation detection
+
+- **Tech Stack**: Next.js 15.3.4 App Router, React 19, TypeScript 5.8+, Tailwind
+  CSS 3.4.1
+- **Performance**: 11.0s build time target, 91 optimized routes, comprehensive
+  monitoring infrastructure
+- **Architecture**: SYNCHRONOUS CMS MANDATORY - Centralised via cms-content.ts
+  and cms-images.ts with runtime violation detection
 - **Deployment**: Vercel dynamic rendering with force-dynamic in layout.tsx
-- **Features**: Booking system, progress tracking, payment integration, admin dashboard (85% operational), video masterclasses with gradient effects, enterprise security dashboard
-- **Quality**: WCAG 2.1 AA accessibility, royal client standards, British English
-- **Monitoring**: Real-time performance tracking, CMS violation detection, security compliance dashboard
-- **Repository**: Clean state (commit fec780c), enterprise enhancements integrated, GitHub synchronised
+- **Features**: Booking system, progress tracking, payment integration, admin
+  dashboard (85% operational), video masterclasses with gradient effects,
+  enterprise security dashboard
+- **Quality**: WCAG 2.1 AA accessibility, royal client standards, British
+  English
+- **Monitoring**: Real-time performance tracking, CMS violation detection,
+  security compliance dashboard
+- **Repository**: Clean state (commit fec780c), enterprise enhancements
+  integrated, GitHub synchronised
 
 ## 🎯 TARGET DEMOGRAPHICS
+
 - **Oxbridge Prep**: Affluent families, prestigious university entry
 - **11+ Parents**: Grammar school preparation, reassurance-focused
 - **A-Level/GCSE**: Immediate solutions, results-driven
 - **Elite Corporate**: Ultra-wealthy, discretion required, bespoke service
 
 ## 🚀 DEPLOYMENT PATTERNS
-- **Vercel Architecture**: `export const dynamic = 'force-dynamic'` in layout.tsx only
-- **Client Components**: All pages use "use client" directive for Framer Motion compatibility
-- **React.Children.only Resolution**: Use Radix UI Slot patterns for multiple children handling
+
+- **Vercel Architecture**: `export const dynamic = 'force-dynamic'` in
+  layout.tsx only
+- **Client Components**: All pages use "use client" directive for Framer Motion
+  compatibility
+- **React.Children.only Resolution**: Use Radix UI Slot patterns for multiple
+  children handling
 - **Component Standards**: Modular sections with synchronous data access only
-- **Build Verification**: `npm run build` locally + CMS synchronous verification before deployment
-- **Production URL**: https://myprivatetutoronline-f8tv06oa2-jacks-projects-cf5effed.vercel.app
+- **Build Verification**: `npm run build` locally + CMS synchronous verification
+  before deployment
+- **Production URL**:
+  https://myprivatetutoronline-f8tv06oa2-jacks-projects-cf5effed.vercel.app
 
 ## 🚑 EMERGENCY HOMEPAGE RECOVERY PROTOCOL
+
 **IF HOMEPAGE LOADING FAILURES OCCUR:**
 
 ### 🔄 IMMEDIATE DIAGNOSIS
+
 1. Check for `async` keywords in CMS functions
 2. Look for `useState`/`useEffect` for static content
 3. Verify ".map is not a function" errors
 4. Confirm missing homepage sections
 
 ### ⚙️ RECOVERY STEPS
-1. **Convert CMS functions to synchronous**: Remove all `async`/`Promise<>` patterns
+
+1. **Convert CMS functions to synchronous**: Remove all `async`/`Promise<>`
+   patterns
 2. **Replace dynamic imports**: Use direct JSON imports only
 3. **Eliminate loading states**: Remove useState/useEffect for static content
-4. **Test immediate data availability**: Verify all sections load without spinners
+4. **Test immediate data availability**: Verify all sections load without
+   spinners
 
-**REMEMBER**: The synchronous CMS architecture is PROVEN WORKING. Any deviation risks complete homepage failure.
+**REMEMBER**: The synchronous CMS architecture is PROVEN WORKING. Any deviation
+risks complete homepage failure.
 
 ## 🚨 CRITICAL: TAILWIND CSS @LAYER BASE STYLING ARCHITECTURE - MANDATORY FOR ALL STYLING CHANGES
 
-**CONTEXT7 SOURCE**: `/tailwindlabs/tailwindcss.com` - Official Tailwind CSS "Adding Custom Styles" documentation
-**IMPLEMENTATION DATE**: October 16, 2025 - Tailwind CSS Migration Phase 5
-**ZERO TOLERANCE VIOLATIONS**: All styling changes must follow the @layer base pattern - no exceptions
+**CONTEXT7 SOURCE**: `/tailwindlabs/tailwindcss.com` - Official Tailwind CSS
+"Adding Custom Styles" documentation **IMPLEMENTATION DATE**: October 16, 2025 -
+Tailwind CSS Migration Phase 5 **ZERO TOLERANCE VIOLATIONS**: All styling
+changes must follow the @layer base pattern - no exceptions
 
 ### 🔒 MANDATORY STARTUP FILE READS
-**BEFORE ANY STYLING WORK**, agents MUST read these files to understand the styling architecture:
 
-1. **PRIMARY STYLING FILE**: `/home/jack/Documents/my_private_tutor_online/src/app/globals.css`
-   - Contains @layer base section (lines 593-758) with all semantic HTML defaults
+**BEFORE ANY STYLING WORK**, agents MUST read these files to understand the
+styling architecture:
+
+1. **PRIMARY STYLING FILE**:
+   `/home/jack/Documents/my_private_tutor_online/src/app/globals.css`
+   - Contains @layer base section (lines 593-758) with all semantic HTML
+     defaults
    - Defines 200+ CSS custom properties (:root variables)
    - Establishes three-tier cascade layer architecture
 
-2. **TAILWIND CONFIGURATION**: `/home/jack/Documents/my_private_tutor_online/tailwind.config.ts`
+2. **TAILWIND CONFIGURATION**:
+   `/home/jack/Documents/my_private_tutor_online/tailwind.config.ts`
    - Single source of truth for theme configuration (676 lines)
    - Custom color palette, typography scales, shadows, gradients
    - Enhanced variants (ARIA, data, supports shortcuts)
@@ -451,6 +534,7 @@ These violations result in immediate task termination:
 ### 🎯 THE @LAYER BASE PATTERN (OFFICIAL TAILWIND APPROACH)
 
 **✅ THREE-TIER CASCADE ARCHITECTURE:**
+
 ```css
 /* Layer 1: Preflight (automatic) - Tailwind's CSS reset */
 /* Layer 2: Custom base styles (globals.css) - brand defaults */
@@ -458,6 +542,7 @@ These violations result in immediate task termination:
 ```
 
 **✅ SEMANTIC HTML WORKS AUTOMATICALLY:**
+
 ```tsx
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base for semantic defaults
 // Write less code - styles are automatic:
@@ -467,6 +552,7 @@ These violations result in immediate task termination:
 ```
 
 **✅ UTILITY OVERRIDES WHEN NEEDED:**
+
 ```tsx
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Utilities always override base layer
 // Easy overrides with utility classes when exceptions required:
@@ -477,37 +563,65 @@ These violations result in immediate task termination:
 ### 📋 MANDATORY @LAYER BASE IMPLEMENTATION (GLOBALS.CSS LINES 593-758)
 
 **Complete semantic HTML coverage with CSS variables:**
+
 ```css
 @layer base {
-  /* Headings - Primary brand colour (navy) from --color-primary-base */
-  h1, h2, h3, h4, h5, h6 { /* Fully specified with font-family, sizes, weights */ }
+	/* Headings - Primary brand colour (navy) from --color-primary-base */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		/* Fully specified with font-family, sizes, weights */
+	}
 
-  /* Links - Accent colour (gold) from --color-accent with hover transitions */
-  a { color: var(--color-accent); transition: color 200ms; }
-  a:hover { color: var(--color-accent-dark); text-decoration-line: underline; }
+	/* Links - Accent colour (gold) from --color-accent with hover transitions */
+	a {
+		color: var(--color-accent);
+		transition: color 200ms;
+	}
+	a:hover {
+		color: var(--color-accent-dark);
+		text-decoration-line: underline;
+	}
 
-  /* Body text - Neutral colour from --color-neutral-grey-800 */
-  p { color: var(--color-neutral-grey-800); line-height: var(--font-line-height-relaxed); }
+	/* Body text - Neutral colour from --color-neutral-grey-800 */
+	p {
+		color: var(--color-neutral-grey-800);
+		line-height: var(--font-line-height-relaxed);
+	}
 
-  /* Lists, emphasis, strong, blockquotes - all defined with CSS variables */
+	/* Lists, emphasis, strong, blockquotes - all defined with CSS variables */
 
-  /* Navigation exclusions - prevent link styling in nav/buttons */
-  nav a, [data-navigation] a, button a, .btn { color: inherit; }
+	/* Navigation exclusions - prevent link styling in nav/buttons */
+	nav a,
+	[data-navigation] a,
+	button a,
+	.btn {
+		color: inherit;
+	}
 }
 ```
 
 ### 🎯 CRITICAL BENEFITS OF @LAYER BASE APPROACH
 
-1. **Write Less Code**: `<h1>Title</h1>` instead of `<h1 className="text-3xl font-bold text-primary-700">Title</h1>`
-2. **Automatic Consistency**: All pages inherit brand styling without manual class application
-3. **Single Source of Truth**: CSS variables from :root → @layer base → all components
+1. **Write Less Code**: `<h1>Title</h1>` instead of
+   `<h1 className="text-3xl font-bold text-primary-700">Title</h1>`
+2. **Automatic Consistency**: All pages inherit brand styling without manual
+   class application
+3. **Single Source of Truth**: CSS variables from :root → @layer base → all
+   components
 4. **Easy Overrides**: Utility classes always win (higher specificity by design)
-5. **Zero Conflicts**: @layer ensures proper cascade order, no specificity battles
-6. **Official Pattern**: Tailwind recommended approach from official documentation
+5. **Zero Conflicts**: @layer ensures proper cascade order, no specificity
+   battles
+6. **Official Pattern**: Tailwind recommended approach from official
+   documentation
 
 ### 🚫 FORBIDDEN STYLING PATTERNS
 
 **❌ MANUAL COLOR APPLICATION ON EVERY ELEMENT:**
+
 ```tsx
 // FORBIDDEN: Manually applying colors to every heading/link/paragraph
 <h1 className="text-primary-700 text-3xl font-bold">Title</h1>  // DON'T DO THIS
@@ -516,6 +630,7 @@ These violations result in immediate task termination:
 ```
 
 **✅ CORRECT: LET @LAYER BASE HANDLE DEFAULTS:**
+
 ```tsx
 // CORRECT: Clean semantic HTML - styling is automatic
 <h1>Title</h1>  // @layer base provides navy color, bold, 3xl size
@@ -524,6 +639,7 @@ These violations result in immediate task termination:
 ```
 
 **✅ CORRECT: UTILITY OVERRIDES FOR EXCEPTIONS:**
+
 ```tsx
 // CORRECT: Use utilities only when you need to override base defaults
 <h1 className="text-white">White Title on Dark Background</h1>
@@ -534,20 +650,28 @@ These violations result in immediate task termination:
 ### 📏 STYLING WORKFLOW FOR ALL AGENTS
 
 **STEP 1: READ REQUIRED FILES**
-- Read `/home/jack/Documents/my_private_tutor_online/src/app/globals.css` (focus on lines 593-758)
-- Read `/home/jack/Documents/my_private_tutor_online/tailwind.config.ts` (understand theme tokens)
+
+- Read `/home/jack/Documents/my_private_tutor_online/src/app/globals.css` (focus
+  on lines 593-758)
+- Read `/home/jack/Documents/my_private_tutor_online/tailwind.config.ts`
+  (understand theme tokens)
 
 **STEP 2: VERIFY @LAYER BASE COVERAGE**
+
 - Check if semantic HTML element already has @layer base styling
 - If yes: Use semantic HTML without classes (preferred)
 - If no: Consider adding to @layer base if it's a global default
 
 **STEP 3: APPLY STYLING STRATEGY**
+
 - **Default Case**: Use semantic HTML without utility classes (`<h1>Title</h1>`)
-- **Override Case**: Add utility classes only for exceptions (`<h1 className="text-white">`)
-- **New Component**: Build with semantic HTML first, add utilities for variations
+- **Override Case**: Add utility classes only for exceptions
+  (`<h1 className="text-white">`)
+- **New Component**: Build with semantic HTML first, add utilities for
+  variations
 
 **STEP 4: VERIFY IMPLEMENTATION**
+
 - Ensure semantic HTML works without classes where possible
 - Confirm utility overrides work correctly (they always win)
 - Validate CSS variables are used (never hardcode colors/sizes)
@@ -555,22 +679,29 @@ These violations result in immediate task termination:
 ### 🔴 IMMEDIATE TERMINATION CONDITIONS
 
 These styling violations result in immediate task termination:
-- **Manual color classes on standard HTML elements** when @layer base provides defaults
+
+- **Manual color classes on standard HTML elements** when @layer base provides
+  defaults
 - **Hardcoded colors/sizes** instead of using CSS variables or Tailwind tokens
-- **Inline styles for colors/typography** that should use @layer base or utilities
-- **Adding utility classes to every element** instead of leveraging @layer base defaults
-- **Creating component-specific CSS files** instead of using @layer base + utilities
+- **Inline styles for colors/typography** that should use @layer base or
+  utilities
+- **Adding utility classes to every element** instead of leveraging @layer base
+  defaults
+- **Creating component-specific CSS files** instead of using @layer base +
+  utilities
 - **Ignoring globals.css @layer base** and manually styling every element
 - **Not reading globals.css and tailwind.config.ts** before styling work
 
 ### 🎯 VERIFICATION CHECKLIST
 
 Before completing any styling task, verify:
+
 - ✅ Read globals.css @layer base section (lines 593-758)
 - ✅ Read tailwind.config.ts theme configuration
 - ✅ Used semantic HTML without classes where @layer base provides styling
 - ✅ Applied utility overrides only for genuine exceptions
-- ✅ All colors/typography use CSS variables or Tailwind tokens (no hardcoded values)
+- ✅ All colors/typography use CSS variables or Tailwind tokens (no hardcoded
+  values)
 - ✅ Verified styles work automatically for standard HTML elements
 - ✅ Confirmed utility overrides work correctly when needed
 - ✅ Maintained British English in all comments and documentation
@@ -578,6 +709,7 @@ Before completing any styling task, verify:
 ### 📊 ARCHITECTURE SUMMARY
 
 **Pure Utility-First Achieved (Phase 4 Complete)**:
+
 - Zero external CSS files (12 eliminated)
 - Single globals.css with @layer base + CSS variables
 - Pure Tailwind utilities for component variations
@@ -586,6 +718,7 @@ Before completing any styling task, verify:
 - Enhanced ARIA/data/supports variants
 
 **Component Styling Strategy (Phase 5 Current)**:
+
 1. Semantic HTML works automatically via @layer base
 2. Utility classes for overrides and variations
 3. CSS variables for consistent theming
@@ -593,6 +726,7 @@ Before completing any styling task, verify:
 5. Zero external stylesheets or CSS modules
 
 **Business Impact**:
+
 - Faster development: Less code to write per component
 - Consistent branding: Automatic styling across all pages
 - Easier maintenance: Single location for global style updates
@@ -602,4 +736,5 @@ Before completing any styling task, verify:
 ---
 
 # 📚 CUSTOM PATTERN LIBRARY - MAINTAIN IN CUSTOM_DOCS.md
+
 Document all Context7-verified patterns for rapid implementation reference.

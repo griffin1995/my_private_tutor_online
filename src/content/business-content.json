@@ -1,257 +1,278 @@
 {
-  "lastUpdated": "2025-08-20T12:00:00Z",
-  "_comments": {
-    "recentChanges": [
-      {
-        "change": "CONTENT MISMATCH RESOLUTION: Updated Royal family endorsed references to Royal clientele endorsed",
-        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - JSON data structure content management for brand terminology alignment",
-        "date": "2025-08-20",
-        "source": "Client feedback integration - August 20th content alignment requirements",
-        "details": "Multiple references updated: hero subheading and services meta description"
-      }
-    ]
-  },
-  "website": {
-    "hero": {
-      "mainHeading": "Premium Private Tutoring Excellence",
-      "subheading": "Royal clientele endorsed academic tutoring with 15+ years of proven success. Specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels.",
-      "primaryCta": "Book Consultation",
-      "secondaryCta": "View Success Stories",
-      "backgroundImage": "/images/hero/premium-tutoring-hero.jpg",
-      "trustIndicators": [
-        "Royal Family Testimonials",
-        "Featured in Tatler Address Book 2025", 
-        "15+ Years Established Excellence"
-      ]
-    },
-    
-    "services": {
-      "heading": "Academic Excellence Across All Levels",
-      "description": "Bespoke tutoring programmes tailored to your child's specific needs and academic goals.",
-      "categories": [
-        {
-          "title": "Oxbridge Preparation",
-          "description": "Comprehensive Cambridge & Oxford entrance preparation including interview coaching and entrance exams.",
-          "image": "/images/services/oxbridge-prep.jpg",
-          "subjects": ["All subjects", "Interview preparation", "Entrance exams", "Personal statements"],
-          "levels": ["A-Level students", "University preparation"],
-          "keyFeatures": [
-            "Oxbridge graduate tutors",
-            "Mock interview sessions", 
-            "Subject-specific preparation",
-            "Application support"
-          ]
-        },
-        {
-          "title": "11+ Preparation", 
-          "description": "Expert grammar school entrance preparation with proven success rates.",
-          "image": "/images/services/eleven-plus.jpg",
-          "subjects": ["English", "Mathematics", "Verbal Reasoning", "Non-Verbal Reasoning"],
-          "levels": ["Year 5", "Year 6"],
-          "keyFeatures": [
-            "Practice papers and mock exams",
-            "Confidence building techniques",
-            "Speed and accuracy training",
-            "Stress management support"
-          ]
-        },
-        {
-          "title": "GCSE Excellence",
-          "description": "Comprehensive GCSE preparation and grade improvement programmes.",
-          "image": "/images/services/gcse-tutoring.jpg", 
-          "subjects": ["All GCSE subjects", "Science trilogy", "Mathematics", "English Language & Literature"],
-          "levels": ["Years 9-11"],
-          "keyFeatures": [
-            "Grade-specific targeting",
-            "Exam technique mastery",
-            "Coursework support",
-            "Progress tracking"
-          ]
-        },
-        {
-          "title": "A-Level Mastery",
-          "description": "Advanced A-Level preparation including Cambridge International board specialisation.",
-          "image": "/images/services/a-level-tutoring.jpg",
-          "subjects": ["Computer Science", "Mathematics", "Sciences", "Humanities", "Modern Languages"],
-          "levels": ["Years 12-13"],
-          "keyFeatures": [
-            "Cambridge International expertise",
-            "University preparation",
-            "Subject mastery",
-            "Examination excellence"
-          ]
-        }
-      ]
-    },
+	"lastUpdated": "2025-08-20T12:00:00Z",
+	"_comments": {
+		"recentChanges": [
+			{
+				"change": "CONTENT MISMATCH RESOLUTION: Updated Royal family endorsed references to Royal clientele endorsed",
+				"reason": "CONTEXT7 SOURCE: /microsoft/typescript - JSON data structure content management for brand terminology alignment",
+				"date": "2025-08-20",
+				"source": "Client feedback integration - August 20th content alignment requirements",
+				"details": "Multiple references updated: hero subheading and services meta description"
+			}
+		]
+	},
+	"website": {
+		"hero": {
+			"mainHeading": "Premium Private Tutoring Excellence",
+			"subheading": "Royal clientele endorsed academic tutoring with 15+ years of proven success. Specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels.",
+			"primaryCta": "Book Consultation",
+			"secondaryCta": "View Success Stories",
+			"backgroundImage": "/images/hero/premium-tutoring-hero.jpg",
+			"trustIndicators": [
+				"Royal Family Testimonials",
+				"Featured in Tatler Address Book 2025",
+				"15+ Years Established Excellence"
+			]
+		},
 
-    "testimonials": {
-      "heading": "Trusted by Elite Families Across the UK",
-      "featured": [
-        {
-          "quote": "The exceptional tutoring support helped our child achieve their Cambridge offer. The personalised approach and expertise were invaluable.",
-          "attribution": "Royal Family Member",
-          "location": "London",
-          "achievement": "Cambridge University Acceptance",
-          "verified": true
-        },
-        {
-          "quote": "Outstanding 11+ preparation that gave our daughter the confidence she needed. Professional, supportive, and highly effective.",
-          "attribution": "Parent",
-          "location": "Surrey",
-          "achievement": "Grammar School Success",
-          "verified": true
-        }
-      ]
-    },
+		"services": {
+			"heading": "Academic Excellence Across All Levels",
+			"description": "Bespoke tutoring programmes tailored to your child's specific needs and academic goals.",
+			"categories": [
+				{
+					"title": "Oxbridge Preparation",
+					"description": "Comprehensive Cambridge & Oxford entrance preparation including interview coaching and entrance exams.",
+					"image": "/images/services/oxbridge-prep.jpg",
+					"subjects": [
+						"All subjects",
+						"Interview preparation",
+						"Entrance exams",
+						"Personal statements"
+					],
+					"levels": ["A-Level students", "University preparation"],
+					"keyFeatures": [
+						"Oxbridge graduate tutors",
+						"Mock interview sessions",
+						"Subject-specific preparation",
+						"Application support"
+					]
+				},
+				{
+					"title": "11+ Preparation",
+					"description": "Expert grammar school entrance preparation with proven success rates.",
+					"image": "/images/services/eleven-plus.jpg",
+					"subjects": [
+						"English",
+						"Mathematics",
+						"Verbal Reasoning",
+						"Non-Verbal Reasoning"
+					],
+					"levels": ["Year 5", "Year 6"],
+					"keyFeatures": [
+						"Practice papers and mock exams",
+						"Confidence building techniques",
+						"Speed and accuracy training",
+						"Stress management support"
+					]
+				},
+				{
+					"title": "GCSE Excellence",
+					"description": "Comprehensive GCSE preparation and grade improvement programmes.",
+					"image": "/images/services/gcse-tutoring.jpg",
+					"subjects": [
+						"All GCSE subjects",
+						"Science trilogy",
+						"Mathematics",
+						"English Language & Literature"
+					],
+					"levels": ["Years 9-11"],
+					"keyFeatures": [
+						"Grade-specific targeting",
+						"Exam technique mastery",
+						"Coursework support",
+						"Progress tracking"
+					]
+				},
+				{
+					"title": "A-Level Mastery",
+					"description": "Advanced A-Level preparation including Cambridge International board specialisation.",
+					"image": "/images/services/a-level-tutoring.jpg",
+					"subjects": [
+						"Computer Science",
+						"Mathematics",
+						"Sciences",
+						"Humanities",
+						"Modern Languages"
+					],
+					"levels": ["Years 12-13"],
+					"keyFeatures": [
+						"Cambridge International expertise",
+						"University preparation",
+						"Subject mastery",
+						"Examination excellence"
+					]
+				}
+			]
+		},
 
-    "aboutUs": {
-      "heading": "15+ Years of Academic Excellence",
-      "description": "My Private Tutor Online has been providing premium academic tutoring services to discerning families across the UK since 2010.",
-      "content": [
-        {
-          "title": "Royal Recognition",
-          "text": "We are proud to have received testimonials from royal family members, reflecting our commitment to the highest standards of academic excellence and discretion."
-        },
-        {
-          "title": "Tatler Listed",  
-          "text": "Featured in the prestigious Tatler Address Book 2025, recognising our position among the UK's most trusted educational service providers."
-        },
-        {
-          "title": "Proven Track Record",
-          "text": "With over 15 years of experience, we have helped hundreds of students achieve their academic goals, from 11+ success to Oxbridge acceptance."
-        }
-      ],
-      "founder": {
-        "name": "Beth",
-        "title": "Founder & Director",
-        "bio": "With a passion for academic excellence and deep understanding of the UK education system, Beth has built My Private Tutor Online into one of the country's most respected tutoring services.",
-        "image": "/images/team/beth-founder.jpg"
-      }
-    }
-  },
+		"testimonials": {
+			"heading": "Trusted by Elite Families Across the UK",
+			"featured": [
+				{
+					"quote": "The exceptional tutoring support helped our child achieve their Cambridge offer. The personalised approach and expertise were invaluable.",
+					"attribution": "Royal Family Member",
+					"location": "London",
+					"achievement": "Cambridge University Acceptance",
+					"verified": true
+				},
+				{
+					"quote": "Outstanding 11+ preparation that gave our daughter the confidence she needed. Professional, supportive, and highly effective.",
+					"attribution": "Parent",
+					"location": "Surrey",
+					"achievement": "Grammar School Success",
+					"verified": true
+				}
+			]
+		},
 
-  "seasonal": {
-    "currentSeason": "winter",
-    "content": {
-      "autumn": {
-        "hero": {
-          "seasonalMessage": "New Academic Year Excellence Starts Here",
-          "ctaText": "September Preparation Programs Available"
-        },
-        "focus": [
-          "New academic year preparation",
-          "Settling into new schools and subjects", 
-          "Building strong foundations",
-          "11+ preparation intensive courses"
-        ]
-      },
-      "winter": {
-        "hero": {
-          "seasonalMessage": "January Intensive Revision & Mock Exam Excellence", 
-          "ctaText": "Winter Intensive Courses Available"
-        },
-        "focus": [
-          "January mock exam preparation",
-          "Intensive revision programmes",
-          "GCSE coursework support",
-          "A-Level module completion"
-        ]
-      },
-      "spring": {
-        "hero": {
-          "seasonalMessage": "Final Exam Preparation & Success", 
-          "ctaText": "Spring Exam Preparation Available"
-        },
-        "focus": [
-          "Final GCSE exam preparation",
-          "A-Level examination readiness",
-          "University application support",
-          "Stress management and confidence building"
-        ]
-      },
-      "summer": {
-        "hero": {
-          "seasonalMessage": "Summer Preparation & Results Support",
-          "ctaText": "Summer Intensive Courses Available"
-        },
-        "focus": [
-          "Results day support and guidance",
-          "Retake preparation programmes",
-          "Next academic year preparation",
-          "Summer intensive catch-up courses"
-        ]
-      }
-    }
-  },
+		"aboutUs": {
+			"heading": "15+ Years of Academic Excellence",
+			"description": "My Private Tutor Online has been providing premium academic tutoring services to discerning families across the UK since 2010.",
+			"content": [
+				{
+					"title": "Royal Recognition",
+					"text": "We are proud to have received testimonials from royal family members, reflecting our commitment to the highest standards of academic excellence and discretion."
+				},
+				{
+					"title": "Tatler Listed",
+					"text": "Featured in the prestigious Tatler Address Book 2025, recognising our position among the UK's most trusted educational service providers."
+				},
+				{
+					"title": "Proven Track Record",
+					"text": "With over 15 years of experience, we have helped hundreds of students achieve their academic goals, from 11+ success to Oxbridge acceptance."
+				}
+			],
+			"founder": {
+				"name": "Beth",
+				"title": "Founder & Director",
+				"bio": "With a passion for academic excellence and deep understanding of the UK education system, Beth has built My Private Tutor Online into one of the country's most respected tutoring services.",
+				"image": "/images/team/beth-founder.jpg"
+			}
+		}
+	},
 
-  "contact": {
-    "heading": "Begin Your Child's Academic Journey",
-    "description": "Contact us for a confidential consultation to discuss your child's specific academic needs and goals.",
-    "methods": [
-      {
-        "type": "email",
-        "label": "Email",
-        "value": "hello@myprivatetutoronline.com",
-        "primary": true
-      },
-      {
-        "type": "phone",
-        "label": "Telephone",
-        "value": "+44 (0) 20 7XXX XXXX",
-        "primary": true
-      }
-    ],
-    "consultationProcess": [
-      {
-        "step": 1,
-        "title": "Initial Consultation",
-        "description": "Confidential discussion of your child's needs and academic goals"
-      },
-      {
-        "step": 2, 
-        "title": "Tutor Matching",
-        "description": "Careful selection of the perfect tutor for your child's requirements"
-      },
-      {
-        "step": 3,
-        "title": "Personalised Programme",
-        "description": "Bespoke tutoring plan designed specifically for academic success"
-      }
-    ]
-  },
+	"seasonal": {
+		"currentSeason": "winter",
+		"content": {
+			"autumn": {
+				"hero": {
+					"seasonalMessage": "New Academic Year Excellence Starts Here",
+					"ctaText": "September Preparation Programs Available"
+				},
+				"focus": [
+					"New academic year preparation",
+					"Settling into new schools and subjects",
+					"Building strong foundations",
+					"11+ preparation intensive courses"
+				]
+			},
+			"winter": {
+				"hero": {
+					"seasonalMessage": "January Intensive Revision & Mock Exam Excellence",
+					"ctaText": "Winter Intensive Courses Available"
+				},
+				"focus": [
+					"January mock exam preparation",
+					"Intensive revision programmes",
+					"GCSE coursework support",
+					"A-Level module completion"
+				]
+			},
+			"spring": {
+				"hero": {
+					"seasonalMessage": "Final Exam Preparation & Success",
+					"ctaText": "Spring Exam Preparation Available"
+				},
+				"focus": [
+					"Final GCSE exam preparation",
+					"A-Level examination readiness",
+					"University application support",
+					"Stress management and confidence building"
+				]
+			},
+			"summer": {
+				"hero": {
+					"seasonalMessage": "Summer Preparation & Results Support",
+					"ctaText": "Summer Intensive Courses Available"
+				},
+				"focus": [
+					"Results day support and guidance",
+					"Retake preparation programmes",
+					"Next academic year preparation",
+					"Summer intensive catch-up courses"
+				]
+			}
+		}
+	},
 
-  "seo": {
-    "keywords": {
-      "primary": [
-        "private tutor",
-        "premium tutoring",
-        "Oxbridge preparation",
-        "11+ tutoring",
-        "GCSE tuition",
-        "A-level tutoring"
-      ],
-      "secondary": [
-        "Cambridge International tutoring",
-        "royal family tutor",
-        "Tatler tutor",
-        "elite tutoring",
-        "academic preparation",
-        "entrance exam preparation"
-      ],
-      "location": [
-        "London tutoring",
-        "UK private tutor",
-        "British tutoring",
-        "England academic support"
-      ]
-    },
-    "content": {
-      "metaDescriptions": {
-        "home": "Premium private tutoring with royal endorsements. 15+ years experience in Oxbridge prep, 11+ entry, GCSE & A-levels. Featured in Tatler Address Book.",
-        "services": "Expert tutoring across all academic levels. Oxbridge preparation, 11+ entry, GCSE excellence, A-level mastery. Royal clientele endorsed.",
-        "about": "Established 2010. Royal testimonials, Tatler-listed premium tutoring service. Proven track record in academic excellence.",
-        "contact": "Contact My Private Tutor Online for premium academic tutoring. Confidential consultations, bespoke programmes, proven results."
-      }
-    }
-  }
+	"contact": {
+		"heading": "Begin Your Child's Academic Journey",
+		"description": "Contact us for a confidential consultation to discuss your child's specific academic needs and goals.",
+		"methods": [
+			{
+				"type": "email",
+				"label": "Email",
+				"value": "hello@myprivatetutoronline.com",
+				"primary": true
+			},
+			{
+				"type": "phone",
+				"label": "Telephone",
+				"value": "+44 (0) 20 7XXX XXXX",
+				"primary": true
+			}
+		],
+		"consultationProcess": [
+			{
+				"step": 1,
+				"title": "Initial Consultation",
+				"description": "Confidential discussion of your child's needs and academic goals"
+			},
+			{
+				"step": 2,
+				"title": "Tutor Matching",
+				"description": "Careful selection of the perfect tutor for your child's requirements"
+			},
+			{
+				"step": 3,
+				"title": "Personalised Programme",
+				"description": "Bespoke tutoring plan designed specifically for academic success"
+			}
+		]
+	},
+
+	"seo": {
+		"keywords": {
+			"primary": [
+				"private tutor",
+				"premium tutoring",
+				"Oxbridge preparation",
+				"11+ tutoring",
+				"GCSE tuition",
+				"A-level tutoring"
+			],
+			"secondary": [
+				"Cambridge International tutoring",
+				"royal family tutor",
+				"Tatler tutor",
+				"elite tutoring",
+				"academic preparation",
+				"entrance exam preparation"
+			],
+			"location": [
+				"London tutoring",
+				"UK private tutor",
+				"British tutoring",
+				"England academic support"
+			]
+		},
+		"content": {
+			"metaDescriptions": {
+				"home": "Premium private tutoring with royal endorsements. 15+ years experience in Oxbridge prep, 11+ entry, GCSE & A-levels. Featured in Tatler Address Book.",
+				"services": "Expert tutoring across all academic levels. Oxbridge preparation, 11+ entry, GCSE excellence, A-level mastery. Royal clientele endorsed.",
+				"about": "Established 2010. Royal testimonials, Tatler-listed premium tutoring service. Proven track record in academic excellence.",
+				"contact": "Contact My Private Tutor Online for premium academic tutoring. Confidential consultations, bespoke programmes, proven results."
+			}
+		}
+	}
 }

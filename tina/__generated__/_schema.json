@@ -1,1 +1,998 @@
-{"version":{"fullVersion":"1.5.19","major":"1","minor":"5","patch":"19"},"meta":{"flags":["experimentalData"]},"collections":[{"name":"landingPage","label":"Landing Page","path":"src/content","format":"json","ui":{"allowedActions":{"create":false,"delete":false}},"match":{"include":"landing-page"},"fields":[{"type":"object","name":"header","label":"Header","fields":[{"type":"string","name":"siteName","label":"Site Name","required":true,"namespace":["landingPage","header","siteName"],"searchable":true,"uid":false},{"type":"object","name":"navigation","label":"Navigation","list":true,"fields":[{"type":"string","name":"label","label":"Label","required":true,"namespace":["landingPage","header","navigation","label"],"searchable":true,"uid":false},{"type":"string","name":"href","label":"Link","required":true,"namespace":["landingPage","header","navigation","href"],"searchable":true,"uid":false}],"namespace":["landingPage","header","navigation"],"searchable":true,"uid":false}],"namespace":["landingPage","header"],"searchable":true,"uid":false},{"type":"object","name":"hero","label":"Hero Section","fields":[{"type":"string","name":"title","label":"Main Title","required":true,"namespace":["landingPage","hero","title"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Description","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","hero","description"],"searchable":true,"uid":false},{"type":"string","name":"primaryButtonText","label":"Primary Button Text","required":true,"namespace":["landingPage","hero","primaryButtonText"],"searchable":true,"uid":false},{"type":"string","name":"secondaryButtonText","label":"Secondary Button Text","required":true,"namespace":["landingPage","hero","secondaryButtonText"],"searchable":true,"uid":false},{"type":"image","name":"videoPlaceholder","label":"Video Placeholder Image","required":true,"namespace":["landingPage","hero","videoPlaceholder"],"searchable":false,"uid":false},{"type":"string","name":"videoPlaceholderAlt","label":"Video Placeholder Alt Text","required":true,"namespace":["landingPage","hero","videoPlaceholderAlt"],"searchable":true,"uid":false}],"namespace":["landingPage","hero"],"searchable":true,"uid":false},{"type":"object","name":"trustIndicators","label":"Trust Indicators","fields":[{"type":"string","name":"sectionTitle","label":"Section Title","required":true,"namespace":["landingPage","trustIndicators","sectionTitle"],"searchable":true,"uid":false},{"type":"string","name":"sectionDescription","label":"Section Description","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","trustIndicators","sectionDescription"],"searchable":true,"uid":false},{"type":"object","name":"indicators","label":"Trust Indicators","list":true,"fields":[{"type":"string","name":"icon","label":"Icon (Emoji)","required":true,"namespace":["landingPage","trustIndicators","indicators","icon"],"searchable":true,"uid":false},{"type":"string","name":"title","label":"Title","required":true,"namespace":["landingPage","trustIndicators","indicators","title"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Description","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","trustIndicators","indicators","description"],"searchable":true,"uid":false}],"namespace":["landingPage","trustIndicators","indicators"],"searchable":true,"uid":false}],"namespace":["landingPage","trustIndicators"],"searchable":true,"uid":false},{"type":"object","name":"testimonials","label":"Testimonials Section","fields":[{"type":"string","name":"sectionTitle","label":"Section Title","required":true,"namespace":["landingPage","testimonials","sectionTitle"],"searchable":true,"uid":false},{"type":"string","name":"sectionSubtitle","label":"Section Subtitle","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","testimonials","sectionSubtitle"],"searchable":true,"uid":false},{"type":"object","name":"testimonials","label":"Testimonials","list":true,"fields":[{"type":"string","name":"quote","label":"Quote","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","testimonials","testimonials","quote"],"searchable":true,"uid":false},{"type":"string","name":"author","label":"Author Name","required":true,"namespace":["landingPage","testimonials","testimonials","author"],"searchable":true,"uid":false},{"type":"string","name":"role","label":"Author Role/Title","required":true,"namespace":["landingPage","testimonials","testimonials","role"],"searchable":true,"uid":false},{"type":"image","name":"avatar","label":"Author Photo","namespace":["landingPage","testimonials","testimonials","avatar"],"searchable":false,"uid":false},{"type":"number","name":"rating","label":"Star Rating (1-5)","namespace":["landingPage","testimonials","testimonials","rating"],"searchable":true,"uid":false}],"namespace":["landingPage","testimonials","testimonials"],"searchable":true,"uid":false}],"namespace":["landingPage","testimonials"],"searchable":true,"uid":false},{"type":"object","name":"services","label":"Services Section","fields":[{"type":"string","name":"sectionTitle","label":"Section Title","required":true,"namespace":["landingPage","services","sectionTitle"],"searchable":true,"uid":false},{"type":"string","name":"sectionDescription","label":"Section Description","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","services","sectionDescription"],"searchable":true,"uid":false},{"type":"object","name":"services","label":"Services","list":true,"fields":[{"type":"string","name":"title","label":"Service Title","required":true,"namespace":["landingPage","services","services","title"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Service Description","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","services","services","description"],"searchable":true,"uid":false},{"type":"string","name":"icon","label":"Service Icon (Emoji or Icon Class)","required":true,"namespace":["landingPage","services","services","icon"],"searchable":true,"uid":false},{"type":"object","name":"features","label":"Service Features","list":true,"fields":[{"type":"string","name":"feature","label":"Feature","required":true,"namespace":["landingPage","services","services","features","feature"],"searchable":true,"uid":false}],"namespace":["landingPage","services","services","features"],"searchable":true,"uid":false},{"type":"string","name":"ctaText","label":"Call to Action Text","namespace":["landingPage","services","services","ctaText"],"searchable":true,"uid":false},{"type":"string","name":"ctaLink","label":"Call to Action Link","namespace":["landingPage","services","services","ctaLink"],"searchable":true,"uid":false}],"namespace":["landingPage","services","services"],"searchable":true,"uid":false}],"namespace":["landingPage","services"],"searchable":true,"uid":false},{"type":"object","name":"results","label":"Results & Statistics","fields":[{"type":"string","name":"sectionTitle","label":"Section Title","required":true,"namespace":["landingPage","results","sectionTitle"],"searchable":true,"uid":false},{"type":"string","name":"sectionDescription","label":"Section Description","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","results","sectionDescription"],"searchable":true,"uid":false},{"type":"object","name":"statistics","label":"Statistics","list":true,"fields":[{"type":"string","name":"number","label":"Statistic Number","required":true,"namespace":["landingPage","results","statistics","number"],"searchable":true,"uid":false},{"type":"string","name":"label","label":"Statistic Label","required":true,"namespace":["landingPage","results","statistics","label"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Statistic Description","ui":{"component":"textarea"},"namespace":["landingPage","results","statistics","description"],"searchable":true,"uid":false},{"type":"string","name":"icon","label":"Statistic Icon","namespace":["landingPage","results","statistics","icon"],"searchable":true,"uid":false}],"namespace":["landingPage","results","statistics"],"searchable":true,"uid":false}],"namespace":["landingPage","results"],"searchable":true,"uid":false},{"type":"object","name":"contact","label":"Contact Section","fields":[{"type":"string","name":"sectionTitle","label":"Section Title","required":true,"namespace":["landingPage","contact","sectionTitle"],"searchable":true,"uid":false},{"type":"string","name":"sectionDescription","label":"Section Description","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","contact","sectionDescription"],"searchable":true,"uid":false},{"type":"string","name":"formTitle","label":"Form Title","required":true,"namespace":["landingPage","contact","formTitle"],"searchable":true,"uid":false},{"type":"string","name":"formDescription","label":"Form Description","ui":{"component":"textarea"},"namespace":["landingPage","contact","formDescription"],"searchable":true,"uid":false},{"type":"string","name":"submitButtonText","label":"Submit Button Text","required":true,"namespace":["landingPage","contact","submitButtonText"],"searchable":true,"uid":false},{"type":"object","name":"contactInfo","label":"Contact Information","fields":[{"type":"string","name":"email","label":"Email Address","required":true,"namespace":["landingPage","contact","contactInfo","email"],"searchable":true,"uid":false},{"type":"string","name":"phone","label":"Phone Number","required":true,"namespace":["landingPage","contact","contactInfo","phone"],"searchable":true,"uid":false},{"type":"string","name":"address","label":"Address","ui":{"component":"textarea"},"namespace":["landingPage","contact","contactInfo","address"],"searchable":true,"uid":false}],"namespace":["landingPage","contact","contactInfo"],"searchable":true,"uid":false}],"namespace":["landingPage","contact"],"searchable":true,"uid":false},{"type":"object","name":"footer","label":"Footer","fields":[{"type":"string","name":"companyName","label":"Company Name","required":true,"namespace":["landingPage","footer","companyName"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Company Description","ui":{"component":"textarea"},"required":true,"namespace":["landingPage","footer","description"],"searchable":true,"uid":false},{"type":"object","name":"footerSections","label":"Footer Sections","list":true,"fields":[{"type":"string","name":"title","label":"Section Title","required":true,"namespace":["landingPage","footer","footerSections","title"],"searchable":true,"uid":false},{"type":"object","name":"links","label":"Links","list":true,"fields":[{"type":"string","name":"label","label":"Link Label","required":true,"namespace":["landingPage","footer","footerSections","links","label"],"searchable":true,"uid":false},{"type":"string","name":"href","label":"Link URL","required":true,"namespace":["landingPage","footer","footerSections","links","href"],"searchable":true,"uid":false}],"namespace":["landingPage","footer","footerSections","links"],"searchable":true,"uid":false}],"namespace":["landingPage","footer","footerSections"],"searchable":true,"uid":false},{"type":"string","name":"copyrightText","label":"Copyright Text","required":true,"namespace":["landingPage","footer","copyrightText"],"searchable":true,"uid":false}],"namespace":["landingPage","footer"],"searchable":true,"uid":false}],"namespace":["landingPage"]},{"name":"seasonalContent","label":"Seasonal Content","path":"src/content","format":"json","ui":{"allowedActions":{"create":false,"delete":false}},"match":{"include":"seasonal-content"},"fields":[{"type":"object","name":"seasons","label":"Seasonal Content","fields":[{"type":"object","name":"spring","label":"Spring Content","fields":[{"type":"string","name":"title","label":"Title","required":true,"namespace":["seasonalContent","seasons","spring","title"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Description","ui":{"component":"textarea"},"required":true,"namespace":["seasonalContent","seasons","spring","description"],"searchable":true,"uid":false},{"type":"string","name":"ctaText","label":"Call to Action Text","required":true,"namespace":["seasonalContent","seasons","spring","ctaText"],"searchable":true,"uid":false},{"type":"string","name":"focusArea","label":"Focus Area","required":true,"namespace":["seasonalContent","seasons","spring","focusArea"],"searchable":true,"uid":false},{"type":"string","name":"bgGradient","label":"Background Gradient Class","required":true,"namespace":["seasonalContent","seasons","spring","bgGradient"],"searchable":true,"uid":false}],"namespace":["seasonalContent","seasons","spring"],"searchable":true,"uid":false},{"type":"object","name":"summer","label":"Summer Content","fields":[{"type":"string","name":"title","label":"Title","required":true,"namespace":["seasonalContent","seasons","summer","title"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Description","ui":{"component":"textarea"},"required":true,"namespace":["seasonalContent","seasons","summer","description"],"searchable":true,"uid":false},{"type":"string","name":"ctaText","label":"Call to Action Text","required":true,"namespace":["seasonalContent","seasons","summer","ctaText"],"searchable":true,"uid":false},{"type":"string","name":"focusArea","label":"Focus Area","required":true,"namespace":["seasonalContent","seasons","summer","focusArea"],"searchable":true,"uid":false},{"type":"string","name":"bgGradient","label":"Background Gradient Class","required":true,"namespace":["seasonalContent","seasons","summer","bgGradient"],"searchable":true,"uid":false}],"namespace":["seasonalContent","seasons","summer"],"searchable":true,"uid":false},{"type":"object","name":"autumn","label":"Autumn Content","fields":[{"type":"string","name":"title","label":"Title","required":true,"namespace":["seasonalContent","seasons","autumn","title"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Description","ui":{"component":"textarea"},"required":true,"namespace":["seasonalContent","seasons","autumn","description"],"searchable":true,"uid":false},{"type":"string","name":"ctaText","label":"Call to Action Text","required":true,"namespace":["seasonalContent","seasons","autumn","ctaText"],"searchable":true,"uid":false},{"type":"string","name":"focusArea","label":"Focus Area","required":true,"namespace":["seasonalContent","seasons","autumn","focusArea"],"searchable":true,"uid":false},{"type":"string","name":"bgGradient","label":"Background Gradient Class","required":true,"namespace":["seasonalContent","seasons","autumn","bgGradient"],"searchable":true,"uid":false}],"namespace":["seasonalContent","seasons","autumn"],"searchable":true,"uid":false},{"type":"object","name":"winter","label":"Winter Content","fields":[{"type":"string","name":"title","label":"Title","required":true,"namespace":["seasonalContent","seasons","winter","title"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Description","ui":{"component":"textarea"},"required":true,"namespace":["seasonalContent","seasons","winter","description"],"searchable":true,"uid":false},{"type":"string","name":"ctaText","label":"Call to Action Text","required":true,"namespace":["seasonalContent","seasons","winter","ctaText"],"searchable":true,"uid":false},{"type":"string","name":"focusArea","label":"Focus Area","required":true,"namespace":["seasonalContent","seasons","winter","focusArea"],"searchable":true,"uid":false},{"type":"string","name":"bgGradient","label":"Background Gradient Class","required":true,"namespace":["seasonalContent","seasons","winter","bgGradient"],"searchable":true,"uid":false}],"namespace":["seasonalContent","seasons","winter"],"searchable":true,"uid":false}],"namespace":["seasonalContent","seasons"],"searchable":true,"uid":false}],"namespace":["seasonalContent"]},{"name":"page","label":"Additional Pages","path":"src/content/pages","fields":[{"type":"string","name":"title","label":"Title","isTitle":true,"required":true,"namespace":["page","title"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Description","namespace":["page","description"],"searchable":true,"uid":false},{"type":"rich-text","name":"body","label":"Body","isBody":true,"namespace":["page","body"],"searchable":true,"parser":{"type":"markdown"},"uid":false}],"namespace":["page"]},{"name":"post","label":"Blog Posts","path":"src/content/posts","fields":[{"type":"string","name":"title","label":"Title","isTitle":true,"required":true,"namespace":["post","title"],"searchable":true,"uid":false},{"type":"string","name":"description","label":"Description","namespace":["post","description"],"searchable":true,"uid":false},{"type":"datetime","name":"date","label":"Date","required":true,"namespace":["post","date"],"searchable":true,"uid":false},{"type":"rich-text","name":"body","label":"Body","isBody":true,"namespace":["post","body"],"searchable":true,"parser":{"type":"markdown"},"uid":false}],"namespace":["post"]}],"config":{"media":{"tina":{"publicFolder":"public","mediaRoot":"uploads"}}}}
+{
+	"version": {
+		"fullVersion": "1.5.19",
+		"major": "1",
+		"minor": "5",
+		"patch": "19"
+	},
+	"meta": { "flags": ["experimentalData"] },
+	"collections": [
+		{
+			"name": "landingPage",
+			"label": "Landing Page",
+			"path": "src/content",
+			"format": "json",
+			"ui": { "allowedActions": { "create": false, "delete": false } },
+			"match": { "include": "landing-page" },
+			"fields": [
+				{
+					"type": "object",
+					"name": "header",
+					"label": "Header",
+					"fields": [
+						{
+							"type": "string",
+							"name": "siteName",
+							"label": "Site Name",
+							"required": true,
+							"namespace": ["landingPage", "header", "siteName"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "navigation",
+							"label": "Navigation",
+							"list": true,
+							"fields": [
+								{
+									"type": "string",
+									"name": "label",
+									"label": "Label",
+									"required": true,
+									"namespace": ["landingPage", "header", "navigation", "label"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "href",
+									"label": "Link",
+									"required": true,
+									"namespace": ["landingPage", "header", "navigation", "href"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["landingPage", "header", "navigation"],
+							"searchable": true,
+							"uid": false
+						}
+					],
+					"namespace": ["landingPage", "header"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "object",
+					"name": "hero",
+					"label": "Hero Section",
+					"fields": [
+						{
+							"type": "string",
+							"name": "title",
+							"label": "Main Title",
+							"required": true,
+							"namespace": ["landingPage", "hero", "title"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "description",
+							"label": "Description",
+							"ui": { "component": "textarea" },
+							"required": true,
+							"namespace": ["landingPage", "hero", "description"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "primaryButtonText",
+							"label": "Primary Button Text",
+							"required": true,
+							"namespace": ["landingPage", "hero", "primaryButtonText"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "secondaryButtonText",
+							"label": "Secondary Button Text",
+							"required": true,
+							"namespace": ["landingPage", "hero", "secondaryButtonText"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "image",
+							"name": "videoPlaceholder",
+							"label": "Video Placeholder Image",
+							"required": true,
+							"namespace": ["landingPage", "hero", "videoPlaceholder"],
+							"searchable": false,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "videoPlaceholderAlt",
+							"label": "Video Placeholder Alt Text",
+							"required": true,
+							"namespace": ["landingPage", "hero", "videoPlaceholderAlt"],
+							"searchable": true,
+							"uid": false
+						}
+					],
+					"namespace": ["landingPage", "hero"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "object",
+					"name": "trustIndicators",
+					"label": "Trust Indicators",
+					"fields": [
+						{
+							"type": "string",
+							"name": "sectionTitle",
+							"label": "Section Title",
+							"required": true,
+							"namespace": ["landingPage", "trustIndicators", "sectionTitle"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "sectionDescription",
+							"label": "Section Description",
+							"ui": { "component": "textarea" },
+							"required": true,
+							"namespace": ["landingPage", "trustIndicators", "sectionDescription"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "indicators",
+							"label": "Trust Indicators",
+							"list": true,
+							"fields": [
+								{
+									"type": "string",
+									"name": "icon",
+									"label": "Icon (Emoji)",
+									"required": true,
+									"namespace": ["landingPage", "trustIndicators", "indicators", "icon"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "title",
+									"label": "Title",
+									"required": true,
+									"namespace": ["landingPage", "trustIndicators", "indicators", "title"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "description",
+									"label": "Description",
+									"ui": { "component": "textarea" },
+									"required": true,
+									"namespace": [
+										"landingPage",
+										"trustIndicators",
+										"indicators",
+										"description"
+									],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["landingPage", "trustIndicators", "indicators"],
+							"searchable": true,
+							"uid": false
+						}
+					],
+					"namespace": ["landingPage", "trustIndicators"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "object",
+					"name": "testimonials",
+					"label": "Testimonials Section",
+					"fields": [
+						{
+							"type": "string",
+							"name": "sectionTitle",
+							"label": "Section Title",
+							"required": true,
+							"namespace": ["landingPage", "testimonials", "sectionTitle"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "sectionSubtitle",
+							"label": "Section Subtitle",
+							"ui": { "component": "textarea" },
+							"required": true,
+							"namespace": ["landingPage", "testimonials", "sectionSubtitle"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "testimonials",
+							"label": "Testimonials",
+							"list": true,
+							"fields": [
+								{
+									"type": "string",
+									"name": "quote",
+									"label": "Quote",
+									"ui": { "component": "textarea" },
+									"required": true,
+									"namespace": ["landingPage", "testimonials", "testimonials", "quote"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "author",
+									"label": "Author Name",
+									"required": true,
+									"namespace": ["landingPage", "testimonials", "testimonials", "author"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "role",
+									"label": "Author Role/Title",
+									"required": true,
+									"namespace": ["landingPage", "testimonials", "testimonials", "role"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "image",
+									"name": "avatar",
+									"label": "Author Photo",
+									"namespace": ["landingPage", "testimonials", "testimonials", "avatar"],
+									"searchable": false,
+									"uid": false
+								},
+								{
+									"type": "number",
+									"name": "rating",
+									"label": "Star Rating (1-5)",
+									"namespace": ["landingPage", "testimonials", "testimonials", "rating"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["landingPage", "testimonials", "testimonials"],
+							"searchable": true,
+							"uid": false
+						}
+					],
+					"namespace": ["landingPage", "testimonials"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "object",
+					"name": "services",
+					"label": "Services Section",
+					"fields": [
+						{
+							"type": "string",
+							"name": "sectionTitle",
+							"label": "Section Title",
+							"required": true,
+							"namespace": ["landingPage", "services", "sectionTitle"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "sectionDescription",
+							"label": "Section Description",
+							"ui": { "component": "textarea" },
+							"required": true,
+							"namespace": ["landingPage", "services", "sectionDescription"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "services",
+							"label": "Services",
+							"list": true,
+							"fields": [
+								{
+									"type": "string",
+									"name": "title",
+									"label": "Service Title",
+									"required": true,
+									"namespace": ["landingPage", "services", "services", "title"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "description",
+									"label": "Service Description",
+									"ui": { "component": "textarea" },
+									"required": true,
+									"namespace": ["landingPage", "services", "services", "description"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "icon",
+									"label": "Service Icon (Emoji or Icon Class)",
+									"required": true,
+									"namespace": ["landingPage", "services", "services", "icon"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "object",
+									"name": "features",
+									"label": "Service Features",
+									"list": true,
+									"fields": [
+										{
+											"type": "string",
+											"name": "feature",
+											"label": "Feature",
+											"required": true,
+											"namespace": [
+												"landingPage",
+												"services",
+												"services",
+												"features",
+												"feature"
+											],
+											"searchable": true,
+											"uid": false
+										}
+									],
+									"namespace": ["landingPage", "services", "services", "features"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "ctaText",
+									"label": "Call to Action Text",
+									"namespace": ["landingPage", "services", "services", "ctaText"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "ctaLink",
+									"label": "Call to Action Link",
+									"namespace": ["landingPage", "services", "services", "ctaLink"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["landingPage", "services", "services"],
+							"searchable": true,
+							"uid": false
+						}
+					],
+					"namespace": ["landingPage", "services"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "object",
+					"name": "results",
+					"label": "Results & Statistics",
+					"fields": [
+						{
+							"type": "string",
+							"name": "sectionTitle",
+							"label": "Section Title",
+							"required": true,
+							"namespace": ["landingPage", "results", "sectionTitle"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "sectionDescription",
+							"label": "Section Description",
+							"ui": { "component": "textarea" },
+							"required": true,
+							"namespace": ["landingPage", "results", "sectionDescription"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "statistics",
+							"label": "Statistics",
+							"list": true,
+							"fields": [
+								{
+									"type": "string",
+									"name": "number",
+									"label": "Statistic Number",
+									"required": true,
+									"namespace": ["landingPage", "results", "statistics", "number"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "label",
+									"label": "Statistic Label",
+									"required": true,
+									"namespace": ["landingPage", "results", "statistics", "label"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "description",
+									"label": "Statistic Description",
+									"ui": { "component": "textarea" },
+									"namespace": ["landingPage", "results", "statistics", "description"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "icon",
+									"label": "Statistic Icon",
+									"namespace": ["landingPage", "results", "statistics", "icon"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["landingPage", "results", "statistics"],
+							"searchable": true,
+							"uid": false
+						}
+					],
+					"namespace": ["landingPage", "results"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "object",
+					"name": "contact",
+					"label": "Contact Section",
+					"fields": [
+						{
+							"type": "string",
+							"name": "sectionTitle",
+							"label": "Section Title",
+							"required": true,
+							"namespace": ["landingPage", "contact", "sectionTitle"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "sectionDescription",
+							"label": "Section Description",
+							"ui": { "component": "textarea" },
+							"required": true,
+							"namespace": ["landingPage", "contact", "sectionDescription"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "formTitle",
+							"label": "Form Title",
+							"required": true,
+							"namespace": ["landingPage", "contact", "formTitle"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "formDescription",
+							"label": "Form Description",
+							"ui": { "component": "textarea" },
+							"namespace": ["landingPage", "contact", "formDescription"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "submitButtonText",
+							"label": "Submit Button Text",
+							"required": true,
+							"namespace": ["landingPage", "contact", "submitButtonText"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "contactInfo",
+							"label": "Contact Information",
+							"fields": [
+								{
+									"type": "string",
+									"name": "email",
+									"label": "Email Address",
+									"required": true,
+									"namespace": ["landingPage", "contact", "contactInfo", "email"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "phone",
+									"label": "Phone Number",
+									"required": true,
+									"namespace": ["landingPage", "contact", "contactInfo", "phone"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "address",
+									"label": "Address",
+									"ui": { "component": "textarea" },
+									"namespace": ["landingPage", "contact", "contactInfo", "address"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["landingPage", "contact", "contactInfo"],
+							"searchable": true,
+							"uid": false
+						}
+					],
+					"namespace": ["landingPage", "contact"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "object",
+					"name": "footer",
+					"label": "Footer",
+					"fields": [
+						{
+							"type": "string",
+							"name": "companyName",
+							"label": "Company Name",
+							"required": true,
+							"namespace": ["landingPage", "footer", "companyName"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "description",
+							"label": "Company Description",
+							"ui": { "component": "textarea" },
+							"required": true,
+							"namespace": ["landingPage", "footer", "description"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "footerSections",
+							"label": "Footer Sections",
+							"list": true,
+							"fields": [
+								{
+									"type": "string",
+									"name": "title",
+									"label": "Section Title",
+									"required": true,
+									"namespace": ["landingPage", "footer", "footerSections", "title"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "object",
+									"name": "links",
+									"label": "Links",
+									"list": true,
+									"fields": [
+										{
+											"type": "string",
+											"name": "label",
+											"label": "Link Label",
+											"required": true,
+											"namespace": [
+												"landingPage",
+												"footer",
+												"footerSections",
+												"links",
+												"label"
+											],
+											"searchable": true,
+											"uid": false
+										},
+										{
+											"type": "string",
+											"name": "href",
+											"label": "Link URL",
+											"required": true,
+											"namespace": [
+												"landingPage",
+												"footer",
+												"footerSections",
+												"links",
+												"href"
+											],
+											"searchable": true,
+											"uid": false
+										}
+									],
+									"namespace": ["landingPage", "footer", "footerSections", "links"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["landingPage", "footer", "footerSections"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "string",
+							"name": "copyrightText",
+							"label": "Copyright Text",
+							"required": true,
+							"namespace": ["landingPage", "footer", "copyrightText"],
+							"searchable": true,
+							"uid": false
+						}
+					],
+					"namespace": ["landingPage", "footer"],
+					"searchable": true,
+					"uid": false
+				}
+			],
+			"namespace": ["landingPage"]
+		},
+		{
+			"name": "seasonalContent",
+			"label": "Seasonal Content",
+			"path": "src/content",
+			"format": "json",
+			"ui": { "allowedActions": { "create": false, "delete": false } },
+			"match": { "include": "seasonal-content" },
+			"fields": [
+				{
+					"type": "object",
+					"name": "seasons",
+					"label": "Seasonal Content",
+					"fields": [
+						{
+							"type": "object",
+							"name": "spring",
+							"label": "Spring Content",
+							"fields": [
+								{
+									"type": "string",
+									"name": "title",
+									"label": "Title",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "spring", "title"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "description",
+									"label": "Description",
+									"ui": { "component": "textarea" },
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "spring", "description"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "ctaText",
+									"label": "Call to Action Text",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "spring", "ctaText"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "focusArea",
+									"label": "Focus Area",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "spring", "focusArea"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "bgGradient",
+									"label": "Background Gradient Class",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "spring", "bgGradient"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["seasonalContent", "seasons", "spring"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "summer",
+							"label": "Summer Content",
+							"fields": [
+								{
+									"type": "string",
+									"name": "title",
+									"label": "Title",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "summer", "title"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "description",
+									"label": "Description",
+									"ui": { "component": "textarea" },
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "summer", "description"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "ctaText",
+									"label": "Call to Action Text",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "summer", "ctaText"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "focusArea",
+									"label": "Focus Area",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "summer", "focusArea"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "bgGradient",
+									"label": "Background Gradient Class",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "summer", "bgGradient"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["seasonalContent", "seasons", "summer"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "autumn",
+							"label": "Autumn Content",
+							"fields": [
+								{
+									"type": "string",
+									"name": "title",
+									"label": "Title",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "autumn", "title"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "description",
+									"label": "Description",
+									"ui": { "component": "textarea" },
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "autumn", "description"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "ctaText",
+									"label": "Call to Action Text",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "autumn", "ctaText"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "focusArea",
+									"label": "Focus Area",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "autumn", "focusArea"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "bgGradient",
+									"label": "Background Gradient Class",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "autumn", "bgGradient"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["seasonalContent", "seasons", "autumn"],
+							"searchable": true,
+							"uid": false
+						},
+						{
+							"type": "object",
+							"name": "winter",
+							"label": "Winter Content",
+							"fields": [
+								{
+									"type": "string",
+									"name": "title",
+									"label": "Title",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "winter", "title"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "description",
+									"label": "Description",
+									"ui": { "component": "textarea" },
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "winter", "description"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "ctaText",
+									"label": "Call to Action Text",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "winter", "ctaText"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "focusArea",
+									"label": "Focus Area",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "winter", "focusArea"],
+									"searchable": true,
+									"uid": false
+								},
+								{
+									"type": "string",
+									"name": "bgGradient",
+									"label": "Background Gradient Class",
+									"required": true,
+									"namespace": ["seasonalContent", "seasons", "winter", "bgGradient"],
+									"searchable": true,
+									"uid": false
+								}
+							],
+							"namespace": ["seasonalContent", "seasons", "winter"],
+							"searchable": true,
+							"uid": false
+						}
+					],
+					"namespace": ["seasonalContent", "seasons"],
+					"searchable": true,
+					"uid": false
+				}
+			],
+			"namespace": ["seasonalContent"]
+		},
+		{
+			"name": "page",
+			"label": "Additional Pages",
+			"path": "src/content/pages",
+			"fields": [
+				{
+					"type": "string",
+					"name": "title",
+					"label": "Title",
+					"isTitle": true,
+					"required": true,
+					"namespace": ["page", "title"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "string",
+					"name": "description",
+					"label": "Description",
+					"namespace": ["page", "description"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "rich-text",
+					"name": "body",
+					"label": "Body",
+					"isBody": true,
+					"namespace": ["page", "body"],
+					"searchable": true,
+					"parser": { "type": "markdown" },
+					"uid": false
+				}
+			],
+			"namespace": ["page"]
+		},
+		{
+			"name": "post",
+			"label": "Blog Posts",
+			"path": "src/content/posts",
+			"fields": [
+				{
+					"type": "string",
+					"name": "title",
+					"label": "Title",
+					"isTitle": true,
+					"required": true,
+					"namespace": ["post", "title"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "string",
+					"name": "description",
+					"label": "Description",
+					"namespace": ["post", "description"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "datetime",
+					"name": "date",
+					"label": "Date",
+					"required": true,
+					"namespace": ["post", "date"],
+					"searchable": true,
+					"uid": false
+				},
+				{
+					"type": "rich-text",
+					"name": "body",
+					"label": "Body",
+					"isBody": true,
+					"namespace": ["post", "body"],
+					"searchable": true,
+					"parser": { "type": "markdown" },
+					"uid": false
+				}
+			],
+			"namespace": ["post"]
+		}
+	],
+	"config": {
+		"media": { "tina": { "publicFolder": "public", "mediaRoot": "uploads" } }
+	}
+}

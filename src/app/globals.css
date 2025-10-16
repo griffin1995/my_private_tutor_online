@@ -23,15 +23,15 @@
  * ACCESSIBILITY: Respects user's prefers-reduced-motion preference for accessibility compliance
  */
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 /* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Respect user motion preferences for accessibility */
 /* ACCESSIBILITY_REASON: Official CSS documentation for respecting prefers-reduced-motion for WCAG compliance */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+	html {
+		scroll-behavior: auto;
+	}
 }
 
 /**
@@ -39,83 +39,83 @@ html {
  * RTL SUPPORT REASON: Official next-intl documentation enables right-to-left text direction for Arabic/Hebrew
  * IMPLEMENTATION: Comprehensive RTL layout support for international client expansion
  */
- 
+
 /* RTL Direction Support */
-[dir="rtl"] {
-  text-align: right;
+[dir='rtl'] {
+	text-align: right;
 }
 
-[dir="rtl"] .rtl-flip {
-  transform: scaleX(-1);
+[dir='rtl'] .rtl-flip {
+	transform: scaleX(-1);
 }
 
 /* RTL-specific spacing and margins */
-[dir="rtl"] .ml-auto {
-  margin-left: unset;
-  margin-right: auto;
+[dir='rtl'] .ml-auto {
+	margin-left: unset;
+	margin-right: auto;
 }
 
-[dir="rtl"] .mr-auto {
-  margin-right: unset;
-  margin-left: auto;
+[dir='rtl'] .mr-auto {
+	margin-right: unset;
+	margin-left: auto;
 }
 
 /* RTL flex positioning */
-[dir="rtl"] .flex-row {
-  flex-direction: row-reverse;
+[dir='rtl'] .flex-row {
+	flex-direction: row-reverse;
 }
 
 /* RTL navigation and menu positioning */
-[dir="rtl"] .dropdown-menu {
-  left: unset;
-  right: 0;
+[dir='rtl'] .dropdown-menu {
+	left: unset;
+	right: 0;
 }
 
 /* RTL text input alignment */
-[dir="rtl"] input[type="text"],
-[dir="rtl"] input[type="email"],
-[dir="rtl"] input[type="search"],
-[dir="rtl"] textarea {
-  text-align: right;
-  direction: rtl;
+[dir='rtl'] input[type='text'],
+[dir='rtl'] input[type='email'],
+[dir='rtl'] input[type='search'],
+[dir='rtl'] textarea {
+	text-align: right;
+	direction: rtl;
 }
 
 /* RTL button and link alignment */
-[dir="rtl"] .btn-group {
-  flex-direction: row-reverse;
+[dir='rtl'] .btn-group {
+	flex-direction: row-reverse;
 }
 
 /* RTL FAQ specific styles */
-[dir="rtl"] .faq-accordion-trigger {
-  text-align: right;
-  padding-right: 1rem;
-  padding-left: 3rem;
+[dir='rtl'] .faq-accordion-trigger {
+	text-align: right;
+	padding-right: 1rem;
+	padding-left: 3rem;
 }
 
-[dir="rtl"] .faq-accordion-icon {
-  left: 1rem;
-  right: unset;
+[dir='rtl'] .faq-accordion-icon {
+	left: 1rem;
+	right: unset;
 }
 
 /* RTL breadcrumb navigation */
-[dir="rtl"] .breadcrumb {
-  flex-direction: row-reverse;
+[dir='rtl'] .breadcrumb {
+	flex-direction: row-reverse;
 }
 
-[dir="rtl"] .breadcrumb-separator {
-  transform: scaleX(-1);
+[dir='rtl'] .breadcrumb-separator {
+	transform: scaleX(-1);
 }
 
 /* RTL language switcher positioning */
-[dir="rtl"] .language-switcher {
-  left: 1.5rem;
-  right: unset;
+[dir='rtl'] .language-switcher {
+	left: 1.5rem;
+	right: unset;
 }
 
 /* RTL floating action buttons */
-[dir="rtl"] .floating-actions {
-  left: 1.5rem;
-  right: unset;
+[dir='rtl'] .floating-actions {
+	left: 1.5rem;
+	right: unset;
 }
 
 /**
@@ -130,206 +130,213 @@ html {
  * ARCHITECTURE: CSS variables complement Tailwind config - use Tailwind classes when possible, CSS vars for dynamic/JS usage
  */
 :root {
-  /* ============================================
+	/* ============================================
      PRIMARY BRAND COLORS - Navy Variations
      ============================================ */
-  --color-primary-base: #3f4a7e;
-  --color-primary-light: #5b6bb3;
-  --color-primary-dark: #2d3456;
-  --color-primary-muted: #7a88b3;
+	--color-primary-base: #3f4a7e;
+	--color-primary-light: #5b6bb3;
+	--color-primary-dark: #2d3456;
+	--color-primary-muted: #7a88b3;
 
-  /* Legacy aliases for backward compatibility */
-  --color-primary: #3f4a7e;
+	/* Legacy aliases for backward compatibility */
+	--color-primary: #3f4a7e;
 
-  /* ============================================
+	/* ============================================
      SECONDARY BRAND COLORS - Gold Variations
      ============================================ */
-  --color-secondary-base: #ca9e5b;
-  --color-secondary-light: #e5c89a;
-  --color-secondary-dark: #a67c3d;
-  --color-secondary-muted: #d4b480;
+	--color-secondary-base: #ca9e5b;
+	--color-secondary-light: #e5c89a;
+	--color-secondary-dark: #a67c3d;
+	--color-secondary-muted: #d4b480;
 
-  /* Legacy aliases for backward compatibility */
-  --color-accent: #ca9e5b;
-  --color-accent-dark: #b5853e;
-  --color-accent-light: #e5c457;
+	/* Legacy aliases for backward compatibility */
+	--color-accent: #ca9e5b;
+	--color-accent-dark: #b5853e;
+	--color-accent-light: #e5c457;
 
-  /* ============================================
+	/* ============================================
      NEUTRAL GREYSCALE - UI Hierarchy
      ============================================ */
-  --color-neutral-white: #ffffff;
-  --color-neutral-grey-50: #f9fafb;
-  --color-neutral-grey-100: #f3f4f6;
-  --color-neutral-grey-200: #e5e7eb;
-  --color-neutral-grey-400: #9ca3af;
-  --color-neutral-grey-600: #4b5563;
-  --color-neutral-grey-800: #1f2937;
-  --color-neutral-black: #000000;
+	--color-neutral-white: #ffffff;
+	--color-neutral-grey-50: #f9fafb;
+	--color-neutral-grey-100: #f3f4f6;
+	--color-neutral-grey-200: #e5e7eb;
+	--color-neutral-grey-400: #9ca3af;
+	--color-neutral-grey-600: #4b5563;
+	--color-neutral-grey-800: #1f2937;
+	--color-neutral-black: #000000;
 
-  /* ============================================
+	/* ============================================
      SEMANTIC COLORS - User Feedback
      ============================================ */
-  --color-semantic-success: #10b981;
-  --color-semantic-error: #ef4444;
-  --color-semantic-warning: #f59e0b;
-  --color-semantic-info: #3b82f6;
+	--color-semantic-success: #10b981;
+	--color-semantic-error: #ef4444;
+	--color-semantic-warning: #f59e0b;
+	--color-semantic-info: #3b82f6;
 
-  /* ============================================
+	/* ============================================
      UI UTILITY COLORS - Interactive States
      ============================================ */
-  --color-ui-border: #e5e7eb;
-  --color-ui-overlay: rgba(0, 0, 0, 0.5);
-  --color-ui-disabled: #9ca3af;
-  --color-ui-hover: #f9fafb;
-  --color-ui-focus: #ca9e5b;
+	--color-ui-border: #e5e7eb;
+	--color-ui-overlay: rgba(0, 0, 0, 0.5);
+	--color-ui-disabled: #9ca3af;
+	--color-ui-hover: #f9fafb;
+	--color-ui-focus: #ca9e5b;
 
-  /* Legacy semantic variables */
-  --background: #ffffff;
-  --foreground: #1e293b;
-  --muted: #f8f9fc;
-  --muted-foreground: #737373;
-  --border: #e3e7f0;
-  --input: #ffffff;
-  --ring: #ca9e5b;
+	/* Legacy semantic variables */
+	--background: #ffffff;
+	--foreground: #1e293b;
+	--muted: #f8f9fc;
+	--muted-foreground: #737373;
+	--border: #e3e7f0;
+	--input: #ffffff;
+	--ring: #ca9e5b;
 
-  /* ============================================
+	/* ============================================
      TYPOGRAPHY - Font Families
      ============================================ */
-  --font-family-heading: 'Playfair Display', Georgia, serif;
-  --font-family-body: 'Source Serif 4', Georgia, serif;
-  --font-family-technical: 'JetBrains Mono', Consolas, monospace;
+	--font-family-heading: 'Playfair Display', Georgia, serif;
+	--font-family-body: 'Source Serif 4', Georgia, serif;
+	--font-family-technical: 'JetBrains Mono', Consolas, monospace;
 
-  /* ============================================
+	/* ============================================
      TYPOGRAPHY - Font Sizes
      ============================================ */
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.25rem;    /* 20px */
-  --font-size-2xl: 1.5rem;    /* 24px */
-  --font-size-3xl: 2rem;      /* 32px */
-  --font-size-4xl: 3rem;      /* 48px */
-  --font-size-5xl: 4rem;      /* 64px */
+	--font-size-xs: 0.75rem; /* 12px */
+	--font-size-sm: 0.875rem; /* 14px */
+	--font-size-base: 1rem; /* 16px */
+	--font-size-lg: 1.125rem; /* 18px */
+	--font-size-xl: 1.25rem; /* 20px */
+	--font-size-2xl: 1.5rem; /* 24px */
+	--font-size-3xl: 2rem; /* 32px */
+	--font-size-4xl: 3rem; /* 48px */
+	--font-size-5xl: 4rem; /* 64px */
 
-  /* ============================================
+	/* ============================================
      TYPOGRAPHY - Font Weights
      ============================================ */
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
 
-  /* ============================================
+	/* ============================================
      TYPOGRAPHY - Line Heights
      ============================================ */
-  --font-line-height-tight: 1.2;
-  --font-line-height-snug: 1.4;
-  --font-line-height-normal: 1.5;
-  --font-line-height-relaxed: 1.6;
+	--font-line-height-tight: 1.2;
+	--font-line-height-snug: 1.4;
+	--font-line-height-normal: 1.5;
+	--font-line-height-relaxed: 1.6;
 
-  /* ============================================
+	/* ============================================
      TYPOGRAPHY - Letter Spacing
      ============================================ */
-  --font-letter-spacing-tighter: -0.05em;
-  --font-letter-spacing-tight: -0.025em;
-  --font-letter-spacing-normal: 0;
-  --font-letter-spacing-wide: 0.025em;
-  --font-letter-spacing-wider: 0.05em;
+	--font-letter-spacing-tighter: -0.05em;
+	--font-letter-spacing-tight: -0.025em;
+	--font-letter-spacing-normal: 0;
+	--font-letter-spacing-wide: 0.025em;
+	--font-letter-spacing-wider: 0.05em;
 
-  /* ============================================
+	/* ============================================
      SPACING SCALE - 4px Grid System
      ============================================ */
-  --spacing-0: 0px;
-  --spacing-1: 0.25rem;   /* 4px */
-  --spacing-2: 0.5rem;    /* 8px */
-  --spacing-3: 0.75rem;   /* 12px */
-  --spacing-4: 1rem;      /* 16px */
-  --spacing-5: 1.25rem;   /* 20px */
-  --spacing-6: 1.5rem;    /* 24px */
-  --spacing-8: 2rem;      /* 32px */
-  --spacing-10: 2.5rem;   /* 40px */
-  --spacing-12: 3rem;     /* 48px */
-  --spacing-16: 4rem;     /* 64px */
-  --spacing-20: 5rem;     /* 80px */
-  --spacing-24: 6rem;     /* 96px */
-  --spacing-32: 8rem;     /* 128px */
+	--spacing-0: 0px;
+	--spacing-1: 0.25rem; /* 4px */
+	--spacing-2: 0.5rem; /* 8px */
+	--spacing-3: 0.75rem; /* 12px */
+	--spacing-4: 1rem; /* 16px */
+	--spacing-5: 1.25rem; /* 20px */
+	--spacing-6: 1.5rem; /* 24px */
+	--spacing-8: 2rem; /* 32px */
+	--spacing-10: 2.5rem; /* 40px */
+	--spacing-12: 3rem; /* 48px */
+	--spacing-16: 4rem; /* 64px */
+	--spacing-20: 5rem; /* 80px */
+	--spacing-24: 6rem; /* 96px */
+	--spacing-32: 8rem; /* 128px */
 
-  /* ============================================
+	/* ============================================
      BORDER RADIUS SCALE
      ============================================ */
-  --border-radius-none: 0px;
-  --border-radius-sm: 0.25rem;    /* 4px */
-  --border-radius-base: 0.5rem;   /* 8px */
-  --border-radius-md: 0.75rem;    /* 12px */
-  --border-radius-lg: 1rem;       /* 16px */
-  --border-radius-xl: 1.5rem;     /* 24px */
-  --border-radius-full: 9999px;
+	--border-radius-none: 0px;
+	--border-radius-sm: 0.25rem; /* 4px */
+	--border-radius-base: 0.5rem; /* 8px */
+	--border-radius-md: 0.75rem; /* 12px */
+	--border-radius-lg: 1rem; /* 16px */
+	--border-radius-xl: 1.5rem; /* 24px */
+	--border-radius-full: 9999px;
 
-  /* ============================================
+	/* ============================================
      BORDER WIDTH SCALE
      ============================================ */
-  --border-width-none: 0px;
-  --border-width-thin: 1px;
-  --border-width-base: 2px;
-  --border-width-thick: 4px;
+	--border-width-none: 0px;
+	--border-width-thin: 1px;
+	--border-width-base: 2px;
+	--border-width-thick: 4px;
 
-  /* ============================================
+	/* ============================================
      SHADOW SYSTEM
      ============================================ */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+	--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+	--shadow-lg:
+		0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	--shadow-xl:
+		0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+	--shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
-  /* ============================================
+	/* ============================================
      TRANSITION SYSTEM
      ============================================ */
-  --transition-duration-75: 75ms;
-  --transition-duration-100: 100ms;
-  --transition-duration-150: 150ms;
-  --transition-duration-200: 200ms;
-  --transition-duration-300: 300ms;
-  --transition-duration-500: 500ms;
+	--transition-duration-75: 75ms;
+	--transition-duration-100: 100ms;
+	--transition-duration-150: 150ms;
+	--transition-duration-200: 200ms;
+	--transition-duration-300: 300ms;
+	--transition-duration-500: 500ms;
 
-  --transition-timing-linear: linear;
-  --transition-timing-in: cubic-bezier(0.4, 0, 1, 1);
-  --transition-timing-out: cubic-bezier(0, 0, 0.2, 1);
-  --transition-timing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-timing-linear: linear;
+	--transition-timing-in: cubic-bezier(0.4, 0, 1, 1);
+	--transition-timing-out: cubic-bezier(0, 0, 0.2, 1);
+	--transition-timing-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* ============================================
+	/* ============================================
      Z-INDEX LAYERS
      ============================================ */
-  --z-index-auto: auto;
-  --z-index-0: 0;
-  --z-index-10: 10;
-  --z-index-20: 20;
-  --z-index-30: 30;
-  --z-index-40: 40;
-  --z-index-50: 50;
-  --z-index-modal: 1000;
-  --z-index-popover: 1010;
-  --z-index-tooltip: 1020;
-  --z-index-overlay: 1030;
+	--z-index-auto: auto;
+	--z-index-0: 0;
+	--z-index-10: 10;
+	--z-index-20: 20;
+	--z-index-30: 30;
+	--z-index-40: 40;
+	--z-index-50: 50;
+	--z-index-modal: 1000;
+	--z-index-popover: 1010;
+	--z-index-tooltip: 1020;
+	--z-index-overlay: 1030;
 
-  /* ============================================
+	/* ============================================
      PREMIUM BRAND GRADIENTS
      ============================================ */
-  --gradient-brand: linear-gradient(135deg, #3f4a7e 0%, #ca9e5b 100%);
-  --gradient-brand-subtle: linear-gradient(135deg, #f8f9fc 0%, #fefcf7 100%);
-  --gradient-luxury: linear-gradient(135deg, #ca9e5b 0%, #b5853e 50%, #3f4a7e 100%);
+	--gradient-brand: linear-gradient(135deg, #3f4a7e 0%, #ca9e5b 100%);
+	--gradient-brand-subtle: linear-gradient(135deg, #f8f9fc 0%, #fefcf7 100%);
+	--gradient-luxury: linear-gradient(
+		135deg,
+		#ca9e5b 0%,
+		#b5853e 50%,
+		#3f4a7e 100%
+	);
 
-  /* ============================================
+	/* ============================================
      BREAKPOINTS (for JavaScript access)
      ============================================ */
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
-  --breakpoint-2xl: 1400px;
-  --breakpoint-desktop: 1500px;
-  --breakpoint-3xl: 1780px;
+	--breakpoint-sm: 640px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 1024px;
+	--breakpoint-xl: 1280px;
+	--breakpoint-2xl: 1400px;
+	--breakpoint-desktop: 1500px;
+	--breakpoint-3xl: 1780px;
 }
 
 /**
@@ -338,16 +345,16 @@ html {
  * Pattern: Base styles for consistent cross-browser appearance
  */
 html {
-  scroll-behavior: smooth;
-  /* CONTEXT7 SOURCE: /mdn/content - CSS scrollbar-gutter property for preventing layout shifts
+	scroll-behavior: smooth;
+	/* CONTEXT7 SOURCE: /mdn/content - CSS scrollbar-gutter property for preventing layout shifts
    * SCROLLBAR GUTTER REASON: Official MDN CSS specification for scrollbar-gutter: stable property
    * LAYOUT STABILITY: Reserves space for scrollbars to prevent horizontal overflow and content jumping
    * IMPLEMENTATION: Stable scrollbar gutter prevents layout shifts when content changes dynamically
    * BROWSER SUPPORT: Modern browsers (Firefox 97+, Chrome 94+, Safari 15+) with graceful degradation
    * VIEWPORT OPTIMIZATION: Works alongside dvh units to eliminate horizontal scrolling issues
    */
-  scrollbar-gutter: stable;
-  /* CONTEXT7 SOURCE: /w3c/css-scroll-snap - CSS scroll-padding-top for fixed header anchor offset
+	scrollbar-gutter: stable;
+	/* CONTEXT7 SOURCE: /w3c/css-scroll-snap - CSS scroll-padding-top for fixed header anchor offset
    * ANCHOR SCROLL FIX REASON: Official W3C CSS spec for scroll-padding-top prevents fixed headers from overlapping anchor content
    * RESPONSIVE HEADER FIX: Accounts for navbar height variations across breakpoints (30% increase from original design)
    * IMPLEMENTATION: Progressive scroll padding to match header heights in Navigation.tsx
@@ -356,7 +363,7 @@ html {
    * - Extra large: 128px (xl:h-32) - 20% increase from original 112px
    * - Additional 16px buffer for visual spacing below fixed navbar
    */
-  scroll-padding-top: 112px; /* Mobile: 96px + 16px buffer */
+	scroll-padding-top: 112px; /* Mobile: 96px + 16px buffer */
 }
 
 /* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Responsive scroll-padding-top for larger viewports
@@ -364,9 +371,9 @@ html {
  * LARGE SCREENS: Matches lg:h-28 navbar height (112px) + 16px buffer = 128px (20% increase)
  */
 @media (min-width: 1024px) {
-  html {
-    scroll-padding-top: 128px; /* Large: 112px + 16px buffer */
-  }
+	html {
+		scroll-padding-top: 128px; /* Large: 112px + 16px buffer */
+	}
 }
 
 /* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss - Extra large viewport scroll padding adjustment
@@ -374,9 +381,9 @@ html {
  * EXTRA LARGE SCREENS: Matches xl:h-32 navbar height (128px) + 16px buffer = 144px (20% increase)
  */
 @media (min-width: 1280px) {
-  html {
-    scroll-padding-top: 144px; /* Extra Large: 128px + 16px buffer */
-  }
+	html {
+		scroll-padding-top: 144px; /* Extra Large: 128px + 16px buffer */
+	}
 }
 
 /**
@@ -386,16 +393,16 @@ html {
  * SPECIFICITY CONTROL: Uses !important to override any Tailwind bg-transparent utilities in component hierarchy
  */
 body {
-  color: var(--foreground);
-  background: #ffffff !important;
-  font-synthesis-weight: none;
-  text-rendering: optimizeLegibility;
-  /* CONTEXT7 SOURCE: /mdn/content - Overflow-x hidden to prevent horizontal scrolling issues
+	color: var(--foreground);
+	background: #ffffff !important;
+	font-synthesis-weight: none;
+	text-rendering: optimizeLegibility;
+	/* CONTEXT7 SOURCE: /mdn/content - Overflow-x hidden to prevent horizontal scrolling issues
    * OVERFLOW CONTROL REASON: Official CSS overflow specification to complement scrollbar-gutter implementation
    * HORIZONTAL SCROLL PREVENTION: Prevents accidental horizontal overflow that conflicts with stable scrollbar gutter
    * INTEGRATION: Works with scrollbar-gutter: stable to ensure consistent viewport width calculations
    */
-  overflow-x: hidden;
+	overflow-x: hidden;
 }
 
 /**
@@ -407,21 +414,21 @@ body {
 
 /* Fallback for browsers without scrollbar-gutter support */
 @supports not (scrollbar-gutter: stable) {
-  /* CONTEXT7 SOURCE: /mdn/content - CSS @supports feature detection for progressive enhancement
+	/* CONTEXT7 SOURCE: /mdn/content - CSS @supports feature detection for progressive enhancement
    * PROGRESSIVE ENHANCEMENT REASON: Official CSS specification for feature detection and fallback support
    * FALLBACK IMPLEMENTATION: Alternative approach for browsers lacking scrollbar-gutter support
    * COMPATIBILITY: Ensures layout stability across all browser versions
    */
-  html {
-    /* Compensate for potential scrollbar width on older browsers */
-    padding-right: 0;
-  }
+	html {
+		/* Compensate for potential scrollbar width on older browsers */
+		padding-right: 0;
+	}
 
-  body {
-    /* Prevent horizontal overflow on older browsers */
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
+	body {
+		/* Prevent horizontal overflow on older browsers */
+		max-width: 100vw;
+		overflow-x: hidden;
+	}
 }
 
 /**
@@ -440,75 +447,80 @@ body {
  * These classes combine font family, size, weight, and spacing for semantic usage */
 
 @layer components {
-  /* Heading Typography Tokens */
-  .typography-h1 {
-    @apply font-heading text-4xl lg:text-5xl font-bold leading-tight tracking-tighter;
-  }
+	/* Heading Typography Tokens */
+	.typography-h1 {
+		@apply font-heading text-4xl lg:text-5xl font-bold leading-tight tracking-tighter;
+	}
 
-  .typography-h2 {
-    @apply font-heading text-3xl lg:text-4xl font-semibold leading-tight tracking-tight;
-  }
+	.typography-h2 {
+		@apply font-heading text-3xl lg:text-4xl font-semibold leading-tight tracking-tight;
+	}
 
-  .typography-h3 {
-    @apply font-heading text-2xl lg:text-3xl font-semibold leading-snug tracking-tight;
-  }
+	.typography-h3 {
+		@apply font-heading text-2xl lg:text-3xl font-semibold leading-snug tracking-tight;
+	}
 
-  .typography-h4 {
-    @apply font-heading text-xl lg:text-2xl font-medium leading-snug;
-  }
+	.typography-h4 {
+		@apply font-heading text-xl lg:text-2xl font-medium leading-snug;
+	}
 
-  /* Body Typography Tokens */
-  .typography-body-large {
-    @apply font-body text-lg leading-relaxed;
-  }
+	/* Body Typography Tokens */
+	.typography-body-large {
+		@apply font-body text-lg leading-relaxed;
+	}
 
-  .typography-body {
-    @apply font-body text-base leading-normal;
-  }
+	.typography-body {
+		@apply font-body text-base leading-normal;
+	}
 
-  .typography-body-small {
-    @apply font-body text-sm leading-normal tracking-wide;
-  }
+	.typography-body-small {
+		@apply font-body text-sm leading-normal tracking-wide;
+	}
 
-  /* Technical Typography Tokens */
-  .typography-price {
-    @apply font-technical text-2xl lg:text-3xl font-medium leading-tight;
-  }
+	/* Technical Typography Tokens */
+	.typography-price {
+		@apply font-technical text-2xl lg:text-3xl font-medium leading-tight;
+	}
 
-  .typography-code {
-    @apply font-technical text-sm leading-normal;
-  }
+	.typography-code {
+		@apply font-technical text-sm leading-normal;
+	}
 
-  .typography-data {
-    @apply font-technical text-base leading-snug;
-  }
+	.typography-data {
+		@apply font-technical text-base leading-snug;
+	}
 }
 
 /* Legacy heading styles for backwards compatibility */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playfair-display), Georgia, serif;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--color-primary);
-  letter-spacing: -0.025em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-playfair-display), Georgia, serif;
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--color-primary);
+	letter-spacing: -0.025em;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  margin-bottom: 1.5rem;
+	font-size: clamp(2.5rem, 5vw, 4rem);
+	font-weight: 900;
+	margin-bottom: 1.5rem;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  margin-bottom: 1.25rem;
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 800;
+	margin-bottom: 1.25rem;
 }
 
 h3 {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 700;
-  margin-bottom: 1rem;
+	font-size: clamp(1.5rem, 3vw, 2.25rem);
+	font-weight: 700;
+	margin-bottom: 1rem;
 }
 
 /* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Scoped typography to exclude Tailwind utility class conflicts
@@ -518,22 +530,22 @@ h3 {
  */
 
 /* Body Text - Source Serif 4 (CLIENT REQUIREMENT) - Excludes Tailwind Color Classes */
-p:not([class*="text-"]), 
-li:not([class*="text-"]), 
-td:not([class*="text-"]), 
-th:not([class*="text-"]), 
-div:not([class*="text-"]), 
-span:not([class*="text-"]) {
-  font-family: var(--font-source-serif-4), Georgia, serif;
-  line-height: 1.7;
-  color: var(--foreground);
+p:not([class*='text-']),
+li:not([class*='text-']),
+td:not([class*='text-']),
+th:not([class*='text-']),
+div:not([class*='text-']),
+span:not([class*='text-']) {
+	font-family: var(--font-source-serif-4), Georgia, serif;
+	line-height: 1.7;
+	color: var(--foreground);
 }
 
 /* Enhanced Readability for Academic Content */
 p {
-  margin-bottom: 1rem;
-  font-size: 1.125rem;
-  font-weight: 400;
+	margin-bottom: 1rem;
+	font-size: 1.125rem;
+	font-weight: 400;
 }
 
 /* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Scoped link styling to exclude navigation elements
@@ -544,28 +556,30 @@ p {
 
 /* Premium Link Styling with Brand Colors - Excludes Navigation */
 a:not(nav a):not([data-navigation] a) {
-  color: var(--color-accent);
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
+	color: var(--color-accent);
+	text-decoration: none;
+	transition: color 0.2s ease-in-out;
 }
 
 a:not(nav a):not([data-navigation] a):hover {
-  color: var(--color-accent-dark);
-  text-decoration: underline;
+	color: var(--color-accent-dark);
+	text-decoration: underline;
 }
 
 /* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Minimal navbar link styling to prevent global link conflicts
  * NAVBAR FIX REASON: Official CSS specificity documentation recommends minimal global overrides for component libraries
  * TAILWIND COMPATIBILITY: Allowing Tailwind utility classes to control all navbar styling without CSS conflicts
  */
-nav a, [data-navigation] a {
-  text-decoration: none;
-  /* Removed color: inherit !important to allow Tailwind color utilities to work */
-  /* Removed !important flags to prevent Tailwind class conflicts */
+nav a,
+[data-navigation] a {
+	text-decoration: none;
+	/* Removed color: inherit !important to allow Tailwind color utilities to work */
+	/* Removed !important flags to prevent Tailwind class conflicts */
 }
 
-nav a:hover, [data-navigation] a:hover {
-  text-decoration: none;
+nav a:hover,
+[data-navigation] a:hover {
+	text-decoration: none;
 }
 
 /* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Removed navbar link override for hover state compatibility
@@ -585,9 +599,9 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-  border-radius: 4px;
+	outline: 2px solid var(--color-accent);
+	outline-offset: 2px;
+	border-radius: 4px;
 }
 
 /**
@@ -610,232 +624,236 @@ textarea:focus-visible {
  */
 
 @layer base {
-  /* ============================================
+	/* ============================================
      TYPOGRAPHY DEFAULTS - BRAND SPECIFIC
      ============================================ */
 
-  /**
+	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography base styles
    * OFFICIAL EXAMPLE: Using CSS variables for consistent brand typography
    * PATTERN: Base layer styles have lowest specificity - always overridden by utilities
    */
 
-  /* Headings - Primary brand colour (navy) */
-  h1 {
-    color: var(--color-primary-base);
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-4xl);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--font-line-height-tight);
-    letter-spacing: var(--font-letter-spacing-tight);
-    margin-bottom: var(--spacing-6);
-  }
+	/* Headings - Primary brand colour (navy) */
+	h1 {
+		color: var(--color-primary-base);
+		font-family: var(--font-family-heading);
+		font-size: var(--font-size-4xl);
+		font-weight: var(--font-weight-bold);
+		line-height: var(--font-line-height-tight);
+		letter-spacing: var(--font-letter-spacing-tight);
+		margin-bottom: var(--spacing-6);
+	}
 
-  h2 {
-    color: var(--color-primary-base);
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-3xl);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--font-line-height-tight);
-    letter-spacing: var(--font-letter-spacing-tight);
-    margin-bottom: var(--spacing-5);
-  }
+	h2 {
+		color: var(--color-primary-base);
+		font-family: var(--font-family-heading);
+		font-size: var(--font-size-3xl);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--font-line-height-tight);
+		letter-spacing: var(--font-letter-spacing-tight);
+		margin-bottom: var(--spacing-5);
+	}
 
-  /**
+	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-specific heading overrides
    * HERO H2 STYLING: Specific styling for H2 elements within hero sections
    * PATTERN: Using data attributes for scoped overrides without specificity conflicts
    * CLIENT PREFERENCE: Maintains sophisticated hero typography with uppercase and wide tracking
    */
-  [data-hero-section] h2 {
-    font-family: var(--font-family-body); /* Serif for elegance */
-    font-size: var(--font-size-lg); /* Base: 18px */
-    font-weight: var(--font-weight-medium);
-    line-height: var(--font-line-height-relaxed);
-    letter-spacing: 0.1em; /* tracking-widest equivalent */
-    text-transform: uppercase;
-  }
+	[data-hero-section] h2 {
+		font-family: var(--font-family-body); /* Serif for elegance */
+		font-size: var(--font-size-lg); /* Base: 18px */
+		font-weight: var(--font-weight-medium);
+		line-height: var(--font-line-height-relaxed);
+		letter-spacing: 0.1em; /* tracking-widest equivalent */
+		text-transform: uppercase;
+	}
 
-  /* Responsive hero H2 sizing */
-  @media (min-width: 768px) {
-    [data-hero-section] h2 {
-      font-size: var(--font-size-xl); /* md: 20px */
-    }
-  }
+	/* Responsive hero H2 sizing */
+	@media (min-width: 768px) {
+		[data-hero-section] h2 {
+			font-size: var(--font-size-xl); /* md: 20px */
+		}
+	}
 
-  /**
+	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-specific paragraph overrides
    * PULL QUOTE STYLING: Specific styling for prominent pull quotes and blockquote content
    * PATTERN: Using data attributes for scoped overrides without specificity conflicts
    * CLIENT PREFERENCE: Maintains sophisticated quote typography with larger serif font
    */
-  [data-pull-quote] p {
-    font-family: var(--font-family-body); /* Serif for elegance */
-    font-size: var(--font-size-xl); /* Base: 20px */
-    font-style: italic;
-    line-height: var(--font-line-height-relaxed);
-  }
+	[data-pull-quote] p {
+		font-family: var(--font-family-body); /* Serif for elegance */
+		font-size: var(--font-size-xl); /* Base: 20px */
+		font-style: italic;
+		line-height: var(--font-line-height-relaxed);
+	}
 
-  /* Responsive pull quote sizing */
-  @media (min-width: 1024px) {
-    [data-pull-quote] p {
-      font-size: var(--font-size-2xl); /* lg: 24px */
-    }
-  }
+	/* Responsive pull quote sizing */
+	@media (min-width: 1024px) {
+		[data-pull-quote] p {
+			font-size: var(--font-size-2xl); /* lg: 24px */
+		}
+	}
 
-  h3 {
-    color: var(--color-primary-base);
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--font-line-height-snug);
-    letter-spacing: var(--font-letter-spacing-normal);
-    margin-bottom: var(--spacing-4);
-  }
+	h3 {
+		color: var(--color-primary-base);
+		font-family: var(--font-family-heading);
+		font-size: var(--font-size-2xl);
+		font-weight: var(--font-weight-semibold);
+		line-height: var(--font-line-height-snug);
+		letter-spacing: var(--font-letter-spacing-normal);
+		margin-bottom: var(--spacing-4);
+	}
 
-  h4 {
-    color: var(--color-primary-base);
-    font-family: var(--font-family-heading);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--font-line-height-snug);
-    margin-bottom: var(--spacing-3);
-  }
+	h4 {
+		color: var(--color-primary-base);
+		font-family: var(--font-family-heading);
+		font-size: var(--font-size-xl);
+		font-weight: var(--font-weight-medium);
+		line-height: var(--font-line-height-snug);
+		margin-bottom: var(--spacing-3);
+	}
 
-  h5, h6 {
-    color: var(--color-primary-base);
-    font-family: var(--font-family-heading);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--font-line-height-normal);
-  }
+	h5,
+	h6 {
+		color: var(--color-primary-base);
+		font-family: var(--font-family-heading);
+		font-weight: var(--font-weight-medium);
+		line-height: var(--font-line-height-normal);
+	}
 
-  /**
+	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Link styling with hover states
    * OFFICIAL EXAMPLE: Accent colour links with smooth transitions
    * PATTERN: Base styles for all links, navigation overridden below
    */
 
-  /* Links - Accent colour (gold) with hover transition */
-  a {
-    color: var(--color-accent);
-    text-decoration-line: none;
-    transition-property: color;
-    transition-duration: var(--transition-duration-200);
-    transition-timing-function: var(--transition-timing-in-out);
-  }
+	/* Links - Accent colour (gold) with hover transition */
+	a {
+		color: var(--color-accent);
+		text-decoration-line: none;
+		transition-property: color;
+		transition-duration: var(--transition-duration-200);
+		transition-timing-function: var(--transition-timing-in-out);
+	}
 
-  a:hover {
-    color: var(--color-accent-dark);
-    text-decoration-line: underline;
-  }
+	a:hover {
+		color: var(--color-accent-dark);
+		text-decoration-line: underline;
+	}
 
-  /**
+	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Body text defaults
    * OFFICIAL PATTERN: Semantic typography for content-heavy pages
    */
 
-  /* Body text - Neutral colour with body font */
-  p {
-    color: var(--color-neutral-grey-800);
-    font-family: var(--font-family-body);
-    font-size: var(--font-size-base);
-    line-height: var(--font-line-height-relaxed);
-    margin-bottom: var(--spacing-4);
-  }
+	/* Body text - Neutral colour with body font */
+	p {
+		color: var(--color-neutral-grey-800);
+		font-family: var(--font-family-body);
+		font-size: var(--font-size-base);
+		line-height: var(--font-line-height-relaxed);
+		margin-bottom: var(--spacing-4);
+	}
 
-  /* Lists - Body text styling */
-  ul, ol {
-    color: var(--color-neutral-grey-800);
-    font-family: var(--font-family-body);
-    margin-bottom: var(--spacing-4);
-  }
+	/* Lists - Body text styling */
+	ul,
+	ol {
+		color: var(--color-neutral-grey-800);
+		font-family: var(--font-family-body);
+		margin-bottom: var(--spacing-4);
+	}
 
-  li {
-    margin-bottom: var(--spacing-2);
-  }
+	li {
+		margin-bottom: var(--spacing-2);
+	}
 
-  /**
+	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Semantic emphasis elements
    * OFFICIAL PATTERN: Enhanced typography for strong, emphasis, blockquotes
    */
 
-  /* Emphasis elements */
-  strong, b {
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-primary-dark);
-  }
+	/* Emphasis elements */
+	strong,
+	b {
+		font-weight: var(--font-weight-semibold);
+		color: var(--color-primary-dark);
+	}
 
-  em, i {
-    font-style: italic;
-  }
+	em,
+	i {
+		font-style: italic;
+	}
 
-  /* Blockquotes */
-  blockquote {
-    border-left-width: var(--border-width-thick);
-    border-left-color: var(--color-accent);
-    padding-left: var(--spacing-4);
-    font-style: italic;
-    color: var(--color-neutral-grey-600);
-  }
+	/* Blockquotes */
+	blockquote {
+		border-left-width: var(--border-width-thick);
+		border-left-color: var(--color-accent);
+		padding-left: var(--spacing-4);
+		font-style: italic;
+		color: var(--color-neutral-grey-600);
+	}
 
-  /**
+	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Override base styles for specific contexts
    * OFFICIAL EXAMPLE: Using descendant selectors to exclude navigation
    * PATTERN: Navigation and interactive elements inherit parent styles
    */
 
-  /* Navigation links - Override global link styles */
-  nav a,
-  [data-navigation] a,
-  button a,
-  .btn {
-    color: inherit;
-    text-decoration-line: none;
-  }
+	/* Navigation links - Override global link styles */
+	nav a,
+	[data-navigation] a,
+	button a,
+	.btn {
+		color: inherit;
+		text-decoration-line: none;
+	}
 
-  nav a:hover,
-  [data-navigation] a:hover {
-    text-decoration-line: none;
-  }
+	nav a:hover,
+	[data-navigation] a:hover {
+		text-decoration-line: none;
+	}
 
-  /**
+	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Data attribute for dark background sections
    * SYSTEMATIC RULE: Automatic white text on dark backgrounds without manual overrides
    * PATTERN: Using data attributes for scoped color overrides without specificity conflicts
    * IMPLEMENTATION DATE: October 2025 - Tailwind CSS Migration Phase 5
    */
 
-  /* White text on dark backgrounds - automatic color override */
-  [data-dark-bg] h1,
-  [data-dark-bg] h2,
-  [data-dark-bg] h3,
-  [data-dark-bg] h4,
-  [data-dark-bg] h5,
-  [data-dark-bg] h6,
-  [data-dark-bg] p,
-  [data-dark-bg] span,
-  [data-dark-bg] div,
-  [data-dark-bg] li,
-  [data-dark-bg] a {
-    color: white;
-  }
+	/* White text on dark backgrounds - automatic color override */
+	[data-dark-bg] h1,
+	[data-dark-bg] h2,
+	[data-dark-bg] h3,
+	[data-dark-bg] h4,
+	[data-dark-bg] h5,
+	[data-dark-bg] h6,
+	[data-dark-bg] p,
+	[data-dark-bg] span,
+	[data-dark-bg] div,
+	[data-dark-bg] li,
+	[data-dark-bg] a {
+		color: white;
+	}
 
-  /* Hover state for links on dark backgrounds */
-  [data-dark-bg] a:hover {
-    color: var(--color-neutral-grey-200);
-  }
+	/* Hover state for links on dark backgrounds */
+	[data-dark-bg] a:hover {
+		color: var(--color-neutral-grey-200);
+	}
 
-  /**
+	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Data attribute for brand accent text
    * SYSTEMATIC RULE: Semantic accent color without manual color classes
    * PATTERN: Using data attributes for brand-specific color treatments
    * CLIENT PREFERENCE: Aztec Gold (#ca9e5b) for specialist text and highlights
    */
 
-  /* Brand accent color - automatic application */
-  [data-accent-text] {
-    color: var(--color-secondary-base); /* #ca9e5b */
-  }
+	/* Brand accent color - automatic application */
+	[data-accent-text] {
+		color: var(--color-secondary-base); /* #ca9e5b */
+	}
 }
 
 /**
@@ -844,39 +862,41 @@ textarea:focus-visible {
  * Pattern: Subtle animations for professional user experience
  */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+	0%,
+	100% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-20px);
+	}
 }
 
 @keyframes gradient-x {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+	0%,
+	100% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
 }
 
 @keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 @keyframes reverse-spin-slow {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+	from {
+		transform: rotate(360deg);
+	}
+	to {
+		transform: rotate(0deg);
+	}
 }
 
 /**
@@ -885,26 +905,26 @@ textarea:focus-visible {
  * MAGIC UI REFERENCE: Official Magic UI aurora-text component animation
  */
 @keyframes aurora {
-  0% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
-  }
-  25% {
-    background-position: 50% 100%;
-    transform: rotate(5deg) scale(1.1);
-  }
-  50% {
-    background-position: 100% 50%;
-    transform: rotate(-3deg) scale(0.95);
-  }
-  75% {
-    background-position: 50% 0%;
-    transform: rotate(3deg) scale(1.05);
-  }
-  100% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
-  }
+	0% {
+		background-position: 0% 50%;
+		transform: rotate(-5deg) scale(0.9);
+	}
+	25% {
+		background-position: 50% 100%;
+		transform: rotate(5deg) scale(1.1);
+	}
+	50% {
+		background-position: 100% 50%;
+		transform: rotate(-3deg) scale(0.95);
+	}
+	75% {
+		background-position: 50% 0%;
+		transform: rotate(3deg) scale(1.05);
+	}
+	100% {
+		background-position: 0% 50%;
+		transform: rotate(-5deg) scale(0.9);
+	}
 }
 
 /**
@@ -913,20 +933,20 @@ textarea:focus-visible {
  * Pattern: Reusable animation classes for consistent motion design
  */
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+	animation: float 6s ease-in-out infinite;
 }
 
 .animate-gradient-x {
-  background-size: 200% 200%;
-  animation: gradient-x 3s ease infinite;
+	background-size: 200% 200%;
+	animation: gradient-x 3s ease infinite;
 }
 
 .animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
+	animation: spin-slow 20s linear infinite;
 }
 
 .animate-reverse-spin-slow {
-  animation: reverse-spin-slow 20s linear infinite;
+	animation: reverse-spin-slow 20s linear infinite;
 }
 
 /**
@@ -934,7 +954,7 @@ textarea:focus-visible {
  * AURORA CLASS: Applies aurora animation with ease-in-out timing and infinite alternate
  */
 .animate-aurora {
-  animation: aurora 8s ease-in-out infinite alternate;
+	animation: aurora 8s ease-in-out infinite alternate;
 }
 
 /**
@@ -943,35 +963,35 @@ textarea:focus-visible {
  * Pattern: Progressive animation delays for sophisticated entrance effects
  */
 .animation-delay-0 {
-  animation-delay: 0ms;
+	animation-delay: 0ms;
 }
 
 .animation-delay-200 {
-  animation-delay: 200ms;
+	animation-delay: 200ms;
 }
 
 .animation-delay-300 {
-  animation-delay: 300ms;
+	animation-delay: 300ms;
 }
 
 .animation-delay-400 {
-  animation-delay: 400ms;
+	animation-delay: 400ms;
 }
 
 .animation-delay-500 {
-  animation-delay: 500ms;
+	animation-delay: 500ms;
 }
 
 .animation-delay-600 {
-  animation-delay: 600ms;
+	animation-delay: 600ms;
 }
 
 .animation-delay-800 {
-  animation-delay: 800ms;
+	animation-delay: 800ms;
 }
 
 .animation-delay-1000 {
-  animation-delay: 1000ms;
+	animation-delay: 1000ms;
 }
 
 /**
@@ -980,18 +1000,18 @@ textarea:focus-visible {
  * Pattern: Custom scroll indicator with scaling animation
  */
 @keyframes scrollIndicator {
-  0% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scaleY(0.5);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
+	0% {
+		transform: scaleY(1);
+		opacity: 1;
+	}
+	50% {
+		transform: scaleY(0.5);
+		opacity: 0.7;
+	}
+	100% {
+		transform: scaleY(1);
+		opacity: 1;
+	}
 }
 
 /**
@@ -1000,11 +1020,11 @@ textarea:focus-visible {
  * Pattern: Elevated shadow effects for premium UI components
  */
 .shadow-3xl {
-  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
 }
 
 .shadow-4xl {
-  box-shadow: 0 45px 80px -15px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 45px 80px -15px rgba(0, 0, 0, 0.3);
 }
 
 /**
@@ -1013,7 +1033,7 @@ textarea:focus-visible {
  * Pattern: Extended background-size utilities for animated gradients
  */
 .bg-size-200 {
-  background-size: 200% 200%;
+	background-size: 200% 200%;
 }
 
 /**
@@ -1022,22 +1042,22 @@ textarea:focus-visible {
  * Pattern: Accessibility-first animation controls
  */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  
-  .animate-float,
-  .animate-gradient-x,
-  .animate-spin-slow,
-  .animate-reverse-spin-slow,
-  .animate-aurora {
-    animation: none !important;
-  }
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.animate-float,
+	.animate-gradient-x,
+	.animate-spin-slow,
+	.animate-reverse-spin-slow,
+	.animate-aurora {
+		animation: none !important;
+	}
 }
 
 /**
@@ -1046,55 +1066,59 @@ textarea:focus-visible {
  * PRINT OPTIMIZATION: Enhanced readability and professional formatting for printed FAQs
  */
 @media print {
-  body {
-    font-size: 12pt;
-    line-height: 1.4;
-    color: #000000 !important;
-    background: white !important;
-  }
+	body {
+		font-size: 12pt;
+		line-height: 1.4;
+		color: #000000 !important;
+		background: white !important;
+	}
 
-  .prose-print {
-    font-size: 11pt;
-    line-height: 1.3;
-  }
+	.prose-print {
+		font-size: 11pt;
+		line-height: 1.3;
+	}
 
-  .prose-print p {
-    margin: 0.5em 0;
-    orphans: 2;
-    widows: 2;
-  }
+	.prose-print p {
+		margin: 0.5em 0;
+		orphans: 2;
+		widows: 2;
+	}
 
-  .prose-print h2, .prose-print h3 {
-    page-break-after: avoid;
-    font-weight: bold;
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-  }
+	.prose-print h2,
+	.prose-print h3 {
+		page-break-after: avoid;
+		font-weight: bold;
+		margin-top: 1em;
+		margin-bottom: 0.5em;
+	}
 
-  /* Hide interactive elements in print */
-  .print\:hidden {
-    display: none !important;
-  }
+	/* Hide interactive elements in print */
+	.print\:hidden {
+		display: none !important;
+	}
 
-  /* Ensure accordion content is visible in print */
-  [data-state="closed"] {
-    display: block !important;
-    height: auto !important;
-  }
+	/* Ensure accordion content is visible in print */
+	[data-state='closed'] {
+		display: block !important;
+		height: auto !important;
+	}
 
-  /* Remove shadows and decorative elements */
-  .shadow-xl, .shadow-2xl, .shadow-3xl {
-    box-shadow: none !important;
-  }
+	/* Remove shadows and decorative elements */
+	.shadow-xl,
+	.shadow-2xl,
+	.shadow-3xl {
+		box-shadow: none !important;
+	}
 
-  /* Simplify borders for print */
-  .border-2 {
-    border-width: 1pt !important;
-  }
+	/* Simplify borders for print */
+	.border-2 {
+		border-width: 1pt !important;
+	}
 
-  .rounded-3xl, .rounded-2xl {
-    border-radius: 3pt !important;
-  }
+	.rounded-3xl,
+	.rounded-2xl {
+		border-radius: 3pt !important;
+	}
 }
 
 /**
@@ -1106,93 +1130,96 @@ textarea:focus-visible {
 
 /* NavigationMenu Content - Official Radix UI Pattern */
 .NavigationMenuContent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation-duration: 250ms;
-  animation-timing-function: ease;
+	position: absolute;
+	top: 0;
+	left: 0;
+	animation-duration: 250ms;
+	animation-timing-function: ease;
 }
 
-.NavigationMenuContent[data-motion="from-start"] {
-  animation-name: enterFromLeft;
+.NavigationMenuContent[data-motion='from-start'] {
+	animation-name: enterFromLeft;
 }
 
-.NavigationMenuContent[data-motion="from-end"] {
-  animation-name: enterFromRight;
+.NavigationMenuContent[data-motion='from-end'] {
+	animation-name: enterFromRight;
 }
 
-.NavigationMenuContent[data-motion="to-start"] {
-  animation-name: exitToLeft;
+.NavigationMenuContent[data-motion='to-start'] {
+	animation-name: exitToLeft;
 }
 
-.NavigationMenuContent[data-motion="to-end"] {
-  animation-name: exitToRight;
+.NavigationMenuContent[data-motion='to-end'] {
+	animation-name: exitToRight;
 }
 
 /* NavigationMenu Viewport - Official Radix UI Pattern */
 .NavigationMenuViewport {
-  position: relative;
-  margin-top: 0.5rem; /* mt-2 equivalent */
-  width: var(--radix-navigation-menu-viewport-width);
-  height: var(--radix-navigation-menu-viewport-height);
-  overflow: hidden;
-  transition: width, height, 250ms ease;
-  transform-origin: top center;
+	position: relative;
+	margin-top: 0.5rem; /* mt-2 equivalent */
+	width: var(--radix-navigation-menu-viewport-width);
+	height: var(--radix-navigation-menu-viewport-height);
+	overflow: hidden;
+	transition:
+		width,
+		height,
+		250ms ease;
+	transform-origin: top center;
 }
 
 /* NavigationMenu Viewport Positioning */
 .NavigationMenuViewport {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  top: 100%;
-  left: 0;
-  perspective: 2000px;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	perspective: 2000px;
 }
 
 /* CONTEXT7 SOURCE: /radix-ui/website - NavigationMenu motion animations for smooth transitions */
 /* OFFICIAL RADIX KEYFRAMES: Directional animations based on data-motion attributes for proper hover isolation */
 @keyframes enterFromRight {
-  from {
-    opacity: 0;
-    transform: translateX(200px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateX(200px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 @keyframes enterFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateX(-200px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 @keyframes exitToRight {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(200px);
-  }
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(200px);
+	}
 }
 
 @keyframes exitToLeft {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(-200px);
+	}
 }

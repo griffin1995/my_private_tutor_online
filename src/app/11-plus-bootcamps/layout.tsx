@@ -1,17 +1,4 @@
-/**
- * CONTEXT7 SOURCE: /vercel/next.js - Server component layout for metadata export
- * SEO IMPLEMENTATION REASON: Official Next.js pattern for page-specific metadata in server components
- * CONTEXT7 SOURCE: /vercel/next.js - Layout component metadata inheritance
- * PREMIUM SERVICE: 11+ bootcamp specific SEO metadata for grammar school preparation visibility
- */
-
 import type { Metadata } from 'next';
-
-/**
- * CONTEXT7 SOURCE: /vercel/next.js - Page-specific metadata for specialized educational programs
- * SEO ENHANCEMENT REASON: 11+ bootcamp specific metadata for grammar school preparation discovery
- * PREMIUM SERVICE: Elite 11+ preparation programs with royal client service standards
- */
 export const metadata: Metadata = {
 	title:
 		'11+ Bootcamps 2025 | Intensive Grammar School Preparation | Elite Tutoring',
@@ -60,7 +47,6 @@ export const metadata: Metadata = {
 	category: 'Education',
 	classification: 'Examination Preparation',
 };
-
 export default function ElevenPlusBootcampsLayout({
 	children,
 }: {

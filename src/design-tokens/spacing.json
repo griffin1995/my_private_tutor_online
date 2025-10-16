@@ -1,121 +1,121 @@
 {
-  "$description": "My Private Tutor Online - Spacing Scale for Consistent Layout",
-  "$comment": "CONTEXT7 SOURCE: /design-tokens/community-group - Dimension tokens with value and unit properties",
-  "$comment2": "CONTEXT7 SOURCE: /amzn/style-dictionary - Spacing tokens with type definitions and references",
-  "$comment3": "IMPLEMENTATION REASON: Creating systematic spacing scale from 0px to 128px with 4px base unit",
+	"$description": "My Private Tutor Online - Spacing Scale for Consistent Layout",
+	"$comment": "CONTEXT7 SOURCE: /design-tokens/community-group - Dimension tokens with value and unit properties",
+	"$comment2": "CONTEXT7 SOURCE: /amzn/style-dictionary - Spacing tokens with type definitions and references",
+	"$comment3": "IMPLEMENTATION REASON: Creating systematic spacing scale from 0px to 128px with 4px base unit",
 
-  "spacing": {
-    "$description": "Spacing scale based on 4px grid system",
-    "$type": "dimension",
-    "0": {
-      "$value": "0px",
-      "$description": "Zero spacing - reset margins/padding"
-    },
-    "1": {
-      "$value": "4px",
-      "$description": "4px - minimal spacing, tight elements"
-    },
-    "2": {
-      "$value": "8px",
-      "$description": "8px - small spacing, compact layouts"
-    },
-    "3": {
-      "$value": "12px",
-      "$description": "12px - small-medium spacing"
-    },
-    "4": {
-      "$value": "16px",
-      "$description": "16px - base spacing unit, standard margins"
-    },
-    "5": {
-      "$value": "20px",
-      "$description": "20px - medium spacing"
-    },
-    "6": {
-      "$value": "24px",
-      "$description": "24px - comfortable spacing between elements"
-    },
-    "8": {
-      "$value": "32px",
-      "$description": "32px - section spacing"
-    },
-    "10": {
-      "$value": "40px",
-      "$description": "40px - large section spacing"
-    },
-    "12": {
-      "$value": "48px",
-      "$description": "48px - extra large spacing"
-    },
-    "16": {
-      "$value": "64px",
-      "$description": "64px - major section breaks"
-    },
-    "20": {
-      "$value": "80px",
-      "$description": "80px - page section spacing"
-    },
-    "24": {
-      "$value": "96px",
-      "$description": "96px - hero spacing"
-    },
-    "32": {
-      "$value": "128px",
-      "$description": "128px - maximum spacing, major page divisions"
-    }
-  },
+	"spacing": {
+		"$description": "Spacing scale based on 4px grid system",
+		"$type": "dimension",
+		"0": {
+			"$value": "0px",
+			"$description": "Zero spacing - reset margins/padding"
+		},
+		"1": {
+			"$value": "4px",
+			"$description": "4px - minimal spacing, tight elements"
+		},
+		"2": {
+			"$value": "8px",
+			"$description": "8px - small spacing, compact layouts"
+		},
+		"3": {
+			"$value": "12px",
+			"$description": "12px - small-medium spacing"
+		},
+		"4": {
+			"$value": "16px",
+			"$description": "16px - base spacing unit, standard margins"
+		},
+		"5": {
+			"$value": "20px",
+			"$description": "20px - medium spacing"
+		},
+		"6": {
+			"$value": "24px",
+			"$description": "24px - comfortable spacing between elements"
+		},
+		"8": {
+			"$value": "32px",
+			"$description": "32px - section spacing"
+		},
+		"10": {
+			"$value": "40px",
+			"$description": "40px - large section spacing"
+		},
+		"12": {
+			"$value": "48px",
+			"$description": "48px - extra large spacing"
+		},
+		"16": {
+			"$value": "64px",
+			"$description": "64px - major section breaks"
+		},
+		"20": {
+			"$value": "80px",
+			"$description": "80px - page section spacing"
+		},
+		"24": {
+			"$value": "96px",
+			"$description": "96px - hero spacing"
+		},
+		"32": {
+			"$value": "128px",
+			"$description": "128px - maximum spacing, major page divisions"
+		}
+	},
 
-  "borderRadius": {
-    "$description": "Border radius scale for consistent rounded corners",
-    "$type": "dimension",
-    "none": {
-      "$value": "0px",
-      "$description": "No rounding - sharp corners"
-    },
-    "sm": {
-      "$value": "4px",
-      "$description": "Small radius - buttons, inputs"
-    },
-    "base": {
-      "$value": "8px",
-      "$description": "Base radius - cards, containers"
-    },
-    "md": {
-      "$value": "12px",
-      "$description": "Medium radius - larger cards"
-    },
-    "lg": {
-      "$value": "16px",
-      "$description": "Large radius - prominent cards"
-    },
-    "xl": {
-      "$value": "24px",
-      "$description": "Extra large radius - hero elements"
-    },
-    "full": {
-      "$value": "9999px",
-      "$description": "Full rounding - pills, avatars"
-    }
-  },
+	"borderRadius": {
+		"$description": "Border radius scale for consistent rounded corners",
+		"$type": "dimension",
+		"none": {
+			"$value": "0px",
+			"$description": "No rounding - sharp corners"
+		},
+		"sm": {
+			"$value": "4px",
+			"$description": "Small radius - buttons, inputs"
+		},
+		"base": {
+			"$value": "8px",
+			"$description": "Base radius - cards, containers"
+		},
+		"md": {
+			"$value": "12px",
+			"$description": "Medium radius - larger cards"
+		},
+		"lg": {
+			"$value": "16px",
+			"$description": "Large radius - prominent cards"
+		},
+		"xl": {
+			"$value": "24px",
+			"$description": "Extra large radius - hero elements"
+		},
+		"full": {
+			"$value": "9999px",
+			"$description": "Full rounding - pills, avatars"
+		}
+	},
 
-  "borderWidth": {
-    "$description": "Border width scale",
-    "$type": "dimension",
-    "none": {
-      "$value": "0px",
-      "$description": "No border"
-    },
-    "thin": {
-      "$value": "1px",
-      "$description": "Thin border - subtle dividers"
-    },
-    "base": {
-      "$value": "2px",
-      "$description": "Base border - standard elements"
-    },
-    "thick": {
-      "$value": "4px",
-      "$description": "Thick border - emphasis, focus states"
-    }
-  }
+	"borderWidth": {
+		"$description": "Border width scale",
+		"$type": "dimension",
+		"none": {
+			"$value": "0px",
+			"$description": "No border"
+		},
+		"thin": {
+			"$value": "1px",
+			"$description": "Thin border - subtle dividers"
+		},
+		"base": {
+			"$value": "2px",
+			"$description": "Base border - standard elements"
+		},
+		"thick": {
+			"$value": "4px",
+			"$description": "Thick border - emphasis, focus states"
+		}
+	}
 }

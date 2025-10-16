@@ -2,14 +2,20 @@
 
 ## Overview
 
-The `OptimizedVideoPlayer` is a comprehensive React component that resolves architectural conflicts between `VideoThumbnailTopCard` and `HeroVideoDialog` by providing a unified ReactPlayer-based solution with advanced performance optimization, accessibility compliance, and TypeScript support.
+The `OptimizedVideoPlayer` is a comprehensive React component that resolves
+architectural conflicts between `VideoThumbnailTopCard` and `HeroVideoDialog` by
+providing a unified ReactPlayer-based solution with advanced performance
+optimization, accessibility compliance, and TypeScript support.
 
 ## Key Features
 
 - **Unified ReactPlayer Integration**: Single component for all video use cases
-- **Performance Optimized**: Lazy loading, code splitting, and intersection observer
-- **Accessibility Compliant**: WCAG 2.1 AA with keyboard navigation and screen reader support
-- **Three Variants**: Hero (modal), thumbnail-card (inline), testimonial (inline)
+- **Performance Optimized**: Lazy loading, code splitting, and intersection
+  observer
+- **Accessibility Compliant**: WCAG 2.1 AA with keyboard navigation and screen
+  reader support
+- **Three Variants**: Hero (modal), thumbnail-card (inline), testimonial
+  (inline)
 - **React 19 Compatible**: Proper hooks usage and modern patterns
 - **Comprehensive Error Handling**: Graceful fallbacks and retry mechanisms
 - **TypeScript Support**: Full type definitions with comprehensive interfaces
@@ -17,17 +23,22 @@ The `OptimizedVideoPlayer` is a comprehensive React component that resolves arch
 ## Architecture Resolution
 
 ### Previous Issues
-- **Dual Integration Conflict**: VideoThumbnailTopCard used both HeroVideoDialog and custom handlers
+
+- **Dual Integration Conflict**: VideoThumbnailTopCard used both HeroVideoDialog
+  and custom handlers
 - **Bundle Size**: Multiple video libraries loaded unnecessarily
 - **State Management**: Inconsistent state handling across components
 - **Accessibility**: Limited keyboard navigation and screen reader support
 - **Error Handling**: Basic error states without recovery options
 
 ### Solutions Implemented
+
 - **Single ReactPlayer Instance**: Eliminates conflicts and reduces bundle size
 - **Lazy Loading**: Code splitting with dynamic imports reduces initial bundle
-- **Comprehensive State Management**: Unified state structure with proper TypeScript typing
-- **Enhanced Accessibility**: Full keyboard navigation, focus management, ARIA labels
+- **Comprehensive State Management**: Unified state structure with proper
+  TypeScript typing
+- **Enhanced Accessibility**: Full keyboard navigation, focus management, ARIA
+  labels
 - **Advanced Error Handling**: Recoverable errors with retry functionality
 
 ## Installation
@@ -43,57 +54,57 @@ npm install react-player react-intersection-observer framer-motion next
 ### Hero Variant (Modal)
 
 ```tsx
-import { OptimizedVideoPlayer } from '@/components/video/OptimizedVideoPlayer'
+import { OptimizedVideoPlayer } from '@/components/video/OptimizedVideoPlayer';
 
 export function VideoHero() {
-  return (
-    <OptimizedVideoPlayer
-      videoId="dQw4w9WgXcQ"
-      title="Rick Astley - Never Gonna Give You Up"
-      variant="hero"
-      thumbnail="/images/rick-astley-thumbnail.jpg"
-      aspectRatio="16:9"
-    />
-  )
+	return (
+		<OptimizedVideoPlayer
+			videoId='dQw4w9WgXcQ'
+			title='Rick Astley - Never Gonna Give You Up'
+			variant='hero'
+			thumbnail='/images/rick-astley-thumbnail.jpg'
+			aspectRatio='16:9'
+		/>
+	);
 }
 ```
 
 ### Thumbnail Card Variant (Inline)
 
 ```tsx
-import { OptimizedVideoPlayer } from '@/components/video/OptimizedVideoPlayer'
+import { OptimizedVideoPlayer } from '@/components/video/OptimizedVideoPlayer';
 
 export function VideoCard() {
-  return (
-    <OptimizedVideoPlayer
-      videoId="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-      title="Educational Video"
-      variant="thumbnail-card"
-      thumbnail="/images/education-thumbnail.jpg"
-      controls={true}
-      autoPlay={false}
-      onReady={() => console.log('Video ready')}
-      onPlay={() => console.log('Video started')}
-    />
-  )
+	return (
+		<OptimizedVideoPlayer
+			videoId='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+			title='Educational Video'
+			variant='thumbnail-card'
+			thumbnail='/images/education-thumbnail.jpg'
+			controls={true}
+			autoPlay={false}
+			onReady={() => console.log('Video ready')}
+			onPlay={() => console.log('Video started')}
+		/>
+	);
 }
 ```
 
 ### Testimonial Variant (Inline)
 
 ```tsx
-import { OptimizedVideoPlayer } from '@/components/video/OptimizedVideoPlayer'
+import { OptimizedVideoPlayer } from '@/components/video/OptimizedVideoPlayer';
 
 export function TestimonialVideo() {
-  return (
-    <OptimizedVideoPlayer
-      videoId="dQw4w9WgXcQ"
-      title="Client Testimonial - Sarah Johnson"
-      variant="testimonial"
-      aspectRatio="4:3"
-      className="max-w-md mx-auto"
-    />
-  )
+	return (
+		<OptimizedVideoPlayer
+			videoId='dQw4w9WgXcQ'
+			title='Client Testimonial - Sarah Johnson'
+			variant='testimonial'
+			aspectRatio='4:3'
+			className='max-w-md mx-auto'
+		/>
+	);
 }
 ```
 
@@ -103,21 +114,21 @@ export function TestimonialVideo() {
 
 ```tsx
 <OptimizedVideoPlayer
-  videoId="dQw4w9WgXcQ"
-  title="Advanced YouTube Video"
-  config={{
-    youtube: {
-      playerVars: {
-        showinfo: 0,
-        modestbranding: 1,
-        rel: 0,
-        controls: 1,
-        autoplay: 0,
-        start: 30,
-        end: 180
-      }
-    }
-  }}
+	videoId='dQw4w9WgXcQ'
+	title='Advanced YouTube Video'
+	config={{
+		youtube: {
+			playerVars: {
+				showinfo: 0,
+				modestbranding: 1,
+				rel: 0,
+				controls: 1,
+				autoplay: 0,
+				start: 30,
+				end: 180,
+			},
+		},
+	}}
 />
 ```
 
@@ -125,12 +136,12 @@ export function TestimonialVideo() {
 
 ```tsx
 <OptimizedVideoPlayer
-  videoId="dQw4w9WgXcQ"
-  title="Optimized Video"
-  enableLazyLoading={true}
-  preloadMargin="300px 0px"
-  preload="metadata"
-  quality="hd720"
+	videoId='dQw4w9WgXcQ'
+	title='Optimized Video'
+	enableLazyLoading={true}
+	preloadMargin='300px 0px'
+	preload='metadata'
+	quality='hd720'
 />
 ```
 
@@ -138,12 +149,12 @@ export function TestimonialVideo() {
 
 ```tsx
 <OptimizedVideoPlayer
-  videoId="dQw4w9WgXcQ"
-  title="Accessible Video"
-  ariaLabel="Educational content about React development"
-  ariaDescription="A comprehensive guide to building React applications"
-  keyboardControls={true}
-  captionsEnabled={true}
+	videoId='dQw4w9WgXcQ'
+	title='Accessible Video'
+	ariaLabel='Educational content about React development'
+	ariaDescription='A comprehensive guide to building React applications'
+	keyboardControls={true}
+	captionsEnabled={true}
 />
 ```
 
@@ -151,44 +162,44 @@ export function TestimonialVideo() {
 
 ```typescript
 interface OptimizedVideoPlayerProps {
-  // Core properties
-  videoId: string                    // YouTube ID or full URL
-  title: string                      // Video title for accessibility
-  thumbnail?: string                 // Custom thumbnail URL
-  variant?: 'hero' | 'thumbnail-card' | 'testimonial'
-  className?: string                 // Additional CSS classes
+	// Core properties
+	videoId: string; // YouTube ID or full URL
+	title: string; // Video title for accessibility
+	thumbnail?: string; // Custom thumbnail URL
+	variant?: 'hero' | 'thumbnail-card' | 'testimonial';
+	className?: string; // Additional CSS classes
 
-  // Playback controls
-  autoPlay?: boolean                 // Auto-start playback
-  muted?: boolean                    // Start muted (recommended for autoplay)
-  controls?: boolean                 // Show player controls
-  loop?: boolean                     // Loop playback
+	// Playback controls
+	autoPlay?: boolean; // Auto-start playback
+	muted?: boolean; // Start muted (recommended for autoplay)
+	controls?: boolean; // Show player controls
+	loop?: boolean; // Loop playback
 
-  // Performance options
-  enableLazyLoading?: boolean        // Enable intersection observer
-  preloadMargin?: string             // Intersection observer margin
-  preload?: 'none' | 'metadata' | 'auto'
+	// Performance options
+	enableLazyLoading?: boolean; // Enable intersection observer
+	preloadMargin?: string; // Intersection observer margin
+	preload?: 'none' | 'metadata' | 'auto';
 
-  // Dimensions
-  width?: string | number            // Player width
-  height?: string | number           // Player height
-  aspectRatio?: string               // CSS aspect ratio
+	// Dimensions
+	width?: string | number; // Player width
+	height?: string | number; // Player height
+	aspectRatio?: string; // CSS aspect ratio
 
-  // Callbacks
-  onReady?: () => void              // Player ready callback
-  onPlay?: () => void               // Play started callback
-  onPause?: () => void              // Pause callback
-  onProgress?: (state) => void      // Progress callback
-  onError?: (error) => void         // Error callback
+	// Callbacks
+	onReady?: () => void; // Player ready callback
+	onPlay?: () => void; // Play started callback
+	onPause?: () => void; // Pause callback
+	onProgress?: (state) => void; // Progress callback
+	onError?: (error) => void; // Error callback
 
-  // Accessibility
-  ariaLabel?: string                // ARIA label
-  ariaDescription?: string          // ARIA description
-  keyboardControls?: boolean        // Enable keyboard shortcuts
+	// Accessibility
+	ariaLabel?: string; // ARIA label
+	ariaDescription?: string; // ARIA description
+	keyboardControls?: boolean; // Enable keyboard shortcuts
 
-  // Advanced configuration
-  config?: ReactPlayerConfig        // ReactPlayer configuration
-  light?: boolean | ReactElement    // Custom light mode
+	// Advanced configuration
+	config?: ReactPlayerConfig; // ReactPlayer configuration
+	light?: boolean | ReactElement; // Custom light mode
 }
 ```
 
@@ -198,20 +209,20 @@ The component uses a comprehensive state structure:
 
 ```typescript
 interface VideoPlayerState {
-  isPlaying: boolean
-  isReady: boolean
-  hasError: boolean
-  isLoading: boolean
-  isModalOpen: boolean      // For hero variant
-  isMuted: boolean
-  volume: number
-  played: number           // Progress (0-1)
-  loaded: number          // Buffered (0-1)
-  duration: number        // Total seconds
-  playbackRate: number
-  pip: boolean           // Picture-in-picture
-  seeking: boolean
-  fullscreen: boolean
+	isPlaying: boolean;
+	isReady: boolean;
+	hasError: boolean;
+	isLoading: boolean;
+	isModalOpen: boolean; // For hero variant
+	isMuted: boolean;
+	volume: number;
+	played: number; // Progress (0-1)
+	loaded: number; // Buffered (0-1)
+	duration: number; // Total seconds
+	playbackRate: number;
+	pip: boolean; // Picture-in-picture
+	seeking: boolean;
+	fullscreen: boolean;
 }
 ```
 
@@ -221,12 +232,12 @@ The component provides comprehensive error handling:
 
 ```typescript
 interface VideoPlayerError {
-  type: 'network' | 'decode' | 'src_not_supported' | 'permission' | 'unknown'
-  message: string
-  code?: number
-  recoverable: boolean    // If true, shows retry button
-  timestamp: number
-  videoId: string
+	type: 'network' | 'decode' | 'src_not_supported' | 'permission' | 'unknown';
+	message: string;
+	code?: number;
+	recoverable: boolean; // If true, shows retry button
+	timestamp: number;
+	videoId: string;
 }
 ```
 
@@ -234,12 +245,12 @@ interface VideoPlayerError {
 
 ```tsx
 <OptimizedVideoPlayer
-  videoId="invalid-video-id"
-  title="Video with Error"
-  onError={(error) => {
-    console.log('Video error:', error)
-    // Custom error handling
-  }}
+	videoId='invalid-video-id'
+	title='Video with Error'
+	onError={(error) => {
+		console.log('Video error:', error);
+		// Custom error handling
+	}}
 />
 ```
 
@@ -278,43 +289,47 @@ interface VideoPlayerError {
 ### Replacing VideoThumbnailTopCard
 
 **Before:**
+
 ```tsx
 <VideoThumbnailTopCard
-  title="My Video"
-  videoUrl="https://youtube.com/watch?v=123"
-  thumbnailUrl="/thumb.jpg"
-  useHeroVideoDialog={true}
+	title='My Video'
+	videoUrl='https://youtube.com/watch?v=123'
+	thumbnailUrl='/thumb.jpg'
+	useHeroVideoDialog={true}
 />
 ```
 
 **After:**
+
 ```tsx
 <OptimizedVideoPlayer
-  videoId="123"
-  title="My Video"
-  variant="thumbnail-card"
-  thumbnail="/thumb.jpg"
+	videoId='123'
+	title='My Video'
+	variant='thumbnail-card'
+	thumbnail='/thumb.jpg'
 />
 ```
 
 ### Replacing HeroVideoDialog
 
 **Before:**
+
 ```tsx
 <HeroVideoDialog
-  videoSrc="https://youtube.com/watch?v=123"
-  thumbnailSrc="/thumb.jpg"
-  animationStyle="from-center"
+	videoSrc='https://youtube.com/watch?v=123'
+	thumbnailSrc='/thumb.jpg'
+	animationStyle='from-center'
 />
 ```
 
 **After:**
+
 ```tsx
 <OptimizedVideoPlayer
-  videoId="123"
-  title="Hero Video"
-  variant="hero"
-  thumbnail="/thumb.jpg"
+	videoId='123'
+	title='Hero Video'
+	variant='hero'
+	thumbnail='/thumb.jpg'
 />
 ```
 
@@ -337,17 +352,18 @@ interface VideoPlayerError {
 
 ```tsx
 <OptimizedVideoPlayer
-  videoId="dQw4w9WgXcQ"
-  title="Debug Video"
-  onError={console.error}
-  onReady={() => console.log('Ready')}
-  onPlay={() => console.log('Playing')}
+	videoId='dQw4w9WgXcQ'
+	title='Debug Video'
+	onError={console.error}
+	onReady={() => console.log('Ready')}
+	onPlay={() => console.log('Playing')}
 />
 ```
 
 ## Migration Guide
 
-See the component documentation for step-by-step migration from existing video components to OptimizedVideoPlayer.
+See the component documentation for step-by-step migration from existing video
+components to OptimizedVideoPlayer.
 
 ---
 
@@ -363,4 +379,6 @@ All implementation patterns are based on official Context7 MCP documentation:
 
 ## Royal Client Quality
 
-This component meets the premium standards required for My Private Tutor Online's royal clientele with enterprise-grade implementation and comprehensive error handling.
+This component meets the premium standards required for My Private Tutor
+Online's royal clientele with enterprise-grade implementation and comprehensive
+error handling.

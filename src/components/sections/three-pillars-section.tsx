@@ -2,7 +2,6 @@
 
 import { Separator } from '@/components/ui/separator';
 import React from 'react';
-
 interface PillarData {
 	id: string;
 	title: string;
@@ -10,7 +9,6 @@ interface PillarData {
 	description: string;
 	stats: string[];
 }
-
 const pillarsData: PillarData[] = [
 	{
 		id: 'pillar-1',
@@ -21,7 +19,7 @@ const pillarsData: PillarData[] = [
 		stats: ['Recent application cycles'],
 	},
 	{
-		id: 'pillar-3', // swapped
+		id: 'pillar-3',
 		title: 'Top 2% of test takers',
 		subtitle: 'Top 2% Test Performance',
 		description:
@@ -29,7 +27,7 @@ const pillarsData: PillarData[] = [
 		stats: ['Recent examination cycles'],
 	},
 	{
-		id: 'pillar-2', // swapped
+		id: 'pillar-2',
 		title: '94% 2+ grade growth',
 		subtitle: 'GCSE Grade Growth',
 		description:
@@ -37,16 +35,10 @@ const pillarsData: PillarData[] = [
 		stats: ['Long-term tracking across multiple academic years'],
 	},
 ];
-
-const backgroundShades = [
-	'bg-primary-700', // Darker blue
-	'bg-primary-800', // Even darker for middle card
-	'bg-primary-900', // Darkest for last card
-];
-
-export const ThreePillarsSection: React.FC<{ className?: string }> = ({
-	className = '',
-}) => {
+const backgroundShades = ['bg-primary-700', 'bg-primary-800', 'bg-primary-900'];
+export const ThreePillarsSection: React.FC<{
+	className?: string;
+}> = ({ className = '' }) => {
 	return (
 		<div className={`py-7 lg:py-10 ${className}`}>
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
@@ -62,23 +54,22 @@ export const ThreePillarsSection: React.FC<{ className?: string }> = ({
 		</div>
 	);
 };
-
 interface PillarCardProps {
 	pillar: PillarData;
 }
-
 const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
 	const shadeIndex =
 		parseInt(pillar.id.replace(/\D/g, ''), 10) % backgroundShades.length;
 	const bgClass = backgroundShades[shadeIndex];
-
 	return (
 		<div className='group'>
 			<div className='shadow-xl overflow-hidden'>
 				<div
 					className={`${bgClass} relative`}
-					style={{ aspectRatio: '2/3' }}>
-					{/* Content overlay */}
+					style={{
+						aspectRatio: '2/3',
+					}}>
+					{}
 					<div className='absolute inset-0 p-8 pt-32 flex flex-col justify-end'>
 						<h3 className='text-4xl font-bold text-token-neutral-white mb-2'>
 							{pillar.title}
@@ -103,6 +94,5 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
 		</div>
 	);
 };
-
 export default ThreePillarsSection;
 export const MemoizedThreePillarsSection = React.memo(ThreePillarsSection);

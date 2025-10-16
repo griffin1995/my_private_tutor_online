@@ -1,265 +1,168 @@
-// CONTEXT7 SOURCE: /vercel/next.js - Client component directive for browser APIs
-// CLIENT DIRECTIVE REASON: Next.js documentation for client-side accessibility hooks
-"use client"
+'use client';
 
-/**
- * CONTEXT7 SOURCE: /facebook/react - Custom React hooks for accessibility
- * ACCESSIBILITY HOOKS REASON: React documentation for creating reusable accessibility hooks
- * CONTEXT7 SOURCE: /w3c/wcag - WCAG 2.1 accessibility guidelines
- * WCAG COMPLIANCE REASON: WCAG documentation for accessibility requirements
- *
- * Pattern: Custom React hooks for accessibility
- * Purpose: Provide reusable accessibility patterns in React components
- */
-
-// CONTEXT7 SOURCE: /facebook/react - React hooks for state and effects
-// HOOKS IMPORT REASON: React documentation for useState, useEffect, useCallback, useRef
-import { useEffect, useState, useCallback, useRef } from 'react'
-import { 
-  prefersReducedMotion, 
-  watchMotionPreference,
-  focusManager,
-  screenReader,
-  injectMotionCSSVariables
-} from '@/lib/accessibility'
-
-/**
- * useReducedMotion Hook
- * Documentation Source: CSS Media Queries & React Hooks
- * Reference: https://www.w3.org/TR/mediaqueries-5/#prefers-reduced-motion
- * 
- * Pattern: React hook for motion preferences
- * Purpose: Reactively respond to user motion preferences
- */
+import { useEffect, useState, useCallback, useRef } from 'react';
+import {
+	prefersReducedMotion,
+	watchMotionPreference,
+	focusManager,
+	screenReader,
+	injectMotionCSSVariables,
+} from '@/lib/accessibility';
 export const useReducedMotion = () => {
-  const [reducedMotion, setReducedMotion] = useState(() => prefersReducedMotion())
-
-  useEffect(() => {
-    const unsubscribe = watchMotionPreference(setReducedMotion)
-    return unsubscribe
-  }, [])
-
-  return reducedMotion
-}
-
-/**
- * useFocusTrap Hook
- * Documentation Source: WAI-ARIA Dialog Pattern
- * Reference: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
- * 
- * Pattern: Focus trap for modal dialogs
- * Purpose: Keep focus within modal for keyboard navigation
- */
+	const [reducedMotion, setReducedMotion] = useState(() =>
+		prefersReducedMotion(),
+	);
+	useEffect(() => {
+		const unsubscribe = watchMotionPreference(setReducedMotion);
+		return unsubscribe;
+	}, []);
+	return reducedMotion;
+};
 export const useFocusTrap = <T extends HTMLElement = HTMLElement>(
-  isActive: boolean = true
+	isActive: boolean = true,
 ) => {
-  const containerRef = useRef<T>(null)
-
-  useEffect(() => {
-    if (!isActive || !containerRef.current) return
-
-    const container = containerRef.current
-    const previouslyFocusedElement = document.activeElement as HTMLElement
-
-    // Focus first focusable element
-    const firstFocusable = focusManager.getFirstFocusableElement(container)
-    firstFocusable?.focus()
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      focusManager.trapFocus(container, event)
-    }
-
-    container.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      container.removeEventListener('keydown', handleKeyDown)
-      // Restore focus to previously focused element
-      focusManager.restoreFocus(previouslyFocusedElement)
-    }
-  }, [isActive])
-
-  return containerRef
-}
-
-/**
- * useAnnouncement Hook
- * Documentation Source: WAI-ARIA Live Regions
- * Reference: https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA19
- * 
- * Pattern: Screen reader announcements
- * Purpose: Announce dynamic content changes to screen readers
- */
+	const containerRef = useRef<T>(null);
+	useEffect(() => {
+		if (!isActive || !containerRef.current) return;
+		const container = containerRef.current;
+		const previouslyFocusedElement = document.activeElement as HTMLElement;
+		const firstFocusable = focusManager.getFirstFocusableElement(container);
+		firstFocusable?.focus();
+		const handleKeyDown = (event: KeyboardEvent) => {
+			focusManager.trapFocus(container, event);
+		};
+		container.addEventListener('keydown', handleKeyDown);
+		return () => {
+			container.removeEventListener('keydown', handleKeyDown);
+			focusManager.restoreFocus(previouslyFocusedElement);
+		};
+	}, [isActive]);
+	return containerRef;
+};
 export const useAnnouncement = () => {
-  const announce = useCallback((message: string, priority: 'polite' | 'assertive' = 'polite') => {
-    screenReader.announce(message, priority)
-  }, [])
-
-  return announce
-}
-
-/**
- * useKeyboardNavigation Hook
- * Documentation Source: WCAG 2.1 Keyboard Navigation
- * Reference: https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html
- * 
- * Pattern: Keyboard navigation for lists and grids
- * Purpose: Navigate through items using arrow keys
- */
+	const announce = useCallback(
+		(message: string, priority: 'polite' | 'assertive' = 'polite') => {
+			screenReader.announce(message, priority);
+		},
+		[],
+	);
+	return announce;
+};
 export const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
-  items: T[],
-  options: {
-    orientation?: 'horizontal' | 'vertical' | 'grid'
-    loop?: boolean
-    onSelect?: (item: T, index: number) => void
-  } = {}
+	items: T[],
+	options: {
+		orientation?: 'horizontal' | 'vertical' | 'grid';
+		loop?: boolean;
+		onSelect?: (item: T, index: number) => void;
+	} = {},
 ) => {
-  const { orientation = 'vertical', loop = true, onSelect } = options
-  const [focusedIndex, setFocusedIndex] = useState(-1)
-
-  const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
-    const { key } = event
-    let newIndex = focusedIndex
-
-    switch (key) {
-      case 'ArrowUp':
-        if (orientation !== 'horizontal') {
-          event.preventDefault()
-          newIndex = focusedIndex > 0 ? focusedIndex - 1 : (loop ? items.length - 1 : 0)
-        }
-        break
-      
-      case 'ArrowDown':
-        if (orientation !== 'horizontal') {
-          event.preventDefault()
-          newIndex = focusedIndex < items.length - 1 ? focusedIndex + 1 : (loop ? 0 : items.length - 1)
-        }
-        break
-
-      case 'ArrowLeft':
-        if (orientation !== 'vertical') {
-          event.preventDefault()
-          newIndex = focusedIndex > 0 ? focusedIndex - 1 : (loop ? items.length - 1 : 0)
-        }
-        break
-
-      case 'ArrowRight':
-        if (orientation !== 'vertical') {
-          event.preventDefault()
-          newIndex = focusedIndex < items.length - 1 ? focusedIndex + 1 : (loop ? 0 : items.length - 1)
-        }
-        break
-
-      case 'Home':
-        event.preventDefault()
-        newIndex = 0
-        break
-
-      case 'End':
-        event.preventDefault()
-        newIndex = items.length - 1
-        break
-
-      case 'Enter':
-      case ' ':
-        event.preventDefault()
-        if (focusedIndex >= 0 && focusedIndex < items.length) {
-          const item = items[focusedIndex]
-          if (item) {
-            onSelect?.(item, focusedIndex)
-          }
-        }
-        break
-    }
-
-    if (newIndex !== focusedIndex && newIndex >= 0 && newIndex < items.length) {
-      setFocusedIndex(newIndex)
-      items[newIndex]?.focus()
-    }
-  }, [focusedIndex, items, orientation, loop, onSelect])
-
-  return {
-    focusedIndex,
-    setFocusedIndex,
-    handleKeyDown
-  }
-}
-
-/**
- * useMediaQuery Hook
- * Documentation Source: CSS Media Queries
- * Reference: https://www.w3.org/TR/mediaqueries-5/
- * 
- * Pattern: React hook for media queries
- * Purpose: Respond to media query changes in React
- */
+	const { orientation = 'vertical', loop = true, onSelect } = options;
+	const [focusedIndex, setFocusedIndex] = useState(-1);
+	const handleKeyDown = useCallback(
+		(event: React.KeyboardEvent) => {
+			const { key } = event;
+			let newIndex = focusedIndex;
+			switch (key) {
+				case 'ArrowUp':
+					if (orientation !== 'horizontal') {
+						event.preventDefault();
+						newIndex =
+							focusedIndex > 0 ? focusedIndex - 1
+							: loop ? items.length - 1
+							: 0;
+					}
+					break;
+				case 'ArrowDown':
+					if (orientation !== 'horizontal') {
+						event.preventDefault();
+						newIndex =
+							focusedIndex < items.length - 1 ? focusedIndex + 1
+							: loop ? 0
+							: items.length - 1;
+					}
+					break;
+				case 'ArrowLeft':
+					if (orientation !== 'vertical') {
+						event.preventDefault();
+						newIndex =
+							focusedIndex > 0 ? focusedIndex - 1
+							: loop ? items.length - 1
+							: 0;
+					}
+					break;
+				case 'ArrowRight':
+					if (orientation !== 'vertical') {
+						event.preventDefault();
+						newIndex =
+							focusedIndex < items.length - 1 ? focusedIndex + 1
+							: loop ? 0
+							: items.length - 1;
+					}
+					break;
+				case 'Home':
+					event.preventDefault();
+					newIndex = 0;
+					break;
+				case 'End':
+					event.preventDefault();
+					newIndex = items.length - 1;
+					break;
+				case 'Enter':
+				case ' ':
+					event.preventDefault();
+					if (focusedIndex >= 0 && focusedIndex < items.length) {
+						const item = items[focusedIndex];
+						if (item) {
+							onSelect?.(item, focusedIndex);
+						}
+					}
+					break;
+			}
+			if (newIndex !== focusedIndex && newIndex >= 0 && newIndex < items.length) {
+				setFocusedIndex(newIndex);
+				items[newIndex]?.focus();
+			}
+		},
+		[focusedIndex, items, orientation, loop, onSelect],
+	);
+	return {
+		focusedIndex,
+		setFocusedIndex,
+		handleKeyDown,
+	};
+};
 export const useMediaQuery = (query: string): boolean => {
-  const [matches, setMatches] = useState(() => {
-    if (typeof window === 'undefined') return false
-    return window.matchMedia(query).matches
-  })
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-
-    const mediaQuery = window.matchMedia(query)
-    const handler = (event: MediaQueryListEvent) => {
-      setMatches(event.matches)
-    }
-
-    mediaQuery.addEventListener('change', handler)
-    setMatches(mediaQuery.matches)
-
-    return () => {
-      mediaQuery.removeEventListener('change', handler)
-    }
-  }, [query])
-
-  return matches
-}
-
-/**
- * useHighContrast Hook
- * Documentation Source: CSS Media Queries Level 5
- * Reference: https://www.w3.org/TR/mediaqueries-5/#prefers-contrast
- * 
- * Pattern: High contrast mode detection
- * Purpose: Adapt UI for high contrast preferences
- */
+	const [matches, setMatches] = useState(() => {
+		if (typeof window === 'undefined') return false;
+		return window.matchMedia(query).matches;
+	});
+	useEffect(() => {
+		if (typeof window === 'undefined') return;
+		const mediaQuery = window.matchMedia(query);
+		const handler = (event: MediaQueryListEvent) => {
+			setMatches(event.matches);
+		};
+		mediaQuery.addEventListener('change', handler);
+		setMatches(mediaQuery.matches);
+		return () => {
+			mediaQuery.removeEventListener('change', handler);
+		};
+	}, [query]);
+	return matches;
+};
 export const useHighContrast = () => {
-  return useMediaQuery('(prefers-contrast: high)')
-}
-
-/**
- * useColorScheme Hook
- * Documentation Source: CSS Media Queries Level 5
- * Reference: https://www.w3.org/TR/mediaqueries-5/#prefers-color-scheme
- * 
- * Pattern: Color scheme preference detection
- * Purpose: Support dark/light mode preferences
- */
+	return useMediaQuery('(prefers-contrast: high)');
+};
 export const useColorScheme = () => {
-  const prefersDark = useMediaQuery('(prefers-color-scheme: dark)')
-  return prefersDark ? 'dark' : 'light'
-}
-
-/**
- * Initialize Accessibility Features
- * Documentation Source: WCAG 2.1 Guidelines
- * Reference: https://www.w3.org/WAI/WCAG21/quickref/
- * 
- * Pattern: Global accessibility initialization
- * Purpose: Set up accessibility features on app mount
- */
+	const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
+	return prefersDark ? 'dark' : 'light';
+};
 export const useAccessibilityInit = () => {
-  useEffect(() => {
-    // Inject CSS variables for motion preferences
-    injectMotionCSSVariables()
-
-    // Set up motion preference watcher
-    const unsubscribe = watchMotionPreference(() => {
-      injectMotionCSSVariables()
-    })
-
-    return unsubscribe
-  }, [])
-}
+	useEffect(() => {
+		injectMotionCSSVariables();
+		const unsubscribe = watchMotionPreference(() => {
+			injectMotionCSSVariables();
+		});
+		return unsubscribe;
+	}, []);
+};

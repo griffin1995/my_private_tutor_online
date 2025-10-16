@@ -1,9 +1,16 @@
 # Custom Documentation - Component Patterns & Implementations
 
 ## Overview
-This file contains proven component patterns, implementations, and configurations used in our projects. All patterns are based on **Context7 MCP official documentation retrieval only** and have been tested in production. **Updated with comprehensive homepage optimization patterns from sequential multi-agent analysis (September 2025).**
 
-**CRITICAL**: All implementations must use Context7 MCP for documentation lookup:
+This file contains proven component patterns, implementations, and
+configurations used in our projects. All patterns are based on **Context7 MCP
+official documentation retrieval only** and have been tested in production.
+**Updated with comprehensive homepage optimization patterns from sequential
+multi-agent analysis (September 2025).**
+
+**CRITICAL**: All implementations must use Context7 MCP for documentation
+lookup:
+
 - Use `mcp__context7__resolve-library-id` to find library IDs
 - Use `mcp__context7__get-library-docs` to retrieve official documentation
 - Never use unofficial sources, tutorials, or community examples
@@ -13,45 +20,53 @@ This file contains proven component patterns, implementations, and configuration
 ## 🚀 HOMEPAGE OPTIMIZATION PATTERNS - SEQUENTIAL MULTI-AGENT CONSENSUS (NEW: September 2025)
 
 ### Revolutionary Performance Optimization Strategy
-**Context7 Source**: Comprehensive integration of `/microsoft/typescript`, `/vercel/next.js`, and `/facebook/react` patterns  
+
+**Context7 Source**: Comprehensive integration of `/microsoft/typescript`,
+`/vercel/next.js`, and `/facebook/react` patterns  
 **Implementation Date**: September 12, 2025  
 **Status**: Production-deployed, £104,200/year business value achieved
 
 #### Unified Optimization Approach
-**Consensus Strategy**: Performance-First → Component-Architecture → TypeScript-Enhancement
+
+**Consensus Strategy**: Performance-First → Component-Architecture →
+TypeScript-Enhancement
+
 - **Phase 1**: Performance baseline and monitoring infrastructure
 - **Phase 2**: Component architecture with error boundaries and dynamic imports
 - **Phase 3**: TypeScript performance optimization with zero runtime cost
 - **Phase 4**: Integration, monitoring dashboard, and comprehensive validation
 
 #### Key Performance Improvements
+
 - **Build Time**: 44.67s → 11.0s (75.4% improvement)
 - **TypeScript Compilation**: 8.0s → 4.956s (38% improvement)
 - **Developer Productivity**: 117 hours/year saved
 - **Business Impact**: £104,200/year total performance enhancement
 
 ### Performance-Optimized TypeScript Configuration
+
 ```json
 // CONTEXT7 SOURCE: /microsoft/typescript - Performance compilation patterns
 // tsconfig.json - Optimized for build speed
 {
-  "compilerOptions": {
-    "incremental": true,
-    "tsBuildInfoFile": "./.next/.tsbuildinfo",
-    "target": "ES2020",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "strict": true,
-    "skipLibCheck": true,
-    "removeComments": true,
-    // Performance optimizations
-    "disableSourceOfProjectReferenceRedirect": true,
-    "importsNotUsedAsValues": "remove"
-  }
+	"compilerOptions": {
+		"incremental": true,
+		"tsBuildInfoFile": "./.next/.tsbuildinfo",
+		"target": "ES2020",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"strict": true,
+		"skipLibCheck": true,
+		"removeComments": true,
+		// Performance optimizations
+		"disableSourceOfProjectReferenceRedirect": true,
+		"importsNotUsedAsValues": "remove"
+	}
 }
 ```
 
 ### Error Boundary Pattern with Royal Client Quality
+
 ```typescript
 // CONTEXT7 SOURCE: /facebook/react - Error boundary implementation
 interface ErrorBoundaryState {
@@ -75,7 +90,7 @@ class HomepageErrorBoundary extends React.Component<
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Royal client quality error logging
     console.error(`Homepage section error (${this.props.sectionName}):`, error);
-    
+
     // Analytics tracking for performance monitoring
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'homepage_section_error', {
@@ -113,6 +128,7 @@ class HomepageErrorBoundary extends React.Component<
 ```
 
 ### Performance Budget Validation (Build-Time)
+
 ```typescript
 // CONTEXT7 SOURCE: /microsoft/typescript - Type-level validation patterns
 type PerformanceBudget = {
@@ -122,7 +138,7 @@ type PerformanceBudget = {
 };
 
 // Compile-time performance validation
-type ValidatePerformanceBudget<T extends { bundleSize: number }> = 
+type ValidatePerformanceBudget<T extends { bundleSize: number }> =
   T['bundleSize'] extends infer Size
     ? Size extends number
       ? Size > PerformanceBudget['maxBundleSize']
@@ -140,6 +156,7 @@ const validConfig: ValidatePerformanceBudget<{
 ```
 
 ### Dynamic Import Strategy for Component Optimization
+
 ```typescript
 // CONTEXT7 SOURCE: /vercel/next.js - Dynamic import patterns for performance
 import dynamic from 'next/dynamic';
@@ -157,7 +174,7 @@ const AboutSection = dynamic(
   () => import('./components/sections/about-section').then(mod => ({
     default: mod.AboutSection
   })),
-  { 
+  {
     loading: () => <div className="h-96 animate-pulse bg-gray-100" />,
     ssr: true // Maintain SEO
   }
@@ -176,143 +193,159 @@ const AboutSection = dynamic(
 ## 🔷 TypeScript Return Type System - CMS Functions (ENHANCED: September 2025)
 
 ### Comprehensive Type Safety Implementation
-**Context7 Source**: `/microsoft/typescript` - Interface design patterns and return type annotations  
+
+**Context7 Source**: `/microsoft/typescript` - Interface design patterns and
+return type annotations  
 **Implementation Date**: August 6, 2025  
 **Enhanced**: September 12, 2025 with performance optimization patterns  
-**Status**: Production-ready, all functions typed, performance-optimized compilation
+**Status**: Production-ready, all functions typed, performance-optimized
+compilation
 
 #### Key Features
-- **100% Type Coverage**: All CMS functions have explicit return types (15-20% compilation improvement)
+
+- **100% Type Coverage**: All CMS functions have explicit return types (15-20%
+  compilation improvement)
 - **Performance-First**: Zero runtime cost with build-time optimization focus
 - **Readonly Properties**: Immutable data structures using `readonly` modifiers
 - **Generic Constraints**: Reusable interfaces with proper type parameters
 - **Union Types**: Specific literal types for configuration options
-- **Error Handling**: Comprehensive fallback types with error boundary integration
+- **Error Handling**: Comprehensive fallback types with error boundary
+  integration
 - **Build-Time Validation**: Performance budget enforcement at TypeScript level
 
 #### Type Export System
+
 ```typescript
 // CONTEXT7 SOURCE: /microsoft/typescript - Type export patterns
 // All interfaces exported for external consumption
 export type {
-  BaseCMSContent,
-  CMSResponse,
-  NavigationItem,
-  SiteHeader,
-  HeroContent,
-  TrustIndicator,
-  TestimonialsSection,
-  Service,
-  ContactDetails,
-  QuoteFormContent,
-  ImageAsset,
-  VideoAsset,
-  ResponsiveImageSizes
-}
+	BaseCMSContent,
+	CMSResponse,
+	NavigationItem,
+	SiteHeader,
+	HeroContent,
+	TrustIndicator,
+	TestimonialsSection,
+	Service,
+	ContactDetails,
+	QuoteFormContent,
+	ImageAsset,
+	VideoAsset,
+	ResponsiveImageSizes,
+};
 ```
 
 #### Function Signature Examples
+
 ```typescript
 // CONTEXT7 SOURCE: /microsoft/typescript - Explicit return type annotations
 // Before: Inferred return types
 export const getSiteHeader = cache(() => {
-  return landingPageContent.header
-})
+	return landingPageContent.header;
+});
 
 // After: Explicit return types with caching
 export const getSiteHeader = cache((): SiteHeader => {
-  return landingPageContent.header
-})
+	return landingPageContent.header;
+});
 
 // Array return types with readonly
 export const getServices = (): readonly Service[] => {
-  return landingPageContent.services.services
-}
+	return landingPageContent.services.services;
+};
 
 // Complex object return types
 export const getUnifiedContact = cache((): UnifiedContactData => {
-  return {
-    primary: siteSettings.contact,
-    landing: landingPageContent.contact,
-    landingInfo: landingPageContent.contact.contactInfo,
-    faq: faqContent.contact,
-    quoteForm: quoteFormContent.contact
-  }
-})
+	return {
+		primary: siteSettings.contact,
+		landing: landingPageContent.contact,
+		landingInfo: landingPageContent.contact.contactInfo,
+		faq: faqContent.contact,
+		quoteForm: quoteFormContent.contact,
+	};
+});
 ```
 
 #### Interface Design Patterns
+
 ```typescript
 // CONTEXT7 SOURCE: /microsoft/typescript - Readonly property patterns
 export interface SiteHeader {
-  readonly siteName: string
-  readonly logo: string
-  readonly navigation: readonly NavigationItem[]
-  readonly ctaButton?: {
-    readonly text: string
-    readonly href: string
-  }
+	readonly siteName: string;
+	readonly logo: string;
+	readonly navigation: readonly NavigationItem[];
+	readonly ctaButton?: {
+		readonly text: string;
+		readonly href: string;
+	};
 }
 
 // Generic wrapper for CMS responses
 export interface CMSResponse<T> {
-  readonly data: T
-  readonly success: boolean
-  readonly error?: string
+	readonly data: T;
+	readonly success: boolean;
+	readonly error?: string;
 }
 
 // Extended interfaces for complex data
 export interface QuoteFormField {
-  readonly id: string
-  readonly label: string
-  readonly type: 'text' | 'email' | 'tel' | 'select' | 'textarea'
-  readonly required: boolean
-  readonly validation?: {
-    readonly message: string
-    readonly pattern?: string
-    readonly minLength?: number
-    readonly maxLength?: number
-  }
-  readonly options?: readonly QuoteFormOption[]
+	readonly id: string;
+	readonly label: string;
+	readonly type: 'text' | 'email' | 'tel' | 'select' | 'textarea';
+	readonly required: boolean;
+	readonly validation?: {
+		readonly message: string;
+		readonly pattern?: string;
+		readonly minLength?: number;
+		readonly maxLength?: number;
+	};
+	readonly options?: readonly QuoteFormOption[];
 }
 ```
 
 #### Utility Function Types
+
 ```typescript
 // CONTEXT7 SOURCE: /microsoft/typescript - Function parameter and return types
-export const generateResponsiveSizes = (baseWidth: number): ResponsiveImageSizes => {
-  return {
-    mobile: Math.round(baseWidth * 0.5),
-    tablet: Math.round(baseWidth * 0.75),
-    desktop: baseWidth,
-    xl: Math.round(baseWidth * 1.25)
-  }
-}
+export const generateResponsiveSizes = (
+	baseWidth: number,
+): ResponsiveImageSizes => {
+	return {
+		mobile: Math.round(baseWidth * 0.5),
+		tablet: Math.round(baseWidth * 0.75),
+		desktop: baseWidth,
+		xl: Math.round(baseWidth * 1.25),
+	};
+};
 
 // Type-safe image optimization
 export const getOptimizedImageProps = (
-  image: ImageAsset,
-  customSizes?: string
+	image: ImageAsset,
+	customSizes?: string,
 ): {
-  readonly src: string
-  readonly alt: string
-  readonly width?: number
-  readonly height?: number
-  readonly loading?: 'lazy' | 'eager'
-  readonly priority?: boolean
-  readonly sizes: string
-} => { /* implementation */ }
+	readonly src: string;
+	readonly alt: string;
+	readonly width?: number;
+	readonly height?: number;
+	readonly loading?: 'lazy' | 'eager';
+	readonly priority?: boolean;
+	readonly sizes: string;
+} => {
+	/* implementation */
+};
 ```
 
 #### Benefits Achieved
+
 ✅ **Zero Runtime Errors**: All CMS function calls are type-safe  
 ✅ **Developer Experience**: Full IntelliSense and autocomplete  
 ✅ **Refactoring Safety**: Changes caught at compile time  
 ✅ **Documentation**: Self-documenting interfaces  
 ✅ **Performance**: No runtime type checking overhead  
-✅ **Maintainability**: Clear contracts between functions  
+✅ **Maintainability**: Clear contracts between functions
 
 #### Testing Results
+
 - **Build Success**: All TypeScript compilation passes
 - **No Type Errors**: Zero `any` types or missing annotations
 - **Strict Mode**: Compliant with TypeScript strict configuration
@@ -320,19 +353,23 @@ export const getOptimizedImageProps = (
 - **Performance**: No runtime impact on function calls
 
 #### Implementation Files
-- `/src/lib/cms/cms-content.ts` - Content management functions (65+ functions typed)
+
+- `/src/lib/cms/cms-content.ts` - Content management functions (65+ functions
+  typed)
 - `/src/lib/cms/cms-images.ts` - Image asset management (25+ functions typed)
-- Both files include comprehensive JSDoc comments and Context7 source attribution
+- Both files include comprehensive JSDoc comments and Context7 source
+  attribution
 
 #### Usage in Components
+
 ```typescript
 // Type-safe component consumption
-import { getSiteHeader, type SiteHeader } from '@/lib/cms/cms-content'
-import { getMainLogo, type ImageAsset } from '@/lib/cms/cms-images'
+import { getSiteHeader, type SiteHeader } from '@/lib/cms/cms-content';
+import { getMainLogo, type ImageAsset } from '@/lib/cms/cms-images';
 
 // Full type inference and safety
-const header: SiteHeader = getSiteHeader()
-const logo: ImageAsset = getMainLogo()
+const header: SiteHeader = getSiteHeader();
+const logo: ImageAsset = getMainLogo();
 
 // No more runtime surprises!
 ```
@@ -342,28 +379,33 @@ const logo: ImageAsset = getMainLogo()
 ## Component Library Preferences
 
 ### Primary Choice: Radix UI + Tailwind CSS (Shadcn/UI Pattern)
-**Why**: Unstyled, accessible primitives with full design control
-**Use for**: Design systems, custom UI components, maximum flexibility
-**Documentation Source**: Context7 MCP - `/radix-ui/primitives` and `/tailwindcss/tailwindcss`
-**Verification**: Always verify patterns with Context7 MCP official documentation
+
+**Why**: Unstyled, accessible primitives with full design control **Use for**:
+Design systems, custom UI components, maximum flexibility **Documentation
+Source**: Context7 MCP - `/radix-ui/primitives` and `/tailwindcss/tailwindcss`
+**Verification**: Always verify patterns with Context7 MCP official
+documentation
 
 ### Secondary Choice: Mantine
-**Why**: Modern components, excellent hooks, built-in accessibility
-**Use for**: Rapid development, dashboards, when need complete component suite
-**Documentation Source**: Context7 MCP - `/mantinedev/mantine`
-**Verification**: All hooks and components verified through Context7 MCP
+
+**Why**: Modern components, excellent hooks, built-in accessibility **Use for**:
+Rapid development, dashboards, when need complete component suite
+**Documentation Source**: Context7 MCP - `/mantinedev/mantine` **Verification**:
+All hooks and components verified through Context7 MCP
 
 ### Enterprise Choice: Material UI (MUI)
-**Why**: Mature, comprehensive, extensive theming
-**Use for**: Complex dashboards, enterprise applications, Material Design requirements
-**Documentation Source**: Context7 MCP - `/mui/material-ui`
-**Verification**: Theme configuration and component usage via Context7 MCP
+
+**Why**: Mature, comprehensive, extensive theming **Use for**: Complex
+dashboards, enterprise applications, Material Design requirements
+**Documentation Source**: Context7 MCP - `/mui/material-ui` **Verification**:
+Theme configuration and component usage via Context7 MCP
 
 ---
 
 ## Proven Component Patterns
 
 ### Button Component with CVA (Class Variance Authority)
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Class Variance Authority Implementation
@@ -417,6 +459,7 @@ Button.displayName = 'Button'
 ```
 
 ### Modal Component with Radix UI
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Radix UI Dialog Component
@@ -467,6 +510,7 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
 ```
 
 ### Form Component with React Hook Form + Zod
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - React Hook Form with Zod Integration
@@ -561,6 +605,7 @@ export function ContactForm({ onSubmit }: { onSubmit: (data: FormData) => void }
 ```
 
 ### Accessible Carousel with Embla
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Embla Carousel React Implementation
@@ -573,7 +618,7 @@ import { useCallback } from 'react'
 
 export function Carousel({ items }: { items: React.ReactNode[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
+    {
       loop: true,
       align: 'center',
       skipSnaps: false
@@ -600,7 +645,7 @@ export function Carousel({ items }: { items: React.ReactNode[] }) {
           ))}
         </div>
       </div>
-      
+
       <button
         className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg hover:bg-white"
         onClick={scrollPrev}
@@ -608,7 +653,7 @@ export function Carousel({ items }: { items: React.ReactNode[] }) {
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
-      
+
       <button
         className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow-lg hover:bg-white"
         onClick={scrollNext}
@@ -622,6 +667,7 @@ export function Carousel({ items }: { items: React.ReactNode[] }) {
 ```
 
 ### Data Table with Tanstack Table
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Tanstack Table React Implementation
@@ -703,6 +749,7 @@ export function DataTable<TData, TValue>({
 ## CMS Data Access Patterns
 
 ### Unified Contact Data Pattern
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - TypeScript Interface Design Patterns
@@ -714,76 +761,77 @@ export function DataTable<TData, TValue>({
 
 // Step 1: Define unified interface
 export interface UnifiedContactData {
-  primary: ContactDetails // Settings contact data (phone, email, address)
-  landing: typeof landingPageContent.contact // Landing page contact section
-  landingInfo: typeof landingPageContent.contact.contactInfo // Subset contact info
-  faq: typeof faqContent.contact // FAQ contact section  
-  quoteForm: typeof quoteFormContent.contact // Quote form contact
+	primary: ContactDetails; // Settings contact data (phone, email, address)
+	landing: typeof landingPageContent.contact; // Landing page contact section
+	landingInfo: typeof landingPageContent.contact.contactInfo; // Subset contact info
+	faq: typeof faqContent.contact; // FAQ contact section
+	quoteForm: typeof quoteFormContent.contact; // Quote form contact
 }
 
 // Step 2: Create unified function
 export const getUnifiedContact = (): UnifiedContactData => {
-  return {
-    primary: siteSettings.contact,
-    landing: landingPageContent.contact,
-    landingInfo: landingPageContent.contact.contactInfo,
-    faq: faqContent.contact,
-    quoteForm: quoteFormContent.contact
-  }
-}
+	return {
+		primary: siteSettings.contact,
+		landing: landingPageContent.contact,
+		landingInfo: landingPageContent.contact.contactInfo,
+		faq: faqContent.contact,
+		quoteForm: quoteFormContent.contact,
+	};
+};
 
 // Step 3: Mark old functions as deprecated
 /**
  * @deprecated Use getUnifiedContact().landing instead
  */
 export const getContactContent = () => {
-  return landingPageContent.contact
-}
+	return landingPageContent.contact;
+};
 
 /**
  * @deprecated Use getUnifiedContact().landingInfo instead
  */
 export const getContactInfo = () => {
-  return landingPageContent.contact.contactInfo
-}
+	return landingPageContent.contact.contactInfo;
+};
 
 /**
  * @deprecated Use getUnifiedContact().primary instead
  */
 export const getContactDetails = (): ContactDetails => {
-  return siteSettings.contact
-}
+	return siteSettings.contact;
+};
 
 /**
  * @deprecated Use getUnifiedContact().faq instead
  */
 export const getFAQContact = () => {
-  return faqContent.contact
-}
+	return faqContent.contact;
+};
 
 /**
  * @deprecated Use getUnifiedContact().quoteForm instead
  */
 export const getQuoteFormContact = () => {
-  return quoteFormContent.contact
-}
+	return quoteFormContent.contact;
+};
 
 // Step 4: Update component usage
 export function PageFooter() {
-  const unifiedContact = getUnifiedContact()
-  const contactInfo = unifiedContact.landingInfo // Instead of getContactInfo()
-  // ... rest of component
+	const unifiedContact = getUnifiedContact();
+	const contactInfo = unifiedContact.landingInfo; // Instead of getContactInfo()
+	// ... rest of component
 }
 
 export function FAQPage() {
-  const unifiedContact = getUnifiedContact()
-  const contactContent = unifiedContact.faq // Instead of getFAQContact()
-  const contactDetails = unifiedContact.primary // Instead of getContactDetails()
-  // ... rest of component
+	const unifiedContact = getUnifiedContact();
+	const contactContent = unifiedContact.faq; // Instead of getFAQContact()
+	const contactDetails = unifiedContact.primary; // Instead of getContactDetails()
+	// ... rest of component
 }
 ```
 
 **Benefits**:
+
 - ✅ Reduces from 5 functions to 1 unified function
 - ✅ Single source of truth for all contact data
 - ✅ Better TypeScript intellisense with structured access
@@ -795,6 +843,7 @@ export function FAQPage() {
 ## Recent Implementation Patterns (August 2025)
 
 ### Modular Section Component Pattern
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - React Component Architecture Patterns
@@ -809,7 +858,7 @@ interface SectionProps {
   showDescription?: boolean
 }
 
-export function SectionComponent({ 
+export function SectionComponent({
   title = "Default Title",
   description,
   backgroundColor = "bg-white",
@@ -818,7 +867,7 @@ export function SectionComponent({
 }: SectionProps) {
   // CMS DATA SOURCE: Using getCMSData for section content
   const data = getCMSData()
-  
+
   return (
     <section className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -838,27 +887,32 @@ export function SectionComponent({
 ```
 
 ### Context-Aware Image Mapping Pattern
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Semantic Content Mapping
  * Reference: Context7 MCP `/context7/react_dev` - Content-based selection patterns
  * Pattern: Map content to appropriate images based on semantic meaning
  */
-function getImageForContent(contentType: string, images: Record<string, ImageAsset>): ImageAsset {
-  // Map content types to appropriate images semantically
-  const imageMapping: Record<string, string> = {
-    'trust': 'professional-meeting',
-    'discretion': 'private-consultation',
-    'global': 'online-connection',
-    'expertise': 'academic-achievement'
-  }
-  
-  const imageKey = imageMapping[contentType] || 'default'
-  return images[imageKey] || images.default
+function getImageForContent(
+	contentType: string,
+	images: Record<string, ImageAsset>,
+): ImageAsset {
+	// Map content types to appropriate images semantically
+	const imageMapping: Record<string, string> = {
+		trust: 'professional-meeting',
+		discretion: 'private-consultation',
+		global: 'online-connection',
+		expertise: 'academic-achievement',
+	};
+
+	const imageKey = imageMapping[contentType] || 'default';
+	return images[imageKey] || images.default;
 }
 ```
 
 ### Section Spacing Coordination Pattern
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Tailwind CSS Spacing Utilities
@@ -877,6 +931,7 @@ function getImageForContent(contentType: string, images: Record<string, ImageAss
 ```
 
 ### CSS Grid Dense Masonry Pattern
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - CSS Grid Auto Flow Dense
@@ -901,6 +956,7 @@ function getImageForContent(contentType: string, images: Record<string, ImageAss
 ## Configuration Patterns
 
 ### Tailwind CSS v4 Configuration
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Tailwind CSS v4 Configuration
@@ -908,32 +964,33 @@ function getImageForContent(contentType: string, images: Record<string, ImageAss
  * Pattern: Import-based configuration for Tailwind CSS v4
  */
 // tailwind.config.ts
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 export default {
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          50: '#f0f9ff',
-          900: '#0f172a'
-        },
-        accent: {
-          500: '#eab308',
-          600: '#ca8a04'
-        }
-      },
-      fontFamily: {
-        serif: ['Source Serif 4', 'serif'],
-        sans: ['Inter', 'sans-serif']
-      }
-    }
-  }
-} satisfies Config
+	content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+	theme: {
+		extend: {
+			colors: {
+				primary: {
+					50: '#f0f9ff',
+					900: '#0f172a',
+				},
+				accent: {
+					500: '#eab308',
+					600: '#ca8a04',
+				},
+			},
+			fontFamily: {
+				serif: ['Source Serif 4', 'serif'],
+				sans: ['Inter', 'sans-serif'],
+			},
+		},
+	},
+} satisfies Config;
 ```
 
 ### Next.js Dynamic Rendering Configuration
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Next.js App Router Dynamic Rendering
@@ -941,10 +998,10 @@ export default {
  * Pattern: Force dynamic rendering for Framer Motion compatibility
  */
 // layout.tsx
-export const dynamic = 'force-dynamic' // Required for Framer Motion
+export const dynamic = 'force-dynamic'; // Required for Framer Motion
 
 // page.tsx (Client Components)
-"use client" // Automatically dynamic, no export needed
+('use client'); // Automatically dynamic, no export needed
 ```
 
 ---
@@ -952,6 +1009,7 @@ export const dynamic = 'force-dynamic' // Required for Framer Motion
 ## Testing Patterns
 
 ### Component Testing with Vitest
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Vitest Component Testing
@@ -971,7 +1029,7 @@ describe('Button Component', () => {
   it('calls onClick handler when clicked', () => {
     const handleClick = vi.fn()
     render(<Button onClick={handleClick}>Click me</Button>)
-    
+
     fireEvent.click(screen.getByText('Click me'))
     expect(handleClick).toHaveBeenCalledTimes(1)
   })
@@ -979,7 +1037,7 @@ describe('Button Component', () => {
   it('applies variant classes correctly', () => {
     const { rerender } = render(<Button variant="primary">Primary</Button>)
     expect(screen.getByText('Primary')).toHaveClass('bg-gradient-to-r')
-    
+
     rerender(<Button variant="secondary">Secondary</Button>)
     expect(screen.getByText('Secondary')).toHaveClass('border-2')
   })
@@ -987,44 +1045,45 @@ describe('Button Component', () => {
 ```
 
 ### E2E Testing with Playwright
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Playwright E2E Testing
  * Reference: Context7 MCP `/microsoft/playwright` - Page object patterns
  * Pattern: Page object model for maintainable E2E tests
  */
-import { test, expect, type Page } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test';
 
 class HomePage {
-  constructor(private page: Page) {}
+	constructor(private page: Page) {}
 
-  async goto() {
-    await this.page.goto('/')
-  }
+	async goto() {
+		await this.page.goto('/');
+	}
 
-  async clickCTA() {
-    await this.page.click('text=Book Free Consultation')
-  }
+	async clickCTA() {
+		await this.page.click('text=Book Free Consultation');
+	}
 
-  async fillContactForm(data: { name: string; email: string }) {
-    await this.page.fill('input[name="name"]', data.name)
-    await this.page.fill('input[name="email"]', data.email)
-    await this.page.click('button[type="submit"]')
-  }
+	async fillContactForm(data: { name: string; email: string }) {
+		await this.page.fill('input[name="name"]', data.name);
+		await this.page.fill('input[name="email"]', data.email);
+		await this.page.click('button[type="submit"]');
+	}
 }
 
 test('user can book consultation', async ({ page }) => {
-  const homePage = new HomePage(page)
-  await homePage.goto()
-  await homePage.clickCTA()
-  
-  await homePage.fillContactForm({
-    name: 'Test User',
-    email: 'test@example.com'
-  })
-  
-  await expect(page.locator('text=Thank you')).toBeVisible()
-})
+	const homePage = new HomePage(page);
+	await homePage.goto();
+	await homePage.clickCTA();
+
+	await homePage.fillContactForm({
+		name: 'Test User',
+		email: 'test@example.com',
+	});
+
+	await expect(page.locator('text=Thank you')).toBeVisible();
+});
 ```
 
 ---
@@ -1032,6 +1091,7 @@ test('user can book consultation', async ({ page }) => {
 ## Performance Optimization Patterns
 
 ### Image Optimization with Next.js
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Next.js Image Optimization
@@ -1059,6 +1119,7 @@ export function OptimizedImage({ image }: { image: ImageAsset }) {
 ```
 
 ### Code Splitting with Dynamic Imports
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Next.js Dynamic Imports
@@ -1081,6 +1142,7 @@ const HeavyComponent = dynamic(
 ## Accessibility Patterns
 
 ### Skip Navigation Link
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - WCAG 2.1 Compliance Patterns
@@ -1100,52 +1162,55 @@ export function SkipNav() {
 ```
 
 ### Focus Management Hook
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - React Focus Management
  * Reference: Context7 MCP `/context7/react_dev` - Focus trap patterns
  * Pattern: Focus trap for modals and overlays
  */
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 export function useFocusTrap(isActive: boolean) {
-  const containerRef = useRef<HTMLDivElement>(null)
+	const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!isActive || !containerRef.current) return
+	useEffect(() => {
+		if (!isActive || !containerRef.current) return;
 
-    const focusableElements = containerRef.current.querySelectorAll(
-      'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])'
-    )
-    
-    const firstElement = focusableElements[0] as HTMLElement
-    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
+		const focusableElements = containerRef.current.querySelectorAll(
+			'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])',
+		);
 
-    const handleTabKey = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return
+		const firstElement = focusableElements[0] as HTMLElement;
+		const lastElement = focusableElements[
+			focusableElements.length - 1
+		] as HTMLElement;
 
-      if (e.shiftKey) {
-        if (document.activeElement === firstElement) {
-          lastElement.focus()
-          e.preventDefault()
-        }
-      } else {
-        if (document.activeElement === lastElement) {
-          firstElement.focus()
-          e.preventDefault()
-        }
-      }
-    }
+		const handleTabKey = (e: KeyboardEvent) => {
+			if (e.key !== 'Tab') return;
 
-    document.addEventListener('keydown', handleTabKey)
-    firstElement?.focus()
+			if (e.shiftKey) {
+				if (document.activeElement === firstElement) {
+					lastElement.focus();
+					e.preventDefault();
+				}
+			} else {
+				if (document.activeElement === lastElement) {
+					firstElement.focus();
+					e.preventDefault();
+				}
+			}
+		};
 
-    return () => {
-      document.removeEventListener('keydown', handleTabKey)
-    }
-  }, [isActive])
+		document.addEventListener('keydown', handleTabKey);
+		firstElement?.focus();
 
-  return containerRef
+		return () => {
+			document.removeEventListener('keydown', handleTabKey);
+		};
+	}, [isActive]);
+
+	return containerRef;
 }
 ```
 
@@ -1154,38 +1219,39 @@ export function useFocusTrap(isActive: boolean) {
 ## State Management Patterns
 
 ### Zustand Store Pattern
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Zustand State Management
  * Reference: Context7 MCP `/pmndrs/zustand` - Store patterns
  * Pattern: Type-safe Zustand store with persist
  */
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface AppState {
-  user: User | null
-  theme: 'light' | 'dark'
-  setUser: (user: User | null) => void
-  setTheme: (theme: 'light' | 'dark') => void
-  reset: () => void
+	user: User | null;
+	theme: 'light' | 'dark';
+	setUser: (user: User | null) => void;
+	setTheme: (theme: 'light' | 'dark') => void;
+	reset: () => void;
 }
 
 export const useAppStore = create<AppState>()(
-  persist(
-    (set) => ({
-      user: null,
-      theme: 'light',
-      setUser: (user) => set({ user }),
-      setTheme: (theme) => set({ theme }),
-      reset: () => set({ user: null, theme: 'light' })
-    }),
-    {
-      name: 'app-storage',
-      partialize: (state) => ({ theme: state.theme }) // Only persist theme
-    }
-  )
-)
+	persist(
+		(set) => ({
+			user: null,
+			theme: 'light',
+			setUser: (user) => set({ user }),
+			setTheme: (theme) => set({ theme }),
+			reset: () => set({ user: null, theme: 'light' }),
+		}),
+		{
+			name: 'app-storage',
+			partialize: (state) => ({ theme: state.theme }), // Only persist theme
+		},
+	),
+);
 ```
 
 ---
@@ -1193,6 +1259,7 @@ export const useAppStore = create<AppState>()(
 ## Error Handling Patterns
 
 ### Error Boundary Component
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - React Error Boundaries
@@ -1254,6 +1321,7 @@ export class ErrorBoundary extends Component<Props, State> {
 ## Performance Optimization: React Cache Implementation
 
 ### CMS Function Caching Strategy (August 2025)
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - React cache() Performance Optimization
@@ -1262,12 +1330,12 @@ export class ErrorBoundary extends Component<Props, State> {
  * Pattern: Cache top 10 most-used CMS functions for performance optimization
  * Implementation: August 2025 - React cache() applied to reduce redundant function calls
  */
-import { cache } from 'react'
+import { cache } from 'react';
 
 // TOP 10 CACHED CMS FUNCTIONS (by usage frequency):
 // #1. getTestimonials() - 13 uses across components
 // #2. getTestimonialsSchools() - 7 uses
-// #3. getTrustIndicators() - 6 uses  
+// #3. getTrustIndicators() - 6 uses
 // #4. getMainLogo() - 6 uses
 // #5. getUnifiedContact() - 5 uses
 // #6. getSiteHeader() - 4 uses
@@ -1281,33 +1349,34 @@ import { cache } from 'react'
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() memoizes return values for consistent results
  */
 export const getTestimonials = cache((): Testimonial[] => {
-  return landingPageContent.testimonials.testimonials
-})
+	return landingPageContent.testimonials.testimonials;
+});
 
 /**
- * Example: Cached unified contact function  
+ * Example: Cached unified contact function
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() for expensive computation memoization
  */
 export const getUnifiedContact = cache((): UnifiedContactData => {
-  return {
-    primary: siteSettings.contact,
-    landing: landingPageContent.contact,
-    landingInfo: landingPageContent.contact.contactInfo,
-    faq: faqContent.contact,
-    quoteForm: quoteFormContent.contact
-  }
-})
+	return {
+		primary: siteSettings.contact,
+		landing: landingPageContent.contact,
+		landingInfo: landingPageContent.contact.contactInfo,
+		faq: faqContent.contact,
+		quoteForm: quoteFormContent.contact,
+	};
+});
 
 /**
  * Example: Cached logo function for images
  * CONTEXT7 SOURCE: /reactjs/react.dev - cache() prevents redundant function calls
  */
 export const getMainLogo = cache((): ImageAsset => {
-  return LOGOS.main
-})
+	return LOGOS.main;
+});
 ```
 
 ### Cache Performance Testing
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - React cache() Performance Testing
@@ -1315,63 +1384,74 @@ export const getMainLogo = cache((): ImageAsset => {
  * Pattern: Automated testing for cache hit rates and speed improvements
  */
 export interface CacheTestResult {
-  functionName: string
-  firstCallTime: number
-  secondCallTime: number
-  speedImprovement: number
-  cacheHit: boolean
+	functionName: string;
+	firstCallTime: number;
+	secondCallTime: number;
+	speedImprovement: number;
+	cacheHit: boolean;
 }
 
 export function testCachedFunction(
-  functionName: string, 
-  func: () => any
+	functionName: string,
+	func: () => any,
 ): CacheTestResult {
-  // First call - executes the function
-  const startTime1 = performance.now()
-  const result1 = func()
-  const endTime1 = performance.now()
-  const firstCallTime = endTime1 - startTime1
+	// First call - executes the function
+	const startTime1 = performance.now();
+	const result1 = func();
+	const endTime1 = performance.now();
+	const firstCallTime = endTime1 - startTime1;
 
-  // Second call - should return cached result
-  const startTime2 = performance.now()
-  const result2 = func()
-  const endTime2 = performance.now()
-  const secondCallTime = endTime2 - startTime2
+	// Second call - should return cached result
+	const startTime2 = performance.now();
+	const result2 = func();
+	const endTime2 = performance.now();
+	const secondCallTime = endTime2 - startTime2;
 
-  // Verify cache hit (results should be identical references)
-  const cacheHit = result1 === result2
+	// Verify cache hit (results should be identical references)
+	const cacheHit = result1 === result2;
 
-  const speedImprovement = firstCallTime > 0 
-    ? Math.round(((firstCallTime - secondCallTime) / firstCallTime) * 100)
-    : 0
+	const speedImprovement =
+		firstCallTime > 0 ?
+			Math.round(((firstCallTime - secondCallTime) / firstCallTime) * 100)
+		:	0;
 
-  return {
-    functionName,
-    firstCallTime,
-    secondCallTime,
-    speedImprovement,
-    cacheHit
-  }
+	return {
+		functionName,
+		firstCallTime,
+		secondCallTime,
+		speedImprovement,
+		cacheHit,
+	};
 }
 ```
 
 ### Cache Implementation Benefits
-**CONTEXT7 SOURCE**: `/reactjs/react.dev` - cache() eliminates redundant function calls
+
+**CONTEXT7 SOURCE**: `/reactjs/react.dev` - cache() eliminates redundant
+function calls
 
 **Performance Improvements**:
-- ✅ **Eliminates Duplicate JSON Parsing**: Cached functions prevent repeated parsing of CMS content
-- ✅ **Reduces Component Render Time**: Memoized results improve component performance  
-- ✅ **Server Components Optimization**: Request-scoped caching for SSR performance
-- ✅ **Memory Efficiency**: React's automatic cache invalidation prevents memory leaks
-- ✅ **Deduplication**: Multiple component calls to same function return identical cached reference
+
+- ✅ **Eliminates Duplicate JSON Parsing**: Cached functions prevent repeated
+  parsing of CMS content
+- ✅ **Reduces Component Render Time**: Memoized results improve component
+  performance
+- ✅ **Server Components Optimization**: Request-scoped caching for SSR
+  performance
+- ✅ **Memory Efficiency**: React's automatic cache invalidation prevents memory
+  leaks
+- ✅ **Deduplication**: Multiple component calls to same function return
+  identical cached reference
 
 **Testing Results** (August 2025):
+
 - **Average Speed Improvement**: 60-90% on subsequent calls
 - **Cache Hit Rate**: 100% for pure CMS functions
 - **Functions Optimized**: 12 (top 10 + 2 honorable mentions)
 - **Zero Breaking Changes**: Backward compatible implementation
 
 **React cache() Key Features**:
+
 - **Automatic Invalidation**: Cache cleared between server requests
 - **Type Safety**: Full TypeScript support maintained
 - **Server Components Only**: Optimized for SSR/SSG performance
@@ -1383,11 +1463,13 @@ export function testCachedFunction(
 ## 🆕 LATEST ENHANCEMENTS (AUGUST 2025)
 
 ### Image Management System Integration
-**Context7 Source**: `/context7/next.js` - Advanced image optimization and CMS integration patterns
-**Implementation Date**: August 13, 2025  
+
+**Context7 Source**: `/context7/next.js` - Advanced image optimization and CMS
+integration patterns **Implementation Date**: August 13, 2025  
 **Status**: Production-ready with 30 client photos integrated
 
 #### Enhanced Image Organization
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Image Asset Management
@@ -1425,11 +1507,13 @@ export const getClientImages = cache((): Record<string, ImageAsset> => {
 ```
 
 ### Navigation Dropdown Enhancement
+
 **Context7 Source**: `/radix-ui/primitives` - Advanced dropdown menu patterns
 **Implementation Date**: August 13, 2025  
 **Status**: Production-ready with hover interactions
 
 #### Nested Dropdown Architecture
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Radix UI Navigation Menu
@@ -1478,11 +1562,13 @@ const EnhancedNavigation = () => {
 ```
 
 ### Testimonials CMS Enhancement
+
 **Context7 Source**: `/microsoft/typescript` - Advanced data structure patterns
 **Implementation Date**: August 13, 2025  
 **Status**: 7 new testimonials integrated with structured format
 
 #### Enhanced Testimonial Structure
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - TypeScript Data Modeling
@@ -1490,51 +1576,61 @@ const EnhancedNavigation = () => {
  * Pattern: Separated name/course keys for flexible rendering
  */
 export interface EnhancedTestimonial {
-  readonly id: string
-  readonly quote: string
-  readonly name: string           // Separated from course
-  readonly course: string         // Dedicated course field
-  readonly location?: string
-  readonly achievement: string    // Specific achievement description
-  readonly category: 'oxbridge' | '11plus' | 'gcse' | 'alevel' | 'sen' | 'international'
-  readonly verified: boolean
-  readonly image?: ImageAsset
+	readonly id: string;
+	readonly quote: string;
+	readonly name: string; // Separated from course
+	readonly course: string; // Dedicated course field
+	readonly location?: string;
+	readonly achievement: string; // Specific achievement description
+	readonly category:
+		| 'oxbridge'
+		| '11plus'
+		| 'gcse'
+		| 'alevel'
+		| 'sen'
+		| 'international';
+	readonly verified: boolean;
+	readonly image?: ImageAsset;
 }
 
 // Enhanced testimonials data
 export const getEnhancedTestimonials = cache((): EnhancedTestimonial[] => {
-  return [
-    {
-      id: 'hawthorne-multiple-offers',
-      quote: "It's a full house - offers from St Pauls, Westminster, Highgate and UCS. We can't believe it!",
-      name: 'Mr & Mrs Hawthorne',
-      course: '11+ Preparation',
-      location: 'Kensington',
-      achievement: 'Multiple School Placements',
-      category: '11plus',
-      verified: true
-    },
-    {
-      id: 'adebayo-scholarship',
-      quote: "Brian and Gloria's teaching style is just right - not lecturing but engaging and really growing her enthusiasm for the subjects.",
-      name: 'Ms Adebayo',
-      course: 'Gifted & Talented Programme',
-      location: 'New York',
-      achievement: 'Awarded Gifted & Talented Scholarship',
-      category: 'international',
-      verified: true
-    }
-    // ... 5 more testimonials
-  ]
-})
+	return [
+		{
+			id: 'hawthorne-multiple-offers',
+			quote:
+				"It's a full house - offers from St Pauls, Westminster, Highgate and UCS. We can't believe it!",
+			name: 'Mr & Mrs Hawthorne',
+			course: '11+ Preparation',
+			location: 'Kensington',
+			achievement: 'Multiple School Placements',
+			category: '11plus',
+			verified: true,
+		},
+		{
+			id: 'adebayo-scholarship',
+			quote:
+				"Brian and Gloria's teaching style is just right - not lecturing but engaging and really growing her enthusiasm for the subjects.",
+			name: 'Ms Adebayo',
+			course: 'Gifted & Talented Programme',
+			location: 'New York',
+			achievement: 'Awarded Gifted & Talented Scholarship',
+			category: 'international',
+			verified: true,
+		},
+		// ... 5 more testimonials
+	];
+});
 ```
 
 ### Tier Layout Spotlight Design
+
 **Context7 Source**: `/tailwindcss/tailwindcss` - Advanced grid layout patterns
 **Implementation Date**: August 13, 2025  
 **Status**: How It Works page with central Tier 1 emphasis
 
 #### Spotlight Layout Implementation
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Tailwind CSS Grid Layouts
@@ -1552,7 +1648,7 @@ const TierSpotlightLayout = () => {
           className="transform lg:-rotate-2 lg:scale-95 opacity-80"
         />
       </div>
-      
+
       {/* Tier 1 - Central Spotlight */}
       <div className="order-1 lg:order-2">
         <TierCard
@@ -1562,7 +1658,7 @@ const TierSpotlightLayout = () => {
           spotlight={true}
         />
       </div>
-      
+
       {/* Tier 3 - Right */}
       <div className="order-3">
         <TierCard
@@ -1577,11 +1673,13 @@ const TierSpotlightLayout = () => {
 ```
 
 ### Admin Dashboard Audit Results
+
 **Context7 Source**: `/vercel/next.js` - Security and error handling patterns
 **Implementation Date**: August 13, 2025  
 **Status**: 85% operational with comprehensive security review
 
 #### Audit Summary
+
 ```typescript
 /**
  * Documentation Source: Context7 MCP - Next.js Security Patterns
@@ -1589,37 +1687,37 @@ const TierSpotlightLayout = () => {
  * Pattern: Comprehensive security audit with operational status tracking
  */
 interface AdminAuditResult {
-  readonly component: string
-  readonly status: 'operational' | 'partial' | 'non-functional'
-  readonly coverage: number
-  readonly securityLevel: 'high' | 'medium' | 'low'
-  readonly lastTested: string
+	readonly component: string;
+	readonly status: 'operational' | 'partial' | 'non-functional';
+	readonly coverage: number;
+	readonly securityLevel: 'high' | 'medium' | 'low';
+	readonly lastTested: string;
 }
 
 const adminAuditResults: AdminAuditResult[] = [
-  {
-    component: 'Authentication System',
-    status: 'operational',
-    coverage: 100,
-    securityLevel: 'high',
-    lastTested: '2025-08-13'
-  },
-  {
-    component: 'Error Handling',
-    status: 'operational',
-    coverage: 90,
-    securityLevel: 'high',
-    lastTested: '2025-08-13'
-  },
-  {
-    component: 'Performance Monitoring',
-    status: 'operational',
-    coverage: 85,
-    securityLevel: 'medium',
-    lastTested: '2025-08-13'
-  }
-  // Overall: 85% operational status
-]
+	{
+		component: 'Authentication System',
+		status: 'operational',
+		coverage: 100,
+		securityLevel: 'high',
+		lastTested: '2025-08-13',
+	},
+	{
+		component: 'Error Handling',
+		status: 'operational',
+		coverage: 90,
+		securityLevel: 'high',
+		lastTested: '2025-08-13',
+	},
+	{
+		component: 'Performance Monitoring',
+		status: 'operational',
+		coverage: 85,
+		securityLevel: 'medium',
+		lastTested: '2025-08-13',
+	},
+	// Overall: 85% operational status
+];
 ```
 
 ---
@@ -1627,84 +1725,113 @@ const adminAuditResults: AdminAuditResult[] = [
 ## CSS COLOR OVERRIDE DEBUGGING GUIDE
 
 ### Problem Description
-**Context7 Source**: `/websites/css-tricks-almanac` - CSS specificity and cascade fundamentals  
-**Context7 Source**: `/websites/tailwindcss` - Utility class conflict resolution patterns  
+
+**Context7 Source**: `/websites/css-tricks-almanac` - CSS specificity and
+cascade fundamentals  
+**Context7 Source**: `/websites/tailwindcss` - Utility class conflict resolution
+patterns  
 **Implementation Date**: August 18, 2025  
 **Status**: Production-ready debugging methodology
 
 #### Persistent Issue Pattern
-- **Manifestation**: Text displaying wrong colors despite Tailwind CSS classes applied correctly
-- **Symptoms**: Blue text (#3f4a7e) or dark grey (#1e293b) instead of intended white/light colors
-- **Duration**: Multi-week problems affecting navbar, sections, and component text
-- **Specificity Override**: Global CSS rules winning over utility classes through cascade precedence
+
+- **Manifestation**: Text displaying wrong colors despite Tailwind CSS classes
+  applied correctly
+- **Symptoms**: Blue text (#3f4a7e) or dark grey (#1e293b) instead of intended
+  white/light colors
+- **Duration**: Multi-week problems affecting navbar, sections, and component
+  text
+- **Specificity Override**: Global CSS rules winning over utility classes
+  through cascade precedence
 
 #### Real-World Example
+
 ```html
 <!-- Applied classes correctly -->
 <nav className="bg-slate-900 text-white">
-  <div className="text-white">Navigation Item</div>
+	<div className="text-white">Navigation Item</div>
 </nav>
 
 <!-- Computed styles showing override -->
-/* Expected: color: white */
-/* Actual: color: #3f4a7e (blue from global CSS) */
+/* Expected: color: white */ /* Actual: color: #3f4a7e (blue from global CSS) */
 ```
 
 ### Root Cause Analysis
 
 #### CSS Specificity and Cascade Issues
-**Context7 Source**: `/websites/css-tricks-almanac` - CSS cascade and inheritance patterns
+
+**Context7 Source**: `/websites/css-tricks-almanac` - CSS cascade and
+inheritance patterns
 
 **Primary Causes**:
+
 1. **Global Element Selectors**: Broad CSS rules targeting HTML elements
-2. **CSS Custom Property Cascade**: `--foreground` variables cascading through component tree
+2. **CSS Custom Property Cascade**: `--foreground` variables cascading through
+   component tree
 3. **Tailwind Override Failure**: Utility classes losing specificity battles
-4. **Inheritance Chain**: Color values inheriting from parent containers unexpectedly
+4. **Inheritance Chain**: Color values inheriting from parent containers
+   unexpectedly
 
 #### Technical Cascade Flow
+
 ```css
 /* CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS cascade resolution */
 /* Global CSS (winning due to source order and specificity) */
-body, html {
-  color: #3f4a7e; /* Blue text */
-  --foreground: #1e293b; /* Dark grey variable */
+body,
+html {
+	color: #3f4a7e; /* Blue text */
+	--foreground: #1e293b; /* Dark grey variable */
 }
 
 /* Component-level override attempt */
 .component {
-  --foreground: #ffffff; /* White variable */
-  color: var(--foreground);
+	--foreground: #ffffff; /* White variable */
+	color: var(--foreground);
 }
 
 /* Tailwind utility (should win but doesn't) */
 .text-white {
-  color: #ffffff !important; /* Often needs !important for global overrides */
+	color: #ffffff !important; /* Often needs !important for global overrides */
 }
 ```
 
 #### Specificity Weight Calculation
-**Context7 Source**: `/websites/tailwindcss` - Managing conflicting utility classes
+
+**Context7 Source**: `/websites/tailwindcss` - Managing conflicting utility
+classes
 
 ```css
 /* CONTEXT7 SOURCE: /websites/tailwindcss - CSS specificity in utility-first frameworks */
 /* Global selector: 0-0-1 specificity */
-body { color: #3f4a7e; }
+body {
+	color: #3f4a7e;
+}
 
 /* Tailwind utility: 0-1-0 specificity (wins) */
-.text-white { color: white; }
+.text-white {
+	color: white;
+}
 
 /* But global CSS with !important: 0-0-1 + important flag */
-body { color: #3f4a7e !important; } /* Wins over Tailwind */
+body {
+	color: #3f4a7e !important;
+} /* Wins over Tailwind */
 
 /* CSS custom property inheritance can bypass specificity */
-body { --foreground: #3f4a7e; }
-.component { color: var(--foreground); } /* Inherits blue despite local classes */
+body {
+	--foreground: #3f4a7e;
+}
+.component {
+	color: var(--foreground);
+} /* Inherits blue despite local classes */
 ```
 
 ### Debugging Methodology
 
 #### Step 1: CSS Specificity Investigation
-**Context7 Source**: `/websites/css-tricks-almanac` - DevTools specificity analysis
+
+**Context7 Source**: `/websites/css-tricks-almanac` - DevTools specificity
+analysis
 
 ```javascript
 // CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS debugging techniques
@@ -1721,30 +1848,33 @@ console.log('Winning rules in DevTools Elements tab');
 ```
 
 #### Step 2: CSS Custom Property Tracking
+
 **Context7 Source**: `/websites/tailwindcss` - CSS variable debugging patterns
 
 ```css
 /* CONTEXT7 SOURCE: /websites/tailwindcss - CSS custom property debugging */
 /* Track variable cascade through elements */
 :root {
-  --foreground: #000000; /* Global default */
+	--foreground: #000000; /* Global default */
 }
 
 .component {
-  --foreground: #ffffff; /* Local override */
-  /* Debug: Check if this actually applies */
-  background-color: var(--foreground, red); /* Fallback reveals issues */
+	--foreground: #ffffff; /* Local override */
+	/* Debug: Check if this actually applies */
+	background-color: var(--foreground, red); /* Fallback reveals issues */
 }
 
 /* Debugging helper styles */
 .debug-colors * {
-  border: 1px solid red !important;
-  background-color: var(--foreground, yellow) !important;
+	border: 1px solid red !important;
+	background-color: var(--foreground, yellow) !important;
 }
 ```
 
 #### Step 3: Developer Tools Simulation
-**Context7 Source**: `/websites/css-tricks-almanac` - Browser debugging techniques
+
+**Context7 Source**: `/websites/css-tricks-almanac` - Browser debugging
+techniques
 
 ```javascript
 // CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS rule inspection
@@ -1757,6 +1887,7 @@ console.log('Winning rules in DevTools Elements tab');
 ```
 
 #### Step 4: Comprehensive File Search
+
 **Context7 Source**: `/websites/tailwindcss` - Global CSS pattern identification
 
 ```bash
@@ -1775,85 +1906,93 @@ grep -r "--.*:" src/styles/
 ```
 
 #### Step 5: CSS Rule Priority Testing
+
 **Context7 Source**: `/websites/tailwindcss` - Utility class override testing
 
 ```css
 /* CONTEXT7 SOURCE: /websites/tailwindcss - CSS override testing methodology */
 /* Test specificity with temporary styles */
 .debug-test {
-  color: lime !important; /* Should win over everything */
+	color: lime !important; /* Should win over everything */
 }
 
 /* Test inheritance blocking */
 .debug-isolation {
-  color: initial; /* Reset inheritance */
-  color: white; /* Apply intended color */
+	color: initial; /* Reset inheritance */
+	color: white; /* Apply intended color */
 }
 
 /* Test cascade disruption */
 .debug-cascade * {
-  all: unset; /* Nuclear option - resets everything */
-  color: white; /* Rebuild from scratch */
+	all: unset; /* Nuclear option - resets everything */
+	color: white; /* Rebuild from scratch */
 }
 ```
 
 ### Solution Implementation
 
 #### Solution 1: Global CSS Pattern Fix
-**Context7 Source**: `/websites/tailwindcss` - Managing conflicting utility classes
+
+**Context7 Source**: `/websites/tailwindcss` - Managing conflicting utility
+classes
 
 ```css
 /* CONTEXT7 SOURCE: /websites/tailwindcss - Utility class preservation patterns */
 /* BEFORE: Global override affecting all elements */
-body, html {
-  color: #3f4a7e;
-  --foreground: #1e293b;
+body,
+html {
+	color: #3f4a7e;
+	--foreground: #1e293b;
 }
 
 /* AFTER: Conditional global CSS with utility class exemption */
-body:not([class*="text-"]), 
-html:not([class*="text-"]) {
-  color: #3f4a7e;
-  --foreground: #1e293b;
+body:not([class*='text-']),
+html:not([class*='text-']) {
+	color: #3f4a7e;
+	--foreground: #1e293b;
 }
 
 /* Alternative: Scope global styles to specific containers */
 .content-area:not(.has-custom-text) {
-  color: #3f4a7e;
-  --foreground: #1e293b;
+	color: #3f4a7e;
+	--foreground: #1e293b;
 }
 ```
 
 #### Solution 2: CSS Custom Property Fix
-**Context7 Source**: `/websites/css-tricks-almanac` - CSS variable best practices
+
+**Context7 Source**: `/websites/css-tricks-almanac` - CSS variable best
+practices
 
 ```css
 /* CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS custom property management */
 /* BEFORE: Global variable affecting all components */
 :root {
-  --foreground: #1e293b;
+	--foreground: #1e293b;
 }
 
 /* AFTER: Scoped variables with component overrides */
 :root {
-  --global-foreground: #1e293b;
-  --component-foreground: #ffffff;
+	--global-foreground: #1e293b;
+	--component-foreground: #ffffff;
 }
 
 .navbar {
-  --foreground: var(--component-foreground, #ffffff);
-  color: var(--foreground);
+	--foreground: var(--component-foreground, #ffffff);
+	color: var(--foreground);
 }
 
 /* Utility class respecting system */
 .text-white {
-  --foreground: #ffffff;
-  color: var(--foreground, #ffffff);
+	--foreground: #ffffff;
+	color: var(--foreground, #ffffff);
 }
 ```
 
 #### Solution 3: Specific Element Targeting
-**Context7 Source**: `/websites/tailwindcss` - Utility class application patterns
+
+**Context7 Source**: `/websites/tailwindcss` - Utility class application
+patterns
 
 ```typescript
 // CONTEXT7 SOURCE: /websites/tailwindcss - Component-level class application
@@ -1876,95 +2015,106 @@ html:not([class*="text-"]) {
 ```
 
 #### Solution 4: Component-Level CSS Reset
+
 **Context7 Source**: `/websites/css-tricks-almanac` - CSS isolation techniques
 
 ```css
 /* CONTEXT7 SOURCE: /websites/css-tricks-almanac - Component isolation patterns */
 /* Complete isolation approach for critical components */
 .navbar-component {
-  all: initial; /* Reset everything */
-  font-family: inherit; /* Restore essential properties */
-  
-  /* Apply intended styles explicitly */
-  background-color: #1e293b;
-  color: #ffffff;
+	all: initial; /* Reset everything */
+	font-family: inherit; /* Restore essential properties */
+
+	/* Apply intended styles explicitly */
+	background-color: #1e293b;
+	color: #ffffff;
 }
 
 /* Selective reset for color-only issues */
 .text-isolation {
-  color: initial !important;
-  color: var(--intended-color, #ffffff) !important;
+	color: initial !important;
+	color: var(--intended-color, #ffffff) !important;
 }
 ```
 
 ### Prevention Best Practices
 
 #### Best Practice 1: Global CSS Pattern Prevention
-**Context7 Source**: `/websites/tailwindcss` - Utility-first development patterns
+
+**Context7 Source**: `/websites/tailwindcss` - Utility-first development
+patterns
 
 ```css
 /* CONTEXT7 SOURCE: /websites/tailwindcss - Global CSS scope limitation */
 /* GOOD: Scoped global styles */
 .prose {
-  color: #1e293b;
+	color: #1e293b;
 }
 
-.prose h1, .prose h2, .prose p {
-  color: inherit;
+.prose h1,
+.prose h2,
+.prose p {
+	color: inherit;
 }
 
 /* BAD: Broad element targeting */
-h1, h2, p {
-  color: #1e293b; /* Will override utility classes */
+h1,
+h2,
+p {
+	color: #1e293b; /* Will override utility classes */
 }
 ```
 
 #### Best Practice 2: CSS Custom Property Architecture
+
 **Context7 Source**: `/websites/css-tricks-almanac` - CSS variable architecture
 
 ```css
 /* CONTEXT7 SOURCE: /websites/css-tricks-almanac - CSS variable naming and scoping */
 /* GOOD: Namespaced and scoped variables */
 :root {
-  --theme-text-primary: #1e293b;
-  --theme-text-secondary: #64748b;
-  --component-nav-text: #ffffff;
+	--theme-text-primary: #1e293b;
+	--theme-text-secondary: #64748b;
+	--component-nav-text: #ffffff;
 }
 
 .navigation {
-  color: var(--component-nav-text);
+	color: var(--component-nav-text);
 }
 
 /* BAD: Generic variable names */
 :root {
-  --text: #1e293b; /* Too generic, causes conflicts */
-  --foreground: #1e293b; /* Conflicts with component systems */
+	--text: #1e293b; /* Too generic, causes conflicts */
+	--foreground: #1e293b; /* Conflicts with component systems */
 }
 ```
 
 #### Best Practice 3: Utility Class Preservation
-**Context7 Source**: `/websites/tailwindcss` - Utility class precedence protection
+
+**Context7 Source**: `/websites/tailwindcss` - Utility class precedence
+protection
 
 ```css
 /* CONTEXT7 SOURCE: /websites/tailwindcss - Utility class protection patterns */
 /* Use :not() selectors to preserve utility classes */
-body:not([class*="text-"]):not([class*="bg-"]) {
-  color: var(--default-text);
+body:not([class*='text-']):not([class*='bg-']) {
+	color: var(--default-text);
 }
 
 /* Component-scoped styles that respect utilities */
 .content-wrapper > *:not(.text-\*):not(.bg-\*) {
-  color: var(--content-text);
+	color: var(--content-text);
 }
 ```
 
 #### Best Practice 4: Development Workflow Integration
+
 **Context7 Source**: `/websites/tailwindcss` - Development debugging patterns
 
 ```typescript
 // CONTEXT7 SOURCE: /websites/tailwindcss - Development debugging helpers
 // Add debugging classes for development
-const debugClasses = process.env.NODE_ENV === 'development' ? 
+const debugClasses = process.env.NODE_ENV === 'development' ?
   'debug-colors' : '';
 
 // Component debugging helper
@@ -1987,26 +2137,27 @@ export function DebugColorOverlay({ children }: { children: React.ReactNode }) {
 ### Testing and Verification
 
 #### Verification Checklist
+
 **Context7 Source**: `/websites/tailwindcss` - CSS debugging verification
 
 ```javascript
 // CONTEXT7 SOURCE: /websites/tailwindcss - CSS verification testing
 // Browser console verification script
 function verifyCSSOverrides() {
-  const elements = document.querySelectorAll('.text-white');
-  
-  elements.forEach((el, index) => {
-    const computedStyle = window.getComputedStyle(el);
-    const actualColor = computedStyle.color;
-    const expectedColor = 'rgb(255, 255, 255)'; // white
-    
-    console.log(`Element ${index}:`, {
-      element: el,
-      expected: expectedColor,
-      actual: actualColor,
-      matches: actualColor === expectedColor
-    });
-  });
+	const elements = document.querySelectorAll('.text-white');
+
+	elements.forEach((el, index) => {
+		const computedStyle = window.getComputedStyle(el);
+		const actualColor = computedStyle.color;
+		const expectedColor = 'rgb(255, 255, 255)'; // white
+
+		console.log(`Element ${index}:`, {
+			element: el,
+			expected: expectedColor,
+			actual: actualColor,
+			matches: actualColor === expectedColor,
+		});
+	});
 }
 
 // Run verification
@@ -2014,6 +2165,7 @@ verifyCSSOverrides();
 ```
 
 #### Automated Testing Integration
+
 **Context7 Source**: `/websites/css-tricks-almanac` - CSS testing patterns
 
 ```typescript
@@ -2023,14 +2175,14 @@ describe('CSS Color Override Prevention', () => {
   test('text-white utility class applies correctly', () => {
     render(<nav className="text-white">Navigation</nav>);
     const navElement = screen.getByText('Navigation');
-    
+
     expect(navElement).toHaveStyle('color: rgb(255, 255, 255)');
   });
-  
+
   test('global CSS does not override utility classes', () => {
     render(<div className="text-blue-600">Blue Text</div>);
     const textElement = screen.getByText('Blue Text');
-    
+
     // Should not be the global default color
     expect(textElement).not.toHaveStyle('color: rgb(63, 74, 126)');
     expect(textElement).toHaveStyle('color: rgb(37, 99, 235)'); // blue-600
@@ -2039,42 +2191,55 @@ describe('CSS Color Override Prevention', () => {
 ```
 
 ### Context7 MCP References
+
 **Primary Documentation Sources**:
-- **CSS Specificity**: `/websites/css-tricks-almanac` - CSS cascade and inheritance patterns
-- **Tailwind Conflicts**: `/websites/tailwindcss` - Managing conflicting utility classes
-- **CSS Variables**: `/websites/css-tricks-almanac` - CSS custom property debugging
-- **Browser DevTools**: `/websites/css-tricks-almanac` - CSS debugging techniques
+
+- **CSS Specificity**: `/websites/css-tricks-almanac` - CSS cascade and
+  inheritance patterns
+- **Tailwind Conflicts**: `/websites/tailwindcss` - Managing conflicting utility
+  classes
+- **CSS Variables**: `/websites/css-tricks-almanac` - CSS custom property
+  debugging
+- **Browser DevTools**: `/websites/css-tricks-almanac` - CSS debugging
+  techniques
 
 ### Implementation Files Affected
+
 - **Global CSS**: `/src/styles/globals.css` - Global style scope limitation
-- **Component Styles**: Individual component CSS modules - Utility class preservation
+- **Component Styles**: Individual component CSS modules - Utility class
+  preservation
 - **Theme Configuration**: `/tailwind.config.ts` - Custom property integration
 - **Debug Utilities**: `/src/lib/debug.ts` - Development debugging helpers
 
-**Benefits Achieved**:
-✅ **Systematic Debugging**: Repeatable methodology for CSS override issues  
+**Benefits Achieved**: ✅ **Systematic Debugging**: Repeatable methodology for
+CSS override issues  
 ✅ **Root Cause Identification**: Technical understanding of cascade conflicts  
-✅ **Prevention Strategies**: Architectural patterns preventing future conflicts  
+✅ **Prevention Strategies**: Architectural patterns preventing future
+conflicts  
 ✅ **Testing Integration**: Automated verification of CSS property application  
 ✅ **Development Workflow**: Debug helpers and verification tools  
-✅ **Documentation Reference**: Permanent technical guide for team use  
+✅ **Documentation Reference**: Permanent technical guide for team use
 
 ---
 
 ## 🎬 Video Masterclasses Implementation Pattern (NEW: September 2025)
 
 ### Enhanced Video CMS with Gradient Effects
+
 **Context7 Source**: `/sharp/sharp` - Image processing with darkening effects  
 **Implementation Date**: September 12, 2025  
 **Status**: Production-ready with professional backgrounds
 
 #### Key Features
+
 - **Sharp-based Image Darkening**: 30% brightness reduction for text readability
-- **Corner Gradient Effects**: Professional visual enhancement for 11+ bootcamp pages
+- **Corner Gradient Effects**: Professional visual enhancement for 11+ bootcamp
+  pages
 - **Progressive JPEG Loading**: Optimized web delivery with 85% quality
 - **Backup Originals**: Preserved in `/originals/` subdirectory
 
 #### Implementation Pattern
+
 ```typescript
 // CONTEXT7 SOURCE: /sharp/sharp - Professional image processing
 // Video masterclass with darkened backgrounds
@@ -2102,18 +2267,19 @@ export interface VideoMasterclass {
 ```
 
 #### Sharp Processing Configuration
+
 ```javascript
 // CONTEXT7 SOURCE: /sharp/sharp - Image optimization settings
 await sharp(inputPath)
-  .modulate({
-    brightness: 0.7  // 30% darker
-  })
-  .jpeg({
-    quality: 85,
-    progressive: true,
-    mozjpeg: true
-  })
-  .toFile(outputPath);
+	.modulate({
+		brightness: 0.7, // 30% darker
+	})
+	.jpeg({
+		quality: 85,
+		progressive: true,
+		mozjpeg: true,
+	})
+	.toFile(outputPath);
 ```
 
 ---
@@ -2121,11 +2287,13 @@ await sharp(inputPath)
 ## 🎨 Testimonials Enhancement Pattern (NEW: September 2025)
 
 ### Square Borders with Gold Hover Effects
+
 **Context7 Source**: `/websites/tailwindcss` - Border and hover state patterns  
 **Implementation Date**: September 12, 2025  
 **Status**: Production-ready with premium styling
 
 #### Implementation Pattern
+
 ```typescript
 // CONTEXT7 SOURCE: /websites/tailwindcss - Premium border and hover effects
 // Square border with gold hover state
@@ -2134,10 +2302,10 @@ await sharp(inputPath)
 </div>
 
 // Filter component with active state
-<button 
+<button
   className={`px-4 py-2 rounded-lg transition-colors ${
-    isActive 
-      ? 'bg-yellow-500 text-white border-2 border-yellow-500' 
+    isActive
+      ? 'bg-yellow-500 text-white border-2 border-yellow-500'
       : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-500'
   }`}
 >
@@ -2150,11 +2318,13 @@ await sharp(inputPath)
 ## 🎯 TAILWIND CSS MIGRATION COMPLETE (NEW: October 2025)
 
 ### Pure Utility-First Architecture Success
-**Context7 Source**: `/tailwindlabs/tailwindcss.com` - Complete Tailwind CSS migration patterns
-**Implementation Date**: October 15, 2025
-**Status**: Phase 4 Complete - Pure utility-first architecture achieved
+
+**Context7 Source**: `/tailwindlabs/tailwindcss.com` - Complete Tailwind CSS
+migration patterns **Implementation Date**: October 15, 2025 **Status**: Phase 4
+Complete - Pure utility-first architecture achieved
 
 #### Migration Achievements
+
 - **Zero External CSS Files**: Complete elimination of 12 external CSS files
 - **200+ CSS Variables**: Comprehensive design token system in globals.css
 - **Enhanced Variant Shortcuts**: ARIA, data, and @supports feature detection
@@ -2162,6 +2332,7 @@ await sharp(inputPath)
 - **Mathematical Precision**: Golden ratio shadow and gradient progression
 
 #### New Variant Capabilities
+
 ```typescript
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced variant shortcuts
 // ARIA Variants for Accessibility
@@ -2181,6 +2352,7 @@ await sharp(inputPath)
 ```
 
 #### Design Token Integration
+
 ```typescript
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS variable integration
 // Runtime CSS Variable Access
@@ -2195,6 +2367,7 @@ await sharp(inputPath)
 ```
 
 #### Mathematical Shadow System
+
 ```typescript
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom shadow utilities
 // Golden Ratio Shadow Progression
@@ -2208,6 +2381,7 @@ await sharp(inputPath)
 ```
 
 #### Luxury Gradient System
+
 ```typescript
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom gradient utilities
 // Metallic Navy Gradients
@@ -2225,6 +2399,7 @@ await sharp(inputPath)
 ```
 
 #### Configuration Excellence
+
 ```typescript
 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Complete configuration
 // ALL Official Tailwind Options Implemented:
@@ -2237,8 +2412,8 @@ await sharp(inputPath)
 
 ---
 
-**Last Updated**: October 15, 2025
-**Version**: 4.0 - Complete Tailwind CSS Migration Success
-**Verification**: All patterns verified with Context7 MCP documentation
-**Migration Status**: Phase 4 Complete - Pure utility-first architecture achieved
-**Documentation Status**: 98.3% cleanup complete (178 obsolete files removed)
+**Last Updated**: October 15, 2025 **Version**: 4.0 - Complete Tailwind CSS
+Migration Success **Verification**: All patterns verified with Context7 MCP
+documentation **Migration Status**: Phase 4 Complete - Pure utility-first
+architecture achieved **Documentation Status**: 98.3% cleanup complete (178
+obsolete files removed)

@@ -1,224 +1,224 @@
 {
-  "$description": "My Private Tutor Online - Typography System with 3-Font Hierarchy",
-  "$comment": "CONTEXT7 SOURCE: /design-tokens/community-group - Typography token structure with fontFamily, fontSize, fontWeight, lineHeight",
-  "$comment2": "CONTEXT7 SOURCE: /amzn/style-dictionary - Font size tokens with references and type definitions",
-  "$comment3": "IMPLEMENTATION REASON: Consolidating 12 fonts to 3 strategic typefaces - Playfair Display (headings), Source Serif 4 (body), JetBrains Mono (technical)",
+	"$description": "My Private Tutor Online - Typography System with 3-Font Hierarchy",
+	"$comment": "CONTEXT7 SOURCE: /design-tokens/community-group - Typography token structure with fontFamily, fontSize, fontWeight, lineHeight",
+	"$comment2": "CONTEXT7 SOURCE: /amzn/style-dictionary - Font size tokens with references and type definitions",
+	"$comment3": "IMPLEMENTATION REASON: Consolidating 12 fonts to 3 strategic typefaces - Playfair Display (headings), Source Serif 4 (body), JetBrains Mono (technical)",
 
-  "font": {
-    "family": {
-      "$description": "Font family definitions - 3 strategic typefaces",
-      "$type": "fontFamily",
-      "heading": {
-        "$value": "Playfair Display, Georgia, serif",
-        "$description": "Premium serif for headings - royal client aesthetic"
-      },
-      "body": {
-        "$value": "Source Serif 4, Georgia, serif",
-        "$description": "Readable serif for body text - professional warmth"
-      },
-      "technical": {
-        "$value": "JetBrains Mono, Consolas, monospace",
-        "$description": "Monospace for pricing, data, and technical content"
-      }
-    },
+	"font": {
+		"family": {
+			"$description": "Font family definitions - 3 strategic typefaces",
+			"$type": "fontFamily",
+			"heading": {
+				"$value": "Playfair Display, Georgia, serif",
+				"$description": "Premium serif for headings - royal client aesthetic"
+			},
+			"body": {
+				"$value": "Source Serif 4, Georgia, serif",
+				"$description": "Readable serif for body text - professional warmth"
+			},
+			"technical": {
+				"$value": "JetBrains Mono, Consolas, monospace",
+				"$description": "Monospace for pricing, data, and technical content"
+			}
+		},
 
-    "size": {
-      "$description": "Font size scale - 9 strategic sizes from 12px to 64px",
-      "$type": "dimension",
-      "xs": {
-        "$value": "12px",
-        "$description": "Extra small - captions, labels, fine print"
-      },
-      "sm": {
-        "$value": "14px",
-        "$description": "Small - secondary text, metadata"
-      },
-      "base": {
-        "$value": "16px",
-        "$description": "Base - primary body text, standard UI elements"
-      },
-      "lg": {
-        "$value": "18px",
-        "$description": "Large - emphasized body text, lead paragraphs"
-      },
-      "xl": {
-        "$value": "20px",
-        "$description": "Extra large - small headings, subheadings"
-      },
-      "2xl": {
-        "$value": "24px",
-        "$description": "H4 headings"
-      },
-      "3xl": {
-        "$value": "32px",
-        "$description": "H3 headings"
-      },
-      "4xl": {
-        "$value": "48px",
-        "$description": "H2 headings - section titles"
-      },
-      "5xl": {
-        "$value": "64px",
-        "$description": "H1 headings - hero titles, page headers"
-      }
-    },
+		"size": {
+			"$description": "Font size scale - 9 strategic sizes from 12px to 64px",
+			"$type": "dimension",
+			"xs": {
+				"$value": "12px",
+				"$description": "Extra small - captions, labels, fine print"
+			},
+			"sm": {
+				"$value": "14px",
+				"$description": "Small - secondary text, metadata"
+			},
+			"base": {
+				"$value": "16px",
+				"$description": "Base - primary body text, standard UI elements"
+			},
+			"lg": {
+				"$value": "18px",
+				"$description": "Large - emphasized body text, lead paragraphs"
+			},
+			"xl": {
+				"$value": "20px",
+				"$description": "Extra large - small headings, subheadings"
+			},
+			"2xl": {
+				"$value": "24px",
+				"$description": "H4 headings"
+			},
+			"3xl": {
+				"$value": "32px",
+				"$description": "H3 headings"
+			},
+			"4xl": {
+				"$value": "48px",
+				"$description": "H2 headings - section titles"
+			},
+			"5xl": {
+				"$value": "64px",
+				"$description": "H1 headings - hero titles, page headers"
+			}
+		},
 
-    "weight": {
-      "$description": "Font weight definitions for hierarchy",
-      "$type": "fontWeight",
-      "normal": {
-        "$value": 400,
-        "$description": "Normal weight - body text"
-      },
-      "medium": {
-        "$value": 500,
-        "$description": "Medium weight - emphasized text"
-      },
-      "semibold": {
-        "$value": 600,
-        "$description": "Semibold - subheadings"
-      },
-      "bold": {
-        "$value": 700,
-        "$description": "Bold - headings, strong emphasis"
-      }
-    },
+		"weight": {
+			"$description": "Font weight definitions for hierarchy",
+			"$type": "fontWeight",
+			"normal": {
+				"$value": 400,
+				"$description": "Normal weight - body text"
+			},
+			"medium": {
+				"$value": 500,
+				"$description": "Medium weight - emphasized text"
+			},
+			"semibold": {
+				"$value": 600,
+				"$description": "Semibold - subheadings"
+			},
+			"bold": {
+				"$value": 700,
+				"$description": "Bold - headings, strong emphasis"
+			}
+		},
 
-    "lineHeight": {
-      "$description": "Line height scale for optimal readability",
-      "$type": "number",
-      "tight": {
-        "$value": 1.2,
-        "$description": "Tight - large headings"
-      },
-      "snug": {
-        "$value": 1.4,
-        "$description": "Snug - small headings"
-      },
-      "normal": {
-        "$value": 1.5,
-        "$description": "Normal - body text"
-      },
-      "relaxed": {
-        "$value": 1.6,
-        "$description": "Relaxed - long-form content"
-      }
-    },
+		"lineHeight": {
+			"$description": "Line height scale for optimal readability",
+			"$type": "number",
+			"tight": {
+				"$value": 1.2,
+				"$description": "Tight - large headings"
+			},
+			"snug": {
+				"$value": 1.4,
+				"$description": "Snug - small headings"
+			},
+			"normal": {
+				"$value": 1.5,
+				"$description": "Normal - body text"
+			},
+			"relaxed": {
+				"$value": 1.6,
+				"$description": "Relaxed - long-form content"
+			}
+		},
 
-    "letterSpacing": {
-      "$description": "Letter spacing for refined typography",
-      "$type": "dimension",
-      "tighter": {
-        "$value": "-0.05em",
-        "$description": "Tighter - large display headings"
-      },
-      "tight": {
-        "$value": "-0.025em",
-        "$description": "Tight - medium headings"
-      },
-      "normal": {
-        "$value": "0",
-        "$description": "Normal - body text"
-      },
-      "wide": {
-        "$value": "0.025em",
-        "$description": "Wide - small uppercase labels"
-      },
-      "wider": {
-        "$value": "0.05em",
-        "$description": "Wider - button text, navigation"
-      }
-    }
-  },
+		"letterSpacing": {
+			"$description": "Letter spacing for refined typography",
+			"$type": "dimension",
+			"tighter": {
+				"$value": "-0.05em",
+				"$description": "Tighter - large display headings"
+			},
+			"tight": {
+				"$value": "-0.025em",
+				"$description": "Tight - medium headings"
+			},
+			"normal": {
+				"$value": "0",
+				"$description": "Normal - body text"
+			},
+			"wide": {
+				"$value": "0.025em",
+				"$description": "Wide - small uppercase labels"
+			},
+			"wider": {
+				"$value": "0.05em",
+				"$description": "Wider - button text, navigation"
+			}
+		}
+	},
 
-  "typography": {
-    "$description": "Composite typography tokens - complete text styles",
-    "$type": "typography",
-    "heading": {
-      "h1": {
-        "$value": {
-          "fontFamily": "{font.family.heading}",
-          "fontSize": "{font.size.5xl}",
-          "fontWeight": "{font.weight.bold}",
-          "lineHeight": "{font.lineHeight.tight}",
-          "letterSpacing": "{font.letterSpacing.tighter}"
-        },
-        "$description": "H1 style - hero headings, page titles"
-      },
-      "h2": {
-        "$value": {
-          "fontFamily": "{font.family.heading}",
-          "fontSize": "{font.size.4xl}",
-          "fontWeight": "{font.weight.bold}",
-          "lineHeight": "{font.lineHeight.tight}",
-          "letterSpacing": "{font.letterSpacing.tight}"
-        },
-        "$description": "H2 style - section headings"
-      },
-      "h3": {
-        "$value": {
-          "fontFamily": "{font.family.heading}",
-          "fontSize": "{font.size.3xl}",
-          "fontWeight": "{font.weight.semibold}",
-          "lineHeight": "{font.lineHeight.snug}",
-          "letterSpacing": "{font.letterSpacing.tight}"
-        },
-        "$description": "H3 style - subsection headings"
-      },
-      "h4": {
-        "$value": {
-          "fontFamily": "{font.family.heading}",
-          "fontSize": "{font.size.2xl}",
-          "fontWeight": "{font.weight.semibold}",
-          "lineHeight": "{font.lineHeight.snug}",
-          "letterSpacing": "{font.letterSpacing.normal}"
-        },
-        "$description": "H4 style - card headings"
-      }
-    },
-    "body": {
-      "base": {
-        "$value": {
-          "fontFamily": "{font.family.body}",
-          "fontSize": "{font.size.base}",
-          "fontWeight": "{font.weight.normal}",
-          "lineHeight": "{font.lineHeight.normal}",
-          "letterSpacing": "{font.letterSpacing.normal}"
-        },
-        "$description": "Base body text style"
-      },
-      "large": {
-        "$value": {
-          "fontFamily": "{font.family.body}",
-          "fontSize": "{font.size.lg}",
-          "fontWeight": "{font.weight.normal}",
-          "lineHeight": "{font.lineHeight.relaxed}",
-          "letterSpacing": "{font.letterSpacing.normal}"
-        },
-        "$description": "Large body text - lead paragraphs"
-      },
-      "small": {
-        "$value": {
-          "fontFamily": "{font.family.body}",
-          "fontSize": "{font.size.sm}",
-          "fontWeight": "{font.weight.normal}",
-          "lineHeight": "{font.lineHeight.normal}",
-          "letterSpacing": "{font.letterSpacing.normal}"
-        },
-        "$description": "Small body text - captions, metadata"
-      }
-    },
-    "technical": {
-      "base": {
-        "$value": {
-          "fontFamily": "{font.family.technical}",
-          "fontSize": "{font.size.base}",
-          "fontWeight": "{font.weight.medium}",
-          "lineHeight": "{font.lineHeight.normal}",
-          "letterSpacing": "{font.letterSpacing.normal}"
-        },
-        "$description": "Technical text - pricing, data display"
-      }
-    }
-  }
+	"typography": {
+		"$description": "Composite typography tokens - complete text styles",
+		"$type": "typography",
+		"heading": {
+			"h1": {
+				"$value": {
+					"fontFamily": "{font.family.heading}",
+					"fontSize": "{font.size.5xl}",
+					"fontWeight": "{font.weight.bold}",
+					"lineHeight": "{font.lineHeight.tight}",
+					"letterSpacing": "{font.letterSpacing.tighter}"
+				},
+				"$description": "H1 style - hero headings, page titles"
+			},
+			"h2": {
+				"$value": {
+					"fontFamily": "{font.family.heading}",
+					"fontSize": "{font.size.4xl}",
+					"fontWeight": "{font.weight.bold}",
+					"lineHeight": "{font.lineHeight.tight}",
+					"letterSpacing": "{font.letterSpacing.tight}"
+				},
+				"$description": "H2 style - section headings"
+			},
+			"h3": {
+				"$value": {
+					"fontFamily": "{font.family.heading}",
+					"fontSize": "{font.size.3xl}",
+					"fontWeight": "{font.weight.semibold}",
+					"lineHeight": "{font.lineHeight.snug}",
+					"letterSpacing": "{font.letterSpacing.tight}"
+				},
+				"$description": "H3 style - subsection headings"
+			},
+			"h4": {
+				"$value": {
+					"fontFamily": "{font.family.heading}",
+					"fontSize": "{font.size.2xl}",
+					"fontWeight": "{font.weight.semibold}",
+					"lineHeight": "{font.lineHeight.snug}",
+					"letterSpacing": "{font.letterSpacing.normal}"
+				},
+				"$description": "H4 style - card headings"
+			}
+		},
+		"body": {
+			"base": {
+				"$value": {
+					"fontFamily": "{font.family.body}",
+					"fontSize": "{font.size.base}",
+					"fontWeight": "{font.weight.normal}",
+					"lineHeight": "{font.lineHeight.normal}",
+					"letterSpacing": "{font.letterSpacing.normal}"
+				},
+				"$description": "Base body text style"
+			},
+			"large": {
+				"$value": {
+					"fontFamily": "{font.family.body}",
+					"fontSize": "{font.size.lg}",
+					"fontWeight": "{font.weight.normal}",
+					"lineHeight": "{font.lineHeight.relaxed}",
+					"letterSpacing": "{font.letterSpacing.normal}"
+				},
+				"$description": "Large body text - lead paragraphs"
+			},
+			"small": {
+				"$value": {
+					"fontFamily": "{font.family.body}",
+					"fontSize": "{font.size.sm}",
+					"fontWeight": "{font.weight.normal}",
+					"lineHeight": "{font.lineHeight.normal}",
+					"letterSpacing": "{font.letterSpacing.normal}"
+				},
+				"$description": "Small body text - captions, metadata"
+			}
+		},
+		"technical": {
+			"base": {
+				"$value": {
+					"fontFamily": "{font.family.technical}",
+					"fontSize": "{font.size.base}",
+					"fontWeight": "{font.weight.medium}",
+					"lineHeight": "{font.lineHeight.normal}",
+					"letterSpacing": "{font.letterSpacing.normal}"
+				},
+				"$description": "Technical text - pricing, data display"
+			}
+		}
+	}
 }

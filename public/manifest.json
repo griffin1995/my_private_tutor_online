@@ -1,154 +1,154 @@
 {
-  "name": "My Private Tutor Online - FAQ & Support",
-  "short_name": "FAQ Support",
-  "description": "Access comprehensive FAQ and support for premium tutoring services. Get instant answers to your questions about Oxbridge preparation, 11+ tutoring, and elite education services.",
-  "start_url": "/?source=pwa",
-  "display": "standalone",
-  "orientation": "portrait-primary",
-  "theme_color": "#0f172a",
-  "background_color": "#ffffff",
-  "lang": "en-GB",
-  "dir": "ltr",
-  "scope": "/",
-  "id": "myprivatetutoronline-faq",
-  "categories": ["education", "reference", "productivity"],
-  "shortcuts": [
-    {
-      "name": "FAQ Home",
-      "short_name": "FAQ",
-      "description": "Browse all frequently asked questions",
-      "url": "/faq?source=pwa_shortcut",
-      "icons": [
-        {
-          "src": "/icons/android-chrome-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "General Questions",
-      "short_name": "General",
-      "description": "General tutoring questions and answers",
-      "url": "/faq/category/general?source=pwa_shortcut",
-      "icons": [
-        {
-          "src": "/icons/android-chrome-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Pricing & Booking",
-      "short_name": "Pricing",
-      "description": "Questions about pricing and booking lessons",
-      "url": "/faq/category/pricing?source=pwa_shortcut",
-      "icons": [
-        {
-          "src": "/icons/android-chrome-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Contact Support",
-      "short_name": "Contact",
-      "description": "Get in touch with our support team",
-      "url": "/faq#contact?source=pwa_shortcut",
-      "icons": [
-        {
-          "src": "/icons/android-chrome-192x192.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    }
-  ],
-  "icons": [
-    {
-      "src": "/icons/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/android-chrome-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/images/screenshots/faq-mobile-home.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "FAQ Home Screen - Browse all categories and search for answers"
-    },
-    {
-      "src": "/images/screenshots/faq-mobile-category.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "FAQ Category View - Detailed answers organized by topic"
-    },
-    {
-      "src": "/images/screenshots/faq-desktop-home.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "FAQ Desktop Experience - Full-featured support center"
-    }
-  ],
-  "related_applications": [
-    {
-      "platform": "webapp",
-      "url": "https://myprivatetutoronline.com/manifest.json"
-    }
-  ],
-  "prefer_related_applications": false,
-  "protocol_handlers": [
-    {
-      "protocol": "web+faq",
-      "url": "/faq?query=%s"
-    },
-    {
-      "protocol": "web+support",
-      "url": "/faq#contact"
-    }
-  ],
-  "share_target": {
-    "action": "/faq/search",
-    "method": "GET",
-    "params": {
-      "title": "title",
-      "text": "q",
-      "url": "url"
-    }
-  },
-  "file_handlers": [
-    {
-      "action": "/faq/search",
-      "accept": {
-        "text/plain": [".txt"],
-        "text/markdown": [".md"]
-      }
-    }
-  ],
-  "launch_handler": {
-    "client_mode": "focus-existing"
-  },
-  "edge_side_panel": {
-    "preferred_width": 400
-  },
-  "handle_links": "preferred"
+	"name": "My Private Tutor Online - FAQ & Support",
+	"short_name": "FAQ Support",
+	"description": "Access comprehensive FAQ and support for premium tutoring services. Get instant answers to your questions about Oxbridge preparation, 11+ tutoring, and elite education services.",
+	"start_url": "/?source=pwa",
+	"display": "standalone",
+	"orientation": "portrait-primary",
+	"theme_color": "#0f172a",
+	"background_color": "#ffffff",
+	"lang": "en-GB",
+	"dir": "ltr",
+	"scope": "/",
+	"id": "myprivatetutoronline-faq",
+	"categories": ["education", "reference", "productivity"],
+	"shortcuts": [
+		{
+			"name": "FAQ Home",
+			"short_name": "FAQ",
+			"description": "Browse all frequently asked questions",
+			"url": "/faq?source=pwa_shortcut",
+			"icons": [
+				{
+					"src": "/icons/android-chrome-192x192.png",
+					"sizes": "192x192",
+					"type": "image/png"
+				}
+			]
+		},
+		{
+			"name": "General Questions",
+			"short_name": "General",
+			"description": "General tutoring questions and answers",
+			"url": "/faq/category/general?source=pwa_shortcut",
+			"icons": [
+				{
+					"src": "/icons/android-chrome-192x192.png",
+					"sizes": "192x192",
+					"type": "image/png"
+				}
+			]
+		},
+		{
+			"name": "Pricing & Booking",
+			"short_name": "Pricing",
+			"description": "Questions about pricing and booking lessons",
+			"url": "/faq/category/pricing?source=pwa_shortcut",
+			"icons": [
+				{
+					"src": "/icons/android-chrome-192x192.png",
+					"sizes": "192x192",
+					"type": "image/png"
+				}
+			]
+		},
+		{
+			"name": "Contact Support",
+			"short_name": "Contact",
+			"description": "Get in touch with our support team",
+			"url": "/faq#contact?source=pwa_shortcut",
+			"icons": [
+				{
+					"src": "/icons/android-chrome-192x192.png",
+					"sizes": "192x192",
+					"type": "image/png"
+				}
+			]
+		}
+	],
+	"icons": [
+		{
+			"src": "/icons/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/icons/android-chrome-384x384.png",
+			"sizes": "384x384",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "/icons/icon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		}
+	],
+	"screenshots": [
+		{
+			"src": "/images/screenshots/faq-mobile-home.png",
+			"sizes": "390x844",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "FAQ Home Screen - Browse all categories and search for answers"
+		},
+		{
+			"src": "/images/screenshots/faq-mobile-category.png",
+			"sizes": "390x844",
+			"type": "image/png",
+			"form_factor": "narrow",
+			"label": "FAQ Category View - Detailed answers organized by topic"
+		},
+		{
+			"src": "/images/screenshots/faq-desktop-home.png",
+			"sizes": "1280x720",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "FAQ Desktop Experience - Full-featured support center"
+		}
+	],
+	"related_applications": [
+		{
+			"platform": "webapp",
+			"url": "https://myprivatetutoronline.com/manifest.json"
+		}
+	],
+	"prefer_related_applications": false,
+	"protocol_handlers": [
+		{
+			"protocol": "web+faq",
+			"url": "/faq?query=%s"
+		},
+		{
+			"protocol": "web+support",
+			"url": "/faq#contact"
+		}
+	],
+	"share_target": {
+		"action": "/faq/search",
+		"method": "GET",
+		"params": {
+			"title": "title",
+			"text": "q",
+			"url": "url"
+		}
+	},
+	"file_handlers": [
+		{
+			"action": "/faq/search",
+			"accept": {
+				"text/plain": [".txt"],
+				"text/markdown": [".md"]
+			}
+		}
+	],
+	"launch_handler": {
+		"client_mode": "focus-existing"
+	},
+	"edge_side_panel": {
+		"preferred_width": 400
+	},
+	"handle_links": "preferred"
 }

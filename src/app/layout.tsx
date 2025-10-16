@@ -1,59 +1,11 @@
-/**
- * Documentation Source: Next.js 14 App Router Layout
- * Reference: https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts
- * Reference: https://nextjs.org/docs/app/api-reference/functions/generate-metadata
- * Reference: https://nextjs.org/docs/app/building-your-application/optimizing/fonts
- *
- * Pattern: Root Layout with Metadata and Font Optimization
- * Architecture:
- * - Server Component (no "use client" directive)
- * - Metadata export for SEO optimization
- * - Font optimization with next/font/google
- * - Global providers wrapped around children
- *
- * Best Practices Applied:
- * - metadataBase for absolute URL generation
- * - Comprehensive OpenGraph and Twitter cards
- * - Font variables for CSS custom properties
- * - British English locale (en_GB)
- */
-
 import type { Metadata } from 'next';
-// CONTEXT7 SOURCE: /vercel/next.js - Centralized font configuration for Phase 3 typography optimization
-// FONT OPTIMIZATION REASON: Official Next.js documentation Section 3.1 - Font configuration centralization
 import { LazyMotionProvider } from '@/components/providers/LazyMotionProvider';
 import { fontClassNames } from '@/fonts';
 import './globals.css';
-
-// Temporarily commenting out resource preloader during build fix
-// import ResourcePreloader from '@/components/performance/resource-preloader';
-
-/**
- * Vercel Analytics and Speed Insights Integration
- * Documentation Source: Official Vercel Analytics Documentation
- * Reference: https://vercel.com/docs/analytics
- * Reference: https://vercel.com/docs/speed-insights
- *
- * Pattern: Analytics components added per Vercel deployment requirements
- * Architecture: Components render client-side tracking scripts
- *
- * Implementation Notes:
- * - Analytics tracks page views and custom events
- * - SpeedInsights monitors Core Web Vitals
- * - Both components are zero-config on Vercel platform
- * - Data visible in Vercel Dashboard
- */
 import { CookieConsentManager } from '@/components/legal/CookieConsent';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-// Temporarily disabled for build debugging
-// import { GlobalErrorBoundary } from '@/components/infrastructure/GlobalErrorBoundary';
-
-// CONTEXT7 SOURCE: /vercel/next.js - Development tools provider for debugging
-// CMS MONITORING REASON: Global CMS architecture monitoring initialization
 import React from 'react';
-
-// Dynamically import CMS monitoring components for development/enabled environments only
 const CMSMonitoringWrapper =
 	(
 		process.env.NODE_ENV === 'development' ||
@@ -65,63 +17,9 @@ const CMSMonitoringWrapper =
 			})),
 		)
 	:	null;
-// DEBUGGING TOOL REASON: Pesticide CSS debugging tool for development environment only
 import { DevToolsProvider } from '@/providers/DevToolsProvider';
-// DEVELOPMENT TOOL: Pesticide CSS debugger integration for layout development and troubleshooting
 import { PesticideDebugger } from '@/lib/dev-utils';
-
-// CONTEXT7 SOURCE: /sonner/toast - Toast notification system for user feedback
-// TOAST INTEGRATION REASON: Global toast provider for language switching notifications and user feedback
-// Temporarily disabled for build debugging
-// import { Toaster } from '@/components/ui/toast';
-
-/**
- * CONTEXT7 SOURCE: /vercel/next.js - Performance monitoring Phase 1 implementation
- * PERFORMANCE MONITORING REASON: Comprehensive Web Vitals tracking for Symphony Approach™ Phase 1
- * IMPLEMENTATION: Baseline metrics establishment supporting £157,000 annual optimization value
- */
 import { WebVitals } from '@/app/_components/web-vitals';
-
-/**
- * CONTEXT7 SOURCE: /vercel/next.js - Performance-optimized SEO component integration
- * SEO ENHANCEMENT REASON: Core Web Vitals optimized structured data for premium service visibility
- * CONTEXT7 SOURCE: /vercel/next.js - Server-side SEO rendering for immediate search engine access
- * IMPLEMENTATION: Performance-first SEO infrastructure for royal client service discoverability
- */
-// Temporarily disabled for build debugging
-// import { SimpleWebVitals } from '@/components/performance/SimpleWebVitals';
-
-/**
- * CONTEXT7 SOURCE: /vercel/next.js - Phase 3 Typography System Consolidation
- * FONT OPTIMIZATION REASON: Official Next.js documentation Section 3.1 - 60% performance improvement
- * IMPLEMENTATION: Centralized font configuration in /src/fonts/index.ts
- *
- * Typography Consolidation (Phase 3):
- * - FROM: 12 inconsistent fonts across codebase
- * - TO: 3 strategic typefaces with clear hierarchy
- * - REDUCTION: 75% font reduction, 60% loading improvement
- *
- * Font Strategy:
- * 1. Playfair Display - Elegant headings (weights: 400-700)
- * 2. Source Serif 4 - Premium body text (weights: 400-600)
- * 3. JetBrains Mono - Technical/pricing (weights: 400-500)
- *
- * Performance Optimizations:
- * - Centralized configuration for single import
- * - Font subsetting for reduced file size
- * - Display swap for immediate text visibility
- * - CSS variables for runtime flexibility
- * - Preload critical fonts for above-the-fold
- *
- * All font configuration now managed in /src/fonts/index.ts
- */
-
-/**
- * CONTEXT7 SOURCE: /vercel/next.js - Enhanced metadata configuration for SEO optimization
- * SEO ENHANCEMENT REASON: Comprehensive metadata for premium tutoring service discovery
- * CONTEXT7 SOURCE: /vercel/next.js - Metadata API with robots, verification, and manifest integration
- * IMPLEMENTATION: Royal client service standards with maximum search visibility
- */
 export const metadata: Metadata = {
 	metadataBase: new URL('https://myprivatetutoronline.com'),
 	title: {
@@ -144,8 +42,6 @@ export const metadata: Metadata = {
 		'Tatler tutor',
 		'academic preparation',
 		'entrance exam preparation',
-		// CONTEXT7 SOURCE: /vercel/next.js - Extended keywords for SEO optimization
-		// SEO ENHANCEMENT: Additional keywords for comprehensive service discovery
 		'grammar school preparation',
 		'university entrance tutoring',
 		'A* grade tutoring',
@@ -156,12 +52,13 @@ export const metadata: Metadata = {
 		'exam preparation specialist',
 	],
 	authors: [
-		{ name: 'My Private Tutor Online', url: 'https://myprivatetutoronline.com' },
+		{
+			name: 'My Private Tutor Online',
+			url: 'https://myprivatetutoronline.com',
+		},
 	],
 	creator: 'My Private Tutor Online',
 	publisher: 'My Private Tutor Online',
-	// CONTEXT7 SOURCE: /vercel/next.js - Enhanced robots configuration for comprehensive crawling
-	// SEO OPTIMIZATION: Maximum search engine visibility for premium service discovery
 	robots: {
 		index: true,
 		follow: true,
@@ -175,8 +72,6 @@ export const metadata: Metadata = {
 			'max-snippet': -1,
 		},
 	},
-	// CONTEXT7 SOURCE: /vercel/next.js - Search engine verification meta tags
-	// SEO INTEGRATION: Search console verification for comprehensive SEO monitoring
 	verification: {
 		google: 'google-site-verification-premium-tutor',
 		yandex: 'yandex-verification-premium-tutor',
@@ -195,7 +90,6 @@ export const metadata: Metadata = {
 			'Premium private tutoring with royal endorsements. 15+ years experience in Oxbridge prep, 11+ entry, GCSE & A-levels. Featured in Tatler Address Book.',
 		images: [
 			{
-				// CONTEXT7 SOURCE: /vercel/next.js - Primary Open Graph image for premium service
 				url: '/images/graphics/feature-royal-endorsement.jpg',
 				width: 1200,
 				height: 630,
@@ -203,7 +97,6 @@ export const metadata: Metadata = {
 				type: 'image/jpeg',
 			},
 			{
-				// CONTEXT7 SOURCE: /vercel/next.js - Logo for Open Graph secondary image
 				url: '/images/logos/logo-with-name.png',
 				width: 400,
 				height: 100,
@@ -211,7 +104,6 @@ export const metadata: Metadata = {
 				type: 'image/png',
 			},
 			{
-				// CONTEXT7 SOURCE: /vercel/next.js - Hero image for premium service showcase
 				url: '/images/hero/child_book_and_laptop.avif',
 				width: 800,
 				height: 600,
@@ -219,7 +111,6 @@ export const metadata: Metadata = {
 				type: 'image/avif',
 			},
 			{
-				// CONTEXT7 SOURCE: /vercel/next.js - Trust indicator image for social proof
 				url: '/images/graphics/feature-built-on-trust.jpeg',
 				width: 800,
 				height: 600,
@@ -233,7 +124,6 @@ export const metadata: Metadata = {
 		title: 'My Private Tutor Online | Premium Academic Tutoring',
 		description:
 			'Royal family endorsed private tutoring. Oxbridge preparation, 11+ entry, GCSE & A-levels. 15+ years experience.',
-		// CONTEXT7 SOURCE: /vercel/next.js - Enhanced Twitter Card images for premium service
 		images: [
 			'/images/graphics/feature-royal-endorsement.jpg',
 			'/images/hero/child_book_and_laptop.avif',
@@ -246,15 +136,10 @@ export const metadata: Metadata = {
 		canonical: 'https://myprivatetutoronline.com',
 	},
 	category: 'Education',
-	// CONTEXT7 SOURCE: /vercel/next.js - Classification and App Links for enhanced discovery
-	// SEO ENHANCEMENT: Additional metadata for comprehensive service categorization
 	classification: 'Educational Services',
 	referrer: 'origin-when-cross-origin',
 	applicationName: 'My Private Tutor Online',
 	generator: 'Next.js 15',
-
-	// CONTEXT7 SOURCE: /vercel/next.js - Enhanced metadata for premium service discovery
-	// PREMIUM SERVICE: Additional metadata for royal client service standards
 	formatDetection: {
 		telephone: true,
 		date: true,
@@ -267,37 +152,27 @@ export const metadata: Metadata = {
 		title: 'My Private Tutor',
 		statusBarStyle: 'black-translucent',
 	},
-	// CONTEXT7 SOURCE: /vercel/next.js - Manifest link for PWA functionality
 	manifest: '/manifest.json',
 };
-
-// CONTEXT7 SOURCE: /vercel/next.js - Viewport configuration for Next.js 15+ compatibility
-// VIEWPORT EXPORT REASON: Next.js 15+ requires colorScheme and themeColor in viewport export instead of metadata
 export const viewport = {
 	colorScheme: 'light dark',
 	themeColor: [
-		{ media: '(prefers-color-scheme: light)', color: '#0f172a' },
-		{ media: '(prefers-color-scheme: dark)', color: '#0f172a' },
+		{
+			media: '(prefers-color-scheme: light)',
+			color: '#0f172a',
+		},
+		{
+			media: '(prefers-color-scheme: dark)',
+			color: '#0f172a',
+		},
 	],
 };
-
-/**
- * CONTEXT7 SOURCE: /vercel/next.js - Dynamic rendering for Framer Motion compatibility
- * DYNAMIC RENDERING REASON: Official Next.js documentation Section 4.2 requires force-dynamic for client components with animations
- * FRAMER MOTION COMPATIBILITY: Prevents React.Children.only errors and useState context issues during prerendering
- * DEPLOYMENT PATTERN: Matches proven Vercel production architecture from CLAUDE.md
- */
 export const dynamic = 'force-dynamic';
-
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	// CONTEXT7 SOURCE: /vercel/next.js - Hydration error fix for HTML dir attribute
-	// HYDRATION FIX REASON: Browsers automatically add dir="ltr" to HTML element client-side causing hydration mismatch
-	// CONTEXT7 SOURCE: /vercel/next.js - Text content does not match server-rendered HTML error prevention
-	// IMPLEMENTATION: Explicitly set dir="ltr" server-side to match browser client-side rendering behavior
 	return (
 		<html
 			lang='en-GB'
@@ -313,14 +188,14 @@ export default function RootLayout({
 					content='#0f172a'
 				/>
 
-				{/* CONTEXT7 SOURCE: /vercel/next.js - Favicon and icon configuration for Next.js App Router */}
-				{/* FAVICON IMPLEMENTATION: Comprehensive favicon setup for royal client browser compatibility */}
+				{}
+				{}
 				<link
 					rel='icon'
 					href='/favicon.ico'
 					sizes='32x32'
 				/>
-				{/* CONTEXT7 SOURCE: /vercel/next.js - Removed missing favicon-16x16.png to prevent 404 error */}
+				{}
 				<link
 					rel='icon'
 					href='/icons/favicon-32x32.png'
@@ -351,12 +226,12 @@ export default function RootLayout({
 					sizes='192x192'
 					type='image/png'
 				/>
-				{/* CONTEXT7 SOURCE: /vercel/next.js - Removed missing favicon-256x256.png to prevent 404 error */}
-				{/* FAVICON CLEANUP REASON: File does not exist - removing reference to prevent 404 error */}
-				{/* CONTEXT7 SOURCE: /vercel/next.js - Removed missing favicon-512x512.png to prevent 404 error */}
+				{}
+				{}
+				{}
 
-				{/* CONTEXT7 SOURCE: /vercel/next.js - Apple Touch Icon configuration for iOS devices */}
-				{/* APPLE ICONS: iOS-specific icon sizes for premium service mobile experience */}
+				{}
+				{}
 				<link
 					rel='apple-touch-icon'
 					href='/icons/apple-touch-icon.png'
@@ -392,8 +267,8 @@ export default function RootLayout({
 					sizes='180x180'
 				/>
 
-				{/* CONTEXT7 SOURCE: /vercel/next.js - PWA manifest configuration for Next.js */}
-				{/* PWA MANIFEST: Progressive Web App support for premium tutoring service */}
+				{}
+				{}
 				<link
 					rel='manifest'
 					href='/manifest.json'
@@ -437,47 +312,29 @@ export default function RootLayout({
 					crossOrigin='anonymous'
 				/>
 
-				{/* Temporarily commenting out SEO components during build fix */}
-				{/* <ServerSEOComponents /> */}
+				{}
+				{}
 			</head>
 			<body
 				className={`${fontClassNames} font-body antialiased min-h-screen bg-transparent text-foreground`}>
-				{/* <ResourcePreloader page="homepage" preloadCriticalImages={true} /> */}
-				{/* CONTEXT7 SOURCE: /reactjs/react.dev - Global error boundary for production stability
-            ERROR BOUNDARY REASON: Official React error boundary patterns for royal client service standards
-            TEMPORARILY DISABLED: For build debugging */}
-				{/* <GlobalErrorBoundary
-          level="global"
-          componentName="RootLayout"
-        > */}
+				{}
+				{}
+				{}
 				<LazyMotionProvider>
 					<DevToolsProvider>{children}</DevToolsProvider>
 				</LazyMotionProvider>
-				{/* </GlobalErrorBoundary> */}
-				{/* Performance Monitor loaded client-side only */}
+				{}
+				{}
 
-				{/*
-				 * Vercel Analytics Components
-				 * Documentation Source: Official Vercel Documentation
-				 * Reference: https://vercel.com/docs/analytics/quickstart
-				 *
-				 * Pattern: Analytics components placed before closing body tag
-				 * Architecture: Zero-config analytics for Vercel deployments
-				 *
-				 * Features:
-				 * - Automatic page view tracking
-				 * - Web Vitals monitoring
-				 * - Real User Monitoring (RUM)
-				 * - Privacy-compliant by default
-				 */}
+				{}
 				<Analytics />
 				<SpeedInsights />
-				{/* CONTEXT7 SOURCE: /vercel/next.js - Phase 1 Web Vitals monitoring */}
+				{}
 				<WebVitals />
 				<CookieConsentManager />
-				{/* <Toaster /> */}
+				{}
 
-				{/* Temporarily commenting out pesticide debugger during build fix */}
+				{}
 				<PesticideDebugger />
 			</body>
 		</html>

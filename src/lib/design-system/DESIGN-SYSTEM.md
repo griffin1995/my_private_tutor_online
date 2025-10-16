@@ -6,12 +6,14 @@
 
 ## 🎯 Executive Summary
 
-This comprehensive design system addresses **4,365 critical brand compliance issues** identified across the My Private Tutor Online platform, transforming it from 50% brand compliance to 100% royal client standards.
+This comprehensive design system addresses **4,365 critical brand compliance
+issues** identified across the My Private Tutor Online platform, transforming it
+from 50% brand compliance to 100% royal client standards.
 
 ### Critical Improvements Achieved
 
 - **🎨 Brand Compliance**: 50% → 100% with systematic color migration
-- **📝 Typography**: 927 heading violations → 100% Playfair Display compliance  
+- **📝 Typography**: 927 heading violations → 100% Playfair Display compliance
 - **🔘 Component Standardization**: 2,093 button variations → Unified system
 - **🚀 Performance**: Complete type safety with IntelliSense support
 - **♿ Accessibility**: WCAG 2.1 AA compliance built-in
@@ -22,7 +24,7 @@ This comprehensive design system addresses **4,365 critical brand compliance iss
 
 1. [Quick Start Guide](#quick-start-guide)
 2. [Design Tokens](#design-tokens)
-3. [Color System](#color-system) 
+3. [Color System](#color-system)
 4. [Typography](#typography)
 5. [Component Variants](#component-variants)
 6. [React Hooks](#react-hooks)
@@ -37,12 +39,20 @@ This comprehensive design system addresses **4,365 critical brand compliance iss
 
 ### Installation & Setup
 
-The design system is already integrated into your My Private Tutor Online project. Here's how to use it:
+The design system is already integrated into your My Private Tutor Online
+project. Here's how to use it:
 
 ```typescript
 // Import design tokens
-import { useDesignTokens, useButtonStyles, useTypographyStyles } from '@/lib/design-system/useDesignTokens';
-import { buttonVariants, cardVariants } from '@/lib/design-system/component-variants';
+import {
+	useDesignTokens,
+	useButtonStyles,
+	useTypographyStyles,
+} from '@/lib/design-system/useDesignTokens';
+import {
+	buttonVariants,
+	cardVariants,
+} from '@/lib/design-system/component-variants';
 
 // Import CSS custom properties
 import '@/lib/design-system/globals.css';
@@ -52,30 +62,31 @@ import '@/lib/design-system/globals.css';
 
 ```tsx
 import React from 'react';
-import { useDesignTokens, useButtonStyles } from '@/lib/design-system/useDesignTokens';
+import {
+	useDesignTokens,
+	useButtonStyles,
+} from '@/lib/design-system/useDesignTokens';
 
 function ExampleComponent() {
-  const { getBrandColor, getTypography } = useDesignTokens();
-  const primaryButton = useButtonStyles('primary', 'md');
-  
-  return (
-    <div className="p-6">
-      {/* Royal client standard heading */}
-      <h1 className="font-playfair text-5xl font-bold text-brand-metallic-blue-700">
-        Premium Tutoring Services
-      </h1>
-      
-      {/* Brand-compliant button */}
-      <button className={primaryButton.className}>
-        Book Consultation
-      </button>
-      
-      {/* Body text with Source Serif 4 */}
-      <p className="font-source-serif text-base leading-relaxed text-neutral-gray-700">
-        Experience excellence with our royal-endorsed tutoring services.
-      </p>
-    </div>
-  );
+	const { getBrandColor, getTypography } = useDesignTokens();
+	const primaryButton = useButtonStyles('primary', 'md');
+
+	return (
+		<div className='p-6'>
+			{/* Royal client standard heading */}
+			<h1 className='font-playfair text-5xl font-bold text-brand-metallic-blue-700'>
+				Premium Tutoring Services
+			</h1>
+
+			{/* Brand-compliant button */}
+			<button className={primaryButton.className}>Book Consultation</button>
+
+			{/* Body text with Source Serif 4 */}
+			<p className='font-source-serif text-base leading-relaxed text-neutral-gray-700'>
+				Experience excellence with our royal-endorsed tutoring services.
+			</p>
+		</div>
+	);
 }
 ```
 
@@ -85,7 +96,8 @@ function ExampleComponent() {
 
 ### Core Token Structure
 
-Our design system is built on a foundation of design tokens that ensure consistency across all touchpoints.
+Our design system is built on a foundation of design tokens that ensure
+consistency across all touchpoints.
 
 ```typescript
 // Complete token access
@@ -93,26 +105,27 @@ import { designTokens } from '@/lib/design-system/design-tokens';
 
 // Individual token categories
 const {
-  colors,      // Brand colors, neutrals, semantics
-  typography,  // Font families, sizes, weights
-  spacing,     // Consistent spacing scale
-  borderRadius,// Border radius values
-  boxShadow,   // Shadow system
-  animation,   // Animation tokens
-  screens      // Responsive breakpoints
+	colors, // Brand colors, neutrals, semantics
+	typography, // Font families, sizes, weights
+	spacing, // Consistent spacing scale
+	borderRadius, // Border radius values
+	boxShadow, // Shadow system
+	animation, // Animation tokens
+	screens, // Responsive breakpoints
 } = designTokens;
 ```
 
 ### CSS Custom Properties
 
-All design tokens are available as CSS custom properties for universal framework access:
+All design tokens are available as CSS custom properties for universal framework
+access:
 
 ```css
 /* Brand Colors */
 var(--color-brand-metallic-blue)     /* #3F4A7E */
 var(--color-brand-aztec-gold)        /* #CA9E5B */
 
-/* Typography */  
+/* Typography */
 var(--font-heading)                  /* 'Playfair Display', serif */
 var(--font-body)                     /* 'Source Serif 4', serif */
 
@@ -132,11 +145,13 @@ var(--shadow-primary-subtle)         /* Brand-colored shadow */
 ### Brand Colors
 
 **Primary: Metallic Blue (#3F4A7E)**
+
 - Usage: Primary actions, navigation, headings
 - Accessibility: WCAG AA compliant on white backgrounds
 - Tailwind: `bg-brand-metallic-blue-700`, `text-brand-metallic-blue-700`
 
-**Secondary: Aztec Gold (#CA9E5B)**  
+**Secondary: Aztec Gold (#CA9E5B)**
+
 - Usage: Accents, highlights, secondary actions
 - Accessibility: Use darker shades (700+) on light backgrounds
 - Tailwind: `bg-brand-aztec-gold-600`, `text-brand-aztec-gold-700`
@@ -176,17 +191,18 @@ const result = migrateColor('#0000FF');
 
 ### Royal Client Standards
 
-**ALL headings MUST use Playfair Display**
-**ALL body text MUST use Source Serif 4**
+**ALL headings MUST use Playfair Display** **ALL body text MUST use Source Serif
+4**
 
-This standard ensures consistency with our royal endorsements and premium positioning.
+This standard ensures consistency with our royal endorsements and premium
+positioning.
 
 ### Typography Scale
 
 ```tsx
 // Heading hierarchy (Playfair Display)
 <h1 className="font-playfair text-5xl font-bold">     {/* 48px */}
-<h2 className="font-playfair text-4xl font-semibold"> {/* 36px */}  
+<h2 className="font-playfair text-4xl font-semibold"> {/* 36px */}
 <h3 className="font-playfair text-3xl font-medium">   {/* 30px */}
 <h4 className="font-playfair text-2xl font-medium">   {/* 24px */}
 <h5 className="font-playfair text-xl font-medium">    {/* 20px */}
@@ -204,15 +220,15 @@ This standard ensures consistency with our royal endorsements and premium positi
 import { useTypographyStyles } from '@/lib/design-system/useDesignTokens';
 
 function TypographyExample() {
-  const h1Styles = useTypographyStyles('h1');
-  const bodyStyles = useTypographyStyles('body');
-  
-  return (
-    <>
-      <h1 className={h1Styles.className}>Premium Heading</h1>
-      <p className={bodyStyles.className}>Professional body text</p>
-    </>
-  );
+	const h1Styles = useTypographyStyles('h1');
+	const bodyStyles = useTypographyStyles('body');
+
+	return (
+		<>
+			<h1 className={h1Styles.className}>Premium Heading</h1>
+			<p className={bodyStyles.className}>Professional body text</p>
+		</>
+	);
 }
 ```
 
@@ -244,7 +260,7 @@ import { cn } from '@/lib/design-system/component-variants';
 </button>
 
 <button className={buttonVariants({ variant: 'secondary', size: 'lg' })}>
-  Secondary Action  
+  Secondary Action
 </button>
 
 <button className={buttonVariants({ variant: 'outline', size: 'sm' })}>
@@ -259,13 +275,13 @@ import { cn } from '@/lib/design-system/component-variants';
 
 ### Button Variants Reference
 
-| Variant | Description | Use Case |
-|---------|-------------|----------|
-| `primary` | Metallic blue, high prominence | Main actions, CTA buttons |
-| `secondary` | Aztec gold, secondary prominence | Secondary actions |  
-| `outline` | Border only, subtle | Less important actions |
-| `ghost` | Text only, minimal | Navigation, subtle actions |
-| `link` | Underlined text | Inline links, text buttons |
+| Variant     | Description                      | Use Case                   |
+| ----------- | -------------------------------- | -------------------------- |
+| `primary`   | Metallic blue, high prominence   | Main actions, CTA buttons  |
+| `secondary` | Aztec gold, secondary prominence | Secondary actions          |
+| `outline`   | Border only, subtle              | Less important actions     |
+| `ghost`     | Text only, minimal               | Navigation, subtle actions |
+| `link`      | Underlined text                  | Inline links, text buttons |
 
 ### Card Variants
 
@@ -297,34 +313,35 @@ Primary hook for accessing design tokens programmatically.
 import { useDesignTokens } from '@/lib/design-system/useDesignTokens';
 
 function ComponentExample() {
-  const { 
-    getBrandColor,
-    getSemanticColor, 
-    getTypography,
-    getSpacing,
-    setCSSVar 
-  } = useDesignTokens();
-  
-  // Dynamic color access
-  const primaryColor = getBrandColor('metallicBlue');
-  const primaryWithOpacity = getBrandColor('metallicBlue', 50); // 50% opacity
-  
-  // Typography access
-  const headingFont = getTypography('heading'); // Playfair Display
-  const bodyFont = getTypography('body');       // Source Serif 4
-  
-  // Runtime CSS variable updates
-  setCSSVar('color-primary', primaryColor);
-  
-  return (
-    <div style={{ 
-      backgroundColor: primaryColor,
-      fontFamily: headingFont,
-      padding: getSpacing('6')
-    }}>
-      Dynamic styling example
-    </div>
-  );
+	const {
+		getBrandColor,
+		getSemanticColor,
+		getTypography,
+		getSpacing,
+		setCSSVar,
+	} = useDesignTokens();
+
+	// Dynamic color access
+	const primaryColor = getBrandColor('metallicBlue');
+	const primaryWithOpacity = getBrandColor('metallicBlue', 50); // 50% opacity
+
+	// Typography access
+	const headingFont = getTypography('heading'); // Playfair Display
+	const bodyFont = getTypography('body'); // Source Serif 4
+
+	// Runtime CSS variable updates
+	setCSSVar('color-primary', primaryColor);
+
+	return (
+		<div
+			style={{
+				backgroundColor: primaryColor,
+				fontFamily: headingFont,
+				padding: getSpacing('6'),
+			}}>
+			Dynamic styling example
+		</div>
+	);
 }
 ```
 
@@ -336,20 +353,20 @@ Specialized hook for button component standardization.
 import { useButtonStyles } from '@/lib/design-system/useDesignTokens';
 
 function ButtonExample() {
-  const primaryButton = useButtonStyles('primary', 'lg');
-  const secondaryButton = useButtonStyles('secondary', 'md');
-  
-  return (
-    <div>
-      <button className={primaryButton.className} style={primaryButton.style}>
-        Primary Button
-      </button>
-      
-      <button className={secondaryButton.className}>
-        Secondary Button  
-      </button>
-    </div>
-  );
+	const primaryButton = useButtonStyles('primary', 'lg');
+	const secondaryButton = useButtonStyles('secondary', 'md');
+
+	return (
+		<div>
+			<button
+				className={primaryButton.className}
+				style={primaryButton.style}>
+				Primary Button
+			</button>
+
+			<button className={secondaryButton.className}>Secondary Button</button>
+		</div>
+	);
 }
 ```
 
@@ -361,16 +378,15 @@ Theme management and dark mode support.
 import { useTheme } from '@/lib/design-system/useDesignTokens';
 
 function ThemeToggle() {
-  const { mode, setMode, isDark } = useTheme();
-  
-  return (
-    <button 
-      onClick={() => setMode(isDark ? 'light' : 'dark')}
-      className={buttonVariants({ variant: 'outline' })}
-    >
-      {isDark ? '☀️ Light' : '🌙 Dark'}
-    </button>
-  );
+	const { mode, setMode, isDark } = useTheme();
+
+	return (
+		<button
+			onClick={() => setMode(isDark ? 'light' : 'dark')}
+			className={buttonVariants({ variant: 'outline' })}>
+			{isDark ? '☀️ Light' : '🌙 Dark'}
+		</button>
+	);
 }
 ```
 
@@ -381,7 +397,10 @@ function ThemeToggle() {
 ### Automated Color Migration
 
 ```typescript
-import { migrateColor, bulkMigration } from '@/lib/design-system/migration-utilities';
+import {
+	migrateColor,
+	bulkMigration,
+} from '@/lib/design-system/migration-utilities';
 
 // Single color migration
 const colorResult = migrateColor('#0000FF');
@@ -390,8 +409,8 @@ console.log(colorResult);
 
 // Bulk file migration
 const files = [
-  { path: 'styles.css', content: cssContent, type: 'css' },
-  { path: 'component.tsx', content: jsxContent, type: 'jsx' }
+	{ path: 'styles.css', content: cssContent, type: 'css' },
+	{ path: 'component.tsx', content: jsxContent, type: 'jsx' },
 ];
 
 const migrationResult = bulkMigration(files);
@@ -429,13 +448,13 @@ Add to your `.eslintrc.js`:
 
 ```javascript
 module.exports = {
-  plugins: ['@mpto/design-system'],
-  rules: {
-    '@mpto/design-system/no-hardcoded-colors': 'error',
-    '@mpto/design-system/enforce-brand-typography': 'error',
-    '@mpto/design-system/require-design-system-components': 'warn',
-    '@mpto/design-system/no-inline-styles': 'warn'
-  }
+	plugins: ['@mpto/design-system'],
+	rules: {
+		'@mpto/design-system/no-hardcoded-colors': 'error',
+		'@mpto/design-system/enforce-brand-typography': 'error',
+		'@mpto/design-system/require-design-system-components': 'warn',
+		'@mpto/design-system/no-inline-styles': 'warn',
+	},
 };
 ```
 
@@ -461,8 +480,10 @@ node src/lib/design-system/design-system-lint.js
 ### Validation Rules
 
 1. **No Hardcoded Colors**: Prevents `#000000`, `rgb()`, `hsl()` values
-2. **Brand Typography**: Enforces Playfair Display for headings, Source Serif 4 for body
-3. **Component Usage**: Suggests design system components over custom implementations
+2. **Brand Typography**: Enforces Playfair Display for headings, Source Serif 4
+   for body
+3. **Component Usage**: Suggests design system components over custom
+   implementations
 4. **No Inline Styles**: Prevents style bypassing design system
 
 ---
@@ -478,7 +499,7 @@ The design system extends your existing `tailwind.config.ts`:
 <div className="bg-brand-metallic-blue-700 text-white">
 <div className="border-brand-aztec-gold-600 bg-brand-aztec-gold-50">
 
-// Typography classes  
+// Typography classes
 <h1 className="font-playfair text-5xl font-bold">
 <p className="font-source-serif text-base leading-relaxed">
 ```
@@ -489,21 +510,20 @@ The design system extends your existing `tailwind.config.ts`:
 import { useDesignTokens } from '@/lib/design-system/useDesignTokens';
 
 function StyledComponent() {
-  const { getBrandColor, getCSSVar } = useDesignTokens();
-  
-  return (
-    <div
-      style={{
-        backgroundColor: getBrandColor('metallicBlue'),
-        color: 'white',
-        padding: getCSSVar('spacing-6'),
-        borderRadius: getCSSVar('radius-lg'),
-        boxShadow: getCSSVar('shadow-primary-subtle')
-      }}
-    >
-      CSS-in-JS with design tokens
-    </div>
-  );
+	const { getBrandColor, getCSSVar } = useDesignTokens();
+
+	return (
+		<div
+			style={{
+				backgroundColor: getBrandColor('metallicBlue'),
+				color: 'white',
+				padding: getCSSVar('spacing-6'),
+				borderRadius: getCSSVar('radius-lg'),
+				boxShadow: getCSSVar('shadow-primary-subtle'),
+			}}>
+			CSS-in-JS with design tokens
+		</div>
+	);
 }
 ```
 
@@ -514,23 +534,22 @@ import { useAnimationTokens } from '@/lib/design-system/useDesignTokens';
 import { motion } from 'framer-motion';
 
 function AnimatedComponent() {
-  const animations = useAnimationTokens();
-  
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: animations.duration.normal,
-        ease: animations.easing.out
-      }}
-      style={{ 
-        backgroundColor: animations.colors.primary 
-      }}
-    >
-      Animated with design tokens
-    </motion.div>
-  );
+	const animations = useAnimationTokens();
+
+	return (
+		<motion.div
+			initial={{ opacity: 0, y: 20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{
+				duration: animations.duration.normal,
+				ease: animations.easing.out,
+			}}
+			style={{
+				backgroundColor: animations.colors.primary,
+			}}>
+			Animated with design tokens
+		</motion.div>
+	);
 }
 ```
 
@@ -541,26 +560,30 @@ function AnimatedComponent() {
 ### 1. Color Usage Guidelines
 
 **✅ DO:**
+
 - Use brand colors for primary actions and key elements
 - Utilize opacity variations for subtle effects: `brand-metallic-blue-50`
 - Test color contrast for accessibility compliance
 - Use semantic colors for status indicators
 
 **❌ DON'T:**
+
 - Use raw hex colors: `#3F4A7E`
 - Mix brand and non-brand colors arbitrarily
 - Use brand colors for decorative purposes only
 - Override brand colors with custom values
 
-### 2. Typography Best Practices  
+### 2. Typography Best Practices
 
 **✅ DO:**
+
 - Always use Playfair Display for headings (h1-h6)
 - Always use Source Serif 4 for body text
 - Maintain proper heading hierarchy
 - Use consistent font weights within the scale
 
 **❌ DON'T:**
+
 - Use generic `font-serif` or `font-sans`
 - Mix multiple font families
 - Skip heading levels (h1 → h3)
@@ -569,14 +592,16 @@ function AnimatedComponent() {
 ### 3. Component Standards
 
 **✅ DO:**
+
 - Use design system components when available
 - Extend components with additional classes: `cn(buttonVariants(), 'w-full')`
 - Follow component API patterns consistently
 - Report missing components for future addition
 
 **❌ DON'T:**
+
 - Create custom buttons without using button variants
-- Override component styles with important declarations  
+- Override component styles with important declarations
 - Bypass component props with direct styling
 - Duplicate component functionality
 
@@ -603,21 +628,22 @@ function AnimatedComponent() {
 
 ### Common Issues
 
-**Q: Colors not applying correctly?**
-A: Ensure you've imported the global CSS file: `import '@/lib/design-system/globals.css'`
+**Q: Colors not applying correctly?** A: Ensure you've imported the global CSS
+file: `import '@/lib/design-system/globals.css'`
 
-**Q: TypeScript errors with design tokens?**
-A: Update your TypeScript configuration to include the design system types.
+**Q: TypeScript errors with design tokens?** A: Update your TypeScript
+configuration to include the design system types.
 
-**Q: Linting rules too strict?**
-A: Adjust rule severity in your ESLint configuration, but maintain brand compliance.
+**Q: Linting rules too strict?** A: Adjust rule severity in your ESLint
+configuration, but maintain brand compliance.
 
-**Q: Migration utility not finding patterns?**
-A: Check the migration mapping files and add custom patterns as needed.
+**Q: Migration utility not finding patterns?** A: Check the migration mapping
+files and add custom patterns as needed.
 
 ### Support & Updates
 
 For questions about the design system implementation:
+
 1. Review this documentation first
 2. Check the linting output for specific guidance
 3. Use migration utilities for automated fixes
@@ -646,7 +672,7 @@ For questions about the design system implementation:
 ### Future-Proofing
 
 - 🔒 **Validation System**: Prevents design system violations
-- 🚀 **Extensible Architecture**: Easy addition of new tokens and components  
+- 🚀 **Extensible Architecture**: Easy addition of new tokens and components
 - 📱 **Multi-Platform**: Works with React, vanilla CSS, and other frameworks
 - 🎯 **Migration Support**: Tools for ongoing evolution and improvements
 
@@ -656,4 +682,6 @@ For questions about the design system implementation:
 **Last Updated**: September 2025  
 **Compliance Status**: ✅ Royal Client Ready
 
-*This design system represents a complete transformation of My Private Tutor Online's brand implementation, ensuring consistent, accessible, and premium-quality user experiences across all touchpoints.*
+_This design system represents a complete transformation of My Private Tutor
+Online's brand implementation, ensuring consistent, accessible, and
+premium-quality user experiences across all touchpoints._

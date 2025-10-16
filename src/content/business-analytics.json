@@ -1,320 +1,320 @@
 {
-  "_comments": {
-    "lastUpdated": "2025-08-26",
-    "recentChanges": [
-      {
-        "change": "Updated results documentation with exact client-provided copy: Enhanced school list (added Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's), refined GCSE description wording for clarity",
-        "reason": "CONTEXT7 SOURCE: /microsoft/typescript - JSON object property updates for exact client copy implementation",
-        "date": "2025-08-26",
-        "source": "Direct client requirements - exact copy implementation for results documentation section 1.6"
-      },
-      {
-        "change": "Revised existing 3 results cards with new client-approved copy: 11+ School Success (95% pass rate), GCSE Grade Growth (94% 2+ grade growth), Top 2% Test Performance",
-        "reason": "CONTEXT7 SOURCE: /jamesnk/newtonsoft.json - JSON content structure updates for enhanced client messaging",
-        "date": "2025-08-26",
-        "source": "Context-manager task - replace existing results cards with targeted success metrics"
-      },
-      {
-        "change": "Optimized resultsDocumentation to best 3 cards only (A-Level Grade Improvement, Russell Group Acceptance, Oxbridge Success)",
-        "reason": "CONTEXT7 SOURCE: /websites/react_dev - Component removal patterns for streamlined page structure",
-        "date": "2025-08-18",
-        "source": "Subject tuition page cleanup - focus on most impactful outcomes"
-      },
-      {
-        "change": "Removed '24/7 educational support coordination' from keyInterventions",
-        "reason": "CONTEXT7 SOURCE: /vercel/next.js - Content audit removal per user requirements",
-        "date": "2025-01-16",
-        "source": "Homepage footer audit - remove unsupported claims"
-      }
-    ]
-  },
-  "resultsDocumentation": [
-    {
-      "category": "school_success",
-      "metric": "11+ Grammar & Independent School Success",
-      "value": "95% pass rate",
-      "description": "Students achieving offers from at least one of their first choice schools, including Eton, St Paul's, Westminster, Highgate, Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's and more.",
-      "timeframe": "Recent application cycles",
-      "verificationLevel": "verified",
-      "icon": "Award",
-      "priority": 1
-    },
-    {
-      "category": "grade_improvement",
-      "metric": "GCSE Grade Growth",
-      "value": "94% 2+ grade growth",
-      "description": "Our GCSE students consistently improve by two or more full levels during their time with us.",
-      "timeframe": "Long-term tracking across multiple academic years",
-      "verificationLevel": "verified",
-      "icon": "TrendingUp",
-      "priority": 1
-    },
-    {
-      "category": "academic_excellence",
-      "metric": "Top 2% Test Performance",
-      "value": "Top 2% of test takers",
-      "description": "From 7+ entrance all the way through to A Levels, our tutees frequently score in the top 2% of candidates. For example, one of our current students obtained the highest GCSE Science score in all of Asia.",
-      "timeframe": "Recent examination cycles",
-      "verificationLevel": "verified",
-      "icon": "Crown",
-      "priority": 1
-    }
-  ],
-  "caseStudies": [
-    {
-      "id": "oxbridge-mathematics-success",
-      "category": "oxbridge_prep",
-      "anonymizedTitle": "Cambridge Mathematics Offer - London Independent School",
-      "level": "A-Level + University Application",
-      "subject": "Mathematics",
-      "initialPosition": "Predicted B in A-Level Mathematics, uncertain about university applications",
-      "finalOutcome": "A* achieved in Mathematics, conditional offer from Cambridge (Trinity College)",
-      "duration": "18 months intensive preparation",
-      "investment": {
-        "tier": "elite",
-        "approxValue": "£28,000-35,000"
-      },
-      "keyInterventions": [
-        "Weekly A-Level Mathematics enhancement sessions",
-        "STEP exam preparation with former Cambridge examiner",
-        "University application guidance and interview coaching",
-        "Personal statement development",
-        "Mock interview sessions with current Cambridge academics"
-      ],
-      "clientTestimonial": "Elizabeth's network provided access to genuine Cambridge expertise. The STEP preparation was transformational, and the interview coaching gave confidence that made all the difference. Worth every investment.",
-      "verified": true,
-      "featured": true
-    },
-    {
-      "id": "grammar-school-preparation",
-      "category": "11_plus",
-      "anonymizedTitle": "Competitive Grammar School Success - Surrey Family",
-      "level": "11+ Preparation",
-      "subject": "11+ Comprehensive",
-      "initialPosition": "Average performance in practice tests, anxious about exam technique",
-      "finalOutcome": "Offers from 3 out of 3 target grammar schools, scored in top 5% of candidates",
-      "duration": "8 months structured preparation",
-      "investment": {
-        "tier": "premium",
-        "approxValue": "£12,000-18,000"
-      },
-      "keyInterventions": [
-        "Twice-weekly VR/NVR technique coaching",
-        "English comprehension and creative writing development",
-        "Mathematics problem-solving strategies",
-        "Exam confidence and time management training",
-        "Regular progress assessments and strategy adjustments"
-      ],
-      "clientTestimonial": "The structured approach eliminated our anxiety. Our child went from dreading practice tests to approaching exams with genuine confidence. All three grammar school offers exceeded our expectations.",
-      "verified": true,
-      "featured": true
-    },
-    {
-      "id": "elite-corporate-discretion",
-      "category": "elite_corporate",
-      "anonymizedTitle": "Ultra-High Net Worth Family - International School Success",
-      "level": "IB Diploma + US University Applications",
-      "subject": "Multiple subjects",
-      "initialPosition": "Relocating internationally, needed seamless educational continuity",
-      "finalOutcome": "IB score of 43/45, Ivy League acceptances to 4 target universities",
-      "duration": "2 years comprehensive support",
-      "investment": {
-        "tier": "elite",
-        "approxValue": "£85,000-120,000"
-      },
-      "keyInterventions": [
-        "Global tutoring coordination across multiple time zones",
-        "Subject-specific experts for all IB disciplines",
-        "US university application strategy and essay development",
-        "Complete discretion protocols for high-profile family"
-      ],
-      "clientTestimonial": "The level of discretion and expertise was exactly what our family required. Elizabeth personally managed every detail, allowing us to focus on our business while ensuring our child's educational excellence.",
-      "verified": true,
-      "featured": true
-    },
-    {
-      "id": "comparison-shopper-value",
-      "category": "comparison_shopper",
-      "anonymizedTitle": "Value-Conscious Family - Comprehensive GCSE Success",
-      "level": "GCSE Preparation",
-      "subject": "Mathematics and Sciences",
-      "initialPosition": "Researched multiple tutoring companies, needed proven ROI justification",
-      "finalOutcome": "All target grades achieved (8s and 9s), clear path to competitive A-Levels",
-      "duration": "14 months targeted support",
-      "investment": {
-        "tier": "premium",
-        "approxValue": "£16,000-22,000"
-      },
-      "keyInterventions": [
-        "Detailed progress tracking with quantified metrics",
-        "Regular ROI assessments and strategy optimisation",
-        "Subject-specific expert tutors (not generalists)",
-        "Comprehensive comparison with alternative approaches",
-        "Clear milestone achievements with measurable outcomes"
-      ],
-      "clientTestimonial": "We evaluated six tutoring services. Elizabeth's approach provided the clearest value proposition with tangible results at every stage. The investment delivered exactly the outcomes we needed.",
-      "verified": true,
-      "featured": false
-    }
-  ],
-  "competitiveAnalysis": [
-    {
-      "category": "exclusivity",
-      "metricName": "Tutor Selection Rate",
-      "ourAdvantage": "Less than 10% acceptance rate",
-      "industryAverage": "40-60% acceptance rate",
-      "competitorComparison": "Mass tutoring services accept most applicants",
-      "justification": "Elizabeth personally vets every tutor through her professional network, ensuring exceptional quality and discretion standards",
-      "supportingEvidence": [
-        "Personal vetting by Cambridge-educated founder",
-        "Professional network built over 15 years",
-        "Royal family endorsements and referrals",
-        "Tatler Address Book recognition"
-      ],
-      "clientSegment": "elite_corporate",
-      "priority": 1
-    },
-    {
-      "category": "credentials",
-      "metricName": "Examiner-Level Expertise",
-      "ourAdvantage": "Tier 1 tutors are actual exam writers/markers",
-      "industryAverage": "General subject knowledge",
-      "competitorComparison": "Most competitors use recent graduates or part-time tutors",
-      "justification": "Direct access to examination boards through Elizabeth's network provides insider insight unavailable elsewhere",
-      "supportingEvidence": [
-        "Current and former exam board members",
-        "Chief examiners for major awarding bodies",
-        "University admissions panel experience",
-        "Published academic researchers"
-      ],
-      "clientSegment": "oxbridge_prep",
-      "priority": 1
-    },
-    {
-      "category": "service_quality",
-      "metricName": "Personal Curation",
-      "ourAdvantage": "Elizabeth personally manages every placement",
-      "industryAverage": "Automated matching systems",
-      "competitorComparison": "Large agencies use algorithm-based tutor assignment",
-      "justification": "Personal attention ensures perfect tutor-student fit and maintains quality standards throughout",
-      "supportingEvidence": [
-        "Founder involvement in every client relationship",
-        "Bespoke matching based on learning style and personality",
-        "Ongoing relationship management",
-        "Direct access to leadership for concerns"
-      ],
-      "clientSegment": "all",
-      "priority": 2
-    },
-    {
-      "category": "pricing",
-      "metricName": "Value-Based Investment",
-      "ourAdvantage": "£500-2000+ per session reflects genuine expertise",
-      "industryAverage": "£30-80 per hour",
-      "competitorComparison": "Budget providers focus on volume over quality",
-      "justification": "Premium pricing ensures access to the UK's most qualified educators and maintains service exclusivity",
-      "supportingEvidence": [
-        "Measurable ROI through university placements",
-        "Lifetime earning potential increases",
-        "Access to otherwise unavailable expertise",
-        "Proven grade improvements averaging 2.3 levels"
-      ],
-      "clientSegment": "comparison_shopper",
-      "priority": 2
-    },
-    {
-      "category": "results",
-      "metricName": "University Placement Success",
-      "ourAdvantage": "85% Russell Group, 47% Oxbridge success rates",
-      "industryAverage": "24% Russell Group national average",
-      "competitorComparison": "Most tutoring services don't track university outcomes",
-      "justification": "Proven track record with verifiable outcomes tracked over multiple academic years",
-      "supportingEvidence": [
-        "Verified placement statistics",
-        "Long-term outcome tracking",
-        "Client testimonials from successful placements",
-        "Recognition in educational publications"
-      ],
-      "clientSegment": "all",
-      "priority": 1
-    }
-  ],
-  "roiCalculations": [
-    {
-      "investmentTier": "essentials",
-      "typicalInvestment": {
-        "min": 8000,
-        "max": 15000,
-        "currency": "GBP"
-      },
-      "measurableOutcomes": [
-        {
-          "outcome": "GCSE grade improvements leading to better A-Level options",
-          "financialValue": "£25,000-40,000 lifetime earnings increase",
-          "probabilityImprovement": "96% achieve Grade 7+ vs 67% national average"
-        },
-        {
-          "outcome": "Access to grammar school places",
-          "financialValue": "£180,000+ saved in independent school fees",
-          "probabilityImprovement": "94% success rate vs 75% self-preparation"
-        }
-      ],
-      "timeToReturn": "Immediate fee savings or 5-8 years career benefits",
-      "lifetimeValue": "£200,000-400,000 education and career premium",
-      "confidenceLevel": "High confidence based on 340+ tracked students"
-    },
-    {
-      "investmentTier": "premium",
-      "typicalInvestment": {
-        "min": 20000,
-        "max": 40000,
-        "currency": "GBP"
-      },
-      "measurableOutcomes": [
-        {
-          "outcome": "Russell Group university placement",
-          "financialValue": "£300,000-500,000 lifetime earnings premium",
-          "probabilityImprovement": "85% success rate vs 24% national average"
-        },
-        {
-          "outcome": "A-Level grade improvements enabling course choices",
-          "financialValue": "Access to competitive degrees worth £50,000+ annually",
-          "probabilityImprovement": "2.3 grade average improvement"
-        }
-      ],
-      "timeToReturn": "3-5 years post-graduation",
-      "lifetimeValue": "£500,000-800,000 career and networking benefits",
-      "confidenceLevel": "Very high confidence based on verified tracking"
-    },
-    {
-      "investmentTier": "elite",
-      "typicalInvestment": {
-        "min": 50000,
-        "max": 120000,
-        "currency": "GBP"
-      },
-      "measurableOutcomes": [
-        {
-          "outcome": "Oxbridge placement with networking access",
-          "financialValue": "£500,000-1,500,000 lifetime career premium",
-          "probabilityImprovement": "47% success rate vs 21% national average"
-        },
-        {
-          "outcome": "International university access (Ivy League)",
-          "financialValue": "Multi-million career trajectory potential",
-          "probabilityImprovement": "Exclusive access to application expertise"
-        },
-        {
-          "outcome": "Discretionary family support for high-profile clients",
-          "financialValue": "Immeasurable reputational and privacy benefits",
-          "probabilityImprovement": "Unique service level unavailable elsewhere"
-        }
-      ],
-      "timeToReturn": "2-4 years post-graduation",
-      "lifetimeValue": "£1,000,000+ career, networking, and social capital",
-      "confidenceLevel": "Exceptional confidence based on elite client outcomes"
-    }
-  ],
-  "lastUpdated": "2025-08-26",
-  "dataVerificationDate": "2024-12-15"
+	"_comments": {
+		"lastUpdated": "2025-08-26",
+		"recentChanges": [
+			{
+				"change": "Updated results documentation with exact client-provided copy: Enhanced school list (added Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's), refined GCSE description wording for clarity",
+				"reason": "CONTEXT7 SOURCE: /microsoft/typescript - JSON object property updates for exact client copy implementation",
+				"date": "2025-08-26",
+				"source": "Direct client requirements - exact copy implementation for results documentation section 1.6"
+			},
+			{
+				"change": "Revised existing 3 results cards with new client-approved copy: 11+ School Success (95% pass rate), GCSE Grade Growth (94% 2+ grade growth), Top 2% Test Performance",
+				"reason": "CONTEXT7 SOURCE: /jamesnk/newtonsoft.json - JSON content structure updates for enhanced client messaging",
+				"date": "2025-08-26",
+				"source": "Context-manager task - replace existing results cards with targeted success metrics"
+			},
+			{
+				"change": "Optimized resultsDocumentation to best 3 cards only (A-Level Grade Improvement, Russell Group Acceptance, Oxbridge Success)",
+				"reason": "CONTEXT7 SOURCE: /websites/react_dev - Component removal patterns for streamlined page structure",
+				"date": "2025-08-18",
+				"source": "Subject tuition page cleanup - focus on most impactful outcomes"
+			},
+			{
+				"change": "Removed '24/7 educational support coordination' from keyInterventions",
+				"reason": "CONTEXT7 SOURCE: /vercel/next.js - Content audit removal per user requirements",
+				"date": "2025-01-16",
+				"source": "Homepage footer audit - remove unsupported claims"
+			}
+		]
+	},
+	"resultsDocumentation": [
+		{
+			"category": "school_success",
+			"metric": "11+ Grammar & Independent School Success",
+			"value": "95% pass rate",
+			"description": "Students achieving offers from at least one of their first choice schools, including Eton, St Paul's, Westminster, Highgate, Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's and more.",
+			"timeframe": "Recent application cycles",
+			"verificationLevel": "verified",
+			"icon": "Award",
+			"priority": 1
+		},
+		{
+			"category": "grade_improvement",
+			"metric": "GCSE Grade Growth",
+			"value": "94% 2+ grade growth",
+			"description": "Our GCSE students consistently improve by two or more full levels during their time with us.",
+			"timeframe": "Long-term tracking across multiple academic years",
+			"verificationLevel": "verified",
+			"icon": "TrendingUp",
+			"priority": 1
+		},
+		{
+			"category": "academic_excellence",
+			"metric": "Top 2% Test Performance",
+			"value": "Top 2% of test takers",
+			"description": "From 7+ entrance all the way through to A Levels, our tutees frequently score in the top 2% of candidates. For example, one of our current students obtained the highest GCSE Science score in all of Asia.",
+			"timeframe": "Recent examination cycles",
+			"verificationLevel": "verified",
+			"icon": "Crown",
+			"priority": 1
+		}
+	],
+	"caseStudies": [
+		{
+			"id": "oxbridge-mathematics-success",
+			"category": "oxbridge_prep",
+			"anonymizedTitle": "Cambridge Mathematics Offer - London Independent School",
+			"level": "A-Level + University Application",
+			"subject": "Mathematics",
+			"initialPosition": "Predicted B in A-Level Mathematics, uncertain about university applications",
+			"finalOutcome": "A* achieved in Mathematics, conditional offer from Cambridge (Trinity College)",
+			"duration": "18 months intensive preparation",
+			"investment": {
+				"tier": "elite",
+				"approxValue": "£28,000-35,000"
+			},
+			"keyInterventions": [
+				"Weekly A-Level Mathematics enhancement sessions",
+				"STEP exam preparation with former Cambridge examiner",
+				"University application guidance and interview coaching",
+				"Personal statement development",
+				"Mock interview sessions with current Cambridge academics"
+			],
+			"clientTestimonial": "Elizabeth's network provided access to genuine Cambridge expertise. The STEP preparation was transformational, and the interview coaching gave confidence that made all the difference. Worth every investment.",
+			"verified": true,
+			"featured": true
+		},
+		{
+			"id": "grammar-school-preparation",
+			"category": "11_plus",
+			"anonymizedTitle": "Competitive Grammar School Success - Surrey Family",
+			"level": "11+ Preparation",
+			"subject": "11+ Comprehensive",
+			"initialPosition": "Average performance in practice tests, anxious about exam technique",
+			"finalOutcome": "Offers from 3 out of 3 target grammar schools, scored in top 5% of candidates",
+			"duration": "8 months structured preparation",
+			"investment": {
+				"tier": "premium",
+				"approxValue": "£12,000-18,000"
+			},
+			"keyInterventions": [
+				"Twice-weekly VR/NVR technique coaching",
+				"English comprehension and creative writing development",
+				"Mathematics problem-solving strategies",
+				"Exam confidence and time management training",
+				"Regular progress assessments and strategy adjustments"
+			],
+			"clientTestimonial": "The structured approach eliminated our anxiety. Our child went from dreading practice tests to approaching exams with genuine confidence. All three grammar school offers exceeded our expectations.",
+			"verified": true,
+			"featured": true
+		},
+		{
+			"id": "elite-corporate-discretion",
+			"category": "elite_corporate",
+			"anonymizedTitle": "Ultra-High Net Worth Family - International School Success",
+			"level": "IB Diploma + US University Applications",
+			"subject": "Multiple subjects",
+			"initialPosition": "Relocating internationally, needed seamless educational continuity",
+			"finalOutcome": "IB score of 43/45, Ivy League acceptances to 4 target universities",
+			"duration": "2 years comprehensive support",
+			"investment": {
+				"tier": "elite",
+				"approxValue": "£85,000-120,000"
+			},
+			"keyInterventions": [
+				"Global tutoring coordination across multiple time zones",
+				"Subject-specific experts for all IB disciplines",
+				"US university application strategy and essay development",
+				"Complete discretion protocols for high-profile family"
+			],
+			"clientTestimonial": "The level of discretion and expertise was exactly what our family required. Elizabeth personally managed every detail, allowing us to focus on our business while ensuring our child's educational excellence.",
+			"verified": true,
+			"featured": true
+		},
+		{
+			"id": "comparison-shopper-value",
+			"category": "comparison_shopper",
+			"anonymizedTitle": "Value-Conscious Family - Comprehensive GCSE Success",
+			"level": "GCSE Preparation",
+			"subject": "Mathematics and Sciences",
+			"initialPosition": "Researched multiple tutoring companies, needed proven ROI justification",
+			"finalOutcome": "All target grades achieved (8s and 9s), clear path to competitive A-Levels",
+			"duration": "14 months targeted support",
+			"investment": {
+				"tier": "premium",
+				"approxValue": "£16,000-22,000"
+			},
+			"keyInterventions": [
+				"Detailed progress tracking with quantified metrics",
+				"Regular ROI assessments and strategy optimisation",
+				"Subject-specific expert tutors (not generalists)",
+				"Comprehensive comparison with alternative approaches",
+				"Clear milestone achievements with measurable outcomes"
+			],
+			"clientTestimonial": "We evaluated six tutoring services. Elizabeth's approach provided the clearest value proposition with tangible results at every stage. The investment delivered exactly the outcomes we needed.",
+			"verified": true,
+			"featured": false
+		}
+	],
+	"competitiveAnalysis": [
+		{
+			"category": "exclusivity",
+			"metricName": "Tutor Selection Rate",
+			"ourAdvantage": "Less than 10% acceptance rate",
+			"industryAverage": "40-60% acceptance rate",
+			"competitorComparison": "Mass tutoring services accept most applicants",
+			"justification": "Elizabeth personally vets every tutor through her professional network, ensuring exceptional quality and discretion standards",
+			"supportingEvidence": [
+				"Personal vetting by Cambridge-educated founder",
+				"Professional network built over 15 years",
+				"Royal family endorsements and referrals",
+				"Tatler Address Book recognition"
+			],
+			"clientSegment": "elite_corporate",
+			"priority": 1
+		},
+		{
+			"category": "credentials",
+			"metricName": "Examiner-Level Expertise",
+			"ourAdvantage": "Tier 1 tutors are actual exam writers/markers",
+			"industryAverage": "General subject knowledge",
+			"competitorComparison": "Most competitors use recent graduates or part-time tutors",
+			"justification": "Direct access to examination boards through Elizabeth's network provides insider insight unavailable elsewhere",
+			"supportingEvidence": [
+				"Current and former exam board members",
+				"Chief examiners for major awarding bodies",
+				"University admissions panel experience",
+				"Published academic researchers"
+			],
+			"clientSegment": "oxbridge_prep",
+			"priority": 1
+		},
+		{
+			"category": "service_quality",
+			"metricName": "Personal Curation",
+			"ourAdvantage": "Elizabeth personally manages every placement",
+			"industryAverage": "Automated matching systems",
+			"competitorComparison": "Large agencies use algorithm-based tutor assignment",
+			"justification": "Personal attention ensures perfect tutor-student fit and maintains quality standards throughout",
+			"supportingEvidence": [
+				"Founder involvement in every client relationship",
+				"Bespoke matching based on learning style and personality",
+				"Ongoing relationship management",
+				"Direct access to leadership for concerns"
+			],
+			"clientSegment": "all",
+			"priority": 2
+		},
+		{
+			"category": "pricing",
+			"metricName": "Value-Based Investment",
+			"ourAdvantage": "£500-2000+ per session reflects genuine expertise",
+			"industryAverage": "£30-80 per hour",
+			"competitorComparison": "Budget providers focus on volume over quality",
+			"justification": "Premium pricing ensures access to the UK's most qualified educators and maintains service exclusivity",
+			"supportingEvidence": [
+				"Measurable ROI through university placements",
+				"Lifetime earning potential increases",
+				"Access to otherwise unavailable expertise",
+				"Proven grade improvements averaging 2.3 levels"
+			],
+			"clientSegment": "comparison_shopper",
+			"priority": 2
+		},
+		{
+			"category": "results",
+			"metricName": "University Placement Success",
+			"ourAdvantage": "85% Russell Group, 47% Oxbridge success rates",
+			"industryAverage": "24% Russell Group national average",
+			"competitorComparison": "Most tutoring services don't track university outcomes",
+			"justification": "Proven track record with verifiable outcomes tracked over multiple academic years",
+			"supportingEvidence": [
+				"Verified placement statistics",
+				"Long-term outcome tracking",
+				"Client testimonials from successful placements",
+				"Recognition in educational publications"
+			],
+			"clientSegment": "all",
+			"priority": 1
+		}
+	],
+	"roiCalculations": [
+		{
+			"investmentTier": "essentials",
+			"typicalInvestment": {
+				"min": 8000,
+				"max": 15000,
+				"currency": "GBP"
+			},
+			"measurableOutcomes": [
+				{
+					"outcome": "GCSE grade improvements leading to better A-Level options",
+					"financialValue": "£25,000-40,000 lifetime earnings increase",
+					"probabilityImprovement": "96% achieve Grade 7+ vs 67% national average"
+				},
+				{
+					"outcome": "Access to grammar school places",
+					"financialValue": "£180,000+ saved in independent school fees",
+					"probabilityImprovement": "94% success rate vs 75% self-preparation"
+				}
+			],
+			"timeToReturn": "Immediate fee savings or 5-8 years career benefits",
+			"lifetimeValue": "£200,000-400,000 education and career premium",
+			"confidenceLevel": "High confidence based on 340+ tracked students"
+		},
+		{
+			"investmentTier": "premium",
+			"typicalInvestment": {
+				"min": 20000,
+				"max": 40000,
+				"currency": "GBP"
+			},
+			"measurableOutcomes": [
+				{
+					"outcome": "Russell Group university placement",
+					"financialValue": "£300,000-500,000 lifetime earnings premium",
+					"probabilityImprovement": "85% success rate vs 24% national average"
+				},
+				{
+					"outcome": "A-Level grade improvements enabling course choices",
+					"financialValue": "Access to competitive degrees worth £50,000+ annually",
+					"probabilityImprovement": "2.3 grade average improvement"
+				}
+			],
+			"timeToReturn": "3-5 years post-graduation",
+			"lifetimeValue": "£500,000-800,000 career and networking benefits",
+			"confidenceLevel": "Very high confidence based on verified tracking"
+		},
+		{
+			"investmentTier": "elite",
+			"typicalInvestment": {
+				"min": 50000,
+				"max": 120000,
+				"currency": "GBP"
+			},
+			"measurableOutcomes": [
+				{
+					"outcome": "Oxbridge placement with networking access",
+					"financialValue": "£500,000-1,500,000 lifetime career premium",
+					"probabilityImprovement": "47% success rate vs 21% national average"
+				},
+				{
+					"outcome": "International university access (Ivy League)",
+					"financialValue": "Multi-million career trajectory potential",
+					"probabilityImprovement": "Exclusive access to application expertise"
+				},
+				{
+					"outcome": "Discretionary family support for high-profile clients",
+					"financialValue": "Immeasurable reputational and privacy benefits",
+					"probabilityImprovement": "Unique service level unavailable elsewhere"
+				}
+			],
+			"timeToReturn": "2-4 years post-graduation",
+			"lifetimeValue": "£1,000,000+ career, networking, and social capital",
+			"confidenceLevel": "Exceptional confidence based on elite client outcomes"
+		}
+	],
+	"lastUpdated": "2025-08-26",
+	"dataVerificationDate": "2024-12-15"
 }

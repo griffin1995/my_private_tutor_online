@@ -1,498 +1,448 @@
-/**
- * CONTEXT7 SOURCE: /facebook/react - Refactored page component using extracted modular components
- * REFACTOR REASON: Official React documentation Section 3.1 recommends component composition patterns for maintainability
- * CONTEXT7 SOURCE: /grx7/framer-motion - Enhanced whileInView animations via extracted components
- * MODULAR ARCHITECTURE REASON: Official patterns for reusable component architecture with clear separation of concerns
- *
- * Subject Tuition Page - Refactored Architecture
- * Extracted monolithic components into modular, reusable sections:
- * - SubjectAccordion: Expandable subject categories with animations
- * - ServiceStatistics: Statistics display with responsive grid
- * - HomeschoolingPreview: CTA preview section with features
- * - ServicesCTA: Call-to-action section with dual buttons
- *
- * Benefits:
- * - Improved maintainability through component separation
- * - Enhanced reusability across pages
- * - Cleaner codebase with focused responsibilities
- * - Easier testing and debugging of individual sections
- */
+'use client';
 
-"use client";
-
-// CONTEXT7 SOURCE: /websites/react_dev - React import for client component useState context compatibility
-// BUILD FIX REASON: Official React documentation Section 3.2 requires explicit React import for client components using state management during build process
-import { PageLayout } from "@/components/layout/page-layout";
-import { Section } from "@/components/layout/section";
-import { SimpleHero } from "@/components/layout/simple-hero";
-import { Button } from "@/components/ui/button";
-import { WaveSeparator } from "@/components/ui/wave-separator";
-import { m } from "framer-motion";
+import { PageLayout } from '@/components/layout/page-layout';
+import { Section } from '@/components/layout/section';
+import { SimpleHero } from '@/components/layout/simple-hero';
+import { Button } from '@/components/ui/button';
+import { WaveSeparator } from '@/components/ui/wave-separator';
+import { m } from 'framer-motion';
 import {
-  Award,
-  BookOpen,
-  Globe,
-  GraduationCap,
-  Target,
-  Users,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-
-// CONTEXT7 SOURCE: /facebook/react - Importing extracted modular components
-// COMPONENT IMPORT REASON: Official React patterns for component composition and reusability
+	Award,
+	BookOpen,
+	Globe,
+	GraduationCap,
+	Target,
+	Users,
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import {
-  SubjectAccordion,
-  SubjectCategory,
-} from "@/components/sections/subject-accordion";
-
-// CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog component import for professional video display functionality
-// HERO VIDEO DIALOG REASON: Official Magic UI patterns for full-screen modal video playback with portal rendering and professional animations
-import { HeroVideoDialog } from "@/components/magicui/hero-video-dialog";
-
-// CONTEXT7 SOURCE: /facebook/react - Business analytics components for results documentation
-// BUSINESS ANALYTICS REASON: Results documentation for verifiable academic outcomes display
-import { ResultsDocumentation } from "@/components/sections/results-documentation";
-
-// CONTEXT7 SOURCE: /facebook/react - QuoteSection component import for testimonial content display
-// QUOTE SECTION REASON: Official React patterns for component reuse - replacing duplicate plain text with styled quote section
-import { BrandMessageSection } from "@/components/sections/brand-message-section";
-
-// CONTEXT7 SOURCE: /microsoft/typescript - CMS data access patterns for component data consumption
-// CMS INTEGRATION REASON: Official TypeScript patterns for centralized data management and type-safe content access
+	SubjectAccordion,
+	SubjectCategory,
+} from '@/components/sections/subject-accordion';
+import { HeroVideoDialog } from '@/components/magicui/hero-video-dialog';
+import { ResultsDocumentation } from '@/components/sections/results-documentation';
+import { BrandMessageSection } from '@/components/sections/brand-message-section';
 import {
-  getHomeschoolingPreview,
-  getResultsDocumentation,
-  getServicesCTA,
-  getServicesHero,
-  getServicesSectionTitles,
-  getServicesStatistics,
-  getServicesSubjectCategories,
-} from "@/lib/cms/cms-content";
-
-// CONTEXT7 SOURCE: /vercel/next.js - Client component rendering with modular architecture
-// REFACTORED ARCHITECTURE REASON: Official Next.js patterns for component composition and performance
-//
-// ROUTE SEGMENT ANALYSIS:
-// - Rendering Mode: Dynamic (ƒ) - Automatic via "use client" directive
-// - Component Architecture: Modular composition with extracted reusable components
-// - State Management: Delegated to individual components for better encapsulation
-// - Animation Strategy: Distributed across components with consistent Framer Motion patterns
-// - Data Flow: Structured props interface for component communication
-//
-// PERFORMANCE BENEFITS:
-// - Reduced bundle size through component splitting
-// - Improved memoization opportunities
-// - Better tree-shaking capabilities
-// - Enhanced development experience with focused components
-
-// CONTEXT7 SOURCE: /microsoft/typescript - CMS data consumption patterns for page components
-// CMS INTEGRATION REASON: Official TypeScript patterns for replacing hardcoded data with centralized CMS access
-
-// CMS DATA SOURCE: Using getServicesHero() for hero section content
+	getHomeschoolingPreview,
+	getResultsDocumentation,
+	getServicesCTA,
+	getServicesHero,
+	getServicesSectionTitles,
+	getServicesStatistics,
+	getServicesSubjectCategories,
+} from '@/lib/cms/cms-content';
 const heroContent = getServicesHero();
-
-// CMS DATA SOURCE: Using getServicesStatistics() for ServiceStatistics component
 const statisticsData = getServicesStatistics();
-
-// CMS DATA SOURCE: Using getServicesSectionTitles() for section headers
 const sectionTitles = getServicesSectionTitles();
-
-// CMS DATA SOURCE: Using getServicesSubjectCategories() for SubjectAccordion component with icon transformation
-// ICON TRANSFORMATION: Converting CMS icon strings to React components for component compatibility
 const subjectCategoriesData = getServicesSubjectCategories();
-
-// CONTEXT7 SOURCE: /facebook/react - Icon mapping helper function for CMS integration
-// TRANSFORMATION REASON: CMS stores icon names as strings, components require React elements
 const iconMap: Record<string, React.ReactElement> = {
-  Target: <Target className="w-6 h-6" />,
-  BookOpen: <BookOpen className="w-6 h-6" />,
-  GraduationCap: <GraduationCap className="w-6 h-6" />,
-  Award: <Award className="w-6 h-6" />,
-  Users: <Users className="w-6 h-6" />,
-  Globe: <Globe className="w-6 h-6" />,
+	Target: <Target className='w-6 h-6' />,
+	BookOpen: <BookOpen className='w-6 h-6' />,
+	GraduationCap: <GraduationCap className='w-6 h-6' />,
+	Award: <Award className='w-6 h-6' />,
+	Users: <Users className='w-6 h-6' />,
+	Globe: <Globe className='w-6 h-6' />,
 };
-
-// CONTEXT7 SOURCE: /microsoft/typescript - Data transformation patterns for nested component structures
-// TRANSFORMATION REASON: Official TypeScript patterns for converting CMS data to component-compatible format with nested children support
-// Transform CMS data to component-compatible format with nested children support
 const subjectCategories: SubjectCategory[] = subjectCategoriesData.map(
-  (category) => ({
-    id: category.id,
-    title: category.title,
-    icon: iconMap[category.icon] || <BookOpen className="w-6 h-6" />,
-    description: category.description,
-    subjects: category.subjects.map((subject) => ({
-      name: subject.name,
-      description: subject.description,
-      keyFeatures: [...subject.keyFeatures], // Convert readonly array to mutable for component compatibility
-      // CONTEXT7 SOURCE: /microsoft/typescript - Nested children transformation for multi-level accordion support
-      // NESTED CHILDREN REASON: Official TypeScript patterns for transforming CMS nested data to component interface
-      children: subject.children
-        ? subject.children.map((child) => ({
-            name: child.name,
-            description: child.description,
-            keyFeatures: [...child.keyFeatures],
-          }))
-        : undefined,
-      // CONTEXT7 SOURCE: /microsoft/typescript - Video section transformation for multimedia content integration
-      // VIDEO SECTION REASON: Official TypeScript patterns for transforming CMS video data to component interface
-      videoSection: subject.videoSection
-        ? {
-            thumbnailUrl: subject.videoSection.thumbnailUrl,
-            videoUrl: subject.videoSection.videoUrl,
-            title: subject.videoSection.title,
-            alt: subject.videoSection.alt,
-          }
-        : undefined,
-      // CONTEXT7 SOURCE: /microsoft/typescript - Two-column video section transformation for dual video content integration
-      // TWO COLUMN VIDEO REASON: Official TypeScript patterns for transforming CMS dual video data to component interface
-      twoColumnVideoSection: subject.twoColumnVideoSection
-        ? {
-            video1: {
-              thumbnailUrl: subject.twoColumnVideoSection.video1.thumbnailUrl,
-              videoUrl: subject.twoColumnVideoSection.video1.videoUrl,
-              title: subject.twoColumnVideoSection.video1.title,
-              alt: subject.twoColumnVideoSection.video1.alt,
-            },
-            video2: {
-              thumbnailUrl: subject.twoColumnVideoSection.video2.thumbnailUrl,
-              videoUrl: subject.twoColumnVideoSection.video2.videoUrl,
-              title: subject.twoColumnVideoSection.video2.title,
-              alt: subject.twoColumnVideoSection.video2.alt,
-            },
-          }
-        : undefined,
-    })),
-    // CONTEXT7 SOURCE: /facebook/react - Component interface patterns for call outs and testimonials transformation
-    // TRANSFORMATION REASON: Official React patterns for converting CMS readonly arrays to component-compatible format
-    callOuts: [...category.callOuts], // Convert readonly array to mutable for component compatibility
-    testimonial: category.testimonial,
-  })
+	(category) => ({
+		id: category.id,
+		title: category.title,
+		icon: iconMap[category.icon] || <BookOpen className='w-6 h-6' />,
+		description: category.description,
+		subjects: category.subjects.map((subject) => ({
+			name: subject.name,
+			description: subject.description,
+			keyFeatures: [...subject.keyFeatures],
+			children:
+				subject.children ?
+					subject.children.map((child) => ({
+						name: child.name,
+						description: child.description,
+						keyFeatures: [...child.keyFeatures],
+					}))
+				:	undefined,
+			videoSection:
+				subject.videoSection ?
+					{
+						thumbnailUrl: subject.videoSection.thumbnailUrl,
+						videoUrl: subject.videoSection.videoUrl,
+						title: subject.videoSection.title,
+						alt: subject.videoSection.alt,
+					}
+				:	undefined,
+			twoColumnVideoSection:
+				subject.twoColumnVideoSection ?
+					{
+						video1: {
+							thumbnailUrl: subject.twoColumnVideoSection.video1.thumbnailUrl,
+							videoUrl: subject.twoColumnVideoSection.video1.videoUrl,
+							title: subject.twoColumnVideoSection.video1.title,
+							alt: subject.twoColumnVideoSection.video1.alt,
+						},
+						video2: {
+							thumbnailUrl: subject.twoColumnVideoSection.video2.thumbnailUrl,
+							videoUrl: subject.twoColumnVideoSection.video2.videoUrl,
+							title: subject.twoColumnVideoSection.video2.title,
+							alt: subject.twoColumnVideoSection.video2.alt,
+						},
+					}
+				:	undefined,
+		})),
+		callOuts: [...category.callOuts],
+		testimonial: category.testimonial,
+	}),
 );
-
-// CMS DATA SOURCE: Using getHomeschoolingPreview() for homeschooling preview section
 const homeschoolingData = getHomeschoolingPreview();
-
-// CMS DATA SOURCE: Using getServicesCTA() for call-to-action section
 const ctaDataRaw = getServicesCTA();
-
-// CONTEXT7 SOURCE: /microsoft/typescript - Results documentation data consumption pattern
-// RESULTS DOCUMENTATION DATA: Quantifiable academic outcomes for premium service positioning
-// CMS DATA SOURCE: Using getResultsDocumentation() for verifiable achievement metrics
-// Note: This will be loaded asynchronously in the component using useEffect
-const resultsData: any[] = []; // Default empty array for build time
-
-// Transform CTA data to component-compatible format with action handlers
+const resultsData: any[] = [];
 const ctaData = {
-  title: ctaDataRaw.title,
-  description: ctaDataRaw.description,
-  primaryButton: {
-    text: ctaDataRaw.primaryButton.text,
-    onClick: () => {
-      // Handle consultation booking action
-      if (ctaDataRaw.primaryButton.action === "consultation") {
-        console.log("Book consultation clicked");
-        // Future: Add actual booking logic
-      }
-    },
-  },
-  secondaryButton: {
-    text: ctaDataRaw.secondaryButton.text,
-    onClick: () => {
-      // Handle subjects view action
-      if (ctaDataRaw.secondaryButton.action === "subjects") {
-        console.log("View subjects clicked");
-        // Future: Add subjects navigation logic
-      }
-    },
-  },
+	title: ctaDataRaw.title,
+	description: ctaDataRaw.description,
+	primaryButton: {
+		text: ctaDataRaw.primaryButton.text,
+		onClick: () => {
+			if (ctaDataRaw.primaryButton.action === 'consultation') {
+				console.log('Book consultation clicked');
+			}
+		},
+	},
+	secondaryButton: {
+		text: ctaDataRaw.secondaryButton.text,
+		onClick: () => {
+			if (ctaDataRaw.secondaryButton.action === 'subjects') {
+				console.log('View subjects clicked');
+			}
+		},
+	},
 };
-
-// CONTEXT7 SOURCE: /facebook/react - Main page component using modular extracted components
-// REFACTORED ARCHITECTURE REASON: Official React patterns for component composition and maintainability
 export default function SubjectTuitionPage() {
-  // CONTEXT7 SOURCE: /reactjs/react.dev - useState and useEffect for async data loading
-  // ASYNC DATA REASON: Official React documentation for managing server-fetched data in client components
-  const [asyncResultsData, setAsyncResultsData] = useState<any[]>([]);
+	const [asyncResultsData, setAsyncResultsData] = useState<any[]>([]);
+	useEffect(() => {
+		async function loadResultsData() {
+			try {
+				const data = await getResultsDocumentation();
+				setAsyncResultsData(data);
+			} catch (error) {
+				console.error('Failed to load results data:', error);
+			}
+		}
+		loadResultsData();
+	}, []);
+	return (
+		<>
+			{}
+			{}
+			{}
+			{}
+			{}
+			{}
+			<section id='subject-tuition-hero'>
+				<SimpleHero
+					backgroundImage='/images/hero/hero-subject-tuition-primary.jpg'
+					h1={
+						<>
+							Subject Tutoring
+							<br />&<br />
+							Exam Preparation
+						</>
+					}
+					h2='From entrance exams to university prep, our expert tutors provide personalised instruction across all subjects and educational stages. '
+					decorativeStyle='lines'
+				/>
+			</section>
 
-  // CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog removes need for manual modal state management
-  // HERO VIDEO DIALOG STATE REASON: Official Magic UI patterns - HeroVideoDialog handles its own modal state internally with portal rendering
+			{}
+			{}
+			{}
+			{}
+			<PageLayout
+				background='white'
+				showHeader={true}
+				showFooter={true}
+				containerSize='full'>
+				<WaveSeparator
+					variant='subtle'
+					className='text-slate-100'
+				/>
 
-  useEffect(() => {
-    async function loadResultsData() {
-      try {
-        const data = await getResultsDocumentation();
-        setAsyncResultsData(data);
-      } catch (error) {
-        console.error("Failed to load results data:", error);
-      }
-    }
+				{}
+				{}
+				{}
+				{}
 
-    loadResultsData();
-  }, []);
+				{}
+				{}
+				{}
+				{}
+				{}
+				{}
+				<Section
+					id='subject-tuition-categories'
+					className='py-16 lg:py-24 relative'
+					background='white'>
+					<div className='absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50' />
+					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
+						<m.div
+							className='text-center mb-16'
+							initial={{
+								opacity: 0,
+								y: 20,
+							}}
+							whileInView={{
+								opacity: 1,
+								y: 0,
+							}}
+							transition={{
+								duration: 0.6,
+							}}
+							viewport={{
+								once: true,
+							}}>
+							<h2 className='text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6'>
+								{sectionTitles.subjectCategories.title}
+							</h2>
+						</m.div>
 
-  // CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog removes need for manual video click handling
-  // HERO VIDEO DIALOG HANDLER REASON: Official Magic UI patterns - HeroVideoDialog handles click events internally with built-in state management
+						{}
+						{}
+						{}
+						{}
+						{}
+						{}
+						<BrandMessageSection
+							quote={sectionTitles.subjectCategories.description}
+							backgroundColor='bg-white'
+							className='py-0 mb-16'
+							useHighlighting={true}
+							showAuthorImage={false}
+						/>
 
-  return (
-    <>
-      {/* CONTEXT7 SOURCE: /vercel/next.js - SimpleHero component integration following consistent hero patterns */}
-      {/* SIMPLEHERO INTEGRATION REASON: Official Next.js documentation patterns for standardized hero sections across pages */}
-      {/* CONTEXT7 SOURCE: /facebook/react - JSX Fragment with br tags for multi-line title formatting */}
-      {/* TITLE FORMAT REVISION REASON: Official React documentation JSX patterns for multi-line content using Fragment syntax with br elements */}
-      {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
-      {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-      <section id="subject-tuition-hero">
-        <SimpleHero
-          backgroundImage="/images/hero/hero-subject-tuition-primary.jpg"
-          h1={<>Subject Tutoring<br/>&<br/>Exam Preparation</>}
-          h2="From entrance exams to university prep, our expert tutors provide personalised instruction across all subjects and educational stages. "
-          decorativeStyle="lines"
-        />
-      </section>
+						{}
+						{}
+						<div className='max-w-6xl mx-auto'>
+							{}
+							<div
+								id='primary'
+								className='-mt-24 pt-24'></div>
+							<div
+								id='secondary'
+								className='-mt-24 pt-24'></div>
+							<div
+								id='entrance-exams'
+								className='-mt-24 pt-24'></div>
+							<div
+								id='university-beyond'
+								className='-mt-24 pt-24'></div>
+							<div
+								id='sen-neurodiverse'
+								className='-mt-24 pt-24'></div>
+							<div
+								id='london-in-person'
+								className='-mt-24 pt-24'></div>
 
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Page layout wrapper for content sections */}
-      {/* LAYOUT REASON: Official Next.js patterns for content section organization */}
-      {/* CONTEXT7 SOURCE: /vercel/next.js - Layout component with navigation header for consistent site structure */}
-      {/* NAVBAR CONSISTENCY FIX: Official Next.js documentation recommends showHeader={true} for consistent navigation across all pages */}
-      <PageLayout
-        background="white"
-        showHeader={true}
-        showFooter={true}
-        containerSize="full"
-      >
-        <WaveSeparator variant="subtle" className="text-slate-100" />
+							{}
+							{}
+							<SubjectAccordion
+								categories={subjectCategories}
+								defaultOpenSections={[]}
+								onSectionToggle={(sectionId, isOpen) => {
+									console.log(`Section ${sectionId} ${isOpen ? 'opened' : 'closed'}`);
+								}}
+							/>
+						</div>
+					</div>
+				</Section>
 
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section removal via JSX deletion for streamlined page structure */}
-        {/* FOUNDER EXPERTISE REMOVAL REASON: Official React documentation demonstrates component removal through JSX deletion patterns for cleaner UI flow */}
-        {/* Client requested removal of Founder Expertise section to focus page on subject/tutor expertise rather than founder prominence */}
-        {/* Founder's Story section on About page provides sufficient founder spotlight */}
+				{}
+				{}
+				{}
+				{}
+				{}
+				{}
+				<Section
+					id='subject-tuition-results'
+					className='py-16 lg:py-24 relative'
+					background='white'>
+					<div className='absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70' />
+					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
+						{}
+						<ResultsDocumentation
+							title='Quantifiable Academic Outcomes'
+							description=''
+							results={asyncResultsData}
+							layout='grid'
+							maxItems={3}
+						/>
+					</div>
+				</Section>
 
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
-        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
-        {/* CONTEXT7 SOURCE: /facebook/react - SubjectAccordion component integration */}
-        {/* ACCORDION SECTION REASON: Extracted component for subject category display */}
-        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
-        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <Section
-          id="subject-tuition-categories"
-          className="py-16 lg:py-24 relative"
-          background="white"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50" />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <m.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6">
-                {sectionTitles.subjectCategories.title}
-              </h2>
-            </m.div>
-            
-            {/* CONTEXT7 SOURCE: /reactjs/react.dev - QuoteSection component replacement for duplicate content elimination */}
-            {/* DUPLICATE CONTENT REPLACEMENT REASON: Official React patterns demonstrate component replacement to eliminate redundant plain text with styled quote section */}
-            {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utility change from gradient to solid white */}
-            {/* BACKGROUND COLOR CHANGE REASON: Official Tailwind CSS documentation Section 3.1 demonstrates bg-white utility for clean white background styling */}
-            {/* CONTEXT7 SOURCE: /websites/magicui_design - BrandMessageSection component with valid props interface */}
-            {/* PROP FIX REASON: Official MagicUI documentation patterns - removed invalid useMagicUIEffects prop, added valid showAuthorImage prop */}
-            <BrandMessageSection 
-              quote={sectionTitles.subjectCategories.description}
-              backgroundColor="bg-white"
-              className="py-0 mb-16"
-              useHighlighting={true}
-              showAuthorImage={false}
-            />
+				{}
+				{}
+				{}
+				{}
 
-            {/* CONTEXT7 SOURCE: /vercel/next.js - Section anchor mapping for navigation targets */}
-            {/* SECTION ANCHOR REASON: Official Next.js documentation enables hash anchor navigation to specific page sections */}
-            <div className="max-w-6xl mx-auto">
-              {/* Navigation anchor points for service button links */}
-              <div id="primary" className="-mt-24 pt-24"></div>
-              <div id="secondary" className="-mt-24 pt-24"></div>
-              <div id="entrance-exams" className="-mt-24 pt-24"></div>
-              <div id="university-beyond" className="-mt-24 pt-24"></div>
-              <div id="sen-neurodiverse" className="-mt-24 pt-24"></div>
-              <div id="london-in-person" className="-mt-24 pt-24"></div>
+				{}
+				{}
+				{}
+				{}
 
-              {/* CONTEXT7 SOURCE: /websites/react_dev - Default props and empty arrays for component initialization */}
-              {/* REVISION REASON: Remove default open section to start with all accordions closed per user requirement */}
-              <SubjectAccordion
-                categories={subjectCategories}
-                defaultOpenSections={[]}
-                onSectionToggle={(sectionId, isOpen) => {
-                  console.log(
-                    `Section ${sectionId} ${isOpen ? "opened" : "closed"}`
-                  );
-                }}
-                // CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog removes onVideoClick prop dependency
-                // PROP REMOVAL REASON: Official Magic UI patterns - HeroVideoDialog components handle click events internally
-              />
-            </div>
-          </div>
-        </Section>
+				{}
+				{}
+				{}
+				{}
+				{}
+				{}
+				<Section
+					id='subject-tuition-homeschooling-preview'
+					className='py-16 lg:py-24 relative'
+					background='white'>
+					<div className='absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-[#CA9E5B]/20' />
+					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
+						<div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-center'>
+							{}
+							<m.div
+								className='space-y-8'
+								initial={{
+									opacity: 0,
+									x: -30,
+								}}
+								whileInView={{
+									opacity: 1,
+									x: 0,
+								}}
+								transition={{
+									duration: 0.8,
+									delay: 0.1,
+								}}
+								viewport={{
+									once: true,
+								}}>
+								<h2 className='text-4xl lg:text-5xl font-serif font-bold text-slate-900'>
+									{homeschoolingData.title}
+								</h2>
 
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
-        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
-        {/* CONTEXT7 SOURCE: /facebook/react - ResultsDocumentation component integration */}
-        {/* RESULTS DOCUMENTATION REASON: Task 18 implementation for verifiable outcome tracking */}
-        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
-        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <Section
-          id="subject-tuition-results"
-          className="py-16 lg:py-24 relative"
-          background="white"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 opacity-70" />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* CONTEXT7 SOURCE: /websites/react_dev - Conditional rendering patterns for statistical data removal
-                 STATISTICAL SIMPLIFICATION: Remove showVerificationBadges and showConfidenceIntervals props to hide granular statistics */}
-            <ResultsDocumentation
-              title="Quantifiable Academic Outcomes"
-              description=""
-              results={asyncResultsData}
-              layout="grid"
-              maxItems={3}
-            />
-          </div>
-        </Section>
+								<p className='text-xl text-slate-700 leading-relaxed'>
+									{homeschoolingData.description}
+								</p>
 
-        {/* CONTEXT7 SOURCE: /websites/react_dev - Section removal via JSX deletion for streamlined page structure */}
-        {/* PREMIUM SERVICE DIFFERENTIATION REMOVAL REASON: Official React documentation Section 3.4 demonstrates component removal through JSX deletion patterns */}
-        {/* Premium Service Differentiation section intentionally removed to streamline Subject Tuition page focus */}
-        {/* Client requested removal of Premium Service Differentiation section for cleaner page flow */}
+								<ul className='space-y-4'>
+									{homeschoolingData.features.map((feature, index) => (
+										<m.li
+											key={index}
+											className='flex items-center gap-4'
+											initial={{
+												opacity: 0,
+												x: -10,
+											}}
+											whileInView={{
+												opacity: 1,
+												x: 0,
+											}}
+											transition={{
+												duration: 0.4,
+												delay: index * 0.1 + 0.3,
+											}}
+											viewport={{
+												once: true,
+											}}>
+											<div className='w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm'></div>
+											<span className='text-slate-700 text-lg'>{feature.text}</span>
+										</m.li>
+									))}
+								</ul>
 
-        {/* CONTEXT7 SOURCE: /websites/react_dev - Section removal via JSX deletion for streamlined page structure */}
-        {/* TRANSFORMATIONAL CLIENT OUTCOMES REMOVAL REASON: Official React documentation Section 3.4 demonstrates component removal through JSX deletion patterns */}
-        {/* Transformational Client Outcomes section intentionally removed to streamline Subject Tuition page focus */}
-        {/* Client requested removal of Transformational Client Outcomes section for cleaner page flow */}
+								<m.div
+									initial={{
+										opacity: 0,
+										y: 10,
+									}}
+									whileInView={{
+										opacity: 1,
+										y: 0,
+									}}
+									transition={{
+										duration: 0.4,
+										delay: 0.7,
+									}}
+									viewport={{
+										once: true,
+									}}>
+									{}
+									{}
+									{}
+									{}
+									{}
+									{}
+									<Button
+										asChild
+										variant='ghost'
+										className='bg-[#CA9E5B] hover:bg-[#B8935A] !text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg'>
+										<Link href='/homeschooling'>{homeschoolingData.buttonText}</Link>
+									</Button>
+								</m.div>
+							</m.div>
 
-        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Background color utilities for light background uniformity */}
-        {/* UNIFORM BACKGROUND REASON: Official Tailwind CSS documentation demonstrates bg-white utility for consistent light theme */}
-        {/* CONTEXT7 SOURCE: /facebook/react - HomeschoolingPreview component integration with programme image */}
-        {/* HOMESCHOOLING SECTION REASON: Extracted component for preview section with CTA and programme visualization */}
-        {/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section id attribute for unique section identification */}
-        {/* SECTION ID REASON: Official HTML documentation for semantic section identification to enable future navigation menu integration */}
-        <Section
-          id="subject-tuition-homeschooling-preview"
-          className="py-16 lg:py-24 relative"
-          background="white"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-[#CA9E5B]/20" />
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Content Column */}
-              <m.div
-                className="space-y-8"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-4xl lg:text-5xl font-serif font-bold text-slate-900">
-                  {homeschoolingData.title}
-                </h2>
+							{}
+							<m.div
+								className='relative'
+								initial={{
+									opacity: 0,
+									x: 30,
+								}}
+								whileInView={{
+									opacity: 1,
+									x: 0,
+								}}
+								transition={{
+									duration: 0.8,
+									delay: 0.3,
+								}}
+								viewport={{
+									once: true,
+								}}>
+								{}
+								{}
+								<div className='relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200'>
+									<Image
+										src='/images/programmes/programme-homeschooling-offer.jpg'
+										alt='Homeschooling Programme Offer - Comprehensive home education support with personalised curriculum and expert guidance'
+										width={600}
+										height={450}
+										className='w-full h-full object-cover hover:scale-105 transition-transform duration-700'
+										loading='lazy'
+										quality={90}
+										sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px'
+									/>
+									<div className='absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent' />
+								</div>
 
-                <p className="text-xl text-slate-700 leading-relaxed">
-                  {homeschoolingData.description}
-                </p>
+								{}
+								<div className='absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20' />
+								<div className='absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15' />
 
-                <ul className="space-y-4">
-                  {homeschoolingData.features.map((feature, index) => (
-                    <m.li
-                      key={index}
-                      className="flex items-center gap-4"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full shadow-sm"></div>
-                      <span className="text-slate-700 text-lg">
-                        {feature.text}
-                      </span>
-                    </m.li>
-                  ))}
-                </ul>
+								{}
+								<div className='absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg'>
+									<div className='flex items-center gap-2'>
+										<div className='w-2 h-2 bg-amber-500 rounded-full animate-pulse'></div>
+										<span className='text-sm font-semibold text-amber-700'>
+											Comprehensive Programme
+										</span>
+									</div>
+								</div>
+							</m.div>
+						</div>
+					</div>
+				</Section>
 
-                <m.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.7 }}
-                  viewport={{ once: true }}
-                >
-                  {/* CONTEXT7 SOURCE: /vercel/next.js - Link component for client-side navigation */}
-                  {/* BUTTON FIX REASON: Official Next.js documentation recommends Link with asChild for button navigation */}
-                  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Arbitrary background color values and text color utilities */}
-                  {/* AZTEC GOLD STYLING REASON: Official Tailwind CSS documentation demonstrates bg-[<value>] syntax for custom hex colors and text-white utility for accessible white text contrast */}
-                  {/* CONTEXT7 SOURCE: /joe-bell/cva - Button variant ghost with className override for custom background */}
-                  {/* CVA TEXT VISIBILITY FIX: Official CVA documentation Section 2.1 - Using variant="ghost" to prevent default variant text color conflicts, with !text-white for CSS specificity override */}
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="bg-[#CA9E5B] hover:bg-[#B8935A] !text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg"
-                  >
-                    <Link href="/homeschooling">
-                      {homeschoolingData.buttonText}
-                    </Link>
-                  </Button>
-                </m.div>
-              </m.div>
+				{}
+				{}
+				{}
+			</PageLayout>
 
-              {/* Programme Image Column */}
-              <m.div
-                className="relative"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                {/* CONTEXT7 SOURCE: /vercel/next.js - Next.js Image component for homeschooling programme showcase */}
-                {/* HOMESCHOOLING PROGRAMME INTEGRATION: Official Next.js documentation for optimized programme image rendering */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200">
-                  <Image
-                    src="/images/programmes/programme-homeschooling-offer.jpg"
-                    alt="Homeschooling Programme Offer - Comprehensive home education support with personalised curriculum and expert guidance"
-                    width={600}
-                    height={450}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                    quality={90}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-transparent to-transparent" />
-                </div>
-
-                {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20" />
-                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15" />
-
-                {/* Programme Highlight Badge */}
-                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm font-semibold text-amber-700">
-                      Comprehensive Programme
-                    </span>
-                  </div>
-                </div>
-              </m.div>
-            </div>
-          </div>
-        </Section>
-
-        {/* CONTEXT7 SOURCE: /reactjs/react.dev - Section removal via JSX deletion for streamlined page structure */}
-        {/* SECTION REMOVAL REASON: Official React documentation Section 3.4 demonstrates component removal through JSX deletion patterns */}
-        {/* Services CTA Section intentionally removed to streamline Subject Tuition page focus */}
-      </PageLayout>
-
-      {/* CONTEXT7 SOURCE: /magicuidesign/magicui - HeroVideoDialog replaces VideoPopup with professional portal-rendered modals */}
-      {/* HERO VIDEO DIALOG REASON: Official Magic UI patterns for full-screen video modals with advanced animations and accessibility */}
-    </>
-  );
+			{}
+			{}
+		</>
+	);
 }

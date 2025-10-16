@@ -7,523 +7,531 @@
 name: 'Test Coverage and Quality Assurance - Navbar Phase 5'
 
 on:
-  push:
-    branches: 
-      - master
-      - main
-      - development
-    paths:
-      - 'src/components/layout/**'
-      - 'tests/**'
-      - 'package.json'
-      - 'jest.config.js'
-      - 'playwright.config.ts'
-  pull_request:
-    branches: 
-      - master
-      - main
-    paths:
-      - 'src/components/layout/**'
-      - 'tests/**'
-      - 'package.json'
-      - 'jest.config.js'
-      - 'playwright.config.ts'
+ push:
+  branches:
+   - master
+   - main
+   - development
+  paths:
+   - 'src/components/layout/**'
+   - 'tests/**'
+   - 'package.json'
+   - 'jest.config.js'
+   - 'playwright.config.ts'
+ pull_request:
+  branches:
+   - master
+   - main
+  paths:
+   - 'src/components/layout/**'
+   - 'tests/**'
+   - 'package.json'
+   - 'jest.config.js'
+   - 'playwright.config.ts'
 
 # CONTEXT7 SOURCE: /microsoft/playwright - Environment configuration for cross-platform testing
 # ENVIRONMENT_REASON: Official Playwright documentation for GitHub Actions environment setup
 env:
-  NODE_VERSION: '20'
-  CI: true
-  FORCE_COLOR: 1
+ NODE_VERSION: '20'
+ CI: true
+ FORCE_COLOR: 1
 
 jobs:
-  # CONTEXT7 SOURCE: /jestjs/jest - Unit test job configuration for CI pipelines
-  # UNIT_TESTS_REASON: Official Jest documentation for CI/CD unit testing setup
-  unit-tests:
-    name: 'Unit Tests - LogoSection Component'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    
-    strategy:
-      matrix:
-        node-version: ['18.x', '20.x']
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: 'package-lock.json'
-      
-      - name: Install Dependencies
-        run: |
-          npm ci --prefer-offline --no-audit --no-fund
-          npm run typecheck
-      
-      # CONTEXT7 SOURCE: /jestjs/jest - Test execution with coverage reporting
-      # COVERAGE_REASON: Official Jest documentation for coverage collection in CI environments
-      - name: Run Unit Tests with Coverage
-        run: |
-          npm run test:coverage -- \
-            --testPathPattern="src/components/layout/__tests__" \
-            --coverageDirectory="coverage/unit" \
-            --coverageReporters="text" "lcov" "json-summary" \
-            --collectCoverageFrom="src/components/layout/**/*.{ts,tsx}" \
-            --collectCoverageFrom="!src/components/layout/**/*.d.ts" \
-            --collectCoverageFrom="!src/components/layout/**/*.test.{ts,tsx}" \
-            --collectCoverageFrom="!src/components/layout/**/*.stories.{ts,tsx}" \
-            --verbose
-      
-      - name: Validate Coverage Thresholds
-        run: |
-          npm run test -- \
-            --testPathPattern="src/components/layout/__tests__" \
-            --coverage \
-            --coverageThreshold='{"global":{"branches":85,"functions":85,"lines":85,"statements":85}}'
-      
-      # CONTEXT7 SOURCE: /jestjs/jest - Coverage artifact storage for CI reporting
-      # ARTIFACT_REASON: Official Jest documentation for coverage report storage and sharing
-      - name: Upload Unit Test Coverage Reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: unit-coverage-report-${{ matrix.node-version }}
-          path: |
-            coverage/unit/
-            coverage/coverage-final.json
-          retention-days: 30
-      
-      - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v4
-        if: matrix.node-version == '20.x'
-        with:
-          file: coverage/unit/lcov.info
-          flags: unit-tests
-          name: LogoSection Unit Tests
-          fail_ci_if_error: false
+ # CONTEXT7 SOURCE: /jestjs/jest - Unit test job configuration for CI pipelines
+ # UNIT_TESTS_REASON: Official Jest documentation for CI/CD unit testing setup
+ unit-tests:
+  name: 'Unit Tests - LogoSection Component'
+  runs-on: ubuntu-latest
+  timeout-minutes: 10
 
-  # CONTEXT7 SOURCE: /jestjs/jest - Integration testing job configuration
-  # INTEGRATION_TESTS_REASON: Official Jest documentation for integration test automation
-  integration-tests:
-    name: 'Integration Tests - Navbar Components'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    needs: unit-tests
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-      
-      - name: Install Dependencies
-        run: npm ci --prefer-offline --no-audit --no-fund
-      
-      - name: Build Application for Testing
-        run: npm run build
-        env:
-          NODE_ENV: production
-          NEXT_TELEMETRY_DISABLED: 1
-      
-      # CONTEXT7 SOURCE: /jestjs/jest - Integration test execution with component interaction testing
-      # INTEGRATION_EXECUTION_REASON: Official Jest documentation for testing component interactions
-      - name: Run Integration Tests
-        run: |
-          npm run test -- \
-            --testPathPattern="navbar-integration.test.tsx" \
-            --coverage \
-            --coverageDirectory="coverage/integration" \
-            --coverageReporters="text" "lcov" "json-summary" \
-            --testTimeout=30000 \
-            --verbose
-      
-      - name: Upload Integration Test Coverage
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: integration-coverage-report
-          path: coverage/integration/
-          retention-days: 30
+  strategy:
+   matrix:
+    node-version: ['18.x', '20.x']
 
-  # CONTEXT7 SOURCE: /microsoft/playwright - E2E testing job with cross-browser support
-  # E2E_TESTS_REASON: Official Playwright documentation for cross-browser E2E testing in CI
-  e2e-tests:
-    name: 'E2E Tests - Logo Navigation (${{ matrix.browser }})'
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    needs: integration-tests
-    
-    strategy:
-      fail-fast: false
-      matrix:
-        browser: [chromium, firefox, webkit]
-        viewport: 
-          - { width: 1920, height: 1080, name: 'desktop' }
-          - { width: 768, height: 1024, name: 'tablet' }
-          - { width: 390, height: 844, name: 'mobile' }
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-      
-      - name: Install Dependencies
-        run: npm ci --prefer-offline --no-audit --no-fund
-      
-      # CONTEXT7 SOURCE: /microsoft/playwright - Playwright browser installation
-      # BROWSER_INSTALL_REASON: Official Playwright documentation for CI browser setup
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps ${{ matrix.browser }}
-      
-      - name: Build Application
-        run: npm run build
-        env:
-          NODE_ENV: production
-      
-      # CONTEXT7 SOURCE: /microsoft/playwright - E2E test execution with browser matrix
-      # E2E_EXECUTION_REASON: Official Playwright documentation for parameterized cross-browser testing
-      - name: Run E2E Tests - ${{ matrix.browser }} (${{ matrix.viewport.name }})
-        run: |
-          npx playwright test tests/e2e/navbar-logo-navigation.spec.ts \
-            --project=${{ matrix.browser }} \
-            --reporter=html \
-            --reporter=json \
-            --output-dir=test-results/${{ matrix.browser }}-${{ matrix.viewport.name }}
-        env:
-          PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
-          VIEWPORT_WIDTH: ${{ matrix.viewport.width }}
-          VIEWPORT_HEIGHT: ${{ matrix.viewport.height }}
-      
-      - name: Upload E2E Test Results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: e2e-results-${{ matrix.browser }}-${{ matrix.viewport.name }}
-          path: |
-            test-results/${{ matrix.browser }}-${{ matrix.viewport.name }}/
-            playwright-report/
-          retention-days: 30
-      
-      # CONTEXT7 SOURCE: /microsoft/playwright - Trace and screenshot collection for debugging
-      # DEBUG_ARTIFACTS_REASON: Official Playwright documentation for test failure debugging
-      - name: Upload E2E Failure Artifacts
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: e2e-failures-${{ matrix.browser }}-${{ matrix.viewport.name }}
-          path: |
-            test-results/
-            playwright-report/
-            traces/
-            screenshots/
-          retention-days: 7
+  steps:
+   - name: Checkout Repository
+     uses: actions/checkout@v4
+     with:
+      fetch-depth: 0
 
-  # CONTEXT7 SOURCE: /jestjs/jest - Accessibility testing job configuration
-  # ACCESSIBILITY_REASON: Official Jest documentation for accessibility compliance testing
-  accessibility-tests:
-    name: 'Accessibility Compliance Tests'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    needs: unit-tests
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-      
-      - name: Install Dependencies
-        run: npm ci --prefer-offline --no-audit --no-fund
-      
-      - name: Install Playwright for Accessibility Testing
-        run: npx playwright install chromium
-      
-      - name: Build Application
-        run: npm run build
-      
-      # CONTEXT7 SOURCE: /microsoft/playwright - Axe accessibility testing integration
-      # ACCESSIBILITY_TESTING_REASON: Official Playwright documentation for automated accessibility testing
-      - name: Run Accessibility Tests
-        run: |
-          npm run test:accessibility -- \
-            --testPathPattern="accessibility" \
-            --coverage \
-            --coverageDirectory="coverage/accessibility" \
-            --verbose
-      
-      - name: Upload Accessibility Test Results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: accessibility-test-results
-          path: |
-            coverage/accessibility/
-            tests/accessibility/reports/
-          retention-days: 30
+   - name: Setup Node.js ${{ matrix.node-version }}
+     uses: actions/setup-node@v4
+     with:
+      node-version: ${{ matrix.node-version }}
+      cache: 'npm'
+      cache-dependency-path: 'package-lock.json'
 
-  # CONTEXT7 SOURCE: /jestjs/jest - Performance testing job with lighthouse integration
-  # PERFORMANCE_REASON: Official Jest documentation for performance testing automation
-  performance-tests:
-    name: 'Performance Validation Tests'
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    needs: e2e-tests
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-      
-      - name: Install Dependencies
-        run: npm ci --prefer-offline --no-audit --no-fund
-      
-      - name: Install Lighthouse CI
-        run: npm install -g @lhci/cli@0.12.x
-      
-      - name: Build Application
-        run: npm run build
-      
-      - name: Start Application Server
-        run: |
-          npm start &
-          sleep 10
-          curl --retry 10 --retry-delay 5 --retry-connrefused http://localhost:3000
-      
-      # CONTEXT7 SOURCE: /microsoft/playwright - Performance testing with Lighthouse
-      # LIGHTHOUSE_REASON: Official documentation for automated performance testing in CI
-      - name: Run Performance Tests
-        run: |
-          lhci autorun --config=.lighthouserc.js || echo "Performance tests completed with warnings"
-      
-      - name: Run Logo Performance Tests
-        run: |
-          npm run test -- \
-            --testPathPattern="performance" \
-            --testTimeout=60000 \
-            --verbose
-      
-      - name: Upload Performance Results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: performance-test-results
-          path: |
-            .lighthouseci/
-            performance-results/
-          retention-days: 30
+   - name: Install Dependencies
+     run: |
+      npm ci --prefer-offline --no-audit --no-fund
+      npm run typecheck
 
-  # CONTEXT7 SOURCE: /jestjs/jest - Test coverage consolidation and reporting
-  # COVERAGE_CONSOLIDATION_REASON: Official Jest documentation for multi-job coverage aggregation
-  coverage-report:
-    name: 'Consolidate Test Coverage Reports'
-    runs-on: ubuntu-latest
-    needs: [unit-tests, integration-tests, accessibility-tests]
-    if: always()
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-      
-      - name: Install Dependencies
-        run: npm ci --prefer-offline --no-audit --no-fund
-      
-      # CONTEXT7 SOURCE: /jestjs/jest - Coverage artifact consolidation
-      # ARTIFACT_CONSOLIDATION_REASON: Official Jest documentation for merging coverage reports
-      - name: Download All Coverage Reports
-        uses: actions/download-artifact@v4
-        with:
-          path: coverage-artifacts/
-      
-      - name: Install Coverage Tools
-        run: npm install -g nyc
-      
-      - name: Merge Coverage Reports
-        run: |
-          mkdir -p coverage/merged
-          npx nyc merge coverage-artifacts/*/coverage/ coverage/merged/coverage.json
-          npx nyc report --temp-dir coverage/merged --reporter html --reporter lcov --reporter text-summary
-      
-      - name: Generate Coverage Summary
-        id: coverage
-        run: |
-          COVERAGE_SUMMARY=$(npx nyc report --temp-dir coverage/merged --reporter text-summary | tail -n 5)
-          echo "coverage-summary<<EOF" >> $GITHUB_OUTPUT
-          echo "$COVERAGE_SUMMARY" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-      
-      - name: Upload Consolidated Coverage Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: consolidated-coverage-report
-          path: |
-            coverage/
-            nyc_output/
-          retention-days: 90
-      
-      - name: Comment Coverage on PR
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const coverageSummary = `${{ steps.coverage.outputs.coverage-summary }}`;
-            const body = `## 📊 Test Coverage Summary - LogoSection Component
-            
-            \`\`\`
-            ${coverageSummary}
-            \`\`\`
-            
-            ### Coverage Reports Available:
-            - 🧪 Unit Tests: LogoSection component functionality
-            - 🔗 Integration Tests: Navbar component interactions  
-            - ♿ Accessibility Tests: WCAG 2.1 AA compliance
-            - 🎭 E2E Tests: Cross-browser user journey validation
-            - ⚡ Performance Tests: Loading optimization verification
-            
-            **Quality Gate**: All tests must maintain >85% coverage threshold.
-            `;
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: body
-            })
+   # CONTEXT7 SOURCE: /jestjs/jest - Test execution with coverage reporting
+   # COVERAGE_REASON: Official Jest documentation for coverage collection in CI environments
+   - name: Run Unit Tests with Coverage
+     run: |
+      npm run test:coverage -- \
+        --testPathPattern="src/components/layout/__tests__" \
+        --coverageDirectory="coverage/unit" \
+        --coverageReporters="text" "lcov" "json-summary" \
+        --collectCoverageFrom="src/components/layout/**/*.{ts,tsx}" \
+        --collectCoverageFrom="!src/components/layout/**/*.d.ts" \
+        --collectCoverageFrom="!src/components/layout/**/*.test.{ts,tsx}" \
+        --collectCoverageFrom="!src/components/layout/**/*.stories.{ts,tsx}" \
+        --verbose
 
-  # CONTEXT7 SOURCE: /microsoft/playwright - Quality gate enforcement
-  # QUALITY_GATE_REASON: Official documentation for CI/CD quality gates and failure handling
-  quality-gate:
-    name: 'Quality Gate - Test Results Validation'
-    runs-on: ubuntu-latest
-    needs: [unit-tests, integration-tests, e2e-tests, accessibility-tests, performance-tests, coverage-report]
-    if: always()
-    
-    steps:
-      - name: Evaluate Test Results
-        run: |
-          echo "Evaluating test results..."
-          
-          # Check individual job results
-          UNIT_TESTS="${{ needs.unit-tests.result }}"
-          INTEGRATION_TESTS="${{ needs.integration-tests.result }}"
-          E2E_TESTS="${{ needs.e2e-tests.result }}"
-          ACCESSIBILITY_TESTS="${{ needs.accessibility-tests.result }}"
-          PERFORMANCE_TESTS="${{ needs.performance-tests.result }}"
-          COVERAGE_REPORT="${{ needs.coverage-report.result }}"
-          
-          echo "Unit Tests: $UNIT_TESTS"
-          echo "Integration Tests: $INTEGRATION_TESTS"
-          echo "E2E Tests: $E2E_TESTS"
-          echo "Accessibility Tests: $ACCESSIBILITY_TESTS"
-          echo "Performance Tests: $PERFORMANCE_TESTS"
-          echo "Coverage Report: $COVERAGE_REPORT"
-          
-          # Critical tests that must pass
-          if [[ "$UNIT_TESTS" != "success" ]]; then
-            echo "❌ Unit tests failed - blocking deployment"
-            exit 1
-          fi
-          
-          if [[ "$ACCESSIBILITY_TESTS" != "success" ]]; then
-            echo "❌ Accessibility tests failed - blocking deployment"
-            exit 1
-          fi
-          
-          # Warnings for non-critical failures
-          if [[ "$INTEGRATION_TESTS" != "success" ]]; then
-            echo "⚠️  Integration tests failed - review required"
-          fi
-          
-          if [[ "$E2E_TESTS" != "success" ]]; then
-            echo "⚠️  E2E tests failed - review required"
-          fi
-          
-          if [[ "$PERFORMANCE_TESTS" != "success" ]]; then
-            echo "⚠️  Performance tests failed - review recommended"
-          fi
-          
-          echo "✅ Quality gate passed - LogoSection component ready for deployment"
-      
-      - name: Create Deployment Summary
-        run: |
-          echo "## 🎯 LogoSection Component - Test Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Test Results:" >> $GITHUB_STEP_SUMMARY
-          echo "- 🧪 Unit Tests: ${{ needs.unit-tests.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- 🔗 Integration Tests: ${{ needs.integration-tests.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- 🎭 E2E Tests: ${{ needs.e2e-tests.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- ♿ Accessibility Tests: ${{ needs.accessibility-tests.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- ⚡ Performance Tests: ${{ needs.performance-tests.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- 📊 Coverage Report: ${{ needs.coverage-report.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Component Coverage:" >> $GITHUB_STEP_SUMMARY
-          echo "- **Logo switching logic**: ✅ All state combinations tested" >> $GITHUB_STEP_SUMMARY
-          echo "- **Navigation functionality**: ✅ Cross-page navigation verified" >> $GITHUB_STEP_SUMMARY
-          echo "- **Responsive behavior**: ✅ All viewport sizes validated" >> $GITHUB_STEP_SUMMARY
-          echo "- **Accessibility compliance**: ✅ WCAG 2.1 AA standards met" >> $GITHUB_STEP_SUMMARY
-          echo "- **Performance optimization**: ✅ Loading and transitions optimized" >> $GITHUB_STEP_SUMMARY
-          echo "- **Cross-browser compatibility**: ✅ Chromium, Firefox, WebKit tested" >> $GITHUB_STEP_SUMMARY
+   - name: Validate Coverage Thresholds
+     run: |
+      npm run test -- \
+        --testPathPattern="src/components/layout/__tests__" \
+        --coverage \
+        --coverageThreshold='{"global":{"branches":85,"functions":85,"lines":85,"statements":85}}'
+
+   # CONTEXT7 SOURCE: /jestjs/jest - Coverage artifact storage for CI reporting
+   # ARTIFACT_REASON: Official Jest documentation for coverage report storage and sharing
+   - name: Upload Unit Test Coverage Reports
+     uses: actions/upload-artifact@v4
+     if: always()
+     with:
+      name: unit-coverage-report-${{ matrix.node-version }}
+      path: |
+       coverage/unit/
+       coverage/coverage-final.json
+      retention-days: 30
+
+   - name: Upload Coverage to Codecov
+     uses: codecov/codecov-action@v4
+     if: matrix.node-version == '20.x'
+     with:
+      file: coverage/unit/lcov.info
+      flags: unit-tests
+      name: LogoSection Unit Tests
+      fail_ci_if_error: false
+
+ # CONTEXT7 SOURCE: /jestjs/jest - Integration testing job configuration
+ # INTEGRATION_TESTS_REASON: Official Jest documentation for integration test automation
+ integration-tests:
+  name: 'Integration Tests - Navbar Components'
+  runs-on: ubuntu-latest
+  timeout-minutes: 15
+  needs: unit-tests
+
+  steps:
+   - name: Checkout Repository
+     uses: actions/checkout@v4
+
+   - name: Setup Node.js
+     uses: actions/setup-node@v4
+     with:
+      node-version: ${{ env.NODE_VERSION }}
+      cache: 'npm'
+
+   - name: Install Dependencies
+     run: npm ci --prefer-offline --no-audit --no-fund
+
+   - name: Build Application for Testing
+     run: npm run build
+     env:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: 1
+
+   # CONTEXT7 SOURCE: /jestjs/jest - Integration test execution with component interaction testing
+   # INTEGRATION_EXECUTION_REASON: Official Jest documentation for testing component interactions
+   - name: Run Integration Tests
+     run: |
+      npm run test -- \
+        --testPathPattern="navbar-integration.test.tsx" \
+        --coverage \
+        --coverageDirectory="coverage/integration" \
+        --coverageReporters="text" "lcov" "json-summary" \
+        --testTimeout=30000 \
+        --verbose
+
+   - name: Upload Integration Test Coverage
+     uses: actions/upload-artifact@v4
+     if: always()
+     with:
+      name: integration-coverage-report
+      path: coverage/integration/
+      retention-days: 30
+
+ # CONTEXT7 SOURCE: /microsoft/playwright - E2E testing job with cross-browser support
+ # E2E_TESTS_REASON: Official Playwright documentation for cross-browser E2E testing in CI
+ e2e-tests:
+  name: 'E2E Tests - Logo Navigation (${{ matrix.browser }})'
+  runs-on: ubuntu-latest
+  timeout-minutes: 30
+  needs: integration-tests
+
+  strategy:
+   fail-fast: false
+   matrix:
+    browser: [chromium, firefox, webkit]
+    viewport:
+     - { width: 1920, height: 1080, name: 'desktop' }
+     - { width: 768, height: 1024, name: 'tablet' }
+     - { width: 390, height: 844, name: 'mobile' }
+
+  steps:
+   - name: Checkout Repository
+     uses: actions/checkout@v4
+
+   - name: Setup Node.js
+     uses: actions/setup-node@v4
+     with:
+      node-version: ${{ env.NODE_VERSION }}
+      cache: 'npm'
+
+   - name: Install Dependencies
+     run: npm ci --prefer-offline --no-audit --no-fund
+
+   # CONTEXT7 SOURCE: /microsoft/playwright - Playwright browser installation
+   # BROWSER_INSTALL_REASON: Official Playwright documentation for CI browser setup
+   - name: Install Playwright Browsers
+     run: npx playwright install --with-deps ${{ matrix.browser }}
+
+   - name: Build Application
+     run: npm run build
+     env:
+      NODE_ENV: production
+
+   # CONTEXT7 SOURCE: /microsoft/playwright - E2E test execution with browser matrix
+   # E2E_EXECUTION_REASON: Official Playwright documentation for parameterized cross-browser testing
+   - name: Run E2E Tests - ${{ matrix.browser }} (${{ matrix.viewport.name }})
+     run: |
+      npx playwright test tests/e2e/navbar-logo-navigation.spec.ts \
+        --project=${{ matrix.browser }} \
+        --reporter=html \
+        --reporter=json \
+        --output-dir=test-results/${{ matrix.browser }}-${{ matrix.viewport.name }}
+     env:
+      PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
+      VIEWPORT_WIDTH: ${{ matrix.viewport.width }}
+      VIEWPORT_HEIGHT: ${{ matrix.viewport.height }}
+
+   - name: Upload E2E Test Results
+     uses: actions/upload-artifact@v4
+     if: always()
+     with:
+      name: e2e-results-${{ matrix.browser }}-${{ matrix.viewport.name }}
+      path: |
+       test-results/${{ matrix.browser }}-${{ matrix.viewport.name }}/
+       playwright-report/
+      retention-days: 30
+
+   # CONTEXT7 SOURCE: /microsoft/playwright - Trace and screenshot collection for debugging
+   # DEBUG_ARTIFACTS_REASON: Official Playwright documentation for test failure debugging
+   - name: Upload E2E Failure Artifacts
+     uses: actions/upload-artifact@v4
+     if: failure()
+     with:
+      name: e2e-failures-${{ matrix.browser }}-${{ matrix.viewport.name }}
+      path: |
+       test-results/
+       playwright-report/
+       traces/
+       screenshots/
+      retention-days: 7
+
+ # CONTEXT7 SOURCE: /jestjs/jest - Accessibility testing job configuration
+ # ACCESSIBILITY_REASON: Official Jest documentation for accessibility compliance testing
+ accessibility-tests:
+  name: 'Accessibility Compliance Tests'
+  runs-on: ubuntu-latest
+  timeout-minutes: 20
+  needs: unit-tests
+
+  steps:
+   - name: Checkout Repository
+     uses: actions/checkout@v4
+
+   - name: Setup Node.js
+     uses: actions/setup-node@v4
+     with:
+      node-version: ${{ env.NODE_VERSION }}
+      cache: 'npm'
+
+   - name: Install Dependencies
+     run: npm ci --prefer-offline --no-audit --no-fund
+
+   - name: Install Playwright for Accessibility Testing
+     run: npx playwright install chromium
+
+   - name: Build Application
+     run: npm run build
+
+   # CONTEXT7 SOURCE: /microsoft/playwright - Axe accessibility testing integration
+   # ACCESSIBILITY_TESTING_REASON: Official Playwright documentation for automated accessibility testing
+   - name: Run Accessibility Tests
+     run: |
+      npm run test:accessibility -- \
+        --testPathPattern="accessibility" \
+        --coverage \
+        --coverageDirectory="coverage/accessibility" \
+        --verbose
+
+   - name: Upload Accessibility Test Results
+     uses: actions/upload-artifact@v4
+     if: always()
+     with:
+      name: accessibility-test-results
+      path: |
+       coverage/accessibility/
+       tests/accessibility/reports/
+      retention-days: 30
+
+ # CONTEXT7 SOURCE: /jestjs/jest - Performance testing job with lighthouse integration
+ # PERFORMANCE_REASON: Official Jest documentation for performance testing automation
+ performance-tests:
+  name: 'Performance Validation Tests'
+  runs-on: ubuntu-latest
+  timeout-minutes: 25
+  needs: e2e-tests
+
+  steps:
+   - name: Checkout Repository
+     uses: actions/checkout@v4
+
+   - name: Setup Node.js
+     uses: actions/setup-node@v4
+     with:
+      node-version: ${{ env.NODE_VERSION }}
+      cache: 'npm'
+
+   - name: Install Dependencies
+     run: npm ci --prefer-offline --no-audit --no-fund
+
+   - name: Install Lighthouse CI
+     run: npm install -g @lhci/cli@0.12.x
+
+   - name: Build Application
+     run: npm run build
+
+   - name: Start Application Server
+     run: |
+      npm start &
+      sleep 10
+      curl --retry 10 --retry-delay 5 --retry-connrefused http://localhost:3000
+
+   # CONTEXT7 SOURCE: /microsoft/playwright - Performance testing with Lighthouse
+   # LIGHTHOUSE_REASON: Official documentation for automated performance testing in CI
+   - name: Run Performance Tests
+     run: |
+      lhci autorun --config=.lighthouserc.js || echo "Performance tests completed with warnings"
+
+   - name: Run Logo Performance Tests
+     run: |
+      npm run test -- \
+        --testPathPattern="performance" \
+        --testTimeout=60000 \
+        --verbose
+
+   - name: Upload Performance Results
+     uses: actions/upload-artifact@v4
+     if: always()
+     with:
+      name: performance-test-results
+      path: |
+       .lighthouseci/
+       performance-results/
+      retention-days: 30
+
+ # CONTEXT7 SOURCE: /jestjs/jest - Test coverage consolidation and reporting
+ # COVERAGE_CONSOLIDATION_REASON: Official Jest documentation for multi-job coverage aggregation
+ coverage-report:
+  name: 'Consolidate Test Coverage Reports'
+  runs-on: ubuntu-latest
+  needs: [unit-tests, integration-tests, accessibility-tests]
+  if: always()
+
+  steps:
+   - name: Checkout Repository
+     uses: actions/checkout@v4
+
+   - name: Setup Node.js
+     uses: actions/setup-node@v4
+     with:
+      node-version: ${{ env.NODE_VERSION }}
+      cache: 'npm'
+
+   - name: Install Dependencies
+     run: npm ci --prefer-offline --no-audit --no-fund
+
+   # CONTEXT7 SOURCE: /jestjs/jest - Coverage artifact consolidation
+   # ARTIFACT_CONSOLIDATION_REASON: Official Jest documentation for merging coverage reports
+   - name: Download All Coverage Reports
+     uses: actions/download-artifact@v4
+     with:
+      path: coverage-artifacts/
+
+   - name: Install Coverage Tools
+     run: npm install -g nyc
+
+   - name: Merge Coverage Reports
+     run: |
+      mkdir -p coverage/merged
+      npx nyc merge coverage-artifacts/*/coverage/ coverage/merged/coverage.json
+      npx nyc report --temp-dir coverage/merged --reporter html --reporter lcov --reporter text-summary
+
+   - name: Generate Coverage Summary
+     id: coverage
+     run: |
+      COVERAGE_SUMMARY=$(npx nyc report --temp-dir coverage/merged --reporter text-summary | tail -n 5)
+      echo "coverage-summary<<EOF" >> $GITHUB_OUTPUT
+      echo "$COVERAGE_SUMMARY" >> $GITHUB_OUTPUT
+      echo "EOF" >> $GITHUB_OUTPUT
+
+   - name: Upload Consolidated Coverage Report
+     uses: actions/upload-artifact@v4
+     with:
+      name: consolidated-coverage-report
+      path: |
+       coverage/
+       nyc_output/
+      retention-days: 90
+
+   - name: Comment Coverage on PR
+     if: github.event_name == 'pull_request'
+     uses: actions/github-script@v7
+     with:
+      script: |
+       const coverageSummary = `${{ steps.coverage.outputs.coverage-summary }}`;
+       const body = `## 📊 Test Coverage Summary - LogoSection Component
+
+       \`\`\`
+       ${coverageSummary}
+       \`\`\`
+
+       ### Coverage Reports Available:
+       - 🧪 Unit Tests: LogoSection component functionality
+       - 🔗 Integration Tests: Navbar component interactions  
+       - ♿ Accessibility Tests: WCAG 2.1 AA compliance
+       - 🎭 E2E Tests: Cross-browser user journey validation
+       - ⚡ Performance Tests: Loading optimization verification
+
+       **Quality Gate**: All tests must maintain >85% coverage threshold.
+       `;
+
+       github.rest.issues.createComment({
+         issue_number: context.issue.number,
+         owner: context.repo.owner,
+         repo: context.repo.repo,
+         body: body
+       })
+
+ # CONTEXT7 SOURCE: /microsoft/playwright - Quality gate enforcement
+ # QUALITY_GATE_REASON: Official documentation for CI/CD quality gates and failure handling
+ quality-gate:
+  name: 'Quality Gate - Test Results Validation'
+  runs-on: ubuntu-latest
+  needs:
+   [
+    unit-tests,
+    integration-tests,
+    e2e-tests,
+    accessibility-tests,
+    performance-tests,
+    coverage-report,
+   ]
+  if: always()
+
+  steps:
+   - name: Evaluate Test Results
+     run: |
+      echo "Evaluating test results..."
+
+      # Check individual job results
+      UNIT_TESTS="${{ needs.unit-tests.result }}"
+      INTEGRATION_TESTS="${{ needs.integration-tests.result }}"
+      E2E_TESTS="${{ needs.e2e-tests.result }}"
+      ACCESSIBILITY_TESTS="${{ needs.accessibility-tests.result }}"
+      PERFORMANCE_TESTS="${{ needs.performance-tests.result }}"
+      COVERAGE_REPORT="${{ needs.coverage-report.result }}"
+
+      echo "Unit Tests: $UNIT_TESTS"
+      echo "Integration Tests: $INTEGRATION_TESTS"
+      echo "E2E Tests: $E2E_TESTS"
+      echo "Accessibility Tests: $ACCESSIBILITY_TESTS"
+      echo "Performance Tests: $PERFORMANCE_TESTS"
+      echo "Coverage Report: $COVERAGE_REPORT"
+
+      # Critical tests that must pass
+      if [[ "$UNIT_TESTS" != "success" ]]; then
+        echo "❌ Unit tests failed - blocking deployment"
+        exit 1
+      fi
+
+      if [[ "$ACCESSIBILITY_TESTS" != "success" ]]; then
+        echo "❌ Accessibility tests failed - blocking deployment"
+        exit 1
+      fi
+
+      # Warnings for non-critical failures
+      if [[ "$INTEGRATION_TESTS" != "success" ]]; then
+        echo "⚠️  Integration tests failed - review required"
+      fi
+
+      if [[ "$E2E_TESTS" != "success" ]]; then
+        echo "⚠️  E2E tests failed - review required"
+      fi
+
+      if [[ "$PERFORMANCE_TESTS" != "success" ]]; then
+        echo "⚠️  Performance tests failed - review recommended"
+      fi
+
+      echo "✅ Quality gate passed - LogoSection component ready for deployment"
+
+   - name: Create Deployment Summary
+     run: |
+      echo "## 🎯 LogoSection Component - Test Summary" >> $GITHUB_STEP_SUMMARY
+      echo "" >> $GITHUB_STEP_SUMMARY
+      echo "### Test Results:" >> $GITHUB_STEP_SUMMARY
+      echo "- 🧪 Unit Tests: ${{ needs.unit-tests.result }}" >> $GITHUB_STEP_SUMMARY
+      echo "- 🔗 Integration Tests: ${{ needs.integration-tests.result }}" >> $GITHUB_STEP_SUMMARY
+      echo "- 🎭 E2E Tests: ${{ needs.e2e-tests.result }}" >> $GITHUB_STEP_SUMMARY
+      echo "- ♿ Accessibility Tests: ${{ needs.accessibility-tests.result }}" >> $GITHUB_STEP_SUMMARY
+      echo "- ⚡ Performance Tests: ${{ needs.performance-tests.result }}" >> $GITHUB_STEP_SUMMARY
+      echo "- 📊 Coverage Report: ${{ needs.coverage-report.result }}" >> $GITHUB_STEP_SUMMARY
+      echo "" >> $GITHUB_STEP_SUMMARY
+      echo "### Component Coverage:" >> $GITHUB_STEP_SUMMARY
+      echo "- **Logo switching logic**: ✅ All state combinations tested" >> $GITHUB_STEP_SUMMARY
+      echo "- **Navigation functionality**: ✅ Cross-page navigation verified" >> $GITHUB_STEP_SUMMARY
+      echo "- **Responsive behavior**: ✅ All viewport sizes validated" >> $GITHUB_STEP_SUMMARY
+      echo "- **Accessibility compliance**: ✅ WCAG 2.1 AA standards met" >> $GITHUB_STEP_SUMMARY
+      echo "- **Performance optimization**: ✅ Loading and transitions optimized" >> $GITHUB_STEP_SUMMARY
+      echo "- **Cross-browser compatibility**: ✅ Chromium, Firefox, WebKit tested" >> $GITHUB_STEP_SUMMARY
 
 # CONTEXT7 SOURCE: /microsoft/playwright - CI/CD workflow documentation and summary
 # WORKFLOW_DOCUMENTATION_REASON: Official documentation for comprehensive CI/CD pipeline design
 
 # 🎯 CI/CD PIPELINE SUMMARY - NAVBAR LOGOSECTION PHASE 5
-# 
+#
 # COMPREHENSIVE TEST AUTOMATION COVERAGE:
 # ✅ Unit Tests (Jest): Component logic and prop handling
-# ✅ Integration Tests (Jest): Multi-component interactions  
+# ✅ Integration Tests (Jest): Multi-component interactions
 # ✅ E2E Tests (Playwright): Real user scenarios across browsers/devices
 # ✅ Accessibility Tests: WCAG 2.1 AA compliance validation
 # ✅ Performance Tests: Loading optimization and smooth transitions
 # ✅ Coverage Consolidation: Multi-source coverage aggregation
 # ✅ Quality Gate: Automated deployment readiness validation
-# 
+#
 # MATRIX TESTING:
 # - Node.js versions: 18.x, 20.x
-# - Browsers: Chromium, Firefox, WebKit  
+# - Browsers: Chromium, Firefox, WebKit
 # - Viewports: Desktop (1920x1080), Tablet (768x1024), Mobile (390x844)
 # - Test types: Unit, Integration, E2E, Accessibility, Performance
-# 
+#
 # QUALITY STANDARDS:
 # - Coverage threshold: >85% (branches, functions, lines, statements)
 # - Performance budget: <3s loading, >60fps animations
 # - Accessibility: Full WCAG 2.1 AA compliance
 # - Cross-browser: 100% functionality parity
-# 
+#
 # DEPLOYMENT GATES:
 # - CRITICAL (blocking): Unit tests, Accessibility tests
 # - WARNING (review): Integration, E2E, Performance tests
 # - COVERAGE: Consolidated reporting with PR comments
-# 
+#
 # ARTIFACT RETENTION:
 # - Coverage reports: 90 days (for trending analysis)
 # - Test results: 30 days (for debugging)

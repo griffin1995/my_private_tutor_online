@@ -1,114 +1,114 @@
 {
-  "Common": {
-    "loading": "Chargement...",
-    "error": "Une erreur s'est produite",
-    "search": "Rechercher",
-    "cancel": "Annuler",
-    "save": "Enregistrer",
-    "edit": "Modifier",
-    "delete": "Supprimer",
-    "close": "Fermer",
-    "back": "Retour",
-    "next": "Suivant",
-    "previous": "Précédent",
-    "submit": "Soumettre",
-    "reset": "Réinitialiser"
-  },
-  "Navigation": {
-    "home": "Accueil",
-    "about": "À propos",
-    "services": "Services",
-    "faq": "FAQ",
-    "contact": "Contact",
-    "menu": "Menu",
-    "closeMenu": "Fermer le menu",
-    "skipToContent": "Aller au contenu principal"
-  },
-  "LanguageSwitcher": {
-    "selectLanguage": "Sélectionner la langue",
-    "currentLanguage": "Langue actuelle",
-    "switchTo": "Passer à {language}",
-    "languages": "Langues"
-  },
-  "FAQ": {
-    "title": "Questions Fréquemment Posées",
-    "subtitle": "Conseils d'Experts pour Votre Parcours Académique",
-    "description": "Trouvez des réponses aux questions courantes sur nos services de tutorat premium, du soutien aux admissions aux programmes d'apprentissage personnalisés.",
-    "searchPlaceholder": "Rechercher dans les questions...",
-    "searchResults": "Résultats de recherche",
-    "noResults": "Aucun résultat trouvé pour \"{query}\"",
-    "noResultsDescription": "Essayez d'ajuster vos termes de recherche ou parcourez nos catégories ci-dessous.",
-    "categories": "Catégories",
-    "quickSearch": "Recherche rapide",
-    "backToTop": "Retour en haut",
-    "printFAQ": "Imprimer FAQ",
-    "contactUs": "Nous contacter",
-    "showAll": "Afficher toutes les questions",
-    "hideAll": "Masquer toutes les questions",
-    "readMore": "Lire la suite",
-    "readLess": "Réduire",
-    "lastUpdated": "Dernière mise à jour : {date}",
-    "helpfulQuestion": "Cela vous a-t-il été utile ?",
-    "yes": "Oui",
-    "no": "Non",
-    "thankYou": "Merci pour votre avis !",
-    "relatedQuestions": "Questions connexes",
-    "popularQuestions": "Questions populaires",
-    "recentlyUpdated": "Récemment mises à jour"
-  },
-  "FAQCategories": {
-    "general": "Informations générales",
-    "generalDescription": "Informations de base sur nos services et notre approche",
-    "tutoring": "Services de tutorat",
-    "tutoringDescription": "Questions sur nos programmes et méthodes de tutorat",
-    "admissions": "Soutien aux admissions",
-    "admissionsDescription": "Conseils pour les admissions universitaires et scolaires",
-    "pricing": "Tarifs et forfaits",
-    "pricingDescription": "Informations sur nos tarifs et forfaits de services",
-    "technical": "Support technique",
-    "technicalDescription": "Aide avec notre plateforme en ligne et les problèmes techniques",
-    "booking": "Réservation et planification",
-    "bookingDescription": "Comment réserver des sessions et gérer votre emploi du temps"
-  },
-  "FAQQuestions": {
-    "whatIsTutoring": "Qu'est-ce qui distingue votre tutorat des autres ?",
-    "whatIsTutoringAnswer": "Notre tutorat se distingue par nos recommandations royales, 15 années d'excellence et une approche personnalisée. Nous jumelons les étudiants avec des éducateurs experts qui se spécialisent dans leurs besoins spécifiques, qu'il s'agisse de la préparation Oxbridge, du soutien 11+ ou de l'excellence A-Level.",
-    
-    "howBookSession": "Comment réserver une session de tutorat ?",
-    "howBookSessionAnswer": "La réservation est simple via notre plateforme en ligne. Vous pouvez sélectionner votre tuteur préféré, choisir les créneaux disponibles et réserver instantanément. Nous offrons également une consultation gratuite pour discuter de vos exigences spécifiques.",
-    
-    "whatSubjects": "Quelles matières couvrez-vous ?",
-    "whatSubjectsAnswer": "Nous couvrons toutes les matières académiques principales incluant les mathématiques, l'anglais, les sciences (biologie, chimie, physique), les langues, l'histoire, la géographie, et des domaines spécialisés comme l'économie et la psychologie.",
-    
-    "onlineInPerson": "Proposez-vous du tutorat en ligne et en présentiel ?",
-    "onlineInPersonAnswer": "Oui, nous proposons un tutorat en ligne flexible via notre plateforme de classe virtuelle avancée et un tutorat en présentiel pour les clients à Londres et dans les environs. Nos sessions en ligne sont tout aussi efficaces.",
-    
-    "tutorQualifications": "Quelles sont les qualifications de vos tuteurs ?",
-    "tutorQualificationsAnswer": "Tous nos tuteurs détiennent des diplômes pertinents d'universités prestigieuses, beaucoup avec des qualifications de troisième cycle. Ils subissent un filtrage rigoureux incluant la vérification académique et les vérifications d'antécédents.",
-    
-    "pricingStructure": "Comment votre tarification est-elle structurée ?",
-    "pricingStructureAnswer": "Notre tarification reflète la qualité premium de notre service, à partir de 60 £ par heure pour le tutorat standard. Nous proposons des forfaits pour les sessions régulières. Contactez-nous pour un devis personnalisé.",
-    
-    "cancellationPolicy": "Quelle est votre politique d'annulation ?",
-    "cancellationPolicyAnswer": "Nous demandons un préavis de 24 heures pour les annulations afin d'éviter les frais. Pour les annulations de dernière minute dues à de véritables urgences, nous traitons celles-ci au cas par cas.",
-    
-    "progressTracking": "Comment suivez-vous les progrès des étudiants ?",
-    "progressTrackingAnswer": "Nous fournissons des rapports de progrès détaillés après chaque session, incluant les domaines couverts, les forces identifiées et les recommandations d'amélioration. Les parents reçoivent des mises à jour régulières.",
-    
-    "groupSessions": "Proposez-vous des sessions de tutorat en groupe ?",
-    "groupSessionsAnswer": "Oui, nous proposons des sessions en petits groupes (2-4 étudiants) à des tarifs réduits par étudiant. Celles-ci fonctionnent particulièrement bien pour la préparation d'examens.",
-    
-    "emergencySupport": "Puis-je obtenir un soutien de tutorat de dernière minute ?",
-    "emergencySupportAnswer": "Sous réserve de disponibilité du tuteur, nous pouvons organiser des sessions de tutorat urgentes. Nous comprenons que les besoins académiques peuvent survenir de façon inattendue, surtout pendant les périodes d'examens."
-  },
-  "ContactSection": {
-    "title": "Besoin d'aide supplémentaire ?",
-    "description": "Vous ne trouvez pas la réponse que vous cherchez ? Notre équipe d'experts est là pour vous aider avec des conseils personnalisés pour votre parcours académique.",
-    "getInTouch": "Prenez contact",
-    "phone": "Téléphone",
-    "email": "E-mail",
-    "consultationButton": "Réserver une consultation gratuite",
-    "consultationDescription": "Planifiez une consultation gratuite de 15 minutes pour discuter de vos exigences spécifiques.",
-    "responseTime": "Nous répondons généralement dans les 2 heures pendant les heures de bureau."
-  }
+	"Common": {
+		"loading": "Chargement...",
+		"error": "Une erreur s'est produite",
+		"search": "Rechercher",
+		"cancel": "Annuler",
+		"save": "Enregistrer",
+		"edit": "Modifier",
+		"delete": "Supprimer",
+		"close": "Fermer",
+		"back": "Retour",
+		"next": "Suivant",
+		"previous": "Précédent",
+		"submit": "Soumettre",
+		"reset": "Réinitialiser"
+	},
+	"Navigation": {
+		"home": "Accueil",
+		"about": "À propos",
+		"services": "Services",
+		"faq": "FAQ",
+		"contact": "Contact",
+		"menu": "Menu",
+		"closeMenu": "Fermer le menu",
+		"skipToContent": "Aller au contenu principal"
+	},
+	"LanguageSwitcher": {
+		"selectLanguage": "Sélectionner la langue",
+		"currentLanguage": "Langue actuelle",
+		"switchTo": "Passer à {language}",
+		"languages": "Langues"
+	},
+	"FAQ": {
+		"title": "Questions Fréquemment Posées",
+		"subtitle": "Conseils d'Experts pour Votre Parcours Académique",
+		"description": "Trouvez des réponses aux questions courantes sur nos services de tutorat premium, du soutien aux admissions aux programmes d'apprentissage personnalisés.",
+		"searchPlaceholder": "Rechercher dans les questions...",
+		"searchResults": "Résultats de recherche",
+		"noResults": "Aucun résultat trouvé pour \"{query}\"",
+		"noResultsDescription": "Essayez d'ajuster vos termes de recherche ou parcourez nos catégories ci-dessous.",
+		"categories": "Catégories",
+		"quickSearch": "Recherche rapide",
+		"backToTop": "Retour en haut",
+		"printFAQ": "Imprimer FAQ",
+		"contactUs": "Nous contacter",
+		"showAll": "Afficher toutes les questions",
+		"hideAll": "Masquer toutes les questions",
+		"readMore": "Lire la suite",
+		"readLess": "Réduire",
+		"lastUpdated": "Dernière mise à jour : {date}",
+		"helpfulQuestion": "Cela vous a-t-il été utile ?",
+		"yes": "Oui",
+		"no": "Non",
+		"thankYou": "Merci pour votre avis !",
+		"relatedQuestions": "Questions connexes",
+		"popularQuestions": "Questions populaires",
+		"recentlyUpdated": "Récemment mises à jour"
+	},
+	"FAQCategories": {
+		"general": "Informations générales",
+		"generalDescription": "Informations de base sur nos services et notre approche",
+		"tutoring": "Services de tutorat",
+		"tutoringDescription": "Questions sur nos programmes et méthodes de tutorat",
+		"admissions": "Soutien aux admissions",
+		"admissionsDescription": "Conseils pour les admissions universitaires et scolaires",
+		"pricing": "Tarifs et forfaits",
+		"pricingDescription": "Informations sur nos tarifs et forfaits de services",
+		"technical": "Support technique",
+		"technicalDescription": "Aide avec notre plateforme en ligne et les problèmes techniques",
+		"booking": "Réservation et planification",
+		"bookingDescription": "Comment réserver des sessions et gérer votre emploi du temps"
+	},
+	"FAQQuestions": {
+		"whatIsTutoring": "Qu'est-ce qui distingue votre tutorat des autres ?",
+		"whatIsTutoringAnswer": "Notre tutorat se distingue par nos recommandations royales, 15 années d'excellence et une approche personnalisée. Nous jumelons les étudiants avec des éducateurs experts qui se spécialisent dans leurs besoins spécifiques, qu'il s'agisse de la préparation Oxbridge, du soutien 11+ ou de l'excellence A-Level.",
+
+		"howBookSession": "Comment réserver une session de tutorat ?",
+		"howBookSessionAnswer": "La réservation est simple via notre plateforme en ligne. Vous pouvez sélectionner votre tuteur préféré, choisir les créneaux disponibles et réserver instantanément. Nous offrons également une consultation gratuite pour discuter de vos exigences spécifiques.",
+
+		"whatSubjects": "Quelles matières couvrez-vous ?",
+		"whatSubjectsAnswer": "Nous couvrons toutes les matières académiques principales incluant les mathématiques, l'anglais, les sciences (biologie, chimie, physique), les langues, l'histoire, la géographie, et des domaines spécialisés comme l'économie et la psychologie.",
+
+		"onlineInPerson": "Proposez-vous du tutorat en ligne et en présentiel ?",
+		"onlineInPersonAnswer": "Oui, nous proposons un tutorat en ligne flexible via notre plateforme de classe virtuelle avancée et un tutorat en présentiel pour les clients à Londres et dans les environs. Nos sessions en ligne sont tout aussi efficaces.",
+
+		"tutorQualifications": "Quelles sont les qualifications de vos tuteurs ?",
+		"tutorQualificationsAnswer": "Tous nos tuteurs détiennent des diplômes pertinents d'universités prestigieuses, beaucoup avec des qualifications de troisième cycle. Ils subissent un filtrage rigoureux incluant la vérification académique et les vérifications d'antécédents.",
+
+		"pricingStructure": "Comment votre tarification est-elle structurée ?",
+		"pricingStructureAnswer": "Notre tarification reflète la qualité premium de notre service, à partir de 60 £ par heure pour le tutorat standard. Nous proposons des forfaits pour les sessions régulières. Contactez-nous pour un devis personnalisé.",
+
+		"cancellationPolicy": "Quelle est votre politique d'annulation ?",
+		"cancellationPolicyAnswer": "Nous demandons un préavis de 24 heures pour les annulations afin d'éviter les frais. Pour les annulations de dernière minute dues à de véritables urgences, nous traitons celles-ci au cas par cas.",
+
+		"progressTracking": "Comment suivez-vous les progrès des étudiants ?",
+		"progressTrackingAnswer": "Nous fournissons des rapports de progrès détaillés après chaque session, incluant les domaines couverts, les forces identifiées et les recommandations d'amélioration. Les parents reçoivent des mises à jour régulières.",
+
+		"groupSessions": "Proposez-vous des sessions de tutorat en groupe ?",
+		"groupSessionsAnswer": "Oui, nous proposons des sessions en petits groupes (2-4 étudiants) à des tarifs réduits par étudiant. Celles-ci fonctionnent particulièrement bien pour la préparation d'examens.",
+
+		"emergencySupport": "Puis-je obtenir un soutien de tutorat de dernière minute ?",
+		"emergencySupportAnswer": "Sous réserve de disponibilité du tuteur, nous pouvons organiser des sessions de tutorat urgentes. Nous comprenons que les besoins académiques peuvent survenir de façon inattendue, surtout pendant les périodes d'examens."
+	},
+	"ContactSection": {
+		"title": "Besoin d'aide supplémentaire ?",
+		"description": "Vous ne trouvez pas la réponse que vous cherchez ? Notre équipe d'experts est là pour vous aider avec des conseils personnalisés pour votre parcours académique.",
+		"getInTouch": "Prenez contact",
+		"phone": "Téléphone",
+		"email": "E-mail",
+		"consultationButton": "Réserver une consultation gratuite",
+		"consultationDescription": "Planifiez une consultation gratuite de 15 minutes pour discuter de vos exigences spécifiques.",
+		"responseTime": "Nous répondons généralement dans les 2 heures pendant les heures de bureau."
+	}
 }

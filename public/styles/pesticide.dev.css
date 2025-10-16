@@ -18,151 +18,153 @@
 
 /* Base pesticide styles - visible outline for all elements */
 * {
-  outline: 1px solid #ff6c6c !important;
+	outline: 1px solid #ff6c6c !important;
 }
 
 /* Body gets special treatment */
 body {
-  outline: 1px solid #000000 !important;
+	outline: 1px solid #000000 !important;
 }
 
 /* Article gets special treatment */
 article {
-  outline: 1px solid #ff6c6c !important;
+	outline: 1px solid #ff6c6c !important;
 }
 
 /* Navigation gets special treatment */
 nav {
-  outline: 1px solid #ff0000 !important;
+	outline: 1px solid #ff0000 !important;
 }
 
 /* Aside gets special treatment */
 aside {
-  outline: 1px solid #ff8000 !important;
+	outline: 1px solid #ff8000 !important;
 }
 
 /* Section gets special treatment */
 section {
-  outline: 1px solid #ff0080 !important;
+	outline: 1px solid #ff0080 !important;
 }
 
 /* Header gets special treatment */
 header {
-  outline: 1px solid #00ff00 !important;
+	outline: 1px solid #00ff00 !important;
 }
 
 /* Footer gets special treatment */
 footer {
-  outline: 1px solid #0080ff !important;
+	outline: 1px solid #0080ff !important;
 }
 
 /* Headings get special treatment */
 h1 {
-  outline: 1px solid #ff0000 !important;
+	outline: 1px solid #ff0000 !important;
 }
 
 h2 {
-  outline: 1px solid #ff6600 !important;
+	outline: 1px solid #ff6600 !important;
 }
 
 h3 {
-  outline: 1px solid #ff9900 !important;
+	outline: 1px solid #ff9900 !important;
 }
 
 h4 {
-  outline: 1px solid #ffcc00 !important;
+	outline: 1px solid #ffcc00 !important;
 }
 
 h5 {
-  outline: 1px solid #ffff00 !important;
+	outline: 1px solid #ffff00 !important;
 }
 
 h6 {
-  outline: 1px solid #ccff00 !important;
+	outline: 1px solid #ccff00 !important;
 }
 
 /* Paragraph gets special treatment */
 p {
-  outline: 1px solid #00ff00 !important;
+	outline: 1px solid #00ff00 !important;
 }
 
 /* Lists get special treatment */
-ul, ol {
-  outline: 1px solid #0066ff !important;
+ul,
+ol {
+	outline: 1px solid #0066ff !important;
 }
 
 li {
-  outline: 1px solid #0099ff !important;
+	outline: 1px solid #0099ff !important;
 }
 
 /* Tables get special treatment */
 table {
-  outline: 1px solid #ff00cc !important;
+	outline: 1px solid #ff00cc !important;
 }
 
 thead {
-  outline: 1px solid #ff0066 !important;
+	outline: 1px solid #ff0066 !important;
 }
 
 tbody {
-  outline: 1px solid #cc0066 !important;
+	outline: 1px solid #cc0066 !important;
 }
 
-th, td {
-  outline: 1px solid #990066 !important;
+th,
+td {
+	outline: 1px solid #990066 !important;
 }
 
 /* Forms get special treatment */
 form {
-  outline: 1px solid #ff6600 !important;
+	outline: 1px solid #ff6600 !important;
 }
 
 fieldset {
-  outline: 1px solid #ff9900 !important;
+	outline: 1px solid #ff9900 !important;
 }
 
 legend {
-  outline: 1px solid #ffcc00 !important;
+	outline: 1px solid #ffcc00 !important;
 }
 
 label {
-  outline: 1px solid #ffff00 !important;
+	outline: 1px solid #ffff00 !important;
 }
 
 input {
-  outline: 1px solid #ccff00 !important;
+	outline: 1px solid #ccff00 !important;
 }
 
 textarea {
-  outline: 1px solid #99ff00 !important;
+	outline: 1px solid #99ff00 !important;
 }
 
 select {
-  outline: 1px solid #66ff00 !important;
+	outline: 1px solid #66ff00 !important;
 }
 
 button {
-  outline: 1px solid #33ff00 !important;
+	outline: 1px solid #33ff00 !important;
 }
 
 /* Divs get basic treatment */
 div {
-  outline: 1px solid #00ffff !important;
+	outline: 1px solid #00ffff !important;
 }
 
 /* Spans get special treatment */
 span {
-  outline: 1px solid #0066ff !important;
+	outline: 1px solid #0066ff !important;
 }
 
 /* Images get special treatment */
 img {
-  outline: 1px solid #ff0066 !important;
+	outline: 1px solid #ff0066 !important;
 }
 
 /* Links get special treatment */
 a {
-  outline: 1px solid #6600ff !important;
+	outline: 1px solid #6600ff !important;
 }
 
 /* CONTEXT7 SOURCE: /mrmrs/pesticide - Navigation exclusion for clickability fix */
@@ -189,10 +191,10 @@ a:hover,
 .fixed.right-0.top-0 a,
 /* Desktop dropdown fixes */
 .absolute.right-4.top-1/2 button {
-  pointer-events: auto !important;
-  position: relative !important;
-  z-index: auto !important;
-  cursor: pointer !important;
+	pointer-events: auto !important;
+	position: relative !important;
+	z-index: auto !important;
+	cursor: pointer !important;
 }
 
 /**
@@ -210,31 +212,31 @@ a:hover,
  * Add these classes to elements for targeted debugging
  */
 .pesticide-debug {
-  outline: 3px solid #ff0000 !important;
-  background: rgba(255, 0, 0, 0.1) !important;
+	outline: 3px solid #ff0000 !important;
+	background: rgba(255, 0, 0, 0.1) !important;
 }
 
 .pesticide-highlight {
-  outline: 3px solid #00ff00 !important;
-  background: rgba(0, 255, 0, 0.1) !important;
+	outline: 3px solid #00ff00 !important;
+	background: rgba(0, 255, 0, 0.1) !important;
 }
 
 .pesticide-warn {
-  outline: 3px solid #ffff00 !important;
-  background: rgba(255, 255, 0, 0.1) !important;
+	outline: 3px solid #ffff00 !important;
+	background: rgba(255, 255, 0, 0.1) !important;
 }
 
 /* Development indicator in corner */
 body::before {
-  content: "PESTICIDE CSS ACTIVE - DEV ONLY";
-  position: fixed;
-  top: 0;
-  right: 0;
-  background: #ff0000;
-  color: white;
-  padding: 4px 8px;
-  font-size: 12px;
-  font-weight: bold;
-  z-index: 9999;
-  font-family: monospace;
+	content: 'PESTICIDE CSS ACTIVE - DEV ONLY';
+	position: fixed;
+	top: 0;
+	right: 0;
+	background: #ff0000;
+	color: white;
+	padding: 4px 8px;
+	font-size: 12px;
+	font-weight: bold;
+	z-index: 9999;
+	font-family: monospace;
 }

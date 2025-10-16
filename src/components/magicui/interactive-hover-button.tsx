@@ -1,40 +1,30 @@
-/**
- * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Font family utilities for Playfair Display integration
- * FONT_STANDARDIZATION_REASON: Updated to use consistent Playfair Display font family across navigation components
- * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Font weight utilities for refined typography
- * FONT_WEIGHT_REVISION: Changed from font-semibold to font-normal for thinner, more elegant appearance
- */
-
-import React from "react";
-import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
-
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 interface InteractiveHoverButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
-
+	extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 export const InteractiveHoverButton = React.forwardRef<
-  HTMLButtonElement,
-  InteractiveHoverButtonProps
+	HTMLButtonElement,
+	InteractiveHoverButtonProps
 >(({ children, className, ...props }, ref) => {
-  return (
-    <button
-      ref={ref}
-      className={cn(
-        "group relative w-auto cursor-pointer overflow-hidden rounded-lg border bg-white text-[#3F4A7E] p-2 px-6 text-center font-normal font-display transition-colors duration-300 hover:bg-[#3F4A7E] hover:text-white",
-        className,
-      )}
-      {...props}
-    >
-      <div className="flex items-center gap-2">
-        <div className="h-2 w-2 rounded-full bg-[#3F4A7E] transition-all duration-300 group-hover:scale-[100.8] group-hover:bg-white"></div>
-        <span className="inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
-          {children}
-        </span>
-      </div>
-      <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
-        <span>{children}</span>
-        <ArrowRight />
-      </div>
-    </button>
-  );
+	return (
+		<button
+			ref={ref}
+			className={cn(
+				'group relative w-auto cursor-pointer overflow-hidden rounded-lg border bg-white text-[#3F4A7E] p-2 px-6 text-center font-normal font-display transition-colors duration-300 hover:bg-[#3F4A7E] hover:text-white',
+				className,
+			)}
+			{...props}>
+			<div className='flex items-center gap-2'>
+				<div className='h-2 w-2 rounded-full bg-[#3F4A7E] transition-all duration-300 group-hover:scale-[100.8] group-hover:bg-white'></div>
+				<span className='inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0'>
+					{children}
+				</span>
+			</div>
+			<div className='absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100'>
+				<span>{children}</span>
+				<ArrowRight />
+			</div>
+		</button>
+	);
 });
