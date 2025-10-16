@@ -604,7 +604,8 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 				{/* Main Content Section */}
 				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Container and spacing utilities */}
 				{/* LAYOUT REASON: Official Tailwind CSS documentation for responsive container layouts */}
-				<main className='flex-1  px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 to-white'>
+				{/* GRADIENT FIX: Replaced slate-50 with proper neutral-50 token */}
+				<main className='flex-1  px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-neutral-50 to-white'>
 					<div className='w-full mx-auto'>
 						{/* Page Introduction */}
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography and text styling utilities */}
@@ -643,8 +644,10 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 							{/* CONTEXT7 SOURCE: /radix-ui/website - Container width consistency for tabs and content alignment */}
 							{/* WIDTH ALIGNMENT REASON: Official Radix UI documentation for consistent container patterns between List and Content */}
 							<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
+								{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL button/trigger styling */}
+								{/* COLOR TOKEN FIX: Replaced slate-800 with primary-700, blue-500/700 with proper tokens */}
 								<Tabs.List
-									className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2 p-2 bg-slate-800 '
+									className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2 p-2 bg-primary-700'
 									aria-label='Educational level tabs'
 									aria-orientation='horizontal'
 									role='tablist'
@@ -659,10 +662,10 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 												aria-selected={selectedTab === level.value}
 												tabIndex={selectedTab === level.value ? 0 : -1}
 												className={cn(
-													'px-4 py-3  text-sm font-semibold transition-all duration-200 ease-in-out',
-													'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-													'data-[state=active]:bg-white data-[state=active]:text-blue-700 data-[state=active]:font-bold',
-													'data-[state=inactive]:text-slate-600 data-[state=inactive]:bg-transparent',
+													'px-4 py-3 transition-all duration-200 ease-in-out',
+													'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-600 focus-visible:ring-offset-2',
+													'data-[state=active]:bg-white data-[state=active]:text-primary-700',
+													'data-[state=inactive]:text-white data-[state=inactive]:bg-transparent',
 													'disabled:opacity-50 disabled:cursor-not-allowed',
 												)}>
 												{level.label}

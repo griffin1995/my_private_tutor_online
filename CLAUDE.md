@@ -429,6 +429,176 @@ These violations result in immediate task termination:
 
 **REMEMBER**: The synchronous CMS architecture is PROVEN WORKING. Any deviation risks complete homepage failure.
 
+## 🚨 CRITICAL: TAILWIND CSS @LAYER BASE STYLING ARCHITECTURE - MANDATORY FOR ALL STYLING CHANGES
+
+**CONTEXT7 SOURCE**: `/tailwindlabs/tailwindcss.com` - Official Tailwind CSS "Adding Custom Styles" documentation
+**IMPLEMENTATION DATE**: October 16, 2025 - Tailwind CSS Migration Phase 5
+**ZERO TOLERANCE VIOLATIONS**: All styling changes must follow the @layer base pattern - no exceptions
+
+### 🔒 MANDATORY STARTUP FILE READS
+**BEFORE ANY STYLING WORK**, agents MUST read these files to understand the styling architecture:
+
+1. **PRIMARY STYLING FILE**: `/home/jack/Documents/my_private_tutor_online/src/app/globals.css`
+   - Contains @layer base section (lines 593-758) with all semantic HTML defaults
+   - Defines 200+ CSS custom properties (:root variables)
+   - Establishes three-tier cascade layer architecture
+
+2. **TAILWIND CONFIGURATION**: `/home/jack/Documents/my_private_tutor_online/tailwind.config.ts`
+   - Single source of truth for theme configuration (676 lines)
+   - Custom color palette, typography scales, shadows, gradients
+   - Enhanced variants (ARIA, data, supports shortcuts)
+
+### 🎯 THE @LAYER BASE PATTERN (OFFICIAL TAILWIND APPROACH)
+
+**✅ THREE-TIER CASCADE ARCHITECTURE:**
+```css
+/* Layer 1: Preflight (automatic) - Tailwind's CSS reset */
+/* Layer 2: Custom base styles (globals.css) - brand defaults */
+/* Layer 3: Utility classes (Tailwind) - component overrides */
+```
+
+**✅ SEMANTIC HTML WORKS AUTOMATICALLY:**
+```tsx
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base for semantic defaults
+// Write less code - styles are automatic:
+<h1>Premium Tutoring Service</h1>  // Automatically: navy color, bold, 3xl size
+<p>Excellence in education since 2010.</p>  // Automatically: grey-800, relaxed line-height
+<a href="/about">Learn More</a>  // Automatically: gold color with hover transition
+```
+
+**✅ UTILITY OVERRIDES WHEN NEEDED:**
+```tsx
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Utilities always override base layer
+// Easy overrides with utility classes when exceptions required:
+<h1 className="text-white">White Heading</h1>  // Utility override: white instead of navy
+<a className="text-primary-700">Navy Link</a>  // Utility override: navy instead of gold
+```
+
+### 📋 MANDATORY @LAYER BASE IMPLEMENTATION (GLOBALS.CSS LINES 593-758)
+
+**Complete semantic HTML coverage with CSS variables:**
+```css
+@layer base {
+  /* Headings - Primary brand colour (navy) from --color-primary-base */
+  h1, h2, h3, h4, h5, h6 { /* Fully specified with font-family, sizes, weights */ }
+
+  /* Links - Accent colour (gold) from --color-accent with hover transitions */
+  a { color: var(--color-accent); transition: color 200ms; }
+  a:hover { color: var(--color-accent-dark); text-decoration-line: underline; }
+
+  /* Body text - Neutral colour from --color-neutral-grey-800 */
+  p { color: var(--color-neutral-grey-800); line-height: var(--font-line-height-relaxed); }
+
+  /* Lists, emphasis, strong, blockquotes - all defined with CSS variables */
+
+  /* Navigation exclusions - prevent link styling in nav/buttons */
+  nav a, [data-navigation] a, button a, .btn { color: inherit; }
+}
+```
+
+### 🎯 CRITICAL BENEFITS OF @LAYER BASE APPROACH
+
+1. **Write Less Code**: `<h1>Title</h1>` instead of `<h1 className="text-3xl font-bold text-primary-700">Title</h1>`
+2. **Automatic Consistency**: All pages inherit brand styling without manual class application
+3. **Single Source of Truth**: CSS variables from :root → @layer base → all components
+4. **Easy Overrides**: Utility classes always win (higher specificity by design)
+5. **Zero Conflicts**: @layer ensures proper cascade order, no specificity battles
+6. **Official Pattern**: Tailwind recommended approach from official documentation
+
+### 🚫 FORBIDDEN STYLING PATTERNS
+
+**❌ MANUAL COLOR APPLICATION ON EVERY ELEMENT:**
+```tsx
+// FORBIDDEN: Manually applying colors to every heading/link/paragraph
+<h1 className="text-primary-700 text-3xl font-bold">Title</h1>  // DON'T DO THIS
+<p className="text-neutral-grey-800 leading-relaxed">Text</p>  // DON'T DO THIS
+<a className="text-accent-600 hover:text-accent-700">Link</a>  // DON'T DO THIS
+```
+
+**✅ CORRECT: LET @LAYER BASE HANDLE DEFAULTS:**
+```tsx
+// CORRECT: Clean semantic HTML - styling is automatic
+<h1>Title</h1>  // @layer base provides navy color, bold, 3xl size
+<p>Text content here.</p>  // @layer base provides grey-800, relaxed leading
+<a href="/page">Link</a>  // @layer base provides gold with hover effect
+```
+
+**✅ CORRECT: UTILITY OVERRIDES FOR EXCEPTIONS:**
+```tsx
+// CORRECT: Use utilities only when you need to override base defaults
+<h1 className="text-white">White Title on Dark Background</h1>
+<p className="text-sm">Smaller paragraph for legal text</p>
+<a className="text-primary-700">Navy link in specific context</a>
+```
+
+### 📏 STYLING WORKFLOW FOR ALL AGENTS
+
+**STEP 1: READ REQUIRED FILES**
+- Read `/home/jack/Documents/my_private_tutor_online/src/app/globals.css` (focus on lines 593-758)
+- Read `/home/jack/Documents/my_private_tutor_online/tailwind.config.ts` (understand theme tokens)
+
+**STEP 2: VERIFY @LAYER BASE COVERAGE**
+- Check if semantic HTML element already has @layer base styling
+- If yes: Use semantic HTML without classes (preferred)
+- If no: Consider adding to @layer base if it's a global default
+
+**STEP 3: APPLY STYLING STRATEGY**
+- **Default Case**: Use semantic HTML without utility classes (`<h1>Title</h1>`)
+- **Override Case**: Add utility classes only for exceptions (`<h1 className="text-white">`)
+- **New Component**: Build with semantic HTML first, add utilities for variations
+
+**STEP 4: VERIFY IMPLEMENTATION**
+- Ensure semantic HTML works without classes where possible
+- Confirm utility overrides work correctly (they always win)
+- Validate CSS variables are used (never hardcode colors/sizes)
+
+### 🔴 IMMEDIATE TERMINATION CONDITIONS
+
+These styling violations result in immediate task termination:
+- **Manual color classes on standard HTML elements** when @layer base provides defaults
+- **Hardcoded colors/sizes** instead of using CSS variables or Tailwind tokens
+- **Inline styles for colors/typography** that should use @layer base or utilities
+- **Adding utility classes to every element** instead of leveraging @layer base defaults
+- **Creating component-specific CSS files** instead of using @layer base + utilities
+- **Ignoring globals.css @layer base** and manually styling every element
+- **Not reading globals.css and tailwind.config.ts** before styling work
+
+### 🎯 VERIFICATION CHECKLIST
+
+Before completing any styling task, verify:
+- ✅ Read globals.css @layer base section (lines 593-758)
+- ✅ Read tailwind.config.ts theme configuration
+- ✅ Used semantic HTML without classes where @layer base provides styling
+- ✅ Applied utility overrides only for genuine exceptions
+- ✅ All colors/typography use CSS variables or Tailwind tokens (no hardcoded values)
+- ✅ Verified styles work automatically for standard HTML elements
+- ✅ Confirmed utility overrides work correctly when needed
+- ✅ Maintained British English in all comments and documentation
+
+### 📊 ARCHITECTURE SUMMARY
+
+**Pure Utility-First Achieved (Phase 4 Complete)**:
+- Zero external CSS files (12 eliminated)
+- Single globals.css with @layer base + CSS variables
+- Pure Tailwind utilities for component variations
+- 200+ CSS custom properties as design tokens
+- Mathematical shadow/gradient systems
+- Enhanced ARIA/data/supports variants
+
+**Component Styling Strategy (Phase 5 Current)**:
+1. Semantic HTML works automatically via @layer base
+2. Utility classes for overrides and variations
+3. CSS variables for consistent theming
+4. Tailwind config as single source of truth
+5. Zero external stylesheets or CSS modules
+
+**Business Impact**:
+- Faster development: Less code to write per component
+- Consistent branding: Automatic styling across all pages
+- Easier maintenance: Single location for global style updates
+- Better performance: Smaller bundle, optimized CSS cascade
+- Royal client quality: Enterprise-grade architecture maintained
+
 ---
 
 # 📚 CUSTOM PATTERN LIBRARY - MAINTAIN IN CUSTOM_DOCS.md

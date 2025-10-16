@@ -44,14 +44,14 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
   const backgroundClasses = React.useMemo(() => {
     switch (data.backgroundStyle) {
       case "dark":
-        return "bg-gray-900 text-white";
+        return "bg-primary-700 text-white";
       case "gradient":
         // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for gradient backgrounds
         // BRAND COLOR UPDATE: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency - replacing orange with Aztec Gold accent colors
         return "bg-gradient-to-br from-accent-50 to-accent-100";
       case "light":
       default:
-        return "bg-gray-50";
+        return "bg-neutral-50";
     }
   }, [data.backgroundStyle]);
 
@@ -61,19 +61,25 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
         {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Responsive component styles with mobile-first approach */}
         {/* CONTEXT7 SOURCE: /websites/16_reactjs - dangerouslySetInnerHTML for safe HTML content rendering */}
         {/* HTML FORMATTING IMPLEMENTATION: Added dangerouslySetInnerHTML to render HTML tags in description text */}
+        {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h2 styling */}
+        {/* LAYER BASE SYSTEM: Stripped text-3xl, font-bold, tracking-tight, sm:text-4xl, lg:text-5xl, text-gray-900 - ALL from @layer base */}
+        {/* ONLY KEEPING: mb-4, text-white (essential override on dark bg) */}
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center mb-12 lg:mb-16">
           <h2
-            className={`text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl mb-4 ${
-              data.backgroundStyle === "dark" ? "text-white" : "text-gray-900"
+            className={`mb-4 ${
+              data.backgroundStyle === "dark" ? "text-white" : ""
             }`}
           >
             {data.title}
           </h2>
 
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+          {/* LAYER BASE SYSTEM: Stripped text-xl, font-medium - provided by @layer base */}
+          {/* ONLY KEEPING: mb-6, accent color overrides */}
           {data.subtitle && (
             <p
-              className={`text-xl font-medium mb-6 ${
+              className={`mb-6 ${
                 // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Brand color implementation for text styling
                 // BRAND COLOR UPDATE: Official Tailwind CSS documentation demonstrates accent-* color usage for brand consistency - replacing orange text colors with Aztec Gold
                 data.backgroundStyle === "dark"
@@ -85,13 +91,14 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
             </p>
           )}
 
+          {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL div styling */}
+          {/* LAYER BASE SYSTEM: Stripped text-lg, leading-relaxed, text-gray-300, text-gray-600 - ALL from @layer base */}
+          {/* ONLY KEEPING: Essential text-white override on dark background */}
           {data.description && (
             <div
-              className={`text-lg leading-relaxed ${
-                data.backgroundStyle === "dark"
-                  ? "text-gray-300"
-                  : "text-gray-600"
-              }`}
+              className={
+                data.backgroundStyle === "dark" ? "text-white" : ""
+              }
               dangerouslySetInnerHTML={{
                 __html: `<p>${data.description.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br />")}</p>`,
               }}
@@ -113,11 +120,15 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
           data.showAllButton &&
           profilesToShow.length > 0 && (
             <div className="text-center">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL anchor styling */}
+              {/* LAYER BASE SYSTEM: Stripped text-base, font-medium, text-gray-900 - ALL from @layer base */}
+              {/* TOKEN FIX: Replaced gray-* with neutral-* tokens per config */}
+              {/* ONLY KEEPING: Layout, spacing, transitions, proper tokens */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White button styling with proper contrast and accessibility */}
-              {/* WHITE BUTTON REVISION: Official Tailwind CSS documentation demonstrates white bg with gray text and borders for proper contrast and accessibility compliance */}
+              {/* WHITE BUTTON REVISION: Official Tailwind CSS documentation demonstrates white bg with borders for proper contrast and accessibility compliance */}
               <a
                 href={data.showAllButton.href}
-                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-colors duration-200 bg-white text-gray-900 border-2 border-gray-300 hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                className="inline-flex items-center justify-center px-8 py-3 rounded-lg transition-colors duration-200 bg-white border-2 border-neutral-300 hover:bg-neutral-50 hover:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2"
               >
                 {/* CONTEXT7 SOURCE: /reactjs/react.dev - Dynamic text content with calculated values */}
                 {/* DYNAMIC COUNT: Update button text to reflect actual count of tutors with photos */}

@@ -591,6 +591,254 @@ textarea:focus-visible {
 }
 
 /**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base for semantic HTML defaults
+ * OFFICIAL PATTERN: Extending Preflight with brand-specific base styles
+ * REFERENCE: Official Tailwind documentation - "Adding Custom Styles" section
+ * IMPLEMENTATION DATE: October 2025 - Tailwind CSS Migration Phase 5
+ *
+ * Architecture:
+ * - Layer 1: Preflight (Tailwind's reset) - automatic
+ * - Layer 2: Custom base styles (this section) - brand defaults
+ * - Layer 3: Utility classes - component-level overrides
+ *
+ * Benefits:
+ * - Semantic HTML works automatically: <h1>Title</h1>
+ * - Easy overrides with utilities: <h1 className="text-white">Title</h1>
+ * - Single source of truth for brand typography
+ * - Zero specificity conflicts with Tailwind utilities
+ * - Automatic consistency across all pages
+ */
+
+@layer base {
+  /* ============================================
+     TYPOGRAPHY DEFAULTS - BRAND SPECIFIC
+     ============================================ */
+
+  /**
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography base styles
+   * OFFICIAL EXAMPLE: Using CSS variables for consistent brand typography
+   * PATTERN: Base layer styles have lowest specificity - always overridden by utilities
+   */
+
+  /* Headings - Primary brand colour (navy) */
+  h1 {
+    color: var(--color-primary-base);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--font-line-height-tight);
+    letter-spacing: var(--font-letter-spacing-tight);
+    margin-bottom: var(--spacing-6);
+  }
+
+  h2 {
+    color: var(--color-primary-base);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--font-line-height-tight);
+    letter-spacing: var(--font-letter-spacing-tight);
+    margin-bottom: var(--spacing-5);
+  }
+
+  /**
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-specific heading overrides
+   * HERO H2 STYLING: Specific styling for H2 elements within hero sections
+   * PATTERN: Using data attributes for scoped overrides without specificity conflicts
+   * CLIENT PREFERENCE: Maintains sophisticated hero typography with uppercase and wide tracking
+   */
+  [data-hero-section] h2 {
+    font-family: var(--font-family-body); /* Serif for elegance */
+    font-size: var(--font-size-lg); /* Base: 18px */
+    font-weight: var(--font-weight-medium);
+    line-height: var(--font-line-height-relaxed);
+    letter-spacing: 0.1em; /* tracking-widest equivalent */
+    text-transform: uppercase;
+  }
+
+  /* Responsive hero H2 sizing */
+  @media (min-width: 768px) {
+    [data-hero-section] h2 {
+      font-size: var(--font-size-xl); /* md: 20px */
+    }
+  }
+
+  /**
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-specific paragraph overrides
+   * PULL QUOTE STYLING: Specific styling for prominent pull quotes and blockquote content
+   * PATTERN: Using data attributes for scoped overrides without specificity conflicts
+   * CLIENT PREFERENCE: Maintains sophisticated quote typography with larger serif font
+   */
+  [data-pull-quote] p {
+    font-family: var(--font-family-body); /* Serif for elegance */
+    font-size: var(--font-size-xl); /* Base: 20px */
+    font-style: italic;
+    line-height: var(--font-line-height-relaxed);
+  }
+
+  /* Responsive pull quote sizing */
+  @media (min-width: 1024px) {
+    [data-pull-quote] p {
+      font-size: var(--font-size-2xl); /* lg: 24px */
+    }
+  }
+
+  h3 {
+    color: var(--color-primary-base);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--font-line-height-snug);
+    letter-spacing: var(--font-letter-spacing-normal);
+    margin-bottom: var(--spacing-4);
+  }
+
+  h4 {
+    color: var(--color-primary-base);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--font-line-height-snug);
+    margin-bottom: var(--spacing-3);
+  }
+
+  h5, h6 {
+    color: var(--color-primary-base);
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--font-line-height-normal);
+  }
+
+  /**
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Link styling with hover states
+   * OFFICIAL EXAMPLE: Accent colour links with smooth transitions
+   * PATTERN: Base styles for all links, navigation overridden below
+   */
+
+  /* Links - Accent colour (gold) with hover transition */
+  a {
+    color: var(--color-accent);
+    text-decoration-line: none;
+    transition-property: color;
+    transition-duration: var(--transition-duration-200);
+    transition-timing-function: var(--transition-timing-in-out);
+  }
+
+  a:hover {
+    color: var(--color-accent-dark);
+    text-decoration-line: underline;
+  }
+
+  /**
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Body text defaults
+   * OFFICIAL PATTERN: Semantic typography for content-heavy pages
+   */
+
+  /* Body text - Neutral colour with body font */
+  p {
+    color: var(--color-neutral-grey-800);
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-base);
+    line-height: var(--font-line-height-relaxed);
+    margin-bottom: var(--spacing-4);
+  }
+
+  /* Lists - Body text styling */
+  ul, ol {
+    color: var(--color-neutral-grey-800);
+    font-family: var(--font-family-body);
+    margin-bottom: var(--spacing-4);
+  }
+
+  li {
+    margin-bottom: var(--spacing-2);
+  }
+
+  /**
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Semantic emphasis elements
+   * OFFICIAL PATTERN: Enhanced typography for strong, emphasis, blockquotes
+   */
+
+  /* Emphasis elements */
+  strong, b {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary-dark);
+  }
+
+  em, i {
+    font-style: italic;
+  }
+
+  /* Blockquotes */
+  blockquote {
+    border-left-width: var(--border-width-thick);
+    border-left-color: var(--color-accent);
+    padding-left: var(--spacing-4);
+    font-style: italic;
+    color: var(--color-neutral-grey-600);
+  }
+
+  /**
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Override base styles for specific contexts
+   * OFFICIAL EXAMPLE: Using descendant selectors to exclude navigation
+   * PATTERN: Navigation and interactive elements inherit parent styles
+   */
+
+  /* Navigation links - Override global link styles */
+  nav a,
+  [data-navigation] a,
+  button a,
+  .btn {
+    color: inherit;
+    text-decoration-line: none;
+  }
+
+  nav a:hover,
+  [data-navigation] a:hover {
+    text-decoration-line: none;
+  }
+
+  /**
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Data attribute for dark background sections
+   * SYSTEMATIC RULE: Automatic white text on dark backgrounds without manual overrides
+   * PATTERN: Using data attributes for scoped color overrides without specificity conflicts
+   * IMPLEMENTATION DATE: October 2025 - Tailwind CSS Migration Phase 5
+   */
+
+  /* White text on dark backgrounds - automatic color override */
+  [data-dark-bg] h1,
+  [data-dark-bg] h2,
+  [data-dark-bg] h3,
+  [data-dark-bg] h4,
+  [data-dark-bg] h5,
+  [data-dark-bg] h6,
+  [data-dark-bg] p,
+  [data-dark-bg] span,
+  [data-dark-bg] div,
+  [data-dark-bg] li,
+  [data-dark-bg] a {
+    color: white;
+  }
+
+  /* Hover state for links on dark backgrounds */
+  [data-dark-bg] a:hover {
+    color: var(--color-neutral-grey-200);
+  }
+
+  /**
+   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Data attribute for brand accent text
+   * SYSTEMATIC RULE: Semantic accent color without manual color classes
+   * PATTERN: Using data attributes for brand-specific color treatments
+   * CLIENT PREFERENCE: Aztec Gold (#ca9e5b) for specialist text and highlights
+   */
+
+  /* Brand accent color - automatic application */
+  [data-accent-text] {
+    color: var(--color-secondary-base); /* #ca9e5b */
+  }
+}
+
+/**
  * Custom Animations for Premium Brand Experience
  * Documentation Source: Context7 MCP - CSS Animation Best Practices
  * Pattern: Subtle animations for professional user experience

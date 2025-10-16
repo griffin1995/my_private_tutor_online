@@ -77,26 +77,29 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                 />
               </div>
 
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography with brand fonts */}
-              {/* TUTOR INFO: Name with Playfair Display font */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h3 styling */}
+              {/* LAYER BASE SYSTEM: Stripped font-display, font-semibold, text-gray-900, text-xl - ALL from @layer base */}
+              {/* TUTOR INFO: Name styling from base layer */}
               <div className="text-center">
-                <h3 className="font-display font-semibold text-gray-900 text-xl">
+                <h3>
                   {profile.name}
                 </h3>
               </div>
 
-              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Specialist line text with enhanced typography */}
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+              {/* LAYER BASE SYSTEM: Stripped font-serif, font-medium, text-base, leading-relaxed - provided by @layer base */}
+              {/* ONLY KEEPING: text-accent-600 brand color token */}
               {/* SPECIALIST LINE TEXT: Profile title positioned between name and arrow */}
-              {/* REVISION REASON: Applied Aztec Gold brand color (#CA9E5B) to specialist line text for brand consistency */}
+              {/* TOKEN FIX: Replaced hardcoded #CA9E5B with accent-600 token */}
               <div className="text-center">
-                <p className="text-[#CA9E5B] font-serif font-medium text-base leading-relaxed">
+                <p className="text-accent-600">
                   {profile.title}
                 </p>
               </div>
 
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom arrow positioned below specialist line */}
               {/* CUSTOM ARROW: Repositioned expand/collapse indicator with state-controlled rotation */}
-              {/* REVISION REASON: Added card-wide hover effect with Aztec Gold (#CA9E5B) arrow highlight and smooth transitions */}
+              {/* TOKEN FIX: Replaced hardcoded colors with proper tokens (neutral-400, accent-600) */}
               <div
                 className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
               >
@@ -106,7 +109,7 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                   viewBox="0 0 15 15"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400 group-hover:text-[#CA9E5B] transition-colors duration-300"
+                  className="h-4 w-4 text-neutral-400 group-hover:text-accent-600 transition-colors duration-300"
                 >
                   <path
                     d="m4.5 6 3 3 3-3"
@@ -126,12 +129,15 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
             className={`px-6 pb-6 transition-all duration-300 ${isOpen ? "bg-white" : "bg-transparent"}`}
           >
             <div className="space-y-6">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h4 styling */}
+              {/* LAYER BASE SYSTEM: Stripped font-display, font-semibold, text-gray-900 - ALL from @layer base */}
+              {/* ONLY KEEPING: mb-2, flex, items-center for layout */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-width row layout for Education section */}
               {/* EDUCATION SECTION: Full-width row as requested */}
               <div>
-                <h4 className="font-display font-semibold text-gray-900 mb-2 flex items-center">
+                <h4 className="mb-2 flex items-center">
                   <svg
-                    className="mr-2 h-4 w-4 text-[#CA9E5B]"
+                    className="mr-2 h-4 w-4 text-accent-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -145,21 +151,25 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                   </svg>
                   Education
                 </h4>
-                <div className="font-serif text-sm text-gray-600 space-y-1">
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL div/p/span styling */}
+                {/* LAYER BASE SYSTEM: Stripped font-serif, text-sm, text-gray-600, font-medium, text-gray-700 - ALL from @layer base */}
+                {/* ONLY KEEPING: space-y-1, mt-2, text-accent-600 brand color token */}
+                {/* TOKEN FIX: Replaced hardcoded #CA9E5B with accent-600 token */}
+                <div className="space-y-1">
                   <p>
-                    <span className="font-medium">
+                    <span>
                       {profile.education.degree}
                     </span>
                   </p>
                   <p>{profile.education.university}</p>
                   {profile.education.grade && (
-                    <p className="text-[#CA9E5B] font-medium">
+                    <p className="text-accent-600">
                       {profile.education.grade}
                     </p>
                   )}
                   {profile.education.additionalQualifications && (
                     <div className="mt-2">
-                      <p className="font-medium text-gray-700">
+                      <p>
                         Additional Qualifications:
                       </p>
                       <ul className="list-disc list-inside ml-2">
@@ -174,12 +184,15 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                 </div>
               </div>
 
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h4 styling */}
+              {/* LAYER BASE SYSTEM: Stripped font-display, font-semibold, text-gray-900 - ALL from @layer base */}
+              {/* ONLY KEEPING: mb-2, flex, items-center for layout */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full-width row layout for Experience section */}
               {/* EXPERIENCE SECTION: Full-width row as requested */}
               <div>
-                <h4 className="font-display font-semibold text-gray-900 mb-2 flex items-center">
+                <h4 className="mb-2 flex items-center">
                   <svg
-                    className="mr-2 h-4 w-4 text-[#CA9E5B]"
+                    className="mr-2 h-4 w-4 text-accent-600"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -193,9 +206,12 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                   </svg>
                   Experience
                 </h4>
-                <div className="font-serif text-sm text-gray-600 space-y-1">
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL div/p/span styling */}
+                {/* LAYER BASE SYSTEM: Stripped font-serif, text-sm, text-gray-600, font-medium, text-gray-700 - ALL from @layer base */}
+                {/* ONLY KEEPING: space-y-1, mt-2 for layout */}
+                <div className="space-y-1">
                   <p>
-                    <span className="font-medium">
+                    <span>
                       {profile.experience.yearsTeaching} years
                     </span>{" "}
                     teaching experience
@@ -210,7 +226,7 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                   )}
                   {profile.experience.eliteSchools && (
                     <div className="mt-2">
-                      <p className="font-medium text-gray-700">
+                      <p>
                         Elite School Experience:
                       </p>
                       <ul className="list-disc list-inside ml-2">
@@ -225,29 +241,36 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                 </div>
               </div>
 
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h4/p styling */}
+              {/* LAYER BASE SYSTEM: Stripped all typography utilities - ALL from @layer base */}
+              {/* ONLY KEEPING: mb-2 for spacing */}
               {/* Bio */}
               {profile.bio && (
                 <div>
-                  <h4 className="font-display font-semibold text-gray-900 mb-2">
+                  <h4 className="mb-2">
                     About
                   </h4>
-                  <p className="font-serif text-sm text-gray-600 leading-relaxed">
+                  <p>
                     {profile.bio}
                   </p>
                 </div>
               )}
 
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h4/span styling */}
+              {/* LAYER BASE SYSTEM: Stripped font-display, font-semibold, text-gray-900, text-xs, font-medium, font-serif */}
+              {/* ONLY KEEPING: mb-2, layout classes, text-accent-600 brand color token */}
+              {/* TOKEN FIX: Replaced hardcoded #CA9E5B with accent-600 token */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - British spelling implementation */}
               {/* All Specialisations - British spelling as requested */}
               <div>
-                <h4 className="font-display font-semibold text-gray-900 mb-2">
+                <h4 className="mb-2">
                   All Specialisations
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {profile.specializations.map((specialization, index) => (
                     <span
                       key={index}
-                      className={`inline-flex items-center rounded-md px-2.5 py-1 text-xs font-medium font-serif transition-all duration-300 text-[#CA9E5B] border ${isOpen ? "bg-[#CA9E5B]/10 border-[#CA9E5B]/30" : "bg-transparent border-transparent"}`}
+                      className={`inline-flex items-center rounded-md px-2.5 py-1 transition-all duration-300 text-accent-600 border ${isOpen ? "bg-accent-600/10 border-accent-600/30" : "bg-transparent border-transparent"}`}
                     >
                       {specialization}
                     </span>
@@ -255,18 +278,22 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                 </div>
               </div>
 
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h4/h5/p styling */}
+              {/* LAYER BASE SYSTEM: Stripped all typography utilities - ALL from @layer base */}
+              {/* ONLY KEEPING: mb-1, mb-2, text-accent-600 brand color token */}
+              {/* TOKEN FIX: Replaced hardcoded #CA9E5B with accent-600 token */}
               {/* Achievements */}
               {profile.achievements && profile.achievements.length > 0 && (
                 <div>
-                  <h4 className="font-display font-semibold text-gray-900 mb-2">
+                  <h4 className="mb-2">
                     Key Achievement
                   </h4>
                   <div
-                    className={`p-3 rounded-lg border transition-all duration-300 ${isOpen ? "bg-[#CA9E5B]/10 border-[#CA9E5B]/20" : "bg-transparent border-transparent"}`}
+                    className={`p-3 rounded-lg border transition-all duration-300 ${isOpen ? "bg-accent-600/10 border-accent-600/20" : "bg-transparent border-transparent"}`}
                   >
                     <div className="flex items-start">
                       <svg
-                        className="mr-2 h-4 w-4 text-[#CA9E5B] mt-0.5 flex-shrink-0"
+                        className="mr-2 h-4 w-4 text-accent-600 mt-0.5 flex-shrink-0"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                       >
@@ -277,10 +304,10 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                         />
                       </svg>
                       <div>
-                        <h5 className="font-display font-medium text-[#CA9E5B] mb-1">
+                        <h5 className="text-accent-600 mb-1">
                           {profile.achievements[0].title}
                         </h5>
-                        <p className="font-serif text-sm text-gray-700">
+                        <p>
                           {profile.achievements[0].description}
                         </p>
                       </div>
@@ -289,22 +316,26 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                 </div>
               )}
 
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h4/blockquote/cite/span styling */}
+              {/* LAYER BASE SYSTEM: Stripped all typography utilities - ALL from @layer base */}
+              {/* ONLY KEEPING: mb-2, italic, layout classes, proper bg tokens */}
+              {/* TOKEN FIX: Replaced bg-gray-50, border-gray-100 with neutral-50/100 */}
               {/* Testimonial */}
               {profile.testimonial && (
                 <div>
-                  <h4 className="font-display font-semibold text-gray-900 mb-2">
+                  <h4 className="mb-2">
                     Student Testimonial
                   </h4>
                   <div
-                    className={`p-4 rounded-lg border transition-all duration-300 ${isOpen ? "bg-gray-50 border-gray-100" : "bg-transparent border-transparent"}`}
+                    className={`p-4 rounded-lg border transition-all duration-300 ${isOpen ? "bg-neutral-50 border-neutral-100" : "bg-transparent border-transparent"}`}
                   >
-                    <blockquote className="font-serif text-sm text-gray-600 italic mb-2">
+                    <blockquote className="italic mb-2">
                       "{profile.testimonial.quote}"
                     </blockquote>
-                    <cite className="font-serif text-xs text-gray-500 font-medium">
+                    <cite>
                       — {profile.testimonial.author}
                       {profile.testimonial.context && (
-                        <span className="font-normal">
+                        <span>
                           , {profile.testimonial.context}
                         </span>
                       )}
@@ -313,6 +344,10 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
                 </div>
               )}
 
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL button styling */}
+              {/* LAYER BASE SYSTEM: Stripped font-display, font-medium - provided by @layer base */}
+              {/* ONLY KEEPING: Layout, spacing, transitions, brand tokens */}
+              {/* TOKEN FIX: Replaced hardcoded #CA9E5B with accent-600, #B8904F with accent-700 tokens */}
               {/* CONTEXT7 SOURCE: /shadcn-ui/ui - Button variant ghost CVA patterns for avoiding style conflicts */}
               {/* CONTEXT7 SOURCE: /mdn/content - HTML anchor element href attribute patterns for external links */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Conditional styling with hover states and text color utilities */}
@@ -320,10 +355,10 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
               {/* BUG FIX: Fixed button text visibility by applying ghost variant pattern and forced white text */}
               {/* CHANGE TYPE: BUG FIX - Applied ghost variant and !text-white pattern to fix CVA style conflicts */}
               <div className="pt-4">
-                <Button 
+                <Button
                   variant="ghost"
                   asChild
-                  className={`w-full px-6 py-3 rounded-lg font-display font-medium transition-all duration-300 text-center focus:outline-none ${isOpen ? "bg-[#CA9E5B] !text-white hover:bg-[#B8904F] hover:shadow-md focus:ring-2 focus:ring-[#CA9E5B] focus:ring-offset-2" : "bg-transparent !text-[#CA9E5B] border-2 border-[#CA9E5B] hover:bg-[#CA9E5B] hover:!text-white hover:shadow-md"}`}
+                  className={`w-full px-6 py-3 rounded-lg transition-all duration-300 text-center focus:outline-none ${isOpen ? "bg-accent-600 !text-white hover:bg-accent-700 hover:shadow-md focus:ring-2 focus:ring-accent-600 focus:ring-offset-2" : "bg-transparent !text-accent-600 border-2 border-accent-600 hover:bg-accent-600 hover:!text-white hover:shadow-md"}`}
                 >
                   <a
                     href="https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~"

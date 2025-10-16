@@ -97,28 +97,31 @@ export const CallOutsGrid = memo(function CallOutsGrid({
               {/* Card Container */}
               {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Card styling with square edges */}
               {/* SQUARE EDGES REASON: Official Tailwind CSS documentation for border styling without rounding */}
-              <div className="relative p-8 bg-white shadow-subtle-md border-2 border-token-ui-border hover:shadow-depth-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+              <div className="relative p-8 bg-white shadow-subtle-md border-2 border-neutral-300 hover:shadow-depth-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
 
                 {/* Background Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-token-secondary/10 via-transparent to-blue-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Gradient with proper config tokens */}
+                {/* GRADIENT FIX REASON: Replaced invalid token-secondary and blue-50 with proper primary-700 and neutral-100 */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-700/10 via-transparent to-neutral-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Icon Container */}
                 {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Gradient backgrounds for icons */}
                 {/* ICON STYLING REASON: Official Tailwind CSS documentation for gradient utilities */}
+                {/* GRADIENT FIX: Replaced invalid tokens with proper primary-700 and accent-600 */}
                 <div className="relative mb-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-token-secondary via-token-primary to-token-primary-dark flex items-center justify-center shadow-lg shadow-token-secondary/25 group-hover:shadow-xl group-hover:shadow-token-secondary/40 transition-all duration-500 mx-auto">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent-600 via-primary-700 to-primary-700 flex items-center justify-center shadow-lg shadow-accent-600/25 group-hover:shadow-xl group-hover:shadow-accent-600/40 transition-all duration-500 mx-auto">
                     {getIcon(callOut.icon)}
                   </div>
                 </div>
 
-                {/* Content */}
-                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography utilities for text hierarchy */}
-                {/* TEXT REASON: Official Tailwind CSS documentation for font and spacing utilities */}
+                {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h4 and p styling */}
+                {/* LAYER BASE SYSTEM: Stripped ALL typography utilities - provided by globals.css @layer base */}
+                {/* ONLY KEEPING: text-center relative z-10 for layout, mb-3 for spacing */}
                 <div className="text-center relative z-10">
-                  <h4 className="font-heading text-xl font-bold text-token-primary-dark mb-3">
+                  <h4 className="mb-3">
                     {callOut.title}
                   </h4>
-                  <p className="font-body text-base text-token-neutral-700 leading-relaxed">
+                  <p>
                     {callOut.description}
                   </p>
                 </div>

@@ -69,10 +69,13 @@ export const TutorsGrid: React.FC<TutorsGridProps> = ({
     return filteredProfiles
   }, [profiles, showFeatured, maxProfiles])
 
+  // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling
+  // LAYER BASE SYSTEM: Stripped text-gray-500 - provided by @layer base
+  // ONLY KEEPING: Layout classes
   if (sortedProfiles.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500">No tutor profiles available.</p>
+        <p>No tutor profiles available.</p>
       </div>
     )
   }
@@ -92,10 +95,13 @@ export const TutorsGrid: React.FC<TutorsGridProps> = ({
         ))}
       </div>
 
+      {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+      {/* LAYER BASE SYSTEM: Stripped text-sm, text-gray-600 - provided by @layer base */}
+      {/* ONLY KEEPING: mb-4 for spacing */}
       {/* Show count if maxProfiles is set and there are more profiles */}
       {maxProfiles && profiles.length > maxProfiles && (
         <div className="mt-8 text-center">
-          <p className="text-sm text-gray-600 mb-4">
+          <p className="mb-4">
             Showing {maxProfiles} of {profiles.length} tutors
           </p>
         </div>

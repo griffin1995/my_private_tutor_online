@@ -76,6 +76,7 @@ export function SimpleHero({
 }: SimpleHeroProps) {
 	return (
 		<section
+			data-hero-section
 			className={cn(
 				// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Full viewport dimensions and positioning
 				// VIEWPORT REASON: Official Tailwind CSS documentation for 100vh/100vw full-screen layouts
@@ -191,41 +192,23 @@ export function SimpleHero({
 					{/* H1 - Sequential Drop-down Animation Main Heading */}
 					{/* CONTEXT7 SOURCE: /websites/motion-dev-docs - Motion.h1 with heroItemVariants for sequential drop-down animation */}
 					{/* ANIMATED H1 REASON: Official Motion documentation for child item animations that inherit parent orchestration */}
+					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base styling system for consistent typography */}
+					{/* LAYER BASE STYLING REASON: Official Tailwind CSS documentation Section 2.1 - All h1 typography handled by globals.css @layer base */}
 					<motion.div
 						variants={heroItemVariants}
 						className='mb-[26px]'>
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text shadow utilities with metallic blue scheme */}
-						{/* TEXT SHADOW ENHANCEMENT: Official Tailwind CSS documentation for text-shadow utilities with luxury depth */}
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale for enhanced visual hierarchy */}
-						{/* SIZE IMPLEMENTATION: text-3xl/4xl/5xl/6xl/7xl responsive typography scaling */}
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom color values using arbitrary value syntax with metallic blue scheme */}
-						{/* METALLIC BLUE IMPLEMENTATION: Official Tailwind CSS documentation for custom color values - #3F4A7E applied to h1 elements only */}
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - CSS text-transform capitalize for title case formatting */}
-						{/* TITLE CASE IMPLEMENTATION: Official Tailwind CSS documentation for text-transform utilities - capitalize transforms first letter of each word to uppercase */}
-						<h1
-							className='text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-display font-black leading-tight tracking-tight capitalize'
-							style={{
-								color: '#3F4A7E', // CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue (#3F4A7E) color for h1 elements
-								textShadow: `
-                    0 2px 4px rgba(63, 74, 126, 0.618),
-                    0 4px 8px rgba(63, 74, 126, 0.382),
-                    0 8px 16px rgba(63, 74, 126, 0.236),
-                    inset 0 1px 0 rgba(95, 111, 158, 0.618)
-                  `, // REVISION REASON: Official Tailwind CSS documentation for custom color styling - Updated text shadows to match metallic blue color scheme
-							}}>
-							{h1}
-						</h1>
+						<h1>{h1}</h1>
 					</motion.div>
 
 					{/* H2 - Sequential Drop-down Animation Sub Heading */}
 					{/* CONTEXT7 SOURCE: /websites/motion-dev-docs - Motion.div with heroItemVariants for sequential drop-down animation */}
 					{/* ANIMATED H2 REASON: Official Motion documentation for child item animations with sequential stagger timing */}
-					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography scale enhancement and responsive text sizing */}
-					{/* TYPOGRAPHY SIZE REVISION: Official Tailwind CSS documentation Section 3.1 - text-lg/xl responsive typography */}
-					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White color application for non-h1 text elements */}
-					{/* WHITE COLOR IMPLEMENTATION: Official Tailwind CSS documentation for text-white utility - all text elements except h1 use white color */}
+					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base styling system for consistent typography */}
+					{/* LAYER BASE STYLING REASON: Official Tailwind CSS documentation Section 2.1 - All h2 typography handled by globals.css @layer base */}
+					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - White color override for contrast on dark backgrounds */}
+					{/* WHITE COLOR OVERRIDE REASON: Essential contrast override for hero text on dark background overlays */}
 					<motion.div variants={heroItemVariants}>
-						<h2 className='text-lg md:text-xl font-serif font-medium tracking-widest uppercase text-wrap leading-relaxed max-w-full mx-auto px-4 text-center flex-shrink-0 self-center flex items-center justify-center text-white'>
+						<h2 className='text-white text-center max-w-full mx-auto px-4'>
 							{h2}
 						</h2>
 					</motion.div>

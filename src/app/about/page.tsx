@@ -121,17 +121,21 @@ export default function AboutUsPage() {
 					<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
 						<Blockquote>
 							{/* Quote SVG top-left */}
+							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - SVG fill utilities with Tailwind colors */}
+							{/* SVG FILL FIX: Replaced hardcoded fill='#3F4A7E' with fill-primary-700 class using primary-700 from tailwind.config.ts */}
 							<svg
-								className='mb-6 h-14 w-14'
+								className='mb-6 h-14 w-14 fill-primary-700'
 								aria-hidden='true'
 								xmlns='http://www.w3.org/2000/svg'
-								fill='#3F4A7E'
 								viewBox='0 0 18 14'>
 								<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
 							</svg>
 
 							{/* Quote content */}
-							<p className='text-xl lg:text-2xl font-serif italic text-gray-900'>
+							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+							{/* LAYER BASE SYSTEM: Removed text-xl/2xl, font-serif - ALL provided by globals.css @layer base */}
+							{/* ONLY OVERRIDE: italic for quote styling */}
+							<p className='italic'>
 								&quot;<strong>A truly bespoke</strong> experience — Elizabeth personally
 								pairs each student with a <u>carefully selected tutor</u> from her
 								boutique team.&quot;
@@ -151,10 +155,14 @@ export default function AboutUsPage() {
 					id='about-highlighter-intro'
 					className='pt-20 bg-white'>
 					<div className='max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8'>
-						<h1 className='text-4xl font-bold text-gray-900 mb-6'>
-							Our Educational Philosophy
-						</h1>
-						<p className='text-lg text-gray-700 leading-relaxed'>
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h1 styling */}
+						{/* LAYER BASE SYSTEM: Removed text-4xl, font-bold - ALL provided by globals.css @layer base */}
+						{/* ONLY KEEPING: mb-6 for layout spacing */}
+						<h1 className='mb-6'>Our Educational Philosophy</h1>
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+						{/* LAYER BASE SYSTEM: Removed text-lg - ALL provided by globals.css @layer base */}
+						{/* ONLY KEEPING: mt-4 for layout spacing on second paragraph */}
+						<p>
 							We believe every child deserves an education tailored to who they are,
 							helping them <strong>build confidence, curiosity, and clarity</strong>.
 							We combine academic rigour with personal mentorship, knowing that{' '}
@@ -164,7 +172,7 @@ export default function AboutUsPage() {
 							</strong>
 							.
 						</p>
-						<p className='text-lg text-gray-700 leading-relaxed mt-4'>
+						<p className='mt-4'>
 							Whether preparing for British schools, moving abroad, or facing
 							competitive exams, we provide structure, insight and flexibility. Above
 							all, <strong>we aim to cultivate independence</strong> — giving students

@@ -43,23 +43,23 @@ export const SubsectionCard = memo(function SubsectionCard({
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5, delay: index * 0.1 }}
-			className='bg-white border-2 border-token-ui-border p-8 shadow-subtle-md hover:shadow-depth-md transition-all duration-300'>
-			{/* Heading - Playfair Display */}
-			{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography utilities for heading hierarchy */}
-			{/* TYPOGRAPHY REASON: Official Tailwind CSS documentation for font-heading token usage */}
-			<h3 className='font-heading text-2xl font-bold text-token-primary-dark mb-4'>
+			className='bg-white border-2 border-neutral-300 p-8 shadow-subtle-md hover:shadow-depth-md transition-all duration-300'>
+			{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h3 styling */}
+			{/* LAYER BASE SYSTEM: Stripped font-heading, text-2xl, font-bold, text-token-primary-dark - ALL from @layer base */}
+			{/* ONLY KEEPING: mb-4 for layout spacing */}
+			<h3 className='mb-4'>
 				{card.heading}
 			</h3>
 
 			{/* Separator */}
 			{/* CONTEXT7 SOURCE: /radix-ui/website - Horizontal separator for content division */}
 			{/* SEPARATOR REASON: Official Radix UI documentation for decorative separators */}
-			<Separator className='bg-token-ui-border my-4' />
+			<Separator className='bg-neutral-300 my-4' />
 
-			{/* Main Text Body - Source Serif 4 */}
-			{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Text formatting and spacing utilities */}
-			{/* TEXT STYLING REASON: Official Tailwind CSS documentation for font-body and leading utilities */}
-			<div className='font-body text-base text-token-neutral-700 leading-relaxed mb-6 whitespace-pre-line'>
+			{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL div styling */}
+			{/* LAYER BASE SYSTEM: Stripped font-body, text-base, text-token-neutral-700, leading-relaxed - ALL from @layer base */}
+			{/* ONLY KEEPING: mb-6 whitespace-pre-line for layout and formatting */}
+			<div className='mb-6 whitespace-pre-line'>
 				{card.mainTextBody}
 			</div>
 

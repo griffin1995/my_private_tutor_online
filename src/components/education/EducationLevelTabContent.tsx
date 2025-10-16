@@ -61,14 +61,15 @@ export const EducationLevelTabContent = memo(function EducationLevelTabContent({
 	return (
 		<div className='space-y-16'>
 			{/* Main Description Section */}
-			{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Typography and spacing utilities */}
-			{/* DESCRIPTION REASON: Official Tailwind CSS documentation for text styling */}
+			{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+			{/* LAYER BASE SYSTEM: Stripped font-body, text-lg, text-token-neutral-700, leading-relaxed - ALL from @layer base */}
+			{/* ONLY KEEPING: Layout classes (text-center, max-w-4xl, mx-auto) */}
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
 				className='text-center'>
-				<p className='font-body text-lg text-token-neutral-700 leading-relaxed max-w-4xl mx-auto'>
+				<p className='max-w-4xl mx-auto'>
 					{content.mainDescription}
 				</p>
 			</motion.div>

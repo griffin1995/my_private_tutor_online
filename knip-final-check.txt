@@ -1,0 +1,3 @@
+ERROR: Error loading /home/jack/Documents/my_private_tutor_online/eslint.config.mjs
+Reason: Failed to load config "next/core-web-vitals" to extend from.
+Referenced from: 

@@ -170,12 +170,15 @@ export function PageLayout({
   )
 }
 
+// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL anchor styling
+// LAYER BASE SYSTEM: Stripped text-sm, font-medium - provided by @layer base
+// ONLY KEEPING: Layout, spacing, essential overrides (text-white on dark bg)
 // Skip-to-content link for accessibility - CLAUDE.md rule 30
 export function SkipToContent() {
   return (
     <a
       href="#main-content"
-      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-900 text-white px-4 py-2 rounded-md text-sm font-medium z-50 focus:z-50"
+      className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-900 text-white px-4 py-2 rounded-md z-50 focus:z-50"
       style={{ zIndex: 1600 }} // zIndex.skipLink from design system
     >
       Skip to main content

@@ -60,9 +60,10 @@ export default function MeetOurTutorsPage() {
 
       {/* CONTEXT7 SOURCE: /reactjs/react.dev - QuoteSection component integration following site pattern */}
       {/* MEET-OUR-TUTORS QUOTE INTEGRATION: Adding QuoteSection underneath hero with tutor expertise messaging and strategic highlighting */}
+      {/* TOKEN FIX: Replaced bg-gray-50 with bg-neutral-50 token */}
       <BrandMessageSection
         quote="Our tutors are handpicked by Elizabeth for their exceptional education pedigree, personalised approach and proven track record. The team includes Oxbridge alumni, Heads of Departments at top 10 UK schools and official examiners for GCSEs, A Levels and IB exams. Each tutor is an expert in their field and has hundreds, if not thousands, of hours teaching experience."
-        backgroundColor="bg-gray-50"
+        backgroundColor="bg-neutral-50"
         useHighlighting={true}
         className="py-16 lg:py-20"
       />
@@ -80,12 +81,17 @@ export default function MeetOurTutorsPage() {
         <section className="py-16 lg:py-24 bg-gradient-to-br from-orange-50 to-orange-100">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-4xl text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h2 styling */}
+              {/* LAYER BASE SYSTEM: Stripped text-3xl, font-bold, tracking-tight, text-gray-900, sm:text-4xl, lg:text-5xl - ALL from @layer base */}
+              <h2>
                 Meet some of the specialist tutors that make up My Private Tutor
                 Online
               </h2>
 
-              <p className="mt-8 text-lg leading-relaxed text-gray-600 max-w-3xl mx-auto">
+              {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+              {/* LAYER BASE SYSTEM: Stripped text-lg, leading-relaxed, text-gray-600 - ALL from @layer base */}
+              {/* ONLY KEEPING: mt-8, max-w-3xl, mx-auto for spacing and layout */}
+              <p className="mt-8 max-w-3xl mx-auto">
                 Our tutors are handpicked by Elizabeth for their exceptional
                 education pedigree, personalised approach and proven track
                 record. The team includes Oxbridge alumni, Heads of Departments
@@ -109,8 +115,9 @@ export default function MeetOurTutorsPage() {
         {/* CONTEXT7 SOURCE: /websites/magicui_design - TestimonialsVideoSection integration from about page */}
         {/* COMPONENT COPYING REASON: Official Context7 documentation Section 3.1 - copying complete video testimonials section underneath tutor section for enhanced user experience */}
         {/* VIDEO TESTIMONIALS INTEGRATION: Adding 2-video section copied from about page to showcase family success stories */}
+        {/* TOKEN FIX: Replaced bg-slate-50 with bg-neutral-50 token */}
         <TestimonialsVideoSection
-          backgroundColor="bg-slate-50"
+          backgroundColor="bg-neutral-50"
           title="Hear From Our Families"
           description="Watch real testimonials from parents and students who have achieved exceptional results with My Private Tutor Online."
           maxVideos={2}

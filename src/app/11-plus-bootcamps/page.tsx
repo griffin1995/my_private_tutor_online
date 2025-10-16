@@ -178,10 +178,15 @@ export default function ElevenPlusBootcampsPage() {
 				showFooter={true}>
 				<section className='py-24'>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-						<h1 className='text-4xl font-serif font-bold text-primary-900 mb-4'>
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h1 styling */}
+						{/* LAYER BASE SYSTEM: Stripped text-4xl, font-serif, font-bold, text-primary-900 - ALL from @layer base */}
+						<h1 className='mb-4'>
 							11+ Bootcamps
 						</h1>
-						<p className='text-xl text-primary-700 mb-8'>
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+						{/* LAYER BASE SYSTEM: Stripped text-xl - provided by @layer base */}
+						{/* ONLY KEEPING: text-primary-700 for brand color emphasis */}
+						<p className='text-primary-700 mb-8'>
 							Our intensive 11+ preparation bootcamps will return for the 2025 season.
 							Please check back later or contact us for more information.
 						</p>
@@ -255,23 +260,27 @@ export default function ElevenPlusBootcampsPage() {
 						<div className='relative z-10 px-4'>
 							{/* CONTEXT7 SOURCE: /mdn/content - Heading hierarchy with proper semantic structure */}
 							{/* HEADING SEMANTICS: Official MDN documentation shows h2 elements for section headings with aria-labelledby reference */}
+							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h2 styling */}
+							{/* LAYER BASE SYSTEM: Stripped text-xl, lg:text-2xl, font-serif, font-medium, leading-tight, text-gray-900 - ALL from @layer base */}
+							{/* ONLY KEEPING: tracking-wide for spacing, dark mode color override */}
 							<h2
 								id='tagline-heading'
-								className='text-xl lg:text-2xl font-serif font-medium tracking-wide leading-tight text-gray-900 dark:text-white'>
+								className='tracking-wide dark:text-white'>
 								We help students place at top 10 UK schools and universities
 							</h2>
 						</div>
 						{/* CONTEXT7 SOURCE: /mdn/content - Decorative elements with semantic separation */}
 						{/* DECORATIVE SEMANTICS: Official MDN documentation shows div elements for visual decoration without semantic meaning */}
+						{/* TOKEN FIX: Replaced all bg-gray-* with bg-neutral-* tokens */}
 						<div
 							className='flex justify-center items-center space-x-6'
 							role='presentation'
 							aria-hidden='true'>
-							<div className='w-12 h-px bg-gray-300 dark:bg-gray-600' />
+							<div className='w-12 h-px bg-neutral-300 dark:bg-neutral-600' />
 							<div className='relative'>
-								<div className='w-3 h-3 rounded-full bg-gray-400 dark:bg-gray-500 shadow-lg' />
+								<div className='w-3 h-3 rounded-full bg-neutral-400 dark:bg-neutral-500 shadow-lg' />
 							</div>
-							<div className='w-12 h-px bg-gray-300 dark:bg-gray-600' />
+							<div className='w-12 h-px bg-neutral-300 dark:bg-neutral-600' />
 						</div>
 					</div>
 				</header>
@@ -287,7 +296,10 @@ export default function ElevenPlusBootcampsPage() {
 				id='bootcamps-mission'
 				className='mt-16'>
 				<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
-					<blockquote className='text-xl lg:text-2xl font-serif italic text-gray-900'>
+					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL blockquote styling */}
+					{/* LAYER BASE SYSTEM: Stripped text-xl, lg:text-2xl, font-serif, text-gray-900 - ALL from @layer base */}
+					{/* ONLY KEEPING: italic for blockquote emphasis styling */}
+					<blockquote className='italic'>
 						&quot;Discover our comprehensive preparation programmes designed for
 						different learning needs and timelines. Choose the perfect fit for your
 						child&apos;s 11+ journey.&quot;
@@ -389,14 +401,20 @@ export default function ElevenPlusBootcampsPage() {
 								<div className='flex-1 lg:w-1/2 px-12 py-10'>
 									{/* CONTEXT7 SOURCE: /mdn/content - Heading hierarchy with proper semantic structure */}
 									{/* HEADING SEMANTICS: Official MDN documentation shows h3 elements for subsection headings with aria-labelledby reference */}
+									{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h3 styling */}
+									{/* LAYER BASE SYSTEM: Stripped text-2xl, lg:text-3xl, font-serif, font-medium, text-primary-900 - ALL from @layer base */}
+									{/* ONLY KEEPING: mb-6 for spacing below heading */}
 									<h3
 										id='journey-heading'
-										className='text-2xl lg:text-3xl font-serif font-medium text-primary-900 mb-6'>
+										className='mb-6'>
 										Ready to Begin Your Child's 11+ Journey?
 									</h3>
 									{/* CONTEXT7 SOURCE: /mdn/content - Unordered list with semantic list structure */}
 									{/* LIST SEMANTICS: Official MDN documentation shows ul elements with proper list item structure for related content */}
-									<ul className='list-disc list-inside space-y-3 text-base lg:text-lg text-primary-700 leading-relaxed'>
+									{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL ul styling */}
+									{/* LAYER BASE SYSTEM: Stripped text-base, lg:text-lg, leading-relaxed - ALL from @layer base */}
+									{/* ONLY KEEPING: list-disc, list-inside, space-y-3 for list styling and spacing, text-primary-700 for brand color emphasis */}
+									<ul className='list-disc list-inside space-y-3 text-primary-700'>
 										<li>
 											All sessions led by experienced specialists with 11+ examiner
 											credentials and/or proven track records at top schools

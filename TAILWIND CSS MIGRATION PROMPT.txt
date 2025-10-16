@@ -1,0 +1,135 @@
+ TAILWIND CSS MIGRATION PHASE 5: COMPONENT CLEANUP
+
+  OBJECTIVE: Systematically clean all pages and components to rely on @layer base typography system in globals.css and systematic rules in tailwind.config.js.
+
+  STAGE 0: INITIAL ASSESSMENT (MANDATORY FIRST STEP)
+
+  Before cleaning any components, ALWAYS:
+
+  1. Read the complete globals.css file (/src/app/globals.css)
+    - Identify ALL @layer base rules (lines 593-758)
+    - Document which HTML elements have default styling
+    - Note any data attribute selectors already defined
+    - Identify color CSS variables in :root
+  2. Read the tailwind.config.js file (/tailwind.config.js)
+    - Review complete color palette (primary-, accent-, neutral-*)
+    - Note any custom utilities or plugins
+    - Check theme extensions and overrides
+    - Document any safelist patterns
+  3. Create a Context Map of what's already handled:
+  ALREADY DEFINED IN @LAYER BASE:
+  - h1, h2, h3, h4, h5, h6: [font-family, size, weight, color, line-height]
+  - p, span, div: [font-family, size, color, line-height]
+  - blockquote, cite, em, strong: [styling, color, italic]
+  - [data-*] attributes: [list all data selectors and their styling]
+
+  DEFINED IN TAILWIND.CONFIG:
+  - Colors: primary-700: #3f4a7e, accent-600: #ca9e5b, neutral-*
+  - Custom utilities: [list any custom utilities]
+  - Safelist: [list safelisted patterns]
+  4. Identify Gaps - Patterns that will need rules:
+  GAPS TO ADDRESS:
+  - Text on dark backgrounds (bg-primary-700, bg-accent-700)
+  - Brand accent text highlights
+  - Special semantic elements
+  - [list other patterns found during assessment]
+
+  DO NOT PROCEED TO CLEANUP WITHOUT COMPLETING STAGE 0
+
+  ---
+  STAGE 1: CLEANUP RULES (ZERO TOLERANCE)
+
+  1. STRIP ALL TYPOGRAPHY UTILITIES from JSX/TSX:
+    - Font families: font-display, font-serif, font-body, font-sans
+    - Font sizes: text-xs, text-sm, text-base, text-lg, text-xl, text-2xl, text-3xl, text-4xl, text-5xl, text-6xl
+    - Font weights: font-bold, font-semibold, font-medium, font-light, font-normal
+    - Line heights: leading-relaxed, leading-loose, leading-tight, leading-snug
+    - Text colors: text-gray-*, text-slate-*, text-white, text-[#CA9E5B], text-accent-*, text-primary-* - ALL colors
+    - Tracking: tracking-tight, tracking-wide, tracking-wider, tracking-widest
+  2. REPLACE INVALID COLOR TOKENS:
+    - slate-* → neutral-* (e.g., bg-slate-900 → bg-primary-700)
+    - gray-* → neutral-* (e.g., bg-gray-50 → bg-neutral-50, border-gray-300 → border-neutral-300)
+    - Hardcoded colors → proper tokens (e.g., border-[#3F4A7E] → border-primary-700, text-[#CA9E5B] → remove, use data attribute instead)
+  3. REMOVE ALL DARK MODE CLASSES:
+    - Strip all dark:* utilities completely (dark mode doesn't work)
+  4. KEEP ONLY:
+    - Layout classes: flex, grid, max-w-*, mx-auto, text-center, relative, absolute, etc.
+    - Spacing: mb-*, mt-*, p-*, px-*, py-*, space-y-*, gap-*
+    - Transitions: transition-*, duration-*, hover:*, group-hover:*
+    - Data attributes: [data-hero-section], [data-pull-quote], [data-accent-text]
+  5. MANDATORY COMMENT FORMAT for every cleanup:
+  {/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h2/p styling */}
+  {/* LAYER BASE SYSTEM: Stripped font-serif, text-xl, font-bold, text-gray-900, leading-relaxed - ALL from @layer base */}
+  {/* ONLY KEEPING: mb-4, text-center for layout */}
+  <h2 className="mb-4 text-center">
+    Clean heading
+  </h2>
+
+  ---
+  STAGE 2: GAP IDENTIFICATION & RULE CREATION
+
+  When you encounter a pattern NOT covered by existing rules:
+
+  1. STOP - Don't add manual overrides
+  2. DOCUMENT - List all locations where pattern appears
+  3. ASK USER - "I found text-white on dark backgrounds in 5+ components. Current @layer base doesn't handle this. Options:
+    - A) Create CSS rule: [class*='bg-primary-7'] *, [class*='bg-accent-7'] * { color: white; }
+    - B) Add data attribute: [data-dark-bg] with white text styling
+    - C) Other approach?
+
+  Which should I implement?"
+  4. IMPLEMENT - Create the rule once in globals.css or tailwind.config.js
+  5. VERIFY - Remove all manual instances, ensure all components work
+
+  RULE LOCATION DECISION:
+  - globals.css @layer base: Semantic HTML defaults, data attributes, pseudo-selectors
+  - tailwind.config.js theme.extend: Custom color tokens, spacing scales
+  - tailwind.config.js plugins: Complex utilities, component classes
+
+  ---
+  AGGRESSIVE CLEANUP APPROACH:
+
+  - "Strip everything" - NO exceptions for "essential overrides"
+  - If a class relates to typography appearance (how text looks), REMOVE IT - create a rule instead
+  - If a class relates to layout/positioning (where elements are), KEEP IT
+  - Zero tolerance: Every typography utility in a component = missing systematic rule
+
+  VERIFICATION COMMAND:
+
+  grep -n "text-\(gray\|slate\|white\|accent\|primary\)-\|font-\(bold\|medium\|semibold\)\|text-\(xs\|sm\|base\|lg\|xl\|2xl\|3xl\|4xl\|5xl\)\|leading-\(relaxed\|loose\)\|text-\[#" <file>
+   | grep -v "LAYER BASE SYSTEM\|Stripped" || echo "✓ Clean"
+
+  ---
+  WORKFLOW:
+
+  PHASE 1: INITIAL ASSESSMENT
+  1. Read /src/app/globals.css completely
+  2. Read /tailwind.config.js completely
+  3. Create Context Map document
+  4. Identify gaps that need rules
+  5. Get user approval on approach
+
+  PHASE 2: SYSTEMATIC CLEANUP
+  1. Read page/component file
+  2. Identify problematic patterns via grep
+  3. Check if pattern is covered by existing rules
+    - YES → Clean the component
+    - NO → STOP, document gap, ask user for rule creation approach
+  4. Edit file sections systematically
+  5. Add Context7 source comments
+  6. Verify file is clean
+  7. Move to next file
+
+  ---
+  COMPLETED:
+
+  - ✅ Landing page (/)
+  - ✅ About page (/about)
+  - ✅ About page components
+  - ✅ Subject Tuition Tabs page + components
+  - ✅ How It Works page + components
+
+  CURRENT STATUS:
+
+  AWAITING STAGE 0 COMPLETION - Need to assess globals.css and tailwind.config.js before continuing.
+

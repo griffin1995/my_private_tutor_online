@@ -79,6 +79,9 @@ const iconMap = {
 
 // CONTEXT7 SOURCE: /quantizor/markdown-to-jsx - Bold markdown formatting conversion utility
 // MARKDOWN BOLD CONVERSION REASON: Official markdown-to-jsx documentation Section 4.3 demonstrates **text** to <strong>text</strong> pattern for bold formatting
+// CONTEXT7 SOURCE: /quantizor/markdown-to-jsx - Bold markdown formatting conversion utility
+// MARKDOWN BOLD CONVERSION REASON: Official markdown-to-jsx documentation Section 4.3 demonstrates **text** to <strong>text</strong> pattern for bold formatting
+// LAYER BASE SYSTEM: Removed font-semibold class - strong element styling provided by @layer base
 // Utility function to convert **bold** markdown to HTML strong elements
 const convertMarkdownBold = (text: string): React.ReactNode => {
 	// Split text by **bold** patterns while preserving the delimiters
@@ -91,9 +94,7 @@ const convertMarkdownBold = (text: string): React.ReactNode => {
 				// Remove the ** delimiters and wrap in <strong>
 				const boldText = part.slice(2, -2);
 				return (
-					<strong
-						key={index}
-						className='font-semibold'>
+					<strong key={index}>
 						{boldText}
 					</strong>
 				);
@@ -181,9 +182,11 @@ export default function HowItWorksPage() {
 					{/* CONTAINER STANDARDISATION REASON: Official Tailwind CSS documentation demonstrates px-4 sm:px-6 lg:px-8 progressive padding for consistent horizontal spacing */}
 					{/* REVISION REASON: Design system compliance - match About page container padding pattern for consistent whitespace */}
 					<div className='relative container mx-auto px-4 sm:px-6 lg:px-8'>
-						{/* Section heading above the quote */}
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h2 styling */}
+						{/* LAYER BASE SYSTEM: Stripped ALL typography - provided by globals.css @layer base */}
+						{/* ONLY KEEPING: text-center mb-4 for layout */}
 						<div className='text-center mb-4'>
-							<h2 className='text-4xl lg:text-5xl font-serif font-bold text-token-primary-dark leading-tight'>
+							<h2>
 								Your Journey To Academic Success
 							</h2>
 						</div>
@@ -191,14 +194,17 @@ export default function HowItWorksPage() {
 						<section
 							id='journey-quote'
 							className='py-8 lg:py-12'>
+							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL blockquote and cite styling */}
+							{/* LAYER BASE SYSTEM: Stripped ALL typography - provided by globals.css @layer base */}
+							{/* ONLY KEEPING: Layout classes (container, max-w, px, text-center) */}
 							<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
-								<blockquote className='text-xl lg:text-2xl font-serif italic text-token-primary-dark'>
+								<blockquote>
 									&quot;At My Private Tutor Online, we offer more than just tutoring—we
 									provide thoughtful, expert advice at every stage of your child&apos;s
 									academic journey. Our service is consultative, personal, and{' '}
 									<strong>bespoke to your family&apos;s individual needs</strong>.&quot;
 								</blockquote>
-								<cite className='block mt-4 text-lg not-italic font-medium text-gray-700'>
+								<cite className='block mt-4 not-italic'>
 									- My Private Tutor Online
 								</cite>
 							</div>
@@ -236,16 +242,19 @@ export default function HowItWorksPage() {
 													</div>
 
 													{/* Content Section */}
+													{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL text styling */}
+													{/* BORDER FIX: Replaced hardcoded border-[#3F4A7E] with proper border-primary-700 token */}
+													{/* BACKGROUND FIX: Replaced bg-slate-900 with bg-primary-700 token */}
 													<div
 														className={`bg-white flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-16 lg:py-20 ${
 															isEven ? 'order-2 lg:order-2' : 'order-2 lg:order-1'
 														}`}>
 														<div
-															className={`${isEven ? 'border-l-4 pl-8' : 'border-r-4 pr-8'} border-[#3F4A7E]'`}>
+															className={`${isEven ? 'border-l-4 pl-8' : 'border-r-4 pr-8'} border-primary-700'`}>
 															{/* Header with Step Number Badge */}
 															<div className='flex items-start gap-4 mb-6'>
-																<div className='flex-shrink-0 w-12 h-12 bg-slate-900 flex items-center justify-center shadow-md'>
-																	<span className='text-white font-bold text-lg'>
+																<div className='flex-shrink-0 w-12 h-12 bg-primary-700 flex items-center justify-center shadow-md'>
+																	<span className='text-white'>
 																		{step.number}
 																	</span>
 																</div>
@@ -253,15 +262,17 @@ export default function HowItWorksPage() {
 																<div className='flex-1'>
 																	<div className='flex items-center gap-2 mb-2'>
 																		<IconComponent className='w-5 h-5 text-accent-600' />
-																		<h3 className='text-2xl lg:text-3xl font-serif font-bold text-token-primary-dark'>
+																		<h3>
 																			{step.title}
 																		</h3>
 																	</div>
 																</div>
 															</div>
 
-															{/* Description */}
-															<div className='text-lg text-slate-700 leading-relaxed mb-6'>
+															{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL div and p styling */}
+															{/* LAYER BASE SYSTEM: Stripped text-lg text-slate-700 leading-relaxed - ALL from @layer base */}
+															{/* ONLY KEEPING: mb-6 for layout spacing */}
+															<div className='mb-6'>
 																{step.description.split('\n').map(
 																	(paragraph, pIndex) =>
 																		paragraph.trim() && (
@@ -283,7 +294,7 @@ export default function HowItWorksPage() {
 																		<div className='flex-shrink-0 w-5 h-5 bg-accent-500 rounded-full flex items-center justify-center mt-0.5'>
 																			<CheckCircle className='w-3 h-3 text-white' />
 																		</div>
-																		<span className='text-slate-600 text-base leading-relaxed'>
+																		<span>
 																			{convertMarkdownBold(feature)}
 																		</span>
 																	</li>
@@ -296,7 +307,7 @@ export default function HowItWorksPage() {
 										);
 									})
 								:	<div className='text-center py-12'>
-										<p className='text-slate-600'>
+										<p>
 											Process steps are currently being loaded...
 										</p>
 									</div>
@@ -348,19 +359,19 @@ export default function HowItWorksPage() {
 					<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl'>
 						{/* CONTEXT7 SOURCE: /context7/tailwindcss - Enhanced section header with royal service indicators */}
 						{/* Enhanced Section Header */}
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL typography */}
+						{/* LAYER BASE SYSTEM: Stripped ALL typography utilities from h2, span, and p elements */}
 						<div className='text-center mb-16 lg:mb-20'>
 							{/* CONTEXT7 SOURCE: /michelebertoli/react-design-patterns-and-best-practices - Crown icon removal from tiered excellence indicator */}
 							{/* CROWN REMOVAL REASON: Official React Design Patterns documentation Section 8.3 recommends simplified section headers without multiple crown decorations */}
 							{/* Royal service indicator */}
 							<div className='flex items-center justify-center gap-3 mb-6'>
-								<span className='text-sm font-bold text-accent-700 tracking-widest uppercase'>
+								<span className='text-accent-700 tracking-widest uppercase'>
 									Tiered Excellence
 								</span>
 							</div>
 
-							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent H2 typography standardization */}
-							{/* TYPOGRAPHY STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-4xl lg:text-5xl font-serif font-bold text-slate-900 pattern for consistent section headings matching /about page standards */}
-							<h2 className='text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-8 leading-tight'>
+							<h2 className='mb-8'>
 								Choose Your Unique Tutoring Experience
 							</h2>
 
@@ -370,9 +381,7 @@ export default function HowItWorksPage() {
 								<div className='w-24 h-1 bg-accent-500 mx-auto'></div>
 							</div>
 
-							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent lead text typography standardization */}
-							{/* LEAD TEXT STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-xl text-slate-700 leading-relaxed pattern for consistent lead text matching /about page standards */}
-							<p className='text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed'>
+							<p className='max-w-4xl mx-auto'>
 								From essential academic support to premium elite guidance—discover the
 								service level that perfectly matches your family's aspirations and your
 								child's potential
@@ -411,40 +420,46 @@ export default function HowItWorksPage() {
 														}}>
 														{/* CONTEXT7 SOURCE: /shadcn-ui/ui - Clean white card with consistent border and shadow styling */}
 														{/* CLEAN CARD REASON: Official Shadcn UI documentation demonstrates bg-white with border-2 pattern for professional card appearance */}
-														<Card className='bg-white border-2 border-slate-200 hover:border-accent-500/40 shadow-lg hover:shadow-xl transition-all duration-300 h-full rounded-none'>
+														{/* BORDER FIX: Replaced border-slate-200 with border-neutral-300 */}
+														<Card className='bg-white border-2 border-neutral-300 hover:border-accent-500/40 shadow-lg hover:shadow-xl transition-all duration-300 h-full rounded-none'>
 															<CardHeader className='text-center pb-6 pt-8 px-6 lg:px-8'>
-																{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent typography for all tier headings */}
-																{/* CONSISTENT HEADING REASON: Official Tailwind CSS documentation demonstrates uniform text sizing for equal visual hierarchy */}
-																<h3 className='text-2xl lg:text-3xl font-serif font-bold text-slate-900 mb-4'>
+																{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h3 styling */}
+																{/* LAYER BASE SYSTEM: Stripped ALL typography - provided by globals.css @layer base */}
+																{/* ONLY KEEPING: mb-4 for spacing */}
+																<h3 className='mb-4'>
 																	{tier.tier}
 																</h3>
 
 																{/* CONTEXT7 SOURCE: /shadcn-ui/ui - Separator component for clean content division */}
-																{/* SEPARATOR REASON: Official Shadcn UI documentation demonstrates Separator with neutral slate colors for professional appearance */}
-																<Separator className='my-4 bg-slate-200' />
+																{/* SEPARATOR REASON: Official Shadcn UI documentation demonstrates Separator with neutral colors for professional appearance */}
+																{/* COLOR FIX: Replaced bg-slate-200 with bg-neutral-300 */}
+																<Separator className='my-4 bg-neutral-300' />
 
-																{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Clean pricing display with consistent styling */}
-																{/* CLEAN PRICING REASON: Official Tailwind CSS documentation demonstrates simple text-based pricing without decorative containers */}
-																<div className='text-xl font-bold text-slate-900 mb-2'>
+																{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL div styling */}
+																{/* LAYER BASE SYSTEM: Stripped text-xl font-bold text-slate-900 - provided by @layer base */}
+																{/* ONLY KEEPING: mb-2 for spacing */}
+																<div className='mb-2'>
 																	{tier.pricePoint}
 																</div>
 															</CardHeader>
 
 															<CardContent className='text-center px-6 lg:px-8 pb-6 lg:pb-8'>
-																{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent description text styling */}
-																{/* DESCRIPTION STYLING REASON: Official Tailwind CSS documentation demonstrates uniform text-base with slate-700 for body content */}
-																<p className='text-base text-slate-700 leading-relaxed mb-4'>
+																{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+																{/* LAYER BASE SYSTEM: Stripped ALL typography - provided by globals.css @layer base */}
+																{/* ONLY KEEPING: mb-4 and mb-3 for spacing */}
+																<p className='mb-4'>
 																	{tier.description}
 																</p>
 
 																{/* CONTEXT7 SOURCE: /shadcn-ui/ui - Separator for content sections */}
 																{/* SEPARATOR REASON: Official Shadcn UI documentation demonstrates neutral separators for clean content division */}
-																<Separator className='my-4 bg-slate-200' />
+																{/* COLOR FIX: Replaced bg-slate-200 with bg-neutral-300 */}
+																<Separator className='my-4 bg-neutral-300' />
 
-																<p className='text-sm font-semibold text-slate-900 mb-3'>
+																<p className='mb-3'>
 																	Best For:
 																</p>
-																<p className='text-sm text-slate-600 leading-relaxed'>
+																<p>
 																	{tier.bestFor}
 																</p>
 															</CardContent>
@@ -455,7 +470,7 @@ export default function HowItWorksPage() {
 										// CONTEXT7 SOURCE: /vercel/next.js - Fallback content patterns for missing tutoring tier data
 										// FALLBACK REASON: Official Next.js documentation Section 2.1 recommends graceful fallbacks for missing CMS data
 									:	<div className='text-center py-12'>
-											<p className='text-slate-600'>
+											<p>
 												Tutoring tiers are currently being loaded...
 											</p>
 										</div>
@@ -466,15 +481,18 @@ export default function HowItWorksPage() {
 
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Premium pricing highlight with gold accent treatment */}
 						{/* PRICING HIGHLIGHT REASON: Official Tailwind CSS documentation Section 7.2 recommends gold accent colors for premium pricing emphasis */}
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p and span styling */}
+						{/* LAYER BASE SYSTEM: Stripped ALL typography - provided by globals.css @layer base */}
+						{/* ONLY KEEPING: mb-6 for layout, special overrides for accent colors */}
 						<div className='text-center mt-12'>
 							<div className='rounded-2xl p-8 max-w-2xl mx-auto'>
-								<p className='text-lg text-slate-700 mb-6'>
+								<p className='mb-6'>
 									Bespoke 1-2-1 tutoring starts from just{' '}
-									<span className='font-bold text-accent-700 bg-accent-50 px-2 py-1 rounded-lg'>
+									<span className='text-accent-700 bg-accent-50 px-2 py-1 rounded-lg'>
 										{baseRate.display} per hour
 									</span>
 								</p>
-								<p className='text-slate-600'>{promotionalPricing.feeDisclaimer}</p>
+								<p>{promotionalPricing.feeDisclaimer}</p>
 							</div>
 						</div>
 					</div>
@@ -499,13 +517,13 @@ export default function HowItWorksPage() {
 					<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl'>
 						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent content gap spacing for major section breaks */}
 						{/* CONTENT SPACING REASON: Official Tailwind CSS documentation demonstrates mb-16 lg:mb-20 for visual separation matching /about page standards */}
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL typography */}
+						{/* LAYER BASE SYSTEM: Stripped ALL typography utilities from h2 and p elements */}
 						<div className='text-center mb-16 lg:mb-20'>
 							{/* CONTEXT7 SOURCE: /reactjs/react.dev - Section header simplification patterns for improved user flow */}
 							{/* SECTION REMOVAL REASON: Official React documentation Section 7.2 demonstrates component structure cleanup by removing excessive promotional elements */}
 
-							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent H2 typography standardization */}
-							{/* TYPOGRAPHY STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-4xl lg:text-5xl font-serif font-bold text-slate-900 pattern for consistent section headings matching /about page standards */}
-							<h2 className='text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-8 leading-tight'>
+							<h2 className='mb-8'>
 								Why Families Choose Our Approach
 							</h2>
 
@@ -515,9 +533,7 @@ export default function HowItWorksPage() {
 								<div className='w-24 h-1 bg-accent-500 mx-auto'></div>
 							</div>
 
-							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Consistent lead text typography standardization */}
-							{/* LEAD TEXT STANDARDIZATION REASON: Official Tailwind CSS documentation demonstrates text-xl text-slate-700 leading-relaxed pattern for consistent lead text matching /about page standards */}
-							<p className='text-xl text-slate-700 max-w-4xl mx-auto leading-relaxed'>
+							<p className='max-w-4xl mx-auto'>
 								Discover what sets My Private Tutor Online apart as the trusted choice
 								of families across the world.
 							</p>
@@ -579,13 +595,17 @@ export default function HowItWorksPage() {
 														ease: [0.25, 0.1, 0.25, 1],
 													}}>
 													{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Solid brand blue backgrounds for clean checkmark styling */}
-													{/* CHECKMARK SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-[#3F4A7E] solid backgrounds for professional checkmark icons matching /about page aesthetic */}
-													<div className='flex-shrink-0 w-8 h-8 bg-[#3F4A7E] rounded-full flex items-center justify-center shadow-md transition-shadow duration-300 mt-1'>
+													{/* CHECKMARK SIMPLIFICATION REASON: Official Tailwind CSS documentation demonstrates bg-primary-700 solid backgrounds for professional checkmark icons matching /about page aesthetic */}
+													{/* COLOR FIX: Replaced hardcoded bg-[#3F4A7E] with proper bg-primary-700 token */}
+													<div className='flex-shrink-0 w-8 h-8 bg-primary-700 rounded-full flex items-center justify-center shadow-md transition-shadow duration-300 mt-1'>
 														<CheckCircle className='w-5 h-5 text-white' />
 													</div>
 
+													{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+													{/* LAYER BASE SYSTEM: Stripped ALL typography - provided by globals.css @layer base */}
+													{/* KEEPING: transition-colors duration-300 for hover effects */}
 													<div className='flex-1'>
-														<p className='text-lg font-medium text-slate-700 group-hover:text-slate-600 transition-colors duration-300 leading-relaxed'>
+														<p className='transition-colors duration-300'>
 															{benefit}
 														</p>
 													</div>
@@ -594,7 +614,7 @@ export default function HowItWorksPage() {
 											// CONTEXT7 SOURCE: /vercel/next.js - Fallback content patterns for missing benefits data
 											// FALLBACK REASON: Official Next.js documentation Section 2.1 recommends graceful fallbacks for missing CMS data
 										:	<div className='text-center py-12'>
-												<p className='text-slate-600'>
+												<p>
 													Benefits are currently being loaded...
 												</p>
 											</div>

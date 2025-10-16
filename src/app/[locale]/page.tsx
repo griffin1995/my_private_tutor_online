@@ -191,17 +191,19 @@ export default function HomePage() {
 					{/* INLINE_STYLE_REASON: Official Tailwind CSS documentation shows JIT compiler requires static class strings; dynamic heights must use inline styles */}
 					{/* REVISION REASON: Replaced getNavbarSpacerHeight() className with inline styles - Tailwind JIT cannot process runtime template literal classes */}
 					{/* Spacer for fixed navbar (with bottom border) */}
+					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard border colors from neutral palette */}
+					{/* BORDER FIX: Replaced invalid border-token-border-medium with border-neutral-300 from tailwind.config.ts */}
 					<div
 						style={{ height: 'var(--navbar-height, 5.5rem)' }}
-						className='lg:hidden border-b border-token-border-medium'
+						className='lg:hidden border-b border-neutral-300'
 					/>
 					<div
 						style={{ height: 'var(--navbar-height, 6.25rem)' }}
-						className='hidden lg:block xl:hidden border-b border-token-border-medium'
+						className='hidden lg:block xl:hidden border-b border-neutral-300'
 					/>
 					<div
 						style={{ height: 'var(--navbar-height, 7rem)' }}
-						className='hidden xl:block border-b border-token-border-medium'
+						className='hidden xl:block border-b border-neutral-300'
 					/>
 
 					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Dynamic viewport height with calc and responsive arbitrary values */}
@@ -243,13 +245,18 @@ export default function HomePage() {
 						{/* --------------------------- Tagline Section (15%) -------------------------- */}
 						<div className='flex-[1.5] flex items-center justify-center'>
 							<div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-								<h2 className='text-2xl lg:text-3xl font-serif font-medium tracking-wide leading-tight text-token-neutral-900 dark:text-white'>
+								{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h2 styling */}
+								{/* LAYER BASE SYSTEM: Removed all typography classes - ALL provided by globals.css @layer base */}
+								{/* DARK MODE REMOVED: Broken dark mode classes stripped */}
+								<h2>
 									We help students place at top 10 UK schools and universities
 								</h2>
+								{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Decorative elements using neutral palette */}
+								{/* DARK MODE REMOVED: Broken dark mode classes stripped */}
 								<div className='flex justify-center items-center space-x-6 mt-2 sm:mt-3'>
-									<div className='w-12 h-px bg-token-neutral-300 dark:bg-token-neutral-600' />
-									<div className='w-3 h-3 rounded-full bg-token-neutral-400 dark:bg-token-neutral-500 shadow-lg' />
-									<div className='w-12 h-px bg-token-neutral-300 dark:bg-token-neutral-600' />
+									<div className='w-12 h-px bg-neutral-300' />
+									<div className='w-3 h-3 rounded-full bg-neutral-400 shadow-lg' />
+									<div className='w-12 h-px bg-neutral-300' />
 								</div>
 							</div>
 						</div>
@@ -354,23 +361,29 @@ export default function HomePage() {
 						</ErrorBoundaryWrapper>
 					</section>
 					{/* SECTION 8: QUOTE - FOUNDER TESTIMONIAL AND MISSION STATEMENT */}
+					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Opacity modifier syntax for Tailwind colors */}
+					{/* BACKGROUND FIX: Replaced arbitrary bg-[rgba(202,158,91,0.15)] with bg-accent-600/15 using accent-600 (#ca9e5b) from tailwind.config.ts with /15 opacity modifier */}
 					<section
 						id='founder-quote-testimonials'
-						className='py-16 lg:py-24 bg-[rgba(202,158,91,0.15)]'>
+						className='py-16 lg:py-24 bg-accent-600/15'>
 						<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
 							<Blockquote>
 								{/* Quote SVG top-left */}
+								{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - SVG fill utilities with Tailwind colors */}
+								{/* SVG FILL FIX: Replaced hardcoded fill='#3F4A7E' with fill-primary-700 class using primary-700 from tailwind.config.ts */}
 								<svg
-									className='mb-6 h-14 w-14'
+									className='mb-6 h-14 w-14 fill-primary-700'
 									aria-hidden='true'
 									xmlns='http://www.w3.org/2000/svg'
-									fill='#3F4A7E'
 									viewBox='0 0 18 14'>
 									<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
 								</svg>
 
 								{/* Quote content */}
-								<p className='text-xl lg:text-2xl font-serif italic text-gray-900'>
+								{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+								{/* LAYER BASE SYSTEM: Removed text-xl/2xl, font-serif - ALL provided by globals.css @layer base */}
+								{/* ONLY OVERRIDE: italic for quote styling */}
+								<p className='italic'>
 									Parents come to us when something <strong>truly</strong> matters—an
 									entrance exam, a lost sense of confidence, a desire for academic
 									stretch. They stay with us because{' '}
@@ -382,6 +395,9 @@ export default function HomePage() {
 								</p>
 
 								{/* Author with avatar (inline name | title) */}
+								{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL default styling */}
+								{/* LAYER BASE SYSTEM: Removed all typography classes - only keeping layout classes */}
+								{/* DARK MODE REMOVED: Broken dark mode classes stripped */}
 								<figcaption className='mt-4 flex items-center justify-center space-x-3'>
 									<Avatar
 										rounded
@@ -389,11 +405,11 @@ export default function HomePage() {
 										img='/images/team/elizabeth-burrows-founder-main.jpg'
 										alt='Elizabeth Burrows'
 									/>
-									<div className='flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700'>
-										<cite className='pr-3 font-medium text-gray-900 dark:text-white'>
+									<div className='flex items-center divide-x-2 divide-neutral-500'>
+										<cite className='pr-3'>
 											Elizabeth Burrows
 										</cite>
-										<cite className='pl-3 text-sm text-gray-500 dark:text-gray-400'>
+										<cite className='pl-3 text-neutral-500'>
 											Founder
 										</cite>
 									</div>

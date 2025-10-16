@@ -1,36 +1,618 @@
-
-> my-tutor-website@0.1.0 knip
-> knip
-
    Using tsconfig file: ./tsconfig.json
-Unused files (5)
-next-env.d.ts                           
-src/design-tokens/generated/tokens.js   
-src/design-tokens/generated/tokens.ts   
-src/design-tokens/generated/types.d.ts  
-tailwind.config.tokens.js               
+Unused files (485)
+.lighthouserc.js                                                               
+accessibility-validation.js                                                    
+actual-images.js                                                               
+analysisAudit.js                                                               
+analyze-video-cms.js                                                           
+analyze-video-links.js                                                         
+auditFonts.js                                                                  
+clean-url.js                                                                   
+codebaseAnalysisSummary.js                                                     
+componentChecker.js                                                            
+demo-execution.js                                                              
+implementFixes.js                                                              
+jest-accessibility.config.js                                                   
+jest.coverage.config.js                                                        
+json-to-md-images.js                                                           
+load-tests/artillery/faq-artillery-processor.js                                
+load-tests/k6/faq-accessibility-load.js                                        
+load-tests/k6/faq-baseline-load.js                                             
+load-tests/k6/faq-royal-peak-load.js                                           
+load-tests/k6/faq-stress-breaking-point.js                                     
+my-tutor-website/next-env.d.ts                                                 
+next-env.d.ts                                                                  
+public/admin/assets/brace-fold.es-f2e3735d.js                                  
+public/admin/assets/closebrackets.es-e969742b.js                               
+public/admin/assets/codemirror.es-52e8b92d.js                                  
+public/admin/assets/codemirror.es2-5884f31a.js                                 
+public/admin/assets/comment.es-39699bae.js                                     
+public/admin/assets/dialog.es-dffe62e7.js                                      
+public/admin/assets/dialog.es2-02b3b4e7.js                                     
+public/admin/assets/foldgutter.es-b6cee46a.js                                  
+public/admin/assets/forEachState.es-b2033c2b.js                                
+public/admin/assets/hint.es-f593c673.js                                        
+public/admin/assets/hint.es2-e8a6d10b.js                                       
+public/admin/assets/index-eb7280c3.js                                          
+public/admin/assets/index-fb87755f.js                                          
+public/admin/assets/info-addon.es-c9b2027b.js                                  
+public/admin/assets/info.es-ca29104f.js                                        
+public/admin/assets/javascript.es-3c6957c5.js                                  
+public/admin/assets/jump-to-line.es-d901ea33.js                                
+public/admin/assets/jump.es-ab4319c1.js                                        
+public/admin/assets/lint.es-fe7166bb.js                                        
+public/admin/assets/lint.es2-8506dfc6.js                                       
+public/admin/assets/lint.es3-d5c3a472.js                                       
+public/admin/assets/matchbrackets.es-97d2e827.js                               
+public/admin/assets/matchbrackets.es2-f53f57e6.js                              
+public/admin/assets/mode-indent.es-057a4f6a.js                                 
+public/admin/assets/mode.es-27215da4.js                                        
+public/admin/assets/mode.es2-90912145.js                                       
+public/admin/assets/mode.es3-761bd1c1.js                                       
+public/admin/assets/SchemaReference.es-af17ccd3.js                             
+public/admin/assets/search.es-1c15f5ea.js                                      
+public/admin/assets/searchcursor.es-b1a352a2.js                                
+public/admin/assets/searchcursor.es2-cbfe7cae.js                               
+public/admin/assets/show-hint.es-b981493e.js                                   
+public/admin/assets/sublime.es-e2a3eb60.js                                     
+rollback-script.js                                                             
+scan-images.js                                                                 
+scanAll.js                                                                     
+scripts/advanced-dependency-optimization.mjs                                   
+scripts/analyze-components.js                                                  
+scripts/analyze-performance-logs.ts                                            
+scripts/extract-colors.js                                                      
+scripts/implement-micro-optimizations.mjs                                      
+scripts/measure-build-performance.mjs                                          
+scripts/measure-testimonials-performance.js                                    
+scripts/measure-typescript-perf.js                                             
+scripts/measure-typescript-performance.js                                      
+scripts/measure-video-performance.js                                           
+scripts/performance-audit.js                                                   
+scripts/performance-baseline.js                                                
+scripts/performance-benchmark.mjs                                              
+scripts/phase4-validation.js                                                   
+scripts/rollback-check.js                                                      
+scripts/runtime-performance-analysis.mjs                                       
+scripts/test-layout-performance.mjs                                            
+scripts/test-monitoring-plugins.js                                             
+scripts/test-performance-safety.mjs                                            
+scripts/track-performance.ts                                                   
+scripts/tree-shaking-analyzer.mjs                                              
+scripts/validate-favicon-setup.js                                              
+scripts/validate-performance.ts                                                
+scripts/verify-fonts.js                                                        
+scripts/verify-video-deployment.js                                             
+scripts/verify-video-optimization.js                                           
+slash-commands/agent-selection-engine-v2.ts                                    
+slash-commands/agent-selection-engine.js                                       
+slash-commands/agent-selection-engine.ts                                       
+slash-commands/complexity-assessment-v2.ts                                     
+slash-commands/multi-agent-workflow.ts                                         
+slash-commands/performance-monitoring-v2.ts                                    
+slash-commands/task-tool-integration.ts                                        
+slash-commands/test-examples.ts                                                
+src/app/[locale]/faq/page-backup.tsx                                           
+src/app/[locale]/robots.ts                                                     
+src/app/faq/page-broken-backup.tsx                                             
+src/app/premium-page.tsx                                                       
+src/components/admin/AdvancedSecurityDashboard.tsx                             
+src/components/admin/business-intelligence-dashboard.tsx                       
+src/components/admin/testimonials-admin.tsx                                    
+src/components/analytics/consent-banner.tsx                                    
+src/components/analytics/deep-link-analytics.tsx                               
+src/components/analytics/ga4-setup.tsx                                         
+src/components/analytics/testimonials-analytics-tracker.tsx                    
+src/components/conversion/authority-reinforcement.tsx                          
+src/components/conversion/business-analytics-integration.tsx                   
+src/components/conversion/conversion-optimization-demo.tsx                     
+src/components/conversion/conversion-optimization-framework.tsx                
+src/components/conversion/index.tsx                                            
+src/components/conversion/time-sensitive-opportunities.tsx                     
+src/components/cta/cta-social-proof.tsx                                        
+src/components/cta/cta-urgency-badge.tsx                                       
+src/components/dashboard/PerformanceMonitoringDashboard.tsx                    
+src/components/dashboard/PerformanceWidget.tsx                                 
+src/components/dashboards/executive-summary-dashboard.tsx                      
+src/components/debug/performance-debug-panel.tsx                               
+src/components/demos/scroll-indicator-demo.tsx                                 
+src/components/dev/DeveloperDashboard.tsx                                      
+src/components/dynamic/index.tsx                                               
+src/components/education/EducationLevelCleanCard.tsx                           
+src/components/error-boundary/index.ts                                         
+src/components/error-handling/testimonial-safe-renderer.tsx                    
+src/components/faq/backup-broken/faq-advanced-search-filters.tsx               
+src/components/faq/backup-broken/faq-ai-chat-demo.tsx                          
+src/components/faq/backup-broken/faq-analytics-tracker.tsx                     
+src/components/faq/backup-broken/faq-animation-performance.tsx                 
+src/components/faq/backup-broken/faq-breadcrumb-navigation.tsx                 
+src/components/faq/backup-broken/faq-category-section.tsx                      
+src/components/faq/backup-broken/faq-collaborative-features.tsx                
+src/components/faq/backup-broken/faq-contact-section.tsx                       
+src/components/faq/backup-broken/faq-enhanced-search.tsx                       
+src/components/faq/backup-broken/faq-error-demo.tsx                            
+src/components/faq/backup-broken/faq-error-fallback.tsx                        
+src/components/faq/backup-broken/faq-floating-actions.tsx                      
+src/components/faq/backup-broken/faq-gamification-leaderboard.tsx              
+src/components/faq/backup-broken/faq-gamification-rating.tsx                   
+src/components/faq/backup-broken/faq-gamification-system.tsx                   
+src/components/faq/backup-broken/faq-gamification-tracker.tsx                  
+src/components/faq/backup-broken/faq-interactive-animations.tsx                
+src/components/faq/backup-broken/faq-modal-animations.tsx                      
+src/components/faq/backup-broken/faq-performance-monitor.tsx                   
+src/components/faq/backup-broken/faq-premium-hero.tsx                          
+src/components/faq/backup-broken/faq-rating-system.tsx                         
+src/components/faq/backup-broken/faq-recommendation-integration.tsx            
+src/components/faq/backup-broken/faq-recommendations.tsx                       
+src/components/faq/backup-broken/faq-rich-media-code.tsx                       
+src/components/faq/backup-broken/faq-rich-media-demo.tsx                       
+src/components/faq/backup-broken/faq-rich-media-diagram.tsx                    
+src/components/faq/backup-broken/faq-rich-media-gif.tsx                        
+src/components/faq/backup-broken/faq-rich-media-renderer.tsx                   
+src/components/faq/backup-broken/faq-rich-media-video.tsx                      
+src/components/faq/backup-broken/faq-search-optimized.tsx                      
+src/components/faq/backup-broken/faq-search-results.tsx                        
+src/components/faq/backup-broken/faq-search-section.tsx                        
+src/components/faq/backup-broken/faq-theme-switcher.tsx                        
+src/components/faq/backup-broken/faq-visual-search-demo.tsx                    
+src/components/faq/backup-broken/faq-visual-search.tsx                         
+src/components/faq/backup-broken/faq-voice-search.tsx                          
+src/components/faq/backup-broken/search/accessibility-helpers.tsx              
+src/components/faq/backup-broken/search/animated-search-bar.tsx                
+src/components/faq/backup-broken/search/integrated-search-interface.tsx        
+src/components/faq/backup-broken/search/quick-access-cards.tsx                 
+src/components/faq/backup-broken/search/search-results-overlay.tsx             
+src/components/faq/backup-broken/search/search-suggestions.tsx                 
+src/components/faq/backup-broken/search/voice-search-button.tsx                
+src/components/faq/faq-ai-chat-demo.tsx                                        
+src/components/faq/faq-animation-performance.tsx                               
+src/components/faq/faq-breadcrumb-navigation.tsx                               
+src/components/faq/faq-collaborative-features.tsx                              
+src/components/faq/faq-error-demo.tsx                                          
+src/components/faq/faq-floating-actions.tsx                                    
+src/components/faq/faq-gamification-leaderboard.tsx                            
+src/components/faq/faq-gamification-rating.tsx                                 
+src/components/faq/faq-interactive-animations.tsx                              
+src/components/faq/faq-modal-animations.tsx                                    
+src/components/faq/faq-performance-monitor.tsx                                 
+src/components/faq/faq-premium-hero.tsx                                        
+src/components/faq/faq-recommendation-integration.tsx                          
+src/components/faq/faq-rich-media-code.tsx                                     
+src/components/faq/faq-rich-media-demo.tsx                                     
+src/components/faq/faq-rich-media-diagram.tsx                                  
+src/components/faq/faq-rich-media-gif.tsx                                      
+src/components/faq/faq-rich-media-renderer.tsx                                 
+src/components/faq/faq-rich-media-video.tsx                                    
+src/components/faq/faq-search-optimized.tsx                                    
+src/components/faq/faq-search-results.tsx                                      
+src/components/faq/faq-search-section.tsx                                      
+src/components/faq/faq-visual-search-demo.tsx                                  
+src/components/faq/search/accessibility-helpers.tsx                            
+src/components/faq/search/animated-search-bar.tsx                              
+src/components/faq/search/integrated-search-interface.tsx                      
+src/components/faq/search/quick-access-cards.tsx                               
+src/components/faq/search/search-results-overlay.tsx                           
+src/components/faq/search/search-suggestions.tsx                               
+src/components/faq/search/voice-search-button.tsx                              
+src/components/homepage/homepage-sections.tsx                                  
+src/components/infrastructure/GlobalErrorBoundary.tsx                          
+src/components/layout/footer-components/footer-contact-section.tsx             
+src/components/layout/index.ts                                                 
+src/components/layout/page-header-backup.tsx                                   
+src/components/magicui/animated-subscribe-button.tsx                           
+src/components/magicui/aurora-text.tsx                                         
+src/components/magicui/box-reveal.tsx                                          
+src/components/magicui/typing-animation.tsx                                    
+src/components/magicui/video-text.tsx                                          
+src/components/marketing/brand-statement-video.tsx                             
+src/components/marketing/masterclass-card.tsx                                  
+src/components/marketing/premium-hero-section.tsx                              
+src/components/marketing/service-card.tsx                                      
+src/components/mobile/mobile-deep-link-handler.tsx                             
+src/components/mobile/mobile-faq-navigation.tsx                                
+src/components/monitoring/performance-monitor.tsx                              
+src/components/monitoring/web-vitals-monitor.tsx                               
+src/components/offline/offline-search.tsx                                      
+src/components/offline/offline-status-indicator.tsx                            
+src/components/offline/sync-manager.tsx                                        
+src/components/performance/performance-monitor.tsx                             
+src/components/performance/PerformanceBudget.tsx                               
+src/components/performance/PerformanceDevTools.tsx                             
+src/components/performance/resource-preloader.tsx                              
+src/components/performance/ResourcePreloader.tsx                               
+src/components/performance/SimpleWebVitals.tsx                                 
+src/components/performance/WebVitalsMonitor.tsx                                
+src/components/sections/about/about-content.tsx                                
+src/components/sections/about/about-cta-section.tsx                            
+src/components/sections/about/about-image.tsx                                  
+src/components/sections/about/company-timeline-section.tsx                     
+src/components/sections/about/ethos-section.tsx                                
+src/components/sections/about/global-reach-section.tsx                         
+src/components/sections/about/index.ts                                         
+src/components/sections/about/statistics-section.tsx                           
+src/components/sections/about/variant-about-section.tsx                        
+src/components/sections/animated-tagline.tsx                                   
+src/components/sections/AnimatedAccordionSection.tsx                           
+src/components/sections/CombinedHero.tsx                                       
+src/components/sections/cta-section.tsx                                        
+src/components/sections/enhanced-social-proof-homepage.tsx                     
+src/components/sections/hero-section.tsx                                       
+src/components/sections/highlighted-message-section.tsx                        
+src/components/sections/homepage-how-it-works.tsx                              
+src/components/sections/homeschooling-preview.tsx                              
+src/components/sections/index.ts                                               
+src/components/sections/intro-video-section.tsx                                
+src/components/sections/newsletter-section.tsx                                 
+src/components/sections/opening-statement-section.tsx                          
+src/components/sections/royal-endorsement-section.tsx                          
+src/components/sections/service-statistics.tsx                                 
+src/components/sections/services-cta.tsx                                       
+src/components/sections/tagline-section.tsx                                    
+src/components/sections/two-row-heading-text-section.tsx                       
+src/components/seo/faq-featured-snippets.tsx                                   
+src/components/seo/faq-local-seo.tsx                                           
+src/components/seo/faq-meta-optimization.tsx                                   
+src/components/seo/faq-seo-integration.tsx                                     
+src/components/seo/faq-seo-summary.tsx                                         
+src/components/seo/faq-structured-data.tsx                                     
+src/components/seo/SEOPerformanceOptimizer.tsx                                 
+src/components/seo/StructuredData.tsx                                          
+src/components/shared/buttons/Button.tsx                                       
+src/components/shared/index.ts                                                 
+src/components/test/highlighter-demo.tsx                                       
+src/components/testimonials/advanced-video-player.tsx                          
+src/components/testimonials/ai-social-proof-engine.tsx                         
+src/components/testimonials/enhanced-social-proof-integration.tsx              
+src/components/testimonials/enhanced-testimonials-hero.tsx                     
+src/components/testimonials/enhanced-video-testimonials.tsx                    
+src/components/testimonials/index.ts                                           
+src/components/testimonials/interactive-timeline.tsx                           
+src/components/testimonials/mobile-video-player.tsx                            
+src/components/testimonials/multi-modal-testimonials.tsx                       
+src/components/testimonials/rating/testimonial-rating-analytics-dashboard.tsx  
+src/components/testimonials/rating/testimonial-rating-interface.tsx            
+src/components/testimonials/rating/testimonial-with-rating.tsx                 
+src/components/testimonials/real-time-social-proof.tsx                         
+src/components/testimonials/smart-testimonials-filter.tsx                      
+src/components/testimonials/smart-testimonials-integration-demo.tsx            
+src/components/testimonials/smart-testimonials-showcase.tsx                    
+src/components/testimonials/social-proof-showcase.tsx                          
+src/components/testimonials/testimonials-ab-testing-provider.tsx               
+src/components/testimonials/testimonials-consent-manager.tsx                   
+src/components/testimonials/testimonials-cta.tsx                               
+src/components/testimonials/testimonials-hero.tsx                              
+src/components/testimonials/testimonials-personalization-integration.tsx       
+src/components/testimonials/testimonials-personalization-provider.tsx          
+src/components/testimonials/testimonials-personalized-grid.tsx                 
+src/components/testimonials/testimonials-social-widget.tsx                     
+src/components/testimonials/testimonials-timeline-section.tsx                  
+src/components/testimonials/testimonials-with-analytics.tsx                    
+src/components/testimonials/timeline-accessibility-manager.tsx                 
+src/components/testimonials/timeline-mobile-optimized.tsx                      
+src/components/testimonials/timeline-performance-monitor.tsx                   
+src/components/testimonials/timeline-test-utils.tsx                            
+src/components/testimonials/video-performance-loader.tsx                       
+src/components/testimonials/video-testimonials.tsx                             
+src/components/testimonials/voice-accessibility-manager.tsx                    
+src/components/testimonials/voice-testimonials-integration.tsx                 
+src/components/testimonials/voice-testimonials-player.tsx                      
+src/components/testimonials/widget-embed-system.tsx                            
+src/components/tutors/index.ts                                                 
+src/components/ui/__examples__/aspect-ratio-examples.tsx                       
+src/components/ui/accessible-button.tsx                                        
+src/components/ui/accessible-form-field.tsx                                    
+src/components/ui/calendar.tsx                                                 
+src/components/ui/focus-indicator.tsx                                          
+src/components/ui/focus-trap.tsx                                               
+src/components/ui/form.tsx                                                     
+src/components/ui/index.ts                                                     
+src/components/ui/language-switcher.tsx                                        
+src/components/ui/navigation-menu.tsx                                          
+src/components/ui/no-ssr.tsx                                                   
+src/components/ui/optimized-image.tsx                                          
+src/components/ui/performance-monitor.tsx                                      
+src/components/ui/pull-quote.tsx                                               
+src/components/ui/royal-testimonial-button.tsx                                 
+src/components/ui/screen-reader-only.tsx                                       
+src/components/ui/sheet.tsx                                                    
+src/components/ui/skip-to-content.tsx                                          
+src/components/ui/slider.tsx                                                   
+src/components/ui/switch.tsx                                                   
+src/components/ui/synchronized-scroll-indicator.tsx                            
+src/components/ui/text-effects.tsx                                             
+src/components/ui/timeline.tsx                                                 
+src/components/ui/toast.tsx                                                    
+src/components/video-showcases/center-stage-showcase.tsx                       
+src/components/video-showcases/cinematic-hero-showcase.tsx                     
+src/components/video-showcases/elegant-offset-showcase.tsx                     
+src/components/video-showcases/fullwidth-spotlight-showcase.tsx                
+src/components/video-showcases/index.ts                                        
+src/components/video-showcases/intimate-story-showcase.tsx                     
+src/components/video-showcases/offset-testimonial-showcase.tsx                 
+src/components/video-showcases/types.ts                                        
+src/components/video/index.ts                                                  
+src/components/video/video-composition-patterns.tsx                            
+src/components/video/video-layout-systems.tsx                                  
+src/components/video/video-performance-validator.tsx                           
+src/components/video/video-player-core.tsx                                     
+src/components/video/VideoMasterclassSection-VM-PAGE.tsx                       
+src/components/video/VideoPlayerExample.tsx                                    
+src/config/brand.ts                                                            
+src/config/performance-budget.ts                                               
+src/design-tokens/generated/tokens.js                                          
+src/design-tokens/generated/tokens.ts                                          
+src/design-tokens/generated/types.d.ts                                         
+src/hooks/use-ab-testing-performance.ts                                        
+src/hooks/use-accessibility-preferences.ts                                     
+src/hooks/use-background-sync.ts                                               
+src/hooks/use-faq-ai-integration.ts                                            
+src/hooks/use-faq-recommendations.ts                                           
+src/hooks/use-faq-search-history.ts                                            
+src/hooks/use-intersection-observer.ts                                         
+src/hooks/use-media-query.ts                                                   
+src/hooks/use-rich-media-performance.tsx                                       
+src/hooks/use-smart-testimonials.ts                                            
+src/hooks/use-testimonials-rating.ts                                           
+src/hooks/use-toast.ts                                                         
+src/hooks/use-video-grid-navigation.ts                                         
+src/hooks/usePerformanceMonitoring.ts                                          
+src/hooks/useReducedMotion.tsx                                                 
+src/i18n/request.ts                                                            
+src/lib/ab-testing/about-variants.ts                                           
+src/lib/about-data.ts                                                          
+src/lib/accessibility/rich-media-accessibility.ts                              
+src/lib/accessibility/video-a11y.ts                                            
+src/lib/agent-orchestration/context-manager.ts                                 
+src/lib/agent-orchestration/delegation-workflow.ts                             
+src/lib/agent-orchestration/index.ts                                           
+src/lib/agent-orchestration/monitoring-coordinator.ts                          
+src/lib/ai/categorization-cache.ts                                             
+src/lib/ai/content-analysis.ts                                                 
+src/lib/ai/testimonials-categorization-engine.ts                               
+src/lib/ai/testimonials-personalization-engine.ts                              
+src/lib/analytics/ab-testing-automation.ts                                     
+src/lib/analytics/ab-testing-integration.ts                                    
+src/lib/analytics/advanced-reporting.ts                                        
+src/lib/analytics/behavioral-analytics.ts                                      
+src/lib/analytics/cta-tracking.ts                                              
+src/lib/analytics/testimonials-rating-analytics.ts                             
+src/lib/animations/micro-interactions.ts                                       
+src/lib/api/types.ts                                                           
+src/lib/bundle-optimization.ts                                                 
+src/lib/cache/cache-service.ts                                                 
+src/lib/cache/redis-client.ts                                                  
+src/lib/cache/unified-cache-service.ts                                         
+src/lib/cms/business-info.ts                                                   
+src/lib/cms/cms-faq-service.ts                                                 
+src/lib/cms/demo.ts                                                            
+src/lib/cms/test-violation-simulation.ts                                       
+src/lib/cms/testimonials-timeline-data.ts                                      
+src/lib/cms/video-showcase-optimizer.ts                                        
+src/lib/compatibility/cross-browser-support.ts                                 
+src/lib/component-generator.ts                                                 
+src/lib/component-registry.ts                                                  
+src/lib/components/primitives/button/button.tsx                                
+src/lib/components/primitives/button/button.types.ts                           
+src/lib/components/primitives/index.ts                                         
+src/lib/critical-image-preloader.ts                                            
+src/lib/database/connection-pool.ts                                            
+src/lib/database/feedback-schema.ts                                            
+src/lib/deep-linking/deep-link-handler.ts                                      
+src/lib/design-system.ts                                                       
+src/lib/design-system/component-variants.ts                                    
+src/lib/design-system/design-system-lint.js                                    
+src/lib/design-system/design-tokens.ts                                         
+src/lib/design-system/migration-utilities.ts                                   
+src/lib/design-system/useDesignTokens.ts                                       
+src/lib/dynamic-imports/lazy-components.tsx                                    
+src/lib/enforcement-system.ts                                                  
+src/lib/error-handling/index.ts                                                
+src/lib/error-handling/optimization-error-handler.ts                           
+src/lib/hooks/useEnhancedAnimations.ts                                         
+src/lib/image-optimization.ts                                                  
+src/lib/integration/optimization-integration.ts                                
+src/lib/migration-paths.ts                                                     
+src/lib/monitoring/automated-recovery.ts                                       
+src/lib/monitoring/build-performance-plugin.ts                                 
+src/lib/monitoring/error-prevention-dashboard.ts                               
+src/lib/monitoring/index.ts                                                    
+src/lib/monitoring/performance-dashboard.ts                                    
+src/lib/monitoring/performance-monitor.ts                                      
+src/lib/monitoring/typescript-error-monitor.ts                                 
+src/lib/offline/background-sync.ts                                             
+src/lib/offline/search-index.ts                                                
+src/lib/optimization/code-splitting.tsx                                        
+src/lib/optimization/real-time-optimizer.ts                                    
+src/lib/performance/build-time-validator.ts                                    
+src/lib/performance/cms-cache-test.ts                                          
+src/lib/performance/index.ts                                                   
+src/lib/performance/predictive-prefetch.ts                                     
+src/lib/performance/resource-prioritization.ts                                 
+src/lib/performance/video-optimization.ts                                      
+src/lib/performance/video-performance-monitor.ts                               
+src/lib/performance/video-performance-validator.ts                             
+src/lib/performance/web-vitals-monitor.ts                                      
+src/lib/royal-client-protection.ts                                             
+src/lib/search/search-index-builder.ts                                         
+src/lib/seasonal-content.ts                                                    
+src/lib/services/footer-compliance-service.ts                                  
+src/lib/services/footer-content-service.ts                                     
+src/lib/services/footer-optimization-service.ts                                
+src/lib/services/footer-performance-service.ts                                 
+src/lib/type-guards/cms-validators.ts                                          
+src/lib/type-guards/index.ts                                                   
+src/lib/type-safety/core-framework.ts                                          
+src/lib/type-safety/coverage-monitor.ts                                        
+src/lib/type-safety/error-prevention.ts                                        
+src/lib/type-safety/framework-validator.ts                                     
+src/lib/type-safety/index.ts                                                   
+src/lib/type-safety/runtime-validator.ts                                       
+src/lib/type-safety/schema-generator.ts                                        
+src/lib/type-safety/utility-types.ts                                           
+src/lib/validation-rules.ts                                                    
+src/lib/video-utils.ts                                                         
+src/lib/zero-trust-validator.ts                                                
+src/optimization/domain-migration-script.ts                                    
+src/optimization/domain-migration.js                                           
+src/optimization/unified-service-template.ts                                   
+src/scripts/analyze-bundle.js                                                  
+src/tests/setup/accessibility-setup.ts                                         
+src/types/categorization.types.ts                                              
+src/types/standardized-content.ts                                              
+src/types/testimonials-timeline.ts                                             
+src/utils/motion-config.ts                                                     
+src/utils/motion-optimized.ts                                                  
+TAILWIND_VARIANT_TESTS.tsx                                                     
+tailwind.config.tokens.js                                                      
+test-debugging.js                                                              
+test-playwright-mcp.js                                                         
+test-viewport-automated.js                                                     
+tests/framework/automated-testing-framework.ts                                 
+tests/framework/comprehensive-testing-strategy.ts                              
+tests/framework/integrated-automated-testing-framework.ts                      
+tests/framework/manual-testing-protocols-royal-client.ts                       
+tests/framework/manual-testing-protocols.ts                                    
+tests/framework/rollback-testing-monitoring-validation.ts                      
+tests/framework/staged-testing-approach.ts                                     
+tests/framework/success-criteria-rollback.ts                                   
+tests/setup/coverage-setup.js                                                  
+tina/__generated__/client.ts                                                   
+tina/__generated__/config.prebuild.jsx                                         
+tina/__generated__/databaseClient.ts                                           
+tina/__generated__/types.ts                                                    
+tina/config.ts                                                                 
+tina/database.ts                                                               
+usage-analyzer.js                                                              
+verify-css-implementation.js                                                   
+video-section-performance-enhancements.tsx                                     
+Unused dependencies (105)
+@axe-core/react                   package.json:158:6
+@dnd-kit/modifiers                package.json:159:6
+@dnd-kit/sortable                 package.json:160:6
+@dnd-kit/utilities                package.json:161:6
+@floating-ui/react                package.json:162:6
+@formkit/auto-animate             package.json:163:6
+@gsap/react                       package.json:164:6
+@hello-pangea/dnd                 package.json:166:6
+@heroicons/react                  package.json:167:6
+@hookform/devtools                package.json:168:6
+@hookform/error-message           package.json:169:6
+@loadable/component               package.json:171:6
+@next/env                         package.json:172:6
+@next/third-parties               package.json:173:6
+@prisma/client                    package.json:174:6
+@react-aria/button                package.json:187:6
+@react-aria/dialog                package.json:188:6
+@react-aria/focus                 package.json:189:6
+@react-aria/interactions          package.json:190:6
+@react-aria/live-announcer        package.json:191:6
+@react-aria/utils                 package.json:192:6
+@react-hook/window-size           package.json:193:6
+@react-spring/parallax            package.json:194:6
+@react-spring/web                 package.json:195:6
+@sentry/react                     package.json:197:6
+@sentry/tracing                   package.json:198:6
+@tanstack/react-query             package.json:203:6
+@tanstack/react-query-devtools    package.json:204:6
+@tinacms/auth                     package.json:205:6
+@tinacms/datalayer                package.json:207:6
+@uiw/react-split                  package.json:208:6
+@use-gesture/react                package.json:209:6
+ahooks                            package.json:212:6
+classnames                        package.json:215:6
+claude                            package.json:216:6
+cn-lib                            package.json:218:6
+critters                          package.json:220:6
+crypto-js                         package.json:221:6
+d3                                package.json:222:6
+final-form                        package.json:226:6
+focus-trap-react                  package.json:228:6
+formik                            package.json:229:6
+gsap                              package.json:232:6
+i18next                           package.json:233:6
+i18next-browser-languagedetector  package.json:234:6
+i18next-http-backend              package.json:235:6
+immutability-helper               package.json:237:6
+js-cookie                         package.json:239:6
+lodash-es                         package.json:240:6
+mongodb-level                     package.json:243:6
+next-i18next                      package.json:247:6
+next-themes                       package.json:250:6
+perfume.js                        package.json:251:6
+postcss-custom-properties         package.json:252:6
+postcss-nesting                   package.json:253:6
+postcss-preset-env                package.json:254:6
+postcss-selector-parser           package.json:255:6
+qs                                package.json:256:6
+query-string                      package.json:257:6
+react-aria                        package.json:259:6
+react-barcode-generator           package.json:260:6
+react-color                       package.json:261:6
+react-credit-cards-2              package.json:263:6
+react-datepicker                  package.json:264:6
+react-day-picker                  package.json:265:6
+react-error-boundary              package.json:268:6
+react-final-form                  package.json:269:6
+react-focus-lock                  package.json:270:6
+react-google-places-autocomplete  package.json:271:6
+react-helmet-async                package.json:272:6
+react-highlight-words             package.json:273:6
+react-hotkeys                     package.json:275:6
+react-hotkeys-hook                package.json:276:6
+react-i18next                     package.json:277:6
+react-infinite-scroll-component   package.json:279:6
+react-infinite-scroller           package.json:280:6
+react-input-mask                  package.json:281:6
+react-lazyload                    package.json:283:6
+react-loadable                    package.json:284:6
+react-number-format               package.json:285:6
+react-otp-input                   package.json:286:6
+react-photo-view                  package.json:287:6
+react-qr-code                     package.json:288:6
+react-resizable                   package.json:289:6
+react-router-cache-route          package.json:290:6
+react-select                      package.json:291:6
+react-signature-canvas            package.json:292:6
+react-signature-pad               package.json:293:6
+react-split-pane                  package.json:295:6
+react-spring                      package.json:296:6
+react-use                         package.json:297:6
+react-use-gesture                 package.json:298:6
+react-wavify                      package.json:299:6
+redis                             package.json:301:6
+shortid                           package.json:303:6
+swiper                            package.json:305:6
+swr                               package.json:306:6
+tinacms                           package.json:310:6
+use-immer                         package.json:312:6
+use-local-storage-state           package.json:313:6
+usehooks-ts                       package.json:314:6
+vaul                              package.json:316:6
+vercel                            package.json:317:6
+why-did-you-render                package.json:319:6
+yup                               package.json:320:6
 Unused devDependencies (21)
-@next/eslint-plugin-next               package.json:224:6
-@projectwallace/css-analyzer           package.json:226:6
-@svgr/webpack                          package.json:227:6
-@typescript-eslint/eslint-plugin       package.json:236:6
-@typescript-eslint/parser              package.json:237:6
-@welldone-software/why-did-you-render  package.json:238:6
-analyze-css                            package.json:239:6
-eslint-config-next                     package.json:243:6
-eslint-config-prettier                 package.json:244:6
-eslint-plugin-import                   package.json:245:6
-eslint-plugin-jest-dom                 package.json:246:6
-eslint-plugin-jsx-a11y                 package.json:247:6
-eslint-plugin-react                    package.json:248:6
-eslint-plugin-react-hooks              package.json:249:6
-eslint-plugin-testing-library          package.json:250:6
-pesticide                              package.json:264:6
-prettier-plugin-tailwindcss            package.json:266:6
-puppeteer                              package.json:267:6
-react-devtools                         package.json:268:6
-tw-animate-css                         package.json:272:6
-webpack-bundle-analyzer                package.json:275:6
+@next/eslint-plugin-next               package.json:330:6
+@projectwallace/css-analyzer           package.json:332:6
+@svgr/webpack                          package.json:333:6
+@typescript-eslint/eslint-plugin       package.json:342:6
+@typescript-eslint/parser              package.json:343:6
+@welldone-software/why-did-you-render  package.json:344:6
+analyze-css                            package.json:345:6
+eslint-config-next                     package.json:349:6
+eslint-config-prettier                 package.json:350:6
+eslint-plugin-import                   package.json:351:6
+eslint-plugin-jest-dom                 package.json:352:6
+eslint-plugin-jsx-a11y                 package.json:353:6
+eslint-plugin-react                    package.json:354:6
+eslint-plugin-react-hooks              package.json:355:6
+eslint-plugin-testing-library          package.json:356:6
+pesticide                              package.json:370:6
+prettier-plugin-tailwindcss            package.json:372:6
+puppeteer                              package.json:373:6
+react-devtools                         package.json:374:6
+tw-animate-css                         package.json:378:6
+webpack-bundle-analyzer                package.json:381:6
 Unlisted dependencies (14)
 @jest/globals                src/__tests__/faq-ai-integration.test.ts:10:10             
 @jest/globals                src/__tests__/faq-recommendation-engine.test.ts:14:10      
@@ -52,16 +634,18 @@ prettier  package.json
 jq        package.json                          
 tail      package.json                          
 lhci      package.json                          
-Unresolved imports (8)
-jest-junit                jest.config.ci.js                                                           
-@/lib/types               src/__tests__/faq-recommendation-engine.test.ts:24:47                       
-@/lib/types               src/components/faq/faq-recommendations.tsx:22:47                            
-../logo-section           src/components/layout/__tests__/test-factories/logo-section-factory.ts:20:39
-../../performance.config  src/lib/analytics/business-analytics.ts:7:41                                
-@/lib/types               src/lib/faq-ab-testing.ts:14:47                                             
-@/lib/types               src/lib/faq-recommendation-engine.ts:15:47                                  
-@/lib/types               src/lib/faq-recommendation-optimiser.ts:16:47                               
-Unused exports (433)
+Unresolved imports (10)
+jest-junit                                  jest.config.ci.js                                                           
+@/lib/types                                 src/__tests__/faq-recommendation-engine.test.ts:24:47                       
+@/lib/types                                 src/components/faq/faq-recommendations.tsx:22:47                            
+../logo-section                             src/components/layout/__tests__/test-factories/logo-section-factory.ts:20:39
+../video-thumbnail-top-card                 …nts/marketing/__tests__/video-thumbnail-top-card.integration.test.tsx:24:39
+../../performance.config                    src/lib/analytics/business-analytics.ts:7:41                                
+@/lib/types                                 src/lib/faq-ab-testing.ts:14:47                                             
+@/lib/types                                 src/lib/faq-recommendation-engine.ts:15:47                                  
+@/lib/types                                 src/lib/faq-recommendation-optimiser.ts:16:47                               
+@/components/marketing/video-thumbnail-mi…  tests/unit/components/marketing.test.tsx:6:39                               
+Unused exports (402)
 freeVideoMasterclasses                       COMPREHENSIVE_VIDEO_CMS.ts:228:14                                          
 paidVideoMasterclasses                       COMPREHENSIVE_VIDEO_CMS.ts:231:14                                          
 PERFORMANCE_BUDGET                           performance.config.ts:49:14                                                
@@ -91,33 +675,32 @@ withErrorBoundary                            src/components/boundaries/homepage-
 default                                      src/components/cms-architecture-dashboard.tsx:422:8                        
 useClientSuccessMetrics            function  src/components/dashboards/client-success-metrics-dashboard.tsx:146:17      
 default                                      src/components/design-tokens/TokenTestComponent.tsx:282:8                  
-LazyFAQGamificationSystem                    src/components/dynamic/lazy-loaded-components.tsx:326:14                   
-LazyFAQAnalyticsDashboard                    src/components/dynamic/lazy-loaded-components.tsx:332:14                   
-LazyPerformanceDashboard                     src/components/dynamic/lazy-loaded-components.tsx:338:14                   
-LazyVoiceSearchComponents                    src/components/dynamic/lazy-loaded-components.tsx:344:14                   
-LazyAdminDashboard                           src/components/dynamic/lazy-loaded-components.tsx:350:14                   
-LazyChartComponents                          src/components/dynamic/lazy-loaded-components.tsx:356:14                   
-LazyQuoteRequestForm                         src/components/dynamic/lazy-loaded-components.tsx:362:14                   
-LazyNewsletterForm                           src/components/dynamic/lazy-loaded-components.tsx:368:14                   
-LazyTestimonialsSection                      src/components/dynamic/lazy-loaded-components.tsx:375:9                    
-LazyResultsSection                           src/components/dynamic/lazy-loaded-components.tsx:376:27                   
-LazyThreePillarsSection                      src/components/dynamic/lazy-loaded-components.tsx:378:24                   
-LazyConsultationForm                         src/components/dynamic/lazy-loaded-components.tsx:379:27                   
-LazyCompetitiveAnalysis                      src/components/dynamic/lazy-loaded-components.tsx:380:24                   
-LazyCaseStudies                              src/components/dynamic/lazy-loaded-components.tsx:381:27                   
-LazyIconCloud                                src/components/dynamic/lazy-loaded-components.tsx:382:19                   
-LazyGlobe                                    src/components/dynamic/lazy-loaded-components.tsx:383:17                   
-useIntersectionLoader                        src/components/dynamic/lazy-loaded-components.tsx:384:13                   
-preloadGamificationSystem                    src/components/dynamic/lazy-loaded-components.tsx:389:14                   
-preloadAnalyticsDashboard                    src/components/dynamic/lazy-loaded-components.tsx:392:14                   
-preloadPerformanceDashboard                  src/components/dynamic/lazy-loaded-components.tsx:395:14                   
-preloadVoiceSearch                           src/components/dynamic/lazy-loaded-components.tsx:398:14                   
-preloadConsultationForm                      src/components/dynamic/lazy-loaded-components.tsx:401:14                   
-preloadTestimonials                          src/components/dynamic/lazy-loaded-components.tsx:404:14                   
-preloadServicesCarousel                      src/components/dynamic/lazy-loaded-components.tsx:407:14                   
-preloadThreePillarsSection                   src/components/dynamic/lazy-loaded-components.tsx:410:14                   
-preloadRouteComponents                       src/components/dynamic/lazy-loaded-components.tsx:415:14                   
-default                                      src/components/education/EducationLevelCleanCard.tsx:151:8                 
+LazyFAQGamificationSystem                    src/components/dynamic/lazy-loaded-components.tsx:381:14                   
+LazyFAQAnalyticsDashboard                    src/components/dynamic/lazy-loaded-components.tsx:387:14                   
+LazyPerformanceDashboard                     src/components/dynamic/lazy-loaded-components.tsx:393:14                   
+LazyVoiceSearchComponents                    src/components/dynamic/lazy-loaded-components.tsx:399:14                   
+LazyAdminDashboard                           src/components/dynamic/lazy-loaded-components.tsx:406:14                   
+LazyChartComponents                          src/components/dynamic/lazy-loaded-components.tsx:412:14                   
+LazyQuoteRequestForm                         src/components/dynamic/lazy-loaded-components.tsx:418:14                   
+LazyNewsletterForm                           src/components/dynamic/lazy-loaded-components.tsx:425:14                   
+LazyCaseStudies                              src/components/dynamic/lazy-loaded-components.tsx:433:9                    
+LazyCompetitiveAnalysis                      src/components/dynamic/lazy-loaded-components.tsx:434:18                   
+LazyConsultationForm                         src/components/dynamic/lazy-loaded-components.tsx:435:26                   
+LazyGlobe                                    src/components/dynamic/lazy-loaded-components.tsx:436:23                   
+LazyIconCloud                                src/components/dynamic/lazy-loaded-components.tsx:437:12                   
+LazyResultsSection                           src/components/dynamic/lazy-loaded-components.tsx:438:16                   
+LazyTestimonialsSection                      src/components/dynamic/lazy-loaded-components.tsx:440:23                   
+LazyThreePillarsSection                      src/components/dynamic/lazy-loaded-components.tsx:441:26                   
+useIntersectionLoader                        src/components/dynamic/lazy-loaded-components.tsx:442:26                   
+preloadGamificationSystem                    src/components/dynamic/lazy-loaded-components.tsx:447:14                   
+preloadAnalyticsDashboard                    src/components/dynamic/lazy-loaded-components.tsx:452:14                   
+preloadPerformanceDashboard                  src/components/dynamic/lazy-loaded-components.tsx:458:14                   
+preloadVoiceSearch                           src/components/dynamic/lazy-loaded-components.tsx:464:14                   
+preloadConsultationForm                      src/components/dynamic/lazy-loaded-components.tsx:467:14                   
+preloadTestimonials                          src/components/dynamic/lazy-loaded-components.tsx:473:14                   
+preloadServicesCarousel                      src/components/dynamic/lazy-loaded-components.tsx:478:14                   
+preloadThreePillarsSection                   src/components/dynamic/lazy-loaded-components.tsx:483:14                   
+preloadRouteComponents                       src/components/dynamic/lazy-loaded-components.tsx:490:14                   
 FAQAdvancedSearchFilters           function  src/components/faq/faq-advanced-search-filters.tsx:219:17                  
 FAQAnalyticsTracker                function  src/components/faq/faq-analytics-tracker.tsx:861:17                        
 FAQHelpfulnessRating               function  src/components/faq/faq-analytics-tracker.tsx:934:17                        
@@ -156,7 +739,7 @@ renderCustomIcon                             src/components/magicui/icon-cloud.t
 dashboardUtils                               src/components/performance/PerformanceDashboard.tsx:285:14                 
 WebVitalsReporter                  function  src/components/performance/WebVitalsReporter.tsx:51:17                     
 default                                      src/components/sections/about/FirstLessonSection.tsx:137:1                 
-default                                      src/components/sections/about/founder-story-section.tsx:654:1              
+default                                      src/components/sections/about/founder-story-section.tsx:655:1              
 default                                      src/components/sections/brand-message-section.tsx:190:8                    
 default                                      src/components/sections/results-documentation.tsx:252:8                    
 default                                      src/components/sections/results-section.tsx:309:8                          
@@ -169,9 +752,6 @@ CourseSchema                                 src/components/seo/SchemaMarkup.tsx
 WebPageSchema                                src/components/seo/SchemaMarkup.tsx:206:14                                 
 SocialProfileSchema                          src/components/seo/SchemaMarkup.tsx:257:14                                 
 default                                      src/components/seo/SchemaMarkup.tsx:336:8                                  
-SEOPerformanceOptimizer                      src/components/seo/SEOPerformanceOptimizer.tsx:39:14                       
-CriticalSEO                                  src/components/seo/SEOPerformanceOptimizer.tsx:163:14                      
-EnhancedSEO                                  src/components/seo/SEOPerformanceOptimizer.tsx:179:14                      
 EliteSchoolsCarousel               function  src/components/testimonials/elite-schools-carousel.tsx:95:17               
 SchoolCard                         function  src/components/testimonials/school-card.tsx:41:17                          
 SchoolModal                        function  src/components/testimonials/school-modal.tsx:106:17                        
@@ -243,15 +823,6 @@ getPathname                                  src/i18n/navigation.ts:9:56
 localeNames                                  src/i18n/navigation.ts:14:14                                               
 localeFlags                                  src/i18n/navigation.ts:24:14                                               
 getLanguageCode                              src/i18n/navigation.ts:41:14                                               
-CONTROL_VARIANT                              src/lib/ab-testing/about-variants.ts:68:14                                 
-TRUST_VARIANT                                src/lib/ab-testing/about-variants.ts:101:14                                
-SPEED_VARIANT                                src/lib/ab-testing/about-variants.ts:134:14                                
-ENGAGEMENT_VARIANT                           src/lib/ab-testing/about-variants.ts:167:14                                
-MOBILE_VARIANT                               src/lib/ab-testing/about-variants.ts:200:14                                
-ABOUT_SECTION_VARIANTS                       src/lib/ab-testing/about-variants.ts:233:14                                
-selectVariantForUser                         src/lib/ab-testing/about-variants.ts:245:14                                
-compareVariantPerformance                    src/lib/ab-testing/about-variants.ts:302:14                                
-detectDeviceType                             src/lib/ab-testing/about-variants.ts:339:14                                
 KEYBOARD_KEYS                                src/lib/accessibility.ts:17:14                                             
 FocusManager                       class     src/lib/accessibility.ts:35:14                                             
 createAriaDescription                        src/lib/accessibility.ts:110:14                                            
@@ -268,14 +839,9 @@ analyticsUtils                               src/lib/analytics/business-analytic
 default                                      src/lib/analytics/business-analytics.ts:556:8                              
 useClientSuccessAnalytics          function  src/lib/analytics/client-success-analytics.ts:692:17                       
 default                                      src/lib/analytics/client-success-analytics.ts:731:8                        
-getConversionTracker                         src/lib/analytics/conversion-tracking.ts:485:14                            
+getConversionTracker                         src/lib/analytics/conversion-tracking.ts:505:14                            
 TestimonialsAnalyticsEngine        class     src/lib/analytics/testimonials-analytics-engine.ts:142:14                  
 testimonialsAnalyticsEngine                  src/lib/analytics/testimonials-analytics-engine.ts:864:14                  
-ANIMATION_PRESETS                            src/lib/animations/micro-interactions.ts:36:14                             
-createStaggerVariants                        src/lib/animations/micro-interactions.ts:120:14                            
-createLoadingVariants                        src/lib/animations/micro-interactions.ts:199:14                            
-createPulseVariants                          src/lib/animations/micro-interactions.ts:226:14                            
-createAdaptiveAnimation                      src/lib/animations/micro-interactions.ts:325:14                            
 createSession                      function  src/lib/auth/dal.ts:33:23                                                  
 updateSession                      function  src/lib/auth/dal.ts:58:23                                                  
 deleteSession                      function  src/lib/auth/dal.ts:91:23                                                  
@@ -353,6 +919,8 @@ useTestimonialsCMSStore                      src/lib/cms/testimonials-cms-manage
 useTestimonialsCMS                 function  src/lib/cms/testimonials-cms-manager.ts:463:17                             
 getNavbarClearance                           src/lib/constants/navbar-heights.ts:64:14                                  
 getFullSectionClasses                        src/lib/constants/navbar-heights.ts:78:14                                  
+getNavbarSpacerHeight                        src/lib/constants/navbar-heights.ts:91:14                                  
+getHeroSectionClasses                        src/lib/constants/navbar-heights.ts:105:14                                 
 getNavbarHeight                              src/lib/constants/navbar-heights.ts:119:14                                 
 getNavbarHeightEntries                       src/lib/constants/navbar-heights.ts:130:14                                 
 calculateRemainingViewportWithUn…            src/lib/constants/navbar-heights.ts:152:14                                 
@@ -361,12 +929,6 @@ generateDeepLink                   function  src/lib/deep-linking/url-patterns.t
 trackDeepLinkUsage                 function  src/lib/deep-linking/url-patterns.ts:305:17                                
 usePesticide                                 src/lib/dev-utils/index.ts:7:28                                            
 usePesticide                       function  src/lib/dev-utils/pesticide.tsx:165:17                                     
-createRetryableDynamicComponent              src/lib/dynamic-imports/lazy-components.tsx:121:14                         
-trackComponentLoad                           src/lib/dynamic-imports/lazy-components.tsx:161:14                         
-preloadComponent                             src/lib/dynamic-imports/lazy-components.tsx:187:14                         
-useLazyLoadTrigger                           src/lib/dynamic-imports/lazy-components.tsx:206:14                         
-LoadingComponent                             src/lib/dynamic-imports/lazy-components.tsx:230:9                          
-ErrorComponent                               src/lib/dynamic-imports/lazy-components.tsx:230:27                         
 default                                      src/lib/faq-ai-integration.ts:1131:8                                       
 AdaptiveOptimizationStrategy       class     src/lib/faq-recommendation-optimiser.ts:210:14                             
 useVersions                                  src/lib/faq-version-control/index.ts:43:26                                 
@@ -390,15 +952,6 @@ PermissionDeniedError              class     src/lib/faq-version-control/index.t
 ValidationError                    class     src/lib/faq-version-control/index.ts:386:14                                
 default                            variable  src/lib/faq-version-control/index.ts:429:8                                 
 default                                      src/lib/hooks/use-footer-accessibility.ts:335:8                            
-useStaggeredAnimations                       src/lib/hooks/useEnhancedAnimations.ts:259:14                              
-DEVICE_BREAKPOINTS                           src/lib/image-optimization.ts:44:14                                        
-CONTENT_QUALITY_MAP                          src/lib/image-optimization.ts:58:14                                        
-detectOptimalFormat                          src/lib/image-optimization.ts:105:14                                       
-isCriticalImage                              src/lib/image-optimization.ts:163:14                                       
-calculateResponsiveDimensions                src/lib/image-optimization.ts:177:14                                       
-createImageBatchLoader                       src/lib/image-optimization.ts:243:14                                       
-createImagePerformanceTracker                src/lib/image-optimization.ts:289:14                                       
-getImageExtension                            src/lib/image-optimization.ts:324:14                                       
 IncidentResponseOrchestrator       class     src/lib/incident-response.ts:73:14                                         
 BackupScheduler                    class     src/lib/infrastructure/database-backup.ts:281:14                           
 createProductionBackupConfig                 src/lib/infrastructure/database-backup.ts:337:14                           
@@ -495,7 +1048,7 @@ measureRenderTime                            tests/setup/test-utils.tsx:155:14
 testScreenReaderAnnouncements      function  tests/utils/accessibility-helpers.ts:118:23                                
 testColorContrast                  function  tests/utils/accessibility-helpers.ts:155:23                                
 default                                      tests/utils/accessibility-helpers.ts:281:8                                 
-Unused exported types (457)
+Unused exported types (442)
 VideoMasterclassId                type       COMPREHENSIVE_VIDEO_CMS.ts:216:13                                   
 TestimonialsErrorBoundaryProps    type       src/components/boundaries/TestimonialsErrorBoundary.tsx:214:14      
 TestimonialsErrorBoundaryState    type       src/components/boundaries/TestimonialsErrorBoundary.tsx:214:46      
@@ -503,7 +1056,7 @@ ConversionFunnelData              interface  src/components/dashboards/client-su
 TimeSeriesData                    interface  src/components/dashboards/client-success-metrics-dashboard.tsx:97:18
 CallOutsGridProps                 type       src/components/education/CallOutsGrid.tsx:134:14                    
 EducationLevelTabContentProps     type       src/components/education/EducationLevelTabContent.tsx:154:14        
-SubsectionCardProps               type       src/components/education/SubsectionCard.tsx:96:14                   
+SubsectionCardProps               type       src/components/education/SubsectionCard.tsx:97:14                   
 ErrorHandler                      type       src/components/error-boundary/types.ts:113:13                       
 RecoveryHandler                   type       src/components/error-boundary/types.ts:115:13                       
 RetryHandler                      type       src/components/error-boundary/types.ts:117:13                       
@@ -530,26 +1083,21 @@ SectionBackground                 type       src/components/layout/section.tsx:1
 SectionPadding                    type       src/components/layout/section.tsx:157:13                            
 SectionContainerSize              type       src/components/layout/section.tsx:158:13                            
 SectionAlignment                  type       src/components/layout/section.tsx:159:13                            
-SimpleHeroProps                   type       src/components/layout/simple-hero.tsx:282:14                        
+SimpleHeroProps                   type       src/components/layout/simple-hero.tsx:283:14                        
 DynamicCloudProps                 type       src/components/magicui/icon-cloud.tsx:103:13                        
 RoyalTestimonialCardVariant       type       src/components/marketing/royal-testimonial-card.tsx:199:13          
 RoyalTrustIndicatorsVariant       type       src/components/marketing/royal-trust-indicators.tsx:144:13          
-VideoThumbnailMidCardVariant      type       src/components/marketing/video-thumbnail-mid-card.tsx:429:13        
-VideoThumbnailTopCardVariant      type       src/components/marketing/video-thumbnail-top-card.tsx:423:13        
-AboutSectionProps                 type       src/components/sections/about-section.tsx:251:14                    
-AboutContentProps                 type       src/components/sections/about/about-content.tsx:232:14              
-AboutImageProps                   type       src/components/sections/about/about-image.tsx:194:14                
+AboutSectionProps                 type       src/components/sections/about-section.tsx:409:14                    
 TestimonialsSectionProps          type       src/components/sections/about/testimonials-section.tsx:179:14       
 CaseStudiesProps                  interface  src/components/sections/case-studies.tsx:44:18                      
 CaseStudyItem                     interface  src/components/sections/case-studies.tsx:56:18                      
 CompetitiveAnalysisProps          interface  src/components/sections/competitive-analysis.tsx:43:18              
 CompetitiveAnalysisItem           interface  src/components/sections/competitive-analysis.tsx:53:18              
-HeroSectionProps                  type       src/components/sections/hero-section.tsx:129:14                     
 ResultsDocumentationProps         interface  src/components/sections/results-documentation.tsx:46:18             
 ResultsDocumentationItem          interface  src/components/sections/results-documentation.tsx:59:18             
-ServicesCarouselProps             type       src/components/sections/services-carousel.tsx:473:14                
-ServiceData                       type       src/components/sections/services-carousel.tsx:473:37                
-StudentImageData                  type       src/components/sections/services-carousel.tsx:473:50                
+ServiceData                       type       src/components/sections/services-carousel.tsx:377:14                
+ServicesCarouselProps             type       src/components/sections/services-carousel.tsx:377:27                
+StudentImageData                  type       src/components/sections/services-carousel.tsx:377:50                
 StatsTrioProps                    interface  src/components/sections/stats-trio.tsx:29:18                        
 SubjectItem                       interface  src/components/sections/subject-accordion.tsx:33:18                 
 SubjectAccordionProps             interface  src/components/sections/subject-accordion.tsx:91:18                 
@@ -615,8 +1163,6 @@ OfflineOptions                    interface  src/hooks/use-offline.ts:34:18
 OfflineActions                    interface  src/hooks/use-offline.ts:46:18                                      
 UseOfflineReturn                  interface  src/hooks/use-offline.ts:57:18                                      
 Locale                            type       src/i18n/routing.ts:77:13                                           
-VariantPerformanceMetrics         interface  src/lib/ab-testing/about-variants.ts:275:18                         
-AboutContentData                  type       src/lib/about-data.ts:105:14                                        
 KeyboardKey                       type       src/lib/accessibility.ts:32:13                                      
 BusinessEvent                     interface  src/lib/analytics/business-analytics.ts:10:18                       
 ClientSuccessInsights             interface  src/lib/analytics/client-success-analytics.ts:21:18                 
@@ -636,9 +1182,6 @@ ConversionEvent                   interface  src/lib/analytics/conversion-tracki
 ConversionFunnelStage             interface  src/lib/analytics/conversion-tracking.ts:73:18                      
 ABTestConfig                      interface  src/lib/analytics/conversion-tracking.ts:90:18                      
 TestimonialsEngagement            interface  src/lib/analytics/testimonials-analytics-engine.ts:21:18            
-Variants                          type       src/lib/animations/micro-interactions.ts:343:14                     
-Transition                        type       src/lib/animations/micro-interactions.ts:343:24                     
-Target                            type       src/lib/animations/micro-interactions.ts:343:36                     
 VerifiedSession                   interface  src/lib/auth/dal.ts:20:18                                           
 ContentInteraction                interface  src/lib/cms/cms-analytics.ts:50:18                                  
 ConversionEvent                   interface  src/lib/cms/cms-analytics.ts:61:18                                  
@@ -683,7 +1226,6 @@ ViewportUnit                      type       src/lib/constants/navbar-heights.ts
 DeepLinkPattern                   interface  src/lib/deep-linking/url-patterns.ts:11:18                          
 FAQDeepLinkParams                 interface  src/lib/deep-linking/url-patterns.ts:79:18                          
 DeepLinkAnalytics                 interface  src/lib/deep-linking/url-patterns.ts:295:18                         
-LoadingComponentProps             type       src/lib/dynamic-imports/lazy-components.tsx:231:14                  
 FallbackConfig                    interface  src/lib/error-handling/types.ts:58:18                               
 ErrorRecoveryStep                 interface  src/lib/error-handling/types.ts:85:18                               
 ErrorHandlerOptions               interface  src/lib/error-handling/types.ts:100:18                              
@@ -725,10 +1267,6 @@ VersionControlConfig              type       src/lib/faq-version-control/index.t
 VersionSystemMetrics              type       src/lib/faq-version-control/index.ts:110:24                         
 BulkVersionOperation              type       src/lib/faq-version-control/index.ts:111:24                         
 BulkOperationResult               type       src/lib/faq-version-control/index.ts:114:24                         
-EnhancedAnimationOptions          type       src/lib/hooks/useEnhancedAnimations.ts:302:14                       
-EnhancedAnimationResult           type       src/lib/hooks/useEnhancedAnimations.ts:302:40                       
-OptimizedImageProps               interface  src/lib/image-optimization.ts:22:18                                 
-ImagePerformanceMetrics           interface  src/lib/image-optimization.ts:279:18                                
 IncidentSeverity                  enum       src/lib/incident-response.ts:14:13                                  
 IncidentStatus                    enum       src/lib/incident-response.ts:22:13                                  
 ResponseAction                    enum       src/lib/incident-response.ts:31:13                                  
@@ -979,7 +1517,7 @@ SECURITY                 AlertType       src/lib/monitoring/types.ts:34:3
 INFRASTRUCTURE           AlertType       src/lib/monitoring/types.ts:35:3            
 BUSINESS                 AlertType       src/lib/monitoring/types.ts:36:3            
 CUSTOM                   AlertType       src/lib/monitoring/types.ts:37:3            
-Duplicate exports (63)
+Duplicate exports (62)
 PERFORMANCE_CONFIG|default                            performance.config.ts                                             
 VersionHistoryItem|VersionHistoryItem                 src/components/admin/faq-version-control-dashboard.tsx            
 MetricCard|MetricCard                                 src/components/admin/faq-version-control-dashboard.tsx            
@@ -990,7 +1528,6 @@ FAQAnalyticsDashboard|default                         src/components/analytics/f
 TestimonialsExecutiveDashboard|default                src/components/analytics/testimonials-executive-dashboard.tsx     
 CMSArchitectureDashboard|default                      src/components/cms-architecture-dashboard.tsx                     
 TokenTestComponent|default                            src/components/design-tokens/TokenTestComponent.tsx               
-EducationLevelCleanCard|default                       src/components/education/EducationLevelCleanCard.tsx              
 FAQAnalyticsTracker|default                           src/components/faq/faq-analytics-tracker.tsx                      
 FAQThemeSwitcher|default                              src/components/faq/faq-theme-switcher.tsx                         
 FooterCompanySection|default                          src/components/layout/footer-components/footer-company-section.tsx
@@ -1043,3 +1580,5 @@ RealTimeMonitoringDashboard|default                   src/lib/monitoring/real-ti
 CodeSplittingManager|default                          src/lib/optimization/code-splitting-core.ts                       
 ISRConfig|default                                     src/lib/optimization/isr-config.ts                                
 webVitalsTracker|default                              src/lib/performance/web-vitals.ts                                 
+Configuration hints (1)
+.      Create knip.json configuration file with workspaces["."] object (485 unused files)

@@ -802,7 +802,6 @@ const ActionIcon: React.FC<{ action: string }> = ({ action }) => {
 }
 
 // Export additional components for standalone use
-export const VersionHistoryItem = VersionHistoryItem
-export const MetricCard = MetricCard
+export { VersionHistoryItem, MetricCard }
 
 export default FAQVersionControlDashboard

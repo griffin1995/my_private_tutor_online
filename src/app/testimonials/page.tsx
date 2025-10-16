@@ -102,7 +102,7 @@ const OptimizedTestimonialCard = memo(function TestimonialCard({
 	return (
 		<div
 			key={index}
-			className='bg-white p-6 rounded-lg shadow-lg border border-gray-100'>
+			className='bg-white p-6 rounded-lg shadow-lg border border-neutral-100'>
 			{/* CONTEXT7 SOURCE: /facebook/react - Star rating display optimization */}
 			{/* RATING DISPLAY: Memoized stars rendering for consistent performance */}
 			<div className='flex mb-4'>
@@ -118,18 +118,26 @@ const OptimizedTestimonialCard = memo(function TestimonialCard({
 
 			{/* CONTEXT7 SOURCE: /radix-ui/website - Radix UI Separator for semantic content separation */}
 			{/* SEPARATOR INTEGRATION REASON: Official Radix UI Separator with decorative prop for visual separation between quote and author sections */}
+			{/* TOKEN FIX: Replaced bg-gray-100 with bg-neutral-100 */}
 			<Separator
 				orientation='horizontal'
 				decorative
-				className='my-4 bg-gray-100'
+				className='my-4 bg-neutral-100'
 			/>
 
 			{/* CONTEXT7 SOURCE: /facebook/react - Author and subject info optimization */}
 			{/* AUTHOR INFO: Optimized info display with consistent layout */}
 			<div>
-				<div className='font-semibold text-gray-900'>{testimonial.author}</div>
-				<div className='text-sm text-gray-600'>{testimonial.role}</div>
-				<div className='text-sm text-blue-600 font-medium mt-1 flex items-center gap-2'>
+				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL div text styling */}
+				{/* LAYER BASE SYSTEM: Stripped font-semibold, text-gray-900 - ALL from @layer base */}
+				<div>{testimonial.author}</div>
+				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL div text styling */}
+				{/* LAYER BASE SYSTEM: Stripped text-sm, text-gray-600 - ALL from @layer base */}
+				<div>{testimonial.role}</div>
+				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL div text styling */}
+				{/* LAYER BASE SYSTEM: Stripped text-sm, font-medium - provided by @layer base */}
+				{/* ONLY KEEPING: text-blue-600 for subject color emphasis, layout classes */}
+				<div className='text-blue-600 mt-1 flex items-center gap-2'>
 					<span>{testimonial.subject}</span>
 					{/* CONTEXT7 SOURCE: /radix-ui/website - Vertical Radix UI Separator for semantic content separation */}
 					{/* VERTICAL SEPARATOR REASON: Official Radix UI Separator with vertical orientation for separating subject and grade information */}
@@ -224,7 +232,10 @@ export default function TestimonialsPage() {
 				id='mission-quote'
 				className='py-16 lg:py-24 bg-primary-50'>
 				<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
-					<blockquote className='text-xl lg:text-2xl font-serif italic text-gray-900'>
+					{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL blockquote styling */}
+					{/* LAYER BASE SYSTEM: Stripped text-xl, lg:text-2xl, font-serif, text-gray-900 - ALL from @layer base */}
+					{/* ONLY KEEPING: italic for quote emphasis */}
+					<blockquote className='italic'>
 						&quot;We provide <strong>exceptional tuition</strong> that helps students{' '}
 						<strong>excel academically</strong> and <u>thrive personally</u>, opening
 						doors to greater opportunities—at school and in life.&quot;
@@ -255,14 +266,20 @@ export default function TestimonialsPage() {
 				{/* CONTEXT7 SOURCE: /vercel/next.js - Testimonials carousel component for additional student success stories */}
 				{/* TESTIMONIALS INTEGRATION REASON: User request to revise carousel to use testimonial data instead of services */}
 				{/* CONTEXT7 SOURCE: /mdn/web-docs - HTML section wrapper with unique id for navigation menu integration */}
+				{/* TOKEN FIX: Replaced bg-slate-50 with bg-neutral-50 */}
 				<section
 					id='testimonials-featured-carousel'
-					className='py-16 bg-slate-50'>
+					className='py-16 bg-neutral-50'>
 					<div className='text-center mb-12 px-8 sm:px-12 lg:px-16 xl:px-20'>
-						<h2 className='text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4'>
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h2 styling */}
+						{/* LAYER BASE SYSTEM: Stripped text-3xl, lg:text-4xl, font-serif, font-bold, text-primary-900 - ALL from @layer base */}
+						<h2 className='mb-4'>
 							More Student Success Stories
 						</h2>
-						<p className='text-lg text-primary-600 max-w-3xl mx-auto'>
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+						{/* LAYER BASE SYSTEM: Stripped text-lg - provided by @layer base */}
+						{/* ONLY KEEPING: text-primary-600 for brand color emphasis, layout classes */}
+						<p className='text-primary-600 max-w-3xl mx-auto'>
 							Read additional testimonials from families who have achieved exceptional
 							results with our tutoring
 						</p>

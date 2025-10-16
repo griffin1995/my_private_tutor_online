@@ -144,19 +144,16 @@ export function FounderStorySection({
 						</div>
 					</div>
 
-					<div className='order-1 lg:order-2 bg-[rgba(63,74,126,0.03)] transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end'>
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Component styling alignment with shadow-lg → shadow-xl hover pattern */}
-						{/* STYLING STANDARDIZATION REVISION: Official Tailwind CSS documentation demonstrates shadow-lg base with hover:shadow-xl for consistent elevation hierarchy matching /about page aesthetic, rounded-2xl for uniform border radius (1rem/16px), and duration-300 for standard 300ms transitions */}
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
-						{/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
-						{/* ACCENT BAR REASON: For text-right sections, accent bar goes on right side (border-r-4) to match text alignment */}
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Max-width utilities for responsive container sizing */}
-						{/* CONTAINER WIDTH ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 demonstrates max-w-6xl for expanded content containers with improved text readability */}
+					<div className='order-1 lg:order-2 bg-primary-700/5 transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end'>
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL typography defaults */}
+						{/* LAYER BASE SYSTEM: Stripped text-4xl, font-semibold, text-gray-700, leading-relaxed - ALL from globals.css @layer base */}
+						{/* BACKGROUND FIX: Replaced arbitrary bg-[rgba(63,74,126,0.03)] with bg-primary-700/5 using primary-700 from config */}
+						{/* ONLY KEEPING: Layout classes (px, py, min-h, flex, items-end) and pb-2 mb-3 spacing */}
 						<div className='max-w-6xl text-right p-8 '>
-							<h2 className='text-4xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 '>
+							<h2 className='pb-2 mb-3'>
 								Meet Elizabeth, A Different Kind of Educator
 							</h2>
-							<p className='text-gray-700 leading-relaxed'>
+							<p>
 								Considering how unconventional my own schooling was, I often find myself
 								chuckling that I&apos;m in my second decade of a career in education.{' '}
 								<strong>
@@ -168,7 +165,9 @@ export function FounderStorySection({
 								my team and I can make a real impact.
 							</p>{' '}
 							<div className='grid grid-cols-1 md:grid-cols-2 md:gap-6'>
-								<p className='text-gray-700 leading-relaxed'>
+								{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+								{/* LAYER BASE SYSTEM: Removed text-gray-700, leading-relaxed, text-xl, text-3xl - ALL from @layer base */}
+								<p>
 									<strong>
 										I moved through six different schools growing up, across private,
 										state, faith, co-educational and single-sex systems (including a
@@ -180,16 +179,17 @@ export function FounderStorySection({
 									valuable — a quiet confidence and the belief that excellence was
 									achievable, even in turbulent times.
 								</p>
-								<Blockquote>
+								<Blockquote data-pull-quote>
+									{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - SVG fill using config token */}
+									{/* SVG FILL FIX: Replaced hardcoded fill='#3f497e60' with fill-primary-700/40 opacity modifier */}
 									<svg
-										className='mb-3 h-14 w-14 ml-auto'
+										className='mb-3 h-14 w-14 ml-auto fill-primary-700/40'
 										aria-hidden='true'
 										xmlns='http://www.w3.org/2000/svg'
-										fill='#3f497e60'
 										viewBox='0 0 18 14'>
 										<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
 									</svg>
-									<p className='text-xl lg:text-3xl'>
+									<p>
 										This is an example Pull Quote for Beth! That is roughly the same
 										amount of characters as the bolded section provided! and some extra
 										characters to actually reach roughly the same!
@@ -220,20 +220,17 @@ export function FounderStorySection({
 			{/* SYMMETRY CONSISTENCY REVISION REASON: Official Tailwind CSS documentation Section padding utilities - verified identical px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 and inner p-8 padding for perfect text area symmetry */}
 			<div className='w-full mb-10'>
 				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch'>
-					<div className='bg-[rgba(63,74,126,0.03)] transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center'>
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Component styling alignment with shadow-lg → shadow-xl hover pattern */}
-						{/* STYLING STANDARDIZATION REVISION: Official Tailwind CSS documentation demonstrates shadow-lg base with hover:shadow-xl for consistent elevation hierarchy matching /about page aesthetic, rounded-2xl for uniform border radius (1rem/16px), and duration-300 for standard 300ms transitions */}
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Metallic Blue brand color accent and enhanced typography */}
-						{/* STYLING ENHANCEMENT REASON: Official Tailwind CSS documentation for conditional borders, brand colors, and hover effects */}
-						{/* ACCENT BAR REASON: For text-left sections, accent bar goes on left side (border-l-4) to match text alignment */}
-						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Max-width utilities for responsive container sizing */}
-						{/* CONTAINER WIDTH ENHANCEMENT REASON: Official Tailwind CSS documentation Section 2.1 demonstrates max-w-6xl for expanded content containers with improved text readability */}
+					<div className='bg-primary-700/5 transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center'>
+						{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL typography defaults */}
+						{/* LAYER BASE SYSTEM: Stripped text-xl, font-semibold, font-serif, text-gray-700, leading-relaxed - ALL from @layer base */}
+						{/* BACKGROUND FIX: Replaced arbitrary bg-[rgba(63,74,126,0.03)] with bg-primary-700/5 */}
+						{/* ONLY KEEPING: Layout classes and spacing (pb-2 mb-3, space-y-6) */}
 						<div className='max-w-6xl text-left p-8'>
-							<h2 className='text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 font-serif'>
+							<h2 className='pb-2 mb-3'>
 								Going Against the Grain
 							</h2>
 
-							<div className='text-gray-700 leading-relaxed space-y-6'>
+							<div className='space-y-6'>
 								<p>
 									By Sixth Form, I was achieving top grades. I hadn&apos;t planned to
 									apply to Oxbridge, but when my headmistress pulled me aside to ask if
@@ -301,11 +298,13 @@ export function FounderStorySection({
 				<div className='block md:hidden'>
 					<div className='bg-white px-6 sm:px-8 py-12 sm:py-16'>
 						<div className='max-w-4xl mx-auto'>
-							<h2 className='text-2xl sm:text-3xl font-serif font-bold text-primary-900 mb-6 leading-tight'>
+							{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h2 styling */}
+							{/* LAYER BASE SYSTEM: Stripped text-2xl, text-3xl, font-serif, font-bold, text-primary-900, leading-tight - ALL from @layer base */}
+							<h2 className='mb-6'>
 								A Global View of What Education Can Do
 							</h2>
 
-							<div className='text-lg text-primary-700 leading-relaxed space-y-4'>
+							<div className='space-y-4'>
 								{/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML strong and em elements for combined semantic text emphasis */}
 								{/* BOLD AND ITALIC FORMATTING REVISION REASON: Official HTML documentation demonstrates nested strong and em element usage for combined high importance and emphasis - applying both bold and italic to 'Forbes Middle East' using <strong><em> pattern for publication name significance */}
 								{/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML nested elements proper structure for combined formatting */}
@@ -375,11 +374,14 @@ export function FounderStorySection({
 					<div className='absolute inset-x-0 bottom-0 flex items-end z-10 p-8 sm:p-10 lg:p-12'>
 						<div className='w-full'>
 							<div className='max-w-4xl px-4 sm:px-6'>
-								<h2 className='text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-white leading-tight'>
+								{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base with text-white override for contrast */}
+								{/* LAYER BASE SYSTEM: Stripped text-3xl/4xl/5xl, font-serif, font-bold, leading-tight - from @layer base */}
+								{/* ONLY OVERRIDE: text-white for contrast on dark background */}
+								<h2 className='text-white'>
 									A Global View of What Education Can Do
 								</h2>
 
-								<div className='text-lg lg:text-xl text-white/90 leading-relaxed space-y-4'>
+								<div className='text-white/90 space-y-4'>
 									{/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML strong and em elements for combined semantic text emphasis */}
 									{/* BOLD AND ITALIC FORMATTING REVISION REASON: Official HTML documentation demonstrates nested strong and em element usage for combined high importance and emphasis - applying both bold and italic to 'Forbes Middle East' using <strong><em> pattern for publication name significance */}
 									{/* CONTEXT7 SOURCE: /websites/hcdev_ru_learn - HTML nested elements proper structure for combined formatting */}
@@ -410,11 +412,13 @@ export function FounderStorySection({
 
 			{/* Normal centred section */}
 			<div className='mx-auto max-w-6xl text-center py-8 sm:px-6 lg:px-8 mt-7 lg:mt-10'>
-				<h2 className='text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-8'>
+				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL h2 styling */}
+				{/* LAYER BASE SYSTEM: Stripped text-3xl/4xl, font-serif, font-bold, text-primary-900 - ALL from @layer base */}
+				<h2 className='mb-8'>
 					Results That Matter
 				</h2>
 
-				<div className='text-lg text-primary-700 leading-relaxed space-y-6'>
+				<div className='space-y-6'>
 					<p>
 						Since founding My Private Tutor Online more than 15 years ago, my team and
 						I have helped hundreds of families through key academic transitions …
@@ -431,15 +435,17 @@ export function FounderStorySection({
 
 			{/* Normal centred section again */}
 			<div className='mx-auto max-w-6xl text-center px-4 sm:px-6 lg:px-8'>
-				<div className='text-lg text-primary-700 leading-relaxed space-y-6'>
+				{/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @layer base provides ALL p styling */}
+				{/* LAYER BASE SYSTEM: Stripped text-lg, text-primary-700, leading-relaxed, text-base, text-primary-600, font-medium - ALL from @layer base */}
+				<div className='space-y-6'>
 					<p>
-						Tutoring isn’t just about good grades. It’s about having someone in your
-						corner who sees what you’re capable of …
+						Tutoring isn't just about good grades. It's about having someone in your
+						corner who sees what you're capable of …
 					</p>
 				</div>
 
 				<div className='flex flex-col items-center pt-8 mt-8 border-t border-primary-100'>
-					<p className='text-base text-primary-600 font-medium'>
+					<p>
 						<strong>Elizabeth Burrows, Founder & CEO</strong>
 					</p>
 					<Image
