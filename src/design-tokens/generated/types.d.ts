@@ -104,67 +104,67 @@ export const FontLetterSpacingWide: string;
 export const FontLetterSpacingWider: string;
 /** H1 style - hero headings, page titles */
 export const TypographyHeadingH1: {
-	fontFamily: string;
-	fontSize: string;
-	fontWeight: number;
-	lineHeight: number;
-	letterSpacing: string;
+  fontFamily: string;
+  fontSize: string;
+  fontWeight: number;
+  lineHeight: number;
+  letterSpacing: string;
 };
 /** H2 style - section headings */
 export const TypographyHeadingH2: {
-	fontFamily: string;
-	fontSize: string;
-	fontWeight: number;
-	lineHeight: number;
-	letterSpacing: string;
+  fontFamily: string;
+  fontSize: string;
+  fontWeight: number;
+  lineHeight: number;
+  letterSpacing: string;
 };
 /** H3 style - subsection headings */
 export const TypographyHeadingH3: {
-	fontFamily: string;
-	fontSize: string;
-	fontWeight: number;
-	lineHeight: number;
-	letterSpacing: string;
+  fontFamily: string;
+  fontSize: string;
+  fontWeight: number;
+  lineHeight: number;
+  letterSpacing: string;
 };
 /** H4 style - card headings */
 export const TypographyHeadingH4: {
-	fontFamily: string;
-	fontSize: string;
-	fontWeight: number;
-	lineHeight: number;
-	letterSpacing: string;
+  fontFamily: string;
+  fontSize: string;
+  fontWeight: number;
+  lineHeight: number;
+  letterSpacing: string;
 };
 /** Base body text style */
 export const TypographyBodyBase: {
-	fontFamily: string;
-	fontSize: string;
-	fontWeight: number;
-	lineHeight: number;
-	letterSpacing: string;
+  fontFamily: string;
+  fontSize: string;
+  fontWeight: number;
+  lineHeight: number;
+  letterSpacing: string;
 };
 /** Large body text - lead paragraphs */
 export const TypographyBodyLarge: {
-	fontFamily: string;
-	fontSize: string;
-	fontWeight: number;
-	lineHeight: number;
-	letterSpacing: string;
+  fontFamily: string;
+  fontSize: string;
+  fontWeight: number;
+  lineHeight: number;
+  letterSpacing: string;
 };
 /** Small body text - captions, metadata */
 export const TypographyBodySmall: {
-	fontFamily: string;
-	fontSize: string;
-	fontWeight: number;
-	lineHeight: number;
-	letterSpacing: string;
+  fontFamily: string;
+  fontSize: string;
+  fontWeight: number;
+  lineHeight: number;
+  letterSpacing: string;
 };
 /** Technical text - pricing, data display */
 export const TypographyTechnicalBase: {
-	fontFamily: string;
-	fontSize: string;
-	fontWeight: number;
-	lineHeight: number;
-	letterSpacing: string;
+  fontFamily: string;
+  fontSize: string;
+  fontWeight: number;
+  lineHeight: number;
+  letterSpacing: string;
 };
 /** Zero spacing - reset margins/padding */
 export const Spacing0: string;

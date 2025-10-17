@@ -229,7 +229,8 @@
       "Bash(if [ -f \"$file\" ])",
       "Bash(then)",
       "Bash(else)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "WebFetch(domain:magicui.design)"
     ],
     "deny": []
   },

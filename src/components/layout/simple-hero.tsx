@@ -26,14 +26,14 @@ const heroContainerVariants = {
 const heroItemVariants = {
 	hidden: {
 		opacity: 0,
-		y: -100,
+		y: 30,
 	},
 	visible: {
 		opacity: 1,
 		y: 0,
 		transition: {
-			duration: 0.3,
-			ease: 'easeOut',
+			duration: 0.8,
+			ease: [0.25, 0.1, 0.25, 1], // Custom cubic-bezier for smooth, elegant motion
 		},
 	},
 };
@@ -51,12 +51,6 @@ export function SimpleHero({
 			className={cn('relative h-screen w-screen overflow-hidden', className)}
 			role='banner'
 			aria-label='Hero section'>
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
 			<div
 				className='absolute inset-0'
 				aria-hidden='true'>
@@ -67,8 +61,7 @@ export function SimpleHero({
 						backgroundSize: 'cover',
 						backgroundPosition: 'center',
 						backgroundRepeat: 'no-repeat',
-						animation: 'heroZoom 10s ease-out 0s 1 normal none running',
-						filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
+						animation: 'heroZoom 15s ease-out 0s 1 normal none running',
 					}}
 				/>
 				<style
@@ -83,57 +76,32 @@ export function SimpleHero({
 				/>
 			</div>
 
-			{}
-			{}
-			{}
-
-			{}
-			{}
-			{}
+			{/* Layer 1: Navy scrim for text contrast (WCAG 4.5:1) */}
 			<div
-				className='absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 shadow-inner'
-				style={{
-					opacity: 0.618,
-				}}
+				className='absolute inset-0 bg-gradient-to-t from-primary-900/90 via-primary-900/50 to-transparent'
 				aria-hidden='true'
 			/>
 
-			{}
-			{}
-			{}
+			{/* Layer 2: Brand gold accent for warmth and cohesion with blog cards */}
 			<div
-				className='absolute inset-0 bg-gradient-radial from-blue-900/30 via-slate-900/20 to-black/50 mix-blend-multiply'
-				style={{
-					opacity: 0.382,
-				}}
+				className='absolute inset-0 bg-gradient-to-t from-accent-600/70 via-accent-600/20 to-transparent mix-blend-soft-light'
 				aria-hidden='true'
 			/>
 
-			{}
-			{}
-			{}
+			{/* Dot pattern texture overlay - Premium editorial aesthetic with radial fade */}
 			<div
-				className='absolute inset-0 bg-gradient-conic from-amber-400/10 via-yellow-300/5 to-amber-600/15'
-				style={{
-					opacity: 0.25,
-				}}
+				className='absolute inset-0'
 				aria-hidden='true'
-			/>
-
-			{}
-			{}
-			{}
-			<div
-				className='absolute inset-0 bg-gradient-radial from-amber-500/15 via-transparent to-transparent'
 				style={{
-					background: `radial-gradient(circle at 50% 40%, #CA9E5B15 0%, transparent 60%)`,
-					opacity: 0.3,
+					backgroundImage:
+						'radial-gradient(circle at 2px 2px, rgb(255, 255, 255) 1px, transparent 0)',
+					backgroundSize: '20px 20px',
+					opacity: 0.1,
+					maskImage: 'radial-gradient(800px circle at center, white, transparent)',
+					WebkitMaskImage:
+						'radial-gradient(800px circle at center, white, transparent)',
 				}}
-				aria-hidden='true'
 			/>
-
-			{}
-			{}
 			<div className='relative z-10 flex flex-col items-center justify-center h-full px-4 text-center'>
 				{}
 				{}
@@ -166,7 +134,15 @@ export function SimpleHero({
 					<motion.div
 						variants={heroItemVariants}
 						className='mb-[26px]'>
-						<h1>{h1}</h1>
+						<h1
+							style={{
+								letterSpacing: '0.05em',
+								textShadow:
+									'0 1px 2px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.1)',
+								textTransform: 'uppercase',
+							}}>
+							{h1}
+						</h1>
 					</motion.div>
 
 					{}
@@ -177,7 +153,16 @@ export function SimpleHero({
 					{}
 					{}
 					<motion.div variants={heroItemVariants}>
-						<h2 className='text-white text-center max-w-full mx-auto px-4'>{h2}</h2>
+						<h2
+							className='text-white text-center max-w-full mx-auto px-4'
+							style={{
+								fontWeight: 300,
+								letterSpacing: '0.02em',
+								textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+								textTransform: 'none',
+							}}>
+							{h2}
+						</h2>
 					</motion.div>
 				</motion.div>
 
