@@ -1,13 +1,79 @@
 'use client';
 
 import React from 'react';
-import { getContactContent, getUnifiedContact } from '@/lib/cms';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FAQContactSection } from '@/components/faq/faq-contact-section';
 import { Separator } from '@/components/ui/separator';
+
+// ============================================================================
+// HARDCODED DATA - ALL CMS CONTENT FOR CONTACT PAGE
+// ============================================================================
+
+// Contact content from landing page
+const CONTACT_CONTENT = {
+	sectionTitle: 'Begin Your Academic Journey',
+	sectionDescription:
+		"Ready to unlock your child's potential? Contact us today for a free consultation and discover how we can help achieve academic excellence.",
+	formTitle: 'Book Your Free Consultation',
+	formDescription:
+		"Complete the form below and we'll be in touch within 24 hours to discuss your child's educational goals.",
+	submitButtonText: 'Book Free Consultation',
+	contactInfo: {
+		email: 'info@myprivatetutoronline.com',
+		phone: '+44 7513 550278',
+		address:
+			'Mayfair Educational Centre\n123 Berkeley Square\nLondon W1J 6BR\nUnited Kingdom',
+	},
+} as const;
+
+// Unified contact data combining settings, landing page, and FAQ data
+const UNIFIED_CONTACT = {
+	primary: {
+		primaryEmail: 'info@myprivatetutoronline.com',
+		phone: '+44 7513 550278',
+		address: {
+			line1: '123 Education House',
+			line2: 'Kensington',
+			city: 'London',
+			postcode: 'SW7 2AZ',
+			country: 'United Kingdom',
+		},
+		socialMedia: {
+			twitter: '@MyPrivateTutorUK',
+			linkedin: 'my-private-tutor-online',
+			facebook: 'MyPrivateTutorOnline',
+		},
+	},
+	landing: CONTACT_CONTENT,
+	landingInfo: CONTACT_CONTENT.contactInfo,
+	faq: {
+		title: 'Still Have Questions?',
+		description:
+			'Our team is always happy to help. Get in touch to discuss your specific needs or schedule a consultation with Elizabeth.',
+		buttons: [
+			{
+				text: 'Schedule Consultation',
+				type: 'primary' as const,
+				href: '/consultation',
+			},
+			{
+				text: 'Email Our Team',
+				type: 'secondary' as const,
+				action: 'contactEmail',
+			},
+		],
+	},
+	quoteForm: {
+		title: 'Request Your Personalised Quote',
+		description: "Begin Your Child's Academic Excellence Journey",
+		phone: '+44 7513 550278',
+		email: 'info@myprivatetutoronline.com',
+	},
+} as const;
+
 export default function ContactPage() {
-	const contactContent = getContactContent();
-	const unifiedContact = getUnifiedContact();
+	const contactContent = CONTACT_CONTENT;
+	const unifiedContact = UNIFIED_CONTACT;
 	const contactDetails = unifiedContact.landingInfo;
 	const faqContactContent = {
 		title: contactContent.sectionTitle,

@@ -223,15 +223,6 @@ export function getVideoMasterclass(
 	return videoMasterclasses.find((video) => video.id === id);
 }
 
-// CONTEXT7 SOURCE: /microsoft/typescript - Filtered arrays for free vs paid content segregation
-// CONTENT FILTERING: Official TypeScript documentation for array filtering operations with type preservation
-export const freeVideoMasterclasses = videoMasterclasses.filter(
-	(video) => !video.isPaid,
-);
-export const paidVideoMasterclasses = videoMasterclasses.filter(
-	(video) => video.isPaid,
-);
-
 /**
  * CONTEXT7 SOURCE: /sharp/sharp - Image Processing Documentation and Implementation Notes
  * SHARP PROCESSING SYSTEM: Complete automated darkening system for professional web optimization

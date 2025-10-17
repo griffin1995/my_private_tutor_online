@@ -7,7 +7,20 @@ import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { NavigationButton } from '@/components/ui/navigation-button';
-import { getOptimizedImageProps } from '@/lib/cms/cms-images';
+
+// Helper function for image optimization (CMS-free)
+const getOptimizedImageProps = (
+	image: { src: string; alt: string; width: number; height: number },
+	sizes: string,
+) => {
+	return {
+		src: image.src,
+		alt: image.alt,
+		width: image.width,
+		height: image.height,
+		sizes: sizes,
+	};
+};
 interface ServiceData {
 	title: string;
 	description: string;

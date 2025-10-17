@@ -62,7 +62,7 @@
 			},
 			{
 				"label": "Video Masterclasses",
-				"href": "/video"
+				"href": "/video-masterclasses"
 			},
 			{
 				"label": "Exam Papers",
@@ -499,6 +499,14 @@
 					{
 						"label": "11+ Preparation",
 						"href": "/11-plus-bootcamps"
+					},
+					{
+						"label": "How It Works",
+						"href": "/how-it-works"
+					},
+					{
+						"label": "Homeschooling",
+						"href": "/homeschooling"
 					}
 				]
 			},
@@ -511,7 +519,11 @@
 					},
 					{
 						"label": "Meet the Team",
-						"href": "/about"
+						"href": "/meet-our-tutors"
+					},
+					{
+						"label": "Expert Educators",
+						"href": "/expert-educators"
 					},
 					{
 						"label": "Testimonials",
@@ -519,13 +531,21 @@
 					},
 					{
 						"label": "Results",
-						"href": "/about"
+						"href": "/about#results"
 					}
 				]
 			},
 			{
 				"title": "Resources",
 				"links": [
+					{
+						"label": "Video Masterclasses",
+						"href": "/video-masterclasses"
+					},
+					{
+						"label": "Exam Papers",
+						"href": "/exam-papers"
+					},
 					{
 						"label": "Study Guides",
 						"href": "/blog"

@@ -3,16 +3,38 @@
 	// DEVELOPMENT TOOLING REASON: Official TypeScript and Next.js VS Code optimization settings
 
 	"cSpell.words": [
+		"Adebayo",
+		"Annoushka",
 		"anymore",
 		"Bootcamp",
 		"bootcamps",
+		"CELTA",
+		"curriculars",
+		"distills",
+		"Edexcel",
+		"elizabeths",
 		"embla",
 		"handpicked",
 		"hcdev",
+		"Headshot",
+		"Hons",
+		"IGCSE",
 		"ISEB",
 		"kickstarter",
 		"Kiset",
-		"Tatler"
+		"Latymer",
+		"LNAT",
+		"Meritt",
+		"merittjones",
+		"MPTO",
+		"Pauls",
+		"PGCE",
+		"practice",
+		"Tatler",
+		"Taylors",
+		"TMUA",
+		"tutees",
+		"ucas"
 	],
 
 	// TypeScript Configuration

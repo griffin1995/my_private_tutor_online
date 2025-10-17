@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
@@ -9,7 +8,13 @@ import { ScrollingSchools } from '@/components/sections/scrolling-schools';
 import { Button } from '@/components/ui/button';
 import { BootcampVideoSectionVersion } from '@/components/video/BootcampVideoSectionVersion';
 import { VideoPopup } from '@/components/video/video-popup';
-import { getTestimonialsSchools } from '@/lib/cms/cms-content';
+import { useState } from 'react';
+
+// ============================================================================
+// HARDCODED DATA - ALL CMS CONTENT FOR 11+ BOOTCAMPS PAGE
+// ============================================================================
+
+// Bootcamp programme details
 const bootcampProgrammes = [
 	{
 		title: 'Intensive 11+ Preparation',
@@ -67,6 +72,8 @@ const bootcampProgrammes = [
 		dates: ['Pre-Exam: 6-7 September 2025', 'Final Push: 4-5 January 2026'],
 	},
 ];
+
+// Success statistics
 const successStats = [
 	{
 		number: '95%',
@@ -90,7 +97,32 @@ const successStats = [
 		description: 'consistent placements at prestigious independent schools',
 	},
 ];
-const testimonialsSchools = getTestimonialsSchools();
+
+// Schools list (all schools and universities)
+const ALL_SCHOOLS: readonly string[] = [
+	'Eton College',
+	'Westminster School',
+	"St Paul's School",
+	'Harrow School',
+	'Oxford University',
+	'Cambridge University',
+	'London School of Economics',
+	"King's College London",
+	'Brighton College',
+	'Durham University',
+	'University of Edinburgh',
+	'Harvard University',
+	'Highgate School',
+	'Le Rosey School',
+	'University of St Andrews',
+	'University of Warwick',
+	'Henrietta Barnett School',
+	'Latymer School',
+	"Queen Elizabeth's School",
+	'Tiffin School',
+] as const;
+
+// Filter function to remove universities and keep only schools
 const filterSchoolsOnly = (schools: readonly string[]): readonly string[] => {
 	return schools.filter((school: string) => {
 		const schoolLower = school.toLowerCase();
@@ -107,10 +139,14 @@ const filterSchoolsOnly = (schools: readonly string[]): readonly string[] => {
 		return !isUniversity;
 	});
 };
-const filteredSchools = filterSchoolsOnly(testimonialsSchools);
+
+// Filtered schools (excludes universities)
+const FILTERED_SCHOOLS = filterSchoolsOnly(ALL_SCHOOLS);
+
 export default function ElevenPlusBootcampsPage() {
 	const [isVideoOpen, setIsVideoOpen] = useState(false);
 	const isSeasonActive = true;
+
 	if (!isSeasonActive) {
 		return (
 			<PageLayout
@@ -147,6 +183,7 @@ export default function ElevenPlusBootcampsPage() {
 			</PageLayout>
 		);
 	}
+
 	return (
 		<>
 			{}
@@ -176,7 +213,7 @@ export default function ElevenPlusBootcampsPage() {
 				{}
 				{}
 				<ScrollingSchools
-					schools={[...filteredSchools]}
+					schools={[...FILTERED_SCHOOLS]}
 					className='py-0.5'
 				/>
 			</section>

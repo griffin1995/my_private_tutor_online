@@ -10,7 +10,6 @@ import {
 	TrendingUp,
 	Users,
 } from 'lucide-react';
-import { getStudentImages } from '@/lib/cms/cms-images';
 import { PageLayout } from '@/components/layout/page-layout';
 import { ServicesPerformanceMonitor } from '@/components/services/ServicesPerformanceMonitor';
 import { MobileEnhancements } from '@/components/services/MobileEnhancements';
@@ -34,14 +33,129 @@ import {
 	XAxis,
 	YAxis,
 } from 'recharts';
+
+// ============================================================================
+// HARDCODED DATA - ALL CMS CONTENT FOR SERVICES PAGE
+// ============================================================================
+
+interface ServiceFeature {
+	feature: string;
+}
+
 interface ServiceData {
 	title: string;
 	description: string;
-	features: string[];
-	targetAudience: string;
+	features: ServiceFeature[];
 	icon: string;
-	premium?: boolean;
+	ctaText?: string;
+	ctaLink?: string;
+	featureImageUrl?: string;
+	featureImageAlt?: string;
 }
+
+// Services data - all tutoring services offered
+const SERVICES_DATA: ServiceData[] = [
+	{
+		title: 'Primary',
+		description:
+			'Comprehensive support for primary school students across all core subjects and entrance exam preparation',
+		icon: '🌟',
+		features: [
+			{ feature: 'All core subjects covered' },
+			{ feature: 'Early exam preparation' },
+			{ feature: 'Learning foundation building' },
+			{ feature: 'Progress tracking' },
+		],
+		ctaText: 'Learn More',
+		ctaLink: '#contact',
+	},
+	{
+		title: 'Secondary',
+		description:
+			'Expert secondary education support covering GCSE, A-Level and IB programmes for academic excellence',
+		icon: '📚',
+		features: [
+			{ feature: 'GCSE & A-Level mastery' },
+			{ feature: 'IB programme support' },
+			{ feature: 'Exam technique development' },
+			{ feature: 'Subject specialist tutors' },
+		],
+		ctaText: 'Learn More',
+		ctaLink: '#contact',
+	},
+	{
+		title: 'Entrance Exams',
+		description:
+			'Specialist preparation for competitive UK school entry examinations (4+, 7+, 11+, 13+, 16+)',
+		icon: '🎯',
+		features: [
+			{ feature: 'Mathematical reasoning' },
+			{ feature: 'English comprehension' },
+			{ feature: 'Verbal & non-verbal reasoning' },
+			{ feature: 'Mock exam practice' },
+		],
+		ctaText: 'Learn More',
+		ctaLink: '#contact',
+	},
+	{
+		title: 'Uni & Beyond',
+		description:
+			'Complete university application support including Oxbridge admissions and undergraduate academic writing',
+		icon: '🎓',
+		features: [
+			{ feature: 'UCAS application support' },
+			{ feature: 'Oxbridge interview coaching' },
+			{ feature: 'Personal statement guidance' },
+			{ feature: 'University essay support' },
+		],
+		ctaText: 'Learn More',
+		ctaLink: '#contact',
+		featureImageUrl: '/images/graphics/feature-oxbridge-success.jpg',
+		featureImageAlt:
+			'Oxbridge success - University admissions coaching and academic writing support',
+	},
+	{
+		title: 'Online Homeschooling',
+		description:
+			'Comprehensive online education programmes providing structured homeschooling with qualified teachers',
+		icon: '💻',
+		features: [
+			{ feature: 'Full curriculum delivery' },
+			{ feature: 'Qualified teacher support' },
+			{ feature: 'Flexible learning schedules' },
+			{ feature: 'Progress monitoring' },
+		],
+		ctaText: 'Learn More',
+		ctaLink: '#contact',
+	},
+	{
+		title: 'SEN Support',
+		description:
+			'Specialist educational needs support with experienced tutors trained in learning differences and disabilities',
+		icon: '🤝',
+		features: [
+			{ feature: 'Learning differences expertise' },
+			{ feature: 'Individualised learning plans' },
+			{ feature: 'Multi-sensory teaching' },
+			{ feature: 'Confidence building' },
+		],
+		ctaText: 'Learn More',
+		ctaLink: '#contact',
+	},
+	{
+		title: 'London In-Person',
+		description: 'Premium face-to-face tutoring sessions available across London',
+		icon: '🏛️',
+		features: [
+			{ feature: 'Elite London tutors' },
+			{ feature: 'Flexible location options' },
+			{ feature: 'Premium service level' },
+			{ feature: 'Immediate availability' },
+		],
+		ctaText: 'Learn More',
+		ctaLink: '#contact',
+	},
+];
 interface MetricsData {
 	title: string;
 	value: number;
@@ -55,15 +169,7 @@ interface GlobalLocationData {
 	lat: number;
 	lng: number;
 }
-function ServicesPageClient({
-	services,
-	trustIndicators,
-	studentImages,
-}: {
-	services: ServiceData[];
-	trustIndicators: any;
-	studentImages: any;
-}) {
+function ServicesPageClient({ services }: { services: ServiceData[] }) {
 	const globalLocations: GlobalLocationData[] = [
 		{
 			country: 'United Kingdom',
@@ -791,14 +897,5 @@ function ServicesPageClient({
 	);
 }
 export default function ServicesPage() {
-	const services = [];
-	const trustIndicators = {};
-	const studentImages = getStudentImages();
-	return (
-		<ServicesPageClient
-			services={services}
-			trustIndicators={trustIndicators}
-			studentImages={studentImages}
-		/>
-	);
+	return <ServicesPageClient services={SERVICES_DATA} />;
 }
