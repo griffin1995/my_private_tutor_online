@@ -195,7 +195,11 @@ export default function ElevenPlusBootcampsPage() {
 				{}
 				<SimpleHero
 					backgroundImage='/images/hero/hero-11-plus-bootcamp.jpeg'
-					h1='11+ Bootcamps'
+					h1={
+				<span className='text-white'>
+					11+ <span className='text-accent-600'>Bootcamps</span>
+				</span>
+			}
 					h2="Accelerated preparation programmes designed to maximise your child's potential"
 					decorativeStyle='lines'
 				/>

@@ -306,6 +306,7 @@ const config: Config = {
 				xl: ['1.25rem', { lineHeight: '1.75rem', letterSpacing: '-0.015em' }],
 				'2xl': ['1.5rem', { lineHeight: '2rem', letterSpacing: '-0.02em' }],
 				'3xl': ['1.875rem', { lineHeight: '2.25rem', letterSpacing: '-0.025em' }],
+				'3.5xl': ['2.0625rem', { lineHeight: '2.375rem', letterSpacing: '-0.0275em' }],
 				'4xl': ['2.25rem', { lineHeight: '2.5rem', letterSpacing: '-0.03em' }],
 				'5xl': ['3rem', { lineHeight: '1', letterSpacing: '-0.035em' }],
 				'6xl': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.04em' }],

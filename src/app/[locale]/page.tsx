@@ -450,11 +450,11 @@ export default function HomePage() {
 						{/* Tagline Section */}
 						<div className='flex-[1.5] flex items-center justify-center'>
 							<div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-								<h2>We help students place at top 10 UK schools and universities</h2>
+								<h2 className='text-3xl'>We help students place at top 10 UK schools and universities</h2>
 								<div className='flex justify-center items-center space-x-6 mt-2 sm:mt-3'>
-									<div className='w-12 h-px bg-neutral-300' />
-									<div className='w-3 h-3 rounded-full bg-neutral-400 shadow-lg' />
-									<div className='w-12 h-px bg-neutral-300' />
+									<div className='w-12 h-px bg-primary-700' />
+									<div className='w-3 h-3 rounded-full bg-primary-700 shadow-lg' />
+									<div className='w-12 h-px bg-primary-700' />
 								</div>
 							</div>
 						</div>

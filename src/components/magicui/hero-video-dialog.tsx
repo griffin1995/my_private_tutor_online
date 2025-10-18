@@ -295,7 +295,7 @@ export function HeroVideoDialog({
 					{}
 					{}
 					<div
-						className='relative cursor-pointer group w-full h-full overflow-hidden border border-gray-300 hover:border-gray-400 transition-colors duration-300 rounded-lg'
+						className='relative cursor-pointer group w-full h-full overflow-hidden'
 						onClick={handleOpen}
 						onKeyDown={handleKeyDown}
 						tabIndex={0}
@@ -325,7 +325,7 @@ export function HeroVideoDialog({
 							src={thumbnailSrc}
 							alt={thumbnailAlt}
 							fill
-							className='object-contain bg-gray-900'
+							className='object-cover'
 							style={{
 								position: 'absolute',
 								top: '50%',

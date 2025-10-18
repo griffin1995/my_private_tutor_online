@@ -35,7 +35,11 @@ export default function AboutUsPage() {
 				<section id='about-hero'>
 					<SimpleHero
 						backgroundImage={ABOUT_HERO_IMAGE.src}
-						h1='About Our Founder & Ethos'
+						h1={
+							<span className='text-white'>
+								Founder <span className='text-accent-600'>& Ethos</span>
+							</span>
+						}
 						h2='Our bespoke consultation and pairing process ensures the perfect fit and seamless support throughout.'
 						decorativeStyle='none'
 					/>
@@ -69,6 +73,11 @@ export default function AboutUsPage() {
 								pairs each student with a <u>carefully selected tutor</u> from her
 								boutique team.&quot;
 							</p>
+
+							{/* Author with avatar */}
+							<figcaption className='mt-4 flex items-center justify-center space-x-3'>
+								<cite className='text-neutral-600'>Academic Insight</cite>
+							</figcaption>
 						</Blockquote>
 					</div>
 				</section>

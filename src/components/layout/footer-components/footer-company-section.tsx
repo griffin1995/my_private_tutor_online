@@ -20,19 +20,19 @@ export const FooterCompanySection = React.memo<FooterCompanySectionProps>(
 		);
 		return (
 			<div
-				className={`flex flex-col justify-center h-full animate-fade-in-left ${className}`}>
+				className={`flex flex-col justify-center items-center h-full animate-fade-in-left ${className}`}>
 				{}
 				{}
 				<Link
 					href='/'
-					className='inline-block group w-full'
+					className='inline-block group'
 					aria-label={`${processedContent.companyName} homepage`}>
 					<Image
 						src={processedContent.logo.main}
 						alt={processedContent.logo.alt}
 						width={processedContent.logo.width}
 						height={processedContent.logo.height}
-						className='w-full h-auto max-h-40 object-contain group-hover:scale-110 transition-transform duration-300'
+						className='w-auto h-auto max-h-40 object-contain group-hover:scale-110 transition-transform duration-300'
 						loading='lazy'
 						placeholder='blur'
 						blurDataURL='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjE2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PC9zdmc+'

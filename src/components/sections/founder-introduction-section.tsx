@@ -1,9 +1,12 @@
 'use client';
 
+import * as AspectRatio from '@radix-ui/react-aspect-ratio';
+import { Blockquote } from 'flowbite-react';
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 import HeroVideoDialog from '../magicui/hero-video-dialog';
+
 <m.div
 	initial={{
 		opacity: 0,
@@ -44,88 +47,39 @@ export function FounderIntroductionSection({}: FounderIntroductionSectionProps =
 			}}>
 			<div className='w-full max-w-6xl mx-auto text-center'>
 				{' '}
-				<h2>
-					&quot;A truly bespoke experience — Elizabeth personally pairs each student
-					with a carefully selected tutor from her boutique team.&quot;
-				</h2>
-				<p className='text-sm mt-2'>– Academic Insight</p>
-				{}
-				<div
-					className='absolute top-3/4 right-1/4 w-1 h-1 bg-[#D4AF37] opacity-40 hidden lg:block animate-pulse'
-					style={{
-						animationDelay: '1s',
-					}}></div>
-				<div
-					className='absolute top-1/2 left-1/6 w-1.5 h-1.5 bg-[#D4AF37] opacity-25 hidden lg:block animate-pulse'
-					style={{
-						animationDelay: '2s',
-					}}></div>
-				{}
-				<div className='absolute top-1/6 right-1/3 w-3 h-0.5 bg-[#D4AF37] opacity-20 hidden lg:block transform rotate-45'></div>
-				<div className='absolute bottom-1/6 left-1/3 w-0.5 h-3 bg-[#D4AF37] opacity-20 hidden lg:block'></div>
-				{}
-				<div
-					className='max-w-4xl mx-auto text-center relative z-10'
-					style={{
-						marginTop: '64px',
-						marginBottom: '64px',
-						gap: '21px',
-					}}>
-					{}
-					<m.div
-						className='relative w-full max-w-2xl mx-auto cursor-pointer group'
-						role='region'
-						aria-label='Elizabeth Burrows introduction video section'
-						initial={{
-							opacity: 0,
-							y: 20,
-							scale: 0.95,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-							scale: 1,
-						}}
-						viewport={{
-							once: true,
-							margin: '-100px',
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.1,
-							ease: 'easeOut',
-						}}
-						style={{
-							background: 'transparent',
-							border: 'none',
-							boxShadow: `
-                4px 8px 16px rgba(30,58,95,0.2),
-                0 0 20px rgba(212,175,55,0.1)
-              `,
-							padding: 'calc(16px * 1.618)',
-							borderLeft: '4px solid #D4AF37',
-						}}
-						whileHover={{
-							y: -2,
-							scale: 1.02,
-							boxShadow: `
-                6px 12px 24px rgba(30,58,95,0.3),
-                0 0 30px rgba(212,175,55,0.3)
-              `,
-							transition: {
-								duration: 0.3,
-								ease: 'easeOut',
-							},
-						}}>
-						<HeroVideoDialog
-							videoSrc='/videos/compressed-elizabeth-introduction-sound.mp4'
-							thumbnailSrc='/images/video-thumbnails/introduction-video-thumbnail-2025.png'
-							thumbnailAlt='Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online'
-							animationStyle='from-center'
-							className='w-full'
-						/>
-					</m.div>
+				<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center mb-12' data-standalone-quote>
+					<Blockquote className='border-l-neutral-300'>
+						{/* Quote icon */}
+						<svg
+							className='mb-6 h-14 w-14 fill-primary-700'
+							aria-hidden='true'
+							xmlns='http://www.w3.org/2000/svg'
+							viewBox='0 0 18 14'>
+							<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+						</svg>
+
+						{/* Bespoke Experience Quote */}
+						<p className='italic'>
+							&quot;<strong>A truly bespoke</strong> experience — Elizabeth personally
+							pairs each student with a <u>carefully selected tutor</u> from her
+							boutique team.&quot;
+						</p>
+
+						{/* Author with avatar */}
+						<figcaption className='mt-4 flex items-center justify-center space-x-3'>
+							<cite className='text-neutral-600'>Academic Insight</cite>
+						</figcaption>
+					</Blockquote>
 				</div>
+			<div className="w-full max-w-4xl mx-auto">
+				<HeroVideoDialog
+					videoSrc='/videos/compressed-elizabeth-introduction-sound.mp4'
+					thumbnailSrc='/images/video-thumbnails/introduction-video-thumbnail-2025.png'
+					thumbnailAlt='Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online'
+					animationStyle='from-center'
+					className='w-full border border-accent-600'
+				/>
+			</div>
 			</div>
 		</section>
 	);

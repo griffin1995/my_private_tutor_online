@@ -679,24 +679,44 @@ textarea:focus-visible {
 
 	/**
    * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-specific paragraph overrides
-   * PULL QUOTE STYLING: Specific styling for prominent pull quotes and blockquote content
+   * MAGAZINE PULL QUOTE STYLING: Inline pull quotes floated within text sections (magazine style)
    * PATTERN: Using data attributes for scoped overrides without specificity conflicts
    * CLIENT PREFERENCE: Maintains sophisticated quote typography with larger serif font
    */
-	[data-pull-quote] p {
+	[data-magazine-pull-quote] p {
 		font-family: var(--font-family-body); /* Serif for elegance */
 		font-size: var(--font-size-xl); /* Base: 20px */
 		font-style: italic;
 		line-height: var(--font-line-height-relaxed);
 	}
 
-	/* Responsive pull quote sizing */
+	/* Responsive magazine pull quote sizing */
 	@media (min-width: 1024px) {
-		[data-pull-quote] p {
+		[data-magazine-pull-quote] p {
 			font-size: var(--font-size-2xl); /* lg: 24px */
 		}
 	}
 
+
+	/**
+	  * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Context-specific paragraph overrides
+	  * STANDALONE QUOTE STYLING: Full-width standalone quote sections (not inline with text)
+	  * PATTERN: Using data attributes for scoped overrides without specificity conflicts
+	  * USE CASE: Dedicated quote blocks like testimonials, featured quotes, blockquote sections
+	  */
+	[data-standalone-quote] p {
+		font-family: var(--font-family-body); /* Serif for elegance */
+		font-size: var(--font-size-xl); /* Base: 20px */
+		font-style: italic;
+		line-height: var(--font-line-height-relaxed);
+	}
+
+	/* Responsive standalone quote sizing */
+	@media (min-width: 1024px) {
+		[data-standalone-quote] p {
+			font-size: var(--font-size-2xl); /* lg: 24px */
+		}
+	}
 	h3 {
 		color: var(--color-primary-base);
 		font-family: var(--font-family-heading);
@@ -834,7 +854,11 @@ textarea:focus-visible {
 	[data-dark-bg] span,
 	[data-dark-bg] div,
 	[data-dark-bg] li,
-	[data-dark-bg] a {
+	[data-dark-bg] a,
+	[data-dark-bg] strong,
+	[data-dark-bg] b,
+	[data-dark-bg] em,
+	[data-dark-bg] i {
 		color: white;
 	}
 

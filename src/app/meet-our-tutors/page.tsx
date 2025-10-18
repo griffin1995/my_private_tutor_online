@@ -28,7 +28,11 @@ export default function MeetOurTutorsPage() {
 		<>
 			<SimpleHero
 				backgroundImage={tutorsHeroImage.src}
-				h1='Meet Our Tutors'
+				h1={
+			<span className='text-white'>
+				Meet Our <span className='text-accent-600'>Tutors</span>
+			</span>
+		}
 				h2='Excellence Through Expertise'
 				decorativeStyle='lines'
 			/>

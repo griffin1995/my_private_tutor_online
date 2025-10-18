@@ -32,8 +32,8 @@ export function TestimonialsSection({
 			{}
 			<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16'>
 				{}
-				<div className='max-w-5xl mx-auto'>
-					<div className='grid lg:grid-cols-2 gap-6 lg:gap-8'>
+				<div className='max-w-7xl mx-auto'>
+					<div className='grid lg:grid-cols-2 gap-8 lg:gap-10'>
 						{(() => {
 							const testimonialVideos = getTestimonialVideos();
 							const parentVideo = testimonialVideos.find(

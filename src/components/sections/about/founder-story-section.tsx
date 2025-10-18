@@ -1,10 +1,10 @@
 'use client';
 
-import { ThreePillarsSection } from 'src/components/sections/three-pillars-section.tsx';
-import { Blockquote } from 'flowbite-react';
-import { FirstLessonSection } from './FirstLessonSection';
 import { getGoingAgainstGrainImage } from '@/lib/cms/cms-images';
 import Image from 'next/image';
+import type { JSX } from 'react';
+import { ThreePillarsSection } from 'src/components/sections/three-pillars-section.tsx';
+import { FirstLessonSection } from './FirstLessonSection';
 const fadeInUpVariant = {
 	initial: {
 		opacity: 0,
@@ -32,26 +32,12 @@ export function FounderStorySection({
 			id='founder-story'
 			className={`relative bg-${backgroundColor} pb-8 lg:pb-12 ${className}`}
 			aria-labelledby='founder-story-heading'>
-			{}
-			{}
-
-			{}
-			{}
-			{}
-			{}
 			<div className='container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none'></div>
 
-			{}
-			{}
-			{}
 			<div className='w-full '>
 				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch'>
 					<div className='order-2 lg:order-1'>
-						{}
-						{}
 						<div className='relative w-full h-full aspect-[17/9] lg:aspect-auto'>
-							{}
-							{}
 							<Image
 								src='/images/team/founder-elizabeth-burrows-portrait.jpg'
 								alt='Elizabeth Burrows - Founder and CEO of My Private Tutor Online, personal portrait showcasing her approachable and professional demeanour'
@@ -67,110 +53,92 @@ export function FounderStorySection({
 					</div>
 
 					<div className='order-1 lg:order-2 bg-primary-700/5 transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end'>
-						{}
-						{}
-						{}
-						{}
 						<div className='max-w-6xl text-right p-8 '>
-							<h2 className='pb-2 mb-3'>
+							<h2 className='pb-2 mb-3 text-3.5xl'>
 								Meet Elizabeth, A Different Kind of Educator
 							</h2>
-							<p>
-								Considering how unconventional my own schooling was, I often find myself
-								chuckling that I&apos;m in my second decade of a career in education.{' '}
-								<strong>
-									My path through school wasn&apos;t linear; I think that&apos;s one of
-									the reasons families trust me.
-								</strong>{' '}
-								I&apos;m motivated by helping children when it feels like there are no
-								straight lines, only a confusing jumble of squiggles. That&apos;s when
-								my team and I can make a real impact.
-							</p>{' '}
-							<div className='grid grid-cols-1 md:grid-cols-2 md:gap-6'>
-								{}
-								{}
+
+							{/* Container for paragraph and pull quote */}
+							<div className='text-left'>
 								<p>
+									Considering how unconventional my own schooling was, I often find
+									myself chuckling that I&apos;m in my second decade of a career in
+									education.
+									{/* Pull Quote - Floated Right, positioned in middle of text */}
+									<span
+										data-magazine-pull-quote
+										className='float-right w-80 ml-6 mb-6 mt-2 text-left inline-block border-l-2 border-neutral-grey-300 pl-4 pr-2 italic text-neutral-grey-600'>
+										<svg
+											className='mb-3 h-10 w-10 ml-auto fill-primary-700/40'
+											aria-hidden='true'
+											xmlns='http://www.w3.org/2000/svg'
+											viewBox='0 0 18 14'>
+											<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+										</svg>
+										<span className='text-2xl lg:text-2xl font-semibold'>
+											My path through school wasn&apos;t linear; I think that&apos;s one of
+											the reasons families trust me.
+										</span>
+									</span>
+									I&apos;m motivated by helping children when it feels like there are no
+									straight lines, only a confusing jumble of squiggles. That&apos;s when
+									my team and I can make a real impact.
+									<br />
+									<br />
 									<strong>
 										I moved through six different schools growing up, across private,
 										state, faith, co-educational and single-sex systems (including a
-										boys&apos; school run by monks — yes, really
+										boys&apos; school run by monks — yes, really). {''}
 									</strong>
-									). My learning could have easily suffered, especially since I have{' '}
-									<strong>Dyspraxia</strong>, but one constant made a huge difference: my
-									tutor. She not only gave me academic consistency but something far more
-									valuable — a quiet confidence and the belief that excellence was
-									achievable, even in turbulent times.
+									My learning could have easily suffered, especially since I have
+									Dyspraxia, but one constant made a huge difference: my tutor. She not
+									only gave me academic consistency but something far more valuable — a
+									quiet confidence and the belief that excellence was achievable, even in
+									turbulent times.
 								</p>
-								<Blockquote data-pull-quote>
-									{}
-									{}
-									<svg
-										className='mb-3 h-14 w-14 ml-auto fill-primary-700/40'
-										aria-hidden='true'
-										xmlns='http://www.w3.org/2000/svg'
-										viewBox='0 0 18 14'>
-										<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
-									</svg>
-									<p>
-										This is an example Pull Quote for Beth! That is roughly the same
-										amount of characters as the bolded section provided! and some extra
-										characters to actually reach roughly the same!
-									</p>
-								</Blockquote>
 							</div>
-							<p>
-								<strong>
-									I moved through six different schools growing up, across private,
-									state, faith, co-educational and single-sex systems (including a
-									boys&apos; school run by monks — yes, really
-								</strong>
-								). My learning could have easily suffered, especially since I have{' '}
-								<strong>Dyspraxia</strong>, but one constant made a huge difference: my
-								tutor. She not only gave me academic consistency but something far more
-								valuable — a quiet confidence and the belief that excellence was
-								achievable, even in turbulent times.
-							</p>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			{}
-			{}
-			{}
-			{}
-			{}
 			<div className='w-full mb-10'>
 				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch'>
 					<div className='bg-primary-700/5 transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center'>
-						{}
-						{}
-						{}
-						{}
 						<div className='max-w-6xl text-left p-8'>
-							<h2 className='pb-2 mb-3'>Going Against the Grain</h2>
+							<h2 className='pb-2 mb-3 text-3.5xl'>Going Against the Grain</h2>
 
-							<div className='space-y-6'>
+							{/* Container for paragraph and pull quote */}
+							<div className='text-left'>
 								<p>
 									By Sixth Form, I was achieving top grades. I hadn&apos;t planned to
 									apply to Oxbridge, but when my headmistress pulled me aside to ask if
-									I&apos;d considered it, something inside me switched on.{' '}
-									<strong>
-										I loved a challenge, and applying to Cambridge to read English and
-										Theatre with Education Studies was certainly that.
-									</strong>
-								</p>
-
-								<p>
+									I&apos;d considered it, something inside me switched on. I loved a challenge, and applying to Cambridge to read English and
+									Theatre with Education Studies was certainly that.
+									<br />
+									<br />
+									{/* Pull Quote - Floated Left, positioned in middle of text */}
+									<span
+										data-magazine-pull-quote
+										className='float-left w-80 mr-6 mb-6 mt-2 text-left inline-block border-l-2 border-neutral-grey-300 pl-4 pr-2 italic text-neutral-grey-600'>
+										<svg
+											className='mb-3 h-10 w-10 ml-auto fill-primary-700/40'
+											aria-hidden='true'
+											xmlns='http://www.w3.org/2000/svg'
+											viewBox='0 0 18 14'>
+											<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+										</svg>
+										<span className='text-2xl lg:text-2xl font-semibold'>
+											Who turns down Cambridge? 17 year-old me.
+										</span>
+									</span>
 									But my offer letter was as much cause for agitation as celebration. You
 									see, I had already fallen in love with another course and city:
 									Bristol. My elder sister was studying languages there and although I
 									had doggedly courted a Cambridge offer, I hadn&apos;t considered a
-									world in which I would actually receive one. What to do?{' '}
-									<strong>Who turns down Cambridge? 17 year-old me.</strong>
-									It was an agonising decision, but even then I knew it was the right
-									one. Looking back, I realise that dilemma helped define my ethos
-									towards education:{' '}
+									world in which I would actually receive one. What to do? It was an
+									agonising decision, but even then I knew it was the right one. Looking
+									back, I realise that dilemma helped define my ethos towards education:{' '}
 									<strong>
 										work as hard as you can to give yourself the luxury of choice, then
 										have the confidence to pick what&apos;s right for you — even if
@@ -289,19 +257,11 @@ export function FounderStorySection({
 
 					{}
 					{}
-					<div className='absolute inset-x-0 bottom-0 flex items-end z-10 p-8 sm:p-10 lg:p-12'>
+					<div data-dark-bg className='absolute inset-x-0 bottom-0 flex items-end z-10 p-8 sm:p-10 lg:p-12'>
 						<div className='w-full'>
 							<div className='max-w-4xl px-4 sm:px-6'>
-								{}
-								{}
-								{}
 								<h2 className='text-white'>A Global View of What Education Can Do</h2>
-
 								<div className='text-white/90 space-y-4'>
-									{}
-									{}
-									{}
-									{}
 									<p className='text-white'>
 										Keen to put my English degree to good use, during this time I also
 										worked at{' '}

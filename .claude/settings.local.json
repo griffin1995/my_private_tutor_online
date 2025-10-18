@@ -230,7 +230,11 @@
       "Bash(then)",
       "Bash(else)",
       "Bash(test:*)",
-      "WebFetch(domain:magicui.design)"
+      "WebFetch(domain:magicui.design)",
+      "WebFetch(domain:phrogz.net)",
+      "SlashCommand(/ma:*)",
+      "Bash(claude --headless)",
+      "Bash(claude plugin:*)"
     ],
     "deny": []
   },

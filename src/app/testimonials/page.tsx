@@ -6,6 +6,7 @@ import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { Separator } from '@radix-ui/react-separator';
+import { Avatar, Blockquote } from 'flowbite-react';
 import { memo } from 'react';
 
 // ============================================================================
@@ -292,23 +293,52 @@ export default function TestimonialsPage() {
 			<section id='testimonials-hero'>
 				<SimpleHero
 					backgroundImage='/images/hero/testimonials-hero.jpg'
-					h1='Student & Parent Testimonials'
+					h1={
+						<span className='text-white'>
+							Student & Parent <span className='text-accent-600'>Testimonials</span>
+						</span>
+					}
 					h2='Read testimonials from families who have achieved exceptional results with My Private Tutor Online.'
 					decorativeStyle='lines'
 				/>
 			</section>
+		<section
+			id='mission-quote'
+			className='py-16 lg:py-24 bg-primary-50'>
+			<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
+				<Blockquote>
+					{/* Quote icon */}
+					<svg
+						className='mb-6 h-14 w-14 fill-primary-700'
+						aria-hidden='true'
+						xmlns='http://www.w3.org/2000/svg'
+						viewBox='0 0 18 14'>
+						<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+					</svg>
 
-			<section
-				id='mission-quote'
-				className='py-16 lg:py-24 bg-primary-50'>
-				<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
-					<blockquote className='italic'>
+					{/* Mission Quote */}
+					<p className='italic'>
 						&quot;We provide <strong>exceptional tuition</strong> that helps students{' '}
 						<strong>excel academically</strong> and <u>thrive personally</u>, opening
 						doors to greater opportunities—at school and in life.&quot;
-					</blockquote>
-				</div>
-			</section>
+					</p>
+
+					{/* Author with avatar */}
+					<figcaption className='mt-4 flex items-center justify-center space-x-3'>
+						<Avatar
+							rounded
+							size='xs'
+							img='/images/team/elizabeth-burrows-founder-main.jpg'
+							alt='Elizabeth Burrows'
+						/>
+						<div className='flex items-center divide-x-2 divide-neutral-500'>
+							<cite className='pr-3'>Elizabeth Burrows</cite>
+							<cite className='pl-3 text-neutral-500'>Founder</cite>
+						</div>
+					</figcaption>
+				</Blockquote>
+			</div>
+		</section>
 
 			<section id='video-testimonials-moved'>
 				<TestimonialsSection />

@@ -61,9 +61,9 @@ export function PageFooterClient({
 			showNewsletter,
 			showContactForm,
 			containerClasses: {
-				default: 'bg-white text-black',
-				minimal: 'bg-gray-50 text-black',
-				premium: 'bg-white text-black relative overflow-hidden',
+				default: 'bg-white text-primary-900',
+				minimal: 'bg-neutral-50 text-primary-900',
+				premium: 'bg-white text-primary-900 relative overflow-hidden',
 			},
 		}),
 		[variant, showBackToTop, showNewsletter, showContactForm],
@@ -158,8 +158,8 @@ export function PageFooterClient({
 				{}
 				{variant === 'premium' && (
 					<>
-						<div className='absolute inset-0 bg-gradient-to-r from-gray-100/50 via-transparent to-gray-100/50 pointer-events-none' />
-						<div className='absolute inset-0 bg-gradient-to-br from-gray-50/30 via-transparent to-gray-50/30 animate-pulse opacity-50' />
+						<div className='absolute inset-0 bg-gradient-to-r from-neutral-100/50 via-transparent to-neutral-100/50 pointer-events-none' />
+						<div className='absolute inset-0 bg-gradient-to-br from-neutral-50/30 via-transparent to-neutral-50/30 animate-pulse opacity-50' />
 					</>
 				)}
 
@@ -182,22 +182,22 @@ export function PageFooterClient({
 									rel='noopener noreferrer'
 									className='inline-block group'
 									aria-label='Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online'>
-									<div className='relative overflow-hidden rounded-lg border-2 border-gray-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl'>
+									<div className='relative overflow-hidden rounded-lg border-2 border-neutral-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl'>
 										<img
 											src='/images/graphics/bizstim-form-preview.png'
 											alt='Screenshot of My Private Tutor Online enquiry form on Bizstim platform showing student details form with fields for first name, last name, email and phone number'
 											className='w-full h-auto group-hover:scale-105 transition-transform duration-300'
 											loading='lazy'
 										/>
-										<div className='absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300' />
-										<div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4'>
+										<div className='absolute inset-0 bg-primary-950 opacity-0 group-hover:opacity-10 transition-opacity duration-300' />
+										<div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-950/80 to-transparent p-4'>
 											<p className='text-white font-medium text-sm'>
 												Click to access secure enquiry form →
 											</p>
 										</div>
 									</div>
 								</a>
-								<p className='text-xs text-gray-500 mt-3'>
+								<p className='text-xs text-neutral-500 mt-3'>
 									Opens in new window • Secure encrypted connection • Same trusted
 									service
 								</p>
@@ -205,7 +205,7 @@ export function PageFooterClient({
 						</div>
 					)}
 
-					{footerConfig.showContactForm && <Separator className='bg-gray-300' />}
+					{footerConfig.showContactForm && <Separator className='bg-neutral-300' />}
 
 					{}
 					{}
@@ -213,10 +213,10 @@ export function PageFooterClient({
 						<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'>
 							<div className='max-w-4xl mx-auto text-center'>
 								<div className='animate-fade-in-up'>
-									<h3 className='text-3xl font-serif font-bold text-black mb-4'>
+									<h3 className='text-3xl font-serif font-bold text-primary-900 mb-4'>
 										Join Our Exclusive Community
 									</h3>
-									<p className='text-gray-700 mb-8 text-lg'>
+									<p className='text-neutral-700 mb-8 text-lg'>
 										Receive personalised academic insights and exclusive opportunities for
 										your child's success
 									</p>
@@ -237,7 +237,7 @@ export function PageFooterClient({
 						</div>
 					)}
 
-					{footerConfig.showNewsletter && <Separator className='bg-gray-300' />}
+					{footerConfig.showNewsletter && <Separator className='bg-neutral-300' />}
 
 					{}
 					{}
@@ -249,7 +249,7 @@ export function PageFooterClient({
 							{}
 							{}
 							{}
-							<div className='lg:w-[35%] h-full'>
+							<div className='lg:w-[18%] flex'>
 								<FooterCompanySection
 									content={footerContent}
 									className='animate-fade-in-left'
@@ -259,7 +259,7 @@ export function PageFooterClient({
 							{}
 							{}
 							{}
-							<div className='lg:w-[65%] h-full'>
+							<div className='lg:w-[82%] flex'>
 								<FooterNavigationSections sections={footerContent.footerSections} />
 							</div>
 
@@ -268,13 +268,13 @@ export function PageFooterClient({
 						</div>
 					</div>
 
-					<Separator className='bg-gray-300' />
+					<Separator className='bg-neutral-300' />
 
 					{}
 					{}
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-6'>
 						<div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
-							<p className='text-sm text-gray-600 text-center sm:text-left'>
+							<p className='text-sm text-neutral-600 text-center sm:text-left'>
 								{copyrightText}
 							</p>
 
@@ -284,7 +284,7 @@ export function PageFooterClient({
 									onClick={scrollToTop}
 									variant='ghost'
 									size='sm'
-									className='text-gray-600 hover:text-accent-600 transition-colors duration-300 mx-auto sm:mx-0'
+									className='text-neutral-600 hover:text-accent-600 transition-colors duration-300 mx-auto sm:mx-0'
 									aria-label='Scroll to top of page'>
 									<ArrowUp className='w-4 h-4 mr-2' />
 									Back to Top

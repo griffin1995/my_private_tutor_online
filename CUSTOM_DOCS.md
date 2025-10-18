@@ -2412,8 +2412,104 @@ Complete - Pure utility-first architecture achieved
 
 ---
 
-**Last Updated**: October 15, 2025 **Version**: 4.0 - Complete Tailwind CSS
-Migration Success **Verification**: All patterns verified with Context7 MCP
+---
+
+## 💬 FOUNDER QUOTE BLOCKQUOTE PATTERN (NEW: October 2025)
+
+### Flowbite Blockquote with Avatar Component
+
+**Context7 Source**: `/flowbite/flowbite-react` - Blockquote and Avatar components
+**Implementation Date**: October 18, 2025
+**Status**: Production-ready with homepage and subject-tuition page implementations
+
+#### Key Features
+
+- **Consistent Styling**: Identical quote formatting across multiple pages
+- **Elizabeth's Avatar**: Rounded profile image with founder attribution
+- **Quote Icon SVG**: Navy blue quote marks matching brand primary color
+- **Figcaption Layout**: Name and role with divider separator
+- **Semantic Structure**: Proper cite elements for accessibility
+
+#### Implementation Pattern
+
+```typescript
+// CONTEXT7 SOURCE: /flowbite/flowbite-react - Blockquote with Avatar
+import { Avatar, Blockquote } from 'flowbite-react';
+
+// Standard founder quote implementation
+<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
+  <Blockquote>
+    {/* Quote icon */}
+    <svg
+      className='mb-6 h-14 w-14 fill-primary-700'
+      aria-hidden='true'
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 18 14'>
+      <path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+    </svg>
+
+    {/* Quote text with emphasis */}
+    <p className='italic'>
+      Our tutors are <strong>examiners, school teachers, and subject specialists</strong> who are not only experienced educators but also motivating mentors. Whether your child is preparing for a school entrance exam, navigating GCSEs/A-levels, or applying to top universities in the UK, we guide each family with <strong>clarity, care, and expert insight</strong> at every stage of their educational journey.
+    </p>
+
+    {/* Author with avatar */}
+    <figcaption className='mt-4 flex items-center justify-center space-x-3'>
+      <Avatar
+        rounded
+        size='xs'
+        img='/images/team/elizabeth-burrows-founder-main.jpg'
+        alt='Elizabeth Burrows'
+      />
+      <div className='flex items-center divide-x-2 divide-neutral-500'>
+        <cite className='pr-3'>Elizabeth Burrows</cite>
+        <cite className='pl-3 text-neutral-500'>Founder</cite>
+      </div>
+    </figcaption>
+  </Blockquote>
+</div>
+```
+
+#### Styling Specifications
+
+- **Container**: `max-w-6xl` with responsive padding (`px-6 sm:px-8 lg:px-12`)
+- **Quote Icon**: Navy blue fill (`fill-primary-700`), 56px size (`h-14 w-14`), 24px bottom margin
+- **Quote Text**: Italic paragraph with `<strong>` emphasis on key terms
+- **Avatar**: Extra small size (`xs`), rounded profile image
+- **Figcaption**: Flexbox centered layout with 3-unit spacing
+- **Divider**: 2px vertical divider (`divide-x-2 divide-neutral-500`) between name and role
+- **Role Citation**: Lighter grey color (`text-neutral-500`) for "Founder" role
+
+#### Usage Locations
+
+1. **Homepage** (`/src/app/[locale]/page.tsx`):
+   - Section: `#founder-quote-testimonials`
+   - Background: Light accent tint (`bg-accent-600/15`)
+   - Quote: "Parents come to us when something truly matters..."
+
+2. **Subject Tuition Page** (`/src/app/subject-tuition/page.tsx`):
+   - Section: `#subject-tuition-categories`
+   - Background: White with gradient overlay
+   - Quote: "Our tutors are examiners, school teachers..."
+
+#### Benefits Achieved
+
+✅ **Visual Consistency**: Identical quote styling across all pages
+✅ **Brand Alignment**: Navy blue matching primary brand color
+✅ **Accessibility**: Proper semantic HTML with cite elements
+✅ **Professional Appearance**: Flowbite's polished component styling
+✅ **Founder Authority**: Elizabeth's image reinforces personal service
+✅ **Reusable Pattern**: Easy to replicate on additional pages
+
+#### Migration Notes
+
+**Replaced**: `BrandMessageSection` component with inline quote styling
+**Reason**: Direct Blockquote component provides better semantic structure and visual consistency
+**Backward Compatibility**: BrandMessageSection still available for other use cases
+
+---
+
+**Last Updated**: October 18, 2025 **Version**: 4.1 - Founder Quote Blockquote Pattern Added **Verification**: All patterns verified with Context7 MCP
 documentation **Migration Status**: Phase 4 Complete - Pure utility-first
 architecture achieved **Documentation Status**: 98.3% cleanup complete (178
 obsolete files removed)
