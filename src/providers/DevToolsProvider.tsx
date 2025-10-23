@@ -10,6 +10,27 @@ export function DevToolsProvider({ children }: DevToolsProviderProps) {
 		if (process.env.NODE_ENV !== 'development') {
 			return;
 		}
+
+		// Initialize @axe-core/react for development-time accessibility checking
+		const initializeAxeReact = async () => {
+			try {
+				const axe = await import('@axe-core/react');
+				const React = await import('react');
+				const ReactDOM = await import('react-dom');
+
+				// Initialize axe-react with 1000ms delay to avoid performance issues
+				axe.default(React, ReactDOM, 1000);
+
+				console.log(
+					'%c♿ Axe Accessibility Monitor Active',
+					'background: #0066cc; color: white; padding: 5px 10px; font-weight: bold; border-radius: 3px;'
+				);
+			} catch (error) {
+				console.warn('Axe React initialization failed:', error);
+			}
+		};
+
+		initializeAxeReact();
 		console.log(
 			'%c🚀 MY PRIVATE TUTOR ONLINE - Development Mode',
 			'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; font-weight: bold; font-size: 14px; border-radius: 5px;',

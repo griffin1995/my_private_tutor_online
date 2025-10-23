@@ -1,7 +1,7 @@
 import { cache } from 'react';
 import {
-	videoMasterclasses,
 	getVideoMasterclass,
+	videoMasterclasses,
 	type VideoMasterclass,
 } from '../../../COMPREHENSIVE_VIDEO_CMS';
 export type { VideoMasterclass };
@@ -540,6 +540,14 @@ export const MEDIA_IMAGES = {
 	},
 } as const;
 export const TUTOR_IMAGES = {
+	'john-history': {
+		src: '/images/tutors/john.png',
+		alt: 'John - History Specialist, University of Birmingham First-Class BA History, PGCE, Secondary History',
+		width: 400,
+		height: 300,
+		title: 'Online Tutoring Professional',
+		loading: 'lazy' as const,
+	},
 	'tutor-facing-monitor': {
 		src: '/images/tutors/tutor-facing-monitor.jpg',
 		alt: 'Professional tutor working at computer delivering online lessons',
@@ -826,9 +834,11 @@ const transformVideoMasterclassToRecord = (
 		testimonialAuthor: null,
 		testimonialRole: null,
 		duration:
-			video.id === 'ucasSummit2024' ? 45
-			: video.id === 'unlockingAcademicSuccess' ? 30
-			: 25,
+			video.id === 'ucasSummit2024'
+				? 45
+				: video.id === 'unlockingAcademicSuccess'
+				? 30
+				: 25,
 		category: video.isPaid ? 'paid' : 'free',
 		isFree: !video.isPaid,
 		price: video.isPaid ? '£25.00' : null,
@@ -842,13 +852,11 @@ const transformVideoMasterclassToRecord = (
 		layouts: {
 			videoPage: {
 				position:
-					(
-						video.id === 'elizabethsUcasGuide' ||
-						video.id === 'personalStatementsGuide' ||
-						video.id === 'britishEtiquette'
-					) ?
-						'text-right'
-					:	'text-left',
+					video.id === 'elizabethsUcasGuide' ||
+					video.id === 'personalStatementsGuide' ||
+					video.id === 'britishEtiquette'
+						? 'text-right'
+						: 'text-left',
 				badge: {
 					text: video.isPaid ? 'Premium Content' : 'Free Access',
 					type: video.isPaid ? 'premium' : 'free',
@@ -856,52 +864,52 @@ const transformVideoMasterclassToRecord = (
 				content: {
 					paragraphs: [
 						video.description,
-						video.isPaid ?
-							'This comprehensive masterclass provides expert guidance with proven strategies used by successful families.'
-						:	'Access this valuable content at no cost as part of our commitment to supporting all families.',
+						video.isPaid
+							? 'This comprehensive masterclass provides expert guidance with proven strategies used by successful families.'
+							: 'Access this valuable content at no cost as part of our commitment to supporting all families.',
 					],
 					bulletPoints:
-						video.id === 'ucasSummit2024' ?
-							[
-								'UCAS application strategy',
-								'Personal statement guidance',
-								'University selection tips',
-								'Interview preparation',
-							]
-						: video.id === 'unlockingAcademicSuccess' ?
-							[
-								'Academic excellence strategies',
-								'Tutor selection guidance',
-								'Educational support methods',
-								'Confidence building techniques',
-							]
-						: video.id === 'elizabethsUcasGuide' ?
-							[
-								'Comprehensive UCAS guidance',
-								'Application strategy framework',
-								'Personal statement methodology',
-								'University success planning',
-							]
-						: video.id === 'personalStatementsGuide' ?
-							[
-								'Personal statement mastery',
-								'Expert writing techniques',
-								'Compelling application creation',
-								'University offer securing',
-							]
-						: video.id === 'britishLiteraryClassics' ?
-							[
-								'Essential British literature knowledge',
-								'Cultural fluency development',
-								'Academic discussion confidence',
-								'Educational excellence support',
-							]
-						:	[
-								'British cultural navigation',
-								'Educational etiquette mastery',
-								'Social confidence building',
-								'Institutional protocol understanding',
-							],
+						video.id === 'ucasSummit2024'
+							? [
+									'UCAS application strategy',
+									'Personal statement guidance',
+									'University selection tips',
+									'Interview preparation',
+							  ]
+							: video.id === 'unlockingAcademicSuccess'
+							? [
+									'Academic excellence strategies',
+									'Tutor selection guidance',
+									'Educational support methods',
+									'Confidence building techniques',
+							  ]
+							: video.id === 'elizabethsUcasGuide'
+							? [
+									'Comprehensive UCAS guidance',
+									'Application strategy framework',
+									'Personal statement methodology',
+									'University success planning',
+							  ]
+							: video.id === 'personalStatementsGuide'
+							? [
+									'Personal statement mastery',
+									'Expert writing techniques',
+									'Compelling application creation',
+									'University offer securing',
+							  ]
+							: video.id === 'britishLiteraryClassics'
+							? [
+									'Essential British literature knowledge',
+									'Cultural fluency development',
+									'Academic discussion confidence',
+									'Educational excellence support',
+							  ]
+							: [
+									'British cultural navigation',
+									'Educational etiquette mastery',
+									'Social confidence building',
+									'Institutional protocol understanding',
+							  ],
 				},
 				animationStyle: 'from-center',
 			},
