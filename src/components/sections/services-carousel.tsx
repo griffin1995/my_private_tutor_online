@@ -117,7 +117,7 @@ export function ServicesCarousel({
 						className='relative max-w-7xl mx-auto flex items-center px-4 sm:px-0'>
 						{}
 						<button
-							className='absolute left-2 sm:-left-24 top-1/2 -translate-y-1/2 z-10 bg-[#CA9E5B] hover:bg-[#b88b4c] border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+							className='absolute left-2 sm:-left-24 top-1/2 -translate-y-1/2 z-10 bg-accent-600 hover:bg-accent-700 border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
 							onClick={scrollPrev}
 							aria-label='Previous slide'>
 							<ChevronLeft className='w-5 h-5 sm:w-6 sm:h-6 text-white' />
@@ -125,7 +125,7 @@ export function ServicesCarousel({
 
 						{}
 						<button
-							className='absolute right-2 sm:-right-24 top-1/2 -translate-y-1/2 z-10 bg-[#CA9E5B] hover:bg-[#b88b4c] border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+							className='absolute right-2 sm:-right-24 top-1/2 -translate-y-1/2 z-10 bg-accent-600 hover:bg-accent-700 border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
 							onClick={scrollNext}
 							aria-label='Next slide'>
 							<ChevronRight className='w-5 h-5 sm:w-6 sm:h-6 text-white' />
@@ -195,7 +195,7 @@ export function ServicesCarousel({
 													<div className='flex justify-end w-full'>
 														<NavigationButton
 															key={`button-${index}`}
-															buttonColor='#ca9e5b'
+															buttonColor='#ca9e5b' // accent-600 design token value
 															buttonTextColor='#ffffff'
 															initialText='Learn More'
 															changeText='View Details'

@@ -91,15 +91,15 @@ const getCategoryStyle = (category: ResultsDocumentationItem['category']) => {
 	const baseStyle = 'text-white border-2';
 	switch (category) {
 		case 'grade_improvement':
-			return `${baseStyle} border-slate-400 bg-[#3F4A7E]`;
+			return `${baseStyle} border-slate-400 bg-primary-700`;
 		case 'university_placement':
-			return `${baseStyle} border-slate-300 bg-[#3F4A7E]`;
+			return `${baseStyle} border-slate-300 bg-primary-700`;
 		case 'exam_success':
-			return `${baseStyle} border-slate-400 bg-[#3F4A7E]`;
+			return `${baseStyle} border-slate-400 bg-primary-700`;
 		case 'roi_analysis':
-			return `${baseStyle} border-slate-300 bg-[#3F4A7E]`;
+			return `${baseStyle} border-slate-300 bg-primary-700`;
 		default:
-			return `${baseStyle} border-slate-400 bg-[#3F4A7E]`;
+			return `${baseStyle} border-slate-400 bg-primary-700`;
 	}
 };
 export function ResultsDocumentation({

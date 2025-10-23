@@ -174,7 +174,7 @@ export function BootcampVideoSectionVersion({
 						href={programme.stripeUrl}
 						target='_blank'
 						rel='noopener noreferrer'
-						className='!text-white text-sm font-medium hover:!text-[#CA9E5B] hover:underline transition-all duration-300 cursor-pointer'>
+						className='!text-white text-sm font-medium hover:!text-accent-600 hover:underline transition-all duration-300 cursor-pointer'>
 						{programme.price} {programme.coursePack}
 					</a>
 				</div>

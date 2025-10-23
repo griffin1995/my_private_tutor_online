@@ -2,7 +2,7 @@
 
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import { AnimatePresence, m } from 'framer-motion';
-import { CirclePlay, CirclePoundSterling, X } from 'lucide-react';
+import { CirclePlay, X } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -369,19 +369,6 @@ export function HeroVideoDialog({
 									console.groupEnd();
 								}
 							}}
-							onLoadingComplete={(img) => {
-								if (DEBUG_MODE) {
-									console.group(
-										'\n============================================================\n📍 PHASE 2: Image onLoadingComplete Event\n============================================================',
-									);
-									console.log('✅ Next.js Image optimization complete');
-									console.log('Image natural width:', img.naturalWidth);
-									console.log('Image natural height:', img.naturalHeight);
-									console.log('Image src:', thumbnailSrc);
-									renderDebug.image('Image Element on LoadingComplete', img);
-									console.groupEnd();
-								}
-							}}
 							onError={(e) => {
 								if (DEBUG_MODE) {
 									console.group(
@@ -394,14 +381,12 @@ export function HeroVideoDialog({
 							}}
 						/>
 
-						{}
-						{}
 						<div className='absolute inset-0 flex items-center justify-center transition-colours z-20'>
 							{isFree && (
 								<CirclePlay
 									size={100}
 									strokeWidth={0.5}
-									className='text-white group-hover:text-[#CA9E5B] transition-colors duration-300'
+									className='text-white group-hover:text-accent-600 transition-colors duration-300'
 								/>
 							)}
 						</div>
@@ -454,7 +439,7 @@ export function HeroVideoDialog({
 										ratio={16 / 9}
 										className='w-full'>
 										{}
-										{videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be') ?
+										{videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be') ? (
 											<iframe
 												src={videoSrc}
 												className='w-full h-full shadow-2xl border border-white'
@@ -462,7 +447,8 @@ export function HeroVideoDialog({
 												allowFullScreen
 												title='Video player'
 											/>
-										:	<video
+										) : (
+											<video
 												ref={videoRef}
 												src={videoSrc}
 												className='w-full h-full shadow-2xl object-contain border border-white'
@@ -477,7 +463,7 @@ export function HeroVideoDialog({
 													}
 												}}
 											/>
-										}
+										)}
 									</AspectRatio.Root>
 								</m.div>
 							</m.div>

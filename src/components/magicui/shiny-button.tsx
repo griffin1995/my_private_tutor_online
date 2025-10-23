@@ -13,7 +13,7 @@ const ShinyButton = React.forwardRef<HTMLButtonElement, ShinyButtonProps>(
 			default:
 				'border-accent-600 bg-[linear-gradient(110deg,#eab308,45%,#fbbf24,55%,#eab308)] focus:ring-accent-400',
 			orange:
-				'border-[#CA9E5B] bg-[linear-gradient(110deg,#CA9E5B,45%,#D4A865,55%,#CA9E5B)] focus:ring-[#CA9E5B]/60',
+				'border-accent-600 bg-[linear-gradient(110deg,#ca9e5b,45%,#e5c457,55%,#ca9e5b)] focus:ring-accent-600/60',
 			blue:
 				'border-blue-600 bg-[linear-gradient(110deg,#3b82f6,45%,#60a5fa,55%,#3b82f6)] focus:ring-blue-400',
 		};

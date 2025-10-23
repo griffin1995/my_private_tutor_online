@@ -361,7 +361,7 @@ export function VideoMasterclassSection({
 							href={video.paymentUrl || '#'}
 							target='_blank'
 							rel='noopener noreferrer'
-							className='!text-white text-sm font-medium hover:!text-[#CA9E5B] hover:underline transition-all duration-300 cursor-pointer'>
+							className='!text-white text-sm font-medium hover:!text-accent-600 hover:underline transition-all duration-300 cursor-pointer'>
 							Purchase
 						</a>
 					}

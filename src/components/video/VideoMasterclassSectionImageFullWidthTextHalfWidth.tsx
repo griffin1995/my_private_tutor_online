@@ -236,7 +236,7 @@ const VideoMasterclassSectionImageFullWidthTextHalfWidthComponent = memo(
 								href={video.paymentUrl || '#'}
 								target='_blank'
 								rel='noopener noreferrer'
-								className='!text-white text-sm font-medium hover:!text-[#CA9E5B] hover:underline transition-all duration-300 cursor-pointer drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]'>
+								className='!text-white text-sm font-medium hover:!text-accent-600 hover:underline transition-all duration-300 cursor-pointer drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]'>
 								Purchase
 							</a>
 						}

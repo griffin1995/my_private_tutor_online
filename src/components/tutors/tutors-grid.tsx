@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { TutorProfile } from '@/lib/cms/cms-content';
+import React from 'react';
 import { TutorProfileCard } from './tutor-profile';
 interface TutorsGridProps {
 	readonly profiles: readonly TutorProfile[];
@@ -54,24 +54,18 @@ export const TutorsGrid: React.FC<TutorsGridProps> = ({
 		);
 	}
 	return (
-		<div className={`w-full ${className}`}>
-			{}
-			{}
+		<div className={`w-full pt-4 lg:pt-6${className}`}>
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
 				{sortedProfiles.map((profile) => (
 					<TutorProfileCard
 						key={profile.id}
 						profile={profile}
-						featured={showFeatured && profile.featured}
+						featured={profile.featured}
 						className='h-full'
 					/>
 				))}
 			</div>
 
-			{}
-			{}
-			{}
-			{}
 			{maxProfiles && profiles.length > maxProfiles && (
 				<div className='mt-8 text-center'>
 					<p className='mb-4'>

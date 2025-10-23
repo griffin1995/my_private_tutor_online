@@ -31,10 +31,10 @@ export function CMSArchitectureDashboard({
 		return () => clearInterval(interval);
 	}, [autoRefresh, refreshInterval]);
 	const getScoreColor = (score: number): string => {
-		if (score >= 9.0) return 'text-green-600 bg-green-50';
-		if (score >= 7.0) return 'text-yellow-600 bg-yellow-50';
-		if (score >= 5.0) return 'text-orange-600 bg-orange-50';
-		return 'text-red-600 bg-red-50';
+		if (score >= 9.0) return 'text-green-800 bg-green-50';
+		if (score >= 7.0) return 'text-yellow-700 bg-yellow-50';
+		if (score >= 5.0) return 'text-orange-700 bg-orange-50';
+		return 'text-red-700 bg-red-50';
 	};
 	const getViolationSeverityStyle = (
 		severity: RuntimeViolation['severity'],

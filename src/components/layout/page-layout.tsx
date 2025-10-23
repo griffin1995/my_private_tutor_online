@@ -1,9 +1,9 @@
 'use client';
 
-import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { PageHeader } from './page-header';
+import type { ReactNode } from 'react';
 import { PageFooter } from './page-footer';
+import { PageHeader } from './page-header';
 interface PageHeaderProps {
 	className?: string;
 	variant?: 'transparent' | 'solid' | 'glass';
@@ -57,10 +57,10 @@ export function PageLayout({
 	};
 	const verticalSpacingClasses = {
 		none: '',
-		sm: 'py-4',
-		md: 'py-8',
-		lg: 'py-12',
-		xl: 'py-16',
+		sm: 'py-0',
+		md: 'py-0',
+		lg: 'py-0',
+		xl: 'py-0',
 	};
 	return (
 		<div
@@ -69,17 +69,8 @@ export function PageLayout({
 				backgroundClasses[background],
 				className,
 			)}>
-			{}
-			{}
-			{}
-			{}
-			{}
 			{showHeader && <PageHeader {...headerProps} />}
 
-			{}
-			{}
-			{}
-			{}
 			<main
 				className='flex-1'
 				role='main'

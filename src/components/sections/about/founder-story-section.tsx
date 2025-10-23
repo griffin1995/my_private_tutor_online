@@ -113,8 +113,9 @@ export function FounderStorySection({
 								<p>
 									By Sixth Form, I was achieving top grades. I hadn&apos;t planned to
 									apply to Oxbridge, but when my headmistress pulled me aside to ask if
-									I&apos;d considered it, something inside me switched on. I loved a challenge, and applying to Cambridge to read English and
-									Theatre with Education Studies was certainly that.
+									I&apos;d considered it, something inside me switched on. I loved a
+									challenge, and applying to Cambridge to read English and Theatre with
+									Education Studies was certainly that.
 									<br />
 									<br />
 									{/* Pull Quote - Floated Left, positioned in middle of text */}
@@ -150,13 +151,7 @@ export function FounderStorySection({
 					</div>
 
 					<div className='order-1 lg:order-2'>
-						{}
-						{}
 						<div className='relative w-full h-full aspect-[17/9] lg:aspect-auto'>
-							{}
-							{}
-							{}
-							{}
 							<Image
 								src={goingAgainstGrainImage.src}
 								alt={goingAgainstGrainImage.alt}
@@ -173,28 +168,15 @@ export function FounderStorySection({
 				</div>
 			</div>
 
-			{}
-			{}
-			{}
 			<FirstLessonSection />
 
-			{}
-			{}
-			{}
 			<div className='w-full'>
-				{}
 				<div className='block md:hidden'>
 					<div className='bg-white px-6 sm:px-8 py-12 sm:py-16'>
 						<div className='max-w-4xl mx-auto'>
-							{}
-							{}
 							<h2 className='mb-6'>A Global View of What Education Can Do</h2>
 
 							<div className='space-y-4'>
-								{}
-								{}
-								{}
-								{}
 								<p>
 									Keen to put my English degree to good use, during this time I also
 									worked at{' '}
@@ -216,10 +198,7 @@ export function FounderStorySection({
 						</div>
 					</div>
 
-					{}
 					<div className='relative h-[300px] sm:h-[400px] w-full'>
-						{}
-						{}
 						<Image
 							src='/images/team/founder-elizabeth-burrows-professional.jpg'
 							alt='Elizabeth Burrows Professional Portrait - Forbes Middle East Online Editor and education expert, showcasing her business journalism background'
@@ -234,10 +213,7 @@ export function FounderStorySection({
 					</div>
 				</div>
 
-				{}
 				<div className='hidden md:block relative h-[600px] w-full'>
-					{}
-					{}
 					<Image
 						src='/images/team/founder-elizabeth-burrows-professional.jpg'
 						alt='Elizabeth Burrows Professional Portrait - Forbes Middle East Online Editor and education expert, showcasing her business journalism background'
@@ -251,13 +227,11 @@ export function FounderStorySection({
 						priority={false}
 					/>
 
-					{}
-					{}
 					<div className='absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent'></div>
 
-					{}
-					{}
-					<div data-dark-bg className='absolute inset-x-0 bottom-0 flex items-end z-10 p-8 sm:p-10 lg:p-12'>
+					<div
+						data-dark-bg
+						className='absolute inset-x-0 bottom-0 flex items-end z-10 p-8 sm:p-10 lg:p-12'>
 						<div className='w-full'>
 							<div className='max-w-4xl px-4 sm:px-6'>
 								<h2 className='text-white'>A Global View of What Education Can Do</h2>
@@ -286,35 +260,34 @@ export function FounderStorySection({
 				</div>
 			</div>
 
-			{}
 			<div className='mx-auto max-w-6xl text-center py-8 sm:px-6 lg:px-8 mt-7 lg:mt-10'>
-				{}
-				{}
 				<h2 className='mb-8'>Results That Matter</h2>
 
 				<div className='space-y-6'>
 					<p>
 						Since founding My Private Tutor Online more than 15 years ago, my team and
-						I have helped hundreds of families through key academic transitions …
+						I have helped hundreds of families through key academic transitions — from
+						entrance exams to Oxbridge interviews, international moves to last-minute
+						GCSE turnarounds. We&apos;re rightly proud of our stellar track record.
 					</p>
 				</div>
 			</div>
 
-			{}
-			<section className='w-full bg-primary-50 py-0'>
+			<section className='w-full bg-white py-0'>
 				<div className='mx-auto  px-4 sm:px-6 lg:px-12'>
-					<ThreePillarsSection />
+					<ThreePillarsSection className='bg-white' />
 				</div>
 			</section>
 
-			{}
 			<div className='mx-auto max-w-6xl text-center px-4 sm:px-6 lg:px-8'>
-				{}
-				{}
 				<div className='space-y-6'>
 					<p>
-						Tutoring isn't just about good grades. It's about having someone in your
-						corner who sees what you're capable of …
+						Tutoring isn’t just about good grades. It’s about having someone in your
+						corner who sees what you’re capable of, even before you do. That’s the
+						kind of guidance I had growing up, and it’s what I aim to offer every
+						family who works with us. If you&apos;re looking for more than a tutor —
+						if you’re seeking a trusted partner to help navigate the terrain, whether
+						calm or chaotic — I’d love to hear from you.
 					</p>
 				</div>
 
@@ -332,27 +305,7 @@ export function FounderStorySection({
 				</div>
 			</div>
 
-			{}
-			{}
-			{}
-			{}
-
-			{}
-			{}
-			{}
-			{}
-
-			{}
-			{}
-			<div className='container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none'>
-				{}
-				{}
-				{}
-				{}
-			</div>
-
-			{}
-			{}
+			<div className='container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none'></div>
 		</section>
 	);
 }

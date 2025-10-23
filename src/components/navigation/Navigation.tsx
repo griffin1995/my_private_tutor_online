@@ -1,20 +1,21 @@
 'use client';
 
+import ArrowUpward from '@/components/ui/arrow-upward';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 import {
 	AnimatePresence,
+	easeOut,
 	motion,
 	useMotionValueEvent,
 	useScroll,
 } from 'framer-motion';
+import { ChevronRight, Menu as MenuIcon, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import ArrowUpward from '@/components/ui/arrow-upward';
-import { Separator } from '@/components/ui/separator';
-import { cn } from '@/lib/utils';
-import { ChevronRight, Menu as MenuIcon, X } from 'lucide-react';
 interface NavigationItem {
 	label: string;
 	href?: string;
@@ -32,6 +33,149 @@ interface DropdownState {
 	activeMenu: string | null;
 }
 const navigationData: NavigationItem[] = [
+	{
+		label: 'About Us',
+		href: '/about',
+		items: [
+			{
+				label: 'Introduction',
+				href: '/about',
+			},
+			{
+				label: "Founder's Story",
+				href: '/about#about-founder-story',
+			},
+			{
+				label: 'Our Ethos',
+				href: '/about#about-quote',
+			},
+			{
+				label: 'Client Reviews',
+				href: '/about#about-testimonials',
+			},
+		],
+	},
+	{
+		label: 'Subject Tuition',
+		href: '/subject-tuition',
+		items: [
+			{
+				label: 'Introduction',
+				href: '/subject-tuition',
+			},
+			{
+				label: 'Subject Categories',
+				href: '/subject-tuition#subject-tuition-categories',
+			},
+			{
+				label: 'Academic Results',
+				href: '/subject-tuition#subject-tuition-results',
+			},
+			{
+				label: 'Home Education',
+				href: '/subject-tuition#subject-tuition-homeschooling-preview',
+			},
+		],
+	},
+	{
+		label: 'How It Works',
+		href: '/how-it-works',
+		items: [
+			{
+				label: 'Introduction',
+				href: '/how-it-works',
+			},
+			{
+				label: 'Our Process',
+				href: '/how-it-works#how-it-works-process-steps',
+			},
+			{
+				label: 'Meet Our Tutors',
+				href: '/how-it-works#how-it-works-tutors',
+			},
+			{
+				label: 'Pricing Tiers',
+				href: '/how-it-works#how-it-works-tutoring-tiers',
+			},
+			{
+				label: 'Why Choose Us',
+				href: '/how-it-works#how-it-works-benefits',
+			},
+		],
+	},
+	{
+		label: 'Testimonials',
+		href: '/testimonials',
+		items: [
+			{
+				label: 'Introduction',
+				href: '/testimonials',
+			},
+			{
+				label: 'Filter Reviews',
+				href: '/testimonials#testimonials-filter',
+			},
+			{
+				label: 'All Reviews',
+				href: '/testimonials#testimonials-grid',
+			},
+			{
+				label: 'Elite Schools',
+				href: '/testimonials#testimonials-schools-carousel',
+			},
+		],
+	},
+	{
+		label: 'Video Masterclasses',
+		href: '/video-masterclasses',
+		items: [
+			{
+				label: 'Introduction',
+				href: '/video-masterclasses',
+			},
+			{
+				label: 'Free Resources',
+				href: '/video-masterclasses#free-video-content',
+			},
+			{
+				label: 'UCAS Guide',
+				href: '/video-masterclasses#ucas-video-content',
+			},
+			{
+				label: 'British Culture',
+				href: '/video-masterclasses#british-culture-video-content',
+			},
+		],
+	},
+	// {
+	// 	label: '11+ Bootcamps',
+	// 	href: '/11-plus-bootcamps',
+	// 	items: [
+	// 		{
+	// 			label: 'Introduction',
+	// 			href: '/11-plus-bootcamps',
+	// 		},
+	// 		{
+	// 			label: 'Elite Schools',
+	// 			href: '/11-plus-bootcamps#bootcamps-schools',
+	// 		},
+	// 		{
+	// 			label: 'Our Promise',
+	// 			href: '/11-plus-bootcamps#bootcamps-tagline',
+	// 		},
+	// 		{
+	// 			label: 'Programmes',
+	// 			href: '/11-plus-bootcamps#bootcamps-programme-options',
+	// 		},
+	// 		{
+	// 			label: 'What Makes Us Different',
+	// 			href: '/11-plus-bootcamps#bootcamps-features',
+	// 		},
+	// 	],
+	// },
+];
+
+const navigationDataMobile: NavigationItem[] = [
 	{
 		label: 'About Us',
 		href: '/about',
@@ -201,7 +345,7 @@ const navVariants = {
 		opacity: 1,
 		transition: {
 			duration: 0.3,
-			ease: 'easeOut',
+			ease: easeOut,
 		},
 	},
 };
@@ -287,31 +431,32 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 		setIsScrolled(latest > 50);
 	});
 	const hoverDelayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-	const handleMouseEnter = (menuLabel: string) => {
-		if (dropdownTimeoutRef.current) {
-			clearTimeout(dropdownTimeoutRef.current);
-			dropdownTimeoutRef.current = null;
-		}
-		if (hoverDelayTimeoutRef.current) {
-			clearTimeout(hoverDelayTimeoutRef.current);
-			hoverDelayTimeoutRef.current = null;
-		}
-		hoverDelayTimeoutRef.current = setTimeout(() => {
-			setDropdownState({
-				isOpen: true,
-				activeMenu: menuLabel,
-			});
-			setActiveMenuItem(menuLabel);
-			hoverDelayTimeoutRef.current = null;
-		}, 300);
-	};
-	const handleMouseLeave = () => {
-		if (hoverDelayTimeoutRef.current) {
-			clearTimeout(hoverDelayTimeoutRef.current);
-			hoverDelayTimeoutRef.current = null;
-		}
-		dropdownTimeoutRef.current = setTimeout(() => {}, 100);
-	};
+	// 'On Hover' Sub Menu functionality'
+	// const handleMouseEnter = (menuLabel: string) => {
+	// 	if (dropdownTimeoutRef.current) {
+	// 		clearTimeout(dropdownTimeoutRef.current);
+	// 		dropdownTimeoutRef.current = null;
+	// 	}
+	// 	if (hoverDelayTimeoutRef.current) {
+	// 		clearTimeout(hoverDelayTimeoutRef.current);
+	// 		hoverDelayTimeoutRef.current = null;
+	// 	}
+	// 	hoverDelayTimeoutRef.current = setTimeout(() => {
+	// 		setDropdownState({
+	// 			isOpen: true,
+	// 			activeMenu: menuLabel,
+	// 		});
+	// 		setActiveMenuItem(menuLabel);
+	// 		hoverDelayTimeoutRef.current = null;
+	// 	}, 300);
+	// };
+	// const handleMouseLeave = () => {
+	// 	if (hoverDelayTimeoutRef.current) {
+	// 		clearTimeout(hoverDelayTimeoutRef.current);
+	// 		hoverDelayTimeoutRef.current = null;
+	// 	}
+	// 	dropdownTimeoutRef.current = setTimeout(() => {}, 100);
+	// };
 	const handleToggleDropdown = (menuLabel: string) => {
 		if (hoverDelayTimeoutRef.current) {
 			clearTimeout(hoverDelayTimeoutRef.current);
@@ -381,9 +526,11 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 				variants={navVariants}
 				className={cn(
 					'fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-[5.5rem] lg:h-[6.25rem] xl:h-[7rem]',
-					dropdownState.isOpen ? 'bg-white shadow-sm'
-					: isScrolled ? 'bg-white shadow-sm'
-					: 'bg-transparent',
+					dropdownState.isOpen
+						? 'bg-white shadow-sm'
+						: isScrolled
+						? 'bg-white shadow-sm'
+						: 'bg-transparent',
 					className,
 				)}>
 				<div className='container mx-auto px-4 lg:px-6 h-[5.5rem] lg:h-[6.25rem] xl:h-[7rem]'>
@@ -401,7 +548,11 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 									}}
 									className='relative w-48 h-[4.5rem] lg:h-[5.25rem] xl:h-[6rem]'>
 									<Image
-										src={`/images/logos/${isCurrentHomepage || dropdownState.isOpen || isScrolled ? 'logo-with-name.png' : 'logo-with-name-white.png'}`}
+										src={`/images/logos/${
+											isCurrentHomepage || dropdownState.isOpen || isScrolled
+												? 'logo-with-name.png'
+												: 'logo-with-name-white.png'
+										}`}
 										alt='My Private Tutor Online'
 										fill
 										className='object-contain'
@@ -416,19 +567,21 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 								<div
 									key={item.label}
 									className='relative'>
-									{item.items ?
+									{item.items ? (
 										<div className='relative'>
 											<div className='flex items-center'>
-												{item.href ?
+												{item.href ? (
 													<Link
 														href={item.href}
 														className={cn(
 															'flex items-center gap-1 px-2 py-1 font-normal font-display transition-all duration-200',
 															'text-base md:text-lg lg:text-lg xl:text-xl',
 															'text-primary-700 hover:text-accent-600',
-															isCurrentHomepage ? 'text-primary-700 hover:text-accent-600'
-															: isScrolled ? 'text-primary-700'
-															: 'text-white hover:text-accent-600',
+															isCurrentHomepage
+																? 'text-primary-700 hover:text-accent-600'
+																: isScrolled
+																? 'text-primary-700'
+																: 'text-white hover:text-accent-600',
 															isActive(item.href) && 'text-accent-600',
 															activeMenuItem === item.label && 'text-accent-600',
 															dropdownState.isOpen &&
@@ -441,14 +594,17 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 														}}>
 														{item.label}
 													</Link>
-												:	<button
+												) : (
+													<button
 														className={cn(
 															'flex items-center gap-1 px-2 py-1 font-normal font-display transition-all duration-200',
 															'text-base md:text-lg lg:text-lg xl:text-xl',
 															'text-primary-700 hover:text-accent-600',
-															isCurrentHomepage ? 'text-primary-700 hover:text-accent-600'
-															: isScrolled ? 'text-primary-700'
-															: 'text-white hover:text-accent-600',
+															isCurrentHomepage
+																? 'text-primary-700 hover:text-accent-600'
+																: isScrolled
+																? 'text-primary-700'
+																: 'text-white hover:text-accent-600',
 															activeMenuItem === item.label && 'text-accent-600',
 															dropdownState.isOpen &&
 																activeMenuItem !== item.label &&
@@ -459,24 +615,27 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 														}}>
 														{item.label}
 													</button>
-												}
+												)}
 											</div>
 										</div>
-									:	<Link
+									) : (
+										<Link
 											href={item.href!}
 											className={cn(
 												'flex items-center px-2 py-1 font-normal font-display transition-all duration-200',
 												'text-base md:text-lg lg:text-lg xl:text-xl',
 												'text-primary-700 hover:text-accent-600',
-												isCurrentHomepage ? 'text-primary-700 hover:text-accent-600'
-												: isScrolled ? 'text-primary-700'
-												: 'text-white hover:text-accent-600',
+												isCurrentHomepage
+													? 'text-primary-700 hover:text-accent-600'
+													: isScrolled
+													? 'text-primary-700'
+													: 'text-white hover:text-accent-600',
 												isActive(item.href!) && 'text-accent-600',
 												dropdownState.isOpen && !isActive(item.href!) && 'text-primary-700',
 											)}>
 											{item.label}
 										</Link>
-									}
+									)}
 								</div>
 							))}
 						</div>
@@ -488,11 +647,11 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 								className={cn(
 									'rounded-none border transition-all duration-300',
 									'text-sm md:text-base lg:text-base xl:text-lg font-normal font-display',
-									isCurrentHomepage ?
-										'border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white'
-									: isScrolled ?
-										'border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white'
-									:	'border-white text-white hover:bg-white hover:text-primary-700',
+									isCurrentHomepage
+										? 'border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white'
+										: isScrolled
+										? 'border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white'
+										: 'border-white text-white hover:bg-white hover:text-primary-700',
 								)}>
 								<Link href='https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'>
 									Request Free Consultation
@@ -504,9 +663,11 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 							onClick={() => setIsMobileMenuOpen(true)}
 							className={cn(
 								'2xl:hidden p-2 rounded-lg transition-colors duration-200',
-								isCurrentHomepage ? 'text-primary-700 hover:bg-gray-100'
-								: isScrolled ? 'text-primary-700 hover:bg-gray-100'
-								: 'text-white hover:bg-white/10',
+								isCurrentHomepage
+									? 'text-primary-700 hover:bg-gray-100'
+									: isScrolled
+									? 'text-primary-700 hover:bg-gray-100'
+									: 'text-white hover:bg-white/10',
 							)}
 							aria-label='Open menu'>
 							<MenuIcon className='h-6 w-6' />
@@ -655,7 +816,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 										variant='outline'
 										className={cn(
 											'w-full rounded-none border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white transition-all duration-300',
-											'text-sm md:text-base lg:text-base xl:text-lg font-normal font-display'
+											'text-sm md:text-base lg:text-base xl:text-lg font-normal font-display',
 										)}>
 										<Link href='https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'>
 											Request Free Consultation
@@ -682,9 +843,9 @@ function MobileNavigation({
 	const [expandedItems, setExpandedItems] = useState<string[]>([]);
 	const toggleExpanded = (label: string) => {
 		setExpandedItems((prev) =>
-			prev.includes(label) ?
-				prev.filter((item) => item !== label)
-			:	[...prev, label],
+			prev.includes(label)
+				? prev.filter((item) => item !== label)
+				: [...prev, label],
 		);
 	};
 	return (
@@ -696,7 +857,7 @@ function MobileNavigation({
 					<div
 						key={item.label}
 						className='rounded-lg border-none overflow-hidden'>
-						{hasSubItems ?
+						{hasSubItems ? (
 							<>
 								<button
 									onClick={() => toggleExpanded(item.label)}
@@ -756,7 +917,8 @@ function MobileNavigation({
 									)}
 								</AnimatePresence>
 							</>
-						:	<Link
+						) : (
+							<Link
 								href={item.href!}
 								onClick={onNavigate}
 								className={cn(
@@ -768,7 +930,7 @@ function MobileNavigation({
 									{item.label}
 								</span>
 							</Link>
-						}
+						)}
 					</div>
 				);
 			})}

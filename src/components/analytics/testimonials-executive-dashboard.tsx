@@ -79,10 +79,10 @@ const MetricCard: React.FC<MetricCardProps> = ({
 	color = 'blue',
 }) => {
 	const colorClasses = {
-		blue: 'text-blue-600 bg-blue-50',
-		green: 'text-green-600 bg-green-50',
-		red: 'text-red-600 bg-red-50',
-		gold: 'text-yellow-600 bg-yellow-50',
+		blue: 'text-blue-700 bg-blue-50',
+		green: 'text-green-800 bg-green-50',
+		red: 'text-red-700 bg-red-50',
+		gold: 'text-yellow-700 bg-yellow-50',
 	};
 	const trendIcon =
 		trend === 'up' ? TrendingUp

@@ -66,7 +66,7 @@ export function StatsTrio({
 							11+ Grammar & Independent School Success
 						</h3>
 						<Separator className='bg-white/30 mb-3' />
-						<div className='text-3xl font-bold text-[#CA9E5B] mb-3'>95%</div>
+						<div className='text-3xl font-bold text-accent-600 mb-3'>95%</div>
 						<Separator className='bg-white/30 mb-3' />
 						<h4 className='text-sm font-medium text-white mb-3'>
 							Pass Rate Achievement
@@ -91,7 +91,7 @@ export function StatsTrio({
 							GCSE Performance Excellence
 						</h3>
 						<Separator className='bg-white/30 mb-3' />
-						<div className='text-3xl font-bold text-[#CA9E5B] mb-3'>94%</div>
+						<div className='text-3xl font-bold text-accent-600 mb-3'>94%</div>
 						<Separator className='bg-white/30 mb-3' />
 						<h4 className='text-sm font-medium text-white mb-3'>
 							2+ Grade Growth Achievement
@@ -116,7 +116,7 @@ export function StatsTrio({
 							Elite Academic Performance
 						</h3>
 						<Separator className='bg-white/30 mb-3' />
-						<div className='text-3xl font-bold text-[#CA9E5B] mb-3'>Top 2%</div>
+						<div className='text-3xl font-bold text-accent-600 mb-3'>Top 2%</div>
 						<Separator className='bg-white/30 mb-3' />
 						<h4 className='text-sm font-medium text-white mb-3'>Of Test Takers</h4>
 						<Separator className='bg-white/30 mb-3' />

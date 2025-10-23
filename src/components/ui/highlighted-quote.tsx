@@ -2,6 +2,14 @@
 
 import React from 'react';
 import { Highlighter } from '@/components/magicui/highlighter';
+
+// Design token mappings for Highlighter component
+// Since Highlighter requires hex values, we map design tokens to their actual hex values
+const BRAND_COLORS = {
+	ACCENT_GOLD: '#ca9e5b', // accent-600 from tailwind.config.ts
+	PRIMARY_NAVY: '#3f4a7e', // primary-700 from tailwind.config.ts
+	INTERACTIVE_BLUE: '#1e40af', // blue-800 for interactive elements
+} as const;
 interface HighlightedQuoteProps {
 	quote: string;
 	author?: string;
@@ -22,7 +30,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 			<>
 				We provide{' '}
 				<Highlighter
-					color='#CA9E5B'
+					color={BRAND_COLORS.ACCENT_GOLD}
 					action='highlight'
 					strokeWidth={2}
 					iterations={1}
@@ -32,7 +40,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 				</Highlighter>{' '}
 				that helps students{' '}
 				<Highlighter
-					color='#CA9E5B'
+					color={BRAND_COLORS.ACCENT_GOLD}
 					action='highlight'
 					strokeWidth={2}
 					iterations={1}
@@ -42,7 +50,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 				</Highlighter>{' '}
 				and{' '}
 				<Highlighter
-					color='#1e40af'
+					color={BRAND_COLORS.INTERACTIVE_BLUE}
 					action='underline'
 					strokeWidth={3}
 					iterations={2}
@@ -67,7 +75,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 			<>
 				{beforePhrase}
 				<Highlighter
-					color='#CA9E5B'
+					color={BRAND_COLORS.ACCENT_GOLD}
 					action='highlight'
 					strokeWidth={2}
 					iterations={1}
@@ -92,7 +100,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 			<>
 				{beforePhrase}
 				<Highlighter
-					color='#CA9E5B'
+					color={BRAND_COLORS.ACCENT_GOLD}
 					action='highlight'
 					strokeWidth={2}
 					iterations={1}
@@ -117,7 +125,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 			<>
 				{beforePhrase}
 				<Highlighter
-					color='#CA9E5B'
+					color={BRAND_COLORS.ACCENT_GOLD}
 					action='highlight'
 					strokeWidth={2}
 					iterations={1}
@@ -142,7 +150,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 			<>
 				{beforePhrase}
 				<Highlighter
-					color='#1e40af'
+					color={BRAND_COLORS.INTERACTIVE_BLUE}
 					action='underline'
 					strokeWidth={3}
 					iterations={2}
@@ -167,7 +175,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 			<>
 				{beforePhrase}
 				<Highlighter
-					color='#1e40af'
+					color={BRAND_COLORS.INTERACTIVE_BLUE}
 					action='underline'
 					strokeWidth={3}
 					iterations={2}
@@ -191,7 +199,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 			<>
 				{beforePhrase}
 				<Highlighter
-					color='#1e40af'
+					color={BRAND_COLORS.INTERACTIVE_BLUE}
 					action='underline'
 					strokeWidth={3}
 					iterations={2}
@@ -222,7 +230,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 			<>
 				Parents come to us when something{' '}
 				<Highlighter
-					color='#CA9E5B'
+					color={BRAND_COLORS.ACCENT_GOLD}
 					action='highlight'
 					strokeWidth={2}
 					iterations={1}
@@ -233,7 +241,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 				matters—an entrance exam, a lost sense of confidence, a desire for academic
 				stretch. They stay with us because{' '}
 				<Highlighter
-					color='#CA9E5B'
+					color={BRAND_COLORS.ACCENT_GOLD}
 					action='highlight'
 					strokeWidth={2}
 					iterations={1}
@@ -243,7 +251,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 				</Highlighter>
 				. This is not a tutoring directory. This is{' '}
 				<Highlighter
-					color='#1e40af'
+					color={BRAND_COLORS.INTERACTIVE_BLUE}
 					action='underline'
 					strokeWidth={3}
 					iterations={2}
@@ -253,7 +261,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 				</Highlighter>{' '}
 				looking for{' '}
 				<Highlighter
-					color='#CA9E5B'
+					color={BRAND_COLORS.ACCENT_GOLD}
 					action='highlight'
 					strokeWidth={2}
 					iterations={1}
@@ -297,7 +305,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 					return (
 						<React.Fragment key={index}>
 							<Highlighter
-								color='#CA9E5B'
+								color={BRAND_COLORS.ACCENT_GOLD}
 								action='highlight'
 								strokeWidth={2}
 								iterations={1}
@@ -328,7 +336,7 @@ function renderHighlightedMessage(quote: string, useHighlighting: boolean) {
 					return (
 						<React.Fragment key={index}>
 							<Highlighter
-								color='#1e40af'
+								color={BRAND_COLORS.INTERACTIVE_BLUE}
 								action='underline'
 								strokeWidth={3}
 								iterations={2}

@@ -406,12 +406,12 @@ export function FAQCategorySection({
 				<div
 					role='status'
 					aria-live='polite'
-					className='mb-4 p-4 bg-[#CA9E5B]/10 border border-[#CA9E5B]/30 rounded-lg'>
+					className='mb-4 p-4 bg-accent-50 border border-accent-200 rounded-lg'>
 					<div className='flex items-center gap-2'>
 						<span
-							className='w-2 h-2 bg-[#CA9E5B] rounded-full animate-pulse'
+							className='w-2 h-2 bg-accent-600 rounded-full animate-pulse'
 							aria-hidden='true'></span>
-						<span className='text-[#CA9E5B] text-sm font-medium'>
+						<span className='text-accent-600 text-sm font-medium'>
 							{offlineMessage}
 						</span>
 					</div>

@@ -1,14 +1,14 @@
 'use client';
 
-import { m } from 'framer-motion';
-import { useEffect } from 'react';
+import { useConversionTracking } from '@/lib/analytics/conversion-tracking';
 import { useAboutSectionPerformance } from '@/lib/performance/about-monitoring';
 import {
 	preloadAboutResources,
 	registerAboutSectionSW,
 } from '@/lib/service-worker/sw-registration';
+import { m } from 'framer-motion';
 import Image from 'next/image';
-import { useConversionTracking } from '@/lib/analytics/conversion-tracking';
+import { useEffect } from 'react';
 interface AboutSectionProps {
 	className?: string;
 	backgroundColor?: string;
@@ -72,18 +72,8 @@ export function AboutSection({
 	return (
 		<section
 			id='about'
-			className={`py-20 lg:py-28 bg-gradient-to-br from-token-brand-50 to-token-brand-100 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] ${className}`}>
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
+			className={`pt-15 lg:pt-20 bg-gradient-to-br from-token-brand-50 to-token-brand-100 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] ${className}`}>
 			<div className='container mx-auto px-12 sm:px-16 lg:px-24 xl:px-32 2xl:px-40'>
-				{}
-				{}
 				<div className={gridLayoutClasses}>
 					<div>
 						<div className='max-w-3xl mx-auto px-6 sm:px-8 lg:px-12 text-left'>
@@ -139,227 +129,120 @@ export function AboutSection({
 						/>
 					</div>
 				</div>
-				{}
+
 				<m.div
-					className='grid grid-cols-3 gap-6 w-full max-w-6xl mx-auto relative z-10'
-					style={{
-						marginTop: '55px',
-						display: 'grid',
-						gridTemplateColumns: 'repeat(3, 1fr)',
-						gap: '24px',
-						alignItems: 'center',
-					}}
-					initial={{
-						opacity: 0,
-						y: 30,
-					}}
-					whileInView={{
-						opacity: 1,
-						y: 0,
-					}}
-					viewport={{
-						once: true,
-						margin: '-100px',
-					}}
-					transition={{
-						duration: 0.6,
-						ease: 'easeOut',
-						delay: 0.4,
-					}}>
-					{}
+					className='grid grid-cols-3 gap-6 w-full max-w-6xl mx-auto items-stretch py-5'
+					initial={{ opacity: 0, y: 30 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true, margin: '-100px' }}
+					transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}>
+					{/* Card 1 */}
 					<m.div
-						className='flex justify-center group relative'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						viewport={{
-							once: true,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.5,
-							ease: 'easeOut',
-						}}
-						style={{
-							aspectRatio: '1/1',
-							background: `
-                linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
-                linear-gradient(45deg, rgba(212,175,55,0.1) 0%, transparent 100%)
-              `,
-							backdropFilter: 'blur(10px)',
-							border: '1px solid rgba(212,175,55,0.3)',
-							padding: '20px',
-							boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-							fontFamily: "'Helvetica Neue Condensed', sans-serif",
-							textTransform: 'uppercase',
-							letterSpacing: '1px',
-						}}
+						className='group relative aspect-square p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center'
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
 						whileHover={{
 							scale: 1.02,
 							y: -2,
 							boxShadow: '0 8px 24px rgba(212,175,55,0.2)',
-							transition: {
-								duration: 0.3,
-								ease: 'easeOut',
-							},
+							transition: { duration: 0.3, ease: 'easeOut' },
 						}}>
+						{/* Row 1 */}
+						<m.p
+							className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
+							initial={{ opacity: 0, scale: 0.9 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
+							As featured in
+						</m.p>
+
+						{/* Row 2 */}
 						<img
 							src='/images/media/tatler-logo-alt.png'
 							alt='Tatler Address Book - Featured Premium Tutoring Service'
-							className='h-auto max-w-[156px] object-contain filter group-hover:brightness-110 transition-all duration-300'
+							className='h-auto max-w-[156px] object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center'
 						/>
+
+						{/* Row 3 */}
+						<div />
 					</m.div>
 
-					{}
+					{/* Card 2 */}
 					<m.div
-						className='flex justify-center group relative'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						viewport={{
-							once: true,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.7,
-							ease: 'easeOut',
-						}}
-						style={{
-							aspectRatio: '1/1',
-							background: `
-                linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
-                linear-gradient(45deg, rgba(212,175,55,0.1) 0%, transparent 100%)
-              `,
-							backdropFilter: 'blur(10px)',
-							border: '1px solid rgba(212,175,55,0.3)',
-							padding: '20px',
-							boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-							fontFamily: "'Helvetica Neue Condensed', sans-serif",
-							textTransform: 'uppercase',
-							letterSpacing: '1px',
-						}}
+						className='group relative aspect-square p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center'
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.6, delay: 0.7, ease: 'easeOut' }}
 						whileHover={{
 							scale: 1.02,
 							y: -2,
 							boxShadow: '0 8px 24px rgba(212,175,55,0.2)',
-							transition: {
-								duration: 0.3,
-								ease: 'easeOut',
-							},
+							transition: { duration: 0.3, ease: 'easeOut' },
 						}}>
+						<m.p
+							className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
+							initial={{ opacity: 0, scale: 0.9 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
+							As recommended by
+						</m.p>
+
 						<img
 							src='/images/media/schools-guide-uk-logo.png'
 							alt='Schools Guide UK - Top Pick for Private Tuition'
-							className='h-auto max-w-[156px] object-contain filter group-hover:brightness-110 transition-all duration-300'
+							className='h-auto max-w-[156px] object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center'
 						/>
+
+						<div />
 					</m.div>
 
-					{}
+					{/* Card 3 */}
 					<m.div
-						className='flex justify-center items-center group relative'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						viewport={{
-							once: true,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.9,
-							ease: 'easeOut',
-						}}
-						style={{
-							aspectRatio: '1/1',
-							background: `
-                linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
-                linear-gradient(45deg, rgba(212,175,55,0.1) 0%, transparent 100%)
-              `,
-							backdropFilter: 'blur(10px)',
-							border: '1px solid rgba(212,175,55,0.3)',
-							padding: '20px',
-							boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-							fontFamily: "'Helvetica Neue Condensed', sans-serif",
-							textTransform: 'uppercase',
-							letterSpacing: '1px',
-						}}
+						className='group relative aspect-square p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center text-center'
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.6, delay: 0.9, ease: 'easeOut' }}
 						whileHover={{
 							scale: 1.02,
 							y: -2,
 							boxShadow: '0 8px 24px rgba(212,175,55,0.2)',
-							transition: {
-								duration: 0.3,
-								ease: 'easeOut',
-							},
+							transition: { duration: 0.3, ease: 'easeOut' },
 						}}>
-						<div className='flex flex-col items-center justify-center text-center'>
-							{}
-							{}
-							{}
-							{}
-							<m.div
-								initial={{
-									opacity: 0,
-									scale: 0.8,
-									y: -10,
-								}}
-								whileInView={{
-									opacity: 1,
-									scale: 1,
-									y: 0,
-								}}
-								transition={{
-									duration: 0.4,
-									delay: 1.0,
-									ease: 'easeOut',
-								}}
-								className='mb-2 relative w-[100px] h-[100px]'>
-								<Image
-									src='/icons/royal-crown.svg'
-									alt='Royal Crown Icon'
-									fill
-									className='transition-all duration-300 group-hover:scale-110'
-								/>
-							</m.div>
+						{/* Row 1 */}
+						<m.p
+							className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
+							initial={{ opacity: 0, scale: 0.9 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
+							As trusted by
+						</m.p>
 
-							<m.p
-								className='text-center font-medium text-[#1E3A5F] tracking-tight'
-								style={{
-									fontSize: '16px',
-									fontWeight: '600',
-									color: '#1E3A5F',
-									lineHeight: '1.4',
-								}}
-								initial={{
-									opacity: 0,
-									scale: 0.9,
-								}}
-								whileInView={{
-									opacity: 1,
-									scale: 1,
-								}}
-								transition={{
-									duration: 0.4,
-									delay: 1.1,
-									ease: 'easeOut',
-								}}>
-								Trusted by Royal Clientele
-							</m.p>
-						</div>
+						{/* Row 2 */}
+						<m.div
+							initial={{ opacity: 0, scale: 0.8, y: -10 }}
+							whileInView={{ opacity: 1, scale: 1, y: 0 }}
+							transition={{ duration: 0.4, delay: 1.0, ease: 'easeOut' }}
+							className='mb-2 relative w-[100px] h-[100px] justify-self-center'>
+							<Image
+								src='/icons/royal-crown.svg'
+								alt='Royal Crown Icon'
+								fill
+								className='transition-all duration-300 group-hover:scale-110'
+							/>
+						</m.div>
+
+						{/* Row 3 */}
+						<m.p
+							className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
+							initial={{ opacity: 0, scale: 0.9 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
+							Royal Clientele
+						</m.p>
 					</m.div>
 				</m.div>
 			</div>
