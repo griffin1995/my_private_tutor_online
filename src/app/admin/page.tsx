@@ -51,12 +51,12 @@ function AdminInterface() {
 							</button>
 						</div>
 
-						<div className='bg-[#CA9E5B]/10 border border-[#CA9E5B]/30 rounded-lg p-4'>
-							<h3 className='font-semibold text-[#CA9E5B] mb-2'>Brand Assets</h3>
-							<p className='text-[#CA9E5B]/80 text-sm mb-3'>
+						<div className='bg-accent-50 border border-accent-200 rounded-lg p-4'>
+							<h3 className='font-semibold text-accent-700 mb-2'>Brand Assets</h3>
+							<p className='text-accent-600 text-sm mb-3'>
 								Manage logos, images, and brand elements
 							</p>
-							<button className='bg-[#CA9E5B] text-white px-4 py-2 rounded text-sm hover:bg-[#B8915A] transition-colors'>
+							<button className='bg-accent-600 text-white px-4 py-2 rounded text-sm hover:bg-accent-700 transition-colors'>
 								Manage Brand Assets
 							</button>
 						</div>
@@ -81,7 +81,7 @@ function AdminInterface() {
 							<div className='text-gray-600 text-sm'>Testimonials</div>
 						</div>
 						<div className='text-center'>
-							<div className='text-2xl font-bold text-[#CA9E5B]'>4</div>
+							<div className='text-2xl font-bold text-accent-600'>4</div>
 							<div className='text-gray-600 text-sm'>Statistics</div>
 						</div>
 						<div className='text-center'>

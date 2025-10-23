@@ -320,7 +320,7 @@ export default function SubjectTuitionPage() {
 					id='subject-tuition-homeschooling-preview'
 					className='py-16 lg:py-24 relative'
 					background='white'>
-					<div className='absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-[#CA9E5B]/20' />
+					<div className='absolute inset-0 bg-gradient-to-br from-amber-50/30 via-yellow-25 to-accent-100' />
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-center'>
 							{}
@@ -400,7 +400,7 @@ export default function SubjectTuitionPage() {
 									<Button
 										asChild
 										variant='ghost'
-										className='bg-[#CA9E5B] hover:bg-[#B8935A] !text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg'>
+										className='bg-accent-600 hover:bg-accent-700 !text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 text-lg'>
 										<Link href='/homeschooling'>{homeschoolingData.buttonText}</Link>
 									</Button>
 								</m.div>

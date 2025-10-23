@@ -1,14 +1,10 @@
-'use client';
-
-import { WebVitals } from '@/components/analytics/web-vitals';
-import { TestimonialsErrorBoundary } from '@/components/boundaries/TestimonialsErrorBoundary';
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { Separator } from '@radix-ui/react-separator';
 import { Avatar, Blockquote } from 'flowbite-react';
 import { memo } from 'react';
-
+import Carousel_testimonial from './Carousel_testimonial';
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR TESTIMONIALS PAGE
 // ============================================================================
@@ -54,14 +50,14 @@ const ALL_TESTIMONIALS: readonly Testimonial[] = [
 	{
 		id: 'video-parents-compilation-2025',
 		quote:
-			'My Private Tutor Online transformed our experience with education. The support our children received for their exams was exceptional. The tutors were knowledgeable, patient, and really understood how to connect with the students.',
-		author: 'Multiple Parents',
-		role: 'Parents of MPTO Students',
+			'My Private Tutor Online transformed our whole family’s experience with education. Our daughter made marked progress with her entrance exam prep, but my husband and I also felt much less stressed about the whole thing. Elizabeth demystified the process and helped us understand how it works (we’re an expat family, so didn’t know the system here). Thank you for her progress and our peace of mind!',
+		author: 'Ms. Tremblay, Notting Hill',
+		role: 'Parent',
 		rating: 5,
 		featured: true,
 		category: 'video',
-		subject: 'Comprehensive Support',
-		grade: 'Outstanding Results',
+		subject: '8+ preparation',
+		grade: 'Multiple School Placements',
 		location: 'Various',
 		year: 2025,
 		result: 'Multiple Success Stories',
@@ -75,14 +71,14 @@ const ALL_TESTIMONIALS: readonly Testimonial[] = [
 	{
 		id: 'video-students-compilation-2025',
 		quote:
-			'The tutoring completely changed my approach to studying and helped me achieve results I never thought possible. The tutors made learning enjoyable and gave me confidence in subjects I previously struggled with.',
-		author: 'Multiple Students',
-		role: 'MPTO Students',
+			'The change we’ve seen in Tilly is huge. She’s no longer procrastinating and trying to avoid her studies but rather leaning in and (I think!) actually enjoying learning again. The school report for this term has been the best yet too. Thank you!',
+		author: 'Mr. DeCourtenay, Holland Park',
+		role: 'Parent',
 		rating: 5,
 		featured: true,
 		category: 'video',
-		subject: 'Academic Achievement',
-		grade: 'Excellent Progress',
+		subject: 'Comprehensive KS3 Support',
+		grade: 'Personal best scores on school report',
 		location: 'Various',
 		year: 2025,
 		result: 'Academic Success & Confidence',
@@ -229,6 +225,40 @@ const ALL_TESTIMONIALS: readonly Testimonial[] = [
 		id: 'mr-mrs-li-gcse-2024',
 		hasVideo: false,
 	},
+	{
+		quote:
+			'Oscar wanted to pass this onto Emily, please can you share? ‘I had my last exam today and wanted to say thank you for helping me prepare. I know loaaadddsss more now and felt really confident doing all my tests. You are the best teacher in the whole world!',
+		author: 'Mr. Telson, Dubai, UAE',
+		role: 'Parent',
+		rating: 5,
+		category: 'gcse',
+		subject: '7+ preparation',
+		grade: 'Multiple School Placements',
+		location: 'Hong Kong',
+		year: 2024,
+		result: 'All 9s Achieved at GCSE',
+		verified: true,
+		date: '2024-06-15',
+		id: 'mr-mrs-li-gcse-2024',
+		hasVideo: false,
+	},
+	{
+		quote:
+			'So grateful we’ve got your examiners to help the twins navigate this super stressful time. It’s really keeping them confident and grounded. Just wanted to pass on our sincere thanks.',
+		author: 'Mr and Mrs Rosenthal, Washington DC',
+		role: 'Parents',
+		rating: 5,
+		category: 'gcse',
+		subject: 'IB DP online homeschooling programme',
+		grade: '44 point score (45 is max)',
+		location: 'Hong Kong',
+		year: 2024,
+		result: 'All 9s Achieved at GCSE',
+		verified: true,
+		date: '2024-06-15',
+		id: 'mr-mrs-li-gcse-2024',
+		hasVideo: false,
+	},
 ] as const;
 
 const OptimizedTestimonialCard = memo(function TestimonialCard({
@@ -287,9 +317,8 @@ export default function TestimonialsPage() {
 	const allTestimonials = ALL_TESTIMONIALS;
 
 	return (
-		<TestimonialsErrorBoundary>
-			<WebVitals />
-
+		<>
+			{/* Hero Section - Outside PageLayout */}
 			<section id='testimonials-hero'>
 				<SimpleHero
 					backgroundImage='/images/hero/testimonials-hero.jpg'
@@ -302,53 +331,58 @@ export default function TestimonialsPage() {
 					decorativeStyle='lines'
 				/>
 			</section>
-		<section
-			id='mission-quote'
-			className='py-16 lg:py-24 bg-primary-50'>
-			<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
-				<Blockquote>
-					{/* Quote icon */}
-					<svg
-						className='mb-6 h-14 w-14 fill-primary-700'
-						aria-hidden='true'
-						xmlns='http://www.w3.org/2000/svg'
-						viewBox='0 0 18 14'>
-						<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
-					</svg>
-
-					{/* Mission Quote */}
-					<p className='italic'>
-						&quot;We provide <strong>exceptional tuition</strong> that helps students{' '}
-						<strong>excel academically</strong> and <u>thrive personally</u>, opening
-						doors to greater opportunities—at school and in life.&quot;
-					</p>
-
-					{/* Author with avatar */}
-					<figcaption className='mt-4 flex items-center justify-center space-x-3'>
-						<Avatar
-							rounded
-							size='xs'
-							img='/images/team/elizabeth-burrows-founder-main.jpg'
-							alt='Elizabeth Burrows'
-						/>
-						<div className='flex items-center divide-x-2 divide-neutral-500'>
-							<cite className='pr-3'>Elizabeth Burrows</cite>
-							<cite className='pl-3 text-neutral-500'>Founder</cite>
-						</div>
-					</figcaption>
-				</Blockquote>
-			</div>
-		</section>
-
-			<section id='video-testimonials-moved'>
-				<TestimonialsSection />
-			</section>
 
 			<PageLayout
 				background='white'
 				showHeader={true}
 				showFooter={true}
 				containerSize='full'>
+				{/* Mission Quote Section */}
+				<section
+					id='mission-quote'
+					className='py-8 lg:py-12 bg-primary-50'>
+					<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
+						<Blockquote className='border-0'>
+							{/* Quote icon */}
+							<svg
+								className='mb-6 h-12 w-12 fill-primary-700'
+								aria-hidden='true'
+								xmlns='http://www.w3.org/2000/svg'
+								viewBox='0 0 18 14'>
+								<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+							</svg>
+
+							{/* Mission Quote */}
+							<p className='italic'>
+								&quot;We provide <strong>exceptional tuition</strong> that helps
+								students <strong>excel academically</strong> and{' '}
+								<u>thrive personally</u>, opening doors to greater opportunities—at
+								school and in life.&quot;
+							</p>
+
+							{/* Author with avatar */}
+							<figcaption className='mt-4 flex items-center justify-center space-x-3'>
+								<Avatar
+									rounded
+									size='xs'
+									img='/images/team/elizabeth-burrows-founder-main.jpg'
+									alt='Elizabeth Burrows'
+								/>
+								<div className='flex items-center divide-x-2 divide-neutral-500'>
+									<cite className='pr-3'>Elizabeth Burrows</cite>
+									<cite className='pl-3 text-neutral-500'>Founder</cite>
+								</div>
+							</figcaption>
+						</Blockquote>
+					</div>
+				</section>
+
+				{/* Video Testimonials Section */}
+				<section id='video-testimonials-moved'>
+					<TestimonialsSection />
+				</section>
+
+				{/* Featured Testimonials Carousel */}
 				<section
 					id='testimonials-featured-carousel'
 					className='py-16 bg-neutral-50'>
@@ -371,7 +405,8 @@ export default function TestimonialsPage() {
 						))}
 					</div>
 				</section>
+				<Carousel_testimonial />
 			</PageLayout>
-		</TestimonialsErrorBoundary>
+		</>
 	);
 }

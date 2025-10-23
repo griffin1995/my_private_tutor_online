@@ -689,50 +689,26 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 	TabContent.displayName = 'TabContent';
 	return (
 		<>
-			{}
-			{}
 			<SimpleHero
 				backgroundImage='/images/hero/hero-subject-tuition-primary.jpg'
 				h1={
-					
-				<span className='text-white'>
-					Subject Tutoring
-					<br />&<br />
-					<span className='text-accent-600'>Exam Preparation</span>
-				</span>
-			
+					<span className='text-white'>
+						Subject Tutoring
+						<br />&<br />
+						<span className='text-accent-600'>Exam Preparation</span>
+					</span>
 				}
 				h2='From entrance exams to university prep, our expert tutors provide personalised instruction across all subjects and educational stages. '
 				decorativeStyle='lines'
 			/>
 
-			{}
-			{}
-			{}
-			{}
 			<PageLayout
 				background='white'
 				showHeader={true}
 				showFooter={false}
 				containerSize='full'>
-				{}
-				{}
-				{}
-				{}
 				<main className='flex-1  px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-neutral-50 to-white'>
 					<div className='w-full mx-auto'>
-						{}
-						{}
-						{}
-						{}
-
-						{}
-						{}
-						{}
-						{}
-						{}
-						{}
-						{}
 						<Tabs.Root
 							defaultValue='primary-school'
 							value={selectedTab}
@@ -742,16 +718,7 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 							dir='ltr'
 							onValueChange={handleTabChange}
 							aria-label='Educational programme selection'>
-							{}
-							{}
-							{}
-							{}
-							{}
-							{}
-							{}
 							<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
-								{}
-								{}
 								<Tabs.List
 									className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-2 p-2 bg-primary-700'
 									aria-label='Educational level tabs'
@@ -781,13 +748,6 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 								</Tabs.List>
 							</div>
 
-							{}
-							{}
-							{}
-
-							{}
-							{}
-							{}
 							<TabContent
 								level={educationLevels.find((l) => l.value === 'primary-school')!}
 								contentData={
@@ -795,9 +755,6 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 								}
 							/>
 
-							{}
-							{}
-							{}
 							<TabContent
 								level={educationLevels.find((l) => l.value === 'secondary-school')!}
 								contentData={
@@ -805,9 +762,6 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 								}
 							/>
 
-							{}
-							{}
-							{}
 							<TabContent
 								level={educationLevels.find((l) => l.value === 'entrance-exams')!}
 								contentData={
@@ -815,11 +769,6 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 								}
 							/>
 
-							{}
-
-							{}
-							{}
-							{}
 							<TabContent
 								level={
 									educationLevels.find((l) => l.value === 'university-admissions')!
@@ -829,9 +778,6 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 								}
 							/>
 
-							{}
-							{}
-							{}
 							<TabContent
 								level={educationLevels.find((l) => l.value === 'online-homeschooling')!}
 								contentData={
@@ -839,17 +785,11 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 								}
 							/>
 
-							{}
-							{}
-							{}
 							<TabContent
 								level={educationLevels.find((l) => l.value === 'sen-support')!}
 								contentData={<EducationLevelTabContent content={SEN_SUPPORT_CONTENT} />}
 							/>
 
-							{}
-							{}
-							{}
 							<TabContent
 								level={educationLevels.find((l) => l.value === 'london-in-person')!}
 								contentData={
@@ -861,9 +801,6 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 				</main>
 			</PageLayout>
 
-			{}
-			{}
-			{}
 			<PageFooter
 				variant='premium'
 				showBackToTop={true}

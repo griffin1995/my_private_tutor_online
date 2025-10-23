@@ -5,6 +5,7 @@ import { SimpleHero } from '@/components/layout/simple-hero';
 import { TutorsSection } from '@/components/tutors/tutors-section';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { Blockquote } from 'flowbite-react';
 import { m } from 'framer-motion';
 import {
 	CheckCircle,
@@ -14,7 +15,7 @@ import {
 	Users,
 } from 'lucide-react';
 import Image from 'next/image';
-import { Avatar, Blockquote } from 'flowbite-react';
+import type { JSX } from 'react';
 
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR HOW IT WORKS PAGE
@@ -32,7 +33,7 @@ interface HowItWorksStep {
 
 interface TutorTier {
 	readonly tier: string;
-	readonly description: string;
+	readonly description: string | JSX.Element;
 	readonly bestFor: string;
 	readonly pricePoint: string;
 	readonly level: string;
@@ -120,7 +121,29 @@ const PROCESS_STEPS: readonly HowItWorksStep[] = [
 const TUTOR_TIERS: readonly TutorTier[] = [
 	{
 		tier: 'Tier 2',
-		description: 'Qualified, experienced classroom teachers',
+		description: (
+			<>
+				Our Tier Two tutors are qualified teachers with{' '}
+				<strong>years of classroom experience</strong> and a{' '}
+				<strong>proven record of raising attainment</strong>. Some also bring
+				valuable leadership expertise from roles on Senior Leadership Teams and as
+				internal moderators—overseeing marking standards across their departments.
+				<br />
+				<br />
+				Their professional training means they are{' '}
+				<strong>fluent in a range of pedagogical approaches</strong> and highly
+				skilled at adapting to different learning styles and needs. They know how to
+				<strong>pinpoint precisely where marks are being lost</strong> and provide
+				expert, targeted guidance to close those gaps.
+				<br />
+				<br />
+				With Tier Two tutors, you’re investing in seasoned educators who know what
+				works from countless hours in the classroom—and who deliver consistent,
+				measurable progress. Whether your child is preparing for exams or entrance
+				assessments, Tier Two tutors combine deep expertise with a track record of
+				proven results.
+			</>
+		) as JSX.Element,
 		bestFor: 'Curriculum mastery, consistency',
 		pricePoint: 'From £65/hour',
 		level: 'mid',
@@ -128,8 +151,30 @@ const TUTOR_TIERS: readonly TutorTier[] = [
 	},
 	{
 		tier: 'Tier 1',
-		description:
-			'Official examiners and senior educators with extensive track records',
+		description: (
+			<>
+				Our Tier One tutors are our &apos;super tutors&apos;—experienced educators
+				with a <strong>decade or more</strong> in the classroom, many with 30+
+				years&apos; expertise and Senior Leadership Team responsibilities.
+				<br />
+				<br /> What truly sets them apart? Every Tier One tutor is an{' '}
+				<strong>official examiner</strong>. They mark and/or grade papers for real
+				summer and winter exams. This means they know exactly how examiners think,
+				what scorers are looking for, and precisely how to hit every point on the
+				mark scheme.
+				<br />
+				<br />
+				<strong>
+					Your child doesn&apos;t just learn the content—they learn how to
+					demonstrate mastery in exactly the way examiners reward
+				</strong>
+				. Tier One tutors excel at diagnosing weaknesses, refining exam technique,
+				and delivering transformational results: from U grades to C+ in a single
+				month, and entrance exam scores in the top 2% of candidates. When you choose
+				Tier One, you&apos;re investing in tutors who understand the exam arena from
+				the inside out.
+			</>
+		) as JSX.Element,
 		bestFor: 'Top grades, exam strategy',
 		pricePoint: 'From £85/hour',
 		level: 'premium',
@@ -138,8 +183,24 @@ const TUTOR_TIERS: readonly TutorTier[] = [
 	},
 	{
 		tier: 'Tier 3',
-		description:
-			'Tutors from top UK universities (including Oxbridge), teaching their specialist subject',
+		description: (
+			<>
+				Our Tier Three tutors are subject specialists who combine strong academic
+				knowledge with an approachable, engaging teaching style. Studying at or
+				having graduated from top universities (including Oxbridge), these tutors
+				work closely with students to strengthen understanding, build confidence,
+				and improve performance.
+				<br />
+				While they may not hold formal teaching qualifications, Tier Three tutors
+				bring valuable experience in one-to-one tuition and an infectious passion
+				for their subjects. Many are in their first decade out of education
+				themselves, which can help foster a natural rapport with tutees and a
+				positive, motivating learning dynamic.
+				<br />
+				With Tier Three tutors, your child benefits from knowledgeable, relatable
+				educators who inspire curiosity and encourage steady academic progress.
+			</>
+		) as JSX.Element,
 		bestFor: 'Mentoring, subject confidence',
 		pricePoint: 'From £45/hour',
 		level: 'standard',
@@ -149,11 +210,12 @@ const TUTOR_TIERS: readonly TutorTier[] = [
 
 // Benefits content
 const BENEFITS: readonly string[] = [
-	'No registration or administrative fees',
-	'Rigorous vetting including enhanced DBS checks',
-	'Ongoing consultative support throughout your journey',
 	'Remarkable results. Our tutees secure top marks year in, year out',
-	"Automated lesson reminders 36 hours before tutorials and progress reports emailed the minute they're completed afterwards",
+	'Tiered tutor options to suit every academic need and family budget',
+	'Rigorous vetting, including enhanced DBS checks',
+	'Ongoing personal and consultative support throughout your journey',
+	'Automated lesson reminders 36 hours before tutorials to ensure you never forget a session',
+	'Progress reports sent instantly via our tutor management system',
 ] as const;
 
 // Base rate and promotional pricing
@@ -173,9 +235,9 @@ const PROMOTIONAL_PRICING = {
 // Tutor profiles section (complete structure with all profiles converted from object to array)
 const TUTOR_PROFILES_SECTION = {
 	title: 'Get to Know a Selection of Our Tutors',
-	subtitle: '',
+	subtitle: null,
 	description:
-		"Here's a curated cross-section of our team to give you a sense of <strong>the calibre and diversity of educators</strong> available across each of our tutoring tiers. While this is just a glimpse, <strong>our full team spans every age, subject and academic stage</strong>—from Year 1 phonics to postgraduate-level Astrophysics.\n\nIf you don't see exactly what you're looking for here, rest assured we have the right expert behind the scenes, ready to support your child's learning journey.\n\nTo begin, simply <strong>complete our short enquiry form</strong>, and a member of our team will be in touch to start the conversation.",
+		"Here's a curated cross-section of our team, capturing <strong>the calibre and diversity of educators across tiers.</strong> This is just a glimpse; <strong>our full team spans every age, subject and academic stage</strong>, from-preschool phonics to postgraduate Astrophysics.\n\nSimply <strong>complete our short enquiry form</strong>, and a member of our team will be in touch to start the conversation.",
 	profiles: [
 		{
 			id: 'alma-maths-science',
@@ -306,113 +368,120 @@ const TUTOR_PROFILES_SECTION = {
 			featured: true,
 			order: 1,
 		},
+
 		{
-			id: 'amy-english',
-			name: 'Amy',
-			title: 'English Language & Literature Specialist',
+			id: 'john-history',
+			name: 'John',
+			title: 'History Specialist',
 			tier: 'tier-one',
-			badge: '📚',
+			badge: '📜',
 			education: {
-				university: 'Professional Teaching Qualification',
-				degree: 'LLB (Hons) Law',
-				additionalQualifications: ['PGCE Secondary English'],
-				grade: 'Honours',
-				graduationYear: '2015',
+				university: 'University of Birmingham',
+				degree: 'BA History (First Class)',
+				additionalQualifications: ['PGCE, Secondary History'],
+				grade: 'First Class',
+				graduationYear: null,
 			},
 			specializations: [
-				'English Language',
-				'English Literature',
-				'Law',
-				'Academic Writing',
+				'History (GCSE & A Level)',
+				'Exam preparation and essay technique',
+				'Revision and study strategy',
 			],
 			experience: {
-				yearsTeaching: 10,
+				yearsTeaching: '16+',
 				description:
-					'Head of English and Media Studies with proven record of rapid grade improvement',
-				totalStudents: 400,
+					'16+ years teaching experience\n11 years as Head of History\n4 years at Uppingham School (top independent school)\nCurrent Assistant Director of Studies with Senior Leadership responsibilities',
+				totalStudents: null,
+				eliteSchools: [
+					<>
+						11 years as <strong>Head of History</strong>
+					</>,
+					<>
+						4 years at <strong>Uppingham School</strong>
+					</>,
+					<>
+						Current <strong>Assistant Director of Studies</strong> with Senior
+						Leadership responsibilities
+					</>,
+				] as JSX.Element[],
 			},
 			achievements: [
 				{
-					title: 'Official Examiner',
-					description: 'Examiner for GCSE & A Level English',
-					year: '2024',
-				},
-				{
-					title: 'Head of English',
-					description: 'Head of English and Media Studies',
-					year: '2023',
-				},
-				{
-					title: 'Rapid Improvement',
-					description: 'Proven record of rapid grade improvement',
-					year: '2024',
+					title: 'GCSE & A Level History Examiner',
+					description: null,
+					year: null,
 				},
 			],
 			image: {
-				key: 'amy-english',
-				alt: 'Amy - English Language & Literature Specialist',
+				key: 'john-history',
+				alt: 'John - History Specialist',
 				professionalHeadshot: true,
 			},
-			bio: 'Amy holds an LLB (Hons) Law degree and PGCE Secondary English qualification. As Head of English and Media Studies and official examiner for GCSE & A Level English, she has established a proven record of rapid grade improvement with her students.',
+			bio: (
+				<>
+					John is an accomplished History educator with over sixteen years of
+					classroom experience, including more than a decade leading History
+					departments. He currently serves as <strong>Head of History</strong> and{' '}
+					<strong>Assistant Director of Studies</strong> at a high-performing state
+					school, following four years at <strong>Uppingham School</strong>, one of
+					the UK’s leading independent schools.
+					<br />
+					<br />A <strong>seasoned GCSE and A Level examiner</strong>, John combines
+					his deep subject expertise with a sharp understanding of assessment
+					criteria. His teaching is rigorous yet engaging, helping students develop
+					both critical thinking and exam precision. He also designs and leads{' '}
+					<strong>intensive revision courses</strong>, where students have achieved
+					remarkable improvements — including{' '}
+					<strong>one pupil who rose from a D to an A grade.</strong>
+					<br />
+					<br />
+					With his blend of leadership experience, examiner insight, and proven
+					results, John offers exceptional academic guidance for students aiming for
+					top grades in History.
+				</>
+			) as JSX.Element,
 			testimonial: {
 				quote:
-					'Jake has jumped from a U to two marks off a B – incredible progress in just a month.',
-				author: 'Parent',
-				context: 'English grade improvement',
+					'John’s sessions have really turned around History for me. His feedback is so clear and his enthusiasm makes even tough topics enjoyable.',
+				author: 'A-Level History Student',
+				context: 'null',
 			},
 			availability: {
 				status: 'available',
-				nextAvailable: '2025-01-18',
+				nextAvailable: null,
 			},
 			credentials: [
 				{
 					type: 'qualification',
-					title: 'LLB (Hons) Law',
-					institution: 'Professional Teaching Authority',
-					year: '2015',
+					title: 'BA History (First Class)',
+					institution: 'University of Birmingham',
+					year: null,
 					verified: true,
 				},
 				{
 					type: 'qualification',
-					title: 'PGCE Secondary English',
-					institution: 'Professional Teaching Authority',
-					year: '2016',
-					verified: true,
-				},
-				{
-					type: 'certification',
-					title: 'Enhanced DBS Check',
-					institution: 'Disclosure and Barring Service',
-					year: '2024',
+					title: 'PGCE, Secondary History',
+					institution: null,
+					year: null,
 					verified: true,
 				},
 			],
 			teachingStyle: {
 				approach:
-					'Analytical and supportive, focusing on rapid improvement through targeted techniques',
-				methodology: [
-					'Analytical writing',
-					'Literature analysis',
-					'Examination technique',
-				],
+					'Rigorous yet engaging, combining deep subject expertise with exam precision and leadership experience',
+				methodology: ['Exam preparation', 'Essay technique', 'Revision strategy'],
 				strengthAreas: [
-					'Grade improvement',
-					'Literature analysis',
-					'Academic writing',
+					'History subject expertise',
+					'Exam insight',
+					'Leadership in teaching',
 				],
 			},
 			subjectExpertise: [
 				{
-					subject: 'English Literature',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel', 'OCR'],
-					yearsExperience: 10,
-				},
-				{
-					subject: 'English Language',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel', 'OCR'],
-					yearsExperience: 10,
+					subject: 'History',
+					level: 'A-Level & GCSE',
+					examBoards: [],
+					yearsExperience: 16,
 				},
 			],
 			featured: true,
@@ -421,7 +490,7 @@ const TUTOR_PROFILES_SECTION = {
 		{
 			id: 'emily-entrance-history',
 			name: 'Emily',
-			title: 'Entrance Exam Expert, History & Politics',
+			title: 'Entrance Exam Expert',
 			tier: 'tier-one',
 			badge: '🏛️',
 			education: {
@@ -433,16 +502,18 @@ const TUTOR_PROFILES_SECTION = {
 			},
 			specializations: [
 				'Entrance Exams (11+ and 13+)',
-				'History',
-				'Politics',
 				'Elite School Preparation',
 			],
 			experience: {
-				yearsTeaching: 7,
+				yearsTeaching: 8,
 				description:
 					'Former teacher at Latymer, Merchant Taylors, North London Collegiate with official 11+ examiner experience',
 				totalStudents: 200,
-				eliteSchools: ['Latymer', 'Merchant Taylors', 'North London Collegiate'],
+				eliteSchools: [
+					'Staff member at Latymer (top 10 London grammar)',
+					'Staff member at Merchant Taylors (leading independent school)',
+					'Staff member at North London Collegiate (top 3 girls’ school in the UK)',
+				],
 			},
 			achievements: [
 				{
@@ -450,24 +521,13 @@ const TUTOR_PROFILES_SECTION = {
 					description: 'Official 11+ examiner and assisted identifying top scholars',
 					year: '2024',
 				},
-				{
-					title: 'Elite School Placements',
-					description:
-						"Students win places at Eton, Harrow, City of London, Henrietta Barnett, QE Boys and Dame Alice Owen's",
-					year: '2025',
-				},
-				{
-					title: 'GCSE/A Level/IB Examiner',
-					description: 'Examiner for GCSE/A Level/IB History & Politics',
-					year: '2023',
-				},
 			],
 			image: {
 				key: 'emily-entrance-history',
 				alt: 'Emily - Entrance Exam Expert, History & Politics',
 				professionalHeadshot: true,
 			},
-			bio: 'Emily holds a BA History from Cambridge and PGCE from Oxford. As a former teacher at Latymer, Merchant Taylors, and North London Collegiate, she serves as an official 11+ examiner and GCSE/A Level/IB examiner for History & Politics. Her students consistently win places at top schools including Eton, Harrow, and other prestigious institutions.',
+			bio: 'Emily holds a BA History from Cambridge and PGCE from Oxford. A former teacher at Latymer, Merchant Taylors, and North London Collegiate, she serves as an official 11+ examiner. She has supported their admissions process and has insider knowledge of what the most oversubscribed schools are looking for in candidates. Her students consistently win places at top institutions including Eton, Harrow, and other prestigious institutions.',
 			testimonial: {
 				quote:
 					"Offers from St Paul's, Westminster, Highgate and UCS. We can't believe it!",
@@ -544,699 +604,6 @@ const TUTOR_PROFILES_SECTION = {
 			featured: true,
 			order: 3,
 		},
-		{
-			id: 'michael-primary',
-			name: 'Michael',
-			title: 'Primary & 11+/13+ Specialist',
-			tier: 'tier-two',
-			badge: '✏️',
-			education: {
-				university: 'Professional Teaching Qualification',
-				degree: 'PGCE Primary',
-				grade: 'Outstanding',
-				graduationYear: '2002',
-			},
-			specializations: [
-				'Primary Education',
-				'11+ Preparation',
-				'13+ Preparation',
-				'English',
-			],
-			experience: {
-				yearsTeaching: 22,
-				description:
-					'English Subject Lead with outstanding success guiding students into competitive grammars and independents',
-				totalStudents: 800,
-				grammarSuccess: ['Tiffin', 'Sutton', 'Wallington'],
-			},
-			achievements: [
-				{
-					title: 'English Subject Lead',
-					description: 'English Subject Lead with 22+ years in the classroom',
-					year: '2024',
-				},
-				{
-					title: 'Grammar School Success',
-					description:
-						'Outstanding success guiding students into competitive grammars including Tiffin, Sutton, Wallington',
-					year: '2025',
-				},
-			],
-			image: {
-				key: 'michael-primary',
-				alt: 'Michael - Primary & 11+/13+ Specialist',
-				professionalHeadshot: true,
-			},
-			bio: 'Michael holds a PGCE Primary qualification with 22+ years of classroom experience. As English Subject Lead, he has achieved outstanding success guiding students into competitive grammar schools and independent schools, including Tiffin, Sutton, and Wallington.',
-			testimonial: {
-				quote:
-					'So patient, kind and encouraging. Charlie is so proud of his 11+ offers (as are we!).',
-				author: 'Parent',
-				context: '11+ preparation success',
-			},
-			availability: {
-				status: 'available',
-				nextAvailable: '2025-01-20',
-			},
-			credentials: [
-				{
-					type: 'qualification',
-					title: 'PGCE Primary',
-					institution: 'Professional Teaching Authority',
-					year: '2002',
-					verified: true,
-				},
-				{
-					type: 'certification',
-					title: 'Enhanced DBS Check',
-					institution: 'Disclosure and Barring Service',
-					year: '2024',
-					verified: true,
-				},
-			],
-			teachingStyle: {
-				approach:
-					'Patient and encouraging, building confidence through structured primary education',
-				methodology: ['Primary pedagogy', '11+ preparation', 'Confidence building'],
-				strengthAreas: [
-					'Grammar school preparation',
-					'Primary English',
-					'Student encouragement',
-				],
-			},
-			subjectExpertise: [
-				{
-					subject: 'Primary Education',
-					level: 'Primary',
-					examBoards: ['National Curriculum'],
-					yearsExperience: 22,
-				},
-				{
-					subject: '11+ Preparation',
-					level: '11+',
-					examBoards: ['CEM', 'GL Assessment'],
-					yearsExperience: 15,
-				},
-				{
-					subject: '13+ Preparation',
-					level: '13+',
-					examBoards: ['Common Entrance'],
-					yearsExperience: 12,
-				},
-			],
-			featured: false,
-			order: 4,
-		},
-		{
-			id: 'juliet-maths-sen',
-			name: 'Juliet',
-			title: 'Maths, SEN & International Teaching Expert',
-			tier: 'tier-two',
-			badge: '🧮',
-			education: {
-				university: 'Professional Teaching Qualification',
-				degree: 'BSc Maths',
-				additionalQualifications: ['MA Education', 'PGCE Secondary'],
-				grade: 'Honours',
-				graduationYear: '1995',
-			},
-			specializations: [
-				'Mathematics',
-				'Special Educational Needs (SEN)',
-				'Business Studies',
-				'Economics',
-			],
-			experience: {
-				yearsTeaching: 30,
-				description:
-					'30+ years international teaching, including Headteacher roles, particularly excels with number-averse and SEN students',
-				totalStudents: 1200,
-				internationalExperience: true,
-				headteacherExperience: true,
-			},
-			achievements: [
-				{
-					title: 'International Headteacher',
-					description:
-						'30+ years international teaching, including Headteacher roles',
-					year: '2024',
-				},
-				{
-					title: 'SEN Specialist',
-					description: 'Particularly excels with number-averse and SEN students',
-					year: '2025',
-				},
-				{
-					title: 'Multi-Subject Expert',
-					description: 'Teaches Maths, Business Studies, Economics',
-					year: '2023',
-				},
-			],
-			image: {
-				key: 'juliet-maths-sen',
-				alt: 'Juliet - Maths, SEN & International Teaching Expert',
-				professionalHeadshot: true,
-			},
-			bio: 'Juliet holds a BSc Maths, MA Education, and PGCE Secondary qualification. With 30+ years of international teaching experience including Headteacher roles, she particularly excels with number-averse and SEN students, teaching Maths, Business Studies, and Economics.',
-			testimonial: {
-				quote:
-					"If Kate keeps progressing like this, they'll move her up a set after Christmas – hooray!",
-				author: 'Parent',
-				context: 'Mathematics improvement with SEN support',
-			},
-			availability: {
-				status: 'available',
-				nextAvailable: '2025-01-25',
-			},
-			credentials: [
-				{
-					type: 'qualification',
-					title: 'BSc Mathematics',
-					institution: 'Professional Teaching Authority',
-					year: '1995',
-					verified: true,
-				},
-				{
-					type: 'qualification',
-					title: 'MA Education',
-					institution: 'Professional Teaching Authority',
-					year: '1997',
-					verified: true,
-				},
-				{
-					type: 'certification',
-					title: 'Enhanced DBS Check',
-					institution: 'Disclosure and Barring Service',
-					year: '2024',
-					verified: true,
-				},
-			],
-			teachingStyle: {
-				approach:
-					'Patient and adaptive, specialising in building mathematical confidence for all learning styles',
-				methodology: [
-					'SEN support strategies',
-					'Number confidence building',
-					'International best practices',
-				],
-				strengthAreas: [
-					'Special needs mathematics',
-					'International curricula',
-					'Leadership experience',
-				],
-			},
-			subjectExpertise: [
-				{
-					subject: 'Mathematics',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel', 'OCR'],
-					yearsExperience: 30,
-				},
-				{
-					subject: 'Business Studies',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel'],
-					yearsExperience: 20,
-				},
-				{
-					subject: 'Economics',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel'],
-					yearsExperience: 18,
-				},
-			],
-			featured: false,
-			order: 5,
-		},
-		{
-			id: 'andreas-languages',
-			name: 'Andreas',
-			title: 'Modern Languages Specialist',
-			tier: 'tier-two',
-			badge: '🌍',
-			education: {
-				university: 'Professional Teaching Qualification',
-				degree: 'BA Spanish & German',
-				additionalQualifications: ['QTS in Spanish and German'],
-				grade: 'Honours',
-				graduationYear: '2010',
-			},
-			specializations: [
-				'Spanish',
-				'German',
-				'Modern Languages',
-				'A Level Language Courses',
-			],
-			experience: {
-				yearsTeaching: 15,
-				description:
-					'Fluent in six languages, delivers entire A Level language courses where schools do not offer them',
-				totalStudents: 300,
-				languagesFluent: 6,
-			},
-			achievements: [
-				{
-					title: 'Multilingual Expert',
-					description: 'Fluent in six languages',
-					year: '2025',
-				},
-				{
-					title: 'Complete Course Delivery',
-					description:
-						'Delivers entire A Level language courses where schools do not offer them',
-					year: '2024',
-				},
-				{
-					title: 'QTS Qualified',
-					description: 'QTS in Spanish and German',
-					year: '2010',
-				},
-			],
-			image: {
-				key: 'andreas-languages',
-				alt: 'Andreas - Modern Languages Specialist',
-				professionalHeadshot: true,
-			},
-			bio: 'Andreas holds a BA Spanish & German degree with QTS in Spanish and German. Fluent in six languages, he delivers entire A Level language courses where schools do not offer them, providing comprehensive language education to students.',
-			testimonial: {
-				quote:
-					"I got a 9 in Portuguese and an 8 in Spanish – amazing after being told I'd struggle to get a 7!",
-				author: 'Student',
-				context: 'A Level language success',
-			},
-			availability: {
-				status: 'available',
-				nextAvailable: '2025-01-22',
-			},
-			credentials: [
-				{
-					type: 'qualification',
-					title: 'BA Spanish & German',
-					institution: 'Professional Teaching Authority',
-					year: '2010',
-					verified: true,
-				},
-				{
-					type: 'qualification',
-					title: 'QTS Spanish and German',
-					institution: 'Professional Teaching Authority',
-					year: '2010',
-					verified: true,
-				},
-				{
-					type: 'certification',
-					title: 'Enhanced DBS Check',
-					institution: 'Disclosure and Barring Service',
-					year: '2024',
-					verified: true,
-				},
-			],
-			teachingStyle: {
-				approach:
-					'Immersive and comprehensive, delivering complete language education programmes',
-				methodology: [
-					'Complete course delivery',
-					'Multilingual approach',
-					'Cultural integration',
-				],
-				strengthAreas: [
-					'A Level language courses',
-					'Multiple language fluency',
-					'Independent course design',
-				],
-			},
-			subjectExpertise: [
-				{
-					subject: 'Spanish',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel', 'OCR'],
-					yearsExperience: 15,
-				},
-				{
-					subject: 'German',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel', 'OCR'],
-					yearsExperience: 15,
-				},
-				{
-					subject: 'Portuguese',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel'],
-					yearsExperience: 10,
-				},
-			],
-			featured: false,
-			order: 6,
-		},
-		{
-			id: 'ophelia-classics',
-			name: 'Ophelia',
-			title: '11+, Entrance Exams & Classics Expert',
-			tier: 'tier-three',
-			badge: '🏛️',
-			education: {
-				university: 'University of Cambridge',
-				degree: 'BA Classics, Cambridge',
-				grade: 'First Class',
-				graduationYear: '2019',
-			},
-			specializations: [
-				'Classics',
-				'11+ Preparation',
-				'Entrance Exams',
-				'Oxbridge Preparation',
-			],
-			experience: {
-				yearsTeaching: 6,
-				description:
-					'11+ and entrance exam success across Harrow, Westminster and more, with Oxbridge personal statement & interview coaching',
-				totalStudents: 150,
-				eliteSchoolSuccess: ['Harrow', 'Westminster'],
-			},
-			achievements: [
-				{
-					title: 'Elite School Success',
-					description:
-						'11+ and entrance exam success across Harrow, Westminster and more',
-					year: '2024',
-				},
-				{
-					title: 'Rapid Improvement',
-					description: 'Improved 11+ student scores from 20% to 80% in 2 months',
-					year: '2024',
-				},
-				{
-					title: 'Oxbridge Coaching',
-					description: 'Oxbridge personal statement & interview coaching',
-					year: '2023',
-				},
-			],
-			image: {
-				key: 'ophelia-classics',
-				alt: 'Ophelia - 11+, Entrance Exams & Classics Expert',
-				professionalHeadshot: true,
-			},
-			bio: 'Ophelia holds a BA Classics from Cambridge University. She specialises in 11+ and entrance exam preparation with success across elite schools including Harrow and Westminster. She provides Oxbridge personal statement and interview coaching, with proven ability to improve student scores dramatically.',
-			testimonial: {
-				quote:
-					'Without Ophelia there is no way I would have won my place at Cambridge.',
-				author: 'Student',
-				context: 'Oxbridge admission success',
-			},
-			availability: {
-				status: 'limited',
-				nextAvailable: '2025-02-05',
-			},
-			credentials: [
-				{
-					type: 'qualification',
-					title: 'BA Classics',
-					institution: 'University of Cambridge',
-					year: '2019',
-					verified: true,
-				},
-				{
-					type: 'certification',
-					title: 'Enhanced DBS Check',
-					institution: 'Disclosure and Barring Service',
-					year: '2024',
-					verified: true,
-				},
-			],
-			teachingStyle: {
-				approach:
-					'Classical education with strategic entrance exam preparation and university coaching',
-				methodology: [
-					'Classical methodology',
-					'Entrance exam strategy',
-					'University interview preparation',
-				],
-				strengthAreas: [
-					'Classics education',
-					'Elite school preparation',
-					'Oxbridge coaching',
-				],
-			},
-			subjectExpertise: [
-				{
-					subject: 'Classics',
-					level: 'A-Level',
-					examBoards: ['AQA', 'OCR'],
-					yearsExperience: 6,
-				},
-				{
-					subject: '11+ Preparation',
-					level: '11+',
-					examBoards: ['CEM', 'GL Assessment'],
-					yearsExperience: 5,
-				},
-				{
-					subject: 'Latin',
-					level: 'A-Level',
-					examBoards: ['AQA', 'OCR'],
-					yearsExperience: 6,
-				},
-			],
-			featured: false,
-			order: 7,
-		},
-		{
-			id: 'annoushka-english',
-			name: 'Annoushka',
-			title: 'English & Entrance Exams Specialist',
-			tier: 'tier-three',
-			badge: '📘',
-			education: {
-				university: 'University of Oxford',
-				degree: 'BA English, Oxford',
-				additionalQualifications: ['CELTA Qualified'],
-				grade: 'First Class',
-				graduationYear: '2017',
-			},
-			specializations: [
-				'English',
-				'Entrance Exams',
-				'Independent School Preparation',
-				'CELTA Teaching',
-			],
-			experience: {
-				yearsTeaching: 8,
-				description:
-					'Teaches online and in North London area with classroom experience in UK and international private schools',
-				totalStudents: 250,
-				teachingAreas: ['Online', 'North London'],
-				internationalExperience: true,
-			},
-			achievements: [
-				{
-					title: 'Elite School Placements',
-					description:
-						'Students regularly win places at Westminster, Cheltenham Ladies, Benenden',
-					year: '2025',
-				},
-				{
-					title: 'International Experience',
-					description:
-						'Classroom experience in UK and international private schools',
-					year: '2024',
-				},
-				{
-					title: 'CELTA Qualified',
-					description: 'CELTA Qualified for English language teaching',
-					year: '2018',
-				},
-			],
-			image: {
-				key: 'annoushka-english',
-				alt: 'Annoushka - English & Entrance Exams Specialist',
-				professionalHeadshot: true,
-			},
-			bio: 'Annoushka holds a BA English from Oxford and is CELTA qualified. Teaching both online and in the North London area, she has classroom experience in UK and international private schools. Her students regularly win places at prestigious institutions including Westminster, Cheltenham Ladies, and Benenden.',
-			testimonial: {
-				quote:
-					"Seb comes out of lessons beaming – I caught him teaching his friends Annoushka's times tables tricks!",
-				author: 'Parent',
-				context: 'Engaging teaching methods',
-			},
-			availability: {
-				status: 'available',
-				nextAvailable: '2025-01-28',
-			},
-			credentials: [
-				{
-					type: 'qualification',
-					title: 'BA English',
-					institution: 'University of Oxford',
-					year: '2017',
-					verified: true,
-				},
-				{
-					type: 'qualification',
-					title: 'CELTA',
-					institution: 'Cambridge Assessment English',
-					year: '2018',
-					verified: true,
-				},
-				{
-					type: 'certification',
-					title: 'Enhanced DBS Check',
-					institution: 'Disclosure and Barring Service',
-					year: '2024',
-					verified: true,
-				},
-			],
-			teachingStyle: {
-				approach:
-					'Engaging and interactive, creating enthusiasm for learning with effective techniques',
-				methodology: [
-					'Interactive learning',
-					'Memorable techniques',
-					'Student engagement',
-				],
-				strengthAreas: [
-					'Independent school preparation',
-					'English literature',
-					'Student motivation',
-				],
-			},
-			subjectExpertise: [
-				{
-					subject: 'English Literature',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel', 'OCR'],
-					yearsExperience: 8,
-				},
-				{
-					subject: 'English Language',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel'],
-					yearsExperience: 8,
-				},
-			],
-			featured: false,
-			order: 8,
-		},
-		{
-			id: 'alex-admissions',
-			name: 'Alex',
-			title: 'University Admissions & English Expert',
-			tier: 'tier-three',
-			badge: '⚖️',
-			education: {
-				university: 'Cambridge & Harvard',
-				degree: 'BA Law, Cambridge',
-				additionalQualifications: ['MA, Harvard (Bioethics & AI Liability)'],
-				grade: 'First Class',
-				graduationYear: '2020',
-			},
-			specializations: [
-				'University Admissions',
-				'Law',
-				'English',
-				'International Admissions',
-			],
-			experience: {
-				yearsTeaching: 5,
-				description:
-					'British & US admissions expert with Oxbridge & Ivy League success, 10,000+ tutoring hours',
-				totalStudents: 200,
-				tutoringHours: 10000,
-				admissionsSuccess: ['Oxbridge', 'Ivy League'],
-			},
-			achievements: [
-				{
-					title: 'Top 1% SAT Scorer',
-					description: 'Top 1% SAT scorer with extensive testing expertise',
-					year: '2023',
-				},
-				{
-					title: 'Dual Admissions Expert',
-					description:
-						'British & US admissions expert – Oxbridge & Ivy League success',
-					year: '2024',
-				},
-				{
-					title: 'Multi-Qualification Specialist',
-					description: 'Specialist in SAT, LNAT, IB, A-level, IGCSE, AP, HSC',
-					year: '2025',
-				},
-			],
-			image: {
-				key: 'alex-admissions',
-				alt: 'Alex - University Admissions & English Expert',
-				professionalHeadshot: true,
-			},
-			bio: 'Alex holds a BA Law from Cambridge and MA from Harvard in Bioethics & AI Liability. As a British & US admissions expert with Oxbridge & Ivy League success, Alex is a top 1% SAT scorer with 10,000+ tutoring hours and specialises in multiple qualification systems including SAT, LNAT, IB, A-level, IGCSE, AP, and HSC.',
-			testimonial: {
-				quote:
-					'I got 28 in my LNAT and a UCL offer – please tell him thank you so much!',
-				author: 'Student',
-				context: 'LNAT and university admission success',
-			},
-			availability: {
-				status: 'limited',
-				nextAvailable: '2025-02-10',
-			},
-			credentials: [
-				{
-					type: 'qualification',
-					title: 'BA Law',
-					institution: 'University of Cambridge',
-					year: '2020',
-					verified: true,
-				},
-				{
-					type: 'qualification',
-					title: 'MA (Bioethics & AI Liability)',
-					institution: 'Harvard University',
-					year: '2022',
-					verified: true,
-				},
-				{
-					type: 'certification',
-					title: 'Enhanced DBS Check',
-					institution: 'Disclosure and Barring Service',
-					year: '2024',
-					verified: true,
-				},
-			],
-			teachingStyle: {
-				approach:
-					'Strategic and comprehensive, combining academic excellence with admissions expertise',
-				methodology: [
-					'University preparation',
-					'Standardised test strategy',
-					'International admissions',
-				],
-				strengthAreas: [
-					'University admissions',
-					'Standardised testing',
-					'International qualifications',
-				],
-			},
-			subjectExpertise: [
-				{
-					subject: 'English Literature',
-					level: 'A-Level',
-					examBoards: ['AQA', 'Edexcel', 'OCR'],
-					yearsExperience: 5,
-				},
-				{
-					subject: 'Law',
-					level: 'University',
-					examBoards: ['LNAT'],
-					yearsExperience: 5,
-				},
-				{
-					subject: 'SAT Preparation',
-					level: 'International',
-					examBoards: ['College Board'],
-					yearsExperience: 4,
-				},
-			],
-			featured: false,
-			order: 9,
-		},
 	],
 	showAllButton: {
 		text: 'Meet Some of our Team',
@@ -1244,6 +611,7 @@ const TUTOR_PROFILES_SECTION = {
 	},
 	backgroundStyle: 'light',
 } as const;
+
 const iconMap = {
 	MessageSquare,
 	Users,
@@ -1260,36 +628,6 @@ export default function HowItWorksPage() {
 	const tutorProfilesSection = TUTOR_PROFILES_SECTION;
 	return (
 		<>
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			<section id='how-it-works-hero'>
-				<SimpleHero
-					backgroundImage='/images/hero/hero-how-it-works.jpeg'
-					h1={
-						<span className='text-white'>
-							Your Journey To <span className='text-accent-600'>Academic Success</span>
-						</span>
-					}
-					h2='Outstanding Tuition. Tailored Pairing. Ongoing Guidance.'
-					decorativeStyle='lines'
-				/>
-			</section>
-
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
 			<PageLayout
 				background='white'
 				containerSize='full'
@@ -1297,71 +635,63 @@ export default function HowItWorksPage() {
 				footerProps={{
 					showContactForm: true,
 				}}>
-				{}
-				{}
-
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
+				<section id='how-it-works-hero'>
+					<SimpleHero
+						backgroundImage='/images/hero/hero-how-it-works.jpeg'
+						h1={
+							<span className='text-white'>
+								Your Journey To{' '}
+								<span className='text-accent-600'>Academic Success</span>
+							</span>
+						}
+						h2='Outstanding Tuition. Tailored Pairing. Ongoing Guidance.'
+						decorativeStyle='lines'
+					/>
+				</section>
 				<section
 					id='how-it-works-process-steps'
 					className='relative bg-white pt-12 lg:pt-16 pb-20 lg:pb-32'>
-					{}
-					{}
-
-					{}
-					{}
-					{}
 					<div className='relative container mx-auto px-4 sm:px-6 lg:px-8'>
-						{}
-						{}
-						{}
 						<div className='text-center mb-4'>
 							<h2>Your Journey To Academic Success</h2>
 						</div>
 
-					<section
-						id='journey-quote'
-						className='py-8 lg:py-12 bg-primary-50'>
-						<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
-							<Blockquote>
-								{/* Quote icon */}
-								<svg
-									className='mb-6 h-14 w-14 fill-primary-700'
-									aria-hidden='true'
-									xmlns='http://www.w3.org/2000/svg'
-									viewBox='0 0 18 14'>
-									<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
-								</svg>
+						<section
+							id='journey-quote'
+							className='py-8 lg:py-12 bg-primary-50'>
+							<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
+								<Blockquote>
+									{/* Quote icon */}
+									<svg
+										className='mb-6 h-14 w-14 fill-primary-700'
+										aria-hidden='true'
+										xmlns='http://www.w3.org/2000/svg'
+										viewBox='0 0 18 14'>
+										<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
+									</svg>
 
-								{/* Journey Quote */}
-								<p className='italic'>
-									&quot;At My Private Tutor Online, we offer more than just tutoring—we
-									provide thoughtful, expert advice at every stage of your child&apos;s
-									academic journey. Our service is consultative, personal, and{' '}
-									<strong>bespoke to your family&apos;s individual needs</strong>.&quot;
-								</p>
+									{/* Journey Quote */}
+									<p className='italic'>
+										&quot;At My Private Tutor Online, we offer more than just tutoring—we
+										provide thoughtful, expert advice at every stage of your child&apos;s
+										academic journey. Our service is consultative, personal, and{' '}
+										<strong>bespoke to your family&apos;s individual needs</strong>.&quot;
+									</p>
 
-								{/* Author with avatar */}
-								<figcaption className='mt-4 flex items-center justify-center space-x-3'>
-									<div className='flex items-center divide-x-2 divide-neutral-500'>
-										<cite className='pr-3'>Elizabeth Burrows</cite>
-										<cite className='pl-3 text-neutral-500'>Founder</cite>
-									</div>
-								</figcaption>
-							</Blockquote>
-						</div>
-					</section>
+									{/* Author with avatar */}
+									<figcaption className='mt-4 flex items-center justify-center space-x-3'>
+										<div className='flex items-center divide-x-2 divide-neutral-500'>
+											<cite className='pr-3'>Elizabeth Burrows</cite>
+											<cite className='pl-3 text-neutral-500'>Founder</cite>
+										</div>
+									</figcaption>
+								</Blockquote>
+							</div>
+						</section>
 
 						<div className='relative w-full'>
 							<div className='space-y-0'>
-								{processSteps && processSteps.length > 0 ?
+								{processSteps && processSteps.length > 0 ? (
 									processSteps.map((step: HowItWorksStep, index: number) => {
 										const IconComponent = iconMap[step.icon as keyof typeof iconMap];
 										const isEven = index % 2 === 0;
@@ -1385,11 +715,11 @@ export default function HowItWorksPage() {
 													delay: index * 0.1,
 												}}
 												className='w-full'>
-												{}
 												<div className='grid grid-cols-1 lg:grid-cols-2 lg:auto-rows-fr gap-0 items-stretch'>
-													{}
 													<div
-														className={`relative w-full ${isEven ? 'order-1 lg:order-1' : 'order-1 lg:order-2'}`}>
+														className={`relative w-full ${
+															isEven ? 'order-1 lg:order-1' : 'order-1 lg:order-2'
+														}`}>
 														<div className='relative w-full aspect-[17/9] lg:aspect-auto'>
 															<Image
 																src={step.image}
@@ -1401,15 +731,14 @@ export default function HowItWorksPage() {
 														</div>
 													</div>
 
-													{}
-													{}
-													{}
-													{}
 													<div
-														className={`bg-white flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-16 lg:py-20 ${isEven ? 'order-2 lg:order-2' : 'order-2 lg:order-1'}`}>
+														className={`bg-white flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-16 lg:py-20 ${
+															isEven ? 'order-2 lg:order-2' : 'order-2 lg:order-1'
+														}`}>
 														<div
-															className={`${isEven ? 'border-l-4 pl-8' : 'border-r-4 pr-8'} border-primary-700'`}>
-															{}
+															className={`${
+																isEven ? 'border-l-4 pl-8' : 'border-r-4 pr-8'
+															} border-primary-700'`}>
 															<div className='flex items-start gap-4 mb-6'>
 																<div className='flex-shrink-0 w-12 h-12 bg-primary-700 flex items-center justify-center shadow-md'>
 																	<span className='text-white'>{step.number}</span>
@@ -1423,16 +752,13 @@ export default function HowItWorksPage() {
 																</div>
 															</div>
 
-															{}
-															{}
-															{}
 															<div className='mb-6'>
 																{step.description.split('\n').map(
 																	(paragraph, pIndex) =>
 																		paragraph.trim() && (
 																			<p
 																				key={pIndex}
-																				className={pIndex > 0 ? 'mt-4' : ''}>
+																				className={pIndex > 0 ? 'mt-4' : null}>
 																				{paragraph.trim()}
 																			</p>
 																		),
@@ -1458,24 +784,16 @@ export default function HowItWorksPage() {
 											</m.div>
 										);
 									})
-								:	<div className='text-center py-12'>
+								) : (
+									<div className='text-center py-12'>
 										<p>Process steps are currently being loaded...</p>
 									</div>
-								}
+								)}
 							</div>
 						</div>
 					</div>
 				</section>
 
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
 				<section id='how-it-works-tutors'>
 					<TutorsSection
 						data={tutorProfilesSection}
@@ -1484,67 +802,25 @@ export default function HowItWorksPage() {
 					/>
 				</section>
 
-				{}
-				{}
-				{}
-
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
 				<section
 					id='how-it-works-tutoring-tiers'
 					className='relative bg-white py-20 lg:py-32 overflow-hidden'>
-					{}
-					{}
-
-					{}
 					<div className='absolute inset-0 opacity-[0.015] pointer-events-none' />
 
-					{}
-					{}
 					<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl'>
-						{}
-						{}
-						{}
-						{}
 						<div className='text-center mb-16 lg:mb-20'>
-							{}
-							{}
-							{}
-							<div className='flex items-center justify-center gap-3 mb-6'>
-								<span className='text-accent-700 tracking-widest uppercase'>
-									Tiered Excellence
-								</span>
-							</div>
-
-							<h2 className='mb-8'>Choose Your Unique Tutoring Experience</h2>
-
-							{}
-							{}
-							<div className='flex items-center justify-center gap-4 mb-8'>
-								<div className='w-24 h-1 bg-accent-500 mx-auto'></div>
-							</div>
+							<h2 className='mb-8'>Choose Your Bespoke Tutoring Experience</h2>
 
 							<p className='max-w-4xl mx-auto'>
-								From essential academic support to premium elite guidance—discover the
-								service level that perfectly matches your family&apos;s aspirations and
-								your child&apos;s potential
+								Whether you’re seeking essential academic mentoring or the insight of a
+								specialist examiner, find the level of guidance that feels right for
+								your child and your family.
 							</p>
 						</div>
 
-						{}
-						{}
 						<div className='relative'>
-							{}
-							{}
-							{}
-							{}
 							<div className='grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch'>
-								{tutorTiers && tutorTiers.length > 0 ?
+								{tutorTiers && tutorTiers.length > 0 ? (
 									[...tutorTiers]
 										.sort((a: TutorTier, b: TutorTier) => {
 											const tierOrder = {
@@ -1578,36 +854,18 @@ export default function HowItWorksPage() {
 														duration: 0.8,
 														delay: index * 0.1,
 													}}>
-													{}
-													{}
-													{}
 													<Card className='bg-white border-2 border-neutral-300 hover:border-accent-500/40 shadow-lg hover:shadow-xl transition-all duration-300 h-full rounded-none'>
 														<CardHeader className='text-center pb-6 pt-8 px-6 lg:px-8'>
-															{}
-															{}
-															{}
 															<h3 className='mb-4'>{tier.tier}</h3>
 
-															{}
-															{}
-															{}
 															<Separator className='my-4 bg-neutral-300' />
 
-															{}
-															{}
-															{}
 															<div className='mb-2'>{tier.pricePoint}</div>
 														</CardHeader>
 
 														<CardContent className='text-center px-6 lg:px-8 pb-6 lg:pb-8'>
-															{}
-															{}
-															{}
 															<p className='mb-4'>{tier.description}</p>
 
-															{}
-															{}
-															{}
 															<Separator className='my-4 bg-neutral-300' />
 
 															<p className='mb-3'>Best For:</p>
@@ -1617,18 +875,14 @@ export default function HowItWorksPage() {
 												</m.div>
 											);
 										})
-								:	<div className='text-center py-12'>
+								) : (
+									<div className='text-center py-12'>
 										<p>Tutoring tiers are currently being loaded...</p>
 									</div>
-								}
+								)}
 							</div>
 						</div>
 
-						{}
-						{}
-						{}
-						{}
-						{}
 						<div className='text-center mt-12'>
 							<div className='rounded-2xl p-8 max-w-2xl mx-auto'>
 								<p className='mb-6'>
@@ -1643,35 +897,15 @@ export default function HowItWorksPage() {
 					</div>
 				</section>
 
-				{}
-				{}
-				{}
-				{}
-				{}
 				<section
 					id='how-it-works-benefits'
 					className='relative bg-white py-20 lg:py-32 overflow-hidden'>
-					{}
-					{}
-
-					{}
 					<div className='absolute inset-0 opacity-[0.015] pointer-events-none' />
 
-					{}
-					{}
 					<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl'>
-						{}
-						{}
-						{}
-						{}
 						<div className='text-center mb-16 lg:mb-20'>
-							{}
-							{}
-
 							<h2 className='mb-8'>Why Families Choose Our Approach</h2>
 
-							{}
-							{}
 							<div className='flex items-center justify-center gap-4 mb-8'>
 								<div className='w-24 h-1 bg-accent-500 mx-auto'></div>
 							</div>
@@ -1682,14 +916,7 @@ export default function HowItWorksPage() {
 							</p>
 						</div>
 
-						{}
-						{}
-						{}
-						{}
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 lg:mb-20 items-stretch'>
-							{}
-							{}
-							{}
 							<m.div
 								className='relative rounded-none overflow-hidden shadow-lg flex-1'
 								initial={{
@@ -1708,8 +935,6 @@ export default function HowItWorksPage() {
 									duration: 0.8,
 									ease: [0.25, 0.1, 0.25, 1],
 								}}>
-								{}
-								{}
 								<div className='relative h-full'>
 									<Image
 										src='/images/graphics/feature-why-families-choose-approach.jpg'
@@ -1721,7 +946,6 @@ export default function HowItWorksPage() {
 								</div>
 							</m.div>
 
-							{}
 							<m.div
 								initial={{
 									opacity: 0,
@@ -1741,7 +965,7 @@ export default function HowItWorksPage() {
 									ease: [0.25, 0.1, 0.25, 1],
 								}}>
 								<div className='space-y-6'>
-									{benefits && benefits.length > 0 ?
+									{benefits && benefits.length > 0 ? (
 										benefits.map((benefit: string, index: number) => (
 											<m.div
 												key={index}
@@ -1763,31 +987,23 @@ export default function HowItWorksPage() {
 													delay: 0.4 + index * 0.1,
 													ease: [0.25, 0.1, 0.25, 1],
 												}}>
-												{}
-												{}
-												{}
 												<div className='flex-shrink-0 w-8 h-8 bg-primary-700 rounded-full flex items-center justify-center shadow-md transition-shadow duration-300 mt-1'>
 													<CheckCircle className='w-5 h-5 text-white' />
 												</div>
 
-												{}
-												{}
-												{}
 												<div className='flex-1'>
 													<p className='transition-colors duration-300'>{benefit}</p>
 												</div>
 											</m.div>
 										))
-									:	<div className='text-center py-12'>
+									) : (
+										<div className='text-center py-12'>
 											<p>Benefits are currently being loaded...</p>
 										</div>
-									}
+									)}
 								</div>
 							</m.div>
 						</div>
-
-						{}
-						{}
 					</div>
 				</section>
 			</PageLayout>

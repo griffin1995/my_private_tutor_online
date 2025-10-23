@@ -1,11 +1,9 @@
 'use client';
 
-import { PageFooter } from '@/components/layout/page-footer';
-import { PageHeader } from '@/components/layout/page-header';
+import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
-import { cn } from '@/lib/utils';
 import { Blockquote } from 'flowbite-react';
 
 // ============================================================================
@@ -23,28 +21,27 @@ const ABOUT_HERO_IMAGE = {
 
 export default function AboutUsPage() {
 	return (
-		<div className={cn('min-h-screen flex flex-col overflow-x-hidden bg-white')}>
-			<PageHeader />
+		<>
+			{/* Hero Section - Outside PageLayout */}
+			<section id='about-hero'>
+				<SimpleHero
+					backgroundImage={ABOUT_HERO_IMAGE.src}
+					h1={
+						<span className='text-white'>
+							Founder <span className='text-accent-600'>& Ethos</span>
+						</span>
+					}
+					h2='Where breaking the mould leads to remarkable results.'
+					decorativeStyle='none'
+				/>
+			</section>
 
-			<main
-				className='flex-1'
-				role='main'
-				id='main-content'
-				tabIndex={-1}>
-				{/* Hero Section */}
-				<section id='about-hero'>
-					<SimpleHero
-						backgroundImage={ABOUT_HERO_IMAGE.src}
-						h1={
-							<span className='text-white'>
-								Founder <span className='text-accent-600'>& Ethos</span>
-							</span>
-						}
-						h2='Our bespoke consultation and pairing process ensures the perfect fit and seamless support throughout.'
-						decorativeStyle='none'
-					/>
-				</section>
-
+			<PageLayout
+				background='white'
+				showHeader={true}
+				showFooter={true}
+				containerSize='full'
+				footerProps={{ showContactForm: true }}>
 				{/* Founder Story Section */}
 				<div id='about-founder-story'>
 					<div className='mx-auto'>
@@ -87,7 +84,7 @@ export default function AboutUsPage() {
 					id='about-highlighter-intro'
 					className='pt-20 bg-white'>
 					<div className='max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8'>
-						<h1 className='mb-6'>Our Educational Philosophy</h1>
+						<h2 className='mb-6'>Our Educational Philosophy</h2>
 
 						<p>
 							We believe every child deserves an education tailored to who they are,
@@ -117,10 +114,7 @@ export default function AboutUsPage() {
 						<TestimonialsSection />
 					</div>
 				</div>
-			</main>
-
-			{/* Footer */}
-			<PageFooter showContactForm={true} />
-		</div>
+			</PageLayout>
+		</>
 	);
 }

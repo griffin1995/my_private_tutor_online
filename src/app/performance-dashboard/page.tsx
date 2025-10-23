@@ -29,13 +29,13 @@ export default function PerformanceDashboard() {
 	const getRatingColor = (rating?: string) => {
 		switch (rating) {
 			case 'good':
-				return 'text-green-600 bg-green-50';
+				return 'text-green-800 bg-green-50';
 			case 'needs-improvement':
-				return 'text-yellow-600 bg-yellow-50';
+				return 'text-yellow-700 bg-yellow-50';
 			case 'poor':
-				return 'text-red-600 bg-red-50';
+				return 'text-red-700 bg-red-50';
 			default:
-				return 'text-gray-600 bg-gray-50';
+				return 'text-gray-700 bg-gray-50';
 		}
 	};
 	const getTrendIcon = (trend?: string) => {

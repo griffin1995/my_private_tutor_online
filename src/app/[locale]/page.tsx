@@ -4,7 +4,6 @@ import { Avatar, Blockquote } from 'flowbite-react';
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import { ErrorBoundaryWrapper } from '../../components/boundaries/homepage-error-boundary';
-import { CMSArchitectureDashboard } from '../../components/cms-architecture-dashboard';
 import { LazyServicesCarousel } from '../../components/dynamic/lazy-loaded-components';
 import { PageFooter } from '../../components/layout/page-footer';
 import { Navigation } from '../../components/navigation/Navigation';
@@ -575,9 +574,9 @@ export default function HomePage() {
 										img='/images/team/elizabeth-burrows-founder-main.jpg'
 										alt='Elizabeth Burrows'
 									/>
-									<div className='flex items-center divide-x-2 divide-neutral-500'>
+									<div className='flex items-center divide-x-2 divide-neutral-600'>
 										<cite className='pr-3'>Elizabeth Burrows</cite>
-										<cite className='pl-3 text-neutral-500'>Founder</cite>
+										<cite className='pl-3 text-neutral-700'>Founder</cite>
 									</div>
 								</figcaption>
 							</Blockquote>
@@ -588,19 +587,6 @@ export default function HomePage() {
 
 			{/* Footer */}
 			<PageFooter showContactForm={true} />
-
-			{/* CMS Architecture Dashboard (Development only) */}
-			{(process.env.NODE_ENV === 'development' ||
-				process.env['NEXT_PUBLIC_SHOW_CMS_MONITOR'] === 'true') && (
-				<CMSArchitectureDashboard
-					compactMode={true}
-					autoRefresh={true}
-					refreshInterval={5000}
-					maxViolationsDisplay={5}
-					showExportButton={process.env.NODE_ENV === 'development'}
-					showFullDetails={false}
-				/>
-			)}
 		</div>
 	);
 }

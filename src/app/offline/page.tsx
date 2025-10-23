@@ -100,8 +100,8 @@ export default function OfflinePage() {
 						duration: 0.6,
 					}}
 					className='text-center mb-8'>
-					<div className='inline-flex items-center justify-center w-20 h-20 bg-[#CA9E5B]/20 rounded-full mb-6'>
-						<WifiOff className='w-10 h-10 text-[#CA9E5B]' />
+					<div className='inline-flex items-center justify-center w-20 h-20 bg-accent-100 rounded-full mb-6'>
+						<WifiOff className='w-10 h-10 text-accent-600' />
 					</div>
 
 					<h1 className='text-4xl font-serif font-bold text-slate-900 mb-3'>
@@ -131,14 +131,14 @@ export default function OfflinePage() {
 					}}>
 					<Card className='p-8 shadow-xl border-0 bg-white/90 backdrop-blur-sm'>
 						{}
-						<div className='flex items-center justify-between mb-6 p-4 bg-[#CA9E5B]/10 rounded-lg border border-[#CA9E5B]/30'>
+						<div className='flex items-center justify-between mb-6 p-4 bg-accent-50 rounded-lg border border-accent-200'>
 							<div className='flex items-center space-x-3'>
-								<WifiOff className='w-5 h-5 text-[#CA9E5B]' />
+								<WifiOff className='w-5 h-5 text-accent-600' />
 								<div>
-									<h3 className='font-semibold text-[#CA9E5B]'>
+									<h3 className='font-semibold text-accent-700'>
 										No Internet Connection
 									</h3>
-									<p className='text-sm text-[#CA9E5B]/80'>
+									<p className='text-sm text-accent-600'>
 										Automatically checking for reconnection...
 									</p>
 								</div>
@@ -149,7 +149,7 @@ export default function OfflinePage() {
 								size='sm'
 								onClick={handleRetry}
 								disabled={isRetrying}
-								className='border-[#CA9E5B]/30 text-[#CA9E5B] hover:bg-[#CA9E5B]/10'>
+								className='border-accent-300 text-accent-700 hover:bg-accent-100'>
 								{isRetrying ?
 									<RefreshCw className='w-4 h-4 animate-spin' />
 								:	<RefreshCw className='w-4 h-4' />}

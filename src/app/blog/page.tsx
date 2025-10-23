@@ -327,7 +327,7 @@ export default function BlogPage() {
 				backgroundImage='/images/pexels-polina-tankilevitch-6929349.jpg'
 				h1={
 					<span className='text-white'>
-						Educational <span className='text-accent-600'>Insights</span>
+						Education <span className='text-accent-600'>Insights</span>
 					</span>
 				}
 				h2='Expert guidance, practical advice, and the latest insights in education from our team of experienced tutors.'

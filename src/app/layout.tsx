@@ -1,25 +1,10 @@
-import type { Metadata } from 'next';
 import { LazyMotionProvider } from '@/components/providers/LazyMotionProvider';
 import { fontClassNames } from '@/fonts';
-import './globals.css';
-import { CookieConsentManager } from '@/components/legal/CookieConsent';
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import React from 'react';
-const CMSMonitoringWrapper =
-	(
-		process.env.NODE_ENV === 'development' ||
-		process.env.NEXT_PUBLIC_SHOW_CMS_MONITOR === 'true'
-	) ?
-		React.lazy(() =>
-			import('@/components/cms-architecture-dashboard').then((mod) => ({
-				default: mod.CMSArchitectureMonitorWrapper,
-			})),
-		)
-	:	null;
 import { DevToolsProvider } from '@/providers/DevToolsProvider';
-import { PesticideDebugger } from '@/lib/dev-utils';
-import { WebVitals } from '@/app/_components/web-vitals';
+import type { Metadata } from 'next';
+import React from 'react';
+import './globals.css';
+
 export const metadata: Metadata = {
 	metadataBase: new URL('https://myprivatetutoronline.com'),
 	title: {
@@ -312,30 +297,15 @@ export default function RootLayout({
 					crossOrigin='anonymous'
 				/>
 
-				{}
-				{}
+
 			</head>
 			<body
 				className={`${fontClassNames} font-body antialiased min-h-screen bg-transparent text-foreground`}>
-				{}
-				{}
-				{}
+
 				<LazyMotionProvider>
 					<DevToolsProvider>{children}</DevToolsProvider>
 				</LazyMotionProvider>
-				{}
-				{}
 
-				{}
-				<Analytics />
-				<SpeedInsights />
-				{}
-				<WebVitals />
-				<CookieConsentManager />
-				{}
-
-				{}
-				<PesticideDebugger />
 			</body>
 		</html>
 	);
