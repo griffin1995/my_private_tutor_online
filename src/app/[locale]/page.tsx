@@ -1,16 +1,43 @@
-'use client';
+// CONTEXT7 SOURCE: /payloadcms/payload - Server Component pattern for Next.js App Router with Payload CMS
+// ARCHITECTURE REASON: Official Payload pattern - Server Component fetches data, passes to Client Components
+// REFERENCE: Official Payload docs - "Query Payload CMS Local API from Next.js Server Components"
 
-import { Avatar, Blockquote } from 'flowbite-react';
-import { m } from 'framer-motion';
-import Image from 'next/image';
 import { ErrorBoundaryWrapper } from '../../components/boundaries/homepage-error-boundary';
+import { FounderQuoteSection } from '../../components/client/FounderQuoteSection';
+import { ScrollingLogos } from '../../components/client/ScrollingLogos';
 import { LazyServicesCarousel } from '../../components/dynamic/lazy-loaded-components';
 import { PageFooter } from '../../components/layout/page-footer';
 import { Navigation } from '../../components/navigation/Navigation';
-import { AboutSection } from '../../components/sections/about-section';
+import { AboutSectionClient } from '../../components/sections/AboutSectionClient';
+import { Feature1 } from '../../components/sections/feature1';
+import { Feature2 } from '../../components/sections/feature2';
 import { FounderIntroductionSection } from '../../components/sections/founder-introduction-section';
 import { ThreePillarsSection } from '../../components/sections/three-pillars-section';
 import { TrustIndicatorsGrid } from '../../components/sections/trust-indicators-grid';
+import Carousel_testimonial from '../testimonials/Carousel_testimonial';
+// TEMPORARILY DISABLED: Payload CMS imports causing MongoDB connection freeze
+// import { getPayload } from 'payload';
+// import config from '@/payload.config';
+
+// Type for recognition card data from Payload CMS
+// CONTEXT7 SOURCE: /microsoft/TypeScript - exactOptionalPropertyTypes requires explicit undefined
+interface RecognitionCardData {
+	id: string;
+	headerText: string;
+	contentType: 'logo' | 'icon';
+	logoImage?:
+		| {
+				url: string;
+				alt: string;
+		  }
+		| undefined;
+	logoMaxWidth?: string | undefined;
+	iconPath?: string | undefined;
+	iconAlt?: string | undefined;
+	footerText?: string | undefined;
+	sortOrder: number;
+	status: 'published' | 'draft';
+}
 
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR HOMEPAGE
@@ -348,7 +375,7 @@ const STUDENT_IMAGES: Record<
 		height: 300,
 	},
 	'primary-school-support': {
-		src: '/images/students/primary-school-support.jpg',
+		src: '/images/students/primary-school-support.webp',
 		alt: 'Primary school student receiving personalised tutoring support',
 		width: 600,
 		height: 400,
@@ -360,7 +387,7 @@ const STUDENT_IMAGES: Record<
 		height: 400,
 	},
 	'entrance-exam-preparation': {
-		src: '/images/students/entrance-exam-preparation.png',
+		src: '/images/students/entrance-exam-preparation.webp',
 		alt: 'Student preparing for entrance examinations with expert tutor',
 		width: 600,
 		height: 400,
@@ -386,13 +413,107 @@ const STUDENT_IMAGES: Record<
 };
 
 // ============================================================================
-// HOMEPAGE COMPONENT
+// HOMEPAGE SERVER COMPONENT
 // ============================================================================
 
-export default function HomePage() {
+export default async function HomePage() {
 	const services = SERVICES_DATA;
 	const trustIndicators = TRUST_INDICATORS_DATA;
 	const studentImages = STUDENT_IMAGES;
+
+	// CONTEXT7 SOURCE: /payloadcms/payload - Fetch recognition cards from Payload CMS
+	// Official Payload pattern: getPayload in Server Component
+	// TEMPORARILY DISABLED: MongoDB connection causing dev server freeze
+	// TODO: Re-enable when MongoDB container is running (docker start mongodb-tutor-online)
+	// const payload = await getPayload({ config });
+
+	// Hardcoded Recognition Cards Data (replacement for CMS while MongoDB is disabled)
+	const RECOGNITION_CARDS_DATA: RecognitionCardData[] = [
+		{
+			id: 'tatler-address-book',
+			headerText: 'As featured in',
+			contentType: 'logo',
+			logoImage: {
+				url: '/images/media/tatler-logo-alt.png',
+				alt: "Tatler's Address Book 2025",
+			},
+			logoMaxWidth: '156px',
+			footerText: '',
+			sortOrder: 1,
+			status: 'published',
+		},
+		{
+			id: 'school-guide-top-pick',
+			headerText: 'As recommended by',
+			contentType: 'logo',
+			logoImage: {
+				url: '/images/media/schools-guide-uk-logo.png',
+				alt: "School Guide's Top Pick for Private Tuition",
+			},
+			logoMaxWidth: '156px',
+			footerText: '',
+			sortOrder: 2,
+			status: 'published',
+		},
+		{
+			id: 'royal-clientele',
+			headerText: 'Trusted by',
+			contentType: 'icon',
+			iconPath: '/icons/royal-crown.svg',
+			iconAlt: 'Royal Families',
+			footerText: 'Royal Families',
+			sortOrder: 3,
+			status: 'published',
+		},
+	];
+
+	const recognitionCards: RecognitionCardData[] = RECOGNITION_CARDS_DATA;
+
+	// PAYLOAD CMS INTEGRATION TEMPORARILY DISABLED
+	// Reason: MongoDB container not running causes blocking connection attempts
+	// Fix: Start MongoDB with `docker start mongodb-tutor-online` before re-enabling
+	/*
+	try {
+		const result = await payload.find({
+			collection: 'recognition-cards',
+			where: {
+				status: {
+					equals: 'published',
+				},
+			},
+			sort: 'sortOrder',
+			limit: 10,
+		});
+
+		// Transform Payload data to component-friendly format
+		recognitionCards = result.docs.map((card: any) => ({
+			id: card.id,
+			headerText: card.headerText,
+			contentType: card.contentType,
+			logoImage: card.logoImage
+				? {
+						url:
+							typeof card.logoImage === 'object'
+								? card.logoImage.url
+								: card.logoImage,
+						alt:
+							typeof card.logoImage === 'object'
+								? card.logoImage.alt || card.headerText
+								: card.headerText,
+					}
+				: undefined,
+			logoMaxWidth: card.logoMaxWidth || '156px',
+			iconPath: card.iconPath,
+			iconAlt: card.iconAlt,
+			footerText: card.footerText,
+			sortOrder: card.sortOrder,
+			status: card.status,
+		}));
+	} catch (error) {
+		// Graceful fallback: Log error but don't break the page
+		console.error('Failed to fetch recognition cards from Payload CMS:', error);
+	}
+	*/
 
 	return (
 		<div className='min-h-screen flex flex-col overflow-x-hidden bg-white'>
@@ -426,13 +547,13 @@ export default function HomePage() {
 					{/* Hero Section with Video and Scrolling School Logos */}
 					<section
 						id='hero-premium-tutoring-landing-combined'
-						className='flex flex-col w-full h-[calc(100dvh-5.5rem)] lg:h-[calc(100dvh-6.25rem)] xl:h-[calc(100dvh-7rem)]'>
+						className='flex flex-col w-full h-[calc(100dvh-5.5rem)] md:h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-6.25rem)] xl:h-[calc(100dvh-7rem)]'>
 						{/* Top spacing */}
-						<div className='flex-[0_0_3rem]' />
+						<div className='flex-[0_0_2rem] sm:flex-[0_0_2.5rem] md:flex-[0_0_3rem]' />
 
 						{/* Video Section */}
-						<div className='flex-[7] relative w-full overflow-hidden'>
-							<div className='w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center'>
+						<div className='flex-[5] sm:flex-[6] md:flex-[6.5] lg:flex-[7] relative w-full overflow-hidden'>
+							<div className='w-full h-full max-w-5xl md:max-w-6xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center'>
 								<video
 									src='/videos/background-video-2025.mp4'
 									autoPlay
@@ -449,7 +570,9 @@ export default function HomePage() {
 						{/* Tagline Section */}
 						<div className='flex-[1.5] flex items-center justify-center'>
 							<div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-								<h2 className='text-3xl'>We help students place at top 10 UK schools and universities</h2>
+								<h2 className='text-xl sm:text-2xl xl:text-3xl'>
+									We help students place at top 10 UK schools and universities
+								</h2>
 								<div className='flex justify-center items-center space-x-6 mt-2 sm:mt-3'>
 									<div className='w-12 h-px bg-primary-700' />
 									<div className='w-3 h-3 rounded-full bg-primary-700 shadow-lg' />
@@ -460,51 +583,13 @@ export default function HomePage() {
 
 						{/* Scrolling School Logos */}
 						<div className='flex-[1.5] flex items-center justify-center'>
-							<div
-								className='w-full max-w-7xl mx-auto overflow-hidden bg-white px-4 sm:px-6 lg:px-8 relative'
-								style={{
-									WebkitMaskImage:
-										'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
-									maskImage:
-										'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
-									WebkitMaskRepeat: 'no-repeat',
-									maskRepeat: 'no-repeat',
-								}}>
-								<m.div
-									className='flex gap-8 sm:gap-12 whitespace-nowrap motion-reduce:animate-none'
-									animate={{
-										x: ['0%', '-50%'],
-									}}
-									transition={{
-										repeat: Infinity,
-										repeatType: 'loop',
-										ease: 'linear',
-										duration: 15,
-									}}>
-									{SCHOOL_LOGOS_ARRAY.concat(SCHOOL_LOGOS_ARRAY).map((logo, index) => (
-										<div
-											key={index}
-											className='flex-shrink-0 flex items-center justify-center px-3 sm:px-4'>
-											<Image
-												src={logo.src}
-												alt={logo.alt}
-												width={logo.width}
-												height={logo.height}
-												title={logo.title}
-												loading='lazy'
-												className='h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300'
-												sizes='(max-width: 768px) 80px, (max-width: 1200px) 100px, 120px'
-											/>
-										</div>
-									))}
-								</m.div>
-							</div>
+							<ScrollingLogos logos={SCHOOL_LOGOS_ARRAY} />
 						</div>
 					</section>
 
 					{/* About Section */}
 					<ErrorBoundaryWrapper sectionName='About Section'>
-						<AboutSection />
+						<AboutSectionClient recognitionCards={recognitionCards} />
 					</ErrorBoundaryWrapper>
 
 					{/* Founder Introduction Section */}
@@ -519,15 +604,56 @@ export default function HomePage() {
 						</ErrorBoundaryWrapper>
 					</section>
 
-					{/* Trust Indicators Section */}
-					<section id='trust-indicators-social-proof'>
+					{/* Trust Indicators Section - Commented out (new version below) */}
+					{/* <section id='trust-indicators-social-proof'>
 						<ErrorBoundaryWrapper sectionName='Trust Indicators'>
 							<TrustIndicatorsGrid
 								indicators={trustIndicators}
 								studentImages={studentImages}
 							/>
 						</ErrorBoundaryWrapper>
-					</section>
+					</section> */}
+
+					{/* Features Section */}
+					<Feature1
+						title='Fit For a King'
+						description={
+							<>
+								Our services are trusted by prominent families, including VIPs and royalty.
+								<br />
+								<br />
+								<em>&ldquo;Hi Elizabeth, I found out today that the two princes and the princess have all been offered places at Le Rosey for next year. The family is delighted and would like me to pass on their sincerest thanks to you and the team for all your hard work.&rdquo;</em>
+							</>
+						}
+						imageSrc='/images/graphics/feature-royal-endorsement.jpg'
+						imageAlt='Royal endorsement - Invitation-only service trusted by royal families and high-profile clients'
+						buttonPrimary={{ text: 'Get Started', href: '#' }}
+						buttonSecondary={{ text: 'Learn More', href: '#' }}
+					/>
+					<Feature2
+						title='Examiner insight'
+						description='Our Tier 1 tutors actually write/mark the real tests your child takes. Such insider perspective is rare.'
+						imageSrc='/images/graphics/feature-exam-insight.jpeg'
+						imageAlt='Examiner insight - Tutors who are actual examiners providing unique academic advantage'
+						buttonPrimary={{ text: 'Get Started', href: '#' }}
+						buttonSecondary={{ text: 'Learn More', href: '#' }}
+					/>
+					<Feature1
+						title='By Invitation Only'
+						description="Elizabeth's international career has allowed her to personally work alongside almost all our tutors, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team."
+						imageSrc='/images/graphics/feature-built-on-trust.jpeg'
+						imageAlt='Built on trust - Premium tutoring service with vetted educators and proven track record'
+						buttonPrimary={{ text: 'Get Started', href: '#' }}
+						buttonSecondary={{ text: 'Learn More', href: '#' }}
+					/>
+					<Feature2
+						title='Rooted in Britain, Appreciated Worldwide'
+						description='We know British education inside and out and bring that knowledge to families across the globe.'
+						imageSrc='/images/graphics/feature-british-heritage.jpeg'
+						imageAlt='British heritage and global network - Personal tutoring approach with international reach'
+						buttonPrimary={{ text: 'Get Started', href: '#' }}
+						buttonSecondary={{ text: 'Learn More', href: '#' }}
+					/>
 
 					{/* Services Carousel Section */}
 					<section id='who-we-support-services'>
@@ -540,47 +666,11 @@ export default function HomePage() {
 					</section>
 
 					{/* Founder Quote Section */}
-					<section
-						id='founder-quote-testimonials'
-						className='py-16 lg:py-24 bg-accent-600/15'>
-						<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
-							<Blockquote>
-								{/* Quote icon */}
-								<svg
-									className='mb-6 h-14 w-14 fill-primary-700'
-									aria-hidden='true'
-									xmlns='http://www.w3.org/2000/svg'
-									viewBox='0 0 18 14'>
-									<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
-								</svg>
+					<FounderQuoteSection />
 
-								{/* Founder Quote - Hardcoded */}
-								<p className='italic'>
-									Parents come to us when something <strong>truly</strong> matters—an
-									entrance exam, a lost sense of confidence, a desire for academic
-									stretch. They stay with us because{' '}
-									<strong>we deliver real progress, quietly and expertly</strong>. This
-									is not a tutoring directory. This is{' '}
-									<u>a bespoke service for ambitious families</u> looking for{' '}
-									<strong>trusted partners in their child&apos;s academic career</strong>
-									.
-								</p>
-
-								{/* Author with avatar */}
-								<figcaption className='mt-4 flex items-center justify-center space-x-3'>
-									<Avatar
-										rounded
-										size='xs'
-										img='/images/team/elizabeth-burrows-founder-main.jpg'
-										alt='Elizabeth Burrows'
-									/>
-									<div className='flex items-center divide-x-2 divide-neutral-600'>
-										<cite className='pr-3'>Elizabeth Burrows</cite>
-										<cite className='pl-3 text-neutral-700'>Founder</cite>
-									</div>
-								</figcaption>
-							</Blockquote>
-						</div>
+					{/* Testimonials Carousel Section */}
+					<section id='testimonials-carousel'>
+						<Carousel_testimonial />
 					</section>
 				</div>
 			</main>
