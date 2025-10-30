@@ -1,4 +1,6 @@
 import { LazyMotionProvider } from '@/components/providers/LazyMotionProvider';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { Toaster } from '@/components/ui/sonner';
 import { fontClassNames } from '@/fonts';
 import { DevToolsProvider } from '@/providers/DevToolsProvider';
 import type { Metadata } from 'next';
@@ -75,6 +77,13 @@ export const metadata: Metadata = {
 			'Premium private tutoring with royal endorsements. 15+ years experience in Oxbridge prep, 11+ entry, GCSE & A-levels. Featured in Tatler Address Book.',
 		images: [
 			{
+				url: '/images/og-image.png',
+				width: 1200,
+				height: 630,
+				alt: 'My Private Tutor Online - Specialist Support from Qualified Teachers and Official Examiners',
+				type: 'image/png',
+			},
+			{
 				url: '/images/graphics/feature-royal-endorsement.jpg',
 				width: 1200,
 				height: 630,
@@ -110,6 +119,7 @@ export const metadata: Metadata = {
 		description:
 			'Royal family endorsed private tutoring. Oxbridge preparation, 11+ entry, GCSE & A-levels. 15+ years experience.',
 		images: [
+			'/images/og-image.png',
 			'/images/graphics/feature-royal-endorsement.jpg',
 			'/images/hero/child_book_and_laptop.avif',
 			'/images/graphics/feature-built-on-trust.jpeg',
@@ -303,7 +313,10 @@ export default function RootLayout({
 				className={`${fontClassNames} font-body antialiased min-h-screen bg-transparent text-foreground`}>
 
 				<LazyMotionProvider>
-					<DevToolsProvider>{children}</DevToolsProvider>
+					<TooltipProvider>
+						<DevToolsProvider>{children}</DevToolsProvider>
+						<Toaster />
+					</TooltipProvider>
 				</LazyMotionProvider>
 
 			</body>
