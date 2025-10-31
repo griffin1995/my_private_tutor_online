@@ -8,14 +8,14 @@ import React from 'react';
 import './globals.css';
 
 export const metadata: Metadata = {
-	metadataBase: new URL('https://myprivatetutoronline.com'),
+	metadataBase: new URL('https://www.myprivatetutoronline.com'),
 	title: {
 		default:
 			'My Private Tutor Online | Premium Academic Tutoring | Oxbridge & 11+ Specialists',
 		template: '%s | My Private Tutor Online',
 	},
 	description:
-		'Premium private tutoring services with 15+ years experience. Royal family endorsed, Tatler-listed tutors specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels. Trusted by elite families across the UK.',
+		'Specialist support from tutors, qualified teachers and official examiners. Featured in Tatler, recommended by School Guide UK, trusted by Royalty. Premium private tutoring with 15+ years experience specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels.',
 	keywords: [
 		'private tutor',
 		'Oxbridge preparation',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 	authors: [
 		{
 			name: 'My Private Tutor Online',
-			url: 'https://myprivatetutoronline.com',
+			url: 'https://www.myprivatetutoronline.com',
 		},
 	],
 	creator: 'My Private Tutor Online',
@@ -70,65 +70,30 @@ export const metadata: Metadata = {
 	openGraph: {
 		type: 'website',
 		locale: 'en_GB',
-		url: 'https://myprivatetutoronline.com',
+		url: 'https://www.myprivatetutoronline.com',
 		siteName: 'My Private Tutor Online',
 		title: 'My Private Tutor Online | Premium Academic Tutoring Services',
-		description:
-			'Premium private tutoring with royal endorsements. 15+ years experience in Oxbridge prep, 11+ entry, GCSE & A-levels. Featured in Tatler Address Book.',
+		description: 'As featured in Tatler and trusted by royalty',
 		images: [
 			{
-				url: '/images/og-image.png',
+				url: '/logo-name-tagline.png',
 				width: 1200,
 				height: 630,
-				alt: 'My Private Tutor Online - Specialist Support from Qualified Teachers and Official Examiners',
+				alt: 'My Private Tutor Online - World-Class Education, At Your Fingertips',
 				type: 'image/png',
-			},
-			{
-				url: '/images/graphics/feature-royal-endorsement.jpg',
-				width: 1200,
-				height: 630,
-				alt: 'My Private Tutor Online - Premium Academic Tutoring with Royal Endorsements',
-				type: 'image/jpeg',
-			},
-			{
-				url: '/images/logos/logo-with-name.png',
-				width: 400,
-				height: 100,
-				alt: 'My Private Tutor Online Logo',
-				type: 'image/png',
-			},
-			{
-				url: '/images/hero/child_book_and_laptop.avif',
-				width: 800,
-				height: 600,
-				alt: 'Premium Tutoring - Child Learning with Expert Support',
-				type: 'image/avif',
-			},
-			{
-				url: '/images/graphics/feature-built-on-trust.jpeg',
-				width: 800,
-				height: 600,
-				alt: 'Trusted by Elite Families - 15+ Years of Premium Tutoring Excellence',
-				type: 'image/jpeg',
 			},
 		],
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'My Private Tutor Online | Premium Academic Tutoring',
-		description:
-			'Royal family endorsed private tutoring. Oxbridge preparation, 11+ entry, GCSE & A-levels. 15+ years experience.',
-		images: [
-			'/images/og-image.png',
-			'/images/graphics/feature-royal-endorsement.jpg',
-			'/images/hero/child_book_and_laptop.avif',
-			'/images/graphics/feature-built-on-trust.jpeg',
-		],
+		description: 'As featured in Tatler and trusted by royalty',
+		images: ['/logo-name-tagline.png'],
 		creator: '@MyPrivateTutorUK',
 		site: '@MyPrivateTutorUK',
 	},
 	alternates: {
-		canonical: 'https://myprivatetutoronline.com',
+		canonical: 'https://www.myprivatetutoronline.com',
 	},
 	category: 'Education',
 	classification: 'Educational Services',
@@ -184,12 +149,6 @@ export default function RootLayout({
 				/>
 
 				{}
-				{}
-				<link
-					rel='icon'
-					href='/favicon.ico'
-					sizes='32x32'
-				/>
 				{}
 				<link
 					rel='icon'
