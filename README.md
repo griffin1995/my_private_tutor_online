@@ -20,7 +20,7 @@ npm run dev
 # Build for production
 npm run build
 
-# Deploy to Vercel
+# Deploy to Vercel (CLI ONLY - GitHub integration NOT used)
 vercel --prod
 ```
 

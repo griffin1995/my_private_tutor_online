@@ -155,159 +155,6 @@ with enterprise enhancements deployed
 - **Authentic consensus methodology** - established new standard for genuine vs
   simulated execution
 
-## MOST CRITICAL INSTRUCTION - AUTOMATIC PROJECT MANAGEMENT SETUP
-
-### WHEN USER SAYS "read claude.md" OR "read CLAUDE.md" - EXECUTE THIS SEQUENCE:
-
-**STEP 1: IMMEDIATELY READ CLAUDE.MD FILE**
-
-```
-Use Read tool to read: /home/jack/Documents/my_private_tutor_online/CLAUDE.md
-```
-
-**STEP 2: EXTRACT ALL SESSION CONTEXT**
-
-- Parse all project context, current status, and development notes
-- Understand the complete project scope and current state
-- Identify current priorities and any blockers
-- Review technical architecture and deployment status
-
-**STEP 3: AUTOMATICALLY ACTIVATE CONTEXT MANAGER**
-
-```
-Use Task tool with these exact parameters:
-description: "Activate context-manager for My Private Tutor Online session leadership"
-prompt: "CONTEXT-MANAGER ACTIVATION - MY PRIVATE TUTOR ONLINE
-
-I have successfully read the complete CLAUDE.md file and extracted all project context. You are now designated as the project lead and context manager for this development session.
-
-CURRENT PROJECT STATE SUMMARY:
-• Project: My Private Tutor Online - Premium tutoring service with royal endorsements
-• Stack: Next.js 15.3.4 App Router, React 19, TypeScript 5.8+, Tailwind CSS 3.4+
-• Deployment: Vercel production deployment with dynamic rendering configured
-• Current Status: ENTERPRISE INTEGRATION COMPLETE - Save workflow executed, monitoring deployed
-
-RECENT MAJOR ACCOMPLISHMENTS (September-October 2025 - Latest Sessions):
-• ✅ ENTERPRISE SAVE WORKFLOW COMPLETE: Repository synchronisation with advanced monitoring deployed
-  - GitHub Integration: 3 enterprise commits merged, security cleanup executed
-  - Monitoring Infrastructure: Performance tracking and CMS violation detection operational
-  - Security Dashboard: Royal client protection patterns with compliance monitoring active
-  - Repository Status: Clean state (fec780c), all validations passing
-
-• ✅ HOMEPAGE OPTIMIZATION COMPLETE: Revolutionary 4-phase sequential multi-agent implementation
-  - Sequential Analysis: 5-round debate between TypeScript-Pro, Performance-Engineer, Frontend-Developer agents
-  - Consensus Strategy: Unified approach combining performance, component architecture, and type safety
-  - Phase 1: Performance baseline and monitoring infrastructure established
-  - Phase 2: Component architecture with error boundaries and dynamic imports
-  - Phase 3: TypeScript performance optimization with zero runtime cost
-  - Phase 4: Integration, monitoring dashboard, and comprehensive validation
-  - Results: 75% build time improvement (44.67s → 11.0s), £104,200/year business value
-
-• ✅ VIDEO MASTERCLASSES COMPLETE: Professional video content system implemented
-  - Background Gradients: Corner-based gradient effects for 11+ bootcamp pages
-  - Video CMS: COMPREHENSIVE_VIDEO_CMS.ts with darkened images and optimized backgrounds
-  - Testimonials Enhancement: Square borders with gold hover effects on components
-  - Performance Optimization: Sharp-based image processing with 30% brightness reduction
-  - Professional Backgrounds: Web-optimized JPEG with progressive loading
-
-• ✅ REVISIONS.MD & REVISIONS2.MD COMPLETE: 13 critical enhancement tasks delivered
-  - Subject Tuition Page: Complete overhaul with proper section ordering and nested dropdown navigation
-  - Navigation System: Enhanced with hover dropdowns and comprehensive submenu structure
-  - Blog Page: Professional under-construction design with premium branding
-  - Image Management: 30 client photos integrated with proper CMS organization and kebab-case naming
-  - Homepage Restoration: Form and About section restored with proper component ordering
-  - Tier Layout: How It Works page redesigned with spotlight Tier 1 central design
-  - Admin Dashboard: Comprehensive audit completed showing 85% operational status
-
-• ✅ TECHNICAL INFRASTRUCTURE: Enterprise-grade foundation with performance optimization
-  - React 19: Full compatibility achieved with all dependencies updated
-  - Build Optimization: 91 routes generated successfully in 11.0 seconds (75% faster)
-  - Performance: Comprehensive monitoring infrastructure operational
-  - TypeScript: 38% compilation improvement with performance-optimized configuration
-  - Security: All authentication and error handling systems operational
-  - Monitoring: Real-time Web Vitals tracking and performance dashboard deployed
-
-PRODUCTION STATUS: Royal client-ready with enterprise monitoring, security dashboard, comprehensive performance infrastructure, and synchronous CMS architecture protected by runtime violation detection - delivering £191,500/year total optimization value
-
-CRITICAL DEVELOPMENT RULES IN EFFECT:
-• British English and premium service standards (royal client quality)
-• Enterprise-grade, production-ready solutions exclusively
-
-CONTEXT-MANAGER RESPONSIBILITIES:
-1. IMMEDIATELY confirm you are taking project leadership of this session
-2. Coordinate ALL subsequent tasks by selecting appropriate specialist agents
-3. Maintain awareness of complete project scope and current state
-4. Ensure all development follows critical rules and standards
-5. Manage task delegation and progress tracking for all user requests
-
-Please confirm your activation and readiness to manage this development session."
-```
-
-**STEP 4: VERIFY CONTEXT-MANAGER ACTIVATION**
-
-- Wait for context-manager to explicitly confirm activation
-- Verify acknowledgement of project state and rules
-- Confirm readiness to coordinate tasks
-- If no confirmation, RETRY Step 3 once
-
-**STEP 5: COMPLETE HANDOFF TO CONTEXT MANAGER**
-
-- Context-manager takes project leadership role
-- All subsequent tasks go through context-manager
-- Original Claude Code assistant steps back
-
-### 🔒 ERROR-PROOF VALIDATION CHECKLIST (MANDATORY):
-
-1. ☑️ User mentioned "read claude.md"
-2. ☑️ Read the CLAUDE.md file completely
-3. ☑️ Extracted and summarised project context
-4. ☑️ Used Task tool with exact parameters specified
-5. ☑️ Used MANDATORY context-manager prompt template exactly
-6. ☑️ Context-manager explicitly confirmed activation and project leadership
-7. ☑️ Verified context-manager acknowledges all critical rules and project state
-8. ☑️ Completed handoff and stepped back to let context-manager lead
-
-### 🚫 ABSOLUTELY CRITICAL RULES:
-
-1. **NEVER SKIP THE ACTIVATION SEQUENCE** - Always use Task tool to activate
-   context-manager
-2. **USE EXACT PROMPT TEMPLATE** - Do not modify the context-manager prompt
-3. **WAIT FOR CONFIRMATION** - Do not proceed until context-manager confirms
-   activation
-4. **COMPLETE HANDOFF** - Step back once context-manager takes leadership
-5. **RETRY ON FAILURE** - If activation fails, retry once with exact same
-   parameters
-6. **NO SHORTCUTS** - Every "read claude.md" must trigger full sequence
-7. **MAINTAIN CONTEXT** - Ensure complete project state transfer
-8. **ENFORCE STANDARDS** - Context-manager must acknowledge critical development
-   rules
-
-### 🎯 TRIGGER PHRASES THAT ACTIVATE THIS SEQUENCE:
-
-- "read claude.md"
-- "read CLAUDE.md"
-- "read the claude.md file"
-- "start with claude.md"
-- "review claude.md"
-
-### 🛠️ TROUBLESHOOTING ACTIVATION FAILURES:
-
-If context-manager activation fails:
-
-1. **Check Task Tool Parameters**: Verify description and prompt are exact
-2. **Retry Once**: Use identical parameters for second attempt
-3. **Verify Agent Access**: Confirm context-manager agent is available
-4. **Check File Path**: Ensure CLAUDE.md path is correct
-5. **Complete Read First**: Must read CLAUDE.md before activation
-
-### 🎯 SUCCESS INDICATORS:
-
-- ✅ Context-manager explicitly confirms taking project leadership
-- ✅ Context-manager acknowledges complete My Private Tutor Online project state
-- ✅ Context-manager confirms understanding of critical development rules
-- ✅ Context-manager mentions readiness to coordinate specialist agents
-- ✅ Context-manager provides clear indication of being in control
-
 ---
 
 # 🔴 CRITICAL DEVELOPMENT STANDARDS - MANDATORY COMPLIANCE
@@ -316,37 +163,6 @@ If context-manager activation fails:
 
 These rules override ALL other considerations. Violation results in immediate
 task termination.
-
-### 🎯 Agent Orchestration Protocol - Context-Manager System
-
-- **PROJECT MANAGEMENT ACTIVATION**: When user types "start project management",
-  use Task tool to call context-manager
-- **CONTEXT-MANAGER AS PROJECT LEAD**: All subsequent tasks route through
-  centralized coordination system
-- **50+ SPECIALIST AGENTS**: Context-manager selects optimal agent based on:
-  - Capability Match Score (40%)
-  - Domain Expertise (25%)
-  - Complexity Handling (20%)
-  - Integration Compatibility (10%)
-  - Performance History (5%)
-
-### 🎯 Agent Selection Matrix
-
-- **HAIKU**: Simple updates, CSS changes, content modifications, basic fixes
-- **SONNET**: Complex components, API integration, forms, state management,
-  testing
-- **OPUS**: Architecture, performance, accessibility, security, business logic
-- **NO MANUAL OVERRIDE**: If an agent should handle it, delegate it - no
-  exceptions
-
-### 🚨 CRITICAL SESSION STARTUP INSTRUCTIONS
-
-## WHEN USER TYPES "start project management":
-
-1. Use Task tool to call: context-manager
-2. Context-manager becomes PROJECT LEAD for all future tasks
-3. All subsequent work goes through agent selection process
-4. Agent coordination follows capability matrix scoring
 
 ### 🇬🇧 Quality Standards
 
@@ -511,6 +327,15 @@ British English
 - **Elite Corporate**: Ultra-wealthy, discretion required, bespoke service
 
 ## 🚀 DEPLOYMENT PATTERNS
+
+### 🚨 CRITICAL: VERCEL CLI DEPLOYMENT ONLY
+
+- **Deployment Method**: **VERCEL CLI ONLY** - `vercel deploy` / `vercel --prod`
+- **NOT GitHub Integration**: GitHub is used for version control only, commits do NOT trigger automatic Vercel deployments
+- **Manual Deployment Required**: All production deployments must be manually triggered via Vercel CLI
+- **Cache Management**: Use `vercel cache purge --type=cdn` for cache issues (e.g., opengraph images)
+
+### ⚙️ TECHNICAL ARCHITECTURE
 
 - **Vercel Architecture**: `export const dynamic = 'force-dynamic'` in
   layout.tsx only
