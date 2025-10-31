@@ -84,14 +84,6 @@ export const metadata: Metadata = {
 			},
 		],
 	},
-	twitter: {
-		card: 'summary_large_image',
-		title: 'My Private Tutor Online | Premium Academic Tutoring',
-		description: 'As featured in Tatler and trusted by royalty',
-		images: ['/logo-name-tagline.png'],
-		creator: '@MyPrivateTutorUK',
-		site: '@MyPrivateTutorUK',
-	},
 	alternates: {
 		canonical: 'https://www.myprivatetutoronline.com',
 	},
