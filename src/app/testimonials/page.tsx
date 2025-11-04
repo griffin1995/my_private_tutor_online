@@ -320,7 +320,7 @@ export default function TestimonialsPage() {
 			{/* Hero Section - Outside PageLayout */}
 			<section id='testimonials-hero'>
 				<SimpleHero
-					backgroundImage='/images/hero/testimonials-hero.jpg'
+					backgroundImage='/images/hero/testimonials.jpg'
 					h1={
 						<span className='text-white'>
 							Student & Parent <span className='text-accent-600'>Testimonials</span>

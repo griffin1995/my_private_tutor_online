@@ -1,6 +1,7 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Search } from 'lucide-react';
 
 interface Testimonial10Props {
 	quote?: string;
@@ -36,11 +37,9 @@ export const Testimonial10 = ({
 					</p>
 					<div className='flex items-center gap-2 sm:gap-3 md:gap-4'>
 						<Avatar className='size-10 sm:size-12 md:size-14 lg:size-16'>
-							<AvatarImage
-								src={author.avatar.src}
-								alt={author.avatar.alt}
-							/>
-							<AvatarFallback>{author.name}</AvatarFallback>
+							<AvatarFallback className='bg-transparent text-black'>
+								<Search className='w-1/2 h-1/2' />
+							</AvatarFallback>
 						</Avatar>
 						<div className='text-left'>
 							<p className='text-xs sm:text-sm md:text-base font-medium'>{author.name}</p>
@@ -53,4 +52,40 @@ export const Testimonial10 = ({
 	);
 };
 
-export type { Testimonial10Props };
+interface Testimonial10NoRoleProps {
+	quote?: string;
+	author?: {
+		name: string;
+		avatar: {
+			src: string;
+			alt: string;
+		};
+	};
+}
+
+export const Testimonial10NoRole = ({
+	quote,
+	author,
+}: Testimonial10NoRoleProps) => {
+	return (
+		<section className='py-4 sm:py-6 md:py-8'>
+			<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
+				<div className='flex flex-col items-center text-center'>
+					<p className='mb-6 sm:mb-7 md:mb-8 max-w-3xl sm:max-w-4xl md:max-w-5xl px-4 sm:px-6 md:px-8 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl'>
+						&ldquo;{quote}&rdquo;
+					</p>
+					<div className='flex items-center gap-2 sm:gap-3 md:gap-4'>
+						<Avatar className='size-10 sm:size-12 md:size-14 lg:size-16'>
+							<AvatarFallback className='bg-transparent text-black'>
+								<Search className='w-1/2 h-1/2' />
+							</AvatarFallback>
+						</Avatar>
+						<p className='text-xs sm:text-sm md:text-base font-medium'>{author.name}</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	);
+};
+
+export type { Testimonial10Props, Testimonial10NoRoleProps };

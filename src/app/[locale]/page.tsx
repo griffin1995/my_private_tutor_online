@@ -13,7 +13,7 @@ import { Feature1 } from '../../components/sections/feature1';
 import { Feature2 } from '../../components/sections/feature2';
 import { FounderIntroductionSection } from '../../components/sections/founder-introduction-section';
 import { ThreePillarsSection } from '../../components/sections/three-pillars-section';
-import Carousel_testimonial from '../testimonials/Carousel_testimonial';
+import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 // TEMPORARILY DISABLED: Payload CMS imports causing MongoDB connection freeze
 // import { getPayload } from 'payload';
 // import config from '@/payload.config';
@@ -385,11 +385,9 @@ export default async function HomePage() {
 			headerText: 'As featured in',
 			contentType: 'logo',
 			logoImage: {
-				url: '/images/media/tatler-logo-alt.png',
+				url: '/landing-page/tatler-logo.webp',
 				alt: "Tatler's Address Book 2025",
 			},
-			logoMaxWidth: '156px',
-			footerText: '',
 			sortOrder: 1,
 			status: 'published',
 		},
@@ -398,21 +396,20 @@ export default async function HomePage() {
 			headerText: 'As recommended by',
 			contentType: 'logo',
 			logoImage: {
-				url: '/images/media/schools-guide-uk-logo.png',
+				url: '/landing-page/schools-guide-uk-logo.webp',
 				alt: "School Guide's Top Pick for Private Tuition",
 			},
-			logoMaxWidth: '156px',
-			footerText: '',
 			sortOrder: 2,
 			status: 'published',
 		},
 		{
 			id: 'royal-clientele',
 			headerText: 'Trusted by',
-			contentType: 'icon',
-			iconPath: '/icons/royal-crown.svg',
-			iconAlt: 'Royal Families',
-			footerText: 'Royal Families',
+			contentType: 'logo',
+			logoImage: {
+				url: '/landing-page/royal-crown.webp',
+				alt: 'Royal Crown',
+			},
 			sortOrder: 3,
 			status: 'published',
 		},
@@ -584,32 +581,44 @@ export default async function HomePage() {
 						}
 						imageSrc='/images/graphics/feature-royal-endorsement.jpg'
 						imageAlt='Royal endorsement - Invitation-only service trusted by royal families and high-profile clients'
-						buttonPrimary={{ text: 'Get Started', href: '#' }}
-						buttonSecondary={{ text: 'Learn More', href: '#' }}
+						buttonPrimary={{
+							text: 'Get Started',
+							href: 'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'
+						}}
+						buttonSecondary={{ text: 'Learn More', href: '/how-it-works' }}
 					/>
 					<Feature2
 						title='Examiner insight'
 						description='Our Tier 1 tutors actually write/mark the real tests your child takes. Such insider perspective is rare.'
 						imageSrc='/images/graphics/feature-exam-insight.jpeg'
 						imageAlt='Examiner insight - Tutors who are actual examiners providing unique academic advantage'
-						buttonPrimary={{ text: 'Get Started', href: '#' }}
-						buttonSecondary={{ text: 'Learn More', href: '#' }}
+						buttonPrimary={{
+							text: 'Get Started',
+							href: 'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'
+						}}
+						buttonSecondary={{ text: 'Learn More', href: '/how-it-works' }}
 					/>
 					<Feature1
 						title='By Invitation Only'
 						description="Elizabeth's international career has allowed her to personally work alongside almost all our tutors, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team."
 						imageSrc='/images/graphics/feature-built-on-trust.jpeg'
 						imageAlt='Built on trust - Premium tutoring service with vetted educators and proven track record'
-						buttonPrimary={{ text: 'Get Started', href: '#' }}
-						buttonSecondary={{ text: 'Learn More', href: '#' }}
+						buttonPrimary={{
+							text: 'Get Started',
+							href: 'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'
+						}}
+						buttonSecondary={{ text: 'Learn More', href: '/how-it-works' }}
 					/>
 					<Feature2
 						title='Rooted in Britain, Appreciated Worldwide'
 						description='We know British education inside and out and bring that knowledge to families across the globe.'
 						imageSrc='/images/graphics/feature-british-heritage.jpeg'
 						imageAlt='British heritage and global network - Personal tutoring approach with international reach'
-						buttonPrimary={{ text: 'Get Started', href: '#' }}
-						buttonSecondary={{ text: 'Learn More', href: '#' }}
+						buttonPrimary={{
+							text: 'Get Started',
+							href: 'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'
+						}}
+						buttonSecondary={{ text: 'Learn More', href: '/how-it-works' }}
 					/>
 
 					{/* Services Carousel Section */}
@@ -625,9 +634,11 @@ export default async function HomePage() {
 					{/* Founder Quote Section */}
 					<FounderQuoteSection />
 
-					{/* Testimonials Carousel Section */}
-					<section id='testimonials-carousel'>
-						<Carousel_testimonial />
+					{/* Video Testimonials Section */}
+					<section id='testimonials-section'>
+						<ErrorBoundaryWrapper sectionName='Video Testimonials'>
+							<TestimonialsSection showMoreButton={true} />
+						</ErrorBoundaryWrapper>
 					</section>
 				</div>
 			</main>

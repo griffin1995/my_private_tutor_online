@@ -637,7 +637,7 @@ export default function HowItWorksPage() {
 				}}>
 				<section id='how-it-works-hero'>
 					<SimpleHero
-						backgroundImage='/images/hero/hero-how-it-works.jpeg'
+						backgroundImage='/images/hero/how-it-works.jpeg'
 						h1={
 							<span className='text-white'>
 								Your Journey To{' '}

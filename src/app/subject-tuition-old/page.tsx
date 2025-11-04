@@ -140,7 +140,7 @@ export default function SubjectTuitionPage() {
 			{}
 			<section id='subject-tuition-hero'>
 				<SimpleHero
-					backgroundImage='/images/hero/hero-subject-tuition-primary.jpg'
+					backgroundImage='/images/hero/subject-tuition.jpg'
 					h1={
 						
 				<span className='text-white'>

@@ -120,7 +120,7 @@ export default function VideoPage() {
 	const cultureVideos = allVideos.slice(4, 6);
 
 	const videoHeroImage = {
-		src: '/images/hero/hero-video-masterclasses.jpg',
+		src: '/images/hero/video-masterclasses.jpg',
 	};
 
 	return (

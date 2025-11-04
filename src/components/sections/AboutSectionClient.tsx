@@ -63,30 +63,30 @@ export function AboutSectionClient({
 								<br />
 								At Your Fingertips.
 							</h2>
-							<p className='text-base sm:text-lg xl:text-xl font-serif italic text-token-primary-dark mb-4'>
+							<p className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark mb-4'>
 								At the heart of My Private Tutor Online is a singular vision: academic
 								support that is both exceptional and deeply personal. Founded in 2010 by
 								Elizabeth Burrows—a{' '}
-								<strong className='text-token-primary-dark'>
+								<strong className='text-token-primary-dark italic'>
 									Cambridge-accepted educator and former Forbes journalist
 								</strong>{' '}
 								—the company began not as a business, but as a trusted network of elite
 								colleagues she met throughout her international tutoring career.
 							</p>
-							<p className='text-base sm:text-lg xl:text-xl font-serif italic text-token-primary-dark mb-4'>
+							<p className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark mb-4'>
 								What started as a circle of personal recommendations has since
 								evolved—organically and exclusively—into one of the UK&apos;s most
 								respected names in specialist private tutoring. As testament, My Private
 								Tutor Online is honoured to be featured in{' '}
-								<strong className='text-token-primary-dark'>
+								<strong className='text-token-primary-dark italic'>
 									Tatler&apos;s Address Book
 								</strong>
 								, recognised as{' '}
-								<strong className='text-token-primary-dark'>
+								<strong className='text-token-primary-dark italic'>
 									School Guide&apos;s &apos;Top Pick&apos;
 								</strong>{' '}
 								for private tuition, and proud to count{' '}
-								<strong className='text-token-primary-dark'>royal families</strong>{' '}
+								<strong className='text-token-primary-dark italic'>royal families</strong>{' '}
 								among our clientele.
 							</p>
 							<p className='text-base sm:text-lg xl:text-xl font-serif italic text-token-primary-dark'>

@@ -11,14 +11,11 @@ import Image from 'next/image';
 
 interface RecognitionCardProps {
 	headerText: string;
-	contentType: 'logo' | 'icon';
-	logoImage?: {
+	contentType: 'logo';
+	logoImage: {
 		url: string;
 		alt: string;
 	};
-	logoMaxWidth?: string;
-	iconPath?: string;
-	iconAlt?: string;
 	footerText?: string;
 	animationDelay: number;
 	index: number;
@@ -44,9 +41,6 @@ export function RecognitionCard({
 	headerText,
 	contentType,
 	logoImage,
-	logoMaxWidth = '156px',
-	iconPath,
-	iconAlt,
 	footerText,
 	animationDelay,
 	index,
@@ -79,47 +73,12 @@ export function RecognitionCard({
 						{headerText}
 					</m.p>
 
-					{/* Row 2: Content - Logo Image or Icon */}
-					{contentType === 'logo' && logoImage ? (
-						<img
-							src={logoImage.url}
-							alt={logoImage.alt}
-							className='h-auto object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center'
-							style={{ maxWidth: logoMaxWidth }}
-						/>
-					) : contentType === 'icon' && iconPath ? (
-						<m.div
-							initial={{ opacity: 0, scale: 0.8, y: -10 }}
-							whileInView={{ opacity: 1, scale: 1, y: 0 }}
-							transition={{
-								duration: 0.4,
-								delay: animationDelay + 0.5,
-								ease: 'easeOut',
-							}}
-							className='w-16 sm:w-20 md:w-24 lg:w-28 h-16 sm:h-20 md:h-24 lg:h-28 justify-self-center flex items-center justify-center'>
-							{/* Check if iconPath is SVG path data (starts with 'M') or URL */}
-							{iconPath.startsWith('M') || iconPath.startsWith('m') ? (
-								<svg
-									viewBox='0 0 24 24'
-									fill='none'
-									stroke='currentColor'
-									strokeWidth={2}
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									className='w-full h-full text-primary-700 transition-all duration-300 group-hover:scale-110 group-hover:text-accent-600'
-									aria-label={iconAlt || 'Icon'}>
-									<path d={iconPath} />
-								</svg>
-							) : (
-								<Image
-									src={iconPath}
-									alt={iconAlt || 'Icon'}
-									fill
-									className='transition-all duration-300 group-hover:scale-110'
-								/>
-							)}
-						</m.div>
-					) : null}
+					{/* Row 2: Content - Logo Image (all same size now) */}
+					<img
+						src={logoImage.url}
+						alt={logoImage.alt}
+						className='w-full h-auto object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center p-3'
+					/>
 
 					{/* Row 3: Footer Text (optional) */}
 					{footerText ? (

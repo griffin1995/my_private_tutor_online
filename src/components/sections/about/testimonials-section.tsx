@@ -3,13 +3,17 @@
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { getTestimonialVideos } from '@/lib/cms/cms-content';
+import { Button } from '@/components/ui/button';
+
 interface TestimonialsSectionProps {
 	backgroundColor?: string;
 	className?: string;
+	showMoreButton?: boolean;
 }
 export function TestimonialsSection({
 	backgroundColor = 'bg-white',
 	className = '',
+	showMoreButton = false,
 }: TestimonialsSectionProps) {
 	return (
 		<section
@@ -87,6 +91,18 @@ export function TestimonialsSection({
 							);
 						})()}
 					</div>
+
+					{/* "Hear more from our clients" button - conditionally rendered */}
+					{showMoreButton && (
+						<div className='mt-8 lg:mt-12 flex justify-center'>
+							<Button
+								variant='accent'
+								size='lg'
+								aria-label='View more client testimonials'>
+								Hear more from our clients
+							</Button>
+						</div>
+					)}
 				</div>
 			</div>
 

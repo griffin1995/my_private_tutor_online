@@ -314,25 +314,16 @@ const Carousel_testimonial = () => (
 				Success Stories
 			</h2>
 			<p className='mt-3 text-center text-muted-foreground text-xl'>
-				Real stories from people who use and love our product every day
+				Real stories from families who have enjoyed exceptional results with us
 			</p>
 			<div className='mt-14 relative'>
 				<div className='z-10 absolute left-0 inset-y-0 w-[15%] bg-linear-to-r from-background to-transparent' />
 				<div className='z-10 absolute right-0 inset-y-0 w-[15%] bg-linear-to-l from-background to-transparent' />
 
-				<div className='flex flex-col gap-4'>
-					{/* Top marquee */}
-					<MotionMarquee duration={70}>
-						<TestimonialList />
-					</MotionMarquee>
-
-					{/* Reverse direction marquee */}
-					<MotionMarquee
-						reverse
-						duration={70}>
-						<TestimonialList />
-					</MotionMarquee>
-				</div>
+				{/* Single line marquee */}
+				<MotionMarquee duration={70}>
+					<TestimonialList />
+				</MotionMarquee>
 			</div>
 		</div>
 	</div>

@@ -711,7 +711,7 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 	return (
 		<>
 			<SimpleHero
-				backgroundImage='/images/hero/hero-subject-tuition-primary.jpg'
+				backgroundImage='/images/hero/subject-tuition.jpg'
 				h1={
 					<span className='text-white'>
 						Subject Tutoring

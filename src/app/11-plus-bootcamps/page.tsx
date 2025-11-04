@@ -189,7 +189,7 @@ export default function ElevenPlusBootcampsPage() {
 			{/* Hero Section - Outside PageLayout */}
 			<section id='bootcamps-hero'>
 				<SimpleHero
-					backgroundImage='/images/hero/hero-11-plus-bootcamp.jpeg'
+					backgroundImage='/images/hero/11-plus-bootcamps.jpeg'
 					h1={
 						<span className='text-white'>
 							11+ <span className='text-accent-600'>Bootcamps</span>

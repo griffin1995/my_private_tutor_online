@@ -136,7 +136,7 @@ export function PageHero({
 							const section = video.closest('section');
 							if (section) {
 								section.style.backgroundImage =
-									'url(/images/hero/child_book_and_laptop.avif)';
+									'url(/images/hero/landing-page.avif)';
 								section.style.backgroundSize = 'cover';
 								section.style.backgroundPosition = 'center';
 							}

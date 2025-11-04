@@ -16,6 +16,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
+import {
+	MAIN_NAVIGATION_ITEMS,
+	MOBILE_NAVIGATION_ITEMS,
+	type NavigationItem as NavItem,
+} from '@/content/navigation-content';
+
 interface NavigationItem {
 	label: string;
 	href?: string;
@@ -24,299 +30,20 @@ interface NavigationItem {
 	featured?: boolean;
 	icon?: React.ReactNode;
 }
+
 interface NavigationProps {
 	className?: string;
 	isHomepage?: boolean;
 }
+
 interface DropdownState {
 	isOpen: boolean;
 	activeMenu: string | null;
 }
-const navigationData: NavigationItem[] = [
-	{
-		label: 'About Us',
-		href: '/about',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/about',
-			},
-			{
-				label: "Founder's Story",
-				href: '/about#about-founder-story',
-			},
-			{
-				label: 'Our Ethos',
-				href: '/about#about-quote',
-			},
-			{
-				label: 'Client Reviews',
-				href: '/about#about-testimonials',
-			},
-		],
-	},
-	{
-		label: 'Subject Tuition',
-		href: '/subject-tuition',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/subject-tuition',
-			},
-			{
-				label: 'Subject Categories',
-				href: '/subject-tuition#subject-tuition-categories',
-			},
-			{
-				label: 'Academic Results',
-				href: '/subject-tuition#subject-tuition-results',
-			},
-			{
-				label: 'Home Education',
-				href: '/subject-tuition#subject-tuition-homeschooling-preview',
-			},
-		],
-	},
-	{
-		label: 'How It Works',
-		href: '/how-it-works',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/how-it-works',
-			},
-			{
-				label: 'Our Process',
-				href: '/how-it-works#how-it-works-process-steps',
-			},
-			{
-				label: 'Meet Our Tutors',
-				href: '/how-it-works#how-it-works-tutors',
-			},
-			{
-				label: 'Pricing Tiers',
-				href: '/how-it-works#how-it-works-tutoring-tiers',
-			},
-			{
-				label: 'Why Choose Us',
-				href: '/how-it-works#how-it-works-benefits',
-			},
-		],
-	},
-	{
-		label: 'Testimonials',
-		href: '/testimonials',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/testimonials',
-			},
-			{
-				label: 'Filter Reviews',
-				href: '/testimonials#testimonials-filter',
-			},
-			{
-				label: 'All Reviews',
-				href: '/testimonials#testimonials-grid',
-			},
-			{
-				label: 'Elite Schools',
-				href: '/testimonials#testimonials-schools-carousel',
-			},
-		],
-	},
-	{
-		label: 'Video Masterclasses',
-		href: '/video-masterclasses',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/video-masterclasses',
-			},
-			{
-				label: 'Free Resources',
-				href: '/video-masterclasses#free-video-content',
-			},
-			{
-				label: 'UCAS Guide',
-				href: '/video-masterclasses#ucas-video-content',
-			},
-			{
-				label: 'British Culture',
-				href: '/video-masterclasses#british-culture-video-content',
-			},
-		],
-	},
-	// {
-	// 	label: '11+ Bootcamps',
-	// 	href: '/11-plus-bootcamps',
-	// 	items: [
-	// 		{
-	// 			label: 'Introduction',
-	// 			href: '/11-plus-bootcamps',
-	// 		},
-	// 		{
-	// 			label: 'Elite Schools',
-	// 			href: '/11-plus-bootcamps#bootcamps-schools',
-	// 		},
-	// 		{
-	// 			label: 'Our Promise',
-	// 			href: '/11-plus-bootcamps#bootcamps-tagline',
-	// 		},
-	// 		{
-	// 			label: 'Programmes',
-	// 			href: '/11-plus-bootcamps#bootcamps-programme-options',
-	// 		},
-	// 		{
-	// 			label: 'What Makes Us Different',
-	// 			href: '/11-plus-bootcamps#bootcamps-features',
-	// 		},
-	// 	],
-	// },
-];
 
-const navigationDataMobile: NavigationItem[] = [
-	{
-		label: 'About Us',
-		href: '/about',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/about',
-			},
-			{
-				label: "Founder's Story",
-				href: '/about#about-founder-story',
-			},
-			{
-				label: 'Our Ethos',
-				href: '/about#about-quote',
-			},
-			{
-				label: 'Client Reviews',
-				href: '/about#about-testimonials',
-			},
-		],
-	},
-	{
-		label: 'Subject Tuition',
-		href: '/subject-tuition',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/subject-tuition',
-			},
-			{
-				label: 'Subject Categories',
-				href: '/subject-tuition#subject-tuition-categories',
-			},
-			{
-				label: 'Academic Results',
-				href: '/subject-tuition#subject-tuition-results',
-			},
-			{
-				label: 'Home Education',
-				href: '/subject-tuition#subject-tuition-homeschooling-preview',
-			},
-		],
-	},
-	{
-		label: 'How It Works',
-		href: '/how-it-works',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/how-it-works',
-			},
-			{
-				label: 'Our Process',
-				href: '/how-it-works#how-it-works-process-steps',
-			},
-			{
-				label: 'Meet Our Tutors',
-				href: '/how-it-works#how-it-works-tutors',
-			},
-			{
-				label: 'Pricing Tiers',
-				href: '/how-it-works#how-it-works-tutoring-tiers',
-			},
-			{
-				label: 'Why Choose Us',
-				href: '/how-it-works#how-it-works-benefits',
-			},
-		],
-	},
-	{
-		label: 'Testimonials',
-		href: '/testimonials',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/testimonials',
-			},
-			{
-				label: 'Filter Reviews',
-				href: '/testimonials#testimonials-filter',
-			},
-			{
-				label: 'All Reviews',
-				href: '/testimonials#testimonials-grid',
-			},
-			{
-				label: 'Elite Schools',
-				href: '/testimonials#testimonials-schools-carousel',
-			},
-		],
-	},
-	{
-		label: 'Video Masterclasses',
-		href: '/video-masterclasses',
-		items: [
-			{
-				label: 'Introduction',
-				href: '/video-masterclasses',
-			},
-			{
-				label: 'Free Resources',
-				href: '/video-masterclasses#free-video-content',
-			},
-			{
-				label: 'UCAS Guide',
-				href: '/video-masterclasses#ucas-video-content',
-			},
-			{
-				label: 'British Culture',
-				href: '/video-masterclasses#british-culture-video-content',
-			},
-		],
-	},
-	// {
-	// 	label: '11+ Bootcamps',
-	// 	href: '/11-plus-bootcamps',
-	// 	items: [
-	// 		{
-	// 			label: 'Introduction',
-	// 			href: '/11-plus-bootcamps',
-	// 		},
-	// 		{
-	// 			label: 'Elite Schools',
-	// 			href: '/11-plus-bootcamps#bootcamps-schools',
-	// 		},
-	// 		{
-	// 			label: 'Our Promise',
-	// 			href: '/11-plus-bootcamps#bootcamps-tagline',
-	// 		},
-	// 		{
-	// 			label: 'Programmes',
-	// 			href: '/11-plus-bootcamps#bootcamps-programme-options',
-	// 		},
-	// 		{
-	// 			label: 'What Makes Us Different',
-	// 			href: '/11-plus-bootcamps#bootcamps-features',
-	// 		},
-	// 	],
-	// },
-];
+// Use imported navigation data from navigation-content.ts
+const navigationData: NavigationItem[] = MAIN_NAVIGATION_ITEMS as unknown as NavigationItem[];
+const navigationDataMobile: NavigationItem[] = MAIN_NAVIGATION_ITEMS as unknown as NavigationItem[];
 const mobileMenuVariants = {
 	closed: {
 		x: '100%',

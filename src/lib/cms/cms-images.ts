@@ -400,7 +400,7 @@ export const INSTITUTION_LOGOS = {
 } as const;
 export const HERO_IMAGES = {
 	childWithLaptop: {
-		src: '/images/hero/child_book_and_laptop.avif',
+		src: '/images/hero/landing-page.avif',
 		alt: 'Child studying with book and laptop - premium online tutoring',
 		width: 600,
 		height: 400,

@@ -272,7 +272,8 @@
       "Bash(__NEW_LINE__ echo \"=== DEPLOYMENT VERIFICATION ===\")",
       "Skill(javascript-typescript:typescript-advanced-types)",
       "Skill(framework-migration:dependency-upgrade)",
-      "Bash(audit-report.json)"
+      "Bash(audit-report.json)",
+      "Bash(/tmp/check-unused-images.sh)"
     ],
     "deny": []
   },

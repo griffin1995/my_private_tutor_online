@@ -3,7 +3,7 @@
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
-import { Testimonial10 } from '../education/testimonial-section';
+import { Testimonial10NoRole } from '../education/testimonial-section';
 import HeroVideoDialog from '../magicui/hero-video-dialog';
 
 <m.div
@@ -39,11 +39,10 @@ export function FounderIntroductionSection({}: FounderIntroductionSectionProps =
 			id='founder-introduction-elizabeth-video'
 			className='py-6 sm:py-8 md:py-10 lg:py-12 xl:py-16'>
 			<div className='w-full max-w-4xl sm:max-w-5xl md:max-w-6xl lg:max-w-6xl xl:max-w-7xl mx-auto text-center px-4 sm:px-6 md:px-8'>
-				<Testimonial10
+				<Testimonial10NoRole
 					quote='A truly bespoke experience — Elizabeth personally pairs each student with a carefully selected tutor from her boutique team.'
 					author={{
 						name: 'Academic Insight',
-						role: '',
 						avatar: {
 							src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
 							alt: 'Academic Insight',

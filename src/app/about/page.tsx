@@ -1,9 +1,9 @@
 'use client';
 
+import Carousel_testimonial from '@/app/testimonials/Carousel_testimonial';
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
-import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { Blockquote } from 'flowbite-react';
 
 // ============================================================================
@@ -12,7 +12,7 @@ import { Blockquote } from 'flowbite-react';
 
 // Hero image for About page
 const ABOUT_HERO_IMAGE = {
-	src: '/images/about/about-founder-story.jpg',
+	src: '/images/hero/about.webp',
 	alt: 'Elizabeth Burrows founder story hero background - premium tutoring service heritage',
 	width: 1920,
 	height: 1080,
@@ -106,14 +106,14 @@ export default function AboutUsPage() {
 					</div>
 				</section>
 
-				{/* Video Testimonials Section */}
-				<div
-					id='about-testimonials'
+				{/* Testimonials Carousel Section */}
+				<section
+					id='testimonials-carousel'
 					className='px-4 sm:px-6 lg:px-8'>
 					<div className='mx-auto'>
-						<TestimonialsSection />
+						<Carousel_testimonial />
 					</div>
-				</div>
+				</section>
 			</PageLayout>
 		</>
 	);
