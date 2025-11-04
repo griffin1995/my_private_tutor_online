@@ -273,7 +273,13 @@
       "Skill(javascript-typescript:typescript-advanced-types)",
       "Skill(framework-migration:dependency-upgrade)",
       "Bash(audit-report.json)",
-      "Bash(/tmp/check-unused-images.sh)"
+      "Bash(/tmp/check-unused-images.sh)",
+      "Bash(xargs:*)",
+      "Bash(if [ -d site_audit/ ])",
+      "Bash(then mv site_audit/ docs/archive/)",
+      "Bash(else echo \"⚠️ site_audit/ not found\")",
+      "Bash(while read f)",
+      "Bash(do mv $f docs/archive/)"
     ],
     "deny": []
   },

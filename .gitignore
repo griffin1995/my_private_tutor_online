@@ -181,6 +181,21 @@ cython_debug/
 *.backup
 *.tmp
 
+# Debug and trace files
+trace.json
+types.json
+audit-report.json
+build-baseline.log
+download.zip
+*-test*.png
+*-debug*.png
+
+# Test files (no test framework configured)
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
 # Lock files (keep package-lock.json but ignore others)
 yarn.lock
 pnpm-lock.yaml

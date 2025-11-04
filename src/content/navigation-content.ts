@@ -83,7 +83,7 @@ export const MAIN_NAVIGATION_ITEMS: readonly NavigationItem[] = [
 			},
 			{
 				label: 'Meet Our Tutors',
-				href: '/how-it-works#how-it-works-tutors',
+				href: '/meet-our-tutors',
 			},
 			{
 				label: 'Pricing Tiers',
@@ -248,7 +248,8 @@ export const CONTACT_INFO = {
 // LEGAL & COPYRIGHT
 // ============================================================================
 
-export const COPYRIGHT_TEXT = '© 2025 My Private Tutor Online. All rights reserved.';
+export const COPYRIGHT_TEXT =
+	'© 2025 My Private Tutor Online. All rights reserved.';
 
 export const SOCIAL_MEDIA_LINKS = {
 	// Add social media links here when available
