@@ -297,7 +297,7 @@ function Pagination({
 // Masonry breakpoint configuration
 const breakpointColumnsObj = {
 	default: 3,
-	1024: 2,
+	768: 2,
 	640: 1,
 };
 

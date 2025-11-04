@@ -8,6 +8,12 @@
    SIMPLIFICATION REASON: Surgical removal of premium micro-interactions system while preserving all existing Tailwind functionality */
 
 /**
+ * STYLING PACKAGE INTEGRATION: Inter font for component consistency
+ * FONT ENHANCEMENT: Adds Inter as component font while preserving luxury serif system
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/**
  * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Tailwind CSS v4 Core Directives
  * TAILWIND MIGRATION: All design tokens now managed via tailwind.config.ts (single source of truth)
  * SIMPLIFICATION: Removed CSS variable imports - all styling via Tailwind utility classes
@@ -18,12 +24,25 @@
 @tailwind utilities;
 
 /**
- * CONTEXT7 SOURCE: /vercel/next.js - Smooth scrolling behavior for hash anchor navigation
- * SMOOTH_SCROLL_REASON: Official browser documentation for smooth scrolling to enhance hash anchor navigation user experience
- * ACCESSIBILITY: Respects user's prefers-reduced-motion preference for accessibility compliance
+ * STYLING PACKAGE INTEGRATION: CSS Variables for component system
+ * FONT SYSTEM: Integrates Inter for components while preserving luxury serif fonts
+ */
+:root {
+  --font-sans: Inter, system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+}
+
+/**
+ * STYLING PACKAGE ENHANCEMENT: Global body and HTML styling
+ * INTEGRATION: Adds antialiasing and component-ready background/foreground colors
  */
 html {
-	scroll-behavior: smooth;
+  @apply antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground;
 }
 
 /* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Respect user motion preferences for accessibility */
@@ -182,6 +201,14 @@ html {
 	--color-ui-disabled: #9ca3af;
 	--color-ui-hover: #f9fafb;
 	--color-ui-focus: #ca9e5b;
+
+	/* ============================================
+     RESOURCES PAGE - Neutral Colors
+     ============================================ */
+	/* Resources page uses neutral colors instead of brand gold for links/headings */
+	--resources-heading: #0f172a; /* slate-900 for headings */
+	--resources-link: #0f172a; /* slate-900 for links */
+	--resources-link-hover: #334155; /* slate-700 for link hover */
 
 	/* Legacy semantic variables */
 	--background: #ffffff;
@@ -826,13 +853,16 @@ textarea:focus-visible {
 	nav a,
 	[data-navigation] a,
 	button a,
+	a[data-slot="button"],
 	.btn {
 		color: inherit;
 		text-decoration-line: none;
 	}
 
 	nav a:hover,
-	[data-navigation] a:hover {
+	[data-navigation] a:hover,
+	a[data-slot="button"]:hover {
+		color: inherit;
 		text-decoration-line: none;
 	}
 
@@ -1245,5 +1275,19 @@ textarea:focus-visible {
 	to {
 		opacity: 0;
 		transform: translateX(-200px);
+	}
+}
+
+/* CONTEXT7 SOURCE: /tailwindcss.com - Scrollbar hiding utility for horizontal scrollable containers */
+/* ACCESSIBILITY: Maintains scroll functionality while hiding scrollbar for cleaner UI */
+@layer utilities {
+	.scrollbar-hide {
+		/* Firefox */
+		scrollbar-width: none;
+		/* Safari and Chrome */
+		-ms-overflow-style: none;
+	}
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
 	}
 }

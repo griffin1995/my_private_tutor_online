@@ -133,19 +133,17 @@ export function MobileEnhancements() {
 		buttons.forEach((button) => {
 			const rect = button.getBoundingClientRect();
 			if (rect.height < 44 || rect.width < 44) {
-				(button as HTMLElement).style.minHeight = '44px'(
-					button as HTMLElement,
-				).style.minWidth = '44px';
+				(button as HTMLElement).style.minHeight = '44px';
+				(button as HTMLElement).style.minWidth = '44px';
 			}
 		});
 		const accordionSummaries = document.querySelectorAll(
 			'.MuiAccordionSummary-root',
 		);
 		accordionSummaries.forEach((summary) => {
-			(summary as HTMLElement).style.minHeight =
-				'56px'(summary as HTMLElement).style.paddingTop =
-				'12px'(summary as HTMLElement).style.paddingBottom =
-					'12px';
+			(summary as HTMLElement).style.minHeight = '56px';
+			(summary as HTMLElement).style.paddingTop = '12px';
+			(summary as HTMLElement).style.paddingBottom = '12px';
 		});
 		if ('vibrate' in navigator) {
 			const interactiveElements = document.querySelectorAll(

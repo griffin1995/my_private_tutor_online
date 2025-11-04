@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { m } from 'framer-motion';
 import { PageLayout } from '@/components/layout/page-layout';
 import { PageHero } from '@/components/layout/page-hero';
@@ -17,10 +17,29 @@ import {
 	Star,
 } from 'lucide-react';
 export default function PrivacyPolicyPage() {
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	// Animation variants for hydration safety
+	const fadeInUp = mounted ? {
+		initial: { opacity: 0, y: 20 },
+		whileInView: { opacity: 1, y: 0 },
+		transition: { duration: 0.6 },
+		viewport: { once: true }
+	} : {};
+
+	const scaleIn = mounted ? {
+		initial: { opacity: 0, scale: 0.8 },
+		whileInView: { opacity: 1, scale: 1 },
+		transition: { duration: 0.6 },
+		viewport: { once: true }
+	} : {};
+
 	return (
 		<>
-			{}
-			{}
 			<PageHero
 				background='gradient'
 				size='full'
@@ -30,79 +49,27 @@ export default function PrivacyPolicyPage() {
 				<div className='max-w-4xl mx-auto text-center'>
 					<m.div
 						className='flex items-center justify-center mb-6'
-						initial={{
-							opacity: 0,
-							scale: 0.8,
-						}}
-						whileInView={{
-							opacity: 1,
-							scale: 1,
-						}}
-						transition={{
-							duration: 0.6,
-						}}
-						viewport={{
-							once: true,
-						}}>
+						{...scaleIn}>
 						<div className='bg-white/10 backdrop-blur-sm rounded-full p-4'>
 							<Shield className='w-12 h-12 text-amber-400' />
 						</div>
 					</m.div>
 					<m.h1
 						className='text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.1,
-						}}
-						viewport={{
-							once: true,
-						}}>
+						{...fadeInUp}
+						{...(mounted && { transition: { duration: 0.6, delay: 0.1 } })}>
 						Privacy Policy
 					</m.h1>
 					<m.p
 						className='text-xl text-amber-400 font-semibold mb-6'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.2,
-						}}
-						viewport={{
-							once: true,
-						}}>
+						{...fadeInUp}
+						{...(mounted && { transition: { duration: 0.6, delay: 0.2 } })}>
 						How we protect and handle your personal information
 					</m.p>
 					<m.p
 						className='text-lg text-white/90 leading-relaxed'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.3,
-						}}
-						viewport={{
-							once: true,
-						}}>
+						{...fadeInUp}
+						{...(mounted && { transition: { duration: 0.6, delay: 0.3 } })}>
 						My Private Tutor Online is committed to protecting your privacy and
 						handling your data responsibly. This policy explains how we collect, use,
 						and safeguard your information.
@@ -129,20 +96,12 @@ export default function PrivacyPolicyPage() {
 						<div className='max-w-5xl mx-auto'>
 							<m.div
 								className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 rounded-r-2xl shadow-lg'
-								initial={{
-									opacity: 0,
-									x: -20,
-								}}
-								whileInView={{
-									opacity: 1,
-									x: 0,
-								}}
-								transition={{
-									duration: 0.6,
-								}}
-								viewport={{
-									once: true,
-								}}>
+								{...(mounted && {
+									initial: { opacity: 0, x: -20 },
+									whileInView: { opacity: 1, x: 0 },
+									transition: { duration: 0.6 },
+									viewport: { once: true }
+								})}>
 								<div className='flex items-center gap-4 mb-4'>
 									<FileText className='w-6 h-6 text-blue-600' />
 									<p className='text-lg text-blue-800 font-bold'>
@@ -165,20 +124,7 @@ export default function PrivacyPolicyPage() {
 								</p>
 
 								<m.div
-									initial={{
-										opacity: 0,
-										y: 20,
-									}}
-									whileInView={{
-										opacity: 1,
-										y: 0,
-									}}
-									transition={{
-										duration: 0.6,
-									}}
-									viewport={{
-										once: true,
-									}}>
+									{...fadeInUp}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl rounded-2xl'>
 										<div className='flex items-start gap-4'>
 											{}
@@ -305,20 +251,7 @@ export default function PrivacyPolicyPage() {
 								<h2>5. How We Use Your Personal Data</h2>
 
 								<m.div
-									initial={{
-										opacity: 0,
-										y: 20,
-									}}
-									whileInView={{
-										opacity: 1,
-										y: 0,
-									}}
-									transition={{
-										duration: 0.6,
-									}}
-									viewport={{
-										once: true,
-									}}>
+									{...fadeInUp}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl rounded-2xl'>
 										<div className='flex items-start gap-4'>
 											<CheckCircle className='w-8 h-8 text-green-600 flex-shrink-0 mt-1' />
@@ -434,20 +367,7 @@ export default function PrivacyPolicyPage() {
 								<h2>7. International Transfers</h2>
 
 								<m.div
-									initial={{
-										opacity: 0,
-										y: 20,
-									}}
-									whileInView={{
-										opacity: 1,
-										y: 0,
-									}}
-									transition={{
-										duration: 0.6,
-									}}
-									viewport={{
-										once: true,
-									}}>
+									{...fadeInUp}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-purple-50 to-indigo-50 border-2 border-purple-200 shadow-xl rounded-2xl'>
 										<div className='flex items-start gap-4'>
 											<Lock className='w-8 h-8 text-purple-600 flex-shrink-0 mt-1' />
@@ -596,20 +516,7 @@ export default function PrivacyPolicyPage() {
 								<h2>12. Children's Privacy</h2>
 
 								<m.div
-									initial={{
-										opacity: 0,
-										y: 20,
-									}}
-									whileInView={{
-										opacity: 1,
-										y: 0,
-									}}
-									transition={{
-										duration: 0.6,
-									}}
-									viewport={{
-										once: true,
-									}}>
+									{...fadeInUp}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200 shadow-xl rounded-2xl'>
 										<div className='flex items-start gap-4'>
 											<AlertTriangle className='w-8 h-8 text-blue-600 flex-shrink-0 mt-1' />

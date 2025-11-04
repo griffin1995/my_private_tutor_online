@@ -46,7 +46,7 @@ const Feature1 = ({
 							</p>
 						)}
 						<div className='flex w-full flex-col justify-center gap-2 sm:flex-row md:justify-start'>
-							<Button asChild>
+							<Button asChild style={{ backgroundColor: '#3f4a7e !important', color: '#ffffff !important', borderColor: '#3f4a7e !important', borderRadius: '0 !important' }}>
 								<a
 									href={buttonPrimary.href}
 									target='_blank'>
@@ -55,7 +55,8 @@ const Feature1 = ({
 							</Button>
 							<Button
 								variant='outline'
-								asChild>
+								asChild
+								style={{ backgroundColor: '#ffffff !important', color: '#3f4a7e !important', borderColor: '#3f4a7e !important', borderRadius: '0 !important' }}>
 								<a
 									href={buttonSecondary.href}
 									target='_blank'>

@@ -13,28 +13,24 @@ import { Feature1 } from '../../components/sections/feature1';
 import { Feature2 } from '../../components/sections/feature2';
 import { FounderIntroductionSection } from '../../components/sections/founder-introduction-section';
 import { ThreePillarsSection } from '../../components/sections/three-pillars-section';
-import { TrustIndicatorsGrid } from '../../components/sections/trust-indicators-grid';
 import Carousel_testimonial from '../testimonials/Carousel_testimonial';
 // TEMPORARILY DISABLED: Payload CMS imports causing MongoDB connection freeze
 // import { getPayload } from 'payload';
 // import config from '@/payload.config';
 
-// Type for recognition card data from Payload CMS
-// CONTEXT7 SOURCE: /microsoft/TypeScript - exactOptionalPropertyTypes requires explicit undefined
+// Type for recognition card data (hardcoded)
 interface RecognitionCardData {
 	id: string;
 	headerText: string;
 	contentType: 'logo' | 'icon';
-	logoImage?:
-		| {
-				url: string;
-				alt: string;
-		  }
-		| undefined;
-	logoMaxWidth?: string | undefined;
-	iconPath?: string | undefined;
-	iconAlt?: string | undefined;
-	footerText?: string | undefined;
+	logoImage?: {
+		url: string;
+		alt: string;
+	};
+	logoMaxWidth?: string;
+	iconPath?: string;
+	iconAlt?: string;
+	footerText?: string;
 	sortOrder: number;
 	status: 'published' | 'draft';
 }
@@ -137,50 +133,6 @@ const SERVICES_DATA = [
 			'Immediate availability',
 		],
 		targetAudience: 'London-based students seeking in-person tuition',
-	},
-];
-
-// Trust Indicators Data for alternating image/text section
-const TRUST_INDICATORS_DATA = [
-	{
-		icon: '',
-		title: 'Fit For a King',
-		subtitle: '',
-		description:
-			'Our services are trusted by prominent families, **including VIPs and royalty**.\n\n"Hi Elizabeth, I found out today that the two princes and the princess have all been offered places at Le Rosey for next year. The family is delighted and would like me to pass on their sincerest thanks to you and the team for all your hard work."',
-		imageUrl: '/images/graphics/feature-royal-endorsement.jpg',
-		imageAlt:
-			'Royal endorsement - Invitation-only service trusted by royal families and high-profile clients',
-	},
-	{
-		icon: '',
-		title: 'Examiner insight',
-		subtitle: '',
-		description:
-			'Our Tier 1 tutors **actually write/mark the real tests your child takes**. Such insider perspective is rare.',
-		imageUrl: '/images/graphics/feature-exam-insight.jpeg',
-		imageAlt:
-			'Examiner insight - Tutors who are actual examiners providing unique academic advantage',
-	},
-	{
-		icon: '',
-		title: 'By Invitation Only',
-		subtitle: '',
-		description:
-			"Elizabeth's international career has allowed her to **personally work alongside almost all our tutors**, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team.",
-		imageUrl: '/images/graphics/feature-built-on-trust.jpeg',
-		imageAlt:
-			'Built on trust - Premium tutoring service with vetted educators and proven track record',
-	},
-	{
-		icon: '',
-		title: 'Rooted in Britain, Appreciated Worldwide',
-		subtitle: '',
-		description:
-			'We know British education **inside and out** and bring that knowledge to families across the globe.',
-		imageUrl: '/images/graphics/feature-british-heritage.jpeg',
-		imageAlt:
-			'British heritage and global network - Personal tutoring approach with international reach',
 	},
 ];
 
@@ -418,7 +370,6 @@ const STUDENT_IMAGES: Record<
 
 export default async function HomePage() {
 	const services = SERVICES_DATA;
-	const trustIndicators = TRUST_INDICATORS_DATA;
 	const studentImages = STUDENT_IMAGES;
 
 	// CONTEXT7 SOURCE: /payloadcms/payload - Fetch recognition cards from Payload CMS
@@ -619,10 +570,16 @@ export default async function HomePage() {
 						title='Fit For a King'
 						description={
 							<>
-								Our services are trusted by prominent families, including VIPs and royalty.
+								Our services are trusted by prominent families, including VIPs and
+								royalty.
 								<br />
 								<br />
-								<em>&ldquo;Hi Elizabeth, I found out today that the two princes and the princess have all been offered places at Le Rosey for next year. The family is delighted and would like me to pass on their sincerest thanks to you and the team for all your hard work.&rdquo;</em>
+								<em>
+									&ldquo;Hi Elizabeth, I found out today that the two princes and the
+									princess have all been offered places at Le Rosey for next year. The
+									family is delighted and would like me to pass on their sincerest thanks
+									to you and the team for all your hard work.&rdquo;
+								</em>
 							</>
 						}
 						imageSrc='/images/graphics/feature-royal-endorsement.jpg'

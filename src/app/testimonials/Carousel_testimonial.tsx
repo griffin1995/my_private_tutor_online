@@ -2,26 +2,38 @@
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { motion as m } from 'framer-motion';
+import {
+	motion as m,
+	useAnimationFrame,
+	useMotionValue,
+	useTransform,
+} from 'framer-motion';
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+
+// CONTEXT7 SOURCE: /framer/motion - Wrap function for seamless infinite scroll
+export const wrap = (min: number, max: number, v: number) => {
+	const rangeSize = max - min;
+	return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
 // Type definition for testimonials
 const testimonials = [
-	{
-		id: 'video-parents-compilation-2025',
-		name: 'Ms. Tremblay, Notting Hill',
-		designation: 'Parent',
-		subject: '8+ preparation',
-		testimonial:
-			'My Private Tutor Online transformed our whole family’s experience with education. Our daughter made marked progress with her entrance exam prep, but my husband and I also felt much less stressed about the whole thing. Elizabeth demystified the process and helped us understand how it works (we’re an expat family, so didn’t know the system here). Thank you for her progress and our peace of mind!',
-		avatar: (
-			<Image
-				src='/images/testimonials/Ms. Tremblay.jpg'
-				alt='Testimonial avatar'
-				width={80}
-				height={80}
-			/>
-		),
-	},
+	// {
+	// 	id: 'video-parents-compilation-2025',
+	// 	name: 'Ms. Tremblay, Notting Hill',
+	// 	designation: 'Parent',
+	// 	subject: '8+ preparation',
+	// 	testimonial:
+	// 		'My Private Tutor Online transformed our whole family’s experience with education. Our daughter made marked progress with her entrance exam prep, but my husband and I also felt much less stressed about the whole thing. Elizabeth demystified the process and helped us understand how it works (we’re an expat family, so didn’t know the system here). Thank you for her progress and our peace of mind!',
+	// 	avatar: (
+	// 		<Image
+	// 			src='/images/testimonials/Ms. Tremblay.jpg'
+	// 			alt='Testimonial avatar'
+	// 			width={80}
+	// 			height={80}
+	// 		/>
+	// 	),
+	// },
 	{
 		id: 'video-students-compilation-2025',
 		name: 'Mr. DeCourtenay, Holland Park',
@@ -200,7 +212,7 @@ const testimonials = [
 	},
 ];
 
-// ✅ Local motion-based marquee component
+// ✅ CONTEXT7 SOURCE: /framer/motion - Seamless infinite scroll with wrap function
 const MotionMarquee = ({
 	children,
 	reverse = false,
@@ -209,33 +221,91 @@ const MotionMarquee = ({
 	children: React.ReactNode;
 	reverse?: boolean;
 	duration?: number;
-}) => (
-	<div
-		className='w-full overflow-hidden relative'
-		style={{
-			WebkitMaskImage:
-				'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-			maskImage:
-				'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-			WebkitMaskRepeat: 'no-repeat',
-			maskRepeat: 'no-repeat',
-		}}>
-		<m.div
-			className='flex gap-8' // removed whitespace-nowrap to allow wrapping
-			animate={{
-				x: reverse ? ['-50%', '0%'] : ['0%', '-50%'],
-			}}
-			transition={{
-				repeat: Infinity,
-				repeatType: 'loop',
-				ease: 'linear',
-				duration,
+}) => {
+	const containerRef = useRef<HTMLDivElement>(null);
+	const blockRef = useRef<HTMLDivElement>(null);
+	const [numCopies, setNumCopies] = useState(3);
+
+	const baseX = useMotionValue(0);
+	const unitWidth = useMotionValue(0);
+
+	// Calculate how many copies needed to fill viewport
+	useEffect(() => {
+		const container = containerRef.current;
+		const block = blockRef.current;
+		if (!container || !block) return;
+
+		const updateSizes = () => {
+			const containerWidth = container.offsetWidth || 0;
+			const blockWidth = block.scrollWidth || 0;
+			unitWidth.set(blockWidth);
+			const nextCopies =
+				blockWidth > 0
+					? Math.max(3, Math.ceil(containerWidth / blockWidth) + 2)
+					: 3;
+			setNumCopies((prev) => (prev === nextCopies ? prev : nextCopies));
+		};
+
+		updateSizes();
+
+		const ro = new ResizeObserver(updateSizes);
+		ro.observe(container);
+		ro.observe(block);
+
+		return () => {
+			ro.disconnect();
+		};
+	}, [children, unitWidth]);
+
+	// Use wrap function with useTransform for seamless looping
+	const x = useTransform([baseX, unitWidth], ([v, bw]) => {
+		const width = Number(bw) || 1;
+		const offset = Number(v) || 0;
+		return `${-wrap(0, width, offset)}px`;
+	});
+
+	// Continuous animation using useAnimationFrame
+	useAnimationFrame((_, delta) => {
+		const dt = delta / 1000;
+		const bw = unitWidth.get() || 0;
+		if (bw <= 0) return;
+
+		// Calculate speed: we want to traverse one block width in `duration` seconds
+		const pixelsPerSecond = bw / duration;
+		const direction = reverse ? 1 : -1;
+		const moveBy = direction * pixelsPerSecond * dt;
+
+		baseX.set(baseX.get() + moveBy);
+	});
+
+	return (
+		<div
+			ref={containerRef}
+			className='w-full overflow-hidden relative'
+			style={{
+				WebkitMaskImage:
+					'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+				maskImage:
+					'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+				WebkitMaskRepeat: 'no-repeat',
+				maskRepeat: 'no-repeat',
 			}}>
-			{/* duplicate children to create seamless scroll */}
-			{[children, children]}
-		</m.div>
-	</div>
-);
+			<m.div
+				className='inline-flex gap-8 items-start will-change-transform'
+				style={{ x }}>
+				{Array.from({ length: numCopies }).map((_, i) => (
+					<div
+						key={i}
+						ref={i === 0 ? blockRef : null}
+						aria-hidden={i !== 0}
+						className='inline-flex gap-8 shrink-0'>
+						{children}
+					</div>
+				))}
+			</m.div>
+		</div>
+	);
+};
 
 const Carousel_testimonial = () => (
 	<div className='min-h-screen flex justify-center items-center py-12'>
@@ -250,17 +320,19 @@ const Carousel_testimonial = () => (
 				<div className='z-10 absolute left-0 inset-y-0 w-[15%] bg-linear-to-r from-background to-transparent' />
 				<div className='z-10 absolute right-0 inset-y-0 w-[15%] bg-linear-to-l from-background to-transparent' />
 
-				{/* Top marquee */}
-				<MotionMarquee duration={20}>
-					<TestimonialList />
-				</MotionMarquee>
+				<div className='flex flex-col gap-4'>
+					{/* Top marquee */}
+					<MotionMarquee duration={70}>
+						<TestimonialList />
+					</MotionMarquee>
 
-				{/* Reverse direction marquee */}
-				<MotionMarquee
-					reverse
-					duration={20}>
-					<TestimonialList />
-				</MotionMarquee>
+					{/* Reverse direction marquee */}
+					<MotionMarquee
+						reverse
+						duration={70}>
+						<TestimonialList />
+					</MotionMarquee>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -270,7 +342,7 @@ const TestimonialList = () =>
 	testimonials.map((testimonial) => (
 		<div
 			key={testimonial.id}
-			className='min-w-[28rem] max-w-[32rem] bg-accent rounded-xl p-6 flex-shrink-0'>
+			className='min-w-[28rem] max-w-[32rem] bg-accent p-6 flex-shrink-0 border border-neutral-300'>
 			<div className='flex items-center justify-between'>
 				<div className='flex items-center gap-4'>
 					{testimonial.avatar ? (
@@ -292,12 +364,12 @@ const TestimonialList = () =>
 				<Button
 					variant='ghost'
 					size='icon'
-					asChild>
+					className='relative w-16 h-16'>
 					<Image
 						src='/icons/favicon-96x96.png'
 						alt='Brand Logo'
-						width={16}
-						height={16}
+						fill
+						className='object-contain'
 					/>
 				</Button>
 			</div>

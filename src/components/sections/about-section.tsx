@@ -6,6 +6,7 @@ import {
 	preloadAboutResources,
 	registerAboutSectionSW,
 } from '@/lib/service-worker/sw-registration';
+import { Card } from '@/components/ui/card';
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect } from 'react';
@@ -136,9 +137,8 @@ export function AboutSection({
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: '-100px' }}
 					transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}>
-					{/* Card 1 */}
+					{/* Card 1 - Tatler */}
 					<m.div
-						className='group relative aspect-square p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center'
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
@@ -149,29 +149,30 @@ export function AboutSection({
 							boxShadow: '0 8px 24px rgba(212,175,55,0.2)',
 							transition: { duration: 0.3, ease: 'easeOut' },
 						}}>
-						{/* Row 1 */}
-						<m.p
-							className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
-							initial={{ opacity: 0, scale: 0.9 }}
-							whileInView={{ opacity: 1, scale: 1 }}
-							transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
-							As featured in
-						</m.p>
+						<Card className='group relative aspect-square p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center py-5 gap-0 rounded-none'>
+							{/* Row 1 */}
+							<m.p
+								className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
+								initial={{ opacity: 0, scale: 0.9 }}
+								whileInView={{ opacity: 1, scale: 1 }}
+								transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
+								As featured in
+							</m.p>
 
-						{/* Row 2 */}
-						<img
-							src='/images/media/tatler-logo-alt.png'
-							alt='Tatler Address Book - Featured Premium Tutoring Service'
-							className='h-auto max-w-[156px] object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center'
-						/>
+							{/* Row 2 */}
+							<img
+								src='/images/media/tatler-logo-alt.png'
+								alt='Tatler Address Book - Featured Premium Tutoring Service'
+								className='h-auto max-w-[156px] object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center'
+							/>
 
-						{/* Row 3 */}
-						<div />
+							{/* Row 3 */}
+							<div />
+						</Card>
 					</m.div>
 
-					{/* Card 2 */}
+					{/* Card 2 - Schools Guide UK */}
 					<m.div
-						className='group relative aspect-square p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center'
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
@@ -182,26 +183,27 @@ export function AboutSection({
 							boxShadow: '0 8px 24px rgba(212,175,55,0.2)',
 							transition: { duration: 0.3, ease: 'easeOut' },
 						}}>
-						<m.p
-							className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
-							initial={{ opacity: 0, scale: 0.9 }}
-							whileInView={{ opacity: 1, scale: 1 }}
-							transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
-							As recommended by
-						</m.p>
+						<Card className='group relative aspect-square p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center py-5 gap-0 rounded-none'>
+							<m.p
+								className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
+								initial={{ opacity: 0, scale: 0.9 }}
+								whileInView={{ opacity: 1, scale: 1 }}
+								transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
+								As recommended by
+							</m.p>
 
-						<img
-							src='/images/media/schools-guide-uk-logo.png'
-							alt='Schools Guide UK - Top Pick for Private Tuition'
-							className='h-auto max-w-[156px] object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center'
-						/>
+							<img
+								src='/images/media/schools-guide-uk-logo.png'
+								alt='Schools Guide UK - Top Pick for Private Tuition'
+								className='h-auto max-w-[156px] object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center'
+							/>
 
-						<div />
+							<div />
+						</Card>
 					</m.div>
 
-					{/* Card 3 */}
+					{/* Card 3 - Royal Clientele */}
 					<m.div
-						className='group relative aspect-square p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center text-center'
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
@@ -212,37 +214,39 @@ export function AboutSection({
 							boxShadow: '0 8px 24px rgba(212,175,55,0.2)',
 							transition: { duration: 0.3, ease: 'easeOut' },
 						}}>
-						{/* Row 1 */}
-						<m.p
-							className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
-							initial={{ opacity: 0, scale: 0.9 }}
-							whileInView={{ opacity: 1, scale: 1 }}
-							transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
-							As trusted by
-						</m.p>
+						<Card className='group relative aspect-square p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center text-center py-5 gap-0 rounded-none'>
+							{/* Row 1 */}
+							<m.p
+								className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
+								initial={{ opacity: 0, scale: 0.9 }}
+								whileInView={{ opacity: 1, scale: 1 }}
+								transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
+								As trusted by
+							</m.p>
 
-						{/* Row 2 */}
-						<m.div
-							initial={{ opacity: 0, scale: 0.8, y: -10 }}
-							whileInView={{ opacity: 1, scale: 1, y: 0 }}
-							transition={{ duration: 0.4, delay: 1.0, ease: 'easeOut' }}
-							className='mb-2 relative w-[100px] h-[100px] justify-self-center'>
-							<Image
-								src='/icons/royal-crown.svg'
-								alt='Royal Crown Icon'
-								fill
-								className='transition-all duration-300 group-hover:scale-110'
-							/>
-						</m.div>
+							{/* Row 2 */}
+							<m.div
+								initial={{ opacity: 0, scale: 0.8, y: -10 }}
+								whileInView={{ opacity: 1, scale: 1, y: 0 }}
+								transition={{ duration: 0.4, delay: 1.0, ease: 'easeOut' }}
+								className='mb-2 relative w-[100px] h-[100px] justify-self-center'>
+								<Image
+									src='/icons/royal-crown.svg'
+									alt='Royal Crown Icon'
+									fill
+									className='transition-all duration-300 group-hover:scale-110'
+								/>
+							</m.div>
 
-						{/* Row 3 */}
-						<m.p
-							className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
-							initial={{ opacity: 0, scale: 0.9 }}
-							whileInView={{ opacity: 1, scale: 1 }}
-							transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
-							Royal Clientele
-						</m.p>
+							{/* Row 3 */}
+							<m.p
+								className='text-center font-semibold text-[#1E3A5F] text-sm leading-[1.4] tracking-tight'
+								initial={{ opacity: 0, scale: 0.9 }}
+								whileInView={{ opacity: 1, scale: 1 }}
+								transition={{ duration: 0.4, delay: 1.1, ease: 'easeOut' }}>
+								Royal Clientele
+							</m.p>
+						</Card>
 					</m.div>
 				</m.div>
 			</div>

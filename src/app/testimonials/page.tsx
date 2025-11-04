@@ -4,7 +4,6 @@ import { TestimonialsSection } from '@/components/sections/about/testimonials-se
 import { Separator } from '@radix-ui/react-separator';
 import { Avatar, Blockquote } from 'flowbite-react';
 import { memo } from 'react';
-import Carousel_testimonial from './Carousel_testimonial';
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR TESTIMONIALS PAGE
 // ============================================================================
@@ -340,8 +339,8 @@ export default function TestimonialsPage() {
 				{/* Mission Quote Section */}
 				<section
 					id='mission-quote'
-					className='py-8 lg:py-12 bg-primary-50'>
-					<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
+					className='py-8 md:py-12 bg-primary-50'>
+					<div className='container mx-auto max-w-4xl px-6 sm:px-8 md:px-12 text-center'>
 						<Blockquote className='border-0'>
 							{/* Quote icon */}
 							<svg
@@ -385,8 +384,8 @@ export default function TestimonialsPage() {
 				{/* Featured Testimonials Carousel */}
 				<section
 					id='testimonials-featured-carousel'
-					className='py-16 bg-neutral-50'>
-					<div className='text-center mb-12 px-8 sm:px-12 lg:px-16 xl:px-20'>
+					className='py-12 sm:py-14 md:py-16 bg-neutral-50'>
+					<div className='text-center mb-8 sm:mb-10 md:mb-12 px-8 sm:px-12 md:px-16'>
 						<h2 className='mb-4'>More Student Success Stories</h2>
 
 						<p className='text-primary-600 max-w-3xl mx-auto'>
@@ -395,7 +394,7 @@ export default function TestimonialsPage() {
 						</p>
 					</div>
 
-					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-24 sm:px-32 lg:px-48 xl:px-64'>
+					<div className='grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 md:gap-8 px-8 sm:px-12 md:px-16'>
 						{allTestimonials.map((testimonial, index) => (
 							<OptimizedTestimonialCard
 								key={`featured-testimonial-${testimonial.author}-${index}`}
@@ -405,7 +404,7 @@ export default function TestimonialsPage() {
 						))}
 					</div>
 				</section>
-				<Carousel_testimonial />
+				{/* <Carousel_testimonial /> */}
 			</PageLayout>
 		</>
 	);

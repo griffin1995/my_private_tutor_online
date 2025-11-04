@@ -4,6 +4,7 @@ export interface VideoAsset {
 	readonly thumbnailSrc: string;
 	readonly thumbnailAlt: string;
 	readonly isFree: boolean;
+	readonly purchaseLink?: string;
 }
 export interface SubsectionCard {
 	readonly id: string;
@@ -30,4 +31,5 @@ export interface EducationLevelTabContent {
 	readonly subsections: ReadonlyArray<SubsectionCard>;
 	readonly callOuts: ReadonlyArray<CallOut>;
 	readonly testimonialIds: ReadonlyArray<string>;
+	readonly statIds?: ReadonlyArray<string>;
 }

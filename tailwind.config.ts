@@ -104,7 +104,40 @@ const config: Config = {
 			// Reference: /tailwindlabs/tailwindcss.com - Custom color definitions
 			// Reference: https://www.schemecolor.com/luxury-gold-blue.php (CLIENT SPECIFICATION)
 			colors: {
-				// Luxury Gold & Blue Brand Palette (CLIENT REQUIRED)
+				// STYLING PACKAGE INTEGRATION: Component-ready semantic colors
+				// Perfect brand alignment: brand.600 = #ca9e5b, highlight.600 = #3f4a7e
+				background: "#EDEDED",
+				foreground: "#343433",
+
+				// Styling Package Brand Colors (aligned with your accent)
+				brand: {
+					50: "#fefce8",
+					100: "#fffcd3",
+					200: "#fff7b0",
+					300: "#ffeb81",
+					400: "#fddb6a",
+					500: "#ecc568",
+					600: "#ca9e5b", // EXACT MATCH with your current accent!
+					700: "#9f6f3a",
+					800: "#835527",
+					900: "#70431c"
+				},
+
+				// Styling Package Highlight Colors (aligned with your primary)
+				highlight: {
+					50: "#f9fafc",
+					100: "#eff2f7",
+					200: "#dee2ee",
+					300: "#c5cde2",
+					400: "#8e99c2",
+					500: "#5d699d",
+					600: "#3f4a7e", // EXACT MATCH with your current primary!
+					700: "#303963",
+					800: "#202442",
+					900: "#14142d"
+				},
+
+				// Luxury Gold & Blue Brand Palette (CLIENT REQUIRED) - PRESERVED
 				// Primary: Metallic Blue (#3F4A7E) - WCAG AA Enhanced for Accessibility
 				// Documentation Source: WCAG 2.1 AA Contrast Requirements (4.5:1 normal text, 3:1 large text)
 				primary: {
@@ -135,20 +168,20 @@ const config: Config = {
 					900: '#6d4a21', // WCAG Enhanced: Dark bronze for maximum contrast
 					950: '#4a3318', // Darkest bronze - excellent contrast with white text
 				},
-				// Supporting Luxury Palette
-				// Neutral greys for balance and sophistication
+				// Supporting Luxury Palette - ENHANCED with Styling Package
+				// Neutral greys for balance and sophistication - PRESERVED + ENHANCED
 				neutral: {
-					50: '#fafafa',
-					100: '#f5f5f5',
-					200: '#e5e5e5',
-					300: '#d4d4d4',
-					400: '#a3a3a3',
-					500: '#737373',
-					600: '#525252',
-					700: '#404040',
-					800: '#262626',
-					900: '#171717',
-					950: '#0a0a0a',
+					50: '#fafafa', // Preserved from luxury system
+					100: '#f4f4f4', // Updated from styling package for better component integration
+					200: '#e6e6e5', // Updated from styling package
+					300: '#d4d4d4', // Preserved from luxury system
+					400: '#a2a2a2', // Updated from styling package for better contrast
+					500: '#727272', // Updated from styling package
+					600: '#535352', // Updated from styling package
+					700: '#40403f', // Updated from styling package
+					800: '#272726', // Updated from styling package
+					900: '#181817', // Updated from styling package
+					950: '#0a0a0a', // Preserved from luxury system
 				},
 				// Royal complementary colours (maintaining existing for gradual transition)
 				royal: {
@@ -223,6 +256,12 @@ const config: Config = {
 					disabled: 'var(--color-ui-disabled)',
 					hover: 'var(--color-ui-hover)',
 					focus: 'var(--color-ui-focus)',
+				},
+				// Resources Page - Neutral Colors (not brand gold)
+				resources: {
+					heading: 'var(--resources-heading)',
+					link: 'var(--resources-link)',
+					'link-hover': 'var(--resources-link-hover)',
 				},
 			},
 
@@ -358,7 +397,7 @@ const config: Config = {
 				'golden-xl': '6.854rem', // φ⁴ * 1rem
 			},
 
-			// Animation and motion - CLAUDE.md rule 31
+			// Animation and motion - ENHANCED with Styling Package
 			animation: {
 				'fade-in': 'fadeIn 0.5s ease-in-out',
 				'fade-in-up': 'fadeInUp 0.5s ease-out',
@@ -369,8 +408,9 @@ const config: Config = {
 				'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				shimmer: 'shimmer 2s linear infinite',
 				scroll: 'scroll 30s linear infinite',
-				'accordion-down': 'accordion-down 0.3s ease-out',
-				'accordion-up': 'accordion-up 0.3s ease-out',
+				// STYLING PACKAGE: Optimized accordion animations for better UX
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 
 			keyframes: {
@@ -410,6 +450,7 @@ const config: Config = {
 					'0%': { transform: 'translateX(0)' },
 					'100%': { transform: 'translateX(-100%)' },
 				},
+				// STYLING PACKAGE: Enhanced accordion animations for smoother interactions
 				'accordion-down': {
 					from: { height: '0' },
 					to: { height: 'var(--radix-accordion-content-height)' },
@@ -565,13 +606,13 @@ const config: Config = {
 					'radial-gradient(ellipse at center, rgba(202, 158, 91, 0.15) 0%, rgba(202, 158, 91, 0.05) 38.2%, transparent 100%)',
 			},
 
-			// Border radius for consistent design
+			// Border radius for consistent design - ENHANCED with Styling Package
 			borderRadius: {
 				none: '0',
-				sm: '0.125rem',
-				DEFAULT: '0.25rem',
-				md: '0.375rem',
-				lg: '0.5rem',
+				sm: '0.0833rem', // Updated from styling package for component consistency
+				DEFAULT: '0.1667rem', // Updated from styling package
+				md: '0.25rem', // Updated from styling package
+				lg: '0.5rem', // Preserved (matches your 8px setting)
 				xl: '0.75rem',
 				'2xl': '1rem',
 				'3xl': '1.5rem',
@@ -664,6 +705,9 @@ const config: Config = {
 
 		// Aspect ratio utilities
 		require('@tailwindcss/aspect-ratio'),
+
+		// STYLING PACKAGE: Enhanced animations for component interactions
+		require('tailwindcss-animate'),
 
 		// CONTEXT7 SOURCE: /nicolas-cusan/tailwind-clamp - Fluid typography and spacing plugin
 		// CONTAINER-RELATIVE SIZING: Custom viewport sizes for premium responsive design

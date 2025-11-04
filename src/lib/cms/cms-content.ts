@@ -1271,8 +1271,23 @@ export const getUnifiedContact = cache((): UnifiedContactData => {
 export const getContactContent = cache((): ContactSection => {
 	return landingPageContent.contact;
 });
-export const getFooterContent = cache((): FooterContent => {
-	return landingPageContent.footer;
+export const getFooterContent = cache((): any => {
+	// CMS is dead - return minimal structure to satisfy page-footer-client.tsx
+	const footer = landingPageContent.footer as any;
+	return {
+		companyName: footer.companyName || 'My Private Tutor Online',
+		description: footer.description || '',
+		logo: {
+			main: '/images/logos/logo-mark.png',
+			alt: 'My Private Tutor Online Logo',
+			width: 320,
+			height: 160,
+		},
+		footerSections: footer.sections?.map((section: any) => ({
+			title: section.title,
+			links: section.links,
+		})) || [],
+	};
 });
 export const getBusinessContent = cache(
 	(): {

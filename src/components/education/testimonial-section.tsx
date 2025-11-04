@@ -15,15 +15,17 @@ interface Testimonial10Props {
 }
 
 export const Testimonial10 = ({
-	quote = 'Testimonial quote text goes here. This is where the customer feedback or testimonial content will be displayed.',
-	author = {
-		name: 'Testimonial Author Name',
-		role: 'Testimonial Author Role',
-		avatar: {
-			src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
-			alt: 'Testimonial Author Avatar',
-		},
-	},
+	// quote = 'Testimonial quote text goes here. This is where the customer feedback or testimonial content will be displayed.',
+	// author = {
+	// 	name: 'Testimonial Author Name',
+	// 	role: 'Testimonial Author Role',
+	// 	avatar: {
+	// 		src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
+	// 		alt: 'Testimonial Author Avatar',
+	// 	},
+	// },
+	quote,
+	author,
 }: Testimonial10Props) => {
 	return (
 		<section className='py-4 sm:py-6 md:py-8'>

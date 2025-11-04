@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import FooterErrorBoundary from './footer-error-boundary';
-import FooterCompanySection from './footer-components/footer-company-section';
-import FooterNavigationSections from './footer-components/footer-navigation-sections';
+import { FooterCompanySectionHardcoded } from './footer-components/footer-company-section-hardcoded';
+import { FooterNavigationHardcoded } from './footer-components/footer-navigation-hardcoded';
 const FooterNewsletterForm = lazy(
 	() => import('./footer-components/footer-newsletter-form'),
 );
@@ -167,7 +167,7 @@ export function PageFooterClient({
 					{}
 					{}
 					{footerConfig.showContactForm && (
-						<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-16'>
+						<div className='w-full px-4 sm:px-6 md:px-4 lg:px-8 py-12 md:py-12 lg:py-16'>
 							<div className='max-w-4xl mx-auto text-center'>
 								<h2 className='text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4'>
 									Ready to Start the Conversation?
@@ -210,7 +210,7 @@ export function PageFooterClient({
 					{}
 					{}
 					{footerConfig.showNewsletter && (
-						<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-12'>
+						<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 lg:py-12'>
 							<div className='max-w-4xl mx-auto text-center'>
 								<div className='animate-fade-in-up'>
 									<h3 className='text-3xl font-serif font-bold text-primary-900 mb-4'>
@@ -241,30 +241,31 @@ export function PageFooterClient({
 
 					{}
 					{}
-					<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-16'>
-						{}
-						{}
-						{}
-						<div className='flex flex-col lg:flex-row gap-12 items-stretch'>
+					<div className='w-full px-4 sm:px-6 md:px-4 lg:px-8 py-12 md:py-12 lg:py-16'>
+						<div className='lg:container lg:mx-auto'>
 							{}
 							{}
 							{}
-							<div className='lg:w-[18%] flex'>
-								<FooterCompanySection
-									content={footerContent}
-									className='animate-fade-in-left'
-								/>
-							</div>
+							<div className='flex flex-col lg:flex-row lg:gap-12 items-stretch'>
+								{}
+								{}
+								{}
+								<div className='hidden lg:flex lg:w-[18%]'>
+									<FooterCompanySectionHardcoded
+										className='animate-fade-in-left'
+									/>
+								</div>
 
-							{}
-							{}
-							{}
-							<div className='lg:w-[82%] flex'>
-								<FooterNavigationSections sections={footerContent.footerSections} />
-							</div>
+								{}
+								{}
+								{}
+								<div className='w-full lg:w-[82%] flex'>
+									<FooterNavigationHardcoded />
+								</div>
 
-							{}
-							{}
+								{}
+								{}
+							</div>
 						</div>
 					</div>
 

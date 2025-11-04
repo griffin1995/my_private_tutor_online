@@ -1,5 +1,4 @@
-import React from 'react';
-import { getFooterContent, getCopyrightText } from '@/lib/cms';
+import { getCopyrightText, getFooterContent } from '@/lib/cms';
 import { PageFooterClient } from './page-footer-client';
 interface PageFooterProps {
 	className?: string;

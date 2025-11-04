@@ -54,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			priority: 0.9,
 		},
 		{
-			url: `${baseUrl}/video`,
+			url: `${baseUrl}/video-masterclasses`,
 			lastModified,
 			changeFrequency: 'weekly',
 			priority: 0.8,

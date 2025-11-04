@@ -1,0 +1,146 @@
+// CONTEXT7 SOURCE: /payloadcms/payload - Recognition card component for About Section
+// ARCHITECTURE REASON: Reusable card component with Payload CMS integration and Framer Motion animations
+// DESIGN SYSTEM COMPLIANCE: Uses design tokens (primary-900) instead of hardcoded colors
+
+'use client';
+
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Card } from '@/components/ui/card';
+import { m } from 'framer-motion';
+import Image from 'next/image';
+
+interface RecognitionCardProps {
+	headerText: string;
+	contentType: 'logo' | 'icon';
+	logoImage?: {
+		url: string;
+		alt: string;
+	};
+	logoMaxWidth?: string;
+	iconPath?: string;
+	iconAlt?: string;
+	footerText?: string;
+	animationDelay: number;
+	index: number;
+}
+
+/**
+ * RecognitionCard Component
+ *
+ * Displays recognition/achievement cards in the About Section
+ * Supports both logo images (Tatler, Schools Guide) and icons (Royal Crown)
+ *
+ * @param headerText - Card header (e.g., "As featured in")
+ * @param contentType - Display mode: 'logo' for images, 'icon' for SVG icons
+ * @param logoImage - Logo image data from Payload Media collection
+ * @param logoMaxWidth - CSS max-width for logo (default: 156px)
+ * @param iconPath - Path to SVG icon for icon mode
+ * @param iconAlt - Accessibility alt text for icon
+ * @param footerText - Optional footer text (e.g., "Royal Clientele")
+ * @param animationDelay - Stagger delay for Framer Motion animation
+ * @param index - Card position for tracking
+ */
+export function RecognitionCard({
+	headerText,
+	contentType,
+	logoImage,
+	logoMaxWidth = '156px',
+	iconPath,
+	iconAlt,
+	footerText,
+	animationDelay,
+	index,
+}: RecognitionCardProps) {
+	return (
+		<AspectRatio ratio={1 / 1}>
+			<m.div
+				initial={{ opacity: 0, y: 20 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true }}
+				transition={{ duration: 0.6, delay: animationDelay, ease: 'easeOut' }}
+				whileHover={{
+					scale: 1.02,
+					y: -2,
+					boxShadow: '0 8px 24px rgba(212,175,55,0.2)',
+					transition: { duration: 0.3, ease: 'easeOut' },
+				}}
+				className='w-full h-full'>
+				<Card className='group relative w-full h-full p-4 sm:p-5 border border-yellow-300/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center gap-2 sm:gap-3 md:gap-4 rounded-none'>
+					{/* Row 1: Header Text */}
+					<m.p
+						className='text-center font-semibold text-primary-900 text-sm leading-[1.4] tracking-tight'
+						initial={{ opacity: 0, scale: 0.9 }}
+						whileInView={{ opacity: 1, scale: 1 }}
+						transition={{
+							duration: 0.4,
+							delay: animationDelay + 0.6,
+							ease: 'easeOut',
+						}}>
+						{headerText}
+					</m.p>
+
+					{/* Row 2: Content - Logo Image or Icon */}
+					{contentType === 'logo' && logoImage ? (
+						<img
+							src={logoImage.url}
+							alt={logoImage.alt}
+							className='h-auto object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center'
+							style={{ maxWidth: logoMaxWidth }}
+						/>
+					) : contentType === 'icon' && iconPath ? (
+						<m.div
+							initial={{ opacity: 0, scale: 0.8, y: -10 }}
+							whileInView={{ opacity: 1, scale: 1, y: 0 }}
+							transition={{
+								duration: 0.4,
+								delay: animationDelay + 0.5,
+								ease: 'easeOut',
+							}}
+							className='w-16 sm:w-20 md:w-24 lg:w-28 h-16 sm:h-20 md:h-24 lg:h-28 justify-self-center flex items-center justify-center'>
+							{/* Check if iconPath is SVG path data (starts with 'M') or URL */}
+							{iconPath.startsWith('M') || iconPath.startsWith('m') ? (
+								<svg
+									viewBox='0 0 24 24'
+									fill='none'
+									stroke='currentColor'
+									strokeWidth={2}
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									className='w-full h-full text-primary-700 transition-all duration-300 group-hover:scale-110 group-hover:text-accent-600'
+									aria-label={iconAlt || 'Icon'}>
+									<path d={iconPath} />
+								</svg>
+							) : (
+								<Image
+									src={iconPath}
+									alt={iconAlt || 'Icon'}
+									fill
+									className='transition-all duration-300 group-hover:scale-110'
+								/>
+							)}
+						</m.div>
+					) : null}
+
+					{/* Row 3: Footer Text (optional) */}
+					{footerText ? (
+						<m.p
+							className='text-center font-semibold text-primary-900 text-sm leading-[1.4] tracking-tight'
+							initial={{ opacity: 0, scale: 0.9 }}
+							whileInView={{ opacity: 1, scale: 1 }}
+							transition={{
+								duration: 0.4,
+								delay: animationDelay + 0.6,
+								ease: 'easeOut',
+							}}>
+							{footerText}
+						</m.p>
+					) : (
+						<div />
+					)}
+				</Card>
+			</m.div>
+		</AspectRatio>
+	);
+}
+
+export type { RecognitionCardProps };

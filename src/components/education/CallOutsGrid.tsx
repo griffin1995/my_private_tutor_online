@@ -10,18 +10,23 @@ import {
 	Shield,
 	CheckCircle,
 } from 'lucide-react';
+import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { SquareAspectRatio } from '@/components/ui/aspect-ratio';
 import type { CallOut } from '@/types/education-tabs';
+
 interface CallOutsGridProps {
 	readonly callOuts: ReadonlyArray<CallOut>;
 }
+
 export const CallOutsGrid = memo(function CallOutsGrid({
 	callOuts,
 }: CallOutsGridProps) {
 	const getIcon = (iconName?: string) => {
 		const iconProps = {
-			className: 'w-8 h-8 text-white',
+			className: 'h-full w-full text-primary-700',
 			'aria-hidden': 'true' as const,
 		};
+
 		switch (iconName) {
 			case 'users':
 				return <Users {...iconProps} />;
@@ -38,9 +43,10 @@ export const CallOutsGrid = memo(function CallOutsGrid({
 				return <Award {...iconProps} />;
 		}
 	};
+
 	return (
 		<motion.div
-			className='grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8'
+			className='grid grid-cols-1 gap-8 md:auto-rows-fr md:grid-cols-3'
 			initial='hidden'
 			animate='visible'
 			variants={{
@@ -55,9 +61,7 @@ export const CallOutsGrid = memo(function CallOutsGrid({
 					},
 				},
 			}}>
-			{}
-			{}
-			{callOuts.map((callOut, index) => (
+			{callOuts.map((callOut) => (
 				<motion.div
 					key={callOut.id}
 					variants={{
@@ -73,38 +77,24 @@ export const CallOutsGrid = memo(function CallOutsGrid({
 								ease: 'easeOut',
 							},
 						},
-					}}
-					className='group relative'>
-					{}
-					{}
-					{}
-					<div className='relative p-8 bg-white shadow-subtle-md border-2 border-neutral-300 hover:shadow-depth-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden'>
-						{}
-						{}
-						{}
-						<div className='absolute inset-0 bg-gradient-to-br from-primary-700/10 via-transparent to-neutral-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
-
-						{}
-						{}
-						{}
-						{}
-						<div className='relative mb-6'>
-							<div className='w-16 h-16 rounded-full bg-gradient-to-br from-accent-600 via-primary-700 to-primary-700 flex items-center justify-center shadow-lg shadow-accent-600/25 group-hover:shadow-xl group-hover:shadow-accent-600/40 transition-all duration-500 mx-auto'>
+					}}>
+					<Card className='group flex h-full flex-col justify-between p-0 transition-shadow hover:shadow-sm'>
+						<CardHeader className='flex-row items-center gap-4 space-y-0 px-8 pb-0 pt-8'>
+							<SquareAspectRatio className='w-12 flex-shrink-0 overflow-visible rounded-full bg-muted p-3'>
 								{getIcon(callOut.icon)}
-							</div>
-						</div>
-
-						{}
-						{}
-						{}
-						<div className='text-center relative z-10'>
-							<h4 className='mb-3'>{callOut.title}</h4>
-							<p>{callOut.description}</p>
-						</div>
-					</div>
+							</SquareAspectRatio>
+							<h3>{callOut.title}</h3>
+						</CardHeader>
+						<CardContent className='flex-1 px-8 pb-8 pt-6'>
+							<p className='line-clamp-4 leading-relaxed text-neutral-600'>
+								{callOut.description}
+							</p>
+						</CardContent>
+					</Card>
 				</motion.div>
 			))}
 		</motion.div>
 	);
 });
+
 export type { CallOutsGridProps };

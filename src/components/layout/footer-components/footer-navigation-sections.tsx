@@ -72,7 +72,7 @@ const FooterNavigationSection = React.memo<FooterNavigationSectionProps>(
 				{}
 				<h3
 					id={section.id}
-					className='font-serif text-4xl font-bold text-primary-900 flex items-center gap-2 mb-6 flex-shrink-0'>
+					className='font-serif text-3xl md:text-3xl lg:text-4xl font-bold text-primary-900 flex items-center gap-2 mb-4 md:mb-4 lg:mb-6 flex-shrink-0'>
 					{section.title}
 					<Separator className='flex-1 bg-neutral-300' />
 				</h3>
@@ -117,7 +117,7 @@ const FooterNavigationLink = React.memo<FooterNavigationLinkProps>(
 					href={link.href}
 					target='_blank'
 					rel='noopener noreferrer'
-					className='group flex items-center text-neutral-700 hover:text-accent-600 transition-all duration-300 text-xl'
+					className='group flex items-center text-neutral-700 hover:text-accent-600 transition-all duration-300 text-lg md:text-lg lg:text-xl'
 					aria-label={`${link.accessibleLabel} - opens in new tab`}>
 					<span className='w-0 group-hover:w-4 transition-all duration-300 overflow-hidden'>
 						<Send className='w-3 h-3' />
@@ -131,7 +131,7 @@ const FooterNavigationLink = React.memo<FooterNavigationLinkProps>(
 		return (
 			<Link
 				href={link.href}
-				className='group flex items-center text-neutral-700 hover:text-accent-600 transition-all duration-300'
+				className='group flex items-center text-neutral-700 hover:text-accent-600 transition-all duration-300 text-lg md:text-lg lg:text-xl'
 				aria-label={link.accessibleLabel}
 				prefetch={true}>
 				<span className='w-0 group-hover:w-4 transition-all duration-300 overflow-hidden'>

@@ -23,7 +23,7 @@ export const CONTENT_CATEGORIES = {
 		description: 'Marketing pages for conversion optimization',
 	},
 	CONTENT: {
-		paths: ['/blog', '/faq', '/resources'],
+		paths: ['/blog', '/faq', '/exam-papers'],
 		revalidate: ISR_REVALIDATION.BLOG_POSTS,
 		priority: 'medium' as const,
 		description: 'Content pages for SEO and user engagement',
