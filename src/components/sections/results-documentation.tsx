@@ -46,17 +46,19 @@ export interface ResultsDocumentationItem {
 	readonly icon?: string;
 	readonly priority: number;
 }
-const iconMap: Record<string, React.ReactElement> = {
-	TrendingUp: <TrendingUp className='w-8 h-8' />,
-	Award: <Award className='w-8 h-8' />,
-	Crown: <Crown className='w-8 h-8' />,
-	Target: <Target className='w-8 h-8' />,
-	BookOpen: <BookOpen className='w-8 h-8' />,
-	Heart: <Heart className='w-8 h-8' />,
-	BarChart3: <BarChart3 className='w-8 h-8' />,
-	Users: <Users className='w-8 h-8' />,
-	Shield: <Shield className='w-8 h-8' />,
-	Star: <Star className='w-8 h-8' />,
+type IconName = 'TrendingUp' | 'Award' | 'Crown' | 'Target' | 'BookOpen' | 'Heart' | 'BarChart3' | 'Users' | 'Shield' | 'Star';
+
+const iconMap: Record<IconName, React.ComponentType<{ className: string }>> = {
+	TrendingUp: TrendingUp,
+	Award: Award,
+	Crown: Crown,
+	Target: Target,
+	BookOpen: BookOpen,
+	Heart: Heart,
+	BarChart3: BarChart3,
+	Users: Users,
+	Shield: Shield,
+	Star: Star,
 };
 const getVerificationBadge = (
 	level: ResultsDocumentationItem['verificationLevel'],
@@ -176,9 +178,14 @@ export function ResultsDocumentation({
 							{}
 							<div className='flex items-start justify-between mb-6 h-20'>
 								<div className='p-3 rounded-lg bg-white/20 backdrop-blur-sm text-white'>
-									{result.icon && iconMap[result.icon] ?
-										iconMap[result.icon]
-									:	<BarChart3 className='w-8 h-8' />}
+									{result.icon && iconMap[result.icon as IconName] ? (
+										(() => {
+											const IconComponent = iconMap[result.icon as IconName];
+											return <IconComponent className='w-8 h-8' />;
+										})()
+									) : (
+										<BarChart3 className='w-8 h-8' />
+									)}
 								</div>
 							</div>
 

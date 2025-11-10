@@ -6,30 +6,6 @@ import React from 'react';
 import { Testimonial10NoRole } from '../education/testimonial-section';
 import HeroVideoDialog from '../magicui/hero-video-dialog';
 
-<m.div
-	initial={{
-		opacity: 0,
-		scale: 0.8,
-		y: -10,
-	}}
-	whileInView={{
-		opacity: 1,
-		scale: 1,
-		y: 0,
-	}}
-	transition={{
-		duration: 0.4,
-		delay: 1.0,
-		ease: 'easeOut',
-	}}
-	className='mb-2 relative w-[100px] h-[100px]'>
-	<Image
-		src='/icons/royal-crown.svg'
-		alt='Royal Crown Icon'
-		fill
-		className='transition-all duration-300 group-hover:scale-110'
-	/>
-</m.div>;
 interface FounderIntroductionSectionProps {
 	children?: React.ReactNode;
 }
