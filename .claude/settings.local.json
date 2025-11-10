@@ -289,7 +289,21 @@
       "Skill(framework-migration:react-modernization)",
       "Bash(react_debug_analysis.md)",
       "Bash(security_audit.md)",
-      "Bash(dev_server_status.md)"
+      "Bash(dev_server_status.md)",
+      "Bash(/home/jack/Documents/my_private_tutor_online/ERROR_BOUNDARY_DELETION_REPORT.md )",
+      "Bash(/home/jack/Documents/my_private_tutor_online/ERROR_BOUNDARY_INDEX.md )",
+      "Bash(/home/jack/Documents/my_private_tutor_online/ERROR_BOUNDARY_QUICK_DELETE.md )",
+      "Bash(/home/jack/Documents/my_private_tutor_online/ERROR_BOUNDARY_SUMMARY.txt )",
+      "Bash(/home/jack/Documents/my_private_tutor_online/ERROR_BOUNDARY_USAGE_MAP.md)",
+      "Bash(/tmp/eslint-output.txt)",
+      "Bash(git -C /home/jack/Documents/my_private_tutor_online checkout src/app/api/analytics/client-success/route.ts src/app/api/analytics/testimonials/route.ts src/lib/faq-version-control/version-manager.ts)",
+      "Bash(/tmp/build.log)",
+      "Bash(baseline-audit.json)",
+      "Bash(depcheck-analysis.json)",
+      "Bash({ time npm run build)",
+      "Bash(})",
+      "Bash(/usr/bin/time -v npm run build:*)",
+      "Bash(wc:*)"
     ],
     "deny": []
   },

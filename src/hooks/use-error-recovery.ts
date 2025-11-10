@@ -2,15 +2,63 @@
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { NetworkErrorHandler } from '../lib/error-handling/NetworkErrorHandler';
-import {
-	createErrorReport,
-	formatErrorMessage,
-	isRetryableError,
-	calculateRetryDelay,
-	getErrorSeverity,
-	getErrorCategory,
-	logError,
-} from '../components/error-boundary/utils';
+// Helper functions for error handling
+const createErrorReport = (error: Error, info?: any, component?: string, context?: any) => ({
+	id: `error_${Date.now()}`,
+	message: error.message,
+	stack: error.stack,
+	timestamp: Date.now(),
+	component,
+	context,
+	info,
+});
+
+const formatErrorMessage = (error: Error, isDevelopment = false): string => {
+	if (isDevelopment) return error.message;
+	return 'An error occurred. Please try again.';
+};
+
+const isRetryableError = (error: Error): boolean => {
+	const message = error.message.toLowerCase();
+	const retryableKeywords = ['timeout', 'network', 'econnrefused', 'enotfound', 'temporarily'];
+	return retryableKeywords.some((keyword) => message.includes(keyword));
+};
+
+const calculateRetryDelay = (
+	attempt: number,
+	baseDelay: number,
+	maxDelay: number,
+	multiplier: number,
+): number => {
+	const delay = Math.min(baseDelay * Math.pow(multiplier, attempt - 1), maxDelay);
+	return delay + Math.random() * 0.1 * delay;
+};
+
+const getErrorSeverity = (error: Error): string => {
+	const message = error.message.toLowerCase();
+	if (message.includes('critical') || message.includes('fatal')) return 'critical';
+	if (message.includes('error')) return 'high';
+	return 'medium';
+};
+
+const getErrorCategory = (error: Error): string => {
+	const message = error.message.toLowerCase();
+	if (message.includes('search')) return 'search';
+	if (message.includes('validation')) return 'validation';
+	if (message.includes('network') || message.includes('timeout')) return 'network';
+	if (message.includes('ui') || message.includes('render')) return 'ui';
+	return 'component';
+};
+
+const logError = (error: any, context?: any): void => {
+	if (typeof console !== 'undefined') {
+		console.error(
+			`[Error${context?.context ? ` - ${context.context}` : ''}]`,
+			error,
+			context,
+		);
+	}
+};
 import type {
 	ErrorHandlingResult,
 	ErrorRecoveryPlan,

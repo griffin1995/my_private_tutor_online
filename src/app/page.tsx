@@ -4,7 +4,6 @@
 
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { RoyalEndorsementQuote } from '@/components/content/RoyalEndorsementQuote';
-import { ErrorBoundaryWrapper } from '../components/boundaries/homepage-error-boundary';
 import { FounderQuoteSection } from '../components/client/FounderQuoteSection';
 import { ScrollingLogos } from '../components/client/ScrollingLogos';
 import { LazyServicesCarousel } from '../components/dynamic/lazy-loaded-components';
@@ -19,6 +18,7 @@ import { SchemaMarkup } from '../components/seo/SchemaMarkup';
 // TEMPORARILY DISABLED: Payload CMS imports causing MongoDB connection freeze
 // import { getPayload } from 'payload';
 // import config from '@/payload.config';
+
 
 // Type for recognition card data (hardcoded)
 interface RecognitionCardData {
@@ -549,9 +549,8 @@ export default async function HomePage() {
 					</section>
 
 					{/* About Section */}
-					<ErrorBoundaryWrapper sectionName='About Section'>
 						<AboutSectionClient recognitionCards={recognitionCards} />
-					</ErrorBoundaryWrapper>
+
 
 					{/* Founder Introduction Section */}
 					<FounderIntroductionSection />
@@ -560,9 +559,8 @@ export default async function HomePage() {
 					<section
 						id='quantifiable-results-documentation'
 						className='py-13 lg:py-32'>
-						<ErrorBoundaryWrapper sectionName='Results Documentation'>
 							<ThreePillarsSection />
-						</ErrorBoundaryWrapper>
+
 					</section>
 
 					{/* Trust Indicators Section - Commented out (new version below) */}
@@ -627,12 +625,11 @@ export default async function HomePage() {
 
 					{/* Services Carousel Section */}
 					<section id='who-we-support-services'>
-						<ErrorBoundaryWrapper sectionName='Who We Support Services'>
 							<LazyServicesCarousel
 								services={services}
 								studentImages={studentImages}
 							/>
-						</ErrorBoundaryWrapper>
+
 					</section>
 
 					{/* Founder Quote Section */}
@@ -640,9 +637,8 @@ export default async function HomePage() {
 
 					{/* Video Testimonials Section */}
 					<section id='testimonials-section'>
-						<ErrorBoundaryWrapper sectionName='Video Testimonials'>
 							<TestimonialsSection showMoreButton={true} />
-						</ErrorBoundaryWrapper>
+
 					</section>
 				</div>
 			</main>

@@ -52,7 +52,7 @@ class InMemoryPerformanceStorage implements PerformanceStorage {
 	async getMetrics(sessionId: string): Promise<any[]> {
 		return this.storage.get(sessionId) || [];
 	}
-	async getAggregatedMetrics(userType: string, timeRange: string): Promise<any> {
+	async getAggregatedMetrics(userType: string, _timeRange: string): Promise<any> {
 		const allMetrics: any[] = [];
 		for (const metrics of this.storage.values()) {
 			allMetrics.push(...metrics.filter((m) => m.userType === userType));
@@ -84,13 +84,14 @@ class InMemoryPerformanceStorage implements PerformanceStorage {
 			performance_summary: {} as Record<string, any>,
 		};
 		for (const [metricName, metricList] of Object.entries(metricsByName)) {
-			const totalValue = (metricList as any[]).reduce(
-				(sum: number, m: any) => sum + m.value,
+			const metricArray = metricList as Array<{ value: number; rating: string }>;
+			const totalValue = metricArray.reduce(
+				(sum: number, m: { value: number }) => sum + m.value,
 				0,
 			);
-			aggregated.averages[metricName] = totalValue / (metricList as any[]).length;
-			const ratings = (metricList as any[]).reduce(
-				(acc: Record<string, number>, m: any) => {
+			aggregated.averages[metricName] = totalValue / metricArray.length;
+			const ratings = metricArray.reduce(
+				(acc: Record<string, number>, m: { rating: string }) => {
 					acc[m.rating] = (acc[m.rating] || 0) + 1;
 					return acc;
 				},
@@ -98,16 +99,16 @@ class InMemoryPerformanceStorage implements PerformanceStorage {
 			);
 			aggregated.ratings[metricName] = ratings;
 			aggregated.performance_summary[metricName] = {
-				count: metricList.length,
+				count: metricArray.length,
 				average: aggregated.averages[metricName],
-				min: Math.min(...metricList.map((m) => m.value)),
-				max: Math.max(...metricList.map((m) => m.value)),
+				min: Math.min(...metricArray.map((m: { value: number }) => m.value)),
+				max: Math.max(...metricArray.map((m: { value: number }) => m.value)),
 				p95: this.calculatePercentile(
-					metricList.map((m) => m.value),
+					metricArray.map((m: { value: number }) => m.value),
 					95,
 				),
-				good_ratio: (ratings.good || 0) / metricList.length,
-				poor_ratio: (ratings.poor || 0) / metricList.length,
+				good_ratio: (ratings['good'] || 0) / metricArray.length,
+				poor_ratio: (ratings['poor'] || 0) / metricArray.length,
 			};
 		}
 		return aggregated;
@@ -205,17 +206,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 	try {
 		const correlationId = request.headers.get('x-correlation-id') || 'unknown';
 		const performanceContextHeader = request.headers.get('x-performance-context');
-		let performanceContext = null;
+		let performanceContext: { requestId?: string } | null = null;
 		if (performanceContextHeader) {
 			try {
-				performanceContext = JSON.parse(performanceContextHeader);
+				performanceContext = JSON.parse(performanceContextHeader) as { requestId?: string };
 			} catch (e) {
 				console.warn('Failed to parse performance context:', e);
 			}
 		}
 		const body = await request.json();
 		const validatedPayload = PerformancePayloadSchema.parse(body);
-		const { sessionId, userType, metrics, metadata } = validatedPayload;
+		const { sessionId, userType, metrics } = validatedPayload;
 		const enrichedMetrics = metrics.map((metric) => ({
 			...metric,
 			correlationId,
@@ -322,8 +323,8 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 				royal_client_performance:
 					userType === 'royal' ?
 						{
-							sla_compliance: this.calculateSLACompliance(aggregatedMetrics),
-							critical_issues: this.identifyCriticalIssues(aggregatedMetrics),
+							sla_compliance: calculateSLACompliance(aggregatedMetrics),
+							critical_issues: identifyCriticalIssues(aggregatedMetrics),
 						}
 					:	undefined,
 				timestamp: Date.now(),

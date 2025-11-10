@@ -5,7 +5,6 @@ import { ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import FooterErrorBoundary from './footer-error-boundary';
 import { FooterCompanySectionHardcoded } from './footer-components/footer-company-section-hardcoded';
 import { FooterNavigationHardcoded } from './footer-components/footer-navigation-hardcoded';
 const FooterNewsletterForm = lazy(
@@ -18,6 +17,9 @@ const FooterNewsletterFormSkeleton = lazy(() =>
 );
 import { useFooterAccessibility } from '@/lib/hooks/use-footer-accessibility';
 import FooterSkipLink from './footer-components/footer-skip-link';
+
+
+
 interface FooterContent {
 	companyName: string;
 	description: string;
@@ -116,12 +118,7 @@ export function PageFooterClient({
 		return () => clearTimeout(timer);
 	}, [announce]);
 	return (
-		<FooterErrorBoundary
-			enableRecovery={true}
-			showDetails={process.env.NODE_ENV === 'development'}
-			onError={(error, errorInfo) => {
-				console.error('Footer component error:', error, errorInfo);
-			}}>
+		<>
 			<FooterSkipLink />
 
 			<div
@@ -255,6 +252,6 @@ export function PageFooterClient({
 
 				</div>
 			</footer>
-		</FooterErrorBoundary>
+		</>
 	);
 }

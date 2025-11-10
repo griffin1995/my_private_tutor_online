@@ -81,15 +81,15 @@ interface ErrorReportRequest {
 }
 interface ErrorReportResponse {
 	success: boolean;
-	errorId?: string;
+	errorId?: string | undefined;
 	processingTime: number;
 	actions?: {
 		alertsSent: number;
 		ticketsCreated: number;
 		escalations: number;
-	};
-	message?: string;
-	recommendations?: string[];
+	} | undefined;
+	message?: string | undefined;
+	recommendations?: string[] | undefined;
 }
 export async function POST(
 	request: NextRequest,
@@ -280,7 +280,8 @@ function generateRecommendations(
 	if (error.category === 'search') {
 		if (
 			error.faqContext?.searchQuery &&
-			report.metrics.errorsByCategory.search > 5
+			report.metrics.errorsByCategory['search'] &&
+			report.metrics.errorsByCategory['search'] > 5
 		) {
 			recommendations.push('Consider implementing search query optimization');
 		}

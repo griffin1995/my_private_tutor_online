@@ -18,6 +18,7 @@ interface Phase1Metrics {
 	bundleSize: number;
 	hotReloadTime: number;
 	memoryUsage: number;
+	timestamp?: number;
 }
 interface WebVitalMetric {
 	name: MetricName;
@@ -75,7 +76,7 @@ export function WebVitals() {
 		const metricData: WebVitalMetric = {
 			name: metric.name as MetricName,
 			value: metric.value,
-			rating: rating as 'good' | 'needs-improvement' | 'poor' | undefined,
+			...(rating !== undefined && { rating }),
 			timestamp,
 		};
 		metricsStore.push(metricData);
@@ -119,6 +120,7 @@ export function WebVitals() {
 			});
 			return () => observer.disconnect();
 		}
+		return undefined;
 	}, []);
 	if (typeof window !== 'undefined') {
 		(window as unknown as { __PERFORMANCE_METRICS__: WebVitalMetric[] }).__PERFORMANCE_METRICS__ = metricsStore;
@@ -131,11 +133,22 @@ export function getPerformanceMetrics(): WebVitalMetric[] {
 	}
 	return [];
 }
-export function trackBuildMetrics(metrics: Partial<Phase1Metrics>) {
+export function trackBuildMetrics(metrics: Partial<Phase1Metrics>): void {
 	if (typeof window !== 'undefined') {
+		const existingMetrics: Phase1Metrics = (window as unknown as { __BUILD_METRICS__?: Phase1Metrics }).__BUILD_METRICS__ || {
+			buildTime: 0,
+			typeErrorCount: 0,
+			bundleSize: 0,
+			hotReloadTime: 0,
+			memoryUsage: 0,
+		};
+
 		(window as unknown as { __BUILD_METRICS__?: Phase1Metrics }).__BUILD_METRICS__ = {
-			...((window as unknown as { __BUILD_METRICS__?: Phase1Metrics }).__BUILD_METRICS__ || {}),
-			...metrics,
+			buildTime: metrics.buildTime !== undefined ? metrics.buildTime : existingMetrics.buildTime,
+			typeErrorCount: metrics.typeErrorCount !== undefined ? metrics.typeErrorCount : existingMetrics.typeErrorCount,
+			bundleSize: metrics.bundleSize !== undefined ? metrics.bundleSize : existingMetrics.bundleSize,
+			hotReloadTime: metrics.hotReloadTime !== undefined ? metrics.hotReloadTime : existingMetrics.hotReloadTime,
+			memoryUsage: metrics.memoryUsage !== undefined ? metrics.memoryUsage : existingMetrics.memoryUsage,
 			timestamp: Date.now(),
 		};
 	}

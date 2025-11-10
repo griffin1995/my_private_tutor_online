@@ -21,7 +21,7 @@ interface VoteResponse {
 interface VoteRecord {
 	id: string;
 	suggestionId: string;
-	userId?: string;
+	userId?: string | undefined;
 	voteType: 'upvote' | 'downvote';
 	ipAddress: string;
 	userAgent: string;
@@ -132,7 +132,7 @@ export async function POST(
 	try {
 		const { id } = await params;
 		const suggestionId = id;
-		const headersList = headers();
+		const headersList = await headers();
 		const userIP = headersList.get('x-forwarded-for') || 'unknown';
 		const userAgent = headersList.get('user-agent') || 'unknown';
 		const body = await request.json();
@@ -172,10 +172,10 @@ export async function POST(
 		let currentVote: 'upvote' | 'downvote' | null = null;
 		if (existingVoteIndex !== -1) {
 			const existingVote = mockVotes[existingVoteIndex];
-			if (existingVote.voteType === body.voteType) {
+			if (existingVote && existingVote.voteType === body.voteType) {
 				mockVotes.splice(existingVoteIndex, 1);
 				currentVote = null;
-			} else {
+			} else if (existingVote) {
 				mockVotes[existingVoteIndex] = {
 					...existingVote,
 					voteType: body.voteType,
@@ -201,8 +201,8 @@ export async function POST(
 		const suggestionIndex = mockSuggestions.findIndex(
 			(s) => s.id === suggestionId,
 		);
-		if (suggestionIndex !== -1) {
-			mockSuggestions[suggestionIndex].votes = voteCounts;
+		if (suggestionIndex !== -1 && mockSuggestions[suggestionIndex]) {
+			mockSuggestions[suggestionIndex]!.votes = voteCounts;
 		}
 		console.log('FAQ Vote Cast:', {
 			suggestionId,
@@ -251,7 +251,7 @@ export async function GET(
 		const suggestionId = id;
 		const { searchParams } = new URL(request.url);
 		const userId = searchParams.get('userId');
-		const headersList = headers();
+		const headersList = await headers();
 		const userIP = headersList.get('x-forwarded-for') || 'unknown';
 		const existingVote = mockVotes.find((vote) => {
 			if (userId) {
@@ -295,7 +295,7 @@ export async function DELETE(
 		const suggestionId = id;
 		const { searchParams } = new URL(request.url);
 		const userId = searchParams.get('userId');
-		const headersList = headers();
+		const headersList = await headers();
 		const userIP = headersList.get('x-forwarded-for') || 'unknown';
 		const existingVoteIndex = mockVotes.findIndex((vote) => {
 			if (userId) {
@@ -317,8 +317,8 @@ export async function DELETE(
 		const suggestionIndex = mockSuggestions.findIndex(
 			(s) => s.id === suggestionId,
 		);
-		if (suggestionIndex !== -1) {
-			mockSuggestions[suggestionIndex].votes = voteCounts;
+		if (suggestionIndex !== -1 && mockSuggestions[suggestionIndex]) {
+			mockSuggestions[suggestionIndex]!.votes = voteCounts;
 		}
 		console.log('FAQ Vote Removed:', {
 			suggestionId,

@@ -65,8 +65,9 @@ export async function POST(request: NextRequest) {
 			);
 		}
 		const headersList = await headers();
+		const forwardedFor = headersList.get('x-forwarded-for');
 		const clientIP =
-			headersList.get('x-forwarded-for')?.split(',')[0].trim() || 'unknown';
+			forwardedFor ? forwardedFor.split(',')[0]?.trim() || 'unknown' : 'unknown';
 		const country = headersList.get('x-vercel-ip-country') || 'unknown';
 		const userAgent = headersList.get('user-agent') || 'unknown';
 		const processedEvents = payload.events.map((event) => ({
@@ -120,7 +121,29 @@ export async function GET(request: NextRequest) {
 		const sessionId = url.searchParams.get('sessionId');
 		const timeRange = url.searchParams.get('timeRange') || '24h';
 		const metric = url.searchParams.get('metric') || 'all';
-		const mockData = {
+		const mockData: {
+			timeRange: string;
+			metric: string;
+			conversions: {
+				inquiries: { count: number; rate: number; trend: string };
+				bootcamp_registrations: { count: number; rate: number; trend: string };
+				phone_calls: { count: number; rate: number; trend: string };
+			};
+			engagement: {
+				avgSessionDuration: number;
+				avgPageViews: number;
+				bounceRate: number;
+				returnVisitorRate: number;
+			};
+			topPages: Array<{ page: string; views: number; conversionRate: number }>;
+			performance: {
+				avgLoadTime: number;
+				coreWebVitalsScore: number;
+				userSatisfactionIndex: number;
+			};
+			timestamp: number;
+			sessionId?: string;
+		} = {
 			timeRange,
 			metric,
 			conversions: {

@@ -59,6 +59,20 @@ const nextConfig: NextConfig = {
 	experimental: {
 		// CONTEXT7 SOURCE: /vercel/next.js - Use SWC for faster transforms
 		forceSwcTransforms: false, // Disabled as incompatible with Turbopack
+
+		// CONTEXT7 SOURCE: /vercel/next.js - Phase 2 Turbopack FileSystem Caching (2-4s improvement)
+		// PERFORMANCE OPTIMIZATION: Enable filesystem caching for both dev and build
+		// BUSINESS VALUE: 10-15% build time reduction toward 11.0s target
+		turbopackFileSystemCacheForDev: true, // Dev cache persistence across restarts
+		turbopackFileSystemCacheForBuild: true, // Production build cache for faster rebuilds
+
+		// CONTEXT7 SOURCE: /vercel/next.js - Phase 2 Static Generation Parallelization
+		// PERFORMANCE OPTIMIZATION: Increase parallel page generation for 60% of build time
+		// BUSINESS VALUE: Target page generation bottleneck (20s of 64s build)
+		staticGenerationMaxConcurrency: 16, // Default: 8, increased for faster parallel generation
+		staticGenerationMinPagesPerWorker: 15, // Default: 25, reduced to maximize parallelization
+		staticGenerationRetryCount: 1, // Default: 3, reduced for faster failure detection
+
 		// CONTEXT7 SOURCE: /vercel/next.js - Maximum package import optimization
 		optimizePackageImports: [
 			'lucide-react',
@@ -79,7 +93,6 @@ const nextConfig: NextConfig = {
 			'@heroicons/react',
 			'framer-motion',
 			'date-fns',
-			'lodash-es',
 			'clsx',
 			'class-variance-authority',
 			'recharts',
@@ -87,11 +100,10 @@ const nextConfig: NextConfig = {
 			'react-hook-form',
 			'@hookform/resolvers',
 			'tailwind-merge',
-			'@tanstack/react-query',
 		],
 		// CONTEXT7 SOURCE: /vercel/next.js - Maximum memory and build optimization
 		webpackMemoryOptimizations: true,
-		optimizeCss: true,
+		optimizeCss: false, // Disabled: requires critters dependency
 		scrollRestoration: true,
 		// REMOVED: forceSwcTransforms (incompatible with Turbopack)
 		// CONTEXT7 SOURCE: /vercel/next.js - Phase 3 bundle size reduction features
@@ -162,10 +174,6 @@ const nextConfig: NextConfig = {
 		},
 		'date-fns': {
 			transform: 'date-fns/{{member}}',
-			preventFullImport: true,
-		},
-		'lodash-es': {
-			transform: 'lodash-es/{{member}}',
 			preventFullImport: true,
 		},
 	},

@@ -83,12 +83,13 @@ export function WebVitals() {
 		if (metricsBuffer.current.length === 0) return;
 		const metrics = [...metricsBuffer.current];
 		metricsBuffer.current = [];
-		const body = JSON.stringify({
-			metrics,
-			page: pathname,
-			timestamp: new Date().toISOString(),
-			phase: 'performance-phase-1',
-		});
+		// Note: Analytics endpoint integration prepared but not yet active
+		// const body = JSON.stringify({
+		// 	metrics,
+		// 	page: pathname,
+		// 	timestamp: new Date().toISOString(),
+		// 	phase: 'performance-phase-1',
+		// });
 		if (process.env.NODE_ENV === 'development') {
 			console.table(
 				metrics.map((m) => ({

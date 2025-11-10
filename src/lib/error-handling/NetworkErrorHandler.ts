@@ -6,12 +6,34 @@ import type {
 	CircuitBreakerState,
 	CircuitBreakerConfig,
 } from './types';
-import {
-	calculateRetryDelay,
-	isNetworkError,
-	isTimeoutError,
-	logError,
-} from '../../components/error-boundary/utils';
+// Helper functions for network error handling
+const isNetworkError = (error: any): boolean => {
+	return (
+		error?.code === 'NetworkError' ||
+		error?.code === 'ECONNREFUSED' ||
+		error?.code === 'ENOTFOUND' ||
+		error?.code === 'ECONNABORTED' ||
+		!navigator.onLine
+	);
+};
+
+const isTimeoutError = (error: any): boolean => {
+	return (
+		error?.code === 'TIMEOUT' ||
+		error?.message?.includes('timeout') ||
+		error?.message?.includes('Timeout')
+	);
+};
+
+const logError = (error: any, context?: any): void => {
+	if (typeof console !== 'undefined') {
+		console.error(
+			`[Error${context?.context ? ` - ${context.context}` : ''}]`,
+			error,
+			context,
+		);
+	}
+};
 interface NetworkError extends Error {
 	status?: number;
 	statusText?: string;

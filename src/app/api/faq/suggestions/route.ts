@@ -33,12 +33,12 @@ interface APIResponse<T = any> {
 	};
 }
 interface SuggestionFilters {
-	category?: string;
-	status?: string;
-	sortBy?: 'newest' | 'votes' | 'helpful';
-	showAnonymous?: boolean;
-	page?: number;
-	limit?: number;
+	category?: string | undefined;
+	status?: string | undefined;
+	sortBy?: 'newest' | 'votes' | 'helpful' | undefined;
+	showAnonymous?: boolean | undefined;
+	page?: number | undefined;
+	limit?: number | undefined;
 }
 const validateSuggestionInput = (data: any) => {
 	const errors: string[] = [];
@@ -237,7 +237,7 @@ export async function GET(request: NextRequest) {
 }
 export async function POST(request: NextRequest) {
 	try {
-		const headersList = headers();
+		const headersList = await headers();
 		const userIP = headersList.get('x-forwarded-for') || 'unknown';
 		const userAgent = headersList.get('user-agent') || 'unknown';
 		if (!checkRateLimit(userIP, 5, 300000)) {

@@ -44,7 +44,6 @@ import { FAQVisualSearch } from './faq-visual-search';
 import { FAQVoiceSearch } from './faq-voice-search';
 import type { FAQQuestion, FAQCategory } from '@/lib/cms/cms-content';
 import { cn } from '@/lib/utils';
-import { FAQErrorBoundary } from '@/components/error-boundary/FAQErrorBoundary';
 import { FAQErrorFallback } from './faq-error-fallback';
 import { useErrorRecovery } from '@/hooks/use-error-recovery';
 interface FAQEnhancedSearchProps {
@@ -430,46 +429,7 @@ export function FAQEnhancedSearch({
 	}, []);
 	const isCompactMode = className?.includes('compact');
 	return (
-		<FAQErrorBoundary
-			faqContext={{
-				searchQuery: state?.query,
-				categoryId: state?.filters?.category,
-				filters: state?.filters,
-				searchResults: state?.results,
-				userType: 'visitor',
-				feature: 'search',
-			}}
-			enableSearchFallback={true}
-			enableThemeFallback={true}
-			enableCachedResults={true}
-			showAlternatives={true}
-			contactSupport={true}
-			onError={(error, errorInfo) => {
-				handleError(error, {
-					errorInfo,
-					searchState: state,
-					component: 'FAQEnhancedSearch',
-				});
-			}}
-			fallback={
-				fallbackActive ?
-					<FAQErrorFallback
-						errorCategory='search'
-						affectedFeatures={['search', 'voice-search', 'visual-search']}
-						enabledFallbacks={['basic-search', 'category-browse']}
-						enableBasicSearch={true}
-						enableCategoryBrowsing={true}
-						onRetry={() => {
-							clearError();
-							retry();
-						}}
-						onFallbackActivated={(fallbackType) => {
-							console.log('Activated fallback:', fallbackType);
-						}}
-					/>
-				:	undefined
-			}>
-			<div
+		<div
 				className={cn(
 					'relative',
 					isCompactMode ? 'max-w-full' : 'max-w-4xl mx-auto',
@@ -1256,6 +1216,5 @@ export function FAQEnhancedSearch({
 					</m.div>
 				)}
 			</div>
-		</FAQErrorBoundary>
 	);
 }

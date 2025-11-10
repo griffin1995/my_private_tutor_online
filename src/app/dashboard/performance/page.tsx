@@ -454,7 +454,7 @@ export default function PerformanceDashboard() {
 													key={index}
 													className='flex items-start gap-2'>
 													<CheckCircle2 className='h-5 w-5 text-green-500 mt-0.5' />
-													<span className='text-sm'>{achievement}</span>
+													<span className='text-sm'>{String(achievement)}</span>
 												</div>
 											))}
 										</div>

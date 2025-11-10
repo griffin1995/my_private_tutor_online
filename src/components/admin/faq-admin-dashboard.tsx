@@ -158,7 +158,7 @@ export function FAQAdminDashboard() {
 			},
 			(_, i) => {
 				const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
-				const dateString = date.toISOString().split('T')[0];
+				const dateString = date.toISOString().split('T')[0] ?? '';
 				const dayData = filteredData.filter(
 					(item) => item.timestamp.split('T')[0] === dateString,
 				);
@@ -290,15 +290,19 @@ export function FAQAdminDashboard() {
 		notes?: string,
 	) => {
 		setFeedbackData((prev) =>
-			prev.map((item) =>
-				item.id === entryId ?
-					{
+			prev.map((item) => {
+				if (item.id === entryId) {
+					const updated: FeedbackEntry = {
 						...item,
 						status: newStatus,
-						moderatorNotes: notes,
+					};
+					if (notes !== undefined) {
+						updated.moderatorNotes = notes;
 					}
-				:	item,
-			),
+					return updated;
+				}
+				return item;
+			}),
 		);
 		console.log(`Updated entry ${entryId} to status: ${newStatus}`);
 	};

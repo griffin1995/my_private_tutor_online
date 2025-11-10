@@ -23,8 +23,13 @@
  */
 
 import type { Config } from 'tailwindcss';
-// CONTEXT7 SOURCE: /nicolas-cusan/tailwind-clamp - Tailwind clamp plugin for fluid typography and spacing
-import tailwindClamp from 'tailwind-clamp';
+/**
+ * FLUID TYPOGRAPHY IMPLEMENTATION - NATIVE TAILWIND CSS
+ * Source: CONTEXT7 - /tailwindlabs/tailwindcss.com arbitrary values documentation
+ *
+ * Native CSS clamp() implementation replaces tailwind-clamp plugin
+ * Benefits: Zero external dependencies, smaller bundle, no v3/v4 hybrid conflict
+ */
 
 /**
  * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design Token Integration Pattern
@@ -352,6 +357,19 @@ const config: Config = {
 				'7xl': ['4.5rem', { lineHeight: '1', letterSpacing: '-0.045em' }],
 				'8xl': ['6rem', { lineHeight: '1', letterSpacing: '-0.05em' }],
 				'9xl': ['8rem', { lineHeight: '1', letterSpacing: '-0.055em' }],
+
+				// NATIVE FLUID TYPOGRAPHY - CONTEXT7 VERIFIED PATTERNS
+				// Source: /tailwindlabs/tailwindcss.com - CSS clamp() arbitrary values
+				// Pattern: clamp(minimum, preferred, maximum) - responsive typography without breakpoints
+				'fluid-xs': 'clamp(0.75rem, 1vw, 0.875rem)',      // 12px → 14px
+				'fluid-sm': 'clamp(0.875rem, 1.2vw, 1rem)',       // 14px → 16px
+				'fluid-base': 'clamp(1rem, 1.5vw, 1.125rem)',     // 16px → 18px
+				'fluid-lg': 'clamp(1.125rem, 1.8vw, 1.25rem)',    // 18px → 20px
+				'fluid-xl': 'clamp(1.25rem, 2vw, 1.5rem)',        // 20px → 24px
+				'fluid-2xl': 'clamp(1.5rem, 2.5vw, 1.875rem)',    // 24px → 30px
+				'fluid-3xl': 'clamp(1.875rem, 3vw, 2.25rem)',     // 30px → 36px
+				'fluid-4xl': 'clamp(2.25rem, 4vw, 2.5rem)',       // 36px → 40px
+				'fluid-5xl': 'clamp(3rem, 5vw, 3.75rem)',         // 48px → 60px
 			},
 
 			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom letter-spacing utilities for micro-typography
@@ -709,12 +727,11 @@ const config: Config = {
 		// STYLING PACKAGE: Enhanced animations for component interactions
 		require('tailwindcss-animate'),
 
-		// CONTEXT7 SOURCE: /nicolas-cusan/tailwind-clamp - Fluid typography and spacing plugin
-		// CONTAINER-RELATIVE SIZING: Custom viewport sizes for premium responsive design
-		tailwindClamp({
-			minSize: '16rem', // 256px - minimum container width
-			maxSize: '80rem', // 1280px - maximum container width for fluid scaling
-		}),
+		/**
+		 * NATIVE FLUID TYPOGRAPHY IMPLEMENTED VIA THEME.FONTSIZE
+		 * Replaced tailwind-clamp plugin with native CSS clamp() values
+		 * No external dependencies, eliminates Tailwind v3/v4 hybrid conflict
+		 */
 	],
 };
 

@@ -678,6 +678,7 @@ export default function HowItWorksPage() {
 							<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
 								<MissionQuote
 									showCite={true}
+									cite='My Private Tutor Online'
 									author='Elizabeth Burrows'
 									role='Founder'
 									size='lg'>
@@ -758,7 +759,7 @@ export default function HowItWorksPage() {
 																		paragraph.trim() && (
 																			<p
 																				key={pIndex}
-																				className={pIndex > 0 ? 'mt-4' : null}>
+																				className={pIndex > 0 ? 'mt-4' : ''}>
 																				{paragraph.trim()}
 																			</p>
 																		),
