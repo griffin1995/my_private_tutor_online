@@ -157,16 +157,11 @@ export default function HomeschoolingPage() {
 	const [activeTab, setActiveTab] = useState('primary');
 	return (
 		<>
-			{}
-			{}
-			{}
-			{}
 			<section id='homeschooling-hero'>
 				<PageHero
 					background='gradient'
 					size='full'
 					className='bg-gradient-to-br from-emerald-700 via-emerald-600 to-accent-600 relative overflow-hidden'>
-					{}
 					<div
 						className='absolute inset-0 opacity-[0.02]'
 						style={{
@@ -277,8 +272,6 @@ export default function HomeschoolingPage() {
 				</PageHero>
 			</section>
 
-			{}
-			{}
 			<PageLayout
 				background='white'
 				showHeader={false}
@@ -288,13 +281,9 @@ export default function HomeschoolingPage() {
 					className='text-white'
 				/>
 
-				{}
-				{}
-				{}
 				<Section
 					id='homeschooling-benefits'
 					className='py-20 lg:py-28 bg-slate-50/80 relative'>
-					{}
 					<div
 						className='absolute inset-0 opacity-[0.01]'
 						style={{
@@ -368,9 +357,6 @@ export default function HomeschoolingPage() {
 					</div>
 				</Section>
 
-				{}
-				{}
-				{}
 				<Section
 					id='homeschooling-programmes'
 					className='py-16 lg:py-24'
@@ -612,9 +598,6 @@ export default function HomeschoolingPage() {
 					</div>
 				</Section>
 
-				{}
-				{}
-				{}
 				<Section
 					id='homeschooling-support'
 					className='py-16 lg:py-24'
@@ -678,9 +661,6 @@ export default function HomeschoolingPage() {
 					</div>
 				</Section>
 
-				{}
-				{}
-				{}
 				<Section
 					id='homeschooling-statistics'
 					className='py-16 lg:py-24'
@@ -766,9 +746,6 @@ export default function HomeschoolingPage() {
 					</div>
 				</Section>
 
-				{}
-				{}
-				{}
 				<Section
 					id='homeschooling-cta'
 					className='py-16 lg:py-24'

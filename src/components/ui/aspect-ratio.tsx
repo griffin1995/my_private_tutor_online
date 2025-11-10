@@ -47,7 +47,6 @@ const AspectRatio = React.forwardRef<
 					className,
 				)}
 				{...props}>
-				{}
 				{isLoading && loadingPlaceholder && !hasError && (
 					<div
 						data-slot='aspect-ratio-loading'
@@ -56,7 +55,6 @@ const AspectRatio = React.forwardRef<
 					</div>
 				)}
 
-				{}
 				{hasError && errorFallback ?
 					<div
 						data-slot='aspect-ratio-error'

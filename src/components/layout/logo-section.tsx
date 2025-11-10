@@ -48,14 +48,10 @@ export function LogoSection({
 		:	'hover:drop-shadow-[0_0_8px_rgba(37,99,235,0.2)]';
 	return (
 		<div className={cn('flex-shrink-0', className)}>
-			{}
-			{}
 			<Link
 				href='/'
 				className='block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 rounded-lg'
 				aria-label='My Private Tutor Online - Navigate to homepage'>
-				{}
-				{}
 				<motion.div
 					className='relative'
 					whileHover={{
@@ -70,8 +66,6 @@ export function LogoSection({
 						damping: 25,
 						duration: 0.15,
 					}}>
-					{}
-					{}
 					<AnimatePresence mode='wait'>
 						<motion.div
 							key={isTransparent ? 'white-logo' : 'standard-logo'}
@@ -81,8 +75,6 @@ export function LogoSection({
 							exit='exit'
 							transition={logoTransition}
 							className='relative'>
-							{}
-							{}
 							<Image
 								src={logoSrc}
 								alt={logoAlt}
@@ -102,8 +94,6 @@ export function LogoSection({
 								}}
 							/>
 
-							{}
-							{}
 							<div
 								className={cn(
 									'absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300',

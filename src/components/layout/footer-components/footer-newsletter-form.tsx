@@ -116,16 +116,12 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 		}
 		return (
 			<div className={`max-w-md mx-auto ${className}`}>
-				{}
-				{}
 				<form
 					onSubmit={handleSubmit(handleFormSubmit)}
 					className='space-y-4'
 					noValidate>
 					<div className='flex flex-col sm:flex-row gap-4'>
 						<div className='flex-1 space-y-1'>
-							{}
-							{}
 							<label
 								htmlFor='newsletter-email'
 								className='sr-only'>
@@ -149,16 +145,12 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 								)}
 							/>
 
-							{}
-							{}
 							<div
 								id='email-description'
 								className='sr-only'>
 								Subscribe to receive educational insights and exclusive opportunities
 							</div>
 
-							{}
-							{}
 							{errors.email && (
 								<div
 									id='email-error'
@@ -171,8 +163,6 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 							)}
 						</div>
 
-						{}
-						{}
 						<SubmitButton
 							isSubmitting={isSubmitting}
 							submissionState={submissionState}
@@ -180,8 +170,6 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 						/>
 					</div>
 
-					{}
-					{}
 					<FooterGDPRConsent
 						onConsentChange={handleConsentChange}
 						required={true}
@@ -189,8 +177,6 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 						className='text-left'
 					/>
 
-					{}
-					{}
 					{submissionState === 'error' && errorMessage && (
 						<div className='flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg'>
 							<AlertCircle className='w-4 h-4 text-red-600' />
@@ -198,8 +184,6 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 						</div>
 					)}
 
-					{}
-					{}
 					<input
 						{...register('honeypot')}
 						type='text'

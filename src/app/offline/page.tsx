@@ -80,8 +80,6 @@ export default function OfflinePage() {
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center px-4'>
 			<div className='w-full max-w-2xl'>
-				{}
-				{}
 				<m.div
 					initial={{
 						opacity: 0,
@@ -109,8 +107,6 @@ export default function OfflinePage() {
 					</p>
 				</m.div>
 
-				{}
-				{}
 				<m.div
 					initial={{
 						opacity: 0,
@@ -125,7 +121,6 @@ export default function OfflinePage() {
 						delay: 0.2,
 					}}>
 					<Card className='p-8 shadow-xl border-0 bg-white/90 backdrop-blur-sm'>
-						{}
 						<div className='flex items-center justify-between mb-6 p-4 bg-accent-50 rounded-lg border border-accent-200'>
 							<div className='flex items-center space-x-3'>
 								<WifiOff className='w-5 h-5 text-accent-600' />
@@ -152,7 +147,6 @@ export default function OfflinePage() {
 							</Button>
 						</div>
 
-						{}
 						{showCachedContent && (
 							<div className='mb-6'>
 								<h3 className='text-lg font-serif font-semibold text-slate-900 mb-4'>
@@ -197,7 +191,6 @@ export default function OfflinePage() {
 							</div>
 						)}
 
-						{}
 						<div className='p-6 bg-gradient-to-r from-primary-50 to-accent-50 rounded-lg border border-primary-200 mb-6'>
 							<div className='flex items-start space-x-3'>
 								<Shield className='w-6 h-6 text-primary-600 mt-1' />
@@ -225,7 +218,6 @@ export default function OfflinePage() {
 							</div>
 						</div>
 
-						{}
 						{showContactInfo && (
 							<div className='mb-6'>
 								<h3 className='text-lg font-serif font-semibold text-slate-900 mb-4'>
@@ -259,7 +251,6 @@ export default function OfflinePage() {
 							</div>
 						)}
 
-						{}
 						<div className='flex flex-col sm:flex-row gap-3'>
 							{showBackButton && (
 								<Button
@@ -290,8 +281,6 @@ export default function OfflinePage() {
 					</Card>
 				</m.div>
 
-				{}
-				{}
 				<m.div
 					initial={{
 						opacity: 0,

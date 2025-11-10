@@ -95,7 +95,6 @@ export function SecurityMonitor() {
 	};
 	return (
 		<div className='space-y-6'>
-			{}
 			<div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
 				<Card>
 					<CardHeader className='pb-3'>
@@ -136,7 +135,6 @@ export function SecurityMonitor() {
 				</Card>
 			</div>
 
-			{}
 			<Card>
 				<CardHeader>
 					<div className='flex items-center justify-between'>
@@ -206,7 +204,6 @@ export function SecurityMonitor() {
 				</CardContent>
 			</Card>
 
-			{}
 			{metrics?.topThreats && metrics.topThreats.length > 0 && (
 				<Card>
 					<CardHeader>

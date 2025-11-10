@@ -2,7 +2,8 @@ import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { Separator } from '@radix-ui/react-separator';
-import { Avatar, Blockquote } from 'flowbite-react';
+import { MissionQuote } from '@/components/ui/blockquote';
+import { FlowbiteCompatibleAvatar as Avatar } from '@/components/ui/avatar';
 import { memo } from 'react';
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR TESTIMONIALS PAGE
@@ -341,38 +342,15 @@ export default function TestimonialsPage() {
 					id='mission-quote'
 					className='py-8 md:py-12 bg-primary-50'>
 					<div className='container mx-auto max-w-4xl px-6 sm:px-8 md:px-12 text-center'>
-						<Blockquote className='border-0'>
-							{/* Quote icon */}
-							<svg
-								className='mb-6 h-12 w-12 fill-primary-700'
-								aria-hidden='true'
-								xmlns='http://www.w3.org/2000/svg'
-								viewBox='0 0 18 14'>
-								<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
-							</svg>
-
-							{/* Mission Quote */}
-							<p className='italic'>
-								&quot;We provide <strong>exceptional tuition</strong> that helps
-								students <strong>excel academically</strong> and{' '}
-								<u>thrive personally</u>, opening doors to greater opportunities—at
-								school and in life.&quot;
-							</p>
-
-							{/* Author with avatar */}
-							<figcaption className='mt-4 flex items-center justify-center space-x-3'>
-								<Avatar
-									rounded
-									size='xs'
-									img='/images/team/elizabeth-burrows-founder-main.jpg'
-									alt='Elizabeth Burrows'
-								/>
-								<div className='flex items-center divide-x-2 divide-neutral-500'>
-									<cite className='pr-3'>Elizabeth Burrows</cite>
-									<cite className='pl-3 text-neutral-500'>Founder</cite>
-								</div>
-							</figcaption>
-						</Blockquote>
+						<MissionQuote
+							showCite={true}
+							author='Elizabeth Burrows'
+							role='Founder'>
+							We provide <strong>exceptional tuition</strong> that helps
+							students <strong>excel academically</strong> and{' '}
+							<u>thrive personally</u>, opening doors to greater opportunities—at
+							school and in life.
+						</MissionQuote>
 					</div>
 				</section>
 

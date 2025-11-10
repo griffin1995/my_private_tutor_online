@@ -106,7 +106,6 @@ export function SectionHeader({
 				'mb-12 lg:mb-16',
 				className,
 			)}>
-			{}
 			{subtitle && (
 				<div className='mb-4'>
 					<span className='inline-flex items-center px-3 py-1 bg-accent-100 text-accent-700 text-sm font-medium rounded-full'>
@@ -115,12 +114,10 @@ export function SectionHeader({
 				</div>
 			)}
 
-			{}
 			<TitleComponent className='font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-primary-900 leading-tight mb-4'>
 				{title}
 			</TitleComponent>
 
-			{}
 			{description && (
 				<p className='text-lg text-primary-600 leading-relaxed max-w-2xl mx-auto'>
 					{description}

@@ -155,16 +155,11 @@ export function TestimonialCard({
 			whileTap={enableHover ? 'tap' : undefined}
 			onClick={handleCardClick}>
 			<Card className={getCardClasses()}>
-				{}
-				{}
 				<CardContent
 					className={`p-8 h-full flex flex-col ${layout === 'list' ? 'md:flex-row md:gap-8' : ''}`}>
-					{}
-					{}
 					<div
 						className={`flex items-center justify-between mb-6 ${layout === 'list' ? 'md:mb-4' : ''}`}>
 						<div className='flex items-center gap-1'>
-							{}
 							{[...Array(5)].map((_, i) => (
 								<m.div
 									key={i}
@@ -181,7 +176,6 @@ export function TestimonialCard({
 						</div>
 
 						<div className='flex items-center gap-2'>
-							{}
 							{testimonial.verificationStatus === 'verified' && (
 								<m.div
 									variants={iconVariants}
@@ -195,14 +189,12 @@ export function TestimonialCard({
 								</m.div>
 							)}
 
-							{}
 							{testimonial.featured && (
 								<Badge className='bg-gradient-to-r from-brand-aztec-gold-500 to-brand-aztec-gold-600 text-white font-source-serif'>
 									Featured
 								</Badge>
 							)}
 
-							{}
 							{testimonial.videoTestimonial && (
 								<m.button
 									onClick={handleVideoPlay}
@@ -222,8 +214,6 @@ export function TestimonialCard({
 						</div>
 					</div>
 
-					{}
-					{}
 					<div
 						className={`relative flex-1 mb-6 ${layout === 'list' ? 'md:flex-1' : ''}`}>
 						<Quote className='absolute -top-2 -left-2 w-8 h-8 text-brand-aztec-gold-500/20' />
@@ -233,7 +223,6 @@ export function TestimonialCard({
 								{displayQuote}
 							</p>
 
-							{}
 							{testimonial.expandable && testimonial.fullQuote && !showFullContent && (
 								<m.div
 									id={`testimonial-content-${testimonial.id}`}
@@ -247,7 +236,6 @@ export function TestimonialCard({
 								</m.div>
 							)}
 
-							{}
 							{testimonial.expandable && !showFullContent && (
 								<Button
 									variant='ghost'
@@ -275,7 +263,6 @@ export function TestimonialCard({
 								</Button>
 							)}
 
-							{}
 							{testimonial.images && testimonial.images.length > 0 && (
 								<div className='mt-4'>
 									<img
@@ -302,7 +289,6 @@ export function TestimonialCard({
 								</div>
 							)}
 
-							{}
 							{(testimonial.subject || testimonial.result) && (
 								<div className='mt-4 flex flex-wrap gap-2'>
 									{testimonial.subject && (
@@ -324,8 +310,6 @@ export function TestimonialCard({
 						</div>
 					</div>
 
-					{}
-					{}
 					<div
 						className={`border-t border-primary-100 pt-6 ${layout === 'list' ? 'md:border-t-0 md:border-l md:pl-8 md:pt-0' : ''}`}>
 						<div className='flex items-start gap-4'>
@@ -350,7 +334,6 @@ export function TestimonialCard({
 									{testimonial.role}
 								</p>
 
-								{}
 								<div className='flex flex-wrap items-center gap-3 text-xs text-primary-500'>
 									{testimonial.location && (
 										<div className='flex items-center gap-1'>
@@ -369,10 +352,8 @@ export function TestimonialCard({
 							</div>
 						</div>
 
-						{}
 						{(testimonial.helpfulVotes !== undefined || testimonial.expandable) && (
 							<div className='flex items-center justify-between mt-4 pt-4 border-t border-primary-50'>
-								{}
 								{testimonial.helpfulVotes !== undefined && (
 									<m.button
 										onClick={handleVote}
@@ -393,9 +374,6 @@ export function TestimonialCard({
 									</m.button>
 								)}
 
-								{}
-								{}
-								{}
 							</div>
 						)}
 					</div>

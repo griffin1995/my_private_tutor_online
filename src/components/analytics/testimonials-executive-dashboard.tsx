@@ -13,22 +13,23 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+// PHASE 3 OPTIMIZATION: Lazy-loaded charts for admin-only routes
 import {
-	BarChart,
-	Bar,
-	LineChart,
-	Line,
-	XAxis,
-	YAxis,
-	CartesianGrid,
-	Tooltip,
-	ResponsiveContainer,
-	PieChart,
-	Pie,
-	Cell,
-	Area,
-	AreaChart,
-} from 'recharts';
+	LazyBarChart as BarChart,
+	LazyBar as Bar,
+	LazyLineChart as LineChart,
+	LazyLine as Line,
+	LazyXAxis as XAxis,
+	LazyYAxis as YAxis,
+	LazyCartesianGrid as CartesianGrid,
+	LazyTooltip as Tooltip,
+	LazyResponsiveContainer as ResponsiveContainer,
+	LazyPieChart as PieChart,
+	LazyPie as Pie,
+	LazyCell as Cell,
+	LazyArea as Area,
+	LazyAreaChart as AreaChart,
+} from '@/components/charts/lazy-charts';
 import {
 	TrendingUp,
 	TrendingDown,
@@ -567,7 +568,6 @@ export const TestimonialsExecutiveDashboard: React.FC = () => {
 	const { dashboardData, performanceMetrics, roiAnalysis, aiInsights } = state;
 	return (
 		<div className='space-y-6'>
-			{}
 			<div className='flex items-center justify-between'>
 				<div>
 					<h1 className='text-3xl font-bold'>Testimonials Analytics</h1>
@@ -592,14 +592,12 @@ export const TestimonialsExecutiveDashboard: React.FC = () => {
 				</div>
 			</div>
 
-			{}
 			{state.lastUpdated && (
 				<div className='text-sm text-muted-foreground'>
 					Last updated: {state.lastUpdated.toLocaleString()}
 				</div>
 			)}
 
-			{}
 			{dashboardData && (
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
 					<MetricCard
@@ -639,7 +637,6 @@ export const TestimonialsExecutiveDashboard: React.FC = () => {
 				</div>
 			)}
 
-			{}
 			{dashboardData?.alerts && dashboardData.alerts.length > 0 && (
 				<Card>
 					<CardHeader>
@@ -654,7 +651,6 @@ export const TestimonialsExecutiveDashboard: React.FC = () => {
 				</Card>
 			)}
 
-			{}
 			<Tabs
 				defaultValue='overview'
 				className='space-y-6'>

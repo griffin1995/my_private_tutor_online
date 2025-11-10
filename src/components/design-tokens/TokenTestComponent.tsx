@@ -14,7 +14,6 @@ export function TokenTestComponent() {
 				</p>
 			</div>
 
-			{}
 			<section className='space-y-4'>
 				<h2 className='text-2xl font-semibold text-token-primary-dark'>
 					Primary Brand Colors (Navy)
@@ -48,7 +47,6 @@ export function TokenTestComponent() {
 				</div>
 			</section>
 
-			{}
 			<section className='space-y-4'>
 				<h2 className='text-2xl font-semibold text-token-primary-dark'>
 					Secondary Brand Colors (Gold)
@@ -82,7 +80,6 @@ export function TokenTestComponent() {
 				</div>
 			</section>
 
-			{}
 			<section className='space-y-4'>
 				<h2 className='text-2xl font-semibold text-token-primary-dark'>
 					Neutral Greyscale (8 Strategic Greys)
@@ -131,7 +128,6 @@ export function TokenTestComponent() {
 				</div>
 			</section>
 
-			{}
 			<section className='space-y-4'>
 				<h2 className='text-2xl font-semibold text-token-primary-dark'>
 					Semantic Colors (User Feedback)
@@ -168,7 +164,6 @@ export function TokenTestComponent() {
 				</div>
 			</section>
 
-			{}
 			<section className='space-y-4'>
 				<h2 className='text-2xl font-semibold text-token-primary-dark'>
 					UI Utility Colors (Interactive States)
@@ -205,7 +200,6 @@ export function TokenTestComponent() {
 				</div>
 			</section>
 
-			{}
 			<section className='space-y-4'>
 				<h2 className='text-2xl font-semibold text-token-primary-dark'>
 					Text Color Token Tests
@@ -232,7 +226,6 @@ export function TokenTestComponent() {
 				</div>
 			</section>
 
-			{}
 			<section className='space-y-4'>
 				<h2 className='text-2xl font-semibold text-token-primary-dark'>
 					Real-World Usage Example
@@ -259,7 +252,6 @@ export function TokenTestComponent() {
 				</div>
 			</section>
 
-			{}
 			<section className='space-y-4 bg-token-primary text-white p-6 rounded-lg'>
 				<h2 className='text-2xl font-semibold'>Validation Checklist</h2>
 				<ul className='space-y-2 text-token-neutral-50'>

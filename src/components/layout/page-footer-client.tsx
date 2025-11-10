@@ -122,12 +122,8 @@ export function PageFooterClient({
 			onError={(error, errorInfo) => {
 				console.error('Footer component error:', error, errorInfo);
 			}}>
-			{}
-			{}
 			<FooterSkipLink />
 
-			{}
-			{}
 			<div
 				ref={announcementRef}
 				className='sr-only'
@@ -141,8 +137,6 @@ export function PageFooterClient({
 				className={cn(footerConfig.containerClasses[variant], className)}
 				role='contentinfo'
 				aria-label='Site footer'>
-				{}
-				{}
 				{variant === 'premium' && (
 					<>
 						<div className='absolute inset-0 bg-gradient-to-r from-neutral-100/50 via-transparent to-neutral-100/50 pointer-events-none' />
@@ -151,8 +145,6 @@ export function PageFooterClient({
 				)}
 
 				<div className='relative'>
-					{}
-					{}
 					{footerConfig.showContactForm && (
 						<div className='w-full px-4 sm:px-6 md:px-4 lg:px-8 py-12 md:py-12 lg:py-16'>
 							<div className='max-w-4xl mx-auto text-center'>
@@ -194,8 +186,6 @@ export function PageFooterClient({
 
 					{footerConfig.showContactForm && <Separator className='bg-neutral-300' />}
 
-					{}
-					{}
 					{footerConfig.showNewsletter && (
 						<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 lg:py-12'>
 							<div className='max-w-4xl mx-auto text-center'>
@@ -208,8 +198,6 @@ export function PageFooterClient({
 										your child's success
 									</p>
 
-									{}
-									{}
 									<Suspense
 										fallback={
 											<FooterNewsletterFormSkeleton className='max-w-md mx-auto' />
@@ -226,47 +214,31 @@ export function PageFooterClient({
 
 					{footerConfig.showNewsletter && <Separator className='bg-neutral-300' />}
 
-					{}
-					{}
 					<div className='w-full px-4 sm:px-6 md:px-4 lg:px-8 py-12 md:py-12 lg:py-16'>
 						<div className='lg:container lg:mx-auto'>
-							{}
-							{}
-							{}
 							<div className='flex flex-col lg:flex-row lg:gap-12 items-stretch'>
-								{}
-								{}
-								{}
 								<div className='hidden lg:flex lg:w-[18%]'>
 									<FooterCompanySectionHardcoded
 										className='animate-fade-in-left'
 									/>
 								</div>
 
-								{}
-								{}
-								{}
 								<div className='w-full lg:w-[82%] flex'>
 									<FooterNavigationHardcoded />
 								</div>
 
-								{}
-								{}
 							</div>
 						</div>
 					</div>
 
 					<Separator className='bg-neutral-300' />
 
-					{}
-					{}
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-6'>
 						<div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
 							<p className='text-sm text-neutral-600 text-center sm:text-left'>
 								{copyrightText}
 							</p>
 
-							{}
 							{footerConfig.showBackToTop && (
 								<Button
 									onClick={scrollToTop}
@@ -281,8 +253,6 @@ export function PageFooterClient({
 						</div>
 					</div>
 
-					{}
-					{}
 				</div>
 			</footer>
 		</FooterErrorBoundary>

@@ -18,6 +18,10 @@ interface Feature1Props {
 	};
 }
 
+// CONTEXT7 SOURCE: /reactjs/react.dev - Conditional JSX rendering pattern
+// ARCHITECTURE REASON: React.ReactNode includes JSX.Element, strings, and fragments
+// REFERENCE: Official React docs - "Render lists, conditional rendering, and keeping components pure"
+
 const Feature1 = ({
 	title = 'Blocks built with Shadcn & Tailwind',
 	description = 'Hundreds of finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.',
@@ -41,9 +45,15 @@ const Feature1 = ({
 							{title}
 						</h3>
 						{description && (
-							<p className='text-muted-foreground mb-6 sm:mb-7 md:mb-8 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl'>
-								{description}
-							</p>
+							typeof description === 'string' ? (
+								<div className='text-muted-foreground mb-6 sm:mb-7 md:mb-8 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl'>
+									{description}
+								</div>
+							) : (
+								<div className='mb-6 sm:mb-7 md:mb-8 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl'>
+									{description}
+								</div>
+							)
 						)}
 						<div className='flex w-full flex-col justify-center gap-2 sm:flex-row md:justify-start'>
 							<Button asChild style={{ backgroundColor: '#3f4a7e !important', color: '#ffffff !important', borderColor: '#3f4a7e !important', borderRadius: '0 !important' }}>

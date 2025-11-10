@@ -475,8 +475,6 @@ export function FAQEnhancedSearch({
 					isCompactMode ? 'max-w-full' : 'max-w-4xl mx-auto',
 					className,
 				)}>
-				{}
-				{}
 				<div className='relative'>
 					<m.div
 						className='relative'
@@ -486,7 +484,6 @@ export function FAQEnhancedSearch({
 							scale: searchScale,
 							boxShadow: searchGlow,
 						}}>
-						{}
 						<m.div
 							className={cn(
 								'absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400',
@@ -548,7 +545,6 @@ export function FAQEnhancedSearch({
 								'absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center',
 								isCompactMode ? 'space-x-1' : 'space-x-2',
 							)}>
-							{}
 							{!isCompactMode && voiceSearchEnabled && (
 								<Button
 									type='button'
@@ -571,7 +567,6 @@ export function FAQEnhancedSearch({
 								</Button>
 							)}
 
-							{}
 							{!isCompactMode && (
 								<Button
 									type='button'
@@ -594,7 +589,6 @@ export function FAQEnhancedSearch({
 								</Button>
 							)}
 
-							{}
 							{state.lastSearchTime > 0 && !isCompactMode && (
 								<Badge
 									variant='outline'
@@ -609,7 +603,6 @@ export function FAQEnhancedSearch({
 								</Badge>
 							)}
 
-							{}
 							{state.isSearching && (
 								<div
 									className={cn(
@@ -619,7 +612,6 @@ export function FAQEnhancedSearch({
 								/>
 							)}
 
-							{}
 							{state.query && (
 								<Button
 									type='button'
@@ -637,8 +629,6 @@ export function FAQEnhancedSearch({
 						</div>
 					</m.div>
 
-					{}
-					{}
 					<AnimatePresence>
 						{showSuggestions && state.suggestions.length > 0 && (
 							<m.div
@@ -710,7 +700,6 @@ export function FAQEnhancedSearch({
 												}}
 											/>
 
-											{}
 											<m.div
 												className='ml-auto'
 												initial={{
@@ -742,8 +731,6 @@ export function FAQEnhancedSearch({
 					</AnimatePresence>
 				</div>
 
-				{}
-				{}
 				<AnimatePresence>
 					{showVoiceSearch && voiceSearchEnabled && (
 						<m.div
@@ -800,8 +787,6 @@ export function FAQEnhancedSearch({
 					)}
 				</AnimatePresence>
 
-				{}
-				{}
 				<AnimatePresence>
 					{showVisualSearch && (
 						<m.div
@@ -857,9 +842,6 @@ export function FAQEnhancedSearch({
 					)}
 				</AnimatePresence>
 
-				{}
-				{}
-				{}
 				{!isCompactMode && (
 					<div className='flex flex-col sm:flex-row items-center justify-between mt-6 gap-4'>
 						<div className='flex items-center space-x-4'>
@@ -876,7 +858,6 @@ export function FAQEnhancedSearch({
 								)}
 							</Button>
 
-							{}
 							{Object.entries(state.filters).map(([key, value]) => (
 								<Badge
 									key={key}
@@ -894,7 +875,6 @@ export function FAQEnhancedSearch({
 							))}
 						</div>
 
-						{}
 						{state.hasSearched && (
 							<div className='text-sm text-slate-600'>
 								{state.results.length} result{state.results.length !== 1 ? 's' : ''}{' '}
@@ -907,8 +887,6 @@ export function FAQEnhancedSearch({
 					</div>
 				)}
 
-				{}
-				{}
 				{!isCompactMode && (
 					<AnimatePresence>
 						{showFilters && (
@@ -922,7 +900,6 @@ export function FAQEnhancedSearch({
 									overflow: 'hidden',
 								}}>
 								<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
-									{}
 									<div>
 										<label className='block text-sm font-medium text-slate-700 mb-2'>
 											Category
@@ -949,7 +926,6 @@ export function FAQEnhancedSearch({
 										</Select>
 									</div>
 
-									{}
 									<div>
 										<label className='block text-sm font-medium text-slate-700 mb-2'>
 											Difficulty
@@ -969,7 +945,6 @@ export function FAQEnhancedSearch({
 										</Select>
 									</div>
 
-									{}
 									<div>
 										<label className='block text-sm font-medium text-slate-700 mb-2'>
 											Client Type
@@ -994,7 +969,6 @@ export function FAQEnhancedSearch({
 										</Select>
 									</div>
 
-									{}
 									<div>
 										<label className='block text-sm font-medium text-slate-700 mb-2'>
 											Results
@@ -1018,7 +992,6 @@ export function FAQEnhancedSearch({
 					</AnimatePresence>
 				)}
 
-				{}
 				{!isCompactMode &&
 					showPerformanceStats &&
 					state.performanceStats.totalSearches > 0 && (
@@ -1066,7 +1039,6 @@ export function FAQEnhancedSearch({
 						</m.div>
 					)}
 
-				{}
 				{!isCompactMode && state.error && (
 					<m.div
 						initial={{
@@ -1083,8 +1055,6 @@ export function FAQEnhancedSearch({
 					</m.div>
 				)}
 
-				{}
-				{}
 				{!isCompactMode && state.hasSearched && (
 					<m.div
 						className='mt-8'
@@ -1137,7 +1107,6 @@ export function FAQEnhancedSearch({
 											<CardContent className='p-6'>
 												<div className='flex items-start justify-between mb-4'>
 													<div className='flex-1'>
-														{}
 														<h3
 															className='text-xl font-semibold text-slate-900 mb-3'
 															dangerouslySetInnerHTML={{
@@ -1145,7 +1114,6 @@ export function FAQEnhancedSearch({
 															}}
 														/>
 
-														{}
 														<div className='flex flex-wrap items-center gap-3 mb-4'>
 															{result.category && (
 																<Link
@@ -1187,7 +1155,6 @@ export function FAQEnhancedSearch({
 													</div>
 												</div>
 
-												{}
 												<div className='prose prose-slate max-w-none mb-4'>
 													<p
 														className='text-slate-700 leading-relaxed'
@@ -1200,7 +1167,6 @@ export function FAQEnhancedSearch({
 													/>
 												</div>
 
-												{}
 												{result.highlighted.tags.length > 0 && (
 													<div className='flex flex-wrap gap-2 mb-4'>
 														{result.highlighted.tags.slice(0, 5).map((tag, tagIndex) => (
@@ -1219,7 +1185,6 @@ export function FAQEnhancedSearch({
 													</div>
 												)}
 
-												{}
 												<div className='flex items-center justify-between'>
 													<div className='text-sm text-slate-500'>
 														Priority: {result.item.priority}/10
@@ -1268,7 +1233,6 @@ export function FAQEnhancedSearch({
 									:	'Try entering a search query to find relevant FAQ items.'}
 								</p>
 
-								{}
 								{categories.length > 0 && (
 									<div>
 										<p className='text-sm font-semibold text-slate-700 mb-4'>

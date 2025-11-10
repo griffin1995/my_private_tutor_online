@@ -166,7 +166,6 @@ export function ConsultationBookingForm({
 
 					<div className='bg-accent-50 rounded-lg p-4 mb-6'>
 						<div className='flex items-center justify-center gap-2 text-accent-700 font-medium text-sm'>
-							{}
 							<Star className='h-4 w-4' />
 							Distinguished Family Service
 						</div>
@@ -186,7 +185,6 @@ export function ConsultationBookingForm({
 		<Card className={cn('w-full max-w-2xl mx-auto', className)}>
 			<CardHeader className={cn(compact ? 'pb-4' : 'pb-6')}>
 				<div className='flex items-center gap-3 mb-2'>
-					{}
 					<Star className='h-6 w-6 text-accent-500' />
 					<Badge
 						variant='gold'
@@ -207,7 +205,6 @@ export function ConsultationBookingForm({
 				<form
 					onSubmit={handleSubmit(onSubmit)}
 					className='space-y-6'>
-					{}
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 						<div>
 							<Label
@@ -246,7 +243,6 @@ export function ConsultationBookingForm({
 						</div>
 					</div>
 
-					{}
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 						<div>
 							<Label
@@ -285,7 +281,6 @@ export function ConsultationBookingForm({
 						</div>
 					</div>
 
-					{}
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 						<div>
 							<Label className='text-sm font-medium text-primary-800'>
@@ -344,7 +339,6 @@ export function ConsultationBookingForm({
 						</div>
 					</div>
 
-					{}
 					<div>
 						<Label
 							htmlFor='subjects'
@@ -362,7 +356,6 @@ export function ConsultationBookingForm({
 						)}
 					</div>
 
-					{}
 					<div>
 						<Label
 							htmlFor='specificNeeds'
@@ -378,7 +371,6 @@ export function ConsultationBookingForm({
 						/>
 					</div>
 
-					{}
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 						<div>
 							<Label className='text-sm font-medium text-primary-800'>
@@ -427,7 +419,6 @@ export function ConsultationBookingForm({
 						</div>
 					</div>
 
-					{}
 					<div className='pt-2'>
 						<Button
 							type='submit'
@@ -443,7 +434,6 @@ export function ConsultationBookingForm({
 						</Button>
 					</div>
 
-					{}
 					<div className='text-center'>
 						<p className='text-xs text-gray-500 leading-relaxed'>
 							All enquiries are handled with complete confidentiality. We respect your

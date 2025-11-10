@@ -5,7 +5,7 @@ import { SimpleHero } from '@/components/layout/simple-hero';
 import { TutorsSection } from '@/components/tutors/tutors-section';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Blockquote } from 'flowbite-react';
+import { MissionQuote } from '@/components/ui/blockquote';
 import { m } from 'framer-motion';
 import {
 	CheckCircle,
@@ -676,32 +676,16 @@ export default function HowItWorksPage() {
 							id='journey-quote'
 							className='py-8 lg:py-12 bg-primary-50'>
 							<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
-								<Blockquote>
-									{/* Quote icon */}
-									<svg
-										className='mb-6 h-14 w-14 fill-primary-700'
-										aria-hidden='true'
-										xmlns='http://www.w3.org/2000/svg'
-										viewBox='0 0 18 14'>
-										<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
-									</svg>
-
-									{/* Journey Quote */}
-									<p className='italic'>
-										&quot;At My Private Tutor Online, we offer more than just tutoring—we
-										provide thoughtful, expert advice at every stage of your child&apos;s
-										academic journey. Our service is consultative, personal, and{' '}
-										<strong>bespoke to your family&apos;s individual needs</strong>.&quot;
-									</p>
-
-									{/* Author with avatar */}
-									<figcaption className='mt-4 flex items-center justify-center space-x-3'>
-										<div className='flex items-center divide-x-2 divide-neutral-500'>
-											<cite className='pr-3'>Elizabeth Burrows</cite>
-											<cite className='pl-3 text-neutral-500'>Founder</cite>
-										</div>
-									</figcaption>
-								</Blockquote>
+								<MissionQuote
+									showCite={true}
+									author='Elizabeth Burrows'
+									role='Founder'
+									size='lg'>
+									At My Private Tutor Online, we offer more than just tutoring—we
+									provide thoughtful, expert advice at every stage of your child's
+									academic journey. Our service is consultative, personal, and{' '}
+									<strong>bespoke to your family's individual needs</strong>.
+								</MissionQuote>
 							</div>
 						</section>
 
@@ -781,7 +765,6 @@ export default function HowItWorksPage() {
 																)}
 															</div>
 
-															{}
 															<ul className='space-y-3'>
 																{step.features.map((feature: string, featureIndex: number) => (
 																	<li

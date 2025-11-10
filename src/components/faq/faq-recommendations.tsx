@@ -149,8 +149,6 @@ const RecommendationCard: React.FC<{
 							</Badge>
 						</div>
 
-						{}
-						{}
 						<div
 							className='flex items-center gap-1'
 							aria-label={`Confidence: ${Math.round(confidence * 100)}%`}>
@@ -325,8 +323,6 @@ export const FAQRecommendations: React.FC<FAQRecommendationsProps> = ({
 	}
 	return (
 		<div className={cn('space-y-6', className)}>
-			{}
-			{}
 			<div className='space-y-2'>
 				<h3 className='text-xl font-serif font-semibold text-slate-900'>
 					Recommended Questions
@@ -338,8 +334,6 @@ export const FAQRecommendations: React.FC<FAQRecommendationsProps> = ({
 
 			<Separator className='bg-slate-200' />
 
-			{}
-			{}
 			<div
 				className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'
 				role='feed'
@@ -355,8 +349,6 @@ export const FAQRecommendations: React.FC<FAQRecommendationsProps> = ({
 				))}
 			</div>
 
-			{}
-			{}
 			{process.env.NODE_ENV === 'development' && (
 				<div className='mt-6 p-3 bg-slate-100 rounded-lg text-xs text-slate-600'>
 					<strong>Dev Info:</strong> Generated {recommendations.length}{' '}

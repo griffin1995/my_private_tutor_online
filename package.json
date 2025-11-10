@@ -102,35 +102,38 @@
 		"debug:bundle-analyze": "ANALYZE=true npm run build && source-map-explorer .next/static/js/*.js",
 		"debug:deps": "depcheck",
 		"debug:deps-json": "depcheck --json > debug-deps-report.json && echo 'Dependency report saved to debug-deps-report.json'",
-		"debug:all": "npm run debug:deps && npm run debug:bundle"
+		"debug:all": "npm run debug:deps && npm run debug:bundle",
+		"debug:react": "node scripts/analyze-react-health.mjs",
+		"debug:react-health": "npm run debug:react",
+		"debug:errors": "npm run typecheck && npm run lint -- --format json > eslint-report.json 2>&1 || true && cat eslint-report.json"
 	},
 	"overrides": {
 		"@visx/axis": {
-			"react": "^19.0.0",
-			"react-dom": "^19.0.0"
+			"react": "18.3.1",
+			"react-dom": "18.3.1"
 		},
 		"@graphiql/react": {
-			"react": "^19.0.0",
-			"react-dom": "^19.0.0"
+			"react": "18.3.1",
+			"react-dom": "18.3.1"
 		},
 		"@monaco-editor/react": {
-			"react": "^19.0.0",
-			"react-dom": "^19.0.0"
+			"react": "18.3.1",
+			"react-dom": "18.3.1"
 		},
 		"@reach/portal": {
-			"react": "^19.0.0",
-			"react-dom": "^19.0.0"
+			"react": "18.3.1",
+			"react-dom": "18.3.1"
 		},
 		"@reach/utils": {
-			"react": "^19.0.0",
-			"react-dom": "^19.0.0"
+			"react": "18.3.1",
+			"react-dom": "18.3.1"
 		},
 		"@react-spring/zdog": {
-			"react": "^19.0.0",
-			"react-dom": "^19.0.0"
+			"react": "18.3.1",
+			"react-dom": "18.3.1"
 		},
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react": "18.3.1",
+		"react-dom": "18.3.1"
 	},
 	"dependencies": {
 		"@headlessui/react": "^2.2.4",
@@ -161,11 +164,11 @@
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"cobe": "^0.6.4",
+		"critters": "^0.0.23",
 		"date-fns": "^4.1.0",
 		"dotenv": "^17.2.3",
 		"embla-carousel-autoplay": "^8.6.0",
 		"embla-carousel-react": "^8.6.0",
-		"flowbite-react": "^0.12.9",
 		"framer-motion": "^12.23.21",
 		"fuse.js": "^7.1.0",
 		"immer": "^10.1.1",
@@ -174,10 +177,11 @@
 		"next-seo": "^6.8.0",
 		"next-themes": "^0.4.6",
 		"payload": "^3.61.1",
-		"react": "^19.0.0",
+		"react": "18.3.1",
 		"react-countup": "^6.5.3",
-		"react-dom": "^19.0.0",
+		"react-dom": "18.3.1",
 		"react-dropzone": "^14.3.8",
+		"react-error-boundary": "^6.0.0",
 		"react-hook-form": "^7.65.0",
 		"react-icon-cloud": "^4.1.7",
 		"react-intersection-observer": "^9.16.0",
@@ -202,13 +206,14 @@
 		"@next/bundle-analyzer": "^15.5.2",
 		"@playwright/test": "^1.56.1",
 		"@types/node": "^24.9.2",
-		"@types/react": "^19",
-		"@types/react-dom": "^19",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
 		"@welldone-software/why-did-you-render": "^10.0.1",
 		"depcheck": "^1.4.7",
 		"eslint": "^9",
 		"eslint-config-next": "^15.5.4",
 		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"eslint-plugin-react-hooks": "^5.2.0",
 		"glob": "^11.0.3",
 		"husky": "^9.1.7",
 		"imagemin": "^9.0.1",

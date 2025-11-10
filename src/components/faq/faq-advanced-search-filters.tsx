@@ -323,8 +323,6 @@ export function FAQAdvancedSearchFilters({
 	);
 	return (
 		<div className={`faq-advanced-filters ${className}`}>
-			{}
-			{}
 			<div className='filter-header'>
 				<button
 					onClick={() => setIsExpanded(!isExpanded)}
@@ -361,14 +359,10 @@ export function FAQAdvancedSearchFilters({
 				)}
 			</div>
 
-			{}
-			{}
 			{isExpanded && (
 				<div
 					id='advanced-filters-content'
 					className='filter-content'>
-					{}
-					{}
 					{showPresets && savedPresets.length > 0 && (
 						<div className='filter-section'>
 							<h3 className='section-title'>Quick Filters</h3>
@@ -396,8 +390,6 @@ export function FAQAdvancedSearchFilters({
 						</div>
 					)}
 
-					{}
-					{}
 					<div className='filter-section'>
 						<button
 							onClick={() => toggleSection('categories')}
@@ -469,8 +461,6 @@ export function FAQAdvancedSearchFilters({
 						)}
 					</div>
 
-					{}
-					{}
 					<div className='filter-section'>
 						<button
 							onClick={() => toggleSection('date')}
@@ -549,8 +539,6 @@ export function FAQAdvancedSearchFilters({
 						)}
 					</div>
 
-					{}
-					{}
 					<div className='filter-section'>
 						<button
 							onClick={() => toggleSection('tags')}
@@ -621,8 +609,6 @@ export function FAQAdvancedSearchFilters({
 						)}
 					</div>
 
-					{}
-					{}
 					<div className='filter-section'>
 						<button
 							onClick={() => toggleSection('popularity')}
@@ -702,8 +688,6 @@ export function FAQAdvancedSearchFilters({
 						)}
 					</div>
 
-					{}
-					{}
 					<div className='filter-section'>
 						<button
 							onClick={() => toggleSection('content')}
@@ -789,8 +773,6 @@ export function FAQAdvancedSearchFilters({
 						)}
 					</div>
 
-					{}
-					{}
 					<div className='filter-section'>
 						<button
 							onClick={() => toggleSection('audience')}
@@ -854,8 +836,6 @@ export function FAQAdvancedSearchFilters({
 						)}
 					</div>
 
-					{}
-					{}
 					<div className='filter-section'>
 						<button
 							onClick={() => toggleSection('sorting')}
@@ -970,8 +950,6 @@ export function FAQAdvancedSearchFilters({
 						)}
 					</div>
 
-					{}
-					{}
 					{showSaveFilter && allowCustomPresets && (
 						<div className='filter-section'>
 							<button

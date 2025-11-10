@@ -173,9 +173,7 @@ export function TestimonialModal({
 					animate='visible'
 					exit='exit'
 					onClick={(e) => e.stopPropagation()}>
-					{}
 
-					{}
 					<div className='sticky top-0 bg-white border-b border-primary-100 p-8 flex items-center justify-between rounded-t-3xl'>
 						<div className='flex items-center gap-4'>
 							<Avatar className='w-16 h-16 border-2 border-white shadow-lg'>
@@ -218,9 +216,7 @@ export function TestimonialModal({
 						</Button>
 					</div>
 
-					{}
 					<div className='p-8 space-y-8'>
-						{}
 						<div className='flex items-center justify-between'>
 							<div className='flex items-center gap-1'>
 								{[...Array(5)].map((_, i) => (
@@ -264,9 +260,7 @@ export function TestimonialModal({
 							</div>
 						</div>
 
-						{}
 
-						{}
 						<div
 							id='testimonial-modal-content'
 							className='prose prose-lg max-w-none'>
@@ -282,9 +276,7 @@ export function TestimonialModal({
 								)}
 						</div>
 
-						{}
 
-						{}
 						{(testimonial.subject || testimonial.result) && (
 							<div className='flex flex-wrap gap-3'>
 								{testimonial.subject && (
@@ -304,9 +296,7 @@ export function TestimonialModal({
 							</div>
 						)}
 
-						{}
 
-						{}
 						<div className='flex flex-wrap items-center gap-6 text-sm text-primary-500 pt-4 border-t border-primary-100'>
 							{testimonial.location && (
 								<div className='flex items-center gap-2'>
@@ -323,9 +313,7 @@ export function TestimonialModal({
 							)}
 						</div>
 
-						{}
 
-						{}
 						{testimonial.helpfulVotes !== undefined && (
 							<div className='flex items-center justify-center pt-4 border-t border-primary-100'>
 								<Button

@@ -160,7 +160,6 @@ export const FAQVersionControlDashboard: React.FC<
 	};
 	const renderOverviewTab = () => (
 		<div className='space-y-6'>
-			{}
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
 				<MetricCard
 					title='Total Versions'
@@ -192,7 +191,6 @@ export const FAQVersionControlDashboard: React.FC<
 				/>
 			</div>
 
-			{}
 			<div className='bg-white rounded-lg border shadow-sm p-6'>
 				<h3 className='text-lg font-semibold text-gray-900 mb-4'>
 					Recent Activity
@@ -230,7 +228,6 @@ export const FAQVersionControlDashboard: React.FC<
 	);
 	const renderVersionsTab = () => (
 		<div className='space-y-6'>
-			{}
 			<div className='bg-white rounded-lg border shadow-sm p-6'>
 				<div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
 					<div className='flex items-center space-x-4'>
@@ -282,7 +279,6 @@ export const FAQVersionControlDashboard: React.FC<
 					</div>
 				</div>
 
-				{}
 				{showBulkOperations && selectedVersions.length > 0 && (
 					<div className='mt-4 p-4 bg-orange-50 border border-orange-200 rounded-md'>
 						<h4 className='text-sm font-medium text-orange-900 mb-3'>
@@ -313,7 +309,6 @@ export const FAQVersionControlDashboard: React.FC<
 				)}
 			</div>
 
-			{}
 			<div className='bg-white rounded-lg border shadow-sm'>
 				<div className='px-6 py-4 border-b border-gray-200'>
 					<h3 className='text-lg font-semibold text-gray-900'>Version History</h3>
@@ -387,7 +382,6 @@ export const FAQVersionControlDashboard: React.FC<
 	);
 	return (
 		<div className={`min-h-screen bg-gray-50 ${className}`}>
-			{}
 			<div className='bg-white border-b shadow-sm'>
 				<div className='px-6 py-4'>
 					<div className='flex items-center justify-between'>
@@ -410,7 +404,6 @@ export const FAQVersionControlDashboard: React.FC<
 						</div>
 					</div>
 
-					{}
 					<div className='mt-4 border-b border-gray-200'>
 						<nav className='flex space-x-8'>
 							{[
@@ -453,7 +446,6 @@ export const FAQVersionControlDashboard: React.FC<
 				</div>
 			</div>
 
-			{}
 			<div className='px-6 py-8'>
 				{activeView === 'overview' && renderOverviewTab()}
 				{activeView === 'versions' && renderVersionsTab()}

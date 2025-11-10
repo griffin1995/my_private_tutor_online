@@ -87,7 +87,6 @@ export function PageLayout({
 				</div>
 			</main>
 
-			{}
 			{showFooter && <PageFooter {...footerProps} />}
 		</div>
 	);

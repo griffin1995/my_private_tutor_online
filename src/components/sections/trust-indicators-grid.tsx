@@ -209,8 +209,6 @@ export function TrustIndicatorsGrid({
 	};
 	return (
 		<div className='w-full pt-16'>
-			{}
-			{}
 			<div className='flex flex-col gap-0'>
 				{indicators.slice(0, 4).map((indicator, index) => {
 					const studentImage = getImageForIndicator(indicator, index);
@@ -222,11 +220,8 @@ export function TrustIndicatorsGrid({
 							style={{
 								minHeight: 'clamp(350px, 40vh, 500px)',
 							}}>
-							{}
-							{}
 							{isOddRow ?
 								<>
-									{}
 									<motion.div
 										className='trust-image relative w-full h-full overflow-hidden group'
 										initial={{
@@ -253,15 +248,10 @@ export function TrustIndicatorsGrid({
 											sizes='(max-width: 1024px) 100vw, 50vw'
 											priority={index < 2}
 										/>
-										{}
-										{}
 										<div className='absolute inset-0 bg-gradient-to-r from-transparent to-black/20' />
-										{}
-										{}
 										<div className='absolute inset-0 border-2 border-transparent group-hover:border-yellow-400/50 group-hover:shadow-lg group-hover:shadow-yellow-400/25 transition-all duration-300 ease-out' />
 									</motion.div>
 
-									{}
 									<motion.div
 										className='trust-content flex items-center justify-center bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md'
 										initial={{
@@ -281,17 +271,7 @@ export function TrustIndicatorsGrid({
 											delay: 0.2,
 											ease: 'easeOut',
 										}}>
-										{}
-										{}
-										{}
-										{}
-										{}
 										<div className='max-w-xl text-right p-8'>
-											{}
-											{}
-											{}
-											{}
-											{}
 											<h3
 												className='font-serif text-xl font-semibold text-[rgba(63,74,126,1)] pb-2 mb-3 border-b border-[rgba(63,74,126,0.15)]'
 												style={{
@@ -312,8 +292,6 @@ export function TrustIndicatorsGrid({
 													{indicator.subtitle}
 												</h4>
 											)}
-											{}
-											{}
 											<div
 												className='text-gray-700 leading-relaxed'
 												style={{
@@ -327,7 +305,6 @@ export function TrustIndicatorsGrid({
 									</motion.div>
 								</>
 							:	<>
-									{}
 									<motion.div
 										className='trust-content flex items-center justify-center bg-[rgba(63,74,126,0.03)] hover:scale-[1.01] transform transition-all duration-300 rounded-lg shadow-sm hover:shadow-md order-2 lg:order-1'
 										initial={{
@@ -347,17 +324,7 @@ export function TrustIndicatorsGrid({
 											delay: 0.2,
 											ease: 'easeOut',
 										}}>
-										{}
-										{}
-										{}
-										{}
-										{}
 										<div className='max-w-xl text-left p-8'>
-											{}
-											{}
-											{}
-											{}
-											{}
 											<h3
 												className='font-serif text-xl font-semibold'
 												style={{
@@ -378,8 +345,6 @@ export function TrustIndicatorsGrid({
 													{indicator.subtitle}
 												</h4>
 											)}
-											{}
-											{}
 											<div
 												className='text-gray-700 leading-relaxed'
 												style={{
@@ -392,7 +357,6 @@ export function TrustIndicatorsGrid({
 										</div>
 									</motion.div>
 
-									{}
 									<motion.div
 										className='trust-image relative w-full h-full order-1 lg:order-2 overflow-hidden group'
 										initial={{

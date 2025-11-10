@@ -2,18 +2,18 @@
 
 import React, { useState } from 'react';
 import {
-	LineChart,
-	Line,
-	XAxis,
-	YAxis,
-	CartesianGrid,
-	Tooltip,
-	Legend,
-	PieChart,
-	Pie,
-	Cell,
-	ResponsiveContainer,
-} from 'recharts';
+	LazyLineChart as LineChart,
+	LazyLine as Line,
+	LazyXAxis as XAxis,
+	LazyYAxis as YAxis,
+	LazyCartesianGrid as CartesianGrid,
+	LazyTooltip as Tooltip,
+	LazyLegend as Legend,
+	LazyPieChart as PieChart,
+	LazyPie as Pie,
+	LazyCell as Cell,
+	LazyResponsiveContainer as ResponsiveContainer,
+} from '@/components/charts/lazy-charts';
 interface SearchAnalyticsProps {
 	searchData: {
 		timestamp: string;

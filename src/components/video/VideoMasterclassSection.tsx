@@ -32,7 +32,6 @@ function VideoModal({
 			open={isOpen}
 			onOpenChange={setIsOpen}>
 			<div className='relative group'>
-				{}
 				<div
 					className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
 					<span className='text-white group-hover:text-[#D4AF37] font-medium italic transition-colors duration-300'>
@@ -40,14 +39,9 @@ function VideoModal({
 					</span>
 				</div>
 
-				{}
-				{}
 				<Dialog.Trigger asChild>
 					<div className='w-full max-w-lg mx-auto cursor-pointer'>
 						<div className='relative border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] overflow-hidden group-hover:border-opacity-100 transition-all duration-300'>
-							{}
-							{}
-							{}
 							<img
 								src={thumbnailUrl}
 								alt={alt}
@@ -57,7 +51,6 @@ function VideoModal({
 								className='w-full h-full object-cover'
 							/>
 
-							{}
 							<div className='absolute inset-0 flex items-center justify-center'>
 								<div className='bg-black/60 rounded-full p-6 group-hover:bg-black/80 group-hover:scale-110 transition-all duration-300'>
 									<Play className='w-12 h-12 text-white fill-white' />
@@ -68,29 +61,19 @@ function VideoModal({
 				</Dialog.Trigger>
 			</div>
 
-			{}
-			{}
 			<Dialog.Portal>
-				{}
-				{}
 				<Dialog.Overlay className='fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999]' />
 
-				{}
-				{}
 				<Dialog.Content className='fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-[10000] w-[90vw] max-w-6xl'>
-					{}
 					<Dialog.Close className='absolute -top-12 right-0 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50'>
 						<X className='w-6 h-6' />
 					</Dialog.Close>
 
-					{}
 					<div
 						className='relative w-full'
 						style={{
 							aspectRatio: '16/9',
 						}}>
-						{}
-						{}
 						{videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') ?
 							<iframe
 								src={videoUrl}
@@ -236,16 +219,12 @@ export function VideoMasterclassSection({
 			style={{
 				backgroundImage: `url('${backgroundImage}')`,
 			}}>
-			{}
 			<div
 				className='absolute inset-0 z-0'
 				style={{
 					background: `radial-gradient(circle at ${isTextLeft ? 'bottom left' : 'bottom right'}, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 80%, transparent 90%)`,
 				}}
 			/>
-			{}
-			{}
-			{}
 			{(
 				(() => {
 					const hasVideoUrl = videoUrl && videoUrl.trim() !== '';
@@ -289,8 +268,6 @@ export function VideoMasterclassSection({
 							console.groupEnd();
 						}
 					}}>
-					{}
-					{}
 					{isFree && videoUrl && videoUrl.trim() !== '' ?
 						<VideoModal
 							videoUrl={videoUrl}
@@ -310,12 +287,8 @@ export function VideoMasterclassSection({
 								</span>
 							</div>
 							<div className='relative'>
-								{}
-								{}
 								<div className='absolute inset-0 bg-black/15 rounded-lg z-10 transition-opacity duration-300 group-hover:bg-black/0'></div>
 								<div className='w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] relative overflow-hidden'>
-									{}
-									{}
 									<img
 										src={thumbnailUrl}
 										alt={alt}
@@ -335,13 +308,10 @@ export function VideoMasterclassSection({
 				</div>
 			}
 
-			{}
 			<div
 				className={`relative z-10 w-4/5 mx-auto p-8 ${textAlignment} ${textGridOrder}`}>
 				<h2 className='text-4xl font-bold text-white mb-3'>{video.title}</h2>
 
-				{}
-				{}
 				<Separator className='bg-gray-300 my-3' />
 
 				<div className={`flex items-center gap-4 mb-4 ${badgeAlignment}`}>
@@ -372,10 +342,6 @@ export function VideoMasterclassSection({
 					className='bg-gray-300 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full my-3'
 				/>
 
-				{}
-				{}
-				{}
-				{}
 				{content.paragraphs.map((paragraph, index) => {
 					const processedText = paragraph
 						.replace(/\n\n/g, '<br><br>')
@@ -393,7 +359,6 @@ export function VideoMasterclassSection({
 
 				<Separator className='bg-gray-300 my-3' />
 
-				{}
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2'>
 					{content.bulletPoints.map((bulletPoint, index) => (
 						<div

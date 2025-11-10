@@ -1,0 +1,85 @@
+
+> my-tutor-website@0.1.0 debug:bundle-analyze
+> ANALYZE=true npm run build && source-map-explorer .next/static/js/*.js
+
+
+> my-tutor-website@0.1.0 prebuild
+> npm run tokens:build
+
+
+> my-tutor-website@0.1.0 tokens:build
+> style-dictionary build --config src/design-tokens/config.json
+
+
+Token collisions detected (8):
+Use log.verbosity "verbose" or use CLI option --verbose for more details.
+Refer to: https://styledictionary.com/reference/logging/
+
+Unknown CSS Font Shorthand properties found for 6 tokens, CSS output for Font values will be missing some typography token properties as a result:
+Use log.verbosity "verbose" or use CLI option --verbose for more details.
+Refer to: https://styledictionary.com/reference/logging/
+
+
+json
+✔︎ src/design-tokens/generated/tokens.json
+
+Unknown CSS Font Shorthand properties found for 2 tokens, CSS output for Font values will be missing some typography token properties as a result:
+Use log.verbosity "verbose" or use CLI option --verbose for more details.
+Refer to: https://styledictionary.com/reference/logging/
+
+
+js
+✔︎ src/design-tokens/generated/tokens.js
+
+typescript
+✔︎ src/design-tokens/generated/tokens.ts
+✔︎ src/design-tokens/generated/types.d.ts
+
+tailwind
+✔︎ ./tailwind.config.tokens.js
+
+css
+✔︎ src/styles/tokens/variables.css
+
+> my-tutor-website@0.1.0 build
+> NODE_ENV=production next build
+
+   ▲ Next.js 15.5.6
+   - Environments: .env.local, .env.production
+   - Experiments (use with caution):
+     ✓ optimizeCss
+     ✓ scrollRestoration
+     ✓ webpackBuildWorker
+     · optimizePackageImports
+     ✓ webpackMemoryOptimizations
+
+   Creating an optimized production build ...
+   Using tsconfig file: ./tsconfig.production.json
+Webpack Bundle Analyzer saved report to /home/jack/Documents/my_private_tutor_online/.next/analyze/nodejs.html
+   Using tsconfig file: ./tsconfig.production.json
+
+No bundles were parsed. Analyzer will show only original module sizes from stats file.
+
+Webpack Bundle Analyzer saved report to /home/jack/Documents/my_private_tutor_online/.next/analyze/edge.html
+   Using tsconfig file: ./tsconfig.production.json
+Webpack Bundle Analyzer saved report to /home/jack/Documents/my_private_tutor_online/.next/analyze/client.html
+ ✓ Compiled successfully in 78s
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/16) ...
+Error occurred prerendering page "/404". Read more: https://nextjs.org/docs/messages/prerender-error
+[Error: Cannot find module 'critters'
+Require stack:
+- /home/jack/Documents/my_private_tutor_online/node_modules/next/dist/compiled/next-server/pages.runtime.prod.js
+- /home/jack/Documents/my_private_tutor_online/.next/server/pages/_document.js
+- /home/jack/Documents/my_private_tutor_online/node_modules/next/dist/server/require.js
+- /home/jack/Documents/my_private_tutor_online/node_modules/next/dist/server/load-components.js
+- /home/jack/Documents/my_private_tutor_online/node_modules/next/dist/build/utils.js
+- /home/jack/Documents/my_private_tutor_online/node_modules/next/dist/build/worker.js
+- /home/jack/Documents/my_private_tutor_online/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+Export encountered an error on /_error: /404, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null

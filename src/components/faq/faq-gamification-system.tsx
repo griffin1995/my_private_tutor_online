@@ -440,7 +440,6 @@ export function FAQGamificationSystem({
 									</div>
 								</CardHeader>
 								<CardContent className='space-y-4'>
-									{}
 									<div className='text-center'>
 										<div className='flex items-center justify-center space-x-2 mb-2'>
 											<Crown
@@ -460,7 +459,6 @@ export function FAQGamificationSystem({
 										/>
 									</div>
 
-									{}
 									<div className='grid grid-cols-2 gap-3 text-sm'>
 										<div className='text-center'>
 											<div className='font-semibold text-slate-900'>
@@ -476,7 +474,6 @@ export function FAQGamificationSystem({
 										</div>
 									</div>
 
-									{}
 									{unlockedAchievements.length > 0 && (
 										<div className='pt-2 border-t border-slate-200'>
 											<div className='text-xs text-slate-600 mb-1'>
@@ -503,7 +500,6 @@ export function FAQGamificationSystem({
 	}
 	return (
 		<>
-			{}
 			<m.div
 				className={`bg-gradient-to-br from-white via-slate-50 to-white border-2 border-slate-200 rounded-3xl shadow-xl p-6 lg:p-8 ${className}`}
 				initial={{
@@ -519,7 +515,6 @@ export function FAQGamificationSystem({
 					type: 'spring',
 					stiffness: 100,
 				}}>
-				{}
 				<div className='flex items-center justify-between mb-8'>
 					<div>
 						<h2 className='text-2xl lg:text-3xl font-serif font-bold text-slate-900 mb-2'>
@@ -546,9 +541,7 @@ export function FAQGamificationSystem({
 					</div>
 				</div>
 
-				{}
 				<div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8'>
-					{}
 					<Card className='bg-white/80 backdrop-blur-sm border border-slate-200'>
 						<CardContent className='p-6'>
 							<div className='flex items-center justify-between mb-4'>
@@ -575,7 +568,6 @@ export function FAQGamificationSystem({
 						</CardContent>
 					</Card>
 
-					{}
 					<Card className='bg-white/80 backdrop-blur-sm border border-slate-200'>
 						<CardContent className='p-6'>
 							<div className='flex items-center justify-between mb-4'>
@@ -602,7 +594,6 @@ export function FAQGamificationSystem({
 						</CardContent>
 					</Card>
 
-					{}
 					<Card className='bg-white/80 backdrop-blur-sm border border-slate-200'>
 						<CardContent className='p-6'>
 							<div className='flex items-center justify-between mb-4'>
@@ -627,7 +618,6 @@ export function FAQGamificationSystem({
 					</Card>
 				</div>
 
-				{}
 				<div className='mb-8'>
 					<div className='flex items-center justify-between mb-6'>
 						<h3 className='text-xl font-serif font-bold text-slate-900'>
@@ -693,7 +683,6 @@ export function FAQGamificationSystem({
 					</div>
 				</div>
 
-				{}
 				<div className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
 					<div className='text-center p-4 bg-white/50 rounded-xl border border-slate-200'>
 						<div className='text-2xl font-bold text-slate-900 mb-1'>
@@ -722,7 +711,6 @@ export function FAQGamificationSystem({
 				</div>
 			</m.div>
 
-			{}
 			<AnimatePresence>
 				{showAchievementModal && newAchievement && (
 					<m.div
@@ -789,7 +777,6 @@ export function FAQGamificationSystem({
 				)}
 			</AnimatePresence>
 
-			{}
 			<div
 				style={{
 					display: 'none',

@@ -28,34 +28,18 @@ export const SubsectionCard = memo(function SubsectionCard({
 				delay: index * 0.1,
 			}}
 			className='bg-white border-2 border-neutral-300 p-8 shadow-subtle-md hover:shadow-depth-md transition-all duration-300'>
-			{}
-			{}
-			{}
 			<h3 className='mb-4'>{card.heading}</h3>
 
-			{}
-			{}
-			{}
 			<Separator className='bg-neutral-300 my-4' />
 
-			{}
-			{}
-			{}
 			<div className='mb-6 whitespace-pre-line'>{card.mainTextBody}</div>
 
-			{}
-			{}
-			{}
 			{card.videos && card.videos.length > 0 && (
 				<div className='mt-6 space-y-4'>
-					{}
-					{}
 					{card.videos.map((video) => (
 						<div
 							key={video.id}
 							className='w-full'>
-							{}
-							{}
 							<HeroVideoDialog
 								videoSrc={video.youtubeUrl}
 								thumbnailSrc={video.thumbnailSrc}

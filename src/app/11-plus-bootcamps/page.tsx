@@ -75,18 +75,11 @@ export default function ElevenPlusBootcampsPage() {
 				showFooter={true}>
 				<section className='py-24'>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-						{}
-						{}
 						<h1 className='mb-4'>11+ Bootcamps</h1>
-						{}
-						{}
-						{}
 						<p className='text-primary-700 mb-8'>
 							Our intensive 11+ preparation bootcamps will return for the 2025 season.
 							Please check back later or contact us for more information.
 						</p>
-						{}
-						{}
 						<Button
 							size='lg'
 							onClick={() => {

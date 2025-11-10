@@ -167,7 +167,6 @@ export function PerformanceDashboard({
 	}
 	return (
 		<div className={`performance-dashboard ${className}`}>
-			{}
 			<div
 				className={`performance-score p-4 rounded-lg border-2 ${getRatingColor(overallRating)} mb-6`}>
 				<div className='flex items-center justify-between'>
@@ -188,7 +187,6 @@ export function PerformanceDashboard({
 				</div>
 			</div>
 
-			{}
 			<div className='web-vitals-metrics mb-6'>
 				<h3 className='text-lg font-semibold mb-3'>Core Web Vitals</h3>
 				<div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
@@ -220,7 +218,6 @@ export function PerformanceDashboard({
 				</div>
 			</div>
 
-			{}
 			{showDetails && Object.keys(navigationMetrics).length > 0 && (
 				<div className='navigation-metrics mb-6'>
 					<h3 className='text-lg font-semibold mb-3'>Page Load Breakdown</h3>
@@ -239,7 +236,6 @@ export function PerformanceDashboard({
 				</div>
 			)}
 
-			{}
 			{showDetails && resourceMetrics.length > 0 && (
 				<div className='resource-metrics mb-6'>
 					<h3 className='text-lg font-semibold mb-3'>Resource Breakdown</h3>
@@ -257,7 +253,6 @@ export function PerformanceDashboard({
 				</div>
 			)}
 
-			{}
 			{showDetails && (
 				<div className='performance-recommendations'>
 					<h3 className='text-lg font-semibold mb-3'>Recommendations</h3>

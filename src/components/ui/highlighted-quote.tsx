@@ -369,17 +369,10 @@ export function HighlightedQuote({
 				willChange: 'auto',
 				isolation: 'isolate',
 			}}>
-			{}
-			{}
-			{}
-			{}
 			<blockquote className='text-xl lg:text-2xl font-serif text-token-neutral-700 italic leading-[2.5]'>
 				{renderHighlightedMessage(quote, useHighlighting)}
 			</blockquote>
 
-			{}
-			{}
-			{}
 			{author && (
 				<cite className='text-lg font-semibold text-token-primary-dark not-italic'>
 					&mdash; {author}

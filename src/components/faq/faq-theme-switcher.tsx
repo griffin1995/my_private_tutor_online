@@ -318,7 +318,6 @@ export function FAQThemeSwitcher({
 				}}
 				aria-label={ariaLabel}
 				aria-expanded={isOpen}>
-				{}
 				<div className='flex items-center space-x-2'>
 					<div
 						className='w-6 h-6 rounded-full flex items-center justify-center text-sm border border-slate-200'
@@ -339,7 +338,6 @@ export function FAQThemeSwitcher({
 					</div>
 				</div>
 
-				{}
 				<m.svg
 					className='w-4 h-4 text-slate-400'
 					fill='none'
@@ -380,7 +378,6 @@ export function FAQThemeSwitcher({
 										variants={itemVariants}
 										onClick={() => handleThemeSelect('system')}
 										className={`w-full flex items-center space-x-4 p-3 rounded-xl text-left hover:bg-slate-50 transition-colors duration-200 ${isSystemTheme ? 'bg-accent-50 border-2 border-accent-200 ring-1 ring-accent-200' : 'border-2 border-transparent'}`}>
-										{}
 										<div className='flex space-x-1'>
 											<div
 												className='w-4 h-4 rounded-sm border border-slate-200'
@@ -441,7 +438,6 @@ export function FAQThemeSwitcher({
 										variants={itemVariants}
 										onClick={() => handleThemeSelect(theme.id)}
 										className={`w-full flex items-center space-x-4 p-3 rounded-xl text-left hover:bg-slate-50 transition-colors duration-200 ${!isSystemTheme && currentTheme === theme.id ? 'bg-accent-50 border-2 border-accent-200 ring-1 ring-accent-200' : 'border-2 border-transparent'}`}>
-										{}
 										<div className='flex space-x-1'>
 											<div
 												className='w-4 h-4 rounded-sm border border-slate-200'
@@ -508,7 +504,6 @@ export function FAQThemeSwitcher({
 								))}
 							</div>
 
-							{}
 							<div className='pt-3 border-t border-slate-200'>
 								<div className='flex items-center space-x-2 text-xs text-slate-500'>
 									<svg

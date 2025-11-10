@@ -61,13 +61,8 @@ export function SchoolCard({
 			variants={cardAnimationVariants}
 			initial='initial'
 			animate='initial'>
-			{}
-			{}
-			{}
 
-			{}
 			<div className='relative z-10 flex items-center gap-4'>
-				{}
 				{(displayMode === 'logo' || displayMode === 'mixed') && (
 					<div className='flex-shrink-0'>
 						{school.logo && !imageError ?
@@ -98,23 +93,15 @@ export function SchoolCard({
 					</div>
 				)}
 
-				{}
 				<div className='flex-grow min-w-0'>
 					<div className='flex items-center justify-between'>
-						{}
-						{}
-						{}
 						<h3
 							className={`font-semibold text-primary-700 ${textSizeClasses[size]} truncate`}>
 							{school.shortName || school.name}
 						</h3>
 
-						{}
-						{}
-						{}
 					</div>
 
-					{}
 					{displayMode !== 'logo' && (
 						<div className='flex items-center mt-1'>
 							<MapPin className='h-3 w-3 text-primary-400 mr-1 flex-shrink-0' />
@@ -124,7 +111,6 @@ export function SchoolCard({
 						</div>
 					)}
 
-					{}
 					{school.prestigeScore >= 90 && (
 						<div className='flex items-center mt-1'>
 							<Trophy className='h-3 w-3 text-accent-500 mr-1' />
@@ -134,11 +120,7 @@ export function SchoolCard({
 				</div>
 			</div>
 
-			{}
-			{}
-			{}
 
-			{}
 			{school.league === 'oxbridge' && (
 				<div className='absolute top-2 right-2'>
 					<div className='bg-accent-500 text-white text-xs px-2 py-0.5 rounded-full font-medium shadow-sm'>

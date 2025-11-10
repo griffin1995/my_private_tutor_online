@@ -1,6 +1,4 @@
-import { LazyMotionProvider } from '@/components/providers/LazyMotionProvider';
-import { TooltipProvider } from '@/components/ui/tooltip';
-import { Toaster } from '@/components/ui/sonner';
+import { ClientProviders } from '@/components/providers/ClientProviders';
 import { fontClassNames } from '@/fonts';
 import type { Metadata } from 'next';
 import React from 'react';
@@ -138,9 +136,6 @@ export default function RootLayout({
 					name='theme-color'
 					content='#0f172a'
 				/>
-
-				{}
-				{}
 				<link
 					rel='icon'
 					href='/icons/favicon-32x32.png'
@@ -171,12 +166,6 @@ export default function RootLayout({
 					sizes='192x192'
 					type='image/png'
 				/>
-				{}
-				{}
-				{}
-
-				{}
-				{}
 				<link
 					rel='apple-touch-icon'
 					href='/icons/apple-touch-icon.png'
@@ -211,9 +200,6 @@ export default function RootLayout({
 					href='/icons/apple-touch-icon-180x180.png'
 					sizes='180x180'
 				/>
-
-				{}
-				{}
 				<link
 					rel='manifest'
 					href='/manifest.json'
@@ -262,12 +248,7 @@ export default function RootLayout({
 			<body
 				className={`${fontClassNames} font-body antialiased min-h-screen bg-transparent text-foreground`}>
 
-				<LazyMotionProvider>
-					<TooltipProvider>
-						{children}
-						<Toaster />
-					</TooltipProvider>
-				</LazyMotionProvider>
+				<ClientProviders>{children}</ClientProviders>
 
 			</body>
 		</html>

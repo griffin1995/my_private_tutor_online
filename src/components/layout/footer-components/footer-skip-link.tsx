@@ -5,7 +5,6 @@ import { footerSkipLinkConfig } from '@/lib/hooks/use-footer-accessibility';
 export function FooterSkipLink() {
 	return (
 		<>
-			{}
 			<a
 				href='#footer'
 				className={footerSkipLinkConfig.className}

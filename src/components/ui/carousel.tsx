@@ -127,7 +127,6 @@ export function Carousel({
 				</div>
 			</div>
 
-			{}
 			{showArrows && (
 				<div>
 					<button
@@ -145,7 +144,6 @@ export function Carousel({
 				</div>
 			)}
 
-			{}
 			{showDots && (
 				<div className='flex justify-center gap-2 mt-6'>
 					{items.map((_, index) => (

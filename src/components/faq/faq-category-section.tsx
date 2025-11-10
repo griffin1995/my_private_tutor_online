@@ -393,7 +393,6 @@ export function FAQCategorySection({
 			className={`${compactMode ? 'py-12 lg:py-16' : 'py-20 lg:py-28'} relative ${showPrintView ? 'bg-white print:bg-white' : 'bg-white'}`}
 			role='region'
 			aria-label='Frequently Asked Questions'>
-			{}
 			<div
 				aria-live='polite'
 				aria-atomic='true'
@@ -401,7 +400,6 @@ export function FAQCategorySection({
 				{announceText}
 			</div>
 
-			{}
 			{isOffline && offlineMessage && (
 				<div
 					role='status'
@@ -417,8 +415,6 @@ export function FAQCategorySection({
 					</div>
 				</div>
 			)}
-			{}
-			{}
 			{!showPrintView && (
 				<>
 					<div className='absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-60' />
@@ -426,8 +422,6 @@ export function FAQCategorySection({
 				</>
 			)}
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
-				{}
-				{}
 				{enableBulkActions && !showPrintView && (
 					<m.div
 						className='max-w-6xl mx-auto mb-12'
@@ -527,11 +521,7 @@ export function FAQCategorySection({
 								viewport={{
 									once: true,
 								}}>
-								{}
-								{}
-								{}
 								<div className='flex items-center gap-6 mb-16'>
-									{}
 									<div
 										className='flex items-center justify-center w-20 h-20 rounded-3xl shadow-xl relative overflow-hidden'
 										style={
@@ -543,8 +533,6 @@ export function FAQCategorySection({
 													background: 'linear-gradient(135deg, #f59e0b, #d97706)',
 												}
 										}>
-										{}
-										{}
 										<div className='text-3xl text-white'>
 											{enhancedCategory?.iconComponent ?
 												renderCategoryIcon(enhancedCategory.iconComponent, 32)
@@ -552,7 +540,6 @@ export function FAQCategorySection({
 										</div>
 									</div>
 
-									{}
 									<div className='flex-1'>
 										<div className='flex items-start justify-between mb-3'>
 											<h2
@@ -560,8 +547,6 @@ export function FAQCategorySection({
 												{category.title}
 											</h2>
 
-											{}
-											{}
 											{showCategoryStats && enhancedCategory && (
 												<div className='flex items-center space-x-2 ml-4'>
 													<Badge
@@ -596,8 +581,6 @@ export function FAQCategorySection({
 													)}
 											</p>
 
-											{}
-											{}
 											{enhancedCategory?.description && !compactMode && (
 												<p className='text-slate-500 text-sm max-w-md text-right'>
 													{enhancedCategory.description}
@@ -607,9 +590,6 @@ export function FAQCategorySection({
 									</div>
 								</div>
 
-								{}
-								{}
-								{}
 								<Card
 									className={`${showPrintView ? 'bg-white border border-slate-300 shadow-sm' : 'bg-white/90 backdrop-blur-lg border-2 border-slate-200/50 shadow-2xl hover:shadow-3xl'} rounded-3xl transition-all duration-500 overflow-hidden ${showPrintView ? 'print:shadow-none' : ''}`}>
 									<CardContent className='p-0'>
@@ -622,7 +602,6 @@ export function FAQCategorySection({
 												handleAccordionValueChange(value, category.id)
 											}
 											className='w-full'>
-											{}
 											<m.div
 												initial='hidden'
 												whileInView='show'
@@ -676,8 +655,6 @@ export function FAQCategorySection({
 																		:	{}
 																	}>
 																	<span className='flex items-start gap-6 w-full'>
-																		{}
-																		{}
 																		<m.span
 																			className={`flex-shrink-0 ${showPrintView ? 'w-8 h-8' : 'w-10 h-10'} rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${!showPrintView ? 'shadow-lg group-hover:shadow-xl' : ''}`}
 																			style={
@@ -715,8 +692,6 @@ export function FAQCategorySection({
 																			<div className='flex items-start justify-between'>
 																				<span className='flex-1 pr-4'>{faq.question}</span>
 
-																				{}
-																				{}
 																				{isEnhancedQuestion && !showPrintView && (
 																					<m.div
 																						className='flex items-center space-x-2 ml-2'
@@ -773,8 +748,6 @@ export function FAQCategorySection({
 																				)}
 																			</div>
 
-																			{}
-																			{}
 																			{isEnhancedQuestion &&
 																				faq.tags &&
 																				faq.tags.length > 0 &&
@@ -845,8 +818,6 @@ export function FAQCategorySection({
 
 																<AccordionContent
 																	className={`${showPrintView ? 'px-6 pb-6' : 'px-10 pb-10'} ${!showPrintView ? 'animate-fade-in' : ''}`}>
-																	{}
-																	{}
 																	<m.div
 																		className={showPrintView ? 'ml-10' : 'ml-16'}
 																		initial={
@@ -894,8 +865,6 @@ export function FAQCategorySection({
 																				{faq.answer}
 																			</m.p>
 
-																			{}
-																			{}
 																			{isEnhancedQuestion &&
 																				faq.relatedFAQs &&
 																				faq.relatedFAQs.length > 0 &&
@@ -981,8 +950,6 @@ export function FAQCategorySection({
 																					</m.div>
 																				)}
 
-																			{}
-																			{}
 																			{!showPrintView && (
 																				<m.div
 																					initial={{

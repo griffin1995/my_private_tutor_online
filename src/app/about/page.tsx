@@ -4,7 +4,7 @@ import Carousel_testimonial from '@/app/testimonials/Carousel_testimonial';
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
-import { Blockquote } from 'flowbite-react';
+import { MissionQuote } from '@/components/ui/blockquote';
 
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR ABOUT PAGE
@@ -54,28 +54,14 @@ export default function AboutUsPage() {
 					id='founder-quote-testimonials'
 					className='py-8 lg:py-12 bg-primary-50'>
 					<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
-						<Blockquote>
-							{/* Quote icon */}
-							<svg
-								className='mb-6 h-14 w-14 fill-primary-700'
-								aria-hidden='true'
-								xmlns='http://www.w3.org/2000/svg'
-								viewBox='0 0 18 14'>
-								<path d='M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z' />
-							</svg>
-
-							{/* Bespoke Experience Quote */}
-							<p className='italic'>
-								&quot;<strong>A truly bespoke</strong> experience — Elizabeth personally
-								pairs each student with a <u>carefully selected tutor</u> from her
-								boutique team.&quot;
-							</p>
-
-							{/* Author with avatar */}
-							<figcaption className='mt-4 flex items-center justify-center space-x-3'>
-								<cite className='text-neutral-600'>Academic Insight</cite>
-							</figcaption>
-						</Blockquote>
+						<MissionQuote
+							showCite={true}
+							cite='Academic Insight'
+							size='lg'>
+							<strong>A truly bespoke</strong> experience — Elizabeth personally
+							pairs each student with a <u>carefully selected tutor</u> from her
+							boutique team.
+						</MissionQuote>
 					</div>
 				</section>
 

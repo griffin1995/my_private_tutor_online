@@ -120,7 +120,6 @@ export function ResultsDocumentation({
 	return (
 		<Section className={`py-16 lg:py-24 ${className}`}>
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-				{}
 				<m.div
 					className='text-center mb-16'
 					initial={{
@@ -145,7 +144,6 @@ export function ResultsDocumentation({
 					</p>
 				</m.div>
 
-				{}
 				<div
 					className={`grid gap-6 ${
 						layout === 'grid' ? 'md:grid-cols-2 lg:grid-cols-3'
@@ -175,7 +173,6 @@ export function ResultsDocumentation({
 							whileHover={{
 								scale: 1.02,
 							}}>
-							{}
 							<div className='flex items-start justify-between mb-6 h-20'>
 								<div className='p-3 rounded-lg bg-white/20 backdrop-blur-sm text-white'>
 									{result.icon && iconMap[result.icon as IconName] ? (
@@ -189,7 +186,6 @@ export function ResultsDocumentation({
 								</div>
 							</div>
 
-							{}
 							<div className='mb-6 h-24'>
 								<div className='text-3xl font-bold mb-2 text-white'>{result.value}</div>
 								<h3 className='text-lg font-semibold text-white'>{result.metric}</h3>
@@ -197,12 +193,10 @@ export function ResultsDocumentation({
 
 							<Separator className='bg-white/30 mb-6' />
 
-							{}
 							<p className='text-sm leading-relaxed mb-6 text-white flex-1'>
 								{result.description}
 							</p>
 
-							{}
 							<div className='space-y-2 text-xs text-white mt-auto'>
 								<div className='flex items-center gap-1 text-white'>
 									<Calendar className='w-3 h-3 text-white' />
@@ -213,7 +207,6 @@ export function ResultsDocumentation({
 					))}
 				</div>
 
-				{}
 				{false && (
 					<m.div
 						className='mt-12'

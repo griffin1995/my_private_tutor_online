@@ -39,13 +39,7 @@ export function ScrollingSchools({
 		<section
 			className={`bg-white py-4 px-4 sm:px-6 lg:px-8 ${className}`}
 			aria-label='Partner schools carousel'>
-			{}
-			{}
-			{}
-			{}
-			{}
 			<div className='w-full overflow-hidden bg-white'>
-				{}
 				<m.div
 					className='flex gap-8 sm:gap-12 whitespace-nowrap motion-reduce:animate-none'
 					animate={{
@@ -56,12 +50,7 @@ export function ScrollingSchools({
 						ease: 'linear',
 						duration: speed,
 					}}>
-					{}
-					{}
 
-					{}
-					{}
-					{}
 					{schoolNames.map((school, index) => {
 						const logoAsset = schoolLogos[school as keyof typeof schoolLogos];
 						if (!logoAsset) return null;
@@ -69,7 +58,6 @@ export function ScrollingSchools({
 							<div
 								key={`first-${index}`}
 								className='flex-shrink-0 flex items-center justify-center px-3 sm:px-4'>
-								{}
 								<Image
 									src={logoAsset.src}
 									alt={logoAsset.alt}
@@ -84,9 +72,6 @@ export function ScrollingSchools({
 						);
 					})}
 
-					{}
-					{}
-					{}
 					{schoolNames.map((school, index) => {
 						const logoAsset = schoolLogos[school as keyof typeof schoolLogos];
 						if (!logoAsset) return null;
@@ -94,7 +79,6 @@ export function ScrollingSchools({
 							<div
 								key={`second-${index}`}
 								className='flex-shrink-0 flex items-center justify-center px-3 sm:px-4'>
-								{}
 								<Image
 									src={logoAsset.src}
 									alt={logoAsset.alt}

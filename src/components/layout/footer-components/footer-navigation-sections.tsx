@@ -68,8 +68,6 @@ const FooterNavigationSection = React.memo<FooterNavigationSectionProps>(
 				style={{
 					animationDelay: `${sectionIndex * 0.1}s`,
 				}}>
-				{}
-				{}
 				<h3
 					id={section.id}
 					className='font-serif text-3xl md:text-3xl lg:text-4xl font-bold text-primary-900 flex items-center gap-2 mb-4 md:mb-4 lg:mb-6 flex-shrink-0'>
@@ -77,9 +75,6 @@ const FooterNavigationSection = React.memo<FooterNavigationSectionProps>(
 					<Separator className='flex-1 bg-neutral-300' />
 				</h3>
 
-				{}
-				{}
-				{}
 				<nav
 					role='navigation'
 					aria-labelledby={section.id}

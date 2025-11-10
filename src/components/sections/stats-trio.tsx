@@ -54,11 +54,6 @@ export function StatsTrio({
 	};
 	return (
 		<div className={`${containerClasses} ${className}`}>
-			{}
-			{}
-			{}
-			{}
-			{}
 			<StatBox delay={0}>
 				<div className='bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200 rounded-xl p-6 text-center hover:shadow-lg transition-shadow duration-300 h-full flex flex-col justify-between'>
 					<div className='text-white'>
@@ -80,10 +75,6 @@ export function StatsTrio({
 				</div>
 			</StatBox>
 
-			{}
-			{}
-			{}
-			{}
 			<StatBox delay={0.1}>
 				<div className='bg-gradient-to-br from-yellow-50 to-amber-50 border border-yellow-200 rounded-xl p-6 text-center hover:shadow-lg transition-shadow duration-300 h-full flex flex-col justify-between'>
 					<div className='text-white'>
@@ -105,10 +96,6 @@ export function StatsTrio({
 				</div>
 			</StatBox>
 
-			{}
-			{}
-			{}
-			{}
 			<StatBox delay={0.2}>
 				<div className='bg-gradient-to-br from-amber-100 to-yellow-100 border border-amber-300 rounded-xl p-6 text-center hover:shadow-lg transition-shadow duration-300 h-full flex flex-col justify-between'>
 					<div className='text-white'>

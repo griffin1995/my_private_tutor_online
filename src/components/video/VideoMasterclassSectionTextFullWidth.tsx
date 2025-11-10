@@ -148,14 +148,7 @@ const VideoMasterclassSectionTextFullWidthComponent = memo(
 			<div
 				className={`relative flex flex-col md:flex-row bg-cover bg-center bg-no-repeat ${className}`}
 				style={backgroundStyle}>
-				{}
-				{}
-				{}
-				{}
 				<div className='absolute inset-0 bg-gradient-to-br from-slate-900/65 via-slate-900/50 to-slate-900/70 backdrop-blur-[2px] backdrop-brightness-75 backdrop-contrast-110 backdrop-filter' />
-				{}
-				{}
-				{}
 				{videoUrl && videoUrl.trim() !== '' && (
 					<div
 						className={`relative z-10 flex justify-center items-center p-8 md:w-1/2 ${videoGridOrder}`}>
@@ -191,8 +184,6 @@ const VideoMasterclassSectionTextFullWidthComponent = memo(
 								<div className='relative'>
 									<div className='absolute inset-0 bg-black/15 rounded-lg z-10 transition-opacity duration-300 group-hover:bg-black/0'></div>
 									<div className='w-full max-w-lg mx-auto border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] relative overflow-hidden'>
-										{}
-										{}
 										<Image
 											src={thumbnailUrl}
 											alt={alt}
@@ -214,11 +205,6 @@ const VideoMasterclassSectionTextFullWidthComponent = memo(
 					</div>
 				)}
 
-				{}
-				{}
-				{}
-				{}
-				{}
 				<div
 					className={`relative z-10 flex-1 px-6 md:px-8 py-8 ${textAlignment} ${textGridOrder}`}
 					style={{
@@ -229,14 +215,8 @@ const VideoMasterclassSectionTextFullWidthComponent = memo(
 						{video.title}
 					</h2>
 
-					{}
-					{}
 					<Separator className='bg-gray-300 my-3' />
 
-					{}
-					{}
-					{}
-					{}
 					{content.paragraphs.map((paragraph, index) => {
 						const processedText = paragraph
 							.replace(/\n\n/g, '<br><br>')
@@ -254,9 +234,6 @@ const VideoMasterclassSectionTextFullWidthComponent = memo(
 
 					<Separator className='bg-gray-300 my-3' />
 
-					{}
-					{}
-					{}
 					<div className='grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-2'>
 						{content.bulletPoints.map((bulletPoint, index) => (
 							<div

@@ -29,10 +29,6 @@ export const EducationLevelTabContent = memo(function EducationLevelTabContent({
 	};
 	return (
 		<div className='space-y-16'>
-			{}
-			{}
-			{}
-			{}
 			<motion.div
 				initial={{
 					opacity: 0,
@@ -49,9 +45,6 @@ export const EducationLevelTabContent = memo(function EducationLevelTabContent({
 				<p className='max-w-4xl mx-auto'>{content.mainDescription}</p>
 			</motion.div>
 
-			{}
-			{}
-			{}
 			{content.subsections.length > 0 && (
 				<motion.div
 					initial={{
@@ -64,13 +57,7 @@ export const EducationLevelTabContent = memo(function EducationLevelTabContent({
 						duration: 0.6,
 						delay: 0.2,
 					}}>
-					{}
-					{}
-					{}
-					{}
 					<div className={getGridClasses()}>
-						{}
-						{}
 						{content.subsections.map((card, index) => (
 							<SubsectionCard
 								key={card.id}
@@ -80,9 +67,6 @@ export const EducationLevelTabContent = memo(function EducationLevelTabContent({
 						))}
 					</div>
 
-					{}
-					{}
-					{}
 					<div className='md:hidden overflow-x-auto pb-4 -mx-4 px-4'>
 						<div
 							className='flex gap-4'
@@ -104,9 +88,6 @@ export const EducationLevelTabContent = memo(function EducationLevelTabContent({
 				</motion.div>
 			)}
 
-			{}
-			{}
-			{}
 			{content.callOuts.length > 0 && (
 				<motion.div
 					initial={{
@@ -123,9 +104,6 @@ export const EducationLevelTabContent = memo(function EducationLevelTabContent({
 				</motion.div>
 			)}
 
-			{}
-			{}
-			{}
 			{filteredTestimonials.length > 0 && (
 				<motion.div
 					initial={{

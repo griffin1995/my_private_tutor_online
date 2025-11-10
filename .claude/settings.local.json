@@ -280,7 +280,16 @@
       "Bash(else echo \"⚠️ site_audit/ not found\")",
       "Bash(while read f)",
       "Bash(do mv $f docs/archive/)",
-      "Bash(all-problems-report.txt)"
+      "Bash(all-problems-report.txt)",
+      "Bash(NODE_ENV=development next dev:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(next dev --help:*)",
+      "Bash(lsof:*)",
+      "Skill(developer-essentials:debugging-strategies)",
+      "Skill(framework-migration:react-modernization)",
+      "Bash(react_debug_analysis.md)",
+      "Bash(security_audit.md)",
+      "Bash(dev_server_status.md)"
     ],
     "deny": []
   },

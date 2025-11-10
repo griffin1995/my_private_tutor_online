@@ -353,8 +353,6 @@ export function FAQVisualSearch({
 	};
 	return (
 		<div className={cn('space-y-6', className)}>
-			{}
-			{}
 			<m.div
 				{...getRootProps()}
 				variants={dropzoneVariants}
@@ -363,7 +361,6 @@ export function FAQVisualSearch({
 				<input {...getInputProps()} />
 
 				<div className='flex flex-col items-center justify-center space-y-4 text-center'>
-					{}
 					<m.div
 						animate={
 							ocrState.isProcessing ?
@@ -393,7 +390,6 @@ export function FAQVisualSearch({
 						:	<Camera className='w-8 h-8' />}
 					</m.div>
 
-					{}
 					<div className='space-y-2'>
 						<h3 className='text-xl font-semibold text-slate-900'>
 							{ocrState.isProcessing ? 'Processing Image...' : 'Visual Search'}
@@ -412,7 +408,6 @@ export function FAQVisualSearch({
 						</p>
 					</div>
 
-					{}
 					{ocrState.isProcessing && (
 						<div className='w-full max-w-xs space-y-2'>
 							<Progress
@@ -426,7 +421,6 @@ export function FAQVisualSearch({
 						</div>
 					)}
 
-					{}
 					{!ocrState.isProcessing && !uploadedFiles.length && (
 						<div className='space-y-2'>
 							<div className='flex items-center space-x-4 text-sm text-slate-500'>
@@ -449,7 +443,6 @@ export function FAQVisualSearch({
 						</div>
 					)}
 
-					{}
 					{ocrState.stage === 'error' && ocrState.error && (
 						<div className='flex items-center space-x-2 text-red-600'>
 							<AlertCircle className='w-4 h-4' />
@@ -459,7 +452,6 @@ export function FAQVisualSearch({
 				</div>
 			</m.div>
 
-			{}
 			{uploadedFiles.length > 0 && previewUrls.length > 0 && (
 				<m.div
 					initial={{
@@ -477,7 +469,6 @@ export function FAQVisualSearch({
 					<Card className='overflow-hidden'>
 						<CardContent className='p-4'>
 							<div className='flex items-start space-x-4'>
-								{}
 								<div className='relative w-32 h-32 rounded-lg overflow-hidden bg-slate-100 flex-shrink-0'>
 									<img
 										src={previewUrls[0]}
@@ -487,7 +478,6 @@ export function FAQVisualSearch({
 									<div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent' />
 								</div>
 
-								{}
 								<div className='flex-1 min-w-0 space-y-3'>
 									<div className='flex items-center justify-between'>
 										<div>
@@ -512,7 +502,6 @@ export function FAQVisualSearch({
 										</Button>
 									</div>
 
-									{}
 									{ocrState.stage === 'complete' && (
 										<div className='flex items-center space-x-2 text-green-600'>
 											<CheckCircle className='w-4 h-4' />
@@ -522,7 +511,6 @@ export function FAQVisualSearch({
 										</div>
 									)}
 
-									{}
 									{ocrState.extractedText && (
 										<div className='space-y-2'>
 											<p className='text-sm font-medium text-slate-700'>Extracted Text:</p>
@@ -540,7 +528,6 @@ export function FAQVisualSearch({
 				</m.div>
 			)}
 
-			{}
 			<AnimatePresence>
 				{showResults && searchResults.length > 0 && (
 					<m.div
@@ -586,7 +573,6 @@ export function FAQVisualSearch({
 									<Card className='hover:shadow-lg transition-shadow duration-200'>
 										<CardContent className='p-6'>
 											<div className='space-y-4'>
-												{}
 												<div className='flex items-start justify-between'>
 													<div className='flex-1'>
 														<h4 className='font-semibold text-slate-900 leading-tight'>
@@ -616,14 +602,12 @@ export function FAQVisualSearch({
 													</div>
 												</div>
 
-												{}
 												<p className='text-slate-600 leading-relaxed'>
 													{result.question.answer.length > 200 ?
 														`${result.question.answer.slice(0, 200)}...`
 													:	result.question.answer}
 												</p>
 
-												{}
 												{result.highlightedTerms.length > 0 && (
 													<div className='space-y-2'>
 														<p className='text-sm font-medium text-slate-700'>
@@ -651,7 +635,6 @@ export function FAQVisualSearch({
 				)}
 			</AnimatePresence>
 
-			{}
 			{showResults && searchResults.length === 0 && ocrState.extractedText && (
 				<m.div
 					initial={{

@@ -8,7 +8,6 @@ export default function AdminMonitoringPage() {
 	const [compactView, setCompactView] = useState(false);
 	return (
 		<div className='min-h-screen bg-gray-50'>
-			{}
 			<div className='bg-white shadow-sm border-b'>
 				<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='flex items-center justify-between h-16'>
@@ -22,7 +21,6 @@ export default function AdminMonitoringPage() {
 						</div>
 
 						<div className='flex items-center space-x-4'>
-							{}
 							<div className='flex items-center'>
 								<label className='inline-flex items-center'>
 									<input
@@ -35,7 +33,6 @@ export default function AdminMonitoringPage() {
 								</label>
 							</div>
 
-							{}
 							<div className='flex items-center'>
 								<label htmlFor='refresh-interval' className='text-sm text-gray-700 mr-2'>Refresh:</label>
 								<select
@@ -50,7 +47,6 @@ export default function AdminMonitoringPage() {
 								</select>
 							</div>
 
-							{}
 							<div className='flex items-center'>
 								<label className='inline-flex items-center'>
 									<input
@@ -67,18 +63,14 @@ export default function AdminMonitoringPage() {
 				</div>
 			</div>
 
-			{}
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
-				{}
 				<PerformanceMonitoringDashboard
 					refreshInterval={refreshInterval}
 					showRealTime={showRealTime}
 					compactView={compactView}
 				/>
 
-				{}
 				<div className='mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-					{}
 					<div className='bg-white rounded-lg shadow p-6'>
 						<h3 className='text-lg font-semibold text-gray-800 mb-4'>
 							System Status
@@ -111,7 +103,6 @@ export default function AdminMonitoringPage() {
 						</div>
 					</div>
 
-					{}
 					<div className='bg-white rounded-lg shadow p-6'>
 						<h3 className='text-lg font-semibold text-gray-800 mb-4'>
 							Optimization Impact
@@ -140,7 +131,6 @@ export default function AdminMonitoringPage() {
 						</div>
 					</div>
 
-					{}
 					<div className='bg-white rounded-lg shadow p-6'>
 						<h3 className='text-lg font-semibold text-gray-800 mb-4'>
 							Quick Actions
@@ -162,7 +152,6 @@ export default function AdminMonitoringPage() {
 					</div>
 				</div>
 
-				{}
 				<div className='mt-8 bg-white rounded-lg shadow p-6'>
 					<h3 className='text-lg font-semibold text-gray-800 mb-4'>
 						Multi-Agent Implementation Status

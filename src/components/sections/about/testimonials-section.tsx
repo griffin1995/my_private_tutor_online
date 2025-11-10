@@ -18,9 +18,6 @@ export function TestimonialsSection({
 	return (
 		<section
 			className={`relative ${backgroundColor} py-12 lg:py-16 ${className}`}>
-			{}
-			{}
-			{}
 			<div
 				className='absolute inset-0 opacity-[0.015] pointer-events-none'
 				style={{
@@ -29,13 +26,8 @@ export function TestimonialsSection({
 				}}
 			/>
 
-			{}
-			{}
 
-			{}
-			{}
 			<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16'>
-				{}
 				<div className='max-w-7xl mx-auto'>
 					<div className='grid lg:grid-cols-2 gap-8 lg:gap-10'>
 						{(() => {
@@ -48,13 +40,7 @@ export function TestimonialsSection({
 							);
 							return (
 								<>
-									{}
 									<div className='relative'>
-										{}
-										{}
-										{}
-										{}
-										{}
 										{parentVideo && (
 											<div className='relative w-full'>
 												<HeroVideoDialog
@@ -68,13 +54,7 @@ export function TestimonialsSection({
 										)}
 									</div>
 
-									{}
 									<div className='relative'>
-										{}
-										{}
-										{}
-										{}
-										{}
 										{studentVideo && (
 											<div className='relative w-full'>
 												<HeroVideoDialog
@@ -106,8 +86,6 @@ export function TestimonialsSection({
 				</div>
 			</div>
 
-			{}
-			{}
 		</section>
 	);
 }

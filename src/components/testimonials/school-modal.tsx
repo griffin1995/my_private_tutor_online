@@ -187,8 +187,6 @@ export function SchoolModal({
 		<AnimatePresence>
 			{isOpen && (
 				<div className={`fixed inset-0 z-50 ${className}`}>
-					{}
-					{}
 					<m.div
 						className='absolute inset-0 bg-black/60 backdrop-blur-sm'
 						variants={overlayVariants}
@@ -198,7 +196,6 @@ export function SchoolModal({
 						onClick={handleOverlayClick}
 					/>
 
-					{}
 					<div className='flex items-center justify-center min-h-screen p-4'>
 						<m.div
 							className='relative bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden'
@@ -206,10 +203,8 @@ export function SchoolModal({
 							initial='hidden'
 							animate='visible'
 							exit='exit'>
-							{}
 							<div
 								className={`relative px-6 py-8 bg-gradient-to-r ${categoryColors[school.category]} text-white`}>
-								{}
 								<button
 									onClick={handleClose}
 									className='absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-200'
@@ -217,9 +212,7 @@ export function SchoolModal({
 									<X className='h-5 w-5' />
 								</button>
 
-								{}
 								<div className='flex items-start gap-6'>
-									{}
 									<div className='flex-shrink-0'>
 										{school.logo ?
 											<img
@@ -239,7 +232,6 @@ export function SchoolModal({
 										}
 									</div>
 
-									{}
 									<div className='flex-grow'>
 										<div className='flex items-start justify-between'>
 											<div>
@@ -265,7 +257,6 @@ export function SchoolModal({
 												)}
 											</div>
 
-											{}
 											{school.league && (
 												<div className='bg-white/20 px-3 py-1 rounded-full'>
 													<span className='text-sm font-medium capitalize'>
@@ -278,14 +269,12 @@ export function SchoolModal({
 								</div>
 							</div>
 
-							{}
 							<div className='overflow-y-auto max-h-[calc(90vh-200px)]'>
 								<m.div
 									className='p-6'
 									variants={contentVariants}
 									initial='hidden'
 									animate='visible'>
-									{}
 									{school.description && (
 										<m.section
 											className='mb-8'
@@ -296,7 +285,6 @@ export function SchoolModal({
 										</m.section>
 									)}
 
-									{}
 									<m.section
 										className='mb-8'
 										variants={sectionVariants}>
@@ -343,7 +331,6 @@ export function SchoolModal({
 										</div>
 									</m.section>
 
-									{}
 									{school.successStories && school.successStories.length > 0 && (
 										<m.section
 											className='mb-8'
@@ -379,7 +366,6 @@ export function SchoolModal({
 										</m.section>
 									)}
 
-									{}
 									{(school.subjects || school.specialisms) && (
 										<m.section
 											className='mb-8'
@@ -424,7 +410,6 @@ export function SchoolModal({
 										</m.section>
 									)}
 
-									{}
 									{school.entryRequirements && (
 										<m.section
 											className='mb-8'
@@ -440,7 +425,6 @@ export function SchoolModal({
 								</m.div>
 							</div>
 
-							{}
 							<div className='border-t border-primary-100 p-6 bg-primary-25'>
 								<div className='flex flex-col sm:flex-row gap-4 justify-end'>
 									{school.admissions && (

@@ -185,7 +185,6 @@ export function NewsletterForm({
 	}
 	return (
 		<div className={cn(containerStyles[variant], className)}>
-			{}
 			{(resolvedTitle || resolvedDescription) && variant !== 'inline' && (
 				<div className='mb-6 text-center'>
 					{resolvedTitle && (
@@ -209,12 +208,9 @@ export function NewsletterForm({
 				</div>
 			)}
 
-			{}
-			{}
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className={formLayoutStyles[variant]}>
-				{}
 				{showName && variant !== 'inline' && (
 					<div className='space-y-2'>
 						<Label
@@ -242,7 +238,6 @@ export function NewsletterForm({
 					</div>
 				)}
 
-				{}
 				<div className={cn('space-y-2', variant === 'inline' ? 'flex-1' : '')}>
 					{variant !== 'inline' && (
 						<Label
@@ -273,7 +268,6 @@ export function NewsletterForm({
 					)}
 				</div>
 
-				{}
 				{showInterests && variant !== 'inline' && (
 					<div className='space-y-3'>
 						<Label className='text-black font-medium'>
@@ -308,7 +302,6 @@ export function NewsletterForm({
 					</div>
 				)}
 
-				{}
 				<div
 					className={cn(
 						'flex items-start gap-3',
@@ -336,7 +329,6 @@ export function NewsletterForm({
 					</div>
 				</div>
 
-				{}
 				<Button
 					type='submit'
 					disabled={isSubmitting}
@@ -359,7 +351,6 @@ export function NewsletterForm({
 					}
 				</Button>
 
-				{}
 				{submissionState === 'error' && errorMessage && (
 					<div className='flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg animate-fade-in'>
 						<AlertCircle className='w-5 h-5 text-red-600 flex-shrink-0' />
@@ -367,7 +358,6 @@ export function NewsletterForm({
 					</div>
 				)}
 
-				{}
 				{submissionState === 'success' && variant === 'inline' && (
 					<div className='flex items-center gap-2 text-green-700'>
 						<CheckCircle className='w-5 h-5' />
@@ -375,7 +365,6 @@ export function NewsletterForm({
 					</div>
 				)}
 
-				{}
 				<input
 					{...register('honeypot')}
 					type='text'
@@ -386,7 +375,6 @@ export function NewsletterForm({
 				/>
 			</form>
 
-			{}
 			{variant === 'card' && (
 				<p className='text-xs text-gray-500 text-center mt-4'>
 					By subscribing, you agree to our Privacy Policy. Unsubscribe anytime.

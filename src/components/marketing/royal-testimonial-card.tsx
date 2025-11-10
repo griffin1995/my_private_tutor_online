@@ -96,7 +96,6 @@ export function RoyalTestimonialCard({
 			className={cn(containerClasses[variant], className)}
 			role='article'
 			aria-label={`Testimonial from ${author}`}>
-			{}
 			{featured && variant === 'royal' && (
 				<div className='absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16'>
 					<div className='absolute top-8 right-8 bg-gradient-to-br from-accent-400 to-accent-500 text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-45 shadow-lg'>
@@ -105,30 +104,24 @@ export function RoyalTestimonialCard({
 				</div>
 			)}
 
-			{}
 			{variant === 'royal' && (
 				<div className='absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-royal-200/30 to-royal-300/30 rounded-full blur-xl' />
 			)}
 
-			{}
 			<Quote
 				className={cn(quoteIconClasses[variant])}
 				aria-hidden='true'
 			/>
 
-			{}
 			{renderStars()}
 
-			{}
 			<blockquote
 				className={cn(quoteTextClasses[variant])}
 				cite={author}>
 				"{quote}"
 			</blockquote>
 
-			{}
 			<div className={cn(authorSectionClasses[variant])}>
-				{}
 				<div
 					className={cn(
 						'rounded-full flex items-center justify-center overflow-hidden bg-primary-100',
@@ -152,13 +145,11 @@ export function RoyalTestimonialCard({
 					}
 				</div>
 
-				{}
 				<div className='flex-1 min-w-0'>
 					<cite className={cn(authorNameClasses[variant])}>{author}</cite>
 					<p className={cn(authorRoleClasses[variant])}>{role}</p>
 				</div>
 
-				{}
 				{variant === 'royal' && (
 					<div className='flex-shrink-0'>
 						<div className='w-8 h-8 bg-gradient-to-br from-royal-500 to-royal-600 rounded-full flex items-center justify-center'>

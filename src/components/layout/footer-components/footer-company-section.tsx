@@ -21,8 +21,6 @@ export const FooterCompanySection = React.memo<FooterCompanySectionProps>(
 		return (
 			<div
 				className={`flex flex-col justify-center items-center h-full animate-fade-in-left ${className}`}>
-				{}
-				{}
 				{/* Mobile & MD: Horizontal logo with name and tagline (full width mobile, 50% at md) */}
 				<Link
 					href='/'

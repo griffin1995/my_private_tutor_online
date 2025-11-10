@@ -420,7 +420,6 @@ export class HomepageErrorBoundary extends Component<
 		return (
 			<div className='py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-white border-l-4 border-amber-500'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-					{}
 					<div className='flex justify-center mb-6'>
 						<div className='bg-amber-100 rounded-full p-3'>
 							<svg
@@ -436,18 +435,15 @@ export class HomepageErrorBoundary extends Component<
 						</div>
 					</div>
 
-					{}
 					<h2 className='text-2xl lg:text-3xl font-serif font-bold text-slate-800 mb-4'>
 						Section Temporarily Unavailable
 					</h2>
 
-					{}
 					<p className='text-lg text-slate-600 mb-6 max-w-2xl mx-auto'>
 						The {this.props.sectionName} section is experiencing a temporary issue.
 						Our team has been notified and is working to resolve this quickly.
 					</p>
 
-					{}
 					<button
 						onClick={this.handleRetry}
 						className='inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200'>
@@ -464,7 +460,6 @@ export class HomepageErrorBoundary extends Component<
 						Try Again
 					</button>
 
-					{}
 					<div className='mt-8 text-sm text-slate-500'>
 						<p>
 							If this issue persists, please contact our support team at{' '}

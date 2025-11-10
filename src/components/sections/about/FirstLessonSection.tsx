@@ -39,8 +39,6 @@ export function FirstLessonSection({
 }: FirstLessonSectionProps): JSX.Element {
 	return (
 		<div className={`bg-${backgroundColor} py-20 ${className}`}>
-			{}
-			{}
 			<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12'>
 				<m.div
 					initial={fadeInUpVariant.initial}
@@ -53,15 +51,11 @@ export function FirstLessonSection({
 					<div className='space-y-10'>
 						<div className='text-left space-y-8'>
 							<div>
-								{}
-								{}
 								<h3 className='text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6'>
 									{heading || 'First Lesson to Seventh Continent'}
 								</h3>
 
 								<div className='space-y-6'>
-									{}
-									{}
 									<p className='text-lg text-primary-700 leading-relaxed'>
 										{parseTextWithStrong(
 											paragraph ||

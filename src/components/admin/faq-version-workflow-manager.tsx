@@ -217,7 +217,6 @@ export const FAQVersionWorkflowManager: React.FC<
 	};
 	const renderPendingTab = () => (
 		<div className='space-y-4'>
-			{}
 			{selectedVersions.length > 0 && (
 				<div className='bg-blue-50 border border-blue-200 rounded-lg p-4'>
 					<div className='flex items-center justify-between'>
@@ -261,7 +260,6 @@ export const FAQVersionWorkflowManager: React.FC<
 				</div>
 			)}
 
-			{}
 			<div className='space-y-3'>
 				{workflowData.pending.length === 0 ?
 					<div className='text-center py-12 text-gray-500'>
@@ -365,7 +363,6 @@ export const FAQVersionWorkflowManager: React.FC<
 	);
 	return (
 		<div className={`bg-white rounded-lg border shadow-sm ${className}`}>
-			{}
 			<div className='px-6 py-4 border-b border-gray-200'>
 				<div className='flex items-center justify-between'>
 					<div>
@@ -389,7 +386,6 @@ export const FAQVersionWorkflowManager: React.FC<
 					</div>
 				</div>
 
-				{}
 				<div className='mt-4 border-b border-gray-200'>
 					<nav className='flex space-x-8'>
 						{[
@@ -430,7 +426,6 @@ export const FAQVersionWorkflowManager: React.FC<
 				</div>
 			</div>
 
-			{}
 			<div className='p-6'>
 				{activeTab === 'pending' && renderPendingTab()}
 				{activeTab === 'scheduled' && renderScheduledTab()}
@@ -438,7 +433,6 @@ export const FAQVersionWorkflowManager: React.FC<
 				{activeTab === 'config' && renderConfigTab()}
 			</div>
 
-			{}
 			{scheduleModalOpen && (
 				<SchedulePublicationModal
 					versionId={selectedVersionId || ''}
@@ -601,7 +595,6 @@ const WorkflowVersionCard: React.FC<WorkflowVersionCardProps> = ({
 				</div>
 			</div>
 
-			{}
 			{showReviewForm && (
 				<div className='mt-4 p-3 bg-gray-50 rounded-md'>
 					<label className='block text-sm font-medium text-gray-700 mb-2'>

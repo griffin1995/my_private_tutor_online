@@ -208,7 +208,6 @@ ${comparison.visualDiff.inlineDiff}
 	}
 	return (
 		<div className={`bg-white border rounded-lg shadow-lg ${className}`}>
-			{}
 			<div className='px-6 py-4 border-b border-gray-200'>
 				<div className='flex items-center justify-between'>
 					<div>
@@ -259,10 +258,8 @@ ${comparison.visualDiff.inlineDiff}
 					</div>
 				</div>
 
-				{}
 				<div className='flex items-center justify-between mt-4'>
 					<div className='flex items-center space-x-4'>
-						{}
 						<div className='flex bg-gray-100 rounded-lg p-1'>
 							{[
 								{
@@ -291,7 +288,6 @@ ${comparison.visualDiff.inlineDiff}
 							))}
 						</div>
 
-						{}
 						<div className='flex items-center space-x-3 text-sm'>
 							<label className='flex items-center space-x-2'>
 								<input
@@ -335,7 +331,6 @@ ${comparison.visualDiff.inlineDiff}
 				</div>
 			</div>
 
-			{}
 			{showMetadata && (
 				<div className='px-6 py-4 bg-gray-50 border-b border-gray-200'>
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -352,7 +347,6 @@ ${comparison.visualDiff.inlineDiff}
 			)}
 
 			<div className='flex h-96'>
-				{}
 				{changeNavigationItems.length > 0 && (
 					<div className='w-64 border-r border-gray-200 bg-gray-50'>
 						<div className='px-4 py-3 border-b border-gray-200'>
@@ -381,7 +375,6 @@ ${comparison.visualDiff.inlineDiff}
 					</div>
 				)}
 
-				{}
 				<div className='flex-1 overflow-hidden'>
 					{viewMode === 'side-by-side' && (
 						<SideBySideDiffView

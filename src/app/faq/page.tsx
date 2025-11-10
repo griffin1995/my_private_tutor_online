@@ -260,9 +260,6 @@ export default function FAQPage() {
 			showHeader={true}
 			showFooter={true}>
 			<div className='min-h-screen bg-gradient-to-b from-slate-50 to-white'>
-				{}
-				{}
-				{}
 				<section className='bg-gradient-to-r from-primary-900 to-primary-800 text-white py-16 lg:py-24'>
 					<div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
 						<h1 className='text-3xl lg:text-5xl font-serif font-bold mb-6'>
@@ -275,15 +272,11 @@ export default function FAQPage() {
 					</div>
 				</section>
 
-				{}
-				{}
-				{}
 				<section
 					className='py-8 bg-white border-b border-slate-200'
 					role='search'
 					aria-label='FAQ Search'>
 					<div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-						{}
 						<div className='flex justify-center gap-4 mb-6'>
 							<button
 								onClick={() => setSearchMode(true)}
@@ -310,7 +303,6 @@ export default function FAQPage() {
 							</button>
 						</div>
 
-						{}
 						{searchMode ?
 							<FAQEdgeSearch />
 						:	<>
@@ -362,9 +354,6 @@ export default function FAQPage() {
 					</div>
 				</section>
 
-				{}
-				{}
-				{}
 				{!searchMode && (
 					<main
 						className='py-12'
@@ -392,8 +381,6 @@ export default function FAQPage() {
 										<section
 											key={category.id}
 											className='space-y-4'>
-											{}
-											{}
 											<div className='flex items-center space-x-3 mb-6'>
 												{(() => {
 													const IconComponent = getFaqIconComponent(category.title);
@@ -415,9 +402,6 @@ export default function FAQPage() {
 												</span>
 											</div>
 
-											{}
-											{}
-											{}
 											<Accordion
 												type='multiple'
 												className='space-y-2'>
@@ -445,9 +429,6 @@ export default function FAQPage() {
 					</main>
 				)}
 
-				{}
-				{}
-				{}
 				<section
 					className='bg-slate-50 py-16'
 					id='contact'
@@ -463,7 +444,6 @@ export default function FAQPage() {
 						</p>
 
 						<div className='grid md:grid-cols-2 gap-6 max-w-2xl mx-auto'>
-							{}
 							<a
 								href={`mailto:${contactData.primary.primaryEmail}`}
 								className={cn(
@@ -491,7 +471,6 @@ export default function FAQPage() {
 								</p>
 							</a>
 
-							{}
 							<a
 								href={`tel:${contactData.primary.phone}`}
 								className={cn(

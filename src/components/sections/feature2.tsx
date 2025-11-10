@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 interface Feature2Props {
 	title: string;
-	description?: string;
+	description?: string | React.ReactNode;
 	imageSrc: string;
 	imageAlt: string;
 	buttonPrimary: {
@@ -17,6 +17,10 @@ interface Feature2Props {
 		href: string;
 	};
 }
+
+// CONTEXT7 SOURCE: /reactjs/react.dev - Conditional JSX rendering pattern
+// ARCHITECTURE REASON: React.ReactNode includes JSX.Element, strings, and fragments
+// REFERENCE: Official React docs - "Render lists, conditional rendering, and keeping components pure"
 
 const Feature2 = ({
 	title = 'Blocks built with Shadcn & Tailwind',
@@ -50,9 +54,15 @@ const Feature2 = ({
 							{title}
 						</h3>
 						{description && (
-							<p className='text-muted-foreground mb-6 sm:mb-7 md:mb-8 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl'>
-								{description}
-							</p>
+							typeof description === 'string' ? (
+								<p className='text-muted-foreground mb-6 sm:mb-7 md:mb-8 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl'>
+									{description}
+								</p>
+							) : (
+								<div className='mb-6 sm:mb-7 md:mb-8 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl'>
+									{description}
+								</div>
+							)
 						)}
 						<div className='flex w-full flex-col justify-center gap-2 sm:flex-row md:justify-start'>
 							<Button asChild style={{ backgroundColor: '#3f4a7e !important', color: '#ffffff !important', borderColor: '#3f4a7e !important', borderRadius: '0 !important' }}>

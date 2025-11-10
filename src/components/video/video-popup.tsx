@@ -47,16 +47,12 @@ export function VideoPopup({
 	if (!isOpen) return null;
 	return (
 		<>
-			{}
-			{}
 			<div
 				className='fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4'
 				onClick={handleClose}
 				role='dialog'
 				aria-modal='true'
 				aria-labelledby='video-title'>
-				{}
-				{}
 				<div
 					ref={modalRef}
 					className={cn(
@@ -67,7 +63,6 @@ export function VideoPopup({
 					onClick={(e) => e.stopPropagation()}
 					onKeyDown={handleKeyDown}
 					tabIndex={-1}>
-					{}
 					<div className='flex items-center justify-between p-4 border-b border-slate-200 bg-slate-50'>
 						<h2
 							id='video-title'
@@ -84,11 +79,8 @@ export function VideoPopup({
 						</Button>
 					</div>
 
-					{}
 					<div className='relative bg-black'>
 						<div className='aspect-video'>
-							{}
-							{}
 							<video
 								ref={videoRef}
 								src={videoUrl}
@@ -108,7 +100,6 @@ export function VideoPopup({
 						</div>
 					</div>
 
-					{}
 					<div className='p-4 bg-slate-50 border-t border-slate-200'>
 						<p className='text-sm text-slate-600 text-center'>
 							Press ESC to close or click outside the video

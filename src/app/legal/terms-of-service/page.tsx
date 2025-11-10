@@ -18,8 +18,6 @@ import {
 export default function TermsOfServicePage() {
 	return (
 		<>
-			{}
-			{}
 			<PageHero
 				background='gradient'
 				size='full'
@@ -108,8 +106,6 @@ export default function TermsOfServicePage() {
 				</div>
 			</PageHero>
 
-			{}
-			{}
 			<PageLayout
 				background='white'
 				showHeader={false}
@@ -179,7 +175,6 @@ export default function TermsOfServicePage() {
 									}}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl rounded-2xl'>
 										<div className='flex items-start gap-4'>
-											{}
 											<Star className='w-8 h-8 text-amber-600 flex-shrink-0 mt-1' />
 											<div>
 												<h3 className='text-2xl font-serif font-bold text-amber-800 mb-4'>

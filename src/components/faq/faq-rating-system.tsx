@@ -238,7 +238,6 @@ export function FAQRatingSystem({
 	return (
 		<div
 			className={`bg-slate-50 border border-slate-200 rounded-lg p-6 mt-6 ${className}`}>
-			{}
 			<AnimatePresence>
 				{ratingState.submitSuccess && (
 					<motion.div
@@ -263,13 +262,11 @@ export function FAQRatingSystem({
 				)}
 			</AnimatePresence>
 
-			{}
 			<div className='mb-4'>
 				<h4 className='text-lg font-semibold text-slate-900 mb-2'>
 					Was this answer helpful?
 				</h4>
 
-				{}
 				{(ratingState.analytics.helpfulCount > 0 ||
 					ratingState.analytics.notHelpfulCount > 0) && (
 					<div className='mb-3'>
@@ -293,7 +290,6 @@ export function FAQRatingSystem({
 					</div>
 				)}
 
-				{}
 				<div className='flex gap-3'>
 					<motion.button
 						whileHover={{
@@ -346,8 +342,6 @@ export function FAQRatingSystem({
 					</motion.button>
 				</div>
 
-				{}
-				{}
 				<AnimatePresence>
 					{showReward && pointsEarned && (
 						<motion.div
@@ -392,7 +386,6 @@ export function FAQRatingSystem({
 					)}
 				</AnimatePresence>
 
-				{}
 				{!ratingState.showFeedbackForm && !ratingState.submitSuccess && (
 					<button
 						onClick={toggleFeedbackForm}
@@ -403,7 +396,6 @@ export function FAQRatingSystem({
 				)}
 			</div>
 
-			{}
 			<AnimatePresence>
 				{ratingState.showFeedbackForm && (
 					<motion.form
@@ -421,7 +413,6 @@ export function FAQRatingSystem({
 						}}
 						onSubmit={handleSubmit(onSubmit)}
 						className='mt-4 space-y-4 overflow-hidden'>
-						{}
 						<input
 							type='text'
 							{...register('honeypot')}
@@ -430,7 +421,6 @@ export function FAQRatingSystem({
 							autoComplete='off'
 						/>
 
-						{}
 						{watchedRating === 'not_helpful' && (
 							<div>
 								<label className='block text-sm font-medium text-slate-700 mb-1'>
@@ -455,7 +445,6 @@ export function FAQRatingSystem({
 							</div>
 						)}
 
-						{}
 						<div>
 							<label className='block text-sm font-medium text-slate-700 mb-1'>
 								{watchedRating === 'helpful' ?
@@ -489,7 +478,6 @@ export function FAQRatingSystem({
 							</div>
 						</div>
 
-						{}
 						<div>
 							<label className='block text-sm font-medium text-slate-700 mb-1'>
 								Additional suggestions (optional)
@@ -508,7 +496,6 @@ export function FAQRatingSystem({
 							)}
 						</div>
 
-						{}
 						<div>
 							<label className='block text-sm font-medium text-slate-700 mb-1'>
 								Email (optional - for follow-up)
@@ -530,7 +517,6 @@ export function FAQRatingSystem({
 							</p>
 						</div>
 
-						{}
 						<div className='bg-blue-50 border border-blue-200 rounded-md p-3'>
 							<p className='text-xs text-blue-800'>
 								<strong>Privacy Notice:</strong> Your feedback will be stored securely
@@ -540,7 +526,6 @@ export function FAQRatingSystem({
 							</p>
 						</div>
 
-						{}
 						<div className='flex gap-3 pt-2'>
 							<motion.button
 								whileHover={{
@@ -575,7 +560,6 @@ export function FAQRatingSystem({
 				)}
 			</AnimatePresence>
 
-			{}
 			{ratingState.analytics.feedbackCount > 0 && (
 				<div className='mt-4 pt-4 border-t border-slate-200'>
 					<p className='text-xs text-slate-500'>

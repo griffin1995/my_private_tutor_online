@@ -50,14 +50,12 @@ export default function AdminHeader({
 					</div>
 
 					<div className='flex items-centre gap-4'>
-						{}
 						{logoutError && (
 							<div className='text-sm text-red-600 bg-red-50 px-3 py-2 rounded-md border border-red-200'>
 								{logoutError}
 							</div>
 						)}
 
-						{}
 						<Button
 							variant='outline'
 							onClick={handleLogout}
@@ -68,7 +66,6 @@ export default function AdminHeader({
 					</div>
 				</div>
 
-				{}
 				<div className='mt-4 pt-4 border-t border-slate-200'>
 					<p className='text-xs text-slate-500'>
 						Secure admin session active • All actions are logged for security

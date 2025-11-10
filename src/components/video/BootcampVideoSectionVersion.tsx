@@ -78,11 +78,7 @@ export function BootcampVideoSectionVersion({
 			style={{
 				backgroundImage: `url('${backgroundImage}')`,
 			}}>
-			{}
-			{}
 			<div className='absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent' />
-			{}
-			{}
 			<div className='relative z-10 flex basis-full md:basis-1/2 justify-center items-center p-8'>
 				<a
 					href={programme.stripeUrl}
@@ -111,52 +107,40 @@ export function BootcampVideoSectionVersion({
 				</a>
 			</div>
 
-			{}
-			{}
 			<div
 				className={`relative z-10 flex flex-col basis-full md:basis-1/2 justify-center px-8 py-12 ${textAlignment}`}>
-				{}
-				{}
 				<h2 className='text-3xl md:text-4xl font-bold text-white mb-3'>
 					{programme.title}
 				</h2>
 
-				{}
-				{}
 				<Separator className='bg-gray-300 my-3' />
 
-				{}
 				<p className='text-white text-lg font-semibold mb-4'>{programme.target}</p>
 
 				<Separator className='bg-gray-300 my-4' />
 
-				{}
 				<p className='text-white text-base leading-relaxed mb-4'>
 					{programme.description}
 				</p>
 
 				<Separator className='bg-gray-300 my-4' />
 
-				{}
 				<p className='text-white text-base leading-relaxed mb-4'>
 					{programme.teaching}
 				</p>
 
-				{}
 				<p className='text-white text-base leading-relaxed mb-4'>
 					{programme.approach}
 				</p>
 
 				<Separator className='bg-gray-300 my-4' />
 
-				{}
 				<p className='text-white text-base leading-relaxed mb-4'>
 					{programme.assessment}
 				</p>
 
 				<Separator className='bg-gray-300 my-4' />
 
-				{}
 				<div className={`flex items-center gap-4 mb-4 ${badgeAlignment}`}>
 					<span className='text-white text-sm font-medium'>Premium Programme</span>
 					<Separator
@@ -179,7 +163,6 @@ export function BootcampVideoSectionVersion({
 					</a>
 				</div>
 
-				{}
 				{programme.availability && (
 					<>
 						<Separator className='bg-gray-300 my-4' />

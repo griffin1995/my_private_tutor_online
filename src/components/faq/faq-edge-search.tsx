@@ -136,7 +136,6 @@ export function FAQEdgeSearch() {
 	}, [handleScroll]);
 	return (
 		<div className='w-full'>
-			{}
 			<div className='relative'>
 				<label
 					htmlFor='faq-edge-search'
@@ -163,7 +162,6 @@ export function FAQEdgeSearch() {
 				)}
 			</div>
 
-			{}
 			{metadata && (
 				<div
 					id='search-status'
@@ -176,7 +174,6 @@ export function FAQEdgeSearch() {
 				</div>
 			)}
 
-			{}
 			<div
 				ref={scrollContainerRef}
 				className='mt-6 space-y-3 max-h-[600px] overflow-y-auto'
@@ -235,7 +232,6 @@ export function FAQEdgeSearch() {
 					</div>
 				))}
 
-				{}
 				{hasMore && (
 					<div className='text-center py-4'>
 						<Loader2 className='h-6 w-6 text-primary-500 animate-spin mx-auto' />

@@ -51,7 +51,6 @@ export function PesticideDebugger() {
 	}
 	return (
 		<>
-			{}
 			<div
 				style={{
 					position: 'fixed',
@@ -83,7 +82,6 @@ export function PesticideDebugger() {
 				</div>
 			</div>
 
-			{}
 			{isEnabled && (
 				<div
 					style={{

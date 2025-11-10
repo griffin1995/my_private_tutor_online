@@ -257,7 +257,6 @@ export class FAQErrorBoundary extends Component<
 				<div className='min-h-96 flex items-center justify-center p-6'>
 					<Card className='max-w-2xl w-full border-red-200 bg-red-50'>
 						<CardContent className='p-8'>
-							{}
 							<div className='flex items-center justify-center mb-6'>
 								<div className='p-3 bg-red-100 rounded-full mr-4'>
 									<AlertTriangle className='w-8 h-8 text-red-600' />
@@ -274,7 +273,6 @@ export class FAQErrorBoundary extends Component<
 								</div>
 							</div>
 
-							{}
 							<div className='mb-8 text-center'>
 								<p className='text-lg text-slate-700 mb-4'>
 									{formatErrorMessage(error, showDetails)}
@@ -306,7 +304,6 @@ export class FAQErrorBoundary extends Component<
 								)}
 							</div>
 
-							{}
 							<div className='flex flex-col sm:flex-row gap-4 justify-center mb-6'>
 								{canRetry && !this.state.isRetrying && (
 									<Button
@@ -338,7 +335,6 @@ export class FAQErrorBoundary extends Component<
 								</Button>
 							</div>
 
-							{}
 							{this.props.showAlternatives !== false &&
 								this.state.availableAlternatives.length > 0 && (
 									<div className='border-t border-slate-200 pt-6'>
@@ -396,7 +392,6 @@ export class FAQErrorBoundary extends Component<
 									</div>
 								)}
 
-							{}
 							{this.props.contactSupport !== false && severity === 'critical' && (
 								<div className='border-t border-slate-200 pt-6 mt-6 text-center'>
 									<p className='text-sm text-slate-600 mb-4'>
@@ -412,7 +407,6 @@ export class FAQErrorBoundary extends Component<
 								</div>
 							)}
 
-							{}
 							{showDetails && (
 								<details className='mt-6 text-left'>
 									<summary className='cursor-pointer text-sm text-slate-500 hover:text-slate-700 mb-2'>

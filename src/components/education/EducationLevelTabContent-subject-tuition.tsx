@@ -35,10 +35,6 @@ export const EducationLevelTabContentSubjectTuition = memo(function EducationLev
 	};
 	return (
 		<div className='space-y-16'>
-			{}
-			{}
-			{}
-			{}
 			<motion.div
 				initial={{
 					opacity: 0,
@@ -55,9 +51,6 @@ export const EducationLevelTabContentSubjectTuition = memo(function EducationLev
 				<p className='max-w-4xl mx-auto'>{content.mainDescription}</p>
 			</motion.div>
 
-			{}
-			{}
-			{}
 			{content.subsections.length > 0 && (
 				<motion.div
 					initial={{
@@ -70,13 +63,7 @@ export const EducationLevelTabContentSubjectTuition = memo(function EducationLev
 						duration: 0.6,
 						delay: 0.2,
 					}}>
-					{}
-					{}
-					{}
-					{}
 					<div className={getGridClasses()}>
-						{}
-						{}
 						{content.subsections.map((card, index) => (
 							<SubsectionCardSubjectTuition
 								key={card.id}
@@ -86,9 +73,6 @@ export const EducationLevelTabContentSubjectTuition = memo(function EducationLev
 						))}
 					</div>
 
-					{}
-					{}
-					{}
 					<div className='md:hidden overflow-x-auto pb-4 -mx-4 px-4'>
 						<div
 							className='flex gap-4'
@@ -110,9 +94,6 @@ export const EducationLevelTabContentSubjectTuition = memo(function EducationLev
 				</motion.div>
 			)}
 
-			{}
-			{}
-			{}
 			{content.callOuts.length > 0 && (
 				<motion.div
 					initial={{
@@ -129,9 +110,6 @@ export const EducationLevelTabContentSubjectTuition = memo(function EducationLev
 				</motion.div>
 			)}
 
-			{}
-			{}
-			{}
 			{(filteredTestimonials.length > 0 || filteredStats.length > 0) && (
 				<TestimonialsAndStatsGrid
 					testimonials={filteredTestimonials}

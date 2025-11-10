@@ -346,10 +346,6 @@ export function TestimonialsGrid({
 	}
 	return (
 		<div className={'testimonials-grid px-6 ' + className}>
-			{}
-			{}
-			{}
-			{}
 			{showLayoutControls && (
 				<m.div
 					className='flex flex-wrap items-center justify-between gap-4 mb-8 p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-primary-100 group'
@@ -468,10 +464,6 @@ export function TestimonialsGrid({
 				</m.div>
 			)}
 
-			{}
-			{}
-			{}
-			{}
 			<m.div
 				className='testimonials-grid-container'
 				initial='hidden'
@@ -522,10 +514,6 @@ export function TestimonialsGrid({
 				</m.div>
 			</m.div>
 
-			{}
-			{}
-			{}
-			{}
 			{showLoadMore && visibleItems < testimonials.length && (
 				<m.div
 					initial={{
@@ -565,8 +553,6 @@ export function TestimonialsGrid({
 				</m.div>
 			)}
 
-			{}
-			{}
 			<TestimonialModal
 				testimonial={selectedTestimonial}
 				onClose={handleModalClose}

@@ -276,7 +276,6 @@ export const SchemaMarkup: React.FC<SchemaMarkupProps> = ({
 }) => {
 	return (
 		<>
-			{}
 			<WebPageSchema
 				pageTitle={pageTitle}
 				pageDescription={pageDescription}
@@ -284,13 +283,10 @@ export const SchemaMarkup: React.FC<SchemaMarkupProps> = ({
 				pageType={pageType}
 			/>
 
-			{}
 			{includeOrganization && <OrganizationSchema />}
 
-			{}
 			{includeLocalBusiness && <LocalBusinessSchema />}
 
-			{}
 			{courseData && (
 				<CourseSchema
 					courseName={courseData.courseName}
@@ -301,7 +297,6 @@ export const SchemaMarkup: React.FC<SchemaMarkupProps> = ({
 				/>
 			)}
 
-			{}
 			{includeSocialProfile && <SocialProfileSchema />}
 		</>
 	);

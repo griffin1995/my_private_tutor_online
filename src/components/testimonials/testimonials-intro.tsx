@@ -9,10 +9,7 @@ export function TestimonialsIntro({ className = '' }: TestimonialsIntroProps) {
 		<section className={`py-12 lg:py-16 ${className}`}>
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='max-w-4xl mx-auto text-center'>
-					{}
-					{}
 					<div className='space-y-6'>
-						{}
 						<div className='space-y-4'>
 							<p className='text-lg sm:text-xl leading-relaxed text-gray-700'>
 								Since 2010, My Private Tutor Online has helped hundreds of students

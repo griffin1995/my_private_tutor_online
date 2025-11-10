@@ -100,8 +100,6 @@ export class FooterErrorBoundary extends Component<
 							</p>
 						</div>
 
-						{}
-						{}
 						{canRetry && (
 							<Button
 								onClick={this.handleRetry}
@@ -112,8 +110,6 @@ export class FooterErrorBoundary extends Component<
 							</Button>
 						)}
 
-						{}
-						{}
 						{this.props.showDetails &&
 							process.env.NODE_ENV === 'development' &&
 							error && (
@@ -136,7 +132,6 @@ export class FooterErrorBoundary extends Component<
 								</details>
 							)}
 
-						{}
 						<div className='mt-8 pt-6 border-t border-red-200 text-sm text-red-600'>
 							<p>
 								<strong>My Private Tutor Online</strong> • Premium tutoring service

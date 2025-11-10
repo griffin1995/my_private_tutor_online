@@ -97,21 +97,8 @@ export function PageHero({
 			data-dynamic-viewport={dynamicViewport ? 'true' : 'false'}
 			data-viewport-overflow-fix='dvh-enabled'
 			suppressHydrationWarning>
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
-			{}
 			{background === 'video' && backgroundVideo && (
 				<>
-					{}
-					{}
-					{}
-					{}
 					<video
 						autoPlay
 						muted
@@ -148,7 +135,6 @@ export function PageHero({
 							src={backgroundVideo}
 							type='video/mp4'
 						/>
-						{}
 						{!backgroundVideo.includes('compressed-') && (
 							<source
 								src={backgroundVideo.replace('.mp4', '.webm')}
@@ -157,9 +143,6 @@ export function PageHero({
 						)}
 						Your browser does not support the video tag.
 					</video>
-					{}
-					{}
-					{}
 					<div
 						className='absolute inset-0 bg-white -z-10'
 						aria-hidden='true'
@@ -167,10 +150,6 @@ export function PageHero({
 				</>
 			)}
 
-			{}
-			{}
-			{}
-			{}
 			{overlay && (
 				<div
 					className={cn('absolute inset-0 z-10', overlayClasses[overlayOpacity])}
@@ -178,16 +157,9 @@ export function PageHero({
 				/>
 			)}
 
-			{}
-			{}
-			{}
-			{}
 			<div className='relative z-20 w-full flex flex-col justify-center overflow-hidden'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className={cn(alignmentClasses[alignment], 'overflow-hidden')}>
-						{}
-						{}
-						{}
 						<div className='w-full @container'>
 							<div className='overflow-hidden'>{children}</div>
 						</div>

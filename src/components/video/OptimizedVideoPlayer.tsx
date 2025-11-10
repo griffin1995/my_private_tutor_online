@@ -319,8 +319,6 @@ export const OptimizedVideoPlayer = React.memo<OptimizedVideoPlayerProps>(
 						/>
 					</div>
 
-					{}
-					{}
 					{playerState.isModalOpen && (
 						<div
 							className='fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm'

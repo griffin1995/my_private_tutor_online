@@ -110,14 +110,12 @@ function AdminLoginForm() {
 					<form
 						onSubmit={handleSubmit}
 						className='space-y-4'>
-						{}
 						{errors.general && (
 							<div className='p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md'>
 								{errors.general}
 							</div>
 						)}
 
-						{}
 						<div className='space-y-2'>
 							<Label htmlFor='email'>Email Address</Label>
 							<Input
@@ -134,7 +132,6 @@ function AdminLoginForm() {
 							{errors.email && <p className='text-sm text-red-600'>{errors.email}</p>}
 						</div>
 
-						{}
 						<div className='space-y-2'>
 							<Label htmlFor='password'>Password</Label>
 							<Input
@@ -152,7 +149,6 @@ function AdminLoginForm() {
 							)}
 						</div>
 
-						{}
 						<Button
 							type='submit'
 							className='w-full'
@@ -161,7 +157,6 @@ function AdminLoginForm() {
 						</Button>
 					</form>
 
-					{}
 					<div className='mt-6 p-3 text-xs text-slate-600 bg-slate-100 rounded-md'>
 						<p className='font-medium mb-1'>Security Notice</p>
 						<p>

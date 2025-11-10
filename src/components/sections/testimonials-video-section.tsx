@@ -52,7 +52,6 @@ export function TestimonialsVideoSection({
 		<section className={`py-16 lg:py-24 ${backgroundColor} ${className}`}>
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='max-w-7xl mx-auto'>
-					{}
 					<div className='text-center mb-16'>
 						<m.h2
 							className='text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 mb-6'
@@ -99,9 +98,6 @@ export function TestimonialsVideoSection({
 						</m.p>
 					</div>
 
-					{}
-					{}
-					{}
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
 						{displayVideos.map((video, index) => (
 							<m.div
@@ -133,15 +129,11 @@ export function TestimonialsVideoSection({
 										damping: 30,
 									},
 								}}>
-								{}
-								{}
-								{}
 								<div
 									className='relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-slate-200 group-hover:border-accent-400/60 transition-all duration-500'
 									role='region'
 									aria-labelledby={`video-title-${video.id}`}
 									aria-describedby={`video-description-${video.id}`}>
-									{}
 									{video.featured && (
 										<div className='absolute top-4 left-4 z-20'>
 											<div
@@ -157,7 +149,6 @@ export function TestimonialsVideoSection({
 										</div>
 									)}
 
-									{}
 									{video.duration && (
 										<div className='absolute top-4 right-4 z-20'>
 											<div
@@ -169,9 +160,6 @@ export function TestimonialsVideoSection({
 										</div>
 									)}
 
-									{}
-									{}
-									{}
 									<div
 										className='relative'
 										style={{
@@ -188,7 +176,6 @@ export function TestimonialsVideoSection({
 										</div>
 									</div>
 
-									{}
 									<div className='p-6'>
 										<h3
 											id={`video-title-${video.id}`}
@@ -202,7 +189,6 @@ export function TestimonialsVideoSection({
 											{video.description}
 										</p>
 
-										{}
 										<div className='flex items-center justify-between text-sm text-primary-600'>
 											<div className='flex items-center gap-2'>
 												{video.testimonialAuthor && (
@@ -234,7 +220,6 @@ export function TestimonialsVideoSection({
 						))}
 					</div>
 
-					{}
 					<div className='text-center mt-12'>
 						<m.p
 							className='text-lg text-primary-700 mb-6'

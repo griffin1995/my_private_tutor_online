@@ -111,11 +111,9 @@ export function ServicesCarousel({
 						{description}
 					</p>
 
-					{}
 					<div
 						ref={intersectionRef}
 						className='relative max-w-7xl mx-auto flex items-center px-4 sm:px-0'>
-						{}
 						<button
 							className='absolute left-2 sm:-left-24 top-1/2 -translate-y-1/2 z-10 bg-accent-600 hover:bg-accent-700 border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
 							onClick={scrollPrev}
@@ -123,7 +121,6 @@ export function ServicesCarousel({
 							<ChevronLeft className='w-5 h-5 sm:w-6 sm:h-6 text-white' />
 						</button>
 
-						{}
 						<button
 							className='absolute right-2 sm:-right-24 top-1/2 -translate-y-1/2 z-10 bg-accent-600 hover:bg-accent-700 border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
 							onClick={scrollNext}
@@ -131,9 +128,6 @@ export function ServicesCarousel({
 							<ChevronRight className='w-5 h-5 sm:w-6 sm:h-6 text-white' />
 						</button>
 
-						{}
-						{}
-						{}
 						<div
 							className={`overflow-hidden w-full transition-opacity duration-300 ${isReady ? 'opacity-100' : 'opacity-0'}`}
 							ref={emblaRef}>

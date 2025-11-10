@@ -121,8 +121,6 @@ function NestedSubjectItem({
 				<h4 className='text-lg font-serif font-bold text-slate-900 mb-3'>
 					{subjectItem.name}
 				</h4>
-				{}
-				{}
 				<div
 					className='text-slate-700 mb-4 leading-relaxed'
 					dangerouslySetInnerHTML={{
@@ -130,8 +128,6 @@ function NestedSubjectItem({
 					}}
 				/>
 
-				{}
-				{}
 				{(subjectItem.videoThumbnail || subjectItem.pdfDownload) && (
 					<div className='mb-4 p-4 bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-lg'>
 						{subjectItem.videoThumbnail && (
@@ -178,20 +174,14 @@ function NestedSubjectItem({
 					</div>
 				)}
 
-				{}
-				{}
 				{subjectItem.videoSection && (
 					<div className='mb-6 relative'>
-						{}
-						{}
 						<p className='text-slate-700 leading-relaxed mb-4 text-lg'>
 							Meet Emily, one of our Entrance Exam specialists. She holds degrees from
 							both Oxford & Cambridge University and worked at a top 10 London grammar
 							school where she helped assess and select the best 11+ candidates
 						</p>
 
-						{}
-						{}
 						<div className='mb-4 md:hidden'>
 							<div className='bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg inline-flex'>
 								<div className='flex items-center gap-2'>
@@ -203,8 +193,6 @@ function NestedSubjectItem({
 							</div>
 						</div>
 
-						{}
-						{}
 						<HeroVideoDialog
 							videoSrc={subjectItem.videoSection.videoUrl}
 							thumbnailSrc={subjectItem.videoSection.thumbnailUrl}
@@ -214,12 +202,9 @@ function NestedSubjectItem({
 							className='relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200'
 						/>
 
-						{}
 						<div className='absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20' />
 						<div className='absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15' />
 
-						{}
-						{}
 						<div className='hidden md:block absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg'>
 							<div className='flex items-center gap-2'>
 								<div className='w-2 h-2 bg-amber-500 rounded-full animate-pulse'></div>
@@ -231,14 +216,9 @@ function NestedSubjectItem({
 					</div>
 				)}
 
-				{}
-				{}
 				{subjectItem.twoColumnVideoSection && (
 					<div className='mb-6 grid grid-cols-1 md:grid-cols-2 gap-8'>
-						{}
 						<div className='relative'>
-							{}
-							{}
 							<div className='mb-4 md:hidden'>
 								<div className='bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg inline-flex'>
 									<div className='flex items-center gap-2'>
@@ -250,8 +230,6 @@ function NestedSubjectItem({
 								</div>
 							</div>
 
-							{}
-							{}
 							<HeroVideoDialog
 								videoSrc={subjectItem.twoColumnVideoSection.video1.videoUrl}
 								thumbnailSrc={subjectItem.twoColumnVideoSection.video1.thumbnailUrl}
@@ -261,12 +239,9 @@ function NestedSubjectItem({
 								className='relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200'
 							/>
 
-							{}
 							<div className='absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20' />
 							<div className='absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15' />
 
-							{}
-							{}
 							<div className='hidden md:block absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg'>
 								<div className='flex items-center gap-2'>
 									<div className='w-2 h-2 bg-amber-500 rounded-full animate-pulse'></div>
@@ -277,10 +252,7 @@ function NestedSubjectItem({
 							</div>
 						</div>
 
-						{}
 						<div className='relative'>
-							{}
-							{}
 							<div className='mb-4 md:hidden'>
 								<div className='bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg inline-flex'>
 									<div className='flex items-center gap-2'>
@@ -292,8 +264,6 @@ function NestedSubjectItem({
 								</div>
 							</div>
 
-							{}
-							{}
 							<HeroVideoDialog
 								videoSrc={subjectItem.twoColumnVideoSection.video2.videoUrl}
 								thumbnailSrc={subjectItem.twoColumnVideoSection.video2.thumbnailUrl}
@@ -303,12 +273,9 @@ function NestedSubjectItem({
 								className='relative rounded-3xl overflow-hidden shadow-2xl border border-amber-200'
 							/>
 
-							{}
 							<div className='absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full opacity-20' />
 							<div className='absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-15' />
 
-							{}
-							{}
 							<div className='hidden md:block absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg'>
 								<div className='flex items-center gap-2'>
 									<div className='w-2 h-2 bg-amber-500 rounded-full animate-pulse'></div>
@@ -356,8 +323,6 @@ function NestedSubjectItem({
 						className='text-lg font-serif font-bold text-slate-900'>
 						{subjectItem.name}
 					</h4>
-					{}
-					{}
 					<div
 						className='text-slate-600 mt-1'
 						dangerouslySetInnerHTML={{
@@ -533,10 +498,7 @@ function AccordionSection({
 							/>
 						))}
 
-						{}
-						{}
 						<div className='mt-8 pt-6 border-t border-slate-200 space-y-6'>
-							{}
 							<div className='space-y-4'>
 								<h4 className='text-lg font-serif font-bold text-slate-900'>
 									Key Benefits
@@ -553,10 +515,7 @@ function AccordionSection({
 								</div>
 							</div>
 
-							{}
 							<div className='bg-gradient-to-r from-slate-50 to-white border border-slate-200 rounded-lg p-5'>
-								{}
-								{}
 								<div className='relative'>
 									<div className='absolute -top-2 -left-1 text-yellow-500 text-4xl font-serif leading-none'>
 										"

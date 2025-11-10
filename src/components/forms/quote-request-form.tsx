@@ -315,7 +315,6 @@ export function QuoteRequestForm({
 
 					<div className='bg-accent-50 rounded-lg p-4 mb-6 inline-block'>
 						<div className='flex items-center justify-center gap-2 text-accent-700 font-medium text-sm'>
-							{}
 							<Star
 								className='h-4 w-4'
 								aria-hidden='true'
@@ -338,7 +337,6 @@ export function QuoteRequestForm({
 		<Card className={cn('w-full max-w-4xl mx-auto', className)}>
 			<CardHeader className={cn(compact ? 'pb-4' : 'pb-6')}>
 				<div className='flex items-center gap-3 mb-2'>
-					{}
 					<Star
 						className='h-6 w-6 text-accent-500'
 						aria-hidden='true'
@@ -363,7 +361,6 @@ export function QuoteRequestForm({
 					onSubmit={handleSubmit(onSubmit)}
 					className='space-y-8'
 					noValidate>
-					{}
 					<section aria-labelledby='student-info-heading'>
 						<div className='flex items-center gap-2 mb-4'>
 							<GraduationCap
@@ -477,7 +474,6 @@ export function QuoteRequestForm({
 						</div>
 					</section>
 
-					{}
 					<section aria-labelledby='educational-needs-heading'>
 						<div className='flex items-center gap-2 mb-4'>
 							<Users
@@ -492,7 +488,6 @@ export function QuoteRequestForm({
 						</div>
 
 						<div className='space-y-6'>
-							{}
 							<div>
 								<Label className='text-sm font-medium text-primary-800 mb-3 block'>
 									Subjects Required *{' '}
@@ -534,7 +529,6 @@ export function QuoteRequestForm({
 								)}
 							</div>
 
-							{}
 							<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 								<div>
 									<Label className='text-sm font-medium text-primary-800'>
@@ -599,7 +593,6 @@ export function QuoteRequestForm({
 						</div>
 					</section>
 
-					{}
 					<section aria-labelledby='tutoring-preferences-heading'>
 						<div className='flex items-center gap-2 mb-4'>
 							<Clock
@@ -692,7 +685,6 @@ export function QuoteRequestForm({
 						</div>
 					</section>
 
-					{}
 					<section aria-labelledby='contact-info-heading'>
 						<div className='flex items-center gap-2 mb-4'>
 							<Phone
@@ -815,7 +807,6 @@ export function QuoteRequestForm({
 						</div>
 					</section>
 
-					{}
 					<section aria-labelledby='additional-info-heading'>
 						<div className='flex items-center gap-2 mb-4'>
 							<Shield
@@ -879,7 +870,6 @@ export function QuoteRequestForm({
 						</div>
 					</section>
 
-					{}
 					<div className='pt-4'>
 						<Button
 							type='submit'
@@ -892,7 +882,6 @@ export function QuoteRequestForm({
 									<span>Submitting Quote Request...</span>
 								</div>
 							:	<>
-									{}
 									<Star
 										className='h-5 w-5 mr-2'
 										aria-hidden='true'
@@ -903,7 +892,6 @@ export function QuoteRequestForm({
 						</Button>
 					</div>
 
-					{}
 					<div className='bg-gray-50 rounded-lg p-4 text-center'>
 						<div className='flex items-center justify-center gap-2 mb-2'>
 							<Shield

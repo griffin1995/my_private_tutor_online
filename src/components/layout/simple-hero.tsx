@@ -103,17 +103,6 @@ export function SimpleHero({
 				}}
 			/>
 			<div className='relative z-10 flex flex-col items-center justify-center h-full px-4 text-center'>
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
-				{}
 				<motion.div
 					variants={heroContainerVariants}
 					initial='hidden'
@@ -126,11 +115,6 @@ export function SimpleHero({
 						: textVerticalOffset === 'higher' ? 'pt-8'
 						: 'pt-12',
 					)}>
-					{}
-					{}
-					{}
-					{}
-					{}
 					<motion.div
 						variants={heroItemVariants}
 						className='mb-[26px]'>
@@ -145,13 +129,6 @@ export function SimpleHero({
 						</h1>
 					</motion.div>
 
-					{}
-					{}
-					{}
-					{}
-					{}
-					{}
-					{}
 					<motion.div variants={heroItemVariants}>
 						<h2
 							className='text-white text-center max-w-full mx-auto px-4'
@@ -166,8 +143,6 @@ export function SimpleHero({
 					</motion.div>
 				</motion.div>
 
-				{}
-				{}
 				<div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center'>
 					<div
 						className='flex flex-col items-center cursor-pointer'
@@ -177,10 +152,6 @@ export function SimpleHero({
 								behavior: 'smooth',
 							});
 						}}>
-						{}
-						{}
-						{}
-						{}
 						<svg
 							width='24'
 							height='24'
@@ -199,10 +170,6 @@ export function SimpleHero({
 							/>
 						</svg>
 
-						{}
-						{}
-						{}
-						{}
 						<span
 							className='text-xs font-serif tracking-widest uppercase text-white mt-2'
 							style={{

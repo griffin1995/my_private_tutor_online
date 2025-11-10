@@ -17,8 +17,6 @@ export default function ServicesLayout({
 	const breadcrumbStructuredData = generateBreadcrumbStructuredData();
 	return (
 		<>
-			{}
-			{}
 			<Script
 				id='services-structured-data'
 				type='application/ld+json'

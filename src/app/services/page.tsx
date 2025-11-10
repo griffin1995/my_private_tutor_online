@@ -17,22 +17,22 @@ import { Globe as MagicUIGlobe } from '@/components/magicui/globe';
 import * as Accordion from '@radix-ui/react-accordion';
 import { ChevronDown } from 'lucide-react';
 import {
-	Area,
-	AreaChart,
-	CartesianGrid,
-	Cell,
-	Pie,
-	PieChart,
-	PolarAngleAxis,
-	PolarGrid,
-	PolarRadiusAxis,
-	RadarChart,
-	Radar as RechartsRadar,
-	ResponsiveContainer,
-	Tooltip,
-	XAxis,
-	YAxis,
-} from 'recharts';
+	LazyArea as Area,
+	LazyAreaChart as AreaChart,
+	LazyCartesianGrid as CartesianGrid,
+	LazyCell as Cell,
+	LazyPie as Pie,
+	LazyPieChart as PieChart,
+	LazyPolarAngleAxis as PolarAngleAxis,
+	LazyPolarGrid as PolarGrid,
+	LazyPolarRadiusAxis as PolarRadiusAxis,
+	LazyRadarChart as RadarChart,
+	LazyRadar as RechartsRadar,
+	LazyResponsiveContainer as ResponsiveContainer,
+	LazyTooltip as Tooltip,
+	LazyXAxis as XAxis,
+	LazyYAxis as YAxis,
+} from '@/components/charts/lazy-charts';
 
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR SERVICES PAGE
@@ -279,14 +279,10 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 			showHeader={true}
 			showFooter={true}
 			containerSize='full'>
-			{}
 			<ServicesPerformanceMonitor />
 
-			{}
 			<MobileEnhancements />
 
-			{}
-			{}
 			<m.section
 				className='relative min-h-screen bg-gradient-to-br from-primary-900 via-primary-800 to-accent-700 overflow-hidden'
 				initial={{
@@ -298,7 +294,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 				transition={{
 					duration: 0.8,
 				}}>
-				{}
 				<div className='absolute inset-0 opacity-10'>
 					<div
 						className='absolute inset-0'
@@ -311,7 +306,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 
 				<div className='relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20'>
 					<div className='grid lg:grid-cols-2 gap-16 items-center'>
-						{}
 						<m.div
 							className='text-white'
 							initial={{
@@ -337,7 +331,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 								proven results with royal endorsements.
 							</p>
 
-							{}
 							<div className='grid grid-cols-3 gap-8 mb-10'>
 								<div className='text-center'>
 									<div className='text-3xl lg:text-4xl font-bold text-accent-400'>
@@ -372,8 +365,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 							</m.button>
 						</m.div>
 
-						{}
-						{}
 						<m.div
 							className='relative h-[500px] lg:h-[600px]'
 							initial={{
@@ -406,8 +397,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 				</div>
 			</m.section>
 
-			{}
-			{}
 			<section className='py-20 bg-slate-50'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 					<m.div
@@ -436,7 +425,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 					</m.div>
 
 					<div className='grid md:grid-cols-3 gap-12'>
-						{}
 						<m.div
 							className='bg-white rounded-2xl shadow-lg p-8'
 							initial={{
@@ -494,7 +482,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 							</p>
 						</m.div>
 
-						{}
 						<m.div
 							className='bg-white rounded-2xl shadow-lg p-8'
 							initial={{
@@ -539,7 +526,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 							</p>
 						</m.div>
 
-						{}
 						<m.div
 							className='bg-white rounded-2xl shadow-lg p-8'
 							initial={{
@@ -589,8 +575,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 				</div>
 			</section>
 
-			{}
-			{}
 			<section className='py-20 bg-white'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 					<m.div
@@ -718,8 +702,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 				</div>
 			</section>
 
-			{}
-			{}
 			<section className='py-20 bg-gradient-to-br from-primary-50 to-accent-50'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 					<m.div
@@ -831,8 +813,6 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 				</div>
 			</section>
 
-			{}
-			{}
 			<section className='py-20 bg-gradient-to-r from-primary-900 via-primary-800 to-accent-700'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 					<m.div

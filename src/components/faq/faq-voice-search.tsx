@@ -570,8 +570,6 @@ export function FAQVoiceSearch({
 	return (
 		<TooltipProvider>
 			<div className={cn('space-y-6', className)}>
-				{}
-				{}
 				<Card className='bg-gradient-to-br from-slate-50 via-white to-blue-50 border-2 border-slate-200 shadow-lg'>
 					<CardContent className='p-8'>
 						<div className='flex items-center justify-between mb-6'>
@@ -590,7 +588,6 @@ export function FAQVoiceSearch({
 							</div>
 
 							<div className='flex items-center space-x-2'>
-								{}
 								<Select
 									value={selectedLanguage}
 									onValueChange={handleLanguageChange}>
@@ -631,7 +628,6 @@ export function FAQVoiceSearch({
 									</SelectContent>
 								</Select>
 
-								{}
 								<Tooltip>
 									<TooltipTrigger asChild>
 										<Button
@@ -650,9 +646,7 @@ export function FAQVoiceSearch({
 							</div>
 						</div>
 
-						{}
 						<div className='flex flex-col items-center space-y-6'>
-							{}
 							<div className='relative'>
 								<m.button
 									variants={microphoneVariants}
@@ -671,7 +665,6 @@ export function FAQVoiceSearch({
 									:	<Mic className='w-8 h-8 mx-auto' />}
 								</m.button>
 
-								{}
 								{isListening && (
 									<div className='absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-2 bg-slate-200 rounded-full overflow-hidden'>
 										<m.div
@@ -691,7 +684,6 @@ export function FAQVoiceSearch({
 								)}
 							</div>
 
-							{}
 							<div className='flex items-center justify-center space-x-1 h-12'>
 								{[...Array(5)].map((_, i) => (
 									<m.div
@@ -709,7 +701,6 @@ export function FAQVoiceSearch({
 								))}
 							</div>
 
-							{}
 							<div className='text-center space-y-2'>
 								<div className='flex items-center justify-center space-x-2'>
 									<Badge
@@ -744,7 +735,6 @@ export function FAQVoiceSearch({
 								)}
 							</div>
 
-							{}
 							<div className='flex items-center space-x-3'>
 								<Tooltip>
 									<TooltipTrigger asChild>
@@ -780,7 +770,6 @@ export function FAQVoiceSearch({
 							</div>
 						</div>
 
-						{}
 						{transcript && (
 							<m.div
 								className='mt-6 p-4 bg-white border-2 border-slate-200 rounded-xl'
@@ -819,7 +808,6 @@ export function FAQVoiceSearch({
 					</CardContent>
 				</Card>
 
-				{}
 				<AnimatePresence>
 					{showHelp && (
 						<m.div
@@ -906,7 +894,6 @@ export function FAQVoiceSearch({
 					)}
 				</AnimatePresence>
 
-				{}
 				{debugMode && (
 					<Card className='bg-slate-50 border-slate-300'>
 						<CardContent className='p-4'>

@@ -652,8 +652,6 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 					key={level.value}
 					value={level.value}
 					className='mt-0 focus-visible:outline-none'>
-					{}
-					{}
 					<AnimatePresence mode='wait'>
 						<motion.div
 							key={level.value}
@@ -673,8 +671,6 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 								duration: 0.4,
 								ease: 'easeOut',
 							}}>
-							{}
-							{}
 							<div className='mx-auto w-full max-w-none px-4 sm:px-6 lg:px-8 '>
 								{contentData}
 							</div>

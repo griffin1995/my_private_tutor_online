@@ -125,11 +125,6 @@ export default function VideoPage() {
 
 	return (
 		<React.Fragment>
-			{}
-			{}
-			{}
-			{}
-			{}
 			<section id='video-hero'>
 				<SimpleHero
 					backgroundImage={videoHeroImage.src}
@@ -143,10 +138,6 @@ export default function VideoPage() {
 				/>
 			</section>
 
-			{}
-			{}
-			{}
-			{}
 			<PageLayout
 				background='white'
 				showHeader={true}
@@ -157,9 +148,6 @@ export default function VideoPage() {
 				footerProps={{
 					showContactForm: true,
 				}}>
-				{}
-				{}
-				{}
 				<section
 					id='featured-free-section'
 					className='py-12 sm:py-14 md:py-16'>
@@ -171,13 +159,11 @@ The journey of supporting a child through their education is fraught with comple
 					/>
 				</section>
 
-				{}
 				<VideoMasterclassGrid
 					videos={featuredVideos}
 					className='py-20 sm:py-26 md:py-32'
 				/>
 
-				{}
 				<section
 					id='ucas-section'
 					className='py-12 sm:py-14 md:py-16'>
@@ -187,13 +173,11 @@ The journey of supporting a child through their education is fraught with comple
 					/>
 				</section>
 
-				{}
 				<VideoMasterclassGrid
 					videos={ucasVideos}
 					className='py-20 sm:py-26 md:py-32'
 				/>
 
-				{}
 				<section
 					id='british-culture-section'
 					className='py-12 sm:py-14 md:py-16'>
@@ -203,7 +187,6 @@ The journey of supporting a child through their education is fraught with comple
 					/>
 				</section>
 
-				{}
 				<VideoMasterclassGrid
 					videos={cultureVideos}
 					className='py-20 sm:py-26 md:py-32'

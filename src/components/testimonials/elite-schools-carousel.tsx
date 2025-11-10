@@ -242,7 +242,6 @@ export function EliteSchoolsCarousel({
 		<>
 			<section
 				className={`relative ${backgroundClasses[backgroundVariant]} py-20 ${className}`}>
-				{}
 				<div
 					className='absolute inset-0 opacity-[0.02] pointer-events-none'
 					style={{
@@ -251,7 +250,6 @@ export function EliteSchoolsCarousel({
 					}}
 				/>
 
-				{}
 				{backgroundVariant !== 'white' && (
 					<GradientOverlay
 						direction='radial'
@@ -282,12 +280,10 @@ export function EliteSchoolsCarousel({
 							{description}
 						</m.p>
 
-						{}
 						{(showControls || showSearch || showCategoryFilter) && (
 							<m.div
 								className='flex flex-col sm:flex-row items-center justify-center gap-4 mt-8'
 								variants={itemVariants}>
-								{}
 								{showSearch && (
 									<div className='relative'>
 										<Search className='absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-primary-400' />
@@ -308,7 +304,6 @@ export function EliteSchoolsCarousel({
 									</div>
 								)}
 
-								{}
 								{showCategoryFilter && (
 									<div className='flex items-center gap-2'>
 										<Filter className='h-4 w-4 text-primary-600' />
@@ -327,7 +322,6 @@ export function EliteSchoolsCarousel({
 									</div>
 								)}
 
-								{}
 								{showControls && (
 									<div className='flex items-center gap-2'>
 										<button
@@ -357,8 +351,6 @@ export function EliteSchoolsCarousel({
 						)}
 					</m.div>
 
-					{}
-					{}
 					<m.div
 						className='w-full overflow-hidden'
 						variants={itemVariants}
@@ -390,9 +382,6 @@ export function EliteSchoolsCarousel({
 										transform:
 											currentDirection === 'reverse' ? 'scaleX(-1)' : 'scaleX(1)',
 									}}>
-									{}
-									{}
-									{}
 									<SchoolCard
 										school={school}
 										displayMode={displayMode}
@@ -407,7 +396,6 @@ export function EliteSchoolsCarousel({
 						</m.div>
 					</m.div>
 
-					{}
 					{(searchQuery || selectedCategory !== 'all') && (
 						<m.div
 							className='text-center mt-8'
@@ -428,12 +416,8 @@ export function EliteSchoolsCarousel({
 					)}
 				</div>
 
-				{}
-				{}
 			</section>
 
-			{}
-			{}
 			{showModal && (
 				<SchoolModal
 					school={selectedSchool}

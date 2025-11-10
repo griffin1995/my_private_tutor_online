@@ -172,7 +172,6 @@ export default function TestimonialsAnalyticsPage() {
 					<TestimonialsExecutiveDashboard />
 				</Suspense>
 
-				{}
 				<div className='mt-12 pt-8 border-t border-border/40'>
 					<div className='grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-muted-foreground'>
 						<div>

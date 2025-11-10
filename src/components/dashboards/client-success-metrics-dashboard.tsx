@@ -2,24 +2,24 @@
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
-	ResponsiveContainer,
-	LineChart,
-	Line,
-	BarChart,
-	Bar,
-	PieChart,
-	Pie,
-	Cell,
-	ComposedChart,
-	Area,
-	XAxis,
-	YAxis,
-	CartesianGrid,
-	Tooltip,
-	Legend,
-	RadialBarChart,
-	RadialBar,
-} from 'recharts';
+	LazyResponsiveContainer as ResponsiveContainer,
+	LazyLineChart as LineChart,
+	LazyLine as Line,
+	LazyBarChart as BarChart,
+	LazyBar as Bar,
+	LazyPieChart as PieChart,
+	LazyPie as Pie,
+	LazyCell as Cell,
+	LazyComposedChart as ComposedChart,
+	LazyArea as Area,
+	LazyXAxis as XAxis,
+	LazyYAxis as YAxis,
+	LazyCartesianGrid as CartesianGrid,
+	LazyTooltip as Tooltip,
+	LazyLegend as Legend,
+	LazyRadialBarChart as RadialBarChart,
+	LazyRadialBar as RadialBar,
+} from '@/components/charts/lazy-charts';
 import {
 	Card,
 	CardContent,
@@ -449,7 +449,6 @@ export default function ClientSuccessMetricsDashboard() {
 	}
 	return (
 		<div className='space-y-6 p-6 bg-slate-50 min-h-screen'>
-			{}
 			<div className='flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0'>
 				<div>
 					<h1 className='text-3xl font-bold text-slate-900'>
@@ -490,7 +489,6 @@ export default function ClientSuccessMetricsDashboard() {
 				</div>
 			</div>
 
-			{}
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
 				<MetricCard
 					title='Total Testimonials'
@@ -531,7 +529,6 @@ export default function ClientSuccessMetricsDashboard() {
 				/>
 			</div>
 
-			{}
 			<Tabs
 				value={activeTab}
 				onValueChange={setActiveTab}
@@ -543,12 +540,10 @@ export default function ClientSuccessMetricsDashboard() {
 					<TabsTrigger value='analytics'>Analytics</TabsTrigger>
 				</TabsList>
 
-				{}
 				<TabsContent
 					value='overview'
 					className='space-y-6'>
 					<div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
-						{}
 						<Card className='col-span-1 lg:col-span-2'>
 							<CardHeader>
 								<CardTitle>Performance Trends</CardTitle>
@@ -602,7 +597,6 @@ export default function ClientSuccessMetricsDashboard() {
 							</CardContent>
 						</Card>
 
-						{}
 						<Card>
 							<CardHeader>
 								<CardTitle>Testimonials by Category</CardTitle>
@@ -637,7 +631,6 @@ export default function ClientSuccessMetricsDashboard() {
 							</CardContent>
 						</Card>
 
-						{}
 						<Card>
 							<CardHeader>
 								<CardTitle>Engagement Metrics</CardTitle>
@@ -693,7 +686,6 @@ export default function ClientSuccessMetricsDashboard() {
 					</div>
 				</TabsContent>
 
-				{}
 				<TabsContent
 					value='performance'
 					className='space-y-6'>
@@ -750,7 +742,6 @@ export default function ClientSuccessMetricsDashboard() {
 					</Card>
 				</TabsContent>
 
-				{}
 				<TabsContent
 					value='conversion'
 					className='space-y-6'>
@@ -762,7 +753,6 @@ export default function ClientSuccessMetricsDashboard() {
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
-							{}
 							<ResponsiveContainer
 								width='100%'
 								height={400}>
@@ -820,12 +810,10 @@ export default function ClientSuccessMetricsDashboard() {
 					</Card>
 				</TabsContent>
 
-				{}
 				<TabsContent
 					value='analytics'
 					className='space-y-6'>
 					<div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
-						{}
 						<Card>
 							<CardHeader>
 								<CardTitle>Top Performing Testimonials</CardTitle>
@@ -867,7 +855,6 @@ export default function ClientSuccessMetricsDashboard() {
 							</CardContent>
 						</Card>
 
-						{}
 						<Card>
 							<CardHeader>
 								<CardTitle>Real-time Activity</CardTitle>

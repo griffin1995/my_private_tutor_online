@@ -208,8 +208,6 @@ export function FAQErrorFallback({
 	];
 	return (
 		<div className={cn('max-w-4xl mx-auto p-6', className)}>
-			{}
-			{}
 			<Alert
 				className={cn(
 					'mb-6',
@@ -252,8 +250,6 @@ export function FAQErrorFallback({
 				</AlertDescription>
 			</Alert>
 
-			{}
-			{}
 			<Tabs
 				value={activeTab}
 				onValueChange={setActiveTab}
@@ -273,8 +269,6 @@ export function FAQErrorFallback({
 					<TabsTrigger value='help'>Get Help</TabsTrigger>
 				</TabsList>
 
-				{}
-				{}
 				<TabsContent
 					value='fallback'
 					className='space-y-6'>
@@ -334,8 +328,6 @@ export function FAQErrorFallback({
 					)}
 				</TabsContent>
 
-				{}
-				{}
 				<TabsContent
 					value='search'
 					className='space-y-4'>
@@ -386,8 +378,6 @@ export function FAQErrorFallback({
 					</Card>
 				</TabsContent>
 
-				{}
-				{}
 				<TabsContent
 					value='categories'
 					className='space-y-4'>
@@ -444,13 +434,10 @@ export function FAQErrorFallback({
 					</Card>
 				</TabsContent>
 
-				{}
-				{}
 				<TabsContent
 					value='help'
 					className='space-y-4'>
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-						{}
 						<Card>
 							<CardContent className='p-6'>
 								<div className='text-center'>
@@ -470,7 +457,6 @@ export function FAQErrorFallback({
 							</CardContent>
 						</Card>
 
-						{}
 						<Card>
 							<CardContent className='p-6'>
 								<div className='text-center'>
@@ -492,7 +478,6 @@ export function FAQErrorFallback({
 						</Card>
 					</div>
 
-					{}
 					<Card>
 						<CardHeader>
 							<CardTitle className='flex items-center'>
@@ -537,8 +522,6 @@ export function FAQErrorFallback({
 				</TabsContent>
 			</Tabs>
 
-			{}
-			{}
 			{showTechnicalDetails && error && (
 				<Card className='mt-6 border-slate-200'>
 					<CardHeader>

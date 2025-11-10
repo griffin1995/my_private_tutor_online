@@ -74,11 +74,17 @@ export function RecognitionCard({
 					</m.p>
 
 					{/* Row 2: Content - Logo Image (all same size now) */}
-					<img
-						src={logoImage.url}
-						alt={logoImage.alt}
-						className='w-full h-auto object-contain filter group-hover:brightness-110 transition-all duration-300 justify-self-center p-3'
-					/>
+					<div className='relative w-full h-auto flex items-center justify-center p-3'>
+						<Image
+							src={logoImage.url}
+							alt={logoImage.alt}
+							width={200}
+							height={120}
+							className='w-full h-auto object-contain filter group-hover:brightness-110 transition-all duration-300'
+							loading='lazy'
+							quality={85}
+						/>
+					</div>
 
 					{/* Row 3: Footer Text (optional) */}
 					{footerText ? (

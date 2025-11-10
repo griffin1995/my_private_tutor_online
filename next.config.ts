@@ -4,6 +4,11 @@ import path from 'path';
 // REMOVED: next-intl plugin - Site is ENGLISH-ONLY, no internationalization needed
 // import createNextIntlPlugin from 'next-intl/plugin';
 
+// Load why-did-you-render for development debugging
+if (process.env.NODE_ENV === 'development') {
+  require('./scripts/why-did-you-render');
+}
+
 // REMOVED: next-intl configuration - Site is ENGLISH-ONLY
 // const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 

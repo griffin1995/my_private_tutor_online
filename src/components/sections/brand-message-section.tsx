@@ -39,8 +39,6 @@ export function BrandMessageSection({
 		:	defaultSpacing;
 	return (
 		<div className={`${spacingClasses} ${backgroundColor} ${className}`}>
-			{}
-			{}
 			<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12'>
 				{showAuthorImage && authorImage ?
 					<div className='grid lg:grid-cols-2 gap-12 items-center'>
@@ -57,7 +55,6 @@ export function BrandMessageSection({
 							/>
 						</div>
 						<div className='order-1 lg:order-2'>
-							{}
 							<HighlightedQuote
 								quote={quote}
 								author={author}
@@ -67,7 +64,6 @@ export function BrandMessageSection({
 						</div>
 					</div>
 				:	<div className='text-center'>
-						{}
 						<HighlightedQuote
 							quote={quote}
 							author={author}
@@ -77,7 +73,6 @@ export function BrandMessageSection({
 					</div>
 				}
 
-				{}
 				{button && (
 					<div className='mt-8'>
 						<Link

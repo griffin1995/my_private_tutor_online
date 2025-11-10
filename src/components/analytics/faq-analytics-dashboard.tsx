@@ -340,8 +340,6 @@ export function FAQAnalyticsDashboard({
 	}
 	return (
 		<div className='space-y-6'>
-			{}
-			{}
 			<div className='flex justify-between items-start'>
 				<div>
 					<h2 className='text-2xl font-serif font-bold text-slate-900 mb-2'>
@@ -372,8 +370,6 @@ export function FAQAnalyticsDashboard({
 				)}
 			</div>
 
-			{}
-			{}
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
 				<m.div
 					className='bg-white p-6 rounded-xl shadow-sm border border-slate-200'
@@ -499,8 +495,6 @@ export function FAQAnalyticsDashboard({
 
 			{!compactMode && (
 				<>
-					{}
-					{}
 					<m.div
 						className='bg-white p-6 rounded-xl shadow-sm border border-slate-200'
 						initial={{
@@ -540,8 +534,6 @@ export function FAQAnalyticsDashboard({
 						</div>
 					</m.div>
 
-					{}
-					{}
 					<div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
 						<m.div
 							className='bg-white p-6 rounded-xl shadow-sm border border-slate-200'

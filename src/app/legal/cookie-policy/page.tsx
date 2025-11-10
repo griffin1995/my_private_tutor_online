@@ -18,8 +18,6 @@ import {
 export default function CookiePolicyPage() {
 	return (
 		<>
-			{}
-			{}
 			<PageHero
 				background='gradient'
 				size='full'
@@ -108,8 +106,6 @@ export default function CookiePolicyPage() {
 				</div>
 			</PageHero>
 
-			{}
-			{}
 			<PageLayout
 				background='white'
 				showHeader={false}

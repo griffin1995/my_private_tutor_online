@@ -69,8 +69,6 @@ export class TestimonialsErrorBoundary extends Component<
 			}
 			return (
 				<div className='testimonials-error-boundary-fallback'>
-					{}
-					{}
 					<div className='max-w-4xl mx-auto px-6 py-16 text-center'>
 						<div className='bg-white rounded-2xl shadow-lg border border-gray-100 p-8'>
 							<div className='mb-6'>
@@ -98,7 +96,6 @@ export class TestimonialsErrorBoundary extends Component<
 								</p>
 							</div>
 
-							{}
 							{this.state.errorType === 'performance' && (
 								<div className='bg-blue-50 rounded-lg p-4 mb-6 text-left'>
 									<h3 className='font-semibold text-blue-900 mb-2'>
@@ -123,7 +120,6 @@ export class TestimonialsErrorBoundary extends Component<
 								</div>
 							)}
 
-							{}
 							<div className='flex flex-col sm:flex-row gap-4 justify-center'>
 								<button
 									onClick={() => window.location.reload()}
@@ -137,7 +133,6 @@ export class TestimonialsErrorBoundary extends Component<
 								</button>
 							</div>
 
-							{}
 							<div className='mt-8 pt-6 border-t border-gray-200'>
 								<p className='text-sm text-gray-600'>
 									Need immediate assistance? Contact our support team at{' '}

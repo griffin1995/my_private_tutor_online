@@ -30,16 +30,10 @@ export function ResultsSection({
 		<section
 			ref={ref}
 			className={`py-20 lg:py-32 ${backgroundColor} ${className} relative overflow-hidden`}>
-			{}
-			{}
-			{}
 			<div className='absolute inset-0 bg-gradient-to-r from-transparent via-blue-50/10 to-transparent opacity-60' />
 			<div className='absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-accent-50/20 to-transparent' />
 
 			<div className='container mx-auto px-6 lg:px-12 max-w-7xl relative'>
-				{}
-				{}
-				{}
 				<motion.div
 					className='text-center mb-16 lg:mb-20'
 					initial={{
@@ -61,27 +55,20 @@ export function ResultsSection({
 						duration: 0.8,
 						ease: 'easeOut',
 					}}>
-					{}
 					<div className='flex items-center justify-center mb-8'>
 						<div className='h-px bg-gradient-to-r from-transparent via-accent-300 to-transparent flex-1 max-w-24' />
 						<Crown className='w-8 h-8 text-accent-600 mx-6' />
 						<div className='h-px bg-gradient-to-r from-transparent via-accent-300 to-transparent flex-1 max-w-24' />
 					</div>
 
-					{}
-					{}
-					{}
 					<h2 className='text-4xl lg:text-5xl xl:text-6xl font-serif font-black text-transparent bg-gradient-to-r from-primary-950 via-primary-800 to-primary-950 bg-clip-text mb-6 leading-tight'>
 						{title}
 					</h2>
 
-					{}
 					<p className='text-lg lg:text-xl text-primary-700 font-medium max-w-4xl mx-auto mb-4'>
 						Trusted by Royal Families • Featured in Tatler Address Book 2025
 					</p>
 
-					{}
-					{}
 					{showDescription && description && (
 						<p className='text-xl lg:text-2xl text-primary-600 max-w-4xl mx-auto leading-relaxed'>
 							{description}
@@ -89,9 +76,6 @@ export function ResultsSection({
 					)}
 				</motion.div>
 
-				{}
-				{}
-				{}
 				<motion.div
 					className='grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto'
 					initial='hidden'
@@ -128,17 +112,12 @@ export function ResultsSection({
 									},
 								},
 							}}>
-							{}
 							<div className='relative p-8 lg:p-10 bg-white rounded-2xl shadow-lg shadow-primary-900/5 border border-primary-100/50 backdrop-blur-sm transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-primary-900/10 group-hover:-translate-y-2 group-hover:scale-[1.02] overflow-hidden'>
-								{}
 								<div className='absolute inset-0 bg-gradient-to-br from-accent-50/30 via-transparent to-blue-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
 
-								{}
-								{}
 								<div className='relative mb-6 lg:mb-8'>
 									{stat.imageUrl ?
 										<div className='relative w-20 h-20 lg:w-24 lg:h-24 mx-auto group-hover:scale-105 transition-transform duration-500'>
-											{}
 											<Image
 												src={stat.imageUrl}
 												alt={stat.imageAlt || `${stat.label} - ${stat.description}`}
@@ -146,14 +125,11 @@ export function ResultsSection({
 												className='rounded-full object-cover shadow-lg shadow-accent-500/25 group-hover:shadow-xl group-hover:shadow-accent-500/40 transition-all duration-500'
 												sizes='(max-width: 768px) 80px, 96px'
 											/>
-											{}
 											<div className='absolute inset-0 rounded-full bg-gradient-to-br from-accent-400/20 via-transparent to-accent-600/20 group-hover:from-accent-400/30 group-hover:to-accent-600/30 transition-all duration-500' />
 										</div>
 									:	<>
-											{}
 											<div className='absolute inset-0 w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-accent-100 to-accent-200 blur-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500' />
 
-											{}
 											<div className='relative w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-accent-400 via-accent-500 to-accent-600 flex items-center justify-center shadow-lg shadow-accent-500/25 group-hover:shadow-xl group-hover:shadow-accent-500/40 transition-all duration-500 mx-auto'>
 												{(() => {
 													const iconProps = {
@@ -177,13 +153,9 @@ export function ResultsSection({
 										</>
 									}
 
-									{}
 									<div className='absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gradient-to-b from-accent-300 to-transparent opacity-30' />
 								</div>
 
-								{}
-								{}
-								{}
 								<div className='text-center relative z-10'>
 									<h3 className='text-4xl lg:text-5xl xl:text-6xl font-black text-primary-900 mb-3 tracking-tight tabular-nums'>
 										{isInView && (
@@ -198,7 +170,6 @@ export function ResultsSection({
 										{!parseInt(stat.number.replace(/[^0-9]/g, '')) && stat.number}
 									</h3>
 
-									{}
 									<p className='text-base lg:text-lg text-primary-700 leading-relaxed font-medium max-w-sm mx-auto'>
 										<span className='sr-only'>
 											{stat.lucideIcon === 'Users' && 'Families icon: '}
@@ -211,15 +182,12 @@ export function ResultsSection({
 									</p>
 								</div>
 
-								{}
 								<div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-transparent via-accent-400 to-transparent rounded-full opacity-60 group-hover:opacity-100 group-hover:w-24 transition-all duration-500' />
 							</div>
 						</motion.div>
 					))}
 				</motion.div>
 
-				{}
-				{}
 				<motion.div
 					className='text-center mt-16 lg:mt-20'
 					initial={{

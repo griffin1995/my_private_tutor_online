@@ -108,8 +108,6 @@ export function CMSArchitectureDashboard({
 	return (
 		<div
 			className={`${compactMode ? 'fixed top-4 right-4 z-50 max-w-2xl' : 'w-full'} bg-white shadow-lg rounded-lg border`}>
-			{}
-			{}
 			<div className='bg-gray-50 px-6 py-4 border-b rounded-t-lg'>
 				<div className='flex items-center justify-between'>
 					<div className='flex items-center space-x-3'>
@@ -155,8 +153,6 @@ export function CMSArchitectureDashboard({
 				</div>
 			</div>
 
-			{}
-			{}
 			<div className='px-6 py-4'>
 				<div className='grid grid-cols-2 md:grid-cols-4 gap-4 mb-6'>
 					<div className='text-center'>
@@ -209,8 +205,6 @@ export function CMSArchitectureDashboard({
 					</div>
 				</div>
 
-				{}
-				{}
 				{monitoringData.architectureScore >= 9.0 ?
 					<div className='mb-6 p-4 bg-green-50 border border-green-200 rounded-lg'>
 						<div className='flex items-center'>
@@ -241,8 +235,6 @@ export function CMSArchitectureDashboard({
 					</div>
 				}
 
-				{}
-				{}
 				{monitoringData.violations.length > 0 && (
 					<div>
 						<h3 className='text-lg font-medium text-gray-900 mb-4'>
@@ -298,8 +290,6 @@ export function CMSArchitectureDashboard({
 					</div>
 				)}
 
-				{}
-				{}
 				{monitoringData.violations.length === 0 && monitoringData.isMonitoring && (
 					<div className='text-center py-8'>
 						<div className='text-6xl mb-4'>✅</div>
@@ -317,8 +307,6 @@ export function CMSArchitectureDashboard({
 				)}
 			</div>
 
-			{}
-			{}
 			{selectedViolation && (
 				<div className='fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4'>
 					<div className='bg-white rounded-lg max-w-2xl w-full max-h-90vh overflow-y-auto'>

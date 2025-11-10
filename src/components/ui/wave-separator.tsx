@@ -72,9 +72,6 @@ export const WaveSeparator: React.FC<WaveSeparatorProps> = ({
 			className={baseClasses}
 			role='img'
 			aria-label={ariaLabel}>
-			{}
-			{}
-			{}
 			<svg
 				className='w-full h-full max-w-full block drop-shadow-sm'
 				viewBox='0 0 1440 128'

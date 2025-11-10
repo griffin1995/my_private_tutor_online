@@ -250,7 +250,6 @@ export function TestimonialsFilter({
 				<m.div
 					className='max-w-6xl mx-auto'
 					variants={itemVariants}>
-					{}
 					<div className='text-center mb-8'>
 						<h2 className='text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4'>
 							Student Success Stories
@@ -276,7 +275,6 @@ export function TestimonialsFilter({
 						</div>
 					</div>
 
-					{}
 					{showSearch && (
 						<m.div
 							className='relative mb-6'
@@ -294,7 +292,6 @@ export function TestimonialsFilter({
 						</m.div>
 					)}
 
-					{}
 					<m.div
 						className='mb-6'
 						variants={itemVariants}>
@@ -321,7 +318,6 @@ export function TestimonialsFilter({
 						</div>
 					</m.div>
 
-					{}
 					{showAdvancedFilters && (
 						<m.div
 							className='mb-6'
@@ -341,7 +337,6 @@ export function TestimonialsFilter({
 						</m.div>
 					)}
 
-					{}
 					<AnimatePresence>
 						{isAdvancedOpen && (
 							<m.div
@@ -364,7 +359,6 @@ export function TestimonialsFilter({
 								<Card className='bg-slate-50/50 border border-primary-100 rounded-2xl overflow-hidden'>
 									<CardContent className='p-6'>
 										<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
-											{}
 											<div>
 												<label className='block text-sm font-semibold text-primary-700 mb-2'>
 													Subject
@@ -384,7 +378,6 @@ export function TestimonialsFilter({
 												</select>
 											</div>
 
-											{}
 											<div>
 												<label className='block text-sm font-semibold text-primary-700 mb-2'>
 													Grade Achievement
@@ -404,7 +397,6 @@ export function TestimonialsFilter({
 												</select>
 											</div>
 
-											{}
 											<div>
 												<label className='block text-sm font-semibold text-primary-700 mb-2'>
 													Location
@@ -424,7 +416,6 @@ export function TestimonialsFilter({
 												</select>
 											</div>
 
-											{}
 											<div>
 												<label className='block text-sm font-semibold text-primary-700 mb-2'>
 													Year
@@ -456,7 +447,6 @@ export function TestimonialsFilter({
 						)}
 					</AnimatePresence>
 
-					{}
 					{activeFilters.length > 0 && (
 						<m.div
 							className='mb-6'
@@ -493,7 +483,6 @@ export function TestimonialsFilter({
 						</m.div>
 					)}
 
-					{}
 					<m.div
 						className='text-center mb-4'
 						variants={itemVariants}>

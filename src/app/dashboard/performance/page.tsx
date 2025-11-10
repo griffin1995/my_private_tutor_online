@@ -214,7 +214,6 @@ export default function PerformanceDashboard() {
 				</p>
 			</div>
 
-			{}
 			<div className='grid grid-cols-1 md:grid-cols-4 gap-4 mb-8'>
 				<Card>
 					<CardHeader className='pb-2'>
@@ -262,7 +261,6 @@ export default function PerformanceDashboard() {
 				</Card>
 			</div>
 
-			{}
 			<Tabs
 				value={activePhase}
 				onValueChange={setActivePhase}
@@ -277,7 +275,6 @@ export default function PerformanceDashboard() {
 
 				<TabsContent value='overview'>
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-						{}
 						<Card>
 							<CardHeader>
 								<CardTitle>Overall Progress</CardTitle>
@@ -314,7 +311,6 @@ export default function PerformanceDashboard() {
 							</CardContent>
 						</Card>
 
-						{}
 						<Card>
 							<CardHeader>
 								<CardTitle>Key Achievements</CardTitle>
@@ -354,7 +350,6 @@ export default function PerformanceDashboard() {
 							</CardContent>
 						</Card>
 
-						{}
 						<Card className='md:col-span-2'>
 							<CardHeader>
 								<CardTitle>Business Impact Analysis</CardTitle>
@@ -471,7 +466,6 @@ export default function PerformanceDashboard() {
 				))}
 			</Tabs>
 
-			{}
 			<Alert className='border-green-200 bg-green-50'>
 				<CheckCircle2 className='h-4 w-4 text-green-600' />
 				<AlertTitle className='text-green-800'>Production Ready</AlertTitle>
