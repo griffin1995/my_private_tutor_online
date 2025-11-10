@@ -185,78 +185,6 @@ const LazyConsultationForm = dynamic(
 		ssr: false,
 	},
 );
-const LazyCompetitiveAnalysis = dynamic(
-	() =>
-		import('../sections/competitive-analysis')
-			.then((mod) => ({
-				default: mod.CompetitiveAnalysis || mod.default,
-			}))
-			.catch(() =>
-				Promise.resolve({
-					default: () => null,
-				}),
-			),
-	{
-		loading: () => (
-			<div className='h-96 bg-slate-100 animate-pulse rounded-xl'></div>
-		),
-		ssr: false,
-	},
-);
-const LazyCaseStudies = dynamic(
-	() =>
-		import('../sections/case-studies')
-			.then((mod) => ({
-				default: mod.CaseStudies || mod.default,
-			}))
-			.catch(() =>
-				Promise.resolve({
-					default: () => null,
-				}),
-			),
-	{
-		loading: () => (
-			<div className='h-96 bg-slate-100 animate-pulse rounded-xl'></div>
-		),
-		ssr: false,
-	},
-);
-const LazyIconCloud = dynamic(
-	() =>
-		import('../magicui/icon-cloud')
-			.then((mod) => ({
-				default: mod.IconCloud || mod.default,
-			}))
-			.catch(() =>
-				Promise.resolve({
-					default: () => null,
-				}),
-			),
-	{
-		loading: () => (
-			<div className='h-64 bg-slate-100 animate-pulse rounded-xl'></div>
-		),
-		ssr: false,
-	},
-);
-const LazyGlobe = dynamic(
-	() =>
-		import('../magicui/globe')
-			.then((mod) => ({
-				default: mod.Globe || mod.default,
-			}))
-			.catch(() =>
-				Promise.resolve({
-					default: () => null,
-				}),
-			),
-	{
-		loading: () => (
-			<div className='h-96 bg-slate-100 animate-pulse rounded-xl'></div>
-		),
-		ssr: false,
-	},
-);
 const AnalyticsFallback = () => (
 	<div className='bg-white rounded-xl border border-slate-200 p-8'>
 		<div className='animate-pulse'>
@@ -360,11 +288,7 @@ export const LazyNewsletterForm = (props: any) => (
 	</Suspense>
 );
 export {
-	LazyCaseStudies,
-	LazyCompetitiveAnalysis,
 	LazyConsultationForm,
-	LazyGlobe,
-	LazyIconCloud,
 	LazyResultsSection,
 	LazyServicesCarousel,
 	LazyTestimonialsSection,
