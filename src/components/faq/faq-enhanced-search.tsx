@@ -47,7 +47,6 @@ import { cn } from '@/lib/utils';
 import { FAQErrorBoundary } from '@/components/error-boundary/FAQErrorBoundary';
 import { FAQErrorFallback } from './faq-error-fallback';
 import { useErrorRecovery } from '@/hooks/use-error-recovery';
-import { getErrorTracker } from '@/lib/monitoring/error-tracking';
 interface FAQEnhancedSearchProps {
 	questions: FAQQuestion[];
 	categories: FAQCategory[];
@@ -89,18 +88,6 @@ export function FAQEnhancedSearch({
 		enableFallback: true,
 		enableReporting: true,
 		enableAnalytics: true,
-		onError: (error, context) => {
-			getErrorTracker().trackError(
-				error,
-				{
-					...context,
-					searchQuery: state?.query,
-					searchResults: state?.results?.length,
-					feature: 'faq_search',
-				},
-				'FAQEnhancedSearch',
-			);
-		},
 	});
 	const {
 		state,

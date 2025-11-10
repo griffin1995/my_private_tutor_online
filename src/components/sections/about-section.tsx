@@ -1,11 +1,6 @@
 'use client';
 
 import { useConversionTracking } from '@/lib/analytics/conversion-tracking';
-import { useAboutSectionPerformance } from '@/lib/performance/about-monitoring';
-import {
-	preloadAboutResources,
-	registerAboutSectionSW,
-} from '@/lib/service-worker/sw-registration';
 import { Card } from '@/components/ui/card';
 import { m } from 'framer-motion';
 import Image from 'next/image';
@@ -22,7 +17,6 @@ export function AboutSection({
 	founderImageUrl = '/images/team/elizabeth-burrows-founder-spare.jpg',
 	founderImageAlt = 'Elizabeth Burrows, Founder of My Private Tutor Online',
 }: AboutSectionProps) {
-	const performance = useAboutSectionPerformance();
 	const conversionTracker = useConversionTracking('about-section', {
 		enableABTesting: false,
 		trackScrollMilestones: true,
@@ -30,44 +24,13 @@ export function AboutSection({
 		trackVideoEngagement: true,
 	});
 	useEffect(() => {
-		if (performance) {
-			performance.markMount();
-			const animationTimeout = setTimeout(() => {
-				performance.markAnimationComplete();
-			}, 2000);
-			return () => {
-				clearTimeout(animationTimeout);
-			};
-		}
-	}, [performance]);
-	useEffect(() => {
 		if (conversionTracker) {
 			conversionTracker.trackEvent('about_section_view', {
 				timestamp: Date.now(),
 				userAgent: navigator.userAgent.substring(0, 100),
 			});
-			performance.mark?.('conversion-tracking-initialized');
 		}
-	}, [conversionTracker, performance]);
-	useEffect(() => {
-		const initializeServiceWorker = async () => {
-			try {
-				const registered = await registerAboutSectionSW();
-				if (registered) {
-					await preloadAboutResources();
-					if (performance) {
-						performance.monitor?.reportMetric?.('service-worker-initialized', 1);
-					}
-				}
-			} catch (error) {
-				console.warn('Service worker initialization failed:', error);
-			}
-		};
-		const registrationTimeout = setTimeout(initializeServiceWorker, 100);
-		return () => {
-			clearTimeout(registrationTimeout);
-		};
-	}, [performance]);
+	}, [conversionTracker]);
 	const gridLayoutClasses =
 		'grid lg:grid-cols-[3fr_2fr] gap-8 lg:gap-12 items-start lg:grid-rows-1 relative';
 	return (

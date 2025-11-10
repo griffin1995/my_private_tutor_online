@@ -156,13 +156,7 @@ const SERVICES_DATA: ServiceData[] = [
 		ctaLink: '#contact',
 	},
 ];
-interface MetricsData {
-	title: string;
-	value: number;
-	unit: string;
-	description: string;
-	chartType: 'gauge' | 'liquid' | 'radar';
-}
+
 interface GlobalLocationData {
 	country: string;
 	students: number;

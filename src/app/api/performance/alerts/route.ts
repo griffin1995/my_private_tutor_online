@@ -29,9 +29,9 @@ const ALERT_CONFIG = {
 		MAX_ALERTS_PER_HOUR: 20,
 	},
 	CHANNELS: {
-		EMAIL: process.env.ALERT_EMAIL || 'performance@myprivatetutoronline.com',
-		SLACK_WEBHOOK: process.env.SLACK_PERFORMANCE_WEBHOOK,
-		TEAMS_WEBHOOK: process.env.TEAMS_PERFORMANCE_WEBHOOK,
+		EMAIL: process.env['ALERT_EMAIL'] || 'performance@myprivatetutoronline.com',
+		SLACK_WEBHOOK: process.env['SLACK_PERFORMANCE_WEBHOOK'],
+		TEAMS_WEBHOOK: process.env['TEAMS_PERFORMANCE_WEBHOOK'],
 	},
 } as const;
 const alertCache = new Map<
@@ -205,50 +205,8 @@ async function processAlert(
 	correlationId: string,
 	context: any,
 ) {
-	try {
-		const alertEvent = {
-			type: 'performance_alert',
-			correlationId,
-			requestId: alert.alertId,
-			timestamp: Date.now(),
-			alert: {
-				metric: alert.metric,
-				value: alert.value,
-				threshold: alert.threshold,
-				severity: alert.severity.toLowerCase(),
-				url: alert.url,
-				sessionId: alert.sessionId,
-				userAgent: alert.userAgent,
-				ip: context?.ip || 'unknown',
-				country: context?.country || 'unknown',
-			},
-			context: {
-				userType: determineUserType(alert.userAgent, context),
-				pageType: extractPageType(alert.url),
-				deviceType: extractDeviceType(alert.userAgent),
-			},
-		};
-		const edgeResponse = await fetch('/api/performance/alerts/process', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-Correlation-ID': correlationId,
-				'X-Request-ID': alert.alertId,
-			},
-			body: JSON.stringify(alertEvent),
-		});
-		if (!edgeResponse.ok) {
-			console.error(
-				'Edge Function processing failed, falling back to legacy processing',
-			);
-			return legacyProcessAlert(alert);
-		}
-		const result = await edgeResponse.json();
-		return result;
-	} catch (error) {
-		console.error('Event-driven processing failed, using fallback:', error);
-		return legacyProcessAlert(alert);
-	}
+	// Direct processing without removed edge function
+	return legacyProcessAlert(alert);
 }
 async function legacyProcessAlert(
 	alert: PerformanceAlert & {
@@ -277,7 +235,7 @@ async function sendEmailAlert(
 	},
 ) {
 	try {
-		if (process.env.RESEND_API_KEY) {
+		if (process.env['RESEND_API_KEY']) {
 			const emailPayload = {
 				to: ALERT_CONFIG.CHANNELS.EMAIL,
 				subject: `🚨 Critical Performance Alert - ${alert.metric}`,

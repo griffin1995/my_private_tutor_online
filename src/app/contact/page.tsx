@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FAQContactSection } from '@/components/faq/faq-contact-section';
@@ -84,7 +83,6 @@ const UNIFIED_CONTACT = {
 export default function ContactPage() {
 	const contactContent = CONTACT_CONTENT;
 	const unifiedContact = UNIFIED_CONTACT;
-	const contactDetails = unifiedContact.landingInfo;
 	const faqContactContent = {
 		title: contactContent.sectionTitle,
 		description: contactContent.sectionDescription,

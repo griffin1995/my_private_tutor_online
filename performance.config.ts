@@ -9,12 +9,7 @@
  */
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Import performance types
-import type {
-	PerformanceBudget,
-	Milliseconds,
-	Kilobytes,
-	Percentage,
-} from './src/types/performance';
+import type { PerformanceBudget } from './src/types/performance';
 
 import {
 	createMilliseconds,

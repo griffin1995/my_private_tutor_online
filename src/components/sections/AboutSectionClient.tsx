@@ -21,7 +21,7 @@ interface RecognitionCardData {
 	iconAlt?: string;
 	footerText?: string;
 	sortOrder: number;
-	status: 'published' | 'draft';
+	status: 'published' | 'unpublished';
 }
 
 interface AboutSectionClientProps {
@@ -86,10 +86,12 @@ export function AboutSectionClient({
 									School Guide&apos;s &apos;Top Pick&apos;
 								</strong>{' '}
 								for private tuition, and proud to count{' '}
-								<strong className='text-token-primary-dark italic'>royal families</strong>{' '}
+								<strong className='text-token-primary-dark italic'>
+									royal families
+								</strong>{' '}
 								among our clientele.
 							</p>
-							<p className='text-base sm:text-lg xl:text-xl font-serif italic text-token-primary-dark'>
+							<p className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark'>
 								15 years later, the ethos remains the same: every tutor is handpicked,
 								every match thoughtfully made, and every family accommodated directly by
 								Elizabeth and her team.
@@ -118,20 +120,21 @@ export function AboutSectionClient({
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: '-100px' }}
 					transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}>
-					{recognitionCards.map((card, index) => (
-						<RecognitionCard
-							key={card.id}
-							headerText={card.headerText}
-							contentType={card.contentType}
-							logoImage={card.logoImage}
-							logoMaxWidth={card.logoMaxWidth}
-							iconPath={card.iconPath}
-							iconAlt={card.iconAlt}
-							footerText={card.footerText}
-							animationDelay={0.5 + index * 0.2}
-							index={index}
-						/>
-					))}
+					{recognitionCards
+						.filter((card): card is RecognitionCardData & { contentType: 'logo'; logoImage: { url: string; alt: string } } =>
+							card.contentType === 'logo' && card.logoImage !== undefined
+						)
+						.map((card, index) => (
+							<RecognitionCard
+								key={card.id}
+								headerText={card.headerText}
+								contentType={card.contentType}
+								logoImage={card.logoImage}
+								{...(card.footerText && { footerText: card.footerText })}
+								animationDelay={0.5 + index * 0.2}
+								index={index}
+							/>
+						))}
 				</m.div>
 			</div>
 		</section>

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { withCSRFProtection } from '@/lib/security/csrf';
 import { sanitiseInput, securityMonitor } from '@/middleware/security';
 const contactSchema = z.object({
 	name: z

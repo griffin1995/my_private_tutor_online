@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { PerformanceMonitoringDashboard } from '@/components/dashboard/PerformanceMonitoringDashboard-Simple';
 export default function AdminMonitoringPage() {
 	const [refreshInterval, setRefreshInterval] = useState(30000);
@@ -37,8 +37,9 @@ export default function AdminMonitoringPage() {
 
 							{}
 							<div className='flex items-center'>
-								<label className='text-sm text-gray-700 mr-2'>Refresh:</label>
+								<label htmlFor='refresh-interval' className='text-sm text-gray-700 mr-2'>Refresh:</label>
 								<select
+									id='refresh-interval'
 									value={refreshInterval}
 									onChange={(e) => setRefreshInterval(parseInt(e.target.value))}
 									className='form-select text-sm border-gray-300 rounded-md'>

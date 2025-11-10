@@ -1,4 +1,3 @@
-import { verifySession } from '@/lib/auth/dal';
 import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import AdminHeader from '@/components/admin/AdminHeader';
 import { SecurityMonitor } from '@/components/admin/SecurityMonitor';

@@ -1,13 +1,7 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import TestimonialsExecutiveDashboard from '@/components/analytics/testimonials-executive-dashboard';
 import { Suspense } from 'react';
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { BarChart3, TrendingUp, Crown, Shield } from 'lucide-react';
 export const metadata: Metadata = {

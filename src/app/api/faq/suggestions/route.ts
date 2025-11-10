@@ -96,7 +96,7 @@ const checkRateLimit = (
 };
 const detectSpam = (
 	content: string,
-	userHistory?: any[],
+	_userHistory?: any[],
 ): {
 	isSpam: boolean;
 	score: number;
@@ -330,13 +330,8 @@ export async function POST(request: NextRequest) {
 	}
 }
 export async function OPTIONS(request: NextRequest) {
-	return new NextResponse(null, {
-		status: 200,
-		headers: {
-			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-			'Access-Control-Max-Age': '86400',
-		},
-	});
+	// Use secure CORS configuration (no wildcards)
+	const { handleCorsPreflightRequest } = await import('@/lib/security/cors');
+	const origin = request.headers.get('origin');
+	return handleCorsPreflightRequest(origin);
 }

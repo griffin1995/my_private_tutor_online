@@ -27,7 +27,7 @@ interface WebVitalMetric {
 }
 const metricsStore: WebVitalMetric[] = [];
 export function WebVitals() {
-	const [isMonitoring, setIsMonitoring] = useState(false);
+	const [, setIsMonitoring] = useState(false);
 	useReportWebVitals((metric) => {
 		const timestamp = Date.now();
 		let rating: 'good' | 'needs-improvement' | 'poor' | undefined;
@@ -68,11 +68,14 @@ export function WebVitals() {
 					: metric.value < 500 ? 'needs-improvement'
 					: 'poor';
 				break;
+			default:
+				rating = undefined;
+				break;
 		}
 		const metricData: WebVitalMetric = {
 			name: metric.name as MetricName,
 			value: metric.value,
-			rating,
+			rating: rating as 'good' | 'needs-improvement' | 'poor' | undefined,
 			timestamp,
 		};
 		metricsStore.push(metricData);
@@ -118,20 +121,20 @@ export function WebVitals() {
 		}
 	}, []);
 	if (typeof window !== 'undefined') {
-		(window as any).__PERFORMANCE_METRICS__ = metricsStore;
+		(window as unknown as { __PERFORMANCE_METRICS__: WebVitalMetric[] }).__PERFORMANCE_METRICS__ = metricsStore;
 	}
 	return null;
 }
 export function getPerformanceMetrics(): WebVitalMetric[] {
 	if (typeof window !== 'undefined') {
-		return (window as any).__PERFORMANCE_METRICS__ || [];
+		return (window as unknown as { __PERFORMANCE_METRICS__?: WebVitalMetric[] }).__PERFORMANCE_METRICS__ || [];
 	}
 	return [];
 }
 export function trackBuildMetrics(metrics: Partial<Phase1Metrics>) {
 	if (typeof window !== 'undefined') {
-		(window as any).__BUILD_METRICS__ = {
-			...((window as any).__BUILD_METRICS__ || {}),
+		(window as unknown as { __BUILD_METRICS__?: Phase1Metrics }).__BUILD_METRICS__ = {
+			...((window as unknown as { __BUILD_METRICS__?: Phase1Metrics }).__BUILD_METRICS__ || {}),
 			...metrics,
 			timestamp: Date.now(),
 		};
@@ -139,7 +142,7 @@ export function trackBuildMetrics(metrics: Partial<Phase1Metrics>) {
 }
 export function getBuildMetrics(): Phase1Metrics | null {
 	if (typeof window !== 'undefined') {
-		return (window as any).__BUILD_METRICS__ || null;
+		return (window as unknown as { __BUILD_METRICS__?: Phase1Metrics }).__BUILD_METRICS__ || null;
 	}
 	return null;
 }

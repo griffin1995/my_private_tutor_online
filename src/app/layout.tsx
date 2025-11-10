@@ -2,7 +2,6 @@ import { LazyMotionProvider } from '@/components/providers/LazyMotionProvider';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { Toaster } from '@/components/ui/sonner';
 import { fontClassNames } from '@/fonts';
-import { DevToolsProvider } from '@/providers/DevToolsProvider';
 import type { Metadata } from 'next';
 import React from 'react';
 import './globals.css';
@@ -265,7 +264,7 @@ export default function RootLayout({
 
 				<LazyMotionProvider>
 					<TooltipProvider>
-						<DevToolsProvider>{children}</DevToolsProvider>
+						{children}
 						<Toaster />
 					</TooltipProvider>
 				</LazyMotionProvider>

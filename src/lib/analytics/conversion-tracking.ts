@@ -278,17 +278,6 @@ export class ConversionTracker {
 				},
 			});
 		}
-		if (typeof window !== 'undefined') {
-			fetch('/api/analytics/conversion-events', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(event),
-			}).catch((error) => {
-				console.warn('Failed to send conversion event:', error);
-			});
-		}
 	}
 	private getScrollPercentage(): number {
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;

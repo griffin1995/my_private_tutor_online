@@ -14,89 +14,9 @@ import { useState } from 'react';
 // HARDCODED DATA - ALL CMS CONTENT FOR 11+ BOOTCAMPS PAGE
 // ============================================================================
 
-// Bootcamp programme details
-const bootcampProgrammes = [
-	{
-		title: 'Intensive 11+ Preparation',
-		duration: '5 Days',
-		format: 'In-Person & Online',
-		groupSize: 'Max 8 students',
-		description:
-			'Comprehensive preparation covering all 11+ subjects with expert tutors',
-		features: [
-			'Mathematics problem-solving techniques',
-			'English comprehension and creative writing',
-			'Verbal and non-verbal reasoning',
-			'Mock examinations with detailed feedback',
-			'Confidence building and exam technique',
-		],
-		price: '£750',
-		dates: [
-			'Half Term: 17-21 February 2025',
-			'Easter: 7-11 April 2025',
-			'Summer: 28 July - 1 August 2025',
-		],
-	},
-	{
-		title: 'Elite School Focus',
-		duration: '3 Days',
-		format: 'In-Person Only',
-		groupSize: 'Max 6 students',
-		description:
-			"Targeted preparation for top-tier independent schools (Eton, Westminster, St Paul's)",
-		features: [
-			'School-specific paper analysis',
-			'Advanced problem-solving strategies',
-			'Interview preparation and technique',
-			'Past paper practice with time management',
-			'Individual feedback sessions',
-		],
-		price: '£550',
-		dates: ['February: 24-26 February 2025', 'May: 26-28 May 2025'],
-	},
-	{
-		title: 'Last-Minute Intensive',
-		duration: '2 Days',
-		format: 'In-Person & Online',
-		groupSize: 'Max 10 students',
-		description:
-			'Final preparation and confidence boost before examination period',
-		features: [
-			'Exam technique refinement',
-			'Stress management strategies',
-			'Quick revision of key concepts',
-			'Final practice papers',
-			'Parent guidance session included',
-		],
-		price: '£350',
-		dates: ['Pre-Exam: 6-7 September 2025', 'Final Push: 4-5 January 2026'],
-	},
-];
-
-// Success statistics
-const successStats = [
-	{
-		number: '95%',
-		label: 'Success Rate',
-		description:
-			'of candidates receive offers from at least one of their top choices',
-	},
-	{
-		number: '15+',
-		label: 'Years Experience',
-		description: 'delivering intensive 11+ preparation programmes',
-	},
-	{
-		number: '500+',
-		label: 'Students Prepared',
-		description: 'successfully guided through 11+ examinations',
-	},
-	{
-		number: 'Top 10',
-		label: 'School Placements',
-		description: 'consistent placements at prestigious independent schools',
-	},
-];
+// Bootcamp programme details and success statistics
+// Commented out as currently unused - remove comments when needed for future implementation
+// These contain data for bootcamp programmes, pricing, and success metrics
 
 // Schools list (all schools and universities)
 const ALL_SCHOOLS: readonly string[] = [

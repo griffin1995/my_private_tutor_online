@@ -54,7 +54,7 @@ const blogPosts = [
 		id: 3,
 		title: 'How to Write an Effective Personal Essay',
 		category: 'university-applications',
-		image: '/images/students/entrance-exam-preparation-new.jpg',
+		image: '/images/students/entrance-exam-preparation.jpg',
 		date: '2025-03-13',
 	},
 	{
@@ -344,7 +344,7 @@ export default function BlogPage() {
 					{/* Category Filter Dropdown */}
 					<div className='mb-8 flex justify-center'>
 						<div className='w-full max-w-xs'>
-							<label className='block text-sm font-medium mb-2 text-center'>
+							<label htmlFor='category-select' className='block text-sm font-medium mb-2 text-center'>
 								Categories
 							</label>
 							<Select

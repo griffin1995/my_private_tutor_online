@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
 import ClientSuccessMetricsDashboard from '@/components/dashboards/client-success-metrics-dashboard';
 import { PageLayout } from '@/components/layout/page-layout';
+
 export default function DashboardPage() {
 	return (
 		<PageLayout

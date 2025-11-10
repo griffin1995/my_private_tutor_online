@@ -15,7 +15,7 @@ const aboutSectionSWConfig: ServiceWorkerConfig = {
 		'/images/media/tatler-logo.png',
 		'/images/media/schools-guide-uk-logo.png',
 	],
-	dynamicResources: ['/api/about-content', '/api/performance-metrics'],
+	dynamicResources: ['/api/about-content'],
 	cacheExpiry: 24 * 60 * 60 * 1000,
 };
 export const registerAboutSectionSW = async (): Promise<boolean> => {

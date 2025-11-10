@@ -192,7 +192,7 @@ export async function GET(request: NextRequest) {
 	}
 }
 function analyzeSession(session: SessionSummary, events: any[]) {
-	const { duration, pageViews, eventCount } = session;
+	const { duration, pageViews } = session;
 	const analysis = {
 		quality: 'low' as 'low' | 'medium' | 'high',
 		engagementScore: 0,
@@ -338,11 +338,11 @@ async function updateEngagementScoring(session: SessionSummary, events: any[]) {
 	totalScore += durationBonus;
 	console.log('[Engagement Scoring] Session score:', Math.round(totalScore));
 }
-export async function OPTIONS(request: NextRequest) {
+export async function OPTIONS(_request: NextRequest) {
 	return new NextResponse(null, {
 		status: 200,
 		headers: {
-			'Access-Control-Allow-Origin': '*',
+			// CORS handled by middleware,
 			'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
 			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 		},

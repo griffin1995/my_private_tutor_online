@@ -1,18 +1,17 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { m } from 'framer-motion';
 import { PageLayout } from '@/components/layout/page-layout';
 import { PageHero } from '@/components/layout/page-hero';
 import { Section } from '@/components/layout/section';
 import { Card } from '@/components/ui/card';
 import { WaveSeparator } from '@/components/ui/wave-separator';
-import { GradientOverlay } from '@/components/ui/gradient-overlay';
 import {
 	Cookie,
 	Settings,
 	FileText,
-	CheckCircle,
 	AlertTriangle,
 	Eye,
 } from 'lucide-react';
@@ -523,12 +522,12 @@ export default function CookiePolicyPage() {
 								<h3>6.1 Personal Data in Cookies</h3>
 								<p>
 									Some cookies may contain personal data. This is processed in accordance
-									with our
-									<a
+									with our{' '}
+									<Link
 										href='/legal/privacy-policy'
 										className='text-blue-600 hover:underline'>
 										Privacy Policy
-									</a>
+									</Link>{' '}
 									and applicable data protection laws.
 								</p>
 

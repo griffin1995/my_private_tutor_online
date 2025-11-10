@@ -121,4 +121,3 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
 	);
 };
 export default ThreePillarsSection;
-export const MemoizedThreePillarsSection = React.memo(ThreePillarsSection);

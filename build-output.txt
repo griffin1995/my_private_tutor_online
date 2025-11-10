@@ -1,0 +1,125 @@
+
+> my-tutor-website@0.1.0 prebuild
+> npm run tokens:build
+
+
+> my-tutor-website@0.1.0 tokens:build
+> style-dictionary build --config src/design-tokens/config.json
+
+
+Token collisions detected (8):
+Use log.verbosity "verbose" or use CLI option --verbose for more details.
+Refer to: https://styledictionary.com/reference/logging/
+
+Unknown CSS Font Shorthand properties found for 6 tokens, CSS output for Font values will be missing some typography token properties as a result:
+Use log.verbosity "verbose" or use CLI option --verbose for more details.
+Refer to: https://styledictionary.com/reference/logging/
+
+
+json
+✔︎ src/design-tokens/generated/tokens.json
+
+Unknown CSS Font Shorthand properties found for 2 tokens, CSS output for Font values will be missing some typography token properties as a result:
+Use log.verbosity "verbose" or use CLI option --verbose for more details.
+Refer to: https://styledictionary.com/reference/logging/
+
+
+js
+✔︎ src/design-tokens/generated/tokens.js
+
+typescript
+✔︎ src/design-tokens/generated/tokens.ts
+✔︎ src/design-tokens/generated/types.d.ts
+
+tailwind
+✔︎ ./tailwind.config.tokens.js
+
+css
+✔︎ src/styles/tokens/variables.css
+
+> my-tutor-website@0.1.0 build
+> NODE_ENV=production next build
+
+   ▲ Next.js 15.5.6
+   - Environments: .env.local, .env.production
+   - Experiments (use with caution):
+     ✓ optimizeCss
+     ✓ scrollRestoration
+     ✓ webpackBuildWorker
+     · optimizePackageImports
+     ✓ webpackMemoryOptimizations
+
+   Creating an optimized production build ...
+   Using tsconfig file: ./tsconfig.production.json
+   Using tsconfig file: ./tsconfig.production.json
+   Using tsconfig file: ./tsconfig.production.json
+ ✓ Compiled successfully in 23.7s
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/18) ...
+   Generating static pages (4/18) 
+   Generating static pages (8/18) 
+   Generating static pages (13/18) 
+ ✓ Generating static pages (18/18)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                          Size  First Load JS  Revalidate  Expire
+┌ ƒ /                                             13.2 kB         272 kB
+├ ƒ /_not-found                                     232 B         151 kB
+├ ƒ /11-plus-bootcamps                            9.11 kB         268 kB
+├ ƒ /about                                        9.46 kB         335 kB
+├ ƒ /admin                                        2.78 kB         193 kB
+├ ƒ /admin/login                                  2.38 kB         186 kB
+├ ƒ /admin/monitoring                             3.24 kB         154 kB
+├ ƒ /api/admin/auth/login                           232 B         151 kB
+├ ƒ /api/admin/auth/logout                          232 B         151 kB
+├ ƒ /api/analytics/client-success                   232 B         151 kB
+├ ƒ /api/analytics/events                           232 B         151 kB
+├ ƒ /api/analytics/performance                      232 B         151 kB
+├ ƒ /api/analytics/testimonials                     232 B         151 kB
+├ ƒ /api/contact                                    232 B         151 kB
+├ ƒ /api/csrf-token                                 232 B         151 kB
+├ ƒ /api/errors                                     232 B         151 kB
+├ ƒ /api/faq/errors                                 232 B         151 kB
+├ ƒ /api/faq/suggestions                            232 B         151 kB
+├ ƒ /api/faq/suggestions/[id]/vote                  232 B         151 kB
+├ ƒ /api/newsletter                                 232 B         151 kB
+├ ƒ /api/performance/alerts                         232 B         151 kB
+├ ƒ /api/performance/metrics                        232 B         151 kB
+├ ƒ /blog                                          7.5 kB         270 kB
+├ ƒ /contact                                       5.7 kB         254 kB
+├ ƒ /dashboard                                      13 kB         481 kB
+├ ƒ /dashboard/faq-analytics                      1.42 kB         281 kB
+├ ƒ /dashboard/performance                        5.15 kB         193 kB
+├ ƒ /dashboard/testimonials-analytics             11.6 kB         422 kB
+├ ƒ /exam-papers                                  13.1 kB         261 kB
+├ ƒ /expert-educators                             5.32 kB         258 kB
+├ ƒ /faq                                          10.7 kB         259 kB
+├ ƒ /faq/[category]                                 232 B         151 kB
+├ ƒ /faq/[category]/[subcategory]                   232 B         151 kB
+├ ƒ /homeschooling                                5.88 kB         258 kB
+├ ƒ /how-it-works                                 9.57 kB         350 kB
+├ ƒ /legal/cookie-policy                          5.49 kB         258 kB
+├ ƒ /legal/privacy-policy                         5.72 kB         258 kB
+├ ƒ /legal/terms-of-service                       6.21 kB         259 kB
+├ ƒ /meet-our-tutors                              4.76 kB         268 kB
+├ ƒ /offline                                      7.58 kB         315 kB
+├ ○ /robots.txt                                     232 B         151 kB
+├ ƒ /services                                     18.8 kB         395 kB
+├ ○ /sitemap.xml                                    232 B         151 kB          1d      1y
+├ ƒ /subject-tuition                              16.3 kB         265 kB
+├ ƒ /testimonials                                 5.58 kB         352 kB
+└ ƒ /video-masterclasses                          9.21 kB         273 kB
++ First Load JS shared by all                      151 kB
+  ├ chunks/npm.next-2898f16f-26fa9d04fb258c8c.js  18.9 kB
+  ├ chunks/npm.next-4497f2ad-58507428fed7d7a9.js  13.5 kB
+  ├ chunks/npm.next-98a6762f-c5fcc656ad187358.js  16.8 kB
+  ├ chunks/npm.next-ff30e0d3-81609c2b94e76ae1.js  54.2 kB
+  └ other shared chunks (total)                   47.7 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

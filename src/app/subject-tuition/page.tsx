@@ -1,6 +1,4 @@
 'use client';
-
-import { EducationLevelTabContentSubjectTuition } from '@/components/education/EducationLevelTabContent-subject-tuition';
 import { PrimarySchoolContent } from '@/components/education/primary-school-content';
 import { SecondarySchoolContent } from '@/components/education/secondary-school-content';
 import { EntranceExamsContent } from '@/components/education/entrance-exams-content';
@@ -33,30 +31,9 @@ import {
 // HARDCODED DATA - ALL EDUCATION TABS CONTENT
 // ============================================================================
 
-// All testimonials for subject tuition tabs (hardcoded, not using CMS)
-const SUBJECT_TUITION_TESTIMONIALS: readonly TestimonialSubjectTuition[] = [
-	{
-		id: 'gibbon-7plus-2025',
-		quote:
-			"Our daughter was so shy and unsure at the start. Now she's thriving, and her 7+ offers speak for themselves. We couldn't be more grateful.",
-		author: 'Mr & Mrs Gibbon',
-		role: 'Parents of 7+ student',
-		rating: 5,
-		subject: '7+ Preparation',
-		location: 'Chelsea, London',
-		result: 'Multiple 7+ School Placements',
-	},
-] as const;
-
-// All stats for subject tuition tabs (hardcoded)
-const SUBJECT_TUITION_STATS: readonly Stat[] = [
-	{
-		id: 'primary-confidence-improvement',
-		value: '93%',
-		label: 'Confidence Improvement',
-		description: 'Of our parents reported noticing greater confidence in their child within just three months of starting tutoring.',
-	},
-] as const;
+// Education level content - Currently unused but retained for future feature implementation
+// Testimonials and statistics are available but not currently displayed
+// These data structures support comprehensive education-level specific content
 
 // Primary School Content
 const PRIMARY_SCHOOL_CONTENT: EducationLevelTabContentType = {
@@ -108,8 +85,8 @@ const PRIMARY_SCHOOL_CONTENT: EducationLevelTabContentType = {
 			icon: 'trending-up',
 		},
 	],
-	testimonialIds: ['gibbon-7plus-2025'],
-	statIds: ['primary-confidence-improvement'],
+	testimonialIds: [],
+	statIds: [],
 } as const;
 
 // Secondary School Content

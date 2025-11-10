@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as z from 'zod';
-import { incidentResponseOrchestrator } from '@/lib/incident-response';
-import { realTimeThreatAnalyzer } from '@/lib/security-analytics';
 const rateLimitMap = new Map<
 	string,
 	{
@@ -184,13 +182,6 @@ export async function securityMiddleware(
 			},
 		};
 		securityMonitor.logEvent(securityEvent);
-		const incidentResponse =
-			await incidentResponseOrchestrator.handleSecurityEvent(securityEvent);
-		if (incidentResponse.blocked) {
-			return new NextResponse('Access Denied - Security Violation', {
-				status: 403,
-			});
-		}
 		return new NextResponse('Too Many Requests', {
 			status: 429,
 			headers: {
@@ -200,7 +191,6 @@ export async function securityMiddleware(
 				'X-RateLimit-Limit': String(rateLimit),
 				'X-RateLimit-Remaining': String(rateLimitResult.remaining),
 				'X-RateLimit-Reset': new Date(rateLimitResult.resetTime).toISOString(),
-				'X-Incident-Id': incidentResponse.incidentId || '',
 			},
 		});
 	}
@@ -230,13 +220,6 @@ export async function securityMiddleware(
 					},
 				};
 				securityMonitor.logEvent(securityEvent);
-				const incidentResponse =
-					await incidentResponseOrchestrator.handleSecurityEvent(securityEvent);
-				if (incidentResponse.blocked) {
-					return new NextResponse('Access Denied - Security Violation', {
-						status: 403,
-					});
-				}
 				return new NextResponse('Invalid CSRF Token', {
 					status: 403,
 				});
@@ -273,29 +256,6 @@ export async function securityMiddleware(
 				referer: request.headers.get('referer'),
 			},
 		};
-		const threatAnalysis =
-			await realTimeThreatAnalyzer.processEvent(securityEvent);
-		if (threatAnalysis.action === 'block') {
-			securityMonitor.logEvent({
-				...securityEvent,
-				severity: 'critical',
-				type: 'sql_injection_attempt',
-			});
-			return new NextResponse('Access Denied - Malicious Input Detected', {
-				status: 403,
-				headers: {
-					'X-Security-Alert': 'true',
-					'X-Threat-Level': String(threatAnalysis.threatLevel),
-				},
-			});
-		} else if (threatAnalysis.action === 'challenge') {
-			console.warn('[Security Challenge Required]', {
-				clientIp,
-				path,
-				threatLevel: threatAnalysis.threatLevel,
-				details: threatAnalysis.details,
-			});
-		}
 	}
 	if (path.startsWith('/admin') || path.startsWith('/api/auth')) {
 		const auditEvent = {

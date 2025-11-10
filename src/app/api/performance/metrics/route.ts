@@ -307,7 +307,7 @@ function analyzeMetrics(
 }
 async function sendToVercelAnalytics(payload: PerformanceMetricsPayload) {
 	try {
-		if (process.env.NODE_ENV === 'production' && process.env.VERCEL_ENV) {
+		if (process.env.NODE_ENV === 'production' && process.env['VERCEL_ENV']) {
 			console.log('[Vercel Analytics] Metrics sent:', payload.sessionId);
 		}
 	} catch (error) {
@@ -316,12 +316,12 @@ async function sendToVercelAnalytics(payload: PerformanceMetricsPayload) {
 }
 async function sendToMonitoringService(payload: PerformanceMetricsPayload) {
 	try {
-		if (process.env.MONITORING_WEBHOOK_URL) {
-			await fetch(process.env.MONITORING_WEBHOOK_URL, {
+		if (process.env['MONITORING_WEBHOOK_URL']) {
+			await fetch(process.env['MONITORING_WEBHOOK_URL'], {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${process.env.MONITORING_API_KEY}`,
+					Authorization: `Bearer ${process.env['MONITORING_API_KEY']}`,
 				},
 				body: JSON.stringify({
 					service: 'my-private-tutor-online',
@@ -335,11 +335,11 @@ async function sendToMonitoringService(payload: PerformanceMetricsPayload) {
 		console.error('[Monitoring Service] Failed to send metrics:', error);
 	}
 }
-export async function OPTIONS(request: NextRequest) {
+export async function OPTIONS(_request: NextRequest) {
 	return new NextResponse(null, {
 		status: 200,
 		headers: {
-			'Access-Control-Allow-Origin': '*',
+			// CORS handled by middleware,
 			'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
 			'Access-Control-Allow-Headers': 'Content-Type',
 		},

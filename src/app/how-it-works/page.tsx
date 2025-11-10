@@ -15,6 +15,7 @@ import {
 	Users,
 } from 'lucide-react';
 import Image from 'next/image';
+import { useState } from 'react';
 import type { JSX } from 'react';
 
 // ============================================================================
@@ -33,6 +34,7 @@ interface HowItWorksStep {
 
 interface TutorTier {
 	readonly tier: string;
+	readonly subtitle: string;
 	readonly description: string | JSX.Element;
 	readonly bestFor: string;
 	readonly pricePoint: string;
@@ -121,6 +123,7 @@ const PROCESS_STEPS: readonly HowItWorksStep[] = [
 const TUTOR_TIERS: readonly TutorTier[] = [
 	{
 		tier: 'Tier 2',
+		subtitle: 'Qualified Teachers with a Results-Focused Approach',
 		description: (
 			<>
 				Our Tier Two tutors are qualified teachers with{' '}
@@ -137,7 +140,7 @@ const TUTOR_TIERS: readonly TutorTier[] = [
 				expert, targeted guidance to close those gaps.
 				<br />
 				<br />
-				With Tier Two tutors, you’re investing in seasoned educators who know what
+				With Tier Two tutors, you're investing in seasoned educators who know what
 				works from countless hours in the classroom—and who deliver consistent,
 				measurable progress. Whether your child is preparing for exams or entrance
 				assessments, Tier Two tutors combine deep expertise with a track record of
@@ -151,6 +154,7 @@ const TUTOR_TIERS: readonly TutorTier[] = [
 	},
 	{
 		tier: 'Tier 1',
+		subtitle: 'The Elite Choice for Exceptional Results',
 		description: (
 			<>
 				Our Tier One tutors are our &apos;super tutors&apos;—experienced educators
@@ -183,6 +187,7 @@ const TUTOR_TIERS: readonly TutorTier[] = [
 	},
 	{
 		tier: 'Tier 3',
+		subtitle: 'Relatable Role Models with Specialist Subject Knowledge',
 		description: (
 			<>
 				Our Tier Three tutors are subject specialists who combine strong academic
@@ -236,8 +241,16 @@ const PROMOTIONAL_PRICING = {
 const TUTOR_PROFILES_SECTION = {
 	title: 'Get to Know a Selection of Our Tutors',
 	subtitle: null,
-	description:
-		"Here's a curated cross-section of our team, capturing <strong>the calibre and diversity of educators across tiers.</strong> This is just a glimpse; <strong>our full team spans every age, subject and academic stage</strong>, from-preschool phonics to postgraduate Astrophysics.\n\nSimply <strong>complete our short enquiry form</strong>, and a member of our team will be in touch to start the conversation.",
+	description: (
+		<>
+			Here's a curated cross-section of our team, capturing{' '}
+			<strong>the calibre and diversity of educators across tiers.</strong> This is just a glimpse;{' '}
+			<strong>our full team spans every age, subject and academic stage</strong>, from preschool phonics to postgraduate Astrophysics.
+			<br />
+			<br />
+			Simply <strong>complete our short enquiry form</strong>, and a member of our team will be in touch to start the conversation.
+		</>
+	) as JSX.Element,
 	profiles: [
 		{
 			id: 'alma-maths-science',
@@ -626,6 +639,9 @@ export default function HowItWorksPage() {
 	const baseRate = BASE_RATE;
 	const promotionalPricing = PROMOTIONAL_PRICING;
 	const tutorProfilesSection = TUTOR_PROFILES_SECTION;
+
+	// State to track which tier cards are expanded
+	const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
 	return (
 		<>
 			<PageLayout
@@ -807,7 +823,7 @@ export default function HowItWorksPage() {
 					className='relative bg-white py-20 lg:py-32 overflow-hidden'>
 					<div className='absolute inset-0 opacity-[0.015] pointer-events-none' />
 
-					<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl'>
+					<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16'>
 						<div className='text-center mb-16 lg:mb-20'>
 							<h2 className='mb-8'>Choose Your Bespoke Tutoring Experience</h2>
 
@@ -819,7 +835,7 @@ export default function HowItWorksPage() {
 						</div>
 
 						<div className='relative'>
-							<div className='grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch'>
+							<div className='grid grid-cols-1 lg:grid-cols-3 gap-8 items-start'>
 								{tutorTiers && tutorTiers.length > 0 ? (
 									[...tutorTiers]
 										.sort((a: TutorTier, b: TutorTier) => {
@@ -834,6 +850,8 @@ export default function HowItWorksPage() {
 											);
 										})
 										.map((tier: TutorTier, index: number) => {
+											const isExpanded = expandedCards[index] || false;
+
 											return (
 												<m.div
 													key={index}
@@ -854,24 +872,88 @@ export default function HowItWorksPage() {
 														duration: 0.8,
 														delay: index * 0.1,
 													}}>
-													<Card className='bg-white border-2 border-neutral-300 hover:border-accent-500/40 shadow-lg hover:shadow-xl transition-all duration-300 h-full rounded-none'>
-														<CardHeader className='text-center pb-6 pt-8 px-6 lg:px-8'>
-															<h3 className='mb-4'>{tier.tier}</h3>
+													<m.div
+														animate={{
+															height: isExpanded ? 'auto' : undefined,
+														}}
+														transition={{
+															duration: 0.5,
+															ease: [0.25, 0.1, 0.25, 1],
+														}}
+														className={
+															isExpanded ? '' : 'aspect-square overflow-hidden'
+														}>
+														<Card className='bg-white border-2 border-neutral-300 hover:border-accent-500/40 shadow-lg hover:shadow-xl transition-all duration-300 h-full rounded-none flex flex-col relative'>
+															{!isExpanded ? (
+																<div className='flex flex-col h-full px-6 lg:px-8 py-8 text-center relative'>
+																	{/* Tier Name */}
+																	<h3 className='mb-4'>{tier.tier}</h3>
 
-															<Separator className='my-4 bg-neutral-300' />
+																	{/* Tier Subtitle */}
+																	<p className='mb-6 text-base'>{tier.subtitle}</p>
 
-															<div className='mb-2'>{tier.pricePoint}</div>
-														</CardHeader>
+																	{/* Grey Line Separator */}
+																	<Separator className='mb-6 bg-neutral-300 w-full' />
 
-														<CardContent className='text-center px-6 lg:px-8 pb-6 lg:pb-8'>
-															<p className='mb-4'>{tier.description}</p>
+																	{/* Hourly Rate */}
+																	<div className='mb-6 text-lg font-semibold'>
+																		{tier.pricePoint}
+																	</div>
 
-															<Separator className='my-4 bg-neutral-300' />
+																	{/* Description Preview with Gradient Overlay */}
+																	<div className='relative flex-1 mb-20'>
+																		<div className='text-left text-sm leading-relaxed line-clamp-6 space-y-4'>
+																			{typeof tier.description === 'string'
+																				? tier.description
+																				: tier.description}
+																		</div>
 
-															<p className='mb-3'>Best For:</p>
-															<p>{tier.bestFor}</p>
-														</CardContent>
-													</Card>
+																		{/* Gradient Overlay - covers bottom third only */}
+																		<div className='absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-b from-transparent via-white/95 to-white pointer-events-none' />
+																	</div>
+
+																	{/* Learn More Button - positioned at bottom of card */}
+																	<button
+																		onClick={() =>
+																			setExpandedCards((prev) => ({
+																				...prev,
+																				[index]: true,
+																			}))
+																		}
+																		className='absolute bottom-6 left-1/2 -translate-x-1/2 z-20 px-6 py-2 bg-primary-700 text-white hover:bg-primary-800 transition-colors duration-300 text-sm font-medium rounded'
+																		aria-label={`Learn more about ${tier.tier}`}>
+																		Learn More
+																	</button>
+																</div>
+															) : (
+																<>
+																	<CardHeader className='text-center pb-6 pt-8 px-6 lg:px-8 flex-shrink-0'>
+																		<h3 className='mb-4'>{tier.tier}</h3>
+
+																		{/* Tier Subtitle - preserved in expanded state */}
+																		<p className='mb-4 text-base'>{tier.subtitle}</p>
+
+																		<Separator className='my-4 bg-neutral-300' />
+
+																		<div className='mb-2'>{tier.pricePoint}</div>
+																	</CardHeader>
+
+																	<CardContent className='text-center px-6 lg:px-8 pb-4 lg:pb-4 flex-1 flex flex-col relative'>
+																		<div className='mb-4 flex-1 text-left'>
+																			<div className='text-sm leading-relaxed space-y-4'>{tier.description}</div>
+																		</div>
+
+																		<Separator className='my-4 bg-neutral-300' />
+
+																		<div className='text-center'>
+																			<p className='mb-3 font-semibold'>Best For:</p>
+																			<p>{tier.bestFor}</p>
+																		</div>
+																	</CardContent>
+																</>
+															)}
+														</Card>
+													</m.div>
 												</m.div>
 											);
 										})

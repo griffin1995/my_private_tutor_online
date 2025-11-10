@@ -1,18 +1,17 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { m } from 'framer-motion';
 import { PageLayout } from '@/components/layout/page-layout';
 import { PageHero } from '@/components/layout/page-hero';
 import { Section } from '@/components/layout/section';
 import { Card } from '@/components/ui/card';
 import { WaveSeparator } from '@/components/ui/wave-separator';
-import { GradientOverlay } from '@/components/ui/gradient-overlay';
 import {
 	Shield,
 	Lock,
 	FileText,
-	CheckCircle,
 	AlertTriangle,
 	Star,
 } from 'lucide-react';
@@ -490,12 +489,12 @@ export default function PrivacyPolicyPage() {
 
 								<p>
 									Our website uses cookies to improve your experience. Please see our
-									separate
-									<a
+									separate{' '}
+									<Link
 										href='/legal/cookie-policy'
 										className='text-blue-600 hover:underline'>
 										Cookie Policy
-									</a>
+									</Link>{' '}
 									for detailed information.
 								</p>
 

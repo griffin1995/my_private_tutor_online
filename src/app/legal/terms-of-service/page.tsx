@@ -1,18 +1,17 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { m } from 'framer-motion';
 import { PageLayout } from '@/components/layout/page-layout';
 import { PageHero } from '@/components/layout/page-hero';
 import { Section } from '@/components/layout/section';
 import { Card } from '@/components/ui/card';
 import { WaveSeparator } from '@/components/ui/wave-separator';
-import { GradientOverlay } from '@/components/ui/gradient-overlay';
 import {
 	Scale,
 	Star,
 	FileText,
-	CheckCircle,
 	AlertTriangle,
 	DollarSign,
 } from 'lucide-react';
@@ -497,11 +496,11 @@ export default function TermsOfServicePage() {
 								<p>
 									We take privacy extremely seriously, particularly given our prestigious
 									clientele. Please refer to our comprehensive{' '}
-									<a
+									<Link
 										href='/legal/privacy-policy'
 										className='text-blue-600 hover:underline'>
 										Privacy Policy
-									</a>
+									</Link>{' '}
 									for detailed information.
 								</p>
 

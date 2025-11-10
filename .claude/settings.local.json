@@ -279,7 +279,8 @@
       "Bash(then mv site_audit/ docs/archive/)",
       "Bash(else echo \"⚠️ site_audit/ not found\")",
       "Bash(while read f)",
-      "Bash(do mv $f docs/archive/)"
+      "Bash(do mv $f docs/archive/)",
+      "Bash(all-problems-report.txt)"
     ],
     "deny": []
   },

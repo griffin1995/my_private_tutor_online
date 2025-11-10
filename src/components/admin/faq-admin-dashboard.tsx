@@ -3,27 +3,24 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-	BarChart3,
-	TrendingUp,
 	MessageSquare,
 	ThumbsUp,
 	ThumbsDown,
 	Filter,
 	Download,
 	Eye,
-	EyeOff,
 	Trash2,
 	Flag,
 	Clock,
 	Users,
 	Search,
-	AlertTriangle,
 	CheckCircle,
 	XCircle,
 	Mail,
-	Calendar,
 } from 'lucide-react';
 import { z } from 'zod';
+
+// Admin filter schema - used as type only
 const adminFilterSchema = z.object({
 	dateRange: z.enum(['today', 'week', 'month', 'quarter', 'year', 'all']),
 	ratingFilter: z.enum(['all', 'helpful', 'not_helpful']),
@@ -114,6 +111,7 @@ export function FAQAdminDashboard() {
 			setLoading(false);
 		};
 		loadFeedbackData();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	const generateAnalytics = (data: FeedbackEntry[]): AnalyticsData => {
 		const now = new Date();

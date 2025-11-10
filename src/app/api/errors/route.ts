@@ -46,7 +46,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 			...errorReport,
 			timestamp: errorReport.timestamp || new Date().toISOString(),
 			environment: process.env.NODE_ENV || 'development',
-			version: process.env.npm_package_version || '1.0.0',
+			version: process.env['npm_package_version'] || '1.0.0',
 			additionalContext: {
 				...errorReport.additionalContext,
 				serverTimestamp: new Date().toISOString(),
@@ -232,7 +232,7 @@ ${report.componentStack || 'No component stack available'}`;
 	}
 }
 async function sendSlackAlert(message: string): Promise<void> {
-	const webhookUrl = process.env.SLACK_WEBHOOK_URL;
+	const webhookUrl = process.env['SLACK_WEBHOOK_URL'];
 	if (!webhookUrl) return;
 	try {
 		await fetch(webhookUrl, {
@@ -251,12 +251,12 @@ async function sendSlackAlert(message: string): Promise<void> {
 	}
 }
 async function sendEmailAlert(message: string): Promise<void> {
-	const alertEmails = process.env.ALERT_EMAILS?.split(',') || [];
+	const alertEmails = process.env['ALERT_EMAILS']?.split(',') || [];
 	if (alertEmails.length === 0) return;
 	console.log('Email alert would be sent to:', alertEmails, message);
 }
 async function sendWebhookAlert(message: string): Promise<void> {
-	const webhookUrl = process.env.ALERT_WEBHOOK_URL;
+	const webhookUrl = process.env['ALERT_WEBHOOK_URL'];
 	if (!webhookUrl) return;
 	try {
 		await fetch(webhookUrl, {
@@ -278,14 +278,14 @@ async function sendWebhookAlert(message: string): Promise<void> {
 function generateRequestId(): string {
 	return `req_${Date.now()}_${Math.random().toString(36).substring(2)}`;
 }
-export async function GET(request: NextRequest): Promise<NextResponse> {
+export async function GET(_request: NextRequest): Promise<NextResponse> {
 	try {
 		const errorStats = {
 			endpoint: '/api/errors',
 			status: 'operational',
 			timestamp: new Date().toISOString(),
 			description: 'Error reporting endpoint for React Error Boundaries',
-			version: process.env.npm_package_version || '1.0.0',
+			version: process.env['npm_package_version'] || '1.0.0',
 		};
 		return NextResponse.json(errorStats, {
 			status: 200,

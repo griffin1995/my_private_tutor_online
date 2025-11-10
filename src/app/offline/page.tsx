@@ -20,12 +20,7 @@ import {
 	ArrowLeft,
 	Database,
 } from 'lucide-react';
-interface OfflinePageProps {
-	showBackButton?: boolean;
-	showContactInfo?: boolean;
-	showCachedContent?: boolean;
-	customMessage?: string;
-}
+
 export default function OfflinePage() {
 	const showBackButton = true;
 	const showContactInfo = true;

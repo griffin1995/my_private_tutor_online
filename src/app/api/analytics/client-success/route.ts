@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { clientSuccessAnalytics } from '@/lib/analytics/client-success-analytics';
 import { businessAnalytics } from '@/lib/analytics/business-analytics';
-import { headers } from 'next/headers';
 export const dynamic = 'force-dynamic';
 export async function GET(request: NextRequest) {
 	const startTime = performance.now();
@@ -172,11 +171,11 @@ export async function POST(request: NextRequest) {
 		);
 	}
 }
-export async function OPTIONS(request: NextRequest) {
+export async function OPTIONS(_request: NextRequest) {
 	return new NextResponse(null, {
 		status: 200,
 		headers: {
-			'Access-Control-Allow-Origin': '*',
+			// CORS handled by middleware,
 			'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
 			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 			'Access-Control-Max-Age': '86400',

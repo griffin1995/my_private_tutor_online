@@ -18,7 +18,6 @@ const FooterNewsletterFormSkeleton = lazy(() =>
 );
 import { useFooterAccessibility } from '@/lib/hooks/use-footer-accessibility';
 import FooterSkipLink from './footer-components/footer-skip-link';
-import { useFooterPerformanceMarks } from './footer-components/footer-performance-monitor';
 interface FooterContent {
 	companyName: string;
 	description: string;
@@ -110,24 +109,12 @@ export function PageFooterClient({
 		enableAnnouncements: true,
 		enableKeyboardShortcuts: true,
 	});
-	const {
-		markFooterRenderStart,
-		markFooterRenderEnd,
-		markFooterInteractionReady,
-	} = useFooterPerformanceMarks();
-	useEffect(() => {
-		markFooterRenderStart();
-		return () => {
-			markFooterRenderEnd();
-		};
-	}, [markFooterRenderStart, markFooterRenderEnd]);
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			markFooterInteractionReady();
 			announce('Footer is ready for interaction');
 		}, 100);
 		return () => clearTimeout(timer);
-	}, [markFooterInteractionReady, announce]);
+	}, [announce]);
 	return (
 		<FooterErrorBoundary
 			enableRecovery={true}

@@ -47,6 +47,7 @@ export const FAQVersionDiffViewer: React.FC<FAQVersionDiffViewerProps> = ({
 	const store = useVersionControlStore();
 	useEffect(() => {
 		loadComparison();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [baseVersionId, targetVersionId, contextLines, highlightSyntax]);
 	const loadComparison = async () => {
 		if (!baseVersionId || !targetVersionId) {

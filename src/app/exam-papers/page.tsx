@@ -2287,24 +2287,26 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 			className='h-full'>
 			<Card className='flex flex-col pt-0 h-full rounded-none bg-white'>
 				<div className='aspect-16/9 w-full flex-shrink-0 border-b'>
-					<a
-						href='#'
-						className='block transition-opacity duration-200 hover:opacity-70'>
+					<button
+						type='button'
+						onClick={() => {/* Download handler */}}
+						className='block w-full h-full transition-opacity duration-200 hover:opacity-70'>
 						<img
 							src='/images/exam-papers/pdf-document.svg'
 							alt={resource.title}
 							className='h-full w-full object-contain object-center rounded-none p-12'
 						/>
-					</a>
+					</button>
 				</div>
 
 				<CardHeader className='space-y-0 px-4 pt-4 pb-2 flex-shrink-0 h-[5rem]'>
 					<h3 className='text-lg font-semibold leading-tight tracking-tight !text-slate-900 text-left md:text-xl'>
-						<a
-							href='#'
-							className='!text-slate-900 no-underline hover:underline hover:!text-slate-700'>
+						<button
+							type='button'
+							onClick={() => {/* Download handler */}}
+							className='!text-slate-900 no-underline hover:underline hover:!text-slate-700 text-left'>
 							{resource.title}
-						</a>
+						</button>
 					</h3>
 				</CardHeader>
 
@@ -2315,12 +2317,13 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 				</CardContent>
 
 				<CardFooter className='flex items-center justify-between px-4 pb-3 pt-2 flex-shrink-0'>
-					<a
-						href='#'
+					<button
+						type='button'
+						onClick={() => {/* Download handler */}}
 						className='!text-slate-900 inline-flex items-center text-sm font-medium no-underline hover:underline hover:!text-slate-700'>
 						Download
 						<ArrowRight className='ml-2 size-4' />
-					</a>
+					</button>
 					<span className='text-sm font-medium !text-slate-900'>
 						£{resource.price.toFixed(2)}
 					</span>

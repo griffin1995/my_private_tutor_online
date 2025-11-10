@@ -242,7 +242,7 @@ export const INSTITUTION_LOGOS = {
 		location: 'London, England',
 	},
 	eton: {
-		src: '/images/logos/eton-college-logo-new.webp',
+		src: '/images/logos/eton-college-logo.webp',
 		alt: 'Eton College logo',
 		width: 100,
 		height: 80,
@@ -281,7 +281,7 @@ export const INSTITUTION_LOGOS = {
 		location: 'Harrow on the Hill, London, England',
 	},
 	westminster: {
-		src: '/images/logos/westminster-school-logo-new.png',
+		src: '/images/logos/westminster-school-logo.png',
 		alt: 'Westminster School logo',
 		width: 100,
 		height: 80,
@@ -294,7 +294,7 @@ export const INSTITUTION_LOGOS = {
 		location: 'Westminster, London, England',
 	},
 	stPauls: {
-		src: '/images/logos/st-pauls-school-logo-new.jpg',
+		src: '/images/logos/st-pauls-school-logo.jpg',
 		alt: "St Paul's School logo",
 		width: 100,
 		height: 80,
@@ -1124,7 +1124,7 @@ export const STUDENT_IMAGES = {
 		loading: 'lazy' as const,
 	},
 	'entrance-exam-preparation': {
-		src: '/images/students/entrance-exam-preparation-new.jpg',
+		src: '/images/students/entrance-exam-preparation.jpg',
 		alt: 'Professional student preparing for entrance examinations with expert tutoring support',
 		width: 600,
 		height: 400,
@@ -1140,10 +1140,10 @@ export const STUDENT_IMAGES = {
 		loading: 'lazy' as const,
 	},
 	'primary-school-support': {
-		src: '/images/students/primary-school-support.jpg',
+		src: '/images/students/primary-school-support.webp',
 		alt: 'Young primary school student receiving personalised educational support and guidance',
-		width: 600,
-		height: 400,
+		width: 1920,
+		height: 1080,
 		title: 'Primary School Learning Support',
 		loading: 'lazy' as const,
 	},

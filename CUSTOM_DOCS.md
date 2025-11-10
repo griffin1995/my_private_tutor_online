@@ -2662,29 +2662,11 @@ for (const { path, name } of testPages) {
 
 #### Development-Time Accessibility Integration
 
-```typescript
-// CONTEXT7 SOURCE: @axe-core/react - Real-time accessibility feedback
-import { DevToolsProvider } from '@/providers/DevToolsProvider'
+Development-time accessibility monitoring previously provided by DevToolsProvider has been removed due to React 19 incompatibility with axe-core. Accessibility validation is now performed through:
 
-// Development-only accessibility monitoring
-export function DevToolsProvider({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      const initializeAxeReact = async () => {
-        const axe = await import('@axe-core/react')
-        const React = await import('react')
-        const ReactDOM = await import('react-dom')
-
-        // Initialize real-time accessibility checking
-        axe.default(React, ReactDOM, 1000)
-      }
-      initializeAxeReact()
-    }
-  }, [])
-
-  return <>{children}</>
-}
-```
+1. **Static Analysis**: ESLint with jsx-a11y rules during development
+2. **Build-Time Validation**: TypeScript and JSX accessibility checks
+3. **Testing Infrastructure**: Playwright-based accessibility testing for critical pages
 
 #### ESLint Accessibility Configuration
 
@@ -2762,10 +2744,10 @@ const testPages = [
 
 - **Layout Files Created**: 5 comprehensive metadata layout.tsx files
 - **Accessibility Tests**: `/tests/accessibility/playwright-accessibility.spec.ts`
-- **DevTools Provider**: `/src/providers/DevToolsProvider.tsx`
 - **ESLint Config**: `/eslint.config.mjs` with jsx-a11y rules
 - **Homepage Fixes**: Color contrast improvements in founder citation
 - **Dashboard Fixes**: Enhanced score badge contrast ratios
+- **DevTools Provider**: REMOVED - `/src/providers/DevToolsProvider.tsx` (React 19 incompatibility)
 
 #### Benefits Achieved
 

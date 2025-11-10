@@ -1,13 +1,11 @@
 import type { NextConfig } from 'next';
 import bundleAnalyzer from '@next/bundle-analyzer';
 import path from 'path';
-// CONTEXT7 SOURCE: /amannn/next-intl - Next.js plugin for i18n configuration
-// INTERNATIONALIZATION REASON: Official next-intl documentation requires plugin for request-specific i18n configuration
-import createNextIntlPlugin from 'next-intl/plugin';
+// REMOVED: next-intl plugin - Site is ENGLISH-ONLY, no internationalization needed
+// import createNextIntlPlugin from 'next-intl/plugin';
 
-// CONTEXT7 SOURCE: /amannn/next-intl - Plugin configuration for internationalization
-// I18N SETUP REASON: Official next-intl documentation requires plugin configuration for App Router
-const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+// REMOVED: next-intl configuration - Site is ENGLISH-ONLY
+// const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const withBundleAnalyzer = bundleAnalyzer({
 	enabled: process.env['ANALYZE'] === 'true',
@@ -333,8 +331,7 @@ const nextConfig: NextConfig = {
 	},
 };
 
-// CONTEXT7 SOURCE: /amannn/next-intl - Plugin composition for Next.js configuration
-// PLUGIN COMPOSITION REASON: Official next-intl documentation requires withNextIntl wrapper for i18n support
+// REMOVED: withNextIntl wrapper - Site is ENGLISH-ONLY, no internationalization needed
 // CONTEXT7 SOURCE: /vercel/next.js - Bundle analyzer for Phase 1 performance monitoring
 // PERFORMANCE MONITORING REASON: Track bundle size baseline for £157,000 optimization value
-export default withBundleAnalyzer(withNextIntl(nextConfig));
+export default withBundleAnalyzer(nextConfig);

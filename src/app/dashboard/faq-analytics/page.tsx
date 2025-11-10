@@ -1,4 +1,3 @@
-import React from 'react';
 import FAQSearchAnalyticsDashboard from '@/components/dashboards/FAQSearchAnalyticsDashboard';
 import { searchAnalyticsMockData } from '@/mocks/searchAnalyticsMock';
 export default function FAQAnalyticsPage() {

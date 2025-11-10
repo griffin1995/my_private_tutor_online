@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { newsletterSchema, safeValidateForm } from '@/lib/validation/schemas';
-import { headers } from 'next/headers';
 const RATE_LIMIT_REQUESTS = 5;
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000;
 const rateLimitMap = new Map<

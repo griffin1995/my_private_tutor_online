@@ -209,9 +209,6 @@ chromatic-build/
 # Sentry Config File
 .sentryclirc
 
-# Tina CMS
-.tina/__generated__/
-
 # Playwright
 test-results/
 playwright-report/
