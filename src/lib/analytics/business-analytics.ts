@@ -1,5 +1,5 @@
 import { webVitalsTracker } from '@/lib/performance/web-vitals';
-import { BUSINESS_METRICS_CONFIG } from '../../performance.config';
+import { BUSINESS_METRICS_CONFIG } from '../../../performance.config';
 export interface BusinessEvent {
 	event: string;
 	category: 'engagement' | 'conversion' | 'navigation' | 'error' | 'performance';
@@ -441,47 +441,3 @@ if (typeof window !== 'undefined') {
 		businessAnalytics.init();
 	}
 }
-export const analyticsUtils = {
-	trackFunnelStep: (step: string, funnel: string, value?: number) => {
-		return businessAnalytics.track('funnel_step', {
-			category: 'conversion',
-			action: 'funnel_step',
-			label: `${funnel}_${step}`,
-			value,
-			metadata: {
-				funnel,
-				step,
-			},
-		});
-	},
-	trackTiming: (
-		category: string,
-		variable: string,
-		time: number,
-		label?: string,
-	) => {
-		return businessAnalytics.track('timing', {
-			category: 'performance',
-			action: 'timing',
-			label: `${category}_${variable}${label ? `_${label}` : ''}`,
-			value: time,
-			metadata: {
-				category,
-				variable,
-				label,
-			},
-		});
-	},
-	trackEngagementScore: (score: number, factors: Record<string, number>) => {
-		return businessAnalytics.track('engagement_score', {
-			category: 'engagement',
-			action: 'engagement_score',
-			value: score,
-			metadata: {
-				score,
-				factors,
-			},
-		});
-	},
-};
-export default businessAnalytics;
