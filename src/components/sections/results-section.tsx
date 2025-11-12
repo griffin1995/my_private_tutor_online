@@ -29,7 +29,7 @@ export function ResultsSection({
 	return (
 		<section
 			ref={ref}
-			className={`py-20 lg:py-32 ${backgroundColor} ${className} relative overflow-hidden`}>
+			className={`py-16 sm:py-18 md:py-20 lg:py-32 ${backgroundColor} ${className} relative overflow-hidden`}>
 			{}
 			{}
 			{}
@@ -71,19 +71,19 @@ export function ResultsSection({
 					{}
 					{}
 					{}
-					<h2 className='text-4xl lg:text-5xl xl:text-6xl font-serif font-black text-transparent bg-gradient-to-r from-primary-950 via-primary-800 to-primary-950 bg-clip-text mb-6 leading-tight'>
+					<h2 className='text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-black text-transparent bg-gradient-to-r from-primary-950 via-primary-800 to-primary-950 bg-clip-text mb-6 leading-tight'>
 						{title}
 					</h2>
 
 					{}
-					<p className='text-lg lg:text-xl text-primary-700 font-medium max-w-4xl mx-auto mb-4'>
+					<p className='text-base sm:text-lg md:text-lg lg:text-xl text-primary-700 font-medium max-w-4xl mx-auto mb-4'>
 						Trusted by Royal Families • Featured in Tatler Address Book 2025
 					</p>
 
 					{}
 					{}
 					{showDescription && description && (
-						<p className='text-xl lg:text-2xl text-primary-600 max-w-4xl mx-auto leading-relaxed'>
+						<p className='text-lg sm:text-xl md:text-xl lg:text-2xl text-primary-600 max-w-4xl mx-auto leading-relaxed'>
 							{description}
 						</p>
 					)}
@@ -185,7 +185,7 @@ export function ResultsSection({
 								{}
 								{}
 								<div className='text-center relative z-10'>
-									<h3 className='text-4xl lg:text-5xl xl:text-6xl font-black text-primary-900 mb-3 tracking-tight tabular-nums'>
+									<h3 className='text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-900 mb-3 tracking-tight tabular-nums'>
 										{isInView && (
 											<CountUp
 												end={parseInt(stat.number.replace(/[^0-9]/g, '')) || 0}
