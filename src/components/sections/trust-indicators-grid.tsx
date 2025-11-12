@@ -286,7 +286,7 @@ export function TrustIndicatorsGrid({
 										{}
 										{}
 										{}
-										<div className='max-w-xl text-right p-8'>
+										<div className='max-w-xl text-right p-4 sm:p-6 md:p-8'>
 											{}
 											{}
 											{}
@@ -352,7 +352,7 @@ export function TrustIndicatorsGrid({
 										{}
 										{}
 										{}
-										<div className='max-w-xl text-left p-8'>
+										<div className='max-w-xl text-left p-4 sm:p-6 md:p-8'>
 											{}
 											{}
 											{}
