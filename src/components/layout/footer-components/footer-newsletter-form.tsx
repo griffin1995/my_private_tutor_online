@@ -215,7 +215,7 @@ const SubmitButton = React.memo<SubmitButtonProps>(
 				type='submit'
 				disabled={isSubmitting}
 				className={cn(
-					'px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold',
+					'px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold',
 					'disabled:opacity-50 disabled:cursor-not-allowed min-w-[120px]',
 					'animate-shimmer bg-[linear-gradient(110deg,#eab308,45%,#fbbf24,55%,#eab308)] bg-[length:200%_100%]',
 					'border border-accent-600 shadow-lg transition-all duration-200',

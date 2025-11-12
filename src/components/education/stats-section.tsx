@@ -61,10 +61,10 @@ export const StatsSection = ({
 	}
 
 	return (
-		<section className='py-8'>
+		<section className='py-6 sm:py-7 md:py-8'>
 			<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='flex flex-col gap-2'>
-					<h2 className='text-2xl font-bold md:text-4xl'>{heading}</h2>
+					<h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold'>{heading}</h2>
 					<p>{description}</p>
 					{link && (
 						<a
@@ -75,12 +75,12 @@ export const StatsSection = ({
 						</a>
 					)}
 				</div>
-				<div className='mt-14 grid gap-x-5 gap-y-8 md:grid-cols-2 lg:grid-cols-4'>
+				<div className='mt-14 grid gap-x-4 gap-y-6 sm:gap-x-5 sm:gap-y-7 md:gap-x-5 md:gap-y-8 md:grid-cols-2 lg:grid-cols-4'>
 					{paddedStats.map((stat) => (
 						<div
 							key={stat.id}
 							className='flex flex-col gap-5'>
-							<div className='text-6xl font-bold'>{stat.value}</div>
+							<div className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold'>{stat.value}</div>
 							<p>{stat.label}</p>
 						</div>
 					))}

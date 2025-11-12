@@ -98,7 +98,7 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
 
 							{/* Fixed height description container */}
 							<div className="h-32 sm:h-36 md:h-40 lg:h-52 xl:h-56 overflow-hidden mb-2 sm:mb-3 md:mb-3 lg:mb-4">
-								<p className='text-token-neutral-white text-[0.65rem] leading-snug sm:text-xs md:text-sm lg:text-lg xl:text-xl'>
+								<p className='text-token-neutral-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-snug'>
 									{pillar.description}
 								</p>
 							</div>
@@ -108,7 +108,7 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
 								{pillar.stats.map((stat, index) => (
 									<p
 										key={index}
-										className='text-token-neutral-white text-[0.6rem] leading-tight sm:text-[0.65rem] md:text-xs lg:text-base mb-0.5'>
+										className='text-token-neutral-white text-xs sm:text-xs md:text-sm lg:text-base leading-tight mb-0.5'>
 										• {stat}
 									</p>
 								))}

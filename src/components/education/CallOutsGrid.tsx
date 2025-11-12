@@ -46,7 +46,7 @@ export const CallOutsGrid = memo(function CallOutsGrid({
 
 	return (
 		<motion.div
-			className='grid grid-cols-1 gap-8 md:auto-rows-fr md:grid-cols-3'
+			className='grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 md:auto-rows-fr md:grid-cols-3'
 			initial='hidden'
 			animate='visible'
 			variants={{
@@ -80,7 +80,7 @@ export const CallOutsGrid = memo(function CallOutsGrid({
 					}}>
 					<Card className='group flex h-full flex-col justify-between p-0 transition-shadow hover:shadow-sm'>
 						<CardHeader className='flex-row items-center gap-4 space-y-0 px-8 pb-0 pt-8'>
-							<SquareAspectRatio className='w-12 flex-shrink-0 overflow-visible rounded-full bg-muted p-3'>
+							<SquareAspectRatio className='w-8 sm:w-10 md:w-12 flex-shrink-0 overflow-visible rounded-full bg-muted p-3'>
 								{getIcon(callOut.icon)}
 							</SquareAspectRatio>
 							<h3>{callOut.title}</h3>
