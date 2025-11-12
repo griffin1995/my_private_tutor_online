@@ -27,7 +27,7 @@ export const SubsectionCard = memo(function SubsectionCard({
 				duration: 0.5,
 				delay: index * 0.1,
 			}}
-			className='bg-white border-2 border-neutral-300 p-8 shadow-subtle-md hover:shadow-depth-md transition-all duration-300'>
+			className='bg-white border-2 border-neutral-300 p-4 sm:p-6 md:p-8 shadow-subtle-md hover:shadow-depth-md transition-all duration-300'>
 			{}
 			{}
 			{}

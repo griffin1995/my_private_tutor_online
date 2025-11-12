@@ -47,16 +47,16 @@ export interface ResultsDocumentationItem {
 	readonly priority: number;
 }
 const iconMap: Record<string, React.ReactElement> = {
-	TrendingUp: <TrendingUp className='w-8 h-8' />,
-	Award: <Award className='w-8 h-8' />,
-	Crown: <Crown className='w-8 h-8' />,
-	Target: <Target className='w-8 h-8' />,
-	BookOpen: <BookOpen className='w-8 h-8' />,
-	Heart: <Heart className='w-8 h-8' />,
-	BarChart3: <BarChart3 className='w-8 h-8' />,
-	Users: <Users className='w-8 h-8' />,
-	Shield: <Shield className='w-8 h-8' />,
-	Star: <Star className='w-8 h-8' />,
+	TrendingUp: <TrendingUp className='w-6 sm:w-7 md:w-8' />,
+	Award: <Award className='w-6 sm:w-7 md:w-8' />,
+	Crown: <Crown className='w-6 sm:w-7 md:w-8' />,
+	Target: <Target className='w-6 sm:w-7 md:w-8' />,
+	BookOpen: <BookOpen className='w-6 sm:w-7 md:w-8' />,
+	Heart: <Heart className='w-6 sm:w-7 md:w-8' />,
+	BarChart3: <BarChart3 className='w-6 sm:w-7 md:w-8' />,
+	Users: <Users className='w-6 sm:w-7 md:w-8' />,
+	Shield: <Shield className='w-6 sm:w-7 md:w-8' />,
+	Star: <Star className='w-6 sm:w-7 md:w-8' />,
 };
 const getVerificationBadge = (
 	level: ResultsDocumentationItem['verificationLevel'],

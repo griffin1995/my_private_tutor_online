@@ -64,7 +64,7 @@ export const FooterNavigationHardcoded: React.FC<FooterNavigationHardcodedProps>
   className = ''
 }) => {
   return (
-    <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 items-stretch h-full ${className}`}>
+    <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 items-stretch h-full ${className}`}>
       {FOOTER_SECTIONS.map((section, index) => (
         <FooterSection
           key={section.title}
