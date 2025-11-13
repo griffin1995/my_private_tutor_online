@@ -29,6 +29,7 @@ export interface VideoMasterclass {
 	readonly backgroundImage: string;
 	readonly isPaid: boolean;
 	readonly purchaseLink?: string;
+	readonly duration: number;
 }
 
 // CONTEXT7 SOURCE: /sharp/sharp - Professional image processing with darkened variants for enhanced readability
@@ -69,7 +70,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		thumbnailImage: '/videos/unlocking-academic-success-thumbnail.png',
 		// CONTEXT7 SOURCE: /sharp/sharp - Academic achievement background for success-focused content
 		// REVISION REASON: Updated background to unlocking-academic-success-background.jpg for content alignment with user specifications
-		backgroundImage: '/images/unlocking-academic-success-background.jpg',
+		backgroundImage: '/images/masterclass-backgrounds/unlocking-academic-success-background.jpg',
 		isPaid: false,
 	},
 	{
@@ -88,8 +89,8 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		// BACKUP SYSTEM: Original images preserved in /originals/ subdirectory before Sharp processing
 		thumbnailImage: '/images/masterclass-thumbnails/ucas-guide.png',
 		// CONTEXT7 SOURCE: /sharp/sharp - Cambridge university background for academic prestige
-		// REVISION REASON: Updated background to ucas-part-1-mortar-board-background.jpg for UCAS part 1 content alignment
-		backgroundImage: '/images/ucas-part-1-mortar-board-background.jpg',
+		// REVISION REASON: Updated background to ucas-guide-background.jpg for UCAS part 1 content alignment
+		backgroundImage: '/images/masterclass-backgrounds/ucas-guide-background.jpg',
 		isPaid: true,
 		// CONTEXT7 SOURCE: /stripe-samples/checkout-one-time-payments - Production Stripe checkout URL for UCAS Guide part 1
 		// REVISION REASON: Updated to production Stripe link as specified by user requirements
@@ -109,10 +110,10 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
 		// CONTEXT7 SOURCE: /microsoft/typescript - Object property assignment for thumbnail image path updates
 		// PROPERTY UPDATE REASON: Official TypeScript documentation Section 5.2 for direct property assignment patterns
-		thumbnailImage: '/images/video-thumbnails/top-10-tips-thumbnail.png',
+		thumbnailImage: '/images/masterclass-thumbnails/top-10-tips.png',
 		// CONTEXT7 SOURCE: /sharp/sharp - Online tutoring background for personal statement guidance
 		// REVISION REASON: Updated background to ucas-part-2-library-background.jpg for personal statements content alignment
-		backgroundImage: '/images/ucas-part-2-library-background.jpg',
+		backgroundImage: '/images/masterclass-backgrounds/ucas-part-2-library-background.jpg',
 		isPaid: true,
 		// CONTEXT7 SOURCE: /stripe-samples/checkout-one-time-payments - Production Stripe checkout URL for Personal Statements Guide
 		// REVISION REASON: Updated to production Stripe link as specified by user requirements
@@ -129,8 +130,8 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		thumbnailImage:
 			'/images/masterclass-thumbnails/british-literary-classics.png',
 		// CONTEXT7 SOURCE: /sharp/sharp - Adult learning background for literary classics content
-		// REVISION REASON: Updated background to british-classics-child-background.jpg for proper image path structure
-		backgroundImage: '/images/british-classics-child-background.jpg',
+		// REVISION REASON: Updated background to british-literature-background.jpg for proper image path structure
+		backgroundImage: '/images/masterclass-backgrounds/british-literature-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a',
 	},
@@ -145,7 +146,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		thumbnailImage: '/images/masterclass-thumbnails/british-etiquette.jpg',
 		// CONTEXT7 SOURCE: /sharp/sharp - Comfortable educational environment for etiquette training
 		// REVISION REASON: Updated background to british-etiquette-background.jpg for proper image path structure
-		backgroundImage: '/images/british-etiquette-background.jpg',
+		backgroundImage: '/images/masterclass-backgrounds/british-etiquette-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b',
 	},
