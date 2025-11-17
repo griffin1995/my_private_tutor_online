@@ -1,0 +1,84 @@
+name: Sync CMS Data from Payload
+
+on:
+  # Triggered by webhook from Payload CMS
+  repository_dispatch:
+    types: [cms-content-updated]
+
+  # Manual trigger for testing
+  workflow_dispatch:
+
+  # Scheduled daily sync as fallback
+  schedule:
+    - cron: '0 2 * * *'  # 2 AM UTC daily
+
+jobs:
+  sync-cms-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit
+
+      - name: Fetch CMS data from Payload
+        env:
+          PAYLOAD_API_URL: ${{ secrets.PAYLOAD_API_URL }}
+          PAYLOAD_API_KEY: ${{ secrets.PAYLOAD_API_KEY }}
+        run: node scripts/fetch-cms-data.mjs
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code content/*.json || echo "changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit updated content
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add content/*.json
+          git commit -m "chore: sync CMS data from Payload [skip ci]
+
+          Triggered by: ${{ github.event_name }}
+          Workflow run: ${{ github.run_number }}
+          Timestamp: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+
+      - name: Push changes
+        if: steps.git-check.outputs.changes == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Trigger Vercel deployment
+        if: steps.git-check.outputs.changes == 'true'
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          curl -X POST "$VERCEL_DEPLOY_HOOK"
+          echo "✅ Vercel deployment triggered"
+
+      - name: No changes detected
+        if: steps.git-check.outputs.changes != 'true'
+        run: echo "ℹ️ No changes detected in CMS data - skipping deployment"
+
+      - name: Sync summary
+        if: always()
+        run: |
+          if [ -f content/.sync-metadata.json ]; then
+            echo "📊 Sync Metadata:"
+            cat content/.sync-metadata.json | jq '.'
+          fi

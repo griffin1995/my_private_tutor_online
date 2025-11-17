@@ -10,203 +10,11 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
+import { blogCategories, blogPosts } from '@/data/blog-posts';
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 import Masonry from 'react-masonry-css';
-
-// Blog categories
-const categories = [
-	{ id: 'all', name: 'All Categories' },
-	{ id: '11-plus-exams', name: '11+ Exams' },
-	{ id: 'a-levels', name: 'A-Levels' },
-	{ id: 'child-wellbeing', name: 'Child Wellbeing' },
-	{ id: 'common-entrance', name: 'Common Entrance' },
-	{ id: 'exam-preparation', name: 'Exam Preparation' },
-	{ id: 'gcses', name: 'GCSEs' },
-	{ id: 'home-schooling', name: 'Home Schooling' },
-	{ id: 'nursery-pre-prep', name: 'Nursery and Pre-Prep' },
-	{ id: 'oxbridge', name: 'Oxbridge' },
-	{ id: 'primary', name: 'Primary' },
-	{ id: 'school-applications', name: 'School Applications' },
-	{ id: 'secondary', name: 'Secondary' },
-	{ id: 'summer-learning', name: 'Summer Learning' },
-	{ id: 'university-applications', name: 'University Applications' },
-];
-
-// Mock blog posts
-const blogPosts = [
-	{
-		id: 1,
-		title: "Preparing for Westminster School's New 4+ Entry: A Parent's Guide",
-		category: 'nursery-pre-prep',
-		image: '/images/students/adult-student-with-teacher.jpg',
-		date: '2025-03-15',
-	},
-	{
-		id: 2,
-		title: 'Supporting Children with SEND in School: How We Can Help',
-		category: 'child-wellbeing',
-		image: '/images/students/entrance-exam-preparation-alt.jpg',
-		date: '2025-03-14',
-	},
-	{
-		id: 3,
-		title: 'How to Write an Effective Personal Essay',
-		category: 'university-applications',
-		image: '/images/students/entrance-exam-preparation.jpg',
-		date: '2025-03-13',
-	},
-	{
-		id: 4,
-		title:
-			'Relocating to London? Discover Premier Areas for Prestigious Schools and Family Life',
-		category: 'school-applications',
-		image: '/images/students/entrance-exam-preparation.png',
-		date: '2025-03-12',
-	},
-	{
-		id: 5,
-		title: 'Dyslexia Assessment: What Is It and How Can It Help?',
-		category: 'child-wellbeing',
-		image: '/images/students/online-homeschooling.jpg',
-		date: '2025-03-11',
-	},
-	{
-		id: 6,
-		title: 'UCAS Personal Statement Changes in 2025: What Parents Need to Know',
-		category: 'university-applications',
-		image: '/images/students/online-homeschooling.webp',
-		date: '2025-03-10',
-	},
-	{
-		id: 7,
-		title: 'How to Maximise Your UCAS Points',
-		category: 'a-levels',
-		image: '/images/students/primary-school-support.jpg',
-		date: '2025-03-09',
-	},
-	{
-		id: 8,
-		title: 'How to Help Your Child Navigate Transitions',
-		category: 'child-wellbeing',
-		image: '/images/students/primary-school-support.webp',
-		date: '2025-03-08',
-	},
-	{
-		id: 9,
-		title: 'Local Authority Funded Home Schooling for Students with EHCPs',
-		category: 'home-schooling',
-		image: '/images/students/secondary-school-support.jpg',
-		date: '2025-03-07',
-	},
-	{
-		id: 10,
-		title: 'Preparing for the ISEB Pre-Tests',
-		category: '11-plus-exams',
-		image: '/images/students/secondary-school-support.webp',
-		date: '2025-03-06',
-	},
-	{
-		id: 11,
-		title:
-			'Calming the Nervous System: Strategies for Students with ADHD Coping with Exam Stress',
-		category: 'exam-preparation',
-		image: '/images/students/sen-support.jpg',
-		date: '2025-03-05',
-	},
-	{
-		id: 12,
-		title: 'What to Expect from an 11+ Interview',
-		category: '11-plus-exams',
-		image: '/images/students/student-child.jpg',
-		date: '2025-03-04',
-	},
-	{
-		id: 13,
-		title: 'GCSE Revision Strategies That Actually Work',
-		category: 'gcses',
-		image: '/images/students/student-inside-holding-pencil.jpg',
-		date: '2025-03-03',
-	},
-	{
-		id: 14,
-		title: 'Common Entrance Exams Explained: Everything You Need to Know',
-		category: 'common-entrance',
-		image: '/images/students/student-learning-piano.jpg',
-		date: '2025-03-02',
-	},
-	{
-		id: 15,
-		title: 'Building Resilience in Children: Essential Life Skills',
-		category: 'child-wellbeing',
-		image: '/images/students/student-on-laptop-teacher-on-screen.jpg',
-		date: '2025-03-01',
-	},
-	{
-		id: 16,
-		title: 'Primary School Mathematics: Making Numbers Fun',
-		category: 'primary',
-		image: '/images/students/student-oxbridge.jpg',
-		date: '2025-02-28',
-	},
-	{
-		id: 17,
-		title: 'Secondary School Success: Essential Study Skills',
-		category: 'secondary',
-		image: '/images/blog/placeholder.jpg',
-		date: '2025-02-27',
-	},
-	{
-		id: 18,
-		title: 'Oxbridge Applications: Standing Out in a Competitive Field',
-		category: 'oxbridge',
-		image: '/images/blog/placeholder.jpg',
-		date: '2025-02-26',
-	},
-	{
-		id: 19,
-		title: 'Summer Learning Activities: Preventing the Summer Slide',
-		category: 'summer-learning',
-		image: '/images/blog/placeholder.jpg',
-		date: '2025-02-25',
-	},
-	{
-		id: 20,
-		title: 'Independent School Applications: Navigating the Process',
-		category: 'school-applications',
-		image: '/images/blog/placeholder.jpg',
-		date: '2025-02-24',
-	},
-	{
-		id: 21,
-		title: 'A-Level Subject Combinations: Maximising University Success',
-		category: 'a-levels',
-		image: '/images/blog/placeholder.jpg',
-		date: '2025-02-23',
-	},
-	{
-		id: 22,
-		title: "Early Years Development: Supporting Your Child's Foundation",
-		category: 'nursery-pre-prep',
-		image: '/images/blog/placeholder.jpg',
-		date: '2025-02-22',
-	},
-	{
-		id: 23,
-		title: '13+ Scholarship Exams: How to Stand Out',
-		category: 'common-entrance',
-		image: '/images/blog/placeholder.jpg',
-		date: '2025-02-21',
-	},
-	{
-		id: 24,
-		title: 'Managing Exam Anxiety: Practical Strategies',
-		category: 'exam-preparation',
-		image: '/images/blog/placeholder.jpg',
-		date: '2025-02-20',
-	},
-];
 
 // Blog Post Card Component with image overlay - dynamic height based on image
 function BlogPostCard({ post }: { post: (typeof blogPosts)[0] }) {
@@ -324,7 +132,7 @@ export default function BlogPage() {
 		<>
 			{/* Hero Section */}
 			<SimpleHero
-				backgroundImage='/images/pexels-polina-tankilevitch-6929349.jpg'
+				backgroundImage='/images/blog/education-insights-header.jpg'
 				h1={
 					<span className='text-white'>
 						Education <span className='text-accent-600'>Insights</span>
@@ -357,7 +165,7 @@ export default function BlogPage() {
 									<SelectValue placeholder='Select a category' />
 								</SelectTrigger>
 								<SelectContent>
-									{categories.map((category) => (
+									{blogCategories.map((category) => (
 										<SelectItem
 											key={category.id}
 											value={category.id}>

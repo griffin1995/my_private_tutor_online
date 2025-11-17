@@ -1,5 +1,6 @@
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
+import { TierDescriptions } from '@/components/sections/tier-descriptions';
 import { TestimonialsVideoSection } from '@/components/sections/testimonials-video-section';
 import { TutorsSection } from '@/components/tutors/tutors-section';
 import { getTutorsHeroImage } from '@/lib/cms/cms-images';
@@ -1239,6 +1240,12 @@ export default function MeetOurTutorsPage() {
 					data={tutorProfilesSection}
 					showFeaturedOnly={false}
 					showViewAllButton={false}
+				/>
+
+				<TierDescriptions
+					title='Understanding Our Tutor Tiers'
+					subtitle="Clear transparency about tutor qualifications and pricing to help you choose the right level of expertise for your child's needs."
+					showExpandable={false}
 				/>
 
 				<TestimonialsVideoSection

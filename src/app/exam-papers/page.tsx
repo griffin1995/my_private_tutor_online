@@ -2437,7 +2437,7 @@ export default function ResourcesPage() {
 		<>
 			{/* Hero Section */}
 			<SimpleHero
-				backgroundImage='/images/hero/exam-papers.jpg'
+				backgroundImage='/images/hero/exam-papers-header-new.jpg'
 				h1={
 					<span className='text-white'>
 						Premium <span className='text-accent-400'>Exam Papers</span>

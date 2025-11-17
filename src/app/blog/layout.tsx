@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 			'Expert educational insights and tutoring tips from My Private Tutor Online. Academic guidance for exam preparation, study techniques, and educational excellence.',
 		images: [
 			{
-				url: '/images/pexels-polina-tankilevitch-6929349.jpg',
+				url: '/images/blog/education-insights-header.jpg',
 				width: 800,
 				height: 600,
 				alt: 'Educational Insights Blog - Expert Tutoring Tips and Academic Guidance',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 		title: 'Educational Insights Blog | Expert Tutoring Tips & Guidance',
 		description:
 			'Expert educational insights and tutoring tips for exam preparation, study techniques, and academic excellence.',
-		images: ['/images/pexels-polina-tankilevitch-6929349.jpg'],
+		images: ['/images/blog/education-insights-header.jpg'],
 	},
 	alternates: {
 		canonical: 'https://myprivatetutoronline.com/blog',

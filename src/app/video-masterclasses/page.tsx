@@ -21,6 +21,7 @@ interface VideoMasterclass {
 	readonly backgroundImage: string;
 	readonly isPaid: boolean;
 	readonly purchaseLink?: string;
+	readonly duration: number;
 }
 
 // All video masterclasses used on this page (6 videos in specific order)
@@ -40,6 +41,7 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 		thumbnailImage: '/videos/unlocking-academic-success-thumbnail.png',
 		backgroundImage: '/images/unlocking-academic-success-background.jpg',
 		isPaid: false,
+		duration: 25,
 	},
 	{
 		id: 'ucasSummit2024',
@@ -51,6 +53,7 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 		backgroundImage:
 			'/videos/bridging-gaps-building-confidence-background-image-video-masterclasses-page.png',
 		isPaid: false,
+		duration: 30,
 	},
 	{
 		id: 'elizabethsUcasGuide',
@@ -65,9 +68,10 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 		],
 		youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
 		thumbnailImage: '/images/masterclass-thumbnails/ucas-guide.png',
-		backgroundImage: '/images/ucas-part-1-mortar-board-background.jpg',
+		backgroundImage: '/images/masterclass-backgrounds/ucas-guide-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/7sY6oGdj767tbtO1Zd38408',
+		duration: 90,
 	},
 	{
 		id: 'personalStatementsGuide',
@@ -85,6 +89,7 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 		backgroundImage: '/images/ucas-part-2-library-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409',
+		duration: 70,
 	},
 	{
 		id: 'britishEtiquette',
@@ -96,6 +101,7 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 		backgroundImage: '/images/british-etiquette-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b',
+		duration: 60,
 	},
 	{
 		id: 'britishLiteraryClassics',
@@ -105,9 +111,10 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 		youtubeUrl: '',
 		thumbnailImage:
 			'/images/masterclass-thumbnails/british-literary-classics.png',
-		backgroundImage: '/images/british-classics-child-background.jpg',
+		backgroundImage: '/images/masterclass-backgrounds/british-literature-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a',
+		duration: 60,
 	},
 ] as const;
 

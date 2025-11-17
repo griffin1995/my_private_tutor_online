@@ -1,0 +1,131 @@
+TESTIMONIALS PAGE STRUCTURE - NOVEMBER 13, 2025
+================================================
+
+┌─────────────────────────────────────────────────────────────┐
+│  SIMPLE HERO                                                 │
+│  Background: /images/hero/testimonials.jpg                   │
+│  H1: "Student & Parent Testimonials"                         │
+│  H2: "Read testimonials from families..."                    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  MISSION QUOTE SECTION                                       │
+│  bg-primary-50 | py-8 md:py-12                              │
+│  Elizabeth Burrows quote about exceptional tuition          │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  VIDEO TESTIMONIALS SECTION                                  │
+│  <TestimonialsSection />                                     │
+│  - Parent testimonials video compilation 2025               │
+│  - Student testimonials video compilation 2025              │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  PHASE 1: SINGLE ROW SCROLLING TESTIMONIALS ✨ NEW!         │
+│  <ScrollingTestimonials variant='single' />                 │
+│  bg-neutral-50 | py-8 sm:py-10 md:py-12                    │
+│                                                              │
+│  ════════════════════════════════════════════════════════   │
+│  ← [Card 1] [Card 2] [Card 3] [Card 4] [Card 5] ... →      │
+│  ════════════════════════════════════════════════════════   │
+│                                                              │
+│  - 10 featured testimonials with parent photos               │
+│  - Scrolling left-to-right (60s duration)                   │
+│  - Gradient fade edges for seamless appearance              │
+│  - Responsive cards: 280px → 450px                          │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  SECTION HEADING                                             │
+│  H2: "More Student Success Stories"                          │
+│  P: "Real stories from families..."                          │
+│  bg-neutral-50 | pt-12 pb-6 (responsive)                   │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│  PHASE 2: MULTIPLE ROW SCROLLING ✨ REPLACES STATIC GRID    │
+│  <ScrollingTestimonials variant='multiple' />               │
+│  bg-neutral-50 | py-12 sm:py-14 md:py-16                   │
+│                                                              │
+│  ROW 1 - Medium speed, left-to-right (50s)                  │
+│  ════════════════════════════════════════════════════════   │
+│  ← [Card 1] [Card 2] [Card 3] [Card 4] ... →               │
+│  ════════════════════════════════════════════════════════   │
+│                                                              │
+│  ROW 2 - Slower speed, RIGHT-TO-LEFT (60s) ↓                │
+│  ════════════════════════════════════════════════════════   │
+│  → [Card 5] [Card 6] [Card 7] ... ←                         │
+│  ════════════════════════════════════════════════════════   │
+│                                                              │
+│  ROW 3 - Medium-fast speed, left-to-right (55s)             │
+│  ════════════════════════════════════════════════════════   │
+│  ← [Card 8] [Card 9] [Card 10] ... →                        │
+│  ════════════════════════════════════════════════════════   │
+│                                                              │
+│  - Replaces old 3-column static grid                         │
+│  - Different speeds create visual interest                   │
+│  - Alternating directions add dynamism                       │
+│  - Space between rows: 6px mobile → 10px desktop            │
+└─────────────────────────────────────────────────────────────┘
+
+TESTIMONIAL CARD STRUCTURE
+===========================
+
+┌───────────────────────────────────────┐
+│  ┌─────┐  Name             [Logo]     │
+│  │Photo│  Role                         │
+│  └─────┘                               │
+│                                        │
+│  ★★★★★                                 │
+│                                        │
+│  "Testimonial quote text here with    │
+│   multiple lines if needed..."         │
+│                                        │
+│  ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄  │
+│  [Subject Badge]                       │
+└───────────────────────────────────────┘
+
+CARD SPECIFICATIONS:
+- Border: 2px primary-100
+- Radius: rounded-2xl
+- Shadow: shadow-lg (hover: shadow-xl)
+- Background: white
+- Padding: 4-6 responsive
+- Width: 280px → 450px responsive
+
+PARENT PHOTOS FEATURED:
+1. Mr. DeCourtenay, Holland Park
+2. Mr & Mrs Hawthorne, Kensington
+3. Ms Adebayo, New York
+4. Mr & Mrs Meritt-Jones, Hampstead
+5. Mr Richardson, Highgate
+6. Mr Gupta, Bath
+7. Aryan (Oxford undergraduate)
+8. Mr & Mrs Li (Hong Kong)
+9. Mr. Telson, Dubai, UAE
+10. Mr and Mrs Rosenthal, Washington DC
+
+KEY FEATURES:
+✅ Infinite seamless scrolling (no jumps)
+✅ GPU-accelerated animations (60fps)
+✅ Gradient fade edges (left/right)
+✅ ResizeObserver for dynamic copies
+✅ Mobile-first responsive design
+✅ Parent photos prominently displayed
+✅ Design system color compliance
+✅ British English throughout
+
+PERFORMANCE:
+- Build: 24.6s compile
+- Bundle: 267 kB First Load JS
+- Animation: 60fps smooth
+- Memory: Auto-cleanup ResizeObserver
+
+CLIENT SATISFACTION:
+✅ Carousel work preserved
+✅ Added under video testimonials
+✅ Replaced static grid
+✅ Parent photos included
+✅ Royal client quality maintained
+
