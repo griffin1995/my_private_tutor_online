@@ -2,7 +2,7 @@
 
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button-variants';
 import {
 	Select,
 	SelectContent,
@@ -10,44 +10,74 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { blogCategories, blogPosts } from '@/data/blog-posts';
 import { m } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import Masonry from 'react-masonry-css';
+import { blogCategories, blogPosts } from '../../data/blog-posts';
 
-// Blog Post Card Component with image overlay - dynamic height based on image
+// Blog Post Card Component - Clean card layout
 function BlogPostCard({ post }: { post: (typeof blogPosts)[0] }) {
+	const category = blogCategories.find((cat) => cat.id === post.category);
+
 	return (
-		<m.article
-			initial={{ opacity: 0, y: 20 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			viewport={{ once: true, margin: '-50px' }}
-			transition={{ duration: 0.4 }}
-			className='group cursor-pointer overflow-hidden border border-neutral-200 hover:shadow-lg transition-shadow mb-6'>
-			<div className='relative overflow-hidden bg-neutral-800'>
-				{/* Background Image - natural aspect ratio determines height */}
-				<Image
-					src={post.image}
-					alt={post.title}
-					width={800}
-					height={600}
-					className='w-full h-auto object-cover'
-					sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
-				/>
-
-				{/* Dark Overlay */}
-				<div className='absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors' />
-
-				{/* Brand Gold Bottom Gradient - Dynamic height (50% of card) */}
-				<div className='absolute bottom-0 left-0 right-0 h-[50%] bg-gradient-to-t from-accent-600/80 via-accent-600/30 to-transparent' />
-
-				{/* Title Overlay */}
-				<div className='absolute inset-0 flex items-end justify-center p-4 sm:p-6 lg:p-8'>
-					<h3 className='typography-h3 text-white text-center'>{post.title}</h3>
+		<Link href={`/blog/${post.slug}`}>
+			<m.article
+				initial={{ opacity: 0, y: 20 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true, margin: '-50px' }}
+				transition={{ duration: 0.4 }}
+				className='group cursor-pointer overflow-hidden border border-neutral-200 hover:shadow-lg transition-all duration-300 mb-6 bg-white rounded-lg'>
+				{/* Featured Image */}
+				<div className='aspect-video overflow-hidden bg-neutral-100'>
+					<Image
+						src={post.image}
+						alt={post.title}
+						width={600}
+						height={400}
+						className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+						sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+					/>
 				</div>
-			</div>
-		</m.article>
+
+				{/* Card Content */}
+				<div className='p-6'>
+					{/* Category Badge */}
+					<div className='mb-3'>
+						<span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-100 text-accent-800'>
+							{category?.name}
+						</span>
+					</div>
+
+					{/* Title */}
+					<h3 className='text-xl font-semibold text-primary-700 mb-2 group-hover:text-accent-600 transition-colors line-clamp-2'>
+						{post.title}
+					</h3>
+
+					{/* Excerpt */}
+					<p className='text-neutral-600 text-sm leading-relaxed mb-4 line-clamp-3'>
+						{post.excerpt}
+					</p>
+
+					{/* Meta Information */}
+					<div className='flex items-center justify-between text-xs text-neutral-500'>
+						<div className='flex items-center gap-4'>
+							<span>{post.author}</span>
+							<span>•</span>
+							<span>
+								{new Date(post.date).toLocaleDateString('en-GB', {
+									day: 'numeric',
+									month: 'short',
+									year: 'numeric',
+								})}
+							</span>
+						</div>
+						<span>{post.readTime}</span>
+					</div>
+				</div>
+			</m.article>
+		</Link>
 	);
 }
 
@@ -152,7 +182,9 @@ export default function BlogPage() {
 					{/* Category Filter Dropdown */}
 					<div className='mb-8 flex justify-center'>
 						<div className='w-full max-w-xs'>
-							<label htmlFor='category-select' className='block text-sm font-medium mb-2 text-center'>
+							<label
+								htmlFor='category-select'
+								className='block text-sm font-medium mb-2 text-center'>
 								Categories
 							</label>
 							<Select
@@ -197,7 +229,7 @@ export default function BlogPage() {
 								No articles found in this category
 							</p>
 							<Button
-								variant='outline'
+								variant='light'
 								onClick={() => {
 									setSelectedCategory('all');
 									setCurrentPage(1);
