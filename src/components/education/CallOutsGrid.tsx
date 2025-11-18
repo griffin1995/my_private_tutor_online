@@ -46,7 +46,7 @@ export const CallOutsGrid = memo(function CallOutsGrid({
 
 	return (
 		<motion.div
-			className='grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 md:auto-rows-fr md:grid-cols-3'
+			className='grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 md:auto-rows-fr'
 			initial='hidden'
 			animate='visible'
 			variants={{

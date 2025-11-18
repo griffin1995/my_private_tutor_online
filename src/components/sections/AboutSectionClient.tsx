@@ -115,7 +115,7 @@ export function AboutSectionClient({
 
 				{/* Recognition Cards - Dynamically rendered from Payload CMS */}
 				<m.div
-					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto py-8'
+					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'
 					initial={{ opacity: 0, y: 30 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: '-100px' }}

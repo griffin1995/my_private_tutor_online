@@ -3,7 +3,7 @@
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { getTestimonialVideos } from '@/lib/cms/cms-content';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button-variants';
 
 interface TestimonialsSectionProps {
 	backgroundColor?: string;
@@ -76,7 +76,7 @@ export function TestimonialsSection({
 					{showMoreButton && (
 						<div className='mt-8 lg:mt-12 flex justify-center'>
 							<Button
-								variant='accent'
+								variant='gold'
 								size='lg'
 								aria-label='View more client testimonials'>
 								Hear more from our clients

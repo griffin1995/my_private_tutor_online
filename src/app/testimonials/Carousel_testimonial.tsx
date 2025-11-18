@@ -308,15 +308,15 @@ const MotionMarquee = ({
 };
 
 const Carousel_testimonial = () => (
-	<div className='min-h-screen flex justify-center items-center py-12'>
+	<div className='min-h-[300px] lg:min-h-screen flex justify-center items-center py-4 lg:py-12'>
 		<div className='h-full w-full'>
-			<h2 className='text-5xl font-semibold text-center tracking-[-0.03em] px-6 text-pretty'>
+			<h2 className='hidden md:block text-5xl font-semibold text-center tracking-[-0.03em] px-6 text-pretty'>
 				Success Stories
 			</h2>
-			<p className='mt-3 text-center text-muted-foreground text-xl'>
+			<p className='hidden md:block mt-3 text-center text-muted-foreground text-xl'>
 				Real stories from families who have enjoyed exceptional results with us
 			</p>
-			<div className='mt-14 relative'>
+			<div className='mt-4 lg:mt-14 relative'>
 				<div className='z-10 absolute left-0 inset-y-0 w-[15%] bg-linear-to-r from-background to-transparent' />
 				<div className='z-10 absolute right-0 inset-y-0 w-[15%] bg-linear-to-l from-background to-transparent' />
 
@@ -333,7 +333,7 @@ const TestimonialList = () =>
 	testimonials.map((testimonial) => (
 		<div
 			key={testimonial.id}
-			className='min-w-[28rem] max-w-[32rem] bg-accent p-6 flex-shrink-0 border border-neutral-300'>
+			className='min-w-[16rem] max-w-[18rem] md:min-w-[24rem] md:max-w-[28rem] lg:min-w-[28rem] lg:max-w-[32rem] bg-accent p-6 flex-shrink-0 border border-neutral-300'>
 			<div className='flex items-center justify-between'>
 				<div className='flex items-center gap-4'>
 					{testimonial.avatar ? (

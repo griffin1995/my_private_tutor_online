@@ -4,6 +4,7 @@
 
 	"cSpell.words": [
 		"Adebayo",
+		"allaboutcookies",
 		"Annoushka",
 		"anymore",
 		"Arayan",
@@ -22,7 +23,9 @@
 		"handpicked",
 		"hcdev",
 		"Headshot",
+		"hjid",
 		"Hons",
+		"Hotjar",
 		"IGCSE",
 		"ISEB",
 		"kickstarter",
@@ -34,13 +37,17 @@
 		"Meritt",
 		"merittjones",
 		"MPTO",
+		"myaccount",
 		"Neurodiverse",
 		"NLCS",
 		"Pauls",
 		"payloadcms",
+		"PECR",
 		"PGCE",
+		"PHPSESSID",
 		"practice",
 		"Rosey",
+		"sugr",
 		"Tatler",
 		"Taylors",
 		"TMUA",
@@ -48,7 +55,8 @@
 		"tutees",
 		"ucas",
 		"UCAT",
-		"wasn"
+		"wasn",
+		"youronlinechoices"
 	],
 
 	// TypeScript Configuration

@@ -28,7 +28,7 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
 			<AnimatePresence mode='wait'>
 				{isHovered ?
 					<m.button
-						className='relative flex w-[200px] items-center justify-center overflow-hidden rounded-md bg-white p-[10px] outline outline-1 outline-black transition-all duration-200'
+						className='relative flex w-[200px] items-center justify-center overflow-hidden bg-white p-[10px] outline outline-1 outline-black transition-all duration-200'
 						onMouseEnter={() => setIsHovered(true)}
 						onMouseLeave={() => setIsHovered(false)}
 						initial={{
@@ -50,7 +50,7 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
 								y: 0,
 							}}
 							style={{
-								color: buttonColor,
+								color: `${buttonColor} !important`,
 							}}>
 							<span className='flex items-center justify-center gap-2'>
 								<CheckIcon className='h-4 w-4' />
@@ -59,10 +59,10 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
 						</m.span>
 					</m.button>
 				:	<m.button
-						className='relative flex w-[200px] cursor-pointer items-center justify-center rounded-md border-none p-[10px] transition-all duration-200 hover:shadow-lg'
+						className='relative flex w-[200px] cursor-pointer items-center justify-center border-none p-[10px] transition-all duration-200 hover:shadow-lg'
 						style={{
 							backgroundColor: buttonColor,
-							color: buttonTextColor,
+							color: `${buttonTextColor} !important`,
 						}}
 						onMouseEnter={() => setIsHovered(true)}
 						onMouseLeave={() => setIsHovered(false)}

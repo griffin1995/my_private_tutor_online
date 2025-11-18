@@ -56,7 +56,7 @@ const Feature1 = ({
 							)
 						)}
 						<div className='flex w-full flex-col justify-center gap-2 sm:flex-row md:justify-start'>
-							<Button asChild style={{ backgroundColor: '#3f4a7e !important', color: '#ffffff !important', borderColor: '#3f4a7e !important', borderRadius: '0 !important' }}>
+							<Button asChild className='rounded-none' style={{ backgroundColor: '#3f4a7e !important', color: '#ffffff !important', borderColor: '#3f4a7e !important', borderRadius: '0 !important' }}>
 								<a
 									href={buttonPrimary.href}
 									target='_blank'>
@@ -66,6 +66,7 @@ const Feature1 = ({
 							<Button
 								variant='outline'
 								asChild
+								className='rounded-none'
 								style={{ backgroundColor: '#ffffff !important', color: '#3f4a7e !important', borderColor: '#3f4a7e !important', borderRadius: '0 !important' }}>
 								<a
 									href={buttonSecondary.href}

@@ -84,7 +84,7 @@ export const FeatureSection = ({
 						)}
 					</div>
 				)}
-				<div className='grid gap-8 md:grid-cols-2 lg:grid-cols-3'>
+				<div className='grid gap-8 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 2xl:grid-cols-3'>
 					{features.map((feature) => (
 						<div
 							key={feature.id}

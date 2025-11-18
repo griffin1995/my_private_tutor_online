@@ -29,7 +29,7 @@ export const Testimonial10 = ({
 	author,
 }: Testimonial10Props) => {
 	return (
-		<section className='py-4 sm:py-6 md:py-8'>
+		<section className='py-6 sm:py-8 md:py-10 lg:py-12 xl:py-14'>
 			<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='flex flex-col items-center text-center'>
 					<p className='mb-6 sm:mb-7 md:mb-8 max-w-3xl sm:max-w-4xl md:max-w-5xl px-4 sm:px-6 md:px-8 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl'>
@@ -68,7 +68,7 @@ export const Testimonial10NoRole = ({
 	author,
 }: Testimonial10NoRoleProps) => {
 	return (
-		<section className='py-4 sm:py-6 md:py-8'>
+		<section className='py-6 sm:py-8 md:py-10 lg:py-12 xl:py-14'>
 			<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='flex flex-col items-center text-center'>
 					<p className='mb-6 sm:mb-7 md:mb-8 max-w-3xl sm:max-w-4xl md:max-w-5xl px-4 sm:px-6 md:px-8 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl'>

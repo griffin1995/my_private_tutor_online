@@ -2,8 +2,8 @@
 // ARCHITECTURE REASON: Official Payload pattern - Server Component fetches data, passes to Client Components
 // REFERENCE: Official Payload docs - "Query Payload CMS Local API from Next.js Server Components"
 
-import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { RoyalEndorsementQuote } from '@/components/content/RoyalEndorsementQuote';
+import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { FounderQuoteSection } from '../components/client/FounderQuoteSection';
 import { ScrollingLogos } from '../components/client/ScrollingLogos';
 import { LazyServicesCarousel } from '../components/dynamic/lazy-loaded-components';
@@ -18,7 +18,6 @@ import { SchemaMarkup } from '../components/seo/SchemaMarkup';
 // TEMPORARILY DISABLED: Payload CMS imports causing MongoDB connection freeze
 // import { getPayload } from 'payload';
 // import config from '@/payload.config';
-
 
 // Type for recognition card data (hardcoded)
 interface RecognitionCardData {
@@ -478,7 +477,7 @@ export default async function HomePage() {
 				includeSocialProfile={true}
 			/>
 
-			<Navigation isHomepage={false} />
+			<Navigation showBlueNavigation={true} />
 			<main
 				className='flex-1'
 				role='main'
@@ -549,8 +548,7 @@ export default async function HomePage() {
 					</section>
 
 					{/* About Section */}
-						<AboutSectionClient recognitionCards={recognitionCards} />
-
+					<AboutSectionClient recognitionCards={recognitionCards} />
 
 					{/* Founder Introduction Section */}
 					<FounderIntroductionSection />
@@ -559,8 +557,7 @@ export default async function HomePage() {
 					<section
 						id='quantifiable-results-documentation'
 						className='py-13 lg:py-32'>
-							<ThreePillarsSection />
-
+						<ThreePillarsSection />
 					</section>
 
 					{/* Trust Indicators Section - Commented out (new version below) */}
@@ -625,11 +622,10 @@ export default async function HomePage() {
 
 					{/* Services Carousel Section */}
 					<section id='who-we-support-services'>
-							<LazyServicesCarousel
-								services={services}
-								studentImages={studentImages}
-							/>
-
+						<LazyServicesCarousel
+							services={services}
+							studentImages={studentImages}
+						/>
 					</section>
 
 					{/* Founder Quote Section */}
@@ -637,8 +633,7 @@ export default async function HomePage() {
 
 					{/* Video Testimonials Section */}
 					<section id='testimonials-section'>
-							<TestimonialsSection showMoreButton={true} />
-
+						<TestimonialsSection showMoreButton={true} />
 					</section>
 				</div>
 			</main>

@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 interface PageHeaderProps {
 	className?: string;
 	isHeroPage?: boolean;
-	isHomepage?: boolean;
+	showBlueNavigation?: boolean;
 }
 interface NavigationItem {
 	label: string;
@@ -65,11 +65,11 @@ function useScrollDetection(threshold: number = 75) {
 export function PageHeader({
 	className,
 	isHeroPage = false,
-	isHomepage = false,
+	showBlueNavigation = false,
 }: PageHeaderProps) {
 	return (
 		<Navigation
-			isHomepage={isHomepage}
+			showBlueNavigation={showBlueNavigation}
 			className={className}
 		/>
 	);

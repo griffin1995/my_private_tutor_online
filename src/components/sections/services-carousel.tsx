@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { NavigationButton } from '@/components/ui/navigation-button';
+import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 
 // Helper function for image optimization (CMS-free)
 const getOptimizedImageProps = (
@@ -104,30 +105,35 @@ export function ServicesCarousel({
 			aria-label='Educational pathways and tutoring options available'>
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='text-center mb-12'>
-					<h2 className='text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-4'>
+					<h2 className='text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-0'>
 						{title}
 					</h2>
-					<p className='text-xl text-primary-700 max-w-3xl mx-auto mb-12'>
+					<p className='text-xl text-primary-700 max-w-3xl mx-auto mb-3'>
 						{description}
 					</p>
 
+					{/* Navigation buttons positioned above the carousel */}
+					<div className='relative max-w-7xl mx-auto px-4 sm:px-0 mb-3'>
+						<div className='flex justify-end gap-2'>
+							<button
+								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+								onClick={scrollPrev}
+								aria-label='Previous slide'>
+								<ChevronLeft className='w-5 h-5 sm:w-6 sm:h-6 text-accent-600' />
+							</button>
+
+							<button
+								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+								onClick={scrollNext}
+								aria-label='Next slide'>
+								<ChevronRight className='w-5 h-5 sm:w-6 sm:h-6 text-accent-600' />
+							</button>
+						</div>
+					</div>
+
 					<div
 						ref={intersectionRef}
-						className='relative max-w-7xl mx-auto flex items-center px-4 sm:px-0'>
-						<button
-							className='absolute left-2 sm:-left-24 top-1/2 -translate-y-1/2 z-10 bg-accent-600 hover:bg-accent-700 border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
-							onClick={scrollPrev}
-							aria-label='Previous slide'>
-							<ChevronLeft className='w-5 h-5 sm:w-6 sm:h-6 text-white' />
-						</button>
-
-						<button
-							className='absolute right-2 sm:-right-24 top-1/2 -translate-y-1/2 z-10 bg-accent-600 hover:bg-accent-700 border border-gray-200 rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
-							onClick={scrollNext}
-							aria-label='Next slide'>
-							<ChevronRight className='w-5 h-5 sm:w-6 sm:h-6 text-white' />
-						</button>
-
+						className='relative max-w-7xl mx-auto px-4 sm:px-0'>
 						<div
 							className={`overflow-hidden w-full transition-opacity duration-300 ${isReady ? 'opacity-100' : 'opacity-0'}`}
 							ref={emblaRef}>
@@ -160,24 +166,65 @@ export function ServicesCarousel({
 											key={index}
 											className='flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 pb-4'>
 											<div className='group bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 transform-gpu min-h-full'>
-												{studentImage ?
-													<div className='relative overflow-hidden h-[400px] lg:h-[500px]'>
-														<Image
-															{...getOptimizedImageProps(
-																studentImage,
-																'(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw',
-															)}
-															alt={service.title}
-															className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
-															priority={index < 3}
-															loading={index < 3 ? 'eager' : 'lazy'}
-														/>
-														<div className='absolute inset-0 bg-gradient-to-t from-primary-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
-													</div>
-												:	<div className='relative overflow-hidden h-[400px] lg:h-[500px] bg-primary-100 flex items-center justify-center'>
-														<span className='text-primary-400 text-4xl'>{service.icon}</span>
-													</div>
-												}
+												{studentImage ? (
+													<>
+														{/* Landscape aspect ratio for default/sm screens */}
+														<div className='block lg:hidden'>
+															<AspectRatio.Root ratio={4 / 3}>
+																<div className='relative overflow-hidden w-full h-full'>
+																	<Image
+																		src={studentImage.src}
+																		alt={service.title}
+																		className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
+																		priority={index < 3}
+																		loading={index < 3 ? 'eager' : 'lazy'}
+																		sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+																		fill
+																	/>
+																	<div className='absolute inset-0 bg-gradient-to-t from-primary-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+																</div>
+															</AspectRatio.Root>
+														</div>
+
+														{/* Reduced height portrait aspect ratio for lg+ screens */}
+														<div className='hidden lg:block'>
+															<AspectRatio.Root ratio={6 / 7}>
+																<div className='relative overflow-hidden w-full h-full'>
+																	<Image
+																		src={studentImage.src}
+																		alt={service.title}
+																		className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
+																		priority={index < 3}
+																		loading={index < 3 ? 'eager' : 'lazy'}
+																		sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+																		fill
+																	/>
+																	<div className='absolute inset-0 bg-gradient-to-t from-primary-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+																</div>
+															</AspectRatio.Root>
+														</div>
+													</>
+												) : (
+													<>
+														{/* Fallback icon container - landscape for default/sm */}
+														<div className='block lg:hidden'>
+															<AspectRatio.Root ratio={4 / 3}>
+																<div className='relative overflow-hidden w-full h-full bg-primary-100 flex items-center justify-center'>
+																	<span className='text-primary-400 text-4xl'>{service.icon}</span>
+																</div>
+															</AspectRatio.Root>
+														</div>
+
+														{/* Fallback icon container - reduced height portrait for lg+ */}
+														<div className='hidden lg:block'>
+															<AspectRatio.Root ratio={6 / 7}>
+																<div className='relative overflow-hidden w-full h-full bg-primary-100 flex items-center justify-center'>
+																	<span className='text-primary-400 text-4xl'>{service.icon}</span>
+																</div>
+															</AspectRatio.Root>
+														</div>
+													</>
+												)}
 
 												<div className='p-6 lg:p-8 pb-8 space-y-4 text-right flex flex-col items-end'>
 													<h3 className='text-xl lg:text-2xl font-serif font-bold text-primary-900 group-hover:text-accent-600 transition-colors duration-200 w-full'>

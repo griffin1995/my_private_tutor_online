@@ -22,9 +22,9 @@ export const EducationLevelTabContent = memo(function EducationLevelTabContent({
 		if (cardCount === 1) {
 			return 'hidden md:grid md:grid-cols-1 gap-6 lg:gap-8';
 		} else if (cardCount === 2) {
-			return 'hidden md:grid md:grid-cols-2 gap-6 lg:gap-8';
+			return 'hidden md:grid md:grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-8';
 		} else {
-			return 'hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8';
+			return 'hidden md:grid md:grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-8';
 		}
 	};
 	return (

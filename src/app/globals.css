@@ -575,57 +575,12 @@ p {
 	font-weight: 400;
 }
 
-/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Scoped link styling to exclude navigation elements
- * SCOPE FIX REASON: Official CSS selector specificity patterns to prevent conflicts with Tailwind utilities
- * NAVIGATION EXCLUSION: Global link styles must not override navbar Tailwind classes
- * PATTERN: :not() pseudo-selector excludes navigation from global link styling
- */
-
-/* Premium Link Styling with Brand Colors - Excludes Navigation */
-a:not(nav a):not([data-navigation] a) {
-	color: var(--color-accent);
-	text-decoration: none;
-	transition: color 0.2s ease-in-out;
-}
-
-a:not(nav a):not([data-navigation] a):hover {
-	color: var(--color-accent-dark);
-	text-decoration: underline;
-}
-
-/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Minimal navbar link styling to prevent global link conflicts
- * NAVBAR FIX REASON: Official CSS specificity documentation recommends minimal global overrides for component libraries
- * TAILWIND COMPATIBILITY: Allowing Tailwind utility classes to control all navbar styling without CSS conflicts
- */
-nav a,
-[data-navigation] a {
-	text-decoration: none;
-	/* Removed color: inherit !important to allow Tailwind color utilities to work */
-	/* Removed !important flags to prevent Tailwind class conflicts */
-}
-
-nav a:hover,
-[data-navigation] a:hover {
-	text-decoration: none;
-}
-
-/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Removed navbar link override for hover state compatibility
- * HOVER FIX REASON: Official Tailwind CSS documentation recommends using utility classes over custom CSS
- * Eliminates CSS specificity conflicts by letting Tailwind handle all navbar styling
- * Allows hover:!text-blue-400 and other Tailwind hover states to work properly
- */
-
-/* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Removed conflicting navbar classes
- * HOVER FIX REASON: Official Tailwind CSS documentation recommends using utility classes over custom CSS
- * Eliminates CSS specificity conflicts by letting Tailwind handle all navbar styling
- * navbar-link-white and navbar-link-blue classes removed to prevent !important conflicts
- */
-
-/* Focus States for Accessibility */
+/* Focus States for Accessibility - Generic across all elements */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+[role="button"]:focus-visible {
 	outline: 2px solid var(--color-accent);
 	outline-offset: 2px;
 	border-radius: 4px;
@@ -777,8 +732,16 @@ textarea:focus-visible {
    * PATTERN: Base styles for all links, navigation overridden below
    */
 
-	/* Links - Accent colour (gold) with hover transition */
-	a {
+	/*
+	 * CONTENT AREA LINKS - Brand accent styling
+	 * Applied only in scoped content contexts where links should be visible and styled
+	 * Excludes navigation, buttons, and interactive components
+	 */
+	.prose a,
+	.article-content a,
+	.blog-content a,
+	main article a,
+	[data-content-area] a {
 		color: var(--color-accent);
 		text-decoration-line: none;
 		transition-property: color;
@@ -786,9 +749,43 @@ textarea:focus-visible {
 		transition-timing-function: var(--transition-timing-in-out);
 	}
 
-	a:hover {
+	.prose a:hover,
+	.article-content a:hover,
+	.blog-content a:hover,
+	main article a:hover,
+	[data-content-area] a:hover {
 		color: var(--color-accent-dark);
 		text-decoration-line: underline;
+	}
+
+	/*
+	 * NAVIGATION AND COMPONENT LINKS - Inherit parent styling
+	 * Links within navigation, buttons, forms, and interactive elements
+	 * automatically inherit their parent colors and styles
+	 */
+	nav a,
+	[data-navigation] a,
+	button a,
+	[data-slot="button"] a,
+	.btn a,
+	[role="button"] a,
+	form a {
+		color: inherit;
+		text-decoration-line: none;
+		transition-property: color;
+		transition-duration: var(--transition-duration-200);
+		transition-timing-function: var(--transition-timing-in-out);
+	}
+
+	nav a:hover,
+	[data-navigation] a:hover,
+	button a:hover,
+	[data-slot="button"] a:hover,
+	.btn a:hover,
+	[role="button"] a:hover,
+	form a:hover {
+		color: inherit;
+		text-decoration-line: none;
 	}
 
 	/**
@@ -844,30 +841,7 @@ textarea:focus-visible {
 	}
 
 	/**
-   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Override base styles for specific contexts
-   * OFFICIAL EXAMPLE: Using descendant selectors to exclude navigation
-   * PATTERN: Navigation and interactive elements inherit parent styles
-   */
-
-	/* Navigation links - Override global link styles */
-	nav a,
-	[data-navigation] a,
-	button a,
-	a[data-slot="button"],
-	.btn {
-		color: inherit;
-		text-decoration-line: none;
-	}
-
-	nav a:hover,
-	[data-navigation] a:hover,
-	a[data-slot="button"]:hover {
-		color: inherit;
-		text-decoration-line: none;
-	}
-
-	/**
-   * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Data attribute for dark background sections
+	* CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Data attribute for dark background sections
    * SYSTEMATIC RULE: Automatic white text on dark backgrounds without manual overrides
    * PATTERN: Using data attributes for scoped color overrides without specificity conflicts
    * IMPLEMENTATION DATE: October 2025 - Tailwind CSS Migration Phase 5

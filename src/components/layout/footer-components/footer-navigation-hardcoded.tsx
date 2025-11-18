@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { Send, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 
@@ -63,15 +63,58 @@ interface FooterNavigationHardcodedProps {
 export const FooterNavigationHardcoded: React.FC<FooterNavigationHardcodedProps> = ({
   className = ''
 }) => {
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (sectionTitle: string) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [sectionTitle]: !prev[sectionTitle]
+    }));
+  };
+
   return (
-    <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 items-stretch h-full ${className}`}>
+    <div className={`w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 justify-items-center lg:justify-items-stretch relative ${className}`}>
       {FOOTER_SECTIONS.map((section, index) => (
         <FooterSection
           key={section.title}
           section={section}
           sectionIndex={index}
+          isOpen={!!openSections[section.title]}
+          onToggle={() => toggleSection(section.title)}
         />
       ))}
+
+      {/* Mobile accordion arrows positioned at grid level */}
+      {FOOTER_SECTIONS.map((section, index) => {
+        // Calculate cumulative height based on previous sections
+        let cumulativeHeight = 16; // Initial top offset
+        for (let i = 0; i < index; i++) {
+          const prevSection = FOOTER_SECTIONS[i];
+          const isPrevOpen = !!openSections[prevSection.title];
+          cumulativeHeight += 60; // Base height for title
+          if (isPrevOpen) {
+            cumulativeHeight += prevSection.links.length * 40 + 32; // Height for opened content
+          }
+        }
+
+        return (
+          <button
+            key={`arrow-${section.title}`}
+            onClick={() => toggleSection(section.title)}
+            className='sm:hidden absolute p-2 hover:text-accent-600 transition-all duration-300 ease-in-out'
+            style={{
+              top: `${cumulativeHeight}px`,
+              right: '4px'
+            }}
+            aria-label={`${openSections[section.title] ? 'Collapse' : 'Expand'} ${section.title} section`}>
+            {openSections[section.title] ? (
+              <ChevronUp className='w-6 h-6' />
+            ) : (
+              <ChevronDown className='w-6 h-6' />
+            )}
+          </button>
+        );
+      })}
     </div>
   );
 };
@@ -79,31 +122,73 @@ export const FooterNavigationHardcoded: React.FC<FooterNavigationHardcodedProps>
 interface FooterSectionProps {
   section: FooterSection;
   sectionIndex: number;
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
-const FooterSection: React.FC<FooterSectionProps> = ({ section, sectionIndex }) => {
+const FooterSection: React.FC<FooterSectionProps> = ({ section, sectionIndex, isOpen, onToggle }) => {
   const sectionId = `footer-section-${section.title.toLowerCase().replace(/\s+/g, '-')}`;
+  const contentId = `${sectionId}-content`;
 
   return (
     <div
-      className='flex flex-col h-full animate-fade-in-up'
+      className='flex flex-col animate-fade-in-up text-center md:text-left relative'
       style={{
         animationDelay: `${sectionIndex * 0.1}s`,
       }}>
 
+      {/* Mobile accordion button (default breakpoint only) */}
+      <button
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={contentId}
+        className='sm:hidden font-serif text-3xl font-bold text-primary-900 flex items-center justify-center mb-4 flex-shrink-0 w-full hover:text-accent-600 transition-colors duration-300'>
+        <div className='flex items-center gap-2'>
+          {section.title}
+        </div>
+      </button>
+
+      {/* Desktop heading (sm+ breakpoints) */}
       <h3
         id={sectionId}
-        className='font-serif text-3xl md:text-3xl lg:text-4xl font-bold text-primary-900 flex items-center gap-2 mb-4 md:mb-4 lg:mb-6 flex-shrink-0'>
+        className='hidden sm:flex font-serif text-3xl md:text-3xl lg:text-4xl font-bold text-primary-900 items-center justify-center md:justify-start gap-2 mb-4 md:mb-4 lg:mb-6 flex-shrink-0'>
         {section.title}
         <Separator className='flex-1 bg-neutral-300' />
       </h3>
 
+      {/* Mobile collapsible content (default breakpoint only) */}
+      <div
+        id={contentId}
+        className={`sm:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        }`}>
+        <nav
+          role='navigation'
+          aria-labelledby={sectionId}
+          aria-label={`${section.title} links`}
+          className='flex flex-col pb-4 items-center md:items-start'>
+          <ul className='flex flex-col space-y-3 items-center md:items-start'>
+            {section.links.map((link, linkIndex) => (
+              <li
+                key={`${section.title}-${link.label}-${linkIndex}`}
+                className='flex-shrink-0'>
+                <FooterLink
+                  link={link}
+                  accessibleLabel={`${link.label} in ${section.title} section`}
+                />
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      {/* Desktop always-visible content (sm+ breakpoints) */}
       <nav
         role='navigation'
         aria-labelledby={sectionId}
         aria-label={`${section.title} links`}
-        className='flex-1 flex flex-col'>
-        <ul className='flex flex-col justify-between h-full'>
+        className='hidden sm:flex flex-col items-center md:items-start'>
+        <ul className='flex flex-col space-y-3 items-center md:items-start'>
           {section.links.map((link, linkIndex) => (
             <li
               key={`${section.title}-${link.label}-${linkIndex}`}

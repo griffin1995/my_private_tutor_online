@@ -214,13 +214,13 @@ export function PageFooterClient({
 					<div className='w-full px-4 sm:px-6 md:px-4 lg:px-8 py-12 md:py-12 lg:py-16'>
 						<div className='lg:container lg:mx-auto'>
 							<div className='flex flex-col lg:flex-row lg:gap-12 items-stretch'>
-								<div className='hidden lg:flex lg:w-[18%]'>
+								<div className='hidden xl:flex xl:w-[18%]'>
 									<FooterCompanySectionHardcoded
 										className='animate-fade-in-left'
 									/>
 								</div>
 
-								<div className='w-full lg:w-[82%] flex'>
+								<div className='w-full xl:w-[82%] flex'>
 									<FooterNavigationHardcoded />
 								</div>
 

@@ -1,128 +1,32 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { m } from 'framer-motion';
+import { PageFooter } from '@/components/layout/page-footer';
 import { PageLayout } from '@/components/layout/page-layout';
-import { PageHero } from '@/components/layout/page-hero';
-import { Section } from '@/components/layout/section';
+import { SimpleHero } from '@/components/layout/simple-hero';
 import { Card } from '@/components/ui/card';
-import { WaveSeparator } from '@/components/ui/wave-separator';
-import {
-	Cookie,
-	Settings,
-	FileText,
-	AlertTriangle,
-	Eye,
-} from 'lucide-react';
+import { m } from 'framer-motion';
+import { AlertTriangle, Eye, FileText, Settings } from 'lucide-react';
+import Link from 'next/link';
 export default function CookiePolicyPage() {
 	return (
 		<>
-			<PageHero
-				background='gradient'
-				size='full'
-				className='bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900'
-				overlay={true}
-				overlayOpacity='light'>
-				<div className='max-w-4xl mx-auto text-center'>
-					<m.div
-						className='flex items-center justify-center mb-6'
-						initial={{
-							opacity: 0,
-							scale: 0.8,
-						}}
-						whileInView={{
-							opacity: 1,
-							scale: 1,
-						}}
-						transition={{
-							duration: 0.6,
-						}}
-						viewport={{
-							once: true,
-						}}>
-						<div className='bg-white/10 backdrop-blur-sm rounded-full p-4'>
-							<Cookie className='w-12 h-12 text-amber-400' />
-						</div>
-					</m.div>
-					<m.h1
-						className='text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.1,
-						}}
-						viewport={{
-							once: true,
-						}}>
-						Cookie Policy
-					</m.h1>
-					<m.p
-						className='text-xl text-amber-400 font-semibold mb-6'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.2,
-						}}
-						viewport={{
-							once: true,
-						}}>
-						How we use cookies and similar technologies
-					</m.p>
-					<m.p
-						className='text-lg text-white/90 leading-relaxed'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.3,
-						}}
-						viewport={{
-							once: true,
-						}}>
-						This policy explains how My Private Tutor Online uses cookies and similar
-						technologies to improve your website experience.
-					</m.p>
-				</div>
-			</PageHero>
+			<SimpleHero
+				backgroundImage='/images/hero/cookie-policy.jpg'
+				h1={<span className='text-white'>Cookie Policy</span>}
+				h2='How we use cookies and similar technologies to improve your website experience'
+			/>
 
 			<PageLayout
 				background='white'
-				showHeader={false}
-				showFooter={true}>
-				<WaveSeparator
-					variant='subtle'
-					className='text-white'
-				/>
-
-				<Section
-					className='py-20 relative'
-					background='white'>
+				showHeader={true}
+				showFooter={false}
+				containerSize='full'>
+				<section className='py-20 relative'>
 					<div className='absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50' />
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
 						<div className='max-w-5xl mx-auto'>
 							<m.div
-								className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 rounded-r-2xl shadow-lg'
+								className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg'
 								initial={{
 									opacity: 0,
 									x: -20,
@@ -174,7 +78,7 @@ export default function CookiePolicyPage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl rounded-2xl'>
+									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl '>
 										<div className='flex items-start gap-4'>
 											<Settings className='w-8 h-8 text-green-600 flex-shrink-0 mt-1' />
 											<div>
@@ -200,7 +104,7 @@ export default function CookiePolicyPage() {
 									cannot be switched off.
 								</p>
 
-								<div className='bg-gray-50 p-6 rounded-lg my-6'>
+								<div className='bg-gray-50 p-6  my-6'>
 									<h4 className='font-semibold mb-3'>Essential Cookie Details:</h4>
 									<div className='space-y-4 text-sm'>
 										<div>
@@ -239,7 +143,7 @@ export default function CookiePolicyPage() {
 									features.
 								</p>
 
-								<div className='bg-blue-50 p-6 rounded-lg my-6'>
+								<div className='bg-blue-50 p-6  my-6'>
 									<h4 className='font-semibold mb-3'>Functional Cookie Details:</h4>
 									<div className='space-y-4 text-sm'>
 										<div>
@@ -280,7 +184,7 @@ export default function CookiePolicyPage() {
 									improve it.
 								</p>
 
-								<div className='bg-purple-50 p-6 rounded-lg my-6'>
+								<div className='bg-purple-50 p-6  my-6'>
 									<h4 className='font-semibold mb-3'>Analytics Cookie Details:</h4>
 									<div className='space-y-4 text-sm'>
 										<div>
@@ -320,7 +224,7 @@ export default function CookiePolicyPage() {
 									advertisements.
 								</p>
 
-								<div className='bg-[#CA9E5B]/10 p-6 rounded-lg my-6'>
+								<div className='bg-[#CA9E5B]/10 p-6  my-6'>
 									<h4 className='font-semibold mb-3'>Marketing Cookie Details:</h4>
 									<div className='space-y-4 text-sm'>
 										<div>
@@ -358,7 +262,7 @@ export default function CookiePolicyPage() {
 								<p>
 									Some cookies are set by third-party services that appear on our pages.
 									We do not control these cookies, and you should check the relevant
-									third party's website for more information.
+									third party&apos;s website for more information.
 								</p>
 
 								<h3>3.1 Video Platforms</h3>
@@ -420,7 +324,7 @@ export default function CookiePolicyPage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200 shadow-xl rounded-2xl'>
+									<Card className='p-8 my-12 bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200 shadow-xl '>
 										<div className='flex items-start gap-4'>
 											<Eye className='w-8 h-8 text-blue-600 flex-shrink-0 mt-1' />
 											<div>
@@ -432,7 +336,7 @@ export default function CookiePolicyPage() {
 													options below:
 												</p>
 												<div className='space-y-4'>
-													<button className='bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300'>
+													<button className='bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3  font-semibold shadow-lg hover:shadow-xl transition-all duration-300'>
 														Update Cookie Preferences
 													</button>
 													<p className='text-blue-700 text-lg'>
@@ -495,7 +399,7 @@ export default function CookiePolicyPage() {
 									<li>Can be managed through consent settings</li>
 								</ul>
 
-								<div className='bg-gray-50 p-6 rounded-lg my-6'>
+								<div className='bg-gray-50 p-6  my-6'>
 									<h3 className='font-semibold mb-2'>Cookie Lifetime Summary:</h3>
 									<ul className='space-y-1 text-sm'>
 										<li>
@@ -574,7 +478,7 @@ export default function CookiePolicyPage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl rounded-2xl'>
+									<Card className='p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl '>
 										<div className='flex items-start gap-4'>
 											<AlertTriangle className='w-8 h-8 text-yellow-600 flex-shrink-0 mt-1' />
 											<div>
@@ -613,18 +517,18 @@ export default function CookiePolicyPage() {
 									<li>Limited website optimisation data</li>
 								</ul>
 
-								<h2>9. Children's Privacy</h2>
+								<h2>9. Children&apos;s Privacy</h2>
 
 								<p>
 									As an educational service provider, we take special care with
-									children's data:
+									children&apos;s data:
 								</p>
 								<ul>
 									<li>Age-appropriate consent mechanisms</li>
 									<li>Parental controls for children under 13</li>
 									<li>Enhanced privacy protection for young users</li>
 									<li>Limited data collection from minors</li>
-									<li>Regular review of children's data practices</li>
+									<li>Regular review of children&apos;s data practices</li>
 								</ul>
 
 								<h2>10. Updates to This Policy</h2>
@@ -675,7 +579,7 @@ export default function CookiePolicyPage() {
 									contact:
 								</p>
 
-								<div className='bg-slate-100 p-6 rounded-lg my-6'>
+								<div className='bg-slate-100 p-6  my-6'>
 									<h3 className='font-semibold mb-2'>Data Protection Team:</h3>
 									<ul className='space-y-1 text-sm'>
 										<li>
@@ -753,8 +657,15 @@ export default function CookiePolicyPage() {
 							</div>
 						</div>
 					</div>
-				</Section>
+				</section>
 			</PageLayout>
+
+			<PageFooter
+				variant='premium'
+				showBackToTop={true}
+				showNewsletter={false}
+				showContactForm={false}
+			/>
 		</>
 	);
 }

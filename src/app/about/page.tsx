@@ -1,10 +1,10 @@
 'use client';
 
 import Carousel_testimonial from '@/app/testimonials/Carousel_testimonial';
+import { Testimonial10NoRole } from '@/components/education/testimonial-section';
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
-import { MissionQuote } from '@/components/ui/blockquote';
 
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR ABOUT PAGE
@@ -53,22 +53,24 @@ export default function AboutUsPage() {
 				<section
 					id='founder-quote-testimonials'
 					className='py-8 lg:py-12 bg-primary-50'>
-					<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
-						<MissionQuote
-							showCite={true}
-							cite='Academic Insight'
-							size='lg'>
-							<strong>A truly bespoke</strong> experience — Elizabeth personally
-							pairs each student with a <u>carefully selected tutor</u> from her
-							boutique team.
-						</MissionQuote>
+					<div className='w-full max-w-4xl sm:max-w-5xl md:max-w-6xl lg:max-w-6xl xl:max-w-7xl mx-auto text-center px-4 sm:px-6 md:px-8'>
+						<Testimonial10NoRole
+							quote='A truly bespoke experience — Elizabeth personally pairs each student with a carefully selected tutor from her boutique team.'
+							author={{
+								name: 'Academic Insight',
+								avatar: {
+									src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
+									alt: 'Academic Insight',
+								},
+							}}
+						/>
 					</div>
 				</section>
 
 				{/* Educational Philosophy Section */}
 				<section
 					id='about-highlighter-intro'
-					className='pt-20 bg-white'>
+					className='pt-12 lg:pt-20 pb-8 lg:pb-12 bg-white'>
 					<div className='max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8'>
 						<h2 className='mb-6'>Our Educational Philosophy</h2>
 

@@ -305,7 +305,9 @@
       "Bash(/usr/bin/time -v npm run build:*)",
       "Bash(wc:*)",
       "Bash(git rev-list:*)",
-      "Bash(git show-branch:*)"
+      "Bash(git show-branch:*)",
+      "Skill(developer-essentials:code-review-excellence)",
+      "mcp__filesystem__edit_file"
     ],
     "deny": []
   },

@@ -1,120 +1,32 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { m } from 'framer-motion';
 import { PageLayout } from '@/components/layout/page-layout';
-import { PageHero } from '@/components/layout/page-hero';
 import { Section } from '@/components/layout/section';
+import { SimpleHero } from '@/components/layout/simple-hero';
 import { Card } from '@/components/ui/card';
-import { WaveSeparator } from '@/components/ui/wave-separator';
+import { m } from 'framer-motion';
 import {
-	Scale,
-	Star,
-	FileText,
 	AlertTriangle,
+	CheckCircle,
 	DollarSign,
+	FileText,
+	Star,
 } from 'lucide-react';
+import Link from 'next/link';
 export default function TermsOfServicePage() {
 	return (
 		<>
-			<PageHero
-				background='gradient'
-				size='full'
-				className='bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900'
-				overlay={true}
-				overlayOpacity='light'>
-				<div className='max-w-4xl mx-auto text-center'>
-					<m.div
-						className='flex items-center justify-center mb-6'
-						initial={{
-							opacity: 0,
-							scale: 0.8,
-						}}
-						whileInView={{
-							opacity: 1,
-							scale: 1,
-						}}
-						transition={{
-							duration: 0.6,
-						}}
-						viewport={{
-							once: true,
-						}}>
-						<div className='bg-white/10 backdrop-blur-sm rounded-full p-4'>
-							<Scale className='w-12 h-12 text-amber-400' />
-						</div>
-					</m.div>
-					<m.h1
-						className='text-4xl lg:text-5xl xl:text-6xl font-serif font-bold text-white leading-tight mb-6'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.1,
-						}}
-						viewport={{
-							once: true,
-						}}>
-						Terms of Service
-					</m.h1>
-					<m.p
-						className='text-xl text-amber-400 font-semibold mb-6'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.2,
-						}}
-						viewport={{
-							once: true,
-						}}>
-						Terms and conditions for tutoring services
-					</m.p>
-					<m.p
-						className='text-lg text-white/90 leading-relaxed'
-						initial={{
-							opacity: 0,
-							y: 20,
-						}}
-						whileInView={{
-							opacity: 1,
-							y: 0,
-						}}
-						transition={{
-							duration: 0.6,
-							delay: 0.3,
-						}}
-						viewport={{
-							once: true,
-						}}>
-						These terms govern your use of My Private Tutor Online services. Please
-						read them carefully before booking sessions.
-					</m.p>
-				</div>
-			</PageHero>
+			<SimpleHero
+				backgroundImage='/images/hero/terms-of-service.jpg'
+				h1={<span className='text-white'>Terms of Service</span>}
+				h2='Terms and conditions for tutoring services - please read carefully before booking sessions'
+			/>
 
 			<PageLayout
 				background='white'
-				showHeader={false}
-				showFooter={true}>
-				<WaveSeparator
-					variant='subtle'
-					className='text-white'
-				/>
-
+				showHeader={true}
+				showFooter={false}
+				containerSize='full'>
 				<Section
 					className='py-20 relative'
 					background='white'>
@@ -122,7 +34,7 @@ export default function TermsOfServicePage() {
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
 						<div className='max-w-5xl mx-auto'>
 							<m.div
-								className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 rounded-r-2xl shadow-lg'
+								className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600  shadow-lg'
 								initial={{
 									opacity: 0,
 									x: -20,
@@ -152,10 +64,10 @@ export default function TermsOfServicePage() {
 							<div className='prose prose-lg prose-slate max-w-none'>
 								<h2>1. About These Terms</h2>
 								<p>
-									These Terms of Service ("Terms") constitute a legally binding agreement
-									between you ("Client", "you", "your") and My Private Tutor Online
-									Limited ("MPTO", "we", "us", "our") regarding your use of our tutoring
-									services.
+									These Terms of Service (&quot;Terms") constitute a legally binding
+									agreement between you ("Client", "you&quot;, "your") and My Private
+									Tutor Online Limited ("MPTO", "we", "us", "our&quot;) regarding your
+									use of our tutoring services.
 								</p>
 
 								<m.div
@@ -173,7 +85,7 @@ export default function TermsOfServicePage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl rounded-2xl'>
+									<Card className='p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl '>
 										<div className='flex items-start gap-4'>
 											<Star className='w-8 h-8 text-amber-600 flex-shrink-0 mt-1' />
 											<div>
@@ -193,7 +105,7 @@ export default function TermsOfServicePage() {
 
 								<h2>2. Company Information</h2>
 
-								<div className='bg-gray-50 p-6 rounded-lg my-6'>
+								<div className='bg-gray-50 p-6  my-6'>
 									<h3 className='font-semibold mb-2'>
 										My Private Tutor Online Limited:
 									</h3>
@@ -213,7 +125,7 @@ export default function TermsOfServicePage() {
 										</li>
 										<li>
 											<strong>Professional Memberships:</strong> Independent Schools
-											Association, Tutors' Association
+											Association, Tutors&apos; Association
 										</li>
 									</ul>
 								</div>
@@ -296,7 +208,7 @@ export default function TermsOfServicePage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 shadow-xl rounded-2xl'>
+									<Card className='p-8 my-12 bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 shadow-xl '>
 										<div className='flex items-start gap-4'>
 											<AlertTriangle className='w-8 h-8 text-red-600 flex-shrink-0 mt-1' />
 											<div>
@@ -430,7 +342,7 @@ export default function TermsOfServicePage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl rounded-2xl'>
+									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl '>
 										<div className='flex items-start gap-4'>
 											<CheckCircle className='w-8 h-8 text-green-600 flex-shrink-0 mt-1' />
 											<div>
@@ -525,7 +437,7 @@ export default function TermsOfServicePage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl rounded-2xl'>
+									<Card className='p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl '>
 										<div className='flex items-start gap-4'>
 											<AlertTriangle className='w-8 h-8 text-yellow-600 flex-shrink-0 mt-1' />
 											<div>
@@ -563,7 +475,7 @@ export default function TermsOfServicePage() {
 
 								<h2>12. Insurance and Professional Indemnity</h2>
 
-								<div className='bg-gray-50 p-6 rounded-lg my-6'>
+								<div className='bg-gray-50 p-6  my-6'>
 									<h3 className='font-semibold mb-2'>Insurance Coverage:</h3>
 									<ul className='space-y-1 text-sm'>
 										<li>
@@ -573,7 +485,7 @@ export default function TermsOfServicePage() {
 											<strong>Public Liability:</strong> £[X] million coverage
 										</li>
 										<li>
-											<strong>Employer's Liability:</strong> £[X] million coverage
+											<strong>Employer&apos;s Liability:</strong> £[X] million coverage
 										</li>
 										<li>
 											<strong>Cyber Security:</strong> £[X] million coverage
@@ -685,7 +597,7 @@ export default function TermsOfServicePage() {
 
 								<h2>19. Contact Information</h2>
 
-								<div className='bg-slate-100 p-6 rounded-lg my-6'>
+								<div className='bg-slate-100 p-6  my-6'>
 									<h3 className='font-semibold mb-2'>Get in Touch:</h3>
 									<ul className='space-y-1 text-sm'>
 										<li>

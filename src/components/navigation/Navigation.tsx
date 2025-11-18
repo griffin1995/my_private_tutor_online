@@ -33,7 +33,7 @@ interface NavigationItem {
 
 interface NavigationProps {
 	className?: string;
-	isHomepage?: boolean;
+	showBlueNavigation?: boolean;
 }
 
 interface DropdownState {
@@ -143,7 +143,7 @@ const overlayVariants = {
 		},
 	},
 };
-export function Navigation({ className, isHomepage = false }: NavigationProps) {
+export function Navigation({ className, showBlueNavigation = false }: NavigationProps) {
 	const pathname = usePathname();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -241,7 +241,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 		if (href === '/') return pathname === '/' || pathname === '/en-GB';
 		return pathname.startsWith(href);
 	};
-	const isCurrentHomepage = pathname === '/' || pathname === '/en-GB';
+	const showBlueNavStyling = showBlueNavigation || pathname === '/' || pathname === '/en-GB';
 	const getNavbarHeight = () => {
 		return 88;
 	};
@@ -276,7 +276,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 									className='relative w-48 h-[4.5rem] lg:h-[5.25rem] xl:h-[6rem]'>
 									<Image
 										src={`/images/logos/${
-											isCurrentHomepage || dropdownState.isOpen || isScrolled
+											showBlueNavStyling || dropdownState.isOpen || isScrolled
 												? 'logo-with-name.png'
 												: 'logo-with-name-white.png'
 										}`}
@@ -304,7 +304,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 															'flex items-center gap-1 px-2 py-1 font-normal font-display transition-all duration-200',
 															'text-base md:text-lg lg:text-lg xl:text-xl',
 															'text-primary-700 hover:text-accent-600',
-															isCurrentHomepage
+															showBlueNavStyling
 																? 'text-primary-700 hover:text-accent-600'
 																: isScrolled
 																? 'text-primary-700'
@@ -327,7 +327,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 															'flex items-center gap-1 px-2 py-1 font-normal font-display transition-all duration-200',
 															'text-base md:text-lg lg:text-lg xl:text-xl',
 															'text-primary-700 hover:text-accent-600',
-															isCurrentHomepage
+															showBlueNavStyling
 																? 'text-primary-700 hover:text-accent-600'
 																: isScrolled
 																? 'text-primary-700'
@@ -352,7 +352,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 												'flex items-center px-2 py-1 font-normal font-display transition-all duration-200',
 												'text-base md:text-lg lg:text-lg xl:text-xl',
 												'text-primary-700 hover:text-accent-600',
-												isCurrentHomepage
+												showBlueNavStyling
 													? 'text-primary-700 hover:text-accent-600'
 													: isScrolled
 													? 'text-primary-700'
@@ -374,7 +374,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 								className={cn(
 									'rounded-none border transition-all duration-300',
 									'text-sm md:text-base lg:text-base xl:text-lg font-normal font-display',
-									isCurrentHomepage
+									showBlueNavStyling
 										? 'border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white'
 										: isScrolled
 										? 'border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white'
@@ -390,7 +390,7 @@ export function Navigation({ className, isHomepage = false }: NavigationProps) {
 							onClick={() => setIsMobileMenuOpen(true)}
 							className={cn(
 								'2xl:hidden p-2 rounded-lg transition-colors duration-200',
-								isCurrentHomepage
+								showBlueNavStyling
 									? 'text-primary-700 hover:bg-gray-100'
 									: isScrolled
 									? 'text-primary-700 hover:bg-gray-100'

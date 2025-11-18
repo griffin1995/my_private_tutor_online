@@ -10,6 +10,7 @@ const GOING_AGAINST_GRAIN_IMAGE = {
 	loading: 'eager' as const,
 	priority: true,
 } as const;
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Image from 'next/image';
 import type { JSX } from 'react';
 import { ThreePillarsSection } from 'src/components/sections/three-pillars-section';
@@ -29,10 +30,10 @@ export function FounderStorySection({
 			aria-labelledby='founder-story-heading'>
 			<div className='container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none'></div>
 
-			<div className='w-full '>
-				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch'>
+			<div className='w-full'>
+				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 lg:auto-rows-fr lg:items-stretch'>
 					<div className='order-2 lg:order-1'>
-						<div className='relative w-full h-full aspect-[17/9] lg:aspect-auto'>
+						<div className='hidden lg:block relative w-full h-full'>
 							<Image
 								src='/images/about/meet-elizabeth-a-different-kind-of-educator.webp'
 								alt='Elizabeth Burrows - Founder and CEO of My Private Tutor Online, personal portrait showcasing her approachable and professional demeanour'
@@ -47,9 +48,9 @@ export function FounderStorySection({
 						</div>
 					</div>
 
-					<div className='order-1 lg:order-2 bg-primary-700/5 transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end'>
-						<div className='max-w-6xl text-right p-8 '>
-							<h2 className='pb-2 mb-3 text-3.5xl'>
+					<div className='order-1 lg:order-2 bg-primary-700/5 transition-all duration-300  px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 sm:py-12 lg:py-20 min-h-[300px] sm:min-h-[400px] lg:min-h-[550px] flex flex-col justify-center items-end'>
+						<div className='max-w-full sm:max-w-6xl text-right p-2 sm:p-4 md:p-8'>
+							<h2 className='pb-2 mb-3 text-2xl sm:text-3.5xl'>
 								Meet Elizabeth, A Different Kind of Educator
 							</h2>
 
@@ -100,10 +101,12 @@ export function FounderStorySection({
 			</div>
 
 			<div className='w-full'>
-				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch'>
-					<div className='bg-primary-700/5 transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center'>
-						<div className='max-w-6xl text-left p-8'>
-							<h2 className='pb-2 mb-3 text-3.5xl'>Going Against the Grain</h2>
+				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 lg:auto-rows-fr lg:items-stretch'>
+					<div className='order-2 lg:order-1 bg-primary-700/5 transition-all duration-300  px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 sm:py-12 lg:py-20 min-h-[300px] sm:min-h-[400px] lg:min-h-[550px] flex flex-col justify-center'>
+						<div className='max-w-full sm:max-w-6xl text-left p-2 sm:p-4 md:p-8'>
+							<h2 className='pb-2 mb-3 text-2xl sm:text-3.5xl'>
+								Going Against the Grain
+							</h2>
 
 							{/* Container for paragraph and pull quote */}
 							<div className='text-left'>
@@ -153,7 +156,7 @@ export function FounderStorySection({
 					</div>
 
 					<div className='order-1 lg:order-2'>
-						<div className='relative w-full h-full aspect-[17/9] lg:aspect-auto'>
+						<div className='hidden lg:block relative w-full h-full'>
 							<Image
 								src={GOING_AGAINST_GRAIN_IMAGE.src}
 								alt={GOING_AGAINST_GRAIN_IMAGE.alt}
@@ -166,14 +169,29 @@ export function FounderStorySection({
 								sizes='(max-width: 768px) 100vw, 50vw'
 							/>
 						</div>
+						<AspectRatio
+							ratio={16 / 9}
+							className='lg:hidden'>
+							<Image
+								src={GOING_AGAINST_GRAIN_IMAGE.src}
+								alt={GOING_AGAINST_GRAIN_IMAGE.alt}
+								fill
+								className='object-cover'
+								placeholder='blur'
+								blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
+								loading='lazy'
+								quality={90}
+								sizes='(max-width: 768px) 100vw, 50vw'
+							/>
+						</AspectRatio>
 					</div>
 				</div>
 			</div>
 
 			<div className='w-full'>
-				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch'>
-					<div className='order-2 lg:order-1'>
-						<div className='relative w-full h-full aspect-[17/9] lg:aspect-auto'>
+				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 lg:auto-rows-fr lg:items-stretch'>
+					<div className='order-1 lg:order-1'>
+						<div className='hidden lg:block relative w-full h-full'>
 							<Image
 								src='/images/about/1st-lesson-to-7th-continent.png'
 								alt='Global education journey - Elizabeth Burrows teaching experience across seven continents, showcasing international VIP family placements and worldwide tutoring expertise'
@@ -186,11 +204,26 @@ export function FounderStorySection({
 								sizes='(max-width: 768px) 100vw, 50vw'
 							/>
 						</div>
+						<AspectRatio
+							ratio={16 / 9}
+							className='lg:hidden'>
+							<Image
+								src='/images/about/1st-lesson-to-7th-continent.png'
+								alt='Global education journey - Elizabeth Burrows teaching experience across seven continents, showcasing international VIP family placements and worldwide tutoring expertise'
+								fill
+								className='object-cover'
+								placeholder='blur'
+								blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
+								loading='lazy'
+								quality={90}
+								sizes='(max-width: 768px) 100vw, 50vw'
+							/>
+						</AspectRatio>
 					</div>
 
-					<div className='order-1 lg:order-2 bg-primary-700/5 transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center items-end'>
-						<div className='max-w-6xl text-right p-8 '>
-							<h2 className='pb-2 mb-3 text-3.5xl'>
+					<div className='order-2 lg:order-2 bg-primary-700/5 transition-all duration-300  px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 sm:py-12 lg:py-20 min-h-[300px] sm:min-h-[400px] lg:min-h-[550px] flex flex-col justify-center items-end'>
+						<div className='max-w-full sm:max-w-6xl text-right p-2 sm:p-4 md:p-8'>
+							<h2 className='pb-2 mb-3 text-2xl sm:text-3.5xl'>
 								First Lesson to Seventh Continent
 							</h2>
 
@@ -233,10 +266,10 @@ export function FounderStorySection({
 			</div>
 
 			<div className='w-full'>
-				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 auto-rows-fr items-stretch'>
-					<div className='bg-primary-700/5 transition-all duration-300  px-8 sm:px-12 lg:px-16 xl:px-20 py-16 lg:py-20 min-h-[450px] lg:min-h-[550px] flex flex-col justify-center'>
-						<div className='max-w-6xl text-left p-8'>
-							<h2 className='pb-2 mb-3 text-3.5xl'>
+				<div className='grid lg:grid-cols-2 gap-0 lg:grid-rows-1 lg:auto-rows-fr lg:items-stretch'>
+					<div className='order-2 lg:order-1 bg-primary-700/5 transition-all duration-300  px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 sm:py-12 lg:py-20 min-h-[300px] sm:min-h-[400px] lg:min-h-[550px] flex flex-col justify-center'>
+						<div className='max-w-full sm:max-w-6xl text-left p-2 sm:p-4 md:p-8'>
+							<h2 className='pb-2 mb-3 text-2xl sm:text-3.5xl'>
 								A Global View of What Education Can Do
 							</h2>
 
@@ -278,7 +311,7 @@ export function FounderStorySection({
 					</div>
 
 					<div className='order-1 lg:order-2'>
-						<div className='relative w-full h-full aspect-[17/9] lg:aspect-auto'>
+						<div className='hidden lg:block relative w-full h-full'>
 							<Image
 								src='/images/team/founder-elizabeth-burrows-professional.jpg'
 								alt='Elizabeth Burrows Professional Portrait - Forbes Middle East Online Editor and education expert, showcasing her business journalism background'
@@ -291,6 +324,21 @@ export function FounderStorySection({
 								sizes='(max-width: 768px) 100vw, 50vw'
 							/>
 						</div>
+						<AspectRatio
+							ratio={16 / 9}
+							className='lg:hidden'>
+							<Image
+								src='/images/team/founder-elizabeth-burrows-professional.jpg'
+								alt='Elizabeth Burrows Professional Portrait - Forbes Middle East Online Editor and education expert, showcasing her business journalism background'
+								fill
+								className='object-cover'
+								placeholder='blur'
+								blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=='
+								loading='lazy'
+								quality={90}
+								sizes='(max-width: 768px) 100vw, 50vw'
+							/>
+						</AspectRatio>
 					</div>
 				</div>
 			</div>

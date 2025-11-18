@@ -41,7 +41,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 1,
 		title: 'The Road to Selective Schools: What Top Independent School Admissions Really Look For',
-		slug: 'The Road to Selective Schools: What Top Independent School Admissions Really Look For',
+		slug: 'road-to-selective-schools-independent-school-admissions',
 		category: '',
 		image: '',
 		date: '',
@@ -81,7 +81,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 2,
 		title: 'Top 3 Tips for Building a High-Achieving Study Routine—Without Burning Your Child Out',
-		slug: 'Top 3 Tips for Building a High-Achieving Study Routine—Without Burning Your Child Out',
+		slug: 'top-3-tips-high-achieving-study-routine-without-burnout',
 		category: '',
 		image: '',
 		date: '',
@@ -122,7 +122,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 3,
 		title: 'Top 3 Tips for Navigating the 7+, 11+, 13+ and 16+ Entry Points Successfully',
-		slug: 'Top 3 Tips for Navigating the 7+, 11+, 13+ and 16+ Entry Points Successfully',
+		slug: 'top-3-tips-navigating-7-11-13-16-entry-points-successfully',
 		category: '',
 		image: '',
 		date: '',
@@ -162,7 +162,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 4,
 		title: 'How Personalised Tutoring Transforms Grades: The Cognitive Science Parents Should Know',
-		slug: 'How Personalised Tutoring Transforms Grades: The Cognitive Science Parents Should Know',
+		slug: 'how-personalised-tutoring-transforms-grades-cognitive-science',
 		category: '',
 		image: '',
 		date: '',
@@ -203,7 +203,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 5,
 		title: 'Inside the Interview: How to Help Your Child Shine in Independent School Interviews',
-		slug: 'Inside the Interview: How to Help Your Child Shine in Independent School Interviews',
+		slug: 'inside-interview-help-child-shine-independent-school-interviews',
 		category: '',
 		image: '',
 		date: '',
@@ -245,7 +245,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 6,
 		title: 'Supporting High Achievers with SEN: How to Nurture Potential When Needs Are Complex',
-		slug: 'Supporting High Achievers with SEN: How to Nurture Potential When Needs Are Complex',
+		slug: 'supporting-high-achievers-sen-nurture-potential-complex-needs',
 		category: '',
 		image: '',
 		date: '',
@@ -285,7 +285,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 7,
 		title: 'Top 3 Tips for Motivating Your Child—Without Relying on Pressure or Praise',
-		slug: 'Top 3 Tips for Motivating Your Child—Without Relying on Pressure or Praise',
+		slug: 'top-3-tips-motivating-child-without-pressure-praise',
 		category: '',
 		image: '',
 		date: '',
@@ -322,7 +322,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 8,
 		title: 'How to Prepare Your Child for GCSE and A-Level Success from Year 7 Onwards',
-		slug: 'How to Prepare Your Child for GCSE and A-Level Success from Year 7 Onwards',
+		slug: 'prepare-child-gcse-a-level-success-year-7-onwards',
 		category: '',
 		image: '',
 		date: '',
@@ -360,7 +360,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 9,
 		title: 'The Ultimate Guide to Revision Techniques: What Actually Works According to Research',
-		slug: 'The Ultimate Guide to Revision Techniques: What Actually Works According to Research',
+		slug: 'ultimate-guide-revision-techniques-what-works-research',
 		category: '',
 		image: '',
 		date: '',
@@ -398,7 +398,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		id: 10,
 		title: 'Homeschooling with Excellence: Why More Families Are Choosing It—and How to Transition Seamlessly',
-		slug: 'Homeschooling with Excellence: Why More Families Are Choosing It—and How to Transition Seamlessly',
+		slug: 'homeschooling-excellence-families-choosing-transition-seamlessly',
 		category: '',
 		image: '',
 		date: '',
