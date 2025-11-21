@@ -5,6 +5,7 @@ import type { TabContentData } from './tab-content-layout';
 import { Video, Crown, Lightbulb, FileText, Globe, CheckCircle } from 'lucide-react';
 
 const universityAdmissionsData: TabContentData = {
+	tabName: 'University Admissions',
 	mainFeatures: {
 		description:
 			'Expert academic support for undergraduates and postgraduates, including essay coaching, dissertations, and subject-specific tutoring. Navigate complex British, European and American university admissions systems with confidence through personalised guidance, personal statement/college essays coaching and admissions test preparation.',

@@ -375,6 +375,13 @@ export function FounderStorySection({
 				</div>
 
 				<div className='flex flex-col items-center pt-8 mt-8 border-t border-primary-100'>
+					<Image
+						src='/images/team/elizabeth-burrows-founder-spare.jpg'
+						width={400}
+						height={800}
+						alt='Portrait of Elizabeth Burrows'
+						className='mb-3'
+					/>
 					<p>
 						<strong>Elizabeth Burrows, Founder & CEO</strong>
 					</p>

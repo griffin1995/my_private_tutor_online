@@ -242,13 +242,13 @@ export function ServicesCarousel({
 															changeText='View Details'
 															href={
 																{
-																	Primary: '/subject-tuition#primary',
-																	Secondary: '/subject-tuition#secondary',
-																	'Entrance Exams': '/subject-tuition#entrance-exams',
-																	'Uni & Beyond': '/subject-tuition#university-beyond',
-																	'Online Homeschooling': '/homeschooling',
-																	'SEN Support': '/subject-tuition#sen-neurodiverse',
-																	'London In-Person': '/subject-tuition#london-in-person',
+																	Primary: '/subject-tuition?tab=primary-school',
+																	Secondary: '/subject-tuition?tab=secondary-school',
+																	'Entrance Exams': '/subject-tuition?tab=entrance-exams',
+																	'Uni & Beyond': '/subject-tuition?tab=university-admissions',
+																	'Online Homeschooling': '/subject-tuition?tab=online-homeschooling',
+																	'SEN Support': '/subject-tuition?tab=sen-support',
+																	'London In-Person': '/subject-tuition?tab=london-in-person',
 																}[service.title] || '/subject-tuition'
 															}
 														/>

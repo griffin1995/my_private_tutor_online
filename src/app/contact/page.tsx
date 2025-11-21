@@ -2,8 +2,7 @@
 
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
-import { FAQContactSection } from '@/components/faq/faq-contact-section';
-import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
 
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR CONTACT PAGE
@@ -11,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 
 // Hero image for Contact page
 const CONTACT_HERO_IMAGE = {
-	src: '/images/contact/contact-hero.jpg',
+	src: '/images/hero/contact-us-hero.jpg',
 	alt: 'Contact Elizabeth Burrows premium tutoring service - expert academic support',
 	width: 1920,
 	height: 1080,
@@ -30,8 +29,7 @@ const CONTACT_CONTENT = {
 	contactInfo: {
 		email: 'info@myprivatetutoronline.com',
 		phone: '+44 7513 550278',
-		address:
-			'Mayfair Educational Centre\n123 Berkeley Square\nLondon W1J 6BR\nUnited Kingdom',
+		enquire_tagline: 'Ready to Start the Conversation?',
 	},
 } as const;
 
@@ -125,15 +123,6 @@ export default function ContactPage() {
 				showFooter={true}
 				containerSize='full'
 				footerProps={{ showContactForm: false }}>
-
-				<Separator className='bg-gray-200' />
-
-				{/* FAQ Contact Section */}
-				<FAQContactSection
-					contactContent={faqContactContent}
-					contactDetails={faqContactDetails}
-				/>
-
 				{/* Contact Details Section */}
 				<section className='py-16 bg-gray-50'>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
@@ -158,7 +147,7 @@ export default function ContactPage() {
 											<h4 className='font-semibold text-gray-900 mb-2'>Email</h4>
 											<a
 												href={`mailto:${contactContent.contactInfo.email}`}
-												className='text-accent-600 hover:text-accent-700 transition-colors'>
+												className='text-primary-600 hover:text-primary-700 transition-colors'>
 												{contactContent.contactInfo.email}
 											</a>
 										</div>
@@ -166,20 +155,18 @@ export default function ContactPage() {
 											<h4 className='font-semibold text-gray-900 mb-2'>Phone</h4>
 											<a
 												href={`tel:${contactContent.contactInfo.phone}`}
-												className='text-accent-600 hover:text-accent-700 transition-colors'>
+												className='text-primary-600 hover:text-primary-700 transition-colors'>
 												{contactContent.contactInfo.phone}
 											</a>
 										</div>
-										{contactContent.contactInfo.address && (
+										{contactContent.contactInfo.enquire_tagline && (
 											<div>
-												<h4 className='font-semibold text-gray-900 mb-2'>Address</h4>
-												<address className='text-gray-700 not-italic'>
-													{contactContent.contactInfo.address
-														.split('\n')
-														.map((line, index) => (
-															<div key={index}>{String(line)}</div>
-														))}
-												</address>
+												<h4 className='font-semibold text-gray-900 mb-2'>Enquire</h4>
+												<Link
+													className='text-primary-600 hover:text-primary-700 transition-colors underline'
+													href='https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'>
+													{contactContent.contactInfo.enquire_tagline}
+												</Link>
 											</div>
 										)}
 									</div>
@@ -217,7 +204,6 @@ export default function ContactPage() {
 						</div>
 					</div>
 				</section>
-
 			</PageLayout>
 		</>
 	);

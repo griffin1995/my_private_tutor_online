@@ -2,13 +2,21 @@
 
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
-import { TutorsSection } from '@/components/tutors/tutors-section';
 import { TierDescriptions } from '@/components/sections/tier-descriptions';
+import { TutorsSection } from '@/components/tutors/tutors-section';
+import {
+	AlternatingLayout,
+	AlternatingRow,
+	AlternatingRowBullets,
+	AlternatingRowDescription,
+	AlternatingRowHeader,
+} from '@/components/ui/alternating-row';
 import { MissionQuote } from '@/components/ui/blockquote';
 import { m } from 'framer-motion';
 import {
-	CheckCircle,
+	Check,
 	ClipboardCheck,
+	Heart,
 	MessageSquare,
 	Target,
 	Users,
@@ -20,100 +28,14 @@ import type { JSX } from 'react';
 // HARDCODED DATA - ALL CMS CONTENT FOR HOW IT WORKS PAGE
 // ============================================================================
 
-// Type definitions for hardcoded data
-interface HowItWorksStep {
-	readonly number: string;
-	readonly title: string;
-	readonly description: string;
-	readonly features: readonly string[];
-	readonly icon: string;
-	readonly image: string;
-}
-
-// Hero content
-
-// Process steps content
-const PROCESS_STEPS: readonly HowItWorksStep[] = [
-	{
-		number: '01',
-		title: 'Initial Consultation',
-		description:
-			"You begin with a one-to-one conversation with our Founder Elizabeth to understand your child's academic profile, personality, and goals.",
-		features: [
-			'Subject strengths and areas for development',
-			'Upcoming exams or milestones',
-			'Preferred learning style',
-			'Any school-specific requirements',
-		],
-		icon: 'MessageSquare',
-		image: '/images/initial-consultation.jpg',
-	},
-	{
-		number: '02',
-		title: 'Tiered Tutoring Options',
-		description:
-			"Whether your child needs general mentoring or specialist preparation, our flexible tiered tutoring model allows you to choose the level of support that fits your child's needs and your budget. Specialist tutoring begins at just £45 per hour. Unlike many other providers, we don't charge registration or administrative fees—you only pay for your time with a carefully matched, dedicated tutor.",
-		features: [
-			'Tier 1: Official examiners - Insider tips, tricks and exam technique for top grades',
-			'Tier 2: Qualified teachers - Specialist support from seasoned schoolteachers',
-			'Tier 3: University graduates - Mentoring from experts in their specific subject',
-			'Starting from just £45 per hour',
-		],
-		icon: 'Target',
-		image: '/images/personalised-learning-plan.jpg',
-	},
-	{
-		number: '03',
-		title: 'Expert Tutor Matching',
-		description:
-			'Elizabeth worked alongside the majority of our tutors as colleagues during her international career. The rest come to us via personal recommendations from our trusted team, selecting only those with an outstanding educational pedigree, impressive tutoring background and passion for nurturing young minds. She brings this deep personal knowledge to every match, pairing students with not only a perfectly qualified tutor, but also a personality they will resonate well with.',
-		features: [
-			'Oxbridge alumni',
-			'Heads of Department at top 10 UK schools',
-			'Accredited GCSE, A Level and IB examiners',
-			'PhD and Postdocs',
-		],
-		icon: 'Users',
-		image: '/images/expert-tutor-matching.jpg',
-	},
-	{
-		number: '04',
-		title: 'Progress Reports & Support',
-		description:
-			"To ensure meaningful progress, your tutor submits a detailed report after every lesson—including what was covered, homework assigned, and clear feedback on your child's strengths and areas for development. Each report combines quantitative ratings with qualitative insights, giving you a well-rounded view of your child's performance. Reports are automatically emailed and available at any time via your secure login. You'll also receive automated lesson reminders 36 hours before each session, keeping everything running smoothly with minimal effort on your part.",
-		features: [
-			'What was covered and homework assigned',
-			'Clear feedback on strengths and development areas',
-			'Automated lesson reminders 36 hours before sessions',
-			'Secure login access to all reports',
-		],
-		icon: 'ClipboardCheck',
-		image: '/images/flexible-scheduling.jpg',
-	},
-	{
-		number: '05',
-		title: 'Ongoing Support & Educational Partnership',
-		description:
-			"At My Private Tutor Online, our commitment doesn't end with a successful tutor match—it begins there. We offer ongoing consultative support to ensure your child continues to thrive.\n\nOur highly responsive team is always available to assist, whether it's rescheduling a session or tweaking lesson focus in light of a school report or parents' evening feedback. We work closely with you to ensure each tutorial remains purposeful and aligned with your child's evolving needs.",
-		features: [
-			'Ongoing consultative support throughout your journey',
-			'Highly responsive team always available to assist',
-			'Flexible lesson adjustments based on school feedback',
-			'Long-term educational partnership from early years to university',
-		],
-		icon: 'MessageSquare',
-		image: '/images/progress-tracking.jpg',
-	},
-] as const;
-
 // Benefits content
 const BENEFITS: readonly string[] = [
-	'Remarkable results. Our tutees secure top marks year in, year out',
-	'Tiered tutor options to suit every academic need and family budget',
-	'Rigorous vetting, including enhanced DBS checks',
-	'Ongoing personal and consultative support throughout your journey',
-	'Automated lesson reminders 36 hours before tutorials to ensure you never forget a session',
-	'Progress reports sent instantly via our tutor management system',
+	'Ongoing consultative support throughout your journey',
+	'Highly responsive team always available to assist',
+	'Flexible lesson adjustments based on school feedback',
+	'Long-term educational partnership from early years to university',
+	'Automated lesson reminders 36 hours before sessions',
+	'Secure login access to all reports',
 ] as const;
 
 // Base rate and promotional pricing
@@ -136,12 +58,15 @@ const TUTOR_PROFILES_SECTION = {
 	subtitle: null,
 	description: (
 		<>
-			Here's a curated cross-section of our team, capturing{' '}
-			<strong>the calibre and diversity of educators across tiers.</strong> This is just a glimpse;{' '}
-			<strong>our full team spans every age, subject and academic stage</strong>, from preschool phonics to postgraduate Astrophysics.
+			Here&apos;s a curated cross-section of our team, capturing{' '}
+			<strong>the calibre and diversity of educators across tiers.</strong> This is
+			just a glimpse;{' '}
+			<strong>our full team spans every age, subject and academic stage</strong>,
+			from preschool phonics to postgraduate Astrophysics.
 			<br />
 			<br />
-			Simply <strong>complete our short enquiry form</strong>, and a member of our team will be in touch to start the conversation.
+			Simply <strong>complete our short enquiry form</strong>, and a member of our
+			team will be in touch to start the conversation.
 		</>
 	) as JSX.Element,
 	profiles: [
@@ -518,15 +443,7 @@ const TUTOR_PROFILES_SECTION = {
 	backgroundStyle: 'light',
 } as const;
 
-const iconMap = {
-	MessageSquare,
-	Users,
-	Target,
-	ClipboardCheck,
-} as const;
-
 export default function HowItWorksPage() {
-	const processSteps = PROCESS_STEPS;
 	const benefits = BENEFITS;
 	const baseRate = BASE_RATE;
 	const promotionalPricing = PROMOTIONAL_PRICING;
@@ -554,133 +471,194 @@ export default function HowItWorksPage() {
 						decorativeStyle='lines'
 					/>
 				</section>
+				{/* New Alternating Row Components */}
+				<AlternatingLayout
+					spacing='normal'
+					maxWidth='full'
+					className='bg-white'>
+					{/* Row 1: Initial Consultation */}
+					<AlternatingRow
+						variant='left'
+						number={1}
+						icon={MessageSquare}
+						image={{
+							src: '/images/how-it-works/initial-consultation-16-9.jpg',
+							alt: "Initial consultation with founder Elizabeth to understand your child's academic profile",
+							width: 800,
+							height: 600,
+							priority: true,
+						}}>
+						<AlternatingRowHeader level={2}>
+							Initial Consultation
+						</AlternatingRowHeader>
+						<AlternatingRowDescription>
+							You begin with a one-to-one conversation with our Founder Elizabeth to
+							understand your child&apos;s academic profile, personality, and goals.
+						</AlternatingRowDescription>
+						<AlternatingRowBullets
+							variant='icons'
+							items={[
+								'Subject strengths and areas for development',
+								'Upcoming exams or milestones',
+								'Preferred learning style',
+								'Any school-specific requirements',
+							]}
+						/>
+					</AlternatingRow>
+
+					{/* Row 2: Tiered Tutoring Options */}
+					<AlternatingRow
+						variant='right'
+						number={2}
+						icon={Target}
+						image={{
+							src: '/images/how-it-works/tiered-tutoring-options.jpg',
+							alt: 'Flexible tiered tutoring model with options for every budget and academic need',
+							width: 800,
+							height: 600,
+						}}>
+						<AlternatingRowHeader level={2}>
+							Tiered Tutoring Options
+						</AlternatingRowHeader>
+						<AlternatingRowDescription>
+							Whether your child needs general mentoring or specialist preparation, our
+							flexible tiered tutoring model allows you to choose the level of support
+							that fits your child&apos;s needs and your budget. Specialist tutoring
+							begins at just £45 per hour. Unlike many other providers, we don&apos;t
+							charge registration or administrative fees—you only pay for your time
+							with a carefully matched, dedicated tutor.
+						</AlternatingRowDescription>
+						<AlternatingRowBullets
+							variant='icons'
+							items={[
+								'Tier 1: Official examiners - Insider tips, tricks and exam technique for top grades',
+								'Tier 2: Qualified teachers - Specialist support from seasoned schoolteachers',
+								'Tier 3: University graduates - Mentoring from experts in their specific subject',
+								'Starting from just £45 per hour',
+							]}
+						/>
+					</AlternatingRow>
+
+					{/* Row 3: Expert Tutor Matching */}
+					<AlternatingRow
+						variant='left'
+						number={3}
+						icon={Users}
+						image={{
+							src: '/images/how-it-works/expert-tutor-matching.jpg',
+							alt: 'Expert tutor matching process pairing students with qualified professionals',
+							width: 800,
+							height: 600,
+						}}>
+						<AlternatingRowHeader level={2}>
+							Expert Tutor Matching
+						</AlternatingRowHeader>
+						<AlternatingRowDescription>
+							Elizabeth worked alongside the majority of our tutors as colleagues
+							during her international career. The rest come to us via personal
+							recommendations from our trusted team, selecting only those with an
+							outstanding educational pedigree, impressive tutoring background and
+							passion for nurturing young minds. She brings this deep personal
+							knowledge to every match, pairing students with not only a perfectly
+							qualified tutor, but also a personality they will resonate well with.
+						</AlternatingRowDescription>
+						<AlternatingRowBullets
+							variant='icons'
+							items={[
+								'Oxbridge alumni',
+								'Heads of Department at top 10 UK schools',
+								'Accredited GCSE, A Level and IB examiners',
+								'PhD and Postdocs',
+							]}
+						/>
+					</AlternatingRow>
+
+					{/* Row 4: Progress Reports & Support */}
+					<AlternatingRow
+						variant='right'
+						number={4}
+						icon={ClipboardCheck}
+						image={{
+							src: '/images/how-it-works/progress-reports-support.jpg',
+							alt: 'Comprehensive progress reports and automated lesson reminders for ongoing support',
+							width: 800,
+							height: 600,
+						}}>
+						<AlternatingRowHeader level={2}>
+							Progress Reports & Support
+						</AlternatingRowHeader>
+						<AlternatingRowDescription>
+							To ensure meaningful progress, your tutor submits a detailed report after
+							every lesson—including what was covered, homework assigned, and clear
+							feedback on your child&apos;s strengths and areas for development. Each
+							report combines quantitative ratings with qualitative insights, giving
+							you a well-rounded view of your child&apos;s performance. Reports are
+							automatically emailed and available at any time via your secure login.
+							You&apos;ll also receive automated lesson reminders 36 hours before each
+							session, keeping everything running smoothly with minimal effort on your
+							part.
+						</AlternatingRowDescription>
+						<AlternatingRowBullets
+							variant='icons'
+							items={[
+								'What was covered and homework assigned',
+								'Clear feedback on strengths and development areas',
+								'Automated lesson reminders 36 hours before sessions',
+								'Secure login access to all reports',
+							]}
+						/>
+					</AlternatingRow>
+
+					{/* Row 5: Ongoing Support & Educational Partnership */}
+					<AlternatingRow
+						variant='left'
+						number={5}
+						icon={Heart}
+						image={{
+							src: '/images/how-it-works/ongoing-support-partnership.avif',
+							alt: 'Long-term educational partnership providing ongoing consultative support',
+							width: 800,
+							height: 600,
+						}}>
+						<AlternatingRowHeader level={2}>
+							Ongoing Support & Educational Partnership
+						</AlternatingRowHeader>
+						<AlternatingRowDescription>
+							At My Private Tutor Online, our commitment doesn&apos;t end with a
+							successful tutor match—it begins there. We offer ongoing consultative
+							support to ensure your child continues to thrive. Our highly responsive
+							team is always available to assist, whether it&apos;s rescheduling a
+							session or tweaking lesson focus in light of a school report or
+							parents&apos; evening feedback. We work closely with you to ensure each
+							tutorial remains purposeful and aligned with your child&apos;s evolving
+							needs.
+						</AlternatingRowDescription>
+						<AlternatingRowBullets
+							variant='icons'
+							items={[
+								'Ongoing consultative support throughout your journey',
+								'Highly responsive team always available to assist',
+								'Flexible lesson adjustments based on school feedback',
+								'Long-term educational partnership from early years to university',
+							]}
+						/>
+					</AlternatingRow>
+				</AlternatingLayout>
 				<section
-					id='how-it-works-process-steps'
-					className='relative bg-white pt-12 lg:pt-16 pb-20 lg:pb-32'>
-					<div className='relative container mx-auto px-4 sm:px-6 lg:px-8'>
-						<div className='text-center mb-4'>
-							<h2>Your Journey To Academic Success</h2>
-						</div>
-
-						<section
-							id='journey-quote'
-							className='py-8 lg:py-12 bg-primary-50'>
-							<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
-								<MissionQuote
-									showCite={true}
-									cite='My Private Tutor Online'
-									author='Elizabeth Burrows'
-									role='Founder'
-									size='lg'>
-									At My Private Tutor Online, we offer more than just tutoring—we
-									provide thoughtful, expert advice at every stage of your child's
-									academic journey. Our service is consultative, personal, and{' '}
-									<strong>bespoke to your family's individual needs</strong>.
-								</MissionQuote>
-							</div>
-						</section>
-
-						<div className='relative w-full'>
-							<div className='space-y-0'>
-								{processSteps && processSteps.length > 0 ? (
-									processSteps.map((step: HowItWorksStep, index: number) => {
-										const IconComponent = iconMap[step.icon as keyof typeof iconMap];
-										const isEven = index % 2 === 0;
-										return (
-											<m.div
-												key={index}
-												initial={{
-													opacity: 0,
-													x: isEven ? -30 : 30,
-												}}
-												whileInView={{
-													opacity: 1,
-													x: 0,
-												}}
-												viewport={{
-													once: true,
-													margin: '-50px',
-												}}
-												transition={{
-													duration: 0.8,
-													delay: index * 0.1,
-												}}
-												className='w-full'>
-												<div className='grid grid-cols-1 lg:grid-cols-2 lg:auto-rows-fr gap-0 items-stretch'>
-													<div
-														className={`relative w-full ${
-															isEven ? 'order-1 lg:order-1' : 'order-1 lg:order-2'
-														}`}>
-														<div className='relative w-full aspect-[17/9] lg:aspect-auto'>
-															<Image
-																src={step.image}
-																alt={`${step.title} - Step ${step.number}`}
-																fill
-																className='object-cover w-full h-full'
-																sizes='(max-width: 768px) 100vw, 50vw'
-															/>
-														</div>
-													</div>
-
-													<div
-														className={`bg-white flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-16 lg:py-20 ${
-															isEven ? 'order-2 lg:order-2' : 'order-2 lg:order-1'
-														}`}>
-														<div
-															className={`${
-																isEven ? 'border-l-4 pl-8' : 'border-r-4 pr-8'
-															} border-primary-700'`}>
-															<div className='flex items-start gap-4 mb-6'>
-																<div className='flex-shrink-0 w-12 h-12 bg-primary-700 flex items-center justify-center shadow-md'>
-																	<span className='text-white'>{step.number}</span>
-																</div>
-
-																<div className='flex-1'>
-																	<div className='flex items-center gap-2 mb-2'>
-																		<IconComponent className='w-5 h-5 text-accent-600' />
-																		<h3>{step.title}</h3>
-																	</div>
-																</div>
-															</div>
-
-															<div className='mb-6'>
-																{step.description.split('\n').map(
-																	(paragraph, pIndex) =>
-																		paragraph.trim() && (
-																			<p
-																				key={pIndex}
-																				className={pIndex > 0 ? 'mt-4' : ''}>
-																				{paragraph.trim()}
-																			</p>
-																		),
-																)}
-															</div>
-
-															<ul className='space-y-3'>
-																{step.features.map((feature: string, featureIndex: number) => (
-																	<li
-																		key={featureIndex}
-																		className='flex items-start gap-3'>
-																		<div className='flex-shrink-0 w-5 h-5 bg-accent-500 rounded-full flex items-center justify-center mt-0.5'>
-																			<CheckCircle className='w-3 h-3 text-white' />
-																		</div>
-																		<span>{feature}</span>
-																	</li>
-																))}
-															</ul>
-														</div>
-													</div>
-												</div>
-											</m.div>
-										);
-									})
-								) : (
-									<div className='text-center py-12'>
-										<p>Process steps are currently being loaded...</p>
-									</div>
-								)}
-							</div>
-						</div>
+					id='journey-quote'
+					className='py-8 lg:py-12 bg-primary-50'>
+					<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
+						<MissionQuote
+							showCite={true}
+							cite='My Private Tutor Online'
+							author='Elizabeth Burrows'
+							role='Founder'
+							size='lg'>
+							At My Private Tutor Online, we offer more than just tutoring—we provide
+							thoughtful, expert advice at every stage of your child&apos;s academic
+							journey. Our service is consultative, personal, and{' '}
+							<strong>bespoke to your family&apos;s individual needs</strong>.
+						</MissionQuote>
 					</div>
 				</section>
 
@@ -689,12 +667,13 @@ export default function HowItWorksPage() {
 						data={tutorProfilesSection}
 						showFeaturedOnly={false}
 						showViewAllButton={true}
+						className='bg-white'
 					/>
 				</section>
 
 				<section id='how-it-works-tutoring-tiers'>
 					<TierDescriptions
-						title="Choose Your Bespoke Tutoring Experience"
+						title='Choose Your Bespoke Tutoring Experience'
 						subtitle="Whether you're seeking essential academic mentoring or the insight of a specialist examiner, find the level of guidance that feels right for your child and your family."
 						showExpandable={true}
 					/>
@@ -723,10 +702,6 @@ export default function HowItWorksPage() {
 						<div className='text-center mb-16 lg:mb-20'>
 							<h2 className='mb-8'>Why Families Choose Our Approach</h2>
 
-							<div className='flex items-center justify-center gap-4 mb-8'>
-								<div className='w-24 h-1 bg-accent-500 mx-auto'></div>
-							</div>
-
 							<p className='max-w-4xl mx-auto'>
 								Discover what sets My Private Tutor Online apart as the trusted choice
 								of families across the world.
@@ -754,7 +729,7 @@ export default function HowItWorksPage() {
 								}}>
 								<div className='relative h-full'>
 									<Image
-										src='/images/graphics/feature-why-families-choose-approach.jpg'
+										src='/images/how-it-works/why-families-choose-our-approach.jpg'
 										alt='Why families choose our premium tutoring approach - professional educational consultation'
 										fill
 										className='object-cover'
@@ -782,7 +757,7 @@ export default function HowItWorksPage() {
 									ease: [0.25, 0.1, 0.25, 1],
 								}}>
 								<div className='space-y-6'>
-									{benefits && benefits.length > 0 ? (
+									{benefits && benefits.length > 0 ?
 										benefits.map((benefit: string, index: number) => (
 											<m.div
 												key={index}
@@ -804,8 +779,8 @@ export default function HowItWorksPage() {
 													delay: 0.4 + index * 0.1,
 													ease: [0.25, 0.1, 0.25, 1],
 												}}>
-												<div className='flex-shrink-0 w-8 h-8 bg-primary-700 rounded-full flex items-center justify-center shadow-md transition-shadow duration-300 mt-1'>
-													<CheckCircle className='w-5 h-5 text-white' />
+												<div className='flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center  duration-300 mt-1'>
+													<Check className='w-5 h-5 text-primary-700' />
 												</div>
 
 												<div className='flex-1'>
@@ -813,11 +788,10 @@ export default function HowItWorksPage() {
 												</div>
 											</m.div>
 										))
-									) : (
-										<div className='text-center py-12'>
+									:	<div className='text-center py-12'>
 											<p>Benefits are currently being loaded...</p>
 										</div>
-									)}
+									}
 								</div>
 							</m.div>
 						</div>

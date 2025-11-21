@@ -15,7 +15,8 @@ import type { TestimonialSubjectTuition } from '@/components/education/testimoni
 import type { Stat } from '@/components/education/stat-card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { AnimatePresence, motion } from 'framer-motion';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useState, useEffect, Suspense } from 'react';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import {
 	School,
 	GraduationCap,
@@ -632,13 +633,35 @@ const educationLevels = [
 		],
 	},
 ] as const satisfies ReadonlyArray<StrictEducationLevel>;
-export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
-	const [selectedTab, setSelectedTab] =
-		useState<EducationLevelValue>('primary-school');
+// Tab Navigation Component with URL integration
+function TabNavigation() {
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	// Get current tab from URL or default to primary-school
+	const currentTab = searchParams.get('tab') as EducationLevelValue || 'primary-school';
+	const [selectedTab, setSelectedTab] = useState<EducationLevelValue>(currentTab);
+
+	// Update local state when URL changes
+	useEffect(() => {
+		const urlTab = searchParams.get('tab') as EducationLevelValue || 'primary-school';
+		setSelectedTab(urlTab);
+	}, [searchParams]);
+
+	// Handle tab changes with URL updates
 	const handleTabChange = useCallback((value: string) => {
-		setSelectedTab(value as EducationLevelValue);
-		console.log('Tab changed to:', value);
-	}, []);
+		const newTab = value as EducationLevelValue;
+		setSelectedTab(newTab);
+
+		// Update URL with new tab parameter
+		const params = new URLSearchParams(searchParams.toString());
+		params.set('tab', newTab);
+
+		// Use window.history.pushState for Next.js 15 compatibility
+		window.history.pushState(null, '', `${pathname}?${params.toString()}`);
+	}, [searchParams, pathname]);
+
 	const TabContent = memo(
 		({
 			level,
@@ -681,6 +704,80 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 		},
 	);
 	TabContent.displayName = 'TabContent';
+
+	return (
+		<main className='flex-1  px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-neutral-50 to-white'>
+			<div className='w-full mx-auto'>
+				<Tabs
+					defaultValue='primary-school'
+					value={selectedTab}
+					className='w-full'
+					orientation='horizontal'
+					dir='ltr'
+					onValueChange={handleTabChange}>
+					<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8 pt-8'>
+						<TabsList className='flex h-auto w-full flex-wrap gap-2 bg-primary-700 p-2 rounded-none'>
+							{educationLevels.map((level) => {
+								const IconComponent = level.icon;
+								return (
+									<TabsTrigger
+										key={level.value}
+										value={level.value}
+										className={cn(
+											'px-4 py-3 transition-all duration-200 ease-in-out data-[state=active]:bg-white data-[state=active]:text-primary-700 data-[state=inactive]:bg-transparent data-[state=inactive]:text-white rounded-none flex items-center gap-2',
+										)}>
+										<IconComponent className="h-4 w-4" />
+										{level.label}
+									</TabsTrigger>
+								);
+							})}
+						</TabsList>
+					</div>
+
+					<TabContent
+						level={educationLevels.find((l) => l.value === 'primary-school')!}
+						contentData={<PrimarySchoolContent />}
+					/>
+
+					<TabContent
+						level={educationLevels.find((l) => l.value === 'secondary-school')!}
+						contentData={<SecondarySchoolContent />}
+					/>
+
+					<TabContent
+						level={educationLevels.find((l) => l.value === 'entrance-exams')!}
+						contentData={<EntranceExamsContent />}
+					/>
+
+					<TabContent
+						level={
+							educationLevels.find((l) => l.value === 'university-admissions')!
+						}
+						contentData={<UniversityAdmissionsContent />}
+					/>
+
+					<TabContent
+						level={educationLevels.find((l) => l.value === 'online-homeschooling')!}
+						contentData={<OnlineHomeschoolingContent />}
+					/>
+
+					<TabContent
+						level={educationLevels.find((l) => l.value === 'sen-support')!}
+						contentData={<SenSupportContent />}
+					/>
+
+					<TabContent
+						level={educationLevels.find((l) => l.value === 'london-in-person')!}
+						contentData={<LondonInPersonContent />}
+					/>
+				</Tabs>
+			</div>
+		</main>
+	);
+}
+
+// Main Page Component with Suspense boundary
+export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 	return (
 		<>
 			<SimpleHero
@@ -701,73 +798,10 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 				showHeader={true}
 				showFooter={false}
 				containerSize='full'>
-				<main className='flex-1  px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-neutral-50 to-white'>
-					<div className='w-full mx-auto'>
-						<Tabs
-							defaultValue='primary-school'
-							value={selectedTab}
-							className='w-full'
-							orientation='horizontal'
-							dir='ltr'
-							onValueChange={handleTabChange}>
-							<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8 pt-8'>
-								<TabsList className='flex h-auto w-full flex-wrap gap-2 bg-primary-700 p-2 rounded-none'>
-									{educationLevels.map((level) => {
-										const IconComponent = level.icon;
-										return (
-											<TabsTrigger
-												key={level.value}
-												value={level.value}
-												className={cn(
-													'px-4 py-3 transition-all duration-200 ease-in-out data-[state=active]:bg-white data-[state=active]:text-primary-700 data-[state=inactive]:bg-transparent data-[state=inactive]:text-white rounded-none flex items-center gap-2',
-												)}>
-												<IconComponent className="h-4 w-4" />
-												{level.label}
-											</TabsTrigger>
-										);
-									})}
-								</TabsList>
-							</div>
-
-							<TabContent
-								level={educationLevels.find((l) => l.value === 'primary-school')!}
-								contentData={<PrimarySchoolContent />}
-							/>
-
-							<TabContent
-								level={educationLevels.find((l) => l.value === 'secondary-school')!}
-								contentData={<SecondarySchoolContent />}
-							/>
-
-							<TabContent
-								level={educationLevels.find((l) => l.value === 'entrance-exams')!}
-								contentData={<EntranceExamsContent />}
-							/>
-
-							<TabContent
-								level={
-									educationLevels.find((l) => l.value === 'university-admissions')!
-								}
-								contentData={<UniversityAdmissionsContent />}
-							/>
-
-							<TabContent
-								level={educationLevels.find((l) => l.value === 'online-homeschooling')!}
-								contentData={<OnlineHomeschoolingContent />}
-							/>
-
-							<TabContent
-								level={educationLevels.find((l) => l.value === 'sen-support')!}
-								contentData={<SenSupportContent />}
-							/>
-
-							<TabContent
-								level={educationLevels.find((l) => l.value === 'london-in-person')!}
-								contentData={<LondonInPersonContent />}
-							/>
-						</Tabs>
-					</div>
-				</main>
+				{/* Suspense boundary required for useSearchParams in Next.js 15 */}
+				<Suspense fallback={<div className="flex-1 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-neutral-50 to-white"><div className="w-full mx-auto p-8 text-center">Loading...</div></div>}>
+					<TabNavigation />
+				</Suspense>
 			</PageLayout>
 
 			<PageFooter

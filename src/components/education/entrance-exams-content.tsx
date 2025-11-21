@@ -5,6 +5,7 @@ import type { TabContentData } from './tab-content-layout';
 import { Award, Crown, Users } from 'lucide-react';
 
 const entranceExamsData: TabContentData = {
+	tabName: 'Entrance Exams',
 	mainFeatures: {
 		description:
 			'Selective entry exams such as the 7+, 8+, 11+, Common Entrance, UKiset and CAT4 are highly competitive and form the gateway to top grammar and independent schools. These assessments go beyond classroom learning, testing core academics alongside verbal, non-verbal, and cognitive reasoning.',

@@ -5,6 +5,7 @@ import type { TabContentData } from './tab-content-layout';
 import { Home, Globe, Settings, Home as House, Clock, User, Heart } from 'lucide-react';
 
 const onlineHomeschoolingData: TabContentData = {
+	tabName: 'Online Homeschooling',
 	mainFeatures: {
 		description:
 			'Our programmes blend flexible schedules, engaging pedagogy, and world-class teaching to deliver transformative education—regardless of geography. Students develop strong academic habits, enjoy tailored attention, and see significant progress.',

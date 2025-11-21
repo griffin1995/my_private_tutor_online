@@ -1,25 +1,15 @@
 'use client';
 
 import type { TutorProfilesSection } from '@/lib/cms/cms-content';
-import React, { type JSX } from 'react';
+import React from 'react';
 import { TutorsGrid } from './tutors-grid';
+
 interface TutorsSectionProps {
 	readonly data: TutorProfilesSection;
 	readonly showFeaturedOnly?: boolean;
 	readonly maxProfiles?: number;
 	readonly showViewAllButton?: boolean;
 	readonly className?: string;
-}
-interface TutorProfilesSection {
-	readonly title: string;
-	readonly subtitle: string | null;
-	readonly description: string | JSX.Element;
-	readonly profiles: readonly TutorProfile[];
-	readonly showAllButton?: {
-		readonly text: string;
-		readonly href: string;
-	};
-	readonly backgroundStyle?: 'light' | 'dark' | 'gradient';
 }
 export const TutorsSection: React.FC<TutorsSectionProps> = ({
 	data,
@@ -73,7 +63,7 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
 				<TutorsGrid
 					profiles={profilesToShow}
 					showFeatured={!showFeaturedOnly}
-					maxProfiles={maxProfiles}
+					{...(maxProfiles !== undefined && { maxProfiles })}
 				/>
 
 				{showViewAllButton && data.showAllButton && profilesToShow.length > 0 && (

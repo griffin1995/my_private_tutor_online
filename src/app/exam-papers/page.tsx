@@ -2,6 +2,7 @@
 
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
 	Card,
@@ -9,6 +10,7 @@ import {
 	CardFooter,
 	CardHeader,
 } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
 	Collapsible,
 	CollapsibleContent,
@@ -276,9 +278,64 @@ const categories = [
 	},
 ];
 
+// Resource card interface with isFree field for filtering
+interface ResourceCard {
+	id: number;
+	title: string;
+	price: number;
+	category: string;
+	description: string;
+	isFree: boolean;
+}
+
 // CONTEXT7 SOURCE: /metalrockseducation.co.uk - Product card structure
 // Mock resource cards - 3 cards per leaf-level subcategory for testing functionality
-const resourceCards = [
+const resourceCards: ResourceCard[] = [
+	// FREE SAMPLE RESOURCES - For testing free filter functionality
+	{
+		id: 1001,
+		title: '11+ English Sample Paper (Free)',
+		price: 0,
+		category: '11-plus-english',
+		description:
+			'Free sample English paper to help you prepare for 11+ entrance exams',
+		isFree: true,
+	},
+	{
+		id: 1002,
+		title: '11+ Mathematics Taster Pack (Free)',
+		price: 0,
+		category: '11-plus-maths',
+		description:
+			'Free mathematics practice questions to get started with your preparation',
+		isFree: true,
+	},
+	{
+		id: 1003,
+		title: 'GCSE English Literature Introduction (Free)',
+		price: 0,
+		category: 'gcse-aqa-english',
+		description:
+			'Complimentary guide to GCSE English Literature analysis techniques',
+		isFree: true,
+	},
+	{
+		id: 1004,
+		title: 'A-Level Chemistry Starter Guide (Free)',
+		price: 0,
+		category: 'a-level-aqa-sciences',
+		description:
+			'Free introduction to A-Level Chemistry concepts and study strategies',
+		isFree: true,
+	},
+	{
+		id: 1005,
+		title: 'IB Mathematics Foundation (Free)',
+		price: 0,
+		category: 'ib-sl-maths',
+		description: 'Complimentary IB Mathematics standard level revision notes',
+		isFree: true,
+	},
 	// 7+ Entrance Exams
 	{
 		id: 1,
@@ -286,6 +343,7 @@ const resourceCards = [
 		price: 24.99,
 		category: '7-plus-english',
 		description: 'Comprehensive English practice papers for 7+ entrance exams',
+		isFree: false,
 	},
 	{
 		id: 2,
@@ -293,6 +351,7 @@ const resourceCards = [
 		price: 19.99,
 		category: '7-plus-english',
 		description: 'Essential vocabulary exercises for young learners',
+		isFree: false,
 	},
 	{
 		id: 3,
@@ -300,6 +359,7 @@ const resourceCards = [
 		price: 22.99,
 		category: '7-plus-english',
 		description: 'Engaging reading comprehension materials',
+		isFree: false,
 	},
 	{
 		id: 4,
@@ -307,6 +367,7 @@ const resourceCards = [
 		price: 24.99,
 		category: '7-plus-maths',
 		description: 'Core mathematics concepts for 7+ preparation',
+		isFree: false,
 	},
 	{
 		id: 5,
@@ -314,6 +375,7 @@ const resourceCards = [
 		price: 21.99,
 		category: '7-plus-maths',
 		description: 'Problem-solving strategies for young mathematicians',
+		isFree: false,
 	},
 	{
 		id: 6,
@@ -321,6 +383,7 @@ const resourceCards = [
 		price: 18.99,
 		category: '7-plus-maths',
 		description: 'Quick mental arithmetic practice exercises',
+		isFree: false,
 	},
 	{
 		id: 7,
@@ -328,6 +391,7 @@ const resourceCards = [
 		price: 23.99,
 		category: '7-plus-reasoning',
 		description: 'Introduction to reasoning for early learners',
+		isFree: false,
 	},
 	{
 		id: 8,
@@ -335,6 +399,7 @@ const resourceCards = [
 		price: 20.99,
 		category: '7-plus-reasoning',
 		description: 'Pattern recognition and logical thinking',
+		isFree: false,
 	},
 	{
 		id: 9,
@@ -342,6 +407,7 @@ const resourceCards = [
 		price: 19.99,
 		category: '7-plus-reasoning',
 		description: 'Engaging puzzles to develop reasoning skills',
+		isFree: false,
 	},
 	{
 		id: 10,
@@ -349,6 +415,7 @@ const resourceCards = [
 		price: 17.99,
 		category: '7-plus-other',
 		description: 'Broad general knowledge for well-rounded preparation',
+		isFree: false,
 	},
 	{
 		id: 11,
@@ -356,6 +423,7 @@ const resourceCards = [
 		price: 18.99,
 		category: '7-plus-other',
 		description: 'Creative writing exercises for young writers',
+		isFree: false,
 	},
 	{
 		id: 12,
@@ -363,6 +431,7 @@ const resourceCards = [
 		price: 21.99,
 		category: '7-plus-other',
 		description: 'Build confidence for entrance interviews',
+		isFree: false,
 	},
 
 	// 8+ Entrance Exams
@@ -372,6 +441,7 @@ const resourceCards = [
 		price: 26.99,
 		category: '8-plus-english',
 		description: 'Advanced English practice for 8+ entrance',
+		isFree: false,
 	},
 	{
 		id: 14,
@@ -379,6 +449,7 @@ const resourceCards = [
 		price: 22.99,
 		category: '8-plus-english',
 		description: 'Comprehensive grammar exercises',
+		isFree: false,
 	},
 	{
 		id: 15,
@@ -386,6 +457,7 @@ const resourceCards = [
 		price: 23.99,
 		category: '8-plus-english',
 		description: 'Develop creative writing skills',
+		isFree: false,
 	},
 	{
 		id: 16,
@@ -393,6 +465,7 @@ const resourceCards = [
 		price: 27.99,
 		category: '8-plus-maths',
 		description: 'Essential mathematics for 8+ preparation',
+		isFree: false,
 	},
 	{
 		id: 17,
@@ -400,6 +473,7 @@ const resourceCards = [
 		price: 24.99,
 		category: '8-plus-maths',
 		description: 'Challenging mathematical problems',
+		isFree: false,
 	},
 	{
 		id: 18,
@@ -407,6 +481,7 @@ const resourceCards = [
 		price: 19.99,
 		category: '8-plus-maths',
 		description: 'Timed mathematics practice tests',
+		isFree: false,
 	},
 	{
 		id: 19,
@@ -414,6 +489,7 @@ const resourceCards = [
 		price: 25.99,
 		category: '8-plus-reasoning',
 		description: 'Comprehensive reasoning preparation',
+		isFree: false,
 	},
 	{
 		id: 20,
@@ -421,6 +497,7 @@ const resourceCards = [
 		price: 23.99,
 		category: '8-plus-reasoning',
 		description: 'Verbal reasoning mastery',
+		isFree: false,
 	},
 	{
 		id: 21,
@@ -428,6 +505,7 @@ const resourceCards = [
 		price: 23.99,
 		category: '8-plus-reasoning',
 		description: 'Non-verbal reasoning excellence',
+		isFree: false,
 	},
 	{
 		id: 22,
@@ -435,6 +513,7 @@ const resourceCards = [
 		price: 20.99,
 		category: '8-plus-other',
 		description: 'Introduction to scientific concepts',
+		isFree: false,
 	},
 	{
 		id: 23,
@@ -442,6 +521,7 @@ const resourceCards = [
 		price: 19.99,
 		category: '8-plus-other',
 		description: 'Broad general studies material',
+		isFree: false,
 	},
 	{
 		id: 24,
@@ -449,6 +529,7 @@ const resourceCards = [
 		price: 22.99,
 		category: '8-plus-other',
 		description: 'Interview confidence and technique',
+		isFree: false,
 	},
 
 	// 11+ Entrance Exams
@@ -458,6 +539,7 @@ const resourceCards = [
 		price: 29.99,
 		category: '11-plus-english',
 		description: 'Advanced literature comprehension skills',
+		isFree: false,
 	},
 	{
 		id: 26,
@@ -465,6 +547,7 @@ const resourceCards = [
 		price: 27.99,
 		category: '11-plus-english',
 		description: 'Master persuasive and creative writing',
+		isFree: false,
 	},
 	{
 		id: 27,
@@ -472,6 +555,7 @@ const resourceCards = [
 		price: 24.99,
 		category: '11-plus-english',
 		description: 'Perfect grammar and punctuation skills',
+		isFree: false,
 	},
 	{
 		id: 28,
@@ -479,6 +563,7 @@ const resourceCards = [
 		price: 32.99,
 		category: '11-plus-maths',
 		description: 'Comprehensive mathematics revision',
+		isFree: false,
 	},
 	{
 		id: 29,
@@ -486,6 +571,7 @@ const resourceCards = [
 		price: 29.99,
 		category: '11-plus-maths',
 		description: 'Challenging mathematical concepts',
+		isFree: false,
 	},
 	{
 		id: 30,
@@ -493,6 +579,7 @@ const resourceCards = [
 		price: 26.99,
 		category: '11-plus-maths',
 		description: 'Realistic timed practice examinations',
+		isFree: false,
 	},
 	{
 		id: 31,
@@ -500,6 +587,7 @@ const resourceCards = [
 		price: 28.99,
 		category: '11-plus-verbal',
 		description: 'Complete verbal reasoning preparation',
+		isFree: false,
 	},
 	{
 		id: 32,
@@ -507,6 +595,7 @@ const resourceCards = [
 		price: 26.99,
 		category: '11-plus-verbal',
 		description: 'Proven strategies for success',
+		isFree: false,
 	},
 	{
 		id: 33,
@@ -514,6 +603,7 @@ const resourceCards = [
 		price: 25.99,
 		category: '11-plus-verbal',
 		description: 'Authentic mock examination papers',
+		isFree: false,
 	},
 	{
 		id: 34,
@@ -521,6 +611,7 @@ const resourceCards = [
 		price: 28.99,
 		category: '11-plus-non-verbal',
 		description: 'Master visual reasoning skills',
+		isFree: false,
 	},
 	{
 		id: 35,
@@ -528,6 +619,7 @@ const resourceCards = [
 		price: 26.99,
 		category: '11-plus-non-verbal',
 		description: 'Pattern recognition excellence',
+		isFree: false,
 	},
 	{
 		id: 36,
@@ -535,6 +627,7 @@ const resourceCards = [
 		price: 24.99,
 		category: '11-plus-non-verbal',
 		description: 'Comprehensive practice materials',
+		isFree: false,
 	},
 	{
 		id: 37,
@@ -542,6 +635,7 @@ const resourceCards = [
 		price: 27.99,
 		category: '11-plus-science',
 		description: 'Core scientific concepts and experiments',
+		isFree: false,
 	},
 	{
 		id: 38,
@@ -549,6 +643,7 @@ const resourceCards = [
 		price: 25.99,
 		category: '11-plus-science',
 		description: 'Engaging scientific investigations',
+		isFree: false,
 	},
 	{
 		id: 39,
@@ -556,6 +651,7 @@ const resourceCards = [
 		price: 23.99,
 		category: '11-plus-science',
 		description: 'Realistic science exam papers',
+		isFree: false,
 	},
 	{
 		id: 40,
@@ -563,6 +659,7 @@ const resourceCards = [
 		price: 24.99,
 		category: '11-plus-languages',
 		description: 'Introduction to French for entrance exams',
+		isFree: false,
 	},
 	{
 		id: 41,
@@ -570,6 +667,7 @@ const resourceCards = [
 		price: 26.99,
 		category: '11-plus-languages',
 		description: 'Essential Latin grammar and vocabulary',
+		isFree: false,
 	},
 	{
 		id: 42,
@@ -577,6 +675,7 @@ const resourceCards = [
 		price: 24.99,
 		category: '11-plus-languages',
 		description: 'Foundational Spanish language skills',
+		isFree: false,
 	},
 	{
 		id: 43,
@@ -584,6 +683,7 @@ const resourceCards = [
 		price: 22.99,
 		category: '11-plus-arts',
 		description: 'Build an impressive art portfolio',
+		isFree: false,
 	},
 	{
 		id: 44,
@@ -591,6 +691,7 @@ const resourceCards = [
 		price: 23.99,
 		category: '11-plus-arts',
 		description: 'Music theory for entrance examinations',
+		isFree: false,
 	},
 	{
 		id: 45,
@@ -598,6 +699,7 @@ const resourceCards = [
 		price: 21.99,
 		category: '11-plus-arts',
 		description: 'Drama techniques and confidence building',
+		isFree: false,
 	},
 
 	// 13+ Entrance Exams
@@ -607,6 +709,7 @@ const resourceCards = [
 		price: 34.99,
 		category: '13-plus-english',
 		description: 'Advanced literary analysis and criticism',
+		isFree: false,
 	},
 	{
 		id: 47,
@@ -614,6 +717,7 @@ const resourceCards = [
 		price: 31.99,
 		category: '13-plus-english',
 		description: 'Develop a strong writing portfolio',
+		isFree: false,
 	},
 	{
 		id: 48,
@@ -621,6 +725,7 @@ const resourceCards = [
 		price: 29.99,
 		category: '13-plus-english',
 		description: 'Advanced language and rhetoric skills',
+		isFree: false,
 	},
 	{
 		id: 49,
@@ -628,6 +733,7 @@ const resourceCards = [
 		price: 36.99,
 		category: '13-plus-maths',
 		description: 'Advanced mathematical concepts',
+		isFree: false,
 	},
 	{
 		id: 50,
@@ -635,6 +741,7 @@ const resourceCards = [
 		price: 33.99,
 		category: '13-plus-maths',
 		description: 'Complex problem-solving techniques',
+		isFree: false,
 	},
 	{
 		id: 51,
@@ -642,6 +749,7 @@ const resourceCards = [
 		price: 31.99,
 		category: '13-plus-maths',
 		description: 'Comprehensive exam preparation',
+		isFree: false,
 	},
 	{
 		id: 52,
@@ -649,6 +757,7 @@ const resourceCards = [
 		price: 38.99,
 		category: '13-plus-science',
 		description: 'Biology, Chemistry, and Physics combined',
+		isFree: false,
 	},
 	{
 		id: 53,
@@ -656,6 +765,7 @@ const resourceCards = [
 		price: 34.99,
 		category: '13-plus-science',
 		description: 'Laboratory techniques and experiments',
+		isFree: false,
 	},
 	{
 		id: 54,
@@ -663,6 +773,7 @@ const resourceCards = [
 		price: 32.99,
 		category: '13-plus-science',
 		description: 'Scientific theory with practical applications',
+		isFree: false,
 	},
 	{
 		id: 55,
@@ -670,6 +781,7 @@ const resourceCards = [
 		price: 29.99,
 		category: '13-plus-languages',
 		description: 'Advanced French language skills',
+		isFree: false,
 	},
 	{
 		id: 56,
@@ -677,6 +789,7 @@ const resourceCards = [
 		price: 31.99,
 		category: '13-plus-languages',
 		description: 'Classical Latin literature and translation',
+		isFree: false,
 	},
 	{
 		id: 57,
@@ -684,6 +797,7 @@ const resourceCards = [
 		price: 29.99,
 		category: '13-plus-languages',
 		description: 'Fluency development in Spanish',
+		isFree: false,
 	},
 	{
 		id: 58,
@@ -691,6 +805,7 @@ const resourceCards = [
 		price: 33.99,
 		category: '13-plus-humanities',
 		description: 'Comprehensive humanities preparation',
+		isFree: false,
 	},
 	{
 		id: 59,
@@ -698,6 +813,7 @@ const resourceCards = [
 		price: 28.99,
 		category: '13-plus-humanities',
 		description: 'Religious studies and philosophy',
+		isFree: false,
 	},
 	{
 		id: 60,
@@ -705,6 +821,7 @@ const resourceCards = [
 		price: 30.99,
 		category: '13-plus-humanities',
 		description: 'Ancient civilisations and classical studies',
+		isFree: false,
 	},
 	{
 		id: 61,
@@ -712,6 +829,7 @@ const resourceCards = [
 		price: 32.99,
 		category: '13-plus-arts',
 		description: 'Create an exceptional art portfolio',
+		isFree: false,
 	},
 	{
 		id: 62,
@@ -719,6 +837,7 @@ const resourceCards = [
 		price: 34.99,
 		category: '13-plus-arts',
 		description: 'Advanced music skills and composition',
+		isFree: false,
 	},
 	{
 		id: 63,
@@ -726,6 +845,7 @@ const resourceCards = [
 		price: 30.99,
 		category: '13-plus-arts',
 		description: 'Performance techniques and theatre history',
+		isFree: false,
 	},
 
 	// 16+ Entrance Exams (sixth form)
@@ -735,6 +855,7 @@ const resourceCards = [
 		price: 36.99,
 		category: '16-plus-english',
 		description: 'Transition to A-Level English Literature',
+		isFree: false,
 	},
 	{
 		id: 65,
@@ -742,6 +863,7 @@ const resourceCards = [
 		price: 34.99,
 		category: '16-plus-english',
 		description: 'Advanced linguistic analysis skills',
+		isFree: false,
 	},
 	{
 		id: 66,
@@ -749,6 +871,7 @@ const resourceCards = [
 		price: 32.99,
 		category: '16-plus-english',
 		description: 'Critical analysis and essay writing',
+		isFree: false,
 	},
 	{
 		id: 67,
@@ -756,6 +879,7 @@ const resourceCards = [
 		price: 38.99,
 		category: '16-plus-maths',
 		description: 'Bridge to A-Level mathematics',
+		isFree: false,
 	},
 	{
 		id: 68,
@@ -763,6 +887,7 @@ const resourceCards = [
 		price: 36.99,
 		category: '16-plus-maths',
 		description: 'Introduction to further mathematics',
+		isFree: false,
 	},
 	{
 		id: 69,
@@ -770,6 +895,7 @@ const resourceCards = [
 		price: 34.99,
 		category: '16-plus-maths',
 		description: 'Scholarship-level mathematics preparation',
+		isFree: false,
 	},
 	{
 		id: 70,
@@ -777,6 +903,7 @@ const resourceCards = [
 		price: 39.99,
 		category: '16-plus-sciences',
 		description: 'GCSE to A-Level science bridge',
+		isFree: false,
 	},
 	{
 		id: 71,
@@ -784,6 +911,7 @@ const resourceCards = [
 		price: 37.99,
 		category: '16-plus-sciences',
 		description: 'Advanced chemistry concepts',
+		isFree: false,
 	},
 	{
 		id: 72,
@@ -791,6 +919,7 @@ const resourceCards = [
 		price: 38.99,
 		category: '16-plus-sciences',
 		description: 'Combined physics and mathematics',
+		isFree: false,
 	},
 	{
 		id: 73,
@@ -798,6 +927,7 @@ const resourceCards = [
 		price: 35.99,
 		category: '16-plus-languages',
 		description: 'Advanced language proficiency',
+		isFree: false,
 	},
 	{
 		id: 74,
@@ -805,6 +935,7 @@ const resourceCards = [
 		price: 34.99,
 		category: '16-plus-languages',
 		description: 'Latin and Ancient Greek studies',
+		isFree: false,
 	},
 	{
 		id: 75,
@@ -812,6 +943,7 @@ const resourceCards = [
 		price: 33.99,
 		category: '16-plus-languages',
 		description: 'Cultural context and literature',
+		isFree: false,
 	},
 	{
 		id: 76,
@@ -819,6 +951,7 @@ const resourceCards = [
 		price: 36.99,
 		category: '16-plus-humanities',
 		description: 'Historical and political analysis',
+		isFree: false,
 	},
 	{
 		id: 77,
@@ -826,6 +959,7 @@ const resourceCards = [
 		price: 35.99,
 		category: '16-plus-humanities',
 		description: 'Human and physical geography with economics',
+		isFree: false,
 	},
 	{
 		id: 78,
@@ -833,6 +967,7 @@ const resourceCards = [
 		price: 33.99,
 		category: '16-plus-humanities',
 		description: 'Philosophical thinking and ethical reasoning',
+		isFree: false,
 	},
 
 	// GCSE AQA
@@ -842,6 +977,7 @@ const resourceCards = [
 		price: 28.99,
 		category: 'gcse-aqa-english',
 		description: 'Complete AQA English Language revision',
+		isFree: false,
 	},
 	{
 		id: 80,
@@ -849,6 +985,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'gcse-aqa-english',
 		description: 'Set texts and poetry analysis',
+		isFree: false,
 	},
 	{
 		id: 81,
@@ -856,6 +993,7 @@ const resourceCards = [
 		price: 26.99,
 		category: 'gcse-aqa-english',
 		description: 'Past papers and mark schemes',
+		isFree: false,
 	},
 	{
 		id: 82,
@@ -863,6 +1001,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'gcse-aqa-maths',
 		description: 'Foundation tier mathematics revision',
+		isFree: false,
 	},
 	{
 		id: 83,
@@ -870,6 +1009,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'gcse-aqa-maths',
 		description: 'Higher tier mathematics mastery',
+		isFree: false,
 	},
 	{
 		id: 84,
@@ -877,6 +1017,7 @@ const resourceCards = [
 		price: 27.99,
 		category: 'gcse-aqa-maths',
 		description: 'Realistic practice examinations',
+		isFree: false,
 	},
 	{
 		id: 85,
@@ -884,6 +1025,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'gcse-aqa-sciences',
 		description: 'Biology, Chemistry, and Physics',
+		isFree: false,
 	},
 	{
 		id: 86,
@@ -891,6 +1033,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'gcse-aqa-sciences',
 		description: 'Individual science specifications',
+		isFree: false,
 	},
 	{
 		id: 87,
@@ -898,6 +1041,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'gcse-aqa-sciences',
 		description: 'Required practical investigations',
+		isFree: false,
 	},
 	{
 		id: 88,
@@ -905,6 +1049,7 @@ const resourceCards = [
 		price: 30.99,
 		category: 'gcse-aqa-humanities',
 		description: 'Modern world history 1900-present',
+		isFree: false,
 	},
 	{
 		id: 89,
@@ -912,6 +1057,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'gcse-aqa-humanities',
 		description: 'Complete geography specification',
+		isFree: false,
 	},
 	{
 		id: 90,
@@ -919,6 +1065,7 @@ const resourceCards = [
 		price: 27.99,
 		category: 'gcse-aqa-humanities',
 		description: 'Religious beliefs and practices',
+		isFree: false,
 	},
 	{
 		id: 91,
@@ -926,6 +1073,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'gcse-aqa-languages',
 		description: 'French language skills and culture',
+		isFree: false,
 	},
 	{
 		id: 92,
@@ -933,6 +1081,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'gcse-aqa-languages',
 		description: 'Spanish language mastery',
+		isFree: false,
 	},
 	{
 		id: 93,
@@ -940,6 +1089,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'gcse-aqa-languages',
 		description: 'Comprehensive German preparation',
+		isFree: false,
 	},
 	{
 		id: 94,
@@ -947,6 +1097,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'gcse-aqa-other',
 		description: 'Business concepts and case studies',
+		isFree: false,
 	},
 	{
 		id: 95,
@@ -954,6 +1105,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'gcse-aqa-other',
 		description: 'Programming and computational thinking',
+		isFree: false,
 	},
 	{
 		id: 96,
@@ -961,6 +1113,7 @@ const resourceCards = [
 		price: 28.99,
 		category: 'gcse-aqa-other',
 		description: 'Design processes and materials',
+		isFree: false,
 	},
 
 	// GCSE Edexcel
@@ -970,6 +1123,7 @@ const resourceCards = [
 		price: 28.99,
 		category: 'gcse-edexcel-english',
 		description: 'Edexcel English Language specification',
+		isFree: false,
 	},
 	{
 		id: 98,
@@ -977,6 +1131,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'gcse-edexcel-english',
 		description: 'Set texts and unseen poetry',
+		isFree: false,
 	},
 	{
 		id: 99,
@@ -984,6 +1139,7 @@ const resourceCards = [
 		price: 26.99,
 		category: 'gcse-edexcel-english',
 		description: 'Examination strategies and practice',
+		isFree: false,
 	},
 	{
 		id: 100,
@@ -991,6 +1147,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'gcse-edexcel-maths',
 		description: 'Foundation mathematics revision',
+		isFree: false,
 	},
 	{
 		id: 101,
@@ -998,6 +1155,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'gcse-edexcel-maths',
 		description: 'Higher tier preparation',
+		isFree: false,
 	},
 	{
 		id: 102,
@@ -1005,6 +1163,7 @@ const resourceCards = [
 		price: 27.99,
 		category: 'gcse-edexcel-maths',
 		description: 'Authentic mock examinations',
+		isFree: false,
 	},
 	{
 		id: 103,
@@ -1012,6 +1171,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'gcse-edexcel-sciences',
 		description: 'Combined science specification',
+		isFree: false,
 	},
 	{
 		id: 104,
@@ -1019,6 +1179,7 @@ const resourceCards = [
 		price: 30.99,
 		category: 'gcse-edexcel-sciences',
 		description: 'Separate biology specification',
+		isFree: false,
 	},
 	{
 		id: 105,
@@ -1026,6 +1187,7 @@ const resourceCards = [
 		price: 38.99,
 		category: 'gcse-edexcel-sciences',
 		description: 'Chemistry and Physics combined',
+		isFree: false,
 	},
 	{
 		id: 106,
@@ -1033,6 +1195,7 @@ const resourceCards = [
 		price: 30.99,
 		category: 'gcse-edexcel-humanities',
 		description: 'Thematic history studies',
+		isFree: false,
 	},
 	{
 		id: 107,
@@ -1040,6 +1203,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'gcse-edexcel-humanities',
 		description: 'Both geography specifications',
+		isFree: false,
 	},
 	{
 		id: 108,
@@ -1047,6 +1211,7 @@ const resourceCards = [
 		price: 27.99,
 		category: 'gcse-edexcel-humanities',
 		description: 'Religious and philosophical themes',
+		isFree: false,
 	},
 	{
 		id: 109,
@@ -1054,6 +1219,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'gcse-edexcel-languages',
 		description: 'Oral French examination preparation',
+		isFree: false,
 	},
 	{
 		id: 110,
@@ -1061,6 +1227,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'gcse-edexcel-languages',
 		description: 'All four language skills',
+		isFree: false,
 	},
 	{
 		id: 111,
@@ -1068,6 +1235,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'gcse-edexcel-languages',
 		description: 'Mandarin language skills',
+		isFree: false,
 	},
 	{
 		id: 112,
@@ -1075,6 +1243,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'gcse-edexcel-other',
 		description: 'Business and enterprise concepts',
+		isFree: false,
 	},
 	{
 		id: 113,
@@ -1082,6 +1251,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'gcse-edexcel-other',
 		description: 'Computational thinking and programming',
+		isFree: false,
 	},
 	{
 		id: 114,
@@ -1089,6 +1259,7 @@ const resourceCards = [
 		price: 33.99,
 		category: 'gcse-edexcel-other',
 		description: 'Portfolio development and techniques',
+		isFree: false,
 	},
 
 	// GCSE OCR
@@ -1098,6 +1269,7 @@ const resourceCards = [
 		price: 36.99,
 		category: 'gcse-ocr-sciences',
 		description: 'Gateway science combined',
+		isFree: false,
 	},
 	{
 		id: 116,
@@ -1105,6 +1277,7 @@ const resourceCards = [
 		price: 36.99,
 		category: 'gcse-ocr-sciences',
 		description: '21st century science specification',
+		isFree: false,
 	},
 	{
 		id: 117,
@@ -1112,6 +1285,7 @@ const resourceCards = [
 		price: 28.99,
 		category: 'gcse-ocr-sciences',
 		description: 'Practical skills assessment',
+		isFree: false,
 	},
 	{
 		id: 118,
@@ -1119,6 +1293,7 @@ const resourceCards = [
 		price: 33.99,
 		category: 'gcse-ocr-computing',
 		description: 'Python and computational thinking',
+		isFree: false,
 	},
 	{
 		id: 119,
@@ -1126,6 +1301,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'gcse-ocr-computing',
 		description: 'Computer systems and networks',
+		isFree: false,
 	},
 	{
 		id: 120,
@@ -1133,6 +1309,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'gcse-ocr-computing',
 		description: 'Programming project development',
+		isFree: false,
 	},
 	{
 		id: 121,
@@ -1140,6 +1317,7 @@ const resourceCards = [
 		price: 30.99,
 		category: 'gcse-ocr-other',
 		description: 'History through the ages',
+		isFree: false,
 	},
 	{
 		id: 122,
@@ -1147,6 +1325,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'gcse-ocr-other',
 		description: 'Geographical themes and enquiry',
+		isFree: false,
 	},
 	{
 		id: 123,
@@ -1154,6 +1333,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'gcse-ocr-other',
 		description: 'Media analysis and production',
+		isFree: false,
 	},
 
 	// iGCSE Cambridge
@@ -1163,6 +1343,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'igcse-cambridge-english',
 		description: 'First language English course',
+		isFree: false,
 	},
 	{
 		id: 125,
@@ -1170,6 +1351,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'igcse-cambridge-english',
 		description: 'International literature texts',
+		isFree: false,
 	},
 	{
 		id: 126,
@@ -1177,6 +1359,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'igcse-cambridge-english',
 		description: 'English as a second language',
+		isFree: false,
 	},
 	{
 		id: 127,
@@ -1184,6 +1367,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'igcse-cambridge-maths',
 		description: 'Core mathematics syllabus',
+		isFree: false,
 	},
 	{
 		id: 128,
@@ -1191,6 +1375,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'igcse-cambridge-maths',
 		description: 'Extended mathematics topics',
+		isFree: false,
 	},
 	{
 		id: 129,
@@ -1198,6 +1383,7 @@ const resourceCards = [
 		price: 36.99,
 		category: 'igcse-cambridge-maths',
 		description: 'Advanced mathematical concepts',
+		isFree: false,
 	},
 	{
 		id: 130,
@@ -1205,6 +1391,7 @@ const resourceCards = [
 		price: 38.99,
 		category: 'igcse-cambridge-sciences',
 		description: 'Co-ordinated sciences course',
+		isFree: false,
 	},
 	{
 		id: 131,
@@ -1212,6 +1399,7 @@ const resourceCards = [
 		price: 33.99,
 		category: 'igcse-cambridge-sciences',
 		description: 'Separate biology specification',
+		isFree: false,
 	},
 	{
 		id: 132,
@@ -1219,6 +1407,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'igcse-cambridge-sciences',
 		description: 'Chemistry and physics combined',
+		isFree: false,
 	},
 	{
 		id: 133,
@@ -1226,6 +1415,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'igcse-cambridge-humanities',
 		description: 'International history course',
+		isFree: false,
 	},
 	{
 		id: 134,
@@ -1233,6 +1423,7 @@ const resourceCards = [
 		price: 33.99,
 		category: 'igcse-cambridge-humanities',
 		description: 'Global geographical themes',
+		isFree: false,
 	},
 	{
 		id: 135,
@@ -1240,6 +1431,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'igcse-cambridge-humanities',
 		description: 'Economic principles and applications',
+		isFree: false,
 	},
 	{
 		id: 136,
@@ -1247,6 +1439,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'igcse-cambridge-languages',
 		description: 'French as a foreign language',
+		isFree: false,
 	},
 	{
 		id: 137,
@@ -1254,6 +1447,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'igcse-cambridge-languages',
 		description: 'Spanish language course',
+		isFree: false,
 	},
 	{
 		id: 138,
@@ -1261,6 +1455,7 @@ const resourceCards = [
 		price: 36.99,
 		category: 'igcse-cambridge-languages',
 		description: 'Mandarin for international students',
+		isFree: false,
 	},
 	{
 		id: 139,
@@ -1268,6 +1463,7 @@ const resourceCards = [
 		price: 33.99,
 		category: 'igcse-cambridge-other',
 		description: 'International business concepts',
+		isFree: false,
 	},
 	{
 		id: 140,
@@ -1275,6 +1471,7 @@ const resourceCards = [
 		price: 35.99,
 		category: 'igcse-cambridge-other',
 		description: 'Programming and theory',
+		isFree: false,
 	},
 	{
 		id: 141,
@@ -1282,6 +1479,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'igcse-cambridge-other',
 		description: 'Portfolio-based assessment',
+		isFree: false,
 	},
 
 	// iGCSE Edexcel
@@ -1291,6 +1489,7 @@ const resourceCards = [
 		price: 30.99,
 		category: 'igcse-edexcel-english',
 		description: 'Language skills for international students',
+		isFree: false,
 	},
 	{
 		id: 143,
@@ -1298,6 +1497,7 @@ const resourceCards = [
 		price: 31.99,
 		category: 'igcse-edexcel-english',
 		description: 'Literary analysis and criticism',
+		isFree: false,
 	},
 	{
 		id: 144,
@@ -1305,6 +1505,7 @@ const resourceCards = [
 		price: 29.99,
 		category: 'igcse-edexcel-english',
 		description: 'Alternative language specification',
+		isFree: false,
 	},
 	{
 		id: 145,
@@ -1312,6 +1513,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'igcse-edexcel-maths',
 		description: 'Standard mathematics course',
+		isFree: false,
 	},
 	{
 		id: 146,
@@ -1319,6 +1521,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'igcse-edexcel-maths',
 		description: 'Alternative mathematics specification',
+		isFree: false,
 	},
 	{
 		id: 147,
@@ -1326,6 +1529,7 @@ const resourceCards = [
 		price: 36.99,
 		category: 'igcse-edexcel-maths',
 		description: 'Advanced pure mathematics',
+		isFree: false,
 	},
 	{
 		id: 148,
@@ -1333,6 +1537,7 @@ const resourceCards = [
 		price: 37.99,
 		category: 'igcse-edexcel-sciences',
 		description: 'Double award science course',
+		isFree: false,
 	},
 	{
 		id: 149,
@@ -1340,6 +1545,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'igcse-edexcel-sciences',
 		description: 'Separate science specifications',
+		isFree: false,
 	},
 	{
 		id: 150,
@@ -1347,6 +1553,7 @@ const resourceCards = [
 		price: 28.99,
 		category: 'igcse-edexcel-sciences',
 		description: 'Laboratory techniques guide',
+		isFree: false,
 	},
 	{
 		id: 151,
@@ -1354,6 +1561,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'igcse-edexcel-other',
 		description: 'International business environment',
+		isFree: false,
 	},
 	{
 		id: 152,
@@ -1361,6 +1569,7 @@ const resourceCards = [
 		price: 33.99,
 		category: 'igcse-edexcel-other',
 		description: 'Information and communication technology',
+		isFree: false,
 	},
 	{
 		id: 153,
@@ -1368,6 +1577,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'igcse-edexcel-other',
 		description: 'Economic theory and practice',
+		isFree: false,
 	},
 
 	// A-Level AQA
@@ -1377,6 +1587,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'a-level-aqa-maths',
 		description: 'Complete A-Level mathematics course',
+		isFree: false,
 	},
 	{
 		id: 155,
@@ -1384,6 +1595,7 @@ const resourceCards = [
 		price: 46.99,
 		category: 'a-level-aqa-maths',
 		description: 'Further mathematics specification',
+		isFree: false,
 	},
 	{
 		id: 156,
@@ -1391,6 +1603,7 @@ const resourceCards = [
 		price: 38.99,
 		category: 'a-level-aqa-maths',
 		description: 'Statistical methods and analysis',
+		isFree: false,
 	},
 	{
 		id: 157,
@@ -1398,6 +1611,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-aqa-sciences',
 		description: 'Full biology specification',
+		isFree: false,
 	},
 	{
 		id: 158,
@@ -1405,6 +1619,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-aqa-sciences',
 		description: 'Comprehensive chemistry course',
+		isFree: false,
 	},
 	{
 		id: 159,
@@ -1412,6 +1627,7 @@ const resourceCards = [
 		price: 45.99,
 		category: 'a-level-aqa-sciences',
 		description: 'Physics with mathematical applications',
+		isFree: false,
 	},
 	{
 		id: 160,
@@ -1419,6 +1635,7 @@ const resourceCards = [
 		price: 39.99,
 		category: 'a-level-aqa-english',
 		description: 'Literary analysis and criticism',
+		isFree: false,
 	},
 	{
 		id: 161,
@@ -1426,6 +1643,7 @@ const resourceCards = [
 		price: 39.99,
 		category: 'a-level-aqa-english',
 		description: 'Alternative literature specification',
+		isFree: false,
 	},
 	{
 		id: 162,
@@ -1433,6 +1651,7 @@ const resourceCards = [
 		price: 38.99,
 		category: 'a-level-aqa-english',
 		description: 'Linguistic analysis and investigation',
+		isFree: false,
 	},
 	{
 		id: 163,
@@ -1440,6 +1659,7 @@ const resourceCards = [
 		price: 41.99,
 		category: 'a-level-aqa-humanities',
 		description: 'British history 1851-1964',
+		isFree: false,
 	},
 	{
 		id: 164,
@@ -1447,6 +1667,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-aqa-humanities',
 		description: 'Physical geography processes',
+		isFree: false,
 	},
 	{
 		id: 165,
@@ -1454,6 +1675,7 @@ const resourceCards = [
 		price: 40.99,
 		category: 'a-level-aqa-humanities',
 		description: 'Psychological theories and research',
+		isFree: false,
 	},
 	{
 		id: 166,
@@ -1461,6 +1683,7 @@ const resourceCards = [
 		price: 43.99,
 		category: 'a-level-aqa-languages',
 		description: 'Advanced French studies',
+		isFree: false,
 	},
 	{
 		id: 167,
@@ -1468,6 +1691,7 @@ const resourceCards = [
 		price: 43.99,
 		category: 'a-level-aqa-languages',
 		description: 'Spanish language and society',
+		isFree: false,
 	},
 	{
 		id: 168,
@@ -1475,6 +1699,7 @@ const resourceCards = [
 		price: 43.99,
 		category: 'a-level-aqa-languages',
 		description: 'German language and culture',
+		isFree: false,
 	},
 
 	// A-Level Edexcel
@@ -1484,6 +1709,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'a-level-edexcel-maths',
 		description: 'Pure mathematics mastery',
+		isFree: false,
 	},
 	{
 		id: 170,
@@ -1491,6 +1717,7 @@ const resourceCards = [
 		price: 46.99,
 		category: 'a-level-edexcel-maths',
 		description: 'Advanced mathematical topics',
+		isFree: false,
 	},
 	{
 		id: 171,
@@ -1498,6 +1725,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-edexcel-maths',
 		description: 'Applied mathematics modules',
+		isFree: false,
 	},
 	{
 		id: 172,
@@ -1505,6 +1733,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-edexcel-sciences',
 		description: 'Salters-Nuffield biology',
+		isFree: false,
 	},
 	{
 		id: 173,
@@ -1512,6 +1741,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-edexcel-sciences',
 		description: 'Full chemistry course',
+		isFree: false,
 	},
 	{
 		id: 174,
@@ -1519,6 +1749,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'a-level-edexcel-sciences',
 		description: 'Advanced physics concepts',
+		isFree: false,
 	},
 	{
 		id: 175,
@@ -1526,6 +1757,7 @@ const resourceCards = [
 		price: 39.99,
 		category: 'a-level-edexcel-english',
 		description: 'Literary heritage and criticism',
+		isFree: false,
 	},
 	{
 		id: 176,
@@ -1533,6 +1765,7 @@ const resourceCards = [
 		price: 38.99,
 		category: 'a-level-edexcel-english',
 		description: 'Language variation and change',
+		isFree: false,
 	},
 	{
 		id: 177,
@@ -1540,6 +1773,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'a-level-edexcel-english',
 		description: 'Language and literature combined',
+		isFree: false,
 	},
 	{
 		id: 178,
@@ -1547,6 +1781,7 @@ const resourceCards = [
 		price: 41.99,
 		category: 'a-level-edexcel-humanities',
 		description: 'European and world history',
+		isFree: false,
 	},
 	{
 		id: 179,
@@ -1554,6 +1789,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-edexcel-humanities',
 		description: 'Dynamic planet geography',
+		isFree: false,
 	},
 	{
 		id: 180,
@@ -1561,6 +1797,7 @@ const resourceCards = [
 		price: 39.99,
 		category: 'a-level-edexcel-humanities',
 		description: 'Social structures and processes',
+		isFree: false,
 	},
 	{
 		id: 181,
@@ -1568,6 +1805,7 @@ const resourceCards = [
 		price: 41.99,
 		category: 'a-level-edexcel-business',
 		description: 'Business themes and decisions',
+		isFree: false,
 	},
 	{
 		id: 182,
@@ -1575,6 +1813,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-edexcel-business',
 		description: 'Markets and business behaviour',
+		isFree: false,
 	},
 	{
 		id: 183,
@@ -1582,6 +1821,7 @@ const resourceCards = [
 		price: 40.99,
 		category: 'a-level-edexcel-business',
 		description: 'Financial and management accounting',
+		isFree: false,
 	},
 
 	// A-Level OCR
@@ -1591,6 +1831,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'a-level-ocr-maths',
 		description: 'MEI mathematics specification',
+		isFree: false,
 	},
 	{
 		id: 185,
@@ -1598,6 +1839,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'a-level-ocr-maths',
 		description: 'Alternative mathematics course',
+		isFree: false,
 	},
 	{
 		id: 186,
@@ -1605,6 +1847,7 @@ const resourceCards = [
 		price: 46.99,
 		category: 'a-level-ocr-maths',
 		description: 'Advanced further mathematics',
+		isFree: false,
 	},
 	{
 		id: 187,
@@ -1612,6 +1855,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-ocr-sciences',
 		description: 'Biology specification A',
+		isFree: false,
 	},
 	{
 		id: 188,
@@ -1619,6 +1863,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-ocr-sciences',
 		description: 'Salters chemistry course',
+		isFree: false,
 	},
 	{
 		id: 189,
@@ -1626,6 +1871,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'a-level-ocr-sciences',
 		description: 'Physics specification A',
+		isFree: false,
 	},
 	{
 		id: 190,
@@ -1633,6 +1879,7 @@ const resourceCards = [
 		price: 43.99,
 		category: 'a-level-ocr-computing',
 		description: 'Programming and algorithms',
+		isFree: false,
 	},
 	{
 		id: 191,
@@ -1640,6 +1887,7 @@ const resourceCards = [
 		price: 41.99,
 		category: 'a-level-ocr-computing',
 		description: 'Computer systems and architecture',
+		isFree: false,
 	},
 	{
 		id: 192,
@@ -1647,6 +1895,7 @@ const resourceCards = [
 		price: 38.99,
 		category: 'a-level-ocr-computing',
 		description: 'NEA project development guide',
+		isFree: false,
 	},
 	{
 		id: 193,
@@ -1654,6 +1903,7 @@ const resourceCards = [
 		price: 41.99,
 		category: 'a-level-ocr-other',
 		description: 'Historical enquiries specification',
+		isFree: false,
 	},
 	{
 		id: 194,
@@ -1661,6 +1911,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'a-level-ocr-other',
 		description: 'Geographical themes and investigations',
+		isFree: false,
 	},
 	{
 		id: 195,
@@ -1668,6 +1919,7 @@ const resourceCards = [
 		price: 39.99,
 		category: 'a-level-ocr-other',
 		description: 'Philosophy and ethics',
+		isFree: false,
 	},
 
 	// IB Standard Level
@@ -1677,6 +1929,7 @@ const resourceCards = [
 		price: 46.99,
 		category: 'ib-sl-maths',
 		description: 'Mathematical analysis standard level',
+		isFree: false,
 	},
 	{
 		id: 197,
@@ -1684,6 +1937,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'ib-sl-maths',
 		description: 'Mathematical applications SL',
+		isFree: false,
 	},
 	{
 		id: 198,
@@ -1691,6 +1945,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'ib-sl-maths',
 		description: 'Mathematics studies course',
+		isFree: false,
 	},
 	{
 		id: 199,
@@ -1698,6 +1953,7 @@ const resourceCards = [
 		price: 45.99,
 		category: 'ib-sl-sciences',
 		description: 'Standard level biology course',
+		isFree: false,
 	},
 	{
 		id: 200,
@@ -1705,6 +1961,7 @@ const resourceCards = [
 		price: 45.99,
 		category: 'ib-sl-sciences',
 		description: 'Chemistry SL comprehensive guide',
+		isFree: false,
 	},
 	{
 		id: 201,
@@ -1712,6 +1969,7 @@ const resourceCards = [
 		price: 46.99,
 		category: 'ib-sl-sciences',
 		description: 'Physics standard level essentials',
+		isFree: false,
 	},
 	{
 		id: 202,
@@ -1719,6 +1977,7 @@ const resourceCards = [
 		price: 43.99,
 		category: 'ib-sl-english',
 		description: 'Literature analysis standard level',
+		isFree: false,
 	},
 	{
 		id: 203,
@@ -1726,6 +1985,7 @@ const resourceCards = [
 		price: 43.99,
 		category: 'ib-sl-english',
 		description: 'Language and literature SL',
+		isFree: false,
 	},
 	{
 		id: 204,
@@ -1733,6 +1993,7 @@ const resourceCards = [
 		price: 41.99,
 		category: 'ib-sl-english',
 		description: 'English as additional language',
+		isFree: false,
 	},
 	{
 		id: 205,
@@ -1740,6 +2001,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'ib-sl-languages',
 		description: 'French language acquisition SL',
+		isFree: false,
 	},
 	{
 		id: 206,
@@ -1747,6 +2009,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'ib-sl-languages',
 		description: 'Spanish for beginners',
+		isFree: false,
 	},
 	{
 		id: 207,
@@ -1754,6 +2017,7 @@ const resourceCards = [
 		price: 46.99,
 		category: 'ib-sl-languages',
 		description: 'Mandarin language course SL',
+		isFree: false,
 	},
 	{
 		id: 208,
@@ -1761,6 +2025,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'ib-sl-humanities',
 		description: 'Historical routes standard level',
+		isFree: false,
 	},
 	{
 		id: 209,
@@ -1768,6 +2033,7 @@ const resourceCards = [
 		price: 43.99,
 		category: 'ib-sl-humanities',
 		description: 'Geographical themes SL',
+		isFree: false,
 	},
 	{
 		id: 210,
@@ -1775,6 +2041,7 @@ const resourceCards = [
 		price: 45.99,
 		category: 'ib-sl-humanities',
 		description: 'Economic theories SL',
+		isFree: false,
 	},
 
 	// IB Higher Level
@@ -1784,6 +2051,7 @@ const resourceCards = [
 		price: 52.99,
 		category: 'ib-hl-maths',
 		description: 'Mathematical analysis higher level',
+		isFree: false,
 	},
 	{
 		id: 212,
@@ -1791,6 +2059,7 @@ const resourceCards = [
 		price: 50.99,
 		category: 'ib-hl-maths',
 		description: 'Mathematical applications HL',
+		isFree: false,
 	},
 	{
 		id: 213,
@@ -1798,6 +2067,7 @@ const resourceCards = [
 		price: 54.99,
 		category: 'ib-hl-maths',
 		description: 'Further mathematics higher level',
+		isFree: false,
 	},
 	{
 		id: 214,
@@ -1805,6 +2075,7 @@ const resourceCards = [
 		price: 51.99,
 		category: 'ib-hl-sciences',
 		description: 'Higher level biology comprehensive',
+		isFree: false,
 	},
 	{
 		id: 215,
@@ -1812,6 +2083,7 @@ const resourceCards = [
 		price: 51.99,
 		category: 'ib-hl-sciences',
 		description: 'Chemistry HL full course',
+		isFree: false,
 	},
 	{
 		id: 216,
@@ -1819,6 +2091,7 @@ const resourceCards = [
 		price: 53.99,
 		category: 'ib-hl-sciences',
 		description: 'Physics higher level mastery',
+		isFree: false,
 	},
 	{
 		id: 217,
@@ -1826,6 +2099,7 @@ const resourceCards = [
 		price: 48.99,
 		category: 'ib-hl-english',
 		description: 'Literature higher level analysis',
+		isFree: false,
 	},
 	{
 		id: 218,
@@ -1833,6 +2107,7 @@ const resourceCards = [
 		price: 48.99,
 		category: 'ib-hl-english',
 		description: 'Language and literature HL',
+		isFree: false,
 	},
 	{
 		id: 219,
@@ -1840,6 +2115,7 @@ const resourceCards = [
 		price: 46.99,
 		category: 'ib-hl-english',
 		description: 'Advanced English language',
+		isFree: false,
 	},
 	{
 		id: 220,
@@ -1847,6 +2123,7 @@ const resourceCards = [
 		price: 49.99,
 		category: 'ib-hl-languages',
 		description: 'French language acquisition HL',
+		isFree: false,
 	},
 	{
 		id: 221,
@@ -1854,6 +2131,7 @@ const resourceCards = [
 		price: 49.99,
 		category: 'ib-hl-languages',
 		description: 'Spanish language mastery HL',
+		isFree: false,
 	},
 	{
 		id: 222,
@@ -1861,6 +2139,7 @@ const resourceCards = [
 		price: 51.99,
 		category: 'ib-hl-languages',
 		description: 'Advanced Mandarin course HL',
+		isFree: false,
 	},
 	{
 		id: 223,
@@ -1868,6 +2147,7 @@ const resourceCards = [
 		price: 50.99,
 		category: 'ib-hl-humanities',
 		description: 'World history higher level',
+		isFree: false,
 	},
 	{
 		id: 224,
@@ -1875,6 +2155,7 @@ const resourceCards = [
 		price: 49.99,
 		category: 'ib-hl-humanities',
 		description: 'Advanced geographical studies',
+		isFree: false,
 	},
 	{
 		id: 225,
@@ -1882,6 +2163,7 @@ const resourceCards = [
 		price: 51.99,
 		category: 'ib-hl-humanities',
 		description: 'Higher level economic theory',
+		isFree: false,
 	},
 
 	// Predicted Papers - GCSE
@@ -1891,6 +2173,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'predicted-gcse-maths',
 		description: 'Expert-predicted mathematics papers',
+		isFree: false,
 	},
 	{
 		id: 227,
@@ -1898,6 +2181,7 @@ const resourceCards = [
 		price: 36.99,
 		category: 'predicted-gcse-maths',
 		description: 'Higher tier predicted examinations',
+		isFree: false,
 	},
 	{
 		id: 228,
@@ -1905,6 +2189,7 @@ const resourceCards = [
 		price: 32.99,
 		category: 'predicted-gcse-maths',
 		description: 'Foundation tier predictions',
+		isFree: false,
 	},
 	{
 		id: 229,
@@ -1912,6 +2197,7 @@ const resourceCards = [
 		price: 33.99,
 		category: 'predicted-gcse-english',
 		description: 'Predicted English language papers',
+		isFree: false,
 	},
 	{
 		id: 230,
@@ -1919,6 +2205,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'predicted-gcse-english',
 		description: 'Literature examination predictions',
+		isFree: false,
 	},
 	{
 		id: 231,
@@ -1926,6 +2213,7 @@ const resourceCards = [
 		price: 39.99,
 		category: 'predicted-gcse-english',
 		description: 'Language and literature predictions',
+		isFree: false,
 	},
 	{
 		id: 232,
@@ -1933,6 +2221,7 @@ const resourceCards = [
 		price: 38.99,
 		category: 'predicted-gcse-sciences',
 		description: 'Trilogy science predicted papers',
+		isFree: false,
 	},
 	{
 		id: 233,
@@ -1940,6 +2229,7 @@ const resourceCards = [
 		price: 34.99,
 		category: 'predicted-gcse-sciences',
 		description: 'Separate biology predictions',
+		isFree: false,
 	},
 	{
 		id: 234,
@@ -1947,6 +2237,7 @@ const resourceCards = [
 		price: 42.99,
 		category: 'predicted-gcse-sciences',
 		description: 'Chemistry and physics predictions',
+		isFree: false,
 	},
 
 	// Predicted Papers - A-Level
@@ -1956,6 +2247,7 @@ const resourceCards = [
 		price: 48.99,
 		category: 'predicted-a-level-maths',
 		description: 'Pure and applied maths predictions',
+		isFree: false,
 	},
 	{
 		id: 236,
@@ -1963,6 +2255,7 @@ const resourceCards = [
 		price: 52.99,
 		category: 'predicted-a-level-maths',
 		description: 'Further mathematics predictions',
+		isFree: false,
 	},
 	{
 		id: 237,
@@ -1970,6 +2263,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'predicted-a-level-maths',
 		description: 'Statistical analysis predictions',
+		isFree: false,
 	},
 	{
 		id: 238,
@@ -1977,6 +2271,7 @@ const resourceCards = [
 		price: 46.99,
 		category: 'predicted-a-level-sciences',
 		description: 'Biology predicted examinations',
+		isFree: false,
 	},
 	{
 		id: 239,
@@ -1984,6 +2279,7 @@ const resourceCards = [
 		price: 46.99,
 		category: 'predicted-a-level-sciences',
 		description: 'Chemistry predictions and solutions',
+		isFree: false,
 	},
 	{
 		id: 240,
@@ -1991,6 +2287,7 @@ const resourceCards = [
 		price: 48.99,
 		category: 'predicted-a-level-sciences',
 		description: 'Physics predicted papers',
+		isFree: false,
 	},
 	{
 		id: 241,
@@ -1998,6 +2295,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'predicted-a-level-other',
 		description: 'Literature examination predictions',
+		isFree: false,
 	},
 	{
 		id: 242,
@@ -2005,6 +2303,7 @@ const resourceCards = [
 		price: 45.99,
 		category: 'predicted-a-level-other',
 		description: 'History predicted examinations',
+		isFree: false,
 	},
 	{
 		id: 243,
@@ -2012,6 +2311,7 @@ const resourceCards = [
 		price: 44.99,
 		category: 'predicted-a-level-other',
 		description: 'Psychology paper predictions',
+		isFree: false,
 	},
 
 	// Predicted Papers - IB
@@ -2021,6 +2321,7 @@ const resourceCards = [
 		price: 52.99,
 		category: 'predicted-ib-maths',
 		description: 'IB maths SL & HL predictions',
+		isFree: false,
 	},
 	{
 		id: 245,
@@ -2028,6 +2329,7 @@ const resourceCards = [
 		price: 54.99,
 		category: 'predicted-ib-maths',
 		description: 'Analysis & approaches predictions',
+		isFree: false,
 	},
 	{
 		id: 246,
@@ -2035,6 +2337,7 @@ const resourceCards = [
 		price: 52.99,
 		category: 'predicted-ib-maths',
 		description: 'Applications & interpretation predictions',
+		isFree: false,
 	},
 	{
 		id: 247,
@@ -2042,6 +2345,7 @@ const resourceCards = [
 		price: 56.99,
 		category: 'predicted-ib-sciences',
 		description: 'Biology, Chemistry, Physics predictions',
+		isFree: false,
 	},
 	{
 		id: 248,
@@ -2049,6 +2353,7 @@ const resourceCards = [
 		price: 49.99,
 		category: 'predicted-ib-sciences',
 		description: 'Biology SL & HL predictions',
+		isFree: false,
 	},
 	{
 		id: 249,
@@ -2056,6 +2361,7 @@ const resourceCards = [
 		price: 54.99,
 		category: 'predicted-ib-sciences',
 		description: 'Chemistry and Physics predictions',
+		isFree: false,
 	},
 	{
 		id: 250,
@@ -2063,6 +2369,7 @@ const resourceCards = [
 		price: 48.99,
 		category: 'predicted-ib-other',
 		description: 'English literature predictions',
+		isFree: false,
 	},
 	{
 		id: 251,
@@ -2070,6 +2377,7 @@ const resourceCards = [
 		price: 49.99,
 		category: 'predicted-ib-other',
 		description: 'History routes predicted papers',
+		isFree: false,
 	},
 	{
 		id: 252,
@@ -2077,6 +2385,7 @@ const resourceCards = [
 		price: 50.99,
 		category: 'predicted-ib-other',
 		description: 'Economics SL & HL predictions',
+		isFree: false,
 	},
 ];
 
@@ -2129,10 +2438,14 @@ function CategoryItem({
 					<button
 						onClick={() => onCategorySelect(category.id)}
 						className={`flex-1 text-left px-3 py-2 transition-colors rounded-none ${
-							isSelected
-								? 'bg-primary-100 text-primary-900 font-medium'
-								: 'text-neutral-600 hover:bg-neutral-100'
-						} ${level === 0 ? 'font-medium' : level === 1 ? 'text-sm' : 'text-xs'}`}>
+							isSelected ?
+								'bg-primary-100 text-primary-900 font-medium'
+							:	'text-neutral-600 hover:bg-neutral-100'
+						} ${
+							level === 0 ? 'font-medium'
+							: level === 1 ? 'text-sm'
+							: 'text-xs'
+						}`}>
 						{category.name}
 						<span
 							className={`text-neutral-500 ml-2 ${
@@ -2170,12 +2483,35 @@ function CategoryItem({
 function CategoryTabBar({
 	selectedCategory,
 	onCategorySelect,
+	showFreeOnly,
+	onFreeFilterChange,
 }: {
 	selectedCategory: string | null;
 	onCategorySelect: (categoryId: string | null) => void;
+	showFreeOnly: boolean;
+	onFreeFilterChange: (value: boolean) => void;
 }) {
 	return (
 		<div className='hidden md:block lg:hidden border-b border-neutral-200 bg-white'>
+			{/* Free Resources Filter - Independent checkbox */}
+			<div className='px-4 py-3 bg-neutral-50 border-b border-neutral-200'>
+				<label className='flex items-center gap-3 cursor-pointer'>
+					<Checkbox
+						checked={showFreeOnly}
+						onCheckedChange={(checked) => {
+							onFreeFilterChange(checked === true);
+						}}
+						className='data-[state=checked]:bg-primary-700 data-[state=checked]:border-primary-700'
+					/>
+					<span className='text-sm font-medium text-neutral-700 select-none'>
+						Free Papers
+					</span>
+					<span className='text-xs text-neutral-500 ml-auto'>
+						({resourceCards.filter((r) => r.isFree).length})
+					</span>
+				</label>
+			</div>
+
 			{/* Horizontal scrollable container */}
 			<div className='overflow-x-auto scrollbar-hide'>
 				<div className='flex gap-2 p-4 min-w-min'>
@@ -2183,9 +2519,9 @@ function CategoryTabBar({
 					<button
 						onClick={() => onCategorySelect(null)}
 						className={`flex-shrink-0 px-4 py-2 rounded-none text-sm font-medium transition-colors whitespace-nowrap ${
-							selectedCategory === null
-								? 'bg-primary-700 text-white'
-								: 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+							selectedCategory === null ?
+								'bg-primary-700 text-white'
+							:	'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
 						}`}>
 						All Resources ({resourceCards.length})
 					</button>
@@ -2196,9 +2532,9 @@ function CategoryTabBar({
 							key={category.id}
 							onClick={() => onCategorySelect(category.id)}
 							className={`flex-shrink-0 px-4 py-2 rounded-none text-sm font-medium transition-colors whitespace-nowrap ${
-								selectedCategory === category.id
-									? 'bg-primary-700 text-white'
-									: 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+								selectedCategory === category.id ?
+									'bg-primary-700 text-white'
+								:	'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
 							}`}>
 							{category.name} ({category.count})
 						</button>
@@ -2213,9 +2549,13 @@ function CategoryTabBar({
 function CategorySidebar({
 	selectedCategory,
 	onCategorySelect,
+	showFreeOnly,
+	onFreeFilterChange,
 }: {
 	selectedCategory: string | null;
 	onCategorySelect: (categoryId: string | null) => void;
+	showFreeOnly: boolean;
+	onFreeFilterChange: (value: boolean) => void;
 }) {
 	const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
 		new Set(),
@@ -2238,6 +2578,25 @@ function CategorySidebar({
 					Categories
 				</h2>
 
+				{/* Free Resources Filter - Independent checkbox above categories */}
+				<div className='mb-4 pb-4 border-b border-neutral-200'>
+					<label className='flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-neutral-50 transition-colors rounded-none'>
+						<Checkbox
+							checked={showFreeOnly}
+							onCheckedChange={(checked) => {
+								onFreeFilterChange(checked === true);
+							}}
+							className='data-[state=checked]:bg-primary-700 data-[state=checked]:border-primary-700'
+						/>
+						<span className='text-sm font-medium text-neutral-700 select-none'>
+							Free Papers
+						</span>
+						<span className='text-xs text-neutral-500 ml-auto'>
+							({resourceCards.filter((r) => r.isFree).length})
+						</span>
+					</label>
+				</div>
+
 				<nav aria-label='Resource categories'>
 					<ul className='space-y-2'>
 						{/* All Resources option */}
@@ -2245,9 +2604,9 @@ function CategorySidebar({
 							<button
 								onClick={() => onCategorySelect(null)}
 								className={`w-full text-left px-3 py-2 transition-colors rounded-none ${
-									selectedCategory === null
-										? 'bg-primary-100 text-primary-900 font-medium'
-										: '!text-neutral-600 hover:bg-neutral-100'
+									selectedCategory === null ?
+										'bg-primary-100 text-primary-900 font-medium'
+									:	'!text-neutral-600 hover:bg-neutral-100'
 								}`}>
 								All Resources
 								<span className='text-sm text-neutral-500 ml-2'>
@@ -2285,11 +2644,19 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 			viewport={{ once: true, margin: '-50px' }}
 			transition={{ duration: 0.4 }}
 			className='h-full'>
-			<Card className='flex flex-col pt-0 h-full rounded-none bg-white'>
+			<Card className='flex flex-col pt-0 h-full rounded-none bg-white relative'>
+				{/* Free Badge - positioned in top-right corner */}
+				{resource.isFree && (
+					<Badge className='absolute top-3 right-3 z-10 bg-emerald-600 text-white text-xs font-semibold px-2.5 py-1 rounded-none shadow-md'>
+						Free
+					</Badge>
+				)}
 				<div className='aspect-16/9 w-full flex-shrink-0 border-b'>
 					<button
 						type='button'
-						onClick={() => {/* Download handler */}}
+						onClick={() => {
+							/* Download handler */
+						}}
 						className='block w-full h-full transition-opacity duration-200 hover:opacity-70'>
 						<img
 							src='/images/exam-papers/pdf-document.svg'
@@ -2303,7 +2670,9 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 					<h3 className='text-lg font-semibold leading-tight tracking-tight !text-slate-900 text-left md:text-xl'>
 						<button
 							type='button'
-							onClick={() => {/* Download handler */}}
+							onClick={() => {
+								/* Download handler */
+							}}
 							className='!text-slate-900 no-underline hover:underline hover:!text-slate-700 text-left'>
 							{resource.title}
 						</button>
@@ -2319,14 +2688,19 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 				<CardFooter className='flex items-center justify-between px-4 pb-3 pt-2 flex-shrink-0'>
 					<button
 						type='button'
-						onClick={() => {/* Download handler */}}
+						onClick={() => {
+							/* Download handler */
+						}}
 						className='!text-slate-900 inline-flex items-center text-sm font-medium no-underline hover:underline hover:!text-slate-700'>
 						Download
 						<ArrowRight className='ml-2 size-4' />
 					</button>
-					<span className='text-sm font-medium !text-slate-900'>
-						£{resource.price.toFixed(2)}
-					</span>
+					{resource.isFree ?
+						<span className='text-sm font-semibold text-slate-900'>Free</span>
+					:	<span className='text-sm font-medium text-slate-900'>
+							£{resource.price.toFixed(2)}
+						</span>
+					}
 				</CardFooter>
 			</Card>
 		</m.div>
@@ -2380,6 +2754,7 @@ function Pagination({
 export default function ResourcesPage() {
 	const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 	const [searchQuery, setSearchQuery] = useState('');
+	const [showFreeOnly, setShowFreeOnly] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 12;
 
@@ -2414,7 +2789,7 @@ export default function ResourcesPage() {
 		return ids;
 	};
 
-	// Filter resources based on selected category and search
+	// Filter resources based on selected category, search, and free filter
 	const filteredResources = resourceCards.filter((resource) => {
 		const matchesCategory =
 			!selectedCategory ||
@@ -2422,7 +2797,8 @@ export default function ResourcesPage() {
 		const matchesSearch =
 			!searchQuery ||
 			resource.title.toLowerCase().includes(searchQuery.toLowerCase());
-		return matchesCategory && matchesSearch;
+		const matchesFreeFilter = !showFreeOnly || resource.isFree;
+		return matchesCategory && matchesSearch && matchesFreeFilter;
 	});
 
 	// Pagination logic
@@ -2455,14 +2831,14 @@ export default function ResourcesPage() {
 				verticalSpacing='lg'>
 				<div className='w-full px-4 sm:px-6 md:px-8'>
 					{/* Search Bar */}
-					<div className='flex items-center justify-center py-5 sm:py-6 md:py-7'>
+					<div className='flex items-center justify-center py-5 sm:py-6 md:py-7 lg:py-8 xl:py-9 2xl:py-10'>
 						<div className='max-w-2xl mx-auto w-full'>
 							<div className='relative flex items-center'>
 								<Search className='absolute left-3 sm:left-4 md:left-4 top-1/2 transform -translate-y-1/2 text-neutral-400 w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5' />
 								<Input
 									type='search'
 									placeholder='Search for resources, subjects, or topics...'
-									className='pl-10 sm:pl-12 md:pl-12 py-2 sm:py-3 md:py-3 text-sm sm:text-base md:text-lg w-full rounded-none'
+									className='pl-10 sm:pl-12 md:pl-12 py-2 sm:py-3 md:py-3 text-sm sm:text-base md:text-lg w-full rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none focus:ring-0 focus:ring-offset-0 focus:outline-none'
 									value={searchQuery}
 									onChange={(e) => {
 										setSearchQuery(e.target.value);
@@ -2480,6 +2856,11 @@ export default function ResourcesPage() {
 							setSelectedCategory(categoryId);
 							setCurrentPage(1); // Reset to first page on category change
 						}}
+						showFreeOnly={showFreeOnly}
+						onFreeFilterChange={(value) => {
+							setShowFreeOnly(value);
+							setCurrentPage(1); // Reset to first page on filter change
+						}}
 					/>
 
 					{/* Sidebar + Grid Layout with fixed height container */}
@@ -2490,6 +2871,11 @@ export default function ResourcesPage() {
 							onCategorySelect={(categoryId) => {
 								setSelectedCategory(categoryId);
 								setCurrentPage(1); // Reset to first page on category change
+							}}
+							showFreeOnly={showFreeOnly}
+							onFreeFilterChange={(value) => {
+								setShowFreeOnly(value);
+								setCurrentPage(1); // Reset to first page on filter change
 							}}
 						/>
 
@@ -2536,6 +2922,8 @@ export default function ResourcesPage() {
 										onClick={() => {
 											setSearchQuery('');
 											setSelectedCategory(null);
+											setShowFreeOnly(false);
+											setCurrentPage(1);
 										}}>
 										Clear filters
 									</Button>

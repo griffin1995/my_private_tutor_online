@@ -1,10 +1,18 @@
 'use client';
 
-import { TabContentLayout } from './tab-content-layout';
+import {
+	BookOpen,
+	ClipboardList,
+	Smile,
+	Target,
+	Trophy,
+	Users,
+} from 'lucide-react';
 import type { TabContentData } from './tab-content-layout';
-import { Smile, Trophy, ClipboardList, Users, BookOpen, Target, Heart } from 'lucide-react';
+import { TabContentLayout } from './tab-content-layout';
 
 const primarySchoolData: TabContentData = {
+	tabName: 'Primary School Tutoring',
 	mainFeatures: {
 		description:
 			"The primary curriculum is the scaffolding upon which secondary success plays out; we're passionate about plugging gaps and getting it right. We understand that early education experiences are formative, so we prioritise curiosity, resilience, and a love of learning.",
@@ -18,7 +26,8 @@ const primarySchoolData: TabContentData = {
 			},
 			{
 				id: 'primary-entrance-specialists',
-				heading: '7+, 8+ and 11+ specialists with a track record of top school offers',
+				heading:
+					'7+, 8+ and 11+ specialists with a track record of top school offers',
 				icon: Trophy,
 				description:
 					'Our experienced tutors specialise in preparing young students for competitive entrance examinations. With proven success rates at leading preparatory and grammar schools, we provide targeted preparation that builds both academic competence and examination confidence.',
@@ -62,7 +71,8 @@ const primarySchoolData: TabContentData = {
 			{
 				id: 'primary-confidence-improvement',
 				value: '93%',
-				label: 'of our parents reported noticing greater confidence in their child within just three months of starting tutoring',
+				label:
+					'of our parents reported noticing greater confidence in their child within just three months of starting tutoring',
 			},
 		],
 	},

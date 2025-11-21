@@ -85,7 +85,7 @@ export default function TermsOfServicePage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl '>
+									<Card className='p-8 my-12 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl rounded-none'>
 										<div className='flex items-start gap-4'>
 											<Star className='w-8 h-8 text-amber-600 flex-shrink-0 mt-1' />
 											<div>
@@ -208,7 +208,7 @@ export default function TermsOfServicePage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 shadow-xl '>
+									<Card className='p-8 my-12 bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 shadow-xl rounded-none'>
 										<div className='flex items-start gap-4'>
 											<AlertTriangle className='w-8 h-8 text-red-600 flex-shrink-0 mt-1' />
 											<div>
@@ -259,21 +259,13 @@ export default function TermsOfServicePage() {
 								<h3>5.1 Pricing Structure</h3>
 								<ul>
 									<li>
-										<strong>Standard Rate:</strong> £[X] per hour for GCSE/A-Level
+										<strong>Tier 1 Rate:</strong> £[85] per hour
 									</li>
 									<li>
-										<strong>Premium Rate:</strong> £[X] per hour for Oxbridge/Medical/Law
-										preparation
+										<strong>Tier 2 Rate:</strong> £[65] per hour
 									</li>
 									<li>
-										<strong>Specialist Rate:</strong> £[X] per hour for specific exam
-										preparation
-									</li>
-									<li>
-										<strong>Group Sessions:</strong> Discounted rates for 2-4 students
-									</li>
-									<li>
-										<strong>Package Deals:</strong> Discounts available for block bookings
+										<strong>Tier 3 Rate:</strong> £[45] per hour
 									</li>
 								</ul>
 
@@ -342,7 +334,7 @@ export default function TermsOfServicePage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl '>
+									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl rounded-none'>
 										<div className='flex items-start gap-4'>
 											<CheckCircle className='w-8 h-8 text-green-600 flex-shrink-0 mt-1' />
 											<div>
@@ -437,7 +429,7 @@ export default function TermsOfServicePage() {
 									viewport={{
 										once: true,
 									}}>
-									<Card className='p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl '>
+									<Card className='p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl rounded-none'>
 										<div className='flex items-start gap-4'>
 											<AlertTriangle className='w-8 h-8 text-yellow-600 flex-shrink-0 mt-1' />
 											<div>

@@ -87,7 +87,7 @@ export function RecognitionCard({
 					</div>
 
 					{/* Row 3: Footer Text (optional) */}
-					{footerText ? (
+					{footerText ?
 						<m.p
 							className='text-center font-semibold text-primary-900 text-sm leading-[1.4] tracking-tight'
 							initial={{ opacity: 0, scale: 0.9 }}
@@ -99,9 +99,7 @@ export function RecognitionCard({
 							}}>
 							{footerText}
 						</m.p>
-					) : (
-						<div />
-					)}
+					:	<div />}
 				</Card>
 			</m.div>
 		</AspectRatio>

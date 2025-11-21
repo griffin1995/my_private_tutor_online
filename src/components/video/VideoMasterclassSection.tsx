@@ -1,13 +1,13 @@
 'use client';
 
-import * as Dialog from '@radix-ui/react-dialog';
-import { Play, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { useState } from 'react';
 import {
 	getMasterclassVideo,
 	type VideoMasterclass,
 } from '@/lib/cms/cms-images';
+import * as Dialog from '@radix-ui/react-dialog';
+import { Play, X } from 'lucide-react';
+import { useState } from 'react';
 interface VideoMasterclassSectionProps {
 	readonly video?: VideoMasterclass;
 	readonly videoId?: string;
@@ -311,57 +311,6 @@ export function VideoMasterclassSection({
 
 			<div
 				className={`relative z-10 w-4/5 mx-auto p-8 ${textAlignment} ${textGridOrder}`}>
-				{/* Visual Connector Arrow */}
-				<div
-					className={`hidden md:block absolute top-1/2 -translate-y-1/2 ${isTextLeft ? '-right-12' : '-left-12'} pointer-events-none`}>
-					<svg
-						width='48'
-						height='48'
-						viewBox='0 0 48 48'
-						fill='none'
-						xmlns='http://www.w3.org/2000/svg'
-						className='opacity-30 hover:opacity-50 transition-opacity duration-300'>
-						{isTextLeft ?
-							<>
-								{/* Arrow pointing right */}
-								<path
-									d='M8 24 C12 20, 20 20, 24 24 C28 28, 36 28, 40 24'
-									stroke='#D4AF37'
-									strokeWidth='2'
-									strokeLinecap='round'
-									fill='none'
-								/>
-								<path
-									d='M36 20 L40 24 L36 28'
-									stroke='#D4AF37'
-									strokeWidth='2'
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									fill='none'
-								/>
-							</>
-						:	<>
-								{/* Arrow pointing left */}
-								<path
-									d='M40 24 C36 28, 28 28, 24 24 C20 20, 12 20, 8 24'
-									stroke='#D4AF37'
-									strokeWidth='2'
-									strokeLinecap='round'
-									fill='none'
-								/>
-								<path
-									d='M12 20 L8 24 L12 28'
-									stroke='#D4AF37'
-									strokeWidth='2'
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									fill='none'
-								/>
-							</>
-						}
-					</svg>
-				</div>
-
 				<h2 className='text-4xl font-bold text-white mb-3'>{video.title}</h2>
 
 				<Separator className='bg-gray-300 my-3' />

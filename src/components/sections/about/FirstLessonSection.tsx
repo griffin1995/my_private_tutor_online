@@ -7,6 +7,7 @@ interface FirstLessonSectionProps {
 	backgroundColor?: string;
 	heading?: string;
 	paragraph?: string;
+	showConnectorArrow?: boolean;
 }
 function parseTextWithStrong(text: string): React.ReactNode[] {
 	const parts = text.split(/(<strong>.*?<\/strong>)/g);
@@ -36,6 +37,7 @@ export function FirstLessonSection({
 	backgroundColor = 'white',
 	heading,
 	paragraph,
+	showConnectorArrow = false,
 }: FirstLessonSectionProps): JSX.Element {
 	return (
 		<div className={`bg-${backgroundColor} py-20 ${className}`}>
@@ -49,6 +51,34 @@ export function FirstLessonSection({
 					}}
 					transition={fadeInUpVariant.transition}>
 					<div className='space-y-10'>
+						{showConnectorArrow && (
+							<svg
+								width='48'
+								height='48'
+								viewBox='0 0 48 48'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+								className='opacity-80 hover:opacity-100 transition-opacity duration-300 block mx-auto'>
+								{/* Arrow pointing right */}
+								<path
+									d='M8 24 C12 20, 20 20, 24 24 C28 28, 36 28, 40 24'
+									stroke='currentColor'
+									strokeWidth='2'
+									strokeLinecap='round'
+									fill='none'
+									className='text-primary-900'
+								/>
+								<path
+									d='M36 20 L40 24 L36 28'
+									stroke='currentColor'
+									strokeWidth='2'
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									fill='none'
+									className='text-primary-900'
+								/>
+							</svg>
+						)}
 						<div className='text-left space-y-8'>
 							<div>
 								<h3 className='text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6'>

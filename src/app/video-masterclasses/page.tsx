@@ -39,7 +39,8 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 		],
 		youtubeUrl: 'https://www.youtube.com/embed/r4Ngy75Z4Zg?si=_mfgyzSJM0BIzXTW',
 		thumbnailImage: '/videos/unlocking-academic-success-thumbnail.png',
-		backgroundImage: '/images/unlocking-academic-success-background.jpg',
+		backgroundImage:
+			'/images/masterclass-backgrounds/unlocking-academic-success-background.webp',
 		isPaid: false,
 		duration: 25,
 	},
@@ -86,7 +87,8 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 		],
 		youtubeUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
 		thumbnailImage: '/images/video-thumbnails/top-10-tips-thumbnail.png',
-		backgroundImage: '/images/ucas-part-2-library-background.jpg',
+		backgroundImage:
+			'/images/masterclass-backgrounds/ucas-part-2-library-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409',
 		duration: 70,
@@ -98,7 +100,8 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 			"Drawing on her experience working with royalty and high-profile international families, Elizabeth demystifies the social codes that shape life in the UK's most prestigious schools and institutions.\n\nThis masterclass provides essential cultural awareness for international families navigating British educational and social environments.\n\nPerfect for building confidence and cultural fluency in formal British settings, delivered with partial Mandarin subtitles.",
 		youtubeUrl: '',
 		thumbnailImage: '/images/masterclass-thumbnails/british-etiquette.jpg',
-		backgroundImage: '/images/british-etiquette-background.jpg',
+		backgroundImage:
+			'/images/masterclass-backgrounds/british-etiquette-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b',
 		duration: 60,
@@ -111,7 +114,8 @@ const VIDEO_MASTERCLASSES: readonly VideoMasterclass[] = [
 		youtubeUrl: '',
 		thumbnailImage:
 			'/images/masterclass-thumbnails/british-literary-classics.png',
-		backgroundImage: '/images/masterclass-backgrounds/british-literature-background.jpg',
+		backgroundImage:
+			'/images/masterclass-backgrounds/british-literature-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a',
 		duration: 60,
@@ -136,10 +140,11 @@ export default function VideoPage() {
 				<SimpleHero
 					backgroundImage={videoHeroImage.src}
 					h1={
-				<span className='text-white'>
-					Video Masterclasses & <span className='text-accent-600'>Educational Content</span>
-				</span>
-			}
+						<span className='text-white'>
+							Video Masterclasses &{' '}
+							<span className='text-accent-600'>Educational Content</span>
+						</span>
+					}
 					h2='A trusted guide to British education, culture, and university preparation'
 					decorativeStyle='none'
 				/>
@@ -155,9 +160,7 @@ export default function VideoPage() {
 				footerProps={{
 					showContactForm: true,
 				}}>
-				<section
-					id='featured-free-section'
-					className='py-12 sm:py-14 md:py-16'>
+				<section id='featured-free-section'>
 					<FirstLessonSection
 						heading="The Parent's Roadmap to Effective Academic Help"
 						paragraph="Access two complimentary masterclasses to benefit from Elizabeth Burrows' expert guidance, distilled from 15+ years in international education.
@@ -166,38 +169,27 @@ The journey of supporting a child through their education is fraught with comple
 					/>
 				</section>
 
-				<VideoMasterclassGrid
-					videos={featuredVideos}
-					className='py-20 sm:py-26 md:py-32'
-				/>
+				<VideoMasterclassGrid videos={featuredVideos} />
 
-				<section
-					id='ucas-section'
-					className='py-12 sm:py-14 md:py-16'>
+				<section id='ucas-section'>
 					<FirstLessonSection
 						heading="University Admissions: Decoding Britain's Most Complex Educational Process"
 						paragraph="The British university admissions system represents one of the most intricate and high-stakes processes that families will ever navigate. UCAS applications are governed by unwritten rules, implicit expectations, and nuanced requirements that can confound even highly educated parents. The personal statement alone - a 4,000 character document that can determine a young person's entire future - operates according to criteria that are rarely made explicit. The stakes are particularly high for competitive courses and prestigious institutions, where the margin for error is virtually nonexistent. Understanding university selection strategies, reference requirements, and timeline management requires intimate knowledge of how admissions departments actually evaluate candidates. Elizabeth Burrows has helped countless students secure offers from Oxbridge and top Russell Group universities. Unlock her expertise in these two masterclasses, as delivered at London School of Economics."
+						showConnectorArrow={true}
 					/>
 				</section>
 
-				<VideoMasterclassGrid
-					videos={ucasVideos}
-					className='py-20 sm:py-26 md:py-32'
-				/>
+				<VideoMasterclassGrid videos={ucasVideos} />
 
-				<section
-					id='british-culture-section'
-					className='py-12 sm:py-14 md:py-16'>
+				<section id='british-culture-section'>
 					<FirstLessonSection
 						heading="Reading Between the Lines: Navigating Britain's Educational Culture"
 						paragraph='Cultural literacy is the unspoken foundation of success in British education. Literary knowledge, shared references and historical context quietly shape classroom discussion, exam questions and peer dynamics. International families often find capable children disadvantaged by these invisible cues, affecting interviews, seminar participation and confidence. Equally decisive is social navigation: the centuries-old codes that govern schools and universities - from dining etiquette in boarding houses to admissions protocols and teacher expectations. Social fluency influences opportunities, relationships and perceived fit as much as grades. In these two masterclasses Elizabeth Burrows guide explores the cultural capital and institutional conventions students must decode, helping families bridge gaps academic ability alone cannot close.'
+						showConnectorArrow={true}
 					/>
 				</section>
 
-				<VideoMasterclassGrid
-					videos={cultureVideos}
-					className='py-20 sm:py-26 md:py-32'
-				/>
+				<VideoMasterclassGrid videos={cultureVideos} />
 			</PageLayout>
 		</React.Fragment>
 	);

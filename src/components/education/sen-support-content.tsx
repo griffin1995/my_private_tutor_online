@@ -5,6 +5,7 @@ import type { TabContentData } from './tab-content-layout';
 import { Heart, UserCheck, ClipboardCheck, Users, User, Shield } from 'lucide-react';
 
 const senSupportData: TabContentData = {
+	tabName: 'SEN Support',
 	mainFeatures: {
 		description:
 			'Our Founder Elizabeth\'s own neurodiversity (dyspraxia) means she\'s especially passionate about equipping students with game changing SEN support. Our work is tailored to empower students with dyslexia, dyspraxia, ADHD, autism spectrum conditions, speech or processing differences, and related profiles.',

@@ -6,7 +6,8 @@ import { PageFooterClient } from './page-footer-client';
 
 const FOOTER_CONTENT = {
 	companyName: 'My Private Tutor Online',
-	description: 'Exceptional online tutoring trusted by families worldwide. From GCSE excellence to Oxbridge success.',
+	description:
+		'Exceptional online tutoring trusted by families worldwide. From GCSE excellence to Oxbridge success.',
 	logo: {
 		main: '/images/logos/logo-with-name.png',
 		alt: 'My Private Tutor Online - Premium Educational Services',
@@ -18,9 +19,18 @@ const FOOTER_CONTENT = {
 			title: 'Our Services',
 			links: [
 				{ label: '11+ Preparation', href: '/11-plus-bootcamps' },
-				{ label: 'GCSE & A-Level Tutoring', href: '/subject-tuition' },
-				{ label: 'Oxbridge Preparation', href: '/subject-tuition' },
-				{ label: 'Homeschooling Support', href: '/homeschooling' },
+				{
+					label: 'GCSE & A-Level Tutoring',
+					href: '/subject-tuition?tab=secondary-school',
+				},
+				{
+					label: 'Oxbridge Preparation',
+					href: '/subject-tuition?tab=university-admissions',
+				},
+				{
+					label: 'Homeschooling Support',
+					href: '/subject-tuition?tab=online-homeschooling',
+				},
 				{ label: 'Video Masterclasses', href: '/video-masterclasses' },
 			],
 		},

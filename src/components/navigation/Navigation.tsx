@@ -3,6 +3,7 @@
 import ArrowUpward from '@/components/ui/arrow-upward';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { MAIN_NAVIGATION_ITEMS } from '@/content/navigation-content';
 import { cn } from '@/lib/utils';
 import {
 	AnimatePresence,
@@ -16,11 +17,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
-import {
-	MAIN_NAVIGATION_ITEMS,
-	MOBILE_NAVIGATION_ITEMS,
-	type NavigationItem as NavItem,
-} from '@/content/navigation-content';
 
 interface NavigationItem {
 	label: string;
@@ -42,8 +38,10 @@ interface DropdownState {
 }
 
 // Use imported navigation data from navigation-content.ts
-const navigationData: NavigationItem[] = MAIN_NAVIGATION_ITEMS as unknown as NavigationItem[];
-const navigationDataMobile: NavigationItem[] = MAIN_NAVIGATION_ITEMS as unknown as NavigationItem[];
+const navigationData: NavigationItem[] =
+	MAIN_NAVIGATION_ITEMS as unknown as NavigationItem[];
+const navigationDataMobile: NavigationItem[] =
+	MAIN_NAVIGATION_ITEMS as unknown as NavigationItem[];
 const mobileMenuVariants = {
 	closed: {
 		x: '100%',
@@ -143,7 +141,10 @@ const overlayVariants = {
 		},
 	},
 };
-export function Navigation({ className, showBlueNavigation = false }: NavigationProps) {
+export function Navigation({
+	className,
+	showBlueNavigation = false,
+}: NavigationProps) {
 	const pathname = usePathname();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -241,7 +242,8 @@ export function Navigation({ className, showBlueNavigation = false }: Navigation
 		if (href === '/') return pathname === '/' || pathname === '/en-GB';
 		return pathname.startsWith(href);
 	};
-	const showBlueNavStyling = showBlueNavigation || pathname === '/' || pathname === '/en-GB';
+	const showBlueNavStyling =
+		showBlueNavigation || pathname === '/' || pathname === '/en-GB';
 	const getNavbarHeight = () => {
 		return 88;
 	};
@@ -253,11 +255,9 @@ export function Navigation({ className, showBlueNavigation = false }: Navigation
 				variants={navVariants}
 				className={cn(
 					'fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-[5.5rem] lg:h-[6.25rem] xl:h-[7rem]',
-					dropdownState.isOpen
-						? 'bg-white shadow-sm'
-						: isScrolled
-						? 'bg-white shadow-sm'
-						: 'bg-transparent',
+					dropdownState.isOpen ? 'bg-white shadow-sm'
+					: isScrolled ? 'bg-white shadow-sm'
+					: 'bg-transparent',
 					className,
 				)}>
 				<div className='container mx-auto px-4 lg:px-6 h-[5.5rem] lg:h-[6.25rem] xl:h-[7rem]'>
@@ -276,9 +276,9 @@ export function Navigation({ className, showBlueNavigation = false }: Navigation
 									className='relative w-48 h-[4.5rem] lg:h-[5.25rem] xl:h-[6rem]'>
 									<Image
 										src={`/images/logos/${
-											showBlueNavStyling || dropdownState.isOpen || isScrolled
-												? 'logo-with-name.png'
-												: 'logo-with-name-white.png'
+											showBlueNavStyling || dropdownState.isOpen || isScrolled ?
+												'logo-with-name.png'
+											:	'logo-with-name-white.png'
 										}`}
 										alt='My Private Tutor Online'
 										fill
@@ -294,21 +294,19 @@ export function Navigation({ className, showBlueNavigation = false }: Navigation
 								<div
 									key={item.label}
 									className='relative'>
-									{item.items ? (
+									{item.items ?
 										<div className='relative'>
 											<div className='flex items-center'>
-												{item.href ? (
+												{item.href ?
 													<Link
 														href={item.href}
 														className={cn(
 															'flex items-center gap-1 px-2 py-1 font-normal font-display transition-all duration-200',
 															'text-base md:text-lg lg:text-lg xl:text-xl',
 															'text-primary-700 hover:text-accent-600',
-															showBlueNavStyling
-																? 'text-primary-700 hover:text-accent-600'
-																: isScrolled
-																? 'text-primary-700'
-																: 'text-white hover:text-accent-600',
+															showBlueNavStyling ? 'text-primary-700 hover:text-accent-600'
+															: isScrolled ? 'text-primary-700'
+															: 'text-white hover:text-accent-600',
 															isActive(item.href) && 'text-accent-600',
 															activeMenuItem === item.label && 'text-accent-600',
 															dropdownState.isOpen &&
@@ -321,17 +319,14 @@ export function Navigation({ className, showBlueNavigation = false }: Navigation
 														}}>
 														{item.label}
 													</Link>
-												) : (
-													<button
+												:	<button
 														className={cn(
 															'flex items-center gap-1 px-2 py-1 font-normal font-display transition-all duration-200',
 															'text-base md:text-lg lg:text-lg xl:text-xl',
 															'text-primary-700 hover:text-accent-600',
-															showBlueNavStyling
-																? 'text-primary-700 hover:text-accent-600'
-																: isScrolled
-																? 'text-primary-700'
-																: 'text-white hover:text-accent-600',
+															showBlueNavStyling ? 'text-primary-700 hover:text-accent-600'
+															: isScrolled ? 'text-primary-700'
+															: 'text-white hover:text-accent-600',
 															activeMenuItem === item.label && 'text-accent-600',
 															dropdownState.isOpen &&
 																activeMenuItem !== item.label &&
@@ -342,27 +337,24 @@ export function Navigation({ className, showBlueNavigation = false }: Navigation
 														}}>
 														{item.label}
 													</button>
-												)}
+												}
 											</div>
 										</div>
-									) : (
-										<Link
+									:	<Link
 											href={item.href!}
 											className={cn(
 												'flex items-center px-2 py-1 font-normal font-display transition-all duration-200',
 												'text-base md:text-lg lg:text-lg xl:text-xl',
 												'text-primary-700 hover:text-accent-600',
-												showBlueNavStyling
-													? 'text-primary-700 hover:text-accent-600'
-													: isScrolled
-													? 'text-primary-700'
-													: 'text-white hover:text-accent-600',
+												showBlueNavStyling ? 'text-primary-700 hover:text-accent-600'
+												: isScrolled ? 'text-primary-700'
+												: 'text-white hover:text-accent-600',
 												isActive(item.href!) && 'text-accent-600',
 												dropdownState.isOpen && !isActive(item.href!) && 'text-primary-700',
 											)}>
 											{item.label}
 										</Link>
-									)}
+									}
 								</div>
 							))}
 						</div>
@@ -372,13 +364,13 @@ export function Navigation({ className, showBlueNavigation = false }: Navigation
 								asChild
 								variant='outline'
 								className={cn(
-									'rounded-none border transition-all duration-300',
+									'rounded-none border transition-all duration-300 py-6',
 									'text-sm md:text-base lg:text-base xl:text-lg font-normal font-display',
-									showBlueNavStyling
-										? 'border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white'
-										: isScrolled
-										? 'border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white'
-										: 'border-white text-white hover:bg-white hover:text-primary-700',
+									showBlueNavStyling ?
+										'bg-primary-700 text-white hover:bg-primary-800 hover:text-white'
+									: isScrolled ?
+										'bg-primary-700 text-white hover:bg-primary-800 hover:text-white'
+									:	'border-white text-white hover:bg-white hover:text-primary-700',
 								)}>
 								<Link href='https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'>
 									Request Free Consultation
@@ -390,11 +382,9 @@ export function Navigation({ className, showBlueNavigation = false }: Navigation
 							onClick={() => setIsMobileMenuOpen(true)}
 							className={cn(
 								'2xl:hidden p-2 rounded-lg transition-colors duration-200',
-								showBlueNavStyling
-									? 'text-primary-700 hover:bg-gray-100'
-									: isScrolled
-									? 'text-primary-700 hover:bg-gray-100'
-									: 'text-white hover:bg-white/10',
+								showBlueNavStyling ? 'text-primary-700 hover:bg-gray-100'
+								: isScrolled ? 'text-primary-700 hover:bg-gray-100'
+								: 'text-white hover:bg-white/10',
 							)}
 							aria-label='Open menu'>
 							<MenuIcon className='h-6 w-6' />
@@ -570,9 +560,9 @@ function MobileNavigation({
 	const [expandedItems, setExpandedItems] = useState<string[]>([]);
 	const toggleExpanded = (label: string) => {
 		setExpandedItems((prev) =>
-			prev.includes(label)
-				? prev.filter((item) => item !== label)
-				: [...prev, label],
+			prev.includes(label) ?
+				prev.filter((item) => item !== label)
+			:	[...prev, label],
 		);
 	};
 	return (
@@ -584,7 +574,7 @@ function MobileNavigation({
 					<div
 						key={item.label}
 						className='rounded-lg border-none overflow-hidden'>
-						{hasSubItems ? (
+						{hasSubItems ?
 							<>
 								<button
 									onClick={() => toggleExpanded(item.label)}
@@ -644,8 +634,7 @@ function MobileNavigation({
 									)}
 								</AnimatePresence>
 							</>
-						) : (
-							<Link
+						:	<Link
 								href={item.href!}
 								onClick={onNavigate}
 								className={cn(
@@ -657,7 +646,7 @@ function MobileNavigation({
 									{item.label}
 								</span>
 							</Link>
-						)}
+						}
 					</div>
 				);
 			})}

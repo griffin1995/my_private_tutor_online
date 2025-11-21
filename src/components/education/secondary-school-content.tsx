@@ -5,6 +5,7 @@ import type { TabContentData } from './tab-content-layout';
 import { GraduationCap, ClipboardCheck, BookOpen, UserCheck, TrendingUp, Star } from 'lucide-react';
 
 const secondarySchoolData: TabContentData = {
+	tabName: 'Secondary School Tutoring',
 	mainFeatures: {
 		description:
 			'One-to-one tutoring for KS3, GCSE, A-Level and IB, delivered by experienced subject specialists and examiners. Our support goes beyond the syllabus, equipping students with effective revision strategies, time management skills and structured study plans. 94% of students improve by at least two grades at GCSE.',

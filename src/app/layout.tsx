@@ -73,7 +73,7 @@ export const metadata: Metadata = {
 		description: 'As featured in Tatler and trusted by royalty',
 		images: [
 			{
-				url: '/logo-name-tagline.png',
+				url: '/icons/logo-with-name.png',
 				width: 1200,
 				height: 630,
 				alt: 'My Private Tutor Online - World-Class Education, At Your Fingertips',
@@ -242,14 +242,10 @@ export default function RootLayout({
 					href='https://fonts.gstatic.com'
 					crossOrigin='anonymous'
 				/>
-
-
 			</head>
 			<body
 				className={`${fontClassNames} font-body antialiased min-h-screen bg-transparent text-foreground`}>
-
 				<ClientProviders>{children}</ClientProviders>
-
 			</body>
 		</html>
 	);

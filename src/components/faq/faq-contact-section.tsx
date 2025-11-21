@@ -1,12 +1,11 @@
 'use client';
 
-import { m } from 'framer-motion';
-import { Mail, Phone, MessageCircle } from 'lucide-react';
 import { Section } from '@/components/layout/section';
-import { GradientOverlay } from '@/components/ui/gradient-overlay';
-import { ShinyButton } from '@/components/magicui/shiny-button';
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button';
-import type { UnifiedContactData } from '@/lib/cms/cms-content';
+import { ShinyButton } from '@/components/magicui/shiny-button';
+import { GradientOverlay } from '@/components/ui/gradient-overlay';
+import { m } from 'framer-motion';
+import { Mail, MessageCircle, Phone } from 'lucide-react';
 interface FAQContactSectionProps {
 	contactContent: {
 		readonly title: string;

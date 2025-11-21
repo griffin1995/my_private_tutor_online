@@ -5,6 +5,7 @@ import type { TabContentData } from './tab-content-layout';
 import { Shield, MapPin, Trophy, School, Map } from 'lucide-react';
 
 const londonInPersonData: TabContentData = {
+	tabName: 'London In-Person Tutoring',
 	mainFeatures: {
 		description:
 			'In-person tutoring available across London. Sessions delivered by DBS-checked specialist tutors, qualified teachers and official examiners, in the comfort of your own home.',

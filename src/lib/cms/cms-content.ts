@@ -371,7 +371,7 @@ export interface TutorProfile {
 }
 export interface TutorProfilesSection {
 	readonly title: string;
-	readonly subtitle: string;
+	readonly subtitle: string | null;
 	readonly description: string;
 	readonly profiles: readonly TutorProfile[];
 	readonly showAllButton?: {

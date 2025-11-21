@@ -2,6 +2,9 @@
 
 import dynamic from 'next/dynamic';
 import { lazy, Suspense, useEffect, useState } from 'react';
+
+// Type-safe null component that satisfies React.ComponentType
+const NullComponent: React.ComponentType = () => null;
 const FAQGamificationSystem = lazy(() =>
 	import('../faq/faq-gamification-system').then((mod) => ({
 		default: mod.FAQGamificationSystem,
@@ -19,23 +22,23 @@ const PerformanceDashboard = lazy(() =>
 );
 const VoiceSearchComponents = lazy(() =>
 	Promise.resolve({
-		default: () => null,
+		default: NullComponent,
 	}),
 );
 const AdminDashboard = lazy(() =>
 	import('../admin/faq-admin-dashboard')
 		.then((mod) => ({
-			default: mod.FAQAdminDashboard || (() => null),
+			default: mod.FAQAdminDashboard || NullComponent,
 		}))
 		.catch(() =>
 			Promise.resolve({
-				default: () => null,
+				default: NullComponent,
 			}),
 		),
 );
 const ChartComponents = lazy(() =>
 	Promise.resolve({
-		default: () => null,
+		default: NullComponent,
 	}),
 );
 const QuoteRequestForm = lazy(() =>
@@ -72,7 +75,6 @@ const LazyTestimonialsSection = dynamic(
 			</div>
 		),
 		ssr: false,
-		suspense: false,
 	},
 );
 const LazyResultsSection = dynamic(
@@ -228,8 +230,9 @@ const useIntersectionLoader = (loadFunction: () => void, threshold = 0.1) => {
 	useEffect(() => {
 		if (!ref) return;
 		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
+			(entries) => {
+				const entry = entries[0];
+				if (entry && entry.isIntersecting) {
 					loadFunction();
 					observer.disconnect();
 				}

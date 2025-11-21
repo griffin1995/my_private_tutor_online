@@ -5,14 +5,68 @@ import { Testimonial10NoRole } from '@/components/education/testimonial-section'
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
+import { m } from 'framer-motion';
+import { RecognitionCard } from '../../components/sections/RecognitionCard';
 
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR ABOUT PAGE
 // ============================================================================
+// Type for recognition card data (hardcoded)
+interface RecognitionCardData {
+	id: string;
+	headerText: string;
+	contentType: 'logo' | 'icon';
+	logoImage?: {
+		url: string;
+		alt: string;
+	};
+	logoMaxWidth?: string;
+	iconPath?: string;
+	iconAlt?: string;
+	footerText?: string;
+	sortOrder: number;
+	status: 'published' | 'unpublished';
+}
+const RECOGNITION_CARDS_DATA: RecognitionCardData[] = [
+	{
+		id: 'tatler-address-book',
+		headerText: 'As featured in',
+		contentType: 'logo',
+		logoImage: {
+			url: '/landing-page/tatler-logo.webp',
+			alt: "Tatler's Address Book 2025",
+		},
+		sortOrder: 1,
+		status: 'published',
+	},
+	{
+		id: 'school-guide-top-pick',
+		headerText: 'As recommended by',
+		contentType: 'logo',
+		logoImage: {
+			url: '/landing-page/schools-guide-uk-logo.webp',
+			alt: "School Guide's Top Pick for Private Tuition",
+		},
+		sortOrder: 2,
+		status: 'published',
+	},
+	{
+		id: 'royal-clientele',
+		headerText: 'As trusted by',
+		contentType: 'logo',
+		logoImage: {
+			url: '/landing-page/royal-crown.webp',
+			alt: 'Royal Crown',
+		},
+		sortOrder: 3,
+		status: 'published',
+	},
+];
 
+const recognitionCards: RecognitionCardData[] = RECOGNITION_CARDS_DATA;
 // Hero image for About page
 const ABOUT_HERO_IMAGE = {
-	src: '/images/hero/about.webp',
+	src: 'images/team/about-founder-story.jpg',
 	alt: 'Elizabeth Burrows founder story hero background - premium tutoring service heritage',
 	width: 1920,
 	height: 1080,
@@ -93,7 +147,33 @@ export default function AboutUsPage() {
 						</p>
 					</div>
 				</section>
-
+				<m.div
+					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'
+					initial={{ opacity: 0, y: 30 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true, margin: '-100px' }}
+					transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}>
+					{recognitionCards
+						.filter(
+							(
+								card,
+							): card is RecognitionCardData & {
+								contentType: 'logo';
+								logoImage: { url: string; alt: string };
+							} => card.contentType === 'logo' && card.logoImage !== undefined,
+						)
+						.map((card, index) => (
+							<RecognitionCard
+								key={card.id}
+								headerText={card.headerText}
+								contentType={card.contentType}
+								logoImage={card.logoImage}
+								{...(card.footerText && { footerText: card.footerText })}
+								animationDelay={0.5 + index * 0.2}
+								index={index}
+							/>
+						))}
+				</m.div>
 				{/* Testimonials Carousel Section */}
 				<section
 					id='testimonials-carousel'

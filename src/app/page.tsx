@@ -2,7 +2,6 @@
 // ARCHITECTURE REASON: Official Payload pattern - Server Component fetches data, passes to Client Components
 // REFERENCE: Official Payload docs - "Query Payload CMS Local API from Next.js Server Components"
 
-import { RoyalEndorsementQuote } from '@/components/content/RoyalEndorsementQuote';
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { FounderQuoteSection } from '../components/client/FounderQuoteSection';
 import { ScrollingLogos } from '../components/client/ScrollingLogos';
@@ -573,7 +572,20 @@ export default async function HomePage() {
 					{/* Features Section */}
 					<Feature1
 						title='Fit For a King'
-						description={<RoyalEndorsementQuote />}
+						description={
+							<>
+								Our services are trusted by prominent families, including VIPs and
+								royalty.
+								<br />
+								<br />
+								<em>
+									&ldquo;Hi Elizabeth, I found out today that the two princes and the
+									princess have all been offered places at Le Rosey for next year. The
+									family is delighted and would like me to pass on their sincerest thanks
+									to you and the team for all your hard work.&rdquo;
+								</em>
+							</>
+						}
 						imageSrc='/images/graphics/feature-royal-endorsement.jpg'
 						imageAlt='Royal endorsement - Invitation-only service trusted by royal families and high-profile clients'
 						buttonPrimary={{
