@@ -31,34 +31,34 @@
   },
   "overrides": {
     "@visx/axis": {
-      "react": "^19.0.0",
-      "react-dom": "^19.0.0"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@graphiql/react": {
-      "react": "^19.0.0",
-      "react-dom": "^19.0.0"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@monaco-editor/react": {
-      "react": "^19.0.0",
-      "react-dom": "^19.0.0"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@reach/portal": {
-      "react": "^19.0.0",
-      "react-dom": "^19.0.0"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@reach/utils": {
-      "react": "^19.0.0",
-      "react-dom": "^19.0.0"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@react-spring/zdog": {
-      "react": "^19.0.0",
-      "react-dom": "^19.0.0"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@tinacms/schema-tools": {
       "yup": "^1.6.1"
     },
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
   },
   "dependencies": {
     "@axe-core/react": "^4.10.2",
@@ -145,7 +145,7 @@
     "mongodb-level": "^0.0.4",
     "motion": "^12.23.11",
     "nanoid": "^5.1.5",
-    "next": "15.3.4",
+    "next": "15.3.6",
     "next-i18next": "^15.4.2",
     "next-seo": "^6.8.0",
     "next-themes": "^0.4.6",
@@ -157,7 +157,7 @@
     "qs": "^6.14.0",
     "query-string": "^9.2.2",
     "ramda": "^0.31.3",
-    "react": "^19.0.0",
+    "react": "19.2.1",
     "react-aria": "^3.41.1",
     "react-barcode-generator": "^1.0.0",
     "react-color": "^2.19.3",
@@ -166,7 +166,7 @@
     "react-credit-cards-2": "^1.0.3",
     "react-datepicker": "^8.4.0",
     "react-day-picker": "^9.8.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "19.2.1",
     "react-dropzone": "^14.3.8",
     "react-error-boundary": "^6.0.0",
     "react-final-form": "^7.0.0",
