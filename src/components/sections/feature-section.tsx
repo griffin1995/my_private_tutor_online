@@ -36,68 +36,131 @@ export function FeatureSection({
 
 	return (
 		<section className={cn('w-full', className)}>
+			{/* Mobile & Tablet Layout: Flex Column (Image first, Text second) */}
+			<div className="flex flex-col lg:hidden">
+				{/* Image - Always first on mobile/tablet */}
+				<div className="relative w-full h-44 sm:h-56 md:h-96 overflow-hidden">
+					<Image
+						src={imageSrc}
+						alt={imageAlt}
+						fill
+						className="object-cover"
+						sizes="(max-width: 1024px) 100vw, 50vw"
+						priority
+					/>
+				</div>
+
+				{/* Text Content - Always second on mobile/tablet */}
+				<div className="flex flex-col items-center text-center px-6 md:px-8 py-8">
+					<h3 className="text-balance text-2xl font-semibold sm:text-3xl md:text-4xl mb-4">
+						{title}
+					</h3>
+					{description && (
+						<p className="text-muted-foreground mb-6 sm:mb-8 max-w-xl text-sm sm:text-base md:text-lg">
+							{description}
+						</p>
+					)}
+					<div className="flex w-full flex-col justify-center gap-2 md:flex-row">
+						{/* Secondary Button - Show as primary styled button on mobile (Learn More) */}
+						{isExternal(secondaryAction.href) ? (
+							<Button asChild className="rounded-none w-full md:w-auto">
+								<a
+									href={secondaryAction.href}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{secondaryAction.text}
+								</a>
+							</Button>
+						) : (
+							<Button asChild className="rounded-none w-full md:w-auto">
+								<Link href={secondaryAction.href}>{secondaryAction.text}</Link>
+							</Button>
+						)}
+
+						{/* Primary Button - Hidden on mobile, visible on tablet as outline (Get Started) */}
+						{isExternal(primaryAction.href) ? (
+							<Button variant="outline" asChild className="rounded-none hidden md:flex md:w-auto">
+								<a
+									href={primaryAction.href}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{primaryAction.text}
+								</a>
+							</Button>
+						) : (
+							<Button variant="outline" asChild className="rounded-none hidden md:flex md:w-auto">
+								<Link href={primaryAction.href}>{primaryAction.text}</Link>
+							</Button>
+						)}
+					</div>
+				</div>
+			</div>
+
+			{/* Desktop Layout: Grid (Current behavior maintained exactly) */}
 			<div
 				className={cn(
-					'grid items-center gap-8 md:grid-cols-2 md:gap-0 w-full',
-					imagePosition === 'left' && 'md:[&>*:first-child]:order-2'
+					'hidden lg:grid items-center gap-0 w-full lg:grid-cols-2',
+					imagePosition === 'left' && '[&>*:first-child]:order-2'
 				)}
 			>
-					{/* Text Content */}
-					<div className="flex flex-col items-center text-center md:items-start md:text-left px-6 md:px-8 lg:px-12 xl:px-16">
-						<h3 className="my-4 mt-0 text-balance text-2xl font-semibold sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl sm:my-5 md:my-6">
-							{title}
-						</h3>
-						{description && (
-							<p className="text-muted-foreground mb-6 sm:mb-7 md:mb-8 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl">
-								{description}
-							</p>
+				{/* Text Content */}
+				<div className="flex flex-col items-start text-left px-12 xl:px-16">
+					<h3 className="my-6 text-balance text-4xl font-semibold lg:text-5xl xl:text-6xl">
+						{title}
+					</h3>
+					{description && (
+						<p className="text-muted-foreground mb-8 max-w-xl text-lg lg:text-xl">
+							{description}
+						</p>
+					)}
+					<div className="flex w-full flex-col justify-start gap-2 sm:flex-row">
+						{isExternal(primaryAction.href) ? (
+							<Button asChild className="rounded-none">
+								<a
+									href={primaryAction.href}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{primaryAction.text}
+								</a>
+							</Button>
+						) : (
+							<Button asChild className="rounded-none">
+								<Link href={primaryAction.href}>{primaryAction.text}</Link>
+							</Button>
 						)}
-						<div className="flex w-full flex-col justify-center gap-2 sm:flex-row md:justify-start">
-							{isExternal(primaryAction.href) ? (
-								<Button asChild className="rounded-none">
-									<a
-										href={primaryAction.href}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										{primaryAction.text}
-									</a>
-								</Button>
-							) : (
-								<Button asChild className="rounded-none">
-									<Link href={primaryAction.href}>{primaryAction.text}</Link>
-								</Button>
-							)}
-							{isExternal(secondaryAction.href) ? (
-								<Button variant="outline" asChild className="rounded-none">
-									<a
-										href={secondaryAction.href}
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										{secondaryAction.text}
-									</a>
-								</Button>
-							) : (
-								<Button variant="outline" asChild className="rounded-none">
-									<Link href={secondaryAction.href}>
-										{secondaryAction.text}
-									</Link>
-								</Button>
-							)}
-						</div>
+						{isExternal(secondaryAction.href) ? (
+							<Button variant="outline" asChild className="rounded-none">
+								<a
+									href={secondaryAction.href}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{secondaryAction.text}
+								</a>
+							</Button>
+						) : (
+							<Button variant="outline" asChild className="rounded-none">
+								<Link href={secondaryAction.href}>
+									{secondaryAction.text}
+								</Link>
+							</Button>
+						)}
 					</div>
+				</div>
 
-					{/* Image */}
-					<div className="relative w-full aspect-video md:aspect-[4/3] lg:aspect-video overflow-hidden">
-						<Image
-							src={imageSrc}
-							alt={imageAlt}
-							fill
-							className="object-cover"
-							sizes="(max-width: 768px) 100vw, 50vw"
-						/>
-					</div>
+				{/* Image */}
+				<div className="relative w-full aspect-[4/3] lg:aspect-video overflow-hidden">
+					<Image
+						src={imageSrc}
+						alt={imageAlt}
+						fill
+						className="object-cover"
+						sizes="50vw"
+					/>
+				</div>
 			</div>
 		</section>
 	);
