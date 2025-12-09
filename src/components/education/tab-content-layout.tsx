@@ -4,7 +4,7 @@ import { Cta10 } from '@/components/cta10';
 import { Separator } from '@/components/ui/separator';
 import type { Feature } from './feature-section';
 import { FeatureSection } from './feature-section';
-import { StatsSection } from './stats-section';
+import { StatsSection, type StatsItem } from './stats-section';
 import { Testimonial10 } from './testimonial-section';
 
 interface TabContentData {
@@ -25,11 +25,7 @@ interface TabContentData {
 			text: string;
 			url: string;
 		};
-		stats?: Array<{
-			id: string;
-			value: string;
-			label: string;
-		}>;
+		stats?: readonly StatsItem[];
 	};
 	testimonial: {
 		quote?: string;

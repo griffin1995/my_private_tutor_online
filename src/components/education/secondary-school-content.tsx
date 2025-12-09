@@ -59,11 +59,26 @@ const secondarySchoolData: TabContentData = {
 		],
 	},
 	stats: {
+		heading: 'Secondary School Success Statistics',
+		description: 'Proven results that demonstrate the impact of our personalised tutoring approach',
 		stats: [
 			{
 				id: 'secondary-grade-improvement',
 				value: '94%',
 				label: 'of our students improve by two grades or more at GCSE',
+				description: 'Based on analysis of over 500 student outcomes in 2024'
+			},
+			{
+				id: 'secondary-a-level-results',
+				value: '89%',
+				label: 'achieve A*-B grades at A-Level with our support',
+				description: 'Consistently outperforming national averages'
+			},
+			{
+				id: 'secondary-university-offers',
+				value: '97%',
+				label: 'receive offers from their first-choice universities',
+				description: 'Including Russell Group and competitive courses'
 			},
 		],
 	},

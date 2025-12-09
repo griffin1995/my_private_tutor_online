@@ -1,5 +1,5 @@
-// CONTEXT7 SOURCE: /payloadcms/payload - Recognition card component for About Section
-// ARCHITECTURE REASON: Reusable card component with Payload CMS integration and Framer Motion animations
+// CONTEXT7 SOURCE: /framer/motion - Recognition card component for About Section
+// ARCHITECTURE REASON: Reusable card component with hardcoded data and Framer Motion animations
 // DESIGN SYSTEM COMPLIANCE: Uses design tokens (primary-900) instead of hardcoded colors
 
 'use client';

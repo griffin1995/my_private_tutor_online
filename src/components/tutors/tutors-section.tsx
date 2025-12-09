@@ -2,93 +2,110 @@
 
 import type { TutorProfilesSection } from '@/lib/cms/cms-content';
 import React from 'react';
+import { Button } from '@/components/ui/button';
+import { ChevronRight } from 'lucide-react';
 import { TutorsGrid } from './tutors-grid';
 
 interface TutorsSectionProps {
-	readonly data: TutorProfilesSection;
-	readonly showFeaturedOnly?: boolean;
-	readonly maxProfiles?: number;
-	readonly showViewAllButton?: boolean;
-	readonly className?: string;
+	data: TutorProfilesSection;
+	showFeaturedOnly?: boolean;
+	maxProfiles?: number;
+	className?: string;
 }
+
+// Section header component
+const SectionHeader: React.FC<{ data: TutorProfilesSection }> = ({ data }) => {
+	return (
+		<div className="mx-auto max-w-3xl text-center mb-8">
+			<h2 className="mb-4 text-primary-900">{data.title}</h2>
+
+			{data.subtitle && (
+				<p className="mb-6 text-lg text-neutral-700">{data.subtitle}</p>
+			)}
+
+			{data.description && (
+				<div className={`text-base text-neutral-600 ${data.backgroundStyle || ''}`}>
+					{data.description}
+				</div>
+			)}
+		</div>
+	);
+};
+
+// Action button component
+const ActionButton: React.FC<{
+	showAllButton: TutorProfilesSection['showAllButton'];
+	hasProfiles: boolean;
+}> = ({ showAllButton, hasProfiles }) => {
+	if (!showAllButton || !hasProfiles) {
+		return null;
+	}
+
+	const buttonText = showAllButton.label || 'Meet Some of our Team';
+
+	return (
+		<div className="mt-8 text-center">
+			<Button
+				variant="outline"
+				size="default"
+				asChild
+				className="border-neutral-300 hover:bg-neutral-50 hover:border-neutral-400 transition-all duration-200 focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2"
+			>
+				<a href={showAllButton.href}>
+					{buttonText}
+					<ChevronRight className="ml-2 h-4 w-4" />
+				</a>
+			</Button>
+		</div>
+	);
+};
+
+// Main tutors section component
 export const TutorsSection: React.FC<TutorsSectionProps> = ({
 	data,
 	showFeaturedOnly = false,
 	maxProfiles,
-	showViewAllButton = true,
 	className = '',
 }) => {
+	// Filter profiles based on featured flag
 	const profilesToShow = React.useMemo(() => {
 		if (showFeaturedOnly) {
 			return data.profiles.filter((profile) => profile.featured);
 		}
 		return data.profiles;
 	}, [data.profiles, showFeaturedOnly]);
-	const backgroundClasses = React.useMemo(() => {
-		switch (data.backgroundStyle) {
-			case 'dark':
-				return 'bg-primary-700 text-white';
-			case 'gradient':
-				return 'bg-gradient-to-br from-accent-50 to-accent-100';
-			case 'light':
-			default:
-				return 'bg-neutral-50';
-		}
-	}, [data.backgroundStyle]);
+
+	const hasProfiles = profilesToShow.length > 0;
+
+	// Determine grid empty state configuration
+	const emptyStateType = showFeaturedOnly ? 'noResults' : 'noTutors';
+
 	return (
-		<section className={`py-6 lg:py-12 ${backgroundClasses} ${className}`}>
-			<div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-				<div className='mx-auto max-w-3xl text-center '>
-					<h2
-						className={`mb-4 ${data.backgroundStyle === 'dark' ? 'text-white' : ''}`}>
-						{data.title}
-					</h2>
-
-					{data.subtitle && (
-						<p
-							className={`mb-6 ${
-								data.backgroundStyle === 'dark' ? 'text-accent-400' : 'text-accent-600'
-							}`}>
-							{data.subtitle}
-						</p>
-					)}
-
-					{data.description && (
-						<div className={data.backgroundStyle === 'dark' ? 'text-white' : ''}>
-							{data.description}
-						</div>
-					)}
+		<section className={`py-6 lg:py-12 ${className}`} aria-labelledby="tutors-section-title">
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				{/* Section Header */}
+				<div id="tutors-section-title">
+					<SectionHeader data={data} />
 				</div>
 
+				{/* Tutors Grid */}
 				<TutorsGrid
 					profiles={profilesToShow}
 					showFeatured={!showFeaturedOnly}
-					{...(maxProfiles !== undefined && { maxProfiles })}
+					maxProfiles={maxProfiles}
+					variant="default"
+					showProfileCounts={true}
+					emptyStateType={emptyStateType}
 				/>
 
-				{showViewAllButton && data.showAllButton && profilesToShow.length > 0 && (
-					<div className='text-center'>
-						<a
-							href={data.showAllButton.href}
-							className='inline-flex items-center justify-center px-8 py-3 rounded-lg transition-colors duration-200 bg-white border-2 border-neutral-300 hover:bg-neutral-50 hover:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2'>
-							Meet Some of our Team
-							<svg
-								className='ml-2 h-4 w-4'
-								fill='none'
-								stroke='currentColor'
-								viewBox='0 0 24 24'>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth={2}
-									d='M9 5l7 7-7 7'
-								/>
-							</svg>
-						</a>
-					</div>
-				)}
+				{/* Action Button */}
+				<ActionButton
+					showAllButton={data.showAllButton}
+					hasProfiles={hasProfiles}
+				/>
 			</div>
 		</section>
 	);
 };
+
 export default TutorsSection;

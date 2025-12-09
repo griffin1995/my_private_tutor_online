@@ -1,4 +1,4 @@
-// CONTEXT7 SOURCE: /payloadcms/payload - Client Component for About Section with Payload CMS data
+// CONTEXT7 SOURCE: /framer/motion - Client Component for About Section with hardcoded data
 // ARCHITECTURE REASON: Client Component for interactivity (Framer Motion animations)
 // DESIGN SYSTEM COMPLIANCE: Uses design tokens (primary-900) instead of hardcoded colors
 
