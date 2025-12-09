@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useSpring, useTransform } from 'framer-motion';
-import { MotionValueRenderer } from '@/components/error-handling/MotionValueRenderer';
 import type { GamificationProgress } from './faq-gamification-system';
 interface GamificationEvent {
 	type:
@@ -401,10 +400,7 @@ export function ProgressIndicator({
 	return (
 		<div className={`flex items-center space-x-2 ${className}`}>
 			<div className={`font-bold text-slate-900 ${sizeClasses[size]}`}>
-				<MotionValueRenderer
-					motionValue={displayValue}
-					fallback={0}
-				/>
+				{displayValue.get()}
 			</div>
 			{showLabel && (
 				<div className={`text-slate-600 ${sizeClasses[size]}`}>{labels[type]}</div>
