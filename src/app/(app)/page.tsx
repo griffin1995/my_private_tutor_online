@@ -8,8 +8,7 @@ import { LazyServicesCarousel } from '../../components/dynamic/lazy-loaded-compo
 import { PageFooter } from '../../components/layout/page-footer';
 import { Navigation } from '../../components/navigation/Navigation';
 import { AboutSectionClient } from '../../components/sections/AboutSectionClient';
-import { Feature1 } from '../../components/sections/feature1';
-import { Feature2 } from '../../components/sections/feature2';
+import { FeatureSection } from '../../components/sections/feature-section';
 import { FounderIntroductionSection } from '../../components/sections/founder-introduction-section';
 import { ThreePillarsSection } from '../../components/sections/three-pillars-section';
 import { SchemaMarkup } from '../../components/seo/SchemaMarkup';
@@ -131,6 +130,69 @@ const SERVICES_DATA = [
 		targetAudience: 'London-based students seeking in-person tuition',
 	},
 ];
+
+// Features Data for trust indicators section
+const FEATURES_CONTENT = [
+	{
+		title: 'Fit For a King',
+		description: (
+			<>
+				Our services are trusted by prominent families, including VIPs and royalty.
+				<br />
+				<br />
+				<em>
+					"Hi Elizabeth, I found out today that the two princes and the princess have
+					all been offered places at Le Rosey for next year. The family is delighted
+					and would like me to pass on their sincerest thanks to you and the team for
+					all your hard work."
+				</em>
+			</>
+		),
+		imageSrc: '/images/graphics/feature-royal-endorsement.jpg',
+		imageAlt:
+			'Royal endorsement - Invitation-only service trusted by royal families and high-profile clients',
+		imagePosition: 'right' as const,
+	},
+	{
+		title: 'Examiner Insight',
+		description:
+			'Our Tier 1 tutors actually write/mark the real tests your child takes. Such insider perspective is rare.',
+		imageSrc: '/images/graphics/feature-exam-insight.jpeg',
+		imageAlt:
+			'Examiner insight - Tutors who are actual examiners providing unique academic advantage',
+		imagePosition: 'left' as const,
+	},
+	{
+		title: 'By Invitation Only',
+		description:
+			"Elizabeth's international career has allowed her to personally work alongside almost all our tutors, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team.",
+		imageSrc: '/images/graphics/feature-built-on-trust.jpeg',
+		imageAlt:
+			'Built on trust - Premium tutoring service with vetted educators and proven track record',
+		imagePosition: 'right' as const,
+	},
+	{
+		title: 'Rooted in Britain, Appreciated Worldwide',
+		description:
+			'We know British education inside and out and bring that knowledge to families across the globe.',
+		imageSrc: '/images/graphics/feature-british-heritage.jpeg',
+		imageAlt:
+			'British heritage and global network - Personal tutoring approach with international reach',
+		imagePosition: 'left' as const,
+	},
+] as const;
+
+const FEATURES_ACTIONS = {
+	primary: {
+		text: 'Get Started',
+		href:
+			'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~',
+	},
+	secondary: {
+		text: 'Learn More',
+		href: '/how-it-works',
+	},
+} as const;
 
 // School Logos for scrolling section - Direct array of logos (using actual file paths)
 const SCHOOL_LOGOS_ARRAY = [
@@ -494,7 +556,7 @@ export default async function HomePage() {
 					<AboutSectionClient recognitionCards={recognitionCards} />
 
 					{/* Founder Introduction Section */}
-					<div className="[&_.flex.items-center_p]:m-0">
+					<div className='[&_.flex.items-center_p]:m-0'>
 						<FounderIntroductionSection />
 					</div>
 
@@ -505,81 +567,22 @@ export default async function HomePage() {
 						<ThreePillarsSection />
 					</section>
 
-					{/* Trust Indicators Section - Commented out (new version below) */}
-					{/* <section id='trust-indicators-social-proof'>
-						<ErrorBoundaryWrapper sectionName='Trust Indicators'>
-							<TrustIndicatorsGrid
-								indicators={trustIndicators}
-								studentImages={studentImages}
-							/>
-						</ErrorBoundaryWrapper>
-					</section> */}
+					{/* Trust Indicators Section - New Clean FeatureSection Implementation */}
+					{FEATURES_CONTENT.map((feature, index) => (
+						<FeatureSection
+							key={index}
+							title={feature.title}
+							description={feature.description}
+							imageSrc={feature.imageSrc}
+							imageAlt={feature.imageAlt}
+							imagePosition={feature.imagePosition}
+							primaryAction={FEATURES_ACTIONS.primary}
+							secondaryAction={FEATURES_ACTIONS.secondary}
+						/>
+					))}
 
-					{/* Features Section */}
-					<Feature1
-						title='Fit For a King'
-						description={
-							<>
-								Our services are trusted by prominent families, including VIPs and
-								royalty.
-								<br />
-								<br />
-								<em>
-									&ldquo;Hi Elizabeth, I found out today that the two princes and the
-									princess have all been offered places at Le Rosey for next year. The
-									family is delighted and would like me to pass on their sincerest thanks
-									to you and the team for all your hard work.&rdquo;
-								</em>
-							</>
-						}
-						imageSrc='/images/graphics/feature-royal-endorsement.jpg'
-						imageAlt='Royal endorsement - Invitation-only service trusted by royal families and high-profile clients'
-						buttonPrimary={{
-							text: 'Get Started',
-							href:
-								'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~',
-						}}
-						buttonSecondary={{ text: 'Learn More', href: '/how-it-works' }}
-					/>
-					<Feature2
-						title='Examiner insight'
-						description='Our Tier 1 tutors actually write/mark the real tests your child takes. Such insider perspective is rare.'
-						imageSrc='/images/graphics/feature-exam-insight.jpeg'
-						imageAlt='Examiner insight - Tutors who are actual examiners providing unique academic advantage'
-						buttonPrimary={{
-							text: 'Get Started',
-							href:
-								'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~',
-						}}
-						buttonSecondary={{ text: 'Learn More', href: '/how-it-works' }}
-					/>
-					<Feature1
-						title='By Invitation Only'
-						description="Elizabeth's international career has allowed her to personally work alongside almost all our tutors, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team."
-						imageSrc='/images/graphics/feature-built-on-trust.jpeg'
-						imageAlt='Built on trust - Premium tutoring service with vetted educators and proven track record'
-						buttonPrimary={{
-							text: 'Get Started',
-							href:
-								'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~',
-						}}
-						buttonSecondary={{ text: 'Learn More', href: '/how-it-works' }}
-					/>
-					<Feature2
-						title='Rooted in Britain, Appreciated Worldwide'
-						description='We know British education inside and out and bring that knowledge to families across the globe.'
-						imageSrc='/images/graphics/feature-british-heritage.jpeg'
-						imageAlt='British heritage and global network - Personal tutoring approach with international reach'
-						buttonPrimary={{
-							text: 'Get Started',
-							href:
-								'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~',
-						}}
-						buttonSecondary={{ text: 'Learn More', href: '/how-it-works' }}
-					/>
 					{/* Founder Quote Section */}
-					<section
-						id='founder-quote'>
+					<section id='founder-quote'>
 						<div className='[&>section]:py-10 sm:[&>section]:py-12 md:[&>section]:py-16 [&_p]:max-w-7xl [&_.flex.items-center]:pt-2'>
 							<TestimonialAuthorRole
 								quote={
