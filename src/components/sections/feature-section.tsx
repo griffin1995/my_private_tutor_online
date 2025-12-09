@@ -106,12 +106,12 @@ export function FeatureSection({
 				)}
 			>
 				{/* Text Content */}
-				<div className="flex flex-col items-start text-left px-12 xl:px-16">
-					<h3 className="my-6 text-balance text-4xl font-semibold lg:text-5xl xl:text-6xl">
+				<div className="flex flex-col items-start justify-center text-left px-8 lg:px-10 xl:px-16 min-h-0">
+					<h3 className="my-4 text-balance text-4xl font-semibold lg:text-3xl xl:text-5xl">
 						{title}
 					</h3>
 					{description && (
-						<p className="text-muted-foreground mb-8 max-w-xl text-lg lg:text-xl">
+						<p className="text-muted-foreground mb-6 max-w-xl text-lg lg:text-base xl:text-xl min-w-0">
 							{description}
 						</p>
 					)}
