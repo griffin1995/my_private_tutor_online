@@ -551,7 +551,6 @@ export function Navigation({
 					</div>
 				</>
 			)}
-		</>
 		</ReactChildrenErrorBoundary>
 	);
 }
