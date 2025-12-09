@@ -73,6 +73,20 @@ export function AboutSectionClient({
 								—the company began not as a business, but as a trusted network of elite
 								colleagues she met throughout her international tutoring career.
 							</p>
+
+							{/* Mobile/Tablet Image - Landscape between paragraphs */}
+							<div className='block lg:hidden mb-6 mt-2 relative w-full h-48 sm:h-56 md:h-64 overflow-hidden'>
+								<Image
+									src='/images/about/meet-elizabeth-a-different-kind-of-educator.webp'
+									alt='Elizabeth Burrows - A Different Kind of Educator'
+									fill
+									className='object-cover shadow-lg'
+									loading='lazy'
+									quality={85}
+									sizes='(max-width: 1024px) 100vw, 0px'
+								/>
+							</div>
+
 							<p className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark mb-4'>
 								What started as a circle of personal recommendations has since
 								evolved—organically and exclusively—into one of the UK&apos;s most
