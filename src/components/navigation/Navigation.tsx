@@ -1,6 +1,7 @@
 'use client';
 
 import ArrowUpward from '@/components/ui/arrow-upward';
+import { ReactChildrenErrorBoundary } from '@/components/error-handling/ReactChildrenErrorBoundary';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { MAIN_NAVIGATION_ITEMS } from '@/content/navigation-content';
@@ -248,7 +249,12 @@ export function Navigation({
 		return 88;
 	};
 	return (
-		<>
+		<ReactChildrenErrorBoundary
+			componentName="Navigation"
+			onError={(error, errorInfo) => {
+				console.error('Navigation component error:', { error, errorInfo });
+			}}
+		>
 			<motion.header
 				initial='hidden'
 				animate='visible'
@@ -546,6 +552,7 @@ export function Navigation({
 				</>
 			)}
 		</>
+		</ReactChildrenErrorBoundary>
 	);
 }
 function MobileNavigation({

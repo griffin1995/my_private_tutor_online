@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { m, AnimatePresence, useSpring, useTransform } from 'framer-motion';
+import { MotionValueRenderer, useMotionValueState } from '@/components/error-handling/MotionValueRenderer';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -451,7 +452,11 @@ export function FAQGamificationSystem({
 											</span>
 										</div>
 										<m.div className='text-lg font-semibold text-amber-600'>
-											{animatedPoints.get()} points
+											<MotionValueRenderer
+												motionValue={animatedPoints}
+												formatter={(value) => `${value} points`}
+												fallback="0 points"
+											/>
 										</m.div>
 										<Progress
 											value={levelProgress.get()}
@@ -536,7 +541,11 @@ export function FAQGamificationSystem({
 							</span>
 						</div>
 						<m.div className='text-xl font-semibold text-amber-600'>
-							{animatedPoints.get()} points
+							<MotionValueRenderer
+								motionValue={animatedPoints}
+								formatter={(value) => `${value} points`}
+								fallback="0 points"
+							/>
 						</m.div>
 					</div>
 				</div>

@@ -1,4 +1,5 @@
 import { ClientProviders } from '@/components/providers/ClientProviders';
+import { ReactChildrenErrorBoundary } from '@/components/error-handling/ReactChildrenErrorBoundary';
 import { fontClassNames } from '@/fonts';
 import type { Metadata } from 'next';
 import React from 'react';
@@ -245,7 +246,32 @@ export default function RootLayout({
 			</head>
 			<body
 				className={`${fontClassNames} font-body antialiased min-h-screen bg-transparent text-foreground`}>
-				<ClientProviders>{children}</ClientProviders>
+				<ReactChildrenErrorBoundary
+					componentName="RootLayout"
+					onError={(error, errorInfo) => {
+						// Additional logging for production debugging
+						console.error('Root layout error:', { error, errorInfo });
+
+						// In development, log to help identify the problem
+						if (process.env.NODE_ENV === 'development') {
+							console.group('🔍 Root Layout Error Details');
+							console.error('Error in root layout:', error.message);
+							console.error('Component stack:', errorInfo.componentStack);
+							console.groupEnd();
+						}
+					}}
+				>
+					<ClientProviders>
+						<ReactChildrenErrorBoundary
+							componentName="ClientProviders"
+							onError={(error, errorInfo) => {
+								console.error('ClientProviders error:', { error, errorInfo });
+							}}
+						>
+							{children}
+						</ReactChildrenErrorBoundary>
+					</ClientProviders>
+				</ReactChildrenErrorBoundary>
 			</body>
 		</html>
 	);
