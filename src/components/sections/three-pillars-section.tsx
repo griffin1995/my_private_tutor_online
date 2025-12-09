@@ -13,7 +13,7 @@ interface PillarData {
 const pillarsData: PillarData[] = [
 	{
 		id: 'pillar-1',
-		title: '95% pass rate',
+		title: '95% pass rate at 11+',
 		description:
 			"Students achieving offers from at least one of their first choice schools, including Eton, St Paul's, Westminster, Highgate, Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's and more.",
 		stats: ['Recent application cycles'],
@@ -74,7 +74,8 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
 		<div className='group h-full'>
 			<div className='shadow-xl overflow-hidden h-full'>
 				{/* Breakpoint-specific sizing: aspect ratios for single column, further increased height for multi-column */}
-				<div className={`${bgClass} relative w-full aspect-[8/5] sm:aspect-[2/1] md:aspect-[5/2] lg:h-full lg:min-h-[710px]`}>
+				<div
+					className={`${bgClass} relative w-full aspect-[8/5] sm:aspect-[2/1] md:aspect-[5/2] lg:h-full lg:min-h-[710px]`}>
 					<div
 						className='absolute inset-0 opacity-20 bg-repeat'
 						style={{
@@ -85,7 +86,6 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
 
 					{/* Breakpoint-specific layout: flexible for single column, fixed for multi-column */}
 					<div className='absolute inset-0 p-4 sm:p-5 md:p-6 lg:p-10 xl:p-12 flex flex-col'>
-
 						{/* Title section - flexible height on single column, increased fixed height on multi-column */}
 						<div className='flex-shrink-0 lg:h-28 xl:h-32 lg:flex lg:items-end lg:pb-2'>
 							<h3 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight'>
@@ -106,12 +106,11 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
 						</div>
 
 						{/* Stats section - flexible on single column, visible fixed height on multi-column */}
-						<div className='flex-shrink-0 mt-auto lg:mt-0 lg:h-20 xl:h-24 lg:flex lg:items-start lg:pt-4'>
+						<div className='flex-shrink-0 mt-auto lg:mt-0 lg:h-20 xl:h-24 lg:flex lg:items-start lg:pt-6'>
 							{pillar.stats.map((stat, index) => (
 								<p
 									key={index}
-									className='text-white text-sm sm:text-base md:text-base lg:text-lg xl:text-xl leading-tight opacity-90'
-								>
+									className='text-white text-sm sm:text-base md:text-base lg:text-lg xl:text-xl leading-tight opacity-90'>
 									• {stat}
 								</p>
 							))}
