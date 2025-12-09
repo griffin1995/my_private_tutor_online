@@ -31,7 +31,8 @@ export function FounderIntroductionSection({}: FounderIntroductionSectionProps =
 						thumbnailSrc='/images/video-thumbnails/introduction-video-thumbnail-2025.png'
 						thumbnailAlt='Elizabeth Burrows Introduction Video - Founder of My Private Tutor Online'
 						animationStyle='from-center'
-						className='w-full border border-accent-600'
+						borderColor='gold'
+						className='w-full'
 					/>
 				</div>
 			</div>
