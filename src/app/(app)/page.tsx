@@ -2,7 +2,7 @@
 // ARCHITECTURE REASON: Next.js 15 App Router - Server Component with hardcoded data for static rendering
 
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
-import { FounderQuoteSection } from '../../components/client/FounderQuoteSection';
+import { TestimonialAuthorRole } from '@/components/testimonials/TestimonialAuthorRole';
 import { ScrollingLogos } from '../../components/client/ScrollingLogos';
 import { LazyServicesCarousel } from '../../components/dynamic/lazy-loaded-components';
 import { PageFooter } from '../../components/layout/page-footer';
@@ -494,7 +494,9 @@ export default async function HomePage() {
 					<AboutSectionClient recognitionCards={recognitionCards} />
 
 					{/* Founder Introduction Section */}
-					<FounderIntroductionSection />
+					<div className="[&_.flex.items-center_p]:m-0">
+						<FounderIntroductionSection />
+					</div>
 
 					{/* Three Pillars Section */}
 					<section
@@ -575,7 +577,34 @@ export default async function HomePage() {
 						}}
 						buttonSecondary={{ text: 'Learn More', href: '/how-it-works' }}
 					/>
-
+					{/* Founder Quote Section */}
+					<section
+						id='founder-quote'>
+						<div className='[&>section]:py-10 sm:[&>section]:py-12 md:[&>section]:py-16 [&_p]:max-w-7xl [&_.flex.items-center]:pt-2'>
+							<TestimonialAuthorRole
+								quote={
+									<>
+										Parents come to us when something truly matters—an entrance exam, a
+										lost sense of confidence, a desire for academic stretch. They stay
+										with us because we deliver real progress, quietly and expertly.
+										<br />
+										<br />
+										This is not a tutoring directory. This is a bespoke service for
+										ambitious families looking for trusted partners in their child's
+										academic career.
+									</>
+								}
+								author={{
+									name: 'Elizabeth Burrows',
+									role: 'Founder',
+									avatar: {
+										src: '/images/team/elizabeth-burrows-founder-main.jpg',
+										alt: 'Elizabeth Burrows - Founder',
+									},
+								}}
+							/>
+						</div>
+					</section>
 					{/* Services Carousel Section */}
 					<section id='who-we-support-services'>
 						<LazyServicesCarousel
@@ -583,9 +612,6 @@ export default async function HomePage() {
 							studentImages={studentImages}
 						/>
 					</section>
-
-					{/* Founder Quote Section */}
-					<FounderQuoteSection />
 
 					{/* Video Testimonials Section */}
 					<section id='testimonials-section'>

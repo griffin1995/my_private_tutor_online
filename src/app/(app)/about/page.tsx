@@ -108,16 +108,18 @@ export default function AboutUsPage() {
 					id='founder-quote-testimonials'
 					className='py-8 lg:py-12 bg-primary-50'>
 					<div className='w-full max-w-4xl sm:max-w-5xl md:max-w-6xl lg:max-w-6xl xl:max-w-7xl mx-auto text-center px-4 sm:px-6 md:px-8'>
-						<Testimonial10NoRole
-							quote='A truly bespoke experience — Elizabeth personally pairs each student with a carefully selected tutor from her boutique team.'
-							author={{
-								name: 'Academic Insight',
-								avatar: {
-									src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
-									alt: 'Academic Insight',
-								},
-							}}
-						/>
+						<div className="[&_.flex.items-center_p]:mb-0 [&_.flex.items-center]:pt-2">
+							<Testimonial10NoRole
+								quote='A truly bespoke experience — Elizabeth personally pairs each student with a carefully selected tutor from her boutique team.'
+								author={{
+									name: 'Academic Insight',
+									avatar: {
+										src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
+										alt: 'Academic Insight',
+									},
+								}}
+							/>
+						</div>
 					</div>
 				</section>
 

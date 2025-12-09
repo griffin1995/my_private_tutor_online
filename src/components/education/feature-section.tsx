@@ -1,7 +1,9 @@
 'use client';
 
-import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import type { LucideIcon } from 'lucide-react';
+import { Play, X } from 'lucide-react';
+import { useState } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
 
 interface Video {
 	id: string;
@@ -27,6 +29,77 @@ interface FeatureSectionProps {
 	title?: string;
 	description?: string;
 	features: Feature[];
+}
+
+interface VideoModalProps {
+	readonly videoUrl: string;
+	readonly thumbnailUrl: string;
+	readonly alt: string;
+}
+
+function VideoModal({ videoUrl, thumbnailUrl, alt }: VideoModalProps) {
+	const [isOpen, setIsOpen] = useState(false);
+	return (
+		<Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+			<div className='relative group'>
+				<Dialog.Trigger asChild>
+					<div className='w-full h-full cursor-pointer'>
+						<div className='relative border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] overflow-hidden group-hover:border-opacity-100 transition-all duration-300'>
+							<img
+								src={thumbnailUrl}
+								alt={alt}
+								style={{
+									aspectRatio: '16/9',
+								}}
+								className='w-full h-full object-cover'
+							/>
+
+							<div className='absolute inset-0 flex items-center justify-center'>
+								<div className='bg-black/60 rounded-full p-6 group-hover:bg-black/80 group-hover:scale-110 transition-all duration-300'>
+									<Play className='w-12 h-12 text-white fill-white' />
+								</div>
+							</div>
+						</div>
+					</div>
+				</Dialog.Trigger>
+			</div>
+
+			<Dialog.Portal>
+				<Dialog.Overlay className='fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999]' />
+
+				<Dialog.Content className='fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-[10000] w-[90vw] max-w-6xl'>
+					<Dialog.Close className='absolute -top-12 right-0 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50'>
+						<X className='w-6 h-6' />
+					</Dialog.Close>
+
+					<div
+						className='relative w-full'
+						style={{
+							aspectRatio: '16/9',
+						}}>
+						{videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') ? (
+							<iframe
+								src={videoUrl}
+								className='w-full h-full shadow-2xl border border-white rounded-lg'
+								allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+								allowFullScreen
+								title={alt}
+							/>
+						) : (
+							<video
+								src={videoUrl}
+								className='w-full h-full shadow-2xl object-contain border border-white rounded-lg'
+								controls
+								autoPlay
+								playsInline
+								preload='metadata'
+							/>
+						)}
+					</div>
+				</Dialog.Content>
+			</Dialog.Portal>
+		</Dialog.Root>
+	);
 }
 
 export const FeatureSection = ({
@@ -138,24 +211,37 @@ export const FeatureSection = ({
 														paddingBottom: '56.25%',
 													}}>
 													<div className='absolute inset-0'>
-														<HeroVideoDialog
-															videoSrc={video.youtubeUrl}
-															thumbnailSrc={video.thumbnailSrc}
-															thumbnailAlt={video.thumbnailAlt}
-															animationStyle='from-center'
-															className='w-full h-full'
-														/>
+														{video.isFree && video.youtubeUrl ? (
+															<VideoModal
+																videoUrl={video.youtubeUrl}
+																thumbnailUrl={video.thumbnailSrc}
+																alt={video.thumbnailAlt}
+															/>
+														) : (
+															<a
+																href={video.purchaseLink || '#'}
+																target='_blank'
+																rel='noopener noreferrer'
+																className='relative group cursor-pointer block w-full h-full'>
+																<div className='w-full h-full'>
+																	<img
+																		src={video.thumbnailSrc}
+																		alt={video.thumbnailAlt}
+																		className='w-full h-full object-cover border border-[#3F4A7E] group-hover:border-accent-600 shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]'
+																		style={{
+																			aspectRatio: '16/9',
+																		}}
+																	/>
+																	<div className='absolute inset-0 bg-black/40 flex items-center justify-center'>
+																		<span className='text-white group-hover:text-accent-600 group-hover:underline font-medium text-base drop-shadow-lg transition-all duration-200 ease-out'>
+																			{video.isFree ? 'Watch Free' : 'Purchase Access'}
+																		</span>
+																	</div>
+																</div>
+															</a>
+														)}
 													</div>
 												</div>
-												{video.purchaseLink && (
-													<div className='mt-3 text-center'>
-														<a
-															href={video.purchaseLink}
-															className='inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline'>
-															{video.isFree ? 'Watch Free' : 'Purchase Access'}
-														</a>
-													</div>
-												)}
 											</div>
 										))}
 									</div>

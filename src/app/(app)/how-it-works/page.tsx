@@ -11,7 +11,7 @@ import {
 	AlternatingRowDescription,
 	AlternatingRowHeader,
 } from '@/components/ui/alternating-row';
-import { MissionQuote } from '@/components/ui/blockquote';
+import { TestimonialAuthorRole } from '@/components/testimonials/TestimonialAuthorRole';
 import { m } from 'framer-motion';
 import {
 	Check,
@@ -646,19 +646,19 @@ export default function HowItWorksPage() {
 				</AlternatingLayout>
 				<section
 					id='journey-quote'
-					className='py-8 lg:py-12 bg-primary-50'>
-					<div className='container mx-auto max-w-4xl px-6 sm:px-8 lg:px-12 text-center'>
-						<MissionQuote
-							showCite={true}
-							cite='My Private Tutor Online'
-							author='Elizabeth Burrows'
-							role='Founder'
-							size='lg'>
-							At My Private Tutor Online, we offer more than just tutoring—we provide
-							thoughtful, expert advice at every stage of your child&apos;s academic
-							journey. Our service is consultative, personal, and{' '}
-							<strong>bespoke to your family&apos;s individual needs</strong>.
-						</MissionQuote>
+					className='bg-primary-50'>
+					<div className='[&>section]:py-10 sm:[&>section]:py-12 md:[&>section]:py-16'>
+						<TestimonialAuthorRole
+							quote="At My Private Tutor Online, we offer more than just tutoring—we provide thoughtful, expert advice at every stage of your child's academic journey. Our service is consultative, personal, and bespoke to your family's individual needs."
+							author={{
+								name: 'Elizabeth Burrows',
+								role: 'Founder',
+								avatar: {
+									src: '/images/team/elizabeth-burrows-founder-main.jpg',
+									alt: 'Elizabeth Burrows - Founder',
+								},
+							}}
+						/>
 					</div>
 				</section>
 

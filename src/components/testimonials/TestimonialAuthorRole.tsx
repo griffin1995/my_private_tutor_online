@@ -1,7 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import type { ReactNode } from "react";
 
 interface TestimonialAuthorRoleProps {
-  quote?: string;
+  quote?: ReactNode;
   author?: {
     name: string;
     role: string;

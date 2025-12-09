@@ -68,5 +68,9 @@ const entranceExamsData: TabContentData = {
 };
 
 export function EntranceExamsContent() {
-	return <TabContentLayout data={entranceExamsData} />;
+	return (
+		<div className="[&_.group]:!border-accent-600 [&_.group]:!rounded-none [&_.group]:!shadow-none">
+			<TabContentLayout data={entranceExamsData} />
+		</div>
+	);
 }
