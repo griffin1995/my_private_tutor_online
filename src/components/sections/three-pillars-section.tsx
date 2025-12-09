@@ -1,20 +1,19 @@
 'use client';
 
 import { Separator } from '@/components/ui/separator';
-import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import React from 'react';
+
 interface PillarData {
 	id: string;
 	title: string;
-	subtitle: string;
 	description: string;
 	stats: string[];
 }
+
 const pillarsData: PillarData[] = [
 	{
 		id: 'pillar-1',
 		title: '95% pass rate',
-		subtitle: '11+ Grammar & Independent School Success',
 		description:
 			"Students achieving offers from at least one of their first choice schools, including Eton, St Paul's, Westminster, Highgate, Queen Elizabeth's, NLCS, Henrietta Barnett, Wilson's and more.",
 		stats: ['Recent application cycles'],
@@ -22,7 +21,6 @@ const pillarsData: PillarData[] = [
 	{
 		id: 'pillar-3',
 		title: 'Top 2% of test takers',
-		subtitle: 'Top 2% Test Performance',
 		description:
 			'From 7+ entrance all the way through to A Levels, our tutees frequently score in the top 2% of candidates. For example, one of our current students obtained the highest GCSE Science score in all of Asia.',
 		stats: ['Recent examination cycles'],
@@ -30,7 +28,6 @@ const pillarsData: PillarData[] = [
 	{
 		id: 'pillar-2',
 		title: '94% 2+ grade growth',
-		subtitle: 'GCSE Grade Growth',
 		description:
 			'Our GCSE students consistently improve by two or more full levels during their time with us.',
 		stats: ['Long-term tracking across multiple academic years'],
@@ -42,6 +39,12 @@ const pillarBackgrounds: Record<string, string> = {
 	'pillar-2': '/images/graphics/stat-gcse-grade-improvement.svg',
 	'pillar-3': '/images/graphics/stat-top-candidates.svg',
 };
+
+const getBgClass = (id: string): string => {
+	const index = parseInt(id.replace(/\D/g, ''), 10) % backgroundShades.length;
+	return backgroundShades[index];
+};
+
 export const ThreePillarsSection: React.FC<{
 	className?: string;
 }> = ({ className = '' }) => {
@@ -63,211 +66,57 @@ export const ThreePillarsSection: React.FC<{
 interface PillarCardProps {
 	pillar: PillarData;
 }
+
 const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
-	const shadeIndex =
-		parseInt(pillar.id.replace(/\D/g, ''), 10) % backgroundShades.length;
-	const bgClass = backgroundShades[shadeIndex];
+	const bgClass = getBgClass(pillar.id);
+
 	return (
-		<div className='group'>
-			<div className='shadow-xl overflow-hidden'>
-				{/* 8:5 aspect ratio for default screens only (25% more height than 2:1) */}
-				<div className='block sm:hidden'>
-					<AspectRatio.Root ratio={8 / 5}>
-						<div className={`${bgClass} relative w-full h-full`}>
-							<div
-								className='absolute inset-0 opacity-20 bg-repeat'
-								style={{
-									backgroundImage: `url(${pillarBackgrounds[pillar.id]})`,
-									backgroundSize: '80px 80px',
-								}}
-							/>
+		<div className='group h-full'>
+			<div className='shadow-xl overflow-hidden h-full'>
+				{/* Breakpoint-specific sizing: aspect ratios for single column, further increased height for multi-column */}
+				<div className={`${bgClass} relative w-full aspect-[8/5] sm:aspect-[2/1] md:aspect-[5/2] lg:h-full lg:min-h-[710px]`}>
+					<div
+						className='absolute inset-0 opacity-20 bg-repeat'
+						style={{
+							backgroundImage: `url(${pillarBackgrounds[pillar.id]})`,
+							backgroundSize: '80px 80px',
+						}}
+					/>
 
-							{/* Content using flexbox with space-around alignment */}
-							<div className='absolute inset-0 px-3 py-4 sm:px-4 sm:py-5 md:px-5 md:py-6 flex flex-col content-around'>
+					{/* Breakpoint-specific layout: flexible for single column, fixed for multi-column */}
+					<div className='absolute inset-0 p-4 sm:p-5 md:p-6 lg:p-10 xl:p-12 flex flex-col'>
 
-								{/* Title container */}
-								<div className="flex flex-col">
-									<h3 className='text-base leading-tight sm:text-xl md:text-2xl font-bold text-token-neutral-white'>
-										{pillar.title}
-									</h3>
-									<h4 className='text-xs leading-tight sm:text-sm md:text-base text-token-neutral-white mt-1'>
-										{pillar.subtitle}
-									</h4>
-								</div>
-
-								{/* Separator */}
-								<Separator className='bg-white/30' />
-
-								{/* Description container */}
-								<div className="flex-1 flex items-center">
-									<p className='text-token-neutral-white text-xs sm:text-sm md:text-base leading-snug'>
-										{pillar.description}
-									</p>
-								</div>
-
-								{/* Stats container */}
-								<div className="flex flex-col">
-									{pillar.stats.map((stat, index) => (
-										<p
-											key={index}
-											className='text-token-neutral-white text-xs sm:text-xs md:text-sm leading-tight'>
-											• {stat}
-										</p>
-									))}
-								</div>
-							</div>
+						{/* Title section - flexible height on single column, increased fixed height on multi-column */}
+						<div className='flex-shrink-0 lg:h-28 xl:h-32 lg:flex lg:items-end lg:pb-2'>
+							<h3 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight'>
+								{pillar.title}
+							</h3>
 						</div>
-					</AspectRatio.Root>
-				</div>
 
-				{/* 2:1 aspect ratio for sm screens only */}
-				<div className='hidden sm:block md:hidden'>
-					<AspectRatio.Root ratio={2 / 1}>
-						<div className={`${bgClass} relative w-full h-full`}>
-							<div
-								className='absolute inset-0 opacity-20 bg-repeat'
-								style={{
-									backgroundImage: `url(${pillarBackgrounds[pillar.id]})`,
-									backgroundSize: '80px 80px',
-								}}
-							/>
-
-							{/* Content using flexbox with space-around alignment */}
-							<div className='absolute inset-0 px-3 py-4 sm:px-4 sm:py-5 md:px-5 md:py-6 flex flex-col content-around'>
-
-								{/* Title container */}
-								<div className="flex flex-col">
-									<h3 className='text-base leading-tight sm:text-xl md:text-2xl font-bold text-token-neutral-white'>
-										{pillar.title}
-									</h3>
-									<h4 className='text-xs leading-tight sm:text-sm md:text-base text-token-neutral-white mt-1'>
-										{pillar.subtitle}
-									</h4>
-								</div>
-
-								{/* Separator */}
-								<Separator className='bg-white/30' />
-
-								{/* Description container */}
-								<div className="flex-1 flex items-center">
-									<p className='text-token-neutral-white text-xs sm:text-sm md:text-base leading-snug'>
-										{pillar.description}
-									</p>
-								</div>
-
-								{/* Stats container */}
-								<div className="flex flex-col">
-									{pillar.stats.map((stat, index) => (
-										<p
-											key={index}
-											className='text-token-neutral-white text-xs sm:text-xs md:text-sm leading-tight'>
-											• {stat}
-										</p>
-									))}
-								</div>
-							</div>
+						{/* Separator - responsive spacing */}
+						<div className='flex-shrink-0 py-3 sm:py-4 lg:py-6'>
+							<Separator className='bg-white/30' />
 						</div>
-					</AspectRatio.Root>
-				</div>
 
-				{/* 2.5:1 aspect ratio for md screens only (20% less height than 2:1) */}
-				<div className='hidden md:block lg:hidden'>
-					<AspectRatio.Root ratio={2.5 / 1}>
-						<div className={`${bgClass} relative w-full h-full`}>
-							<div
-								className='absolute inset-0 opacity-20 bg-repeat'
-								style={{
-									backgroundImage: `url(${pillarBackgrounds[pillar.id]})`,
-									backgroundSize: '80px 80px',
-								}}
-							/>
-
-							{/* Content using flexbox with space-around alignment */}
-							<div className='absolute inset-0 px-3 py-4 sm:px-4 sm:py-5 md:px-5 md:py-6 flex flex-col content-around'>
-
-								{/* Title container */}
-								<div className="flex flex-col">
-									<h3 className='text-base leading-tight sm:text-xl md:text-2xl font-bold text-token-neutral-white'>
-										{pillar.title}
-									</h3>
-									<h4 className='text-xs leading-tight sm:text-sm md:text-base text-token-neutral-white mt-1'>
-										{pillar.subtitle}
-									</h4>
-								</div>
-
-								{/* Separator */}
-								<Separator className='bg-white/30' />
-
-								{/* Description container */}
-								<div className="flex-1 flex items-center">
-									<p className='text-token-neutral-white text-xs sm:text-sm md:text-base leading-snug'>
-										{pillar.description}
-									</p>
-								</div>
-
-								{/* Stats container */}
-								<div className="flex flex-col">
-									{pillar.stats.map((stat, index) => (
-										<p
-											key={index}
-											className='text-token-neutral-white text-xs sm:text-xs md:text-sm leading-tight'>
-											• {stat}
-										</p>
-									))}
-								</div>
-							</div>
+						{/* Description - flexible on single column, controlled height on multi-column for alignment */}
+						<div className='flex-1 lg:flex-none lg:h-72 xl:h-80 flex flex-col justify-center lg:justify-start lg:overflow-hidden'>
+							<p className='text-white text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl leading-snug lg:leading-relaxed'>
+								{pillar.description}
+							</p>
 						</div>
-					</AspectRatio.Root>
-				</div>
 
-				{/* 2:3 aspect ratio for lg+ screens */}
-				<div className='hidden lg:block'>
-					<AspectRatio.Root ratio={2 / 3}>
-						<div className={`${bgClass} relative w-full h-full`}>
-							<div
-								className='absolute inset-0 opacity-20 bg-repeat'
-								style={{
-									backgroundImage: `url(${pillarBackgrounds[pillar.id]})`,
-									backgroundSize: '80px 80px',
-								}}
-							/>
-
-							{/* Content anchored from bottom with fixed-height containers */}
-							<div className='absolute bottom-0 left-0 right-0 px-3 pb-2 sm:px-4 sm:pb-3 md:px-5 md:pb-3 lg:p-8 lg:pb-8 xl:p-10 xl:pb-10'>
-
-								{/* Fixed height title container - ensures separator alignment */}
-								<div className="h-20 sm:h-24 md:h-28 lg:h-24 xl:h-40 flex flex-col justify-end mb-2 sm:mb-2 md:mb-3 lg:mb-4">
-									<h3 className='text-base leading-tight sm:text-xl md:text-2xl lg:text-3xl xl:text-5xl font-bold text-token-neutral-white'>
-										{pillar.title}
-									</h3>
-									<h4 className='text-xs leading-tight sm:text-sm md:text-base lg:text-lg xl:text-2xl text-token-neutral-white mt-1'>
-										{pillar.subtitle}
-									</h4>
-								</div>
-
-								{/* Separator after fixed-height container */}
-								<Separator className='bg-white/30 mb-2 sm:mb-3 md:mb-3 lg:mb-4' />
-
-								{/* Fixed height description container */}
-								<div className="h-32 sm:h-36 md:h-40 lg:h-36 xl:h-56 overflow-hidden mb-2 sm:mb-3 md:mb-3 lg:mb-4">
-									<p className='text-token-neutral-white text-xs sm:text-sm md:text-base lg:text-base xl:text-xl leading-snug'>
-										{pillar.description}
-									</p>
-								</div>
-
-								{/* Fixed height stats container */}
-								<div className="h-8 sm:h-10 md:h-12 lg:h-10 xl:h-16 overflow-hidden">
-									{pillar.stats.map((stat, index) => (
-										<p
-											key={index}
-											className='text-token-neutral-white text-xs sm:text-xs md:text-sm lg:text-sm leading-tight mb-0.5'>
-											• {stat}
-										</p>
-									))}
-								</div>
-							</div>
+						{/* Stats section - flexible on single column, visible fixed height on multi-column */}
+						<div className='flex-shrink-0 mt-auto lg:mt-0 lg:h-20 xl:h-24 lg:flex lg:items-start lg:pt-4'>
+							{pillar.stats.map((stat, index) => (
+								<p
+									key={index}
+									className='text-white text-sm sm:text-base md:text-base lg:text-lg xl:text-xl leading-tight opacity-90'
+								>
+									• {stat}
+								</p>
+							))}
 						</div>
-					</AspectRatio.Root>
+					</div>
 				</div>
 			</div>
 		</div>
