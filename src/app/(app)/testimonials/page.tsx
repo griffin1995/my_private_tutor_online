@@ -1,7 +1,7 @@
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
-import { ScrollingTestimonials } from '@/components/testimonials/ScrollingTestimonials';
+import { TestimonialsCarousel } from '@/components/testimonials/TestimonialsCarousel';
 import { MissionQuote } from '@/components/ui/blockquote';
 export default function TestimonialsPage() {
 
@@ -48,9 +48,9 @@ export default function TestimonialsPage() {
 					<TestimonialsSection />
 				</section>
 
-				{/* Multiple Row Scrolling Testimonials - Replaces Static Grid */}
-				<section id='testimonials-scrolling-carousel'>
-					<ScrollingTestimonials variant='multiple' />
+				{/* Single Row Continuous Testimonials Carousel - Simplified */}
+				<section id='testimonials-carousel'>
+					<TestimonialsCarousel />
 				</section>
 				{/* <Carousel_testimonial /> */}
 			</PageLayout>
