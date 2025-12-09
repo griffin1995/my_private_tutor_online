@@ -52,6 +52,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		backgroundImage:
 			'/videos/bridging-gaps-building-confidence-background-image-video-masterclasses-page.png',
 		isPaid: false,
+		duration: 30,
 	},
 	{
 		id: 'unlockingAcademicSuccess',
@@ -72,6 +73,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		// REVISION REASON: Updated background to unlocking-academic-success-background.jpg for content alignment with user specifications
 		backgroundImage: '/images/masterclass-backgrounds/unlocking-academic-success-background.jpg',
 		isPaid: false,
+		duration: 30,
 	},
 	{
 		id: 'elizabethsUcasGuide',
@@ -95,6 +97,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		// CONTEXT7 SOURCE: /stripe-samples/checkout-one-time-payments - Production Stripe checkout URL for UCAS Guide part 1
 		// REVISION REASON: Updated to production Stripe link as specified by user requirements
 		purchaseLink: 'https://buy.stripe.com/7sY6oGdj767tbtO1Zd38408',
+		duration: 90,
 	},
 	{
 		id: 'personalStatementsGuide',
@@ -118,6 +121,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		// CONTEXT7 SOURCE: /stripe-samples/checkout-one-time-payments - Production Stripe checkout URL for Personal Statements Guide
 		// REVISION REASON: Updated to production Stripe link as specified by user requirements
 		purchaseLink: 'https://buy.stripe.com/bJe4gy6UJ3ZlgO8avJ38409',
+		duration: 70,
 	},
 	{
 		id: 'britishLiteraryClassics',
@@ -134,6 +138,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		backgroundImage: '/images/masterclass-backgrounds/british-literature-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/aFa8wOfrffI3dBW47l3840a',
+		duration: 45,
 	},
 	{
 		id: 'britishEtiquette',
@@ -149,6 +154,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		backgroundImage: '/images/masterclass-backgrounds/british-etiquette-background.jpg',
 		isPaid: true,
 		purchaseLink: 'https://buy.stripe.com/cNidR8dj70N98hCeLZ3840b',
+		duration: 60,
 	},
 	{
 		id: 'bootcampIntro',

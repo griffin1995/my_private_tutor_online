@@ -309,7 +309,8 @@
       "Skill(developer-essentials:code-review-excellence)",
       "mcp__filesystem__edit_file",
       "Skill(developer-essentials:git-advanced-workflows)",
-      "Bash(PUPPETEER_SKIP_DOWNLOAD=true npx shadcn:*)"
+      "Bash(PUPPETEER_SKIP_DOWNLOAD=true npx shadcn:*)",
+      "Bash(yes:*)"
     ],
     "deny": []
   },
