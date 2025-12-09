@@ -1,6 +1,6 @@
 'use client';
 
-import Carousel_testimonial from '@/app/(app)/testimonials/Carousel_testimonial';
+import { TestimonialsCarousel } from '@/components/testimonials/TestimonialsCarousel';
 import { Testimonial10NoRole } from '@/components/education/testimonial-section';
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
@@ -198,7 +198,7 @@ export default function AboutUsPage() {
 					id='testimonials-carousel'
 					className='px-4 sm:px-6 lg:px-8'>
 					<div className='mx-auto'>
-						<Carousel_testimonial />
+						<TestimonialsCarousel />
 					</div>
 				</section>
 			</PageLayout>
