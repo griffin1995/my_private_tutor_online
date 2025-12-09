@@ -23,6 +23,7 @@ interface HeroVideoDialogProps {
 	thumbnailAlt?: string;
 	className?: string;
 	isFree?: boolean;
+	borderColor?: 'blue' | 'gold' | 'primary' | 'accent';
 }
 
 const animationVariants = {
@@ -75,9 +76,18 @@ export function HeroVideoDialog({
 	thumbnailAlt = 'Video thumbnail',
 	className,
 	isFree = true,
+	borderColor = 'blue',
 }: HeroVideoDialogProps) {
 	const [isVideoOpen, setIsVideoOpen] = useState(false);
 	const selectedAnimation = animationVariants[animationStyle];
+
+	// Modern Tailwind border colour mapping
+	const borderColorClasses = {
+		blue: 'border-primary-600 group-hover:border-primary-700',
+		gold: 'border-accent-600 group-hover:border-accent-700',
+		primary: 'border-primary-600 group-hover:border-primary-700',
+		accent: 'border-accent-600 group-hover:border-accent-700',
+	};
 
 	return (
 		<div className={cn('relative', className)}>
@@ -91,7 +101,10 @@ export function HeroVideoDialog({
 					alt={thumbnailAlt}
 					width={1920}
 					height={1080}
-					className='w-full h-full object-cover border border-[#3F4A7E] group-hover:border-accent-600 shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]'
+					className={cn(
+						'w-full h-full object-cover border shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]',
+						borderColorClasses[borderColor]
+					)}
 				/>
 				{isFree && (
 					<div className='absolute inset-0 flex items-center justify-center transition-all duration-200 ease-out'>
