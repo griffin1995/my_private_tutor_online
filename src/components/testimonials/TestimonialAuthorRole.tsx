@@ -35,9 +35,9 @@ const TestimonialAuthorRole = ({
               <AvatarImage src={author.avatar.src} alt={author.avatar.alt} />
               <AvatarFallback>{author.name}</AvatarFallback>
             </Avatar>
-            <div className="text-left">
-              <p className="text-sm font-medium md:text-base">{author.name}</p>
-              <p className="text-muted-foreground text-sm md:text-base">
+            <div className="text-left border-l-2 border-border pl-3 md:pl-4">
+              <p className="text-sm font-medium md:text-base mb-0">{author.name}</p>
+              <p className="text-muted-foreground text-sm md:text-base mb-0">
                 {author.role}
               </p>
             </div>

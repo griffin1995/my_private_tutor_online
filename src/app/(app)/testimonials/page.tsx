@@ -30,17 +30,19 @@ export default function TestimonialsPage() {
 				<section
 					id='mission-quote'
 					className='bg-primary-50'>
-					<TestimonialAuthorRole
-						quote='We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life.'
-						author={{
-							name: 'Elizabeth Burrows',
-							role: 'Founder',
-							avatar: {
-								src: '/images/about/founder-elizabeth-icon.webp',
-								alt: 'Elizabeth Burrows - Founder',
-							},
-						}}
-					/>
+					<div className='[&>section]:py-10 sm:[&>section]:py-12 md:[&>section]:py-16'>
+						<TestimonialAuthorRole
+							quote='We provide exceptional tuition that helps students excel academically and thrive personally, opening doors to greater opportunities—at school and in life.'
+							author={{
+								name: 'Elizabeth Burrows',
+								role: 'Founder',
+								avatar: {
+									src: '/images/about/founder-elizabeth-icon.webp',
+									alt: 'Elizabeth Burrows - Founder',
+								},
+							}}
+						/>
+					</div>
 				</section>
 
 				{/* Video Testimonials Section */}
