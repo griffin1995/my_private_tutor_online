@@ -42,12 +42,12 @@ export function TestimonialsSection({
 								<>
 									<div className='relative'>
 										{parentVideo && (
-											<div className='relative w-full'>
+											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
 													videoSrc={parentVideo.videoSrc}
 													thumbnailSrc={parentVideo.thumbnailSrc}
 													thumbnailAlt={parentVideo.description}
-													className='w-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-primary-700 hover:border-accent-600'
+													className='w-full'
 													animationStyle='from-center'
 												/>
 											</div>
@@ -56,12 +56,12 @@ export function TestimonialsSection({
 
 									<div className='relative'>
 										{studentVideo && (
-											<div className='relative w-full'>
+											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
 													videoSrc={studentVideo.videoSrc}
 													thumbnailSrc={studentVideo.thumbnailSrc}
 													thumbnailAlt={studentVideo.description}
-													className='w-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-primary-700 hover:border-accent-600'
+													className='w-full'
 													animationStyle='from-center'
 												/>
 											</div>

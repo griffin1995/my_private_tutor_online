@@ -91,7 +91,7 @@ export function HeroVideoDialog({
 					alt={thumbnailAlt}
 					width={1920}
 					height={1080}
-					className='w-full aspect-video object-cover border shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]'
+					className='w-full h-full object-cover border border-[#3F4A7E] group-hover:border-accent-600 shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]'
 				/>
 				{isFree && (
 					<div className='absolute inset-0 flex items-center justify-center transition-all duration-200 ease-out'>
