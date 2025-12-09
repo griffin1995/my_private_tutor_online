@@ -89,8 +89,8 @@ export const FeatureSection = ({
 						<div
 							key={feature.id}
 							className='bg-muted flex flex-col'>
-							<div className='flex justify-between gap-10 border-b'>
-								<div className='flex flex-col justify-start justify-between gap-8 py-6 pl-4 md:gap-14 md:py-10 md:pl-8 lg:justify-normal min-w-0'>
+							<div className='flex xl:flex-col 2xl:flex-row justify-between xl:justify-start 2xl:justify-between gap-10 xl:gap-0 2xl:gap-10 border-b'>
+								<div className='flex flex-col justify-start justify-between gap-8 py-6 pl-4 md:gap-14 md:py-10 md:pl-8 xl:px-8 2xl:pl-8 lg:justify-normal min-w-0 xl:order-2 2xl:order-1'>
 									{feature.label && (
 										<span className='text-muted-foreground font-mono text-xs'>
 											{feature.label}
@@ -108,7 +108,7 @@ export const FeatureSection = ({
 										</h3>
 									)}
 								</div>
-								<div className='md:1/3 w-2/5 shrink-0 border-l'>
+								<div className='md:1/3 w-2/5 xl:w-full 2xl:w-2/5 shrink-0 border-l xl:border-l-0 xl:border-t 2xl:border-l 2xl:border-t-0 xl:order-1 2xl:order-2'>
 									{feature.icon ? (
 										<div className='h-full w-full flex items-center justify-center bg-primary-100 p-6'>
 											<feature.icon className="h-16 w-16 text-primary-600" />
