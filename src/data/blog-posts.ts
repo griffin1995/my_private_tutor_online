@@ -42,12 +42,12 @@ export const blogPosts: BlogPost[] = [
 		id: 1,
 		title: 'The Road to Selective Schools: What Top Independent School Admissions Really Look For',
 		slug: 'road-to-selective-schools-independent-school-admissions',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'school-applications',
+		image: '/images/blog/selective-schools-admissions.jpg',
+		date: '2024-11-15',
+		excerpt: 'Discover what top independent schools such as St Paul\'s, Westminster, and Eton genuinely seek in candidates beyond academic attainment—from curiosity and breadth of interests to emotional maturity.',
+		author: 'My Private Tutor Online',
+		readTime: '4 min read',
 		content: `<p>For many families, the world of selective independent school admissions can feel like an enigmatic maze—steeped in tradition, shaped by academic expectations, and fiercely competitive. Each year, top-tier schools such as St Paul's, Westminster, King's, Magdalen and Eton receive <strong>up to 8-12 applications per place</strong>, and competition continues to intensify.</p>
 
 <p>Yet behind the polished prospectuses and glossy websites lies a clear profile of what leading schools genuinely seek.</p>
@@ -82,12 +82,12 @@ export const blogPosts: BlogPost[] = [
 		id: 2,
 		title: 'Top 3 Tips for Building a High-Achieving Study Routine—Without Burning Your Child Out',
 		slug: 'top-3-tips-high-achieving-study-routine-without-burnout',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'exam-preparation',
+		image: '/images/blog/study-routine-without-burnout.jpg',
+		date: '2024-11-14',
+		excerpt: 'Learn evidence-based strategies for creating efficient, structured study routines that maximise performance without causing stress or burnout in high-achieving students.',
+		author: 'My Private Tutor Online',
+		readTime: '4 min read',
 		content: `<p>A high-performing study routine should feel efficient, structured and calm—not stressful. Elite students are not necessarily those who work the hardest, but those who work the <em>smartest</em>. As the EEF notes, <strong>quality of study habits matters more than quantity</strong>.</p>
 
 <p>Here are the top three strategies used by high-achievers attending the UK's most prestigious schools.</p>
@@ -123,12 +123,12 @@ export const blogPosts: BlogPost[] = [
 		id: 3,
 		title: 'Top 3 Tips for Navigating the 7+, 11+, 13+ and 16+ Entry Points Successfully',
 		slug: 'top-3-tips-navigating-7-11-13-16-entry-points-successfully',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'school-applications',
+		image: '/images/blog/navigating-entry-points.jpg',
+		date: '2024-11-13',
+		excerpt: 'Master the key principles for success across all major school entry points—from understanding assessment styles to preparing for interview thinking-aloud tasks and starting early.',
+		author: 'My Private Tutor Online',
+		readTime: '3 min read',
 		content: `<p>Each admissions stage brings its own pressures, expectations and nuances. Yet across all the major entry points—from the formative 7+ to the competitive 16+—three principles consistently shape success.</p>
 
 <h3><strong>1. Understand the Specific Assessment Style</strong></h3>
@@ -163,12 +163,12 @@ export const blogPosts: BlogPost[] = [
 		id: 4,
 		title: 'How Personalised Tutoring Transforms Grades: The Cognitive Science Parents Should Know',
 		slug: 'how-personalised-tutoring-transforms-grades-cognitive-science',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'exam-preparation',
+		image: '/images/blog/personalised-tutoring-cognitive-science.jpg',
+		date: '2024-11-12',
+		excerpt: 'Explore the cognitive science behind personalised tutoring—how one-to-one instruction, responsive feedback, and targeted teaching can accelerate progress by up to five months in a single term.',
+		author: 'My Private Tutor Online',
+		readTime: '3 min read',
 		content: `<p>Parents are increasingly turning to tutoring not for cramming, but for <em>clarity</em>—precision teaching tailored to how each child learns. And the data strongly supports this approach.</p>
 
 <h3><strong>Why Personalisation Works</strong></h3>
@@ -204,12 +204,12 @@ export const blogPosts: BlogPost[] = [
 		id: 5,
 		title: 'Inside the Interview: How to Help Your Child Shine in Independent School Interviews',
 		slug: 'inside-interview-help-child-shine-independent-school-interviews',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'school-applications',
+		image: '/images/blog/independent-school-interviews.jpg',
+		date: '2024-11-11',
+		excerpt: 'Prepare your child for independent school interviews with strategies that develop conversational intelligence, authentic enthusiasm, and natural confidence—not scripted responses.',
+		author: 'My Private Tutor Online',
+		readTime: '3 min read',
 		content: `<p>The school interview, whether at 11+, 13+ or 16+, is as much about character as academics. It is an opportunity for admissions teams to gauge maturity, social confidence and intellectual spark.</p>
 
 <h3><strong>Schools Look for Thoughtfulness, Not Slick Coaching</strong></h3>
@@ -246,12 +246,12 @@ export const blogPosts: BlogPost[] = [
 		id: 6,
 		title: 'Supporting High Achievers with SEN: How to Nurture Potential When Needs Are Complex',
 		slug: 'supporting-high-achievers-sen-nurture-potential-complex-needs',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'child-wellbeing',
+		image: '/images/blog/high-achievers-sen-support.jpg',
+		date: '2024-11-10',
+		excerpt: 'Understand how to support gifted children with SEN challenges such as dyslexia, ADHD, or ASD using targeted, strength-led strategies that transform potential into sustained achievement.',
+		author: 'My Private Tutor Online',
+		readTime: '3 min read',
 		content: `<p>It is a misconception that SEN only affects struggling learners. Many gifted children also experience dyslexia, ADHD, ASD or processing challenges that mask their true academic capacity.</p>
 
 <h3><strong>High Ability and SEN Are Not Mutually Exclusive</strong></h3>
@@ -286,12 +286,12 @@ export const blogPosts: BlogPost[] = [
 		id: 7,
 		title: 'Top 3 Tips for Motivating Your Child—Without Relying on Pressure or Praise',
 		slug: 'top-3-tips-motivating-child-without-pressure-praise',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'child-wellbeing',
+		image: '/images/blog/motivating-child-without-pressure.jpg',
+		date: '2024-11-09',
+		excerpt: 'Cultivate intrinsic motivation in your child through process feedback, student agency, and calm consistency—strategies that build resilience without relying on pressure or praise.',
+		author: 'My Private Tutor Online',
+		readTime: '3 min read',
 		content: `<p>Motivation is not about coaxing or rewarding; it is about cultivating internal drive. As Prof. Carol Dweck notes, students thrive when they feel "capable of growth", not compelled to perform.</p>
 
 <h3><strong>1. Replace Praise With Process Feedback</strong></h3>
@@ -323,12 +323,12 @@ export const blogPosts: BlogPost[] = [
 		id: 8,
 		title: 'How to Prepare Your Child for GCSE and A-Level Success from Year 7 Onwards',
 		slug: 'prepare-child-gcse-a-level-success-year-7-onwards',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'exam-preparation',
+		image: '/images/blog/gcse-a-level-success-year-7.jpg',
+		date: '2024-11-08',
+		excerpt: 'Build long-term academic excellence with a strategic approach spanning Years 7-13—from strong foundations to academic independence and exam-focused preparation for standout results.',
+		author: 'My Private Tutor Online',
+		readTime: '4 min read',
 		content: `<p>Long-term preparation is the cornerstone of top academic performance. The highest achievers rarely "cram"; instead, they build mastery steadily.</p>
 
 <h3><strong>Start With Strong Foundations (Years 7-8)</strong></h3>
@@ -361,12 +361,12 @@ export const blogPosts: BlogPost[] = [
 		id: 9,
 		title: 'The Ultimate Guide to Revision Techniques: What Actually Works According to Research',
 		slug: 'ultimate-guide-revision-techniques-what-works-research',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'exam-preparation',
+		image: '/images/blog/revision-techniques-research.jpg',
+		date: '2024-11-07',
+		excerpt: 'Master evidence-based revision strategies including active recall, spaced repetition, and interleaving—techniques proven by cognitive science to improve exam performance by up to 50%.',
+		author: 'My Private Tutor Online',
+		readTime: '3 min read',
 		content: `<p>Revision is not about rewriting notes; it is about making the brain work. The most effective strategies are surprisingly simple—and consistently validated by research.</p>
 
 <h3><strong>Active Recall Is King</strong></h3>
@@ -399,12 +399,12 @@ export const blogPosts: BlogPost[] = [
 		id: 10,
 		title: 'Homeschooling with Excellence: Why More Families Are Choosing It—and How to Transition Seamlessly',
 		slug: 'homeschooling-excellence-families-choosing-transition-seamlessly',
-		category: '',
-		image: '',
-		date: '',
-		excerpt: '',
-		author: '',
-		readTime: '',
+		category: 'home-schooling',
+		image: '/images/blog/homeschooling-excellence.jpg',
+		date: '2024-11-06',
+		excerpt: 'Discover why homeschooling has surged by 40% amongst high-achieving families and learn how to transition seamlessly with the right framework, routine, and specialist support.',
+		author: 'My Private Tutor Online',
+		readTime: '4 min read',
 		content: `<p>Homeschooling has surged among high-achieving families seeking flexibility, academic stretch and personalised learning. In England, the number of homeschooled children has risen by <strong>over 40% in the past five years</strong> (Local Authorities Combined Data).</p>
 
 <h3><strong>Why High-Achieving Families Choose Homeschooling</strong></h3>
