@@ -11,17 +11,32 @@ import {
 	SelectValue,
 } from '@/components/ui/select';
 import { m } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import Masonry from 'react-masonry-css';
+import { FallbackImage, getCategoryFallback, validateImagePath } from '@/components/ui/fallback-image';
 import { blogCategories, blogPosts } from '../../../data/blog-posts';
+import { debugBlogImages } from '@/lib/image-utils';
 
-// Blog Post Card Component with image overlay - RESTORED PERFECT STYLING
+// Blog Post Card Component with enhanced fallback image handling
 function BlogPostCard({ post }: { post: (typeof blogPosts)[0] }) {
-	// Fallback image for posts without images
-	const fallbackImage = '/images/blog/education-insights-header.jpg';
-	const imageToUse = post.image && post.image.trim() !== '' ? post.image : fallbackImage;
+	// Get category-specific fallback image for better contextual defaults
+	const categoryFallback = getCategoryFallback(post.category);
+
+	// Validate and determine image to use
+	const useOriginalImage = validateImagePath(post.image);
+	const imageToUse = useOriginalImage ? post.image : categoryFallback;
+
+	// Enhanced debug logging for development
+	if (process.env.NODE_ENV === 'development') {
+		console.log(`[BlogPostCard] Post ${post.id} (${post.slug}):`, {
+			originalImage: post.image,
+			isValid: useOriginalImage,
+			category: post.category,
+			categoryFallback,
+			finalImage: imageToUse
+		});
+	}
 
 	return (
 		<Link href={`/blog/${post.slug}`}>
@@ -32,14 +47,16 @@ function BlogPostCard({ post }: { post: (typeof blogPosts)[0] }) {
 				transition={{ duration: 0.4 }}
 				className='group cursor-pointer overflow-hidden border border-neutral-200 hover:shadow-lg transition-shadow mb-6'>
 				<div className='relative overflow-hidden bg-neutral-800'>
-					{/* Background Image - natural aspect ratio determines height */}
-					<Image
+					{/* Enhanced Image with Fallback Support */}
+					<FallbackImage
 						src={imageToUse}
+						fallbackSrc={categoryFallback}
 						alt={post.title}
 						width={800}
 						height={600}
 						className='w-full h-auto object-cover'
 						sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw'
+						loading='lazy'
 					/>
 
 					{/* Dark Overlay */}
@@ -120,6 +137,11 @@ export default function BlogPage() {
 	const [selectedCategory, setSelectedCategory] = useState<string>('all');
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 12; // 3 columns x 4 rows
+
+	// Debug blog images on development
+	if (process.env.NODE_ENV === 'development') {
+		debugBlogImages();
+	}
 
 	// Filter blog posts based on selected category
 	const filteredPosts = blogPosts.filter((post) => {

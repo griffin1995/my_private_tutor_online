@@ -10,9 +10,9 @@ import {
 	Tag,
 	User,
 } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useEffect, useState } from 'react';
+import { FallbackImage, getCategoryFallback, validateImagePath } from '@/components/ui/fallback-image';
 import { blogCategories, blogPosts } from '../../data/blog-posts';
 import type { BlogPost } from '../../data/blog-posts';
 
@@ -24,6 +24,22 @@ interface BlogArticleLayoutProps {
 export function BlogArticleLayout({ post, children }: BlogArticleLayoutProps) {
 	const category = blogCategories.find((cat) => cat.id === post.category);
 	const [currentUrl, setCurrentUrl] = useState('');
+
+	// Get category-specific fallback and validate image
+	const categoryFallback = getCategoryFallback(post.category);
+	const useOriginalImage = validateImagePath(post.image);
+	const imageToUse = useOriginalImage ? post.image : categoryFallback;
+
+	// Enhanced debug logging for development
+	if (process.env.NODE_ENV === 'development') {
+		console.log(`[BlogArticleLayout] Post ${post.id} (${post.slug}):`, {
+			originalImage: post.image,
+			isValid: useOriginalImage,
+			category: post.category,
+			categoryFallback,
+			finalImage: imageToUse
+		});
+	}
 
 	// Get current URL safely on client side
 	useEffect(() => {
@@ -233,17 +249,17 @@ export function BlogArticleLayout({ post, children }: BlogArticleLayoutProps) {
 					<div className='md:col-span-8 md:col-start-5 lg:col-start-5'>
 						<article>
 							{/* Featured Image */}
-							{post.image && (
-								<div className='mb-8'>
-									<Image
-										src={post.image}
-										alt={post.title}
-										width={800}
-										height={500}
-										className='w-full h-64 md:h-80 object-cover rounded-lg border'
-									/>
-								</div>
-							)}
+							<div className='mb-8'>
+								<FallbackImage
+									src={imageToUse}
+									fallbackSrc={categoryFallback}
+									alt={post.title}
+									width={800}
+									height={500}
+									className='w-full h-64 md:h-80 object-cover rounded-lg border'
+									priority={true}
+								/>
+							</div>
 
 							{/* Article Header */}
 							<header className='mb-8'>
