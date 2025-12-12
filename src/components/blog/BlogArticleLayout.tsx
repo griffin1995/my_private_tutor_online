@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { blogCategories, blogPosts } from '../../data/blog-posts';
 import type { BlogPost } from '../../data/blog-posts';
 
@@ -23,6 +23,14 @@ interface BlogArticleLayoutProps {
 
 export function BlogArticleLayout({ post, children }: BlogArticleLayoutProps) {
 	const category = blogCategories.find((cat) => cat.id === post.category);
+	const [currentUrl, setCurrentUrl] = useState('');
+
+	// Get current URL safely on client side
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setCurrentUrl(window.location.href);
+		}
+	}, []);
 
 	// Get related posts (same category, excluding current post, max 3)
 	const relatedPosts = useMemo(() => {
@@ -32,10 +40,10 @@ export function BlogArticleLayout({ post, children }: BlogArticleLayoutProps) {
 	}, [post.category, post.id]);
 
 	const shareUrls = {
-		twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`,
-		linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`,
-		facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`,
-		whatsapp: `https://wa.me/?text=${encodeURIComponent(post.title + ' ' + window.location.href)}`,
+		twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(currentUrl)}`,
+		linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`,
+		facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`,
+		whatsapp: `https://wa.me/?text=${encodeURIComponent(post.title + ' ' + currentUrl)}`,
 	};
 
 	return (
