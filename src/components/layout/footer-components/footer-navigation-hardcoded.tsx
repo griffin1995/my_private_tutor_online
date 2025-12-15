@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Send, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
+import { cookieConsentUtils } from '@/components/privacy/cookie-consent-manager';
 
 // Type-safe footer data structure
 interface FooterLink {
@@ -51,7 +52,10 @@ const FOOTER_SECTIONS: readonly FooterSection[] = [
     links: [
       { label: "Privacy Policy", href: "/legal/privacy-policy" },
       { label: "Terms of Service", href: "/legal/terms-of-service" },
-      { label: "Cookie Policy", href: "/legal/cookie-policy" }
+      { label: "Cookie Policy", href: "/legal/cookie-policy" },
+      { label: "Cookie Settings", href: "#cookie-settings" },
+      { label: "Booking Policy", href: "/legal/booking-policy" },
+      { label: "Record of Processing", href: "/legal/record-of-processing" }
     ]
   }
 ] as const;
@@ -212,6 +216,24 @@ interface FooterLinkProps {
 
 const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
   const isExternal = !link.href.startsWith('/');
+  const isCookieSettings = link.href === '#cookie-settings';
+
+  // Handle cookie settings specially
+  if (isCookieSettings) {
+    return (
+      <button
+        onClick={() => cookieConsentUtils.showPreferences()}
+        className='group flex items-center text-neutral-700 hover:text-accent-600 transition-all duration-300 text-lg md:text-lg lg:text-xl'
+        aria-label={`${accessibleLabel} - opens cookie preferences modal`}>
+        <span className='w-0 group-hover:w-4 transition-all duration-300 overflow-hidden'>
+          <Send className='w-3 h-3' />
+        </span>
+        <span className='group-hover:translate-x-1 transition-transform duration-300'>
+          {link.label}
+        </span>
+      </button>
+    );
+  }
 
   if (isExternal) {
     return (

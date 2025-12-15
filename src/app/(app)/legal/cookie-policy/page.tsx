@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card';
 import { m } from 'framer-motion';
 import { AlertTriangle, Eye, FileText, Settings } from 'lucide-react';
 import Link from 'next/link';
+import { CookiePolicyIntegration, CookieComplianceChecker } from '@/components/privacy/cookie-policy-integration';
 export default function CookiePolicyPage() {
 	return (
 		<>
@@ -25,8 +26,11 @@ export default function CookiePolicyPage() {
 					<div className='absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50' />
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
 						<div className='max-w-5xl mx-auto'>
+							{/* Live Cookie Management Integration */}
+							<CookiePolicyIntegration />
+
 							<m.div
-								className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg'
+								className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg mt-8'
 								initial={{
 									opacity: 0,
 									x: -20,
@@ -44,15 +48,18 @@ export default function CookiePolicyPage() {
 								<div className='flex items-center gap-4 mb-4'>
 									<FileText className='w-6 h-6 text-blue-600' />
 									<p className='text-lg text-blue-800 font-bold'>
-										Last Updated: 4 August 2025
+										Last Updated: 15 December 2025
 									</p>
 								</div>
 								<p className='text-blue-700'>
 									This cookie policy complies with UK Privacy and Electronic
 									Communications Regulations (PECR), EU ePrivacy Directive, and GDPR
-									requirements.
+									requirements. Implementation updated for 2025 compliance standards.
 								</p>
 							</m.div>
+
+							{/* Development Compliance Checker */}
+							<CookieComplianceChecker />
 
 							<div className='prose prose-lg prose-slate max-w-none'>
 								<h2>1. What Are Cookies?</h2>
