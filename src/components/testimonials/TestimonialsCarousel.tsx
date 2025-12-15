@@ -5,6 +5,8 @@ import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import Image from 'next/image';
 import { Star } from 'lucide-react';
+import { motion } from 'motion/react';
+import { useInView } from 'react-intersection-observer';
 
 // Enhanced testimonial interface (using existing structure from ScrollingTestimonials.tsx)
 interface TestimonialData {
@@ -121,66 +123,130 @@ const TESTIMONIALS_DATA: readonly TestimonialData[] = [
 	},
 ] as const;
 
-// Individual testimonial card component (simplified version of existing TestimonialCard)
+// Individual testimonial card component with Motion animations
 interface TestimonialCardProps {
 	testimonial: TestimonialData;
+	index?: number;
 }
 
-const TestimonialCard = ({ testimonial }: TestimonialCardProps) => (
-	<div className="min-w-[280px] sm:min-w-[320px] md:min-w-[400px] lg:min-w-[450px] max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] bg-white p-4 sm:p-5 md:p-6 flex-shrink-0 border-2 border-primary-100 shadow-lg hover:shadow-xl transition-shadow duration-300 mr-4 sm:mr-6 md:mr-8">
-		<div className="flex items-center gap-3 sm:gap-4 mb-4">
-			{testimonial.avatar && (
-				<div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-accent-500 flex-shrink-0">
-					<Image
-						src={testimonial.avatar}
-						alt={`${testimonial.author} photo`}
-						width={48}
-						height={48}
-						className="object-cover w-full h-full"
-					/>
+const TestimonialCard = ({ testimonial, index = 0 }: TestimonialCardProps) => {
+	// Standardized intersection observer for each card
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		threshold: 0.1,
+		rootMargin: '-50px 0px',
+	});
+
+	// Standardized animation variants
+	const fadeInUp = {
+		initial: { opacity: 0, y: 20 },
+		animate: { opacity: 1, y: 0 },
+		transition: { duration: 0.6, ease: "easeOut" }
+	};
+
+	const scaleIn = {
+		initial: { opacity: 0, scale: 0.95 },
+		animate: { opacity: 1, scale: 1 },
+		transition: { duration: 0.6, ease: "easeOut" }
+	};
+
+	return (
+		<motion.div
+			ref={ref}
+			className="min-w-[280px] sm:min-w-[320px] md:min-w-[400px] lg:min-w-[450px] max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] bg-white p-4 sm:p-5 md:p-6 flex-shrink-0 border-2 border-primary-100 shadow-lg mr-4 sm:mr-6 md:mr-8"
+			{...fadeInUp}
+			animate={inView ? fadeInUp.animate : fadeInUp.initial}
+			transition={{ ...fadeInUp.transition, delay: index * 0.1 }}
+			whileHover={{
+				y: -5,
+				boxShadow: '0 20px 30px rgba(0,0,0,0.15)',
+				transition: { duration: 0.3, ease: "easeOut" }
+			}}>
+			<motion.div
+				className="flex items-center gap-3 sm:gap-4 mb-4"
+				{...fadeInUp}
+				animate={inView ? fadeInUp.animate : fadeInUp.initial}
+				transition={{ ...fadeInUp.transition, delay: index * 0.1 + 0.2 }}>
+				{testimonial.avatar && (
+					<motion.div
+						className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-accent-500 flex-shrink-0"
+						{...scaleIn}
+						animate={inView ? scaleIn.animate : scaleIn.initial}
+						transition={{ ...scaleIn.transition, delay: index * 0.1 + 0.3 }}>
+						<Image
+							src={testimonial.avatar}
+							alt={`${testimonial.author} photo`}
+							width={48}
+							height={48}
+							className="object-cover w-full h-full"
+						/>
+					</motion.div>
+				)}
+				<div className="min-w-0">
+					<p className="text-sm sm:text-base lg:text-lg font-semibold text-primary-900 truncate">
+						{testimonial.author}
+					</p>
+					<p className="text-xs sm:text-sm text-primary-600 truncate">{testimonial.role}</p>
 				</div>
+			</motion.div>
+
+			{/* Star Rating */}
+			<motion.div
+				className="flex mb-3 sm:mb-4"
+				{...fadeInUp}
+				animate={inView ? fadeInUp.animate : fadeInUp.initial}
+				transition={{ ...fadeInUp.transition, delay: index * 0.1 + 0.4 }}>
+				{[...Array(testimonial.rating)].map((_, i) => (
+					<motion.div
+						key={i}
+						initial={{ opacity: 0, scale: 0 }}
+						animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+						transition={{
+							duration: 0.3,
+							ease: "easeOut",
+							delay: index * 0.1 + 0.4 + i * 0.05
+						}}>
+						<Star className="w-4 h-4 sm:w-5 sm:h-5 text-accent-600 fill-current" />
+					</motion.div>
+				))}
+			</motion.div>
+
+			{/* Quote */}
+			<motion.div
+				className="text-sm sm:text-base md:text-[17px] text-primary-700 leading-relaxed mb-4 break-words"
+				{...scaleIn}
+				animate={inView ? scaleIn.animate : scaleIn.initial}
+				transition={{ ...scaleIn.transition, delay: index * 0.1 + 0.5 }}>
+				&quot;{testimonial.quote}&quot;
+			</motion.div>
+
+			{/* Subject Badge and Logo - Bottom Row */}
+			{testimonial.subject && (
+				<motion.div
+					className="mt-auto pt-3 sm:pt-4 border-t border-primary-100 flex items-center justify-between"
+					{...fadeInUp}
+					animate={inView ? fadeInUp.animate : fadeInUp.initial}
+					transition={{ ...fadeInUp.transition, delay: index * 0.1 + 0.6 }}>
+					<span className="inline-block px-2 sm:px-3 py-1 bg-primary-50 text-primary-700 text-xs sm:text-sm font-medium">
+						{testimonial.subject}
+					</span>
+					<motion.div
+						className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 relative"
+						{...scaleIn}
+						animate={inView ? scaleIn.animate : scaleIn.initial}
+						transition={{ ...scaleIn.transition, delay: index * 0.1 + 0.7 }}>
+						<Image
+							src="/icons/favicon-96x96.png"
+							alt="My Private Tutor Online"
+							fill
+							className="object-contain"
+						/>
+					</motion.div>
+				</motion.div>
 			)}
-			<div className="min-w-0">
-				<p className="text-sm sm:text-base lg:text-lg font-semibold text-primary-900 truncate">
-					{testimonial.author}
-				</p>
-				<p className="text-xs sm:text-sm text-primary-600 truncate">{testimonial.role}</p>
-			</div>
-		</div>
-
-		{/* Star Rating */}
-		<div className="flex mb-3 sm:mb-4">
-			{[...Array(testimonial.rating)].map((_, i) => (
-				<Star
-					key={i}
-					className="w-4 h-4 sm:w-5 sm:h-5 text-accent-600 fill-current"
-				/>
-			))}
-		</div>
-
-		{/* Quote */}
-		<div className="text-sm sm:text-base md:text-[17px] text-primary-700 leading-relaxed mb-4 break-words">
-			&quot;{testimonial.quote}&quot;
-		</div>
-
-		{/* Subject Badge and Logo - Bottom Row */}
-		{testimonial.subject && (
-			<div className="mt-auto pt-3 sm:pt-4 border-t border-primary-100 flex items-center justify-between">
-				<span className="inline-block px-2 sm:px-3 py-1 bg-primary-50 text-primary-700 text-xs sm:text-sm font-medium">
-					{testimonial.subject}
-				</span>
-				<div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 relative">
-					<Image
-						src="/icons/favicon-96x96.png"
-						alt="My Private Tutor Online"
-						fill
-						className="object-contain"
-					/>
-				</div>
-			</div>
-		)}
-	</div>
-);
+		</motion.div>
+	);
+};
 
 // Main testimonials carousel component - completely isolated
 interface TestimonialsCarouselProps {
@@ -213,18 +279,42 @@ export const TestimonialsCarousel = ({
 		]
 	);
 
+	// Standardized intersection observer for carousel container
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		threshold: 0.1,
+		rootMargin: '-50px 0px',
+	});
+
+	// Standardized animation variants
+	const fadeInUp = {
+		initial: { opacity: 0, y: 20 },
+		animate: { opacity: 1, y: 0 },
+		transition: { duration: 0.6, ease: "easeOut" }
+	};
+
 	return (
-		<div className={`py-8 sm:py-10 md:py-12 bg-neutral-50 ${className}`}>
-			<div className="overflow-hidden" ref={emblaRef}>
+		<motion.div
+			ref={ref}
+			className={`py-8 sm:py-10 md:py-12 bg-neutral-50 ${className}`}
+			{...fadeInUp}
+			animate={inView ? fadeInUp.animate : fadeInUp.initial}>
+			<motion.div
+				className="overflow-hidden"
+				ref={emblaRef}
+				{...fadeInUp}
+				animate={inView ? fadeInUp.animate : fadeInUp.initial}
+				transition={{ ...fadeInUp.transition, delay: 0.2 }}>
 				<div className="flex">
-					{TESTIMONIALS_DATA.map((testimonial) => (
+					{TESTIMONIALS_DATA.map((testimonial, index) => (
 						<TestimonialCard
 							key={testimonial.id}
 							testimonial={testimonial}
+							index={index}
 						/>
 					))}
 				</div>
-			</div>
-		</div>
+			</motion.div>
+		</motion.div>
 	);
 };

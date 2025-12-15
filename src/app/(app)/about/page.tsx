@@ -5,7 +5,7 @@ import { Testimonial10NoRole } from '@/components/education/testimonial-section'
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
-import { m } from 'framer-motion';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import { RecognitionCard } from '../../../components/sections/RecognitionCard';
 // ============================================================================
@@ -74,6 +74,7 @@ const ABOUT_HERO_IMAGE = {
 };
 
 export default function AboutUsPage() {
+
 	return (
 		<>
 			{/* Hero Section - Outside PageLayout */}
@@ -124,17 +125,33 @@ export default function AboutUsPage() {
 				</section>
 
 				{/* Educational Philosophy Section */}
-				<section
+				<motion.section
 					id='about-highlighter-intro'
-					className='pt-12 lg:pt-20 pb-8 lg:pb-12 bg-white'>
+					className='pt-12 lg:pt-20 pb-8 lg:pb-12 bg-white'
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true, margin: '-50px' }}
+					transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}>
 					<div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
 						{/* Heading */}
-						<h2 className='text-center mb-6'>Our Educational Philosophy</h2>
+						<motion.h2
+							className='text-center mb-6'
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, margin: '-50px' }}
+							transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}>
+							Our Educational Philosophy
+						</motion.h2>
 
 						{/* Text + Image */}
 						<div className='flex flex-col lg:flex-row items-center lg:items-start gap-8 sm:pt-4 md:pt-6 lg:pt-8 xl:pt-10 2xl:pt-12'>
 							{/* Text on the left */}
-							<div className='lg:w-1/2 text-center lg:text-left'>
+							<motion.div
+								className='lg:w-1/2 text-center lg:text-left'
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, margin: '-50px' }}
+								transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 }}>
 								<p>
 									We believe every child deserves an education tailored to who they are,
 									helping them <strong>build confidence, curiosity, and clarity</strong>.
@@ -152,28 +169,33 @@ export default function AboutUsPage() {
 									students the tools and courage to walk their path with confidence and{' '}
 									<strong>thrive long after tutoring ends</strong>.
 								</p>
-							</div>
+							</motion.div>
 
 							{/* Image on the right */}
-							<div className='lg:w-1/2 flex justify-center lg:justify-end'>
+							<motion.div
+								className='lg:w-1/2 flex justify-center lg:justify-end'
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, margin: '-50px' }}
+								transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.4 }}>
 								<Image
 									src='/images/about/our-educational-philosophy.jpeg'
 									alt='Educational Philosophy'
 									width={500} // desired width
 									height={400} // desired height
-									className='bject-cover'
+									className='object-cover'
 								/>
-							</div>
+							</motion.div>
 						</div>
 					</div>
-				</section>
+				</motion.section>
 
-				<m.div
+				<motion.div
 					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'
-					initial={{ opacity: 0, y: 30 }}
+					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true, margin: '-100px' }}
-					transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}>
+					viewport={{ once: true, margin: '-50px' }}
+					transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.4 }}>
 					{recognitionCards
 						.filter(
 							(
@@ -194,7 +216,7 @@ export default function AboutUsPage() {
 								index={index}
 							/>
 						))}
-				</m.div>
+				</motion.div>
 				{/* Testimonials Carousel Section */}
 				<section
 					id='testimonials-carousel'

@@ -5,6 +5,8 @@ import { ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
+import { motion } from 'motion/react';
+import { useInView } from 'react-intersection-observer';
 import { FooterCompanySectionHardcoded } from './footer-components/footer-company-section-hardcoded';
 import { FooterNavigationHardcoded } from './footer-components/footer-navigation-hardcoded';
 const FooterNewsletterForm = lazy(
@@ -55,6 +57,26 @@ export function PageFooterClient({
 	showNewsletter = false,
 	showContactForm = false,
 }: PageFooterClientProps) {
+	// Standardized intersection observer for contact form animation
+	const { ref: contactFormRef, inView: contactFormInView } = useInView({
+		triggerOnce: true,
+		threshold: 0.1,
+		rootMargin: '-50px 0px',
+	});
+
+	// Standardized animation variants
+	const fadeInUp = {
+		initial: { opacity: 0, y: 20 },
+		animate: { opacity: 1, y: 0 },
+		transition: { duration: 0.6, ease: 'easeOut' }
+	};
+
+	const scaleIn = {
+		initial: { opacity: 0, scale: 0.95 },
+		animate: { opacity: 1, scale: 1 },
+		transition: { duration: 0.8, ease: 'easeOut' }
+	};
+
 	const footerConfig = useMemo(
 		() => ({
 			variant,
@@ -143,21 +165,38 @@ export function PageFooterClient({
 
 				<div className='relative'>
 					{footerConfig.showContactForm && (
-						<div className='w-full px-4 sm:px-6 md:px-4 lg:px-8 py-12 md:py-12 lg:py-16'>
+						<motion.div
+							ref={contactFormRef}
+							className='w-full px-4 sm:px-6 md:px-4 lg:px-8 py-12 md:py-12 lg:py-16'
+							{...fadeInUp}
+							animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}>
 							<div className='max-w-4xl mx-auto text-center'>
-								<h2 className='text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4'>
+								<motion.h2
+									className='text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4'
+									{...fadeInUp}
+									animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}
+									transition={{ ...fadeInUp.transition, delay: 0.2 }}>
 									Ready to Start the Conversation?
-								</h2>
-								<p className='text-xl text-primary-700 mb-8'>
+								</motion.h2>
+								<motion.p
+									className='text-xl text-primary-700 mb-8'
+									{...fadeInUp}
+									animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}
+									transition={{ ...fadeInUp.transition, delay: 0.3 }}>
 									Access our secure enquiry portal to discuss your child's educational
 									needs
-								</p>
-								<a
+								</motion.p>
+								<motion.a
 									href='https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'
 									target='_blank'
 									rel='noopener noreferrer'
 									className='inline-block group'
-									aria-label='Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online'>
+									aria-label='Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online'
+									{...scaleIn}
+									animate={contactFormInView ? scaleIn.animate : scaleIn.initial}
+									transition={{ ...scaleIn.transition, delay: 0.4 }}
+									whileHover={{ scale: 1.02, y: -2 }}
+									whileTap={{ scale: 0.98 }}>
 									<div className='relative overflow-hidden rounded-lg border-2 border-neutral-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl'>
 										<img
 											src='/images/graphics/bizstim-form-preview.png'
@@ -172,13 +211,17 @@ export function PageFooterClient({
 											</p>
 										</div>
 									</div>
-								</a>
-								<p className='text-xs text-neutral-500 mt-3'>
+								</motion.a>
+								<motion.p
+									className='text-xs text-neutral-500 mt-3'
+									{...fadeInUp}
+									animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}
+									transition={{ ...fadeInUp.transition, delay: 0.5 }}>
 									Opens in new window • Secure encrypted connection • Same trusted
 									service
-								</p>
+								</motion.p>
 							</div>
-						</div>
+						</motion.div>
 					)}
 
 					{footerConfig.showContactForm && <Separator className='bg-neutral-300' />}

@@ -1,9 +1,13 @@
 'use client';
 
+// PERFORMANCE OPTIMIZATION: Embla Carousel with Motion library and optimized intersection observer integration
+// BEST PRACTICE 2025: Autoplay management based on viewport visibility for performance
+
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { NavigationButton } from '@/components/ui/navigation-button';
@@ -78,65 +82,117 @@ export function ServicesCarousel({
 		if (emblaApi) emblaApi.scrollNext();
 	}, [emblaApi]);
 	const [isReady, setIsReady] = useState(false);
+
+	// Standardized intersection observer for autoplay management (2025 best practice)
 	const { ref: intersectionRef, inView } = useInView({
 		triggerOnce: false,
-		threshold: 0.3,
-		rootMargin: '-100px 0px',
+		threshold: 0.5, // Optimized threshold for carousel visibility
+		rootMargin: '0px 0px 0px 0px', // No margin for precise autoplay control
 	});
+
+	// Separate intersection observer for animations
+	const { ref: animationRef, inView: animationInView } = useInView({
+		triggerOnce: true,
+		threshold: 0.1,
+		rootMargin: '-50px 0px', // Standardized animation trigger
+	});
+
+	// Optimized autoplay management with viewport detection
 	useEffect(() => {
 		if (!emblaApi) return;
+
 		const autoplay = emblaApi.plugins().autoplay;
 		if (autoplay) {
 			if (inView) {
+				// Performance optimization: slight delay to avoid unnecessary triggers
 				const timer = setTimeout(() => {
 					autoplay.play();
 					setIsReady(true);
-				}, 200);
+				}, 150);
 				return () => clearTimeout(timer);
 			} else {
 				autoplay.stop();
+				setIsReady(false); // Reset when out of view
 			}
 		}
 		return undefined;
 	}, [emblaApi, inView]);
+	// Standardized animation variants
+	const fadeInUp = {
+		initial: { opacity: 0, y: 20 },
+		animate: { opacity: 1, y: 0 },
+		transition: { duration: 0.6, ease: 'easeOut' }
+	};
+
 	return (
-		<section
+		<motion.section
+			ref={animationRef}
 			className={`pt-16 lg:pt-24 pb-0 bg-white ${className}`}
-			aria-label='Educational pathways and tutoring options available'>
+			aria-label='Educational pathways and tutoring options available'
+			{...fadeInUp}
+			animate={animationInView ? fadeInUp.animate : fadeInUp.initial}>
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-				<div className='text-center mb-12'>
-					<h2 className='text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-0'>
+				<motion.div
+					className='text-center mb-12'
+					{...fadeInUp}
+					animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
+					transition={{ ...fadeInUp.transition, delay: 0.1 }}>
+					<motion.h2
+						className='text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-0'
+						{...fadeInUp}
+						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
+						transition={{ ...fadeInUp.transition, delay: 0.2 }}>
 						{title}
-					</h2>
-					<p className='text-xl text-primary-700 max-w-3xl mx-auto mb-3'>
+					</motion.h2>
+					<motion.p
+						className='text-xl text-primary-700 max-w-3xl mx-auto mb-3'
+						{...fadeInUp}
+						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
+						transition={{ ...fadeInUp.transition, delay: 0.3 }}>
 						{description}
-					</p>
+					</motion.p>
 
 					{/* Navigation buttons positioned above the carousel */}
-					<div className='relative max-w-7xl mx-auto px-4 sm:px-0 mb-3'>
+					<motion.div
+						className='relative max-w-7xl mx-auto px-4 sm:px-0 mb-3'
+						{...fadeInUp}
+						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
+						transition={{ ...fadeInUp.transition, delay: 0.4 }}>
 						<div className='flex justify-end gap-2'>
-							<button
-								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+							<motion.button
+								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300'
 								onClick={scrollPrev}
-								aria-label='Previous slide'>
+								aria-label='Previous slide'
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.95 }}
+								transition={{ duration: 0.2, ease: 'easeOut' }}>
 								<ChevronLeft className='w-5 h-5 sm:w-6 sm:h-6 text-accent-600' />
-							</button>
+							</motion.button>
 
-							<button
-								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+							<motion.button
+								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300'
 								onClick={scrollNext}
-								aria-label='Next slide'>
+								aria-label='Next slide'
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.95 }}
+								transition={{ duration: 0.2, ease: 'easeOut' }}>
 								<ChevronRight className='w-5 h-5 sm:w-6 sm:h-6 text-accent-600' />
-							</button>
+							</motion.button>
 						</div>
-					</div>
+					</motion.div>
 
-					<div
+					<motion.div
 						ref={intersectionRef}
-						className='relative max-w-7xl mx-auto px-4 sm:px-0'>
-						<div
-							className={`overflow-hidden w-full transition-opacity duration-300 ${isReady ? 'opacity-100' : 'opacity-0'}`}
-							ref={emblaRef}>
+						className='relative max-w-7xl mx-auto px-4 sm:px-0'
+						{...fadeInUp}
+						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
+						transition={{ ...fadeInUp.transition, delay: 0.5 }}>
+						<motion.div
+							className='overflow-hidden w-full'
+							ref={emblaRef}
+							initial={{ opacity: 0 }}
+							animate={isReady ? { opacity: 1 } : { opacity: 0 }}
+							transition={{ duration: 0.3, ease: 'easeOut' }}>
 							<div className='flex -ml-4 pb-4'>
 								{services.map((service, index) => {
 									const serviceImageMapping = {
@@ -162,10 +218,20 @@ export function ServicesCarousel({
 											}
 										:	studentImages[imageKey];
 									return (
-										<div
+										<motion.div
 											key={index}
-											className='flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 pb-4'>
-											<div className='group bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 transform-gpu min-h-full'>
+											className='flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 pb-4'
+											initial={{ opacity: 0, y: 20 }}
+											animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+											transition={{
+												duration: 0.6,
+												ease: 'easeOut',
+												delay: index * 0.1 + 0.2 // Staggered animation
+											}}>
+											<motion.div
+												className='group bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 transform-gpu min-h-full'
+												whileHover={{ y: -2, scale: 1.01 }}
+												transition={{ duration: 0.3, ease: 'easeOut' }}>
 												{studentImage ? (
 													<>
 														{/* Landscape aspect ratio for default/sm screens */}
@@ -227,14 +293,38 @@ export function ServicesCarousel({
 												)}
 
 												<div className='p-6 lg:p-8 pb-8 space-y-4 text-right flex flex-col items-end'>
-													<h3 className='text-xl lg:text-2xl font-serif font-bold text-primary-900 group-hover:text-accent-600 transition-colors duration-200 w-full'>
+													<motion.h3
+														className='text-xl lg:text-2xl font-serif font-bold text-primary-900 group-hover:text-accent-600 transition-colors duration-200 w-full'
+														initial={{ opacity: 0, y: 10 }}
+														animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+														transition={{
+															duration: 0.4,
+															ease: 'easeOut',
+															delay: index * 0.1 + 0.4
+														}}>
 														{service.title}
-													</h3>
-													<p className='text-primary-700 leading-relaxed text-base lg:text-lg w-full'>
+													</motion.h3>
+													<motion.p
+														className='text-primary-700 leading-relaxed text-base lg:text-lg w-full'
+														initial={{ opacity: 0, y: 10 }}
+														animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+														transition={{
+															duration: 0.4,
+															ease: 'easeOut',
+															delay: index * 0.1 + 0.5
+														}}>
 														{service.description}
-													</p>
+													</motion.p>
 													<div className='flex justify-end w-full'>
-														<NavigationButton
+														<motion.div
+															initial={{ opacity: 0, scale: 0.95 }}
+															animate={isReady ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+															transition={{
+																duration: 0.3,
+																ease: 'easeOut',
+																delay: index * 0.1 + 0.6
+															}}>
+															<NavigationButton
 															key={`button-${index}`}
 															buttonColor='#ca9e5b' // accent-600 design token value
 															buttonTextColor='#ffffff'
@@ -252,18 +342,19 @@ export function ServicesCarousel({
 																}[service.title] || '/subject-tuition'
 															}
 														/>
+														</motion.div>
 													</div>
 												</div>
-											</div>
-										</div>
+											</motion.div>
+										</motion.div>
 									);
 								})}
 							</div>
-						</div>
-					</div>
-				</div>
+						</motion.div>
+					</motion.div>
+				</motion.div>
 			</div>
-		</section>
+		</motion.section>
 	);
 }
 export type { ServiceData, ServicesCarouselProps, StudentImageData };

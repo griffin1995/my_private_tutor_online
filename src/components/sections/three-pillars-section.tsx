@@ -1,5 +1,7 @@
 'use client';
 
+import { motion } from 'motion/react';
+import { useInView } from 'react-intersection-observer';
 import { Separator } from '@/components/ui/separator';
 import React from 'react';
 
@@ -48,31 +50,66 @@ const getBgClass = (id: string): string => {
 export const ThreePillarsSection: React.FC<{
 	className?: string;
 }> = ({ className = '' }) => {
+	// Standardized intersection observer
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		threshold: 0.1,
+		rootMargin: '-50px 0px',
+	});
+
 	return (
-		<div className={`py-6 sm:py-7 md:py-8 lg:py-10 xl:py-12 ${className}`}>
+		<motion.div
+			ref={ref}
+			className={`py-6 sm:py-7 md:py-8 lg:py-10 xl:py-12 ${className}`}
+			initial={{ opacity: 0 }}
+			animate={inView ? { opacity: 1 } : { opacity: 0 }}
+			transition={{ duration: 0.6, ease: 'easeOut' }}>
 			<div className='container mx-auto px-2 sm:px-4 md:px-6 lg:px-8'>
 				<div className='grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-6 lg:gap-2 max-w-full 2xl:max-w-7xl mx-auto'>
-					{pillarsData.map((pillar) => (
+					{pillarsData.map((pillar, index) => (
 						<PillarCard
 							key={pillar.id}
 							pillar={pillar}
+							index={index}
+							inView={inView}
 						/>
 					))}
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 interface PillarCardProps {
 	pillar: PillarData;
+	index: number;
+	inView: boolean;
 }
 
-const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
+const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 	const bgClass = getBgClass(pillar.id);
 
+	// Standardized animation variants
+	const fadeInUp = {
+		initial: { opacity: 0, y: 30, scale: 0.95 },
+		animate: { opacity: 1, y: 0, scale: 1 },
+		transition: {
+			duration: 0.8,
+			ease: 'easeOut',
+			delay: index * 0.15 // Staggered delay
+		}
+	};
+
 	return (
-		<div className='group h-full'>
-			<div className='shadow-xl overflow-hidden h-full'>
+		<motion.div
+			className='group h-full'
+			{...fadeInUp}
+			animate={inView ? fadeInUp.animate : fadeInUp.initial}
+			whileHover={{ y: -5, scale: 1.02 }}
+			transition={{
+				...fadeInUp.transition,
+				hover: { duration: 0.3, ease: 'easeOut' }
+			}}>
+			<motion.div className='shadow-xl overflow-hidden h-full'>
 				{/* Breakpoint-specific sizing: aspect ratios for single column, further increased height for multi-column */}
 				<div
 					className={`${bgClass} relative w-full aspect-[8/5] sm:aspect-[2/1] md:aspect-[5/2] lg:h-full lg:min-h-[710px]`}>
@@ -88,37 +125,70 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar }) => {
 					<div className='absolute inset-0 p-4 sm:p-5 md:p-6 lg:p-10 xl:p-12 flex flex-col'>
 						{/* Title section - flexible height on single column, increased fixed height on multi-column */}
 						<div className='flex-shrink-0 lg:h-28 xl:h-32 lg:flex lg:items-end lg:pb-2'>
-							<h3 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight'>
+							<motion.h3
+								className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight'
+								initial={{ opacity: 0, y: 10 }}
+								animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+								transition={{
+									duration: 0.6,
+									ease: 'easeOut',
+									delay: index * 0.15 + 0.2
+								}}>
 								{pillar.title}
-							</h3>
+							</motion.h3>
 						</div>
 
 						{/* Separator - responsive spacing */}
 						<div className='flex-shrink-0 py-3 sm:py-4 lg:py-6'>
-							<Separator className='bg-white/30' />
+							<motion.div
+								initial={{ scaleX: 0 }}
+								animate={inView ? { scaleX: 1 } : { scaleX: 0 }}
+								transition={{
+									duration: 0.8,
+									ease: 'easeOut',
+									delay: index * 0.15 + 0.4
+								}}
+								style={{ transformOrigin: 'left' }}>
+								<Separator className='bg-white/30' />
+							</motion.div>
 						</div>
 
 						{/* Description - flexible on single column, controlled height on multi-column for alignment */}
 						<div className='flex-1 lg:flex-none lg:h-72 xl:h-80 flex flex-col justify-center lg:justify-start lg:overflow-hidden'>
-							<p className='text-white text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl leading-snug lg:leading-relaxed'>
+							<motion.p
+								className='text-white text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl leading-snug lg:leading-relaxed'
+								initial={{ opacity: 0, y: 15 }}
+								animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+								transition={{
+									duration: 0.6,
+									ease: 'easeOut',
+									delay: index * 0.15 + 0.6
+								}}>
 								{pillar.description}
-							</p>
+							</motion.p>
 						</div>
 
 						{/* Stats section - flexible on single column, visible fixed height on multi-column */}
 						<div className='flex-shrink-0 mt-auto lg:mt-0 lg:h-20 xl:h-24 lg:flex lg:items-start lg:pt-6'>
-							{pillar.stats.map((stat, index) => (
-								<p
-									key={index}
-									className='text-white text-sm sm:text-base md:text-base lg:text-lg xl:text-xl leading-tight opacity-90'>
+							{pillar.stats.map((stat, statIndex) => (
+								<motion.p
+									key={statIndex}
+									className='text-white text-sm sm:text-base md:text-base lg:text-lg xl:text-xl leading-tight opacity-90'
+									initial={{ opacity: 0, x: -10 }}
+									animate={inView ? { opacity: 0.9, x: 0 } : { opacity: 0, x: -10 }}
+									transition={{
+										duration: 0.4,
+										ease: 'easeOut',
+										delay: index * 0.15 + 0.8 + statIndex * 0.1
+									}}>
 									• {stat}
-								</p>
+								</motion.p>
 							))}
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</motion.div>
+		</motion.div>
 	);
 };
 export default ThreePillarsSection;

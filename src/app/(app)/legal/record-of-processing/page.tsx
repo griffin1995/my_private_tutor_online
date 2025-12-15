@@ -149,7 +149,7 @@ export default function RecordOfProcessingPage() {
 												</h3>
 												<div className='text-indigo-800 space-y-3'>
 													<p className='text-lg'>To exercise any of your data protection rights, please contact us:</p>
-													<div className='bg-white/50 p-4 rounded-lg'>
+													<div className='bg-white/50 p-4'>
 														<p><strong>Email:</strong> info@myprivatetutoronline.com</p>
 														<p><strong>Response Time:</strong> Within 1 month of receipt</p>
 														<p><strong>Address:</strong> 17 Alexandra Gardens, London, N10 3RN</p>

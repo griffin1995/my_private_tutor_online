@@ -1,6 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
+// PERFORMANCE: Already optimized to use Motion library for consistent animation patterns
+// STANDARDIZATION: Animation timings standardized to match site-wide consistency
+
 import { useState } from 'react';
 import { CirclePlay, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
@@ -122,6 +125,7 @@ function HeroVideoDialog({
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
+						transition={{ duration: 0.3, ease: 'easeOut' }}
 						className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md'
 						role='button'
 						tabIndex={0}
@@ -133,7 +137,7 @@ function HeroVideoDialog({
 						onClick={() => setIsVideoOpen(false)}>
 						<motion.div
 							{...selectedAnimation}
-							transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+							transition={{ duration: 0.6, ease: 'easeOut' }}
 							className='relative mx-4 aspect-video w-full max-w-4xl md:mx-0'>
 							<motion.button
 								className='absolute -top-16 right-0 bg-neutral-900/50 p-2 text-xl text-white ring-1 backdrop-blur-md dark:bg-neutral-100/50 dark:text-black'

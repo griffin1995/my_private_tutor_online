@@ -2,9 +2,143 @@
 
 import dynamic from 'next/dynamic';
 import { lazy, Suspense, useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 
 // Type-safe null component that satisfies React.ComponentType
 const NullComponent: React.ComponentType = () => null;
+
+// Standardized loading skeletons with Motion animations
+const StandardSkeleton = ({ className }: { className?: string }) => (
+	<motion.div
+		className={`bg-slate-200 rounded ${className}`}
+		initial={{ opacity: 0.6 }}
+		animate={{ opacity: [0.6, 1, 0.6] }}
+		transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+	/>
+);
+
+const SectionLoadingSkeleton = ({
+	title = true,
+	subtitle = true,
+	content,
+	className = 'py-16 lg:py-24',
+	background = 'bg-white'
+}: {
+	title?: boolean;
+	subtitle?: boolean;
+	content: 'grid' | 'cards' | 'form' | 'carousel';
+	className?: string;
+	background?: string;
+}) => (
+	<div className={`${className} ${background}`}>
+		<div className='container mx-auto px-4'>
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6, ease: 'easeOut' }}
+				className='text-center mb-12'>
+				{title && (
+					<StandardSkeleton className='h-8 w-1/2 mx-auto mb-4' />
+				)}
+				{subtitle && (
+					<StandardSkeleton className='h-4 w-1/3 mx-auto mb-8' />
+				)}
+			</motion.div>
+
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+				className={
+					content === 'grid' ? 'grid grid-cols-1 md:grid-cols-3 gap-6' :
+					content === 'cards' ? 'grid grid-cols-2 md:grid-cols-4 gap-4' :
+					content === 'carousel' ? 'flex gap-4 overflow-hidden' :
+					'max-w-2xl mx-auto space-y-4'
+				}>
+				{content === 'grid' && [1, 2, 3].map((i) => (
+					<motion.div
+						key={i}
+						initial={{ opacity: 0, scale: 0.95 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.4, ease: 'easeOut', delay: i * 0.1 }}>
+						<StandardSkeleton className='h-48 w-full rounded-xl' />
+					</motion.div>
+				))}
+				{content === 'cards' && [1, 2, 3, 4].map((i) => (
+					<motion.div
+						key={i}
+						initial={{ opacity: 0, scale: 0.95 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.4, ease: 'easeOut', delay: i * 0.05 }}>
+						<StandardSkeleton className='h-24 w-full rounded-lg' />
+					</motion.div>
+				))}
+				{content === 'carousel' && [1, 2, 3].map((i) => (
+					<motion.div
+						key={i}
+						initial={{ opacity: 0, x: 20 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.5, ease: 'easeOut', delay: i * 0.1 }}>
+						<StandardSkeleton className='min-w-80 h-64 rounded-xl' />
+					</motion.div>
+				))}
+				{content === 'form' && (
+					<>
+						<StandardSkeleton className='h-12 w-full rounded-lg' />
+						<StandardSkeleton className='h-12 w-full rounded-lg' />
+						<StandardSkeleton className='h-32 w-full rounded-lg' />
+						<StandardSkeleton className='h-12 w-full rounded-lg' />
+					</>
+				)}
+			</motion.div>
+		</div>
+	</div>
+);
+
+// Special skeleton for ThreePillars component with unique aspect ratio
+const ThreePillarsSkeleton = () => (
+	<div className='py-16 lg:py-24 bg-white'>
+		<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ duration: 0.6, ease: 'easeOut' }}
+				className='grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto'>
+				{[1, 2, 3].map((i) => (
+					<motion.div
+						key={i}
+						initial={{ opacity: 0, y: 30, scale: 0.95 }}
+						animate={{ opacity: 1, y: 0, scale: 1 }}
+						transition={{
+							duration: 0.8,
+							ease: 'easeOut',
+							delay: i * 0.15 // Staggered delay matching real component
+						}}
+						className='group shadow-xl overflow-hidden'>
+						<div className='relative w-full aspect-[8/5] sm:aspect-[2/1] md:aspect-[5/2] lg:h-full lg:min-h-[710px] bg-slate-300'>
+							<div className='absolute inset-0 p-8 lg:p-12 flex flex-col'>
+								<div className='flex-shrink-0 lg:h-32 lg:flex lg:items-end lg:pb-2'>
+									<StandardSkeleton className='h-10 lg:h-16 w-3/4' />
+								</div>
+								<div className='flex-shrink-0 py-6'>
+									<StandardSkeleton className='h-px w-full' />
+								</div>
+								<div className='flex-1 lg:h-80 flex flex-col justify-center lg:justify-start'>
+									<StandardSkeleton className='h-20 lg:h-24 w-full mb-4' />
+									<StandardSkeleton className='h-16 lg:h-20 w-5/6' />
+								</div>
+								<div className='flex-shrink-0 lg:h-24 lg:flex lg:items-start lg:pt-6'>
+									<StandardSkeleton className='h-4 w-1/2' />
+								</div>
+							</div>
+						</div>
+					</motion.div>
+				))}
+			</motion.div>
+		</div>
+	</div>
+);
+
 const FAQGamificationSystem = lazy(() =>
 	import('../faq/faq-gamification-system').then((mod) => ({
 		default: mod.FAQGamificationSystem,
@@ -58,21 +192,10 @@ const LazyTestimonialsSection = dynamic(
 		})),
 	{
 		loading: () => (
-			<div className='py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-white'>
-				<div className='container mx-auto px-4 text-center'>
-					<div className='animate-pulse'>
-						<div className='h-8 bg-slate-200 rounded w-1/2 mx-auto mb-4'></div>
-						<div className='h-4 bg-slate-200 rounded w-1/3 mx-auto mb-8'></div>
-						<div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-							{[1, 2, 3].map((i) => (
-								<div
-									key={i}
-									className='h-48 bg-slate-200 rounded-xl'></div>
-							))}
-						</div>
-					</div>
-				</div>
-			</div>
+			<SectionLoadingSkeleton
+				content="grid"
+				background="bg-gradient-to-br from-slate-50 to-white"
+			/>
 		),
 		ssr: false,
 	},
@@ -84,20 +207,10 @@ const LazyResultsSection = dynamic(
 		})),
 	{
 		loading: () => (
-			<div className='py-16 lg:py-24 bg-white'>
-				<div className='container mx-auto px-4 text-center'>
-					<div className='animate-pulse'>
-						<div className='h-8 bg-slate-200 rounded w-1/2 mx-auto mb-4'></div>
-						<div className='grid grid-cols-2 md:grid-cols-4 gap-4 mt-8'>
-							{[1, 2, 3, 4].map((i) => (
-								<div
-									key={i}
-									className='h-24 bg-slate-200 rounded-lg'></div>
-							))}
-						</div>
-					</div>
-				</div>
-			</div>
+			<SectionLoadingSkeleton
+				content="cards"
+				background="bg-white"
+			/>
 		),
 	},
 );
@@ -108,20 +221,10 @@ const LazyServicesCarousel = dynamic(
 		})),
 	{
 		loading: () => (
-			<div className='py-16 lg:py-24 bg-gradient-to-br from-white to-slate-50'>
-				<div className='container mx-auto px-4'>
-					<div className='animate-pulse'>
-						<div className='h-8 bg-slate-200 rounded w-1/3 mx-auto mb-8'></div>
-						<div className='flex gap-4 overflow-hidden'>
-							{[1, 2, 3].map((i) => (
-								<div
-									key={i}
-									className='min-w-80 h-64 bg-slate-200 rounded-xl'></div>
-							))}
-						</div>
-					</div>
-				</div>
-			</div>
+			<SectionLoadingSkeleton
+				content="carousel"
+				background="bg-gradient-to-br from-white to-slate-50"
+			/>
 		),
 	},
 );
@@ -131,40 +234,7 @@ const LazyThreePillarsSection = dynamic(
 			default: mod.ThreePillarsSection,
 		})),
 	{
-		loading: () => (
-			<div className='py-16 lg:py-24 bg-white'>
-				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-					<div className='animate-pulse'>
-						<div className='grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto'>
-							{[1, 2, 3].map((i) => (
-								<div
-									key={i}
-									className='group'>
-									<div className='bg-slate-200 shadow-lg overflow-hidden'>
-										<div className='relative'>
-											<div
-												style={{
-													aspectRatio: '2/3',
-												}}>
-												<div className='w-full h-full bg-slate-300'></div>
-											</div>
-											<div className='absolute inset-0 bg-slate-400/30'></div>
-											<div className='absolute inset-0 p-8 pt-32 flex flex-col justify-end'>
-												<div className='h-10 bg-slate-300 rounded w-3/4 mb-2'></div>
-												<div className='h-6 bg-slate-300 rounded w-2/3 mb-4'></div>
-												<div className='h-px bg-slate-300 mb-4'></div>
-												<div className='h-20 bg-slate-300 rounded mb-4'></div>
-												<div className='h-4 bg-slate-300 rounded w-1/2'></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							))}
-						</div>
-					</div>
-				</div>
-			</div>
-		),
+		loading: () => <ThreePillarsSkeleton />,
 		ssr: false,
 	},
 );
@@ -175,51 +245,67 @@ const LazyConsultationForm = dynamic(
 		})),
 	{
 		loading: () => (
-			<div className='max-w-2xl mx-auto'>
-				<div className='animate-pulse space-y-4'>
-					<div className='h-12 bg-slate-200 rounded-lg'></div>
-					<div className='h-12 bg-slate-200 rounded-lg'></div>
-					<div className='h-32 bg-slate-200 rounded-lg'></div>
-					<div className='h-12 bg-slate-200 rounded-lg'></div>
-				</div>
-			</div>
+			<SectionLoadingSkeleton
+				content="form"
+				title={false}
+				subtitle={false}
+				className="py-8"
+			/>
 		),
 		ssr: false,
 	},
 );
 const AnalyticsFallback = () => (
 	<div className='bg-white rounded-xl border border-slate-200 p-8'>
-		<div className='animate-pulse'>
-			<div className='h-6 bg-slate-200 rounded w-1/2 mb-4'></div>
+		<motion.div
+			initial={{ opacity: 0, y: 10 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.6, ease: 'easeOut' }}>
+			<StandardSkeleton className='h-6 w-1/2 mb-4' />
 			<div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
 				{[1, 2, 3, 4].map((i) => (
-					<div
+					<motion.div
 						key={i}
-						className='h-24 bg-slate-200 rounded-lg'></div>
+						initial={{ opacity: 0, scale: 0.95 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.4, ease: 'easeOut', delay: i * 0.05 }}>
+						<StandardSkeleton className='h-24 w-full rounded-lg' />
+					</motion.div>
 				))}
 			</div>
-		</div>
+		</motion.div>
 	</div>
 );
 const GamificationFallback = () => (
 	<div className='bg-gradient-to-br from-white via-slate-50 to-white border-2 border-slate-200 rounded-3xl shadow-xl p-6 lg:p-8'>
-		<div className='animate-pulse'>
-			<div className='h-8 bg-slate-200 rounded w-1/3 mb-6'></div>
+		<motion.div
+			initial={{ opacity: 0, y: 20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.6, ease: 'easeOut' }}>
+			<StandardSkeleton className='h-8 w-1/3 mb-6' />
 			<div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8'>
 				{[1, 2, 3].map((i) => (
-					<div
+					<motion.div
 						key={i}
-						className='h-32 bg-slate-200 rounded-xl'></div>
+						initial={{ opacity: 0, scale: 0.95 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.4, ease: 'easeOut', delay: i * 0.1 }}>
+						<StandardSkeleton className='h-32 w-full rounded-xl' />
+					</motion.div>
 				))}
 			</div>
 			<div className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
 				{[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-					<div
+					<motion.div
 						key={i}
-						className='h-20 bg-slate-200 rounded-xl'></div>
+						initial={{ opacity: 0, scale: 0.95 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.3, ease: 'easeOut', delay: 0.5 + i * 0.05 }}>
+						<StandardSkeleton className='h-20 w-full rounded-xl' />
+					</motion.div>
 				))}
 			</div>
-		</div>
+		</motion.div>
 	</div>
 );
 const preloadComponent = (componentImport: () => Promise<any>) => {
@@ -264,7 +350,14 @@ const LazyPerformanceDashboard = (props: any) => (
 );
 const LazyVoiceSearchComponents = (props: any) => (
 	<Suspense
-		fallback={<div className='h-16 bg-slate-100 rounded-lg animate-pulse'></div>}>
+		fallback={
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ duration: 0.6, ease: 'easeOut' }}>
+				<StandardSkeleton className='h-16 w-full rounded-lg' />
+			</motion.div>
+		}>
 		<VoiceSearchComponents {...props} />
 	</Suspense>
 );
@@ -280,23 +373,50 @@ const LazyChartComponents = (props: any) => (
 );
 const LazyQuoteRequestForm = (props: any) => (
 	<Suspense
-		fallback={<div className='h-96 bg-slate-100 animate-pulse rounded-xl'></div>}>
+		fallback={
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6, ease: 'easeOut' }}
+				className='max-w-2xl mx-auto space-y-4'>
+				<StandardSkeleton className='h-12 w-full rounded-lg' />
+				<StandardSkeleton className='h-12 w-full rounded-lg' />
+				<StandardSkeleton className='h-32 w-full rounded-lg' />
+				<StandardSkeleton className='h-12 w-full rounded-lg' />
+			</motion.div>
+		}>
 		<QuoteRequestForm {...props} />
 	</Suspense>
 );
 const LazyNewsletterForm = (props: any) => (
 	<Suspense
-		fallback={<div className='h-32 bg-slate-100 animate-pulse rounded-xl'></div>}>
+		fallback={
+			<motion.div
+				initial={{ opacity: 0, scale: 0.95 }}
+				animate={{ opacity: 1, scale: 1 }}
+				transition={{ duration: 0.6, ease: 'easeOut' }}>
+				<StandardSkeleton className='h-32 w-full rounded-xl' />
+			</motion.div>
+		}>
 		<NewsletterForm {...props} />
 	</Suspense>
 );
 export {
-	
-	
+	LazyTestimonialsSection,
+	LazyResultsSection,
 	LazyServicesCarousel,
-	
-	
-	
+	LazyThreePillarsSection,
+	LazyConsultationForm,
+	LazyFAQGamificationSystem,
+	LazyFAQAnalyticsDashboard,
+	LazyPerformanceDashboard,
+	LazyVoiceSearchComponents,
+	LazyAdminDashboard,
+	LazyChartComponents,
+	LazyQuoteRequestForm,
+	LazyNewsletterForm,
+	preloadRouteComponents,
+	useIntersectionLoader,
 };
 const preloadGamificationSystem = () =>
 	preloadComponent(() => import('../faq/faq-gamification-system'));

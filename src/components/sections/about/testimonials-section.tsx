@@ -1,6 +1,8 @@
 'use client';
 
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
+import { motion } from 'motion/react';
+import { useInView } from 'react-intersection-observer';
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { getTestimonialVideos } from '@/lib/cms/cms-content';
 import { Button } from '@/components/ui/button-variants';
@@ -15,6 +17,33 @@ export function TestimonialsSection({
 	className = '',
 	showMoreButton = false,
 }: TestimonialsSectionProps) {
+	// Standardized intersection observer for main content
+	const { ref: mainRef, inView: mainInView } = useInView({
+		triggerOnce: true,
+		threshold: 0.1,
+		rootMargin: '-50px 0px',
+	});
+
+	// Separate intersection observer for button
+	const { ref: buttonRef, inView: buttonInView } = useInView({
+		triggerOnce: true,
+		threshold: 0.1,
+		rootMargin: '-50px 0px',
+	});
+
+	// Standardized animation variants
+	const fadeInUp = {
+		initial: { opacity: 0, y: 20 },
+		animate: { opacity: 1, y: 0 },
+		transition: { duration: 0.6, ease: 'easeOut' }
+	};
+
+	const scaleIn = {
+		initial: { opacity: 0, scale: 0.95 },
+		animate: { opacity: 1, scale: 1 },
+		transition: { duration: 0.8, ease: 'easeOut' }
+	};
+
 	return (
 		<section
 			className={`relative ${backgroundColor} py-12 lg:py-16 ${className}`}>
@@ -29,7 +58,11 @@ export function TestimonialsSection({
 
 			<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16'>
 				<div className='max-w-7xl mx-auto'>
-					<div className='grid lg:grid-cols-2 gap-8 lg:gap-10'>
+					<motion.div
+						ref={mainRef}
+						className='grid lg:grid-cols-2 gap-8 lg:gap-10'
+						{...fadeInUp}
+						animate={mainInView ? fadeInUp.animate : fadeInUp.initial}>
 						{(() => {
 							const testimonialVideos = getTestimonialVideos();
 							const parentVideo = testimonialVideos.find(
@@ -40,8 +73,12 @@ export function TestimonialsSection({
 							);
 							return (
 								<>
-									<div className='relative'>
-										{parentVideo && (
+									<motion.div
+										className='relative'
+										{...scaleIn}
+										animate={mainInView ? scaleIn.animate : scaleIn.initial}
+										transition={{ ...scaleIn.transition, delay: 0.1 }}>
+										{parentVideo ? (
 											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
 													videoSrc={parentVideo.videoSrc}
@@ -51,11 +88,20 @@ export function TestimonialsSection({
 													animationStyle='from-center'
 												/>
 											</div>
+										) : (
+											// Loading skeleton for missing video
+											<div className='relative w-full aspect-video bg-slate-200 animate-pulse rounded-lg flex items-center justify-center'>
+												<div className='text-slate-400'>Loading testimonials...</div>
+											</div>
 										)}
-									</div>
+									</motion.div>
 
-									<div className='relative'>
-										{studentVideo && (
+									<motion.div
+										className='relative'
+										{...scaleIn}
+										animate={mainInView ? scaleIn.animate : scaleIn.initial}
+										transition={{ ...scaleIn.transition, delay: 0.2 }}>
+										{studentVideo ? (
 											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
 													videoSrc={studentVideo.videoSrc}
@@ -65,23 +111,38 @@ export function TestimonialsSection({
 													animationStyle='from-center'
 												/>
 											</div>
+										) : (
+											// Loading skeleton for missing video
+											<div className='relative w-full aspect-video bg-slate-200 animate-pulse rounded-lg flex items-center justify-center'>
+												<div className='text-slate-400'>Loading testimonials...</div>
+											</div>
 										)}
-									</div>
+									</motion.div>
 								</>
 							);
 						})()}
-					</div>
+					</motion.div>
 
 					{/* "Hear more from our clients" button - conditionally rendered */}
 					{showMoreButton && (
-						<div className='mt-8 lg:mt-12 flex justify-center'>
-							<Button
-								variant='gold'
-								size='lg'
-								aria-label='View more client testimonials'>
-								Hear more from our clients
-							</Button>
-						</div>
+						<motion.div
+							ref={buttonRef}
+							className='mt-8 lg:mt-12 flex justify-center'
+							{...fadeInUp}
+							animate={buttonInView ? fadeInUp.animate : fadeInUp.initial}
+							transition={{ ...fadeInUp.transition, delay: 0.4 }}>
+							<motion.div
+								whileHover={{ scale: 1.05 }}
+								whileTap={{ scale: 0.95 }}
+								transition={{ duration: 0.2, ease: 'easeOut' }}>
+								<Button
+									variant='gold'
+									size='lg'
+									aria-label='View more client testimonials'>
+									Hear more from our clients
+								</Button>
+							</motion.div>
+						</motion.div>
 					)}
 				</div>
 			</div>
