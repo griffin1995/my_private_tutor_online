@@ -1,67 +1,30 @@
 'use client';
 
-import { PageFooter } from '@/components/layout/page-footer';
-import { PageLayout } from '@/components/layout/page-layout';
-import { SimpleHero } from '@/components/layout/simple-hero';
+import { LegalPageTemplate } from '@/components/legal/legal-page-template';
+import { getLegalPageMetadata } from '@/lib/legal/legal-content';
 import { Card } from '@/components/ui/card';
 import { m } from 'framer-motion';
-import { AlertTriangle, Eye, FileText, Settings } from 'lucide-react';
+import { AlertTriangle, Eye, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { CookiePolicyIntegration, CookieComplianceChecker } from '@/components/privacy/cookie-policy-integration';
+
 export default function CookiePolicyPage() {
+	const metadata = getLegalPageMetadata('cookie-policy')!;
+
 	return (
-		<>
-			<SimpleHero
-				backgroundImage='/images/hero/cookie-policy.jpg'
-				h1={<span className='text-white'>Cookie Policy</span>}
-				h2='How we use cookies and similar technologies to improve your website experience'
-			/>
+		<LegalPageTemplate
+			title={metadata.title}
+			subtitle={metadata.subtitle}
+			lastUpdated={metadata.lastUpdated}
+			backgroundImage={metadata.backgroundImage}
+			showCompliance={metadata.showCompliance}
+			complianceText={metadata.complianceText}>
 
-			<PageLayout
-				background='white'
-				showHeader={true}
-				showFooter={false}
-				containerSize='full'>
-				<section className='py-20 relative'>
-					<div className='absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white opacity-50' />
-					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
-						<div className='max-w-5xl mx-auto'>
-							{/* Live Cookie Management Integration */}
-							<CookiePolicyIntegration />
+			{/* Live Cookie Management Integration */}
+			<CookiePolicyIntegration />
 
-							<m.div
-								className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg mt-8'
-								initial={{
-									opacity: 0,
-									x: -20,
-								}}
-								whileInView={{
-									opacity: 1,
-									x: 0,
-								}}
-								transition={{
-									duration: 0.6,
-								}}
-								viewport={{
-									once: true,
-								}}>
-								<div className='flex items-center gap-4 mb-4'>
-									<FileText className='w-6 h-6 text-blue-600' />
-									<p className='text-lg text-blue-800 font-bold'>
-										Last Updated: 15 December 2025
-									</p>
-								</div>
-								<p className='text-blue-700'>
-									This cookie policy complies with UK Privacy and Electronic
-									Communications Regulations (PECR), EU ePrivacy Directive, and GDPR
-									requirements. Implementation updated for 2025 compliance standards.
-								</p>
-							</m.div>
-
-							{/* Development Compliance Checker */}
-							<CookieComplianceChecker />
-
-							<div className='prose prose-lg prose-slate max-w-none'>
+			{/* Development Compliance Checker */}
+			<CookieComplianceChecker />
 								<h2>1. What Are Cookies?</h2>
 								<p>
 									Cookies are small text files that are stored on your device when you
@@ -653,26 +616,14 @@ export default function CookiePolicyPage() {
 									</li>
 								</ul>
 
-								<div className='border-t pt-8 mt-12 text-sm text-gray-600'>
-									<p>
-										<em>
-											This is a template for informational purposes. Consult with a
-											qualified attorney for legal advice specific to your situation.
-										</em>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			</PageLayout>
-
-			<PageFooter
-				variant='premium'
-				showBackToTop={true}
-				showNewsletter={false}
-				showContactForm={false}
-			/>
-		</>
+			<div className='border-t pt-8 mt-12 text-sm text-gray-600'>
+				<p>
+					<em>
+						This is a template for informational purposes. Consult with a
+						qualified attorney for legal advice specific to your situation.
+					</em>
+				</p>
+			</div>
+		</LegalPageTemplate>
 	);
 }
