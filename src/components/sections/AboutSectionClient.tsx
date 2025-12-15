@@ -1,7 +1,7 @@
-// CONTEXT7 SOURCE: /motion/react - Client Component for About Section with hardcoded data
-// ARCHITECTURE REASON: Client Component for interactivity (Motion animations)
-// DESIGN SYSTEM COMPLIANCE: Uses design tokens (primary-900) instead of hardcoded colors
-// PERFORMANCE: Motion library with optimized intersection observer integration
+// Client Component for About Section with motion animations
+// ARCHITECTURE: Client-side component enabling Framer Motion interactivity
+// DESIGN SYSTEM: Implements brand design tokens for consistent visual hierarchy
+// PERFORMANCE: Optimised intersection observer integration for smooth animations
 
 'use client';
 
@@ -36,12 +36,15 @@ interface AboutSectionClientProps {
 }
 
 /**
- * AboutSectionClient - Client Component
+ * About Section Client Component
  *
- * Renders the About Section with Framer Motion animations
- * Receives recognition cards data from server component (hardcoded data)
+ * Renders the company about section with progressive content animation
+ * Features responsive grid layout and recognition cards display
  *
- * @param recognitionCards - Array of recognition cards from hardcoded data
+ * @param className - Optional CSS class for section customisation
+ * @param founderImageUrl - URL for founder profile image
+ * @param founderImageAlt - Alternative text for founder image accessibility
+ * @param recognitionCards - Array of brand recognition and achievement cards
  */
 export function AboutSectionClient({
 	className = '',
@@ -52,21 +55,21 @@ export function AboutSectionClient({
 	const gridLayoutClasses =
 		'grid lg:grid-cols-[3fr_2fr] gap-8 lg:gap-12 items-start lg:grid-rows-1 relative';
 
-	// Standardized intersection observer for main content
+	// Intersection observer for main content animation trigger
 	const { ref: mainContentRef, inView: mainContentInView } = useInView({
 		triggerOnce: true,
 		threshold: 0.1,
 		rootMargin: '-50px 0px',
 	});
 
-	// Separate intersection observer for recognition cards
+	// Separate intersection observer for recognition cards stagger effect
 	const { ref: cardsRef, inView: cardsInView } = useInView({
 		triggerOnce: true,
 		threshold: 0.1,
 		rootMargin: '-50px 0px',
 	});
 
-	// Standardized animation variants
+	// Animation configuration for smooth content transitions
 	const fadeInUp = {
 		initial: { opacity: 0, y: 20 },
 		animate: { opacity: 1, y: 0 },
@@ -95,7 +98,7 @@ export function AboutSectionClient({
 						transition={{ ...fadeInUp.transition, delay: 0.1 }}>
 						<div className='max-w-3xl md:max-w-none mx-auto md:mx-0 px-6 md:px-0 pt-8 sm:pt-12 md:pt-16 lg:pt-0 text-left'>
 							<motion.h2
-								className='text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-token-primary-dark leading-tight mb-6'
+								className='text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-token-primary-dark leading-[1.15] mb-6'
 								initial={fadeInUp.initial}
 								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
 								transition={{ ...fadeInUp.transition, delay: 0.2 }}>
@@ -105,7 +108,7 @@ export function AboutSectionClient({
 							</motion.h2>
 
 							<motion.p
-								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark mb-4'
+								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark leading-[1.6] mb-4'
 								initial={fadeInUp.initial}
 								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
 								transition={{ ...fadeInUp.transition, delay: 0.3 }}>
@@ -119,7 +122,7 @@ export function AboutSectionClient({
 								colleagues she met throughout her international tutoring career.
 							</motion.p>
 
-							{/* Mobile/Tablet Image - Landscape between paragraphs */}
+							{/* Mobile/Tablet responsive image placement */}
 							<motion.div
 								className='block lg:hidden mb-6 mt-2 relative w-full h-48 sm:h-56 md:h-64 overflow-hidden'
 								initial={{ opacity: 0, scale: 0.95 }}
@@ -137,7 +140,7 @@ export function AboutSectionClient({
 							</motion.div>
 
 							<motion.p
-								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark mb-4'
+								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark leading-[1.6] mb-4'
 								initial={fadeInUp.initial}
 								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
 								transition={{ ...fadeInUp.transition, delay: 0.5 }}>
@@ -160,7 +163,7 @@ export function AboutSectionClient({
 							</motion.p>
 
 							<motion.p
-								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark'
+								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark leading-[1.6]'
 								initial={fadeInUp.initial}
 								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
 								transition={{ ...fadeInUp.transition, delay: 0.6 }}>
@@ -189,7 +192,7 @@ export function AboutSectionClient({
 					</motion.div>
 				</motion.div>
 
-				{/* Recognition Cards - Standardized animation pattern */}
+				{/* Recognition Cards Grid - Staggered animation presentation */}
 				<motion.div
 					ref={cardsRef}
 					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'
@@ -220,5 +223,3 @@ export function AboutSectionClient({
 		</section>
 	);
 }
-
-;

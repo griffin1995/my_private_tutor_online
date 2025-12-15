@@ -1,6 +1,6 @@
-// CONTEXT7 SOURCE: /framer/motion - Recognition card component for About Section
-// ARCHITECTURE REASON: Reusable card component with hardcoded data and Framer Motion animations
-// DESIGN SYSTEM COMPLIANCE: Uses design tokens (primary-900) instead of hardcoded colors
+// Recognition card component for About Section with motion animations
+// ARCHITECTURE: Reusable card component with optimised Framer Motion integration
+// DESIGN SYSTEM: Implements brand design tokens for consistent visual presentation
 
 'use client';
 
@@ -23,20 +23,17 @@ interface RecognitionCardProps {
 }
 
 /**
- * RecognitionCard Component
+ * Recognition Card Component
  *
- * Displays recognition/achievement cards in the About Section
- * Supports both logo images (Tatler, Schools Guide) and icons (Royal Crown)
+ * Displays brand achievement and recognition cards with logo imagery
+ * Features hover effects and staggered animation for enhanced visual appeal
  *
- * @param headerText - Card header (e.g., "As featured in")
- * @param contentType - Display mode: 'logo' for images, 'icon' for SVG icons
- * @param logoImage - Logo image data from Payload Media collection
- * @param logoMaxWidth - CSS max-width for logo (default: 156px)
- * @param iconPath - Path to SVG icon for icon mode
- * @param iconAlt - Accessibility alt text for icon
- * @param footerText - Optional footer text (e.g., "Royal Clientele")
- * @param animationDelay - Stagger delay for Framer Motion animation
- * @param index - Card position for tracking
+ * @param headerText - Card header text for recognition context
+ * @param contentType - Display mode specification (currently supports 'logo')
+ * @param logoImage - Brand logo image with URL and accessibility attributes
+ * @param footerText - Optional footer text for additional context
+ * @param animationDelay - Timing offset for staggered animation sequence
+ * @param index - Card position index for animation coordination
  */
 export function RecognitionCard({
 	headerText,
@@ -46,14 +43,14 @@ export function RecognitionCard({
 	animationDelay,
 	index,
 }: RecognitionCardProps) {
-	// Standardized intersection observer
+	// Intersection observer for individual card animation trigger
 	const { ref, inView } = useInView({
 		triggerOnce: true,
 		threshold: 0.1,
 		rootMargin: '-50px 0px',
 	});
 
-	// Standardized animation variants
+	// Animation configuration for card content transitions
 	const fadeInUp = {
 		initial: { opacity: 0, y: 20 },
 		animate: { opacity: 1, y: 0 },
@@ -82,7 +79,7 @@ export function RecognitionCard({
 				}}
 				whileTap={{ scale: 0.98 }}>
 				<Card className='group relative w-full h-full p-4 sm:p-5 border border-accent-600/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center gap-2 sm:gap-3 md:gap-4 rounded-none'>
-					{/* Row 1: Header Text */}
+					{/* Header Text Section */}
 					<motion.p
 						className='text-center font-semibold text-primary-900 text-sm leading-[1.4] tracking-tight'
 						{...scaleIn}
@@ -91,7 +88,7 @@ export function RecognitionCard({
 						{headerText}
 					</motion.p>
 
-					{/* Row 2: Content - Logo Image (all same size now) */}
+					{/* Logo Image Display Section */}
 					<motion.div
 						className='relative w-full h-auto flex items-center justify-center p-3'
 						{...scaleIn}
@@ -108,7 +105,7 @@ export function RecognitionCard({
 						/>
 					</motion.div>
 
-					{/* Row 3: Footer Text (optional) */}
+					{/* Optional Footer Text Section */}
 					{footerText ?
 						<motion.p
 							className='text-center font-semibold text-primary-900 text-sm leading-[1.4] tracking-tight'
@@ -123,5 +120,3 @@ export function RecognitionCard({
 		</AspectRatio>
 	);
 }
-
-;
