@@ -382,4 +382,3 @@ export function VideoMasterclassSection({
 		</div>
 	);
 }
-export default VideoMasterclassSection;

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 
 /**
  * Hydration Context for tracking client-side mounting state
@@ -81,7 +81,7 @@ export function HydrationProvider({ children }: HydrationProviderProps) {
  *
  * @returns {boolean} True if client has hydrated, false during SSR/initial render
  */
-export function useHydration(): boolean {
+function useHydration(): boolean {
 	const context = useContext(HydrationContext);
 
 	// Context will always have a value (false or true) from HydrationProvider

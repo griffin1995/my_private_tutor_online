@@ -404,4 +404,3 @@ export function FounderStorySection({
 		</section>
 	);
 }
-export default FounderStorySection;

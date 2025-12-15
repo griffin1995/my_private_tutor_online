@@ -175,4 +175,3 @@ export function BootcampVideoSectionVersion({
 		</div>
 	);
 }
-export default BootcampVideoSectionVersion;

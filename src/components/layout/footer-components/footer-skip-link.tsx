@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { footerSkipLinkConfig } from '@/lib/hooks/use-footer-accessibility';
-export function FooterSkipLink() {
+function FooterSkipLink() {
 	return (
 		<>
 			<a

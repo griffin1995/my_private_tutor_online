@@ -110,4 +110,4 @@ export function VideoPopup({
 		</>
 	);
 }
-export type { VideoPopupProps };
+;

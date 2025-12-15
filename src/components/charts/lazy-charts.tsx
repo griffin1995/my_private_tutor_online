@@ -57,7 +57,7 @@ export const LazyAreaChart = dynamic(
   }
 );
 
-export const LazyRadialBarChart = dynamic(
+const LazyRadialBarChart = dynamic(
   () => import('recharts').then((mod) => ({ default: mod.RadialBarChart })),
   {
     loading: () => <ChartSkeleton />,
@@ -89,7 +89,7 @@ export const LazyRadarChart = dynamic(
   }
 );
 
-export const LazyComposedChart = dynamic(
+const LazyComposedChart = dynamic(
   () => import('recharts').then((mod) => ({ default: mod.ComposedChart })),
   {
     loading: () => <ChartSkeleton />,
@@ -108,7 +108,7 @@ export const LazyArea = dynamic(
   { ssr: false }
 );
 
-export const LazyRadialBar = dynamic(
+const LazyRadialBar = dynamic(
   () => import('recharts').then((mod) => ({ default: mod.RadialBar })),
   { ssr: false }
 );
@@ -153,7 +153,7 @@ export const LazyTooltip = dynamic(
   { ssr: false }
 );
 
-export const LazyLegend = dynamic(
+const LazyLegend = dynamic(
   () => import('recharts').then((mod) => ({ default: mod.Legend })),
   { ssr: false }
 );
@@ -190,7 +190,7 @@ interface LazyAnalyticsChartsProps {
   readonly className?: string;
 }
 
-export const LazyAnalyticsCharts = dynamic(
+const LazyAnalyticsCharts = dynamic(
   () => import('./analytics-charts-bundle').then((mod) => ({ default: mod.AnalyticsChartsBundle })),
   {
     loading: () => <DetailedChartSkeleton />,
@@ -204,7 +204,7 @@ interface LazyDashboardChartsProps {
   readonly className?: string;
 }
 
-export const LazyDashboardCharts = dynamic(
+const LazyDashboardCharts = dynamic(
   () => import('./dashboard-charts-bundle').then((mod) => ({ default: mod.DashboardChartsBundle })),
   {
     loading: () => <DetailedChartSkeleton />,
@@ -221,7 +221,7 @@ interface LazyAdminChartsProps {
   readonly fallback?: React.ReactNode;
 }
 
-export const LazyAdminCharts = React.memo<LazyAdminChartsProps>(({
+const LazyAdminCharts = React.memo<LazyAdminChartsProps>(({
   children,
   fallback = <DetailedChartSkeleton />
 }) => {
@@ -252,20 +252,13 @@ LazyAdminCharts.displayName = 'LazyAdminCharts';
 // ============================================================================
 
 // Re-export common props types for compatibility
-export type {
-  PieChartProps,
-  AreaChartProps,
-  RadialBarChartProps,
-  BarChartProps,
-  LineChartProps,
-  RadarChartProps,
-} from 'recharts';
+;
 
 // ============================================================================
 // CONVENIENCE HOOKS FOR CHART LOADING
 // ============================================================================
 
-export function useChartLoading(chartType: string) {
+function useChartLoading(chartType: string) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState<Error | null>(null);
 
@@ -281,7 +274,7 @@ export function useChartLoading(chartType: string) {
   return { isLoading, error, setError };
 }
 
-export function useAdminRoute() {
+function useAdminRoute() {
   const [isAdmin, setIsAdmin] = React.useState(false);
 
   React.useEffect(() => {

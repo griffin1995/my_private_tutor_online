@@ -12,97 +12,97 @@ import tutorsNewContent from '../../content/tutors-new.json';
 import { getTestimonialVideos } from './cms-images';
 import faqContent from './cms-faq';
 export type {
-	AboutContent,
-	BaseCMSContent,
-	BusinessAnalyticsData,
-	BusinessDetails,
-	BusinessInfo,
-	CaseStudyItem,
-	CMSResponse,
-	CommonFormContent,
-	CompanyTimelineItem,
-	CompanyTimelineSection,
-	CompetitiveAnalysisData,
-	ConsultationFormContent,
-	ContactAddress,
-	ContactDetails,
-	ContactSection,
-	CTAButton,
-	CTASection,
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	FAQAnalytics,
 	FAQCategory,
 	FAQContent,
 	FAQQuestion,
-	FAQRichMediaCode,
-	FAQRichMediaContent,
-	FAQRichMediaDemo,
-	FAQRichMediaDiagram,
-	FAQRichMediaGif,
-	FAQRichMediaSection,
-	FAQRichMediaVideo,
-	FAQSearchFilters,
-	FAQSearchMetadata,
-	FAQSubcategory,
-	FooterContent,
-	FooterFormContent,
-	FooterLink,
-	FooterSection,
-	FormContent,
-	HeroContent,
-	HowItWorksContent,
-	HowItWorksStep,
-	NavigationItem,
-	NewsletterFormContent,
-	PricingInfo,
-	QuoteContent,
-	QuoteFormContent,
-	QuoteFormField,
-	QuoteFormMessages,
-	QuoteFormOption,
-	QuoteFormSection,
-	ResultsDocumentationItem,
-	ResultsSection,
-	ROICalculationData,
-	Service,
-	ServiceFeature,
-	ServicesPageContent,
-	ServicesSection,
-	ServiceStatisticItem,
-	ServiceSubjectCategory,
-	ServiceSubjectItem,
-	SiteConfig,
-	SiteHeader,
-	Statistic,
-	StudentJourneySection,
-	StudentJourneyStep,
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	Testimonial,
 	TestimonialsContent,
-	TestimonialsSection,
-	TestimonialVideo,
-	TierPricingInfo,
-	TrustIndicator,
-	TrustIndicatorsSection,
+	
+	
+	
+	
+	
 	TutorProfile,
 	TutorProfilesSection,
-	TutorTier,
-	TutorTiersSection,
-	UnifiedContactData,
+	
+	
+	
 };
-export interface BaseCMSContent<T = unknown> {
+interface BaseCMSContent<T = unknown> {
 	readonly content: T;
 	readonly timestamp?: string;
 	readonly version?: string;
 }
-export interface CMSResponse<T> {
+interface CMSResponse<T> {
 	readonly data: T;
 	readonly success: boolean;
 	readonly error?: string;
 }
-export interface NavigationItem {
+interface NavigationItem {
 	readonly label: string;
 	readonly href: string;
 }
-export interface SiteHeader {
+interface SiteHeader {
 	readonly siteName: string;
 	readonly logo: string;
 	readonly navigation: readonly NavigationItem[];
@@ -111,7 +111,7 @@ export interface SiteHeader {
 		readonly href: string;
 	};
 }
-export interface HeroContent {
+interface HeroContent {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly description: string;
@@ -127,7 +127,7 @@ export interface HeroContent {
 		readonly videoUrl?: string;
 	};
 }
-export interface TrustIndicator {
+interface TrustIndicator {
 	readonly icon: string;
 	readonly title: string;
 	readonly subtitle?: string;
@@ -135,19 +135,19 @@ export interface TrustIndicator {
 	readonly imageUrl?: string;
 	readonly imageAlt?: string;
 }
-export interface TrustIndicatorsSection {
+interface TrustIndicatorsSection {
 	readonly title: string;
 	readonly subtitle?: string;
 	readonly indicators: readonly TrustIndicator[];
 }
-export interface StudentJourneyStep {
+interface StudentJourneyStep {
 	readonly step: string;
 	readonly title: string;
 	readonly icon: string;
 	readonly description: string;
 	readonly duration: string;
 }
-export interface StudentJourneySection {
+interface StudentJourneySection {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly description: string;
@@ -182,16 +182,16 @@ export interface Testimonial {
 		| 'Oxbridge'
 		| 'International';
 }
-export interface TestimonialsSection {
+interface TestimonialsSection {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly testimonials: readonly Testimonial[];
 	readonly showRatings?: boolean;
 }
-export interface ServiceFeature {
+interface ServiceFeature {
 	readonly feature: string;
 }
-export interface Service {
+interface Service {
 	readonly title: string;
 	readonly description: string;
 	readonly icon: string;
@@ -203,13 +203,13 @@ export interface Service {
 		readonly currency: string;
 	};
 }
-export interface ServicesSection {
+interface ServicesSection {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly description: string;
 	readonly services: readonly Service[];
 }
-export interface Statistic {
+interface Statistic {
 	readonly number: string;
 	readonly label: string;
 	readonly description: string;
@@ -221,23 +221,23 @@ export interface Statistic {
 	readonly trend?: 'up' | 'down' | 'stable';
 	readonly period?: string;
 }
-export interface ResultsSection {
+interface ResultsSection {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly description: string;
 	readonly statistics: readonly Statistic[];
 	readonly backgroundImage?: string;
 }
-export interface FooterLink {
+interface FooterLink {
 	readonly label: string;
 	readonly href: string;
 	readonly external?: boolean;
 }
-export interface FooterSection {
+interface FooterSection {
 	readonly title: string;
 	readonly links: readonly FooterLink[];
 }
-export interface FooterContent {
+interface FooterContent {
 	readonly companyName: string;
 	readonly description: string;
 	readonly sections: readonly FooterSection[];
@@ -249,7 +249,7 @@ export interface FooterContent {
 	readonly copyright?: string;
 	readonly legalLinks?: readonly FooterLink[];
 }
-export interface HowItWorksStep {
+interface HowItWorksStep {
 	readonly number: string;
 	readonly title: string;
 	readonly description: string;
@@ -257,7 +257,7 @@ export interface HowItWorksStep {
 	readonly icon: string;
 	readonly image: string;
 }
-export interface HowItWorksContent {
+interface HowItWorksContent {
 	readonly hero: {
 		readonly title: string;
 		readonly subtitle: string;
@@ -275,7 +275,7 @@ export interface HowItWorksContent {
 		};
 	};
 }
-export interface TutorTier {
+interface TutorTier {
 	readonly tier: string;
 	readonly description: string;
 	readonly bestFor: string;
@@ -283,7 +283,7 @@ export interface TutorTier {
 	readonly qualifications?: readonly string[];
 	readonly experience?: string;
 }
-export interface TutorTiersSection {
+interface TutorTiersSection {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly tiers: readonly TutorTier[];
@@ -380,7 +380,7 @@ export interface TutorProfilesSection {
 	};
 	readonly backgroundStyle?: 'light' | 'dark' | 'gradient';
 }
-export interface TutorProfilesSectionNew {
+interface TutorProfilesSectionNew {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly description: string;
@@ -393,14 +393,14 @@ export interface TutorProfilesSectionNew {
 	};
 	readonly backgroundStyle?: 'light' | 'dark' | 'gradient';
 }
-export interface CTAButton {
+interface CTAButton {
 	readonly text: string;
 	readonly type: 'primary' | 'secondary' | 'outline';
 	readonly href: string;
 	readonly external?: boolean;
 	readonly trackingId?: string;
 }
-export interface CTASection {
+interface CTASection {
 	readonly title: string;
 	readonly brandStatement: string;
 	readonly description: string;
@@ -411,7 +411,7 @@ export interface CTASection {
 	readonly videoHeight?: string;
 	readonly backgroundColor?: string;
 }
-export interface NewsletterFormContent {
+interface NewsletterFormContent {
 	readonly title: string;
 	readonly description: string;
 	readonly successMessage: string;
@@ -427,7 +427,7 @@ export interface NewsletterFormContent {
 		};
 	};
 }
-export interface ConsultationFormContent {
+interface ConsultationFormContent {
 	readonly fields: {
 		readonly parentName: {
 			readonly placeholder: string;
@@ -458,19 +458,19 @@ export interface ConsultationFormContent {
 		readonly serviceLevel: string;
 	};
 }
-export interface CommonFormContent {
+interface CommonFormContent {
 	readonly loadingText: string;
 	readonly submitText: string;
 	readonly processingText: string;
 	readonly successText: string;
 	readonly errorText: string;
 }
-export interface FooterFormContent {
+interface FooterFormContent {
 	readonly newsletter: {
 		readonly placeholder: string;
 	};
 }
-export interface FormContent {
+interface FormContent {
 	readonly newsletter: NewsletterFormContent;
 	readonly consultation: ConsultationFormContent;
 	readonly common: CommonFormContent;
@@ -484,7 +484,7 @@ export interface FAQAnalytics {
 	readonly trending: boolean;
 	readonly searchRank?: number;
 }
-export interface FAQRichMediaVideo {
+interface FAQRichMediaVideo {
 	readonly type: 'video';
 	readonly id: string;
 	readonly title: string;
@@ -515,7 +515,7 @@ export interface FAQRichMediaVideo {
 		readonly quality?: 'auto' | 'hd' | 'sd';
 	};
 }
-export interface FAQRichMediaDiagram {
+interface FAQRichMediaDiagram {
 	readonly type: 'diagram';
 	readonly id: string;
 	readonly title: string;
@@ -546,7 +546,7 @@ export interface FAQRichMediaDiagram {
 		readonly fontFamily?: string;
 	};
 }
-export interface FAQRichMediaCode {
+interface FAQRichMediaCode {
 	readonly type: 'code';
 	readonly id: string;
 	readonly title: string;
@@ -571,7 +571,7 @@ export interface FAQRichMediaCode {
 		readonly dependencies?: readonly string[];
 	};
 }
-export interface FAQRichMediaDemo {
+interface FAQRichMediaDemo {
 	readonly type: 'demo';
 	readonly id: string;
 	readonly title: string;
@@ -599,7 +599,7 @@ export interface FAQRichMediaDemo {
 		readonly loadingMessage?: string;
 	};
 }
-export interface FAQRichMediaGif {
+interface FAQRichMediaGif {
 	readonly type: 'gif';
 	readonly id: string;
 	readonly title: string;
@@ -622,13 +622,13 @@ export interface FAQRichMediaGif {
 		readonly optimized: boolean;
 	};
 }
-export type FAQRichMediaContent =
+type FAQRichMediaContent =
 	| FAQRichMediaVideo
 	| FAQRichMediaDiagram
 	| FAQRichMediaCode
 	| FAQRichMediaDemo
 	| FAQRichMediaGif;
-export interface FAQRichMediaSection {
+interface FAQRichMediaSection {
 	readonly id: string;
 	readonly title?: string;
 	readonly description?: string;
@@ -671,7 +671,7 @@ export interface FAQQuestion {
 	readonly estimatedReadTime: number;
 	readonly richMedia?: readonly FAQRichMediaSection[];
 }
-export interface FAQSubcategory {
+interface FAQSubcategory {
 	readonly id: string;
 	readonly name: string;
 	readonly description: string;
@@ -696,7 +696,7 @@ export interface FAQCategory {
 	readonly isVisible: boolean;
 	readonly requiresAuth?: boolean;
 }
-export interface FAQSearchFilters {
+interface FAQSearchFilters {
 	readonly categories: readonly string[];
 	readonly subcategories: readonly string[];
 	readonly tags: readonly string[];
@@ -706,7 +706,7 @@ export interface FAQSearchFilters {
 	readonly trending?: boolean;
 	readonly minRating?: number;
 }
-export interface FAQSearchMetadata {
+interface FAQSearchMetadata {
 	readonly totalResults: number;
 	readonly searchTime: number;
 	readonly suggestions?: readonly string[];
@@ -760,14 +760,14 @@ export interface FAQContent {
 		readonly enableEmailCapture: boolean;
 	};
 }
-export interface ContactAddress {
+interface ContactAddress {
 	readonly line1: string;
 	readonly line2: string;
 	readonly city: string;
 	readonly postcode: string;
 	readonly country: string;
 }
-export interface ContactDetails {
+interface ContactDetails {
 	readonly primaryEmail: string;
 	readonly phone: string;
 	readonly address: ContactAddress;
@@ -779,7 +779,7 @@ export interface ContactDetails {
 		readonly timezone: string;
 	};
 }
-export interface ContactSection {
+interface ContactSection {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly description: string;
@@ -790,7 +790,7 @@ export interface ContactSection {
 		readonly icon: string;
 	}[];
 }
-export interface SiteConfig {
+interface SiteConfig {
 	readonly name: string;
 	readonly tagline: string;
 	readonly domain: string;
@@ -801,7 +801,7 @@ export interface SiteConfig {
 	readonly locale?: string;
 	readonly timezone?: string;
 }
-export interface BusinessDetails {
+interface BusinessDetails {
 	readonly registrationNumber?: string;
 	readonly vatNumber?: string;
 	readonly insuranceDetails?: {
@@ -816,7 +816,7 @@ export interface BusinessDetails {
 		readonly verified: boolean;
 	}[];
 }
-export interface BusinessInfo {
+interface BusinessInfo {
 	readonly name: string;
 	readonly description: string;
 	readonly address: {
@@ -857,7 +857,7 @@ export interface BusinessInfo {
 	readonly establishedYear: string;
 	readonly heritage: string;
 }
-export interface TestimonialVideo {
+interface TestimonialVideo {
 	readonly id: string;
 	readonly title: string;
 	readonly videoUrl: string;
@@ -888,7 +888,7 @@ export interface TestimonialVideo {
 	readonly verified: boolean;
 	readonly dateRecorded: string;
 }
-export interface PricingInfo {
+interface PricingInfo {
 	readonly currency: string;
 	readonly baseRate: {
 		readonly amount: number;
@@ -917,7 +917,7 @@ export interface PricingInfo {
 		readonly feeDisclaimer: string;
 	};
 }
-export interface TierPricingInfo {
+interface TierPricingInfo {
 	readonly name: string;
 	readonly level: 'premium' | 'mid' | 'standard';
 	readonly description: string;
@@ -939,7 +939,7 @@ export interface TierPricingInfo {
 	readonly hasAccent: boolean;
 	readonly hasCrown: boolean;
 }
-export interface QuoteFormField {
+interface QuoteFormField {
 	readonly id: string;
 	readonly label: string;
 	readonly placeholder: string;
@@ -957,18 +957,18 @@ export interface QuoteFormField {
 		readonly showWhen: string | readonly string[];
 	};
 }
-export interface QuoteFormOption {
+interface QuoteFormOption {
 	readonly value: string;
 	readonly label: string;
 	readonly description?: string;
 }
-export interface QuoteFormSection {
+interface QuoteFormSection {
 	readonly title: string;
 	readonly description: string;
 	readonly fields: readonly QuoteFormField[];
 	readonly order: number;
 }
-export interface QuoteFormMessages {
+interface QuoteFormMessages {
 	readonly success: {
 		readonly title: string;
 		readonly message: string;
@@ -985,7 +985,7 @@ export interface QuoteFormMessages {
 		readonly maxLength: string;
 	};
 }
-export interface QuoteFormContent {
+interface QuoteFormContent {
 	readonly hero: {
 		readonly title: string;
 		readonly subtitle: string;
@@ -1010,22 +1010,22 @@ export interface QuoteFormContent {
 		readonly email: string;
 	};
 }
-export const getSiteHeader = cache((): SiteHeader => {
+const getSiteHeader = cache((): SiteHeader => {
 	return landingPageContent.header;
 });
-export const getHeroContent = cache((): HeroContent => {
+const getHeroContent = cache((): HeroContent => {
 	return landingPageContent.hero;
 });
-export const getTrustIndicators = cache((): TrustIndicator[] => {
+const getTrustIndicators = cache((): TrustIndicator[] => {
 	return landingPageContent.trustIndicators.indicators;
 });
-export const getStudentJourney = cache((): StudentJourneySection => {
+const getStudentJourney = cache((): StudentJourneySection => {
 	return landingPageContent.studentJourney;
 });
 export const getTestimonials = cache((): Testimonial[] => {
 	return landingPageContent.testimonials.testimonials;
 });
-export const getAllTestimonials = cache((): Testimonial[] => {
+const getAllTestimonials = cache((): Testimonial[] => {
 	return testimonialsContent.recentTestimonials.map((testimonial) => ({
 		...testimonial,
 		category: testimonial.category as
@@ -1043,22 +1043,22 @@ export const getAllTestimonials = cache((): Testimonial[] => {
 			`/images/avatars/default-${testimonial.author.toLowerCase().replace(/[^a-z0-9]/g, '')}.jpg`,
 	}));
 });
-export const getVideoTestimonials = cache((): Testimonial[] => {
+const getVideoTestimonials = cache((): Testimonial[] => {
 	const videoTestimonials = getAllTestimonials().filter(
 		(testimonial) => testimonial.hasVideo === true,
 	);
 	return Object.freeze(videoTestimonials) as Testimonial[];
 });
-export const getTextTestimonials = cache((): Testimonial[] => {
+const getTextTestimonials = cache((): Testimonial[] => {
 	const textTestimonials = getAllTestimonials().filter(
 		(testimonial) => testimonial.hasVideo !== true,
 	);
 	return Object.freeze(textTestimonials) as Testimonial[];
 });
-export const getServices = (): readonly Service[] => {
+const getServices = (): readonly Service[] => {
 	return landingPageContent.services.services;
 };
-export const getWhoWeSupport = cache(
+const getWhoWeSupport = cache(
 	(): {
 		readonly title: string;
 		readonly subtitle: string;
@@ -1076,7 +1076,7 @@ export const getWhoWeSupport = cache(
 export const getResultsStatistics = cache((): Statistic[] => {
 	return landingPageContent.results.statistics;
 });
-export interface UnifiedContactData {
+interface UnifiedContactData {
 	readonly primary: ContactDetails;
 	readonly landing: ContactSection;
 	readonly landingInfo: ContactDetails;
@@ -1093,7 +1093,7 @@ export interface UnifiedContactData {
 		readonly email: string;
 	};
 }
-export interface CompanyTimelineItem {
+interface CompanyTimelineItem {
 	readonly year: string;
 	readonly title: string;
 	readonly description: string;
@@ -1106,13 +1106,13 @@ export interface CompanyTimelineItem {
 		| 'warning'
 		| 'error';
 }
-export interface CompanyTimelineSection {
+interface CompanyTimelineSection {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly description?: string;
 	readonly milestones: readonly CompanyTimelineItem[];
 }
-export interface AboutContent {
+interface AboutContent {
 	readonly hero: {
 		readonly title: string;
 		readonly subtitle: string;
@@ -1235,7 +1235,7 @@ export interface TestimonialsContent {
 		readonly testimonialCount: number;
 	}[];
 }
-export interface QuoteContent {
+interface QuoteContent {
 	readonly founderQuote: {
 		readonly quote: string;
 		readonly author: string;
@@ -1251,7 +1251,7 @@ export interface QuoteContent {
 		readonly verified: boolean;
 	};
 }
-export const getUnifiedContact = cache((): UnifiedContactData => {
+const getUnifiedContact = cache((): UnifiedContactData => {
 	const siteSettingsData = settingsContent;
 	const landingPageData = landingPageContent;
 	const faqData = faqContentJSON;
@@ -1268,10 +1268,10 @@ export const getUnifiedContact = cache((): UnifiedContactData => {
 		},
 	};
 });
-export const getContactContent = cache((): ContactSection => {
+const getContactContent = cache((): ContactSection => {
 	return landingPageContent.contact;
 });
-export const getFooterContent = cache((): any => {
+const getFooterContent = cache((): any => {
 	// CMS is dead - return minimal structure to satisfy page-footer-client.tsx
 	const footer = landingPageContent.footer as any;
 	return {
@@ -1289,7 +1289,7 @@ export const getFooterContent = cache((): any => {
 		})) || [],
 	};
 });
-export const getBusinessContent = cache(
+const getBusinessContent = cache(
 	(): {
 		readonly companyName: string;
 		readonly founded: string;
@@ -1299,14 +1299,14 @@ export const getBusinessContent = cache(
 		return businessContent;
 	},
 );
-export const getAboutContent = cache((): AboutContent => {
+const getAboutContent = cache((): AboutContent => {
 	return aboutContent;
 });
-export const getFounderStory = cache((): FounderStory | null => {
+const getFounderStory = cache((): FounderStory | null => {
 	const about = getAboutContent();
 	return about.founderStory || null;
 });
-export const getFounderAchievements = cache(
+const getFounderAchievements = cache(
 	(): readonly {
 		readonly icon: string;
 		readonly text: string;
@@ -1315,7 +1315,7 @@ export const getFounderAchievements = cache(
 		return founderStory?.achievements || [];
 	},
 );
-export const getCompanyTimeline = cache((): CompanyTimelineSection => {
+const getCompanyTimeline = cache((): CompanyTimelineSection => {
 	const about = getAboutContent();
 	return {
 		title: 'Our Journey',
@@ -1341,10 +1341,10 @@ export const getCompanyTimeline = cache((): CompanyTimelineSection => {
 			})) || [],
 	};
 });
-export const getMainNavigation = cache((): NavigationItem[] => {
+const getMainNavigation = cache((): NavigationItem[] => {
 	return landingPageContent.header.navigation;
 });
-export const getSiteBranding = cache(
+const getSiteBranding = cache(
 	(): {
 		readonly siteName: string;
 		readonly logo: string;
@@ -1359,13 +1359,13 @@ export const getSiteBranding = cache(
 		};
 	},
 );
-export const getContactInfo = cache((): ContactDetails => {
+const getContactInfo = cache((): ContactDetails => {
 	return landingPageContent.contact.contactInfo;
 });
-export const getHowItWorksContent = cache((): HowItWorksContent => {
+const getHowItWorksContent = cache((): HowItWorksContent => {
 	return howItWorksContent;
 });
-export const getHowItWorksHero = (): {
+const getHowItWorksHero = (): {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly description: string;
@@ -1374,16 +1374,16 @@ export const getHowItWorksHero = (): {
 } => {
 	return howItWorksContent.hero;
 };
-export const getHowItWorksSteps = cache((): HowItWorksStep[] => {
+const getHowItWorksSteps = cache((): HowItWorksStep[] => {
 	return howItWorksContent?.steps || [];
 });
-export const getTutorTiers = cache((): readonly TutorTier[] => {
+const getTutorTiers = cache((): readonly TutorTier[] => {
 	return howItWorksContent?.tutorTiers || [];
 });
-export const getHowItWorksBenefits = cache((): readonly string[] => {
+const getHowItWorksBenefits = cache((): readonly string[] => {
 	return howItWorksContent?.benefits || [];
 });
-export const getHowItWorksCTA = cache(
+const getHowItWorksCTA = cache(
 	(): {
 		readonly title: string;
 		readonly description: string;
@@ -1398,7 +1398,7 @@ export const getHowItWorksCTA = cache(
 		return howItWorksContent.cta;
 	},
 );
-export const getFAQContent = (): FAQContent => {
+const getFAQContent = (): FAQContent => {
 	return faqContent;
 };
 export const getFAQHero = (): {
@@ -1411,7 +1411,7 @@ export const getFAQHero = (): {
 export const getFAQCategories = cache((): readonly FAQCategory[] => {
 	return faqContent.categories;
 });
-export const getFAQSearchConfig = cache(
+const getFAQSearchConfig = cache(
 	(): {
 		readonly enabled: boolean;
 		readonly placeholder: string;
@@ -1424,7 +1424,7 @@ export const getFAQSearchConfig = cache(
 		return faqContent.search;
 	},
 );
-export const getFAQAnalytics = cache(
+const getFAQAnalytics = cache(
 	(): {
 		readonly totalQuestions: number;
 		readonly totalViews: number;
@@ -1435,7 +1435,7 @@ export const getFAQAnalytics = cache(
 		return faqContent.analytics;
 	},
 );
-export const getFAQSettings = cache(
+const getFAQSettings = cache(
 	(): {
 		readonly enableAnalytics: boolean;
 		readonly enableRatings: boolean;
@@ -1448,19 +1448,19 @@ export const getFAQSettings = cache(
 		return faqContent.settings;
 	},
 );
-export const getFAQQuestionsByCategory = cache(
+const getFAQQuestionsByCategory = cache(
 	(categoryId: string): readonly FAQQuestion[] => {
 		const category = faqContent.categories.find((cat) => cat.id === categoryId);
 		return category?.questions || [];
 	},
 );
-export const getFeaturedFAQs = cache((): readonly FAQQuestion[] => {
+const getFeaturedFAQs = cache((): readonly FAQQuestion[] => {
 	const allQuestions = faqContent.categories.flatMap(
 		(category) => category.questions,
 	);
 	return allQuestions.filter((question) => question.featured);
 });
-export const getTrendingFAQs = cache((): readonly FAQQuestion[] => {
+const getTrendingFAQs = cache((): readonly FAQQuestion[] => {
 	const allQuestions = faqContent.categories.flatMap(
 		(category) => category.questions,
 	);
@@ -1468,7 +1468,7 @@ export const getTrendingFAQs = cache((): readonly FAQQuestion[] => {
 		.filter((question) => question.analytics.trending)
 		.sort((a, b) => b.analytics.views - a.analytics.views);
 });
-export const getFAQsByClientSegment = cache(
+const getFAQsByClientSegment = cache(
 	(
 		segment:
 			| 'oxbridge_prep'
@@ -1486,7 +1486,7 @@ export const getFAQsByClientSegment = cache(
 		);
 	},
 );
-export const getFAQsByDifficulty = cache(
+const getFAQsByDifficulty = cache(
 	(
 		difficulty: 'basic' | 'intermediate' | 'advanced',
 	): readonly FAQQuestion[] => {
@@ -1496,7 +1496,7 @@ export const getFAQsByDifficulty = cache(
 		return allQuestions.filter((question) => question.difficulty === difficulty);
 	},
 );
-export const getFAQQuestionById = cache(
+const getFAQQuestionById = cache(
 	(questionId: string): FAQQuestion | undefined => {
 		const allQuestions = faqContent.categories.flatMap(
 			(category) => category.questions,
@@ -1504,7 +1504,7 @@ export const getFAQQuestionById = cache(
 		return allQuestions.find((question) => question.id === questionId);
 	},
 );
-export const getRelatedFAQs = cache(
+const getRelatedFAQs = cache(
 	(questionId: string): readonly FAQQuestion[] => {
 		const question = getFAQQuestionById(questionId);
 		if (!question || !question.relatedFAQs.length) return [];
@@ -1516,7 +1516,7 @@ export const getRelatedFAQs = cache(
 			.filter((q): q is FAQQuestion => q !== undefined);
 	},
 );
-export const getMostHelpfulFAQs = cache(
+const getMostHelpfulFAQs = cache(
 	(limit: number = 10): readonly FAQQuestion[] => {
 		const allQuestions = faqContent.categories.flatMap(
 			(category) => category.questions,
@@ -1533,7 +1533,7 @@ export const getMostHelpfulFAQs = cache(
 			.slice(0, limit);
 	},
 );
-export const getFAQContact = (): {
+const getFAQContact = (): {
 	readonly title: string;
 	readonly description: string;
 	readonly phone?: string;
@@ -1544,19 +1544,19 @@ export const getFAQContact = (): {
 const getSiteSettings = cache((): typeof settingsContent => {
 	return settingsContent;
 });
-export const getSiteConfig = cache((): SiteConfig => {
+const getSiteConfig = cache((): SiteConfig => {
 	const siteSettings = getSiteSettings();
 	return siteSettings.siteConfig;
 });
-export const getContactDetails = cache((): ContactDetails => {
+const getContactDetails = cache((): ContactDetails => {
 	const siteSettings = getSiteSettings();
 	return siteSettings.contact;
 });
-export const getBusinessDetails = cache((): BusinessDetails => {
+const getBusinessDetails = cache((): BusinessDetails => {
 	const siteSettings = getSiteSettings();
 	return siteSettings.businessDetails;
 });
-export const getBusinessInfo = cache((): BusinessInfo => {
+const getBusinessInfo = cache((): BusinessInfo => {
 	const business = businessContent.website || businessContent;
 	const settings = getSiteSettings();
 	const contact = settings.contact;
@@ -1629,7 +1629,7 @@ export const getBusinessInfo = cache((): BusinessInfo => {
 		heritage: settings.siteConfig.heritage,
 	};
 });
-export const getDetailedTestimonialVideos = cache(
+const getDetailedTestimonialVideos = cache(
 	(): readonly TestimonialVideo[] => {
 		const videoTestimonials: TestimonialVideo[] = [
 			{
@@ -1775,11 +1775,11 @@ export const getDetailedTestimonialVideos = cache(
 		return videoTestimonials;
 	},
 );
-export const getPricingInfo = cache((): PricingInfo => {
+const getPricingInfo = cache((): PricingInfo => {
 	const siteSettings = getSiteSettings();
 	return siteSettings.pricing;
 });
-export const getQualifications = cache(
+const getQualifications = cache(
 	(): {
 		readonly [key: string]: unknown;
 	} => {
@@ -1787,7 +1787,7 @@ export const getQualifications = cache(
 		return siteSettings.qualifications;
 	},
 );
-export const searchFAQQuestions = (
+const searchFAQQuestions = (
 	query: string,
 	maxResults: number = 10,
 ): readonly FAQQuestion[] => {
@@ -1831,7 +1831,7 @@ export const searchFAQQuestions = (
 		.slice(0, maxResults)
 		.map((result) => result.question);
 };
-export const getFAQSearchSuggestions = (
+const getFAQSearchSuggestions = (
 	partialQuery: string,
 	maxSuggestions: number = 5,
 ): readonly string[] => {
@@ -1863,12 +1863,12 @@ export const getFAQSearchSuggestions = (
 		.slice(0, maxSuggestions)
 		.sort((a, b) => a.length - b.length);
 };
-export const calculateHelpfulnessRatio = (question: FAQQuestion): number => {
+const calculateHelpfulnessRatio = (question: FAQQuestion): number => {
 	const total = question.analytics.helpful + question.analytics.notHelpful;
 	if (total === 0) return 0;
 	return Math.round((question.analytics.helpful / total) * 100);
 };
-export const getFAQsSortedByRelevance = (
+const getFAQsSortedByRelevance = (
 	categoryId?: string,
 ): readonly FAQQuestion[] => {
 	const questions =
@@ -1887,7 +1887,7 @@ export const getFAQsSortedByRelevance = (
 		return b.analytics.views - a.analytics.views;
 	});
 };
-export const getFAQCategoryAnalytics = (
+const getFAQCategoryAnalytics = (
 	categoryId: string,
 ): {
 	readonly totalQuestions: number;
@@ -1933,7 +1933,7 @@ export const getFAQCategoryAnalytics = (
 		featuredCount,
 	};
 };
-export const validateFAQDataStructure = (): {
+const validateFAQDataStructure = (): {
 	readonly isValid: boolean;
 	readonly errors: readonly string[];
 	readonly warnings: readonly string[];
@@ -1986,7 +1986,7 @@ export const validateFAQDataStructure = (): {
 		warnings,
 	};
 };
-export const formatBritishEnglish = (text: string): string => {
+const formatBritishEnglish = (text: string): string => {
 	return text
 		.replace(/\borganiz/g, 'organis')
 		.replace(/\bcolor/g, 'colour')
@@ -1994,11 +1994,11 @@ export const formatBritishEnglish = (text: string): string => {
 		.replace(/\bfavorite/g, 'favourite')
 		.replace(/\blicense/g, 'licence');
 };
-export const getCopyrightText = (): string => {
+const getCopyrightText = (): string => {
 	const currentYear = 2025;
 	return `© ${currentYear} My Private Tutor Online. All rights reserved.`;
 };
-export const validateContentStructure = cache((): boolean => {
+const validateContentStructure = cache((): boolean => {
 	const requiredFields: readonly string[] = [
 		'header.siteName',
 		'hero.title',
@@ -2141,10 +2141,10 @@ export const getTestimonialsIntroConfig = cache(
 		};
 	},
 );
-export const getQuotes = cache((): QuoteContent => {
+const getQuotes = cache((): QuoteContent => {
 	return landingPageContent.quotes;
 });
-export const getFounderQuote = (): {
+const getFounderQuote = (): {
 	readonly quote: string;
 	readonly author: string;
 	readonly role: string;
@@ -2153,7 +2153,7 @@ export const getFounderQuote = (): {
 } => {
 	return landingPageContent.quotes.founderQuote;
 };
-export const getRoyalTestimonial = cache(
+const getRoyalTestimonial = cache(
 	(): {
 		readonly quote: string;
 		readonly author: string;
@@ -2164,10 +2164,10 @@ export const getRoyalTestimonial = cache(
 		return landingPageContent.quotes.royalTestimonial;
 	},
 );
-export const getRecentTestimonials = cache((): readonly Testimonial[] => {
+const getRecentTestimonials = cache((): readonly Testimonial[] => {
 	return testimonialsContent.recentTestimonials;
 });
-export const getAboutTestimonials = cache((): readonly Testimonial[] => {
+const getAboutTestimonials = cache((): readonly Testimonial[] => {
 	console.warn(
 		'[DEPRECATION WARNING] getAboutTestimonials() is deprecated. Use getTextTestimonials() instead for unified CMS and video filtering.',
 	);
@@ -2176,28 +2176,10 @@ export const getAboutTestimonials = cache((): readonly Testimonial[] => {
 		testimonialsContent.recentTestimonials
 	);
 });
-export const getTestimonialsSchools = cache((): readonly string[] => {
+const getTestimonialsSchools = cache((): readonly string[] => {
 	return testimonialsContent.schools;
 });
-export const getEliteSchoolsData = cache(
-	(): {
-		allSchools: any;
-		featuredSchools: any[];
-		topSchools: any[];
-	} => {
-		const {
-			eliteSchoolsDatabase,
-			getFeaturedSchools,
-			getTopSchoolsByPrestige,
-		} = require('@/lib/cms/schools-data');
-		return {
-			allSchools: eliteSchoolsDatabase,
-			featuredSchools: getFeaturedSchools(),
-			topSchools: getTopSchoolsByPrestige(15),
-		};
-	},
-);
-export const getTestimonialsCarouselConfig = cache(
+const getTestimonialsCarouselConfig = cache(
 	(): {
 		autoplays: boolean;
 		showNavigation: boolean;
@@ -2240,7 +2222,7 @@ export const getTestimonialsCarouselConfig = cache(
 		};
 	},
 );
-export interface ServiceSubjectItem {
+interface ServiceSubjectItem {
 	readonly name: string;
 	readonly description: string;
 	readonly keyFeatures: readonly string[];
@@ -2258,7 +2240,7 @@ export interface ServiceSubjectItem {
 		readonly alt: string;
 	};
 }
-export interface ServiceSubjectCategory {
+interface ServiceSubjectCategory {
 	readonly id: string;
 	readonly title: string;
 	readonly icon: string;
@@ -2272,7 +2254,7 @@ export interface ServiceSubjectCategory {
 	readonly callOuts: readonly string[];
 	readonly testimonial: string;
 }
-export interface ServiceStatisticItem {
+interface ServiceStatisticItem {
 	readonly value: string;
 	readonly label: string;
 	readonly description?: string;
@@ -2280,7 +2262,7 @@ export interface ServiceStatisticItem {
 	readonly category?: 'achievement' | 'coverage' | 'success' | 'general';
 	readonly highlighted?: boolean;
 }
-export interface ServicesPageContent {
+interface ServicesPageContent {
 	readonly hero: {
 		readonly title: string;
 		readonly subtitle: string;
@@ -2317,7 +2299,7 @@ export interface ServicesPageContent {
 		};
 	};
 }
-export interface ResultsDocumentationItem {
+interface ResultsDocumentationItem {
 	readonly category:
 		| 'grade_improvement'
 		| 'university_placement'
@@ -2333,7 +2315,7 @@ export interface ResultsDocumentationItem {
 	readonly icon?: string;
 	readonly priority: number;
 }
-export interface CaseStudyItem {
+interface CaseStudyItem {
 	readonly id: string;
 	readonly category:
 		| 'oxbridge_prep'
@@ -2355,7 +2337,7 @@ export interface CaseStudyItem {
 	readonly verified: boolean;
 	readonly featured: boolean;
 }
-export interface CompetitiveAnalysisData {
+interface CompetitiveAnalysisData {
 	readonly category:
 		| 'pricing'
 		| 'service_quality'
@@ -2376,7 +2358,7 @@ export interface CompetitiveAnalysisData {
 		| 'all';
 	readonly priority: number;
 }
-export interface ROICalculationData {
+interface ROICalculationData {
 	readonly investmentTier: 'essentials' | 'premium' | 'elite';
 	readonly typicalInvestment: {
 		readonly min: number;
@@ -2392,7 +2374,7 @@ export interface ROICalculationData {
 	readonly lifetimeValue: string;
 	readonly confidenceLevel: string;
 }
-export interface BusinessAnalyticsData {
+interface BusinessAnalyticsData {
 	readonly resultsDocumentation: readonly ResultsDocumentationItem[];
 	readonly caseStudies: readonly CaseStudyItem[];
 	readonly competitiveAnalysis: readonly CompetitiveAnalysisData[];
@@ -2400,7 +2382,7 @@ export interface BusinessAnalyticsData {
 	readonly lastUpdated: string;
 	readonly dataVerificationDate: string;
 }
-export const getServicesContent = cache((): ServicesPageContent => {
+const getServicesContent = cache((): ServicesPageContent => {
 	return {
 		hero: {
 			title: 'Subject Tuition',
@@ -3371,17 +3353,17 @@ export const getServicesContent = cache((): ServicesPageContent => {
 		},
 	};
 });
-export const getServicesStatistics = cache(
+const getServicesStatistics = cache(
 	(): readonly ServiceStatisticItem[] => {
 		return getServicesContent().statistics;
 	},
 );
-export const getServicesSubjectCategories = cache(
+const getServicesSubjectCategories = cache(
 	(): readonly ServiceSubjectCategory[] => {
 		return getServicesContent().subjectCategories;
 	},
 );
-export const getServicesHero = (): {
+const getServicesHero = (): {
 	readonly title: string;
 	readonly subtitle: string;
 	readonly description: string;
@@ -3389,7 +3371,7 @@ export const getServicesHero = (): {
 } => {
 	return getServicesContent().hero;
 };
-export const getHomeschoolingPreview = (): {
+const getHomeschoolingPreview = (): {
 	readonly title: string;
 	readonly description: string;
 	readonly features: readonly {
@@ -3400,7 +3382,7 @@ export const getHomeschoolingPreview = (): {
 } => {
 	return getServicesContent().homeschoolingPreview;
 };
-export const getServicesCTA = (): {
+const getServicesCTA = (): {
 	readonly title: string;
 	readonly description: string;
 	readonly primaryButton: {
@@ -3414,7 +3396,7 @@ export const getServicesCTA = (): {
 } => {
 	return getServicesContent().cta;
 };
-export const getServicesSectionTitles = (): {
+const getServicesSectionTitles = (): {
 	readonly subjectCategories: {
 		readonly title: string;
 		readonly description: string;
@@ -3422,7 +3404,7 @@ export const getServicesSectionTitles = (): {
 } => {
 	return getServicesContent().sectionTitles;
 };
-export const getQuoteFormContent = (): QuoteFormContent => {
+const getQuoteFormContent = (): QuoteFormContent => {
 	return {
 		hero: {
 			title: 'Request Your Personalised Quote',
@@ -3463,19 +3445,19 @@ export const getQuoteFormContent = (): QuoteFormContent => {
 		},
 	};
 };
-export const getQuoteFormHero = () => {
+const getQuoteFormHero = () => {
 	return getQuoteFormContent().hero;
 };
-export const getQuoteFormConfig = () => {
+const getQuoteFormConfig = () => {
 	return getQuoteFormContent().form;
 };
-export const getQuoteFormMessages = (): QuoteFormMessages => {
+const getQuoteFormMessages = (): QuoteFormMessages => {
 	return getQuoteFormContent().messages;
 };
-export const getQuoteFormContact = () => {
+const getQuoteFormContact = () => {
 	return getQuoteFormContent().contact;
 };
-export const getFormFieldOptions = (fieldId: string): QuoteFormOption[] => {
+const getFormFieldOptions = (fieldId: string): QuoteFormOption[] => {
 	const form = getQuoteFormContent().form;
 	for (const section of form.sections) {
 		const field = section.fields.find((f) => f.id === fieldId);
@@ -3485,16 +3467,16 @@ export const getFormFieldOptions = (fieldId: string): QuoteFormOption[] => {
 	}
 	return [];
 };
-export const getSubjectOptions = (): QuoteFormOption[] => {
+const getSubjectOptions = (): QuoteFormOption[] => {
 	return getFormFieldOptions('subject');
 };
-export const getEducationLevelOptions = (): QuoteFormOption[] => {
+const getEducationLevelOptions = (): QuoteFormOption[] => {
 	return getFormFieldOptions('educationLevel');
 };
-export const getHowDidYouHearOptions = (): readonly QuoteFormOption[] => {
+const getHowDidYouHearOptions = (): readonly QuoteFormOption[] => {
 	return getFormFieldOptions('howDidYouHear');
 };
-export const getCTAContent = cache((): CTASection => {
+const getCTAContent = cache((): CTASection => {
 	return landingPageContent.cta;
 });
 export const getTestimonialsCTAContent = (): {
@@ -3619,38 +3601,38 @@ export const getTestimonialsCTAContent = (): {
 		},
 	};
 };
-export const getFormContent = (): FormContent => {
+const getFormContent = (): FormContent => {
 	return formContent;
 };
 export const getNewsletterFormContent = (): NewsletterFormContent => {
 	return formContent.newsletter;
 };
-export const getConsultationFormContent = (): ConsultationFormContent => {
+const getConsultationFormContent = (): ConsultationFormContent => {
 	return formContent.consultation;
 };
-export const getCommonFormContent = (): CommonFormContent => {
+const getCommonFormContent = (): CommonFormContent => {
 	return formContent.common;
 };
-export const getFooterFormContent = (): FooterFormContent => {
+const getFooterFormContent = (): FooterFormContent => {
 	return formContent.footer;
 };
-export const getBusinessAnalyticsData = cache((): BusinessAnalyticsData => {
+const getBusinessAnalyticsData = cache((): BusinessAnalyticsData => {
 	return businessAnalyticsContent;
 });
-export const getResultsDocumentation = cache(
+const getResultsDocumentation = cache(
 	(): readonly ResultsDocumentationItem[] => {
 		return businessAnalyticsContent.resultsDocumentation;
 	},
 );
-export const getCaseStudies = cache((): readonly CaseStudyItem[] => {
+const getCaseStudies = cache((): readonly CaseStudyItem[] => {
 	return businessAnalyticsContent.caseStudies;
 });
-export const getCompetitiveAnalysis = cache(
+const getCompetitiveAnalysis = cache(
 	(): readonly CompetitiveAnalysisData[] => {
 		return businessAnalyticsContent.competitiveAnalysis;
 	},
 );
-export const getROICalculations = cache((): readonly ROICalculationData[] => {
+const getROICalculations = cache((): readonly ROICalculationData[] => {
 	return businessAnalyticsContent.roiCalculations;
 });
 const CMSContent = {
@@ -3750,7 +3732,7 @@ const CMSContent = {
 	getFAQCategoryAnalytics,
 	validateFAQDataStructure,
 };
-export const getResultsByCategory = cache(
+const getResultsByCategory = cache(
 	(
 		category: ResultsDocumentationItem['category'],
 	): readonly ResultsDocumentationItem[] => {
@@ -3759,17 +3741,17 @@ export const getResultsByCategory = cache(
 		);
 	},
 );
-export const getCaseStudiesBySegment = cache(
+const getCaseStudiesBySegment = cache(
 	(segment: CaseStudyItem['category']): readonly CaseStudyItem[] => {
 		return businessAnalyticsContent.caseStudies.filter(
 			(study) => study.category === segment,
 		);
 	},
 );
-export const getFeaturedCaseStudies = cache((): readonly CaseStudyItem[] => {
+const getFeaturedCaseStudies = cache((): readonly CaseStudyItem[] => {
 	return businessAnalyticsContent.caseStudies.filter((study) => study.featured);
 });
-export const getCompetitiveAdvantagesBySegment = cache(
+const getCompetitiveAdvantagesBySegment = cache(
 	(
 		segment: CompetitiveAnalysisData['clientSegment'],
 	): readonly CompetitiveAnalysisData[] => {
@@ -3778,18 +3760,18 @@ export const getCompetitiveAdvantagesBySegment = cache(
 		);
 	},
 );
-export const getPricingConfig = cache((): PricingInfo => {
+const getPricingConfig = cache((): PricingInfo => {
 	const siteSettings = getSiteSettings();
 	return siteSettings.pricing as PricingInfo;
 });
-export const getTierPricing = cache(
+const getTierPricing = cache(
 	(tierKey: 'tier1' | 'tier2' | 'tier3'): TierPricingInfo => {
 		const siteSettings = getSiteSettings();
 		const pricing = siteSettings.pricing as PricingInfo;
 		return pricing.tiers[tierKey];
 	},
 );
-export const getBaseRate = cache(
+const getBaseRate = cache(
 	(): {
 		amount: number;
 		display: string;
@@ -3800,12 +3782,12 @@ export const getBaseRate = cache(
 		return pricing.baseRate;
 	},
 );
-export const getTiersInOrder = cache((): readonly TierPricingInfo[] => {
+const getTiersInOrder = cache((): readonly TierPricingInfo[] => {
 	const siteSettings = getSiteSettings();
 	const pricing = siteSettings.pricing as PricingInfo;
 	return [pricing.tiers.tier3, pricing.tiers.tier2, pricing.tiers.tier1];
 });
-export const getPromotionalPricing = cache(
+const getPromotionalPricing = cache(
 	(): {
 		tagline: string;
 		feeDisclaimer: string;
@@ -3815,7 +3797,7 @@ export const getPromotionalPricing = cache(
 		return pricing.promotional;
 	},
 );
-export const getCreditBalance = cache(
+const getCreditBalance = cache(
 	(): {
 		amount: number;
 		display: string;
@@ -3826,7 +3808,7 @@ export const getCreditBalance = cache(
 		return pricing.creditBalance;
 	},
 );
-export const getTierByLevel = cache(
+const getTierByLevel = cache(
 	(level: 'premium' | 'mid' | 'standard'): TierPricingInfo | undefined => {
 		const siteSettings = getSiteSettings();
 		const pricing = siteSettings.pricing as PricingInfo;
@@ -3834,13 +3816,13 @@ export const getTierByLevel = cache(
 		return tierEntries.find((tier) => tier.level === level);
 	},
 );
-export const formatPriceDisplay = cache(
+const formatPriceDisplay = cache(
 	(amount: number, includeFrom: boolean = false): string => {
 		const formatted = `£${amount}`;
 		return includeFrom ? `From ${formatted}/hour` : formatted;
 	},
 );
-export const getTutorProfilesSection = cache((): TutorProfilesSection => {
+const getTutorProfilesSection = cache((): TutorProfilesSection => {
 	const newData =
 		tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
 	const profilesArray = Object.values(newData.profiles);
@@ -3853,7 +3835,7 @@ export const getTutorProfilesSection = cache((): TutorProfilesSection => {
 		backgroundStyle: newData.backgroundStyle,
 	};
 });
-export const getTutorProfilesSectionWithDynamicContent = cache(
+const getTutorProfilesSectionWithDynamicContent = cache(
 	(): TutorProfilesSection => {
 		const { hasTutorImage } = require('./cms-images');
 		const baseSection = getTutorProfilesSection();
@@ -3873,12 +3855,12 @@ export const getTutorProfilesSectionWithDynamicContent = cache(
 		};
 	},
 );
-export const getTutorProfiles = cache((): readonly TutorProfile[] => {
+const getTutorProfiles = cache((): readonly TutorProfile[] => {
 	const newData =
 		tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
 	return Object.values(newData.profiles) || [];
 });
-export const getFeaturedTutorProfiles = cache((): readonly TutorProfile[] => {
+const getFeaturedTutorProfiles = cache((): readonly TutorProfile[] => {
 	const newData =
 		tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
 	return (
@@ -3887,7 +3869,7 @@ export const getFeaturedTutorProfiles = cache((): readonly TutorProfile[] => {
 		) || []
 	);
 });
-export const getTutorProfileById = cache(
+const getTutorProfileById = cache(
 	(id: string): TutorProfile | undefined => {
 		const newData =
 			tutorsNewContent.tutorProfilesSection as TutorProfilesSectionNew;
@@ -3895,4 +3877,3 @@ export const getTutorProfileById = cache(
 	},
 );
 export { getTestimonialVideos };
-export default CMSContent;

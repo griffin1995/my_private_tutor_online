@@ -255,4 +255,4 @@ export const FeatureSection = ({
 	);
 };
 
-export type { Video, Feature, FeatureSectionProps };
+export type {  Feature,  };

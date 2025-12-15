@@ -91,7 +91,7 @@ export function PageLayout({
 		</div>
 	);
 }
-export function SkipToContent() {
+function SkipToContent() {
 	return (
 		<a
 			href='#main-content'
@@ -103,17 +103,17 @@ export function SkipToContent() {
 		</a>
 	);
 }
-export type PageLayoutBackground =
+type PageLayoutBackground =
 	| 'white'
 	| 'gradient'
 	| 'pattern'
 	| 'dark'
 	| 'transparent';
-export type PageLayoutContainerSize =
+type PageLayoutContainerSize =
 	| 'sm'
 	| 'md'
 	| 'lg'
 	| 'xl'
 	| '2xl'
 	| 'full';
-export type PageLayoutVerticalSpacing = 'none' | 'sm' | 'md' | 'lg' | 'xl';
+type PageLayoutVerticalSpacing = 'none' | 'sm' | 'md' | 'lg' | 'xl';

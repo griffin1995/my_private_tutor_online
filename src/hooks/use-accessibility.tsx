@@ -18,7 +18,7 @@ export const useReducedMotion = () => {
 	}, []);
 	return reducedMotion;
 };
-export const useFocusTrap = <T extends HTMLElement = HTMLElement>(
+const useFocusTrap = <T extends HTMLElement = HTMLElement>(
 	isActive: boolean = true,
 ) => {
 	const containerRef = useRef<T>(null);
@@ -39,7 +39,7 @@ export const useFocusTrap = <T extends HTMLElement = HTMLElement>(
 	}, [isActive]);
 	return containerRef;
 };
-export const useAnnouncement = () => {
+const useAnnouncement = () => {
 	const announce = useCallback(
 		(message: string, priority: 'polite' | 'assertive' = 'polite') => {
 			screenReader.announce(message, priority);
@@ -48,7 +48,7 @@ export const useAnnouncement = () => {
 	);
 	return announce;
 };
-export const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
+const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
 	items: T[],
 	options: {
 		orientation?: 'horizontal' | 'vertical' | 'grid';
@@ -131,7 +131,7 @@ export const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
 		handleKeyDown,
 	};
 };
-export const useMediaQuery = (query: string): boolean => {
+const useMediaQuery = (query: string): boolean => {
 	const [matches, setMatches] = useState(() => {
 		if (typeof window === 'undefined') return false;
 		return window.matchMedia(query).matches;
@@ -150,14 +150,14 @@ export const useMediaQuery = (query: string): boolean => {
 	}, [query]);
 	return matches;
 };
-export const useHighContrast = () => {
+const useHighContrast = () => {
 	return useMediaQuery('(prefers-contrast: high)');
 };
-export const useColorScheme = () => {
+const useColorScheme = () => {
 	const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
 	return prefersDark ? 'dark' : 'light';
 };
-export const useAccessibilityInit = () => {
+const useAccessibilityInit = () => {
 	useEffect(() => {
 		injectMotionCSSVariables();
 		const unsubscribe = watchMotionPreference(() => {

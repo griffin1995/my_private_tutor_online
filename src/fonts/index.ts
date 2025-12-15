@@ -1,6 +1,6 @@
 import { Playfair_Display, Source_Serif_4 } from 'next/font/google';
 import localFont from 'next/font/local';
-export const playfairDisplay = Playfair_Display({
+const playfairDisplay = Playfair_Display({
 	subsets: ['latin'],
 	variable: '--font-playfair-display',
 	display: 'swap',
@@ -9,7 +9,7 @@ export const playfairDisplay = Playfair_Display({
 	fallback: ['Didot', 'Bodoni MT', 'Georgia', 'serif'],
 	adjustFontFallback: true,
 });
-export const sourceSerif4 = Source_Serif_4({
+const sourceSerif4 = Source_Serif_4({
 	subsets: ['latin'],
 	variable: '--font-source-serif-4',
 	display: 'swap',
@@ -19,7 +19,7 @@ export const sourceSerif4 = Source_Serif_4({
 	adjustFontFallback: true,
 });
 import { JetBrains_Mono } from 'next/font/google';
-export const jetBrainsMono = JetBrains_Mono({
+const jetBrainsMono = JetBrains_Mono({
 	subsets: ['latin'],
 	variable: '--font-jetbrains-mono',
 	display: 'swap',
@@ -28,18 +28,18 @@ export const jetBrainsMono = JetBrains_Mono({
 	fallback: ['Consolas', 'Monaco', 'Courier New', 'monospace'],
 	adjustFontFallback: true,
 });
-export const fontVariables = {
+const fontVariables = {
 	heading: playfairDisplay.variable,
 	body: sourceSerif4.variable,
 	technical: jetBrainsMono.variable,
 } as const;
 export const fontClassNames = `${playfairDisplay.variable} ${sourceSerif4.variable} ${jetBrainsMono.variable}`;
-export const fontFamilies = {
+const fontFamilies = {
 	heading: 'var(--font-playfair-display)',
 	body: 'var(--font-source-serif-4)',
 	technical: 'var(--font-jetbrains-mono)',
 } as const;
-export const typographyScale = {
+const typographyScale = {
 	h1: {
 		fontFamily: fontFamilies.heading,
 		fontSize: 'clamp(2rem, 4vw, 3rem)',
@@ -111,7 +111,7 @@ export const typographyScale = {
 		letterSpacing: '0',
 	},
 } as const;
-export const getFontMetrics = () => {
+const getFontMetrics = () => {
 	if (typeof window === 'undefined') return null;
 	const metrics = {
 		playfairDisplay: {
@@ -137,11 +137,10 @@ export const getFontMetrics = () => {
 	});
 	return metrics;
 };
-export const fontConfig = {
+const fontConfig = {
 	families: fontFamilies,
 	variables: fontVariables,
 	classNames: fontClassNames,
 	scale: typographyScale,
 	metrics: getFontMetrics,
 } as const;
-export default fontConfig;

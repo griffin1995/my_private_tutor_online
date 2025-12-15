@@ -5,7 +5,7 @@ import {
 	type VideoMasterclass,
 } from '../../../COMPREHENSIVE_VIDEO_CMS';
 export type { VideoMasterclass };
-export interface ImageAsset {
+interface ImageAsset {
 	readonly src: string;
 	readonly alt: string;
 	readonly width?: number;
@@ -16,7 +16,7 @@ export interface ImageAsset {
 	readonly sizes?: string;
 	readonly quality?: number;
 }
-export interface VideoAsset {
+interface VideoAsset {
 	readonly src: string;
 	readonly poster?: string;
 	readonly alt: string;
@@ -28,7 +28,7 @@ export interface VideoAsset {
 	readonly muted?: boolean;
 	readonly loop?: boolean;
 }
-export interface VideoPageSection extends VideoAsset {
+interface VideoPageSection extends VideoAsset {
 	readonly id: string;
 	readonly videoUrl: string;
 	readonly thumbnailUrl: string;
@@ -59,7 +59,7 @@ export interface VideoPageSection extends VideoAsset {
 		readonly disclaimer?: string;
 	};
 }
-export interface BackgroundVideoAsset {
+interface BackgroundVideoAsset {
 	readonly src: string;
 	readonly fallback: string;
 	readonly poster: string;
@@ -67,7 +67,7 @@ export interface BackgroundVideoAsset {
 	readonly title: string;
 	readonly description: string;
 }
-export interface DocumentAsset {
+interface DocumentAsset {
 	readonly src: string;
 	readonly alt: string;
 	readonly title: string;
@@ -75,31 +75,31 @@ export interface DocumentAsset {
 	readonly type?: 'pdf' | 'image';
 	readonly downloadable?: boolean;
 }
-export interface ResponsiveImageSizes {
+interface ResponsiveImageSizes {
 	readonly mobile: number;
 	readonly tablet: number;
 	readonly desktop: number;
 	readonly xl: number;
 }
-export interface InstitutionLogo extends ImageAsset {
+interface InstitutionLogo extends ImageAsset {
 	readonly institution: string;
 	readonly category: 'university' | 'school' | 'college';
 	readonly prestige: 'high' | 'medium' | 'standard';
 	readonly level: 'primary-school' | 'secondary-school' | 'university';
 	readonly location?: string;
 }
-export interface TeamMemberImage extends ImageAsset {
+interface TeamMemberImage extends ImageAsset {
 	readonly name: string;
 	readonly role: string;
 	readonly department?: string;
 }
-export interface MediaLogo extends ImageAsset {
+interface MediaLogo extends ImageAsset {
 	readonly publication: string;
 	readonly recognition: string;
 	readonly year?: number;
 	readonly verified: boolean;
 }
-export const LOGOS = {
+const LOGOS = {
 	main: {
 		src: '/images/logos/logo-with-name.png',
 		alt: 'My Private Tutor Online - Premium Educational Services',
@@ -136,7 +136,7 @@ export const LOGOS = {
 		priority: true,
 	},
 } as const;
-export const INSTITUTION_LOGOS = {
+const INSTITUTION_LOGOS = {
 	oxford: {
 		src: '/images/logos/oxford-university-logo.jpeg',
 		alt: 'University of Oxford logo',
@@ -398,7 +398,7 @@ export const INSTITUTION_LOGOS = {
 		location: 'Rolle, Switzerland',
 	},
 } as const;
-export const HERO_IMAGES = {
+const HERO_IMAGES = {
 	childWithLaptop: {
 		src: '/images/hero/landing-page.avif',
 		alt: 'Child studying with book and laptop - premium online tutoring',
@@ -1010,21 +1010,21 @@ const COMPREHENSIVE_VIDEO_CMS: Record<string, MasterVideoRecord> = {
 const getVideoFromInternalCMS = (id: string): MasterVideoRecord | undefined => {
 	return COMPREHENSIVE_VIDEO_CMS[id];
 };
-export const getVideosByCategory = (category: any) =>
+const getVideosByCategory = (category: any) =>
 	Object.values(COMPREHENSIVE_VIDEO_CMS).filter(
 		(video) => video.category === category,
 	);
-export const getVideosByUsage = (usageType: string) =>
+const getVideosByUsage = (usageType: string) =>
 	Object.values(COMPREHENSIVE_VIDEO_CMS).filter(
 		(video) => video.usageTypes && video.usageTypes.includes(usageType as any),
 	);
-export const getVideoByTitle = (title: string) =>
+const getVideoByTitle = (title: string) =>
 	Object.values(COMPREHENSIVE_VIDEO_CMS).find((video) => video.title === title);
-export const getVideoPageData = (title: string) => {
+const getVideoPageData = (title: string) => {
 	const video = getVideoByTitle(title);
 	return video?.layouts?.videoPage;
 };
-export const FALLBACK_IMAGES = {
+const FALLBACK_IMAGES = {
 	placeholder: {
 		src: '/images/placeholder.svg',
 		alt: 'Placeholder image',
@@ -1180,7 +1180,7 @@ export const STUDENT_IMAGES = {
 		loading: 'lazy' as const,
 	},
 } as const;
-export const imageAssetRegistry = new Map<
+const imageAssetRegistry = new Map<
 	string,
 	Map<string, ImageAsset | VideoAsset | BackgroundVideoAsset>
 >();
@@ -1211,19 +1211,19 @@ export function getImageAsset(
 	const categoryMap = imageAssetRegistry.get(category);
 	return categoryMap?.get(key);
 }
-export function getCategoryAssets(
+function getCategoryAssets(
 	category: string,
 ): Array<[string, ImageAsset | VideoAsset | BackgroundVideoAsset]> {
 	const categoryMap = imageAssetRegistry.get(category);
 	return categoryMap ? Array.from(categoryMap.entries()) : [];
 }
-export const getFooterLogo = (): ImageAsset => {
+const getFooterLogo = (): ImageAsset => {
 	return LOGOS.footer;
 };
-export const getInstitutionLogos = () => {
+const getInstitutionLogos = () => {
 	return INSTITUTION_LOGOS;
 };
-export const getUniversityLogos = (): Record<string, InstitutionLogo> => {
+const getUniversityLogos = (): Record<string, InstitutionLogo> => {
 	const universityEntries = Object.entries(INSTITUTION_LOGOS).filter(
 		([_, logo]) => (logo as InstitutionLogo).level === 'university',
 	);
@@ -1232,7 +1232,7 @@ export const getUniversityLogos = (): Record<string, InstitutionLogo> => {
 		InstitutionLogo
 	>;
 };
-export const getSecondarySchoolLogos = (): Record<string, InstitutionLogo> => {
+const getSecondarySchoolLogos = (): Record<string, InstitutionLogo> => {
 	const secondarySchoolEntries = Object.entries(INSTITUTION_LOGOS).filter(
 		([_, logo]) => (logo as InstitutionLogo).level === 'secondary-school',
 	);
@@ -1241,7 +1241,7 @@ export const getSecondarySchoolLogos = (): Record<string, InstitutionLogo> => {
 		InstitutionLogo
 	>;
 };
-export const getInstitutionLogosByLevel = (
+const getInstitutionLogosByLevel = (
 	level: 'primary-school' | 'secondary-school' | 'university',
 ): Record<string, InstitutionLogo> => {
 	const filteredEntries = Object.entries(INSTITUTION_LOGOS).filter(
@@ -1288,7 +1288,7 @@ export const getScrollingSchoolLogos = cache(
 		return allInstitutionMapping;
 	},
 );
-export const getInstitutionsByLocation = (
+const getInstitutionsByLocation = (
 	locationFilter: string,
 ): Record<string, InstitutionLogo> => {
 	const filteredEntries = Object.entries(INSTITUTION_LOGOS).filter(
@@ -1303,7 +1303,7 @@ export const getInstitutionsByLocation = (
 	);
 	return Object.fromEntries(filteredEntries) as Record<string, InstitutionLogo>;
 };
-export const getInstitutionsByPrestige = (
+const getInstitutionsByPrestige = (
 	prestige: 'high' | 'medium' | 'standard',
 ): Record<string, InstitutionLogo> => {
 	const filteredEntries = Object.entries(INSTITUTION_LOGOS).filter(
@@ -1311,13 +1311,13 @@ export const getInstitutionsByPrestige = (
 	);
 	return Object.fromEntries(filteredEntries) as Record<string, InstitutionLogo>;
 };
-export const getMediaImages = (): typeof MEDIA_IMAGES => {
+const getMediaImages = (): typeof MEDIA_IMAGES => {
 	return MEDIA_IMAGES;
 };
-export const getTutorImages = (): typeof TUTOR_IMAGES => {
+const getTutorImages = (): typeof TUTOR_IMAGES => {
 	return TUTOR_IMAGES;
 };
-export const getTutorImageById = (profileId: string): ImageAsset => {
+const getTutorImageById = (profileId: string): ImageAsset => {
 	const tutorImage = TUTOR_IMAGES[profileId as keyof typeof TUTOR_IMAGES];
 	if (tutorImage) {
 		return tutorImage;
@@ -1337,7 +1337,7 @@ export const getTutorImageById = (profileId: string): ImageAsset => {
 export const hasTutorImage = (profileId: string): boolean => {
 	return profileId in TUTOR_IMAGES;
 };
-export const getNewTutorImageIds = (): readonly string[] => {
+const getNewTutorImageIds = (): readonly string[] => {
 	const newTutorIds = [
 		'alma-maths-science',
 		'amy-english',
@@ -1351,11 +1351,11 @@ export const getNewTutorImageIds = (): readonly string[] => {
 	] as const;
 	return newTutorIds;
 };
-export const isNewTutor = (profileId: string): boolean => {
+const isNewTutor = (profileId: string): boolean => {
 	const newTutorIds = getNewTutorImageIds();
 	return newTutorIds.includes(profileId as (typeof newTutorIds)[number]);
 };
-export const getVideoContent = () => {
+const getVideoContent = () => {
 	return Object.values(COMPREHENSIVE_VIDEO_CMS).filter(
 		(video) => video.category === 'testimonial',
 	);
@@ -1395,19 +1395,19 @@ export const getTestimonialVideos = (): Array<{
 			testimonialRole: video.testimonialRole,
 		}));
 };
-export const getMarketingAssets = (): typeof MARKETING_ASSETS => {
+const getMarketingAssets = (): typeof MARKETING_ASSETS => {
 	return MARKETING_ASSETS;
 };
-export const getHeroImage = (): ImageAsset => {
+const getHeroImage = (): ImageAsset => {
 	return HERO_IMAGES.childWithLaptop;
 };
-export const getIntroVideo = (): ImageAsset => {
+const getIntroVideo = (): ImageAsset => {
 	return HERO_IMAGES.introVideo;
 };
-export const getAboutHeroImage = (): ImageAsset => {
+const getAboutHeroImage = (): ImageAsset => {
 	return HERO_IMAGES.aboutFounderStory;
 };
-export const getGoingAgainstGrainImage = (): ImageAsset => {
+const getGoingAgainstGrainImage = (): ImageAsset => {
 	return HERO_IMAGES.goingAgainstGrainPhilosophy;
 };
 export const getTutorsHeroImage = (): ImageAsset => {
@@ -1421,32 +1421,32 @@ export const getTutorsHeroImage = (): ImageAsset => {
 		priority: true,
 	};
 };
-export const getTeamImages = (): typeof TEAM_IMAGES => {
+const getTeamImages = (): typeof TEAM_IMAGES => {
 	return TEAM_IMAGES;
 };
-export const getTestimonialImages = (): typeof TESTIMONIAL_IMAGES => {
+const getTestimonialImages = (): typeof TESTIMONIAL_IMAGES => {
 	return TESTIMONIAL_IMAGES;
 };
-export const getVideoPlaceholders = (): typeof VIDEO_PLACEHOLDERS => {
+const getVideoPlaceholders = (): typeof VIDEO_PLACEHOLDERS => {
 	return VIDEO_PLACEHOLDERS;
 };
-export const getMasterclassVideos = () => {
+const getMasterclassVideos = () => {
 	return Object.values(COMPREHENSIVE_VIDEO_CMS).filter(
 		(video) => video.usageTypes && video.usageTypes.includes('masterclass'),
 	);
 };
-export const getVideoPageSections = () => {
+const getVideoPageSections = () => {
 	return Object.values(COMPREHENSIVE_VIDEO_CMS).filter(
 		(video) => video.usageTypes && video.usageTypes.includes('page-section'),
 	);
 };
-export const getVideoPageSection = (title: string) => {
+const getVideoPageSection = (title: string) => {
 	return getVideoByTitle(title);
 };
-export const getProgrammeImages = (): typeof PROGRAMME_IMAGES => {
+const getProgrammeImages = (): typeof PROGRAMME_IMAGES => {
 	return PROGRAMME_IMAGES;
 };
-export const getProgrammeImage = (
+const getProgrammeImage = (
 	imageKey: keyof typeof PROGRAMME_IMAGES,
 ): ImageAsset => {
 	return PROGRAMME_IMAGES[imageKey];
@@ -1518,7 +1518,7 @@ export const getMasterclassVideo = (
 	}
 	return transformVideoMasterclass(video);
 };
-export const getVideoMasterclassPage = cache(
+const getVideoMasterclassPage = cache(
 	(): readonly VideoMasterclass[] => {
 		const videoIds = [
 			'unlockingAcademicSuccess',
@@ -1539,25 +1539,25 @@ export const getVideoMasterclassPage = cache(
 		return videos;
 	},
 );
-export const getBackgroundVideo = (title: string) => {
+const getBackgroundVideo = (title: string) => {
 	const video = getVideoByTitle(title);
 	return video && video.category === 'background' ? video : null;
 };
-export const getBackgroundVideos = () => {
+const getBackgroundVideos = () => {
 	return Object.values(COMPREHENSIVE_VIDEO_CMS).filter(
 		(video) => video.category === 'background',
 	);
 };
-export const getFallbackImage = (): ImageAsset => {
+const getFallbackImage = (): ImageAsset => {
 	return FALLBACK_IMAGES.placeholder;
 };
-export const getAvatarPlaceholder = (): ImageAsset => {
+const getAvatarPlaceholder = (): ImageAsset => {
 	return FALLBACK_IMAGES.avatarPlaceholder;
 };
-export const getStudentImages = (): typeof STUDENT_IMAGES => {
+const getStudentImages = (): typeof STUDENT_IMAGES => {
 	return STUDENT_IMAGES;
 };
-export const generateResponsiveSizes = (
+const generateResponsiveSizes = (
 	baseWidth: number,
 ): ResponsiveImageSizes => {
 	return {
@@ -1567,7 +1567,7 @@ export const generateResponsiveSizes = (
 		xl: Math.round(baseWidth * 1.25),
 	};
 };
-export const generateSrcSet = (
+const generateSrcSet = (
 	src: string,
 	sizes: Record<string, number>,
 ): string => {
@@ -1575,7 +1575,7 @@ export const generateSrcSet = (
 		.map(([_, width]) => `${src}?w=${width} ${width}w`)
 		.join(', ');
 };
-export const getOptimizedImageProps = (
+const getOptimizedImageProps = (
 	image: ImageAsset,
 	customSizes?: string,
 ): {
@@ -1600,7 +1600,7 @@ export const getOptimizedImageProps = (
 			customSizes || '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
 	};
 };
-export const validateImageAccessibility = (image: ImageAsset): boolean => {
+const validateImageAccessibility = (image: ImageAsset): boolean => {
 	if (!image.alt || image.alt.trim().length === 0) {
 		return false;
 	}
@@ -1615,7 +1615,7 @@ export const validateImageAccessibility = (image: ImageAsset): boolean => {
 	}
 	return true;
 };
-export const getCriticalImages = (): readonly ImageAsset[] => {
+const getCriticalImages = (): readonly ImageAsset[] => {
 	const allImages: readonly ImageAsset[] = [
 		...Object.values(LOGOS),
 		...Object.values(HERO_IMAGES),
@@ -1633,7 +1633,7 @@ export const getMainLogoWhite = cache((): ImageAsset | undefined => {
 	const logoMap = imageAssetRegistry.get('logos') as Map<string, ImageAsset>;
 	return logoMap?.get('mainWhite');
 });
-export const CMSImages = {
+const CMSImages = {
 	getLogos: () => {
 		const logoMap = imageAssetRegistry.get('logos') as Map<string, ImageAsset>;
 		const heroMap = imageAssetRegistry.get('hero') as Map<string, ImageAsset>;
@@ -1664,4 +1664,3 @@ export const CMSImages = {
 	getProgrammeImages,
 	getProgrammeImage,
 } as const;
-export default CMSImages;

@@ -222,4 +222,3 @@ export function ResultsSection({
 		</section>
 	);
 }
-export default ResultsSection;

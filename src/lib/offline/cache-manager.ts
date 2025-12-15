@@ -1,4 +1,4 @@
-export interface CacheConfig {
+interface CacheConfig {
 	name: string;
 	version: string;
 	maxEntries: number;
@@ -12,21 +12,21 @@ export interface CacheEntry {
 	version: string;
 	size: number;
 }
-export interface CacheStats {
+interface CacheStats {
 	totalSize: number;
 	entryCount: number;
 	lastAccessed: number;
 	hitRate: number;
 	missRate: number;
 }
-export interface OfflineCacheManifest {
+interface OfflineCacheManifest {
 	faqCategories: CacheEntry[];
 	faqQuestions: CacheEntry[];
 	searchIndex: CacheEntry[];
 	userPreferences: CacheEntry[];
 	assets: CacheEntry[];
 }
-export const CACHE_CONFIGS: Record<string, CacheConfig> = {
+const CACHE_CONFIGS: Record<string, CacheConfig> = {
 	FAQ_CONTENT: {
 		name: 'faq-content-v1',
 		version: '1.0.0',

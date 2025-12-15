@@ -17,7 +17,7 @@ const ALLOWED_ORIGINS = [
 ];
 
 // CORS headers configuration
-export const CORS_HEADERS = {
+const CORS_HEADERS = {
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With, X-CSRF-Token',
   'Access-Control-Max-Age': '86400', // 24 hours
@@ -30,7 +30,7 @@ export const CORS_HEADERS = {
  * @param origin Request origin
  * @returns Response with CORS headers
  */
-export function applyCorsHeaders(response: NextResponse, origin?: string | null): NextResponse {
+function applyCorsHeaders(response: NextResponse, origin?: string | null): NextResponse {
   // Check if origin is allowed
   if (origin && ALLOWED_ORIGINS.includes(origin)) {
     response.headers.set('Access-Control-Allow-Origin', origin);
@@ -63,7 +63,7 @@ export function handleCorsPreflightRequest(origin?: string | null): NextResponse
  * @param origin Origin to check
  * @returns Boolean indicating if origin is allowed
  */
-export function isOriginAllowed(origin?: string | null): boolean {
+function isOriginAllowed(origin?: string | null): boolean {
   if (!origin) return false;
   return ALLOWED_ORIGINS.includes(origin) ||
          (process.env.NODE_ENV === 'development' && origin.startsWith('http://localhost:'));

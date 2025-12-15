@@ -111,4 +111,4 @@ export function LogoSection({
 		</div>
 	);
 }
-export type { LogoSectionProps };
+;

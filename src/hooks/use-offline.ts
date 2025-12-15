@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import {
 	offlineStrategies,
-	NetworkStatus,
-	SyncQueueItem,
+	type NetworkStatus,
+	type SyncQueueItem,
 } from '@/lib/offline/offline-strategies';
 import { cacheManager } from '@/lib/offline/cache-manager';
-export interface OfflineState {
+interface OfflineState {
 	isOnline: boolean;
 	wasOffline: boolean;
 	connectionQuality: 'fast' | 'slow' | 'poor' | 'unknown';
@@ -18,7 +18,7 @@ export interface OfflineState {
 	cacheSize: number;
 	dataFreshness: 'fresh' | 'stale' | 'unknown';
 }
-export interface OfflineOptions {
+interface OfflineOptions {
 	enablePersistence?: boolean;
 	enableSyncQueue?: boolean;
 	enableConnectionMonitoring?: boolean;
@@ -29,7 +29,7 @@ export interface OfflineOptions {
 	onSyncComplete?: (results: any[]) => void;
 	onSyncError?: (error: Error) => void;
 }
-export interface OfflineActions {
+interface OfflineActions {
 	queueForSync: (action: string, data: any) => Promise<string>;
 	forcSync: () => Promise<void>;
 	clearCache: (cacheKey?: string) => Promise<boolean>;
@@ -39,7 +39,7 @@ export interface OfflineActions {
 	getNetworkInfo: () => NetworkStatus;
 	getCacheStats: () => any;
 }
-export interface UseOfflineReturn {
+interface UseOfflineReturn {
 	state: OfflineState;
 	actions: OfflineActions;
 }

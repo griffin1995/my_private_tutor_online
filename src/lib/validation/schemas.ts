@@ -1,5 +1,5 @@
 import { z } from 'zod';
-export const contactFormSchema = z.object({
+const contactFormSchema = z.object({
 	firstName: z
 		.string()
 		.min(2, 'First name must be at least 2 characters')
@@ -113,7 +113,7 @@ export const newsletterSchema = z.object({
 	}),
 	honeypot: z.string().max(0).optional(),
 });
-export const consultationBookingSchema = z.object({
+const consultationBookingSchema = z.object({
 	parentName: z
 		.string()
 		.min(2, 'Parent/Guardian name is required')
@@ -167,7 +167,7 @@ export const consultationBookingSchema = z.object({
 	}),
 	honeypot: z.string().max(0).optional(),
 });
-export const adminLoginSchema = z.object({
+const adminLoginSchema = z.object({
 	email: z
 		.string()
 		.email('Please enter a valid email address')
@@ -180,7 +180,7 @@ export const adminLoginSchema = z.object({
 	csrfToken: z.string().min(1, 'Security token is required'),
 	honeypot: z.string().max(0).optional(),
 });
-export const fileUploadSchema = z.object({
+const fileUploadSchema = z.object({
 	file: z
 		.any()
 		.refine((file) => file instanceof File, 'Please select a valid file')
@@ -216,12 +216,12 @@ export const fileUploadSchema = z.object({
 		])
 		.optional(),
 });
-export type ContactFormData = z.infer<typeof contactFormSchema>;
+type ContactFormData = z.infer<typeof contactFormSchema>;
 export type NewsletterData = z.infer<typeof newsletterSchema>;
-export type ConsultationBookingData = z.infer<typeof consultationBookingSchema>;
-export type AdminLoginData = z.infer<typeof adminLoginSchema>;
-export type FileUploadData = z.infer<typeof fileUploadSchema>;
-export const validateForm = <T>(
+type ConsultationBookingData = z.infer<typeof consultationBookingSchema>;
+type AdminLoginData = z.infer<typeof adminLoginSchema>;
+type FileUploadData = z.infer<typeof fileUploadSchema>;
+const validateForm = <T>(
 	schema: z.ZodSchema<T>,
 	data: unknown,
 ): {
@@ -260,26 +260,26 @@ export const safeValidateForm = <T>(schema: z.ZodSchema<T>, data: unknown) => {
 		errors: result.error.format(),
 	};
 };
-export const isValidContactForm = (data: unknown): data is ContactFormData => {
+const isValidContactForm = (data: unknown): data is ContactFormData => {
 	return contactFormSchema.safeParse(data).success;
 };
-export const isValidNewsletterSubscription = (
+const isValidNewsletterSubscription = (
 	data: unknown,
 ): data is NewsletterData => {
 	return newsletterSchema.safeParse(data).success;
 };
-export const isValidConsultationBooking = (
+const isValidConsultationBooking = (
 	data: unknown,
 ): data is ConsultationBookingData => {
 	return consultationBookingSchema.safeParse(data).success;
 };
-export const isValidAdminLogin = (data: unknown): data is AdminLoginData => {
+const isValidAdminLogin = (data: unknown): data is AdminLoginData => {
 	return adminLoginSchema.safeParse(data).success;
 };
-export const isValidFileUpload = (data: unknown): data is FileUploadData => {
+const isValidFileUpload = (data: unknown): data is FileUploadData => {
 	return fileUploadSchema.safeParse(data).success;
 };
-export const formatValidationErrors = (
+const formatValidationErrors = (
 	errors: z.ZodError,
 ): Record<string, string> => {
 	const formattedErrors: Record<string, string> = {};
@@ -289,17 +289,17 @@ export const formatValidationErrors = (
 	});
 	return formattedErrors;
 };
-export const ukPhoneNumberSchema = z
+const ukPhoneNumberSchema = z
 	.string()
 	.regex(/^(\+44\s?|0)([1-9]\d{8,9})$/, 'Please enter a valid UK phone number');
-export const ukPostcodeSchema = z
+const ukPostcodeSchema = z
 	.string()
 	.regex(
 		/^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i,
 		'Please enter a valid UK postcode',
 	)
 	.transform((val) => val.toUpperCase().replace(/\s+/g, ' ').trim());
-export const validationPatterns = {
+const validationPatterns = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 	ukPhone: /^(\+44\s?|0)([1-9]\d{8,9})$/,
 	ukPostcode: /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i,
@@ -307,7 +307,7 @@ export const validationPatterns = {
 	strongPassword:
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
 } as const;
-export const validationMessages = {
+const validationMessages = {
 	required: 'This field is required',
 	email: 'Please enter a valid email address',
 	phone: 'Please enter a valid phone number',

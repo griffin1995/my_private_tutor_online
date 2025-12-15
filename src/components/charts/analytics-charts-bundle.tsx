@@ -115,4 +115,3 @@ export const AnalyticsChartsBundle: React.FC<AnalyticsChartsProps> = ({
   );
 };
 
-export default AnalyticsChartsBundle;

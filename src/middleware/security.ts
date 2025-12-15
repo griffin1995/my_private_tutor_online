@@ -1,5 +1,5 @@
 import * as z from 'zod';
-export const inputSchemas = {
+const inputSchemas = {
 	contactForm: z.object({
 		name: z
 			.string()
@@ -47,7 +47,7 @@ export function sanitiseInput<T>(
 		throw error;
 	}
 }
-export interface SecurityEvent {
+interface SecurityEvent {
 	type:
 		| 'rate_limit'
 		| 'csrf_failure'
@@ -60,7 +60,7 @@ export interface SecurityEvent {
 	path: string;
 	details: Record<string, any>;
 }
-export class SecurityMonitor {
+class SecurityMonitor {
 	private events: SecurityEvent[] = [];
 	private alertThresholds = {
 		rate_limit: {

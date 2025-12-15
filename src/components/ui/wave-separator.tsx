@@ -106,4 +106,3 @@ export const WaveSeparator: React.FC<WaveSeparatorProps> = ({
 		</div>
 	);
 };
-export default WaveSeparator;

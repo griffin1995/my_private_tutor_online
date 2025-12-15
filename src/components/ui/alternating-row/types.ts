@@ -17,7 +17,7 @@ import React from 'react';
  * Image configuration with Next.js optimization support
  * Designed for future Payload CMS media field integration
  */
-export interface AlternatingRowImage {
+interface AlternatingRowImage {
   /** Image source URL or path */
   src: string;
   /** Required alt text for accessibility (WCAG 2025) */
@@ -44,13 +44,13 @@ export type AlternatingRowIcon = LucideIcon | ComponentType<{ className?: string
  * Layout variant discriminated union
  * Ensures type-safe image positioning
  */
-export type AlternatingRowVariant = 'left' | 'right';
+type AlternatingRowVariant = 'left' | 'right';
 
 /**
  * Container query configuration
  * Enables responsive behavior based on container size
  */
-export interface ContainerConfig {
+interface ContainerConfig {
   /** Enable container queries (default: true) */
   enabled?: boolean;
   /** Container name for targeted queries */
@@ -61,7 +61,7 @@ export interface ContainerConfig {
  * Card wrapper configuration for enhanced styling
  * Enables shadcn/ui Card component integration
  */
-export interface CardConfig {
+interface CardConfig {
   /** Enable Card wrapper (default: false) */
   enabled?: boolean;
   /** Card variant style */
@@ -180,7 +180,7 @@ export interface AlternatingLayoutProps {
  * CMS-ready data structure for future Payload integration
  * Matches the component prop structure for seamless integration
  */
-export interface CMSAlternatingRowData {
+interface CMSAlternatingRowData {
   /** Unique CMS record ID */
   id: string;
   /** Layout variant */
@@ -221,7 +221,7 @@ export interface CMSAlternatingRowData {
 /**
  * Type guard for checking if data is from CMS
  */
-export function isCMSData(data: unknown): data is CMSAlternatingRowData {
+function isCMSData(data: unknown): data is CMSAlternatingRowData {
   return (
     typeof data === 'object' &&
     data !== null &&
@@ -235,7 +235,7 @@ export function isCMSData(data: unknown): data is CMSAlternatingRowData {
  * Transform CMS data to component props
  * Enables seamless integration with future Payload CMS
  */
-export function transformCMSData(data: CMSAlternatingRowData): Omit<AlternatingRowProps, 'children'> {
+function transformCMSData(data: CMSAlternatingRowData): Omit<AlternatingRowProps, 'children'> {
   return {
     id: data.id,
     variant: data.variant,
@@ -256,14 +256,14 @@ export function transformCMSData(data: CMSAlternatingRowData): Omit<AlternatingR
 /**
  * Utility type for extracting variant-specific props
  */
-export type VariantProps<T extends AlternatingRowVariant> = AlternatingRowProps & {
+type VariantProps<T extends AlternatingRowVariant> = AlternatingRowProps & {
   variant: T;
 };
 
 /**
  * Utility type for creating strongly-typed bullet configurations
  */
-export type TypedBulletPoints<T extends readonly string[]> = {
+type TypedBulletPoints<T extends readonly string[]> = {
   readonly [K in keyof T]: BulletPoint & { text: T[K] };
 };
 
@@ -276,14 +276,14 @@ export type AlternatingRowRef = HTMLDivElement;
 /**
  * Component with displayName property for type-safe component identification
  */
-export interface ComponentWithDisplayName {
+interface ComponentWithDisplayName {
   displayName?: string;
 }
 
 /**
  * React element with properly typed displayName for component type checking
  */
-export type ReactElementWithDisplayName = React.ReactElement & {
+type ReactElementWithDisplayName = React.ReactElement & {
   type: ComponentWithDisplayName;
 };
 
@@ -307,7 +307,7 @@ export function isAlternatingRowHeader(
 /**
  * Event handler types for interactive functionality
  */
-export interface AlternatingRowEventHandlers {
+interface AlternatingRowEventHandlers {
   /** Click handler for the entire row */
   onRowClick?: (id: string) => void;
   /** Image click handler */
@@ -319,7 +319,7 @@ export interface AlternatingRowEventHandlers {
 /**
  * Performance optimization configuration
  */
-export interface PerformanceConfig {
+interface PerformanceConfig {
   /** Enable React.memo optimization */
   memoized?: boolean;
   /** Enable lazy loading for images */
@@ -331,7 +331,7 @@ export interface PerformanceConfig {
 /**
  * Accessibility configuration
  */
-export interface A11yConfig {
+interface A11yConfig {
   /** Screen reader description */
   description?: string;
   /** Landmark role */
@@ -343,7 +343,7 @@ export interface A11yConfig {
 /**
  * Complete configuration interface combining all optional configs
  */
-export interface AlternatingRowConfig extends PerformanceConfig, A11yConfig {
+interface AlternatingRowConfig extends PerformanceConfig, A11yConfig {
   container?: ContainerConfig;
   events?: AlternatingRowEventHandlers;
 }

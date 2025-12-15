@@ -155,4 +155,4 @@ export function AboutSectionClient({
 	);
 }
 
-export type { AboutSectionClientProps };
+;

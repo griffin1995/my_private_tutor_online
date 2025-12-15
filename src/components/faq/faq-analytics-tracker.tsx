@@ -861,7 +861,7 @@ export function useFAQAnalytics(): FAQAnalyticsService {
 		trackRevenueAttribution,
 	};
 }
-export function FAQAnalyticsTracker({
+function FAQAnalyticsTracker({
 	category,
 	subcategory,
 	question,
@@ -918,7 +918,7 @@ export function FAQAnalyticsTracker({
 	}, [customEvents, analytics, enableTracking, debugMode]);
 	return null;
 }
-export function FAQHelpfulnessRating({
+function FAQHelpfulnessRating({
 	questionId,
 	categorySlug,
 	onRating,
@@ -966,4 +966,3 @@ declare global {
 		dataLayer?: any[];
 	}
 }
-export default FAQAnalyticsTracker;

@@ -184,4 +184,4 @@ export function SimpleHero({
 		</section>
 	);
 }
-export type { SimpleHeroProps };
+;

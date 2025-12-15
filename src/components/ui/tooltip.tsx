@@ -20,13 +20,13 @@ interface TooltipRootContextType {
 	disableHoverableContent?: boolean;
 }
 const TooltipRootContext = createContext<TooltipRootContextType | null>(null);
-export interface TooltipProviderProps {
+interface TooltipProviderProps {
 	children: React.ReactNode;
 	delayDuration?: number;
 	skipDelayDuration?: number;
 	disableHoverableContent?: boolean;
 }
-export interface TooltipProps {
+interface TooltipProps {
 	children: React.ReactNode;
 	defaultOpen?: boolean;
 	open?: boolean;
@@ -34,12 +34,12 @@ export interface TooltipProps {
 	delayDuration?: number;
 	disableHoverableContent?: boolean;
 }
-export interface TooltipTriggerProps {
+interface TooltipTriggerProps {
 	children: React.ReactNode;
 	asChild?: boolean;
 	className?: string;
 }
-export interface TooltipContentProps {
+interface TooltipContentProps {
 	children: React.ReactNode;
 	side?: 'top' | 'right' | 'bottom' | 'left';
 	sideOffset?: number;
@@ -341,14 +341,14 @@ export function TooltipContent({
 		</AnimatePresence>
 	);
 }
-export interface LegacyTooltipProps {
+interface LegacyTooltipProps {
 	content: string;
 	children: React.ReactNode;
 	placement?: 'top' | 'bottom' | 'left' | 'right';
 	delay?: number;
 	className?: string;
 }
-export function Tooltip({
+function Tooltip({
 	content,
 	children,
 	placement = 'top',

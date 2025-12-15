@@ -3,7 +3,7 @@
  * Provides synchronous content loading following project CMS patterns
  */
 
-export interface LegalPageMetadata {
+interface LegalPageMetadata {
 	title: string;
 	subtitle: string;
 	lastUpdated: string;
@@ -13,7 +13,7 @@ export interface LegalPageMetadata {
 	slug: string;
 }
 
-export interface LegalPageContent {
+interface LegalPageContent {
 	metadata: LegalPageMetadata;
 	content: string;
 }
@@ -82,7 +82,7 @@ export function getLegalPageMetadata(slug: string): LegalPageMetadata | undefine
  * Get all legal page configurations
  * @returns Array of all legal page metadata
  */
-export function getAllLegalPages(): LegalPageMetadata[] {
+function getAllLegalPages(): LegalPageMetadata[] {
 	return Object.values(LEGAL_PAGE_CONFIGS);
 }
 
@@ -91,7 +91,7 @@ export function getAllLegalPages(): LegalPageMetadata[] {
  * @param metadata - The metadata to validate
  * @returns boolean indicating if metadata is valid
  */
-export function validateLegalPageMetadata(metadata: Partial<LegalPageMetadata>): metadata is LegalPageMetadata {
+function validateLegalPageMetadata(metadata: Partial<LegalPageMetadata>): metadata is LegalPageMetadata {
 	const required = ['title', 'subtitle', 'lastUpdated', 'backgroundImage', 'slug'];
 	return required.every(field => field in metadata && metadata[field as keyof LegalPageMetadata]);
 }
@@ -101,7 +101,7 @@ export function validateLegalPageMetadata(metadata: Partial<LegalPageMetadata>):
  * @param slug - The slug to check
  * @returns boolean indicating if slug is valid
  */
-export function isValidLegalPageSlug(slug: string): slug is keyof typeof LEGAL_PAGE_CONFIGS {
+function isValidLegalPageSlug(slug: string): slug is keyof typeof LEGAL_PAGE_CONFIGS {
 	return slug in LEGAL_PAGE_CONFIGS;
 }
 
@@ -110,7 +110,7 @@ export function isValidLegalPageSlug(slug: string): slug is keyof typeof LEGAL_P
  * @param slug - The current page slug
  * @returns Breadcrumb data array
  */
-export function getLegalPageBreadcrumbs(slug: string) {
+function getLegalPageBreadcrumbs(slug: string) {
 	const metadata = getLegalPageMetadata(slug);
 	return [
 		{ label: 'Home', href: '/' },
@@ -120,4 +120,4 @@ export function getLegalPageBreadcrumbs(slug: string) {
 }
 
 // Type exports for external use
-export type LegalPageSlug = keyof typeof LEGAL_PAGE_CONFIGS;
+type LegalPageSlug = keyof typeof LEGAL_PAGE_CONFIGS;

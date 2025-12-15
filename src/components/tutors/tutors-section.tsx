@@ -108,4 +108,3 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
 	);
 };
 
-export default TutorsSection;

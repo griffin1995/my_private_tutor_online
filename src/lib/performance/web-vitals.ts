@@ -75,7 +75,7 @@ function formatMetric(metric: Metric): WebVitalsData {
 		userAgent: navigator.userAgent,
 	};
 }
-export interface AnalyticsProvider {
+interface AnalyticsProvider {
 	trackWebVital: (data: WebVitalsData) => void;
 	trackPerformanceMetric: (
 		name: string,
@@ -337,4 +337,3 @@ if (typeof window !== 'undefined') {
 		webVitalsTracker.init();
 	}
 }
-export default webVitalsTracker;

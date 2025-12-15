@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState, useEffect } from 'react';
+import { type ReactNode, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import {
 	NAVBAR_HEIGHTS,
@@ -169,8 +169,8 @@ export function PageHero({
 		</section>
 	);
 }
-export type PageHeroBackground = 'white' | 'gradient' | 'image' | 'video';
-export type PageHeroSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
-export type PageHeroAlignment = 'left' | 'center' | 'right';
-export type PageHeroVerticalAlignment = 'top' | 'center' | 'bottom';
-export type PageHeroOverlayOpacity = 'light' | 'medium' | 'dark';
+type PageHeroBackground = 'white' | 'gradient' | 'image' | 'video';
+type PageHeroSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+type PageHeroAlignment = 'left' | 'center' | 'right';
+type PageHeroVerticalAlignment = 'top' | 'center' | 'bottom';
+type PageHeroOverlayOpacity = 'light' | 'medium' | 'dark';

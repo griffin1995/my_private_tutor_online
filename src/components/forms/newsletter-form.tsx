@@ -383,4 +383,4 @@ export function NewsletterForm({
 		</div>
 	);
 }
-export type NewsletterFormVariant = 'default' | 'inline' | 'card' | 'hero';
+type NewsletterFormVariant = 'default' | 'inline' | 'card' | 'hero';

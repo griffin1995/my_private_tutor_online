@@ -1,6 +1,6 @@
-import { cacheManager, CacheEntry } from './cache-manager';
+import { cacheManager, type CacheEntry } from './cache-manager';
 import { getFAQCategories, getFAQHero } from '@/lib/cms/cms-content';
-export interface OfflineStrategyOptions {
+interface OfflineStrategyOptions {
 	timeout?: number;
 	retries?: number;
 	fallbackDelay?: number;
@@ -8,7 +8,7 @@ export interface OfflineStrategyOptions {
 	networkFirst?: boolean;
 	staleWhileRevalidate?: boolean;
 }
-export interface OfflineResponse<T = any> {
+interface OfflineResponse<T = any> {
 	data: T;
 	source: 'cache' | 'network' | 'fallback';
 	timestamp: number;
@@ -30,7 +30,7 @@ export interface SyncQueueItem {
 	retries: number;
 	maxRetries: number;
 }
-export class OfflineStrategies {
+class OfflineStrategies {
 	private syncQueue: SyncQueueItem[] = [];
 	private networkStatus: NetworkStatus = {
 		online: typeof navigator !== 'undefined' ? navigator.onLine : true,

@@ -63,4 +63,3 @@ export const FooterCompanySectionHardcoded: React.FC<FooterCompanySectionHardcod
 	);
 };
 
-export default FooterCompanySectionHardcoded;

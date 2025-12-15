@@ -8,7 +8,7 @@ import {
 	CourseJsonLd,
 	SocialProfileJsonLd,
 } from 'next-seo';
-export const OrganizationSchema: React.FC = () => {
+const OrganizationSchema: React.FC = () => {
 	return (
 		<OrganizationJsonLd
 			type='EducationalOrganization'
@@ -70,7 +70,7 @@ export const OrganizationSchema: React.FC = () => {
 		/>
 	);
 };
-export const LocalBusinessSchema: React.FC = () => {
+const LocalBusinessSchema: React.FC = () => {
 	return (
 		<LocalBusinessJsonLd
 			type='EducationalOrganization'
@@ -136,7 +136,7 @@ interface CourseSchemaProps {
 	level: string;
 	duration?: string;
 }
-export const CourseSchema: React.FC<CourseSchemaProps> = ({
+const CourseSchema: React.FC<CourseSchemaProps> = ({
 	courseName,
 	courseDescription,
 	subject,
@@ -184,7 +184,7 @@ interface WebPageSchemaProps {
 	lastReviewed?: string;
 	pageType?: 'HomePage' | 'AboutPage' | 'ContactPage' | 'ServicePage';
 }
-export const WebPageSchema: React.FC<WebPageSchemaProps> = ({
+const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 	pageTitle,
 	pageDescription,
 	pageUrl,
@@ -232,7 +232,7 @@ export const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 		/>
 	);
 };
-export const SocialProfileSchema: React.FC = () => {
+const SocialProfileSchema: React.FC = () => {
 	return (
 		<SocialProfileJsonLd
 			type='Organization'
@@ -301,4 +301,3 @@ export const SchemaMarkup: React.FC<SchemaMarkupProps> = ({
 		</>
 	);
 };
-export default SchemaMarkup;

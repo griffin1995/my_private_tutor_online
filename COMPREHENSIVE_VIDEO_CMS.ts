@@ -29,7 +29,7 @@ export interface VideoMasterclass {
 	readonly backgroundImage: string;
 	readonly isPaid: boolean;
 	readonly purchaseLink?: string;
-	readonly duration: number;
+	readonly duration?: number; // Optional duration - only renders when provided
 }
 
 // CONTEXT7 SOURCE: /sharp/sharp - Professional image processing with darkened variants for enhanced readability
@@ -185,6 +185,7 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		// BOOTCAMP PURCHASE INTEGRATION: Official Stripe documentation for external payment processing with existing bootcamp pricing
 		// KICKSTARTER PROGRAMME LINK: Using existing Stripe URL for £395 Kickstarter programme booking
 		purchaseLink: 'https://buy.stripe.com/6oUdR8enb9jF69u1Zd3840c',
+		// duration: undefined - Optional property, will be added when video content is ready
 	},
 	{
 		id: 'bootcampTestimonial',
@@ -215,12 +216,13 @@ export const videoMasterclasses: readonly VideoMasterclass[] = [
 		// BOOTCAMP PURCHASE INTEGRATION: Official Stripe documentation for external payment processing with existing bootcamp pricing
 		// INTENSIVE PROGRAMME LINK: Using existing Stripe URL for £395 Intensive programme booking
 		purchaseLink: 'https://buy.stripe.com/7sYbJ0cf3brN69u8nB3840d',
+		// duration: undefined - Optional property, will be added when video content is ready
 	},
 ] as const;
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Type export for external component integration
 // TYPE INTEGRATION: Official TypeScript patterns for readonly array types and external module usage
-export type VideoMasterclassId = (typeof videoMasterclasses)[number]['id'];
+type VideoMasterclassId = (typeof videoMasterclasses)[number]['id'];
 
 // CONTEXT7 SOURCE: /microsoft/typescript - Utility function for video data lookup with type safety
 // LOOKUP FUNCTION: Official TypeScript documentation for safe array lookup operations with undefined handling

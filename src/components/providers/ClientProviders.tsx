@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { HydrationProvider } from './HydrationProvider';
 import { LazyMotionProvider } from './LazyMotionProvider';
 import { TooltipProvider } from '@/components/ui/tooltip';

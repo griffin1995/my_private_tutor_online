@@ -135,4 +135,4 @@ LegalPageTemplate.Content = LegalContent;
 LegalPageTemplate.Footer = LegalFooter;
 
 // Export type definitions for external use
-export type { LegalPageTemplateProps, LegalMetaInfoProps, LegalContentProps };
+;

@@ -88,4 +88,4 @@ export const Testimonial10NoRole = ({
 	);
 };
 
-export type { Testimonial10Props, Testimonial10NoRoleProps };
+;

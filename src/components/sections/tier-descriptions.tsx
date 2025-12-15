@@ -352,5 +352,5 @@ export function TierDescriptions({
 }
 
 // Export the tier data for use in other components if needed
-export { TUTOR_TIERS };
-export type { TutorTier };
+;
+;

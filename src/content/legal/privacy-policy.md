@@ -9,9 +9,11 @@ us, particularly when serving high-profile families and international clientele.
 
 ## 1. Data Controller Information
 
-**Company:** My Private Tutor Online **Registered Address:** [Company Registered
-Address] **Data Protection Officer Contact:** [DPO Email/Phone] **Last
-Updated:** August 2025
+**Company:** My Private Tutor Online
+**Registered Address:** 17 Alexandra Gardens, London, United Kingdom, N10 3RN
+**Data Protection Officer Contact:** info@myprivatetutoronline.com
+**Telephone:** (+44) 7513 550 278
+**Last Updated:** December 2025
 
 ## 2. Types of Personal Data We Process
 
@@ -84,11 +86,15 @@ implementing:
 
 ## 6. Data Retention
 
-We retain personal data only for as long as necessary:
+We retain personal data only for as long as necessary to fulfil the purposes for which it was collected:
 
-- Active client records: Duration of service plus 6 years
-- Archived records: Up to 7 years for legal and tax purposes
-- Student academic records: Up to 25 years for historical tracking
+- **Student academic records:** 7 years after the last lesson for educational progression tracking
+- **Financial records:** 6 years from the end of the financial year (HMRC requirement)
+- **General client data:** 3 years after last contact for business relationship purposes
+- **Marketing consent records:** Until consent is withdrawn by the individual
+- **Safeguarding records:** As required by UK safeguarding legislation (minimum 10 years)
+
+All data is securely disposed of when retention periods expire, unless legally required to be retained longer.
 
 ## 7. Your Rights
 
@@ -134,11 +140,24 @@ We implement:
 
 ## 11. Children's Data Protection
 
-Special protections for under-18 data:
+We implement enhanced protections for personal data relating to children under 18:
 
-- Parental consent required
-- Minimal data collection
-- Enhanced security measures
+### 11.1 Parental Consent Requirements
+- **Under-16s:** Explicit parental or guardian consent is mandatory before any tutoring services begin
+- **16-17 year olds:** May provide their own consent, but parents/guardians are informed of data processing activities
+- **Verification:** We verify parental identity before accepting consent
+
+### 11.2 Enhanced Safeguards
+- Minimal data collection limited to educational necessity
+- Enhanced security measures and access controls
+- Regular review of data processing activities
+- Immediate deletion upon request from parent/guardian
+- No marketing communications directly to under-16s
+
+### 11.3 Safeguarding Compliance
+- All tutors undergo enhanced DBS (Disclosure and Barring Service) checks
+- Adherence to UK safeguarding legislation and guidance
+- Clear reporting procedures for child protection concerns
 
 ## 12. Complaints and Contact
 
@@ -150,17 +169,16 @@ If you have concerns about data processing:
 **Information Commissioner's Office** Wycliffe House, Water Lane, Wilmslow,
 Cheshire SK9 5AF Telephone: 0303 123 1113
 
-## 13. Policy Updates
+## 13. Record of Processing Activities
 
-We may update this policy periodically. We recommend reviewing it regularly.
+For detailed information about our data processing activities, including purposes, data categories, and retention periods, please refer to our [Record of Processing Activities](/legal/record-of-processing), which is maintained in accordance with Article 30 of UK GDPR.
+
+## 14. Policy Updates
+
+We may update this policy periodically. We recommend reviewing it regularly. Any material changes will be communicated to users via email or website notification.
 
 ## Disclaimer
 
-This policy is a legal document. By using our services, you acknowledge and
-agree to these terms.
+This privacy policy has been prepared to comply with UK GDPR, Data Protection Act 2018, and other applicable data protection legislation. By using our services, you acknowledge and agree to these terms.
 
----
-
-**Disclaimer:** This privacy policy is a template. While comprehensive, it
-should be reviewed by a qualified legal professional to ensure full compliance
-with current regulations.
+While comprehensive, legal requirements may evolve, and we recommend periodic review by qualified legal professionals to ensure ongoing compliance.

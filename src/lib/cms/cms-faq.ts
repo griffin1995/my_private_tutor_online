@@ -1744,13 +1744,13 @@ if __name__ == "__main__":
 		] as const,
 	},
 };
-export const getFAQContent = (): FAQContent => {
+const getFAQContent = (): FAQContent => {
 	return faqContent;
 };
-export const getVisibleFAQCategories = (): readonly FAQCategory[] => {
+const getVisibleFAQCategories = (): readonly FAQCategory[] => {
 	return faqContent.categories.filter((category) => category.isVisible);
 };
-export const getFeaturedFAQQuestions = (): readonly FAQQuestion[] => {
+const getFeaturedFAQQuestions = (): readonly FAQQuestion[] => {
 	const featuredQuestions: FAQQuestion[] = [];
 	faqContent.categories.forEach((category) => {
 		category.questions.forEach((question) => {
@@ -1761,7 +1761,7 @@ export const getFeaturedFAQQuestions = (): readonly FAQQuestion[] => {
 	});
 	return featuredQuestions.sort((a, b) => b.priority - a.priority);
 };
-export const searchFAQQuestions = (query: string): readonly FAQQuestion[] => {
+const searchFAQQuestions = (query: string): readonly FAQQuestion[] => {
 	if (!query.trim()) return [];
 	const searchTerm = query.toLowerCase();
 	const results: FAQQuestion[] = [];
@@ -1782,7 +1782,7 @@ export const searchFAQQuestions = (query: string): readonly FAQQuestion[] => {
 	});
 	return results.sort((a, b) => b.priority - a.priority);
 };
-export const getFAQQuestionsBySegment = (
+const getFAQQuestionsBySegment = (
 	segment:
 		| 'oxbridge_prep'
 		| '11_plus'

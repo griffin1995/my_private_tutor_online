@@ -7,7 +7,7 @@ import { blogPosts } from '@/data/blog-posts';
 /**
  * Analyse all blog post images and report potential issues
  */
-export function analyseBlogpostImages() {
+function analyseBlogpostImages() {
   const analysis = blogPosts.map(post => {
     const hasImage = Boolean(post.image && post.image.trim() !== '');
     const isValidPath = hasImage && !post.image.includes('undefined') && !post.image.includes('null');
@@ -41,7 +41,7 @@ export function analyseBlogpostImages() {
 /**
  * Check if an image URL is accessible
  */
-export async function checkImageAccessibility(imageUrl: string): Promise<boolean> {
+async function checkImageAccessibility(imageUrl: string): Promise<boolean> {
   try {
     const response = await fetch(imageUrl, { method: 'HEAD' });
     return response.ok;
@@ -53,7 +53,7 @@ export async function checkImageAccessibility(imageUrl: string): Promise<boolean
 /**
  * Batch check image accessibility
  */
-export async function batchCheckImages(imageUrls: string[]): Promise<Array<{url: string, accessible: boolean}>> {
+async function batchCheckImages(imageUrls: string[]): Promise<Array<{url: string, accessible: boolean}>> {
   const results = await Promise.allSettled(
     imageUrls.map(async (url) => ({
       url,
@@ -70,7 +70,7 @@ export async function batchCheckImages(imageUrls: string[]): Promise<Array<{url:
 /**
  * Get unique blog image paths
  */
-export function getUniqueBlogImagePaths(): string[] {
+function getUniqueBlogImagePaths(): string[] {
   const imagePaths = blogPosts
     .map(post => post.image)
     .filter(image => image && image.trim() !== '')

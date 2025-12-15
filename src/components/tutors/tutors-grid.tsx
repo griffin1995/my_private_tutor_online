@@ -314,4 +314,3 @@ export const TutorsGrid: React.FC<TutorsGridProps> = ({
 	);
 };
 
-export default TutorsGrid;

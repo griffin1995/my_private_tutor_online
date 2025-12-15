@@ -125,7 +125,7 @@ interface PrivacyControlPanelProps {
   showStatus?: boolean;
 }
 
-export function PrivacyControlPanel({
+function PrivacyControlPanel({
   className,
   showStatus = true
 }: PrivacyControlPanelProps) {
@@ -188,7 +188,7 @@ export function PrivacyControlPanel({
 /**
  * Quick consent reset button for development/testing
  */
-export function ResetConsentButton({ className }: { className?: string }) {
+function ResetConsentButton({ className }: { className?: string }) {
   const handleReset = () => {
     if (window.confirm('Reset all cookie preferences and show consent banner again?')) {
       cookieConsentUtils.reset();

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 interface FeatureSectionProps {
 	title: string;
@@ -166,4 +166,3 @@ export function FeatureSection({
 	);
 }
 
-export default FeatureSection;

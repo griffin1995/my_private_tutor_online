@@ -1,6 +1,5 @@
 import { webVitalsTracker } from '@/lib/performance/web-vitals';
-import { BUSINESS_METRICS_CONFIG } from '../../../performance.config';
-export interface BusinessEvent {
+interface BusinessEvent {
 	event: string;
 	category: 'engagement' | 'conversion' | 'navigation' | 'error' | 'performance';
 	action: string;
@@ -14,32 +13,17 @@ export interface BusinessEvent {
 }
 export enum TutoringEvents {
 	SERVICE_TIER_VIEW = 'service_tier_view',
-	SERVICE_TIER_COMPARE = 'service_tier_compare',
-	SERVICE_TIER_SELECT = 'service_tier_select',
 	INQUIRY_FORM_START = 'inquiry_form_start',
-	INQUIRY_FORM_PROGRESS = 'inquiry_form_progress',
-	INQUIRY_FORM_ABANDON = 'inquiry_form_abandon',
 	INQUIRY_FORM_SUBMIT = 'inquiry_form_submit',
-	INQUIRY_FORM_SUCCESS = 'inquiry_form_success',
-	INQUIRY_FORM_ERROR = 'inquiry_form_error',
-	BOOTCAMP_VIEW = 'bootcamp_view',
-	BOOTCAMP_REGISTER_START = 'bootcamp_register_start',
 	BOOTCAMP_REGISTER_COMPLETE = 'bootcamp_register_complete',
-	BOOTCAMP_REGISTER_ERROR = 'bootcamp_register_error',
 	TESTIMONIAL_VIEW = 'testimonial_view',
 	VIDEO_PLAY = 'video_play',
 	VIDEO_COMPLETE = 'video_complete',
-	ACCREDITATION_VIEW = 'accreditation_view',
-	ROYAL_ENDORSEMENT_VIEW = 'royal_endorsement_view',
 	PAGE_VIEW = 'page_view',
-	SECTION_VIEW = 'section_view',
 	EXTERNAL_LINK_CLICK = 'external_link_click',
 	PHONE_CALL_CLICK = 'phone_call_click',
 	EMAIL_CLICK = 'email_click',
-	FORM_VALIDATION_ERROR = 'form_validation_error',
-	PAYMENT_ERROR = 'payment_error',
-	BOOKING_ERROR = 'booking_error',
-}
+	}
 interface AnalyticsProvider {
 	name: string;
 	enabled: boolean;

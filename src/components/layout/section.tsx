@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 interface SectionProps {
 	children: ReactNode;
@@ -80,7 +80,7 @@ interface SectionHeaderProps {
 	alignment?: 'left' | 'center' | 'right';
 	titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
-export function SectionHeader({
+function SectionHeader({
 	title,
 	subtitle,
 	description,
@@ -126,13 +126,13 @@ export function SectionHeader({
 		</div>
 	);
 }
-export type SectionBackground =
+type SectionBackground =
 	| 'white'
 	| 'grey'
 	| 'gradient'
 	| 'accent'
 	| 'primary'
 	| 'transparent';
-export type SectionPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
-export type SectionContainerSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
-export type SectionAlignment = 'left' | 'center' | 'right';
+type SectionPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
+type SectionContainerSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+type SectionAlignment = 'left' | 'center' | 'right';

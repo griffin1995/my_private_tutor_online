@@ -4,18 +4,18 @@
 // CONTEXT7 SOURCE: Next.js App Router - Static navigation data for optimal performance
 // All navigation menus and footer links hardcoded for zero external dependencies
 
-export interface NavigationItem {
+interface NavigationItem {
 	readonly label: string;
 	readonly href: string;
 	readonly items?: readonly NavigationItem[];
 }
 
-export interface FooterLink {
+interface FooterLink {
 	readonly label: string;
 	readonly href: string;
 }
 
-export interface FooterSection {
+interface FooterSection {
 	readonly title: string;
 	readonly links: readonly FooterLink[];
 }
@@ -142,7 +142,7 @@ export const MAIN_NAVIGATION_ITEMS: readonly NavigationItem[] = [
 ] as const;
 
 // Mobile-specific navigation (can be different from desktop if needed)
-export const MOBILE_NAVIGATION_ITEMS: readonly NavigationItem[] = [
+const MOBILE_NAVIGATION_ITEMS: readonly NavigationItem[] = [
 	{
 		label: 'About Us',
 		href: '/about',
@@ -181,7 +181,7 @@ export const MOBILE_NAVIGATION_ITEMS: readonly NavigationItem[] = [
 // FOOTER NAVIGATION DATA
 // ============================================================================
 
-export const FOOTER_SECTIONS: readonly FooterSection[] = [
+const FOOTER_SECTIONS: readonly FooterSection[] = [
 	{
 		title: 'Our Services',
 		links: [
@@ -224,7 +224,7 @@ export const FOOTER_SECTIONS: readonly FooterSection[] = [
 // BRAND & COMPANY DATA
 // ============================================================================
 
-export const COMPANY_INFO = {
+const COMPANY_INFO = {
 	name: 'My Private Tutor Online',
 	tagline: 'Exceptional online tutoring trusted by families worldwide',
 	description: 'From GCSE excellence to Oxbridge success',
@@ -232,7 +232,7 @@ export const COMPANY_INFO = {
 	heritage: '15 years of educational excellence',
 } as const;
 
-export const CONTACT_INFO = {
+const CONTACT_INFO = {
 	email: 'info@myprivatetutoronline.com',
 	phone: '+44 7513 550278',
 	address: {
@@ -248,10 +248,10 @@ export const CONTACT_INFO = {
 // LEGAL & COPYRIGHT
 // ============================================================================
 
-export const COPYRIGHT_TEXT =
+const COPYRIGHT_TEXT =
 	'© 2025 My Private Tutor Online. All rights reserved.';
 
-export const SOCIAL_MEDIA_LINKS = {
+const SOCIAL_MEDIA_LINKS = {
 	// Add social media links here when available
 	// twitter: 'https://twitter.com/...',
 	// linkedin: 'https://linkedin.com/company/...',

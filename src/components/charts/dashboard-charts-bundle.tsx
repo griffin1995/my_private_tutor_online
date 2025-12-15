@@ -151,4 +151,3 @@ export const DashboardChartsBundle: React.FC<DashboardChartsProps> = ({
   );
 };
 
-export default DashboardChartsBundle;

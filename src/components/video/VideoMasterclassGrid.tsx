@@ -57,4 +57,3 @@ export function VideoMasterclassGrid({
 		</React.Fragment>
 	);
 }
-export default VideoMasterclassGrid;

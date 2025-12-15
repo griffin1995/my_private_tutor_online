@@ -137,16 +137,20 @@ In the event of a data breach, we:
 
 ## 11. Contact Information
 
-Data Protection Officer: [Contact Details]
+**Data Protection Officer:** info@myprivatetutoronline.com
+**Company Address:** 17 Alexandra Gardens, London, United Kingdom, N10 3RN
+**Telephone:** (+44) 7513 550 278
 
-Information Commissioner's Office: Wycliffe House, Water Lane, Wilmslow,
-Cheshire SK9 5AF Telephone: 0303 123 1113
+**Information Commissioner's Office:**
+Wycliffe House, Water Lane, Wilmslow, Cheshire SK9 5AF
+Telephone: 0303 123 1113
+Website: ico.org.uk
 
 ## 12. Updates to Notice
 
 We may update this notice periodically. We recommend reviewing it regularly.
 
-**Last Updated:** August 2025
+**Last Updated:** December 2025
 
 ## Disclaimer
 

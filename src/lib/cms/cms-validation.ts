@@ -132,13 +132,13 @@ const ContentSectionSchemas = {
 	school: SchoolSchema,
 	video: VideoTestimonialSchema,
 };
-export type ValidatedTestimonialsContent = z.infer<
+type ValidatedTestimonialsContent = z.infer<
 	typeof TestimonialsPageContentSchema
 >;
-export type ValidatedTestimonial = z.infer<typeof TestimonialSchema>;
-export type ValidatedSchool = z.infer<typeof SchoolSchema>;
-export type ValidatedVideo = z.infer<typeof VideoTestimonialSchema>;
-export type ValidatedTrustIndicator = z.infer<typeof TrustIndicatorSchema>;
+type ValidatedTestimonial = z.infer<typeof TestimonialSchema>;
+type ValidatedSchool = z.infer<typeof SchoolSchema>;
+type ValidatedVideo = z.infer<typeof VideoTestimonialSchema>;
+type ValidatedTrustIndicator = z.infer<typeof TrustIndicatorSchema>;
 export interface TestimonialsValidationResult {
 	readonly isValid: boolean;
 	readonly errors: readonly string[];
@@ -150,7 +150,7 @@ export interface TestimonialsValidationResult {
 		readonly errorCount: number;
 	};
 }
-export interface ContentQualityAnalysis {
+interface ContentQualityAnalysis {
 	readonly overallScore: number;
 	readonly seoScore: number;
 	readonly accessibilityScore: number;
@@ -211,7 +211,7 @@ export function validateTestimonialContent(
 		},
 	};
 }
-export function validateContentSection<
+function validateContentSection<
 	T extends keyof typeof ContentSectionSchemas,
 >(content: unknown, section: T): TestimonialsValidationResult {
 	return validateTestimonialContent(content, section);
@@ -297,7 +297,7 @@ function calculateSchemaComplexity(
 	};
 	return section ? complexityScores[section] : 100;
 }
-export function analyzeContentQuality(
+function analyzeContentQuality(
 	content: unknown,
 ): ContentQualityAnalysis {
 	const issues: ContentQualityAnalysis['issues'] = [];
@@ -389,21 +389,11 @@ export function analyzeContentQuality(
 		issues,
 	};
 }
-export function sanitizeTestimonialContent(content: unknown): any {
+function sanitizeTestimonialContent(content: unknown): any {
 	const validation = validateTestimonialContent(content);
 	if (!validation.isValid || !validation.validatedData) {
 		throw new Error(`Content validation failed: ${validation.errors.join(', ')}`);
 	}
 	return validation.validatedData;
 }
-export {
-	TestimonialsPageContentSchema,
-	TestimonialSchema,
-	SchoolSchema,
-	VideoTestimonialSchema,
-	TrustIndicatorSchema,
-	HeroContentSchema,
-	IntroContentSchema,
-	CTAContentSchema,
-	ContentSectionSchemas,
-};
+;

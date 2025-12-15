@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
 import { cn } from '@/lib/utils';
-export interface AspectRatioProps
+interface AspectRatioProps
 	extends React.ComponentPropsWithoutRef<typeof AspectRatioPrimitive.Root> {
 	ratio?: number;
 	className?: string;
@@ -91,7 +91,7 @@ const AspectRatio = React.forwardRef<
 	},
 );
 AspectRatio.displayName = 'AspectRatio';
-export const VideoAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
+const VideoAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
 	props,
 ) => (
 	<AspectRatio
@@ -99,7 +99,7 @@ export const VideoAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
 		{...props}
 	/>
 );
-export const SquareAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
+const SquareAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
 	props,
 ) => (
 	<AspectRatio
@@ -107,7 +107,7 @@ export const SquareAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
 		{...props}
 	/>
 );
-export const PortraitAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
+const PortraitAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
 	props,
 ) => (
 	<AspectRatio

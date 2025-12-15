@@ -7,7 +7,7 @@ interface FaqIconProps {
 	readonly width?: number;
 	readonly height?: number;
 }
-export const GlobeIcon: React.FC<FaqIconProps> = ({
+const GlobeIcon: React.FC<FaqIconProps> = ({
 	className = '',
 	'aria-label': ariaLabel = 'Global services icon',
 	width = 80,
@@ -30,7 +30,7 @@ export const GlobeIcon: React.FC<FaqIconProps> = ({
 		/>
 	</svg>
 );
-export const EducationGapIcon: React.FC<FaqIconProps> = ({
+const EducationGapIcon: React.FC<FaqIconProps> = ({
 	className = '',
 	'aria-label': ariaLabel = 'Education expertise icon',
 	width = 80,
@@ -57,7 +57,7 @@ export const EducationGapIcon: React.FC<FaqIconProps> = ({
 		/>
 	</svg>
 );
-export const BookOpenIcon: React.FC<FaqIconProps> = ({
+const BookOpenIcon: React.FC<FaqIconProps> = ({
 	className = '',
 	'aria-label': ariaLabel = 'Curriculum content icon',
 	width = 80,
@@ -80,7 +80,7 @@ export const BookOpenIcon: React.FC<FaqIconProps> = ({
 		/>
 	</svg>
 );
-export const TrendingUpIcon: React.FC<FaqIconProps> = ({
+const TrendingUpIcon: React.FC<FaqIconProps> = ({
 	className = '',
 	'aria-label': ariaLabel = 'Academic progress icon',
 	width = 80,
@@ -103,7 +103,7 @@ export const TrendingUpIcon: React.FC<FaqIconProps> = ({
 		/>
 	</svg>
 );
-export const CalendarIcon: React.FC<FaqIconProps> = ({
+const CalendarIcon: React.FC<FaqIconProps> = ({
 	className = '',
 	'aria-label': ariaLabel = 'Scheduling icon',
 	width = 80,
@@ -146,7 +146,7 @@ export const CalendarIcon: React.FC<FaqIconProps> = ({
 		/>
 	</svg>
 );
-export const BankNoteIcon: React.FC<FaqIconProps> = ({
+const BankNoteIcon: React.FC<FaqIconProps> = ({
 	className = '',
 	'aria-label': ariaLabel = 'Pricing information icon',
 	width = 80,
@@ -183,7 +183,7 @@ export const BankNoteIcon: React.FC<FaqIconProps> = ({
 		/>
 	</svg>
 );
-export const HelpCircleIcon: React.FC<FaqIconProps> = ({
+const HelpCircleIcon: React.FC<FaqIconProps> = ({
 	className = '',
 	'aria-label': ariaLabel = 'General questions icon',
 	width = 80,

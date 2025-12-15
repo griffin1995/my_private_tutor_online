@@ -310,7 +310,18 @@
       "mcp__filesystem__edit_file",
       "Skill(developer-essentials:git-advanced-workflows)",
       "Bash(PUPPETEER_SKIP_DOWNLOAD=true npx shadcn:*)",
-      "Bash(yes:*)"
+      "Bash(yes:*)",
+      "Bash(starship --version:*)",
+      "Bash(starship config:*)",
+      "Bash(starship explain:*)",
+      "Bash(export RUST_LOG=debug)",
+      "Bash(starship prompt:*)",
+      "Bash(git clone:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(claude mcp list:*)",
+      "Bash(claude mcp:*)",
+      "mcp__stocky__search_stock_images",
+      "mcp__stocky__download_image"
     ],
     "deny": []
   },

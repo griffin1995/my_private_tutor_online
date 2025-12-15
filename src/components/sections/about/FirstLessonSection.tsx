@@ -101,4 +101,3 @@ export function FirstLessonSection({
 		</div>
 	);
 }
-export default FirstLessonSection;

@@ -134,4 +134,4 @@ export const StatsSection = memo(({
 
 StatsSection.displayName = 'StatsSection';
 
-export type { StatsItem, StatsSectionProps };
+export type { StatsItem,  };

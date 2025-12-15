@@ -26,7 +26,7 @@ const shimmerVariants = {
 		},
 	},
 };
-export function SkeletonCard({
+function SkeletonCard({
 	variant = 'testimonial',
 	className = '',
 }: SkeletonCardProps) {

@@ -291,7 +291,7 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 	},
 );
 FooterGDPRConsent.displayName = 'FooterGDPRConsent';
-export function FooterDataErasure() {
+function FooterDataErasure() {
 	const [showConfirm, setShowConfirm] = useState(false);
 	const [erased, setErased] = useState(false);
 	const handleErasure = () => {
@@ -354,4 +354,3 @@ export function FooterDataErasure() {
 		</div>
 	);
 }
-export default FooterGDPRConsent;

@@ -10,7 +10,7 @@ import {
 	testimonialsCMSManager,
 	type CMSMetrics,
 } from '@/lib/cms/testimonials-cms-manager';
-export interface TestimonialsEngagement {
+interface TestimonialsEngagement {
 	readonly testimonialId: string;
 	readonly views: number;
 	readonly interactions: number;
@@ -145,7 +145,7 @@ export interface ExecutiveAnalyticsDashboard {
 		readonly actionRequired: boolean;
 	}[];
 }
-export class TestimonialsAnalyticsEngine {
+class TestimonialsAnalyticsEngine {
 	private abTestingEngine: ABTestingEngine;
 	private engagementData: Map<string, TestimonialsEngagement[]> = new Map();
 	private performanceCache: Map<string, TestimonialsPerformanceMetrics> =
@@ -864,7 +864,7 @@ export class TestimonialsAnalyticsEngine {
 		return alerts;
 	}
 }
-export const testimonialsAnalyticsEngine = new TestimonialsAnalyticsEngine();
+const testimonialsAnalyticsEngine = new TestimonialsAnalyticsEngine();
 export function useTestimonialsAnalytics() {
 	return {
 		engine: testimonialsAnalyticsEngine,

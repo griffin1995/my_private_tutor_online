@@ -180,10 +180,9 @@ FlowbiteCompatibleAvatar.displayName = 'FlowbiteCompatibleAvatar';
 export { Avatar, AvatarImage, AvatarFallback };
 
 // Export Flowbite-compatible component as default Avatar replacement
-export { FlowbiteCompatibleAvatar };
+;
 
 // Export types for TypeScript users
-export type { FlowbiteAvatarProps, FlowbiteAvatarSize, FlowbiteAvatarStatus };
+;
 
 // Default export for easy replacement
-export default FlowbiteCompatibleAvatar;

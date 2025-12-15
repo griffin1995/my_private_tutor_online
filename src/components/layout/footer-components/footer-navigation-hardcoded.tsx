@@ -269,4 +269,3 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
   );
 };
 
-export default FooterNavigationHardcoded;

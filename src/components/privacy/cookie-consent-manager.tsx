@@ -19,7 +19,7 @@ const SERVICE_FUNCTIONALITY_STORAGE = 'functionality_storage';
 const SERVICE_PERSONALIZATION_STORAGE = 'personalization_storage';
 const SERVICE_SECURITY_STORAGE = 'security_storage';
 
-export interface ConsentState {
+interface ConsentState {
   necessary: boolean;
   analytics: boolean;
   functional: boolean;
@@ -474,5 +474,5 @@ export const cookieConsentUtils = {
 };
 
 // Export types for use in other components
-export type { ConsentState };
-export { CAT_NECESSARY, CAT_ANALYTICS, CAT_FUNCTIONAL, CAT_MARKETING };
+;
+;

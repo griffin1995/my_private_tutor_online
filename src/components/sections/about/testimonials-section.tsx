@@ -89,4 +89,4 @@ export function TestimonialsSection({
 		</section>
 	);
 }
-export type { TestimonialsSectionProps };
+;

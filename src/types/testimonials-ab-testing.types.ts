@@ -62,7 +62,7 @@ export interface StatisticalSignificance {
 	readonly effectSize: number;
 	readonly cohensD?: number;
 }
-export interface ExperimentMetadata {
+interface ExperimentMetadata {
 	readonly createdBy: string;
 	readonly createdAt: Date;
 	readonly lastModifiedBy: string;
@@ -74,7 +74,7 @@ export interface ExperimentMetadata {
 	readonly riskAssessment: string;
 	readonly stakeholders: string[];
 }
-export interface ExperimentPerformanceMetrics {
+interface ExperimentPerformanceMetrics {
 	readonly experimentId: string;
 	readonly measurementPeriod: DateRange;
 	readonly pageLoadTime: PerformanceMetric;
@@ -86,7 +86,7 @@ export interface ExperimentPerformanceMetrics {
 	readonly cumulativeLayoutShift: number;
 	readonly performanceImpact: PerformanceImpactAssessment;
 }
-export interface PerformanceMetric {
+interface PerformanceMetric {
 	readonly median: number;
 	readonly p95: number;
 	readonly p99: number;
@@ -95,7 +95,7 @@ export interface PerformanceMetric {
 	readonly max: number;
 	readonly standardDeviation: number;
 }
-export interface PerformanceImpactAssessment {
+interface PerformanceImpactAssessment {
 	readonly hasSignificantImpact: boolean;
 	readonly impactSeverity: 'low' | 'medium' | 'high' | 'critical';
 	readonly affectedMetrics: string[];
@@ -117,14 +117,14 @@ export interface ExperimentExecutiveSummary {
 	readonly recommendations: ExecutiveRecommendation[];
 	readonly generatedAt: Date;
 }
-export interface BusinessImpact {
+interface BusinessImpact {
 	readonly revenueImpact: number;
 	readonly conversionImprovement: number;
 	readonly engagementImprovement: number;
 	readonly clientSatisfactionImprovement: number;
 	readonly strategicValue: 'low' | 'medium' | 'high' | 'critical';
 }
-export interface ExecutiveRecommendation {
+interface ExecutiveRecommendation {
 	readonly priority: 'low' | 'medium' | 'high' | 'urgent';
 	readonly action: string;
 	readonly reasoning: string;
@@ -132,7 +132,7 @@ export interface ExecutiveRecommendation {
 	readonly stakeholder: string;
 	readonly businessValue: string;
 }
-export type ExperimentStatus =
+type ExperimentStatus =
 	| 'draft'
 	| 'scheduled'
 	| 'running'
@@ -140,14 +140,14 @@ export type ExperimentStatus =
 	| 'completed'
 	| 'cancelled'
 	| 'archived';
-export type ExperimentType =
+type ExperimentType =
 	| 'conversion_optimization'
 	| 'engagement_optimization'
 	| 'performance_test'
 	| 'ui_enhancement'
 	| 'content_optimization'
 	| 'user_experience';
-export type TestimonialsComponent =
+type TestimonialsComponent =
 	| 'testimonials-hero'
 	| 'testimonials-grid'
 	| 'testimonials-timeline'
@@ -156,7 +156,7 @@ export type TestimonialsComponent =
 	| 'testimonials-cta'
 	| 'elite-schools-carousel'
 	| 'testimonials-intro';
-export type PrimaryMetric =
+type PrimaryMetric =
 	| 'conversion_rate'
 	| 'click_through_rate'
 	| 'engagement_rate'
@@ -164,7 +164,7 @@ export type PrimaryMetric =
 	| 'inquiry_submission_rate'
 	| 'video_completion_rate'
 	| 'testimonial_interaction_rate';
-export type SecondaryMetric =
+type SecondaryMetric =
 	| 'bounce_rate'
 	| 'page_views'
 	| 'session_duration'
@@ -186,7 +186,7 @@ export type TestRecommendation =
 	| 'increase_traffic'
 	| 'modify_variants'
 	| 'investigate_anomaly';
-export interface VariantConfiguration {
+interface VariantConfiguration {
 	readonly testimonialsHero?: TestimonialsHeroConfig;
 	readonly testimonialsGrid?: TestimonialsGridConfig;
 	readonly testimonialsTimeline?: TestimonialsTimelineConfig;
@@ -194,7 +194,7 @@ export interface VariantConfiguration {
 	readonly testimonialsFilter?: TestimonialsFilterConfig;
 	readonly testimonialsCta?: TestimonialsCtaConfig;
 }
-export interface TestimonialsHeroConfig {
+interface TestimonialsHeroConfig {
 	readonly headline?: string;
 	readonly subheadline?: string;
 	readonly backgroundImage?: string;
@@ -203,7 +203,7 @@ export interface TestimonialsHeroConfig {
 	readonly ctaVariant?: 'primary' | 'secondary' | 'outline';
 	readonly showVideoButton?: boolean;
 }
-export interface TestimonialsGridConfig {
+interface TestimonialsGridConfig {
 	readonly columns?: number;
 	readonly itemsPerPage?: number;
 	readonly cardDesign?: 'minimal' | 'detailed' | 'premium';
@@ -212,28 +212,28 @@ export interface TestimonialsGridConfig {
 	readonly animation?: 'fade' | 'slide' | 'none';
 	readonly sortOrder?: 'chronological' | 'rating' | 'random';
 }
-export interface TestimonialsTimelineConfig {
+interface TestimonialsTimelineConfig {
 	readonly orientation?: 'vertical' | 'horizontal';
 	readonly showDates?: boolean;
 	readonly showImages?: boolean;
 	readonly itemSpacing?: 'compact' | 'normal' | 'spacious';
 	readonly highlightStyle?: 'subtle' | 'bold' | 'gradient';
 }
-export interface TestimonialsVideoConfig {
+interface TestimonialsVideoConfig {
 	readonly autoplay?: boolean;
 	readonly showControls?: boolean;
 	readonly thumbnailStyle?: 'default' | 'custom';
 	readonly playButtonStyle?: 'overlay' | 'inline';
 	readonly videoQuality?: 'auto' | '720p' | '1080p';
 }
-export interface TestimonialsFilterConfig {
+interface TestimonialsFilterConfig {
 	readonly filterTypes?: ('category' | 'subject' | 'school' | 'year')[];
 	readonly layout?: 'horizontal' | 'vertical' | 'dropdown';
 	readonly showResultCount?: boolean;
 	readonly enableSearch?: boolean;
 	readonly defaultFilters?: Record<string, string>;
 }
-export interface TestimonialsCtaConfig {
+interface TestimonialsCtaConfig {
 	readonly text?: string;
 	readonly variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
 	readonly size?: 'sm' | 'md' | 'lg' | 'xl';
@@ -254,7 +254,7 @@ export interface ABTestAnalysis {
 	readonly recommendations: AnalysisRecommendation[];
 	readonly nextSteps: string[];
 }
-export interface ExperimentInsight {
+interface ExperimentInsight {
 	readonly type: InsightType;
 	readonly title: string;
 	readonly description: string;
@@ -262,7 +262,7 @@ export interface ExperimentInsight {
 	readonly confidence: number;
 	readonly supportingData: Record<string, any>;
 }
-export interface ExperimentAnomaly {
+interface ExperimentAnomaly {
 	readonly type: AnomalyType;
 	readonly description: string;
 	readonly severity: 'low' | 'medium' | 'high' | 'critical';
@@ -271,7 +271,7 @@ export interface ExperimentAnomaly {
 	readonly possibleCauses: string[];
 	readonly recommendedActions: string[];
 }
-export interface AnalysisRecommendation {
+interface AnalysisRecommendation {
 	readonly priority: 'low' | 'medium' | 'high' | 'urgent';
 	readonly category: 'statistical' | 'business' | 'technical' | 'strategic';
 	readonly recommendation: string;
@@ -280,21 +280,21 @@ export interface AnalysisRecommendation {
 	readonly implementationComplexity: 'low' | 'medium' | 'high';
 	readonly timeframe: string;
 }
-export type InsightType =
+type InsightType =
 	| 'conversion_pattern'
 	| 'user_segment_behaviour'
 	| 'time_based_variation'
 	| 'device_performance_difference'
 	| 'content_preference'
 	| 'interaction_sequence';
-export type AnomalyType =
+type AnomalyType =
 	| 'traffic_distribution_skew'
 	| 'conversion_rate_anomaly'
 	| 'performance_degradation'
 	| 'sample_ratio_mismatch'
 	| 'external_factor_interference'
 	| 'bot_traffic_detection';
-export interface DateRange {
+interface DateRange {
 	readonly startDate: Date;
 	readonly endDate: Date;
 }
@@ -307,13 +307,13 @@ export interface ExperimentParticipant {
 	readonly conversionEvents: ConversionEvent[];
 	readonly sessionData: ParticipantSessionData;
 }
-export interface ConversionEvent {
+interface ConversionEvent {
 	readonly eventType: string;
 	readonly timestamp: Date;
 	readonly value?: number;
 	readonly metadata?: Record<string, any>;
 }
-export interface ParticipantSessionData {
+interface ParticipantSessionData {
 	readonly sessionId: string;
 	readonly deviceType: 'desktop' | 'tablet' | 'mobile';
 	readonly browser: string;
@@ -321,14 +321,14 @@ export interface ParticipantSessionData {
 	readonly referrer?: string;
 	readonly utm: UtmParameters;
 }
-export interface UtmParameters {
+interface UtmParameters {
 	readonly source?: string;
 	readonly medium?: string;
 	readonly campaign?: string;
 	readonly term?: string;
 	readonly content?: string;
 }
-export interface ABTestIntegrationConfig {
+interface ABTestIntegrationConfig {
 	readonly analyticsProvider:
 		| 'vercel'
 		| 'google_analytics'
@@ -340,7 +340,7 @@ export interface ABTestIntegrationConfig {
 	readonly automatedDecisionMaking: boolean;
 	readonly confidenceThreshold: number;
 }
-export interface StatisticalConfig {
+interface StatisticalConfig {
 	readonly significanceLevel: number;
 	readonly statisticalPower: number;
 	readonly minimumDetectableEffect: number;

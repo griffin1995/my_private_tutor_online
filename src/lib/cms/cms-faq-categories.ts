@@ -16,7 +16,7 @@ export interface EnhancedFAQCategory extends Omit<FAQCategory, 'icon'> {
 	analytics: FAQCategoryAnalytics;
 	seo: FAQCategorySEO;
 }
-export interface EnhancedFAQSubcategory {
+interface EnhancedFAQSubcategory {
 	id: string;
 	name: string;
 	slug: string;
@@ -55,7 +55,7 @@ export interface FAQCategoryAnalytics {
 	helpfulnessRating: number;
 	lastUpdated: string;
 }
-export interface FAQCategorySEO {
+interface FAQCategorySEO {
 	title: string;
 	description: string;
 	keywords: string[];
@@ -67,22 +67,22 @@ export interface FAQCategorySEO {
 		mainEntity?: any[];
 	};
 }
-export interface FAQRouteParams {
+interface FAQRouteParams {
 	category?: string;
 	subcategory?: string;
 }
-export interface FAQSearchParams {
+interface FAQSearchParams {
 	q?: string;
 	segment?: string;
 	difficulty?: string;
 	sort?: string;
 }
-export interface FAQBreadcrumb {
+interface FAQBreadcrumb {
 	label: string;
 	href: string;
 	isActive: boolean;
 }
-export interface FAQCategoryMenuItem {
+interface FAQCategoryMenuItem {
 	id: string;
 	label: string;
 	href: string;
@@ -91,7 +91,7 @@ export interface FAQCategoryMenuItem {
 	isActive: boolean;
 	children?: FAQCategoryMenuItem[];
 }
-export function enhanceFAQCategories(
+function enhanceFAQCategories(
 	categories: readonly FAQCategory[],
 ): EnhancedFAQCategory[] {
 	return categories.map((category, index): EnhancedFAQCategory => {
@@ -114,7 +114,7 @@ export function enhanceFAQCategories(
 		};
 	});
 }
-export function generateCategorySlug(name: string): string {
+function generateCategorySlug(name: string): string {
 	return name
 		.toLowerCase()
 		.replace(/[^a-z0-9\s-]/g, '')
@@ -122,7 +122,7 @@ export function generateCategorySlug(name: string): string {
 		.replace(/-+/g, '-')
 		.trim();
 }
-export function mapCategoryIcon(iconString: string): string {
+function mapCategoryIcon(iconString: string): string {
 	const iconMap: Record<string, string> = {
 		Globe: 'Globe',
 		GraduationCap: 'GraduationCap',
@@ -134,7 +134,7 @@ export function mapCategoryIcon(iconString: string): string {
 	};
 	return iconMap[iconString] || 'HelpCircle';
 }
-export function lightenColor(hex: string, amount: number): string {
+function lightenColor(hex: string, amount: number): string {
 	const num = parseInt(hex.replace('#', ''), 16);
 	const amt = Math.round(2.55 * amount * 100);
 	const R = (num >> 16) + amt;
@@ -152,10 +152,10 @@ export function lightenColor(hex: string, amount: number): string {
 			.slice(1)
 	);
 }
-export function darkenColor(hex: string, amount: number): string {
+function darkenColor(hex: string, amount: number): string {
 	return lightenColor(hex, -amount);
 }
-export function generateCategoryAnalytics(
+function generateCategoryAnalytics(
 	category: FAQCategory,
 ): FAQCategoryAnalytics {
 	return {
@@ -179,7 +179,7 @@ export function generateCategoryAnalytics(
 		lastUpdated: new Date().toISOString(),
 	};
 }
-export function generateCategorySEO(
+function generateCategorySEO(
 	category: FAQCategory,
 	slug: string,
 ): FAQCategorySEO {
@@ -203,7 +203,7 @@ export function generateCategorySEO(
 		},
 	};
 }
-export function extractCategoryKeywords(category: FAQCategory): string[] {
+function extractCategoryKeywords(category: FAQCategory): string[] {
 	const keywords = new Set<string>();
 	keywords.add(category.name.toLowerCase());
 	keywords.add(category.title.toLowerCase());
@@ -218,7 +218,7 @@ export function extractCategoryKeywords(category: FAQCategory): string[] {
 	keywords.add('premium education');
 	return Array.from(keywords).slice(0, 20);
 }
-export function generateFAQBreadcrumbs(
+function generateFAQBreadcrumbs(
 	category?: string,
 	subcategory?: string,
 ): FAQBreadcrumb[] {
@@ -250,13 +250,13 @@ export function generateFAQBreadcrumbs(
 	}
 	return breadcrumbs;
 }
-export function formatCategoryName(slug: string): string {
+function formatCategoryName(slug: string): string {
 	return slug
 		.split('-')
 		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
 		.join(' ');
 }
-export function filterFAQContentBySearch(
+function filterFAQContentBySearch(
 	categories: EnhancedFAQCategory[],
 	searchQuery: string,
 	filters: {
@@ -310,7 +310,7 @@ export function filterFAQContentBySearch(
 		resultsByCategory,
 	};
 }
-export function validateFAQRouteParams(
+function validateFAQRouteParams(
 	categories: EnhancedFAQCategory[],
 	params: FAQRouteParams,
 ): {
@@ -373,11 +373,3 @@ export function validateFAQRouteParams(
 		},
 	};
 }
-export default {
-	enhanceFAQCategories,
-	generateCategorySlug,
-	generateFAQBreadcrumbs,
-	filterFAQContentBySearch,
-	validateFAQRouteParams,
-	formatCategoryName,
-};

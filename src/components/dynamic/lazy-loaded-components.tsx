@@ -247,78 +247,78 @@ const useIntersectionLoader = (loadFunction: () => void, threshold = 0.1) => {
 	}, [ref, loadFunction, threshold]);
 	return setRef;
 };
-export const LazyFAQGamificationSystem = (props: any) => (
+const LazyFAQGamificationSystem = (props: any) => (
 	<Suspense fallback={<GamificationFallback />}>
 		<FAQGamificationSystem {...props} />
 	</Suspense>
 );
-export const LazyFAQAnalyticsDashboard = (props: any) => (
+const LazyFAQAnalyticsDashboard = (props: any) => (
 	<Suspense fallback={<AnalyticsFallback />}>
 		<FAQAnalyticsDashboard {...props} />
 	</Suspense>
 );
-export const LazyPerformanceDashboard = (props: any) => (
+const LazyPerformanceDashboard = (props: any) => (
 	<Suspense fallback={<AnalyticsFallback />}>
 		<PerformanceDashboard {...props} />
 	</Suspense>
 );
-export const LazyVoiceSearchComponents = (props: any) => (
+const LazyVoiceSearchComponents = (props: any) => (
 	<Suspense
 		fallback={<div className='h-16 bg-slate-100 rounded-lg animate-pulse'></div>}>
 		<VoiceSearchComponents {...props} />
 	</Suspense>
 );
-export const LazyAdminDashboard = (props: any) => (
+const LazyAdminDashboard = (props: any) => (
 	<Suspense fallback={<AnalyticsFallback />}>
 		<AdminDashboard {...props} />
 	</Suspense>
 );
-export const LazyChartComponents = (props: any) => (
+const LazyChartComponents = (props: any) => (
 	<Suspense fallback={<AnalyticsFallback />}>
 		<ChartComponents {...props} />
 	</Suspense>
 );
-export const LazyQuoteRequestForm = (props: any) => (
+const LazyQuoteRequestForm = (props: any) => (
 	<Suspense
 		fallback={<div className='h-96 bg-slate-100 animate-pulse rounded-xl'></div>}>
 		<QuoteRequestForm {...props} />
 	</Suspense>
 );
-export const LazyNewsletterForm = (props: any) => (
+const LazyNewsletterForm = (props: any) => (
 	<Suspense
 		fallback={<div className='h-32 bg-slate-100 animate-pulse rounded-xl'></div>}>
 		<NewsletterForm {...props} />
 	</Suspense>
 );
 export {
-	LazyConsultationForm,
-	LazyResultsSection,
+	
+	
 	LazyServicesCarousel,
-	LazyTestimonialsSection,
-	LazyThreePillarsSection,
-	useIntersectionLoader,
+	
+	
+	
 };
-export const preloadGamificationSystem = () =>
+const preloadGamificationSystem = () =>
 	preloadComponent(() => import('../faq/faq-gamification-system'));
-export const preloadAnalyticsDashboard = () =>
+const preloadAnalyticsDashboard = () =>
 	preloadComponent(() => import('../analytics/faq-analytics-dashboard'));
-export const preloadPerformanceDashboard = () =>
+const preloadPerformanceDashboard = () =>
 	preloadComponent(() => import('../performance/PerformanceDashboard'));
-export const preloadVoiceSearch = () =>
+const preloadVoiceSearch = () =>
 	preloadComponent(() =>
 		Promise.resolve({
 			default: () => null,
 		}),
 	);
-export const preloadConsultationForm = () =>
+const preloadConsultationForm = () =>
 	preloadComponent(() => import('../forms/consultation-booking-form'));
-export const preloadTestimonials = () =>
+const preloadTestimonials = () =>
 	preloadComponent(() => import('../sections/testimonials-section'));
-export const preloadServicesCarousel = () =>
+const preloadServicesCarousel = () =>
 	preloadComponent(() => import('../sections/services-carousel'));
-export const preloadThreePillarsSection = () =>
+const preloadThreePillarsSection = () =>
 	preloadComponent(() => import('../sections/three-pillars-section'));
-export const preloadRouteComponents = (route: string) => {
+const preloadRouteComponents = (route: string) => {
 	switch (route) {
 		case '/faq':
 			preloadGamificationSystem();

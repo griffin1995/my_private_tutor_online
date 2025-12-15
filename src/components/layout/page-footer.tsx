@@ -93,4 +93,4 @@ export function PageFooter({
 	);
 }
 
-export type PageFooterVariant = 'default' | 'minimal' | 'premium';
+type PageFooterVariant = 'default' | 'minimal' | 'premium';

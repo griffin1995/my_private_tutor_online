@@ -34,7 +34,7 @@ interface CustomEventData {
 	metadata?: Record<string, string | number | boolean>;
 	timestamp: number;
 }
-export function WebVitalsReporter() {
+function WebVitalsReporter() {
 	const metricsBuffer = useRef<NextWebVitalsMetric[]>([]);
 	const customEventsBuffer = useRef<CustomEventData[]>([]);
 	const reportingInterval = useRef<NodeJS.Timeout>();

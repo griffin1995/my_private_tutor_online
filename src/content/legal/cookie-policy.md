@@ -86,7 +86,8 @@ safeguards.
 This policy may be updated periodically. Users are encouraged to review
 regularly.
 
-**Last Updated:** August 2025
+**Last Updated:** December 2025
+**Compliance:** UK GDPR, Data Protection Act 2018, Privacy and Electronic Communications Regulations (PECR)
 
 ## Disclaimer
 

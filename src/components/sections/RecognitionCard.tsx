@@ -106,4 +106,4 @@ export function RecognitionCard({
 	);
 }
 
-export type { RecognitionCardProps };
+;

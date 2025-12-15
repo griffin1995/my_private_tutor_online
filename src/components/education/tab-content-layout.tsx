@@ -116,4 +116,4 @@ export function TabContentLayout({ data }: TabContentLayoutProps) {
 	);
 }
 
-export type { TabContentData, TabContentLayoutProps };
+export type { TabContentData,  };

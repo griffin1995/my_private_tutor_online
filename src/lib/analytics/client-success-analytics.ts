@@ -3,7 +3,7 @@ import { cache } from 'react';
 import { testimonialsCMSManager } from '@/lib/cms/testimonials-cms-manager';
 import { businessAnalytics } from './business-analytics';
 import type { Testimonial } from '@/lib/cms/cms-content';
-export interface ClientSuccessInsights {
+interface ClientSuccessInsights {
 	readonly overview: {
 		readonly totalTestimonials: number;
 		readonly activeTestimonials: number;
@@ -29,7 +29,7 @@ export interface ClientSuccessInsights {
 		readonly riskFactors: RiskAssessment[];
 	};
 }
-export interface CategoryPerformance {
+interface CategoryPerformance {
 	readonly category: string;
 	readonly testimonialCount: number;
 	readonly averageRating: number;
@@ -39,7 +39,7 @@ export interface CategoryPerformance {
 	readonly trend: 'increasing' | 'decreasing' | 'stable';
 	readonly growthRate: number;
 }
-export interface SubjectMetrics {
+interface SubjectMetrics {
 	readonly subject: string;
 	readonly testimonialCount: number;
 	readonly averageGradeImprovement: number;
@@ -51,7 +51,7 @@ export interface SubjectMetrics {
 		readonly premiumMultiplier: number;
 	};
 }
-export interface GeographicMetrics {
+interface GeographicMetrics {
 	readonly region: string;
 	readonly clientCount: number;
 	readonly averageProjectValue: number;
@@ -59,14 +59,14 @@ export interface GeographicMetrics {
 	readonly marketPenetration: number;
 	readonly growthOpportunity: number;
 }
-export interface SeasonalData {
+interface SeasonalData {
 	readonly period: string;
 	readonly inquiries: number;
 	readonly conversions: number;
 	readonly revenue: number;
 	readonly seasonalityFactor: number;
 }
-export interface ConversionStage {
+interface ConversionStage {
 	readonly stage: string;
 	readonly visitors: number;
 	readonly conversions: number;
@@ -75,14 +75,14 @@ export interface ConversionStage {
 	readonly abandonment: number;
 	readonly value: number;
 }
-export interface DropoffAnalysis {
+interface DropoffAnalysis {
 	readonly stage: string;
 	readonly dropoffRate: number;
 	readonly commonReasons: string[];
 	readonly improvementPotential: number;
 	readonly recommendedActions: string[];
 }
-export interface OptimizationSuggestion {
+interface OptimizationSuggestion {
 	readonly area: string;
 	readonly currentPerformance: number;
 	readonly potentialImprovement: number;
@@ -94,13 +94,13 @@ export interface OptimizationSuggestion {
 	};
 	readonly priority: 'high' | 'medium' | 'low';
 }
-export interface ForecastData {
+interface ForecastData {
 	readonly date: string;
 	readonly predictedInquiries: number;
 	readonly confidence: number;
 	readonly factors: string[];
 }
-export interface GrowthProjection {
+interface GrowthProjection {
 	readonly metric: string;
 	readonly currentValue: number;
 	readonly projectedValue: number;
@@ -108,7 +108,7 @@ export interface GrowthProjection {
 	readonly growthRate: number;
 	readonly assumptions: string[];
 }
-export interface RiskAssessment {
+interface RiskAssessment {
 	readonly factor: string;
 	readonly riskLevel: 'high' | 'medium' | 'low';
 	readonly probability: number;
@@ -637,7 +637,7 @@ export class ClientSuccessAnalyticsEngine {
 }
 export const clientSuccessAnalytics =
 	ClientSuccessAnalyticsEngine.getInstance();
-export function useClientSuccessAnalytics() {
+function useClientSuccessAnalytics() {
 	const [insights, setInsights] = React.useState<ClientSuccessInsights | null>(
 		null,
 	);
@@ -674,4 +674,3 @@ export function useClientSuccessAnalytics() {
 		),
 	};
 }
-export default clientSuccessAnalytics;

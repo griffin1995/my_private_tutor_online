@@ -1,12 +1,12 @@
 import type { z } from 'zod';
-export interface CMSEntity {
+interface CMSEntity {
 	readonly id: string;
 	readonly createdAt: string;
 	readonly updatedAt: string;
 	readonly version: number;
 	readonly status: 'draft' | 'published' | 'archived';
 }
-export interface CMSMetadata {
+interface CMSMetadata {
 	readonly author: string;
 	readonly lastModifiedBy: string;
 	readonly tags: readonly string[];
@@ -16,7 +16,7 @@ export interface CMSMetadata {
 		readonly keywords?: readonly string[];
 	};
 }
-export interface EnhancedTestimonial extends CMSEntity {
+interface EnhancedTestimonial extends CMSEntity {
 	readonly quote: string;
 	readonly author: string;
 	readonly role: string;
@@ -32,7 +32,7 @@ export interface EnhancedTestimonial extends CMSEntity {
 	readonly priority: number;
 	readonly category: 'parent' | 'student' | 'educator' | 'institution';
 }
-export interface TestimonialFilters {
+interface TestimonialFilters {
 	readonly rating?: number;
 	readonly category?: EnhancedTestimonial['category'];
 	readonly location?: string;
@@ -42,11 +42,11 @@ export interface TestimonialFilters {
 	readonly dateFrom?: string;
 	readonly dateTo?: string;
 }
-export interface TestimonialSortOptions {
+interface TestimonialSortOptions {
 	readonly field: 'date' | 'rating' | 'priority' | 'author';
 	readonly direction: 'asc' | 'desc';
 }
-export interface EliteSchool extends CMSEntity {
+interface EliteSchool extends CMSEntity {
 	readonly name: string;
 	readonly logoUrl: string;
 	readonly description: string;
@@ -66,7 +66,7 @@ export interface EliteSchool extends CMSEntity {
 	readonly achievements?: readonly string[];
 	readonly partnershipLevel: 'platinum' | 'gold' | 'silver' | 'bronze';
 }
-export interface VideoTestimonial extends CMSEntity {
+interface VideoTestimonial extends CMSEntity {
 	readonly title: string;
 	readonly description: string;
 	readonly thumbnailUrl: string;
@@ -88,7 +88,7 @@ export interface VideoTestimonial extends CMSEntity {
 		readonly hasAudioDescription: boolean;
 	};
 }
-export interface ContentSection<T = any> {
+interface ContentSection<T = any> {
 	readonly id: string;
 	readonly type: string;
 	readonly title: string;
@@ -98,20 +98,20 @@ export interface ContentSection<T = any> {
 	readonly validationStatus: ValidationStatus;
 	readonly publishStatus: PublishStatus;
 }
-export interface ValidationStatus {
+interface ValidationStatus {
 	readonly isValid: boolean;
 	readonly errors: readonly string[];
 	readonly warnings: readonly string[];
 	readonly lastChecked: string;
 	readonly score: number;
 }
-export interface PublishStatus {
+interface PublishStatus {
 	readonly isPublished: boolean;
 	readonly publishedAt?: string;
 	readonly scheduledFor?: string;
 	readonly publishedBy?: string;
 }
-export interface CMSOperation<T = any> {
+interface CMSOperation<T = any> {
 	readonly id: string;
 	readonly type: 'create' | 'update' | 'delete' | 'publish' | 'archive';
 	readonly entityType: string;
@@ -122,7 +122,7 @@ export interface CMSOperation<T = any> {
 	readonly status: 'pending' | 'completed' | 'failed';
 	readonly error?: string;
 }
-export interface CMSBatch {
+interface CMSBatch {
 	readonly id: string;
 	readonly operations: readonly CMSOperation[];
 	readonly status: 'pending' | 'processing' | 'completed' | 'failed';
@@ -130,7 +130,7 @@ export interface CMSBatch {
 	readonly createdAt: string;
 	readonly completedAt?: string;
 }
-export interface ContentPerformance {
+interface ContentPerformance {
 	readonly contentId: string;
 	readonly contentType: string;
 	readonly views: number;
@@ -144,7 +144,7 @@ export interface ContentPerformance {
 	readonly periodStart: string;
 	readonly periodEnd: string;
 }
-export interface PerformanceTrend {
+interface PerformanceTrend {
 	readonly metric: string;
 	readonly current: number;
 	readonly previous: number;
@@ -152,7 +152,7 @@ export interface PerformanceTrend {
 	readonly changePercent: number;
 	readonly trend: 'up' | 'down' | 'stable';
 }
-export interface OptimizationSuggestion {
+interface OptimizationSuggestion {
 	readonly id: string;
 	readonly contentId: string;
 	readonly type: 'performance' | 'seo' | 'accessibility' | 'engagement';
@@ -171,7 +171,7 @@ export interface OptimizationSuggestion {
 	};
 	readonly createdAt: string;
 }
-export interface A11yReport {
+interface A11yReport {
 	readonly contentId: string;
 	readonly score: number;
 	readonly issues: readonly {
@@ -184,7 +184,7 @@ export interface A11yReport {
 	readonly improvements: readonly string[];
 	readonly lastChecked: string;
 }
-export interface AdminUser {
+interface AdminUser {
 	readonly id: string;
 	readonly name: string;
 	readonly email: string;
@@ -198,7 +198,7 @@ export interface AdminUser {
 	readonly lastLogin: string;
 	readonly status: 'active' | 'inactive' | 'suspended';
 }
-export interface AdminSession {
+interface AdminSession {
 	readonly userId: string;
 	readonly sessionId: string;
 	readonly startTime: string;
@@ -207,7 +207,7 @@ export interface AdminSession {
 	readonly userAgent: string;
 	readonly permissions: readonly string[];
 }
-export interface CMSResponse<T = any> {
+interface CMSResponse<T = any> {
 	readonly success: boolean;
 	readonly data?: T;
 	readonly error?: string;
@@ -220,7 +220,7 @@ export interface CMSResponse<T = any> {
 		readonly processingTime: number;
 	};
 }
-export interface PaginatedResponse<T> extends CMSResponse<T[]> {
+interface PaginatedResponse<T> extends CMSResponse<T[]> {
 	readonly pagination: {
 		readonly page: number;
 		readonly limit: number;
@@ -230,7 +230,7 @@ export interface PaginatedResponse<T> extends CMSResponse<T[]> {
 		readonly hasPrevious: boolean;
 	};
 }
-export interface SearchQuery {
+interface SearchQuery {
 	readonly query: string;
 	readonly filters: Record<string, any>;
 	readonly sort: {
@@ -242,7 +242,7 @@ export interface SearchQuery {
 		readonly limit: number;
 	};
 }
-export interface SearchResult<T> {
+interface SearchResult<T> {
 	readonly results: T[];
 	readonly total: number;
 	readonly facets: Record<
@@ -255,7 +255,7 @@ export interface SearchResult<T> {
 	readonly suggestions: readonly string[];
 	readonly took: number;
 }
-export interface ContentVersion<T = any> {
+interface ContentVersion<T = any> {
 	readonly version: number;
 	readonly content: T;
 	readonly createdAt: string;
@@ -264,19 +264,19 @@ export interface ContentVersion<T = any> {
 	readonly tags: readonly string[];
 	readonly parentVersion?: number;
 }
-export interface VersionDiff {
+interface VersionDiff {
 	readonly field: string;
 	readonly oldValue: any;
 	readonly newValue: any;
 	readonly changeType: 'added' | 'modified' | 'removed';
 }
-export interface ContentHistory<T = any> {
+interface ContentHistory<T = any> {
 	readonly contentId: string;
 	readonly versions: readonly ContentVersion<T>[];
 	readonly currentVersion: number;
 	readonly totalVersions: number;
 }
-export interface BackupManifest {
+interface BackupManifest {
 	readonly id: string;
 	readonly createdAt: string;
 	readonly createdBy: string;
@@ -291,7 +291,7 @@ export interface BackupManifest {
 		readonly description?: string;
 	};
 }
-export interface RestoreOperation {
+interface RestoreOperation {
 	readonly id: string;
 	readonly backupId: string;
 	readonly status: 'pending' | 'processing' | 'completed' | 'failed';
@@ -302,21 +302,21 @@ export interface RestoreOperation {
 	readonly failedItems: number;
 	readonly errors: readonly string[];
 }
-export type DeepPartial<T> = {
+type DeepPartial<T> = {
 	[P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
 };
-export type RequiredFields<T, K extends keyof T> = T & Required<Pick<T, K>>;
-export type OptionalFields<T, K extends keyof T> = Omit<T, K> &
+type RequiredFields<T, K extends keyof T> = T & Required<Pick<T, K>>;
+type OptionalFields<T, K extends keyof T> = Omit<T, K> &
 	Partial<Pick<T, K>>;
-export type CMSEntityType = 'testimonial' | 'video' | 'school' | 'hero' | 'cta';
-export type ContentStatus = 'draft' | 'review' | 'published' | 'archived';
-export type OperationResult<T = any> = {
+type CMSEntityType = 'testimonial' | 'video' | 'school' | 'hero' | 'cta';
+type ContentStatus = 'draft' | 'review' | 'published' | 'archived';
+type OperationResult<T = any> = {
 	readonly success: boolean;
 	readonly data?: T;
 	readonly error?: string;
 	readonly warnings?: readonly string[];
 };
-export interface CMSEvent<T = any> {
+interface CMSEvent<T = any> {
 	readonly id: string;
 	readonly type: string;
 	readonly entityType: string;
@@ -325,14 +325,14 @@ export interface CMSEvent<T = any> {
 	readonly userId?: string;
 	readonly timestamp: string;
 }
-export interface EventSubscription {
+interface EventSubscription {
 	readonly id: string;
 	readonly eventTypes: readonly string[];
 	readonly entityTypes?: readonly string[];
 	readonly callback: (event: CMSEvent) => void;
 	readonly active: boolean;
 }
-export interface FeatureFlags {
+interface FeatureFlags {
 	readonly enableAnalytics: boolean;
 	readonly enableVersioning: boolean;
 	readonly enableBackups: boolean;
@@ -340,7 +340,7 @@ export interface FeatureFlags {
 	readonly enableAdvancedValidation: boolean;
 	readonly enablePerformanceMonitoring: boolean;
 }
-export interface SystemLimits {
+interface SystemLimits {
 	readonly maxFileSize: number;
 	readonly maxImageDimensions: {
 		readonly width: number;
@@ -351,7 +351,7 @@ export interface SystemLimits {
 	readonly maxSchoolsCount: number;
 	readonly maxVideosCount: number;
 }
-export interface CMSPlugin<T = any> {
+interface CMSPlugin<T = any> {
 	readonly name: string;
 	readonly version: string;
 	readonly description: string;
@@ -364,7 +364,7 @@ export interface CMSPlugin<T = any> {
 		readonly afterDelete?: (contentId: string) => void;
 	};
 }
-export interface CMSTheme {
+interface CMSTheme {
 	readonly name: string;
 	readonly displayName: string;
 	readonly colors: Record<string, string>;

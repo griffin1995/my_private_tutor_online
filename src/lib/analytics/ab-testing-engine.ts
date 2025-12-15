@@ -1,17 +1,17 @@
 'use client';
 
 import {
-	ABTestExperiment,
-	ABTestResult,
-	ExperimentVariant,
-	StatisticalSignificance,
-	ConfidenceInterval,
-	ExperimentParticipant,
-	ABTestAnalysis,
-	ExperimentExecutiveSummary,
-	StatisticalTest,
-	TestRecommendation,
-	ABTestFrameworkConfig,
+	type ABTestExperiment,
+	type ABTestResult,
+	type ExperimentVariant,
+	type StatisticalSignificance,
+	type ConfidenceInterval,
+	type ExperimentParticipant,
+	type ABTestAnalysis,
+	type ExperimentExecutiveSummary,
+	type StatisticalTest,
+	type TestRecommendation,
+	type ABTestFrameworkConfig,
 } from '@/types/testimonials-ab-testing.types';
 class StatisticalCalculator {
 	static calculateTwoSampleZTest(

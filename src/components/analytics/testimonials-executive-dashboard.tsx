@@ -468,7 +468,7 @@ const ROIAnalysisSection: React.FC<{
 		</div>
 	);
 };
-export const TestimonialsExecutiveDashboard: React.FC = () => {
+const TestimonialsExecutiveDashboard: React.FC = () => {
 	const analytics = useTestimonialsAnalytics();
 	const [state, setState] = useState<DashboardState>({
 		dashboardData: null,

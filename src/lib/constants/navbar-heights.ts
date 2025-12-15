@@ -3,8 +3,8 @@ export const NAVBAR_HEIGHTS = {
 	tablet: '6.25rem',
 	desktop: '7rem',
 } as const;
-export type NavbarHeightKey = keyof typeof NAVBAR_HEIGHTS;
-export type ViewportCalcExpression = `h-[calc(100${ViewportUnit}-${string})]`;
+type NavbarHeightKey = keyof typeof NAVBAR_HEIGHTS;
+type ViewportCalcExpression = `h-[calc(100${ViewportUnit}-${string})]`;
 export const calculateRemainingViewport = (): string => {
 	return [
 		`h-[calc(100vh-${NAVBAR_HEIGHTS.mobile})]`,
@@ -15,26 +15,26 @@ export const calculateRemainingViewport = (): string => {
 		`xl:h-[calc(100dvh-${NAVBAR_HEIGHTS.desktop})]`,
 	].join(' ');
 };
-export const getNavbarClearance = (): string => {
+const getNavbarClearance = (): string => {
 	return `mt-[${NAVBAR_HEIGHTS.mobile}] lg:mt-[${NAVBAR_HEIGHTS.tablet}] xl:mt-[${NAVBAR_HEIGHTS.desktop}]`;
 };
-export const getFullSectionClasses = (): string => {
+const getFullSectionClasses = (): string => {
 	return `w-full ${calculateRemainingViewport()} ${getNavbarClearance()} flex flex-col overflow-hidden`;
 };
-export const getNavbarSpacerHeight = (): string => {
+const getNavbarSpacerHeight = (): string => {
 	return `h-[${NAVBAR_HEIGHTS.mobile}] lg:h-[${NAVBAR_HEIGHTS.tablet}] xl:h-[${NAVBAR_HEIGHTS.desktop}]`;
 };
-export const getHeroSectionClasses = (): string => {
+const getHeroSectionClasses = (): string => {
 	return `w-full ${calculateRemainingViewport()} flex flex-col overflow-hidden`;
 };
-export const getNavbarHeight = (key: NavbarHeightKey): string => {
+const getNavbarHeight = (key: NavbarHeightKey): string => {
 	return NAVBAR_HEIGHTS[key];
 };
-export const getNavbarHeightEntries = (): Array<[NavbarHeightKey, string]> => {
+const getNavbarHeightEntries = (): Array<[NavbarHeightKey, string]> => {
 	return Object.entries(NAVBAR_HEIGHTS) as Array<[NavbarHeightKey, string]>;
 };
-export type ViewportUnit = 'vh' | 'dvh' | 'lvh' | 'svh';
-export const calculateRemainingViewportWithUnit = (
+type ViewportUnit = 'vh' | 'dvh' | 'lvh' | 'svh';
+const calculateRemainingViewportWithUnit = (
 	unit: ViewportUnit = 'dvh',
 	includeFallback: boolean = true,
 ): string => {
@@ -63,7 +63,7 @@ export const supportsDynamicViewport = (): boolean => {
 		return false;
 	}
 };
-export const calculateAdaptiveViewport = (): string => {
+const calculateAdaptiveViewport = (): string => {
 	const useDvh = supportsDynamicViewport();
 	return useDvh ?
 			calculateRemainingViewportWithUnit('dvh', true)

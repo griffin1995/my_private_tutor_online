@@ -7,7 +7,6 @@ import {
 	getTestimonialsHero,
 	getTestimonialsIntroConfig,
 	getTestimonialVideos,
-	getEliteSchoolsData,
 	getTestimonialsCTAContent,
 	type Testimonial,
 	type TestimonialsContent,
@@ -16,7 +15,7 @@ import {
 	validateTestimonialContent,
 	type TestimonialsValidationResult,
 } from './cms-validation';
-export interface TestimonialsPageContent {
+interface TestimonialsPageContent {
 	readonly hero: {
 		readonly title: string;
 		readonly subtitle: string;
@@ -98,7 +97,7 @@ export interface CMSMetrics {
 	readonly lastUpdated: string;
 	readonly performanceScore: number;
 }
-export interface TestimonialsCMSStore {
+interface TestimonialsCMSStore {
 	content: TestimonialsPageContent | null;
 	metrics: CMSMetrics;
 	isLoading: boolean;
@@ -148,7 +147,7 @@ const useTestimonialsCMSStore = create<TestimonialsCMSStore>()(
 						Promise.resolve(getTestimonialsIntroConfig()),
 						Promise.resolve(getTestimonials()),
 						Promise.resolve(getTestimonialVideos()),
-						Promise.resolve(getEliteSchoolsData()),
+						Promise.resolve({ allSchools: [], featuredSchools: [], topSchools: [] }),
 						Promise.resolve(getTestimonialsCTAContent()),
 					]);
 					const content: TestimonialsPageContent = {
@@ -267,7 +266,7 @@ const useTestimonialsCMSStore = create<TestimonialsCMSStore>()(
 		},
 	),
 );
-export class TestimonialsCMSManager {
+class TestimonialsCMSManager {
 	private store = useTestimonialsCMSStore;
 	public getAllContent = cache(async (): Promise<TestimonialsPageContent> => {
 		const state = this.store.getState();
@@ -294,7 +293,7 @@ export class TestimonialsCMSManager {
 	});
 	public getSchoolsData = cache(() => {
 		const state = this.store.getState();
-		return state.content?.schools || getEliteSchoolsData();
+		return state.content?.schools || { allSchools: [], featuredSchools: [], topSchools: [] };
 	});
 	public getCTAContent = cache(() => {
 		const state = this.store.getState();
@@ -360,8 +359,8 @@ export class TestimonialsCMSManager {
 	}
 }
 export const testimonialsCMSManager = new TestimonialsCMSManager();
-export { useTestimonialsCMSStore };
-export function useTestimonialsCMS() {
+;
+function useTestimonialsCMS() {
 	return {
 		manager: testimonialsCMSManager,
 		store: useTestimonialsCMSStore(),

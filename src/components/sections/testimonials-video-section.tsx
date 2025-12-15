@@ -276,4 +276,4 @@ export function TestimonialsVideoSection({
 		</section>
 	);
 }
-export type { TestimonialsVideoSectionProps, TestimonialVideo };
+;

@@ -74,4 +74,4 @@ export function PageHeader({
 		/>
 	);
 }
-export type { PageHeaderProps };
+;

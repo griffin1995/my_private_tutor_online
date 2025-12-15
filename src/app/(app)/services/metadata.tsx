@@ -73,7 +73,7 @@ export const servicesMetadata: Metadata = {
 		yandex: 'yandex-verification-code',
 	},
 };
-export const viewport = {
+const viewport = {
 	width: 'device-width',
 	initialScale: 1,
 	maximumScale: 5,

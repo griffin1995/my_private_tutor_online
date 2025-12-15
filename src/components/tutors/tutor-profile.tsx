@@ -504,4 +504,3 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 	);
 };
 
-export default TutorProfileCard;

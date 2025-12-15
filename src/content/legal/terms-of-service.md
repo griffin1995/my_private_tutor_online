@@ -1,177 +1,157 @@
-# Terms of Service for My Private Tutor Online
+# Terms of Service — www.myprivatetutoronline.com
+
+Last updated: 9th December 2025
 
 ## 1. Introduction
 
-### 1.1 Welcome
+Welcome to www.myprivatetutoronline.com (the "Website"). By accessing or using the Website, you agree to comply with and be bound by these Terms of Service ("Terms"). If you do not agree with any part of these Terms, please do not use the Website.
 
-Welcome to My Private Tutor Online, a premium educational service providing
-personalised tutoring across the United Kingdom and internationally.
+In these Terms, "we", "us" or "our" refers to the operator of the Website, and "you" refers to the user or visitor of the Website.
 
-### 1.2 Acceptance of Terms
+Use of this Website is subject to the following Terms of Use.
 
-By accessing or using our services, you agree to these Terms of Service. If you
-do not agree, please do not use our platform.
+---
 
-## 2. Service Description
+## 2. Purpose of the Website
 
-### 2.1 Tutoring Services
+The Website provides information about online tutoring services, educational resources, and the ability to arrange services with tutors. All content is provided for general information only, and is subject to change without notice.
 
-- Personalised one-to-one online and in-person tutoring
-- Comprehensive academic support
-- Specialising in:
-  - Key Stage 1-3
-  - GCSE Preparation
-  - A-Level Support
-  - International Baccalaureate
-  - Oxbridge Entrance Exam Preparation
+---
 
-### 2.2 Service Limitations
+## 3. Acceptable Use & Online Safety
 
-- Tutoring is supplementary educational support
-- We do not guarantee specific academic outcomes
-- Individual student effort is crucial for success
+You agree to use the Website only for lawful purposes and in compliance with the UK Online Safety Act 2025. You must not:
 
-## 3. Client Obligations
+* Breach any local, national, or international law or regulation.
 
-### 3.1 Student Participation
+* Transmit unlawful, harmful, defamatory, obscene or objectionable material.
 
-- Students must actively engage in the learning process
-- Punctuality for scheduled sessions
-- Preparation of required learning materials
-- Respectful communication with tutors
+* Upload, share, or transmit content that could cause harm to children or vulnerable users.
 
-### 3.2 Parental Responsibilities
+* Attempt to gain unauthorised access to the Website, related systems or networks.
 
-- Provide accurate student information
-- Ensure appropriate learning environment
-- Supervise online sessions for minors
-- Manage technological requirements
+* Use automated tools to scrape or copy content without written permission.
 
-## 4. Financial Terms
+* Reverse-engineer, decompile or attempt to derive source code.
 
-### 4.1 Pricing
+* Impersonate any person or misrepresent your affiliation.
 
-- Transparent pricing structure
-- Individual and package tutoring options
-- Premium rates reflecting Oxford/Cambridge graduate tutors
+* Engage in cyberbullying, harassment, or any form of harmful communication.
 
-### 4.2 Payment Conditions
+* Share personal contact information of minors or attempt to contact them outside of supervised tutoring sessions.
 
-- Payments accepted via secure online methods
-- Advance booking required
-- Cancellation and refund policy applies
-- VAT included where applicable
+You are responsible for maintaining the confidentiality of any account details (if applicable).
 
-### 4.3 Cancellation Policy
+### Online Safety Measures
 
-- 48-hour notice required for session cancellation
-- Full fee charged for late cancellations
-- Rescheduling subject to tutor availability
+In compliance with the Online Safety Act 2025, we implement:
 
-## 5. Intellectual Property
+* **Content Moderation:** All user-generated content and communications are subject to monitoring and moderation
+* **Age Verification:** Enhanced verification procedures for users under 18
+* **Reporting Mechanisms:** Clear reporting tools for harmful or inappropriate content
+* **Parental Controls:** Additional safety measures for users under 16, including mandatory parental involvement
+* **Risk Assessment:** Regular assessment of services for potential harm to users, particularly children
 
-### 5.1 Content Ownership
+### Child Safety Online
 
-- Teaching materials remain our intellectual property
-- Students receive usage rights for personal learning
-- Reproduction or distribution prohibited
+For tutoring sessions involving users under 18:
 
-### 5.2 Tutor Intellectual Property
+* **Supervision Requirements:** All online tutoring sessions must be conducted in accordance with our child protection policies
+* **Recording Restrictions:** No recording of sessions without explicit written consent from parents/guardians
+* **Communication Protocols:** All tutor-student communications must follow approved channels and may be monitored
+* **Incident Reporting:** Any safety concerns must be reported immediately to info@myprivatetutoronline.com
 
-- Tutor-created supplementary materials protected
-- Sharing or reproduction requires explicit permission
+---
 
-## 6. Confidentiality and Privacy
+## 4. Intellectual Property
 
-### 6.1 Data Protection
+All content on this Website—including text, graphics, logos, layout and design—is owned by or licensed to us. You may view or print content for personal, non-commercial use only.
 
-- Strict adherence to UK GDPR
-- Comprehensive data protection measures
-- Minimal data collection principle
+Any reproduction, distribution or commercial use requires our prior written permission.
 
-### 6.2 Confidentiality Commitment
+Unauthorised use may give rise to a claim for damages and/or be a criminal offence.
 
-- Absolute discretion for all clients
-- Special protocols for high-profile families
-- Non-disclosure agreements for all staff
+---
 
-## 7. Liability and Indemnification
+## 5. Cookies
 
-### 7.1 Service Limitations
+The Website uses cookies to monitor browsing preferences. By using the Website, you consent to our use of cookies. Please see our Cookie Policy / Privacy Policy for full details.
 
-- No guarantee of specific academic results
-- Individual student effort is primary success factor
-- Tutoring is supplementary educational support
+---
 
-### 7.2 Liability Exclusions
+## 6. Disclaimer & Limitation of Liability
 
-- Limited liability for:
-  - Technical interruptions
-  - Student performance
-  - External examination results
+Information is provided "as is," without warranty of accuracy, completeness or suitability. Your use of the Website is at your own risk.
 
-## 8. Tutor Selection and Matching
+To the fullest extent permitted by law, we are not liable for any loss or damage, including indirect or consequential loss, arising from your use of the Website or reliance on any information provided.
 
-### 8.1 Tutor Qualifications
+---
 
-- 100% Oxford/Cambridge graduate tutors
-- Rigorous selection process
-- Enhanced background checks
-- Ongoing professional development
+## 7. Links to Other Websites
 
-### 8.2 Tutor Replacement
+The Website may contain links to external websites. These links are provided for convenience and do not signify endorsement. We are not responsible for the content or availability of linked websites.
 
-- Right to replace tutor if unsatisfactory
-- Matching based on student needs
-- Transparent communication process
+---
 
-## 9. Technology and Online Sessions
+## 8. Registration & Security (if applicable)
 
-### 9.1 Technical Requirements
+If you create an account:
 
-- Stable internet connection
-- Compatible device
-- Recommended software/platforms
-- Client responsible for technical setup
+* You agree to provide accurate and complete information.
 
-### 9.2 Online Session Conduct
+* You are responsible for safeguarding your password.
 
-- Professional and respectful environment
-- Recording not permitted without consent
-- Data protection during online sessions
+* You must notify us of any unauthorised access.
 
-## 10. Accessibility and Special Needs
+* We may suspend or terminate accounts suspected of misuse.
 
-### 10.1 Inclusive Support
+---
 
-- Accommodations for learning differences
-- Personalised approach
-- Consultation with educational specialists
+## 9. Changes to Terms
 
-## 11. Dispute Resolution
+We may update these Terms at any time by posting the revised version on this page. Continued use of the Website constitutes acceptance of the updated Terms.
 
-### 11.1 Complaint Procedure
+We may also modify or discontinue parts of the Website without notice.
 
-- Formal complaint mechanism
-- Independent educational consultant review
-- Mediation before legal action
+---
 
-### 11.2 Jurisdiction
+## 10. Governing Law & Regulatory Compliance
 
-- English law governs these terms
-- London-based arbitration
+These Terms are governed by the laws of England and Wales, and disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.
 
-## 12. Modifications to Terms
+### Legal Framework Compliance
 
-### 12.1 Term Updates
+Our services operate in full compliance with:
 
-- We reserve the right to modify terms
-- Clients will be notified of significant changes
-- Continued use implies acceptance
+* **UK General Data Protection Regulation (UK GDPR)** and Data Protection Act 2018
+* **Consumer Rights Act 2015** and Consumer Contracts Regulations 2013
+* **Digital Markets, Competition and Consumers Act 2024**
+* **Online Safety Act 2025**
+* **Privacy and Electronic Communications Regulations (PECR)**
+* **Equality Act 2010**
+* **Children Act 2004** and safeguarding legislation
 
-## Disclaimer
+### Regulatory Oversight
 
-These terms constitute a legal agreement. Professional legal advice is
-recommended for full understanding.
+We are subject to oversight by:
 
-**Last Updated:** August 2025
+* **Information Commissioner's Office (ICO)** for data protection compliance
+* **Ofcom** for online safety compliance
+* **Competition and Markets Authority (CMA)** for consumer protection
+* **Local Safeguarding Partnerships** for child protection
+
+---
+
+## 11. Miscellaneous
+
+If any provision of these Terms is found unenforceable, the remaining provisions will continue in effect. Failure to enforce any provision does not constitute a waiver.
+
+---
+
+## 12. Contact Information
+
+For any questions regarding these Terms, please contact us at:
+
+Email: info@myprivatetutoronline.com
+
+Address: 17 Alexandra Gardens, London, N10 3RN

@@ -1,4 +1,4 @@
-export const KEYBOARD_KEYS = {
+const KEYBOARD_KEYS = {
 	ENTER: 'Enter',
 	SPACE: ' ',
 	ESCAPE: 'Escape',
@@ -12,8 +12,8 @@ export const KEYBOARD_KEYS = {
 	PAGE_UP: 'PageUp',
 	PAGE_DOWN: 'PageDown',
 } as const;
-export type KeyboardKey = (typeof KEYBOARD_KEYS)[keyof typeof KEYBOARD_KEYS];
-export class FocusManager {
+type KeyboardKey = (typeof KEYBOARD_KEYS)[keyof typeof KEYBOARD_KEYS];
+class FocusManager {
 	private focusableElementsSelector = [
 		'a[href]',
 		'button:not([disabled])',
@@ -73,16 +73,16 @@ export class FocusManager {
 	}
 }
 export const focusManager = new FocusManager();
-export const createAriaDescription = (text: string): string => {
+const createAriaDescription = (text: string): string => {
 	return text
 		.toLowerCase()
 		.replace(/[^a-z0-9\s]/g, '')
 		.trim();
 };
-export const generateUniqueId = (prefix: string = 'id'): string => {
+const generateUniqueId = (prefix: string = 'id'): string => {
 	return `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
 };
-export class ScreenReaderAnnouncer {
+class ScreenReaderAnnouncer {
 	private liveRegion: HTMLElement | null = null;
 	constructor() {
 		this.createLiveRegion();
@@ -117,7 +117,7 @@ export class ScreenReaderAnnouncer {
 	}
 }
 export const screenReader = new ScreenReaderAnnouncer();
-export const getContrastRatio = (
+const getContrastRatio = (
 	foreground: string,
 	background: string,
 ): number => {
@@ -138,7 +138,7 @@ export const getContrastRatio = (
 	const darker = Math.min(luminance1, luminance2);
 	return (lighter + 0.05) / (darker + 0.05);
 };
-export const meetsWCAGContrast = (
+const meetsWCAGContrast = (
 	foreground: string,
 	background: string,
 	level: 'AA' | 'AAA' = 'AA',
@@ -155,10 +155,10 @@ export const prefersReducedMotion = (): boolean => {
 	if (typeof window === 'undefined') return false;
 	return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
-export const getAnimationDuration = (defaultDuration: number): number => {
+const getAnimationDuration = (defaultDuration: number): number => {
 	return prefersReducedMotion() ? 0 : defaultDuration;
 };
-export const getAnimationClasses = (animationClasses: string): string => {
+const getAnimationClasses = (animationClasses: string): string => {
 	return prefersReducedMotion() ? '' : animationClasses;
 };
 export const injectMotionCSSVariables = (): void => {
@@ -195,11 +195,11 @@ export const watchMotionPreference = (
 		mediaQuery.removeEventListener('change', handler);
 	};
 };
-export const prefersHighContrast = (): boolean => {
+const prefersHighContrast = (): boolean => {
 	if (typeof window === 'undefined') return false;
 	return window.matchMedia('(prefers-contrast: high)').matches;
 };
-export const handleKeyboardNavigation = (
+const handleKeyboardNavigation = (
 	event: KeyboardEvent,
 	callbacks: {
 		onEnter?: () => void;
@@ -250,16 +250,16 @@ export const handleKeyboardNavigation = (
 			break;
 	}
 };
-export const getFormErrorId = (fieldName: string): string => {
+const getFormErrorId = (fieldName: string): string => {
 	return `${fieldName}-error`;
 };
-export const getFormDescriptionId = (fieldName: string): string => {
+const getFormDescriptionId = (fieldName: string): string => {
 	return `${fieldName}-description`;
 };
-export const getFormLabelId = (fieldName: string): string => {
+const getFormLabelId = (fieldName: string): string => {
 	return `${fieldName}-label`;
 };
-export const isExternalLink = (href: string): boolean => {
+const isExternalLink = (href: string): boolean => {
 	try {
 		const url = new URL(href, window.location.href);
 		return url.hostname !== window.location.hostname;
@@ -267,7 +267,7 @@ export const isExternalLink = (href: string): boolean => {
 		return false;
 	}
 };
-export const getExternalLinkProps = (href: string) => {
+const getExternalLinkProps = (href: string) => {
 	if (isExternalLink(href)) {
 		return {
 			target: '_blank',
@@ -277,7 +277,7 @@ export const getExternalLinkProps = (href: string) => {
 	}
 	return {};
 };
-export const validateImageAlt = (alt: string, src: string): boolean => {
+const validateImageAlt = (alt: string, src: string): boolean => {
 	if (!alt || alt.trim().length === 0) return false;
 	const filename = src.split('/').pop()?.toLowerCase() || '';
 	const altLower = alt.toLowerCase();
@@ -312,4 +312,3 @@ const AccessibilityUtils = {
 	getExternalLinkProps,
 	validateImageAlt,
 };
-export default AccessibilityUtils;
