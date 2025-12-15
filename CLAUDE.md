@@ -1,3 +1,54 @@
+# ⚠️ DEPRECATED - DOCUMENTATION RESTRUCTURED
+
+**This file has been replaced by modular documentation following 2025 best practices.**
+
+## 📍 NEW DOCUMENTATION LOCATION
+
+**Quick Start**: [docs/README.md](docs/README.md)
+
+### Modular Structure
+```
+docs/
+├── README.md                           # Project overview
+├── standards/                          # Development standards
+│   ├── development-standards.md        # Core rules
+│   ├── css-architecture.md            # Styling patterns
+│   └── cms-patterns.md                # CMS requirements (CRITICAL)
+├── technical/                          # Technical specifications
+│   ├── tech-stack.md                  # Technology stack
+│   ├── deployment.md                  # Deployment procedures
+│   └── navigation-patterns.md         # Navigation architecture
+└── reference/                          # Quick reference
+    ├── agent-specialisation.md        # Agent workflows
+    ├── emergency-protocols.md         # Emergency procedures
+    └── verification-checklists.md     # Quality gates
+```
+
+## 🚀 QUICK NAVIGATION
+
+### Essential Documentation
+- **Start Here**: [Development Standards](docs/standards/development-standards.md)
+- **CRITICAL**: [CMS Patterns](docs/standards/cms-patterns.md) - Zero tolerance violations
+- **CSS Rules**: [CSS Architecture](docs/standards/css-architecture.md)
+- **Emergency**: [Emergency Protocols](docs/reference/emergency-protocols.md)
+
+### Technical Specifications
+- [Tech Stack](docs/technical/tech-stack.md)
+- [Deployment](docs/technical/deployment.md)
+- [Navigation](docs/technical/navigation-patterns.md)
+
+### Quick Reference
+- [Agent Selection](docs/reference/agent-specialisation.md)
+- [Verification Checklists](docs/reference/verification-checklists.md)
+
+---
+
+**This modular approach eliminates technical debt, improves maintainability, and follows 2025 documentation standards.**
+
+---
+
+# LEGACY CONTENT (Archived for Reference)
+
 # 🚨 CRITICAL SESSION STARTUP INSTRUCTIONS - AUTOMATIC ACTIVATION 🚨
 
 ## 📍 PROJECT STATUS: MY PRIVATE TUTOR ONLINE ✅
