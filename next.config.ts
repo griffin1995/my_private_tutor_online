@@ -2,10 +2,8 @@ import type { NextConfig } from 'next';
 import bundleAnalyzer from '@next/bundle-analyzer';
 import path from 'path';
 
-// Load why-did-you-render for development debugging
-if (process.env.NODE_ENV === 'development') {
-  require('./scripts/why-did-you-render');
-}
+// Modern 2025 debugging: React DevTools profiler enabled below
+// Removed why-did-you-render in favour of built-in React debugging tools
 
 const withBundleAnalyzer = bundleAnalyzer({
 	enabled: process.env['ANALYZE'] === 'true',
@@ -16,6 +14,9 @@ const nextConfig: NextConfig = {
 	compress: true,
 	poweredByHeader: false,
 	reactStrictMode: true,
+
+	// Modern 2025 Debugging & Profiling (React DevTools Integration)
+	// Note: profiler property moved to experimental in Next.js 15.5+
 
 	// Modern Turbopack Configuration (Single Unified Instance)
 	turbopack: {
@@ -38,9 +39,8 @@ const nextConfig: NextConfig = {
 
 	// Experimental Features (2025 Standards)
 	experimental: {
-		// Turbopack FileSystem Caching (Stable for dev, experimental for build)
-		turbopackFileSystemCacheForDev: true,
-		turbopackFileSystemCacheForBuild: true,
+		// React DevTools Profiler (moved here in Next.js 15.5+)
+		profiler: process.env.NODE_ENV === 'development',
 
 		// Static Generation Optimization
 		staticGenerationMaxConcurrency: 16,
@@ -85,11 +85,16 @@ const nextConfig: NextConfig = {
 		webpackBuildWorker: true,
 	},
 
-	// Enhanced Logging for Development
+	// Enhanced Logging for Development (2025 Standards)
 	logging: {
 		fetches: {
 			fullUrl: true,
 		},
+	},
+
+	// Development Indicators (Enhanced debugging visibility)
+	devIndicators: {
+		position: 'bottom-right',
 	},
 
 	// Modern Image Optimization (2025 Standards)
