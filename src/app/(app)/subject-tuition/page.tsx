@@ -367,16 +367,11 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 	return (
 		<>
 			<SimpleHero
-				backgroundImage='/images/hero/subject-tuition.jpg'
-				h1={
-					<span className='text-white'>
-						Subject Tutoring
-						<br />&<br />
-						<span className='text-accent-600'>Exam Preparation</span>
-					</span>
-				}
-				h2='From entrance exams to university prep, our expert tutors provide personalised instruction across all subjects and educational stages. '
-				decorativeStyle='lines'
+				backgroundImage="/images/hero/subject-tuition.jpg"
+				h1="Subject Tutoring & Exam"
+				h1AccentText="Preparation"
+				h2="From entrance exams to university prep, our expert tutors provide personalised instruction across all subjects and educational stages."
+				decorativeStyle="lines"
 			/>
 
 			<PageLayout

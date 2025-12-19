@@ -81,13 +81,10 @@ export default function AboutUsPage() {
 			<section id='about-hero'>
 				<SimpleHero
 					backgroundImage={ABOUT_HERO_IMAGE.src}
-					h1={
-						<span className='text-white'>
-							Founder <span className='text-accent-600'>& Ethos</span>
-						</span>
-					}
-					h2='Where breaking the mould leads to remarkable results.'
-					decorativeStyle='none'
+					h1="Founder"
+					h1AccentText="& Ethos"
+					h2="Where breaking the mould leads to remarkable results."
+					decorativeStyle="none"
 				/>
 			</section>
 

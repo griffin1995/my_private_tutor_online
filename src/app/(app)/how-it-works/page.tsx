@@ -460,15 +460,11 @@ export default function HowItWorksPage() {
 				}}>
 				<section id='how-it-works-hero'>
 					<SimpleHero
-						backgroundImage='/images/hero/how-it-works.jpeg'
-						h1={
-							<span className='text-white'>
-								Your Journey To{' '}
-								<span className='text-accent-600'>Academic Success</span>
-							</span>
-						}
-						h2='Outstanding Tuition. Tailored Pairing. Ongoing Guidance.'
-						decorativeStyle='lines'
+						backgroundImage="/images/hero/how-it-works.jpeg"
+						h1="Your Journey To"
+						h1AccentText="Academic Success"
+						h2="Outstanding Tuition. Tailored Pairing. Ongoing Guidance."
+						decorativeStyle="lines"
 					/>
 				</section>
 				{/* New Alternating Row Components */}

@@ -161,13 +161,10 @@ export default function BlogPage() {
 		<>
 			{/* Hero Section */}
 			<SimpleHero
-				backgroundImage='/images/blog/education-insights-header.jpg'
-				h1={
-					<span className='text-white'>
-						Education <span className='text-accent-600'>Insights</span>
-					</span>
-				}
-				h2='Expert guidance, practical advice, and the latest insights in education from our team of experienced tutors.'
+				backgroundImage="/images/blog/education-insights-header.jpg"
+				h1="Education"
+				h1AccentText="Insights"
+				h2="Expert guidance, practical advice, and the latest insights in education from our team of experienced tutors."
 			/>
 
 			{/* Main Content */}

@@ -2813,13 +2813,10 @@ export default function ResourcesPage() {
 		<>
 			{/* Hero Section */}
 			<SimpleHero
-				backgroundImage='/images/hero/exam-papers-header-new.jpg'
-				h1={
-					<span className='text-white'>
-						Premium <span className='text-accent-400'>Exam Papers</span>
-					</span>
-				}
-				h2='Comprehensive past papers and expert-curated examination resources to support your academic journey'
+				backgroundImage="/images/hero/exam-papers-header-new.jpg"
+				h1="Premium"
+				h1AccentText="Exam Papers"
+				h2="Comprehensive past papers and expert-curated examination resources to support your academic journey"
 			/>
 
 			{/* Main Content with Sidebar */}

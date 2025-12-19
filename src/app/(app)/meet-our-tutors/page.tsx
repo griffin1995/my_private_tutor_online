@@ -1228,13 +1228,10 @@ export default function MeetOurTutorsPage() {
 				verticalSpacing='default'>
 				<SimpleHero
 					backgroundImage={tutorsHeroImage.src}
-					h1={
-						<span className='text-white'>
-							Meet Our <span className='text-accent-600'>Tutors</span>
-						</span>
-					}
-					h2='Excellence Through Expertise'
-					decorativeStyle='lines'
+					h1="Meet Our"
+					h1AccentText="Tutors"
+					h2="Excellence Through Expertise"
+					decorativeStyle="lines"
 				/>
 				<TutorsSection
 					data={tutorProfilesSection}

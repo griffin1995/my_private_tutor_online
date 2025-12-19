@@ -139,14 +139,10 @@ export default function VideoPage() {
 			<section id='video-hero'>
 				<SimpleHero
 					backgroundImage={videoHeroImage.src}
-					h1={
-						<span className='text-white'>
-							Video Masterclasses &{' '}
-							<span className='text-accent-600'>Educational Content</span>
-						</span>
-					}
-					h2='A trusted guide to British education, culture, and university preparation'
-					decorativeStyle='none'
+					h1="Video Masterclasses &"
+					h1AccentText="Educational Content"
+					h2="A trusted guide to British education, culture, and university preparation"
+					decorativeStyle="none"
 				/>
 			</section>
 

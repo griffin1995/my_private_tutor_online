@@ -105,7 +105,7 @@ export function LegalPageTemplate({
 		<>
 			<SimpleHero
 				backgroundImage={backgroundImage}
-				h1={<span className='text-white'>{title}</span>}
+				h1={title}
 				h2={subtitle}
 			/>
 

@@ -110,13 +110,10 @@ export default function ContactPage() {
 			<section id='contact-hero'>
 				<SimpleHero
 					backgroundImage={CONTACT_HERO_IMAGE.src}
-					h1={
-						<span className='text-white'>
-							Contact <span className='text-accent-600'>Us</span>
-						</span>
-					}
+					h1="Contact"
+					h1AccentText="Us"
 					h2="Get in touch with Elizabeth's team for personalised tutoring solutions"
-					decorativeStyle='none'
+					decorativeStyle="none"
 				/>
 			</section>
 
