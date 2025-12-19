@@ -114,20 +114,25 @@ export function AboutSectionClient({
 								</HeadingText>
 							</motion.div>
 
-							<motion.p
-								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark leading-[1.6] mb-4'
+							<motion.div
 								initial={fadeInUp.initial}
 								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
 								transition={{ ...fadeInUp.transition, delay: 0.3 }}>
-								At the heart of My Private Tutor Online is a singular vision: academic
-								support that is both exceptional and deeply personal. Founded in 2010 by
-								Elizabeth Burrows—a{' '}
-								<strong className='text-token-primary-dark italic'>
-									Cambridge-accepted educator and former Forbes journalist
-								</strong>{' '}
-								—the company began not as a business, but as a trusted network of elite
-								colleagues she met throughout her international tutoring career.
-							</motion.p>
+								<BodyText
+									variant="large"
+									className="text-token-primary-dark leading-[1.6] mb-4"
+									responsive
+								>
+									At the heart of My Private Tutor Online is a singular vision: academic
+									support that is both exceptional and deeply personal. Founded in 2010 by
+									Elizabeth Burrows—a{' '}
+									<strong className='text-token-primary-dark italic'>
+										Cambridge-accepted educator and former Forbes journalist
+									</strong>{' '}
+									—the company began not as a business, but as a trusted network of elite
+									colleagues she met throughout her international tutoring career.
+								</BodyText>
+							</motion.div>
 
 							{/* Mobile/Tablet responsive image placement */}
 							<motion.div
@@ -146,28 +151,33 @@ export function AboutSectionClient({
 								/>
 							</motion.div>
 
-							<motion.p
-								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark leading-[1.6] mb-4'
+							<motion.div
 								initial={fadeInUp.initial}
 								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
 								transition={{ ...fadeInUp.transition, delay: 0.5 }}>
-								What started as a circle of personal recommendations has since
-								evolved—organically and exclusively—into one of the UK&apos;s most
-								respected names in specialist private tutoring. As testament, My Private
-								Tutor Online is honoured to be featured in{' '}
-								<strong className='text-token-primary-dark italic'>
-									Tatler&apos;s Address Book
-								</strong>
-								, recognised as{' '}
-								<strong className='text-token-primary-dark italic'>
-									School Guide&apos;s &apos;Top Pick&apos;
-								</strong>{' '}
-								for private tuition, and proud to count{' '}
-								<strong className='text-token-primary-dark italic'>
-									royal families
-								</strong>{' '}
-								among our clientele.
-							</motion.p>
+								<BodyText
+									variant="large"
+									className="text-token-primary-dark leading-[1.6] mb-4"
+									responsive
+								>
+									What started as a circle of personal recommendations has since
+									evolved—organically and exclusively—into one of the UK&apos;s most
+									respected names in specialist private tutoring. As testament, My Private
+									Tutor Online is honoured to be featured in{' '}
+									<strong className='text-token-primary-dark italic'>
+										Tatler&apos;s Address Book
+									</strong>
+									, recognised as{' '}
+									<strong className='text-token-primary-dark italic'>
+										School Guide&apos;s &apos;Top Pick&apos;
+									</strong>{' '}
+									for private tuition, and proud to count{' '}
+									<strong className='text-token-primary-dark italic'>
+										royal families
+									</strong>{' '}
+									among our clientele.
+								</BodyText>
+							</motion.div>
 
 							<motion.p
 								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark leading-[1.6]'
