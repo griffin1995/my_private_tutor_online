@@ -23,6 +23,7 @@ import type { TutorProfile } from '@/lib/cms/cms-content';
 import { getImageAsset } from '@/lib/cms/cms-images';
 import { X, BookOpen, Clock, ArrowUpCircle } from 'lucide-react';
 import React from 'react';
+import { HeadingText, TitleText, BodyText, CaptionText } from '@/components/ui/typography';
 
 /** Booking consultation URL - centralised for easy maintenance */
 const BOOKING_URL =
@@ -100,8 +101,8 @@ const TierIndicator: React.FC<{
 					/>
 				</TooltipTrigger>
 				<TooltipContent>
-					<p className="font-medium">{config.label} Tutor</p>
-					<p className="text-sm text-neutral-600">{config.description}</p>
+					<BodyText variant="default" className="font-medium">{config.label} Tutor</BodyText>
+					<CaptionText variant="default" className="text-neutral-600">{config.description}</CaptionText>
 				</TooltipContent>
 			</TooltipRoot>
 		</TooltipProvider>
@@ -136,12 +137,12 @@ const ExperienceMetrics: React.FC<{
 }> = ({ experience, variant }) => {
 	if (variant === 'inline') {
 		return (
-			<div className="text-sm text-neutral-600">
+			<CaptionText variant="default" className="text-neutral-600">
 				{experience.yearsTeaching} years experience
 				{experience.totalStudents && (
 					<> • {experience.totalStudents}+ students</>
 				)}
-			</div>
+			</CaptionText>
 		);
 	}
 
@@ -167,10 +168,15 @@ const ExperienceMetrics: React.FC<{
 		<div className={`grid grid-cols-1 sm:grid-cols-${metrics.length} gap-4`}>
 			{metrics.map((metric, index) => (
 				<div key={index} className="text-center p-3 bg-accent-600/5 border border-accent-600/20">
-					<div className="text-2xl font-bold text-accent-600">
+					<TitleText
+						variant="large"
+						level={3}
+						className="font-bold text-accent-600"
+						alignment="center"
+					>
 						{metric.value}
-					</div>
-					<div className="text-sm text-neutral-600">{metric.label}</div>
+					</TitleText>
+					<CaptionText variant="default" className="text-neutral-600" alignment="center">{metric.label}</CaptionText>
 				</div>
 			))}
 		</div>
@@ -210,10 +216,10 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 				</div>
 
 				<div className="text-center space-y-1">
-					<CardTitle className="text-lg text-primary-700">{profile.name}</CardTitle>
-					<CardDescription className="text-accent-600 font-medium">
+					<TitleText variant="large" level={3} className="text-primary-700" alignment="center">{profile.name}</TitleText>
+					<BodyText variant="default" className="text-accent-600 font-medium" alignment="center">
 						{profile.title}
-					</CardDescription>
+					</BodyText>
 				</div>
 
 				{profile.badge && (
@@ -229,7 +235,7 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 				<CardContent className="pt-0">
 					{/* Specialisations preview */}
 					<div className="space-y-3">
-						<h4 className="text-sm font-medium text-primary-700">Specialisations</h4>
+						<TitleText variant="small" level={4} className="font-medium text-primary-700">Specialisations</TitleText>
 						<div className="flex flex-wrap gap-1.5">
 							{profile.specializations.slice(0, 3).map((spec, index) => (
 								<SpecialisationBadge
@@ -256,9 +262,9 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 			<CardFooter className="pt-4">
 				{showFullProfile ? (
 					<div className="w-full text-center">
-						<span className="text-sm text-neutral-600 group-hover:text-accent-600 transition-colors duration-300">
+						<CaptionText variant="default" className="text-neutral-600 group-hover:text-accent-600 transition-colors duration-300">
 							Click to view profile →
-						</span>
+						</CaptionText>
 					</div>
 				) : (
 					<Button asChild variant="default" className="w-full bg-accent-600 hover:bg-accent-700">
@@ -318,12 +324,12 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 										</div>
 
 										<div className="text-center md:text-left flex-1">
-											<CardTitle className="text-3xl sm:text-4xl text-primary-900 mb-2">
+											<HeadingText variant="primary" level={2} className="text-primary-900 mb-2" responsive>
 												{profile.name}
-											</CardTitle>
-											<CardDescription className="text-xl sm:text-2xl text-accent-600 font-semibold mb-4">
+											</HeadingText>
+											<TitleText variant="large" level={3} className="text-accent-600 font-semibold mb-4" responsive>
 												{profile.title}
-											</CardDescription>
+											</TitleText>
 
 											{profile.badge && (
 												<Badge variant="secondary" className="text-lg px-4 py-2 bg-accent-600/10 text-accent-600 border-accent-600/30">
@@ -340,18 +346,18 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 								{/* Education Section */}
 								<Card className="bg-white border-slate-200">
 									<CardHeader className="pb-4">
-										<CardTitle className="flex items-center text-primary-900">
+										<TitleText variant="large" level={3} className="flex items-center text-primary-900">
 											<BookOpen className="mr-2 h-5 w-5 text-accent-600" />
 											Education
-										</CardTitle>
+										</TitleText>
 									</CardHeader>
 									<CardContent>
 										<div className="space-y-3">
 											<div>
-												<h4 className="font-semibold text-primary-900 text-lg">
+												<TitleText variant="medium" level={4} className="font-semibold text-primary-900">
 													{profile.education.degree}
-												</h4>
-												<p className="text-neutral-700 text-base">{profile.education.university}</p>
+												</TitleText>
+												<BodyText variant="default" className="text-neutral-700">{profile.education.university}</BodyText>
 												{profile.education.grade && (
 													<Badge variant="secondary" className="mt-2 bg-accent-600/10 text-accent-600">
 														{profile.education.grade}
@@ -361,9 +367,9 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 
 											{profile.education.additionalQualifications && (
 												<div>
-													<h5 className="font-medium text-neutral-900 mb-2">
+													<TitleText variant="small" level={5} className="font-medium text-neutral-900 mb-2">
 														Additional Qualifications:
-													</h5>
+													</TitleText>
 													<div className="space-y-1">
 														{profile.education.additionalQualifications.map((qual, index) => (
 															<Badge key={index} variant="outline" className="mr-2 mb-2 bg-neutral-50">
@@ -380,10 +386,10 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 								{/* Experience Section */}
 								<Card className="bg-white border-slate-200">
 									<CardHeader className="pb-4">
-										<CardTitle className="flex items-center text-primary-900">
+										<TitleText variant="large" level={3} className="flex items-center text-primary-900">
 											<Clock className="mr-2 h-5 w-5 text-accent-600" />
 											Experience
-										</CardTitle>
+										</TitleText>
 									</CardHeader>
 									<CardContent>
 										<div className="space-y-4">
@@ -391,7 +397,7 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 
 											{profile.experience.eliteSchools && (
 												<div>
-													<h5 className="font-medium text-neutral-900 mb-2">Elite Schools:</h5>
+													<TitleText variant="small" level={5} className="font-medium text-neutral-900 mb-2">Elite Schools:</TitleText>
 													<div className="space-y-1">
 														{profile.experience.eliteSchools.map((school, index) => (
 															<Badge key={index} variant="outline" className="mr-2 mb-2 bg-primary-50 text-primary-700 border-primary-200">
@@ -409,10 +415,10 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 								{profile.bio && (
 									<Card className="bg-white border-slate-200">
 										<CardHeader className="pb-4">
-											<CardTitle className="text-primary-900">About {firstName}</CardTitle>
+											<TitleText variant="large" level={3} className="text-primary-900">About {firstName}</TitleText>
 										</CardHeader>
 										<CardContent>
-											<p className="text-neutral-700 leading-relaxed text-base">{profile.bio}</p>
+											<BodyText variant="default" className="text-neutral-700 leading-relaxed">{profile.bio}</BodyText>
 										</CardContent>
 									</Card>
 								)}
@@ -420,7 +426,7 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 								{/* Specialisations Section */}
 								<Card className="bg-white border-slate-200">
 									<CardHeader className="pb-4">
-										<CardTitle className="text-primary-900">Specialisations</CardTitle>
+										<TitleText variant="large" level={3} className="text-primary-900">Specialisations</TitleText>
 									</CardHeader>
 									<CardContent>
 										<div className="flex flex-wrap gap-2">
@@ -439,18 +445,18 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 								{profile.achievements && profile.achievements.length > 0 && (
 									<Card className="bg-accent-600/5 border-accent-600/20">
 										<CardHeader className="pb-4">
-											<CardTitle className="text-primary-900">Key Achievement</CardTitle>
+											<TitleText variant="large" level={3} className="text-primary-900">Key Achievement</TitleText>
 										</CardHeader>
 										<CardContent>
 											<div className="flex items-start gap-3">
 												<ArrowUpCircle className="h-6 w-6 text-accent-600 mt-1 flex-shrink-0" />
 												<div>
-													<h4 className="text-accent-600 font-semibold mb-2 text-lg">
+													<TitleText variant="medium" level={4} className="text-accent-600 font-semibold mb-2">
 														{profile.achievements[0].title}
-													</h4>
-													<p className="text-neutral-700 text-base">
+													</TitleText>
+													<BodyText variant="default" className="text-neutral-700">
 														{profile.achievements[0].description}
-													</p>
+													</BodyText>
 												</div>
 											</div>
 										</CardContent>
@@ -461,18 +467,18 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 								{profile.testimonial && (
 									<Card className="bg-white border-l-4 border-l-accent-600 border-slate-200">
 										<CardHeader className="pb-4">
-											<CardTitle className="text-primary-900">Student Testimonial</CardTitle>
+											<TitleText variant="large" level={3} className="text-primary-900">Student Testimonial</TitleText>
 										</CardHeader>
 										<CardContent>
-											<blockquote className="italic text-neutral-700 mb-3 text-lg leading-relaxed">
+											<BodyText variant="large" className="italic text-neutral-700 mb-3 leading-relaxed">
 												&quot;{profile.testimonial.quote}&quot;
-											</blockquote>
-											<cite className="text-neutral-600 not-italic font-medium">
+											</BodyText>
+											<BodyText variant="default" className="text-neutral-600 not-italic font-medium">
 												— {profile.testimonial.author}
 												{profile.testimonial.context && (
-													<span className="text-neutral-500">, {profile.testimonial.context}</span>
+													<CaptionText variant="default" className="text-neutral-500">, {profile.testimonial.context}</CaptionText>
 												)}
-											</cite>
+											</BodyText>
 										</CardContent>
 									</Card>
 								)}

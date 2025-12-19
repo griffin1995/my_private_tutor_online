@@ -6,6 +6,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { HeadingText, TitleText, BodyText } from '@/components/ui/typography';
 import {
 	Trophy,
 	Star,
@@ -517,13 +518,13 @@ export function FAQGamificationSystem({
 				}}>
 				<div className='flex items-center justify-between mb-8'>
 					<div>
-						<h2 className='text-2xl lg:text-3xl font-serif font-bold text-slate-900 mb-2'>
+						<HeadingText variant="primary" level={2} className="text-slate-900 mb-2" responsive>
 							Your Learning Journey
-						</h2>
-						<p className='text-slate-600'>
+						</HeadingText>
+						<BodyText variant="default" className="text-slate-600">
 							Track your progress and unlock achievements as you explore our FAQ
 							section
-						</p>
+						</BodyText>
 					</div>
 					<div className='text-right'>
 						<div className='flex items-center space-x-2 mb-2'>
@@ -531,12 +532,14 @@ export function FAQGamificationSystem({
 								className='text-amber-500'
 								size={24}
 							/>
-							<span className='text-3xl font-bold text-slate-900'>
+							<TitleText variant="large" level={3} className="font-bold text-slate-900">
 								Level {progress.level}
-							</span>
+							</TitleText>
 						</div>
-						<m.div className='text-xl font-semibold text-amber-600'>
-							{animatedPoints.get()} points
+						<m.div>
+							<BodyText variant="large" className="font-semibold text-amber-600">
+								{animatedPoints.get()} points
+							</BodyText>
 						</m.div>
 					</div>
 				</div>

@@ -3,6 +3,7 @@
 import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import { memo } from 'react';
+import { HeadingText, BodyText, DisplayText } from '@/components/ui/typography';
 
 /**
  * Individual statistics item interface
@@ -68,14 +69,25 @@ export const StatsSection = memo(({
 			{(heading || description) && (
 				<div className='mb-8 text-center'>
 					{heading && (
-						<h2 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary-700 mb-4'>
+						<HeadingText
+							variant="primary"
+							level={2}
+							className="text-primary-700 mb-4"
+							alignment="center"
+							responsive
+						>
 							{heading}
-						</h2>
+						</HeadingText>
 					)}
 					{description && (
-						<p className='text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto'>
+						<BodyText
+							variant="large"
+							className="text-muted-foreground max-w-3xl mx-auto"
+							alignment="center"
+							responsive
+						>
 							{description}
-						</p>
+						</BodyText>
 					)}
 				</div>
 			)}
@@ -97,20 +109,35 @@ export const StatsSection = memo(({
 						className='flex flex-col gap-3 sm:gap-4 md:gap-5 text-center max-w-sm'
 					>
 						{/* Statistic value with responsive typography */}
-						<div className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-primary-700'>
+						<DisplayText
+							variant="hero"
+							className="text-primary-700"
+							alignment="center"
+							responsive
+						>
 							{stat.value}
-						</div>
+						</DisplayText>
 
 						{/* Statistic label */}
-						<p className='text-base sm:text-lg md:text-xl font-medium text-muted-foreground leading-relaxed'>
+						<BodyText
+							variant="default"
+							className="font-medium text-muted-foreground leading-relaxed"
+							alignment="center"
+							responsive
+						>
 							{stat.label}
-						</p>
+						</BodyText>
 
 						{/* Optional description */}
 						{stat.description && (
-							<p className='text-sm sm:text-base text-muted-foreground leading-relaxed'>
+							<BodyText
+								variant="small"
+								className="text-muted-foreground leading-relaxed"
+								alignment="center"
+								responsive
+							>
 								{stat.description}
-							</p>
+							</BodyText>
 						)}
 					</div>
 				))}

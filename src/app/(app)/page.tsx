@@ -3,6 +3,7 @@
 
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { TestimonialAuthorRole } from '@/components/testimonials/TestimonialAuthorRole';
+import { HeadingText } from '@/components/ui/typography';
 import { ScrollingLogos } from '../../components/client/ScrollingLogos';
 import { LazyServicesCarousel } from '../../components/dynamic/lazy-loaded-components';
 import { PageFooter } from '../../components/layout/page-footer';
@@ -535,9 +536,9 @@ export default async function HomePage() {
 						{/* Tagline Section */}
 						<div className='flex-[1.5] flex items-center justify-center'>
 							<div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-								<h2 className='text-xl sm:text-2xl xl:text-3xl'>
+								<HeadingText variant="primary" level={2} responsive>
 									We help students place at top 10 UK schools and universities
-								</h2>
+								</HeadingText>
 								<div className='flex justify-center items-center space-x-6 mt-2 sm:mt-3'>
 									<div className='w-12 h-px bg-primary-700' />
 									<div className='w-3 h-3 rounded-full bg-primary-700 shadow-lg' />

@@ -116,7 +116,8 @@ export const viewport = {
 		},
 	],
 };
-export const dynamic = 'force-dynamic';
+// Next.js 15 optimization: Use selective dynamic rendering instead of force-dynamic
+// Root layout should be static as it contains no request-specific data
 export default function RootLayout({
 	children,
 }: Readonly<{

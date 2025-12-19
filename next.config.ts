@@ -17,7 +17,8 @@ const nextConfig: NextConfig = {
 	reactStrictMode: true,
 
 	// Modern 2025 Debugging & Profiling (React DevTools Integration)
-	// Note: profiler property moved to experimental in Next.js 15.5+
+	// Fixed: Use reactProductionProfiling instead of experimental.profiler
+	reactProductionProfiling: process.env.NODE_ENV === 'development',
 
 	// Modern Turbopack Configuration (Single Unified Instance)
 	turbopack: {
@@ -40,9 +41,6 @@ const nextConfig: NextConfig = {
 
 	// Experimental Features (2025 Standards)
 	experimental: {
-		// React DevTools Profiler (moved here in Next.js 15.5+)
-		profiler: process.env.NODE_ENV === 'development',
-
 		// Static Generation Optimization
 		staticGenerationMaxConcurrency: 16,
 		staticGenerationMinPagesPerWorker: 15,

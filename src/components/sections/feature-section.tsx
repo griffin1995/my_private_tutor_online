@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { Button } from '@/components/ui/button';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 import { type ReactNode } from 'react';
 
@@ -107,21 +108,30 @@ export function FeatureSection({
 					{...fadeInUp}
 					animate={mobileInView ? fadeInUp.animate : fadeInUp.initial}
 					transition={{ ...fadeInUp.transition, delay: 0.3 }}>
-					<motion.h3
-						className="text-balance text-2xl font-semibold sm:text-3xl md:text-4xl mb-4"
+					<motion.div
 						{...fadeInUp}
 						animate={mobileInView ? fadeInUp.animate : fadeInUp.initial}
 						transition={{ ...fadeInUp.transition, delay: 0.4 }}>
-						{title}
-					</motion.h3>
+						<HeadingText
+							variant="primary"
+							level={3}
+							className="text-balance mb-4"
+							responsive>
+							{title}
+						</HeadingText>
+					</motion.div>
 					{description && (
-						<motion.p
-							className="text-muted-foreground mb-6 sm:mb-8 max-w-xl text-sm sm:text-base md:text-lg"
+						<motion.div
 							{...fadeInUp}
 							animate={mobileInView ? fadeInUp.animate : fadeInUp.initial}
 							transition={{ ...fadeInUp.transition, delay: 0.5 }}>
-							{description}
-						</motion.p>
+							<BodyText
+								variant="large"
+								className="text-muted-foreground mb-6 sm:mb-8 max-w-xl"
+								responsive>
+								{description}
+							</BodyText>
+						</motion.div>
 					)}
 					<motion.div
 						className="flex w-full flex-col justify-center gap-2 md:flex-row"
@@ -183,13 +193,18 @@ export function FeatureSection({
 						(imagePosition === 'left' ? slideInRight.initial : slideInLeft.initial)
 					}
 					transition={{ ...(imagePosition === 'left' ? slideInRight.transition : slideInLeft.transition), delay: 0.1 }}>
-					<motion.h3
-						className="my-4 text-balance text-4xl font-semibold lg:text-4xl xl:text-5xl"
+					<motion.div
 						{...fadeInUp}
 						animate={desktopInView ? fadeInUp.animate : fadeInUp.initial}
 						transition={{ ...fadeInUp.transition, delay: 0.3 }}>
-						{title}
-					</motion.h3>
+						<HeadingText
+							variant="primary"
+							level={3}
+							className="my-4 text-balance"
+							responsive>
+							{title}
+						</HeadingText>
+					</motion.div>
 					{description && (
 						<motion.p
 							className="text-muted-foreground mb-6 max-w-xl text-lg lg:text-base xl:text-xl min-w-0"

@@ -12,6 +12,7 @@ import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { NavigationButton } from '@/components/ui/navigation-button';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
+import { HeadingText, BodyText, TitleText } from '@/components/ui/typography';
 
 // Helper function for image optimization (CMS-free)
 const getOptimizedImageProps = (
@@ -137,20 +138,31 @@ export function ServicesCarousel({
 					{...fadeInUp}
 					animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
 					transition={{ ...fadeInUp.transition, delay: 0.1 }}>
-					<motion.h2
-						className='text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-0'
+					<motion.div
 						{...fadeInUp}
 						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
 						transition={{ ...fadeInUp.transition, delay: 0.2 }}>
-						{title}
-					</motion.h2>
-					<motion.p
-						className='text-xl text-primary-700 max-w-3xl mx-auto mb-3'
+						<HeadingText
+							variant="primary"
+							level={2}
+							className="text-primary-900 mb-0"
+							responsive
+						>
+							{title}
+						</HeadingText>
+					</motion.div>
+					<motion.div
 						{...fadeInUp}
 						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
 						transition={{ ...fadeInUp.transition, delay: 0.3 }}>
-						{description}
-					</motion.p>
+						<BodyText
+							variant="large"
+							className="text-primary-700 max-w-3xl mx-auto mb-3"
+							responsive
+						>
+							{description}
+						</BodyText>
+					</motion.div>
 
 					{/* Navigation buttons positioned above the carousel */}
 					<motion.div
@@ -293,8 +305,7 @@ export function ServicesCarousel({
 												)}
 
 												<div className='p-6 lg:p-8 pb-8 space-y-4 text-right flex flex-col items-end'>
-													<motion.h3
-														className='text-xl lg:text-2xl font-serif font-bold text-primary-900 group-hover:text-accent-600 transition-colors duration-200 w-full'
+													<motion.div
 														initial={{ opacity: 0, y: 10 }}
 														animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
 														transition={{
@@ -302,10 +313,16 @@ export function ServicesCarousel({
 															ease: 'easeOut',
 															delay: index * 0.1 + 0.4
 														}}>
-														{service.title}
-													</motion.h3>
-													<motion.p
-														className='text-primary-700 leading-relaxed text-base lg:text-lg w-full'
+														<TitleText
+															variant="large"
+															level={3}
+															className="text-primary-900 group-hover:text-accent-600 transition-colors duration-200 w-full"
+															responsive
+														>
+															{service.title}
+														</TitleText>
+													</motion.div>
+													<motion.div
 														initial={{ opacity: 0, y: 10 }}
 														animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
 														transition={{
@@ -313,8 +330,14 @@ export function ServicesCarousel({
 															ease: 'easeOut',
 															delay: index * 0.1 + 0.5
 														}}>
-														{service.description}
-													</motion.p>
+														<BodyText
+															variant="default"
+															className="text-primary-700 leading-relaxed w-full"
+															responsive
+														>
+															{service.description}
+														</BodyText>
+													</motion.div>
 													<div className='flex justify-end w-full'>
 														<motion.div
 															initial={{ opacity: 0, scale: 0.95 }}

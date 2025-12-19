@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { clientSuccessAnalytics } from '@/lib/analytics/client-success-analytics';
 import { businessAnalytics } from '@/lib/analytics/business-analytics';
-export const dynamic = 'force-dynamic';
+// Next.js 15: API route with real-time analytics needs dynamic rendering
+export const dynamic = 'force-dynamic'
+export const revalidate = 0 // Disable caching for real-time data
 export async function GET(request: NextRequest) {
 	const startTime = performance.now();
 	try {

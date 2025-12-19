@@ -84,7 +84,7 @@
 			}
 		]
 	},
-	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+	"include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts", "src/types/env.d.ts"],
 	"exclude": [
 		"node_modules/**/*", // CONTEXT7 SOURCE: /microsoft/typescript - Exclude unnecessary files
 		".next/**/*", // Exclude build output

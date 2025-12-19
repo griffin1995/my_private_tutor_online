@@ -12,15 +12,15 @@
 
   export default buildConfig({
     // Secret key for encrypting Payload data (required)
-    secret: process.env.PAYLOAD_SECRET || '',
+    secret: process.env['PAYLOAD_SECRET'] || '',
 
     // Database configuration for Railway PostgreSQL
     db: postgresAdapter({
       pool: {
-        connectionString: process.env.DATABASE_URL,
+        connectionString: process.env['DATABASE_URL'],
         // Use SSL for remote connections (Railway), skip for localhost
-        ssl: process.env.DATABASE_URL?.includes('localhost') ||
-             process.env.DATABASE_URL?.includes('127.0.0.1')
+        ssl: process.env['DATABASE_URL']?.includes('localhost') ||
+             process.env['DATABASE_URL']?.includes('127.0.0.1')
           ? false
           : { rejectUnauthorized: false },
       },
@@ -677,13 +677,13 @@
 
     // Security and performance settings for production
     cors: [
-      process.env.SERVER_URL || 'http://localhost:3000',
-      process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+      process.env['SERVER_URL'] || 'http://localhost:3000',
+      process.env['VERCEL_URL'] ? `https://${process.env['VERCEL_URL']}` : '',
     ].filter(Boolean),
 
     csrf: [
-      process.env.SERVER_URL || 'http://localhost:3000',
-      process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+      process.env['SERVER_URL'] || 'http://localhost:3000',
+      process.env['VERCEL_URL'] ? `https://${process.env['VERCEL_URL']}` : '',
     ].filter(Boolean),
 
     // Note: Rate limiting removed in Payload 3.x (runs on Next.js/serverless)
@@ -709,11 +709,11 @@
     plugins: [
       // Vercel Blob storage for media uploads (required for serverless deployment)
       vercelBlobStorage({
-        enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+        enabled: Boolean(process.env['BLOB_READ_WRITE_TOKEN']),
         collections: {
           media: true,
         },
-        token: process.env.BLOB_READ_WRITE_TOKEN || '',
+        token: process.env['BLOB_READ_WRITE_TOKEN'] || '',
         cacheControlMaxAge: 60 * 60 * 24 * 365, // 1 year
         clientUploads: true, // Bypass Vercel's 4.5MB serverless limit
       }),

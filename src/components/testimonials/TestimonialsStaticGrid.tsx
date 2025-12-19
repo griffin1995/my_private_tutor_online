@@ -10,6 +10,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
+import { HeadingText, TitleText, BodyText, CaptionText } from '@/components/ui/typography';
 
 // Enhanced testimonial interface (matching existing structure)
 interface TestimonialData {
@@ -147,12 +148,12 @@ const TestimonialStaticCard = ({ testimonial }: TestimonialCardProps) => (
 					</div>
 				)}
 				<div className="min-w-0 flex-1">
-					<CardTitle className="text-base sm:text-lg font-semibold text-primary-900 truncate">
+					<TitleText variant="medium" level={3} className="font-semibold text-primary-900 truncate" responsive>
 						{testimonial.author}
-					</CardTitle>
-					<CardDescription className="text-sm text-primary-600 truncate">
+					</TitleText>
+					<CaptionText variant="default" className="text-primary-600 truncate">
 						{testimonial.role}
-					</CardDescription>
+					</CaptionText>
 				</div>
 			</div>
 
@@ -169,16 +170,16 @@ const TestimonialStaticCard = ({ testimonial }: TestimonialCardProps) => (
 
 		<CardContent className="flex-1 flex flex-col">
 			{/* Quote */}
-			<div className="text-sm sm:text-base text-primary-700 leading-relaxed mb-4 flex-1">
+			<BodyText variant="default" className="text-primary-700 leading-relaxed mb-4 flex-1" responsive>
 				&quot;{testimonial.quote}&quot;
-			</div>
+			</BodyText>
 
 			{/* Subject Badge and Logo - Bottom Row */}
 			{testimonial.subject && (
 				<div className="mt-auto pt-4 border-t border-primary-100 flex items-center justify-between">
-					<span className="inline-block px-3 py-1 bg-primary-50 text-primary-700 text-xs sm:text-sm font-medium rounded-none">
+					<CaptionText variant="default" className="inline-block px-3 py-1 bg-primary-50 text-primary-700 font-medium rounded-none" responsive>
 						{testimonial.subject}
-					</span>
+					</CaptionText>
 					<div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 relative">
 						<Image
 							src="/icons/favicon-96x96.png"
@@ -211,12 +212,12 @@ export const TestimonialsStaticGrid = ({
 			<div className="w-full px-6 sm:px-8 lg:px-8">
 				{/* Section Header */}
 				<div className="text-center mb-12 sm:mb-16">
-					<h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-900 mb-4">
+					<HeadingText variant="primary" level={2} className="text-primary-900 mb-4" alignment="center" responsive>
 						{title}
-					</h2>
-					<p className="text-lg sm:text-xl text-primary-600 max-w-3xl mx-auto">
+					</HeadingText>
+					<BodyText variant="large" className="text-primary-600 max-w-3xl mx-auto" alignment="center" responsive>
 						{description}
-					</p>
+					</BodyText>
 				</div>
 
 				{/* Responsive Grid with consistent edge spacing matching gap values */}

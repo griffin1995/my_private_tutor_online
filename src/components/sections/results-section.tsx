@@ -6,6 +6,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import CountUp from 'react-countup';
 import { getResultsStatistics } from '@/lib/cms/cms-content';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 interface ResultsSectionProps {
 	title?: string;
 	description?: string;
@@ -61,18 +62,31 @@ export function ResultsSection({
 						<div className='h-px bg-gradient-to-r from-transparent via-accent-300 to-transparent flex-1 max-w-24' />
 					</div>
 
-					<h2 className='text-4xl lg:text-5xl xl:text-6xl font-serif font-black text-transparent bg-gradient-to-r from-primary-950 via-primary-800 to-primary-950 bg-clip-text mb-6 leading-tight'>
+					<HeadingText
+						variant="primary"
+						level={2}
+						className="font-black text-transparent bg-gradient-to-r from-primary-950 via-primary-800 to-primary-950 bg-clip-text mb-6 leading-tight"
+						responsive
+					>
 						{title}
-					</h2>
+					</HeadingText>
 
-					<p className='text-lg lg:text-xl text-primary-700 font-medium max-w-4xl mx-auto mb-4'>
+					<BodyText
+						variant="large"
+						className="text-primary-700 font-medium max-w-4xl mx-auto mb-4"
+						responsive
+					>
 						Trusted by Royal Families • Featured in Tatler Address Book 2025
-					</p>
+					</BodyText>
 
 					{showDescription && description && (
-						<p className='text-xl lg:text-2xl text-primary-600 max-w-4xl mx-auto leading-relaxed'>
+						<BodyText
+							variant="large"
+							className="text-primary-600 max-w-4xl mx-auto leading-relaxed"
+							responsive
+						>
 							{description}
-						</p>
+						</BodyText>
 					)}
 				</motion.div>
 
@@ -157,7 +171,12 @@ export function ResultsSection({
 								</div>
 
 								<div className='text-center relative z-10'>
-									<h3 className='text-4xl lg:text-5xl xl:text-6xl font-black text-primary-900 mb-3 tracking-tight tabular-nums'>
+									<HeadingText
+										variant="primary"
+										level={3}
+										className="font-black text-primary-900 mb-3 tracking-tight tabular-nums"
+										responsive
+									>
 										{isInView && (
 											<CountUp
 												end={parseInt(stat.number.replace(/[^0-9]/g, '')) || 0}
@@ -168,9 +187,13 @@ export function ResultsSection({
 											/>
 										)}
 										{!parseInt(stat.number.replace(/[^0-9]/g, '')) && stat.number}
-									</h3>
+									</HeadingText>
 
-									<p className='text-base lg:text-lg text-primary-700 leading-relaxed font-medium max-w-sm mx-auto'>
+									<BodyText
+										variant="default"
+										className="text-primary-700 leading-relaxed font-medium max-w-sm mx-auto"
+										responsive
+									>
 										<span className='sr-only'>
 											{stat.lucideIcon === 'Users' && 'Families icon: '}
 											{stat.lucideIcon === 'School' && 'School building icon: '}
@@ -179,7 +202,7 @@ export function ResultsSection({
 											{!stat.lucideIcon && 'Award icon: '}
 										</span>
 										{stat.description}
-									</p>
+									</BodyText>
 								</div>
 
 								<div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-transparent via-accent-400 to-transparent rounded-full opacity-60 group-hover:opacity-100 group-hover:w-24 transition-all duration-500' />

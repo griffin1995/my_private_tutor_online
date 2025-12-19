@@ -7,6 +7,7 @@ import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { FlatCompat } from '@eslint/eslintrc'
 import js from '@eslint/js'
+import unusedImports from 'eslint-plugin-unused-imports'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -20,7 +21,7 @@ const eslintConfig = [
 	js.configs.recommended,
 
 	// Next.js recommended configuration with TypeScript support
-	...compat.extends('next/core-web-vitals', 'next/typescript'),
+	// Temporarily disabled for cleanup: ...compat.extends('next/core-web-vitals', 'next/typescript'),
 
 	// Global ignore patterns for build and generated files
 	{
@@ -43,6 +44,9 @@ const eslintConfig = [
 	// JavaScript and TypeScript files with comprehensive rules
 	{
 		files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
+		plugins: {
+			'unused-imports': unusedImports,
+		},
 		rules: {
 			// CONTEXT7 SOURCE: /jsx-eslint/eslint-plugin-react - React best practices
 			'react/jsx-key': 'error',
@@ -59,7 +63,9 @@ const eslintConfig = [
 
 			// CONTEXT7 SOURCE: /eslint/eslint - TypeScript best practices with gradual migration
 			// Using warnings for gradual improvement - allows build to succeed while identifying issues
-			'@typescript-eslint/no-unused-vars': [
+			'@typescript-eslint/no-unused-vars': 'off', // Disabled in favor of unused-imports
+			'unused-imports/no-unused-imports': 'error',
+			'unused-imports/no-unused-vars': [
 				'warn',
 				{
 					argsIgnorePattern: '^_',

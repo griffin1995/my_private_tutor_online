@@ -1,5 +1,6 @@
-import type { Metadata } from 'next'
+import type { Metadata, ResolvingMetadata } from 'next'
 import { cache } from 'react'
+import type { WithContext, Organization, EducationalOrganization, Service, Article, Person } from 'schema-dts'
 
 // Cached shared base configuration for performance
 export const getSharedMetadata = cache(() => ({
@@ -8,6 +9,17 @@ export const getSharedMetadata = cache(() => ({
   defaultImage: '/og-image.jpg',
   twitterHandle: '@myprivatetutoronline'
 }))
+
+// Security utility for JSON-LD to prevent XSS attacks
+export function sanitizeJsonLd<T>(data: WithContext<T>): string {
+  return JSON.stringify(data).replace(/</g, '\\u003c')
+}
+
+// JSON-LD Script utility - use this in your component files
+// Example: <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: sanitizeJsonLd(schema) }} />
+export function getJsonLdScript<T>(data: WithContext<T>): string {
+  return sanitizeJsonLd(data)
+}
 
 // Shared OpenGraph image configuration
 export const getOpenGraphImage = cache(() => {
@@ -23,8 +35,8 @@ export const getOpenGraphImage = cache(() => {
   }
 })
 
-// Base metadata utility with modern Next.js 15 features
-export function createPageMetadata({
+// Enhanced metadata utility with parent inheritance support
+export async function createPageMetadata({
   title,
   description,
   path = '',
@@ -34,7 +46,8 @@ export function createPageMetadata({
   image,
   publishedTime,
   modifiedTime,
-  authors
+  authors,
+  parent
 }: {
   title: string
   description: string
@@ -46,11 +59,15 @@ export function createPageMetadata({
   publishedTime?: string
   modifiedTime?: string
   authors?: string[]
-}): Metadata {
+  parent?: ResolvingMetadata
+}): Promise<Metadata> {
   const { siteName, siteUrl, twitterHandle } = getSharedMetadata()
   const openGraphImage = getOpenGraphImage()
   const fullTitle = `${title} | ${siteName}`
   const url = `${siteUrl}${path}`
+
+  // Inherit parent metadata if provided
+  const parentMetadata = parent ? await parent : undefined
 
   // Use custom image if provided, otherwise default
   const pageImage = image ? {
@@ -64,6 +81,7 @@ export function createPageMetadata({
   } : openGraphImage
 
   return {
+    ...parentMetadata,
     metadataBase: new URL(siteUrl),
     title: fullTitle,
     description,
@@ -75,6 +93,7 @@ export function createPageMetadata({
       ...keywords
     ], // Modern array format instead of joined string
     openGraph: {
+      ...parentMetadata?.openGraph,
       ...pageImage,
       title: fullTitle,
       description,
@@ -87,6 +106,7 @@ export function createPageMetadata({
       ...(authors && { authors }),
     },
     twitter: {
+      ...parentMetadata?.twitter,
       card: 'summary_large_image',
       title: fullTitle,
       description,
@@ -105,7 +125,7 @@ export function createPageMetadata({
 }
 
 // Specialized utility for article metadata
-export function createArticleMetadata({
+export async function createArticleMetadata({
   title,
   description,
   path = '',
@@ -113,7 +133,8 @@ export function createArticleMetadata({
   image,
   publishedTime,
   modifiedTime,
-  authors = ['Elizabeth Burrows']
+  authors = ['Elizabeth Burrows'],
+  parent
 }: {
   title: string
   description: string
@@ -123,7 +144,8 @@ export function createArticleMetadata({
   publishedTime: string
   modifiedTime?: string
   authors?: string[]
-}): Metadata {
+  parent?: ResolvingMetadata
+}): Promise<Metadata> {
   return createPageMetadata({
     title,
     description,
@@ -133,12 +155,13 @@ export function createArticleMetadata({
     image,
     publishedTime,
     modifiedTime,
-    authors
+    authors,
+    parent
   })
 }
 
-// Structured data utilities
-export function createOrganizationSchema() {
+// Enhanced structured data utilities with type safety
+export function createOrganizationSchema(): WithContext<EducationalOrganization> {
   const { siteName, siteUrl } = getSharedMetadata()
 
   return {
@@ -160,7 +183,7 @@ export function createOrganizationSchema() {
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+44 7513 550278",
-      "contactType": "Customer Service",
+      "contactType": "customer service",
       "availableLanguage": "English"
     },
     "sameAs": [
@@ -170,8 +193,8 @@ export function createOrganizationSchema() {
   }
 }
 
-// Service schema for services pages
-export function createServiceSchema() {
+// Service schema for services pages with proper typing
+export function createServiceSchema(): WithContext<Service> {
   const { siteName, siteUrl } = getSharedMetadata()
 
   return {
@@ -196,37 +219,57 @@ export function createServiceSchema() {
     "audience": {
       "@type": "EducationalAudience",
       "educationalRole": "student"
+    }
+  }
+}
+
+// Article schema for blog posts and educational content
+export function createArticleSchema({
+  headline,
+  description,
+  url,
+  image,
+  datePublished,
+  dateModified,
+  author = 'Elizabeth Burrows'
+}: {
+  headline: string
+  description: string
+  url: string
+  image?: string
+  datePublished: string
+  dateModified?: string
+  author?: string
+}): WithContext<Article> {
+  const { siteName, siteUrl } = getSharedMetadata()
+  const fullUrl = `${siteUrl}${url}`
+  const imageUrl = image ? `${siteUrl}${image}` : `${siteUrl}/og-image.jpg`
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": headline,
+    "description": description,
+    "url": fullUrl,
+    "image": imageUrl,
+    "datePublished": datePublished,
+    ...(dateModified && { "dateModified": dateModified }),
+    "author": {
+      "@type": "Person",
+      "name": author
     },
-    "offers": [
-      {
-        "@type": "Offer",
-        "name": "11+ Preparation",
-        "description": "Comprehensive 11+ exam preparation with mock tests and practice papers"
-      },
-      {
-        "@type": "Offer",
-        "name": "GCSE Support",
-        "description": "Expert GCSE tutoring across all major subjects"
-      },
-      {
-        "@type": "Offer",
-        "name": "A-Level Coaching",
-        "description": "Advanced A-level tutoring for university preparation"
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": siteName,
+      "url": siteUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logo.png`
       }
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Tutoring Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Private Tutoring",
-            "category": "Education"
-          }
-        }
-      ]
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": fullUrl
     }
   }
 }
