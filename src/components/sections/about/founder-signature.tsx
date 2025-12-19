@@ -2,6 +2,7 @@
 
 import type { JSX } from 'react';
 import Image from 'next/image';
+import { BodyText } from '@/components/ui/typography';
 
 /**
  * Founder Signature Section
@@ -25,9 +26,11 @@ export function FounderSignature(): JSX.Element {
           loading="lazy"
           quality={85}
         />
-        <p>
+        <BodyText
+          variant="default"
+          responsive>
           <strong>Elizabeth Burrows, Founder & CEO</strong>
-        </p>
+        </BodyText>
 
         {/* Elizabeth Burrows Signature SVG */}
         <svg
