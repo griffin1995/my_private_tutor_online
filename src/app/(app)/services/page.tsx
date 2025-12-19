@@ -10,6 +10,7 @@ import {
 	TrendingUp,
 	Users,
 } from 'lucide-react';
+import { DisplayText, HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 import { PageLayout } from '@/components/layout/page-layout';
 import { ServicesPerformanceMonitor } from '@/components/services/ServicesPerformanceMonitor';
 import { MobileEnhancements } from '@/components/services/MobileEnhancements';
@@ -320,35 +321,69 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 								duration: 0.8,
 								delay: 0.2,
 							}}>
-							<h1 className='text-5xl lg:text-7xl font-serif font-bold mb-6 leading-tight'>
+							<DisplayText
+								variant="hero"
+								alignment="left"
+								className="mb-6 leading-tight"
+								responsive>
 								Premium
 								<span className='text-accent-400'> Tutoring</span>
 								<br />
 								Services
-							</h1>
-							<p className='text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed'>
+							</DisplayText>
+							<BodyText
+								variant="large"
+								className="text-white/90 mb-8 leading-relaxed"
+								responsive>
 								Bespoke educational excellence for discerning families. Over 15 years of
 								proven results with royal endorsements.
-							</p>
+							</BodyText>
 
 							<div className='grid grid-cols-3 gap-8 mb-10'>
 								<div className='text-center'>
-									<div className='text-3xl lg:text-4xl font-bold text-accent-400'>
+									<HeadingText
+										variant="primary"
+										level={3}
+										className="text-accent-400 text-3xl lg:text-4xl font-bold"
+										responsive>
 										94%
-									</div>
-									<div className='text-white/80 text-sm'>Success Rate</div>
+									</HeadingText>
+									<CaptionText
+										variant="small"
+										className="text-white/80"
+										responsive>
+										Success Rate
+									</CaptionText>
 								</div>
 								<div className='text-center'>
-									<div className='text-3xl lg:text-4xl font-bold text-accent-400'>
+									<HeadingText
+										variant="primary"
+										level={3}
+										className="text-accent-400 text-3xl lg:text-4xl font-bold"
+										responsive>
 										1,800+
-									</div>
-									<div className='text-white/80 text-sm'>Students Taught</div>
+									</HeadingText>
+									<CaptionText
+										variant="small"
+										className="text-white/80"
+										responsive>
+										Students Taught
+									</CaptionText>
 								</div>
 								<div className='text-center'>
-									<div className='text-3xl lg:text-4xl font-bold text-accent-400'>
+									<HeadingText
+										variant="primary"
+										level={3}
+										className="text-accent-400 text-3xl lg:text-4xl font-bold"
+										responsive>
 										15
-									</div>
-									<div className='text-white/80 text-sm'>Years Experience</div>
+									</HeadingText>
+									<CaptionText
+										variant="small"
+										className="text-white/80"
+										responsive>
+										Years Experience
+									</CaptionText>
 								</div>
 							</div>
 
@@ -381,15 +416,24 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 							}}>
 							<div className='absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20'>
 								<div className='p-6'>
-									<h3 className='text-xl font-bold text-white mb-4 text-center'>
+									<HeadingText
+										variant="secondary"
+										level={3}
+										alignment="center"
+										className="text-white mb-4"
+										responsive>
 										Global Tutoring Reach
-									</h3>
+									</HeadingText>
 									<div className='h-[400px] lg:h-[500px] flex items-center justify-center'>
 										<MagicUIGlobe />
 									</div>
-									<div className='mt-4 text-center text-white/80 text-sm'>
+									<CaptionText
+										variant="small"
+										alignment="center"
+										className="mt-4 text-white/80"
+										responsive>
 										Teaching students across {globalLocations.length} countries
-									</div>
+									</CaptionText>
 								</div>
 							</div>
 						</m.div>
@@ -415,13 +459,22 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 						viewport={{
 							once: true,
 						}}>
-						<h2 className='text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-4'>
+						<HeadingText
+							variant="primary"
+							level={2}
+							alignment="center"
+							className="text-primary-900 mb-4"
+							responsive>
 							Excellence in Numbers
-						</h2>
-						<p className='text-xl text-primary-700 max-w-3xl mx-auto'>
+						</HeadingText>
+						<BodyText
+							variant="large"
+							alignment="center"
+							className="text-primary-700 max-w-3xl mx-auto"
+							responsive>
 							Our commitment to premium education delivers measurable results that
 							speak to our reputation among elite families.
-						</p>
+						</BodyText>
 					</m.div>
 
 					<div className='grid md:grid-cols-3 gap-12'>
@@ -442,9 +495,14 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 							viewport={{
 								once: true,
 							}}>
-							<h3 className='text-xl font-bold text-primary-900 mb-4 text-center'>
+							<HeadingText
+								variant="secondary"
+								level={3}
+								alignment="center"
+								className="text-primary-900 mb-4"
+								responsive>
 								Student Success Rate
-							</h3>
+							</HeadingText>
 							<div className='h-64'>
 								<ResponsiveContainer
 									width='100%'
@@ -477,9 +535,13 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 									</PieChart>
 								</ResponsiveContainer>
 							</div>
-							<p className='text-center text-primary-600 mt-4'>
+							<BodyText
+								variant="default"
+								alignment="center"
+								className="text-primary-600 mt-4"
+								responsive>
 								94% of students improve by at least two grades at GCSE
-							</p>
+							</BodyText>
 						</m.div>
 
 						<m.div
@@ -499,9 +561,14 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 							viewport={{
 								once: true,
 							}}>
-							<h3 className='text-xl font-bold text-primary-900 mb-4 text-center'>
+							<HeadingText
+								variant="secondary"
+								level={3}
+								alignment="center"
+								className="text-primary-900 mb-4"
+								responsive>
 								Course Completion
-							</h3>
+							</HeadingText>
 							<div className='h-64'>
 								<ResponsiveContainer
 									width='100%'
@@ -521,9 +588,13 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 									</AreaChart>
 								</ResponsiveContainer>
 							</div>
-							<p className='text-center text-primary-600 mt-4'>
+							<BodyText
+								variant="default"
+								alignment="center"
+								className="text-primary-600 mt-4"
+								responsive>
 								87% completion rate across all our programmes
-							</p>
+							</BodyText>
 						</m.div>
 
 						<m.div
@@ -543,9 +614,14 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 							viewport={{
 								once: true,
 							}}>
-							<h3 className='text-xl font-bold text-primary-900 mb-4 text-center'>
+							<HeadingText
+								variant="secondary"
+								level={3}
+								alignment="center"
+								className="text-primary-900 mb-4"
+								responsive>
 								Service Quality Metrics
-							</h3>
+							</HeadingText>
 							<div className='h-64'>
 								<ResponsiveContainer
 									width='100%'
@@ -567,9 +643,13 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 									</RadarChart>
 								</ResponsiveContainer>
 							</div>
-							<p className='text-center text-primary-600 mt-4'>
+							<BodyText
+								variant="default"
+								alignment="center"
+								className="text-primary-600 mt-4"
+								responsive>
 								Comprehensive quality assessment across all service areas
-							</p>
+							</BodyText>
 						</m.div>
 					</div>
 				</div>
@@ -593,13 +673,22 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 						viewport={{
 							once: true,
 						}}>
-						<h2 className='text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-4'>
+						<HeadingText
+							variant="primary"
+							level={2}
+							alignment="center"
+							className="text-primary-900 mb-4"
+							responsive>
 							Our Premium Services
-						</h2>
-						<p className='text-xl text-primary-700 max-w-3xl mx-auto'>
+						</HeadingText>
+						<BodyText
+							variant="large"
+							alignment="center"
+							className="text-primary-700 max-w-3xl mx-auto"
+							responsive>
 							Discover our comprehensive range of bespoke tutoring services, each
 							tailored to meet the exacting standards of discerning families.
-						</p>
+						</BodyText>
 					</m.div>
 
 					<div className='max-w-4xl mx-auto'>
@@ -633,12 +722,19 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 												<div className='flex items-center space-x-4'>
 													<div className='text-3xl'>{service.icon}</div>
 													<div>
-														<h3 className='text-xl font-bold text-primary-900'>
+														<HeadingText
+															variant="secondary"
+															level={3}
+															className="text-primary-900"
+															responsive>
 															{service.title}
-														</h3>
-														<p className='text-primary-600 mt-1'>
+														</HeadingText>
+														<BodyText
+															variant="default"
+															className="text-primary-600 mt-1"
+															responsive>
 															Premium {service.title.toLowerCase()} education services
-														</p>
+														</BodyText>
 													</div>
 												</div>
 												<ChevronDown className='h-5 w-5 text-primary-700 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180' />
@@ -646,39 +742,58 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 										</Accordion.Header>
 										<Accordion.Content className='overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down'>
 											<div className='px-6 pb-6 pl-20'>
-												<p className='text-primary-600 mb-6 leading-relaxed'>
+												<BodyText
+													variant="default"
+													className="text-primary-600 mb-6 leading-relaxed"
+													responsive>
 													{service.description}
-												</p>
+												</BodyText>
 
 												<div className='grid md:grid-cols-2 gap-6'>
 													<div>
-														<h4 className='font-semibold text-primary-900 mb-3'>
+														<HeadingText
+															variant="secondary"
+															level={4}
+															className="text-primary-900 mb-3"
+															responsive>
 															Key Features:
-														</h4>
+														</HeadingText>
 														<ul className='space-y-2'>
 															{service.features.map((feature, featureIndex) => (
 																<li
 																	key={featureIndex}
 																	className='flex items-start space-x-2'>
 																	<CheckCircle className='h-5 w-5 text-accent-600 mt-0.5 flex-shrink-0' />
-																	<span className='text-primary-700'>{feature.feature}</span>
+																	<BodyText
+																		variant="default"
+																		className="text-primary-700"
+																		responsive>
+																		{feature.feature}
+																	</BodyText>
 																</li>
 															))}
 														</ul>
 													</div>
 
 													<div className='bg-accent-50 rounded-lg p-6'>
-														<h4 className='font-semibold text-primary-900 mb-3'>
+														<HeadingText
+															variant="secondary"
+															level={4}
+															className="text-primary-900 mb-3"
+															responsive>
 															Perfect For:
-														</h4>
-														<p className='text-primary-700 mb-4'>
+														</HeadingText>
+														<BodyText
+															variant="default"
+															className="text-primary-700 mb-4"
+															responsive>
 															Ages{' '}
 															{service.title.includes('Primary') ?
 																'5-11'
 															: service.title.includes('Secondary') ?
 																'11-18'
 															:	'16+'}
-														</p>
+														</BodyText>
 														<m.button
 															className='inline-flex items-center px-6 py-2 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg transition-colors duration-200'
 															whileHover={{
@@ -720,13 +835,22 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 						viewport={{
 							once: true,
 						}}>
-						<h2 className='text-4xl lg:text-5xl font-serif font-bold text-primary-900 mb-4'>
+						<HeadingText
+							variant="primary"
+							level={2}
+							alignment="center"
+							className="text-primary-900 mb-4"
+							responsive>
 							Why Choose Our Services
-						</h2>
-						<p className='text-xl text-primary-700 max-w-3xl mx-auto'>
+						</HeadingText>
+						<BodyText
+							variant="large"
+							alignment="center"
+							className="text-primary-700 max-w-3xl mx-auto"
+							responsive>
 							Our commitment to excellence has earned the trust of royal families and
 							discerning clients worldwide.
-						</p>
+						</BodyText>
 					</m.div>
 
 					<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
@@ -793,18 +917,29 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 										<feature.icon className='h-8 w-8 text-white' />
 									</m.div>
 
-									<h3 className='text-xl font-bold text-primary-900 mb-3 group-hover:text-accent-700 transition-colors duration-200'>
+									<HeadingText
+										variant="secondary"
+										level={3}
+										className="text-primary-900 mb-3 group-hover:text-accent-700 transition-colors duration-200"
+										responsive>
 										{feature.title}
-									</h3>
+									</HeadingText>
 
-									<p className='text-primary-600 mb-4 leading-relaxed'>
+									<BodyText
+										variant="default"
+										className="text-primary-600 mb-4 leading-relaxed"
+										responsive>
 										{feature.description}
-									</p>
+									</BodyText>
 
 									<div className='mt-auto pt-4 border-t border-accent-100'>
-										<div className='text-2xl font-bold text-accent-600'>
+										<HeadingText
+											variant="secondary"
+											level={3}
+											className="text-accent-600"
+											responsive>
 											{feature.stats}
-										</div>
+										</HeadingText>
 									</div>
 								</div>
 							</m.div>
@@ -831,15 +966,23 @@ function ServicesPageClient({ services }: { services: ServiceData[] }) {
 						viewport={{
 							once: true,
 						}}>
-						<h2 className='text-4xl lg:text-6xl font-serif font-bold text-white mb-8'>
+						<DisplayText
+							variant="hero"
+							alignment="center"
+							className="text-white mb-8"
+							responsive>
 							Ready to Begin Your
 							<span className='text-accent-400'> Educational Journey?</span>
-						</h2>
+						</DisplayText>
 
-						<p className='text-xl lg:text-2xl text-white/90 mb-12 leading-relaxed'>
+						<BodyText
+							variant="large"
+							alignment="center"
+							className="text-white/90 mb-12 leading-relaxed"
+							responsive>
 							Join over 1,800 students who have achieved exceptional results with our
 							premium tutoring services. Book your consultation today.
-						</p>
+						</BodyText>
 
 						<div className='flex flex-col sm:flex-row gap-6 justify-center'>
 							<m.button
