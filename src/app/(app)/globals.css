@@ -19,9 +19,19 @@
  * SIMPLIFICATION: Removed CSS variable imports - all styling via Tailwind utility classes
  */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Tailwind CSS v4 CSS Variable Integration
+ * V4 REQUIREMENT: Direct CSS variable usage instead of @apply for custom font families
+ * IMPLEMENTATION: Uses CSS variables defined in tailwind.config.ts for font families
+ */
+
+@import "tailwindcss";
+@plugin "@tailwindcss/forms" {
+  strategy: "class";
+}
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/container-queries";
+@plugin "@tailwindcss/aspect-ratio";
 
 /**
  * STYLING PACKAGE INTEGRATION: CSS Variables for component system
@@ -478,45 +488,70 @@ body {
 @layer components {
 	/* Heading Typography Tokens */
 	.typography-h1 {
-		@apply font-heading text-4xl lg:text-5xl font-bold leading-tight tracking-tighter;
+		font-family: var(--font-playfair-display), 'Didot', 'Bodoni MT', 'Georgia', serif;
+		@apply text-4xl font-bold leading-tight tracking-tighter;
+		@media (min-width: 1024px) {
+			@apply text-5xl;
+		}
 	}
 
 	.typography-h2 {
-		@apply font-heading text-3xl lg:text-4xl font-semibold leading-tight tracking-tight;
+		font-family: var(--font-playfair-display), 'Didot', 'Bodoni MT', 'Georgia', serif;
+		@apply text-3xl font-semibold leading-tight tracking-tight;
+		@media (min-width: 1024px) {
+			@apply text-4xl;
+		}
 	}
 
 	.typography-h3 {
-		@apply font-heading text-2xl lg:text-3xl font-semibold leading-snug tracking-tight;
+		font-family: var(--font-playfair-display), 'Didot', 'Bodoni MT', 'Georgia', serif;
+		@apply text-2xl font-semibold leading-snug tracking-tight;
+		@media (min-width: 1024px) {
+			@apply text-3xl;
+		}
 	}
 
 	.typography-h4 {
-		@apply font-heading text-xl lg:text-2xl font-medium leading-snug;
+		font-family: var(--font-playfair-display), 'Didot', 'Bodoni MT', 'Georgia', serif;
+		@apply text-xl font-medium leading-snug;
+		@media (min-width: 1024px) {
+			@apply text-2xl;
+		}
 	}
 
 	/* Body Typography Tokens */
 	.typography-body-large {
-		@apply font-body text-lg leading-relaxed;
+		font-family: var(--font-source-serif-4), 'Charter', 'Georgia', 'Times New Roman', serif;
+		@apply text-lg leading-relaxed;
 	}
 
 	.typography-body {
-		@apply font-body text-base leading-normal;
+		font-family: var(--font-source-serif-4), 'Charter', 'Georgia', 'Times New Roman', serif;
+		@apply text-base leading-normal;
 	}
 
 	.typography-body-small {
-		@apply font-body text-sm leading-normal tracking-wide;
+		font-family: var(--font-source-serif-4), 'Charter', 'Georgia', 'Times New Roman', serif;
+		@apply text-sm leading-normal tracking-wide;
 	}
 
 	/* Technical Typography Tokens */
 	.typography-price {
-		@apply font-technical text-2xl lg:text-3xl font-medium leading-tight;
+		font-family: var(--font-jetbrains-mono), 'Consolas', 'Monaco', 'Courier New', monospace;
+		@apply text-2xl font-medium leading-tight;
+		@media (min-width: 1024px) {
+			@apply text-3xl;
+		}
 	}
 
 	.typography-code {
-		@apply font-technical text-sm leading-normal;
+		font-family: var(--font-jetbrains-mono), 'Consolas', 'Monaco', 'Courier New', monospace;
+		@apply text-sm leading-normal;
 	}
 
 	.typography-data {
-		@apply font-technical text-base leading-snug;
+		font-family: var(--font-jetbrains-mono), 'Consolas', 'Monaco', 'Courier New', monospace;
+		@apply text-base leading-snug;
 	}
 }
 
