@@ -5,6 +5,7 @@ import { Testimonial10NoRole } from '@/components/education/testimonial-section'
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
+import { FounderStorySection as FounderStorySectionRefactored } from '@/components/sections/about/founder-story-section-refactored';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import { RecognitionCard } from '../../../components/sections/RecognitionCard';
@@ -94,10 +95,27 @@ export default function AboutUsPage() {
 				showFooter={true}
 				containerSize='full'
 				footerProps={{ showContactForm: true }}>
-				{/* Founder Story Section */}
-				<div id='about-founder-story'>
+				{/* Founder Story Section - ORIGINAL VERSION */}
+				<div id='about-founder-story-original'>
 					<div className='mx-auto'>
+						{/* ORIGINAL COMPONENT - For comparison */}
+						<div className='bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4'>
+							<h3 className='text-lg font-semibold text-yellow-800'>📋 ORIGINAL VERSION (400+ lines, hardcoded content)</h3>
+							<p className='text-yellow-700 text-sm'>This is the existing component with technical debt</p>
+						</div>
 						<FounderStorySection />
+					</div>
+				</div>
+
+				{/* Founder Story Section - REFACTORED VERSION */}
+				<div id='about-founder-story-refactored' className='mt-16'>
+					<div className='mx-auto'>
+						{/* REFACTORED COMPONENT - Modern implementation */}
+						<div className='bg-green-50 border-l-4 border-green-400 p-4 mb-4'>
+							<h3 className='text-lg font-semibold text-green-800'>✨ REFACTORED VERSION (CMS-driven, compound components)</h3>
+							<p className='text-green-700 text-sm'>Modern architecture with responsive images, accessible markup, and CMS integration</p>
+						</div>
+						<FounderStorySectionRefactored />
 					</div>
 				</div>
 
