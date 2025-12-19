@@ -48,7 +48,7 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true, // CONTEXT7 SOURCE: /microsoft/typescript - Replace deprecated import options
     // JSX Configuration
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "jsxImportSource": "react",
     // CONTEXT7 SOURCE: /microsoft/typescript - Optimized path resolution
     // MODULE PERFORMANCE: Faster module lookups with simplified paths
