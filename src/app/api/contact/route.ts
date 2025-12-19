@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
 					clientIp,
 					path: '/api/contact',
 					details: {
-						errors: errors?.errors,
+						errors: errors?.issues,
 						sample: JSON.stringify(body).substring(0, 100),
 					},
 				});
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
 			return NextResponse.json(
 				{
 					error: 'Invalid form data',
-					details: errors?.errors.map((e) => ({
+					details: errors?.issues.map((e) => ({
 						field: e.path.join('.'),
 						message: e.message,
 					})),

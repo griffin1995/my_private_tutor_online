@@ -273,7 +273,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 				{
 					success: false,
 					error: 'Invalid performance data format',
-					details: error.errors,
+					details: error.issues,
 				},
 				{
 					status: 400,
