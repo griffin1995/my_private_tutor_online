@@ -28,6 +28,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { getNewsletterFormContent } from '@/lib/cms/cms-content';
+import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 interface NewsletterFormProps {
 	variant?: 'default' | 'inline' | 'card' | 'hero';
 	showInterests?: boolean;
@@ -176,8 +177,16 @@ export function NewsletterForm({
 				<div className='flex items-center justify-center gap-3 p-6 bg-green-50 border border-green-200 rounded-lg animate-fade-in-up'>
 					<CheckCircle className='w-6 h-6 text-green-600 flex-shrink-0' />
 					<div>
-						<p className='text-green-800 font-semibold text-lg'>Success!</p>
-						<p className='text-green-700 mt-1'>{resolvedSuccessMessage}</p>
+						<BodyText
+							variant="success"
+							className='font-semibold text-lg'>
+							Success!
+						</BodyText>
+						<BodyText
+							variant="success"
+							className='mt-1'>
+							{resolvedSuccessMessage}
+						</BodyText>
 					</div>
 				</div>
 			</div>
@@ -188,22 +197,25 @@ export function NewsletterForm({
 			{(resolvedTitle || resolvedDescription) && variant !== 'inline' && (
 				<div className='mb-6 text-center'>
 					{resolvedTitle && (
-						<h3
+						<HeadingText
+							variant="primary"
+							level={3}
+							alignment="center"
 							className={cn(
 								'font-serif font-bold text-black',
-								variant === 'hero' ? 'text-4xl mb-4' : 'text-3xl mb-3',
-							)}>
+								variant === 'hero' ? 'mb-4' : 'mb-3',
+							)}
+							responsive={variant === 'hero'}>
 							{resolvedTitle}
-						</h3>
+						</HeadingText>
 					)}
 					{resolvedDescription && (
-						<p
-							className={cn(
-								'text-gray-700',
-								variant === 'hero' ? 'text-lg' : 'text-base',
-							)}>
+						<BodyText
+							variant={variant === 'hero' ? 'large' : 'default'}
+							alignment="center"
+							className='text-gray-700'>
 							{resolvedDescription}
-						</p>
+						</BodyText>
 					)}
 				</div>
 			)}
@@ -230,10 +242,13 @@ export function NewsletterForm({
 							)}
 						/>
 						{errors.firstName && (
-							<p className='text-red-600 text-sm flex items-center gap-1'>
-								<AlertCircle className='w-4 h-4' />
-								{errors.firstName.message}
-							</p>
+							<div className='flex items-center gap-1'>
+								<AlertCircle className='w-4 h-4 text-red-600' />
+								<CaptionText
+									variant="error">
+									{errors.firstName.message}
+								</CaptionText>
+							</div>
 						)}
 					</div>
 				)}
@@ -261,10 +276,13 @@ export function NewsletterForm({
 						/>
 					</div>
 					{errors.email && (
-						<p className='text-red-600 text-sm flex items-center gap-1'>
-							<AlertCircle className='w-4 h-4' />
-							{errors.email.message}
-						</p>
+						<div className='flex items-center gap-1'>
+							<AlertCircle className='w-4 h-4 text-red-600' />
+							<CaptionText
+								variant="error">
+								{errors.email.message}
+							</CaptionText>
+						</div>
 					)}
 				</div>
 
@@ -321,10 +339,13 @@ export function NewsletterForm({
 							can unsubscribe at any time.
 						</Label>
 						{errors.consentToMarketing && (
-							<p className='text-red-600 text-sm flex items-center gap-1 mt-1'>
-								<AlertCircle className='w-4 h-4' />
-								{errors.consentToMarketing.message}
-							</p>
+							<div className='flex items-center gap-1 mt-1'>
+								<AlertCircle className='w-4 h-4 text-red-600' />
+								<CaptionText
+									variant="error">
+									{errors.consentToMarketing.message}
+								</CaptionText>
+							</div>
 						)}
 					</div>
 				</div>
@@ -354,7 +375,11 @@ export function NewsletterForm({
 				{submissionState === 'error' && errorMessage && (
 					<div className='flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg animate-fade-in'>
 						<AlertCircle className='w-5 h-5 text-red-600 flex-shrink-0' />
-						<p className='text-red-800 text-sm'>{errorMessage}</p>
+						<CaptionText
+							variant="error"
+							className='text-red-800'>
+							{errorMessage}
+						</CaptionText>
 					</div>
 				)}
 

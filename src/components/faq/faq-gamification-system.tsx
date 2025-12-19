@@ -623,9 +623,12 @@ export function FAQGamificationSystem({
 
 				<div className='mb-8'>
 					<div className='flex items-center justify-between mb-6'>
-						<h3 className='text-xl font-serif font-bold text-slate-900'>
+						<TitleText
+							variant="large"
+							level={3}
+							className='font-serif font-bold text-slate-900'>
 							Achievements ({unlockedAchievements.length}/{achievements.length})
-						</h3>
+						</TitleText>
 						<Badge
 							variant='secondary'
 							className='text-sm'>

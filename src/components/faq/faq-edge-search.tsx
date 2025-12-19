@@ -4,6 +4,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Search, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useDebounce } from '@/hooks/use-debounce';
+import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 interface SearchResult {
 	question: {
 		id: string;
@@ -181,8 +182,12 @@ export function FAQEdgeSearch() {
 				aria-label='Search results'
 				aria-live='polite'>
 				{results.length === 0 && debouncedQuery && !loading && (
-					<div className='text-center py-8 text-slate-600'>
-						No results found for "{debouncedQuery}"
+					<div className='text-center py-8'>
+						<BodyText
+							variant="muted"
+							alignment="center">
+							No results found for "{debouncedQuery}"
+						</BodyText>
 					</div>
 				)}
 
@@ -197,13 +202,18 @@ export function FAQEdgeSearch() {
 							<div className='flex-1 pr-4'>
 								<div className='flex items-start gap-3'>
 									<div className='flex-1'>
-										<h3
+										<HeadingText
+											level={3}
 											className='font-medium text-slate-900 group-hover:text-primary-700'
 											dangerouslySetInnerHTML={{
 												__html: result.highlighted.question,
 											}}
 										/>
-										<p className='text-sm text-slate-500 mt-1'>{result.category.title}</p>
+										<CaptionText
+											variant="muted"
+											className='mt-1'>
+											{result.category.title}
+										</CaptionText>
 									</div>
 									{result.question.featured && (
 										<span className='px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded'>
@@ -235,7 +245,12 @@ export function FAQEdgeSearch() {
 				{hasMore && (
 					<div className='text-center py-4'>
 						<Loader2 className='h-6 w-6 text-primary-500 animate-spin mx-auto' />
-						<span className='text-sm text-slate-600 mt-2'>Loading more...</span>
+						<CaptionText
+							variant="muted"
+							className='mt-2'
+							alignment="center">
+							Loading more...
+						</CaptionText>
 					</div>
 				)}
 			</div>

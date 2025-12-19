@@ -1,28 +1,4 @@
 import * as z from 'zod';
-const inputSchemas = {
-	contactForm: z.object({
-		name: z
-			.string()
-			.min(2)
-			.max(100)
-			.regex(/^[a-zA-Z\s\-']+$/),
-		email: z.string().email().max(255),
-		phone: z
-			.string()
-			.regex(/^[\d\s\-\+\(\)]+$/)
-			.max(20)
-			.optional(),
-		subject: z.string().min(5).max(200),
-		message: z.string().min(10).max(5000),
-		preferredContact: z.enum(['email', 'phone']).optional(),
-		studentAge: z.number().min(4).max(25).optional(),
-		tutoringSubject: z.string().max(100).optional(),
-	}),
-	textInput: z
-		.string()
-		.max(1000)
-		.regex(/^[^<>{}]*$/),
-};
 export function sanitiseInput<T>(
 	data: unknown,
 	schema: z.ZodSchema<T>,

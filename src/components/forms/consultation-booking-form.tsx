@@ -25,6 +25,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Clock, Star, Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 const consultationSchema = z.object({
 	parentName: z
 		.string()
@@ -145,13 +146,20 @@ export function ConsultationBookingForm({
 				<CardContent className='text-center py-12'>
 					<div className='mb-6'>
 						<CheckCircle className='h-16 w-16 text-accent-500 mx-auto mb-4' />
-						<h3 className='text-2xl font-semibold text-primary-900 mb-2'>
+						<HeadingText
+							variant="primary"
+							level={3}
+							alignment="center"
+							className='text-primary-900 mb-2'>
 							Consultation Request Received
-						</h3>
-						<p className='text-gray-600 max-w-md mx-auto'>
+						</HeadingText>
+						<BodyText
+							variant="default"
+							alignment="center"
+							className='text-gray-600 max-w-md mx-auto'>
 							Thank you for your interest in our premium tutoring services. We will
 							contact you within 24 hours to arrange your confidential consultation.
-						</p>
+						</BodyText>
 					</div>
 
 					<div className='bg-accent-50 rounded-lg p-4 mb-6'>
@@ -209,7 +217,11 @@ export function ConsultationBookingForm({
 								className='mt-1'
 							/>
 							{errors.parentName && (
-								<p className='text-sm text-red-600 mt-1'>{errors.parentName.message}</p>
+								<CaptionText
+									variant="error"
+									className='mt-1'>
+									{errors.parentName.message}
+								</CaptionText>
 							)}
 						</div>
 
@@ -226,9 +238,11 @@ export function ConsultationBookingForm({
 								className='mt-1'
 							/>
 							{errors.studentName && (
-								<p className='text-sm text-red-600 mt-1'>
+								<CaptionText
+									variant="error"
+									className='mt-1'>
 									{errors.studentName.message}
-								</p>
+								</CaptionText>
 							)}
 						</div>
 					</div>
@@ -248,7 +262,11 @@ export function ConsultationBookingForm({
 								className='mt-1'
 							/>
 							{errors.email && (
-								<p className='text-sm text-red-600 mt-1'>{errors.email.message}</p>
+								<CaptionText
+									variant="error"
+									className='mt-1'>
+									{errors.email.message}
+								</CaptionText>
 							)}
 						</div>
 
@@ -266,7 +284,11 @@ export function ConsultationBookingForm({
 								className='mt-1'
 							/>
 							{errors.phone && (
-								<p className='text-sm text-red-600 mt-1'>{errors.phone.message}</p>
+								<CaptionText
+									variant="error"
+									className='mt-1'>
+									{errors.phone.message}
+								</CaptionText>
 							)}
 						</div>
 					</div>
@@ -299,9 +321,11 @@ export function ConsultationBookingForm({
 								</SelectContent>
 							</Select>
 							{errors.academicLevel && (
-								<p className='text-sm text-red-600 mt-1'>
+								<CaptionText
+									variant="error"
+									className='mt-1'>
 									{errors.academicLevel.message}
-								</p>
+								</CaptionText>
 							)}
 						</div>
 
@@ -342,7 +366,11 @@ export function ConsultationBookingForm({
 							className='mt-1'
 						/>
 						{errors.subjects && (
-							<p className='text-sm text-red-600 mt-1'>{errors.subjects.message}</p>
+							<CaptionText
+								variant="error"
+								className='mt-1'>
+								{errors.subjects.message}
+							</CaptionText>
 						)}
 					</div>
 
@@ -425,10 +453,13 @@ export function ConsultationBookingForm({
 					</div>
 
 					<div className='text-center'>
-						<p className='text-xs text-gray-500 leading-relaxed'>
+						<CaptionText
+							variant="muted"
+							alignment="center"
+							className='leading-relaxed'>
 							All enquiries are handled with complete confidentiality. We respect your
 							privacy and maintain the highest standards of discretion.
-						</p>
+						</CaptionText>
 					</div>
 				</form>
 			</CardContent>

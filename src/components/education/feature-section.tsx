@@ -4,6 +4,7 @@ import type { LucideIcon } from 'lucide-react';
 import { Play, X } from 'lucide-react';
 import { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
+import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 
 interface Video {
 	id: string;
@@ -151,9 +152,19 @@ export const FeatureSection = ({
 			<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
 				{title && (
 					<div className='mx-auto mb-16 max-w-3xl text-center'>
-						<h2 className='text-pretty text-4xl font-medium lg:text-5xl'>{title}</h2>
+						<HeadingText
+							variant="secondary"
+							level={2}
+							responsive
+							className='text-pretty'>
+							{title}
+						</HeadingText>
 						{description && (
-							<p className='mt-6 text-lg text-muted-foreground'>{description}</p>
+							<BodyText
+								variant="large"
+								className='mt-6 text-muted-foreground'>
+								{description}
+							</BodyText>
 						)}
 					</div>
 				)}
@@ -165,20 +176,28 @@ export const FeatureSection = ({
 							<div className='flex xl:flex-col 2xl:flex-row justify-between xl:justify-start 2xl:justify-between gap-10 xl:gap-0 2xl:gap-10 border-b'>
 								<div className='flex flex-col justify-start justify-between gap-8 py-6 pl-4 md:gap-14 md:py-10 md:pl-8 xl:px-8 2xl:pl-8 lg:justify-normal min-w-0 xl:order-2 2xl:order-1'>
 									{feature.label && (
-										<span className='text-muted-foreground font-mono text-xs'>
+										<CaptionText
+											variant="muted"
+											className='font-mono'>
 											{feature.label}
-										</span>
+										</CaptionText>
 									)}
 									{feature.url ? (
 										<a href={feature.url}>
-											<h3 className='hover:text-primary text-2xl transition-all hover:opacity-80 sm:text-3xl lg:text-4xl break-words'>
+											<HeadingText
+												level={3}
+												responsive
+												className='hover:text-primary transition-all hover:opacity-80 break-words'>
 												{feature.heading}
-											</h3>
+											</HeadingText>
 										</a>
 									) : (
-										<h3 className='text-2xl sm:text-3xl lg:text-4xl break-words'>
+										<HeadingText
+											level={3}
+											responsive
+											className='break-words'>
 											{feature.heading}
-										</h3>
+										</HeadingText>
 									)}
 								</div>
 								<div className='md:1/3 w-2/5 xl:w-full 2xl:w-2/5 shrink-0 border-l xl:border-l-0 xl:border-t 2xl:border-l 2xl:border-t-0 xl:order-1 2xl:order-2'>
@@ -199,7 +218,11 @@ export const FeatureSection = ({
 									)}
 								</div>
 							</div>
-							<p className='text-muted-foreground p-4 md:p-8'>{feature.description}</p>
+							<BodyText
+								variant="muted"
+								className='p-4 md:p-8'>
+								{feature.description}
+							</BodyText>
 							{feature.videos && feature.videos.length > 0 && (
 								<div className='border-t p-4 md:p-8'>
 									<div className='space-y-6'>
@@ -233,9 +256,10 @@ export const FeatureSection = ({
 																		}}
 																	/>
 																	<div className='absolute inset-0 bg-black/40 flex items-center justify-center'>
-																		<span className='text-white group-hover:text-accent-600 group-hover:underline font-medium text-base drop-shadow-lg transition-all duration-200 ease-out'>
+																		<BodyText
+																			className='text-white group-hover:text-accent-600 group-hover:underline font-medium drop-shadow-lg transition-all duration-200 ease-out'>
 																			{video.isFree ? 'Watch Free' : 'Purchase Access'}
-																		</span>
+																		</BodyText>
 																	</div>
 																</div>
 															</a>

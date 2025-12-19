@@ -1,4 +1,5 @@
 import { z } from 'zod';
+
 const contactFormSchema = z.object({
 	firstName: z
 		.string()
@@ -48,187 +49,94 @@ const contactFormSchema = z.object({
 	tutorType: z.enum(['online', 'in-person', 'hybrid'], {
 		error: () => 'Please select a tutoring preference',
 	}),
-	sessionFrequency: z
-		.enum([
-			'once-weekly',
-			'twice-weekly',
-			'intensive',
-			'exam-preparation',
-			'flexible',
-		])
-		.optional(),
-	specificRequirements: z
-		.string()
-		.max(1000, 'Requirements must be less than 1000 characters')
-		.optional(),
-	goals: z
-		.string()
-		.max(500, 'Goals must be less than 500 characters')
-		.optional(),
-	preferredStartDate: z
-		.string()
-		.regex(/^\d{4}-\d{2}-\d{2}$/, 'Please enter a valid date (YYYY-MM-DD)')
-		.optional(),
-	budget: z.enum(['standard', 'premium', 'luxury', 'flexible']).optional(),
-	consentToContact: z.boolean().refine((val) => val === true, {
-        error: 'You must consent to being contacted'
-    }),
-	marketingConsent: z.boolean().optional(),
-	honeypot: z.string().max(0, 'Please leave this field empty').optional(),
+	urgency: z.enum(['immediate', 'this-week', 'this-month', 'flexible'], {
+		error: () => 'Please select a timeframe',
+	}),
+	budget: z.enum(['25-35', '35-45', '45-60', '60-80', '80-plus', 'discuss'], {
+		error: () => 'Please select a budget range',
+	}),
+	location: z.string().optional(),
+	additionalInfo: z.string().max(1000, 'Additional information is too long').optional(),
+	consent: z.boolean().refine((val) => val === true, {
+		message: 'You must agree to our terms and privacy policy',
+	}),
+	honeypot: z.string().max(0, 'Please leave this field empty'),
 });
+
 export const newsletterSchema = z.object({
-	email: z.email('Please enter a valid email address')
-		.max(255, 'Email address is too long'),
-	firstName: z
-		.string()
-		.min(2, 'First name must be at least 2 characters')
-		.max(50, 'First name must be less than 50 characters')
-		.optional(),
-	interests: z
+	email: z.email('Please enter a valid email address'),
+	honeypot: z.string().max(0, 'Please leave this field empty'),
+	consent: z.boolean().refine((val) => val === true, {
+		message: 'You must agree to our privacy policy',
+	}),
+});
+
+const consultationBookingSchema = z.object({
+	firstName: z.string().min(2, 'First name must be at least 2 characters'),
+	lastName: z.string().min(2, 'Last name must be at least 2 characters'),
+	email: z.email('Please enter a valid email address'),
+	phone: z.string().optional(),
+	preferredDate: z.string().min(1, 'Please select a preferred date'),
+	preferredTime: z.enum(['morning', 'afternoon', 'evening'], {
+		error: () => 'Please select a preferred time',
+	}),
+	topics: z
 		.array(
 			z.enum([
-				'primary-education',
-				'secondary-education',
-				'gcse-preparation',
-				'a-level-preparation',
-				'university-preparation',
-				'oxbridge-preparation',
-				'independent-school-preparation',
-				'adult-learning',
+				'educational-assessment',
+				'tutoring-options',
+				'exam-preparation',
+				'university-applications',
+				'special-needs',
+				'career-guidance',
+				'general-enquiry',
 			]),
 		)
-		.optional(),
-	consentToMarketing: z.boolean().refine((val) => val === true, {
-        error: 'You must consent to receiving marketing communications'
-    }),
-	honeypot: z.string().max(0).optional(),
+		.min(1, 'Please select at least one topic'),
+	additionalInfo: z.string().optional(),
+	consent: z.boolean().refine((val) => val === true),
+	honeypot: z.string().max(0),
 });
-const consultationBookingSchema = z.object({
-	parentName: z
-		.string()
-		.min(2, 'Parent/Guardian name is required')
-		.max(100, 'Name must be less than 100 characters'),
-	studentName: z
-		.string()
-		.min(2, 'Student name is required')
-		.max(100, 'Name must be less than 100 characters'),
-	email: z.email('Please enter a valid email address')
-		.max(255, 'Email address is too long'),
-	phone: z
-		.string()
-		.min(10, 'Phone number is required')
-		.regex(/^[\+]?[0-9\s\-\(\)]+$/, 'Please enter a valid phone number'),
-	preferredDate: z
-		.string()
-		.regex(/^\d{4}-\d{2}-\d{2}$/, 'Please select a valid date'),
-	preferredTime: z
-		.string()
-		.regex(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, 'Please select a valid time'),
-	alternativeDate: z
-		.string()
-		.regex(/^\d{4}-\d{2}-\d{2}$/, 'Please provide an alternative date')
-		.optional(),
-	alternativeTime: z
-		.string()
-		.regex(
-			/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
-			'Please provide an alternative time',
-		)
-		.optional(),
-	consultationType: z.enum(['online', 'phone', 'in-person'], {
-		error: () => 'Please select a consultation type',
-	}),
-	urgency: z.enum(['low', 'medium', 'high', 'urgent']).optional(),
-	currentChallenges: z
-		.string()
-		.max(500, 'Please keep challenges description under 500 characters')
-		.optional(),
-	previousTutoring: z.boolean().optional(),
-	specialRequirements: z
-		.string()
-		.max(300, 'Special requirements must be under 300 characters')
-		.optional(),
-	dataProcessingConsent: z.boolean().refine((val) => val === true, {
-        error: 'You must consent to data processing for consultation booking'
-    }),
-	honeypot: z.string().max(0).optional(),
-});
+
 const adminLoginSchema = z.object({
-	email: z.email('Please enter a valid email address')
-		.max(255, 'Email address is too long'),
-	password: z
-		.string()
-		.min(8, 'Password must be at least 8 characters')
-		.max(128, 'Password is too long'),
-	rememberMe: z.boolean().optional(),
-	csrfToken: z.string().min(1, 'Security token is required'),
-	honeypot: z.string().max(0).optional(),
+	username: z.string().min(3, 'Username must be at least 3 characters'),
+	password: z.string().min(8, 'Password must be at least 8 characters'),
+	remember: z.boolean().optional(),
 });
+
 const fileUploadSchema = z.object({
-	file: z
-		.any()
-		.refine((file) => file instanceof File, 'Please select a valid file')
+	file: z.instanceof(File),
+	type: z.enum(['image', 'document', 'video']),
+	maxSize: z.number().max(10 * 1024 * 1024, 'File size must be less than 10MB'),
+	allowedFormats: z
+		.array(z.string())
 		.refine(
-			(file) => file.size <= 10 * 1024 * 1024,
-			'File size must be less than 10MB',
+			(formats) =>
+				formats.every((format) =>
+					[
+						'jpg',
+						'jpeg',
+						'png',
+						'webp',
+						'avif',
+						'pdf',
+						'doc',
+						'docx',
+						'mp4',
+						'webm',
+					].includes(format.toLowerCase()),
+				),
+			'Unsupported file format',
 		)
-		.refine(
-			(file) =>
-				[
-					'image/jpeg',
-					'image/png',
-					'image/webp',
-					'image/avif',
-					'application/pdf',
-				].includes(file.type),
-			'File must be an image (JPEG, PNG, WebP, AVIF) or PDF',
-		),
-	altText: z
-		.string()
-		.min(5, 'Alt text must be at least 5 characters for accessibility')
-		.max(200, 'Alt text must be less than 200 characters')
-		.optional(),
-	category: z
-		.enum([
-			'logos',
-			'team-photos',
-			'student-images',
-			'institution-logos',
-			'marketing-materials',
-			'testimonial-media',
-			'documents',
-		])
 		.optional(),
 });
+
 type ContactFormData = z.infer<typeof contactFormSchema>;
 export type NewsletterData = z.infer<typeof newsletterSchema>;
 type ConsultationBookingData = z.infer<typeof consultationBookingSchema>;
 type AdminLoginData = z.infer<typeof adminLoginSchema>;
 type FileUploadData = z.infer<typeof fileUploadSchema>;
-const validateForm = <T>(
-	schema: z.ZodType<T>,
-	data: unknown,
-): {
-	success: boolean;
-	data?: T;
-	errors?: z.ZodError;
-} => {
-	try {
-		const validData = schema.parse(data);
-		return {
-			success: true,
-			data: validData,
-		};
-	} catch (error) {
-		if (error instanceof z.ZodError) {
-			return {
-				success: false,
-				errors: error,
-			};
-		}
-		throw error;
-	}
-};
+
 export const safeValidateForm = <T>(schema: z.ZodType<T>, data: unknown) => {
 	const result = schema.safeParse(data);
 	if (result.success) {
@@ -244,63 +152,3 @@ export const safeValidateForm = <T>(schema: z.ZodType<T>, data: unknown) => {
 		errors: z.treeifyError(result.error),
 	};
 };
-const isValidContactForm = (data: unknown): data is ContactFormData => {
-	return contactFormSchema.safeParse(data).success;
-};
-const isValidNewsletterSubscription = (
-	data: unknown,
-): data is NewsletterData => {
-	return newsletterSchema.safeParse(data).success;
-};
-const isValidConsultationBooking = (
-	data: unknown,
-): data is ConsultationBookingData => {
-	return consultationBookingSchema.safeParse(data).success;
-};
-const isValidAdminLogin = (data: unknown): data is AdminLoginData => {
-	return adminLoginSchema.safeParse(data).success;
-};
-const isValidFileUpload = (data: unknown): data is FileUploadData => {
-	return fileUploadSchema.safeParse(data).success;
-};
-const formatValidationErrors = (
-	errors: z.ZodError,
-): Record<string, string> => {
-	const formattedErrors: Record<string, string> = {};
-	errors.issues.forEach((issue) => {
-		const path = issue.path.join('.');
-		formattedErrors[path] = issue.message;
-	});
-	return formattedErrors;
-};
-const ukPhoneNumberSchema = z
-	.string()
-	.regex(/^(\+44\s?|0)([1-9]\d{8,9})$/, 'Please enter a valid UK phone number');
-const ukPostcodeSchema = z
-	.string()
-	.regex(
-		/^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i,
-		'Please enter a valid UK postcode',
-	)
-	.transform((val) => val.toUpperCase().replace(/\s+/g, ' ').trim());
-const validationPatterns = {
-	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-	ukPhone: /^(\+44\s?|0)([1-9]\d{8,9})$/,
-	ukPostcode: /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i,
-	nameChars: /^[a-zA-Z\s'-]+$/,
-	strongPassword:
-		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
-} as const;
-const validationMessages = {
-	required: 'This field is required',
-	email: 'Please enter a valid email address',
-	phone: 'Please enter a valid phone number',
-	postcode: 'Please enter a valid postcode',
-	nameFormat: 'Name can only contain letters, spaces, hyphens and apostrophes',
-	ageRange: 'Please enter a valid age',
-	tooShort: (min: number) => `Must be at least ${min} characters`,
-	tooLong: (max: number) => `Must be no more than ${max} characters`,
-	invalidFormat: 'Invalid format',
-	consent: 'You must provide consent to continue',
-	honeypot: 'Please leave this field empty',
-} as const;

@@ -84,26 +84,6 @@ const CONTACT_CONTENT = {
 
 export default function ContactPage() {
 	const contactContent = CONTACT_CONTENT;
-	const faqContactContent = {
-		title: contactContent.sectionTitle,
-		description: contactContent.sectionDescription,
-		buttons: [
-			{
-				text: contactContent.submitButtonText,
-				type: 'primary' as const,
-				href: `mailto:${contactContent.contactInfo.email}`,
-			},
-			{
-				text: 'Email Elizabeth Directly',
-				type: 'secondary' as const,
-				action: 'contactEmail',
-			},
-		],
-	};
-	const faqContactDetails = {
-		primaryEmail: contactContent.contactInfo.email,
-		phone: contactContent.contactInfo.phone,
-	};
 	return (
 		<>
 			{/* Hero Section - Outside PageLayout */}
