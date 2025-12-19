@@ -185,6 +185,7 @@ const nextConfig: NextConfig = {
 			alias: {
 				...config.resolve?.alias,
 				'@': path.resolve(process.cwd(), './src'),
+				'@payload-config': path.resolve(process.cwd(), './payload.config.ts'),
 			},
 		};
 
