@@ -1,0 +1,55 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "src/app/**/page.tsx",
+    "src/app/**/layout.tsx",
+    "src/app/**/loading.tsx",
+    "src/app/**/error.tsx",
+    "src/app/**/not-found.tsx",
+    "next.config.ts",
+    "tailwind.config.ts",
+    "src/middleware.ts"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}",
+    "!src/design-tokens/generated/**",
+    "!**/*.test.{ts,tsx}",
+    "!**/*.spec.{ts,tsx}"
+  ],
+  "ignore": [
+    "src/design-tokens/generated/**",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "tailwind.config.tokens.js",
+    "next-env.d.ts",
+    "payload-types.ts",
+    "scripts/test-payload-setup.mjs",
+    "src/types/env.d.ts"
+  ],
+  "rules": {
+    "files": "error",
+    "dependencies": "error",
+    "exports": "warn",
+    "types": "error",
+    "classMembers": "off",
+    "enumMembers": "off"
+  },
+  "include": ["files", "dependencies", "exports", "types"],
+  "exclude": ["classMembers", "enumMembers"],
+  "ignoreExportsUsedInFile": true,
+  "includeEntryExports": false,
+  "next": true,
+  "ignoreDependencies": [
+    "@types/node",
+    "@types/react",
+    "@types/react-dom",
+    "typescript"
+  ],
+  "ignoreBinaries": [
+    "vercel",
+    "lighthouse",
+    "jq"
+  ]
+}
