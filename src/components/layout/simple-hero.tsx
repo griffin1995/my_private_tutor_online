@@ -118,26 +118,13 @@ export function SimpleHero({
 					<motion.div
 						variants={heroItemVariants}
 						className='mb-[26px]'>
-						<h1
-							style={{
-								letterSpacing: '0.05em',
-								textShadow:
-									'0 1px 2px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.1)',
-								textTransform: 'uppercase',
-							}}>
+						<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white uppercase tracking-wider drop-shadow-lg">
 							{h1}
 						</h1>
 					</motion.div>
 
 					<motion.div variants={heroItemVariants}>
-						<h2
-							className='text-white text-center max-w-full mx-auto px-4'
-							style={{
-								fontWeight: 300,
-								letterSpacing: '0.02em',
-								textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
-								textTransform: 'none',
-							}}>
+						<h2 className="text-xl md:text-2xl lg:text-3xl font-body font-light text-white text-center max-w-full mx-auto px-4 tracking-wide drop-shadow-md normal-case">
 							{h2}
 						</h2>
 					</motion.div>
@@ -157,10 +144,7 @@ export function SimpleHero({
 							height='24'
 							viewBox='0 0 24 24'
 							fill='none'
-							className='text-white'
-							style={{
-								opacity: 0.7,
-							}}>
+							className='text-white opacity-70'>
 							<path
 								d='M7 10l5 5 5-5'
 								stroke='currentColor'
@@ -170,12 +154,7 @@ export function SimpleHero({
 							/>
 						</svg>
 
-						<span
-							className='text-xs font-serif tracking-widest uppercase text-white mt-2'
-							style={{
-								opacity: 0.6,
-								letterSpacing: '0.1em',
-							}}>
+						<span className='text-xs font-serif tracking-widest uppercase text-white mt-2 opacity-60'>
 							SCROLL
 						</span>
 					</div>
