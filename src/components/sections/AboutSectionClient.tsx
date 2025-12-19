@@ -9,6 +9,7 @@ import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import { RecognitionCard } from './RecognitionCard';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 
 interface RecognitionCardData {
 	id: string;
@@ -97,15 +98,21 @@ export function AboutSectionClient({
 						animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
 						transition={{ ...fadeInUp.transition, delay: 0.1 }}>
 						<div className='max-w-3xl md:max-w-none mx-auto md:mx-0 px-6 md:px-0 pt-8 sm:pt-12 md:pt-16 lg:pt-0 text-left'>
-							<motion.h2
-								className='text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-serif font-bold text-token-primary-dark leading-[1.15] mb-6'
+							<motion.div
 								initial={fadeInUp.initial}
 								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
 								transition={{ ...fadeInUp.transition, delay: 0.2 }}>
-								World-Class Education,
-								<br />
-								At Your Fingertips.
-							</motion.h2>
+								<HeadingText
+									variant="primary"
+									level={2}
+									className="text-token-primary-dark leading-[1.15] mb-6"
+									responsive
+								>
+									World-Class Education,
+									<br />
+									At Your Fingertips.
+								</HeadingText>
+							</motion.div>
 
 							<motion.p
 								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark leading-[1.6] mb-4'

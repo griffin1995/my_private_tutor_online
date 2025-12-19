@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { Separator } from '@/components/ui/separator';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 import React from 'react';
 
 interface PillarData {
@@ -125,8 +126,7 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 					<div className='absolute inset-0 p-4 sm:p-5 md:p-6 lg:p-10 xl:p-12 flex flex-col'>
 						{/* Title section - flexible height on single column, increased fixed height on multi-column */}
 						<div className='flex-shrink-0 lg:h-28 xl:h-32 lg:flex lg:items-end lg:pb-2'>
-							<motion.h3
-								className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight'
+							<motion.div
 								initial={{ opacity: 0, y: 10 }}
 								animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
 								transition={{
@@ -134,8 +134,15 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 									ease: 'easeOut',
 									delay: index * 0.15 + 0.2
 								}}>
-								{pillar.title}
-							</motion.h3>
+								<HeadingText
+									variant="primary"
+									level={3}
+									className="text-white leading-tight"
+									responsive
+								>
+									{pillar.title}
+								</HeadingText>
+							</motion.div>
 						</div>
 
 						{/* Separator - responsive spacing */}
@@ -155,8 +162,7 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 
 						{/* Description - flexible on single column, controlled height on multi-column for alignment */}
 						<div className='flex-1 lg:flex-none lg:h-72 xl:h-80 flex flex-col justify-center lg:justify-start lg:overflow-hidden'>
-							<motion.p
-								className='text-white text-base sm:text-lg md:text-lg lg:text-xl xl:text-2xl leading-snug lg:leading-relaxed'
+							<motion.div
 								initial={{ opacity: 0, y: 15 }}
 								animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
 								transition={{
@@ -164,16 +170,21 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 									ease: 'easeOut',
 									delay: index * 0.15 + 0.6
 								}}>
-								{pillar.description}
-							</motion.p>
+								<BodyText
+									variant="large"
+									className="text-white leading-snug lg:leading-relaxed"
+									responsive
+								>
+									{pillar.description}
+								</BodyText>
+							</motion.div>
 						</div>
 
 						{/* Stats section - flexible on single column, visible fixed height on multi-column */}
 						<div className='flex-shrink-0 mt-auto lg:mt-0 lg:h-20 xl:h-24 lg:flex lg:items-start lg:pt-6'>
 							{pillar.stats.map((stat, statIndex) => (
-								<motion.p
+								<motion.div
 									key={statIndex}
-									className='text-white text-sm sm:text-base md:text-base lg:text-lg xl:text-xl leading-tight opacity-90'
 									initial={{ opacity: 0, x: -10 }}
 									animate={inView ? { opacity: 0.9, x: 0 } : { opacity: 0, x: -10 }}
 									transition={{
@@ -181,8 +192,14 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 										ease: 'easeOut',
 										delay: index * 0.15 + 0.8 + statIndex * 0.1
 									}}>
-									• {stat}
-								</motion.p>
+									<BodyText
+										variant="default"
+										className="text-white leading-tight opacity-90"
+										responsive
+									>
+										• {stat}
+									</BodyText>
+								</motion.div>
 							))}
 						</div>
 					</div>

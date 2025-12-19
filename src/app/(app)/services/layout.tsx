@@ -13,33 +13,18 @@ export default function ServicesLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const structuredData = generateStructuredData();
-	const faqStructuredData = generateFAQStructuredData();
-	const breadcrumbStructuredData = generateBreadcrumbStructuredData();
+	const serviceSchema = createServiceSchema()
+
 	return (
 		<>
 			<Script
-				id='services-structured-data'
-				type='application/ld+json'
+				id="services-structured-data"
+				type="application/ld+json"
 				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(structuredData),
-				}}
-			/>
-			<Script
-				id='services-faq-structured-data'
-				type='application/ld+json'
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(faqStructuredData),
-				}}
-			/>
-			<Script
-				id='services-breadcrumb-structured-data'
-				type='application/ld+json'
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(breadcrumbStructuredData),
+					__html: JSON.stringify(serviceSchema)
 				}}
 			/>
 			{children}
 		</>
-	);
+	)
 }

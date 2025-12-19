@@ -108,31 +108,31 @@
 	},
 	"overrides": {
 		"@visx/axis": {
-			"react": "18.3.1",
-			"react-dom": "18.3.1"
+			"react": "19.2.3",
+			"react-dom": "19.2.3"
 		},
 		"@graphiql/react": {
-			"react": "18.3.1",
-			"react-dom": "18.3.1"
+			"react": "19.2.3",
+			"react-dom": "19.2.3"
 		},
 		"@monaco-editor/react": {
-			"react": "18.3.1",
-			"react-dom": "18.3.1"
+			"react": "19.2.3",
+			"react-dom": "19.2.3"
 		},
 		"@reach/portal": {
-			"react": "18.3.1",
-			"react-dom": "18.3.1"
+			"react": "19.2.3",
+			"react-dom": "19.2.3"
 		},
 		"@reach/utils": {
-			"react": "18.3.1",
-			"react-dom": "18.3.1"
+			"react": "19.2.3",
+			"react-dom": "19.2.3"
 		},
 		"@react-spring/zdog": {
-			"react": "18.3.1",
-			"react-dom": "18.3.1"
+			"react": "19.2.3",
+			"react-dom": "19.2.3"
 		},
-		"react": "18.3.1",
-		"react-dom": "18.3.1"
+		"react": "19.2.3",
+		"react-dom": "19.2.3"
 	},
 	"dependencies": {
 		"@headlessui/react": "^2.2.4",
@@ -177,9 +177,9 @@
 		"next-seo": "^6.8.0",
 		"next-themes": "^0.4.6",
 		"payload": "^3.68.5",
-		"react": "18.3.1",
+		"react": "19.2.3",
 		"react-countup": "^6.5.3",
-		"react-dom": "18.3.1",
+		"react-dom": "19.2.3",
 		"react-hook-form": "^7.65.0",
 		"react-icons": "^5.5.0",
 		"react-intersection-observer": "^9.16.0",
@@ -200,8 +200,8 @@
 		"@next/bundle-analyzer": "^15.5.2",
 		"@playwright/test": "^1.56.1",
 		"@types/node": "^24.9.2",
-		"@types/react": "^18",
-		"@types/react-dom": "^18",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
 		"depcheck": "^1.4.7",
 		"glob": "^11.0.3",
 		"knip": "^5.65.0",

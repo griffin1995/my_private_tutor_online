@@ -2,6 +2,7 @@
 
 import { m } from 'framer-motion';
 import React from 'react';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 interface FirstLessonSectionProps {
 	className?: string;
 	backgroundColor?: string;
@@ -81,17 +82,25 @@ export function FirstLessonSection({
 						)}
 						<div className='text-left space-y-8'>
 							<div>
-								<h3 className='text-2xl lg:text-3xl font-serif font-bold text-primary-900 mb-6'>
+								<HeadingText
+									variant="secondary"
+									level={3}
+									className="text-primary-900 mb-6"
+									responsive
+								>
 									{heading || 'First Lesson to Seventh Continent'}
-								</h3>
+								</HeadingText>
 
 								<div className='space-y-6'>
-									<p className='text-lg text-primary-700 leading-relaxed'>
+									<BodyText
+										variant="large"
+										className="text-primary-700"
+									>
 										{parseTextWithStrong(
 											paragraph ||
 												"I started tutoring at Bristol and immediately felt something click. I've always had a natural affinity with children and combining that with academics just made sense. I went on to complete my Masters, all the while refining my tutoring practice, both in person and online. I quickly found myself being recommended from family to family.  What followed was a series of international placements and the <strong>opportunities to work with VIPs and private families around the world. By 2017, I had visited all seven continents</strong>. Along the way, I met and worked alongside some truly exceptional educators — many of whom are still firm favourites in the tutoring team now.",
 										)}
-									</p>
+									</BodyText>
 								</div>
 							</div>
 						</div>

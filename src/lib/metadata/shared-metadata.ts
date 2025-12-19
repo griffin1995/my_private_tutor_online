@@ -1,4 +1,4 @@
-import type { Metadata, OpenGraph } from 'next'
+import type { Metadata } from 'next'
 import { cache } from 'react'
 
 // Cached shared base configuration for performance

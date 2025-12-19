@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/metadata/shared-metadata'
 
-export const metadata: Metadata = {
-	title:
-		'Student & Parent Testimonials | My Private Tutor Online Success Stories | Royal Client Reviews',
+export const metadata = createPageMetadata({
+	title: 'Student & Parent Testimonials | Success Stories | Royal Client Reviews',
 	description:
 		'Read authentic testimonials from families who achieved exceptional results with My Private Tutor Online. Oxford, Cambridge, grammar school successes. Royal endorsements, 15 years proven track record.',
+	path: '/testimonials',
 	keywords: [
 		'tutoring testimonials',
 		'student success stories',
@@ -17,44 +17,12 @@ export const metadata: Metadata = {
 		'royal client testimonials',
 		'premium tutoring reviews',
 		'Elizabeth Burrows testimonials',
-		'My Private Tutor Online reviews',
 		'elite tutoring success stories',
 		'academic excellence testimonials',
 		'Tatler endorsed tutor reviews',
 	],
-	openGraph: {
-		title: 'Student & Parent Testimonials | My Private Tutor Online Success Stories',
-		description:
-			'Authentic success stories from families achieving exceptional results. Oxford, Cambridge, grammar school successes with 15 years proven expertise.',
-		images: [
-			{
-				url: '/images/hero/testimonials-hero.jpg',
-				width: 800,
-				height: 600,
-				alt: 'Student and Parent Testimonials - My Private Tutor Online Success Stories',
-				type: 'image/jpeg',
-			},
-		],
-		type: 'website',
-	},
-	twitter: {
-		title: 'Student & Parent Testimonials | My Private Tutor Online Success Stories',
-		description:
-			'Real success stories from families achieving exceptional academic results. Oxford, Cambridge, grammar school successes.',
-		images: ['/images/hero/testimonials-hero.jpg'],
-	},
-	alternates: {
-		canonical: 'https://myprivatetutoronline.com/testimonials',
-	},
-	category: 'Education',
-	classification: 'Educational Testimonials',
-	other: {
-		'success:rate': '95%',
-		'experience:years': '15+',
-		'schools:placed': 'Oxford, Cambridge, Westminster, St Pauls, Eton',
-		'client:type': 'Royal endorsed, Tatler featured',
-	},
-};
+	image: '/images/hero/testimonials-hero.jpg',
+})
 
 export default function TestimonialsLayout({
 	children,
