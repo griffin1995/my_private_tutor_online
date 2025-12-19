@@ -117,33 +117,33 @@
   },
   "overrides": {
     "@visx/axis": {
-      "react": "19.2.3",
-      "react-dom": "19.2.3"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@graphiql/react": {
-      "react": "19.2.3",
-      "react-dom": "19.2.3"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@monaco-editor/react": {
-      "react": "19.2.3",
-      "react-dom": "19.2.3"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@reach/portal": {
-      "react": "19.2.3",
-      "react-dom": "19.2.3"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@reach/utils": {
-      "react": "19.2.3",
-      "react-dom": "19.2.3"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
     "@react-spring/zdog": {
-      "react": "19.2.3",
-      "react-dom": "19.2.3"
+      "react": "19.2.1",
+      "react-dom": "19.2.1"
     },
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
+    "@types/react-dom": "19.2.1",
     "esbuild": "^0.25.0",
     "@esbuild-kit/core-utils": {
       "esbuild": "^0.25.0"
@@ -159,10 +159,10 @@
     "@emotion/react": "11.14.0",
     "@headlessui/react": "^2.2.4",
     "@hookform/resolvers": "^5.1.1",
-    "@payloadcms/db-postgres": "^3.68.5",
-    "@payloadcms/next": "^3.68.5",
-    "@payloadcms/richtext-lexical": "^3.68.5",
-    "@payloadcms/storage-vercel-blob": "^3.68.5",
+    "@payloadcms/db-postgres": "3.68.5",
+    "@payloadcms/next": "3.68.5",
+    "@payloadcms/richtext-lexical": "3.68.5",
+    "@payloadcms/storage-vercel-blob": "3.68.5",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
     "@radix-ui/react-avatar": "^1.1.10",
@@ -192,13 +192,13 @@
     "graphql": "^16.12.0",
     "html-react-parser": "^5.2.10",
     "immer": "^11.0.1",
-    "next": "^16.1.0-canary.19",
+    "next": "15.4.10",
     "next-seo": "^6.8.0",
     "next-themes": "^0.4.6",
-    "payload": "^3.68.5",
-    "react": "19.2.3",
+    "payload": "3.68.5",
+    "react": "19.2.1",
     "react-countup": "^6.5.3",
-    "react-dom": "19.2.3",
+    "react-dom": "19.2.1",
     "react-hook-form": "^7.65.0",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^10.0.0",
@@ -218,7 +218,7 @@
     "@playwright/test": "^1.56.1",
     "@types/node": "^25.0.3",
     "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
+    "@types/react-dom": "19.2.1",
     "depcheck": "^1.4.7",
     "eslint-plugin-unused-imports": "^4.3.0",
     "glob": "^13.0.0",
