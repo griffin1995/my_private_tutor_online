@@ -89,6 +89,67 @@
 					}
 				}
 			]
+		},
+
+		"semantic-colors": {
+			"$comment": "ENHANCEMENT: Semantic color tokens - isolated generation for semantic feedback colors",
+			"$comment2": "IMPLEMENTATION REASON: Generates semantic color tokens separately for component usage",
+			"transformGroup": "css",
+			"buildPath": "src/design-tokens/generated/",
+			"include": ["color/semantic/**"],
+			"files": [
+				{
+					"destination": "semantic-colors.css",
+					"format": "css/variables",
+					"options": {
+						"selector": ":root",
+						"outputReferences": true,
+						"showFileHeader": true
+					}
+				},
+				{
+					"destination": "semantic-colors.js",
+					"format": "javascript/module",
+					"options": {
+						"outputReferences": true,
+						"showFileHeader": true
+					}
+				}
+			]
+		},
+
+		"semantic-typography": {
+			"$comment": "ENHANCEMENT: Semantic typography tokens - isolated generation for component typography",
+			"$comment2": "IMPLEMENTATION REASON: Generates semantic typography tokens for CVA component integration",
+			"transformGroup": "js",
+			"buildPath": "src/design-tokens/generated/",
+			"include": ["semantic/**"],
+			"files": [
+				{
+					"destination": "semantic-typography.css",
+					"format": "css/variables",
+					"options": {
+						"selector": ":root",
+						"outputReferences": true,
+						"showFileHeader": true
+					}
+				},
+				{
+					"destination": "semantic-typography.js",
+					"format": "javascript/module",
+					"options": {
+						"outputReferences": true,
+						"showFileHeader": true
+					}
+				},
+				{
+					"destination": "semantic-typography.d.ts",
+					"format": "typescript/es6-declarations",
+					"options": {
+						"showFileHeader": true
+					}
+				}
+			]
 		}
 	}
 }
