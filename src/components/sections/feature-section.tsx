@@ -184,7 +184,7 @@ export function FeatureSection({
 					}
 					transition={{ ...(imagePosition === 'left' ? slideInRight.transition : slideInLeft.transition), delay: 0.1 }}>
 					<motion.h3
-						className="my-4 text-balance text-4xl font-semibold lg:text-3xl xl:text-5xl"
+						className="my-4 text-balance text-4xl font-semibold lg:text-4xl xl:text-5xl"
 						{...fadeInUp}
 						animate={desktopInView ? fadeInUp.animate : fadeInUp.initial}
 						transition={{ ...fadeInUp.transition, delay: 0.3 }}>
