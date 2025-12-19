@@ -1,13 +1,13 @@
 import { z } from 'zod';
-const UrlSchema = z.string().url('Invalid URL format');
-const EmailSchema = z.string().email('Invalid email format');
+const UrlSchema = z.url('Invalid URL format');
+const EmailSchema = z.email('Invalid email format');
 const PhoneSchema = z
 	.string()
 	.min(10, 'Phone number too short')
 	.max(20, 'Phone number too long');
 const NonEmptyStringSchema = z.string().min(1, 'Field cannot be empty');
 const RatingSchema = z.number().min(1).max(5);
-const DateSchema = z.string().datetime('Invalid date format').optional();
+const DateSchema = z.iso.datetime('Invalid date format').optional();
 const IconTypeSchema = z.enum([
 	'crown',
 	'award',

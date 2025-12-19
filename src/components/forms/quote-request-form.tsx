@@ -71,9 +71,7 @@ const quoteRequestSchema = z.object({
 			'other',
 		],
 		{
-			errorMap: () => ({
-				message: 'Please select a valid academic level',
-			}),
+			error: () => 'Please select a valid academic level',
 		},
 	),
 	specificRequirements: z
@@ -82,24 +80,18 @@ const quoteRequestSchema = z.object({
 		.optional()
 		.or(z.literal('')),
 	tutoringFormat: z.enum(['online', 'in-person', 'hybrid'], {
-		errorMap: () => ({
-			message: 'Please select a preferred tutoring format',
-		}),
+		error: () => 'Please select a preferred tutoring format',
 	}),
 	frequency: z.enum(
 		['weekly', 'bi-weekly', 'intensive', 'exam-prep', 'flexible'],
 		{
-			errorMap: () => ({
-				message: 'Please select a preferred frequency',
-			}),
+			error: () => 'Please select a preferred frequency',
 		},
 	),
 	startDate: z.enum(
 		['immediate', 'within-week', 'within-month', 'next-term', 'flexible'],
 		{
-			errorMap: () => ({
-				message: 'Please select a preferred start date',
-			}),
+			error: () => 'Please select a preferred start date',
 		},
 	),
 	parentName: z
@@ -110,9 +102,7 @@ const quoteRequestSchema = z.object({
 			/^[a-zA-Z\s'-]+$/,
 			'Parent/guardian name can only contain letters, spaces, hyphens and apostrophes',
 		),
-	email: z
-		.string()
-		.email('Please enter a valid email address')
+	email: z.email('Please enter a valid email address')
 		.max(255, 'Email address is too long')
 		.toLowerCase(),
 	phone: z
@@ -140,9 +130,7 @@ const quoteRequestSchema = z.object({
 			'other',
 		],
 		{
-			errorMap: () => ({
-				message: 'Please select how you heard about us',
-			}),
+			error: () => 'Please select how you heard about us',
 		},
 	),
 	additionalNotes: z

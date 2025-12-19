@@ -8,7 +8,7 @@ const PerformanceMetricSchema = z.object({
 	delta: z.number(),
 	entries: z.array(z.any()),
 	timestamp: z.number(),
-	url: z.string().url(),
+	url: z.url(),
 	userAgent: z.string(),
 	connectionType: z.string().optional(),
 	effectiveType: z.string().optional(),
@@ -27,7 +27,7 @@ const PerformancePayloadSchema = z.object({
 	timestamp: z.number(),
 	metrics: z.array(PerformanceMetricSchema),
 	metadata: z.object({
-		url: z.string().url(),
+		url: z.url(),
 		userAgent: z.string(),
 		connectionType: z.string().optional(),
 		effectiveType: z.string().optional(),

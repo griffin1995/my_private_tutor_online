@@ -16,9 +16,7 @@ const contactFormSchema = z.object({
 			/^[a-zA-Z\s'-]+$/,
 			'Last name can only contain letters, spaces, hyphens and apostrophes',
 		),
-	email: z
-		.string()
-		.email('Please enter a valid email address')
+	email: z.email('Please enter a valid email address')
 		.max(255, 'Email address is too long'),
 	phone: z
 		.string()
@@ -26,9 +24,7 @@ const contactFormSchema = z.object({
 		.max(15, 'Phone number must be less than 15 digits')
 		.regex(/^[\+]?[0-9\s\-\(\)]+$/, 'Please enter a valid phone number')
 		.optional(),
-	studentAge: z
-		.number()
-		.int('Age must be a whole number')
+	studentAge: z.int('Age must be a whole number')
 		.min(5, 'Student must be at least 5 years old')
 		.max(25, 'Please contact us directly for students over 25'),
 	educationLevel: z.enum(
@@ -42,9 +38,7 @@ const contactFormSchema = z.object({
 			'adult-education',
 		],
 		{
-			errorMap: () => ({
-				message: 'Please select an education level',
-			}),
+			error: () => 'Please select an education level',
 		},
 	),
 	subjects: z
@@ -52,9 +46,7 @@ const contactFormSchema = z.object({
 		.min(1, 'Please select at least one subject')
 		.max(5, 'Please select no more than 5 subjects'),
 	tutorType: z.enum(['online', 'in-person', 'hybrid'], {
-		errorMap: () => ({
-			message: 'Please select a tutoring preference',
-		}),
+		error: () => 'Please select a tutoring preference',
 	}),
 	sessionFrequency: z
 		.enum([
@@ -79,15 +71,13 @@ const contactFormSchema = z.object({
 		.optional(),
 	budget: z.enum(['standard', 'premium', 'luxury', 'flexible']).optional(),
 	consentToContact: z.boolean().refine((val) => val === true, {
-		message: 'You must consent to being contacted',
-	}),
+        error: 'You must consent to being contacted'
+    }),
 	marketingConsent: z.boolean().optional(),
 	honeypot: z.string().max(0, 'Please leave this field empty').optional(),
 });
 export const newsletterSchema = z.object({
-	email: z
-		.string()
-		.email('Please enter a valid email address')
+	email: z.email('Please enter a valid email address')
 		.max(255, 'Email address is too long'),
 	firstName: z
 		.string()
@@ -109,8 +99,8 @@ export const newsletterSchema = z.object({
 		)
 		.optional(),
 	consentToMarketing: z.boolean().refine((val) => val === true, {
-		message: 'You must consent to receiving marketing communications',
-	}),
+        error: 'You must consent to receiving marketing communications'
+    }),
 	honeypot: z.string().max(0).optional(),
 });
 const consultationBookingSchema = z.object({
@@ -122,9 +112,7 @@ const consultationBookingSchema = z.object({
 		.string()
 		.min(2, 'Student name is required')
 		.max(100, 'Name must be less than 100 characters'),
-	email: z
-		.string()
-		.email('Please enter a valid email address')
+	email: z.email('Please enter a valid email address')
 		.max(255, 'Email address is too long'),
 	phone: z
 		.string()
@@ -148,9 +136,7 @@ const consultationBookingSchema = z.object({
 		)
 		.optional(),
 	consultationType: z.enum(['online', 'phone', 'in-person'], {
-		errorMap: () => ({
-			message: 'Please select a consultation type',
-		}),
+		error: () => 'Please select a consultation type',
 	}),
 	urgency: z.enum(['low', 'medium', 'high', 'urgent']).optional(),
 	currentChallenges: z
@@ -163,14 +149,12 @@ const consultationBookingSchema = z.object({
 		.max(300, 'Special requirements must be under 300 characters')
 		.optional(),
 	dataProcessingConsent: z.boolean().refine((val) => val === true, {
-		message: 'You must consent to data processing for consultation booking',
-	}),
+        error: 'You must consent to data processing for consultation booking'
+    }),
 	honeypot: z.string().max(0).optional(),
 });
 const adminLoginSchema = z.object({
-	email: z
-		.string()
-		.email('Please enter a valid email address')
+	email: z.email('Please enter a valid email address')
 		.max(255, 'Email address is too long'),
 	password: z
 		.string()
@@ -222,7 +206,7 @@ type ConsultationBookingData = z.infer<typeof consultationBookingSchema>;
 type AdminLoginData = z.infer<typeof adminLoginSchema>;
 type FileUploadData = z.infer<typeof fileUploadSchema>;
 const validateForm = <T>(
-	schema: z.ZodSchema<T>,
+	schema: z.ZodType<T>,
 	data: unknown,
 ): {
 	success: boolean;
@@ -245,7 +229,7 @@ const validateForm = <T>(
 		throw error;
 	}
 };
-export const safeValidateForm = <T>(schema: z.ZodSchema<T>, data: unknown) => {
+export const safeValidateForm = <T>(schema: z.ZodType<T>, data: unknown) => {
 	const result = schema.safeParse(data);
 	if (result.success) {
 		return {
@@ -257,7 +241,7 @@ export const safeValidateForm = <T>(schema: z.ZodSchema<T>, data: unknown) => {
 	return {
 		success: false as const,
 		data: undefined,
-		errors: result.error.format(),
+		errors: z.treeifyError(result.error),
 	};
 };
 const isValidContactForm = (data: unknown): data is ContactFormData => {

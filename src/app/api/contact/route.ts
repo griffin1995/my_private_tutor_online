@@ -7,7 +7,7 @@ const contactSchema = z.object({
 		.min(2, 'Name must be at least 2 characters')
 		.max(100, 'Name must not exceed 100 characters')
 		.regex(/^[a-zA-Z\s\-']+$/, 'Name contains invalid characters'),
-	email: z.string().email('Invalid email address').max(255, 'Email too long'),
+	email: z.email('Invalid email address').max(255, 'Email too long'),
 	phone: z
 		.string()
 		.regex(/^[\d\s\-\+\(\)]+$/, 'Invalid phone number format')

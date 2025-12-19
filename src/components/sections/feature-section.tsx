@@ -206,13 +206,17 @@ export function FeatureSection({
 						</HeadingText>
 					</motion.div>
 					{description && (
-						<motion.p
-							className="text-muted-foreground mb-6 max-w-xl text-lg lg:text-base xl:text-xl min-w-0"
+						<motion.div
 							{...fadeInUp}
 							animate={desktopInView ? fadeInUp.animate : fadeInUp.initial}
 							transition={{ ...fadeInUp.transition, delay: 0.4 }}>
-							{description}
-						</motion.p>
+							<BodyText
+								variant="large"
+								className="text-muted-foreground mb-6 max-w-xl min-w-0"
+								responsive>
+								{description}
+							</BodyText>
+						</motion.div>
 					)}
 					<motion.div
 						className="flex w-full flex-col justify-start gap-2 sm:flex-row"

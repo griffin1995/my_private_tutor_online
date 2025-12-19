@@ -34,9 +34,7 @@ const consultationSchema = z.object({
 			/^[a-zA-Z\s'-]+$/,
 			'Parent name can only contain letters, spaces, hyphens and apostrophes',
 		),
-	email: z
-		.string()
-		.email('Please enter a valid email address')
+	email: z.email('Please enter a valid email address')
 		.max(255, 'Email address too long')
 		.toLowerCase(),
 	phone: z
@@ -63,9 +61,7 @@ const consultationSchema = z.object({
 			'university',
 		],
 		{
-			errorMap: () => ({
-				message: 'Please select a valid academic level',
-			}),
+			error: () => 'Please select a valid academic level',
 		},
 	),
 	subjects: z
@@ -76,9 +72,7 @@ const consultationSchema = z.object({
 	urgency: z.enum(
 		['immediate', 'within-week', 'within-month', 'planning-ahead'],
 		{
-			errorMap: () => ({
-				message: 'Please select a valid timescale',
-			}),
+			error: () => 'Please select a valid timescale',
 		},
 	),
 	specificNeeds: z
@@ -87,14 +81,10 @@ const consultationSchema = z.object({
 		.optional()
 		.or(z.literal('')),
 	preferredContact: z.enum(['phone', 'email', 'either'], {
-		errorMap: () => ({
-			message: 'Please select a valid contact method',
-		}),
+		error: () => 'Please select a valid contact method',
 	}),
 	budget: z.enum(['standard', 'premium', 'elite', 'discuss'], {
-		errorMap: () => ({
-			message: 'Please select a valid service level',
-		}),
+		error: () => 'Please select a valid service level',
 	}),
 });
 type ConsultationFormData = z.infer<typeof consultationSchema>;
