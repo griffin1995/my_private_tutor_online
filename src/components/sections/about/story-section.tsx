@@ -4,6 +4,7 @@ import type { JSX } from 'react';
 import { ResponsiveImage } from '@/components/ui/responsive-image';
 import { PullQuote } from './pull-quote';
 import { cn } from '@/lib/utils';
+import useMeasure from 'react-use-measure';
 
 interface StorySectionProps {
   /** Unique identifier for the section */
@@ -57,6 +58,15 @@ export function StorySection({
   className = ''
 }: StorySectionProps): JSX.Element {
 
+  // Hooks for measuring element dimensions
+  const [textContainerRef, textBounds] = useMeasure();
+  const [quoteRef, quoteBounds] = useMeasure();
+
+  // Calculate dynamic quote position (centered vertically in text content)
+  const centerY = textBounds.height > 0 && quoteBounds.height > 0
+    ? (textBounds.height / 2) - (quoteBounds.height / 2)
+    : 0;
+
   // Determine grid order based on layout
   const imageOrder = layout === 'image-left' ? 'order-1 lg:order-1' : 'order-1 lg:order-2';
   const contentOrder = layout === 'image-left' ? 'order-2 lg:order-2' : 'order-2 lg:order-1';
@@ -94,29 +104,50 @@ export function StorySection({
               {title}
             </h2>
 
-            <div className="text-left">
-              {content.map((paragraph, index) => (
-                <div key={index}>
-                  {/* Insert pull quote after first paragraph if it exists */}
-                  {index === 0 && pullQuote && (
-                    <PullQuote position={pullQuotePosition}>
-                      {pullQuote}
-                    </PullQuote>
-                  )}
-
-                  <p className="mb-4">
-                    {paragraph}
-                  </p>
-
-                  {/* Add line breaks between paragraphs for readability */}
-                  {index < content.length - 1 && (
-                    <>
-                      <br />
-                      <br />
-                    </>
-                  )}
+            {/* Content container with relative positioning for quote */}
+            <div className="relative text-left" ref={textContainerRef}>
+              {/* Dynamically positioned pull quote */}
+              {pullQuote && (
+                <div
+                  ref={quoteRef}
+                  style={{
+                    marginTop: centerY > 0 ? `${centerY}px` : '0',
+                    float: pullQuotePosition,
+                    width: 'auto',
+                    maxWidth: '320px',
+                    marginLeft: pullQuotePosition === 'right' ? '24px' : '0',
+                    marginRight: pullQuotePosition === 'left' ? '24px' : '0',
+                    marginBottom: '24px',
+                    shapeOutside: quoteBounds.width > 0 && quoteBounds.height > 0
+                      ? 'margin-box'
+                      : 'none',
+                    zIndex: 10
+                  } as React.CSSProperties}
+                >
+                  <PullQuote position={pullQuotePosition} disableFloat={true}>
+                    {pullQuote}
+                  </PullQuote>
                 </div>
-              ))}
+              )}
+
+              {/* Text content */}
+              <div>
+                {content.map((paragraph, index) => (
+                  <div key={index}>
+                    <p className="mb-4">
+                      {paragraph}
+                    </p>
+
+                    {/* Add line breaks between paragraphs for readability */}
+                    {index < content.length - 1 && (
+                      <>
+                        <br />
+                        <br />
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

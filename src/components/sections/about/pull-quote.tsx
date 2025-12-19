@@ -8,6 +8,8 @@ interface PullQuoteProps {
   className?: string;
   /** Position of the quote: 'left' or 'right' */
   position?: 'left' | 'right';
+  /** Disable default float behavior for dynamic positioning */
+  disableFloat?: boolean;
 }
 
 /**
@@ -22,9 +24,10 @@ interface PullQuoteProps {
 export function PullQuote({
   children,
   className = '',
-  position = 'right'
+  position = 'right',
+  disableFloat = false
 }: PullQuoteProps): JSX.Element {
-  const floatClass = position === 'left' ? 'float-left mr-6' : 'float-right ml-6';
+  const floatClass = !disableFloat ? (position === 'left' ? 'float-left mr-6' : 'float-right ml-6') : '';
 
   return (
     <aside
