@@ -5,6 +5,7 @@ import { ResponsiveImage } from '@/components/ui/responsive-image';
 import { PullQuote } from './pull-quote';
 import { cn } from '@/lib/utils';
 import useMeasure from 'react-use-measure';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 
 interface StorySectionProps {
   /** Unique identifier for the section */
@@ -100,9 +101,13 @@ export function StorySection({
             'max-w-full sm:max-w-6xl p-2 sm:p-4 md:p-8',
             textAlignClass
           )}>
-            <h2 className="pb-2 mb-3 text-2xl sm:text-3.5xl">
+            <HeadingText
+              variant="primary"
+              level={2}
+              className="pb-2 mb-3 text-2xl sm:text-3.5xl"
+              responsive>
               {title}
-            </h2>
+            </HeadingText>
 
             {/* Content container with float-based pull quote */}
             <div className="relative text-left" ref={textContainerRef}>
@@ -131,7 +136,9 @@ export function StorySection({
               )}
 
               {/* Text content without artificial margins - allows natural flow */}
-              <p>
+              <BodyText
+                variant="default"
+                responsive>
                 {fullContent.split('\n\n').map((paragraph, index) => (
                   <span key={index}>
                     {paragraph}
@@ -143,7 +150,7 @@ export function StorySection({
                     )}
                   </span>
                 ))}
-              </p>
+              </BodyText>
             </div>
           </div>
         </div>

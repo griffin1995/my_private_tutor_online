@@ -1,14 +1,10 @@
 import type { NextConfig } from 'next';
-import bundleAnalyzer from '@next/bundle-analyzer';
 import { withPayload } from '@payloadcms/next/withPayload';
 import path from 'path';
 
 // Modern 2025 debugging: React DevTools profiler enabled below
 // Removed why-did-you-render in favour of built-in React debugging tools
-
-const withBundleAnalyzer = bundleAnalyzer({
-	enabled: process.env['ANALYZE'] === 'true',
-});
+// Bundle analysis now uses: npm run analyze (next experimental-analyze)
 
 const nextConfig: NextConfig = {
 	// Core Performance & Security Settings
@@ -23,7 +19,10 @@ const nextConfig: NextConfig = {
 	// Modern Turbopack Configuration (Single Unified Instance)
 	turbopack: {
 		resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
-		moduleIds: 'deterministic',
+		resolveAlias: {
+			'@/*': './src/*',
+			'@payload-config': './payload.config.ts',
+		},
 	},
 
 	// SWC Compiler Optimization
@@ -201,10 +200,6 @@ const nextConfig: NextConfig = {
 			:	'./tsconfig.json',
 	},
 
-	// ESLint Configuration
-	eslint: {
-		ignoreDuringBuilds: true,
-	},
 };
 
-export default withPayload(withBundleAnalyzer(nextConfig));
+export default withPayload(nextConfig);

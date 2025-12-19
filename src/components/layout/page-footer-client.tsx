@@ -216,20 +216,27 @@ export function PageFooterClient({
 										/>
 										<div className='absolute inset-0 bg-primary-950 opacity-0 group-hover:opacity-10 transition-opacity duration-300' />
 										<div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary-950/80 to-transparent p-4'>
-											<p className='text-white font-medium text-sm'>
+											<CaptionText
+												variant="default"
+												className="text-white font-medium"
+												responsive>
 												Click to access secure enquiry form →
-											</p>
+											</CaptionText>
 										</div>
 									</div>
 								</motion.a>
-								<motion.p
-									className='text-xs text-neutral-500 mt-3'
+								<motion.div
 									{...fadeInUp}
 									animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}
 									transition={{ ...fadeInUp.transition, delay: 0.5 }}>
-									Opens in new window • Secure encrypted connection • Same trusted
-									service
-								</motion.p>
+									<CaptionText
+										variant="small"
+										className="text-neutral-500 mt-3"
+										responsive>
+										Opens in new window • Secure encrypted connection • Same trusted
+										service
+									</CaptionText>
+								</motion.div>
 							</div>
 						</motion.div>
 					)}
@@ -240,13 +247,20 @@ export function PageFooterClient({
 						<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 lg:py-12'>
 							<div className='max-w-4xl mx-auto text-center'>
 								<div className='animate-fade-in-up'>
-									<h3 className='text-3xl font-serif font-bold text-primary-900 mb-4'>
+									<HeadingText
+										variant="primary"
+										level={3}
+										className="mb-4"
+										responsive>
 										Join Our Exclusive Community
-									</h3>
-									<p className='text-neutral-700 mb-8 text-lg'>
+									</HeadingText>
+									<BodyText
+										variant="large"
+										className="text-neutral-700 mb-8"
+										responsive>
 										Receive personalised academic insights and exclusive opportunities for
 										your child's success
-									</p>
+									</BodyText>
 
 									<Suspense
 										fallback={
@@ -285,9 +299,12 @@ export function PageFooterClient({
 
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 py-6'>
 						<div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
-							<p className='text-sm text-neutral-600 text-center sm:text-left'>
+							<CaptionText
+								variant="default"
+								className="text-neutral-600 text-center sm:text-left"
+								responsive>
 								{copyrightText}
-							</p>
+							</CaptionText>
 
 							{footerConfig.showBackToTop && (
 								<Button

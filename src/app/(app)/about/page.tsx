@@ -8,6 +8,7 @@ import { FounderStorySection } from '@/components/sections/about/founder-story-s
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import { RecognitionCard } from '../../../components/sections/RecognitionCard';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR ABOUT PAGE
 // ============================================================================
@@ -131,14 +132,19 @@ export default function AboutUsPage() {
 					transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}>
 					<div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
 						{/* Heading */}
-						<motion.h2
+						<motion.div
 							className='text-center mb-6'
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true, margin: '-50px' }}
 							transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}>
-							Our Educational Philosophy
-						</motion.h2>
+							<HeadingText
+								variant="primary"
+								level={2}
+								responsive>
+								Our Educational Philosophy
+							</HeadingText>
+						</motion.div>
 
 						{/* Text + Image */}
 						<div className='flex flex-col lg:flex-row items-center lg:items-start gap-8 sm:pt-4 md:pt-6 lg:pt-8 xl:pt-10 2xl:pt-12'>
@@ -149,7 +155,9 @@ export default function AboutUsPage() {
 								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, margin: '-50px' }}
 								transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 }}>
-								<p>
+								<BodyText
+									variant="default"
+									responsive>
 									We believe every child deserves an education tailored to who they are,
 									helping them <strong>build confidence, curiosity, and clarity</strong>.
 									We combine academic rigour with personal mentorship, knowing that{' '}
@@ -158,14 +166,17 @@ export default function AboutUsPage() {
 										subject mastery
 									</strong>
 									.
-								</p>
-								<p className='mt-4'>
+								</BodyText>
+								<BodyText
+									variant="default"
+									className='mt-4'
+									responsive>
 									Whether preparing for British schools, moving abroad, or facing
 									competitive exams, we provide structure, insight and flexibility. Above
 									all, <strong>we aim to cultivate independence</strong> — giving
 									students the tools and courage to walk their path with confidence and{' '}
 									<strong>thrive long after tutoring ends</strong>.
-								</p>
+								</BodyText>
 							</motion.div>
 
 							{/* Image on the right */}

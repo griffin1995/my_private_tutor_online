@@ -2,6 +2,7 @@
 
 import type { JSX } from 'react';
 import { ThreePillarsSection } from 'src/components/sections/three-pillars-section';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 
 interface ResultsSectionProps {
   /** CMS content for the results section */
@@ -27,10 +28,20 @@ export function ResultsSection({
   return (
     <>
       <div className="mx-auto max-w-6xl text-center py-8 sm:px-6 lg:px-8 mt-7 lg:mt-10">
-        <h2 className="mb-8">{resultsThatMatter.title}</h2>
+        <HeadingText
+          variant="primary"
+          level={2}
+          className="mb-8"
+          responsive>
+          {resultsThatMatter.title}
+        </HeadingText>
 
         <div className="space-y-6">
-          <p>{resultsThatMatter.content}</p>
+          <BodyText
+            variant="default"
+            responsive>
+            {resultsThatMatter.content}
+          </BodyText>
         </div>
       </div>
 

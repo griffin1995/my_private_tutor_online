@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
-import { DisplayText, HeadingText } from '@/components/ui/typography';
+import { DisplayText, HeadingText, CaptionText } from '@/components/ui/typography';
 interface SimpleHeroProps {
 	backgroundImage: string;
 	h1: string;
@@ -168,9 +168,12 @@ export function SimpleHero({
 							/>
 						</svg>
 
-						<span className='text-xs font-serif tracking-widest uppercase text-white mt-2 opacity-60'>
+						<CaptionText
+							variant="small"
+							className="font-serif tracking-widest uppercase text-white mt-2 opacity-60"
+							responsive>
 							SCROLL
-						</span>
+						</CaptionText>
 					</div>
 				</div>
 			</div>
