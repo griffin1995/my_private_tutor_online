@@ -81,7 +81,7 @@ export function createPageMetadata({
       url,
       siteName,
       locale: 'en_GB',
-      type: type as OpenGraph['type'],
+      type,
       ...(publishedTime && { publishedTime }),
       ...(modifiedTime && { modifiedTime }),
       ...(authors && { authors }),

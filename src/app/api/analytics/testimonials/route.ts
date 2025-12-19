@@ -208,7 +208,7 @@ export async function POST(request: NextRequest) {
 				},
 			);
 		}
-		const headersList = headers();
+		const headersList = await headers();
 		const userAgent = headersList.get('user-agent') || '';
 		const forwardedFor = headersList.get('x-forwarded-for') || '';
 		const clientIP = forwardedFor.split(',')[0] || 'unknown';

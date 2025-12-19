@@ -179,15 +179,20 @@ export function AboutSectionClient({
 								</BodyText>
 							</motion.div>
 
-							<motion.p
-								className='text-base sm:text-lg xl:text-xl font-serif text-token-primary-dark leading-[1.6]'
+							<motion.div
 								initial={fadeInUp.initial}
 								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
 								transition={{ ...fadeInUp.transition, delay: 0.6 }}>
-								15 years later, the ethos remains the same: every tutor is handpicked,
-								every match thoughtfully made, and every family accommodated directly by
-								Elizabeth and her team.
-							</motion.p>
+								<BodyText
+									variant="large"
+									className="text-token-primary-dark leading-[1.6]"
+									responsive
+								>
+									15 years later, the ethos remains the same: every tutor is handpicked,
+									every match thoughtfully made, and every family accommodated directly by
+									Elizabeth and her team.
+								</BodyText>
+							</motion.div>
 						</div>
 					</motion.div>
 
