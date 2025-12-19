@@ -11,8 +11,8 @@ interface StorySectionProps {
   id: string;
   /** Section title */
   title: string;
-  /** Main content paragraphs */
-  content: string[];
+  /** Full content as single string with paragraph breaks */
+  fullContent: string;
   /** Image source */
   imageSrc: string;
   /** Image alt text */
@@ -46,7 +46,7 @@ interface StorySectionProps {
 export function StorySection({
   id,
   title,
-  content,
+  fullContent,
   imageSrc,
   imageAlt,
   pullQuote,
@@ -106,48 +106,44 @@ export function StorySection({
 
             {/* Content container with relative positioning for quote */}
             <div className="relative text-left" ref={textContainerRef}>
-              {/* Dynamically positioned pull quote */}
-              {pullQuote && (
-                <div
-                  ref={quoteRef}
-                  style={{
-                    marginTop: centerY > 0 ? `${centerY}px` : '0',
-                    float: pullQuotePosition,
-                    width: 'auto',
-                    maxWidth: '320px',
-                    marginLeft: pullQuotePosition === 'right' ? '24px' : '0',
-                    marginRight: pullQuotePosition === 'left' ? '24px' : '0',
-                    marginBottom: '24px',
-                    shapeOutside: quoteBounds.width > 0 && quoteBounds.height > 0
-                      ? 'margin-box'
-                      : 'none',
-                    zIndex: 10
-                  } as React.CSSProperties}
-                >
-                  <PullQuote position={pullQuotePosition} disableFloat={true}>
-                    {pullQuote}
-                  </PullQuote>
-                </div>
-              )}
-
-              {/* Text content */}
-              <div>
-                {content.map((paragraph, index) => (
-                  <div key={index}>
-                    <p className="mb-4">
-                      {paragraph}
-                    </p>
-
-                    {/* Add line breaks between paragraphs for readability */}
-                    {index < content.length - 1 && (
+              {/* Single paragraph with all content and inline pull quote */}
+              <p>
+                {/* Render content with line breaks and inline pull quote */}
+                {fullContent.split('\n\n').map((paragraph, index) => (
+                  <span key={index}>
+                    {/* Insert pull quote at 50% point of total content */}
+                    {pullQuote && index === Math.floor(fullContent.split('\n\n').length / 2) && (
+                      <span
+                        ref={quoteRef}
+                        style={{
+                          float: pullQuotePosition,
+                          width: 'auto',
+                          maxWidth: '320px',
+                          marginLeft: pullQuotePosition === 'right' ? '24px' : '0',
+                          marginRight: pullQuotePosition === 'left' ? '24px' : '0',
+                          marginBottom: '24px',
+                          marginTop: '12px',
+                          shapeOutside: quoteBounds.width > 0 && quoteBounds.height > 0
+                            ? 'margin-box'
+                            : 'none',
+                          zIndex: 10
+                        } as React.CSSProperties}
+                      >
+                        <PullQuote position={pullQuotePosition} disableFloat={true}>
+                          {pullQuote}
+                        </PullQuote>
+                      </span>
+                    )}
+                    {paragraph}
+                    {index < fullContent.split('\n\n').length - 1 && (
                       <>
                         <br />
                         <br />
                       </>
                     )}
-                  </div>
+                  </span>
                 ))}
-              </div>
+              </p>
             </div>
           </div>
         </div>
