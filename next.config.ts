@@ -38,6 +38,9 @@ const nextConfig: NextConfig = {
 		styledComponents: false,
 	},
 
+	// Source Maps Configuration (2025 Security Standards)
+	productionBrowserSourceMaps: false, // Disable in production for security
+
 	// Experimental Features (2025 Standards)
 	experimental: {
 		// Static Generation Optimization
@@ -78,7 +81,7 @@ const nextConfig: NextConfig = {
 		webpackMemoryOptimizations: true,
 		scrollRestoration: true,
 		serverMinification: true,
-		serverSourceMaps: false,
+		serverSourceMaps: false, // Explicitly disabled to prevent payload argument errors
 		cssChunking: true,
 		webpackBuildWorker: true,
 	},
@@ -124,13 +127,13 @@ const nextConfig: NextConfig = {
 
 	// Simplified Webpack Configuration (Essential Only)
 	webpack: (config, { isServer, dev }) => {
-		// CMS Architecture Validation (Optional)
-		if (!isServer && !dev && process.env.ENABLE_BUILD_PLUGINS === 'true') {
-			console.log('🔍 CMS Architecture Validation: Available but disabled for build performance');
-		}
-
-		// Development Optimization
+		// Fix source map issues in development (2025 Security Standards)
 		if (dev) {
+			// Disable server-side source maps in development to prevent payload errors
+			if (isServer) {
+				config.devtool = false;
+			}
+
 			config.optimization = {
 				...config.optimization,
 				removeAvailableModules: false,
@@ -142,6 +145,11 @@ const nextConfig: NextConfig = {
 				...config.resolve,
 				symlinks: false, // Faster resolution
 			};
+		}
+
+		// CMS Architecture Validation (Optional)
+		if (!isServer && !dev && process.env.ENABLE_BUILD_PLUGINS === 'true') {
+			console.log('CMS Architecture Validation: Available but disabled for build performance');
 		}
 
 		// Production Optimization (Simplified)
