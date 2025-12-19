@@ -35,9 +35,12 @@ export const Testimonial10 = ({
 		<section className='py-6 sm:py-8 md:py-10 lg:py-12 xl:py-14'>
 			<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='flex flex-col items-center text-center'>
-					<p className='mb-6 sm:mb-7 md:mb-8 max-w-3xl sm:max-w-4xl md:max-w-5xl px-4 sm:px-6 md:px-8 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl'>
+					<BodyText
+						variant="large"
+						className='mb-6 sm:mb-7 md:mb-8 max-w-3xl sm:max-w-4xl md:max-w-5xl px-4 sm:px-6 md:px-8 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl'
+						responsive>
 						&ldquo;{quote}&rdquo;
-					</p>
+					</BodyText>
 					<div className='flex items-center gap-2 sm:gap-3 md:gap-4'>
 						<Avatar className='size-10 sm:size-12 md:size-14 lg:size-16'>
 							<AvatarFallback className='bg-transparent text-black'>
@@ -45,8 +48,18 @@ export const Testimonial10 = ({
 							</AvatarFallback>
 						</Avatar>
 						<div className='text-left'>
-							<p className='text-xs sm:text-sm md:text-base font-medium'>{author.name}</p>
-							<p className='text-muted-foreground text-xs sm:text-sm md:text-base'>{author.role}</p>
+							<CaptionText
+								variant="default"
+								className='font-medium'
+								responsive>
+								{author.name}
+							</CaptionText>
+							<CaptionText
+								variant="default"
+								className='text-muted-foreground'
+								responsive>
+								{author.role}
+							</CaptionText>
 						</div>
 					</div>
 				</div>
@@ -98,13 +111,17 @@ export const Testimonial10NoRole = ({
 			animate={inView ? fadeInUp.animate : fadeInUp.initial}>
 			<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='flex flex-col items-center text-center'>
-					<motion.p
-						className='mb-6 sm:mb-7 md:mb-8 max-w-3xl sm:max-w-4xl md:max-w-5xl px-4 sm:px-6 md:px-8 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl'
+					<motion.div
 						{...scaleIn}
 						animate={inView ? scaleIn.animate : scaleIn.initial}
 						transition={{ ...scaleIn.transition, delay: 0.2 }}>
-						&ldquo;{quote}&rdquo;
-					</motion.p>
+						<BodyText
+							variant="large"
+							className='mb-6 sm:mb-7 md:mb-8 max-w-3xl sm:max-w-4xl md:max-w-5xl px-4 sm:px-6 md:px-8 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl'
+							responsive>
+							&ldquo;{quote}&rdquo;
+						</BodyText>
+					</motion.div>
 					<motion.div
 						className='flex items-center gap-2 sm:gap-3 md:gap-4'
 						{...fadeInUp}
@@ -120,13 +137,17 @@ export const Testimonial10NoRole = ({
 								</AvatarFallback>
 							</Avatar>
 						</motion.div>
-						<motion.p
-							className='text-xs sm:text-sm md:text-base font-medium'
+						<motion.div
 							{...fadeInUp}
 							animate={inView ? fadeInUp.animate : fadeInUp.initial}
 							transition={{ ...fadeInUp.transition, delay: 0.6 }}>
-							{author.name}
-						</motion.p>
+							<CaptionText
+								variant="default"
+								className='font-medium'
+								responsive>
+								{author.name}
+							</CaptionText>
+						</motion.div>
 					</motion.div>
 				</div>
 			</div>

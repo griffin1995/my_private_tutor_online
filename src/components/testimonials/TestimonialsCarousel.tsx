@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Star } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
+import { BodyText, CaptionText } from '@/components/ui/typography';
 
 // Enhanced testimonial interface (using existing structure from ScrollingTestimonials.tsx)
 interface TestimonialData {
@@ -183,10 +184,18 @@ const TestimonialCard = ({ testimonial, index = 0 }: TestimonialCardProps) => {
 					</motion.div>
 				)}
 				<div className="min-w-0">
-					<p className="text-sm sm:text-base lg:text-lg font-semibold text-primary-900 truncate">
+					<CaptionText
+						variant="default"
+						className="font-semibold text-primary-900 truncate text-sm sm:text-base lg:text-lg"
+						responsive>
 						{testimonial.author}
-					</p>
-					<p className="text-xs sm:text-sm text-primary-600 truncate">{testimonial.role}</p>
+					</CaptionText>
+					<CaptionText
+						variant="small"
+						className="text-primary-600 truncate"
+						responsive>
+						{testimonial.role}
+					</CaptionText>
 				</div>
 			</motion.div>
 
@@ -213,11 +222,15 @@ const TestimonialCard = ({ testimonial, index = 0 }: TestimonialCardProps) => {
 
 			{/* Quote */}
 			<motion.div
-				className="text-sm sm:text-base md:text-[17px] text-primary-700 leading-relaxed mb-4 break-words"
 				{...scaleIn}
 				animate={inView ? scaleIn.animate : scaleIn.initial}
 				transition={{ ...scaleIn.transition, delay: index * 0.1 + 0.5 }}>
-				&quot;{testimonial.quote}&quot;
+				<BodyText
+					variant="default"
+					className="text-primary-700 leading-relaxed mb-4 break-words text-sm sm:text-base md:text-[17px]"
+					responsive>
+					&quot;{testimonial.quote}&quot;
+				</BodyText>
 			</motion.div>
 
 			{/* Subject Badge and Logo - Bottom Row */}
@@ -227,9 +240,12 @@ const TestimonialCard = ({ testimonial, index = 0 }: TestimonialCardProps) => {
 					{...fadeInUp}
 					animate={inView ? fadeInUp.animate : fadeInUp.initial}
 					transition={{ ...fadeInUp.transition, delay: index * 0.1 + 0.6 }}>
-					<span className="inline-block px-2 sm:px-3 py-1 bg-primary-50 text-primary-700 text-xs sm:text-sm font-medium">
+					<CaptionText
+						variant="small"
+						className="inline-block px-2 sm:px-3 py-1 bg-primary-50 text-primary-700 font-medium"
+						responsive>
 						{testimonial.subject}
-					</span>
+					</CaptionText>
 					<motion.div
 						className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 relative"
 						{...scaleIn}
