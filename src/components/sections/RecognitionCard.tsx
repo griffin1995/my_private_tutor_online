@@ -6,7 +6,7 @@
 
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Card } from '@/components/ui/card';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { CaptionText } from '@/components/ui/typography';
 import Image from 'next/image';

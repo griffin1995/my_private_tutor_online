@@ -5,7 +5,7 @@ import { ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 import { FooterCompanySectionHardcoded } from './footer-components/footer-company-section-hardcoded';

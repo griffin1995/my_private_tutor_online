@@ -5,7 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import Image from 'next/image';
 import { Star } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { BodyText, CaptionText } from '@/components/ui/typography';
 

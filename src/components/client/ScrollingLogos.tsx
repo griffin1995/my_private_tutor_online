@@ -1,10 +1,10 @@
-// CONTEXT7 SOURCE: /motion/react - Client Component for animated scrolling logos
+// CONTEXT7 SOURCE: /framer-motion - Client Component for animated scrolling logos
 // ARCHITECTURE REASON: Motion requires client-side rendering for animations
-// PERFORMANCE: Motion library provides smaller bundle and better mobile performance
+// PERFORMANCE: Framer Motion library provides excellent animations with good performance
 
 'use client';
 
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 

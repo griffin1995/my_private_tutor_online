@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 // Type-safe null component that satisfies React.ComponentType
 const NullComponent: React.ComponentType = () => null;

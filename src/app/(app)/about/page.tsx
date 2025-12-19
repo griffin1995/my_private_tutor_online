@@ -5,7 +5,7 @@ import { Testimonial10NoRole } from '@/components/education/testimonial-section'
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { RecognitionCard } from '../../../components/sections/RecognitionCard';
 import { HeadingText, BodyText } from '@/components/ui/typography';

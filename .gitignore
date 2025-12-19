@@ -190,11 +190,13 @@ download.zip
 *-test*.png
 *-debug*.png
 
-# Test files (no test framework configured)
+# Test files (allow e2e tests, block others)
 **/*.test.ts
 **/*.test.tsx
 **/*.spec.ts
 **/*.spec.tsx
+!tests/e2e/*.spec.ts
+!tests/e2e/*.spec.tsx
 
 # Lock files (keep package-lock.json but ignore others)
 yarn.lock

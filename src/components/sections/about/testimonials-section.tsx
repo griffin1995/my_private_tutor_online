@@ -1,7 +1,7 @@
 'use client';
 
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { getTestimonialVideos } from '@/lib/cms/cms-content';

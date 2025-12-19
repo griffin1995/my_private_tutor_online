@@ -1,7 +1,7 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { BodyText, CaptionText } from '@/components/ui/typography';
 import type { ReactNode } from "react";
 

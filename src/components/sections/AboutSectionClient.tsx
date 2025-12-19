@@ -5,7 +5,7 @@
 
 'use client';
 
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import { RecognitionCard } from './RecognitionCard';
