@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next';
 import bundleAnalyzer from '@next/bundle-analyzer';
+import { withPayload } from '@payloadcms/next/withPayload';
 import path from 'path';
 
 // Modern 2025 debugging: React DevTools profiler enabled below
@@ -207,4 +208,4 @@ const nextConfig: NextConfig = {
 	},
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default withPayload(withBundleAnalyzer(nextConfig));

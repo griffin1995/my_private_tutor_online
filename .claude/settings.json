@@ -1,4 +1,29 @@
 {
   "model": "claude-sonnet-4-20250514",
-  "permissions": {}
+  "permissions": {
+    "deny": [
+      "Bash(git reset --hard:*)",
+      "Bash(git reset -f:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git rebase -i:*)",
+      "Bash(git clean -fd:*)",
+      "Bash(rm -rf:*)",
+      "Bash(git gc:*)",
+      "Bash(git reflog expire:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/git-validator.sh"
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -56,7 +56,8 @@
 		// MODULE PERFORMANCE: Faster module lookups with simplified paths
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"@payload-config": ["./payload.config.ts"]
 		},
 
 		// CONTEXT7 SOURCE: /microsoft/typescript - Disable automatic @types inclusion

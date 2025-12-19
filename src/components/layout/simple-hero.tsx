@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
+import { DisplayText, HeadingText } from '@/components/ui/typography';
 interface SimpleHeroProps {
 	backgroundImage: string;
 	h1: string;
@@ -120,15 +121,26 @@ export function SimpleHero({
 					<motion.div
 						variants={heroItemVariants}
 						className='mb-[26px]'>
-						<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white uppercase tracking-wider drop-shadow-lg">
+						<DisplayText
+							variant="hero"
+							alignment="center"
+							className="text-white uppercase tracking-wider drop-shadow-lg"
+							responsive
+						>
 							{h1}{h1AccentText && <> <span className="text-accent-600">{h1AccentText}</span></>}
-						</h1>
+						</DisplayText>
 					</motion.div>
 
 					<motion.div variants={heroItemVariants}>
-						<h2 className="text-xl md:text-2xl lg:text-3xl font-body font-light text-white text-center max-w-full mx-auto px-4 tracking-wide drop-shadow-md normal-case">
+						<HeadingText
+							variant="secondary"
+							level={2}
+							alignment="center"
+							className="font-light text-white max-w-full mx-auto px-4 tracking-wide drop-shadow-md normal-case"
+							responsive
+						>
 							{h2}
-						</h2>
+						</HeadingText>
 					</motion.div>
 				</motion.div>
 

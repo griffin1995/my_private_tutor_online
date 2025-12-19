@@ -18,27 +18,27 @@ const typographyVariants = cva('', {
   variants: {
     semantic: {
       // Display variants (H1) - Hero/Landing pages
-      'display-hero': 'text-semantic-display-hero font-serif font-bold text-semantic-text-primary',
-      'display-page': 'text-semantic-display-page font-serif font-bold text-semantic-text-primary',
+      'display-hero': 'text-semantic-display-hero font-heading font-bold',
+      'display-page': 'text-semantic-display-page font-heading font-bold',
 
       // Heading variants (H2) - Major content sections
-      'heading-primary': 'text-semantic-heading-primary font-serif font-bold text-semantic-text-primary',
-      'heading-secondary': 'text-semantic-heading-secondary font-serif font-bold text-semantic-text-primary',
+      'heading-primary': 'text-semantic-heading-primary font-heading font-bold',
+      'heading-secondary': 'text-semantic-heading-secondary font-heading font-bold',
 
       // Title variants (H3) - Cards, widgets, smaller sections
-      'title-large': 'text-semantic-title-large font-bold text-semantic-text-primary',
-      'title-medium': 'text-semantic-title-medium font-bold text-semantic-text-primary',
-      'title-small': 'text-semantic-title-small font-bold text-semantic-text-primary',
+      'title-large': 'text-semantic-title-large font-heading font-bold',
+      'title-medium': 'text-semantic-title-medium font-heading font-bold',
+      'title-small': 'text-semantic-title-small font-heading font-bold',
 
       // Body variants - Content and descriptions
-      'body-large': 'text-semantic-body-large text-semantic-text-body leading-relaxed',
-      'body-default': 'text-semantic-body-default text-semantic-text-body leading-relaxed',
-      'body-small': 'text-semantic-body-small text-semantic-text-body leading-relaxed',
+      'body-large': 'text-semantic-body-large font-body leading-relaxed',
+      'body-default': 'text-semantic-body-default font-body leading-relaxed',
+      'body-small': 'text-semantic-body-small font-body leading-relaxed',
 
       // Caption variants - Labels, metadata, utility text
-      'caption-large': 'text-semantic-caption-large text-semantic-text-muted',
-      'caption-default': 'text-semantic-caption-default text-semantic-text-muted',
-      'caption-small': 'text-semantic-caption-small text-semantic-text-muted',
+      'caption-large': 'text-semantic-caption-large font-body',
+      'caption-default': 'text-semantic-caption-default font-body',
+      'caption-small': 'text-semantic-caption-small font-body',
     },
     alignment: {
       left: 'text-left',

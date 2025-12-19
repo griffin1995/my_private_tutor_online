@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { HeadingText, TitleText, BodyText, CaptionText } from '@/components/ui/typography';
 import { m } from 'framer-motion';
 import { useState } from 'react';
 import type { JSX } from 'react';
@@ -159,11 +160,11 @@ export function TierDescriptions({
 			<section className={`relative bg-white py-20 lg:py-32 ${className}`}>
 				<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl'>
 					<div className='text-center mb-16 lg:mb-20'>
-						<h2 className='mb-8'>{title}</h2>
+						<HeadingText variant="primary" level={2} alignment="center" className="mb-8">{title}</HeadingText>
 						<div className='flex items-center justify-center gap-4 mb-8'>
 							<div className='w-24 h-1 bg-accent-500 mx-auto'></div>
 						</div>
-						<p className='max-w-4xl mx-auto'>{subtitle}</p>
+						<BodyText variant="large" alignment="center" className="max-w-4xl mx-auto">{subtitle}</BodyText>
 					</div>
 
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
@@ -205,10 +206,10 @@ export function TierDescriptions({
 											{!isExpanded ? (
 												<div className='flex flex-col h-full px-6 lg:px-8 py-8 text-center relative'>
 													{/* Tier Name */}
-													<h3 className='mb-4'>{tier.tier}</h3>
+													<TitleText variant="large" level={3} alignment="center" className="mb-4">{tier.tier}</TitleText>
 
 													{/* Tier Subtitle */}
-													<p className='mb-6 text-base'>{tier.subtitle}</p>
+													<BodyText variant="default" alignment="center" className="mb-6">{tier.subtitle}</BodyText>
 
 													{/* Grey Line Separator */}
 													<Separator className='mb-6 bg-neutral-300 w-full' />
@@ -246,10 +247,10 @@ export function TierDescriptions({
 											) : (
 												<>
 													<CardHeader className='text-center pb-6 pt-8 px-6 lg:px-8 flex-shrink-0'>
-														<h3 className='mb-4'>{tier.tier}</h3>
+														<TitleText variant="large" level={3} alignment="center" className="mb-4">{tier.tier}</TitleText>
 
 														{/* Tier Subtitle - preserved in expanded state */}
-														<p className='mb-4 text-base'>{tier.subtitle}</p>
+														<BodyText variant="default" alignment="center" className="mb-4">{tier.subtitle}</BodyText>
 
 														<Separator className='my-4 bg-neutral-300' />
 
@@ -264,8 +265,8 @@ export function TierDescriptions({
 														<Separator className='my-4 bg-neutral-300' />
 
 														<div className='text-center'>
-															<p className='mb-3 font-semibold'>Best For:</p>
-															<p>{tier.bestFor}</p>
+															<CaptionText variant="large" alignment="center" className="mb-3 font-semibold">Best For:</CaptionText>
+															<BodyText variant="default" alignment="center">{tier.bestFor}</BodyText>
 														</div>
 													</CardContent>
 												</>
@@ -286,11 +287,11 @@ export function TierDescriptions({
 		<section className={`relative bg-neutral-50 py-16 lg:py-20 ${className}`}>
 			<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-6xl'>
 				<div className='text-center mb-12 lg:mb-16'>
-					<h2 className='mb-6'>{title}</h2>
+					<HeadingText variant="primary" level={2} alignment="center" className="mb-6">{title}</HeadingText>
 					<div className='flex items-center justify-center gap-4 mb-6'>
 						<div className='w-24 h-1 bg-accent-500 mx-auto'></div>
 					</div>
-					<p className='max-w-4xl mx-auto'>{subtitle}</p>
+					<BodyText variant="large" alignment="center" className="max-w-4xl mx-auto">{subtitle}</BodyText>
 				</div>
 
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
@@ -316,8 +317,8 @@ export function TierDescriptions({
 							}}>
 							<Card className='bg-white border border-neutral-200 shadow-md hover:shadow-lg transition-all duration-300 h-full'>
 								<CardHeader className='text-center pb-4'>
-									<h3 className='mb-2 text-primary-700'>{tier.tier}</h3>
-									<p className='text-sm text-neutral-600 mb-3'>{tier.subtitle}</p>
+									<TitleText variant="large" level={3} alignment="center" className="mb-2 text-primary-700">{tier.tier}</TitleText>
+									<BodyText variant="small" alignment="center" className="text-neutral-600 mb-3">{tier.subtitle}</BodyText>
 									<Separator className='bg-neutral-200' />
 									<div className='mt-3 text-lg font-semibold text-accent-600'>
 										{tier.pricePoint}
@@ -338,8 +339,8 @@ export function TierDescriptions({
 									<Separator className='my-4 bg-neutral-200' />
 
 									<div className='text-center'>
-										<p className='text-sm font-semibold text-primary-700 mb-2'>Best For:</p>
-										<p className='text-sm text-neutral-600'>{tier.bestFor}</p>
+										<CaptionText variant="default" alignment="center" className="font-semibold text-primary-700 mb-2">Best For:</CaptionText>
+										<CaptionText variant="default" alignment="center" className="text-neutral-600">{tier.bestFor}</CaptionText>
 									</div>
 								</CardContent>
 							</Card>
