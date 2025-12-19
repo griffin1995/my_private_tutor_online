@@ -24,18 +24,13 @@ export function GoingAgainstGrain({
   goingAgainstTheGrain
 }: GoingAgainstGrainProps): JSX.Element {
 
-  // Split content to position pull quote appropriately
-  const contentParts = goingAgainstTheGrain.content.split('Who turns down Cambridge?');
-  const firstParagraph = `${contentParts[0].trim()} Who turns down Cambridge? 17-year-old me.`;
-  const remainingContent = contentParts[1]?.trim() || '';
-
   const pullQuoteText = "Who turns down Cambridge? 17-year-old me.";
 
   return (
     <StorySection
       id="going-against-grain"
       title={goingAgainstTheGrain.title}
-      content={[firstParagraph, remainingContent]}
+      fullContent={goingAgainstTheGrain.content}
       imageSrc="/images/about/going-against-the-grain.webp"
       imageAlt="Cambridge University - prestigious academic institution representing educational excellence and Going Against the Grain philosophy"
       pullQuote={pullQuoteText}
