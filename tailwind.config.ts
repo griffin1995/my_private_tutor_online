@@ -779,29 +779,16 @@ const config: Config = {
 		},
 	},
 
+	/**
+	 * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Tailwind CSS v4 Plugin Migration
+	 * V4 PLUGIN SYSTEM: Plugins are now imported via CSS @plugin directives in globals.css
+	 * MIGRATION: Moved @tailwindcss/forms, @tailwindcss/typography, @tailwindcss/container-queries,
+	 * @tailwindcss/aspect-ratio to CSS-based configuration for v4 compatibility
+	 *
+	 * Note: tailwindcss-animate requires v4-compatible version or replacement
+	 */
 	plugins: [
-		// Form styling
-		require('@tailwindcss/forms')({
-			strategy: 'class', // Only add styles when class is present
-		}),
-
-		// Typography plugin for rich text content
-		require('@tailwindcss/typography'),
-
-		// Container queries
-		require('@tailwindcss/container-queries'),
-
-		// Aspect ratio utilities
-		require('@tailwindcss/aspect-ratio'),
-
-		// STYLING PACKAGE: Enhanced animations for component interactions
-		require('tailwindcss-animate'),
-
-		/**
-		 * NATIVE FLUID TYPOGRAPHY IMPLEMENTED VIA THEME.FONTSIZE
-		 * Replaced tailwind-clamp plugin with native CSS clamp() values
-		 * No external dependencies, eliminates Tailwind v3/v4 hybrid conflict
-		 */
+		// Plugins migrated to CSS @plugin directives in globals.css for v4 compatibility
 	],
 };
 
