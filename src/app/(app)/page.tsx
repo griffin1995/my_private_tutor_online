@@ -1,6 +1,9 @@
 // CONTEXT7 SOURCE: /vercel/next.js - Server Component pattern for Next.js App Router
 // ARCHITECTURE REASON: Next.js 15 App Router - Server Component with hardcoded data for static rendering
 
+// TEMPORARY: Force dynamic to bypass Next.js 16 static generation React context bug
+export const dynamic = 'force-dynamic';
+
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { TestimonialAuthorRole } from '@/components/testimonials/TestimonialAuthorRole';
 import { HeadingText } from '@/components/ui/typography';

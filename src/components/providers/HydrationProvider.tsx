@@ -81,10 +81,10 @@ export function HydrationProvider({ children }: HydrationProviderProps) {
  *
  * @returns {boolean} True if client has hydrated, false during SSR/initial render
  */
-function useHydration(): boolean {
+export function useHydration(): boolean {
 	const context = useContext(HydrationContext);
 
-	// Context will always have a value (false or true) from HydrationProvider
-	// No need for undefined check since we control the provider hierarchy
-	return context;
+	// During Next.js static generation, context might be null
+	// Return false as safe fallback for SSR/static generation
+	return context ?? false;
 }
