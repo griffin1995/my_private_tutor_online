@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Info, Shield, CheckCircle, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 interface GDPRConsentProps {
 	onConsentChange: (consent: ConsentState) => void;
 	required?: boolean;
@@ -94,45 +95,45 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 				<div className='flex items-start gap-2'>
 					<Shield className='w-4 h-4 text-accent-600 mt-0.5' />
 					<div>
-						<p className='font-medium text-black'>Your Privacy Rights</p>
-						<p className='text-gray-600 mt-1'>
+						<BodyText className='font-medium text-black'>Your Privacy Rights</BodyText>
+						<BodyText variant="muted" className='mt-1'>
 							Under GDPR, you have the right to access, rectify, erase, and port your
 							data. You can withdraw consent at any time.
-						</p>
+						</BodyText>
 					</div>
 				</div>
 
 				<div className='space-y-3'>
 					<div>
-						<p className='font-medium text-black mb-1'>Data Controller</p>
-						<p className='text-gray-600'>My Private Tutor Online Ltd</p>
+						<BodyText className='font-medium text-black mb-1'>Data Controller</BodyText>
+						<BodyText variant="muted">My Private Tutor Online Ltd</BodyText>
 					</div>
 
 					<div>
-						<p className='font-medium text-black mb-1'>Contact for Privacy Queries</p>
-						<p className='text-gray-600'>privacy@myprivatetutoronline.co.uk</p>
+						<BodyText className='font-medium text-black mb-1'>Contact for Privacy Queries</BodyText>
+						<BodyText variant="muted">privacy@myprivatetutoronline.co.uk</BodyText>
 					</div>
 
 					<div>
-						<p className='font-medium text-black mb-1'>Legal Basis</p>
-						<p className='text-gray-600'>
+						<BodyText className='font-medium text-black mb-1'>Legal Basis</BodyText>
+						<BodyText variant="muted">
 							Consent (Article 6.1.a GDPR) for marketing and analytics. Legitimate
 							interest (Article 6.1.f) for necessary operations.
-						</p>
+						</BodyText>
 					</div>
 				</div>
 			</div>
 		);
 		const ConsentAuditTrail = () => (
 			<div className='mt-4 p-3 bg-gray-50 rounded-lg'>
-				<p className='text-xs font-medium text-gray-700 mb-2'>Consent History</p>
+				<CaptionText className='font-medium text-gray-700 mb-2'>Consent History</CaptionText>
 				<div className='space-y-1'>
 					{consentHistory.slice(-3).map((record) => (
-						<div
+						<CaptionText
 							key={record.id}
-							className='text-xs text-gray-600'>
+							variant="muted">
 							{new Date(record.timestamp).toLocaleString('en-GB')}: {record.action}
-						</div>
+						</CaptionText>
 					))}
 				</div>
 			</div>
@@ -172,9 +173,9 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 							aria-describedby='consent-description'
 						/>
 						<div className='flex-1'>
-							<p className='text-sm text-gray-700 group-hover:text-black transition-colors'>
+							<BodyText variant="small" className='text-gray-700 group-hover:text-black transition-colors'>
 								I consent to receive educational insights and exclusive opportunities
-							</p>
+							</BodyText>
 							<button
 								type='button'
 								onClick={() => setShowDetails(!showDetails)}
@@ -187,11 +188,11 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 
 					{showDetails && (
 						<div className='pl-7 space-y-3'>
-							<p className='text-xs text-gray-600'>
+							<CaptionText variant="muted">
 								We'll use your email to send newsletters with educational content and
 								service updates. You can unsubscribe at any time. We never share your
 								data with third parties.
-							</p>
+							</CaptionText>
 							<a
 								href='/legal/privacy-policy'
 								target='_blank'
@@ -211,10 +212,10 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 					className,
 				)}>
 				<div className='flex items-center justify-between'>
-					<h3 className='text-lg font-semibold text-black flex items-center gap-2'>
+					<HeadingText level={3} variant="large" className='text-black flex items-center gap-2'>
 						<Shield className='w-5 h-5 text-accent-600' />
 						Privacy & Consent Settings
-					</h3>
+					</HeadingText>
 					<button
 						onClick={() => setShowDetails(!showDetails)}
 						className='text-sm text-accent-600 hover:text-accent-700'
@@ -245,23 +246,25 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 								aria-describedby={`consent-${key}-description`}
 							/>
 							<div className='flex-1'>
-								<label
+								<BodyText
+									as="label"
 									htmlFor={`consent-${key}`}
 									className='font-medium text-black cursor-pointer'>
 									{category.title}
 									{category.locked && (
-										<span className='ml-2 text-xs text-gray-500'>(Required)</span>
+										<CaptionText as="span" variant="muted" className='ml-2'>(Required)</CaptionText>
 									)}
-								</label>
-								<p
+								</BodyText>
+								<BodyText
+									variant="small"
 									id={`consent-${key}-description`}
-									className='text-sm text-gray-600 mt-1'>
+									className='text-gray-600 mt-1'>
 									{category.description}
-								</p>
+								</BodyText>
 								{showDetails && (
-									<div className='mt-2 text-xs text-gray-500'>
-										<p>Purposes: {category.purposes.join(', ')}</p>
-										<p>Retention: {category.retention}</p>
+									<div className='mt-2'>
+										<CaptionText variant="muted">Purposes: {category.purposes.join(', ')}</CaptionText>
+										<CaptionText variant="muted">Retention: {category.retention}</CaptionText>
 									</div>
 								)}
 							</div>
@@ -280,11 +283,11 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 					{consentState.marketing || consentState.analytics ?
 						<CheckCircle className='w-4 h-4 text-green-600' />
 					:	<Info className='w-4 h-4 text-gray-500' />}
-					<p className='text-xs text-gray-600'>
+					<CaptionText variant="muted">
 						{consentState.marketing || consentState.analytics ?
 							'Consent recorded and can be withdrawn at any time'
 						:	'Only necessary cookies are active'}
-					</p>
+					</CaptionText>
 				</div>
 			</div>
 		);
@@ -320,13 +323,13 @@ function FooterDataErasure() {
 							<div className='flex items-start gap-2'>
 								<AlertCircle className='w-4 h-4 text-red-600 mt-0.5' />
 								<div className='flex-1'>
-									<p className='text-sm font-medium text-red-900'>
+									<BodyText variant="small" className='font-medium text-red-900'>
 										Confirm Data Deletion
-									</p>
-									<p className='text-sm text-red-700 mt-1'>
+									</BodyText>
+									<BodyText variant="small" className='text-red-700 mt-1'>
 										This will permanently delete all your data including preferences and
 										subscription status.
-									</p>
+									</BodyText>
 								</div>
 							</div>
 							<div className='flex gap-2'>
@@ -344,9 +347,9 @@ function FooterDataErasure() {
 						</>
 					:	<div className='flex items-center gap-2'>
 							<CheckCircle className='w-4 h-4 text-green-600' />
-							<p className='text-sm text-green-800'>
+							<BodyText variant="small" className='text-green-800'>
 								Your data has been successfully deleted
-							</p>
+							</BodyText>
 						</div>
 					}
 				</div>

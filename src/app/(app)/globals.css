@@ -31,6 +31,289 @@
 @plugin "@tailwindcss/aspect-ratio";
 
 /**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Tailwind CSS v4 CSS-First Theme Configuration
+ * CSS-FIRST MIGRATION: Migrating from JavaScript config to CSS @theme directive for better performance
+ * PERFORMANCE BENEFIT: CSS-first configuration is parsed at build time, reducing JavaScript bundle size
+ * PATTERN: @theme directive leverages existing CSS custom properties for seamless integration
+ */
+@theme {
+  /* Color system with literal values for Tailwind 4 compatibility */
+  --color-primary-50: #f8f9fc;
+  --color-primary-100: #f1f3f8;
+  --color-primary-200: #e3e7f0;
+  --color-primary-300: #c6d0e8;
+  --color-primary-400: #8fa2d4;
+  --color-primary-500: #5b6bb3;
+  --color-primary-600: #4a5a97;
+  --color-primary-700: #3f4a7e;
+  --color-primary-800: #2f3960;
+  --color-primary-900: #252a4d;
+  --color-primary-950: #1a1e3a;
+
+  --color-accent-50: #fefcf7;
+  --color-accent-100: #fdf8eb;
+  --color-accent-200: #faf0d2;
+  --color-accent-300: #f5e4a9;
+  --color-accent-400: #eed480;
+  --color-accent-500: #e5c457;
+  --color-accent-600: #ca9e5b;
+  --color-accent-700: #a67234;
+  --color-accent-800: #8a5e2a;
+  --color-accent-900: #6d4a21;
+  --color-accent-950: #4a3318;
+
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #727272;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #40403f;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #181817;
+  --color-neutral-950: #0a0a0a;
+
+  /* Semantic colors with literal values */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+
+  /* Typography system with literal font family values */
+  --font-family-heading: 'Playfair Display', Georgia, serif;
+  --font-family-body: 'Source Serif 4', Georgia, serif;
+  --font-family-technical: 'JetBrains Mono', Consolas, monospace;
+
+  /* Semantic typography tokens */
+  --font-size-display-hero: 4rem;
+  --font-size-display-page: 3rem;
+  --font-size-heading-primary: 2rem;
+  --font-size-heading-secondary: 1.75rem;
+  --font-size-title-large: 1.5rem;
+  --font-size-title-medium: 1.25rem;
+  --font-size-title-small: 1.125rem;
+  --font-size-body-large: 1.125rem;
+  --font-size-body-default: 1rem;
+  --font-size-body-small: 0.875rem;
+  --font-size-caption-large: 0.875rem;
+  --font-size-caption-default: 0.75rem;
+  --font-size-caption-small: 0.6875rem;
+
+  /* Line heights */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.4;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.7;
+
+  /* Font weights with literal values */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Letter spacing with literal values */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+
+  /* Spacing system with literal values */
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+  --spacing-32: 128px;
+
+  /* Border radius with literal values */
+  --border-radius-none: 0px;
+  --border-radius-sm: 4px;
+  --border-radius-base: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+  --border-radius-full: 9999px;
+
+  /* Border widths with literal values */
+  --border-width-none: 0px;
+  --border-width-thin: 1px;
+  --border-width-base: 2px;
+  --border-width-thick: 4px;
+
+  /* Breakpoints for responsive design - Using literal values for media query compatibility */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1400px;
+  --breakpoint-desktop: 1500px;
+  --breakpoint-3xl: 1780px;
+}
+
+/**
+ * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Semantic Typography Utilities
+ * UTILITY CLASSES: Semantic typography utilities leveraging CSS-first design tokens
+ * PERFORMANCE: CSS utility classes for direct usage without component overhead
+ * PATTERN: Follows Tailwind utility class naming conventions with semantic meaning
+ */
+@layer utilities {
+  /* Display text utilities */
+  .text-display-hero {
+    font: var(--semantic-display-hero);
+    color: var(--color-primary-dark);
+  }
+
+  .text-display-page {
+    font: var(--semantic-display-page);
+    color: var(--color-primary-dark);
+  }
+
+  /* Heading utilities */
+  .text-heading-primary {
+    font: var(--semantic-heading-primary);
+    color: var(--color-primary-base);
+  }
+
+  .text-heading-secondary {
+    font: var(--semantic-heading-secondary);
+    color: var(--color-primary-base);
+  }
+
+  /* Title utilities */
+  .text-title-large {
+    font: var(--semantic-title-large);
+    color: var(--color-primary-dark);
+  }
+
+  .text-title-medium {
+    font: var(--semantic-title-medium);
+    color: var(--color-primary-dark);
+  }
+
+  .text-title-small {
+    font: var(--semantic-title-small);
+    color: var(--color-primary-dark);
+  }
+
+  /* Body text utilities */
+  .text-body-large {
+    font: var(--semantic-body-large);
+    color: var(--color-neutral-grey-800);
+  }
+
+  .text-body-default {
+    font: var(--semantic-body-default);
+    color: var(--color-neutral-grey-800);
+  }
+
+  .text-body-small {
+    font: var(--semantic-body-small);
+    color: var(--color-neutral-grey-800);
+  }
+
+  /* Caption utilities */
+  .text-caption-large {
+    font: var(--semantic-caption-large);
+    color: var(--color-neutral-grey-600);
+  }
+
+  .text-caption-default {
+    font: var(--semantic-caption-default);
+    color: var(--color-neutral-grey-600);
+  }
+
+  .text-caption-small {
+    font: var(--semantic-caption-small);
+    color: var(--color-neutral-grey-600);
+  }
+
+  /* Color variant utilities */
+  .text-primary {
+    color: var(--color-primary-base);
+  }
+
+  .text-primary-light {
+    color: var(--color-primary-light);
+  }
+
+  .text-primary-dark {
+    color: var(--color-primary-dark);
+  }
+
+  .text-secondary {
+    color: var(--color-secondary-base);
+  }
+
+  .text-secondary-light {
+    color: var(--color-secondary-light);
+  }
+
+  .text-secondary-dark {
+    color: var(--color-secondary-dark);
+  }
+
+  /* Interactive state utilities */
+  .text-interactive-primary {
+    color: var(--color-primary-base);
+    transition: color 0.2s ease-in-out;
+  }
+
+  .text-interactive-primary:hover {
+    color: var(--color-primary-light);
+  }
+
+  .text-interactive-primary:active {
+    color: var(--color-primary-dark);
+  }
+
+  .text-interactive-secondary {
+    color: var(--color-secondary-base);
+    transition: color 0.2s ease-in-out;
+  }
+
+  .text-interactive-secondary:hover {
+    color: var(--color-secondary-light);
+  }
+
+  .text-interactive-secondary:active {
+    color: var(--color-secondary-dark);
+  }
+
+  /* Responsive typography utilities */
+  .text-responsive-display {
+    font-size: clamp(2.5rem, calc(2rem + 4vw), 4rem);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+  }
+
+  .text-responsive-heading {
+    font-size: clamp(1.5rem, calc(1.25rem + 2vw), 2rem);
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .text-responsive-body {
+    font-size: clamp(1rem, calc(0.95rem + 0.5vw), 1.125rem);
+    line-height: 1.7;
+    font-weight: 400;
+    letter-spacing: 0em;
+  }
+}
+
+/**
  * STYLING PACKAGE INTEGRATION: CSS Variables for component system
  * FONT SYSTEM: Integrates Inter for components while preserving luxury serif fonts
  */

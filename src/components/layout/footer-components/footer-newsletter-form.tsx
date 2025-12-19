@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { BodyText } from '@/components/ui/typography';
 import {
 	newsletterSchema,
 	type NewsletterData,
@@ -107,9 +108,9 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 				<div className={`max-w-md mx-auto ${className}`}>
 					<div className='flex items-center justify-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg'>
 						<CheckCircle className='w-5 h-5 text-green-600' />
-						<p className='text-green-800 font-medium'>
+						<BodyText className='text-green-800 font-medium'>
 							Thank you for subscribing! Check your inbox for confirmation.
-						</p>
+						</BodyText>
 					</div>
 				</div>
 			);
@@ -156,9 +157,11 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 									id='email-error'
 									role='alert'
 									aria-live='polite'
-									className='text-red-600 text-sm flex items-center gap-1'>
-									<AlertCircle className='w-4 h-4' />
-									{errors.email.message}
+									className='flex items-center gap-1'>
+									<AlertCircle className='w-4 h-4 text-red-600' />
+									<BodyText variant="small" className='text-red-600'>
+										{errors.email.message}
+									</BodyText>
 								</div>
 							)}
 						</div>
@@ -180,7 +183,7 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 					{submissionState === 'error' && errorMessage && (
 						<div className='flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg'>
 							<AlertCircle className='w-4 h-4 text-red-600' />
-							<p className='text-red-800 text-sm'>{errorMessage}</p>
+							<BodyText variant="small" className='text-red-800'>{errorMessage}</BodyText>
 						</div>
 					)}
 

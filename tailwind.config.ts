@@ -102,390 +102,15 @@ const config: Config = {
 	//   // skew: false,
 	// },
 
+	/**
+	 * CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Tailwind CSS v4 Simplified Configuration
+	 * CSS-FIRST MIGRATION: Theme configuration now handled by @theme directive in globals.css
+	 * PERFORMANCE: Reduced JavaScript bundle size by moving theme to CSS-first approach
+	 * COMPATIBILITY: Maintains critical configuration while leveraging CSS theme system
+	 */
 	theme: {
 		extend: {
-			// Client Brand Colors - Luxury Gold & Blue Scheme
-			// Documentation Source: Context7 MCP - Tailwind CSS Color Palette Configuration
-			// Reference: /tailwindlabs/tailwindcss.com - Custom color definitions
-			// Reference: https://www.schemecolor.com/luxury-gold-blue.php (CLIENT SPECIFICATION)
-			colors: {
-				// STYLING PACKAGE INTEGRATION: Component-ready semantic colors
-				// Perfect brand alignment: brand.600 = #ca9e5b, highlight.600 = #3f4a7e
-				background: "#EDEDED",
-				foreground: "#343433",
-
-				// Styling Package Brand Colors (aligned with your accent)
-				brand: {
-					50: "#fefce8",
-					100: "#fffcd3",
-					200: "#fff7b0",
-					300: "#ffeb81",
-					400: "#fddb6a",
-					500: "#ecc568",
-					600: "#ca9e5b", // EXACT MATCH with your current accent!
-					700: "#9f6f3a",
-					800: "#835527",
-					900: "#70431c"
-				},
-
-				// Styling Package Highlight Colors (aligned with your primary)
-				highlight: {
-					50: "#f9fafc",
-					100: "#eff2f7",
-					200: "#dee2ee",
-					300: "#c5cde2",
-					400: "#8e99c2",
-					500: "#5d699d",
-					600: "#3f4a7e", // EXACT MATCH with your current primary!
-					700: "#303963",
-					800: "#202442",
-					900: "#14142d"
-				},
-
-				// Luxury Gold & Blue Brand Palette (CLIENT REQUIRED) - PRESERVED
-				// Primary: Metallic Blue (#3F4A7E) - WCAG AA Enhanced for Accessibility
-				// Documentation Source: WCAG 2.1 AA Contrast Requirements (4.5:1 normal text, 3:1 large text)
-				primary: {
-					50: '#f8f9fc', // Lightest blue tint for backgrounds
-					100: '#f1f3f8', // Very light blue tint
-					200: '#e3e7f0', // Light blue-grey
-					300: '#c6d0e8', // Medium light blue-grey
-					400: '#8fa2d4', // Medium blue
-					500: '#5b6bb3', // Mid-tone blue
-					600: '#4a5a97', // Darker blue
-					700: '#3f4a7e', // CLIENT BRAND: Metallic Blue (primary)
-					800: '#2f3960', // WCAG Enhanced: Darker for better contrast (calculated for 4.5:1)
-					900: '#252a4d', // WCAG Enhanced: Deep navy for maximum contrast
-					950: '#1a1e3a', // Darkest navy - excellent contrast with white text
-				},
-				// Accent: Aztec Gold (#CA9E5B) - WCAG AA Enhanced for Accessibility
-				// Note: Original Aztec Gold may not meet WCAG AA (4.5:1) on white backgrounds
-				accent: {
-					50: '#fefcf7', // Lightest gold tint
-					100: '#fdf8eb', // Very light gold
-					200: '#faf0d2', // Light gold cream
-					300: '#f5e4a9', // Medium light gold
-					400: '#eed480', // Medium gold
-					500: '#e5c457', // Mid-tone gold
-					600: '#ca9e5b', // CLIENT BRAND: Aztec Gold (accent) - use with dark text only
-					700: '#a67234', // WCAG Enhanced: Darker gold for better contrast
-					800: '#8a5e2a', // WCAG Enhanced: Deep bronze for 4.5:1 contrast
-					900: '#6d4a21', // WCAG Enhanced: Dark bronze for maximum contrast
-					950: '#4a3318', // Darkest bronze - excellent contrast with white text
-				},
-				// Supporting Luxury Palette - ENHANCED with Styling Package
-				// Neutral greys for balance and sophistication - PRESERVED + ENHANCED
-				neutral: {
-					50: '#fafafa', // Preserved from luxury system
-					100: '#f4f4f4', // Updated from styling package for better component integration
-					200: '#e6e6e5', // Updated from styling package
-					300: '#d4d4d4', // Preserved from luxury system
-					400: '#a2a2a2', // Updated from styling package for better contrast
-					500: '#727272', // Updated from styling package
-					600: '#535352', // Updated from styling package
-					700: '#40403f', // Updated from styling package
-					800: '#272726', // Updated from styling package
-					900: '#181817', // Updated from styling package
-					950: '#0a0a0a', // Preserved from luxury system
-				},
-				// Royal complementary colours (maintaining existing for gradual transition)
-				royal: {
-					50: '#f8f9ff',
-					100: '#f0f2ff',
-					200: '#e3e8ff',
-					300: '#cdd5ff',
-					400: '#a5b4ff',
-					500: '#7c3aed',
-					600: '#6d28d9',
-					700: '#5b21b6',
-					800: '#4c1d95',
-					900: '#3c1361',
-					950: '#2e0c57',
-				},
-				// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Standard blue color palette for navigation hover states
-				// HOVER FIX REASON: Official Tailwind documentation requires blue colors in config for compilation
-				// IMPLEMENTATION: Standard Tailwind blue palette to ensure hover:text-blue-400 compiles correctly
-				blue: {
-					50: '#eff6ff',
-					100: '#dbeafe',
-					200: '#bfdbfe',
-					300: '#93c5fd',
-					400: '#60a5fa', // This is the blue-400 we need for hover states
-					500: '#3b82f6',
-					600: '#2563eb',
-					700: '#1d4ed8',
-					800: '#1e40af',
-					900: '#1e3a8a',
-					950: '#172554',
-				},
-
-				// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Design Token Color Integration
-				// PHASE 2 DESIGN TOKENS: Strategic 25-color palette for design system consolidation
-				// IMPLEMENTATION REASON: Official Tailwind CSS theme extension pattern for custom design tokens
-				// These tokens will gradually replace the 809 legacy colors during Phase 3 component migration
-
-				// Design Token Colors - Strategic Palette
-				'token-primary': {
-					DEFAULT: 'var(--color-primary-base)',
-					base: 'var(--color-primary-base)',
-					light: 'var(--color-primary-light)',
-					dark: 'var(--color-primary-dark)',
-					muted: 'var(--color-primary-muted)',
-				},
-				'token-secondary': {
-					DEFAULT: 'var(--color-secondary-base)',
-					base: 'var(--color-secondary-base)',
-					light: 'var(--color-secondary-light)',
-					dark: 'var(--color-secondary-dark)',
-					muted: 'var(--color-secondary-muted)',
-				},
-				'token-neutral': {
-					white: 'var(--color-neutral-white)',
-					50: 'var(--color-neutral-grey-50)',
-					100: 'var(--color-neutral-grey-100)',
-					200: 'var(--color-neutral-grey-200)',
-					400: 'var(--color-neutral-grey-400)',
-					600: 'var(--color-neutral-grey-600)',
-					800: 'var(--color-neutral-grey-800)',
-					black: 'var(--color-neutral-black)',
-				},
-				'token-semantic': {
-					success: 'var(--color-semantic-success)',
-					error: 'var(--color-semantic-error)',
-					warning: 'var(--color-semantic-warning)',
-					info: 'var(--color-semantic-info)',
-				},
-				'token-ui': {
-					border: 'var(--color-ui-border)',
-					overlay: 'var(--color-ui-overlay)',
-					disabled: 'var(--color-ui-disabled)',
-					hover: 'var(--color-ui-hover)',
-					focus: 'var(--color-ui-focus)',
-				},
-				// Resources Page - Neutral Colors (not brand gold)
-				resources: {
-					heading: 'var(--resources-heading)',
-					link: 'var(--resources-link)',
-					'link-hover': 'var(--resources-link-hover)',
-				},
-
-				// SEMANTIC COLOR ALIASES - 2025 INDUSTRY STANDARD SEMANTIC DESIGN TOKEN SYSTEM
-				// Implementation: 3-tier semantic hierarchy bridging primitive tokens to component usage
-				// Benefits: Intuitive semantic naming, improved developer experience, maintainable color system
-				semantic: {
-					// Action colors (buttons, links, CTAs)
-					'action-primary': 'var(--color-primary-base)',      // #3f4a7e
-					'action-primary-hover': 'var(--color-primary-light)', // #5b6bb3
-					'action-primary-active': 'var(--color-primary-dark)', // #2d3456
-					'action-secondary': 'var(--color-secondary-base)',    // #ca9e5b
-					'action-secondary-hover': 'var(--color-secondary-light)', // #e5c89a
-
-					// Text colors (hierarchical content)
-					'text-primary': 'var(--color-primary-dark)',       // Primary headings
-					'text-secondary': 'var(--color-primary-base)',     // Secondary text
-					'text-body': 'var(--color-neutral-grey-700)',      // Body text
-					'text-muted': 'var(--color-neutral-grey-500)',     // Muted text
-					'text-accent': 'var(--color-secondary-base)',      // Accent text
-
-					// Surface colors (backgrounds, borders)
-					'surface-primary': 'var(--color-neutral-white)',
-					'surface-secondary': 'var(--color-neutral-grey-50)',
-					'surface-elevated': 'var(--color-neutral-white)',
-					'border-default': 'var(--color-neutral-grey-200)',
-					'border-emphasis': 'var(--color-neutral-grey-300)',
-					'border-error': 'var(--color-semantic-error)',           // Error state borders
-					'border-success': 'var(--color-semantic-success)',       // Success state borders
-
-					// Feedback colors (status indicators)
-					'success-primary': 'var(--color-semantic-success)',      // Success messages, positive feedback
-					'success-background': 'var(--color-semantic-success)',   // Success background tint
-					'error-primary': 'var(--color-semantic-error)',          // Error messages, validation errors
-					'error-background': 'var(--color-semantic-error)',       // Error background tint
-					'warning-primary': 'var(--color-semantic-warning)',      // Warning messages, caution states
-					'warning-background': 'var(--color-semantic-warning)',   // Warning background tint
-					'info-primary': 'var(--color-semantic-info)',            // Info messages, neutral alerts
-					'info-background': 'var(--color-semantic-info)',         // Info background tint
-				}
-			},
-
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Phase 3 Typography System Configuration
-			// FONT OPTIMIZATION REASON: Official Tailwind CSS documentation Section 4.2 - Custom font families with CSS variables
-			// IMPLEMENTATION: 3 strategic typefaces replacing 12 fonts for 75% reduction
-			fontFamily: {
-				/**
-				 * CONTEXT7 SOURCE: /vercel/next.js - Optimized font family configuration
-				 * PHASE 3 TYPOGRAPHY: Strategic consolidation from 12 fonts to 3 typefaces
-				 * PERFORMANCE: 60% font loading improvement with centralized configuration
-				 */
-
-				// Primary heading font - Playfair Display
-				heading: [
-					'var(--font-playfair-display)',
-					'Didot',
-					'Bodoni MT',
-					'Georgia',
-					'serif',
-				],
-
-				// Primary body font - Source Serif 4
-				body: [
-					'var(--font-source-serif-4)',
-					'Charter',
-					'Georgia',
-					'Times New Roman',
-					'serif',
-				],
-
-				// Technical/pricing font - JetBrains Mono
-				technical: [
-					'var(--font-jetbrains-mono)',
-					'Consolas',
-					'Monaco',
-					'Courier New',
-					'monospace',
-				],
-
-				// Legacy aliases for backwards compatibility
-				display: [
-					'var(--font-playfair-display)',
-					'Didot',
-					'Bodoni MT',
-					'Georgia',
-					'serif',
-				],
-				serif: [
-					'var(--font-source-serif-4)',
-					'Charter',
-					'Georgia',
-					'Times New Roman',
-					'serif',
-				],
-				sans: [
-					'system-ui',
-					'-apple-system',
-					'BlinkMacSystemFont',
-					'Segoe UI',
-					'Roboto',
-					'sans-serif',
-				],
-				mono: [
-					'var(--font-jetbrains-mono)',
-					'Consolas',
-					'Monaco',
-					'Courier New',
-					'monospace',
-				],
-			},
-
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced typography scale with golden ratio line-heights
-			// TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 1.2 - Optimized font-size and line-height pairings for perfect readability
-			// Enhanced typography scale
-			fontSize: {
-				xs: ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.025em' }],
-				sm: ['0.875rem', { lineHeight: '1.25rem', letterSpacing: '0.01em' }],
-				base: ['1rem', { lineHeight: '1.5rem', letterSpacing: '0em' }],
-				lg: ['1.125rem', { lineHeight: '1.75rem', letterSpacing: '-0.01em' }],
-				xl: ['1.25rem', { lineHeight: '1.75rem', letterSpacing: '-0.015em' }],
-				'2xl': ['1.5rem', { lineHeight: '2rem', letterSpacing: '-0.02em' }],
-				'3xl': ['1.875rem', { lineHeight: '2.25rem', letterSpacing: '-0.025em' }],
-				'3.5xl': ['2.0625rem', { lineHeight: '2.375rem', letterSpacing: '-0.0275em' }],
-				'4xl': ['2.25rem', { lineHeight: '2.5rem', letterSpacing: '-0.03em' }],
-				'5xl': ['3rem', { lineHeight: '1', letterSpacing: '-0.035em' }],
-				'6xl': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.04em' }],
-				'7xl': ['4.5rem', { lineHeight: '1', letterSpacing: '-0.045em' }],
-				'8xl': ['6rem', { lineHeight: '1', letterSpacing: '-0.05em' }],
-				'9xl': ['8rem', { lineHeight: '1', letterSpacing: '-0.055em' }],
-
-				// NATIVE FLUID TYPOGRAPHY - CONTEXT7 VERIFIED PATTERNS
-				// Source: /tailwindlabs/tailwindcss.com - CSS clamp() arbitrary values
-				// Pattern: clamp(minimum, preferred, maximum) - responsive typography without breakpoints
-				'fluid-xs': 'clamp(0.75rem, 1vw, 0.875rem)',      // 12px → 14px
-				'fluid-sm': 'clamp(0.875rem, 1.2vw, 1rem)',       // 14px → 16px
-				'fluid-base': 'clamp(1rem, 1.5vw, 1.125rem)',     // 16px → 18px
-				'fluid-lg': 'clamp(1.125rem, 1.8vw, 1.25rem)',    // 18px → 20px
-				'fluid-xl': 'clamp(1.25rem, 2vw, 1.5rem)',        // 20px → 24px
-				'fluid-2xl': 'clamp(1.5rem, 2.5vw, 1.875rem)',    // 24px → 30px
-				'fluid-3xl': 'clamp(1.875rem, 3vw, 2.25rem)',     // 30px → 36px
-				'fluid-4xl': 'clamp(2.25rem, 4vw, 2.5rem)',       // 36px → 40px
-				'fluid-5xl': 'clamp(3rem, 5vw, 3.75rem)',         // 48px → 60px
-
-				// SEMANTIC DESIGN TOKEN SYSTEM - 2025 INDUSTRY STANDARDS
-				// Implementation: 3-tier semantic hierarchy building on your existing excellent foundation
-				// Benefits: Type-safe semantic meaning, future-proof Tailwind CSS 4.0 ready, enterprise-grade maintainability
-
-				// DISPLAY TEXT VARIANTS (H1) - Hero and landing pages
-				'semantic-display-hero': ['4rem', { lineHeight: '1.1', fontWeight: '700', letterSpacing: '-0.035em' }],     // 64px - Major hero sections
-				'semantic-display-page': ['3rem', { lineHeight: '1.2', fontWeight: '700', letterSpacing: '-0.03em' }],      // 48px - Page title headings
-
-				// SECTION HEADINGS (H2) - Major content sections
-				'semantic-heading-primary': ['2rem', { lineHeight: '1.3', fontWeight: '700', letterSpacing: '-0.025em' }],   // 32px - Main section headers
-				'semantic-heading-secondary': ['1.75rem', { lineHeight: '1.3', fontWeight: '700', letterSpacing: '-0.02em' }], // 28px - Subsection headers
-
-				// COMPONENT HEADINGS (H3) - Cards, widgets, smaller sections
-				'semantic-title-large': ['1.5rem', { lineHeight: '1.4', fontWeight: '600', letterSpacing: '-0.015em' }],     // 24px - Main component titles
-				'semantic-title-medium': ['1.25rem', { lineHeight: '1.4', fontWeight: '600', letterSpacing: '-0.01em' }],   // 20px - Secondary component titles
-				'semantic-title-small': ['1.125rem', { lineHeight: '1.4', fontWeight: '600', letterSpacing: '-0.005em' }],  // 18px - Small component titles
-
-				// BODY TEXT VARIANTS - Content and descriptions
-				'semantic-body-large': ['1.125rem', { lineHeight: '1.7', fontWeight: '400', letterSpacing: '0em' }],        // 18px - Feature descriptions
-				'semantic-body-default': ['1rem', { lineHeight: '1.7', fontWeight: '400', letterSpacing: '0em' }],          // 16px - Standard content
-				'semantic-body-small': ['0.875rem', { lineHeight: '1.6', fontWeight: '400', letterSpacing: '0.01em' }],    // 14px - Supporting text
-
-				// CAPTION TEXT VARIANTS - Labels, metadata, utility text
-				'semantic-caption-large': ['0.875rem', { lineHeight: '1.5', fontWeight: '500', letterSpacing: '0.01em' }],  // 14px - Important metadata
-				'semantic-caption-default': ['0.75rem', { lineHeight: '1.4', fontWeight: '500', letterSpacing: '0.025em' }], // 12px - Standard captions
-				'semantic-caption-small': ['0.6875rem', { lineHeight: '1.3', fontWeight: '500', letterSpacing: '0.05em' }], // 11px - Fine print
-
-				// RESPONSIVE SEMANTIC VARIANTS - Advanced fluid typography with semantic meaning
-				'semantic-display-responsive': ['clamp(2.5rem, calc(2rem + 4vw), 4rem)', { lineHeight: '1.1', fontWeight: '700' }], // Hero responsive
-				'semantic-heading-responsive': ['clamp(1.5rem, calc(1.25rem + 2vw), 2rem)', { lineHeight: '1.3', fontWeight: '700' }], // Heading responsive
-				'semantic-body-responsive': ['clamp(1rem, calc(0.95rem + 0.5vw), 1.125rem)', { lineHeight: '1.7', fontWeight: '400' }], // Body responsive
-			},
-
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom letter-spacing utilities for micro-typography
-			// TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 1.2 - Extended tracking scale for precise letter-spacing control
-			letterSpacing: {
-				tightest: '-0.075em',
-				tighter: '-0.05em',
-				tight: '-0.025em',
-				normal: '0em',
-				wide: '0.025em',
-				wider: '0.05em',
-				widest: '0.1em',
-				'ultra-wide': '0.15em',
-			},
-
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Enhanced font-weight scale for typography hierarchy
-			// TYPOGRAPHY MICRO-ADJUSTMENT: Official Tailwind CSS documentation Section 1.2 - Extended weight scale provides granular control over text emphasis
-			fontWeight: {
-				hairline: '100',
-				thin: '200',
-				light: '300',
-				normal: '400',
-				medium: '500',
-				semibold: '600',
-				bold: '700',
-				extrabold: '800',
-				black: '900',
-				'extra-black': '950',
-			},
-
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Golden ratio spacing system for mathematical precision
-			// GOLDEN RATIO ENHANCEMENT: Official Tailwind CSS documentation supports arbitrary values for mathematical spacing relationships
-			// Design tokens - CLAUDE.md rule 29
-			spacing: {
-				'18': '4.5rem',
-				'88': '22rem',
-				'128': '32rem',
-				// Golden ratio spacing tokens for precise typography alignment
-				'golden-xs': '0.618rem', // φ⁻¹ * 1rem
-				'golden-sm': '1.618rem', // φ * 1rem
-				'golden-base': '2.618rem', // φ² * 1rem
-				'golden-lg': '4.236rem', // φ³ * 1rem
-				'golden-xl': '6.854rem', // φ⁴ * 1rem
-			},
-
-			// Animation and motion - ENHANCED with Styling Package
+			// Essential animations that can't be easily represented in CSS @theme
 			animation: {
 				'fade-in': 'fadeIn 0.5s ease-in-out',
 				'fade-in-up': 'fadeInUp 0.5s ease-out',
@@ -496,7 +121,6 @@ const config: Config = {
 				'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 				shimmer: 'shimmer 2s linear infinite',
 				scroll: 'scroll 30s linear infinite',
-				// STYLING PACKAGE: Optimized accordion animations for better UX
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
@@ -527,18 +151,13 @@ const config: Config = {
 					'50%': { transform: 'translateY(-10px)' },
 				},
 				shimmer: {
-					from: {
-						backgroundPosition: '0 0',
-					},
-					to: {
-						backgroundPosition: '-200% 0',
-					},
+					from: { backgroundPosition: '0 0' },
+					to: { backgroundPosition: '-200% 0' },
 				},
 				scroll: {
 					'0%': { transform: 'translateX(0)' },
 					'100%': { transform: 'translateX(-100%)' },
 				},
-				// STYLING PACKAGE: Enhanced accordion animations for smoother interactions
 				'accordion-down': {
 					from: { height: '0' },
 					to: { height: 'var(--radix-accordion-content-height)' },
@@ -549,202 +168,13 @@ const config: Config = {
 				},
 			},
 
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom shadow utilities for sophisticated visual depth
-			// SHADOW SYSTEM IMPLEMENTATION: Official Tailwind CSS documentation Section 2.4 recommends mathematical shadow progression for consistent elevation hierarchy
-			// GOLDEN RATIO SHADOWS: Mathematical shadow scaling (1.618 ratio) for harmonious depth relationships
-			boxShadow: {
-				// Subtle Elevation - Gentle shadows for card components
-				'subtle-xs': '0 1px 2px 0 rgba(0, 0, 0, 0.03)',
-				'subtle-sm':
-					'0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.03)',
-				'subtle-md':
-					'0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-
-				// Medium Depth - Professional shadows for images and sections
-				'depth-sm':
-					'0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06)',
-				'depth-md':
-					'0 8px 12px -4px rgba(0, 0, 0, 0.12), 0 4px 8px -4px rgba(0, 0, 0, 0.08)',
-				'depth-lg':
-					'0 12px 20px -6px rgba(0, 0, 0, 0.15), 0 6px 12px -6px rgba(0, 0, 0, 0.1)',
-
-				// High Impact - Dramatic shadows for hero elements and focal points
-				'impact-md':
-					'0 16px 32px -8px rgba(0, 0, 0, 0.18), 0 8px 16px -8px rgba(0, 0, 0, 0.12)',
-				'impact-lg':
-					'0 24px 48px -12px rgba(0, 0, 0, 0.22), 0 12px 24px -12px rgba(0, 0, 0, 0.15)',
-				'impact-xl':
-					'0 32px 64px -16px rgba(0, 0, 0, 0.25), 0 16px 32px -16px rgba(0, 0, 0, 0.18)',
-
-				// Interactive States - Enhanced shadows for hover/focus states
-				'hover-subtle':
-					'0 6px 12px -3px rgba(0, 0, 0, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.05)',
-				'hover-depth':
-					'0 16px 24px -8px rgba(0, 0, 0, 0.18), 0 8px 16px -8px rgba(0, 0, 0, 0.12)',
-				'hover-impact':
-					'0 32px 48px -16px rgba(0, 0, 0, 0.28), 0 16px 32px -16px rgba(0, 0, 0, 0.2)',
-
-				// Brand-Specific Shadows - Color temperature shadows for brand alignment
-				'primary-subtle':
-					'0 4px 12px -2px rgba(63, 74, 126, 0.15), 0 2px 4px -1px rgba(63, 74, 126, 0.1)',
-				'primary-depth':
-					'0 12px 24px -6px rgba(63, 74, 126, 0.25), 0 6px 12px -3px rgba(63, 74, 126, 0.15)',
-				'accent-subtle':
-					'0 4px 12px -2px rgba(202, 158, 91, 0.15), 0 2px 4px -1px rgba(202, 158, 91, 0.1)',
-				'accent-depth':
-					'0 12px 24px -6px rgba(202, 158, 91, 0.25), 0 6px 12px -3px rgba(202, 158, 91, 0.15)',
-
-				// Text Shadows - Enhanced readability over images
-				'text-subtle': '0 1px 2px rgba(0, 0, 0, 0.2)',
-				'text-medium': '0 2px 4px rgba(0, 0, 0, 0.3)',
-				'text-strong': '0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.6)',
-
-				// Legacy shadows for existing components
-				premium:
-					'0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-				royal: '0 25px 50px -12px rgba(124, 58, 237, 0.25)',
-				gold: '0 25px 50px -12px rgba(234, 179, 8, 0.25)',
-			},
-
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom drop shadow utilities for filter-based shadows
-			// DROP SHADOW SYSTEM: Official Tailwind CSS documentation Section 2.4 recommends drop-shadow filters for text and SVG elements
-			// MATHEMATICAL PROGRESSION: Drop shadows scaled using golden ratio for harmonious depth relationships
-			dropShadow: {
-				// Subtle text shadows for enhanced readability
-				'text-xs': '0 1px 1px rgba(0, 0, 0, 0.15)',
-				'text-sm': '0 1px 2px rgba(0, 0, 0, 0.2)',
-				'text-md': '0 2px 4px rgba(0, 0, 0, 0.25)',
-				'text-lg': '0 3px 6px rgba(0, 0, 0, 0.3)',
-				'text-xl': '0 4px 8px rgba(0, 0, 0, 0.35)',
-
-				// Professional image shadows
-				'image-subtle': '0 4px 8px rgba(0, 0, 0, 0.12)',
-				'image-medium': '0 8px 16px rgba(0, 0, 0, 0.15)',
-				'image-strong': '0 16px 32px rgba(0, 0, 0, 0.2)',
-
-				// Brand-coloured shadows
-				'primary-glow': '0 4px 12px rgba(63, 74, 126, 0.3)',
-				'accent-glow': '0 4px 12px rgba(202, 158, 91, 0.3)',
-			},
-
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Advanced gradient systems for luxury brand elevation
-			// LUXURY GRADIENT IMPLEMENTATION: Official Tailwind CSS documentation Section 3.1 - Custom gradient utilities for sophisticated visual treatments
-			// MATHEMATICAL PROGRESSION: Gradient systems using golden ratio color stop positions for harmonious visual flow
-			backgroundImage: {
-				// Luxury Metallic Gradients - Navy to Deep Blue with Metallic Sheen
-				'luxury-navy':
-					'linear-gradient(135deg, #0f172a 0%, #1e293b 38.2%, #334155 61.8%, #475569 100%)',
-				'luxury-navy-radial':
-					'radial-gradient(ellipse at center, #1e293b 0%, #0f172a 61.8%, #020617 100%)',
-				'luxury-navy-vertical':
-					'linear-gradient(to bottom, #0f172a 0%, #1e293b 50%, #334155 100%)',
-
-				// Gold Accent Gradients - Subtle Highlights and Accents
-				'luxury-gold':
-					'linear-gradient(135deg, #ca9e5b 0%, #e5c457 38.2%, #a67234 61.8%, #8a5e2a 100%)',
-				'luxury-gold-subtle':
-					'linear-gradient(135deg, #fefcf7 0%, #fdf8eb 25%, #faf0d2 75%, #f5e4a9 100%)',
-				'luxury-gold-radial':
-					'radial-gradient(ellipse at center, #e5c457 0%, #ca9e5b 38.2%, #a67234 100%)',
-
-				// Depth Gradients - Creating Visual Temperature and Atmosphere
-				'depth-cool':
-					'linear-gradient(135deg, #f8f9fc 0%, #e3e7f0 38.2%, #c6d0e8 61.8%, #8fa2d4 100%)',
-				'depth-warm':
-					'linear-gradient(135deg, #fefcf7 0%, #faf0d2 38.2%, #f5e4a9 61.8%, #eed480 100%)',
-				'depth-neutral':
-					'linear-gradient(135deg, #fafafa 0%, #f5f5f5 25%, #e5e5e5 75%, #d4d4d4 100%)',
-
-				// Overlay Gradients - Enhanced Readability with Sophisticated Overlays
-				'overlay-dark':
-					'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 38.2%, rgba(51, 65, 85, 0.7) 61.8%, rgba(71, 85, 105, 0.6) 100%)',
-				'overlay-light':
-					'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 38.2%, rgba(241, 245, 249, 0.85) 61.8%, rgba(226, 232, 240, 0.8) 100%)',
-				'overlay-gold':
-					'linear-gradient(135deg, rgba(202, 158, 91, 0.2) 0%, rgba(229, 196, 87, 0.15) 38.2%, rgba(166, 114, 52, 0.1) 61.8%, rgba(138, 94, 42, 0.05) 100%)',
-
-				// Interactive Gradients - Dynamic Gradients for User Interaction
-				'interactive-navy':
-					'linear-gradient(135deg, #252a4d 0%, #3f4a7e 38.2%, #5b6bb3 61.8%, #8fa2d4 100%)',
-				'interactive-gold':
-					'linear-gradient(135deg, #8a5e2a 0%, #a67234 38.2%, #ca9e5b 61.8%, #e5c457 100%)',
-				'interactive-hover':
-					'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 38.2%, transparent 61.8%, transparent 100%)',
-
-				// Text Gradients - Premium Typography Treatment
-				'text-luxury-navy':
-					'linear-gradient(135deg, #0f172a 0%, #252a4d 38.2%, #3f4a7e 61.8%, #5b6bb3 100%)',
-				'text-luxury-gold':
-					'linear-gradient(135deg, #a67234 0%, #ca9e5b 38.2%, #e5c457 61.8%, #eed480 100%)',
-				'text-metallic':
-					'linear-gradient(135deg, #71717a 0%, #a1a1aa 25%, #d4d4d8 50%, #a1a1aa 75%, #71717a 100%)',
-
-				// Section Separator Gradients - Elegant Transitions
-				'separator-subtle':
-					'linear-gradient(90deg, transparent 0%, rgba(63, 74, 126, 0.1) 38.2%, rgba(63, 74, 126, 0.2) 50%, rgba(63, 74, 126, 0.1) 61.8%, transparent 100%)',
-				'separator-gold':
-					'linear-gradient(90deg, transparent 0%, rgba(202, 158, 91, 0.2) 38.2%, rgba(229, 196, 87, 0.3) 50%, rgba(202, 158, 91, 0.2) 61.8%, transparent 100%)',
-
-				// Special Effect Gradients
-				'shimmer-luxury':
-					'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 38.2%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 61.8%, transparent 100%)',
-				'glow-navy':
-					'radial-gradient(ellipse at center, rgba(63, 74, 126, 0.15) 0%, rgba(63, 74, 126, 0.05) 38.2%, transparent 100%)',
-				'glow-gold':
-					'radial-gradient(ellipse at center, rgba(202, 158, 91, 0.15) 0%, rgba(202, 158, 91, 0.05) 38.2%, transparent 100%)',
-			},
-
-			// Border radius for consistent design - ENHANCED with Styling Package
-			borderRadius: {
-				none: '0',
-				sm: '0.0833rem', // Updated from styling package for component consistency
-				DEFAULT: '0.1667rem', // Updated from styling package
-				md: '0.25rem', // Updated from styling package
-				lg: '0.5rem', // Preserved (matches your 8px setting)
-				xl: '0.75rem',
-				'2xl': '1rem',
-				'3xl': '1.5rem',
-				full: '9999px',
-			},
-
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom breakpoint for responsive navbar design
-			// RESPONSIVE BREAKPOINT REASON: Official Tailwind documentation supports custom screen sizes for specific design requirements
-			// CLIENT REQUIREMENT: 1500px breakpoint for desktop navigation display, 1780px for full navigation
-			// NAVBAR BREAKPOINT UPDATE: Added 'desktop' breakpoint at 1500px to control when navbar switches from mobile to desktop mode
+			// Custom breakpoints for responsive design
 			screens: {
-				sm: '640px',
-				md: '768px',
-				lg: '1024px',
-				xl: '1280px',
-				'2xl': '1400px',
 				desktop: '1500px', // Custom breakpoint for navbar desktop display
 				'3xl': '1780px', // Custom breakpoint for full navigation display
 			},
 
-			// Container sizes
-			container: {
-				center: true,
-				padding: {
-					DEFAULT: '1rem',
-					sm: '2rem',
-					lg: '4rem',
-					xl: '5rem',
-					'2xl': '6rem',
-				},
-				screens: {
-					sm: '640px',
-					md: '768px',
-					lg: '1024px',
-					xl: '1280px',
-					'2xl': '1400px',
-					desktop: '1500px',
-					'3xl': '1780px',
-				},
-			},
-
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - ARIA attribute variant shortcuts
-			// Create custom variants based on ARIA attributes for accessibility-focused styling
-			// Usage: aria-checked:bg-blue-500, aria-expanded:rotate-180
+			// ARIA attribute variant shortcuts for accessibility
 			aria: {
 				checked: 'checked',
 				disabled: 'disabled',
@@ -756,9 +186,7 @@ const config: Config = {
 				selected: 'selected',
 			},
 
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Data attribute variant shortcuts
-			// Create custom variants based on data attributes for state-based styling
-			// Usage: data-active:bg-blue-500, data-state-open:block
+			// Data attribute variant shortcuts for state-based styling
 			data: {
 				active: 'active~="true"',
 				inactive: 'active~="false"',
@@ -768,9 +196,7 @@ const config: Config = {
 				error: 'error~="true"',
 			},
 
-			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - @supports variant shortcuts
-			// Create custom variants based on CSS feature support detection
-			// Usage: supports-grid:grid, supports-backdrop-blur:backdrop-blur-sm
+			// @supports variant shortcuts for feature detection
 			supports: {
 				grid: 'display: grid',
 				flex: 'display: flex',

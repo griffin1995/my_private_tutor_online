@@ -5,6 +5,7 @@ import { Send, ChevronDown, ChevronUp } from 'lucide-react';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import { cookieConsentUtils } from '@/components/privacy/cookie-consent-manager';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 
 // Type-safe footer data structure
 interface FooterLink {
@@ -146,19 +147,30 @@ const FooterSection: React.FC<FooterSectionProps> = ({ section, sectionIndex, is
         onClick={onToggle}
         aria-expanded={isOpen}
         aria-controls={contentId}
-        className='sm:hidden font-serif text-3xl font-bold text-primary-900 flex items-center justify-center mb-4 flex-shrink-0 w-full hover:text-accent-600 transition-colors duration-300'>
+        className='sm:hidden flex items-center justify-center mb-4 flex-shrink-0 w-full hover:text-accent-600 transition-colors duration-300'>
         <div className='flex items-center gap-2'>
-          {section.title}
+          <HeadingText
+            level={3}
+            variant="secondary"
+            className="text-primary-900">
+            {section.title}
+          </HeadingText>
         </div>
       </button>
 
       {/* Desktop heading (sm+ breakpoints) */}
-      <h3
+      <div
         id={sectionId}
-        className='hidden sm:flex font-serif text-3xl md:text-3xl lg:text-4xl font-bold text-primary-900 items-center justify-center md:justify-start gap-2 mb-4 md:mb-4 lg:mb-6 flex-shrink-0'>
-        {section.title}
+        className='hidden sm:flex items-center justify-center md:justify-start gap-2 mb-4 md:mb-4 lg:mb-6 flex-shrink-0'>
+        <HeadingText
+          level={3}
+          variant="secondary"
+          responsive
+          className="text-primary-900">
+          {section.title}
+        </HeadingText>
         <Separator className='flex-1 bg-neutral-300' />
-      </h3>
+      </div>
 
       {/* Mobile collapsible content (default breakpoint only) */}
       <div
@@ -223,14 +235,17 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
     return (
       <button
         onClick={() => cookieConsentUtils.showPreferences()}
-        className='group flex items-center text-neutral-700 hover:text-accent-600 transition-all duration-300 text-lg md:text-lg lg:text-xl'
+        className='group flex items-center hover:text-accent-600 transition-all duration-300'
         aria-label={`${accessibleLabel} - opens cookie preferences modal`}>
         <span className='w-0 group-hover:w-4 transition-all duration-300 overflow-hidden'>
           <Send className='w-3 h-3' />
         </span>
-        <span className='group-hover:translate-x-1 transition-transform duration-300'>
+        <BodyText
+          variant="large"
+          as="span"
+          className='text-neutral-700 group-hover:translate-x-1 transition-transform duration-300'>
           {link.label}
-        </span>
+        </BodyText>
       </button>
     );
   }
@@ -241,14 +256,17 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
         href={link.href}
         target='_blank'
         rel='noopener noreferrer'
-        className='group flex items-center text-neutral-700 hover:text-accent-600 transition-all duration-300 text-lg md:text-lg lg:text-xl'
+        className='group flex items-center hover:text-accent-600 transition-all duration-300'
         aria-label={`${accessibleLabel} - opens in new tab`}>
         <span className='w-0 group-hover:w-4 transition-all duration-300 overflow-hidden'>
           <Send className='w-3 h-3' />
         </span>
-        <span className='group-hover:translate-x-1 transition-transform duration-300'>
+        <BodyText
+          variant="large"
+          as="span"
+          className='text-neutral-700 group-hover:translate-x-1 transition-transform duration-300'>
           {link.label}
-        </span>
+        </BodyText>
       </a>
     );
   }
@@ -256,15 +274,18 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
   return (
     <Link
       href={link.href}
-      className='group flex items-center text-neutral-700 hover:text-accent-600 transition-all duration-300 text-lg md:text-lg lg:text-xl'
+      className='group flex items-center hover:text-accent-600 transition-all duration-300'
       aria-label={accessibleLabel}
       prefetch={true}>
       <span className='w-0 group-hover:w-4 transition-all duration-300 overflow-hidden'>
         <Send className='w-3 h-3' />
       </span>
-      <span className='group-hover:translate-x-1 transition-transform duration-300'>
+      <BodyText
+        variant="large"
+        as="span"
+        className='text-neutral-700 group-hover:translate-x-1 transition-transform duration-300'>
         {link.label}
-      </span>
+      </BodyText>
     </Link>
   );
 };

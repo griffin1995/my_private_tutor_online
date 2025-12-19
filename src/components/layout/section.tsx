@@ -2,6 +2,7 @@
 
 import { type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 interface SectionProps {
 	children: ReactNode;
 	className?: string;
@@ -108,20 +109,29 @@ function SectionHeader({
 			)}>
 			{subtitle && (
 				<div className='mb-4'>
-					<span className='inline-flex items-center px-3 py-1 bg-accent-100 text-accent-700 text-sm font-medium rounded-full'>
+					<CaptionText
+						as="span"
+						className='inline-flex items-center px-3 py-1 bg-accent-100 text-accent-700 font-medium rounded-full'>
 						{subtitle}
-					</span>
+					</CaptionText>
 				</div>
 			)}
 
-			<TitleComponent className='font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-primary-900 leading-tight mb-4'>
+			<HeadingText
+				as={TitleComponent}
+				variant="primary"
+				responsive
+				className='mb-4'>
 				{title}
-			</TitleComponent>
+			</HeadingText>
 
 			{description && (
-				<p className='text-lg text-primary-600 leading-relaxed max-w-2xl mx-auto'>
+				<BodyText
+					variant="large"
+					className='text-primary-600 leading-relaxed max-w-2xl mx-auto'
+					alignment="center">
 					{description}
-				</p>
+				</BodyText>
 			)}
 		</div>
 	);

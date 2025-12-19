@@ -17,7 +17,6 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import type { TutorProfile } from '@/lib/cms/cms-content';
 import { getImageAsset } from '@/lib/cms/cms-images';
@@ -29,33 +28,33 @@ import { HeadingText, TitleText, BodyText, CaptionText } from '@/components/ui/t
 const BOOKING_URL =
 	'https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~';
 
-/** Tier system - simplified with 2024 TypeScript best practices */
+/** Tier system - Design token integration with 2025 standards */
 type TierLevel = 'tier-one' | 'tier-two' | 'tier-three';
 
 interface TierConfig {
 	label: string;
-	color: string;
+	colorClass: string;
 	description: string;
 	priority: number;
 }
 
-/** Type-safe tier configuration with royal client quality standards */
+/** Type-safe tier configuration using design tokens for royal client quality standards */
 const TIER_CONFIG: Record<TierLevel, TierConfig> = {
 	'tier-one': {
 		label: 'Elite',
-		color: '#ca9e5b', // Gold
+		colorClass: 'bg-accent-600', // Gold - Primary accent brand color
 		description: 'Elite tutor with exceptional qualifications and proven track record',
 		priority: 1,
 	},
 	'tier-two': {
 		label: 'Premium',
-		color: '#9ca3af', // Silver
+		colorClass: 'bg-neutral-400', // Silver - Semantic neutral
 		description: 'Premium tutor with excellent qualifications and experience',
 		priority: 2,
 	},
 	'tier-three': {
 		label: 'Qualified',
-		color: '#cd7c32', // Bronze
+		colorClass: 'bg-amber-600', // Bronze - Warm tertiary
 		description: 'Qualified tutor with solid educational background',
 		priority: 3,
 	},
@@ -90,22 +89,12 @@ const TierIndicator: React.FC<{
 		: 'w-8 h-8 -top-2 -right-2';
 
 	return (
-		<TooltipProvider>
-			<TooltipRoot>
-				<TooltipTrigger asChild>
-					<div
-						className={`absolute ${sizeClasses} rounded-full border-2 border-white shadow-sm ${className}`}
-						style={{ backgroundColor: config.color }}
-						role="img"
-						aria-label={`${config.label} tier tutor`}
-					/>
-				</TooltipTrigger>
-				<TooltipContent>
-					<BodyText variant="default" className="font-medium">{config.label} Tutor</BodyText>
-					<CaptionText variant="default" className="text-neutral-600">{config.description}</CaptionText>
-				</TooltipContent>
-			</TooltipRoot>
-		</TooltipProvider>
+		<div
+			className={`absolute ${sizeClasses} rounded-full border-2 border-white shadow-sm ${config.colorClass} ${className}`}
+			role="img"
+			aria-label={`${config.label} tier tutor: ${config.description}`}
+			title={`${config.label} tier tutor: ${config.description}`}
+		/>
 	);
 };
 
@@ -284,8 +273,7 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 
 	// Full profile implementation with Dialog
 	return (
-		<TooltipProvider>
-			<Dialog open={isOpen} onOpenChange={setIsOpen}>
+		<Dialog open={isOpen} onOpenChange={setIsOpen}>
 				<DialogTrigger asChild>
 					<div className="cursor-pointer">
 						{tutorCard}
@@ -505,8 +493,7 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 						</div>
 					</ScrollArea>
 				</DialogContent>
-			</Dialog>
-		</TooltipProvider>
+		</Dialog>
 	);
 };
 

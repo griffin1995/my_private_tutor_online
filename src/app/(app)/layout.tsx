@@ -108,11 +108,11 @@ export const viewport = {
 	themeColor: [
 		{
 			media: '(prefers-color-scheme: light)',
-			color: '#0f172a',
+			color: '#3f4a7e', // Primary brand navy from design tokens
 		},
 		{
 			media: '(prefers-color-scheme: dark)',
-			color: '#0f172a',
+			color: '#3f4a7e', // Primary brand navy from design tokens
 		},
 	],
 };
@@ -135,7 +135,7 @@ export default function RootLayout({
 				/>
 				<meta
 					name='theme-color'
-					content='#0f172a'
+					content='#3f4a7e'
 				/>
 				<link
 					rel='icon'
@@ -227,7 +227,7 @@ export default function RootLayout({
 				/>
 				<meta
 					name='msapplication-TileColor'
-					content='#0f172a'
+					content='#3f4a7e'
 				/>
 				<meta
 					name='msapplication-config'
