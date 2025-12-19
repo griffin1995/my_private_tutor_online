@@ -2,6 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion } from 'motion/react';
+import { BodyText, CaptionText } from '@/components/ui/typography';
 import type { ReactNode } from "react";
 
 interface TestimonialAuthorRoleProps {
@@ -37,14 +38,14 @@ const TestimonialAuthorRole = ({
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}>
       <div className="container">
         <div className="flex flex-col items-center text-center">
-          <motion.p
-            className="mb-16 max-w-4xl px-8 font-medium lg:text-3xl"
+          <motion.blockquote
+            className="mb-16 max-w-4xl px-8 font-medium text-semantic-body-large lg:text-semantic-heading-responsive"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}>
             &ldquo;{quote}&rdquo;
-          </motion.p>
+          </motion.blockquote>
           <motion.div
             className="flex items-center gap-2 md:gap-4"
             initial={{ opacity: 0, y: 20 }}
@@ -67,10 +68,13 @@ const TestimonialAuthorRole = ({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.6 }}>
-              <p className="text-sm font-medium md:text-base mb-0">{author.name}</p>
-              <p className="text-muted-foreground text-sm md:text-base mb-0">
+              <cite className="font-medium text-semantic-caption-default md:text-semantic-caption-responsive mb-0 not-italic block">{author.name}</cite>
+              <CaptionText
+                variant="default"
+                className="text-muted-foreground mb-0"
+                responsive>
                 {author.role}
-              </p>
+              </CaptionText>
             </motion.div>
           </motion.div>
         </div>

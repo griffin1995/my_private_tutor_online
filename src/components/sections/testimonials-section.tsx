@@ -3,6 +3,7 @@
 import { Award } from 'lucide-react';
 import { Carousel } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
+import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 interface TestimonialData {
 	quote: string;
 	author: string;
@@ -33,15 +34,25 @@ export function TestimonialsSection({
 			<section className={`py-16 lg:py-24 ${className} relative`}>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
 					<div className='text-center'>
-						<h2 className='text-4xl lg:text-5xl font-serif font-black text-primary-900 mb-4 tracking-tight'>
+						<HeadingText
+							variant="primary"
+							level={2}
+							className="font-serif font-black text-primary-900 mb-4 tracking-tight"
+							responsive>
 							{title}
-						</h2>
-						<p className='text-xl text-primary-700 max-w-3xl mx-auto'>
+						</HeadingText>
+						<BodyText
+							variant="large"
+							className="text-primary-700 max-w-3xl mx-auto"
+							responsive>
 							{description}
-						</p>
-						<p className='text-lg text-primary-600 mt-6 italic'>
+						</BodyText>
+						<CaptionText
+							variant="large"
+							className="text-primary-600 mt-6 italic"
+							responsive>
 							More testimonials coming soon...
-						</p>
+						</CaptionText>
 					</div>
 				</div>
 			</section>
@@ -90,12 +101,19 @@ export function TestimonialsSection({
 					<div className='absolute inset-0 rounded-2xl bg-separator-subtle opacity-40' />
 
 					<div className='relative z-10'>
-						<h2 className='text-4xl lg:text-5xl font-serif font-black text-primary-900 mb-4 tracking-tight drop-shadow-sm'>
+						<HeadingText
+							variant="primary"
+							level={2}
+							className="font-serif font-black text-primary-900 mb-4 tracking-tight drop-shadow-sm"
+							responsive>
 							{title}
-						</h2>
-						<p className='text-xl font-normal text-primary-700 max-w-3xl mx-auto mb-12 tracking-normal'>
+						</HeadingText>
+						<BodyText
+							variant="large"
+							className="font-normal text-primary-700 max-w-3xl mx-auto mb-12 tracking-normal"
+							responsive>
 							{description}
-						</p>
+						</BodyText>
 					</div>
 				</div>
 
@@ -143,15 +161,15 @@ export function TestimonialsSection({
 													</div>
 												</div>
 
-												<blockquote className='text-lg font-normal text-primary-700 italic leading-relaxed tracking-wide'>
+												<blockquote className='font-normal text-primary-700 italic leading-relaxed tracking-wide text-semantic-body-large md:text-semantic-body-responsive'>
 													&ldquo;{testimonial.quote}&rdquo;
 												</blockquote>
 											</div>
 
 											<div className='mt-4'>
-												<p className='text-sm font-medium text-primary-600 tracking-wide'>
+												<cite className='font-medium text-primary-600 tracking-wide text-semantic-caption-default md:text-semantic-caption-responsive not-italic'>
 													{testimonial.author} - {testimonial.role}
-												</p>
+												</cite>
 											</div>
 										</div>
 									</CardContent>

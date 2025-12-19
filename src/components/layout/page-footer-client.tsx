@@ -7,6 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
+import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 import { FooterCompanySectionHardcoded } from './footer-components/footer-company-section-hardcoded';
 import { FooterNavigationHardcoded } from './footer-components/footer-navigation-hardcoded';
 const FooterNewsletterForm = lazy(
@@ -171,21 +172,30 @@ export function PageFooterClient({
 							{...fadeInUp}
 							animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}>
 							<div className='max-w-4xl mx-auto text-center'>
-								<motion.h2
-									className='text-3xl lg:text-4xl font-serif font-bold text-primary-900 mb-4'
+								<motion.div
 									{...fadeInUp}
 									animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}
 									transition={{ ...fadeInUp.transition, delay: 0.2 }}>
-									Ready to Start the Conversation?
-								</motion.h2>
-								<motion.p
-									className='text-xl text-primary-700 mb-8'
+									<HeadingText
+										variant="primary"
+										level={2}
+										className="mb-4"
+										responsive>
+										Ready to Start the Conversation?
+									</HeadingText>
+								</motion.div>
+								<motion.div
 									{...fadeInUp}
 									animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}
 									transition={{ ...fadeInUp.transition, delay: 0.3 }}>
-									Access our secure enquiry portal to discuss your child's educational
-									needs
-								</motion.p>
+									<BodyText
+										variant="large"
+										className="text-primary-700 mb-8"
+										responsive>
+										Access our secure enquiry portal to discuss your child's educational
+										needs
+									</BodyText>
+								</motion.div>
 								<motion.a
 									href='https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'
 									target='_blank'

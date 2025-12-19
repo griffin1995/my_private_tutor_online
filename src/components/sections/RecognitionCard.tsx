@@ -8,6 +8,7 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Card } from '@/components/ui/card';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
+import { CaptionText } from '@/components/ui/typography';
 import Image from 'next/image';
 
 interface RecognitionCardProps {
@@ -80,13 +81,17 @@ export function RecognitionCard({
 				whileTap={{ scale: 0.98 }}>
 				<Card className='group relative w-full h-full p-4 sm:p-5 border border-accent-600/30 shadow-md backdrop-blur-md font-condensed uppercase tracking-wide bg-gradient-to-br from-white/90 via-white/70 grid grid-rows-[20%_60%_20%] items-center gap-2 sm:gap-3 md:gap-4 rounded-none'>
 					{/* Header Text Section */}
-					<motion.p
-						className='text-center font-semibold text-primary-900 text-sm leading-[1.4] tracking-tight'
+					<motion.div
 						{...scaleIn}
 						animate={inView ? scaleIn.animate : scaleIn.initial}
 						transition={{ ...scaleIn.transition, delay: animationDelay + 0.2 }}>
-						{headerText}
-					</motion.p>
+						<CaptionText
+							variant="default"
+							className="text-center font-semibold text-primary-900 leading-[1.4] tracking-tight"
+							responsive>
+							{headerText}
+						</CaptionText>
+					</motion.div>
 
 					{/* Logo Image Display Section */}
 					<motion.div
@@ -107,13 +112,17 @@ export function RecognitionCard({
 
 					{/* Optional Footer Text Section */}
 					{footerText ?
-						<motion.p
-							className='text-center font-semibold text-primary-900 text-sm leading-[1.4] tracking-tight'
+						<motion.div
 							{...scaleIn}
 							animate={inView ? scaleIn.animate : scaleIn.initial}
 							transition={{ ...scaleIn.transition, delay: animationDelay + 0.4 }}>
-							{footerText}
-						</motion.p>
+							<CaptionText
+								variant="default"
+								className="text-center font-semibold text-primary-900 leading-[1.4] tracking-tight"
+								responsive>
+								{footerText}
+							</CaptionText>
+						</motion.div>
 					:	<div />}
 				</Card>
 			</motion.div>
