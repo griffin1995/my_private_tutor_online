@@ -104,36 +104,36 @@ export function StorySection({
               {title}
             </h2>
 
-            {/* Content container with relative positioning for quote */}
+            {/* Content container with float-based pull quote */}
             <div className="relative text-left" ref={textContainerRef}>
-              {/* Single paragraph with all content and inline pull quote */}
+              {/* Float-based pull quote with calculated vertical offset */}
+              {pullQuote && (
+                <div
+                  ref={quoteRef}
+                  style={{
+                    float: pullQuotePosition,
+                    marginTop: centerY > 0 ? `${centerY}px` : '12px',
+                    width: '320px',
+                    marginLeft: pullQuotePosition === 'right' ? '24px' : '0',
+                    marginRight: pullQuotePosition === 'left' ? '24px' : '0',
+                    marginBottom: '24px',
+                    shapeOutside: quoteBounds.width > 0 && quoteBounds.height > 0
+                      ? 'margin-box'
+                      : 'none',
+                    clear: 'both',
+                    zIndex: 10
+                  } as React.CSSProperties}
+                >
+                  <PullQuote position={pullQuotePosition} disableFloat={true}>
+                    {pullQuote}
+                  </PullQuote>
+                </div>
+              )}
+
+              {/* Text content without artificial margins - allows natural flow */}
               <p>
-                {/* Render content with line breaks and inline pull quote */}
                 {fullContent.split('\n\n').map((paragraph, index) => (
                   <span key={index}>
-                    {/* Insert pull quote at 50% point of total content */}
-                    {pullQuote && index === Math.floor(fullContent.split('\n\n').length / 2) && (
-                      <span
-                        ref={quoteRef}
-                        style={{
-                          float: pullQuotePosition,
-                          width: 'auto',
-                          maxWidth: '320px',
-                          marginLeft: pullQuotePosition === 'right' ? '24px' : '0',
-                          marginRight: pullQuotePosition === 'left' ? '24px' : '0',
-                          marginBottom: '24px',
-                          marginTop: '12px',
-                          shapeOutside: quoteBounds.width > 0 && quoteBounds.height > 0
-                            ? 'margin-box'
-                            : 'none',
-                          zIndex: 10
-                        } as React.CSSProperties}
-                      >
-                        <PullQuote position={pullQuotePosition} disableFloat={true}>
-                          {pullQuote}
-                        </PullQuote>
-                      </span>
-                    )}
                     {paragraph}
                     {index < fullContent.split('\n\n').length - 1 && (
                       <>
