@@ -12,8 +12,8 @@ export default function PrivacyPolicyPage() {
 			subtitle={metadata.subtitle}
 			lastUpdated={metadata.lastUpdated}
 			backgroundImage={metadata.backgroundImage}
-			showCompliance={metadata.showCompliance}
-			complianceText={metadata.complianceText}>
+			showCompliance={metadata.showCompliance ?? false}
+			{...(metadata.complianceText && { complianceText: metadata.complianceText })}>
 
 			<section id='privacy-policy'>
 				<h2>Privacy Policy</h2>

@@ -110,9 +110,9 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 					case 'a':
 						return (
 							<a
-								href={attribs.href}
-								target={attribs.href?.startsWith('http') ? '_blank' : undefined}
-								rel={attribs.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+								href={attribs['href']}
+								target={attribs['href']?.startsWith('http') ? '_blank' : undefined}
+								rel={attribs['href']?.startsWith('http') ? 'noopener noreferrer' : undefined}
 								className='text-accent-600 hover:text-accent-700 underline font-medium transition-colors'>
 								{domToReact(children as DOMNode[], parserOptions)}
 							</a>

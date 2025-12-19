@@ -118,7 +118,7 @@ export async function createPageMetadata({
       canonical: url,
     },
     verification: {
-      google: process.env.GOOGLE_VERIFICATION_CODE,
+      google: process.env['GOOGLE_VERIFICATION_CODE'],
     },
     category: 'Education',
   }

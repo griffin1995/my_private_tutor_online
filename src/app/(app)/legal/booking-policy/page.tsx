@@ -28,7 +28,7 @@ export default function BookingPolicyPage() {
 			subtitle={metadata.subtitle}
 			lastUpdated={metadata.lastUpdated}
 			backgroundImage={metadata.backgroundImage}
-			showCompliance={metadata.showCompliance}>
+			showCompliance={metadata.showCompliance ?? false}>
 
 			{/* Contact Information Header */}
 			<m.div

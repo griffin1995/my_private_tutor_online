@@ -15,8 +15,8 @@ export default function RecordOfProcessingPage() {
 			subtitle={metadata.subtitle}
 			lastUpdated={metadata.lastUpdated}
 			backgroundImage={metadata.backgroundImage}
-			showCompliance={metadata.showCompliance}
-			complianceText={metadata.complianceText}>
+			showCompliance={metadata.showCompliance ?? false}
+			{...(metadata.complianceText && { complianceText: metadata.complianceText })}>
 								<h2>Introduction</h2>
 								<p>
 									This document outlines the processing activities undertaken by My Private Tutor Online in accordance with Article 30 of the UK General Data Protection Regulation (UK GDPR). This record demonstrates our commitment to data protection compliance and transparency.

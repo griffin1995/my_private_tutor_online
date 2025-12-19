@@ -17,8 +17,8 @@ export default function CookiePolicyPage() {
 			subtitle={metadata.subtitle}
 			lastUpdated={metadata.lastUpdated}
 			backgroundImage={metadata.backgroundImage}
-			showCompliance={metadata.showCompliance}
-			complianceText={metadata.complianceText}>
+			showCompliance={metadata.showCompliance ?? false}
+			{...(metadata.complianceText && { complianceText: metadata.complianceText })}>
 
 			{/* Live Cookie Management Integration */}
 			<CookiePolicyIntegration />
