@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { HeadingText, BodyText } from '@/components/ui/typography';
 import { MessageCircleIcon, ArrowRightIcon } from 'lucide-react';
 
 interface Cta10Props {
@@ -32,10 +33,18 @@ const Cta10 = ({
 				<div className='bg-accent grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-4 overflow-hidden rounded-none px-4 sm:px-6 lg:px-8 py-16'>
 					<div className='hidden lg:block'></div>
 					<div className='text-center'>
-						<h3 className='mb-3 text-2xl font-semibold md:mb-4 md:text-4xl lg:mb-6'>
+						<HeadingText
+							variant="secondary"
+							level={3}
+							responsive
+							className='mb-3 md:mb-4 lg:mb-6'>
 							{heading}
-						</h3>
-						<p className='text-muted-foreground max-w-xl lg:text-lg mx-auto'>{description}</p>
+						</HeadingText>
+						<BodyText
+							variant="large"
+							className='text-muted-foreground max-w-xl mx-auto'>
+							{description}
+						</BodyText>
 					</div>
 					<div className='flex justify-center lg:justify-self-end flex-col gap-2'>
 						{buttons.secondary && (
