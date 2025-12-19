@@ -268,6 +268,44 @@ const config: Config = {
 					link: 'var(--resources-link)',
 					'link-hover': 'var(--resources-link-hover)',
 				},
+
+				// SEMANTIC COLOR ALIASES - 2025 INDUSTRY STANDARD SEMANTIC DESIGN TOKEN SYSTEM
+				// Implementation: 3-tier semantic hierarchy bridging primitive tokens to component usage
+				// Benefits: Intuitive semantic naming, improved developer experience, maintainable color system
+				semantic: {
+					// Action colors (buttons, links, CTAs)
+					'action-primary': 'var(--color-primary-base)',      // #3f4a7e
+					'action-primary-hover': 'var(--color-primary-light)', // #5b6bb3
+					'action-primary-active': 'var(--color-primary-dark)', // #2d3456
+					'action-secondary': 'var(--color-secondary-base)',    // #ca9e5b
+					'action-secondary-hover': 'var(--color-secondary-light)', // #e5c89a
+
+					// Text colors (hierarchical content)
+					'text-primary': 'var(--color-primary-dark)',       // Primary headings
+					'text-secondary': 'var(--color-primary-base)',     // Secondary text
+					'text-body': 'var(--color-neutral-grey-700)',      // Body text
+					'text-muted': 'var(--color-neutral-grey-500)',     // Muted text
+					'text-accent': 'var(--color-secondary-base)',      // Accent text
+
+					// Surface colors (backgrounds, borders)
+					'surface-primary': 'var(--color-neutral-white)',
+					'surface-secondary': 'var(--color-neutral-grey-50)',
+					'surface-elevated': 'var(--color-neutral-white)',
+					'border-default': 'var(--color-neutral-grey-200)',
+					'border-emphasis': 'var(--color-neutral-grey-300)',
+					'border-error': 'var(--color-semantic-error)',           // Error state borders
+					'border-success': 'var(--color-semantic-success)',       // Success state borders
+
+					// Feedback colors (status indicators)
+					'success-primary': 'var(--color-semantic-success)',      // Success messages, positive feedback
+					'success-background': 'var(--color-semantic-success)',   // Success background tint
+					'error-primary': 'var(--color-semantic-error)',          // Error messages, validation errors
+					'error-background': 'var(--color-semantic-error)',       // Error background tint
+					'warning-primary': 'var(--color-semantic-warning)',      // Warning messages, caution states
+					'warning-background': 'var(--color-semantic-warning)',   // Warning background tint
+					'info-primary': 'var(--color-semantic-info)',            // Info messages, neutral alerts
+					'info-background': 'var(--color-semantic-info)',         // Info background tint
+				}
 			},
 
 			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Phase 3 Typography System Configuration
@@ -370,6 +408,38 @@ const config: Config = {
 				'fluid-3xl': 'clamp(1.875rem, 3vw, 2.25rem)',     // 30px → 36px
 				'fluid-4xl': 'clamp(2.25rem, 4vw, 2.5rem)',       // 36px → 40px
 				'fluid-5xl': 'clamp(3rem, 5vw, 3.75rem)',         // 48px → 60px
+
+				// SEMANTIC DESIGN TOKEN SYSTEM - 2025 INDUSTRY STANDARDS
+				// Implementation: 3-tier semantic hierarchy building on your existing excellent foundation
+				// Benefits: Type-safe semantic meaning, future-proof Tailwind CSS 4.0 ready, enterprise-grade maintainability
+
+				// DISPLAY TEXT VARIANTS (H1) - Hero and landing pages
+				'semantic-display-hero': ['4rem', { lineHeight: '1.1', fontWeight: '700', letterSpacing: '-0.035em' }],     // 64px - Major hero sections
+				'semantic-display-page': ['3rem', { lineHeight: '1.2', fontWeight: '700', letterSpacing: '-0.03em' }],      // 48px - Page title headings
+
+				// SECTION HEADINGS (H2) - Major content sections
+				'semantic-heading-primary': ['2rem', { lineHeight: '1.3', fontWeight: '700', letterSpacing: '-0.025em' }],   // 32px - Main section headers
+				'semantic-heading-secondary': ['1.75rem', { lineHeight: '1.3', fontWeight: '700', letterSpacing: '-0.02em' }], // 28px - Subsection headers
+
+				// COMPONENT HEADINGS (H3) - Cards, widgets, smaller sections
+				'semantic-title-large': ['1.5rem', { lineHeight: '1.4', fontWeight: '600', letterSpacing: '-0.015em' }],     // 24px - Main component titles
+				'semantic-title-medium': ['1.25rem', { lineHeight: '1.4', fontWeight: '600', letterSpacing: '-0.01em' }],   // 20px - Secondary component titles
+				'semantic-title-small': ['1.125rem', { lineHeight: '1.4', fontWeight: '600', letterSpacing: '-0.005em' }],  // 18px - Small component titles
+
+				// BODY TEXT VARIANTS - Content and descriptions
+				'semantic-body-large': ['1.125rem', { lineHeight: '1.7', fontWeight: '400', letterSpacing: '0em' }],        // 18px - Feature descriptions
+				'semantic-body-default': ['1rem', { lineHeight: '1.7', fontWeight: '400', letterSpacing: '0em' }],          // 16px - Standard content
+				'semantic-body-small': ['0.875rem', { lineHeight: '1.6', fontWeight: '400', letterSpacing: '0.01em' }],    // 14px - Supporting text
+
+				// CAPTION TEXT VARIANTS - Labels, metadata, utility text
+				'semantic-caption-large': ['0.875rem', { lineHeight: '1.5', fontWeight: '500', letterSpacing: '0.01em' }],  // 14px - Important metadata
+				'semantic-caption-default': ['0.75rem', { lineHeight: '1.4', fontWeight: '500', letterSpacing: '0.025em' }], // 12px - Standard captions
+				'semantic-caption-small': ['0.6875rem', { lineHeight: '1.3', fontWeight: '500', letterSpacing: '0.05em' }], // 11px - Fine print
+
+				// RESPONSIVE SEMANTIC VARIANTS - Advanced fluid typography with semantic meaning
+				'semantic-display-responsive': ['clamp(2.5rem, calc(2rem + 4vw), 4rem)', { lineHeight: '1.1', fontWeight: '700' }], // Hero responsive
+				'semantic-heading-responsive': ['clamp(1.5rem, calc(1.25rem + 2vw), 2rem)', { lineHeight: '1.3', fontWeight: '700' }], // Heading responsive
+				'semantic-body-responsive': ['clamp(1rem, calc(0.95rem + 0.5vw), 1.125rem)', { lineHeight: '1.7', fontWeight: '400' }], // Body responsive
 			},
 
 			// CONTEXT7 SOURCE: /tailwindlabs/tailwindcss.com - Custom letter-spacing utilities for micro-typography
