@@ -108,6 +108,97 @@ export const TypographyTechnicalBase = {
   lineHeight: 1.5,
   letterSpacing: "0",
 }; // Technical text - pricing, data display
+export const SemanticDisplayHero = {
+  fontFamily: "Playfair Display, Georgia, serif",
+  fontSize: "4rem",
+  fontWeight: "700",
+  lineHeight: "1.1",
+  letterSpacing: "-0.035em",
+}; // Semantic display hero - major hero sections, landing pages
+export const SemanticDisplayPage = {
+  fontFamily: "Playfair Display, Georgia, serif",
+  fontSize: "3rem",
+  fontWeight: "700",
+  lineHeight: "1.2",
+  letterSpacing: "-0.03em",
+}; // Semantic display page - page title headings
+export const SemanticHeadingPrimary = {
+  fontFamily: "Playfair Display, Georgia, serif",
+  fontSize: "2rem",
+  fontWeight: "700",
+  lineHeight: "1.3",
+  letterSpacing: "-0.025em",
+}; // Semantic heading primary - main section headers
+export const SemanticHeadingSecondary = {
+  fontFamily: "Playfair Display, Georgia, serif",
+  fontSize: "1.75rem",
+  fontWeight: "700",
+  lineHeight: "1.3",
+  letterSpacing: "-0.02em",
+}; // Semantic heading secondary - subsection headers
+export const SemanticTitleLarge = {
+  fontFamily: "Playfair Display, Georgia, serif",
+  fontSize: "1.5rem",
+  fontWeight: "600",
+  lineHeight: "1.4",
+  letterSpacing: "-0.015em",
+}; // Semantic title large - main component titles
+export const SemanticTitleMedium = {
+  fontFamily: "Playfair Display, Georgia, serif",
+  fontSize: "1.25rem",
+  fontWeight: "600",
+  lineHeight: "1.4",
+  letterSpacing: "-0.01em",
+}; // Semantic title medium - secondary component titles
+export const SemanticTitleSmall = {
+  fontFamily: "Playfair Display, Georgia, serif",
+  fontSize: "1.125rem",
+  fontWeight: "600",
+  lineHeight: "1.4",
+  letterSpacing: "-0.005em",
+}; // Semantic title small - small component titles
+export const SemanticBodyLarge = {
+  fontFamily: "Source Serif 4, Georgia, serif",
+  fontSize: "1.125rem",
+  fontWeight: "400",
+  lineHeight: "1.7",
+  letterSpacing: "0em",
+}; // Semantic body large - feature descriptions, lead paragraphs
+export const SemanticBodyDefault = {
+  fontFamily: "Source Serif 4, Georgia, serif",
+  fontSize: "1rem",
+  fontWeight: "400",
+  lineHeight: "1.7",
+  letterSpacing: "0em",
+}; // Semantic body default - standard content text
+export const SemanticBodySmall = {
+  fontFamily: "Source Serif 4, Georgia, serif",
+  fontSize: "0.875rem",
+  fontWeight: "400",
+  lineHeight: "1.6",
+  letterSpacing: "0.01em",
+}; // Semantic body small - supporting text, fine details
+export const SemanticCaptionLarge = {
+  fontFamily: "Source Serif 4, Georgia, serif",
+  fontSize: "0.875rem",
+  fontWeight: "500",
+  lineHeight: "1.5",
+  letterSpacing: "0.01em",
+}; // Semantic caption large - important metadata, emphasis labels
+export const SemanticCaptionDefault = {
+  fontFamily: "Source Serif 4, Georgia, serif",
+  fontSize: "0.75rem",
+  fontWeight: "500",
+  lineHeight: "1.4",
+  letterSpacing: "0.025em",
+}; // Semantic caption default - standard captions, labels
+export const SemanticCaptionSmall = {
+  fontFamily: "Source Serif 4, Georgia, serif",
+  fontSize: "0.6875rem",
+  fontWeight: "500",
+  lineHeight: "1.3",
+  letterSpacing: "0.05em",
+}; // Semantic caption small - fine print, legal text
 export const Spacing0 = "0px"; // Zero spacing - reset margins/padding
 export const Spacing1 = "4px"; // 4px - minimal spacing, tight elements
 export const Spacing2 = "8px"; // 8px - small spacing, compact layouts
