@@ -4,7 +4,8 @@ import { cn } from '@/lib/utils';
 import { motion } from 'motion/react';
 interface SimpleHeroProps {
 	backgroundImage: string;
-	h1: React.ReactNode;
+	h1: string;
+	h1AccentText?: string; // Optional accent text to highlight in gold
 	h2: string;
 	className?: string;
 	decorativeStyle?: 'lines' | 'dots' | 'none';
@@ -40,6 +41,7 @@ const heroItemVariants = {
 export function SimpleHero({
 	backgroundImage,
 	h1,
+	h1AccentText,
 	h2,
 	className,
 	decorativeStyle = 'lines',
@@ -119,7 +121,7 @@ export function SimpleHero({
 						variants={heroItemVariants}
 						className='mb-[26px]'>
 						<h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-white uppercase tracking-wider drop-shadow-lg">
-							{h1}
+							{h1}{h1AccentText && <> <span className="text-accent-600">{h1AccentText}</span></>}
 						</h1>
 					</motion.div>
 
