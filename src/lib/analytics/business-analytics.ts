@@ -124,7 +124,7 @@ class BusinessAnalytics {
 		});
 		this.providers.push({
 			name: 'ga4',
-			enabled: !!process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
+			enabled: !!process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'],
 			track: async (event: BusinessEvent) => {
 				if (typeof window !== 'undefined' && (window as any).gtag) {
 					(window as any).gtag('event', event.action, {
@@ -138,7 +138,7 @@ class BusinessAnalytics {
 			},
 			identify: async (userId: string, traits: Record<string, any>) => {
 				if (typeof window !== 'undefined' && (window as any).gtag) {
-					(window as any).gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
+					(window as any).gtag('config', process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'], {
 						user_id: userId,
 						custom_map: traits,
 					});
@@ -341,7 +341,7 @@ class BusinessAnalytics {
 			label: error,
 			metadata: {
 				error,
-				stack: context?.stack,
+				stack: context?.['stack'],
 				url: window.location.href,
 				userAgent: navigator.userAgent,
 				timestamp: Date.now(),
@@ -360,7 +360,7 @@ class BusinessAnalytics {
 	private setupAutoTracking() {
 		document.addEventListener('submit', (e) => {
 			const form = e.target as HTMLFormElement;
-			const formType = form.dataset.formType || form.id || 'unknown';
+			const formType = form.dataset['formType'] || form.id || 'unknown';
 			this.trackInquiryFormSubmit(formType);
 		});
 		document.addEventListener('click', (e) => {

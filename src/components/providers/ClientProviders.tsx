@@ -37,7 +37,7 @@ export function ClientProviders({ children }: ClientProvidersProps) {
 					{children}
 					<CookieConsentManager
 						enableAnalytics={process.env.NODE_ENV === 'production'}
-						gaTrackingId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+						gaTrackingId={process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID']}
 					/>
 					<Toaster />
 				</TooltipProvider>

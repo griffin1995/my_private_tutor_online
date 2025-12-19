@@ -276,12 +276,12 @@ function analyzeMetrics(
 	payload.customEvents.forEach((event) => {
 		if (event.event === 'performance_budget_violation') {
 			analysis.budgetViolations.push(
-				(event.metadata?.violations as string) || 'Unknown violation',
+				(event.metadata?.['violations'] as string) || 'Unknown violation',
 			);
 		}
 		if (event.event === 'resource_budget_violation') {
 			analysis.budgetViolations.push(
-				`${event.metadata?.type} budget exceeded: ${event.value} bytes`,
+				`${event.metadata?.['type']} budget exceeded: ${event.value} bytes`,
 			);
 		}
 	});

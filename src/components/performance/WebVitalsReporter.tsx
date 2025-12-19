@@ -249,19 +249,19 @@ function WebVitalsReporter() {
 	const trackTutoringMetrics = () => {
 		document.addEventListener('submit', (e) => {
 			const target = e.target as HTMLFormElement;
-			if (target.dataset.formType === 'inquiry') {
+			if (target.dataset['formType'] === 'inquiry') {
 				trackCustomEvent('inquiry_form_submit', 1, {
 					formId: target.id,
-					formType: target.dataset.formType,
+					formType: target.dataset['formType'],
 				});
 			}
 		});
 		document.addEventListener('click', (e) => {
 			const target = e.target as HTMLElement;
-			if (target.dataset.trackEvent === 'bootcamp_registration') {
+			if (target.dataset['trackEvent'] === 'bootcamp_registration') {
 				trackCustomEvent('bootcamp_registration_click', 1, {
-					bootcampType: target.dataset.bootcampType || 'unknown',
-					tier: target.dataset.tier || 'unknown',
+					bootcampType: target.dataset['bootcampType'] || 'unknown',
+					tier: target.dataset['tier'] || 'unknown',
 				});
 			}
 		});
@@ -272,7 +272,7 @@ function WebVitalsReporter() {
 					entries.forEach((entry) => {
 						if (entry.isIntersecting) {
 							trackCustomEvent('service_tier_view', 1, {
-								tier: (entry.target as HTMLElement).dataset.serviceTier || 'unknown',
+								tier: (entry.target as HTMLElement).dataset['serviceTier'] || 'unknown',
 							});
 							observer.unobserve(entry.target);
 						}
