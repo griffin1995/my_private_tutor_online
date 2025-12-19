@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Search } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
+import { BodyText, CaptionText } from '@/components/ui/typography';
 
 interface Testimonial10Props {
 	quote?: string;
