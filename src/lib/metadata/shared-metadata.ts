@@ -152,11 +152,11 @@ export async function createArticleMetadata({
     path,
     keywords,
     type: 'article',
-    image,
+    ...(image !== undefined && { image }),
     publishedTime,
-    modifiedTime,
-    authors,
-    parent
+    ...(modifiedTime !== undefined && { modifiedTime }),
+    ...(authors !== undefined && { authors }),
+    ...(parent !== undefined && { parent })
   })
 }
 
