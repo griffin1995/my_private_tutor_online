@@ -3,7 +3,6 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { HeadingText, TitleText, BodyText, CaptionText } from '@/components/ui/typography';
-import { m } from 'framer-motion';
 import { useState } from 'react';
 import type { JSX } from 'react';
 
@@ -172,14 +171,12 @@ export function TierDescriptions({
 							const isExpanded = expandedCards[index] || false;
 
 							return (
-								<m.div
+								<divdiv
 									key={index}
 									className='relative'
-									initial={{
 										opacity: 0,
 										y: 40,
 									}}
-									whileInView={{
 										opacity: 1,
 										y: 0,
 									}}
@@ -187,15 +184,12 @@ export function TierDescriptions({
 										once: true,
 										margin: '-100px',
 									}}
-									transition={{
 										duration: 0.8,
 										delay: index * 0.1,
 									}}>
-									<m.div
-										animate={{
+									<divdiv
 											height: isExpanded ? 'auto' : undefined,
 										}}
-										transition={{
 											duration: 0.5,
 											ease: [0.25, 0.1, 0.25, 1],
 										}}
@@ -272,8 +266,8 @@ export function TierDescriptions({
 												</>
 											)}
 										</Card>
-									</m.div>
-								</m.div>
+									</divdiv>
+								</divdiv>
 							);
 						})}
 					</div>
@@ -296,14 +290,12 @@ export function TierDescriptions({
 
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
 					{sortedTiers.map((tier: TutorTier, index: number) => (
-						<m.div
+						<divdiv
 							key={index}
 							className='relative'
-							initial={{
 								opacity: 0,
 								y: 20,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
@@ -311,7 +303,6 @@ export function TierDescriptions({
 								once: true,
 								margin: '-50px',
 							}}
-							transition={{
 								duration: 0.6,
 								delay: index * 0.1,
 							}}>
@@ -344,7 +335,7 @@ export function TierDescriptions({
 									</div>
 								</CardContent>
 							</Card>
-						</m.div>
+						</divdiv>
 					))}
 				</div>
 			</div>

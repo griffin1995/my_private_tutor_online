@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
 import { DisplayText, HeadingText, CaptionText } from '@/components/ui/typography';
 interface SimpleHeroProps {
 	backgroundImage: string;
@@ -106,10 +105,7 @@ export function SimpleHero({
 				}}
 			/>
 			<div className='relative z-10 flex flex-col items-center justify-center h-full px-4 text-center'>
-				<motion.div
-					variants={heroContainerVariants}
-					initial='hidden'
-					animate='visible'
+				<div
 					className={cn(
 						'w-[80vw] max-w-screen-xl mx-auto',
 						textVerticalOffset === 'much-lower' ?
@@ -118,8 +114,7 @@ export function SimpleHero({
 						: textVerticalOffset === 'higher' ? 'pt-8'
 						: 'pt-12',
 					)}>
-					<motion.div
-						variants={heroItemVariants}
+					<div
 						className='mb-[26px]'>
 						<DisplayText
 							variant="hero"
@@ -129,9 +124,9 @@ export function SimpleHero({
 						>
 							{h1}{h1AccentText && <> <span className="text-accent-600">{h1AccentText}</span></>}
 						</DisplayText>
-					</motion.div>
+					</div>
 
-					<motion.div variants={heroItemVariants}>
+					<div variants={heroItemVariants}>
 						<HeadingText
 							variant="secondary"
 							level={2}
@@ -141,8 +136,8 @@ export function SimpleHero({
 						>
 							{h2}
 						</HeadingText>
-					</motion.div>
-				</motion.div>
+					</div>
+				</div>
 
 				<div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center'>
 					<div

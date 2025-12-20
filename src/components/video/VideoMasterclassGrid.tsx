@@ -49,7 +49,6 @@ export function VideoMasterclassGrid({
 					<VideoMasterclassSection
 						key={video.id}
 						video={video}
-						layout={layout}
 						className={className}
 					/>
 				);

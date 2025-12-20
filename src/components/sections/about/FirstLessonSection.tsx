@@ -1,6 +1,5 @@
 'use client';
 
-import { m } from 'framer-motion';
 import React from 'react';
 import { HeadingText, BodyText } from '@/components/ui/typography';
 interface FirstLessonSectionProps {
@@ -43,14 +42,7 @@ export function FirstLessonSection({
 	return (
 		<div className={`bg-${backgroundColor} py-20 ${className}`}>
 			<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12'>
-				<m.div
-					initial={fadeInUpVariant.initial}
-					whileInView={fadeInUpVariant.animate}
-					viewport={{
-						once: true,
-						margin: '-100px',
-					}}
-					transition={fadeInUpVariant.transition}>
+				<div>
 					<div className='space-y-10'>
 						{showConnectorArrow && (
 							<svg
@@ -105,7 +97,7 @@ export function FirstLessonSection({
 							</div>
 						</div>
 					</div>
-				</m.div>
+				</div>
 			</div>
 		</div>
 	);

@@ -5,13 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { MAIN_NAVIGATION_ITEMS } from '@/content/navigation-content';
 import { cn } from '@/lib/utils';
-import {
-	AnimatePresence,
-	easeOut,
-	motion,
-	useMotionValueEvent,
-	useScroll,
-} from 'framer-motion';
+// Removed motion imports
 import { ChevronRight, Menu as MenuIcon, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -250,9 +244,6 @@ export function Navigation({
 	return (
 		<>
 			<motion.header
-				initial='hidden'
-				animate='visible'
-				variants={navVariants}
 				className={cn(
 					'fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-[5.5rem] lg:h-[6.25rem] xl:h-[7rem]',
 					dropdownState.isOpen ? 'bg-white shadow-sm'
@@ -266,14 +257,7 @@ export function Navigation({
 							<Link
 								href='/'
 								className='flex items-center space-x-2 z-10'>
-								<motion.div
-									whileHover={{
-										scale: 1.05,
-									}}
-									whileTap={{
-										scale: 0.95,
-									}}
-									className='relative w-48 h-[4.5rem] lg:h-[5.25rem] xl:h-[6rem]'>
+								<div className='relative w-48 h-[4.5rem] lg:h-[5.25rem] xl:h-[6rem]'>
 									<Image
 										src={`/images/logos/${
 											showBlueNavStyling || dropdownState.isOpen || isScrolled ?
@@ -285,7 +269,7 @@ export function Navigation({
 										className='object-contain'
 										priority
 									/>
-								</motion.div>
+								</div>
 							</Link>
 						</div>
 
@@ -393,13 +377,9 @@ export function Navigation({
 				</div>
 			</motion.header>
 
-			<AnimatePresence>
+			<div>
 				{dropdownState.isOpen && dropdownState.activeMenu && (
-					<motion.div
-						initial='hidden'
-						animate='visible'
-						exit='exit'
-						variants={overlayVariants}
+					<div
 						className='fixed left-0 right-0 z-40'
 						style={{
 							top: `${getNavbarHeight()}px`,
@@ -426,15 +406,11 @@ export function Navigation({
 															<div
 																key={item.label}
 																className='w-full h-full'>
-																<motion.div
-																	initial='hidden'
-																	animate='visible'
-																	variants={dropdownContainerVariants}
+																<div
 																	className='flex flex-col h-full items-stretch pt-8 lg:pt-10 xl:pt-12 pb-6'>
 																	{item.items!.map((subItem, subIndex) => (
 																		<React.Fragment key={subItem.label}>
-																			<motion.div
-																				variants={dropdownItemVariants}
+																			<div
 																				className='flex-1'>
 																				<Link
 																					href={subItem.href!}
@@ -459,13 +435,13 @@ export function Navigation({
 																						{subItem.label}
 																					</h3>
 																				</Link>
-																			</motion.div>
+																			</div>
 																			{subIndex < item.items!.length - 1 && (
 																				<Separator className='bg-gray-200' />
 																			)}
 																		</React.Fragment>
 																	))}
-																</motion.div>
+																</div>
 															</div>
 														);
 													})}
@@ -481,9 +457,6 @@ export function Navigation({
 														aria-label='Collapse dropdown'>
 														<ArrowUpward
 															className='w-full h-full p-8'
-															variants={arrowGrowVariants}
-															initial='hidden'
-															animate='visible'
 														/>
 													</button>
 												</div>
@@ -493,9 +466,9 @@ export function Navigation({
 								</div>
 							</div>
 						</div>
-					</motion.div>
+					</div>
 				)}
-			</AnimatePresence>
+			</div>
 
 			{isMobileMenuOpen && (
 				<>
@@ -594,26 +567,9 @@ function MobileNavigation({
 									/>
 								</button>
 
-								<AnimatePresence>
+								<div>
 									{isExpanded && (
-										<motion.div
-											initial={{
-												height: 0,
-												opacity: 0,
-											}}
-											animate={{
-												height: 'auto',
-												opacity: 1,
-											}}
-											exit={{
-												height: 0,
-												opacity: 0,
-											}}
-											transition={{
-												duration: 0.2,
-												ease: 'easeInOut',
-											}}
-											className='ml-4 space-y-1 overflow-hidden bg-gray-50/50 pb-2'>
+										<div className='ml-4 space-y-1 overflow-hidden bg-gray-50/50 pb-2'>
 											{item.items.map((subItem, subIndex) => (
 												<Link
 													key={subItem.label}
@@ -630,9 +586,9 @@ function MobileNavigation({
 													</div>
 												</Link>
 											))}
-										</motion.div>
+										</div>
 									)}
-								</AnimatePresence>
+								</div>
 							</>
 						:	<Link
 								href={item.href!}

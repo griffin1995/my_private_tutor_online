@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { getMainLogo, getMainLogoWhite } from '@/lib/cms/cms-images';
 interface LogoSectionProps {
@@ -52,28 +51,20 @@ export function LogoSection({
 				href='/'
 				className='block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 rounded-lg'
 				aria-label='My Private Tutor Online - Navigate to homepage'>
-				<motion.div
+				<div
 					className='relative'
-					whileHover={{
 						scale: 1.05,
 					}}
-					whileTap={{
 						scale: 0.98,
 					}}
-					transition={{
 						type: 'spring',
 						stiffness: 400,
 						damping: 25,
 						duration: 0.15,
 					}}>
 					<AnimatePresence mode='wait'>
-						<motion.div
+						<div
 							key={isTransparent ? 'white-logo' : 'standard-logo'}
-							variants={logoVariants}
-							initial='initial'
-							animate='animate'
-							exit='exit'
-							transition={logoTransition}
 							className='relative'>
 							<Image
 								src={logoSrc}
@@ -104,9 +95,9 @@ export function LogoSection({
 								)}
 								aria-hidden='true'
 							/>
-						</motion.div>
+						</div>
 					</AnimatePresence>
-				</motion.div>
+				</div>
 			</Link>
 		</div>
 	);

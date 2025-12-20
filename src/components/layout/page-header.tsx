@@ -4,7 +4,6 @@ import { Navigation } from '@/components/navigation/Navigation';
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { Menu, X } from 'lucide-react';
 import { Dialog } from '@headlessui/react';

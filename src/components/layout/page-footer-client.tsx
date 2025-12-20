@@ -5,7 +5,6 @@ import { ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 import { FooterCompanySectionHardcoded } from './footer-components/footer-company-section-hardcoded';
@@ -166,16 +165,11 @@ export function PageFooterClient({
 
 				<div className='relative'>
 					{footerConfig.showContactForm && (
-						<motion.div
+						<div
 							ref={contactFormRef}
-							className='w-full px-4 sm:px-6 md:px-4 lg:px-8 py-12 md:py-12 lg:py-16'
-							{...fadeInUp}
-							animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}>
+							className='w-full px-4 sm:px-6 md:px-4 lg:px-8 py-12 md:py-12 lg:py-16'>
 							<div className='max-w-4xl mx-auto text-center'>
-								<motion.div
-									{...fadeInUp}
-									animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}
-									transition={{ ...fadeInUp.transition, delay: 0.2 }}>
+								<div>
 									<HeadingText
 										variant="primary"
 										level={2}
@@ -183,11 +177,8 @@ export function PageFooterClient({
 										responsive>
 										Ready to Start the Conversation?
 									</HeadingText>
-								</motion.div>
-								<motion.div
-									{...fadeInUp}
-									animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}
-									transition={{ ...fadeInUp.transition, delay: 0.3 }}>
+								</div>
+								<div>
 									<BodyText
 										variant="large"
 										className="text-primary-700 mb-8"
@@ -195,18 +186,13 @@ export function PageFooterClient({
 										Access our secure enquiry portal to discuss your child's educational
 										needs
 									</BodyText>
-								</motion.div>
+								</div>
 								<motion.a
 									href='https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'
 									target='_blank'
 									rel='noopener noreferrer'
 									className='inline-block group'
-									aria-label='Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online'
-									{...scaleIn}
-									animate={contactFormInView ? scaleIn.animate : scaleIn.initial}
-									transition={{ ...scaleIn.transition, delay: 0.4 }}
-									whileHover={{ scale: 1.02, y: -2 }}
-									whileTap={{ scale: 0.98 }}>
+									aria-label='Open Bizstim enquiry form in new window - secure external portal for My Private Tutor Online'>
 									<div className='relative overflow-hidden rounded-lg border-2 border-neutral-300 hover:border-accent-600 transition-all duration-300 shadow-lg hover:shadow-xl'>
 										<img
 											src='/images/graphics/bizstim-form-preview.png'
@@ -225,10 +211,7 @@ export function PageFooterClient({
 										</div>
 									</div>
 								</motion.a>
-								<motion.div
-									{...fadeInUp}
-									animate={contactFormInView ? fadeInUp.animate : fadeInUp.initial}
-									transition={{ ...fadeInUp.transition, delay: 0.5 }}>
+								<div>
 									<CaptionText
 										variant="small"
 										className="text-neutral-500 mt-3"
@@ -236,9 +219,9 @@ export function PageFooterClient({
 										Opens in new window • Secure encrypted connection • Same trusted
 										service
 									</CaptionText>
-								</motion.div>
+								</div>
 							</div>
-						</motion.div>
+						</div>
 					)}
 
 					{footerConfig.showContactForm && <Separator className='bg-neutral-300' />}

@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Button } from '@/components/ui/button';
 import { HeadingText, BodyText } from '@/components/ui/typography';
@@ -81,17 +80,12 @@ export function FeatureSection({
 	return (
 		<section className={cn('w-full', className)}>
 			{/* Mobile & Tablet Layout: Flex Column (Image first, Text second) */}
-			<motion.div
+			<div
 				ref={mobileRef}
-				className="flex flex-col lg:hidden"
-				{...fadeInUp}
-				animate={mobileInView ? fadeInUp.animate : fadeInUp.initial}>
+				className="flex flex-col lg:hidden">
 				{/* Image - Always first on mobile/tablet */}
-				<motion.div
-					className="relative w-full h-44 sm:h-56 md:h-96 overflow-hidden"
-					{...scaleIn}
-					animate={mobileInView ? scaleIn.animate : scaleIn.initial}
-					transition={{ ...scaleIn.transition, delay: 0.1 }}>
+				<div
+					className="relative w-full h-44 sm:h-56 md:h-96 overflow-hidden">
 					<Image
 						src={imageSrc}
 						alt={imageAlt}
@@ -100,18 +94,12 @@ export function FeatureSection({
 						sizes="(max-width: 1024px) 100vw, 50vw"
 						priority
 					/>
-				</motion.div>
+				</div>
 
 				{/* Text Content - Always second on mobile/tablet */}
-				<motion.div
-					className="flex flex-col items-center text-center px-6 md:px-8 py-8"
-					{...fadeInUp}
-					animate={mobileInView ? fadeInUp.animate : fadeInUp.initial}
-					transition={{ ...fadeInUp.transition, delay: 0.3 }}>
-					<motion.div
-						{...fadeInUp}
-						animate={mobileInView ? fadeInUp.animate : fadeInUp.initial}
-						transition={{ ...fadeInUp.transition, delay: 0.4 }}>
+				<div
+					className="flex flex-col items-center text-center px-6 md:px-8 py-8">
+					<div>
 						<HeadingText
 							variant="primary"
 							level={3}
@@ -119,25 +107,20 @@ export function FeatureSection({
 							responsive>
 							{title}
 						</HeadingText>
-					</motion.div>
+					</div>
 					{description && (
-						<motion.div
-							{...fadeInUp}
-							animate={mobileInView ? fadeInUp.animate : fadeInUp.initial}
-							transition={{ ...fadeInUp.transition, delay: 0.5 }}>
+						<div>
 							<BodyText
 								variant="large"
 								className="text-muted-foreground mb-6 sm:mb-8 max-w-xl"
 								responsive>
 								{description}
 							</BodyText>
-						</motion.div>
+						</div>
 					)}
-					<motion.div
+					<div
 						className="flex w-full flex-col justify-center gap-2 md:flex-row"
 						{...fadeInUp}
-						animate={mobileInView ? fadeInUp.animate : fadeInUp.initial}
-						transition={{ ...fadeInUp.transition, delay: 0.6 }}>
 						{/* Secondary Button - Show as primary styled button on mobile (Learn More) */}
 						{isExternal(secondaryAction.href) ? (
 							<Button asChild className="rounded-none w-full md:w-auto">
@@ -171,58 +154,47 @@ export function FeatureSection({
 								<Link href={primaryAction.href}>{primaryAction.text}</Link>
 							</Button>
 						)}
-					</motion.div>
-				</motion.div>
-			</motion.div>
+					</div>
+				</div>
+			</div>
 
 			{/* Desktop Layout: Grid (Current behavior maintained exactly) */}
-			<motion.div
+			<div
 				ref={desktopRef}
 				className={cn(
 					'hidden lg:grid items-center gap-0 w-full lg:grid-cols-2',
 					imagePosition === 'left' && '[&>*:first-child]:order-2'
 				)}
 				{...fadeInUp}
-				animate={desktopInView ? fadeInUp.animate : fadeInUp.initial}>
 				{/* Text Content */}
-				<motion.div
+				<div
 					className="flex flex-col items-start justify-center text-left px-8 lg:px-10 xl:px-16 min-h-0"
 					{...(imagePosition === 'left' ? slideInRight : slideInLeft)}
-					animate={desktopInView ?
 						(imagePosition === 'left' ? slideInRight.animate : slideInLeft.animate) :
 						(imagePosition === 'left' ? slideInRight.initial : slideInLeft.initial)
 					}
-					transition={{ ...(imagePosition === 'left' ? slideInRight.transition : slideInLeft.transition), delay: 0.1 }}>
-					<motion.div
-						{...fadeInUp}
-						animate={desktopInView ? fadeInUp.animate : fadeInUp.initial}
-						transition={{ ...fadeInUp.transition, delay: 0.3 }}>
-						<HeadingText
+					<div
+						><HeadingText
 							variant="primary"
 							level={3}
 							className="my-4 text-balance"
 							responsive>
 							{title}
 						</HeadingText>
-					</motion.div>
+					</div>
 					{description && (
-						<motion.div
-							{...fadeInUp}
-							animate={desktopInView ? fadeInUp.animate : fadeInUp.initial}
-							transition={{ ...fadeInUp.transition, delay: 0.4 }}>
+						<div>
 							<BodyText
 								variant="large"
 								className="text-muted-foreground mb-6 max-w-xl min-w-0"
 								responsive>
 								{description}
 							</BodyText>
-						</motion.div>
+						</div>
 					)}
-					<motion.div
+					<div
 						className="flex w-full flex-col justify-start gap-2 sm:flex-row"
 						{...fadeInUp}
-						animate={desktopInView ? fadeInUp.animate : fadeInUp.initial}
-						transition={{ ...fadeInUp.transition, delay: 0.5 }}>
 						{isExternal(primaryAction.href) ? (
 							<Button asChild className="rounded-none">
 								<a
@@ -255,20 +227,16 @@ export function FeatureSection({
 								</Link>
 							</Button>
 						)}
-					</motion.div>
-				</motion.div>
+					</div>
+				</div>
 
 				{/* Image */}
-				<motion.div
+				<div
 					className="relative w-full aspect-[4/3] lg:aspect-video overflow-hidden group"
 					{...(imagePosition === 'left' ? slideInLeft : slideInRight)}
-					animate={desktopInView ?
 						(imagePosition === 'left' ? slideInLeft.animate : slideInRight.animate) :
 						(imagePosition === 'left' ? slideInLeft.initial : slideInRight.initial)
 					}
-					transition={{ ...(imagePosition === 'left' ? slideInLeft.transition : slideInRight.transition), delay: 0.2 }}
-					whileHover={{ scale: 1.02 }}
-					whileTap={{ scale: 0.98 }}>
 					<Image
 						src={imageSrc}
 						alt={imageAlt}
@@ -276,8 +244,8 @@ export function FeatureSection({
 						className="object-cover transition-transform duration-500 group-hover:scale-105"
 						sizes="50vw"
 					/>
-				</motion.div>
-			</motion.div>
+				</div>
+			</div>
 		</section>
 	);
 }

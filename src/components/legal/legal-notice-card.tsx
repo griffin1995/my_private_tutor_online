@@ -1,7 +1,6 @@
 'use client';
 
 import { Card } from '@/components/ui/card';
-import { m } from 'framer-motion';
 import { AlertTriangle, Info, CheckCircle, XCircle } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -61,10 +60,7 @@ export function LegalNoticeCard({
 	const IconComponent = styles.icon;
 
 	return (
-		<m.div
-			initial={{ opacity: 0, y: 20 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.6 }}
+		<divdiv
 			viewport={{ once: true }}>
 			<Card className={`p-8 my-12 ${styles.background} border-2 ${styles.border} shadow-xl ${className}`}>
 				<div className='flex items-start gap-4'>
@@ -79,6 +75,6 @@ export function LegalNoticeCard({
 					</div>
 				</div>
 			</Card>
-		</m.div>
+		</divdiv>
 	);
 }

@@ -35,7 +35,6 @@ export function GlobalVision({
       imageAlt="Elizabeth Burrows Professional Portrait - Forbes Middle East Online Editor and education expert, showcasing her business journalism background"
       pullQuote={pullQuoteText}
       pullQuotePosition="left"
-      layout="image-right"
       textAlign="left"
     />
   );

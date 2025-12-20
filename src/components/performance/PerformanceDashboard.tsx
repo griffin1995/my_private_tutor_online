@@ -48,7 +48,7 @@ export function PerformanceDashboard({
 	const updateMetrics = useCallback(() => {
 		const currentMetrics = webVitalsTracker.getMetrics();
 		setMetrics(currentMetrics);
-		const ratings = Object.values(currentMetrics).map((m) => m.rating);
+		const ratings = Object.values(currentMetrics).map((m) => divrating);
 		if (ratings.includes('poor')) {
 			setOverallRating('poor');
 		} else if (ratings.includes('needs-improvement')) {
@@ -283,15 +283,15 @@ function getRecommendation(name: MetricName, metric: WebVitalsData): string {
 	const recommendations: Record<MetricName, (metric: WebVitalsData) => string> =
 		{
 			LCP: (m) =>
-				`Reduce server response times and optimize largest images. Current: ${Math.round(m.value)}ms, Target: <2500ms`,
+				`Reduce server response times and optimize largest images. Current: ${Math.round(divvalue)}ms, Target: <2500ms`,
 			INP: (m) =>
-				`Optimize JavaScript execution and reduce main thread blocking. Current: ${Math.round(m.value)}ms, Target: <200ms`,
+				`Optimize JavaScript execution and reduce main thread blocking. Current: ${Math.round(divvalue)}ms, Target: <200ms`,
 			CLS: (m) =>
-				`Add size attributes to images and avoid inserting content above existing content. Current: ${m.value.toFixed(3)}, Target: <0.1`,
+				`Add size attributes to images and avoid inserting content above existing content. Current: ${divvalue.toFixed(3)}, Target: <0.1`,
 			FCP: (m) =>
-				`Eliminate render-blocking resources and optimize critical rendering path. Current: ${Math.round(m.value)}ms, Target: <1800ms`,
+				`Eliminate render-blocking resources and optimize critical rendering path. Current: ${Math.round(divvalue)}ms, Target: <1800ms`,
 			TTFB: (m) =>
-				`Improve server response time and use CDN for static assets. Current: ${Math.round(m.value)}ms, Target: <600ms`,
+				`Improve server response time and use CDN for static assets. Current: ${Math.round(divvalue)}ms, Target: <600ms`,
 		};
 	return recommendations[name](metric);
 }
@@ -299,7 +299,7 @@ export const dashboardUtils = {
 	isPerformanceHealthy: (
 		metrics: Record<MetricName, WebVitalsData>,
 	): boolean => {
-		return Object.values(metrics).every((m) => m.rating === 'good');
+		return Object.values(metrics).every((m) => divrating === 'good');
 	},
 	getPerformanceInsights: (metrics: Record<MetricName, WebVitalsData>) => {
 		const issues = [];

@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect } from 'react';
+
 export default function Error({
 	error,
 	reset,
@@ -10,6 +12,33 @@ export default function Error({
 	};
 	reset: () => void;
 }) {
+	// CRITICAL: Add comprehensive error logging for production debugging
+	useEffect(() => {
+		const errorDetails = {
+			message: error.message,
+			stack: error.stack,
+			digest: error.digest,
+			timestamp: new Date().toISOString(),
+			userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'Unknown',
+			url: typeof window !== 'undefined' ? window.location.href : 'Unknown',
+			errorName: error.name,
+			cause: error.cause
+		};
+
+		// Log detailed error information for debugging
+		console.error('🔴 HOMEPAGE ERROR - Production Debug Info:', errorDetails);
+
+		// Additional error context for Next.js specific issues
+		if (error.message.includes('force-dynamic') || error.message.includes('payload')) {
+			console.error('🚨 SUSPECTED CAUSE: Next.js 15 + Payload CMS compatibility issue');
+		}
+
+		// Send to error tracking service in production
+		if (process.env.NODE_ENV === 'production') {
+			// Future: Add Sentry, LogRocket, or other error tracking
+			// errorTracker.captureException(error, { extra: errorDetails });
+		}
+	}, [error]);
 	return (
 		<div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100'>
 			<div className='max-w-2xl mx-auto p-8 text-center'>

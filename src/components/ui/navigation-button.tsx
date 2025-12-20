@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { AnimatePresence, m } from 'framer-motion';
 import { CheckIcon, PlusIcon } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
@@ -86,56 +85,41 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
 		<Link
 			href={href}
 			className={cn('block', className)}>
-			<AnimatePresence mode='wait'>
-				{isHovered ? (
-					<m.button
-						className={cn(
-							navigationButtonVariants({
-								variant,
-								state: 'hovered'
-							}),
-							'overflow-hidden'
-						)}
-						onMouseEnter={() => setIsHovered(true)}
-						onMouseLeave={() => setIsHovered(false)}
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}>
-						<m.span
-							key='action'
-							className='relative block h-full w-full'
-							initial={{ y: -50 }}
-							animate={{ y: 0 }}>
-							<span className='flex items-center justify-center gap-2'>
-								<CheckIcon className='h-4 w-4' />
-								{changeText}
-							</span>
-						</m.span>
-					</m.button>
-				) : (
-					<m.button
-						className={navigationButtonVariants({ variant, state: 'initial' })}
-						onMouseEnter={() => setIsHovered(true)}
-						onMouseLeave={() => setIsHovered(false)}
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}>
-						<m.span
-							key='reaction'
-							className='relative block'
-							initial={{ x: 0 }}
-							exit={{
-								x: 50,
-								transition: { duration: 0.1 },
-							}}>
-							<span className='flex items-center justify-center gap-2'>
-								<PlusIcon className='h-4 w-4' />
-								{initialText}
-							</span>
-						</m.span>
-					</m.button>
-				)}
-			</AnimatePresence>
+			{isHovered ? (
+				<button
+					className={cn(
+						navigationButtonVariants({
+							variant,
+							state: 'hovered'
+						}),
+						'overflow-hidden'
+					)}
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}>
+					<span
+						key='action'
+						className='relative block h-full w-full'>
+						<span className='flex items-center justify-center gap-2'>
+							<CheckIcon className='h-4 w-4' />
+							{changeText}
+						</span>
+					</span>
+				</button>
+			) : (
+				<button
+					className={navigationButtonVariants({ variant, state: 'initial' })}
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}>
+					<span
+						key='reaction'
+						className='relative block'>
+						<span className='flex items-center justify-center gap-2'>
+							<PlusIcon className='h-4 w-4' />
+							{initialText}
+						</span>
+					</span>
+				</button>
+			)}
 		</Link>
 	);
 };

@@ -5,7 +5,6 @@
 
 'use client';
 
-import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import { RecognitionCard } from './RecognitionCard';
@@ -88,20 +87,12 @@ export function AboutSectionClient({
 			id='about'
 			className={`pt-15 lg:pt-20 bg-gradient-to-br from-token-brand-50 to-token-brand-100 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] ${className}`}>
 			<div className='container mx-auto px-12 sm:px-16 lg:px-24 xl:px-32 2xl:px-40'>
-				<motion.div
+				<div
 					ref={mainContentRef}
 					className={gridLayoutClasses}
-					{...fadeInUp}
-					animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}>
-					<motion.div
-						initial={fadeInUp.initial}
-						animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
-						transition={{ ...fadeInUp.transition, delay: 0.1 }}>
+					>div
 						<div className='max-w-3xl md:max-w-none mx-auto md:mx-0 px-6 md:px-0 pt-8 sm:pt-12 md:pt-16 lg:pt-0 text-left'>
-							<motion.div
-								initial={fadeInUp.initial}
-								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
-								transition={{ ...fadeInUp.transition, delay: 0.2 }}>
+							<div
 								<HeadingText
 									variant="primary"
 									level={2}
@@ -112,12 +103,9 @@ export function AboutSectionClient({
 									<br />
 									At Your Fingertips.
 								</HeadingText>
-							</motion.div>
+							</div>
 
-							<motion.div
-								initial={fadeInUp.initial}
-								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
-								transition={{ ...fadeInUp.transition, delay: 0.3 }}>
+							<div
 								<BodyText
 									variant="large"
 									className="text-token-primary-dark leading-[1.6] mb-4"
@@ -132,14 +120,11 @@ export function AboutSectionClient({
 									—the company began not as a business, but as a trusted network of elite
 									colleagues she met throughout her international tutoring career.
 								</BodyText>
-							</motion.div>
+							</div>
 
 							{/* Mobile/Tablet responsive image placement */}
-							<motion.div
+							<div
 								className='block lg:hidden mb-6 mt-2 relative w-full h-48 sm:h-56 md:h-64 overflow-hidden'
-								initial={{ opacity: 0, scale: 0.95 }}
-								animate={mainContentInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-								transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}>
 								<Image
 									src='/images/about/meet-elizabeth-a-different-kind-of-educator.webp'
 									alt='Elizabeth Burrows - A Different Kind of Educator'
@@ -149,12 +134,9 @@ export function AboutSectionClient({
 									quality={85}
 									sizes='(max-width: 1024px) 100vw, 0px'
 								/>
-							</motion.div>
+							</div>
 
-							<motion.div
-								initial={fadeInUp.initial}
-								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
-								transition={{ ...fadeInUp.transition, delay: 0.5 }}>
+							<div
 								<BodyText
 									variant="large"
 									className="text-token-primary-dark leading-[1.6] mb-4"
@@ -177,12 +159,9 @@ export function AboutSectionClient({
 									</strong>{' '}
 									among our clientele.
 								</BodyText>
-							</motion.div>
+							</div>
 
-							<motion.div
-								initial={fadeInUp.initial}
-								animate={mainContentInView ? fadeInUp.animate : fadeInUp.initial}
-								transition={{ ...fadeInUp.transition, delay: 0.6 }}>
+							<div
 								<BodyText
 									variant="large"
 									className="text-token-primary-dark leading-[1.6]"
@@ -192,15 +171,12 @@ export function AboutSectionClient({
 									every match thoughtfully made, and every family accommodated directly by
 									Elizabeth and her team.
 								</BodyText>
-							</motion.div>
+							</div>
 						</div>
-					</motion.div>
+					</div>
 
-					<motion.div
+					<div
 						className='hidden lg:flex items-center justify-center h-full'
-						initial={{ opacity: 0, scale: 0.95, x: 20 }}
-						animate={mainContentInView ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.95, x: 20 }}
-						transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}>
 						<Image
 							src={founderImageUrl}
 							alt={founderImageAlt || 'Elizabeth Burrows, Founder'}
@@ -211,25 +187,21 @@ export function AboutSectionClient({
 							quality={85}
 							sizes='(max-width: 1024px) 0px, 400px'
 						/>
-					</motion.div>
-				</motion.div>
+					</div>
+				</div>
 
 				{/* Recognition Cards Grid - Staggered animation presentation */}
-				<motion.div
+				<div
 					ref={cardsRef}
 					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'
 					{...staggeredFadeIn}
-					animate={cardsInView ? staggeredFadeIn.animate : staggeredFadeIn.initial}>
 					{recognitionCards
 						.filter((card): card is RecognitionCardData & { contentType: 'logo'; logoImage: { url: string; alt: string } } =>
 							card.contentType === 'logo' && card.logoImage !== undefined
 						)
 						.map((card, index) => (
-							<motion.div
+							<div
 								key={card.id}
-								initial={fadeInUp.initial}
-								animate={cardsInView ? fadeInUp.animate : fadeInUp.initial}
-								transition={{ ...fadeInUp.transition, delay: 0.6 + index * 0.1 }}>
 								<RecognitionCard
 									headerText={card.headerText}
 									contentType={card.contentType}
@@ -238,9 +210,9 @@ export function AboutSectionClient({
 									animationDelay={0.6 + index * 0.1}
 									index={index}
 								/>
-							</motion.div>
+							</div>
 						))}
-				</motion.div>
+				</div>
 			</div>
 		</section>
 	);

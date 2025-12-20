@@ -36,7 +36,6 @@ export function FounderStoryHero({
       imageAlt="Elizabeth Burrows - Founder and CEO of My Private Tutor Online, personal portrait showcasing her approachable and professional demeanour"
       pullQuote={pullQuoteText}
       pullQuotePosition="right"
-      layout="image-left"
       textAlign="right"
       priority={true}
     />

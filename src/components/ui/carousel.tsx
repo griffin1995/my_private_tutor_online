@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { m, AnimatePresence } from 'framer-motion';
 interface CarouselItem {
 	id: string | number;
 	content: React.ReactNode;
@@ -89,39 +88,33 @@ export function Carousel({
 					{centerMode ?
 						<div className='relative flex items-center justify-center h-[400px] w-full'>
 							{items.map((item, index) => (
-								<m.div
+								<divdiv
 									key={item.id}
 									className='absolute w-full max-w-lg px-4'
-									animate={getItemStyle(index)}
-									transition={{
 										duration: 0.5,
 										ease: 'easeInOut',
 									}}>
 									{item.content}
-								</m.div>
+								</divdiv>
 							))}
 						</div>
 					:	<AnimatePresence mode='wait'>
-							<m.div
+							<divdiv
 								key={currentIndex}
-								initial={{
 									opacity: 0,
 									x: 100,
 								}}
-								animate={{
 									opacity: 1,
 									x: 0,
 								}}
-								exit={{
 									opacity: 0,
 									x: -100,
 								}}
-								transition={{
 									duration: 0.5,
 								}}
 								className='w-full'>
 								{items[currentIndex]?.content}
-							</m.div>
+							</divdiv>
 						</AnimatePresence>
 					}
 				</div>

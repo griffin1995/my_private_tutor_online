@@ -1,10 +1,9 @@
-// CONTEXT7 SOURCE: /framer-motion - Client Component for animated scrolling logos
+// CONTEXT7 SOURCE: /motion - Client Component for animated scrolling logos
 // ARCHITECTURE REASON: Motion requires client-side rendering for animations
-// PERFORMANCE: Framer Motion library provides excellent animations with good performance
+// PERFORMANCE: Motion library provides excellent animations with good performance
 
 'use client';
 
-import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
@@ -40,28 +39,11 @@ export function ScrollingLogos({ logos }: ScrollingLogosProps) {
 				WebkitMaskRepeat: 'no-repeat',
 				maskRepeat: 'no-repeat',
 			}}>
-			<motion.div
-				className='flex gap-8 sm:gap-12 whitespace-nowrap motion-reduce:animate-none'
-				animate={inView ? {
-					x: ['0%', '-50%'],
-				} : { x: '0%' }}
-				transition={{
-					repeat: inView ? Infinity : 0,
-					repeatType: 'loop',
-					ease: 'linear',
-					duration: 15,
-				}}>
+			<div className='flex gap-8 sm:gap-12 whitespace-nowrap'>
 				{logos.concat(logos).map((logo, index) => (
-					<motion.div
+					<div
 						key={index}
-						className='flex-shrink-0 flex items-center justify-center px-3 sm:px-4'
-						initial={{ opacity: 0, y: 10 }}
-						animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-						transition={{
-							delay: (index % logos.length) * 0.05,
-							duration: 0.4,
-							ease: 'easeOut'
-						}}>
+						className='flex-shrink-0 flex items-center justify-center px-3 sm:px-4'>
 						<Image
 							src={logo.src}
 							alt={logo.alt}
@@ -72,9 +54,9 @@ export function ScrollingLogos({ logos }: ScrollingLogosProps) {
 							className='h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300'
 							sizes='(max-width: 768px) 80px, (max-width: 1200px) 100px, 120px'
 						/>
-					</motion.div>
+					</div>
 				))}
-			</motion.div>
+			</div>
 		</div>
 	);
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 interface GradientOverlayProps {
 	direction?:
 		| 'top'
@@ -102,7 +101,7 @@ export const GradientOverlay: React.FC<GradientOverlayProps> = ({
   `
 		.trim()
 		.replace(/\s+/g, ' ');
-	const Component = animate ? motion.div : 'div';
+	const Component = animate ? div : 'div';
 	const animationProps =
 		animate ?
 			{

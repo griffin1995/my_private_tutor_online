@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { m } from 'framer-motion';
 import { useOffline } from '@/hooks/use-offline';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -80,16 +79,13 @@ export default function OfflinePage() {
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center px-4'>
 			<div className='w-full max-w-2xl'>
-				<m.div
-					initial={{
+				<divdiv
 						opacity: 0,
 						y: -20,
 					}}
-					animate={{
 						opacity: 1,
 						y: 0,
 					}}
-					transition={{
 						duration: 0.6,
 					}}
 					className='text-center mb-8'>
@@ -105,18 +101,15 @@ export default function OfflinePage() {
 						{customMessage ||
 							"Don't worry - we've saved your place. Our premium FAQ content is available offline."}
 					</p>
-				</m.div>
+				</divdiv>
 
-				<m.div
-					initial={{
+				<divdiv
 						opacity: 0,
 						y: 20,
 					}}
-					animate={{
 						opacity: 1,
 						y: 0,
 					}}
-					transition={{
 						duration: 0.6,
 						delay: 0.2,
 					}}>
@@ -279,16 +272,13 @@ export default function OfflinePage() {
 							</p>
 						)}
 					</Card>
-				</m.div>
+				</divdiv>
 
-				<m.div
-					initial={{
+				<divdiv
 						opacity: 0,
 					}}
-					animate={{
 						opacity: 1,
 					}}
-					transition={{
 						duration: 0.6,
 						delay: 0.4,
 					}}
@@ -301,7 +291,7 @@ export default function OfflinePage() {
 					<p className='text-xs text-slate-500'>
 						Royal Client Service • Est. 2010 • Featured in Tatler Address Book 2025
 					</p>
-				</m.div>
+				</divdiv>
 			</div>
 		</div>
 	);

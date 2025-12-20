@@ -45,7 +45,6 @@ export function CareerJourney({
       imageAlt="Global education journey - Elizabeth Burrows teaching experience across seven continents, showcasing international VIP family placements and worldwide tutoring expertise"
       pullQuote={pullQuoteText}
       pullQuotePosition="right"
-      layout="image-left"
       textAlign="right"
     />
   );

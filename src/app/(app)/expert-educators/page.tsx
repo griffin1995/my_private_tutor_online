@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { GradientOverlay } from '@/components/ui/gradient-overlay';
 import { WaveSeparator } from '@/components/ui/wave-separator';
-import { m } from 'framer-motion';
 import { Award, CheckCircle, Users } from 'lucide-react';
 const expertEducatorsContent = {
 	hero: {
@@ -93,12 +92,10 @@ export default function ExpertEducatorsPage() {
 				<div
 					className='relative z-10 text-center space-y-8'
 					data-dark-bg>
-					<m.div
-						initial={{
+					<divdiv
 							opacity: 0,
 							y: 30,
 						}}
-						whileInView={{
 							opacity: 1,
 							y: 0,
 						}}
@@ -106,22 +103,19 @@ export default function ExpertEducatorsPage() {
 							once: true,
 							margin: '-50px',
 						}}
-						transition={{
 							duration: 0.8,
 							delay: 0.1,
 						}}>
 						<Badge className='bg-accent-600/20 text-white border-white/30 mb-4'>
 							{expertEducatorsContent.hero.subtitle}
 						</Badge>
-					</m.div>
+					</divdiv>
 
-					<m.h1
+					<divh1
 						className='drop-shadow-sm'
-						initial={{
 							opacity: 0,
 							y: 30,
 						}}
-						whileInView={{
 							opacity: 1,
 							y: 0,
 						}}
@@ -129,20 +123,17 @@ export default function ExpertEducatorsPage() {
 							once: true,
 							margin: '-50px',
 						}}
-						transition={{
 							duration: 0.8,
 							delay: 0.2,
 						}}>
 						{expertEducatorsContent.hero.title}
-					</m.h1>
+					</divh1>
 
-					<m.p
+					<divp
 						className='max-w-4xl mx-auto drop-shadow-sm'
-						initial={{
 							opacity: 0,
 							y: 30,
 						}}
-						whileInView={{
 							opacity: 1,
 							y: 0,
 						}}
@@ -150,19 +141,16 @@ export default function ExpertEducatorsPage() {
 							once: true,
 							margin: '-50px',
 						}}
-						transition={{
 							duration: 0.8,
 							delay: 0.4,
 						}}>
 						{expertEducatorsContent.hero.description}
-					</m.p>
+					</divp>
 
-					<m.div
-						initial={{
+					<divdiv
 							opacity: 0,
 							y: 30,
 						}}
-						whileInView={{
 							opacity: 1,
 							y: 0,
 						}}
@@ -170,7 +158,6 @@ export default function ExpertEducatorsPage() {
 							once: true,
 							margin: '-50px',
 						}}
-						transition={{
 							duration: 0.8,
 							delay: 0.6,
 						}}
@@ -187,7 +174,7 @@ export default function ExpertEducatorsPage() {
 							className='border-white/50 text-white hover:bg-white/10 backdrop-blur-sm'>
 							View Comparison
 						</Button>
-					</m.div>
+					</divdiv>
 				</div>
 			</PageHero>
 
@@ -209,16 +196,13 @@ export default function ExpertEducatorsPage() {
 					/>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-center'>
-							<m.div
-								initial={{
+							<divdiv
 									opacity: 0,
 									x: -30,
 								}}
-								whileInView={{
 									opacity: 1,
 									x: 0,
 								}}
-								transition={{
 									duration: 0.8,
 								}}
 								viewport={{
@@ -231,14 +215,12 @@ export default function ExpertEducatorsPage() {
 								<div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
 									{expertEducatorsContent.founderStory.achievements.map(
 										(achievement, index) => (
-											<m.div
+											<divdiv
 												key={index}
 												className='flex items-center gap-3 group'
-												initial={{
 													opacity: 0,
 													x: -20,
 												}}
-												whileInView={{
 													opacity: 1,
 													x: 0,
 												}}
@@ -246,7 +228,6 @@ export default function ExpertEducatorsPage() {
 													once: true,
 													margin: '-50px',
 												}}
-												transition={{
 													duration: 0.6,
 													delay: index * 0.1,
 												}}>
@@ -254,22 +235,19 @@ export default function ExpertEducatorsPage() {
 												<span className='group-hover:text-primary-800 transition-colors duration-300'>
 													{achievement}
 												</span>
-											</m.div>
+											</divdiv>
 										),
 									)}
 								</div>
-							</m.div>
+							</divdiv>
 
-							<m.div
-								initial={{
+							<divdiv
 									opacity: 0,
 									x: 30,
 								}}
-								whileInView={{
 									opacity: 1,
 									x: 0,
 								}}
-								transition={{
 									duration: 0.8,
 									delay: 0.2,
 								}}
@@ -293,7 +271,7 @@ export default function ExpertEducatorsPage() {
 										<p className='mt-3'>Cambridge Graduate • 15+ Years Experience</p>
 									</div>
 								</div>
-							</m.div>
+							</divdiv>
 						</div>
 					</div>
 				</Section>
@@ -308,16 +286,13 @@ export default function ExpertEducatorsPage() {
 						}}
 					/>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
-						<m.div
-							initial={{
+						<divdiv
 								opacity: 0,
 								y: 30,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
-							transition={{
 								duration: 0.8,
 							}}
 							viewport={{
@@ -332,22 +307,19 @@ export default function ExpertEducatorsPage() {
 							<p className='max-w-4xl mx-auto'>
 								{expertEducatorsContent.tutorCredentials.description}
 							</p>
-						</m.div>
+						</divdiv>
 
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
 							{expertEducatorsContent.tutorCredentials.requirements.map(
 								(requirement, index) => (
-									<m.div
+									<divdiv
 										key={index}
-										initial={{
 											opacity: 0,
 											y: 30,
 										}}
-										whileInView={{
 											opacity: 1,
 											y: 0,
 										}}
-										transition={{
 											duration: 0.6,
 											delay: index * 0.1,
 										}}
@@ -368,7 +340,7 @@ export default function ExpertEducatorsPage() {
 												</div>
 											</CardContent>
 										</Card>
-									</m.div>
+									</divdiv>
 								),
 							)}
 						</div>
@@ -379,16 +351,13 @@ export default function ExpertEducatorsPage() {
 					className='py-16 lg:py-24'
 					background='grey'>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-						<m.div
-							initial={{
+						<divdiv
 								opacity: 0,
 								y: 30,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
-							transition={{
 								duration: 0.6,
 							}}
 							viewport={{
@@ -400,7 +369,7 @@ export default function ExpertEducatorsPage() {
 								Choose the perfect tutoring tier for your educational needs. All tiers
 								include our signature quality guarantee.
 							</p>
-						</m.div>
+						</divdiv>
 
 						<div className='overflow-x-auto'>
 							<div className='min-w-full'>
@@ -591,16 +560,13 @@ export default function ExpertEducatorsPage() {
 							</div>
 						</div>
 
-						<m.div
-							initial={{
+						<divdiv
 								opacity: 0,
 								y: 30,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
-							transition={{
 								duration: 0.6,
 								delay: 0.3,
 							}}
@@ -625,7 +591,7 @@ export default function ExpertEducatorsPage() {
 									</div>
 								</div>
 							</div>
-						</m.div>
+						</divdiv>
 					</div>
 				</Section>
 
@@ -633,16 +599,13 @@ export default function ExpertEducatorsPage() {
 					className='py-16 lg:py-24'
 					background='white'>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-						<m.div
-							initial={{
+						<divdiv
 								opacity: 0,
 								y: 30,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
-							transition={{
 								duration: 0.6,
 							}}
 							viewport={{
@@ -654,21 +617,18 @@ export default function ExpertEducatorsPage() {
 							<p className='max-w-3xl mx-auto'>
 								{expertEducatorsContent.supportSystem.description}
 							</p>
-						</m.div>
+						</divdiv>
 
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
 							{expertEducatorsContent.supportSystem.features.map((feature, index) => (
-								<m.div
+								<divdiv
 									key={index}
-									initial={{
 										opacity: 0,
 										y: 30,
 									}}
-									whileInView={{
 										opacity: 1,
 										y: 0,
 									}}
-									transition={{
 										duration: 0.6,
 										delay: index * 0.1,
 									}}
@@ -682,7 +642,7 @@ export default function ExpertEducatorsPage() {
 											<p>{feature.description}</p>
 										</CardContent>
 									</Card>
-								</m.div>
+								</divdiv>
 							))}
 						</div>
 					</div>
@@ -693,16 +653,13 @@ export default function ExpertEducatorsPage() {
 					background='primary'
 					data-dark-bg>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-						<m.div
-							initial={{
+						<divdiv
 								opacity: 0,
 								y: 30,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
-							transition={{
 								duration: 0.6,
 							}}
 							viewport={{
@@ -719,7 +676,7 @@ export default function ExpertEducatorsPage() {
 								className='bg-amber-600 hover:bg-amber-700 text-white px-8 py-3'>
 								Request Free Consultation
 							</Button>
-						</m.div>
+						</divdiv>
 					</div>
 				</Section>
 			</PageLayout>

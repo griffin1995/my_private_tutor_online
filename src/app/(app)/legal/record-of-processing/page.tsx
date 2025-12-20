@@ -3,7 +3,6 @@
 import { LegalPageTemplate } from '@/components/legal/legal-page-template';
 import { getLegalPageMetadata } from '@/lib/legal/legal-content';
 import { Card } from '@/components/ui/card';
-import { m } from 'framer-motion';
 import { FileText, Database, Users, CreditCard, Mail, UserCheck } from 'lucide-react';
 
 export default function RecordOfProcessingPage() {
@@ -23,10 +22,7 @@ export default function RecordOfProcessingPage() {
 								</p>
 
 								<div className='grid grid-cols-1 md:grid-cols-2 gap-8 my-12 not-prose'>
-									<m.div
-										initial={{ opacity: 0, y: 20 }}
-										whileInView={{ opacity: 1, y: 0 }}
-										transition={{ duration: 0.6, delay: 0.1 }}
+									<divdiv
 										viewport={{ once: true }}>
 										<Card className='p-6 h-full bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200'>
 											<div className='flex items-center gap-3 mb-4'>
@@ -45,12 +41,9 @@ export default function RecordOfProcessingPage() {
 												<li>• Legal Basis: Contract & Consent</li>
 											</ul>
 										</Card>
-									</m.div>
+									</divdiv>
 
-									<m.div
-										initial={{ opacity: 0, y: 20 }}
-										whileInView={{ opacity: 1, y: 0 }}
-										transition={{ duration: 0.6, delay: 0.2 }}
+									<divdiv
 										viewport={{ once: true }}>
 										<Card className='p-6 h-full bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200'>
 											<div className='flex items-center gap-3 mb-4'>
@@ -69,12 +62,9 @@ export default function RecordOfProcessingPage() {
 												<li>• Legal Basis: Contract & Legal Obligation</li>
 											</ul>
 										</Card>
-									</m.div>
+									</divdiv>
 
-									<m.div
-										initial={{ opacity: 0, y: 20 }}
-										whileInView={{ opacity: 1, y: 0 }}
-										transition={{ duration: 0.6, delay: 0.3 }}
+									<divdiv
 										viewport={{ once: true }}>
 										<Card className='p-6 h-full bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200'>
 											<div className='flex items-center gap-3 mb-4'>
@@ -93,12 +83,9 @@ export default function RecordOfProcessingPage() {
 												<li>• Legal Basis: Consent & Legitimate Interests</li>
 											</ul>
 										</Card>
-									</m.div>
+									</divdiv>
 
-									<m.div
-										initial={{ opacity: 0, y: 20 }}
-										whileInView={{ opacity: 1, y: 0 }}
-										transition={{ duration: 0.6, delay: 0.4 }}
+									<divdiv
 										viewport={{ once: true }}>
 										<Card className='p-6 h-full bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200'>
 											<div className='flex items-center gap-3 mb-4'>
@@ -117,7 +104,7 @@ export default function RecordOfProcessingPage() {
 												<li>• Legal Basis: Contract & Legal Obligation</li>
 											</ul>
 										</Card>
-									</m.div>
+									</divdiv>
 								</div>
 
 								<hr className="my-8 border-gray-300" />
@@ -135,10 +122,7 @@ export default function RecordOfProcessingPage() {
 									<li>Rights in relation to automated decision making</li>
 								</ul>
 
-								<m.div
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6 }}
+								<divdiv
 									viewport={{ once: true }}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
@@ -158,7 +142,7 @@ export default function RecordOfProcessingPage() {
 											</div>
 										</div>
 									</Card>
-								</m.div>
+								</divdiv>
 
 								<hr className="my-8 border-gray-300" />
 
@@ -188,10 +172,7 @@ export default function RecordOfProcessingPage() {
 									<li><strong>As needed:</strong> When processing activities change</li>
 								</ul>
 
-								<m.div
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6 }}
+								<divdiv
 									viewport={{ once: true }}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-gray-50 to-slate-50 border-2 border-gray-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
@@ -210,7 +191,7 @@ export default function RecordOfProcessingPage() {
 											</div>
 										</div>
 									</Card>
-								</m.div>
+								</divdiv>
 		</LegalPageTemplate>
 	);
 }

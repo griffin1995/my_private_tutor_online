@@ -1,6 +1,5 @@
 'use client';
 
-import { m } from 'framer-motion';
 import Image from 'next/image';
 import { getScrollingSchoolLogos } from '@/lib/cms/cms-images';
 interface ScrollingSchoolsProps {
@@ -40,16 +39,7 @@ export function ScrollingSchools({
 			className={`bg-white py-4 px-4 sm:px-6 lg:px-8 ${className}`}
 			aria-label='Partner schools carousel'>
 			<div className='w-full overflow-hidden bg-white'>
-				<m.div
-					className='flex gap-8 sm:gap-12 whitespace-nowrap motion-reduce:animate-none'
-					animate={{
-						x: ['0%', '-50%'],
-					}}
-					transition={{
-						repeat: Infinity,
-						ease: 'linear',
-						duration: speed,
-					}}>
+				<div className='flex gap-8 sm:gap-12 whitespace-nowrap motion-reduce:animate-none'>
 
 					{schoolNames.map((school, index) => {
 						const logoAsset = schoolLogos[school as keyof typeof schoolLogos];
@@ -92,7 +82,7 @@ export function ScrollingSchools({
 							</div>
 						);
 					})}
-				</m.div>
+				</div>
 			</div>
 		</section>
 	);

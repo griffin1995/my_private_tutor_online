@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { m, AnimatePresence, useSpring, useTransform } from 'framer-motion';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -376,19 +375,16 @@ export function FAQGamificationSystem({
 		(unlockedAchievements.length / achievements.length) * 100;
 	if (compact) {
 		return (
-			<m.div
+			<divdiv
 				className={`fixed bottom-4 right-4 z-50 ${className}`}
-				initial={{
 					opacity: 0,
 					scale: 0.8,
 					y: 20,
 				}}
-				animate={{
 					opacity: 1,
 					scale: 1,
 					y: 0,
 				}}
-				transition={{
 					duration: 0.5,
 					type: 'spring',
 					stiffness: 200,
@@ -405,23 +401,19 @@ export function FAQGamificationSystem({
 
 				<AnimatePresence>
 					{showProgressPanel && (
-						<m.div
-							initial={{
+						<divdiv
 								opacity: 0,
 								scale: 0.9,
 								x: 20,
 							}}
-							animate={{
 								opacity: 1,
 								scale: 1,
 								x: 0,
 							}}
-							exit={{
 								opacity: 0,
 								scale: 0.9,
 								x: 20,
 							}}
-							transition={{
 								duration: 0.3,
 							}}
 							className='absolute bottom-16 right-0 w-80'>
@@ -451,9 +443,9 @@ export function FAQGamificationSystem({
 												Level {progress.level}
 											</span>
 										</div>
-										<m.div className='text-lg font-semibold text-amber-600'>
+										<divdiv className='text-lg font-semibold text-amber-600'>
 											{animatedPoints.get()} points
-										</m.div>
+										</divdiv>
 										<Progress
 											value={levelProgress.get()}
 											className='h-2 mt-2'
@@ -493,25 +485,22 @@ export function FAQGamificationSystem({
 									)}
 								</CardContent>
 							</Card>
-						</m.div>
+						</divdiv>
 					)}
 				</AnimatePresence>
-			</m.div>
+			</divdiv>
 		);
 	}
 	return (
 		<>
-			<m.div
+			<divdiv
 				className={`bg-gradient-to-br from-white via-slate-50 to-white border-2 border-slate-200 rounded-3xl shadow-xl p-6 lg:p-8 ${className}`}
-				initial={{
 					opacity: 0,
 					y: 20,
 				}}
-				animate={{
 					opacity: 1,
 					y: 0,
 				}}
-				transition={{
 					duration: 0.6,
 					type: 'spring',
 					stiffness: 100,
@@ -536,11 +525,11 @@ export function FAQGamificationSystem({
 								Level {progress.level}
 							</TitleText>
 						</div>
-						<m.div>
+						<divdiv>
 							<BodyText variant="large" className="font-semibold text-amber-600">
 								{animatedPoints.get()} points
 							</BodyText>
-						</m.div>
+						</divdiv>
 					</div>
 				</div>
 
@@ -638,17 +627,14 @@ export function FAQGamificationSystem({
 
 					<div className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
 						{achievements.slice(0, 8).map((achievement, index) => (
-							<m.div
+							<divdiv
 								key={achievement.id}
-								initial={{
 									opacity: 0,
 									scale: 0.9,
 								}}
-								animate={{
 									opacity: 1,
 									scale: 1,
 								}}
-								transition={{
 									duration: 0.3,
 									delay: index * 0.1,
 								}}
@@ -684,7 +670,7 @@ export function FAQGamificationSystem({
 										</div>
 									)}
 								</div>
-							</m.div>
+							</divdiv>
 						))}
 					</div>
 				</div>
@@ -715,39 +701,32 @@ export function FAQGamificationSystem({
 						<div className='text-sm text-slate-600'>Shares</div>
 					</div>
 				</div>
-			</m.div>
+			</divdiv>
 
 			<AnimatePresence>
 				{showAchievementModal && newAchievement && (
-					<m.div
-						initial={{
+					<divdiv
 							opacity: 0,
 						}}
-						animate={{
 							opacity: 1,
 						}}
-						exit={{
 							opacity: 0,
 						}}
 						className='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4'
 						onClick={() => setShowAchievementModal(false)}>
-						<m.div
-							initial={{
+						<divdiv
 								opacity: 0,
 								scale: 0.8,
 								y: 20,
 							}}
-							animate={{
 								opacity: 1,
 								scale: 1,
 								y: 0,
 							}}
-							exit={{
 								opacity: 0,
 								scale: 0.8,
 								y: 20,
 							}}
-							transition={{
 								duration: 0.3,
 								type: 'spring',
 							}}
@@ -778,8 +757,8 @@ export function FAQGamificationSystem({
 								className='w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white font-semibold py-3'>
 								Continue Exploring
 							</Button>
-						</m.div>
-					</m.div>
+						</divdiv>
+					</divdiv>
 				)}
 			</AnimatePresence>
 

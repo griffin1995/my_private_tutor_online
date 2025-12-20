@@ -3,7 +3,6 @@
 import { LegalPageTemplate } from '@/components/legal/legal-page-template';
 import { getLegalPageMetadata } from '@/lib/legal/legal-content';
 import { Card } from '@/components/ui/card';
-import { m } from 'framer-motion';
 import {
 	Calendar,
 	CreditCard,
@@ -31,11 +30,8 @@ export default function BookingPolicyPage() {
 			showCompliance={metadata.showCompliance ?? false}>
 
 			{/* Contact Information Header */}
-			<m.div
+			<divdiv
 				className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg'
-				initial={{ opacity: 0, x: -20 }}
-				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ duration: 0.6 }}
 				viewport={{ once: true }}>
 				<h3 className='text-xl font-bold text-blue-800 mb-4'>My Private Tutor Online (MPTO)</h3>
 				<div className='grid md:grid-cols-2 gap-4 text-blue-700'>
@@ -60,7 +56,7 @@ export default function BookingPolicyPage() {
 						</p>
 					</div>
 				</div>
-			</m.div>
+			</divdiv>
 
 								{/* 1. Bookings */}
 								<h2 className='flex items-center gap-3'>
@@ -83,10 +79,7 @@ export default function BookingPolicyPage() {
 								<p>Payment for the first lesson must be received no less than 3 days in advance.</p>
 
 								<h3>2.2 Ongoing Balance Requirement</h3>
-								<m.div
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6 }}
+								<divdiv
 									viewport={{ once: true }}>
 									<Card className='p-8 my-6 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
@@ -102,7 +95,7 @@ export default function BookingPolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</m.div>
+								</divdiv>
 
 								<h3>2.3 Monthly Billing</h3>
 								<p>Following the first prepaid session, tuition is billed monthly in arrears, with payment due immediately upon receipt of the invoice.</p>
@@ -135,10 +128,7 @@ export default function BookingPolicyPage() {
 								<p>Tutees must arrive on time and prepared. Tutors are not required to extend the lesson if the tutee is late.</p>
 
 								<h3>3.2 Tutor Waiting Time</h3>
-								<m.div
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6 }}
+								<divdiv
 									viewport={{ once: true }}>
 									<Card className='p-8 my-6 bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
@@ -151,7 +141,7 @@ export default function BookingPolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</m.div>
+								</divdiv>
 
 								<h3>3.3 Technical Requirements</h3>
 								<p>Clients are responsible for ensuring suitable IT equipment, software, and a stable internet connection. MPTO is not liable for lessons affected by technical issues on the Client's side.</p>
@@ -186,10 +176,7 @@ export default function BookingPolicyPage() {
 								</ul>
 
 								<h3>4.6 Goodwill Illness Clause</h3>
-								<m.div
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6 }}
+								<divdiv
 									viewport={{ once: true }}>
 									<Card className='p-8 my-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
@@ -202,7 +189,7 @@ export default function BookingPolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</m.div>
+								</divdiv>
 
 								{/* 5. Termination of Tuition */}
 								<h2 className='flex items-center gap-3'>
@@ -242,10 +229,7 @@ export default function BookingPolicyPage() {
 								<h2>7. Contact</h2>
 								<p>For all matters relating to billing, cancellations, or bookings:</p>
 
-								<m.div
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.6 }}
+								<divdiv
 									viewport={{ once: true }}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
@@ -275,7 +259,7 @@ export default function BookingPolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</m.div>
+								</divdiv>
 
 		</LegalPageTemplate>
 	);

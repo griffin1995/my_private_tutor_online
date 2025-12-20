@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 interface WaveSeparatorProps {
 	variant?: 'subtle' | 'dramatic' | 'organic' | 'double';
 	flip?: boolean;
@@ -86,12 +85,9 @@ export const WaveSeparator: React.FC<WaveSeparatorProps> = ({
 					filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05))',
 				}}>
 				{animate ?
-					<motion.path
+					<path
 						d={wavePath}
 						className={`fill-${color}`}
-						variants={animationVariants}
-						initial='hidden'
-						whileInView='visible'
 						viewport={{
 							once: true,
 							amount: 0.3,

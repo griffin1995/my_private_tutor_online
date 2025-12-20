@@ -7,7 +7,6 @@ import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { NavigationButton } from '@/components/ui/navigation-button';
@@ -126,23 +125,15 @@ export function ServicesCarousel({
 	};
 
 	return (
-		<motion.section
+		<section
 			ref={animationRef}
 			className={`pt-16 lg:pt-24 pb-0 bg-white ${className}`}
 			aria-label='Educational pathways and tutoring options available'
-			{...fadeInUp}
-			animate={animationInView ? fadeInUp.animate : fadeInUp.initial}>
-			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-				<motion.div
+			>div className='container mx-auto px-4 sm:px-6 lg:px-8'>
+				<div
 					className='text-center mb-12'
-					{...fadeInUp}
-					animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
-					transition={{ ...fadeInUp.transition, delay: 0.1 }}>
-					<motion.div
-						{...fadeInUp}
-						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
-						transition={{ ...fadeInUp.transition, delay: 0.2 }}>
-						<HeadingText
+					>div
+						>HeadingText
 							variant="primary"
 							level={2}
 							className="text-primary-900 mb-0"
@@ -150,61 +141,43 @@ export function ServicesCarousel({
 						>
 							{title}
 						</HeadingText>
-					</motion.div>
-					<motion.div
-						{...fadeInUp}
-						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
-						transition={{ ...fadeInUp.transition, delay: 0.3 }}>
-						<BodyText
+					</div>
+					<div
+						>BodyText
 							variant="large"
 							className="text-primary-700 max-w-3xl mx-auto mb-3"
 							responsive
 						>
 							{description}
 						</BodyText>
-					</motion.div>
+					</div>
 
 					{/* Navigation buttons positioned above the carousel */}
-					<motion.div
+					<div
 						className='relative max-w-7xl mx-auto px-4 sm:px-0 mb-3'
-						{...fadeInUp}
-						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
-						transition={{ ...fadeInUp.transition, delay: 0.4 }}>
-						<div className='flex justify-end gap-2'>
-							<motion.button
+						>div className='flex justify-end gap-2'>
+							<button
 								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300'
 								onClick={scrollPrev}
 								aria-label='Previous slide'
-								whileHover={{ scale: 1.1 }}
-								whileTap={{ scale: 0.95 }}
-								transition={{ duration: 0.2, ease: 'easeOut' }}>
 								<ChevronLeft className='w-5 h-5 sm:w-6 sm:h-6 text-accent-600' />
-							</motion.button>
+							</button>
 
-							<motion.button
+							<button
 								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300'
 								onClick={scrollNext}
 								aria-label='Next slide'
-								whileHover={{ scale: 1.1 }}
-								whileTap={{ scale: 0.95 }}
-								transition={{ duration: 0.2, ease: 'easeOut' }}>
 								<ChevronRight className='w-5 h-5 sm:w-6 sm:h-6 text-accent-600' />
-							</motion.button>
+							</button>
 						</div>
-					</motion.div>
+					</div>
 
-					<motion.div
+					<div
 						ref={intersectionRef}
 						className='relative max-w-7xl mx-auto px-4 sm:px-0'
-						{...fadeInUp}
-						animate={animationInView ? fadeInUp.animate : fadeInUp.initial}
-						transition={{ ...fadeInUp.transition, delay: 0.5 }}>
-						<motion.div
+						>div
 							className='overflow-hidden w-full'
 							ref={emblaRef}
-							initial={{ opacity: 0 }}
-							animate={isReady ? { opacity: 1 } : { opacity: 0 }}
-							transition={{ duration: 0.3, ease: 'easeOut' }}>
 							<div className='flex -ml-4 pb-4'>
 								{services.map((service, index) => {
 									const serviceImageMapping = {
@@ -230,20 +203,15 @@ export function ServicesCarousel({
 											}
 										:	studentImages[imageKey];
 									return (
-										<motion.div
+										<div
 											key={index}
 											className='flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 pb-4'
-											initial={{ opacity: 0, y: 20 }}
-											animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-											transition={{
 												duration: 0.6,
 												ease: 'easeOut',
 												delay: index * 0.1 + 0.2 // Staggered animation
 											}}>
-											<motion.div
+											<div
 												className='group bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 transform-gpu min-h-full'
-												whileHover={{ y: -2, scale: 1.01 }}
-												transition={{ duration: 0.3, ease: 'easeOut' }}>
 												{studentImage ? (
 													<>
 														{/* Landscape aspect ratio for default/sm screens */}
@@ -305,10 +273,7 @@ export function ServicesCarousel({
 												)}
 
 												<div className='p-6 lg:p-8 pb-8 space-y-4 text-right flex flex-col items-end'>
-													<motion.div
-														initial={{ opacity: 0, y: 10 }}
-														animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-														transition={{
+													<div
 															duration: 0.4,
 															ease: 'easeOut',
 															delay: index * 0.1 + 0.4
@@ -321,11 +286,8 @@ export function ServicesCarousel({
 														>
 															{service.title}
 														</TitleText>
-													</motion.div>
-													<motion.div
-														initial={{ opacity: 0, y: 10 }}
-														animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-														transition={{
+													</div>
+													<div
 															duration: 0.4,
 															ease: 'easeOut',
 															delay: index * 0.1 + 0.5
@@ -337,12 +299,9 @@ export function ServicesCarousel({
 														>
 															{service.description}
 														</BodyText>
-													</motion.div>
+													</div>
 													<div className='flex justify-end w-full'>
-														<motion.div
-															initial={{ opacity: 0, scale: 0.95 }}
-															animate={isReady ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-															transition={{
+														<div
 																duration: 0.3,
 																ease: 'easeOut',
 																delay: index * 0.1 + 0.6
@@ -365,19 +324,19 @@ export function ServicesCarousel({
 																}[service.title] || '/subject-tuition'
 															}
 														/>
-														</motion.div>
+														</div>
 													</div>
 												</div>
-											</motion.div>
-										</motion.div>
+											</div>
+										</div>
 									);
 								})}
 							</div>
-						</motion.div>
-					</motion.div>
-				</motion.div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</motion.section>
+		</section>
 	);
 }
 export type { ServiceData, ServicesCarouselProps, StudentImageData };

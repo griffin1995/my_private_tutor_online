@@ -1,7 +1,6 @@
 'use client';
 
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
-import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { getTestimonialVideos } from '@/lib/cms/cms-content';
@@ -58,11 +57,9 @@ export function TestimonialsSection({
 
 			<div className='relative container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16'>
 				<div className='max-w-7xl mx-auto'>
-					<motion.div
+					<div
 						ref={mainRef}
-						className='grid lg:grid-cols-2 gap-8 lg:gap-10'
-						{...fadeInUp}
-						animate={mainInView ? fadeInUp.animate : fadeInUp.initial}>
+						className='grid lg:grid-cols-2 gap-8 lg:gap-10'>
 						{(() => {
 							const testimonialVideos = getTestimonialVideos();
 							const parentVideo = testimonialVideos.find(
@@ -73,11 +70,8 @@ export function TestimonialsSection({
 							);
 							return (
 								<>
-									<motion.div
-										className='relative'
-										{...scaleIn}
-										animate={mainInView ? scaleIn.animate : scaleIn.initial}
-										transition={{ ...scaleIn.transition, delay: 0.1 }}>
+									<div
+										className='relative'>
 										{parentVideo ? (
 											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
@@ -94,13 +88,10 @@ export function TestimonialsSection({
 												<div className='text-slate-400'>Loading testimonials...</div>
 											</div>
 										)}
-									</motion.div>
+									</div>
 
-									<motion.div
-										className='relative'
-										{...scaleIn}
-										animate={mainInView ? scaleIn.animate : scaleIn.initial}
-										transition={{ ...scaleIn.transition, delay: 0.2 }}>
+									<div
+										className='relative'>
 										{studentVideo ? (
 											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
@@ -117,32 +108,26 @@ export function TestimonialsSection({
 												<div className='text-slate-400'>Loading testimonials...</div>
 											</div>
 										)}
-									</motion.div>
+									</div>
 								</>
 							);
 						})()}
-					</motion.div>
+					</div>
 
 					{/* "Hear more from our clients" button - conditionally rendered */}
 					{showMoreButton && (
-						<motion.div
+						<div
 							ref={buttonRef}
-							className='mt-8 lg:mt-12 flex justify-center'
-							{...fadeInUp}
-							animate={buttonInView ? fadeInUp.animate : fadeInUp.initial}
-							transition={{ ...fadeInUp.transition, delay: 0.4 }}>
-							<motion.div
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
-								transition={{ duration: 0.2, ease: 'easeOut' }}>
+							className='mt-8 lg:mt-12 flex justify-center'>
+							<div>
 								<Button
 									variant='gold'
 									size='lg'
 									aria-label='View more client testimonials'>
 									Hear more from our clients
 								</Button>
-							</motion.div>
-						</motion.div>
+							</div>
+						</div>
 					)}
 				</div>
 			</div>

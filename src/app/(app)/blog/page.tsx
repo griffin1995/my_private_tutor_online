@@ -10,7 +10,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { m } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
 import Masonry from 'react-masonry-css';
@@ -40,11 +39,8 @@ function BlogPostCard({ post }: { post: (typeof blogPosts)[0] }) {
 
 	return (
 		<Link href={`/blog/${post.slug}`}>
-			<m.article
-				initial={{ opacity: 0, y: 20 }}
-				whileInView={{ opacity: 1, y: 0 }}
+			<divarticle
 				viewport={{ once: true, margin: '-50px' }}
-				transition={{ duration: 0.4 }}
 				className='group cursor-pointer overflow-hidden border border-neutral-200 hover:shadow-lg transition-shadow mb-6'>
 				<div className='relative overflow-hidden bg-neutral-800'>
 					{/* Enhanced Image with Fallback Support */}
@@ -70,7 +66,7 @@ function BlogPostCard({ post }: { post: (typeof blogPosts)[0] }) {
 						<h3 className='typography-h3 text-white text-center'>{post.title}</h3>
 					</div>
 				</div>
-			</m.article>
+			</divarticle>
 		</Link>
 	);
 }

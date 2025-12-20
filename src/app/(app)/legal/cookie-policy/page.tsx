@@ -3,7 +3,6 @@
 import { LegalPageTemplate } from '@/components/legal/legal-page-template';
 import { getLegalPageMetadata } from '@/lib/legal/legal-content';
 import { Card } from '@/components/ui/card';
-import { m } from 'framer-motion';
 import { AlertTriangle, Eye, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { CookiePolicyIntegration, CookieComplianceChecker } from '@/components/privacy/cookie-policy-integration';
@@ -33,16 +32,13 @@ export default function CookiePolicyPage() {
 									functionalities.
 								</p>
 
-								<m.div
-									initial={{
+								<divdiv
 										opacity: 0,
 										y: 20,
 									}}
-									whileInView={{
 										opacity: 1,
 										y: 0,
 									}}
-									transition={{
 										duration: 0.6,
 									}}
 									viewport={{
@@ -64,7 +60,7 @@ export default function CookiePolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</m.div>
+								</divdiv>
 
 								<h2>2. Types of Cookies We Use</h2>
 
@@ -279,16 +275,13 @@ export default function CookiePolicyPage() {
 
 								<h2>4. Cookie Consent Management</h2>
 
-								<m.div
-									initial={{
+								<divdiv
 										opacity: 0,
 										y: 20,
 									}}
-									whileInView={{
 										opacity: 1,
 										y: 0,
 									}}
-									transition={{
 										duration: 0.6,
 									}}
 									viewport={{
@@ -316,7 +309,7 @@ export default function CookiePolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</m.div>
+								</divdiv>
 
 								<h3>4.1 Consent Options</h3>
 								<ul>
@@ -433,16 +426,13 @@ export default function CookiePolicyPage() {
 
 								<h2>8. Impact of Disabling Cookies</h2>
 
-								<m.div
-									initial={{
+								<divdiv
 										opacity: 0,
 										y: 20,
 									}}
-									whileInView={{
 										opacity: 1,
 										y: 0,
 									}}
-									transition={{
 										duration: 0.6,
 									}}
 									viewport={{
@@ -461,7 +451,7 @@ export default function CookiePolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</m.div>
+								</divdiv>
 
 								<h3>8.1 Essential Cookies Disabled</h3>
 								<ul>

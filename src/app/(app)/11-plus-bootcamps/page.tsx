@@ -181,7 +181,6 @@ export default function ElevenPlusBootcampsPage() {
 				<section aria-labelledby='intensive-programme-heading'>
 					<BootcampVideoSectionVersion
 						videoId='intensiveProgramme'
-						layout='text-left'
 						className='py-16'
 					/>
 				</section>
@@ -203,7 +202,6 @@ export default function ElevenPlusBootcampsPage() {
 				<section aria-labelledby='kickstarter-programme-heading'>
 					<BootcampVideoSectionVersion
 						videoId='kickstarterProgramme'
-						layout='text-right'
 						className='py-16'
 					/>
 				</section>

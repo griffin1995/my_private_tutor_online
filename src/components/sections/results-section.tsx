@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { Award, Crown, Users, School, TrendingUp, Shield } from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import CountUp from 'react-countup';
 import { getResultsStatistics } from '@/lib/cms/cms-content';
@@ -35,13 +34,11 @@ export function ResultsSection({
 			<div className='absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-accent-50/20 to-transparent' />
 
 			<div className='container mx-auto px-6 lg:px-12 max-w-7xl relative'>
-				<motion.div
+				<div
 					className='text-center mb-16 lg:mb-20'
-					initial={{
 						opacity: 0,
 						y: 30,
 					}}
-					animate={
 						isInView ?
 							{
 								opacity: 1,
@@ -52,7 +49,6 @@ export function ResultsSection({
 								y: 30,
 							}
 					}
-					transition={{
 						duration: 0.8,
 						ease: 'easeOut',
 					}}>
@@ -88,13 +84,10 @@ export function ResultsSection({
 							{description}
 						</BodyText>
 					)}
-				</motion.div>
+				</div>
 
-				<motion.div
+				<div
 					className='grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto'
-					initial='hidden'
-					animate={isInView ? 'visible' : 'hidden'}
-					variants={{
 						hidden: {
 							opacity: 0,
 						},
@@ -107,10 +100,9 @@ export function ResultsSection({
 						},
 					}}>
 					{resultsStats.map((stat, index) => (
-						<motion.div
+						<div
 							key={index}
 							className='group relative'
-							variants={{
 								hidden: {
 									opacity: 0,
 									y: 40,
@@ -207,17 +199,15 @@ export function ResultsSection({
 
 								<div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-transparent via-accent-400 to-transparent rounded-full opacity-60 group-hover:opacity-100 group-hover:w-24 transition-all duration-500' />
 							</div>
-						</motion.div>
+						</div>
 					))}
-				</motion.div>
+				</div>
 
-				<motion.div
+				<div
 					className='text-center mt-16 lg:mt-20'
-					initial={{
 						opacity: 0,
 						y: 20,
 					}}
-					animate={
 						isInView ?
 							{
 								opacity: 1,
@@ -228,7 +218,6 @@ export function ResultsSection({
 								y: 20,
 							}
 					}
-					transition={{
 						duration: 0.8,
 						delay: 1.2,
 						ease: 'easeOut',
@@ -240,7 +229,7 @@ export function ResultsSection({
 						</span>
 						<Crown className='w-5 h-5 text-accent-600' />
 					</div>
-				</motion.div>
+				</div>
 			</div>
 		</section>
 	);

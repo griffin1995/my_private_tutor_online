@@ -1,14 +1,16 @@
-// CONTEXT7 SOURCE: /vercel/next.js - Server Component pattern for Next.js App Router
-// ARCHITECTURE REASON: Next.js 15 App Router - Server Component with hardcoded data for static rendering
+'use client';
 
-// TEMPORARY: Force dynamic to bypass Next.js 16 static generation React context bug
-export const dynamic = 'force-dynamic';
+// CONTEXT7 SOURCE: /vercel/next.js - Client Component pattern for Next.js App Router
+// ARCHITECTURE REASON: Next.js 15 App Router - Client Component due to interactive features
+
+// FIXED: Added 'use client' directive - page contains client components with React context
+// Animations, interactions, and dynamic features require client-side rendering
 
 import { TestimonialsSection } from '@/components/sections/about/testimonials-section';
 import { TestimonialAuthorRole } from '@/components/testimonials/TestimonialAuthorRole';
 import { HeadingText } from '@/components/ui/typography';
-import { ScrollingLogos } from '../../components/client/ScrollingLogos';
-import { LazyServicesCarousel } from '../../components/dynamic/lazy-loaded-components';
+// import { ScrollingLogos } from '../../components/client/ScrollingLogos';
+import { ServicesCarousel } from '../../components/sections/ServicesCarousel';
 import { PageFooter } from '../../components/layout/page-footer';
 import { Navigation } from '../../components/navigation/Navigation';
 import { AboutSectionClient } from '../../components/sections/AboutSectionClient';
@@ -16,6 +18,11 @@ import { FeatureSection } from '../../components/sections/feature-section';
 import { FounderIntroductionSection } from '../../components/sections/founder-introduction-section';
 import { ThreePillarsSection } from '../../components/sections/three-pillars-section';
 import { SchemaMarkup } from '../../components/seo/SchemaMarkup';
+
+// Import optimized data from JSON files
+import servicesData from '@/content/homepage/services.json';
+import featuresData from '@/content/homepage/features.json';
+import schoolLogosData from '@/content/homepage/school-logos.json';
 
 // Type for recognition card data (hardcoded)
 interface RecognitionCardData {
@@ -38,153 +45,20 @@ interface RecognitionCardData {
 // HARDCODED DATA - ALL CMS CONTENT FOR HOMEPAGE
 // ============================================================================
 
-// Services Data for "Who We Support" carousel section
-const SERVICES_DATA = [
-	{
-		title: 'Primary',
-		description:
-			'Comprehensive support for primary school students across all core subjects and entrance exam preparation',
-		icon: '🌟',
-		features: [
-			'All core subjects covered',
-			'Early exam preparation',
-			'Learning foundation building',
-			'Progress tracking',
-		],
-		targetAudience: 'Primary school students aged 4-11',
-	},
-	{
-		title: 'Secondary',
-		description:
-			'Expert secondary education support covering GCSE, A-Level and IB programmes for academic excellence',
-		icon: '📚',
-		features: [
-			'GCSE & A-Level mastery',
-			'IB programme support',
-			'Exam technique development',
-			'Subject specialist tutors',
-		],
-		targetAudience: 'Secondary school students aged 11-18',
-	},
-	{
-		title: 'Entrance Exams',
-		description:
-			'Specialist preparation for competitive UK school entry examinations (4+, 7+, 11+, 13+, 16+)',
-		icon: '🎯',
-		features: [
-			'Mathematical reasoning',
-			'English comprehension',
-			'Verbal & non-verbal reasoning',
-			'Mock exam practise',
-		],
-		targetAudience: 'Students preparing for independent school entry',
-	},
-	{
-		title: 'Uni & Beyond',
-		description:
-			'Complete university application support including Oxbridge admissions and undergraduate academic writing',
-		icon: '🎓',
-		features: [
-			'UCAS application support',
-			'Oxbridge interview coaching',
-			'Personal statement guidance',
-			'University essay support',
-		],
-		targetAudience: 'A-Level students and undergraduates',
-		featureImageUrl: '/images/graphics/feature-oxbridge-success.jpg',
-		featureImageAlt:
-			'Oxbridge success - University admissions coaching and academic writing support',
-	},
-	{
-		title: 'Online Homeschooling',
-		description:
-			'Comprehensive online education programmes providing structured homeschooling with qualified teachers',
-		icon: '💻',
-		features: [
-			'Full curriculum delivery',
-			'Qualified teacher support',
-			'Flexible learning schedules',
-			'Progress monitoring',
-		],
-		targetAudience: 'Homeschooled students of all ages',
-	},
-	{
-		title: 'SEN Support',
-		description:
-			'Specialist educational needs support with experienced tutors trained in learning differences and disabilities',
-		icon: '🤝',
-		features: [
-			'Learning differences expertise',
-			'Individualised learning plans',
-			'Multi-sensory teaching',
-			'Confidence building',
-		],
-		targetAudience: 'Students with special educational needs',
-	},
-	{
-		title: 'London In-Person',
-		description: 'Premium face-to-face tutoring sessions available across London',
-		icon: '🏛️',
-		features: [
-			'Elite London tutors',
-			'Flexible location options',
-			'Premium service level',
-			'Immediate availability',
-		],
-		targetAudience: 'London-based students seeking in-person tuition',
-	},
-];
+const SERVICES_DATA = servicesData;
 
-// Features Data for trust indicators section
-const FEATURES_CONTENT = [
-	{
-		title: 'Fit For a King',
-		description: (
-			<>
-				Our services are trusted by prominent families, including VIPs and royalty.
-				<br />
-				<br />
-				<em>
-					"Hi Elizabeth, I found out today that the two princes and the princess have
-					all been offered places at Le Rosey for next year. The family is delighted
-					and would like me to pass on their sincerest thanks to you and the team for
-					all your hard work."
-				</em>
-			</>
-		),
-		imageSrc: '/images/graphics/feature-royal-endorsement.jpg',
-		imageAlt:
-			'Royal endorsement - Invitation-only service trusted by royal families and high-profile clients',
-		imagePosition: 'right' as const,
-	},
-	{
-		title: 'Examiner Insight',
-		description:
-			'Our Tier 1 tutors actually write/mark the real tests your child takes. Such insider perspective is rare.',
-		imageSrc: '/images/graphics/feature-exam-insight.jpeg',
-		imageAlt:
-			'Examiner insight - Tutors who are actual examiners providing unique academic advantage',
-		imagePosition: 'left' as const,
-	},
-	{
-		title: 'By Invitation Only',
-		description:
-			"Elizabeth's international career has allowed her to personally work alongside almost all our tutors, while others have been recommended by trusted colleagues. She personally vets every tutor, ensuring only the best make the team.",
-		imageSrc: '/images/graphics/feature-built-on-trust.jpeg',
-		imageAlt:
-			'Built on trust - Premium tutoring service with vetted educators and proven track record',
-		imagePosition: 'right' as const,
-	},
-	{
-		title: 'Rooted in Britain, Appreciated Worldwide',
-		description:
-			'We know British education inside and out and bring that knowledge to families across the globe.',
-		imageSrc: '/images/graphics/feature-british-heritage.jpeg',
-		imageAlt:
-			'British heritage and global network - Personal tutoring approach with international reach',
-		imagePosition: 'left' as const,
-	},
-] as const;
+const FEATURES_CONTENT = featuresData.map((feature) => ({
+	...feature,
+	description: feature.title === 'Fit For a King' ? (
+		<>
+			{feature.description}
+			<br />
+			<br />
+			<em>"{feature.testimonialQuote}"</em>
+		</>
+	) : feature.description,
+	imagePosition: feature.imagePosition as 'left' | 'right',
+}));
 
 const FEATURES_ACTIONS = {
 	primary: {
@@ -198,142 +72,7 @@ const FEATURES_ACTIONS = {
 	},
 } as const;
 
-// School Logos for scrolling section - Direct array of logos (using actual file paths)
-const SCHOOL_LOGOS_ARRAY = [
-	{
-		src: '/images/logos/eton-college-logo-alt.png',
-		alt: 'Eton College - Elite Independent School',
-		width: 120,
-		height: 80,
-		title: 'Eton College',
-	},
-	{
-		src: '/images/logos/westminster-school-logo.png',
-		alt: 'Westminster School - Top Independent School',
-		width: 120,
-		height: 80,
-		title: 'Westminster School',
-	},
-	{
-		src: '/images/logos/st-pauls-school-logo-new2.jpg',
-		alt: "St Paul's School - Leading Independent School",
-		width: 120,
-		height: 80,
-		title: "St Paul's School",
-	},
-	{
-		src: '/images/logos/harrow-school-logo.png',
-		alt: 'Harrow School - Historic Independent School',
-		width: 120,
-		height: 80,
-		title: 'Harrow School',
-	},
-	{
-		src: '/images/logos/oxford-university-logo.jpg',
-		alt: 'Oxford University - World-Leading University',
-		width: 120,
-		height: 80,
-		title: 'Oxford University',
-	},
-	{
-		src: '/images/logos/cambridge-university-logo.png',
-		alt: 'Cambridge University - Premier Research University',
-		width: 120,
-		height: 80,
-		title: 'Cambridge University',
-	},
-	{
-		src: '/images/logos/lse-logo.png',
-		alt: 'London School of Economics - Top Social Sciences University',
-		width: 120,
-		height: 80,
-		title: 'London School of Economics',
-	},
-	{
-		src: '/images/logos/kings-college-logo.jpeg',
-		alt: "King's College London - Russell Group University",
-		width: 120,
-		height: 80,
-		title: "King's College London",
-	},
-	{
-		src: '/images/logos/brighton-college-logo.png',
-		alt: 'Brighton College - Outstanding Independent School',
-		width: 120,
-		height: 80,
-		title: 'Brighton College',
-	},
-	{
-		src: '/images/logos/durham-university-logo.png',
-		alt: 'Durham University - Collegiate University',
-		width: 120,
-		height: 80,
-		title: 'Durham University',
-	},
-	{
-		src: '/images/logos/edinburgh-university-logo.png',
-		alt: 'University of Edinburgh - Ancient Scottish University',
-		width: 120,
-		height: 80,
-		title: 'University of Edinburgh',
-	},
-	{
-		src: '/images/logos/highgate-school-logo.png',
-		alt: 'Highgate School - Independent Day School',
-		width: 120,
-		height: 80,
-		title: 'Highgate School',
-	},
-	{
-		src: '/images/logos/le-rosey-school-logo.png',
-		alt: 'Le Rosey School - International Boarding School',
-		width: 120,
-		height: 80,
-		title: 'Le Rosey School',
-	},
-	{
-		src: '/images/logos/st-andrews-university-logo.png',
-		alt: 'University of St Andrews - Ancient Scottish University',
-		width: 120,
-		height: 80,
-		title: 'University of St Andrews',
-	},
-	{
-		src: '/images/logos/warwick-university-logo.gif',
-		alt: 'University of Warwick - Research University',
-		width: 120,
-		height: 80,
-		title: 'University of Warwick',
-	},
-	{
-		src: '/images/logos/school-henrietta-barnett.png',
-		alt: 'Henrietta Barnett School - Grammar School',
-		width: 120,
-		height: 80,
-		title: 'Henrietta Barnett School',
-	},
-	{
-		src: '/images/logos/school-latymer-shield.svg',
-		alt: 'Latymer School - Independent Day School',
-		width: 120,
-		height: 80,
-		title: 'Latymer School',
-	},
-	{
-		src: '/images/logos/school-queen-elizabeths.png',
-		alt: "Queen Elizabeth's School - Grammar School",
-		width: 120,
-		height: 80,
-		title: "Queen Elizabeth's School",
-	},
-	{
-		src: '/images/logos/tiffins-school-shield.jpeg',
-		alt: 'Tiffin School - Grammar School',
-		width: 120,
-		height: 80,
-		title: 'Tiffin School',
-	},
-];
+const SCHOOL_LOGOS_ARRAY = schoolLogosData;
 
 // Student Images for Trust Indicators and Services Carousel
 const STUDENT_IMAGES: Record<
@@ -430,7 +169,7 @@ const STUDENT_IMAGES: Record<
 // HOMEPAGE SERVER COMPONENT
 // ============================================================================
 
-export default async function HomePage() {
+export default function HomePage() {
 	const services = SERVICES_DATA;
 	const studentImages = STUDENT_IMAGES;
 
@@ -486,7 +225,8 @@ export default async function HomePage() {
 				includeSocialProfile={true}
 			/>
 
-			<Navigation showBlueNavigation={true} />
+			{/* <Navigation showBlueNavigation={true} /> */}
+			<div>Navigation temporarily disabled</div>
 			<main
 				className='flex-1'
 				role='main'
@@ -552,16 +292,19 @@ export default async function HomePage() {
 
 						{/* Scrolling School Logos */}
 						<div className='flex-[1.5] flex items-center justify-center'>
-							<ScrollingLogos logos={SCHOOL_LOGOS_ARRAY} />
+							{/* <ScrollingLogos logos={SCHOOL_LOGOS_ARRAY} /> */}
+							<div>Logos temporarily disabled for debugging</div>
 						</div>
 					</section>
 
 					{/* About Section */}
-					<AboutSectionClient recognitionCards={recognitionCards} />
+					{/* <AboutSectionClient recognitionCards={recognitionCards} /> */}
+					<div>About section temporarily disabled</div>
 
 					{/* Founder Introduction Section */}
 					<div className='[&_.flex.items-center_p]:m-0'>
-						<FounderIntroductionSection />
+						{/* <FounderIntroductionSection /> */}
+						<div>Founder section temporarily disabled</div>
 					</div>
 
 					{/* Three Pillars Section */}
@@ -614,7 +357,7 @@ export default async function HomePage() {
 					</section>
 					{/* Services Carousel Section */}
 					<section id='who-we-support-services'>
-						<LazyServicesCarousel
+						<ServicesCarousel
 							services={services}
 							studentImages={studentImages}
 						/>

@@ -17,7 +17,6 @@ import {
 	CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { Input } from '@/components/ui/input';
-import { m } from 'framer-motion';
 import { ArrowRight, ChevronRight, Search } from 'lucide-react';
 import { useState } from 'react';
 
@@ -2638,11 +2637,8 @@ function CategorySidebar({
 // Using exact inline Tailwind classes from Blog7 example
 function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 	return (
-		<m.div
-			initial={{ opacity: 0, y: 20 }}
-			whileInView={{ opacity: 1, y: 0 }}
+		<divdiv
 			viewport={{ once: true, margin: '-50px' }}
-			transition={{ duration: 0.4 }}
 			className='h-full'>
 			<Card className='flex flex-col pt-0 h-full rounded-none bg-white relative'>
 				{/* Free Badge - positioned in top-right corner */}
@@ -2703,7 +2699,7 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 					}
 				</CardFooter>
 			</Card>
-		</m.div>
+		</divdiv>
 	);
 }
 

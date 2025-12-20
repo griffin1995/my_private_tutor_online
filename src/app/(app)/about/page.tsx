@@ -5,7 +5,6 @@ import { Testimonial10NoRole } from '@/components/education/testimonial-section'
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { RecognitionCard } from '../../../components/sections/RecognitionCard';
 import { HeadingText, BodyText } from '@/components/ui/typography';
@@ -123,38 +122,29 @@ export default function AboutUsPage() {
 				</section>
 
 				{/* Educational Philosophy Section */}
-				<motion.section
+				<section
 					id='about-highlighter-intro'
 					className='pt-12 lg:pt-20 pb-8 lg:pb-12 bg-white'
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: '-50px' }}
-					transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}>
 					<div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
 						{/* Heading */}
-						<motion.div
+						<div
 							className='text-center mb-6'
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true, margin: '-50px' }}
-							transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}>
 							<HeadingText
 								variant="primary"
 								level={2}
 								responsive>
 								Our Educational Philosophy
 							</HeadingText>
-						</motion.div>
+						</div>
 
 						{/* Text + Image */}
 						<div className='flex flex-col lg:flex-row items-center lg:items-start gap-8 sm:pt-4 md:pt-6 lg:pt-8 xl:pt-10 2xl:pt-12'>
 							{/* Text on the left */}
-							<motion.div
+							<div
 								className='lg:w-1/2 text-center lg:text-left'
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, margin: '-50px' }}
-								transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 }}>
 								<BodyText
 									variant="default"
 									responsive>
@@ -177,15 +167,12 @@ export default function AboutUsPage() {
 									students the tools and courage to walk their path with confidence and{' '}
 									<strong>thrive long after tutoring ends</strong>.
 								</BodyText>
-							</motion.div>
+							</div>
 
 							{/* Image on the right */}
-							<motion.div
+							<div
 								className='lg:w-1/2 flex justify-center lg:justify-end'
-								initial={{ opacity: 0, y: 20 }}
-								whileInView={{ opacity: 1, y: 0 }}
 								viewport={{ once: true, margin: '-50px' }}
-								transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.4 }}>
 								<Image
 									src='/images/about/our-educational-philosophy.jpeg'
 									alt='Educational Philosophy'
@@ -193,17 +180,14 @@ export default function AboutUsPage() {
 									height={400} // desired height
 									className='object-cover'
 								/>
-							</motion.div>
+							</div>
 						</div>
 					</div>
-				</motion.section>
+				</section>
 
-				<motion.div
+				<div
 					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: '-50px' }}
-					transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.4 }}>
 					{recognitionCards
 						.filter(
 							(
@@ -224,7 +208,7 @@ export default function AboutUsPage() {
 								index={index}
 							/>
 						))}
-				</motion.div>
+				</div>
 				{/* Testimonials Carousel Section */}
 				<section
 					id='testimonials-carousel'

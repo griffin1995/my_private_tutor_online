@@ -5,7 +5,6 @@ import { PageLayout } from '@/components/layout/page-layout';
 import { Section } from '@/components/layout/section';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { Card } from '@/components/ui/card';
-import { m } from 'framer-motion';
 import { FileText } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -36,11 +35,8 @@ function LegalMetaInfo({ lastUpdated, showCompliance = true, complianceText }: L
 	const defaultComplianceText = 'This document complies with UK GDPR, Data Protection Act 2018, and PECR requirements.';
 
 	return (
-		<m.div
+		<divdiv
 			className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg'
-			initial={{ opacity: 0, x: -20 }}
-			whileInView={{ opacity: 1, x: 0 }}
-			transition={{ duration: 0.6 }}
 			viewport={{ once: true }}>
 			<div className='flex items-center gap-4 mb-4'>
 				<FileText className='w-6 h-6 text-blue-600' />
@@ -53,7 +49,7 @@ function LegalMetaInfo({ lastUpdated, showCompliance = true, complianceText }: L
 					{complianceText || defaultComplianceText}
 				</p>
 			)}
-		</m.div>
+		</divdiv>
 	);
 }
 

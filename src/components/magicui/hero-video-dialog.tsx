@@ -6,7 +6,6 @@
 
 import { useState } from 'react';
 import { CirclePlay, X } from 'lucide-react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 type AnimationStyle =
@@ -121,11 +120,7 @@ function HeroVideoDialog({
 			</button>
 			<AnimatePresence>
 				{isVideoOpen && (
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						transition={{ duration: 0.3, ease: 'easeOut' }}
+					<div
 						className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md'
 						role='button'
 						tabIndex={0}
@@ -135,15 +130,14 @@ function HeroVideoDialog({
 							}
 						}}
 						onClick={() => setIsVideoOpen(false)}>
-						<motion.div
+						<div
 							{...selectedAnimation}
-							transition={{ duration: 0.6, ease: 'easeOut' }}
 							className='relative mx-4 aspect-video w-full max-w-4xl md:mx-0'>
-							<motion.button
+							<button
 								className='absolute -top-16 right-0 bg-neutral-900/50 p-2 text-xl text-white ring-1 backdrop-blur-md dark:bg-neutral-100/50 dark:text-black'
 								onClick={() => setIsVideoOpen(false)}>
 								<X className='size-5' />
-							</motion.button>
+							</button>
 							<div className='relative isolate z-[1] size-full overflow-hidden border-2 border-white'>
 								{videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be') ? (
 									<iframe
@@ -165,8 +159,8 @@ function HeroVideoDialog({
 									/>
 								)}
 							</div>
-						</motion.div>
-					</motion.div>
+						</div>
+					</div>
 				)}
 			</AnimatePresence>
 		</div>

@@ -35,7 +35,6 @@ export function GoingAgainstGrain({
       imageAlt="Cambridge University - prestigious academic institution representing educational excellence and Going Against the Grain philosophy"
       pullQuote={pullQuoteText}
       pullQuotePosition="left"
-      layout="image-right"
       textAlign="left"
     />
   );

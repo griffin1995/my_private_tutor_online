@@ -1,7 +1,6 @@
 'use client';
 
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
-import { m } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { getTestimonialVideos } from '@/lib/cms/cms-images';
 interface TestimonialVideo {
@@ -53,13 +52,11 @@ export function TestimonialsVideoSection({
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='max-w-7xl mx-auto'>
 					<div className='text-center mb-16'>
-						<m.h2
+						<divh2
 							className='text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 mb-6'
-							initial={{
 								opacity: 0,
 								y: 30,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
@@ -67,21 +64,18 @@ export function TestimonialsVideoSection({
 								once: true,
 								margin: '-100px',
 							}}
-							transition={{
 								duration: 0.8,
 								ease: [0.25, 0.46, 0.45, 0.94],
 								delay: 0.1,
 							}}>
 							{title}
-						</m.h2>
+						</divh2>
 
-						<m.p
+						<divp
 							className='text-xl text-primary-700 leading-relaxed max-w-3xl mx-auto'
-							initial={{
 								opacity: 0,
 								y: 30,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
@@ -89,25 +83,22 @@ export function TestimonialsVideoSection({
 								once: true,
 								margin: '-100px',
 							}}
-							transition={{
 								duration: 0.8,
 								ease: [0.25, 0.46, 0.45, 0.94],
 								delay: 0.3,
 							}}>
 							{description}
-						</m.p>
+						</divp>
 					</div>
 
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
 						{displayVideos.map((video, index) => (
-							<m.div
+							<divdiv
 								key={video.id}
 								className='group relative'
-								initial={{
 									opacity: 0,
 									y: 50,
 								}}
-								whileInView={{
 									opacity: 1,
 									y: 0,
 								}}
@@ -115,12 +106,10 @@ export function TestimonialsVideoSection({
 									once: true,
 									margin: '-100px',
 								}}
-								transition={{
 									duration: 0.8,
 									ease: [0.25, 0.46, 0.45, 0.94],
 									delay: index * 0.2,
 								}}
-								whileHover={{
 									scale: 1.02,
 									y: -8,
 									transition: {
@@ -216,18 +205,16 @@ export function TestimonialsVideoSection({
 										</div>
 									</div>
 								</div>
-							</m.div>
+							</divdiv>
 						))}
 					</div>
 
 					<div className='text-center mt-12'>
-						<m.p
+						<divp
 							className='text-lg text-primary-700 mb-6'
-							initial={{
 								opacity: 0,
 								y: 20,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
@@ -235,21 +222,18 @@ export function TestimonialsVideoSection({
 								once: true,
 								margin: '-100px',
 							}}
-							transition={{
 								duration: 0.8,
 								ease: [0.25, 0.46, 0.45, 0.94],
 								delay: 0.6,
 							}}>
 							Ready to join our community of successful families?
-						</m.p>
+						</divp>
 
-						<m.button
+						<divbutton
 							className='inline-flex items-center gap-2 px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'
-							initial={{
 								opacity: 0,
 								y: 20,
 							}}
-							whileInView={{
 								opacity: 1,
 								y: 0,
 							}}
@@ -257,19 +241,16 @@ export function TestimonialsVideoSection({
 								once: true,
 								margin: '-100px',
 							}}
-							transition={{
 								duration: 0.8,
 								ease: [0.25, 0.46, 0.45, 0.94],
 								delay: 0.8,
 							}}
-							whileHover={{
 								scale: 1.05,
 							}}
-							whileTap={{
 								scale: 0.95,
 							}}>
 							Start Your Journey
-						</m.button>
+						</divbutton>
 					</div>
 				</div>
 			</div>

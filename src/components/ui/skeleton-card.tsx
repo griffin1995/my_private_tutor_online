@@ -1,6 +1,5 @@
 'use client';
 
-import { m } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 interface SkeletonCardProps {
 	readonly variant?: 'testimonial' | 'compact' | 'list';
@@ -37,17 +36,13 @@ function SkeletonCard({
 		className?: string;
 		children?: React.ReactNode;
 	}) => (
-		<m.div
+		<divdiv
 			className={`bg-primary-100 rounded-lg relative overflow-hidden ${className}`}
-			variants={skeletonVariants}
-			animate='loading'>
-			<m.div
+			<divdiv
 				className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent'
-				variants={shimmerVariants}
-				animate='shimmer'
 			/>
 			{children}
-		</m.div>
+		</divdiv>
 	);
 	if (variant === 'compact') {
 		return (

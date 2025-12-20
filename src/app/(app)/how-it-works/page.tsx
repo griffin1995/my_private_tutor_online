@@ -12,7 +12,6 @@ import {
 	AlternatingRowHeader,
 } from '@/components/ui/alternating-row';
 import { TestimonialAuthorRole } from '@/components/testimonials/TestimonialAuthorRole';
-import { m } from 'framer-motion';
 import {
 	Check,
 	ClipboardCheck,
@@ -705,13 +704,11 @@ export default function HowItWorksPage() {
 						</div>
 
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 lg:mb-20 items-stretch'>
-							<m.div
+							<divdiv
 								className='relative rounded-none overflow-hidden shadow-lg flex-1'
-								initial={{
 									opacity: 0,
 									x: -30,
 								}}
-								whileInView={{
 									opacity: 1,
 									x: 0,
 								}}
@@ -719,7 +716,6 @@ export default function HowItWorksPage() {
 									once: true,
 									margin: '-50px',
 								}}
-								transition={{
 									duration: 0.8,
 									ease: [0.25, 0.1, 0.25, 1],
 								}}>
@@ -732,14 +728,12 @@ export default function HowItWorksPage() {
 										sizes='(max-width: 768px) 100vw, 50vw'
 									/>
 								</div>
-							</m.div>
+							</divdiv>
 
-							<m.div
-								initial={{
+							<divdiv
 									opacity: 0,
 									x: 30,
 								}}
-								whileInView={{
 									opacity: 1,
 									x: 0,
 								}}
@@ -747,7 +741,6 @@ export default function HowItWorksPage() {
 									once: true,
 									margin: '-50px',
 								}}
-								transition={{
 									duration: 0.8,
 									delay: 0.2,
 									ease: [0.25, 0.1, 0.25, 1],
@@ -755,14 +748,12 @@ export default function HowItWorksPage() {
 								<div className='space-y-6'>
 									{benefits && benefits.length > 0 ?
 										benefits.map((benefit: string, index: number) => (
-											<m.div
+											<divdiv
 												key={index}
 												className='flex items-start gap-4 group'
-												initial={{
 													opacity: 0,
 													y: 20,
 												}}
-												whileInView={{
 													opacity: 1,
 													y: 0,
 												}}
@@ -770,7 +761,6 @@ export default function HowItWorksPage() {
 													once: true,
 													margin: '-50px',
 												}}
-												transition={{
 													duration: 0.6,
 													delay: 0.4 + index * 0.1,
 													ease: [0.25, 0.1, 0.25, 1],
@@ -782,14 +772,14 @@ export default function HowItWorksPage() {
 												<div className='flex-1'>
 													<p className='transition-colors duration-300'>{benefit}</p>
 												</div>
-											</m.div>
+											</divdiv>
 										))
 									:	<div className='text-center py-12'>
 											<p>Benefits are currently being loaded...</p>
 										</div>
 									}
 								</div>
-							</m.div>
+							</divdiv>
 						</div>
 					</div>
 				</section>

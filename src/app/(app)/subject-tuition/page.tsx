@@ -11,7 +11,6 @@ import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
-import { AnimatePresence, motion } from 'framer-motion';
 import {
 	BookOpen,
 	GraduationCap,
@@ -264,28 +263,24 @@ function TabNavigation() {
 					value={level.value}
 					className='mt-0 focus-visible:outline-none'>
 					<AnimatePresence mode='wait'>
-						<motion.div
+						<div
 							key={level.value}
-							initial={{
 								opacity: 0,
 								y: 20,
 							}}
-							animate={{
 								opacity: 1,
 								y: 0,
 							}}
-							exit={{
 								opacity: 0,
 								y: -20,
 							}}
-							transition={{
 								duration: 0.4,
 								ease: 'easeOut',
 							}}>
 							<div className='mx-auto w-full max-w-none px-4 sm:px-6 lg:px-8 '>
 								{contentData}
 							</div>
-						</motion.div>
+						</div>
 					</AnimatePresence>
 				</TabsContent>
 			);

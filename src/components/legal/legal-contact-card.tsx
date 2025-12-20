@@ -1,7 +1,6 @@
 'use client';
 
 import { Card } from '@/components/ui/card';
-import { m } from 'framer-motion';
 import { CheckCircle, Mail, MapPin, Phone, Globe } from 'lucide-react';
 
 interface ContactInfo {
@@ -27,10 +26,7 @@ export function LegalContactCard({
 	className = ''
 }: LegalContactCardProps) {
 	return (
-		<m.div
-			initial={{ opacity: 0, y: 20 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.6 }}
+		<divdiv
 			viewport={{ once: true }}>
 			<Card className={`p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl ${className}`}>
 				<div className='flex items-start gap-4'>
@@ -64,6 +60,6 @@ export function LegalContactCard({
 					</div>
 				</div>
 			</Card>
-		</m.div>
+		</divdiv>
 	);
 }
