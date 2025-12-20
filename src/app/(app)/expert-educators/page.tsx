@@ -87,7 +87,7 @@ export default function ExpertEducatorsPage() {
 					}}
 				/>
 				<GradientOverlay
-					direction='br'
+					direction='bottom-right'
 					className='from-primary-900/30 via-transparent to-transparent'
 				/>
 				<div
@@ -196,7 +196,7 @@ export default function ExpertEducatorsPage() {
 				showHeader={false}
 				showFooter={true}>
 				<WaveSeparator
-					variant='light'
+					variant='subtle'
 					className='text-white'
 				/>
 
@@ -298,7 +298,7 @@ export default function ExpertEducatorsPage() {
 					</div>
 				</Section>
 
-				<WaveSeparator variant='primary' />
+				<WaveSeparator variant='dramatic' />
 
 				<Section className='py-20 lg:py-28 bg-blue-50/30 relative'>
 					<div

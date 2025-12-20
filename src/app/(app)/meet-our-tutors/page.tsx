@@ -1225,7 +1225,7 @@ export default function MeetOurTutorsPage() {
 				showHeader={true}
 				showFooter={true}
 				containerSize='full'
-				verticalSpacing='default'>
+				verticalSpacing='md'>
 				<SimpleHero
 					backgroundImage={tutorsHeroImage.src}
 					h1="Meet Our"

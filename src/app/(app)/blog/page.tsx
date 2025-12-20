@@ -172,7 +172,7 @@ export default function BlogPage() {
 				background='white'
 				showHeader={true}
 				showFooter={true}
-				containerSize='default'
+				containerSize='lg'
 				verticalSpacing='lg'>
 				<div>
 					{/* Category Filter Dropdown */}
