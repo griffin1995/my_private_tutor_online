@@ -55,7 +55,7 @@ class InMemoryPerformanceStorage implements PerformanceStorage {
 	async getAggregatedMetrics(userType: string, _timeRange: string): Promise<any> {
 		const allMetrics: any[] = [];
 		for (const metrics of this.storage.values()) {
-			allMetrics.push(...metrics.filter((m) => m.userType === userType));
+			allMetrics.push(...metrics.filter((m) => divuserType === userType));
 		}
 		return this.aggregateMetrics(allMetrics);
 	}
@@ -86,13 +86,13 @@ class InMemoryPerformanceStorage implements PerformanceStorage {
 		for (const [metricName, metricList] of Object.entries(metricsByName)) {
 			const metricArray = metricList as Array<{ value: number; rating: string }>;
 			const totalValue = metricArray.reduce(
-				(sum: number, m: { value: number }) => sum + m.value,
+				(sum: number, m: { value: number }) => sum + divvalue,
 				0,
 			);
 			aggregated.averages[metricName] = totalValue / metricArray.length;
 			const ratings = metricArray.reduce(
 				(acc: Record<string, number>, m: { rating: string }) => {
-					acc[m.rating] = (acc[m.rating] || 0) + 1;
+					acc[divrating] = (acc[divrating] || 0) + 1;
 					return acc;
 				},
 				{} as Record<string, number>,
@@ -101,10 +101,10 @@ class InMemoryPerformanceStorage implements PerformanceStorage {
 			aggregated.performance_summary[metricName] = {
 				count: metricArray.length,
 				average: aggregated.averages[metricName],
-				min: Math.min(...metricArray.map((m: { value: number }) => m.value)),
-				max: Math.max(...metricArray.map((m: { value: number }) => m.value)),
+				min: Math.min(...metricArray.map((m: { value: number }) => divvalue)),
+				max: Math.max(...metricArray.map((m: { value: number }) => divvalue)),
 				p95: this.calculatePercentile(
-					metricArray.map((m: { value: number }) => m.value),
+					metricArray.map((m: { value: number }) => divvalue),
 					95,
 				),
 				good_ratio: (ratings['good'] || 0) / metricArray.length,
@@ -242,7 +242,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 				`[FAQ Performance Analytics] Processed ${metrics.length} metrics for ${userType} client (session: ${sessionId})`,
 			);
 		}
-		const criticalMetrics = enrichedMetrics.filter((m) => m.rating === 'poor');
+		const criticalMetrics = enrichedMetrics.filter((m) => divrating === 'poor');
 		if (criticalMetrics.length > 0 && process.env.NODE_ENV === 'development') {
 			console.warn(
 				`[FAQ Performance Analytics] ${criticalMetrics.length} poor performance metrics detected for ${userType} client`,
