@@ -321,7 +321,16 @@
       "Bash(claude mcp list:*)",
       "Bash(claude mcp:*)",
       "mcp__stocky__search_stock_images",
-      "mcp__stocky__download_image"
+      "mcp__stocky__download_image",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm why:*)",
+      "Bash(pnpm audit:*)",
+      "Bash(pnpm outdated:*)",
+      "Bash(pnpm ls:*)",
+      "Bash(pnpm run debug:deps-json:*)",
+      "Bash(depcheck:*)",
+      "Bash(pnpm run clean:full:*)",
+      "Bash(pnpm run build)"
     ],
     "deny": []
   },
