@@ -1,5 +1,6 @@
-import { ClientProviders } from '@/components/providers/ClientProviders';
 import { fontClassNames } from '@/fonts';
+import { Toaster } from '@/components/ui/sonner';
+import { CookieConsentManager } from '@/components/privacy/cookie-consent-manager';
 import type { Metadata } from 'next';
 import React from 'react';
 import './globals.css';
@@ -246,7 +247,14 @@ export default function RootLayout({
 			</head>
 			<body
 				className={`${fontClassNames} font-body antialiased min-h-screen bg-transparent text-foreground`}>
-				<ClientProviders>{children}</ClientProviders>
+				{children}
+				<CookieConsentManager
+					enableAnalytics={process.env.NODE_ENV === 'production'}
+					{...(process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'] && {
+						gaTrackingId: process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID']
+					})}
+				/>
+				<Toaster />
 			</body>
 		</html>
 	);
