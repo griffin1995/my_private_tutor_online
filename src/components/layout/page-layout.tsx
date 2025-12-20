@@ -4,12 +4,14 @@ import { cn } from '@/lib/utils';
 import type { ReactNode } from 'react';
 import { PageFooter } from './page-footer';
 import { PageHeader } from './page-header';
-interface PageHeaderProps {
+interface LayoutHeaderProps {
 	className?: string;
 	variant?: 'transparent' | 'solid' | 'glass';
 	showCTA?: boolean;
 	fixed?: boolean;
 	isHomepage?: boolean;
+	isHeroPage?: boolean;
+	showBlueNavigation?: boolean;
 }
 interface PageFooterProps {
 	className?: string;
@@ -23,7 +25,7 @@ interface PageLayoutProps {
 	background?: 'white' | 'gradient' | 'pattern' | 'dark' | 'transparent';
 	showHeader?: boolean;
 	showFooter?: boolean;
-	headerProps?: PageHeaderProps;
+	headerProps?: LayoutHeaderProps;
 	footerProps?: PageFooterProps;
 	containerSize?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
 	verticalSpacing?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
