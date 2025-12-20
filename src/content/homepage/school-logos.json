@@ -1,0 +1,135 @@
+[
+	{
+		"src": "/images/logos/eton-college-logo-alt.png",
+		"alt": "Eton College - Elite Independent School",
+		"width": 120,
+		"height": 80,
+		"title": "Eton College"
+	},
+	{
+		"src": "/images/logos/westminster-school-logo.png",
+		"alt": "Westminster School - Top Independent School",
+		"width": 120,
+		"height": 80,
+		"title": "Westminster School"
+	},
+	{
+		"src": "/images/logos/st-pauls-school-logo-new2.jpg",
+		"alt": "St Paul's School - Leading Independent School",
+		"width": 120,
+		"height": 80,
+		"title": "St Paul's School"
+	},
+	{
+		"src": "/images/logos/harrow-school-logo.png",
+		"alt": "Harrow School - Historic Independent School",
+		"width": 120,
+		"height": 80,
+		"title": "Harrow School"
+	},
+	{
+		"src": "/images/logos/oxford-university-logo.jpg",
+		"alt": "Oxford University - World-Leading University",
+		"width": 120,
+		"height": 80,
+		"title": "Oxford University"
+	},
+	{
+		"src": "/images/logos/cambridge-university-logo.png",
+		"alt": "Cambridge University - Premier Research University",
+		"width": 120,
+		"height": 80,
+		"title": "Cambridge University"
+	},
+	{
+		"src": "/images/logos/lse-logo.png",
+		"alt": "London School of Economics - Top Social Sciences University",
+		"width": 120,
+		"height": 80,
+		"title": "London School of Economics"
+	},
+	{
+		"src": "/images/logos/kings-college-logo.jpeg",
+		"alt": "King's College London - Russell Group University",
+		"width": 120,
+		"height": 80,
+		"title": "King's College London"
+	},
+	{
+		"src": "/images/logos/brighton-college-logo.png",
+		"alt": "Brighton College - Outstanding Independent School",
+		"width": 120,
+		"height": 80,
+		"title": "Brighton College"
+	},
+	{
+		"src": "/images/logos/durham-university-logo.png",
+		"alt": "Durham University - Collegiate University",
+		"width": 120,
+		"height": 80,
+		"title": "Durham University"
+	},
+	{
+		"src": "/images/logos/edinburgh-university-logo.png",
+		"alt": "University of Edinburgh - Ancient Scottish University",
+		"width": 120,
+		"height": 80,
+		"title": "University of Edinburgh"
+	},
+	{
+		"src": "/images/logos/highgate-school-logo.png",
+		"alt": "Highgate School - Independent Day School",
+		"width": 120,
+		"height": 80,
+		"title": "Highgate School"
+	},
+	{
+		"src": "/images/logos/le-rosey-school-logo.png",
+		"alt": "Le Rosey School - International Boarding School",
+		"width": 120,
+		"height": 80,
+		"title": "Le Rosey School"
+	},
+	{
+		"src": "/images/logos/st-andrews-university-logo.png",
+		"alt": "University of St Andrews - Ancient Scottish University",
+		"width": 120,
+		"height": 80,
+		"title": "University of St Andrews"
+	},
+	{
+		"src": "/images/logos/warwick-university-logo.gif",
+		"alt": "University of Warwick - Research University",
+		"width": 120,
+		"height": 80,
+		"title": "University of Warwick"
+	},
+	{
+		"src": "/images/logos/school-henrietta-barnett.png",
+		"alt": "Henrietta Barnett School - Grammar School",
+		"width": 120,
+		"height": 80,
+		"title": "Henrietta Barnett School"
+	},
+	{
+		"src": "/images/logos/school-latymer-shield.svg",
+		"alt": "Latymer School - Independent Day School",
+		"width": 120,
+		"height": 80,
+		"title": "Latymer School"
+	},
+	{
+		"src": "/images/logos/school-queen-elizabeths.png",
+		"alt": "Queen Elizabeth's School - Grammar School",
+		"width": 120,
+		"height": 80,
+		"title": "Queen Elizabeth's School"
+	},
+	{
+		"src": "/images/logos/tiffins-school-shield.jpeg",
+		"alt": "Tiffin School - Grammar School",
+		"width": 120,
+		"height": 80,
+		"title": "Tiffin School"
+	}
+]

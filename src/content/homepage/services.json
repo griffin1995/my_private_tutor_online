@@ -1,0 +1,88 @@
+[
+	{
+		"title": "Primary",
+		"description": "Comprehensive support for primary school students across all core subjects and entrance exam preparation",
+		"icon": "🌟",
+		"features": [
+			"All core subjects covered",
+			"Early exam preparation",
+			"Learning foundation building",
+			"Progress tracking"
+		],
+		"targetAudience": "Primary school students aged 4-11"
+	},
+	{
+		"title": "Secondary",
+		"description": "Expert secondary education support covering GCSE, A-Level and IB programmes for academic excellence",
+		"icon": "📚",
+		"features": [
+			"GCSE & A-Level mastery",
+			"IB programme support",
+			"Exam technique development",
+			"Subject specialist tutors"
+		],
+		"targetAudience": "Secondary school students aged 11-18"
+	},
+	{
+		"title": "Entrance Exams",
+		"description": "Specialist preparation for competitive UK school entry examinations (4+, 7+, 11+, 13+, 16+)",
+		"icon": "🎯",
+		"features": [
+			"Mathematical reasoning",
+			"English comprehension",
+			"Verbal & non-verbal reasoning",
+			"Mock exam practise"
+		],
+		"targetAudience": "Students preparing for independent school entry"
+	},
+	{
+		"title": "Uni & Beyond",
+		"description": "Complete university application support including Oxbridge admissions and undergraduate academic writing",
+		"icon": "🎓",
+		"features": [
+			"UCAS application support",
+			"Oxbridge interview coaching",
+			"Personal statement guidance",
+			"University essay support"
+		],
+		"targetAudience": "A-Level students and undergraduates",
+		"featureImageUrl": "/images/graphics/feature-oxbridge-success.jpg",
+		"featureImageAlt": "Oxbridge success - University admissions coaching and academic writing support"
+	},
+	{
+		"title": "Online Homeschooling",
+		"description": "Comprehensive online education programmes providing structured homeschooling with qualified teachers",
+		"icon": "💻",
+		"features": [
+			"Full curriculum delivery",
+			"Qualified teacher support",
+			"Flexible learning schedules",
+			"Progress monitoring"
+		],
+		"targetAudience": "Homeschooled students of all ages"
+	},
+	{
+		"title": "SEN Support",
+		"description": "Specialist educational needs support with experienced tutors trained in learning differences and disabilities",
+		"icon": "🤝",
+		"features": [
+			"Learning differences expertise",
+			"Individualised learning plans",
+			"Multi-sensory teaching",
+			"Confidence building"
+		],
+		"targetAudience": "Students with special educational needs"
+	},
+	{
+		"title": "London In-Person",
+		"description": "Premium face-to-face tutoring sessions available across London",
+		"icon": "🏛️",
+		"features": [
+			"Elite London tutors",
+			"Flexible location options",
+			"Premium service level",
+			"Immediate availability"
+		],
+		"targetAudience": "London-based students seeking in-person tuition"
+	}
+]
