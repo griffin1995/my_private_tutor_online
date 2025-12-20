@@ -12,7 +12,7 @@ const ALLOWED_ORIGINS = [
   'http://localhost:3001',
   'https://myprivatetutoronline.co.uk',
   'https://www.myprivatetutoronline.co.uk',
-  'https://myprivatetutoronline-f8tv06oa2-jacks-projects-cf5effed.vercel.app',
+  'https://www.myprivatetutoronline.com',
   // Add staging URLs if needed
 ];
 

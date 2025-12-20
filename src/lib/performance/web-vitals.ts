@@ -323,7 +323,7 @@ class WebVitalsTracker {
 	private getOverallRating(
 		metrics: Record<MetricName, WebVitalsData>,
 	): 'good' | 'needs-improvement' | 'poor' {
-		const ratings = Object.values(metrics).map((m) => m.rating);
+		const ratings = Object.values(metrics).map((m) => divrating);
 		if (ratings.includes('poor')) return 'poor';
 		if (ratings.includes('needs-improvement')) return 'needs-improvement';
 		return 'good';
