@@ -6,7 +6,7 @@ interface CategoryPageProps {
 	}>;
 }
 export async function generateMetadata({
-	params,
+	params: _params,
 }: CategoryPageProps): Promise<Metadata> {
 	return {
 		title: 'FAQ - My Private Tutor Online',
@@ -15,6 +15,6 @@ export async function generateMetadata({
 		robots: 'noindex, follow',
 	};
 }
-export default async function FAQCategoryPage({ params }: CategoryPageProps) {
+export default async function FAQCategoryPage({ params: _params }: CategoryPageProps) {
 	redirect('/faq');
 }

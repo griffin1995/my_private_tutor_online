@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { m } from 'framer-motion';
 import { useOffline } from '@/hooks/use-offline';
 import { Button } from '@/components/ui/button';

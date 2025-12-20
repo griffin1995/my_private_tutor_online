@@ -7,7 +7,7 @@ interface SubcategoryPageProps {
 	}>;
 }
 export async function generateMetadata({
-	params,
+	params: _params,
 }: SubcategoryPageProps): Promise<Metadata> {
 	return {
 		title: 'FAQ - My Private Tutor Online',
@@ -17,7 +17,7 @@ export async function generateMetadata({
 	};
 }
 export default async function FAQSubcategoryPage({
-	params,
+	params: _params,
 }: SubcategoryPageProps) {
 	redirect('/faq');
 }
