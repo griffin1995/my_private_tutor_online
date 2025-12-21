@@ -1582,3 +1582,19 @@ textarea:focus-visible,
 		display: none;
 	}
 }
+
+/**
+ * MODERNIZATION 2025: CSS-based animations replacing Framer Motion
+ * PURPOSE: Improved Core Web Vitals, reduced JavaScript bundle size
+ * PATTERN: Pure CSS animations for better performance
+ */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
