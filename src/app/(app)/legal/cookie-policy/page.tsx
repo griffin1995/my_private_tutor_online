@@ -32,9 +32,7 @@ export default function CookiePolicyPage() {
 									functionalities.
 								</p>
 
-								<div
-									viewport={{
-										once: true,
+								<div>
 									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<Settings className='w-8 h-8 text-green-600 flex-shrink-0 mt-1' />
@@ -266,9 +264,7 @@ export default function CookiePolicyPage() {
 
 								<h2>4. Cookie Consent Management</h2>
 
-								<div
-									viewport={{
-										once: true,
+								<div>
 									<Card className='p-8 my-12 bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<Eye className='w-8 h-8 text-blue-600 flex-shrink-0 mt-1' />
@@ -408,9 +404,7 @@ export default function CookiePolicyPage() {
 
 								<h2>8. Impact of Disabling Cookies</h2>
 
-								<div
-									viewport={{
-										once: true,
+								<div>
 									<Card className='p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<AlertTriangle className='w-8 h-8 text-yellow-600 flex-shrink-0 mt-1' />
@@ -589,3 +583,4 @@ export default function CookiePolicyPage() {
 			</div>
 		</LegalPageTemplate>
 	);
+}

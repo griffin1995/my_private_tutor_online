@@ -30,8 +30,7 @@ export default function BookingPolicyPage() {
 			showCompliance={metadata.showCompliance ?? false}>
 
 			{/* Contact Information Header */}
-			<div
-				className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg'
+			<div className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg'>
 				<h3 className='text-xl font-bold text-blue-800 mb-4'>My Private Tutor Online (MPTO)</h3>
 				<div className='grid md:grid-cols-2 gap-4 text-blue-700'>
 					<div className='space-y-2'>
@@ -78,7 +77,7 @@ export default function BookingPolicyPage() {
 								<p>Payment for the first lesson must be received no less than 3 days in advance.</p>
 
 								<h3>2.2 Ongoing Balance Requirement</h3>
-								<div
+								<div>
 									<Card className='p-8 my-6 bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<CreditCard className='w-8 h-8 text-amber-600 flex-shrink-0 mt-1' />
@@ -126,7 +125,7 @@ export default function BookingPolicyPage() {
 								<p>Tutees must arrive on time and prepared. Tutors are not required to extend the lesson if the tutee is late.</p>
 
 								<h3>3.2 Tutor Waiting Time</h3>
-								<div
+								<div>
 									<Card className='p-8 my-6 bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<Clock className='w-8 h-8 text-orange-600 flex-shrink-0 mt-1' />
@@ -173,7 +172,7 @@ export default function BookingPolicyPage() {
 								</ul>
 
 								<h3>4.6 Goodwill Illness Clause</h3>
-								<div
+								<div>
 									<Card className='p-8 my-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<CheckCircle className='w-8 h-8 text-blue-600 flex-shrink-0 mt-1' />
@@ -225,7 +224,7 @@ export default function BookingPolicyPage() {
 								<h2>7. Contact</h2>
 								<p>For all matters relating to billing, cancellations, or bookings:</p>
 
-								<div
+								<div>
 									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<CheckCircle className='w-8 h-8 text-green-600 flex-shrink-0 mt-1' />
@@ -258,3 +257,4 @@ export default function BookingPolicyPage() {
 
 		</LegalPageTemplate>
 	);
+}
