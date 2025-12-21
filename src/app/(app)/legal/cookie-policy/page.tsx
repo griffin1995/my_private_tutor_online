@@ -32,18 +32,9 @@ export default function CookiePolicyPage() {
 									functionalities.
 								</p>
 
-								<divdiv
-										opacity: 0,
-										y: 20,
-									}}
-										opacity: 1,
-										y: 0,
-									}}
-										duration: 0.6,
-									}}
+								<div
 									viewport={{
 										once: true,
-									}}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<Settings className='w-8 h-8 text-green-600 flex-shrink-0 mt-1' />
@@ -60,7 +51,7 @@ export default function CookiePolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</divdiv>
+								</div>
 
 								<h2>2. Types of Cookies We Use</h2>
 
@@ -275,18 +266,9 @@ export default function CookiePolicyPage() {
 
 								<h2>4. Cookie Consent Management</h2>
 
-								<divdiv
-										opacity: 0,
-										y: 20,
-									}}
-										opacity: 1,
-										y: 0,
-									}}
-										duration: 0.6,
-									}}
+								<div
 									viewport={{
 										once: true,
-									}}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<Eye className='w-8 h-8 text-blue-600 flex-shrink-0 mt-1' />
@@ -309,7 +291,7 @@ export default function CookiePolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</divdiv>
+								</div>
 
 								<h3>4.1 Consent Options</h3>
 								<ul>
@@ -426,18 +408,9 @@ export default function CookiePolicyPage() {
 
 								<h2>8. Impact of Disabling Cookies</h2>
 
-								<divdiv
-										opacity: 0,
-										y: 20,
-									}}
-										opacity: 1,
-										y: 0,
-									}}
-										duration: 0.6,
-									}}
+								<div
 									viewport={{
 										once: true,
-									}}>
 									<Card className='p-8 my-12 bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<AlertTriangle className='w-8 h-8 text-yellow-600 flex-shrink-0 mt-1' />
@@ -451,7 +424,7 @@ export default function CookiePolicyPage() {
 											</div>
 										</div>
 									</Card>
-								</divdiv>
+								</div>
 
 								<h3>8.1 Essential Cookies Disabled</h3>
 								<ul>
@@ -616,4 +589,3 @@ export default function CookiePolicyPage() {
 			</div>
 		</LegalPageTemplate>
 	);
-}

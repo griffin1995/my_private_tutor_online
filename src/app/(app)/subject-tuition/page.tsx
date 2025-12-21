@@ -54,7 +54,6 @@ interface SubjectTuitionTabsProps {
 	searchParams?: Promise<{
 		[key: string]: string | string[] | undefined;
 	}>;
-}
 type EducationLevelValue =
 	| 'primary-school'
 	| 'secondary-school'
@@ -70,7 +69,6 @@ interface StrictEducationLevel {
 	readonly subjects: ReadonlyArray<string>;
 	readonly keyFeatures: ReadonlyArray<string>;
 	readonly icon: LucideIcon;
-}
 const educationLevels = [
 	{
 		value: 'primary-school',
@@ -265,18 +263,6 @@ function TabNavigation() {
 					<AnimatePresence mode='wait'>
 						<div
 							key={level.value}
-								opacity: 0,
-								y: 20,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
-								opacity: 0,
-								y: -20,
-							}}
-								duration: 0.4,
-								ease: 'easeOut',
-							}}>
 							<div className='mx-auto w-full max-w-none px-4 sm:px-6 lg:px-8 '>
 								{contentData}
 							</div>
@@ -355,7 +341,6 @@ function TabNavigation() {
 			</div>
 		</main>
 	);
-}
 
 // Main Page Component with Suspense boundary
 export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
@@ -393,7 +378,6 @@ export default function SubjectTuitionTabsPage({}: SubjectTuitionTabsProps) {
 			/>
 		</>
 	);
-}
 export type {
 	EducationLevelValue,
 	StrictEducationLevel,

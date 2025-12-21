@@ -22,8 +22,7 @@ export default function RecordOfProcessingPage() {
 								</p>
 
 								<div className='grid grid-cols-1 md:grid-cols-2 gap-8 my-12 not-prose'>
-									<divdiv
-										viewport={{ once: true }}>
+									<div
 										<Card className='p-6 h-full bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200'>
 											<div className='flex items-center gap-3 mb-4'>
 												<Users className='w-8 h-8 text-green-600' />
@@ -41,10 +40,9 @@ export default function RecordOfProcessingPage() {
 												<li>• Legal Basis: Contract & Consent</li>
 											</ul>
 										</Card>
-									</divdiv>
+									</div>
 
-									<divdiv
-										viewport={{ once: true }}>
+									<div
 										<Card className='p-6 h-full bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-200'>
 											<div className='flex items-center gap-3 mb-4'>
 												<CreditCard className='w-8 h-8 text-blue-600' />
@@ -62,10 +60,9 @@ export default function RecordOfProcessingPage() {
 												<li>• Legal Basis: Contract & Legal Obligation</li>
 											</ul>
 										</Card>
-									</divdiv>
+									</div>
 
-									<divdiv
-										viewport={{ once: true }}>
+									<div
 										<Card className='p-6 h-full bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200'>
 											<div className='flex items-center gap-3 mb-4'>
 												<Mail className='w-8 h-8 text-purple-600' />
@@ -83,10 +80,9 @@ export default function RecordOfProcessingPage() {
 												<li>• Legal Basis: Consent & Legitimate Interests</li>
 											</ul>
 										</Card>
-									</divdiv>
+									</div>
 
-									<divdiv
-										viewport={{ once: true }}>
+									<div
 										<Card className='p-6 h-full bg-gradient-to-r from-orange-50 to-red-50 border-2 border-orange-200'>
 											<div className='flex items-center gap-3 mb-4'>
 												<UserCheck className='w-8 h-8 text-orange-600' />
@@ -104,7 +100,7 @@ export default function RecordOfProcessingPage() {
 												<li>• Legal Basis: Contract & Legal Obligation</li>
 											</ul>
 										</Card>
-									</divdiv>
+									</div>
 								</div>
 
 								<hr className="my-8 border-gray-300" />
@@ -122,8 +118,7 @@ export default function RecordOfProcessingPage() {
 									<li>Rights in relation to automated decision making</li>
 								</ul>
 
-								<divdiv
-									viewport={{ once: true }}>
+								<div
 									<Card className='p-8 my-12 bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<Database className='w-8 h-8 text-indigo-600 flex-shrink-0 mt-1' />
@@ -142,7 +137,7 @@ export default function RecordOfProcessingPage() {
 											</div>
 										</div>
 									</Card>
-								</divdiv>
+								</div>
 
 								<hr className="my-8 border-gray-300" />
 
@@ -172,8 +167,7 @@ export default function RecordOfProcessingPage() {
 									<li><strong>As needed:</strong> When processing activities change</li>
 								</ul>
 
-								<divdiv
-									viewport={{ once: true }}>
+								<div
 									<Card className='p-8 my-12 bg-gradient-to-r from-gray-50 to-slate-50 border-2 border-gray-200 shadow-xl'>
 										<div className='flex items-start gap-4'>
 											<FileText className='w-8 h-8 text-gray-600 flex-shrink-0 mt-1' />
@@ -191,7 +185,6 @@ export default function RecordOfProcessingPage() {
 											</div>
 										</div>
 									</Card>
-								</divdiv>
+								</div>
 		</LegalPageTemplate>
 	);
-}

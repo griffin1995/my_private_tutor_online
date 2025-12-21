@@ -31,13 +31,11 @@ export default function Error({
 		// Additional error context for Next.js specific issues
 		if (error.message.includes('force-dynamic') || error.message.includes('payload')) {
 			console.error('🚨 SUSPECTED CAUSE: Next.js 15 + Payload CMS compatibility issue');
-		}
 
 		// Send to error tracking service in production
 		if (process.env.NODE_ENV === 'production') {
 			// Future: Add Sentry, LogRocket, or other error tracking
 			// errorTracker.captureException(error, { extra: errorDetails });
-		}
 	}, [error]);
 	return (
 		<div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100'>
@@ -79,4 +77,3 @@ export default function Error({
 			</div>
 		</div>
 	);
-}

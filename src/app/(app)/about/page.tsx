@@ -27,6 +27,7 @@ interface RecognitionCardData {
 	sortOrder: number;
 	status: 'published' | 'unpublished';
 }
+
 const RECOGNITION_CARDS_DATA: RecognitionCardData[] = [
 	{
 		id: 'tatler-address-book',
@@ -124,13 +125,11 @@ export default function AboutUsPage() {
 				{/* Educational Philosophy Section */}
 				<section
 					id='about-highlighter-intro'
-					className='pt-12 lg:pt-20 pb-8 lg:pb-12 bg-white'
-					viewport={{ once: true, margin: '-50px' }}
+					className='pt-12 lg:pt-20 pb-8 lg:pb-12 bg-white'>
 					<div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
 						{/* Heading */}
 						<div
-							className='text-center mb-6'
-							viewport={{ once: true, margin: '-50px' }}
+							className='text-center mb-6'>
 							<HeadingText
 								variant="primary"
 								level={2}
@@ -143,8 +142,7 @@ export default function AboutUsPage() {
 						<div className='flex flex-col lg:flex-row items-center lg:items-start gap-8 sm:pt-4 md:pt-6 lg:pt-8 xl:pt-10 2xl:pt-12'>
 							{/* Text on the left */}
 							<div
-								className='lg:w-1/2 text-center lg:text-left'
-								viewport={{ once: true, margin: '-50px' }}
+								className='lg:w-1/2 text-center lg:text-left'>
 								<BodyText
 									variant="default"
 									responsive>
@@ -171,8 +169,7 @@ export default function AboutUsPage() {
 
 							{/* Image on the right */}
 							<div
-								className='lg:w-1/2 flex justify-center lg:justify-end'
-								viewport={{ once: true, margin: '-50px' }}
+								className='lg:w-1/2 flex justify-center lg:justify-end'>
 								<Image
 									src='/images/about/our-educational-philosophy.jpeg'
 									alt='Educational Philosophy'
@@ -186,8 +183,7 @@ export default function AboutUsPage() {
 				</section>
 
 				<div
-					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'
-					viewport={{ once: true, margin: '-50px' }}
+					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'>
 					{recognitionCards
 						.filter(
 							(
@@ -220,4 +216,3 @@ export default function AboutUsPage() {
 			</PageLayout>
 		</>
 	);
-}

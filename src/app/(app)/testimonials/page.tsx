@@ -37,7 +37,6 @@ export default function TestimonialsPage() {
 									src: '/images/about/founder-elizabeth-icon.webp',
 									alt: 'Elizabeth Burrows - Founder',
 								},
-							}}
 						/>
 					</div>
 				</section>
@@ -60,4 +59,3 @@ export default function TestimonialsPage() {
 			</PageLayout>
 		</>
 	);
-}

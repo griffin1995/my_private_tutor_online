@@ -11,7 +11,6 @@ interface BlogPostPageProps {
 	params: Promise<{
 		slug: string;
 	}>;
-}
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
 	// In Next.js 15, params is a Promise and needs to be unwrapped with React.use()
@@ -20,7 +19,6 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
 	if (!post) {
 		notFound();
-	}
 
 	// Custom styling options for html-react-parser with proper domToReact usage
 	const parserOptions: HTMLReactParserOptions = {
@@ -114,18 +112,15 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 								target={attribs['href']?.startsWith('http') ? '_blank' : undefined}
 								rel={attribs['href']?.startsWith('http') ? 'noopener noreferrer' : undefined}
 								className='text-accent-600 hover:text-accent-700 underline font-medium transition-colors'>
-								{domToReact(children as DOMNode[], parserOptions)}
+		{domToReact(children as DOMNode[], parserOptions)}
 							</a>
 						);
 
 					default:
 						// Return undefined to use default rendering for other elements
 						return undefined;
-				}
-			}
 			// Return undefined for non-Element nodes or unhandled elements
 			return undefined;
-		}
 	};
 
 	return (
@@ -137,4 +132,3 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 			</BlogArticleLayout>
 		</PageLayout>
 	);
-}

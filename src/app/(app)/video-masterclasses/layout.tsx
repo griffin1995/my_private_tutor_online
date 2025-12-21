@@ -62,4 +62,3 @@ export default function VideoMasterclassesLayout({
 	children: React.ReactNode;
 }) {
 	return children;
-}

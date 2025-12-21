@@ -456,7 +456,6 @@ export default function HowItWorksPage() {
 				verticalSpacing='none'
 				footerProps={{
 					showContactForm: true,
-				}}>
 				<section id='how-it-works-hero'>
 					<SimpleHero
 						backgroundImage="/images/hero/how-it-works.jpeg"
@@ -471,7 +470,7 @@ export default function HowItWorksPage() {
 					spacing='normal'
 					maxWidth='full'
 					className='bg-white'>
-					{/* Row 1: Initial Consultation */}
+		{/* Row 1: Initial Consultation */}
 					<AlternatingRow
 						variant='left'
 						number={1}
@@ -482,7 +481,6 @@ export default function HowItWorksPage() {
 							width: 800,
 							height: 600,
 							priority: true,
-						}}>
 						<AlternatingRowHeader level={2}>
 							Initial Consultation
 						</AlternatingRowHeader>
@@ -511,7 +509,6 @@ export default function HowItWorksPage() {
 							alt: 'Flexible tiered tutoring model with options for every budget and academic need',
 							width: 800,
 							height: 600,
-						}}>
 						<AlternatingRowHeader level={2}>
 							Tiered Tutoring Options
 						</AlternatingRowHeader>
@@ -544,7 +541,6 @@ export default function HowItWorksPage() {
 							alt: 'Expert tutor matching process pairing students with qualified professionals',
 							width: 800,
 							height: 600,
-						}}>
 						<AlternatingRowHeader level={2}>
 							Expert Tutor Matching
 						</AlternatingRowHeader>
@@ -578,7 +574,6 @@ export default function HowItWorksPage() {
 							alt: 'Comprehensive progress reports and automated lesson reminders for ongoing support',
 							width: 800,
 							height: 600,
-						}}>
 						<AlternatingRowHeader level={2}>
 							Progress Reports & Support
 						</AlternatingRowHeader>
@@ -614,7 +609,6 @@ export default function HowItWorksPage() {
 							alt: 'Long-term educational partnership providing ongoing consultative support',
 							width: 800,
 							height: 600,
-						}}>
 						<AlternatingRowHeader level={2}>
 							Ongoing Support & Educational Partnership
 						</AlternatingRowHeader>
@@ -652,7 +646,6 @@ export default function HowItWorksPage() {
 									src: '/images/team/elizabeth-burrows-founder-main.jpg',
 									alt: 'Elizabeth Burrows - Founder',
 								},
-							}}
 						/>
 					</div>
 				</section>
@@ -704,21 +697,11 @@ export default function HowItWorksPage() {
 						</div>
 
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 lg:mb-20 items-stretch'>
-							<divdiv
+							<div
 								className='relative rounded-none overflow-hidden shadow-lg flex-1'
-									opacity: 0,
-									x: -30,
-								}}
-									opacity: 1,
-									x: 0,
-								}}
 								viewport={{
 									once: true,
 									margin: '-50px',
-								}}
-									duration: 0.8,
-									ease: [0.25, 0.1, 0.25, 1],
-								}}>
 								<div className='relative h-full'>
 									<Image
 										src='/images/how-it-works/why-families-choose-our-approach.jpg'
@@ -728,43 +711,21 @@ export default function HowItWorksPage() {
 										sizes='(max-width: 768px) 100vw, 50vw'
 									/>
 								</div>
-							</divdiv>
+							</div>
 
-							<divdiv
-									opacity: 0,
-									x: 30,
-								}}
-									opacity: 1,
-									x: 0,
-								}}
+							<div
 								viewport={{
 									once: true,
 									margin: '-50px',
-								}}
-									duration: 0.8,
-									delay: 0.2,
-									ease: [0.25, 0.1, 0.25, 1],
-								}}>
 								<div className='space-y-6'>
 									{benefits && benefits.length > 0 ?
 										benefits.map((benefit: string, index: number) => (
-											<divdiv
+											<div
 												key={index}
 												className='flex items-start gap-4 group'
-													opacity: 0,
-													y: 20,
-												}}
-													opacity: 1,
-													y: 0,
-												}}
 												viewport={{
 													once: true,
 													margin: '-50px',
-												}}
-													duration: 0.6,
-													delay: 0.4 + index * 0.1,
-													ease: [0.25, 0.1, 0.25, 1],
-												}}>
 												<div className='flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center  duration-300 mt-1'>
 													<Check className='w-5 h-5 text-primary-700' />
 												</div>
@@ -772,18 +733,16 @@ export default function HowItWorksPage() {
 												<div className='flex-1'>
 													<p className='transition-colors duration-300'>{benefit}</p>
 												</div>
-											</divdiv>
+											</div>
 										))
 									:	<div className='text-center py-12'>
 											<p>Benefits are currently being loaded...</p>
 										</div>
-									}
 								</div>
-							</divdiv>
+							</div>
 						</div>
 					</div>
 				</section>
 			</PageLayout>
 		</>
 	);
-}

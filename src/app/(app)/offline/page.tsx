@@ -39,11 +39,8 @@ export default function OfflinePage() {
 					await actions.refreshCache();
 					if (state.isOnline) {
 						window.location.href = '/faq';
-					}
 				} catch (error) {
 					console.warn('Connection check failed:', error);
-				}
-			}
 		};
 		const interval = setInterval(checkConnection, 10000);
 		return () => clearInterval(interval);
@@ -59,19 +56,16 @@ export default function OfflinePage() {
 			});
 			if (response.ok) {
 				window.location.href = '/faq';
-			}
 		} catch (error) {
 			console.warn('Manual retry failed:', error);
 		} finally {
 			setIsRetrying(false);
-		}
 	};
 	const handleGoBack = () => {
 		if (window.history.length > 1) {
 			window.history.back();
 		} else {
 			window.location.href = '/';
-		}
 	};
 	const handleViewCachedFAQ = () => {
 		window.location.href = '/faq';
@@ -79,15 +73,7 @@ export default function OfflinePage() {
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center px-4'>
 			<div className='w-full max-w-2xl'>
-				<divdiv
-						opacity: 0,
-						y: -20,
-					}}
-						opacity: 1,
-						y: 0,
-					}}
-						duration: 0.6,
-					}}
+				<div
 					className='text-center mb-8'>
 					<div className='inline-flex items-center justify-center w-20 h-20 bg-accent-100 rounded-full mb-6'>
 						<WifiOff className='w-10 h-10 text-accent-600' />
@@ -101,18 +87,9 @@ export default function OfflinePage() {
 						{customMessage ||
 							"Don't worry - we've saved your place. Our premium FAQ content is available offline."}
 					</p>
-				</divdiv>
+				</div>
 
-				<divdiv
-						opacity: 0,
-						y: 20,
-					}}
-						opacity: 1,
-						y: 0,
-					}}
-						duration: 0.6,
-						delay: 0.2,
-					}}>
+				<div
 					<Card className='p-8 shadow-xl border-0 bg-white/90 backdrop-blur-sm'>
 						<div className='flex items-center justify-between mb-6 p-4 bg-accent-50 rounded-lg border border-accent-200'>
 							<div className='flex items-center space-x-3'>
@@ -133,7 +110,7 @@ export default function OfflinePage() {
 								onClick={handleRetry}
 								disabled={isRetrying}
 								className='border-accent-300 text-accent-700 hover:bg-accent-100'>
-								{isRetrying ?
+		{isRetrying ?
 									<RefreshCw className='w-4 h-4 animate-spin' />
 								:	<RefreshCw className='w-4 h-4' />}
 								{isRetrying ? 'Retrying...' : 'Retry'}
@@ -175,7 +152,7 @@ export default function OfflinePage() {
 										<Badge
 											variant='secondary'
 											className='text-xs'>
-											{state.cacheSize > 0 ?
+		{state.cacheSize > 0 ?
 												`${Math.round(state.cacheSize / 1024)} KB cached`
 											:	'No cache available'}
 										</Badge>
@@ -259,7 +236,7 @@ export default function OfflinePage() {
 								onClick={handleRetry}
 								disabled={isRetrying}
 								className='flex-1'>
-								{isRetrying ?
+		{isRetrying ?
 									<RefreshCw className='w-4 h-4 mr-2 animate-spin' />
 								:	<Wifi className='w-4 h-4 mr-2' />}
 								{isRetrying ? 'Checking Connection...' : 'Try Reconnecting'}
@@ -272,16 +249,9 @@ export default function OfflinePage() {
 							</p>
 						)}
 					</Card>
-				</divdiv>
+				</div>
 
-				<divdiv
-						opacity: 0,
-					}}
-						opacity: 1,
-					}}
-						duration: 0.6,
-						delay: 0.4,
-					}}
+				<div
 					className='text-center mt-8'>
 					<div className='flex items-center justify-center space-x-2 text-slate-600 mb-2'>
 						<Star className='w-4 h-4 text-accent-500' />
@@ -291,8 +261,7 @@ export default function OfflinePage() {
 					<p className='text-xs text-slate-500'>
 						Royal Client Service • Est. 2010 • Featured in Tatler Address Book 2025
 					</p>
-				</divdiv>
+				</div>
 			</div>
 		</div>
 	);
-}

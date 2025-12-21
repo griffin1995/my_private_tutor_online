@@ -31,14 +31,12 @@ interface PerformanceMetric {
 	target: number;
 	status: 'success' | 'warning' | 'error';
 	trend: 'up' | 'down' | 'stable';
-}
 interface OptimizationPhase {
 	phase: number;
 	name: string;
 	status: 'completed' | 'in-progress' | 'pending';
 	metrics: PerformanceMetric[];
 	achievements: string[];
-}
 export default function PerformanceDashboard() {
 	const [activePhase, setActivePhase] = useState<string>('overview');
 	const [realTimeMetrics, setRealTimeMetrics] = useState<any>({});
@@ -180,7 +178,6 @@ export default function PerformanceDashboard() {
 				return <XCircle className='h-5 w-5 text-red-500' />;
 			default:
 				return null;
-		}
 	};
 	const getTrendIcon = (trend: string) => {
 		switch (trend) {
@@ -190,7 +187,6 @@ export default function PerformanceDashboard() {
 				return <TrendingDown className='h-4 w-4 text-green-500' />;
 			default:
 				return <Activity className='h-4 w-4 text-gray-500' />;
-		}
 	};
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -477,4 +473,3 @@ export default function PerformanceDashboard() {
 			</Alert>
 		</div>
 	);
-}

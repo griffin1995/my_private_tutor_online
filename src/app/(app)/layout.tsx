@@ -247,7 +247,7 @@ export default function RootLayout({
 			</head>
 			<body
 				className={`${fontClassNames} font-body antialiased min-h-screen bg-transparent text-foreground`}>
-				{children}
+		{children}
 				<CookieConsentManager
 					enableAnalytics={process.env.NODE_ENV === 'production'}
 					{...(process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'] && {
@@ -258,4 +258,3 @@ export default function RootLayout({
 			</body>
 		</html>
 	);
-}

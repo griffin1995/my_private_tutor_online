@@ -62,4 +62,3 @@ export default function MeetOurTutorsLayout({
 	children: React.ReactNode;
 }) {
 	return children;
-}

@@ -128,7 +128,7 @@ export default function ContactPage() {
 											<a
 												href={`mailto:${contactContent.contactInfo.email}`}
 												className='text-primary-600 hover:text-primary-700 transition-colors'>
-												{contactContent.contactInfo.email}
+		{contactContent.contactInfo.email}
 											</a>
 										</div>
 										<div>
@@ -136,7 +136,7 @@ export default function ContactPage() {
 											<a
 												href={`tel:${contactContent.contactInfo.phone}`}
 												className='text-primary-600 hover:text-primary-700 transition-colors'>
-												{contactContent.contactInfo.phone}
+		{contactContent.contactInfo.phone}
 											</a>
 										</div>
 										<div>
@@ -144,7 +144,7 @@ export default function ContactPage() {
 											<a
 												href={`https://wa.me/${contactContent.contactInfo.whatsapp_api_format}`}
 												className='text-primary-600 hover:text-primary-700 transition-colors'>
-												{contactContent.contactInfo.whatsapp}
+		{contactContent.contactInfo.whatsapp}
 											</a>
 										</div>
 										{contactContent.contactInfo.enquire_tagline && (
@@ -219,4 +219,3 @@ export default function ContactPage() {
 			</PageLayout>
 		</>
 	);
-}

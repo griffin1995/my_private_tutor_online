@@ -350,7 +350,6 @@ export default function FAQPage() {
 									</div>
 								)}
 							</>
-						}
 					</div>
 				</section>
 
@@ -405,7 +404,7 @@ export default function FAQPage() {
 											<Accordion
 												type='multiple'
 												className='space-y-2'>
-												{category.questions.map((item, index) => (
+		{category.questions.map((item, index) => (
 													<AccordionItem
 														key={`${category.id}-${index}`}
 														value={`${category.id}-${index}`}
@@ -424,7 +423,6 @@ export default function FAQPage() {
 										</section>
 									))}
 								</div>
-							}
 						</div>
 					</main>
 				)}
@@ -501,4 +499,3 @@ export default function FAQPage() {
 			</div>
 		</PageLayout>
 	);
-}

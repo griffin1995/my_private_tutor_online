@@ -83,7 +83,6 @@ export default function ExpertEducatorsPage() {
 					className='absolute inset-0 opacity-[0.02]'
 					style={{
 						backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-					}}
 				/>
 				<GradientOverlay
 					direction='bottom-right'
@@ -92,76 +91,25 @@ export default function ExpertEducatorsPage() {
 				<div
 					className='relative z-10 text-center space-y-8'
 					data-dark-bg>
-					<divdiv
-							opacity: 0,
-							y: 30,
-						}}
-							opacity: 1,
-							y: 0,
-						}}
-						viewport={{
-							once: true,
-							margin: '-50px',
-						}}
-							duration: 0.8,
-							delay: 0.1,
-						}}>
+					<div>
 						<Badge className='bg-accent-600/20 text-white border-white/30 mb-4'>
 							{expertEducatorsContent.hero.subtitle}
 						</Badge>
-					</divdiv>
+					</div>
 
-					<divh1
-						className='drop-shadow-sm'
-							opacity: 0,
-							y: 30,
-						}}
-							opacity: 1,
-							y: 0,
-						}}
-						viewport={{
-							once: true,
-							margin: '-50px',
-						}}
-							duration: 0.8,
-							delay: 0.2,
-						}}>
-						{expertEducatorsContent.hero.title}
-					</divh1>
+					<div>
+						<h1 className='drop-shadow-sm'>
+							{expertEducatorsContent.hero.title}
+						</h1>
+					</div>
 
-					<divp
-						className='max-w-4xl mx-auto drop-shadow-sm'
-							opacity: 0,
-							y: 30,
-						}}
-							opacity: 1,
-							y: 0,
-						}}
-						viewport={{
-							once: true,
-							margin: '-50px',
-						}}
-							duration: 0.8,
-							delay: 0.4,
-						}}>
-						{expertEducatorsContent.hero.description}
-					</divp>
+					<div>
+						<p className='max-w-4xl mx-auto drop-shadow-sm'>
+							{expertEducatorsContent.hero.description}
+						</p>
+					</div>
 
-					<divdiv
-							opacity: 0,
-							y: 30,
-						}}
-							opacity: 1,
-							y: 0,
-						}}
-						viewport={{
-							once: true,
-							margin: '-50px',
-						}}
-							duration: 0.8,
-							delay: 0.6,
-						}}
-						className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
+					<div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
 						<Button
 							size='lg'
 							variant='secondary'
@@ -174,7 +122,7 @@ export default function ExpertEducatorsPage() {
 							className='border-white/50 text-white hover:bg-white/10 backdrop-blur-sm'>
 							View Comparison
 						</Button>
-					</divdiv>
+					</div>
 				</div>
 			</PageHero>
 
@@ -192,69 +140,32 @@ export default function ExpertEducatorsPage() {
 						className='absolute inset-0 opacity-[0.01]'
 						style={{
 							backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='1'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243L8.2 0H5.373zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657l1.415 1.414L13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM6.686 0L0.2 6.485 1.616 7.9l7.9-7.9H6.686zM22.343 0L31.657 9.314 30.243 10.728 18.515 0h3.828zM37.657 0L28.343 9.314l1.414 1.414L41.485 0h-3.828z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-						}}
 					/>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-center'>
-							<divdiv
-									opacity: 0,
-									x: -30,
-								}}
-									opacity: 1,
-									x: 0,
-								}}
-									duration: 0.8,
-								}}
-								viewport={{
-									once: true,
-									margin: '-50px',
-								}}
-								className='space-y-8'>
+							<div className='space-y-8'>
 								<h2>{expertEducatorsContent.founderStory.title}</h2>
 								<p>{expertEducatorsContent.founderStory.content}</p>
 								<div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
 									{expertEducatorsContent.founderStory.achievements.map(
 										(achievement, index) => (
-											<divdiv
+											<div
 												key={index}
-												className='flex items-center gap-3 group'
-													opacity: 0,
-													x: -20,
-												}}
-													opacity: 1,
-													x: 0,
-												}}
-												viewport={{
-													once: true,
-													margin: '-50px',
-												}}
-													duration: 0.6,
-													delay: index * 0.1,
-												}}>
+												className='flex items-center gap-3 group'>
 												<CheckCircle className='w-5 h-5 text-emerald-600 group-hover:scale-110 transition-transform duration-300' />
 												<span className='group-hover:text-primary-800 transition-colors duration-300'>
 													{achievement}
 												</span>
-											</divdiv>
+											</div>
 										),
 									)}
 								</div>
-							</divdiv>
+							</div>
 
-							<divdiv
-									opacity: 0,
-									x: 30,
-								}}
-									opacity: 1,
-									x: 0,
-								}}
-									duration: 0.8,
-									delay: 0.2,
-								}}
+							<div
 								viewport={{
 									once: true,
 									margin: '-50px',
-								}}
 								className='relative'>
 								<div className='relative bg-white rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]'>
 									<div className='aspect-[4/5] bg-gradient-to-br from-accent-50 to-accent-100 relative'>
@@ -271,7 +182,7 @@ export default function ExpertEducatorsPage() {
 										<p className='mt-3'>Cambridge Graduate • 15+ Years Experience</p>
 									</div>
 								</div>
-							</divdiv>
+							</div>
 						</div>
 					</div>
 				</Section>
@@ -283,22 +194,12 @@ export default function ExpertEducatorsPage() {
 						className='absolute inset-0 opacity-[0.01]'
 						style={{
 							backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%231e40af' fill-opacity='1'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-						}}
 					/>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
-						<divdiv
-								opacity: 0,
-								y: 30,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
-								duration: 0.8,
-							}}
+						<div
 							viewport={{
 								once: true,
 								margin: '-50px',
-							}}
 							className='text-center mb-16'>
 							<h2 className='mb-6'>{expertEducatorsContent.tutorCredentials.title}</h2>
 							<Badge className='bg-accent-600/10 text-accent-700 border-accent-200 mb-8 px-6 py-2'>
@@ -307,25 +208,15 @@ export default function ExpertEducatorsPage() {
 							<p className='max-w-4xl mx-auto'>
 								{expertEducatorsContent.tutorCredentials.description}
 							</p>
-						</divdiv>
+						</div>
 
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
 							{expertEducatorsContent.tutorCredentials.requirements.map(
 								(requirement, index) => (
-									<divdiv
+									<div
 										key={index}
-											opacity: 0,
-											y: 30,
-										}}
-											opacity: 1,
-											y: 0,
-										}}
-											duration: 0.6,
-											delay: index * 0.1,
-										}}
 										viewport={{
 											once: true,
-										}}>
 										<Card className='h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-white/80 backdrop-blur-sm group'>
 											<CardContent className='p-8'>
 												<div className='flex items-start gap-5'>
@@ -340,7 +231,7 @@ export default function ExpertEducatorsPage() {
 												</div>
 											</CardContent>
 										</Card>
-									</divdiv>
+									</div>
 								),
 							)}
 						</div>
@@ -351,25 +242,16 @@ export default function ExpertEducatorsPage() {
 					className='py-16 lg:py-24'
 					background='grey'>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-						<divdiv
-								opacity: 0,
-								y: 30,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
-								duration: 0.6,
-							}}
+						<div
 							viewport={{
 								once: true,
-							}}
 							className='text-center mb-12'>
 							<h2 className='mb-6'>Tutor Tier Comparison</h2>
 							<p className='max-w-3xl mx-auto'>
 								Choose the perfect tutoring tier for your educational needs. All tiers
 								include our signature quality guarantee.
 							</p>
-						</divdiv>
+						</div>
 
 						<div className='overflow-x-auto'>
 							<div className='min-w-full'>
@@ -560,19 +442,9 @@ export default function ExpertEducatorsPage() {
 							</div>
 						</div>
 
-						<divdiv
-								opacity: 0,
-								y: 30,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
-								duration: 0.6,
-								delay: 0.3,
-							}}
+						<div
 							viewport={{
 								once: true,
-							}}
 							className='mt-12 text-center'>
 							<div className='bg-white rounded-2xl p-8 shadow-md'>
 								<h3 className='mb-4'>All Tiers Include</h3>
@@ -591,7 +463,7 @@ export default function ExpertEducatorsPage() {
 									</div>
 								</div>
 							</div>
-						</divdiv>
+						</div>
 					</div>
 				</Section>
 
@@ -599,42 +471,23 @@ export default function ExpertEducatorsPage() {
 					className='py-16 lg:py-24'
 					background='white'>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-						<divdiv
-								opacity: 0,
-								y: 30,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
-								duration: 0.6,
-							}}
+						<div
 							viewport={{
 								once: true,
-							}}
 							className='text-center mb-12'>
 							<h2 className='mb-4'>{expertEducatorsContent.supportSystem.title}</h2>
 							<p className='mb-6'>{expertEducatorsContent.supportSystem.subtitle}</p>
 							<p className='max-w-3xl mx-auto'>
 								{expertEducatorsContent.supportSystem.description}
 							</p>
-						</divdiv>
+						</div>
 
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
 							{expertEducatorsContent.supportSystem.features.map((feature, index) => (
-								<divdiv
+								<div
 									key={index}
-										opacity: 0,
-										y: 30,
-									}}
-										opacity: 1,
-										y: 0,
-									}}
-										duration: 0.6,
-										delay: index * 0.1,
-									}}
 									viewport={{
 										once: true,
-									}}>
 									<Card className='text-center h-full border-neutral-200 hover:shadow-lg transition-shadow duration-300'>
 										<CardContent className='p-6'>
 											<div className='mb-4'>{feature.icon}</div>
@@ -642,7 +495,7 @@ export default function ExpertEducatorsPage() {
 											<p>{feature.description}</p>
 										</CardContent>
 									</Card>
-								</divdiv>
+								</div>
 							))}
 						</div>
 					</div>
@@ -653,18 +506,9 @@ export default function ExpertEducatorsPage() {
 					background='primary'
 					data-dark-bg>
 					<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-						<divdiv
-								opacity: 0,
-								y: 30,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
-								duration: 0.6,
-							}}
+						<div
 							viewport={{
 								once: true,
-							}}
 							className='text-center'>
 							<h2 className='mb-6'>Ready to Meet Your Expert Educator?</h2>
 							<p className='mb-8 max-w-2xl mx-auto'>
@@ -676,10 +520,9 @@ export default function ExpertEducatorsPage() {
 								className='bg-amber-600 hover:bg-amber-700 text-white px-8 py-3'>
 								Request Free Consultation
 							</Button>
-						</divdiv>
+						</div>
 					</div>
 				</Section>
 			</PageLayout>
 		</>
 	);
-}

@@ -285,7 +285,6 @@ interface ResourceCard {
 	category: string;
 	description: string;
 	isFree: boolean;
-}
 
 // CONTEXT7 SOURCE: /metalrockseducation.co.uk - Product card structure
 // Mock resource cards - 3 cards per leaf-level subcategory for testing functionality
@@ -2476,7 +2475,6 @@ function CategoryItem({
 			</Collapsible>
 		</li>
 	);
-}
 
 // Category Tab Bar Component - Horizontal scrollable tabs for MD breakpoint only
 function CategoryTabBar({
@@ -2499,7 +2497,6 @@ function CategoryTabBar({
 						checked={showFreeOnly}
 						onCheckedChange={(checked) => {
 							onFreeFilterChange(checked === true);
-						}}
 						className='data-[state=checked]:bg-primary-700 data-[state=checked]:border-primary-700'
 					/>
 					<span className='text-sm font-medium text-neutral-700 select-none'>
@@ -2542,7 +2539,6 @@ function CategoryTabBar({
 			</div>
 		</div>
 	);
-}
 
 // Category Sidebar Component with sticky positioning
 function CategorySidebar({
@@ -2556,7 +2552,7 @@ function CategorySidebar({
 	showFreeOnly: boolean;
 	onFreeFilterChange: (value: boolean) => void;
 }) {
-	const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
+	const [expandedCategories, setExpandedCategories] = useState<Set<string>(
 		new Set(),
 	);
 
@@ -2566,7 +2562,6 @@ function CategorySidebar({
 			newExpanded.delete(categoryId);
 		} else {
 			newExpanded.add(categoryId);
-		}
 		setExpandedCategories(newExpanded);
 	};
 
@@ -2584,7 +2579,6 @@ function CategorySidebar({
 							checked={showFreeOnly}
 							onCheckedChange={(checked) => {
 								onFreeFilterChange(checked === true);
-							}}
 							className='data-[state=checked]:bg-primary-700 data-[state=checked]:border-primary-700'
 						/>
 						<span className='text-sm font-medium text-neutral-700 select-none'>
@@ -2631,14 +2625,12 @@ function CategorySidebar({
 			</div>
 		</aside>
 	);
-}
 
 // Resource Card Component - Official Blog7 card structure from shadcnblocks
 // Using exact inline Tailwind classes from Blog7 example
 function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 	return (
-		<divdiv
-			viewport={{ once: true, margin: '-50px' }}
+		<div
 			className='h-full'>
 			<Card className='flex flex-col pt-0 h-full rounded-none bg-white relative'>
 				{/* Free Badge - positioned in top-right corner */}
@@ -2652,7 +2644,6 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 						type='button'
 						onClick={() => {
 							/* Download handler */
-						}}
 						className='block w-full h-full transition-opacity duration-200 hover:opacity-70'>
 						<img
 							src='/images/exam-papers/pdf-document.svg'
@@ -2668,9 +2659,8 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 							type='button'
 							onClick={() => {
 								/* Download handler */
-							}}
 							className='!text-slate-900 no-underline hover:underline hover:!text-slate-700 text-left'>
-							{resource.title}
+		{resource.title}
 						</button>
 					</h3>
 				</CardHeader>
@@ -2686,7 +2676,6 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 						type='button'
 						onClick={() => {
 							/* Download handler */
-						}}
 						className='!text-slate-900 inline-flex items-center text-sm font-medium no-underline hover:underline hover:!text-slate-700'>
 						Download
 						<ArrowRight className='ml-2 size-4' />
@@ -2696,12 +2685,10 @@ function ResourceCard({ resource }: { resource: (typeof resourceCards)[0] }) {
 					:	<span className='text-sm font-medium text-slate-900'>
 							£{resource.price.toFixed(2)}
 						</span>
-					}
 				</CardFooter>
 			</Card>
-		</divdiv>
+		</div>
 	);
-}
 
 // Pagination Component
 function Pagination({
@@ -2731,7 +2718,7 @@ function Pagination({
 					size='sm'
 					onClick={() => onPageChange(page)}
 					className='min-w-[2.5rem] rounded-none'>
-					{page}
+		{page}
 				</Button>
 			))}
 
@@ -2745,7 +2732,6 @@ function Pagination({
 			</Button>
 		</div>
 	);
-}
 
 export default function ResourcesPage() {
 	const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -2767,18 +2753,12 @@ export default function ResourcesPage() {
 							ids.push(subCat.id);
 							if (subCat.subcategories) {
 								collectFromSubcategories(subCat.subcategories);
-							}
-						}
 					};
 					if (cat.subcategories) {
 						collectFromSubcategories(cat.subcategories);
-					}
 					return;
-				}
 				if (cat.subcategories) {
 					findAndCollectIds(cat.subcategories);
-				}
-			}
 		};
 
 		findAndCollectIds(categories);
@@ -2836,7 +2816,6 @@ export default function ResourcesPage() {
 									onChange={(e) => {
 										setSearchQuery(e.target.value);
 										setCurrentPage(1); // Reset to first page on search
-									}}
 								/>
 							</div>
 						</div>
@@ -2848,12 +2827,10 @@ export default function ResourcesPage() {
 						onCategorySelect={(categoryId) => {
 							setSelectedCategory(categoryId);
 							setCurrentPage(1); // Reset to first page on category change
-						}}
 						showFreeOnly={showFreeOnly}
 						onFreeFilterChange={(value) => {
 							setShowFreeOnly(value);
 							setCurrentPage(1); // Reset to first page on filter change
-						}}
 					/>
 
 					{/* Sidebar + Grid Layout with fixed height container */}
@@ -2864,12 +2841,10 @@ export default function ResourcesPage() {
 							onCategorySelect={(categoryId) => {
 								setSelectedCategory(categoryId);
 								setCurrentPage(1); // Reset to first page on category change
-							}}
 							showFreeOnly={showFreeOnly}
 							onFreeFilterChange={(value) => {
 								setShowFreeOnly(value);
 								setCurrentPage(1); // Reset to first page on filter change
-							}}
 						/>
 
 						{/* Main Content Area - Right Column with independent scroll */}
@@ -2917,7 +2892,6 @@ export default function ResourcesPage() {
 											setSelectedCategory(null);
 											setShowFreeOnly(false);
 											setCurrentPage(1);
-										}}>
 										Clear filters
 									</Button>
 								</div>
@@ -2928,4 +2902,3 @@ export default function ResourcesPage() {
 			</PageLayout>
 		</>
 	);
-}

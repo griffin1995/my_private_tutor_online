@@ -87,7 +87,6 @@ export default function ElevenPlusBootcampsPage() {
 								const encodedText = encodeURIComponent(updatesText);
 								const updatesUrl = `https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~?subject=${encodeURIComponent('11+ Bootcamp Updates Request')}&message=${encodedText}`;
 								window.open(updatesUrl, '_blank', 'noopener,noreferrer');
-							}}
 							aria-label='Contact us for bootcamp updates - opens enquiry form in new window'>
 							Contact Us for Updates
 						</Button>
@@ -95,7 +94,6 @@ export default function ElevenPlusBootcampsPage() {
 				</section>
 			</PageLayout>
 		);
-	}
 
 	return (
 		<>
@@ -278,4 +276,3 @@ export default function ElevenPlusBootcampsPage() {
 			</PageLayout>
 		</>
 	);
-}

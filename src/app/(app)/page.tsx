@@ -39,7 +39,6 @@ interface RecognitionCardData {
 	footerText?: string;
 	sortOrder: number;
 	status: 'published' | 'unpublished';
-}
 
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR HOMEPAGE
@@ -237,19 +236,16 @@ export default function HomePage() {
 					<div
 						style={{
 							height: 'var(--navbar-height, 5.5rem)',
-						}}
 						className='lg:hidden border-b border-neutral-300'
 					/>
 					<div
 						style={{
 							height: 'var(--navbar-height, 6.25rem)',
-						}}
 						className='hidden lg:block xl:hidden border-b border-neutral-300'
 					/>
 					<div
 						style={{
 							height: 'var(--navbar-height, 7rem)',
-						}}
 						className='hidden xl:block border-b border-neutral-300'
 					/>
 
@@ -257,7 +253,7 @@ export default function HomePage() {
 					<section
 						id='hero-premium-tutoring-landing-combined'
 						className='flex flex-col w-full h-[calc(100dvh-5.5rem)] md:h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-6.25rem)] xl:h-[calc(100dvh-7rem)]'>
-						{/* Top spacing */}
+		{/* Top spacing */}
 						<div className='flex-[0_0_2rem] sm:flex-[0_0_2.5rem] md:flex-[0_0_3rem]' />
 
 						{/* Video Section */}
@@ -343,7 +339,6 @@ export default function HomePage() {
 										ambitious families looking for trusted partners in their child's
 										academic career.
 									</>
-								}
 								author={{
 									name: 'Elizabeth Burrows',
 									role: 'Founder',
@@ -351,7 +346,6 @@ export default function HomePage() {
 										src: '/images/team/elizabeth-burrows-founder-main.jpg',
 										alt: 'Elizabeth Burrows - Founder',
 									},
-								}}
 							/>
 						</div>
 					</section>
@@ -374,4 +368,3 @@ export default function HomePage() {
 			<PageFooter showContactForm={true} />
 		</div>
 	);
-}

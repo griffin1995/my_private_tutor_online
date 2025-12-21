@@ -4,7 +4,6 @@ interface CategoryPageProps {
 	params: Promise<{
 		category: string;
 	}>;
-}
 export async function generateMetadata({
 	params: _params,
 }: CategoryPageProps): Promise<Metadata> {
@@ -14,7 +13,5 @@ export async function generateMetadata({
 			'Find answers to common questions about our premium tutoring services.',
 		robots: 'noindex, follow',
 	};
-}
 export default async function FAQCategoryPage({ params: _params }: CategoryPageProps) {
 	redirect('/faq');
-}

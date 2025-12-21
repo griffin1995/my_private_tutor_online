@@ -133,8 +133,6 @@ export default function TermsOfServicePage() {
 				contactInfo={{
 					email: "info@myprivatetutoronline.com",
 					address: "17 Alexandra Gardens, London, N10 3RN"
-				}}
 			/>
 		</LegalPageTemplate>
 	);
-}
