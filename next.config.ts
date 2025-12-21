@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next';
 import path from 'path';
+import withSerwistInit from '@serwist/next';
 
 // Modern 2025 debugging: React DevTools profiler enabled below
 // Removed why-did-you-render in favour of built-in React debugging tools
@@ -209,4 +210,12 @@ const nextConfig: NextConfig = {
 
 };
 
-export default nextConfig;
+// Configure Serwist for PWA functionality
+const withSerwist = withSerwistInit({
+	swSrc: 'app/sw.ts',
+	swDest: 'public/sw.js',
+	cacheOnNavigation: true,
+	scope: '/',
+});
+
+export default withSerwist(nextConfig);
