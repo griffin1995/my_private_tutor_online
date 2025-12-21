@@ -5,66 +5,9 @@ import { Testimonial10NoRole } from '@/components/education/testimonial-section'
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
 import { FounderStorySection } from '@/components/sections/about/founder-story-section';
+import { RecognitionCardsSection } from '@/features/about/components';
 import Image from 'next/image';
-import { RecognitionCard } from '../../../components/sections/RecognitionCard';
 import { HeadingText, BodyText } from '@/components/ui/typography';
-// ============================================================================
-// HARDCODED DATA - ALL CMS CONTENT FOR ABOUT PAGE
-// ============================================================================
-// Type for recognition card data (hardcoded)
-interface RecognitionCardData {
-	id: string;
-	headerText: string;
-	contentType: 'logo' | 'icon';
-	logoImage?: {
-		url: string;
-		alt: string;
-	};
-	logoMaxWidth?: string;
-	iconPath?: string;
-	iconAlt?: string;
-	footerText?: string;
-	sortOrder: number;
-	status: 'published' | 'unpublished';
-}
-
-const RECOGNITION_CARDS_DATA: RecognitionCardData[] = [
-	{
-		id: 'tatler-address-book',
-		headerText: 'As featured in',
-		contentType: 'logo',
-		logoImage: {
-			url: '/landing-page/tatler-logo.webp',
-			alt: "Tatler's Address Book 2025",
-		},
-		sortOrder: 1,
-		status: 'published',
-	},
-	{
-		id: 'school-guide-top-pick',
-		headerText: 'As recommended by',
-		contentType: 'logo',
-		logoImage: {
-			url: '/landing-page/schools-guide-uk-logo.webp',
-			alt: "School Guide's Top Pick for Private Tuition",
-		},
-		sortOrder: 2,
-		status: 'published',
-	},
-	{
-		id: 'royal-clientele',
-		headerText: 'As trusted by',
-		contentType: 'logo',
-		logoImage: {
-			url: '/landing-page/royal-crown.webp',
-			alt: 'Royal Crown',
-		},
-		sortOrder: 3,
-		status: 'published',
-	},
-];
-
-const recognitionCards: RecognitionCardData[] = RECOGNITION_CARDS_DATA;
 // Hero image for About page
 const ABOUT_HERO_IMAGE = {
 	src: 'images/team/about-founder-story.jpg',
@@ -182,29 +125,8 @@ export default function AboutUsPage() {
 					</div>
 				</section>
 
-				<div
-					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'>
-					{recognitionCards
-						.filter(
-							(
-								card,
-							): card is RecognitionCardData & {
-								contentType: 'logo';
-								logoImage: { url: string; alt: string };
-							} => card.contentType === 'logo' && card.logoImage !== undefined,
-						)
-						.map((card, index) => (
-							<RecognitionCard
-								key={card.id}
-								headerText={card.headerText}
-								contentType={card.contentType}
-								logoImage={card.logoImage}
-								{...(card.footerText && { footerText: card.footerText })}
-								animationDelay={0.5 + index * 0.2}
-								index={index}
-							/>
-						))}
-				</div>
+				{/* Recognition Cards Section - Modernised with Feature-Based Architecture */}
+				<RecognitionCardsSection />
 				{/* Testimonials Carousel Section */}
 				<section
 					id='testimonials-carousel'
