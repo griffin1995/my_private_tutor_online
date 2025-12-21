@@ -1,19 +1,18 @@
 import { fontClassNames } from '@/fonts';
 import { Toaster } from '@/components/ui/sonner';
 import { CookieConsentManager } from '@/components/privacy/cookie-consent-manager';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import React from 'react';
 import './globals.css';
 
+// Next.js 15 Metadata API - Enhanced SEO Configuration
 export const metadata: Metadata = {
 	metadataBase: new URL('https://www.myprivatetutoronline.com'),
 	title: {
-		default:
-			'My Private Tutor Online | Premium Academic Tutoring | Oxbridge & 11+ Specialists',
+		default: 'My Private Tutor Online | Premium Academic Tutoring | Oxbridge & 11+ Specialists',
 		template: '%s | My Private Tutor Online',
 	},
-	description:
-		'Specialist support from tutors, qualified teachers and official examiners. Featured in Tatler, recommended by School Guide UK, trusted by Royalty. Premium private tutoring with 15+ years experience specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels.',
+	description: 'Specialist support from tutors, qualified teachers and official examiners. Featured in Tatler, recommended by School Guide UK, trusted by Royalty. Premium private tutoring with 15+ years experience specialising in Oxbridge preparation, 11+ entry, GCSE & A-levels.',
 	keywords: [
 		'private tutor',
 		'Oxbridge preparation',
@@ -103,22 +102,55 @@ export const metadata: Metadata = {
 		statusBarStyle: 'black-translucent',
 	},
 	manifest: '/manifest.json',
-};
-export const viewport = {
-	colorScheme: 'light dark',
-	themeColor: [
+	// Modern favicon approach - Next.js 15 handles icon files automatically
+	icons: [
 		{
-			media: '(prefers-color-scheme: light)',
-			color: '#3f4a7e', // Primary brand navy from design tokens
+			rel: 'icon',
+			url: '/icons/favicon-32x32.png',
+			sizes: '32x32',
+			type: 'image/png',
 		},
 		{
-			media: '(prefers-color-scheme: dark)',
-			color: '#3f4a7e', // Primary brand navy from design tokens
+			rel: 'icon',
+			url: '/icons/favicon-192x192.png',
+			sizes: '192x192',
+			type: 'image/png',
+		},
+		{
+			rel: 'apple-touch-icon',
+			url: '/icons/apple-touch-icon.png',
+			sizes: '180x180',
+			type: 'image/png',
+		},
+		{
+			rel: 'icon',
+			url: '/icons/favicon-512x512.png',
+			sizes: '512x512',
+			type: 'image/png',
 		},
 	],
 };
-// Next.js 15 optimization: Use selective dynamic rendering instead of force-dynamic
-// Root layout should be static as it contains no request-specific data
+
+// PWA Viewport Configuration - Responsive Theme Colors (2025 Best Practice)
+export const viewport: Viewport = {
+	width: 'device-width',
+	initialScale: 1,
+	maximumScale: 5,
+	userScalable: true,
+	colorScheme: 'light',
+	themeColor: [
+		{
+			media: '(prefers-color-scheme: light)',
+			color: 'var(--color-primary-base)', // Design token instead of hardcoded
+		},
+		{
+			media: '(prefers-color-scheme: dark)',
+			color: 'var(--color-primary-base)', // Design token instead of hardcoded
+		},
+	],
+};
+
+// Next.js 15 optimized root layout with minimal head management
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -126,135 +158,20 @@ export default function RootLayout({
 }>) {
 	return (
 		<html
-			lang='en-GB'
-			dir='ltr'
-			className='scroll-smooth'>
-			<head>
-				<meta
-					name='viewport'
-					content='width=device-width, initial-scale=1'
-				/>
-				<meta
-					name='theme-color'
-					content='#3f4a7e'
-				/>
-				<link
-					rel='icon'
-					href='/icons/favicon-32x32.png'
-					sizes='32x32'
-					type='image/png'
-				/>
-				<link
-					rel='icon'
-					href='/icons/favicon-48x48.png'
-					sizes='48x48'
-					type='image/png'
-				/>
-				<link
-					rel='icon'
-					href='/icons/favicon-96x96.png'
-					sizes='96x96'
-					type='image/png'
-				/>
-				<link
-					rel='icon'
-					href='/icons/favicon-128x128.png'
-					sizes='128x128'
-					type='image/png'
-				/>
-				<link
-					rel='icon'
-					href='/icons/favicon-192x192.png'
-					sizes='192x192'
-					type='image/png'
-				/>
-				<link
-					rel='apple-touch-icon'
-					href='/icons/apple-touch-icon.png'
-				/>
-				<link
-					rel='apple-touch-icon'
-					href='/icons/apple-touch-icon-60x60.png'
-					sizes='60x60'
-				/>
-				<link
-					rel='apple-touch-icon'
-					href='/icons/apple-touch-icon-76x76.png'
-					sizes='76x76'
-				/>
-				<link
-					rel='apple-touch-icon'
-					href='/icons/apple-touch-icon-120x120.png'
-					sizes='120x120'
-				/>
-				<link
-					rel='apple-touch-icon'
-					href='/icons/apple-touch-icon-152x152.png'
-					sizes='152x152'
-				/>
-				<link
-					rel='apple-touch-icon'
-					href='/icons/apple-touch-icon-167x167.png'
-					sizes='167x167'
-				/>
-				<link
-					rel='apple-touch-icon'
-					href='/icons/apple-touch-icon-180x180.png'
-					sizes='180x180'
-				/>
-				<link
-					rel='manifest'
-					href='/manifest.json'
-				/>
-				<meta
-					name='mobile-web-app-capable'
-					content='yes'
-				/>
-				<meta
-					name='apple-mobile-web-app-capable'
-					content='yes'
-				/>
-				<meta
-					name='apple-mobile-web-app-status-bar-style'
-					content='black-translucent'
-				/>
-				<meta
-					name='apple-mobile-web-app-title'
-					content='My Private Tutor'
-				/>
-				<meta
-					name='application-name'
-					content='My Private Tutor'
-				/>
-				<meta
-					name='msapplication-TileColor'
-					content='#3f4a7e'
-				/>
-				<meta
-					name='msapplication-config'
-					content='/browserconfig.xml'
-				/>
-
-				<link
-					rel='preconnect'
-					href='https://fonts.googleapis.com'
-				/>
-				<link
-					rel='preconnect'
-					href='https://fonts.gstatic.com'
-					crossOrigin='anonymous'
-				/>
-			</head>
-			<body
-				className={`${fontClassNames} font-body antialiased min-h-screen bg-transparent text-foreground`}>
-		{children}
+			lang="en-GB"
+			dir="ltr"
+			className={`${fontClassNames} scroll-smooth`}
+		>
+			<body className="font-body antialiased min-h-screen bg-white text-foreground">
+				{children}
 				<CookieConsentManager
 					enableAnalytics={process.env.NODE_ENV === 'production'}
-					{...(process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID'] && {
-						gaTrackingId: process.env['NEXT_PUBLIC_GA_MEASUREMENT_ID']
+					{...(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && {
+						gaTrackingId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
 					})}
 				/>
 				<Toaster />
 			</body>
 		</html>
 	);
+}
