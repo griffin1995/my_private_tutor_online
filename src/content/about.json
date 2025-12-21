@@ -313,5 +313,44 @@
 				"stat": "94%"
 			}
 		]
+	},
+	"recognitionCards": {
+		"title": "Recognition & Awards",
+		"description": "Trusted by elite families and recognised by prestigious institutions",
+		"cards": [
+			{
+				"id": "tatler-address-book",
+				"headerText": "As featured in",
+				"contentType": "logo",
+				"logoImage": {
+					"url": "/landing-page/tatler-logo.webp",
+					"alt": "Tatler's Address Book 2025"
+				},
+				"sortOrder": 1,
+				"status": "published"
+			},
+			{
+				"id": "school-guide-top-pick",
+				"headerText": "As recommended by",
+				"contentType": "logo",
+				"logoImage": {
+					"url": "/landing-page/schools-guide-uk-logo.webp",
+					"alt": "School Guide's Top Pick for Private Tuition"
+				},
+				"sortOrder": 2,
+				"status": "published"
+			},
+			{
+				"id": "royal-clientele",
+				"headerText": "As trusted by",
+				"contentType": "logo",
+				"logoImage": {
+					"url": "/landing-page/royal-crown.webp",
+					"alt": "Royal Crown"
+				},
+				"sortOrder": 3,
+				"status": "published"
+			}
+		]
 	}
 }
