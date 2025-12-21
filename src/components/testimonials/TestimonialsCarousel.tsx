@@ -18,7 +18,6 @@ interface TestimonialData {
 	readonly rating: number;
 	readonly subject?: string;
 	readonly result?: string;
-}
 
 // Use the same testimonial data from the existing component
 const TESTIMONIALS_DATA: readonly TestimonialData[] = [
@@ -127,7 +126,6 @@ const TESTIMONIALS_DATA: readonly TestimonialData[] = [
 interface TestimonialCardProps {
 	testimonial: TestimonialData;
 	index?: number;
-}
 
 const TestimonialCard = ({ testimonial, index = 0 }: TestimonialCardProps) => {
 	// Standardized intersection observer for each card
@@ -153,19 +151,17 @@ const TestimonialCard = ({ testimonial, index = 0 }: TestimonialCardProps) => {
 	return (
 		<div
 			ref={ref}
-			className="min-w-[280px] sm:min-w-[320px] md:min-w-[400px] lg:min-w-[450px] max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] bg-white p-4 sm:p-5 md:p-6 flex-shrink-0 border-2 border-primary-100 shadow-lg mr-4 sm:mr-6 md:mr-8"
-			{...fadeInUp}
-				y: -5,
+			className="min-w-[280px] sm:min-w-[320px] md:min-w-[400px] lg:min-w-[450px] max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[450px] bg-white p-4 sm:p-5 md:p-6 flex-shrink-0 border-2 border-primary-100 shadow-lg mr-4 sm:mr-6 md:mr-8">
+		{...fadeInUp}
 				boxShadow: '0 20px 30px rgba(0,0,0,0.15)',
 				transition: { duration: 0.3, ease: "easeOut" }
-			}}>
 			<div
-				className="flex items-center gap-3 sm:gap-4 mb-4"
-				{...fadeInUp}
+				className="flex items-center gap-3 sm:gap-4 mb-4">
+		{...fadeInUp}
 				{testimonial.avatar && (
 					<div
-						className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-accent-500 flex-shrink-0"
-						{...scaleIn}
+						className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-accent-500 flex-shrink-0">
+		{...scaleIn}
 						<Image
 							src={testimonial.avatar}
 							alt={`${testimonial.author} photo`}
@@ -193,15 +189,11 @@ const TestimonialCard = ({ testimonial, index = 0 }: TestimonialCardProps) => {
 
 			{/* Star Rating */}
 			<div
-				className="flex mb-3 sm:mb-4"
-				{...fadeInUp}
+				className="flex mb-3 sm:mb-4">
+		{...fadeInUp}
 				{[...Array(testimonial.rating)].map((_, i) => (
 					<div
 						key={i}
-							duration: 0.3,
-							ease: "easeOut",
-							delay: index * 0.1 + 0.4 + i * 0.05
-						}}>
 						<Star className="w-4 h-4 sm:w-5 sm:h-5 text-accent-600 fill-current" />
 					</div>
 				))}
@@ -229,8 +221,8 @@ const TestimonialCard = ({ testimonial, index = 0 }: TestimonialCardProps) => {
 						{testimonial.subject}
 					</CaptionText>
 					<div
-						className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 relative"
-						{...scaleIn}
+						className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 relative">
+		{...scaleIn}
 						<Image
 							src="/icons/favicon-96x96.png"
 							alt="My Private Tutor Online"
@@ -249,7 +241,6 @@ interface TestimonialsCarouselProps {
 	className?: string;
 	autoScrollSpeed?: number;
 	stopOnHover?: boolean;
-}
 
 export const TestimonialsCarousel = ({
 	className = '',

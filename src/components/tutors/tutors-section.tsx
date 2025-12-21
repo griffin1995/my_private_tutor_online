@@ -11,7 +11,6 @@ interface TutorsSectionProps {
 	showFeaturedOnly?: boolean;
 	maxProfiles?: number;
 	className?: string;
-}
 
 // Section header component
 const SectionHeader: React.FC<{ data: TutorProfilesSection }> = ({ data }) => {
@@ -39,7 +38,6 @@ const ActionButton: React.FC<{
 }> = ({ showAllButton, hasProfiles }) => {
 	if (!showAllButton || !hasProfiles) {
 		return null;
-	}
 
 	const buttonText = showAllButton.label || 'Meet Some of our Team';
 
@@ -71,7 +69,6 @@ export const TutorsSection: React.FC<TutorsSectionProps> = ({
 	const profilesToShow = React.useMemo(() => {
 		if (showFeaturedOnly) {
 			return data.profiles.filter((profile) => profile.featured);
-		}
 		return data.profiles;
 	}, [data.profiles, showFeaturedOnly]);
 

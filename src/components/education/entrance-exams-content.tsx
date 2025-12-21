@@ -73,4 +73,3 @@ export function EntranceExamsContent() {
 			<TabContentLayout data={entranceExamsData} />
 		</div>
 	);
-}

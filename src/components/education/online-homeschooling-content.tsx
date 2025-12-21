@@ -90,4 +90,3 @@ const onlineHomeschoolingData: TabContentData = {
 
 export function OnlineHomeschoolingContent() {
 	return <TabContentLayout data={onlineHomeschoolingData} />;
-}

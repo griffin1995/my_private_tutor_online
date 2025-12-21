@@ -15,7 +15,6 @@ interface Testimonial10Props {
 			alt: string;
 		};
 	};
-}
 
 export const Testimonial10 = ({
 	// quote = 'Testimonial quote text goes here. This is where the customer feedback or testimonial content will be displayed.',
@@ -76,7 +75,6 @@ interface Testimonial10NoRoleProps {
 			alt: string;
 		};
 	};
-}
 
 export const Testimonial10NoRole = ({
 	quote,

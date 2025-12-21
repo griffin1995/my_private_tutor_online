@@ -36,7 +36,6 @@ interface TierConfig {
 	colorClass: string;
 	description: string;
 	priority: number;
-}
 
 /** Type-safe tier configuration using design tokens for royal client quality standards */
 const TIER_CONFIG: Record<TierLevel, TierConfig> = {
@@ -75,7 +74,6 @@ interface TutorProfileCardProps {
 	className?: string;
 	variant?: 'default' | 'compact';
 	showFullProfile?: boolean;
-}
 
 /** Tier indicator component with type-safe configuration */
 const TierIndicator: React.FC<{
@@ -133,7 +131,6 @@ const ExperienceMetrics: React.FC<{
 				)}
 			</CaptionText>
 		);
-	}
 
 	const metrics = [
 		{
@@ -269,7 +266,6 @@ export const TutorProfileCard: React.FC<TutorProfileCardProps> = ({
 	// Simple conditional return - no type gymnastics needed
 	if (!showFullProfile) {
 		return tutorCard;
-	}
 
 	// Full profile implementation with Dialog
 	return (

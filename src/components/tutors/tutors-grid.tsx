@@ -26,7 +26,6 @@ interface EmptyStateConfig {
 	actionLabel?: string;
 	actionHref?: string;
 	variant: 'default' | 'warning' | 'error';
-}
 
 const EMPTY_STATE_CONFIGS: Record<string, EmptyStateConfig> = {
 	noTutors: {
@@ -66,14 +65,12 @@ interface SortingConfig {
 	byTier: boolean;
 	byFeatured: boolean;
 	byOrder: boolean;
-}
 
 /** Grid layout configuration based on variant */
 interface GridLayoutConfig {
 	containerClasses: string;
 	gridClasses: string;
 	cardVariant: 'default' | 'compact';
-}
 
 const GRID_LAYOUTS: Record<string, GridLayoutConfig> = {
 	default: {
@@ -104,7 +101,6 @@ interface TutorsGridProps {
 	variant?: 'default' | 'compact' | 'featured';
 	showProfileCounts?: boolean;
 	sortingConfig?: Partial<SortingConfig>;
-}
 
 /** Empty state component using Card pattern */
 const EmptyStateCard: React.FC<{ config: EmptyStateConfig; className?: string }> = ({
@@ -128,7 +124,6 @@ const EmptyStateCard: React.FC<{ config: EmptyStateConfig; className?: string }>
 	const handleActionClick = (href: string) => {
 		if (href === '#') {
 			window.location.reload();
-		}
 	};
 
 	return (
@@ -244,24 +239,19 @@ export const TutorsGrid: React.FC<TutorsGridProps> = ({
 				const tierB = getTierPriority(b.tier);
 				if (tierA !== tierB) {
 					return tierA - tierB;
-				}
-			}
 
 			if (sorting.byFeatured) {
 				if (a.featured && !b.featured) return -1;
 				if (!a.featured && b.featured) return 1;
-			}
 
 			if (sorting.byOrder) {
 				return a.order - b.order;
-			}
 
 			return 0;
 		});
 
 		if (maxProfiles && maxProfiles > 0) {
 			filteredProfiles = filteredProfiles.slice(0, maxProfiles);
-		}
 
 		return filteredProfiles;
 	}, [profiles, sorting, maxProfiles]);
@@ -282,7 +272,6 @@ export const TutorsGrid: React.FC<TutorsGridProps> = ({
 				<EmptyStateCard config={effectiveConfig} />
 			</div>
 		);
-	}
 
 	const layout = GRID_LAYOUTS[variant];
 

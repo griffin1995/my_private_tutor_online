@@ -22,7 +22,6 @@ interface TestimonialData {
 	readonly rating: number;
 	readonly subject?: string;
 	readonly result?: string;
-}
 
 // Use the same testimonial data from the carousel component
 const TESTIMONIALS_DATA: readonly TestimonialData[] = [
@@ -130,7 +129,6 @@ const TESTIMONIALS_DATA: readonly TestimonialData[] = [
 // Individual testimonial card using shadcn/ui Card components
 interface TestimonialCardProps {
 	testimonial: TestimonialData;
-}
 
 const TestimonialStaticCard = ({ testimonial }: TestimonialCardProps) => (
 	<Card className="h-full flex flex-col border-2 border-primary-100 shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-none">
@@ -199,7 +197,6 @@ interface TestimonialsStaticGridProps {
 	className?: string;
 	title?: string;
 	description?: string;
-}
 
 export const TestimonialsStaticGrid = ({
 	className = '',

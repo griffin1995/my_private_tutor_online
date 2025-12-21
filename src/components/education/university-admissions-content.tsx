@@ -103,4 +103,3 @@ const universityAdmissionsData: TabContentData = {
 
 export function UniversityAdmissionsContent() {
 	return <TabContentLayout data={universityAdmissionsData} />;
-}

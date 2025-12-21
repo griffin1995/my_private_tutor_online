@@ -13,7 +13,6 @@ interface Video {
 	thumbnailAlt: string;
 	isFree: boolean;
 	purchaseLink?: string;
-}
 
 interface Feature {
 	id: string;
@@ -24,19 +23,16 @@ interface Feature {
 	icon?: LucideIcon;
 	url?: string;
 	videos?: Video[];
-}
 
 interface FeatureSectionProps {
 	title?: string;
 	description?: string;
 	features: Feature[];
-}
 
 interface VideoModalProps {
 	readonly videoUrl: string;
 	readonly thumbnailUrl: string;
 	readonly alt: string;
-}
 
 function VideoModal({ videoUrl, thumbnailUrl, alt }: VideoModalProps) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +47,6 @@ function VideoModal({ videoUrl, thumbnailUrl, alt }: VideoModalProps) {
 								alt={alt}
 								style={{
 									aspectRatio: '16/9',
-								}}
 								className='w-full h-full object-cover'
 							/>
 
@@ -77,7 +72,6 @@ function VideoModal({ videoUrl, thumbnailUrl, alt }: VideoModalProps) {
 						className='relative w-full'
 						style={{
 							aspectRatio: '16/9',
-						}}>
 						{videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') ? (
 							<iframe
 								src={videoUrl}
@@ -101,7 +95,6 @@ function VideoModal({ videoUrl, thumbnailUrl, alt }: VideoModalProps) {
 			</Dialog.Portal>
 		</Dialog.Root>
 	);
-}
 
 export const FeatureSection = ({
 	// title = 'Feature Section Main Heading',
@@ -157,13 +150,13 @@ export const FeatureSection = ({
 							level={2}
 							responsive
 							className='text-pretty'>
-							{title}
+		{title}
 						</HeadingText>
 						{description && (
 							<BodyText
 								variant="large"
 								className='mt-6 text-muted-foreground'>
-								{description}
+		{description}
 							</BodyText>
 						)}
 					</div>
@@ -179,7 +172,7 @@ export const FeatureSection = ({
 										<CaptionText
 											variant="muted"
 											className='font-mono'>
-											{feature.label}
+		{feature.label}
 										</CaptionText>
 									)}
 									{feature.url ? (
@@ -188,7 +181,7 @@ export const FeatureSection = ({
 												level={3}
 												responsive
 												className='hover:text-primary transition-all hover:opacity-80 break-words'>
-												{feature.heading}
+		{feature.heading}
 											</HeadingText>
 										</a>
 									) : (
@@ -196,7 +189,7 @@ export const FeatureSection = ({
 											level={3}
 											responsive
 											className='break-words'>
-											{feature.heading}
+		{feature.heading}
 										</HeadingText>
 									)}
 								</div>
@@ -221,7 +214,7 @@ export const FeatureSection = ({
 							<BodyText
 								variant="muted"
 								className='p-4 md:p-8'>
-								{feature.description}
+		{feature.description}
 							</BodyText>
 							{feature.videos && feature.videos.length > 0 && (
 								<div className='border-t p-4 md:p-8'>
@@ -232,7 +225,6 @@ export const FeatureSection = ({
 													className='relative'
 													style={{
 														paddingBottom: '56.25%',
-													}}>
 													<div className='absolute inset-0'>
 														{video.isFree && video.youtubeUrl ? (
 															<VideoModal
@@ -253,12 +245,11 @@ export const FeatureSection = ({
 																		className='w-full h-full object-cover border border-[#3F4A7E] group-hover:border-accent-600 shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]'
 																		style={{
 																			aspectRatio: '16/9',
-																		}}
 																	/>
 																	<div className='absolute inset-0 bg-black/40 flex items-center justify-center'>
 																		<BodyText
 																			className='text-white group-hover:text-accent-600 group-hover:underline font-medium drop-shadow-lg transition-all duration-200 ease-out'>
-																			{video.isFree ? 'Watch Free' : 'Purchase Access'}
+		{video.isFree ? 'Watch Free' : 'Purchase Access'}
 																		</BodyText>
 																	</div>
 																</div>
