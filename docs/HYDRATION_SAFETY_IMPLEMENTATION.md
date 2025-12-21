@@ -303,7 +303,7 @@ useEffect(() => {
 ### Build Verification
 
 ```bash
-npm run build
+pnpm run build
 # ✓ Compiled successfully in 46s
 # ├ ƒ /api/errors                227 B    152 kB
 # ├ ƒ /api/faq/errors            227 B    152 kB
@@ -423,7 +423,7 @@ export function Component() {
 - ✅ Integrated into ClientProviders as outermost wrapper
 - ✅ Barrel export file created for clean imports
 - ✅ Comprehensive usage examples documented
-- ✅ Build verification passed (npm run build successful)
+- ✅ Build verification passed (pnpm run build successful)
 - ✅ Zero bundle size impact (minimal context overhead)
 - ✅ SSR compatibility confirmed (false during server render)
 - ✅ British English conventions maintained throughout

@@ -139,7 +139,7 @@ The codebase includes runtime monitoring to detect CMS violations:
 
 ### Regular Verification
 
-1. **Build verification**: `npm run build` must complete successfully
+1. **Build verification**: `pnpm run build` must complete successfully
 2. **Homepage test**: Verify immediate section rendering
 3. **CMS audit**: Confirm no async patterns in content access
 4. **Performance check**: Monitor for loading state violations

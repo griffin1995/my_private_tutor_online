@@ -380,7 +380,7 @@ export default async function BlogPost({
 5. Test metadata inheritance and overrides
 
 ### Step 3: Enhanced Validation (45 minutes)
-1. **Build Validation**: `npm run build` with TypeScript checks
+1. **Build Validation**: `pnpm run build` with TypeScript checks
 2. **Metadata Testing**: Browser developer tools inspection
 3. **SEO Validation**:
    - Google Rich Results Test for structured data
@@ -424,7 +424,7 @@ export default async function BlogPost({
 
 ### Technical Validation
 - [ ] TypeScript compilation succeeds with zero errors
-- [ ] `npm run build` completes successfully
+- [ ] `pnpm run build` completes successfully
 - [ ] React cache functions work as expected
 - [ ] Environment variables load correctly
 - [ ] Metadata inheritance works properly in nested layouts

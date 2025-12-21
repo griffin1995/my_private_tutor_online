@@ -42,9 +42,9 @@
 ### Common Commands
 ```bash
 # Development
-npm run dev           # Local development server
-npm run build        # Production build (required before deployment)
-npm run typecheck    # TypeScript validation
+pnpm run dev           # Local development server
+pnpm run build        # Production build (required before deployment)
+pnpm run typecheck    # TypeScript validation
 
 # Deployment (Vercel CLI only)
 vercel deploy        # Preview deployment
@@ -94,7 +94,7 @@ src/
 ### Vercel CLI Deployment Only
 ```bash
 # Required workflow
-npm run build                    # Local validation
+pnpm run build                    # Local validation
 vercel deploy                    # Preview deployment
 vercel --prod                    # Production deployment
 ```
@@ -156,7 +156,7 @@ color, realize, optimize, center, behavior
 4. See [Emergency Protocols](docs/reference/emergency-protocols.md) for full recovery procedures
 
 ### Build Failures
-1. Run `npm run typecheck` for TypeScript errors
+1. Run `pnpm run typecheck` for TypeScript errors
 2. Check import paths and file extensions
 3. Verify Tailwind CSS class validity
 4. Confirm no hardcoded colours in navigation
@@ -175,7 +175,7 @@ color, realize, optimize, center, behavior
 4. Validate British English in all content
 
 ### Before Committing
-1. Run `npm run build` locally
+1. Run `pnpm run build` locally
 2. Verify no TypeScript errors
 3. Check CSS architecture compliance
 4. Confirm no forbidden async patterns introduced

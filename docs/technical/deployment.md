@@ -36,7 +36,7 @@ vercel cache purge --type=cdn
 ### Build Verification Process
 
 #### Pre-Deployment Requirements
-1. **Local Build**: `npm run build` successfully
+1. **Local Build**: `pnpm run build` successfully
 2. **CMS Verification**: Synchronous pattern validation
 3. **TypeScript Check**: Zero compilation errors
 4. **Performance Check**: Build time under 11.0s target
@@ -44,20 +44,20 @@ vercel cache purge --type=cdn
 #### Build Commands
 ```bash
 # Local build verification
-npm run build
+pnpm run build
 
 # Type checking
-npm run type-check  # or npx tsc --noEmit
+pnpm run type-check  # or pnpm exec tsc --noEmit
 
 # Development server test
-npm run dev
+pnpm run dev
 ```
 
 ### Production Environment
 
 #### Current Production URL
 ```
-https://myprivatetutoronline-f8tv06oa2-jacks-projects-cf5effed.vercel.app
+https://www.myprivatetutoronline.com
 ```
 
 #### Environment Variables
@@ -75,7 +75,7 @@ https://myprivatetutoronline-f8tv06oa2-jacks-projects-cf5effed.vercel.app
    git status
 
    # Verify local build
-   npm run build
+   pnpm run build
    ```
 
 2. **Version Control**
@@ -156,9 +156,9 @@ vercel cache purge --type=cdn [specific-path]
 ### vercel.json (if needed)
 ```json
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "pnpm run build",
   "outputDirectory": ".next",
-  "installCommand": "npm ci"
+  "installCommand": "pnpm install"
 }
 ```
 
@@ -188,13 +188,13 @@ vercel cache purge --type=cdn [specific-path]
 #### Build Failures
 ```bash
 # Check TypeScript errors
-npx tsc --noEmit
+pnpm exec tsc --noEmit
 
 # Verify dependencies
-npm ci
+pnpm install
 
 # Test local build
-npm run build
+pnpm run build
 ```
 
 #### CMS Data Issues
@@ -212,7 +212,7 @@ npm run build
 ### Emergency Contacts
 - **Vercel Dashboard**: Monitor deployments and errors
 - **Repository**: GitHub for version control
-- **Local Development**: `npm run dev` for testing
+- **Local Development**: `pnpm run dev` for testing
 
 ## Related Documentation
 

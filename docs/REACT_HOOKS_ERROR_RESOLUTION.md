@@ -38,14 +38,14 @@ Next.js 15.5.6 + React 19.x SSR incompatibility
 cd /home/jack/Documents/my_private_tutor_online
 
 # Install React 18.3.1 versions
-npm install react@18.3.1 react-dom@18.3.1 --save-exact
+pnpm add react@18.3.1 react-dom@18.3.1 --save-exact
 
 # Clean install to resolve all peer dependencies
-rm -rf node_modules package-lock.json
-npm install
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
 
 # Verify no conflicts
-npm ls react react-dom
+pnpm list react react-dom
 
 # Expected output (NO errors):
 # my-tutor-website@0.1.0
@@ -53,10 +53,10 @@ npm ls react react-dom
 # └── react-dom@18.3.1
 
 # Rebuild production
-npm run build
+pnpm run build
 
 # Test development
-npm run dev
+pnpm run dev
 ```
 
 **Package.json Configuration**:
@@ -102,7 +102,7 @@ npm run dev
 
 ### 1. Dependency Tree (✅ CLEAN)
 ```bash
-npm ls react react-dom --depth=0
+pnpm list react react-dom --depth=0
 ```
 
 **Output**:
@@ -114,14 +114,14 @@ my-tutor-website@0.1.0
 
 ### 2. No Peer Dependency Conflicts (✅ VERIFIED)
 ```bash
-npm ls react react-dom 2>&1 | grep -i "conflict\|invalid\|warn"
+pnpm list react react-dom 2>&1 | grep -i "conflict\|invalid\|warn"
 ```
 
 **Expected**: No output (empty result = success)
 
 ### 3. Production Build Success (✅ VERIFIED)
 ```bash
-npm run build
+pnpm run build
 ```
 
 **Output**:
@@ -134,7 +134,7 @@ Route (app)                                          Size  First Load JS
 
 ### 4. Development Server (✅ WORKING)
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 **Navigate to**: http://localhost:3000
@@ -251,7 +251,7 @@ Warning: Each child in a list should have a unique "key" prop.
 ### ❌ Don't Upgrade to React 19 (Until Next.js Compatibility)
 ```bash
 # WRONG - Will cause SSR useContext errors
-npm install react@19.x.x react-dom@19.x.x
+pnpm add react@19.x.x react-dom@19.x.x
 ```
 
 ### ❌ Don't Remove Required Dependencies
@@ -265,7 +265,7 @@ npm install react@19.x.x react-dom@19.x.x
 
 ### ❌ Don't Ignore Peer Dependency Warnings
 ```bash
-npm error peer dep missing: react@^19.0.0
+pnpm error peer dep missing: react@^19.0.0
 # DON'T IGNORE - Use overrides to resolve conflicts
 ```
 

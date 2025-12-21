@@ -64,7 +64,7 @@
 
 ### Required Tools
 - **Node.js**: Latest LTS version
-- **Package Manager**: npm (default)
+- **Package Manager**: pnpm (default)
 - **Vercel CLI**: For deployment
 - **TypeScript**: Strict configuration
 - **ESLint**: TypeScript-compatible rules

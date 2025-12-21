@@ -21,9 +21,9 @@ This guide documents the complete workflow for achieving animation consistency a
 ### 1. Preparation
 ```bash
 # Ensure development environment is ready
-npm install
-npm run typecheck
-npm run build
+pnpm install
+ppnpm run typecheck
+ppnpm run build
 
 # Create backup branch
 git checkout -b animation-consistency-[page-name]
@@ -230,13 +230,13 @@ const LazyComponent = dynamic(
 **After Each Component**:
 ```bash
 # Check for TypeScript errors
-npm run typecheck
+pnpm run typecheck
 
 # Test build
-npm run build
+pnpm run build
 
 # Verify in browser
-npm run dev
+pnpm run dev
 ```
 
 ## Quality Assurance
@@ -388,7 +388,7 @@ const slideInRight = {
 **Development Testing**
 ```bash
 # Start dev server
-npm run dev
+pnpm run dev
 
 # Open browser and test:
 # - Animation timing and smoothness
@@ -400,7 +400,7 @@ npm run dev
 **Production Testing**
 ```bash
 # Build and serve
-npm run build
+pnpm run build
 npx serve out
 
 # Test optimized animations and performance

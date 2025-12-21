@@ -28,28 +28,28 @@ This project now includes three powerful debugging tools to help identify redund
 ### Quick Dependency Analysis
 ```bash
 # Check for unused dependencies
-npm run debug:deps
+pnpm run debug:deps
 
 # Generate JSON report for LLM analysis
-npm run debug:deps-json
+pnpm run debug:deps-json
 ```
 
 ### Bundle Analysis
 ```bash
 # Analyze bundle after build
-npm run debug:bundle
+pnpm run debug:bundle
 
 # Analyze with Next.js bundle analyzer
-npm run debug:bundle-analyze
+pnpm run debug:bundle-analyze
 
 # Run all debugging tools
-npm run debug:all
+pnpm run debug:all
 ```
 
 ### Component Re-render Tracking
 ```bash
 # Start development server (why-did-you-render is automatic)
-npm run dev
+pnpm run dev
 
 # To track specific components, add this to any component:
 ComponentName.whyDidYouRender = true;
@@ -91,8 +91,8 @@ ComponentName.whyDidYouRender = true;
 ## 🎯 Common Use Cases
 
 ### Finding Redundant Content
-1. **Run depcheck**: `npm run debug:deps-json`
-2. **Analyze bundle**: `npm run debug:bundle`
+1. **Run depcheck**: `pnpm run debug:deps-json`
+2. **Analyze bundle**: `pnpm run debug:bundle`
 3. **Review console**: Check why-did-you-render output during development
 
 ### Tracking Component Issues
@@ -101,7 +101,7 @@ ComponentName.whyDidYouRender = true;
 3. **Check console**: Look for re-render warnings
 
 ### Bundle Optimization
-1. **Build and analyze**: `npm run debug:bundle-analyze`
+1. **Build and analyze**: `pnpm run debug:bundle-analyze`
 2. **Identify large modules**: Click on largest sections in tree map
 3. **Remove or optimize**: Use insights to reduce bundle size
 
@@ -113,7 +113,7 @@ All tools produce structured output perfect for Claude analysis:
 
 ### For Claude Analysis of Dependencies
 ```bash
-npm run debug:deps-json
+pnpm run debug:deps-json
 # Share the generated debug-deps-report.json with Claude
 ```
 
@@ -123,7 +123,7 @@ npm run debug:deps-json
 3. Share with Claude for performance recommendations
 
 ### For Claude Analysis of Bundle
-1. Run `npm run debug:bundle-analyze`
+1. Run `pnpm run debug:bundle-analyze`
 2. Take screenshot of bundle analysis
 3. Share with Claude for optimization suggestions
 
@@ -150,12 +150,12 @@ npm run debug:deps-json
 
 ### Why Did You Render Not Showing
 - Check `console.log` for initialization message
-- Ensure running in development: `npm run dev`
+- Ensure running in development: `pnpm run dev`
 - Verify component tracking: `ComponentName.whyDidYouRender = true`
 
 ### Source Map Explorer Errors
 - Ensure build completed: Check `.next/static/js/` exists
-- Try rebuilding: `npm run clean && npm run build`
+- Try rebuilding: `pnpm run clean && pnpm run build`
 - Check source maps enabled in production builds
 
 ### Depcheck False Positives

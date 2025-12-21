@@ -330,7 +330,9 @@
       "Bash(pnpm run debug:deps-json:*)",
       "Bash(depcheck:*)",
       "Bash(pnpm run clean:full:*)",
-      "Bash(pnpm run build)"
+      "Bash(pnpm run build)",
+      "Bash(./preview-reorganization.sh:*)",
+      "Bash(./reorganize-project.sh)"
     ],
     "deny": []
   },

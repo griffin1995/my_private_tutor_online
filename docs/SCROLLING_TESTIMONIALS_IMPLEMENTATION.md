@@ -323,7 +323,7 @@ Uses @layer base defaults with utility overrides:
 
 ```bash
 # Build locally first
-npm run build
+pnpm run build
 
 # Deploy to production
 vercel --prod

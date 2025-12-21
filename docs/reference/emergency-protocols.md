@@ -15,7 +15,7 @@ If homepage loading failures occur, follow this emergency procedure immediately.
 git status
 
 # Verify build locally
-npm run build
+pnpm run build
 ```
 
 **Look for these failure symptoms:**
@@ -82,10 +82,10 @@ npm run build
 
 ```bash
 # Build verification
-npm run build
+pnpm run build
 
 # Local development test
-npm run dev
+pnpm run dev
 ```
 
 **Verify:**
@@ -105,7 +105,7 @@ npm run dev
 **Missing Type Definitions:**
 ```bash
 # Install missing types
-npm install @types/[package-name]
+pnpm add @types/[package-name]
 
 # Or add type declarations
 echo "declare module '[package-name]';" >> src/types/global.d.ts
@@ -114,7 +114,7 @@ echo "declare module '[package-name]';" >> src/types/global.d.ts
 **Import/Export Errors:**
 ```bash
 # Check for circular dependencies
-npm run build 2>&1 | grep -i "circular"
+pnpm run build 2>&1 | grep -i "circular"
 
 # Verify import paths
 grep -r "import.*from.*\.\." src/
@@ -146,10 +146,10 @@ head -20 src/app/globals.css | grep -E "@layer|@tailwind"
 **Immediate Investigation:**
 ```bash
 # Time the build process
-time npm run build
+time pnpm run build
 
 # Check route generation
-npm run build 2>&1 | grep -i "route\|generating"
+pnpm run build 2>&1 | grep -i "route\|generating"
 ```
 
 **Common Causes:**
@@ -162,12 +162,12 @@ npm run build 2>&1 | grep -i "route\|generating"
 # Clear Next.js cache
 rm -rf .next
 
-# Clear npm cache
-npm cache clean --force
+# Clear pnpm cache
+pnpm store prune
 
 # Reinstall dependencies
-rm -rf node_modules package-lock.json
-npm install
+rm -rf node_modules pnpm-lock.yaml
+pnpm install
 ```
 
 ### Runtime Performance Issues
@@ -175,7 +175,7 @@ npm install
 **Memory Leaks Detection:**
 ```bash
 # Monitor during development
-npm run dev
+pnpm run dev
 
 # Watch for memory patterns in browser DevTools
 # Look for increasing memory usage over time

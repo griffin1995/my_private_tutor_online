@@ -7,7 +7,7 @@ Quality gates and validation checklists for ensuring code standards compliance.
 ### Code Quality Standards
 - [ ] **British English**: All text, comments, and documentation use British spelling
 - [ ] **TypeScript**: All files compile without errors (`npx tsc --noEmit`)
-- [ ] **Linting**: ESLint passes without errors (`npm run lint`)
+- [ ] **Linting**: ESLint passes without errors (`pnpm run lint`)
 - [ ] **File Structure**: Changes follow modular organisation principles
 
 ### Critical Architecture Compliance
@@ -17,7 +17,7 @@ Quality gates and validation checklists for ensuring code standards compliance.
 - [ ] **Component Patterns**: Synchronous data access maintained
 
 ### Performance Standards
-- [ ] **Build Time**: Local build completes in under 11.0s (`time npm run build`)
+- [ ] **Build Time**: Local build completes in under 11.0s (`time pnpm run build`)
 - [ ] **Bundle Size**: No unnecessary dependencies added
 - [ ] **Image Optimisation**: Next.js Image component used for images
 - [ ] **Tree Shaking**: No unused exports in modified files
@@ -74,7 +74,7 @@ Quality gates and validation checklists for ensuring code standards compliance.
 ## Build Verification
 
 ### Local Build Success
-- [ ] **Clean Build**: `npm run build` completes successfully
+- [ ] **Clean Build**: `pnpm run build` completes successfully
 - [ ] **TypeScript**: No compilation errors in any files
 - [ ] **Route Generation**: All expected routes generated (target: 91 routes)
 - [ ] **Asset Optimisation**: Images and assets properly optimised
@@ -88,15 +88,15 @@ Quality gates and validation checklists for ensuring code standards compliance.
 ## Development Environment
 
 ### Local Development
-- [ ] **Dev Server**: `npm run dev` starts without errors
+- [ ] **Dev Server**: `pnpm run dev` starts without errors
 - [ ] **Hot Reload**: Changes reflect properly in development
 - [ ] **Console Clean**: No errors or warnings in browser console
 - [ ] **Responsive**: Layout works across all breakpoints
 
 ### Dependency Management
-- [ ] **Lock File**: package-lock.json updated if dependencies changed
+- [ ] **Lock File**: pnpm-lock.yaml updated if dependencies changed
 - [ ] **Version Compatibility**: No version conflicts in dependencies
-- [ ] **Security**: No high-severity vulnerabilities (`npm audit`)
+- [ ] **Security**: No high-severity vulnerabilities (`pnpm audit`)
 - [ ] **Minimal Dependencies**: Only necessary packages included
 
 ## Deployment Readiness
