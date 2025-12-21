@@ -5,10 +5,13 @@ import { Carousel } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
 import { HeadingText, BodyText, CaptionText } from '@/components/ui/typography';
 interface TestimonialData {
+	id: string;
 	quote: string;
 	author: string;
 	role: string;
 	rating?: number;
+}
+
 interface TestimonialsSectionProps {
 	testimonials?: TestimonialData[];
 	className?: string;
@@ -17,6 +20,8 @@ interface TestimonialsSectionProps {
 	description?: string;
 	autoPlay?: boolean;
 	autoPlayInterval?: number;
+}
+
 export function TestimonialsSection({
 	testimonials = [],
 	className = '',
@@ -61,6 +66,7 @@ export function TestimonialsSection({
 			style={{
 				background:
 					'linear-gradient(180deg, #fafafa 0%, #f5f5f5 25%, #e5e5e5 50%, #d4d4d4 75%, #a3a3a3 100%)',
+			}}>
 			<div
 				className='absolute inset-0 bg-depth-neutral opacity-80'
 				aria-hidden='true'
@@ -89,6 +95,7 @@ export function TestimonialsSection({
 					style={{
 						background:
 							'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 38.2%, rgba(241, 245, 249, 0.85) 61.8%, rgba(226, 232, 240, 0.8) 100%)',
+					}}>
 					<div className='absolute inset-0 bg-overlay-light opacity-60' />
 					<div className='absolute inset-0 bg-glow-gold opacity-20 animate-pulse-slow' />
 					<div className='absolute inset-0 bg-shimmer-luxury opacity-0 group-hover:opacity-15 transition-opacity duration-500' />
@@ -146,6 +153,7 @@ export function TestimonialsSection({
 																	className='w-5 h-5 text-accent-600 fill-current drop-shadow-accent-glow transition-all duration-300 group-hover:scale-110 group-hover:text-accent-500'
 																	style={{
 																		filter: 'drop-shadow(0 2px 4px rgba(202, 158, 91, 0.4))',
+																	}}
 																/>
 
 																<div className='absolute inset-0 bg-shimmer-luxury opacity-0 group-hover:opacity-60 transition-opacity duration-300 rounded-full animate-shimmer' />

@@ -10,6 +10,8 @@ interface TestimonialsSectionProps {
 	backgroundColor?: string;
 	className?: string;
 	showMoreButton?: boolean;
+}
+
 export function TestimonialsSection({
 	backgroundColor = 'bg-white',
 	className = '',
@@ -29,19 +31,6 @@ export function TestimonialsSection({
 		rootMargin: '-50px 0px',
 	});
 
-	// Standardized animation variants
-	const fadeInUp = {
-		initial: { opacity: 0, y: 20 },
-		animate: { opacity: 1, y: 0 },
-		transition: { duration: 0.6, ease: 'easeOut' }
-	};
-
-	const scaleIn = {
-		initial: { opacity: 0, scale: 0.95 },
-		animate: { opacity: 1, scale: 1 },
-		transition: { duration: 0.8, ease: 'easeOut' }
-	};
-
 	return (
 		<section
 			className={`relative ${backgroundColor} py-12 lg:py-16 ${className}`}>
@@ -50,6 +39,7 @@ export function TestimonialsSection({
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233b82f6' fill-opacity='1'%3E%3Cpath d='M20 10l-5 5L10 10l5-5L20 10zm10 10l-5 5L20 15l5-5L30 20z'/%3E%3C/g%3E%3C/svg%3E")`,
 					backgroundSize: '40px 40px',
+				}}
 			/>
 
 
@@ -132,4 +122,4 @@ export function TestimonialsSection({
 
 		</section>
 	);
-;
+}
