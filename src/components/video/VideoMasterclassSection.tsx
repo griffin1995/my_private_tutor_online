@@ -1,34 +1,85 @@
 'use client';
 
 import { Separator } from '@/components/ui/separator';
-import {
-	getMasterclassVideo,
-	type VideoMasterclass,
-} from '@/lib/cms/cms-images';
+import { getMasterclassVideo } from '@/lib/cms/cms-images';
+import { type VideoMasterclass } from '@/lib/cms/video-masterclasses';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Play, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import ReactPlayer from 'react-player';
 interface VideoMasterclassSectionProps {
 	readonly video?: VideoMasterclass;
 	readonly videoId?: string;
 	readonly layout: 'text-left' | 'text-right';
 	readonly className?: string;
-interface VideoModalProps {
+}
+
+interface ModernVideoModalProps {
 	readonly videoUrl: string;
 	readonly thumbnailUrl: string;
-	readonly alt: string;
+	readonly title: string;
+	readonly description?: string;
 	readonly watchCirclePosition: string;
-function VideoModal({
+}
+
+function ModernVideoModal({
 	videoUrl,
 	thumbnailUrl,
-	alt,
+	title,
+	description,
 	watchCirclePosition,
-}: VideoModalProps) {
+}: ModernVideoModalProps) {
 	const [isOpen, setIsOpen] = useState(false);
+	const [isReady, setIsReady] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState<string | null>(null);
+	const playerRef = useRef<any>(null);
+	const previouslyFocusedElement = useRef<HTMLElement | null>(null);
+
+	// Focus management for accessibility
+	useEffect(() => {
+		if (isOpen) {
+			// Store the previously focused element
+			previouslyFocusedElement.current = document.activeElement as HTMLElement;
+			setIsLoading(true);
+			setError(null);
+		} else {
+			// Restore focus when modal closes
+			if (previouslyFocusedElement.current) {
+				setTimeout(() => {
+					previouslyFocusedElement.current?.focus();
+				}, 100);
+			}
+			// Reset states when modal closes
+			setIsReady(false);
+			setIsLoading(false);
+			setError(null);
+		}
+	}, [isOpen]);
+
+	useEffect(() => {
+		if (isOpen && isReady && playerRef.current) {
+			setIsLoading(false);
+			// Focus the player for screen reader announcement
+			const playerElement = playerRef.current.getInternalPlayer();
+			if (playerElement && playerElement.focus) {
+				setTimeout(() => playerElement.focus(), 100);
+			}
+		}
+	}, [isOpen, isReady]);
+
+	const handlePlayerReady = () => {
+		setIsReady(true);
+	};
+
+	const handlePlayerError = (error: any) => {
+		console.error('Video error:', error);
+		setError('Failed to load video. Please try again later.');
+		setIsLoading(false);
+	};
+
 	return (
-		<Dialog.Root
-			open={isOpen}
-			onOpenChange={setIsOpen}>
+		<Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
 			<div className='relative group'>
 				<div
 					className={`absolute ${watchCirclePosition} top-1/2 -translate-y-1/2 translate-y-8 w-32 h-32 border border-white group-hover:border-[#D4AF37] rounded-full flex items-center justify-center transition-colors duration-300`}>
@@ -38,59 +89,117 @@ function VideoModal({
 				</div>
 
 				<Dialog.Trigger asChild>
-					<div className='w-full max-w-lg mx-auto cursor-pointer'>
+					<button
+						className='w-full max-w-lg mx-auto cursor-pointer block'
+						aria-label={`Play video: ${title}`}
+					>
 						<div className='relative border border-white border-opacity-50 rounded-lg drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] overflow-hidden group-hover:border-opacity-100 transition-all duration-300'>
 							<img
 								src={thumbnailUrl}
-								alt={alt}
-								style={{
-									aspectRatio: '16/9',
+								alt={`Video thumbnail for ${title}`}
+								style={{ aspectRatio: '16/9' }}
 								className='w-full h-full object-cover'
 							/>
 
 							<div className='absolute inset-0 flex items-center justify-center'>
 								<div className='bg-black/60 rounded-full p-6 group-hover:bg-black/80 group-hover:scale-110 transition-all duration-300'>
-									<Play className='w-12 h-12 text-white fill-white' />
+									<Play className='w-12 h-12 text-white fill-white' aria-hidden="true" />
 								</div>
 							</div>
 						</div>
-					</div>
+					</button>
 				</Dialog.Trigger>
 			</div>
 
 			<Dialog.Portal>
 				<Dialog.Overlay className='fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999]' />
 
-				<Dialog.Content className='fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-[10000] w-[90vw] max-w-6xl'>
-					<Dialog.Close className='absolute -top-12 right-0 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50'>
-						<X className='w-6 h-6' />
+				<Dialog.Content
+					className='fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-[10000] w-[90vw] max-w-6xl'
+					aria-labelledby="video-title"
+					aria-describedby={description ? "video-description" : undefined}
+				>
+					<Dialog.Close
+						className='absolute -top-12 right-0 flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50'
+						aria-label="Close video"
+					>
+						<X className='w-6 h-6' aria-hidden="true" />
 					</Dialog.Close>
 
-					<div
-						className='relative w-full'
-						style={{
-							aspectRatio: '16/9',
-						{videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') ?
-							<iframe
-								src={videoUrl}
-								className='w-full h-full shadow-2xl border border-white rounded-lg'
-								allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-								allowFullScreen
-								title={alt}
-							/>
-						:	<video
-								src={videoUrl}
-								className='w-full h-full shadow-2xl object-contain border border-white rounded-lg'
-								controls
-								autoPlay
-								playsInline
-								preload='metadata'
-							/>
+					<Dialog.Title id="video-title" className="sr-only">
+						{title}
+					</Dialog.Title>
+
+					{description && (
+						<Dialog.Description id="video-description" className="sr-only">
+							{description}
+						</Dialog.Description>
+					)}
+
+					<div className='relative w-full aspect-video'>
+						{isLoading && (
+							<div
+								className='absolute inset-0 flex items-center justify-center bg-black/50 text-white z-10'
+								aria-live="polite"
+								role="status"
+							>
+								<div className='text-center'>
+									<div className='animate-spin w-8 h-8 border-2 border-white border-t-transparent rounded-full mx-auto mb-2' aria-hidden="true" />
+									<span>Loading video...</span>
+								</div>
+							</div>
+						)}
+
+						{error && (
+							<div
+								className='absolute inset-0 flex items-center justify-center bg-red-900/90 text-white z-10'
+								role="alert"
+								aria-live="assertive"
+							>
+								<div className='text-center p-4'>
+									<p className='text-lg font-semibold mb-2'>Video Error</p>
+									<p>{error}</p>
+								</div>
+							</div>
+						)}
+
+						<ReactPlayer
+							ref={playerRef}
+							url={videoUrl}
+							width='100%'
+							height='100%'
+							controls
+							playing={isOpen && !error}
+							pip
+							stopOnUnmount
+							onReady={handlePlayerReady}
+							onError={handlePlayerError}
+							config={{
+								youtube: {
+									modestbranding: 1,
+									rel: 0,
+									iv_load_policy: 3
+								},
+								vimeo: {
+									title: false,
+									byline: false,
+									portrait: false
+								}
+							}}
+							style={{
+								borderRadius: '0.5rem',
+								overflow: 'hidden',
+								border: '1px solid white',
+								boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+							}}
+						/>
 					</div>
 				</Dialog.Content>
 			</Dialog.Portal>
 		</Dialog.Root>
 	);
+}
+
 export function VideoMasterclassSection({
 	video: directVideo,
 	videoId,
@@ -144,11 +253,13 @@ export function VideoMasterclassSection({
 			console.log('  videoUrl length:', transformedVideo.videoUrl?.length || 0);
 			console.log('  videoUrl trimmed:', transformedVideo.videoUrl?.trim());
 			console.groupEnd();
+		}
 	} else if (videoId) {
 		transformedVideo = getMasterclassVideo(videoId);
 		if (!transformedVideo) {
 			console.error(`Video not found for videoId: "${videoId}"`);
 			return null;
+		}
 		if (DEBUG_MODE) {
 			console.group(
 				'\n============================================================\n📍 PHASE 1: VideoMasterclassSection Legacy Lookup\n============================================================',
@@ -157,16 +268,19 @@ export function VideoMasterclassSection({
 			console.log('📊 Video ID:', videoId);
 			console.log('📊 Retrieved Video:', transformedVideo);
 			console.groupEnd();
+		}
 	} else {
 		console.error(
 			"VideoMasterclassSection requires either 'video' or 'videoId' prop",
 		);
 		return null;
+	}
 	const video = transformedVideo;
 	const layoutData = video?.layouts?.videoPage;
 	if (!layoutData) {
 		console.error(`Layout data not found for video`);
 		return null;
+	}
 	const {
 		videoUrl,
 		thumbnailUrl,
@@ -192,6 +306,7 @@ export function VideoMasterclassSection({
 		console.log('  isFree:', isFree);
 		console.log('  backgroundImage:', backgroundImage);
 		console.groupEnd();
+	}
 	const { badge, content, animationStyle } = layoutData;
 	const isTextLeft = layout === 'text-left';
 	const textAlignment = isTextLeft ? '' : 'text-right';
@@ -206,10 +321,12 @@ export function VideoMasterclassSection({
 			className={`relative grid md:grid-cols-2 gap-8 items-center bg-cover bg-center bg-no-repeat ${className}`}
 			style={{
 				backgroundImage: `url('${backgroundImage}')`,
+			}}>
 			<div
 				className='absolute inset-0 z-0'
 				style={{
 					background: `radial-gradient(circle at ${isTextLeft ? 'bottom left' : 'bottom right'}, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 80%, transparent 90%)`,
+				}}
 			/>
 			{(
 				(() => {
@@ -227,6 +344,7 @@ export function VideoMasterclassSection({
 							shouldShowVideo ? 'VISIBLE ✅' : 'HIDDEN ❌',
 						);
 						console.groupEnd();
+					}
 					return shouldShowVideo;
 				})()
 			) ?
@@ -251,11 +369,14 @@ export function VideoMasterclassSection({
 								display: computed.display,
 							});
 							console.groupEnd();
+						}
+					}}>
 					{isFree && videoUrl && videoUrl.trim() !== '' ?
-						<VideoModal
+						<ModernVideoModal
 							videoUrl={videoUrl}
 							thumbnailUrl={thumbnailUrl}
-							alt={alt}
+							title={video.title}
+							description={video.layouts?.videoPage?.content?.paragraphs?.[0]}
 							watchCirclePosition={watchCirclePosition}
 						/>
 					:	<a
@@ -278,15 +399,18 @@ export function VideoMasterclassSection({
 										className='w-full h-full object-cover drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]'
 										style={{
 											aspectRatio: '16/9',
+										}}
 									/>
 								</div>
 							</div>
 						</a>
+					}
 				</div>
 			:	<div
 					className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
 					<div className='w-full max-w-lg mx-auto h-0'>{}</div>
 				</div>
+			}
 
 			<div
 				className={`relative z-10 w-4/5 mx-auto p-8 ${textAlignment} ${textGridOrder}`}>
@@ -314,6 +438,7 @@ export function VideoMasterclassSection({
 							className='!text-white text-sm font-medium hover:!text-accent-600 hover:underline transition-all duration-300 cursor-pointer'>
 							Purchase
 						</a>
+					}
 				</div>
 
 				<Separator
@@ -331,6 +456,7 @@ export function VideoMasterclassSection({
 							className='text-white mb-4'
 							dangerouslySetInnerHTML={{
 								__html: processedText,
+							}}
 						/>
 					);
 				})}
@@ -342,7 +468,7 @@ export function VideoMasterclassSection({
 						<div
 							key={index}
 							className={`flex items-start space-x-2 ${bulletAlignment}`}>
-		{isTextLeft ?
+							{isTextLeft ?
 								<>
 									<span className='text-white mt-1.5 text-xs'>•</span>
 									<span className='text-white text-sm'>{bulletPoint}</span>
@@ -351,9 +477,11 @@ export function VideoMasterclassSection({
 									<span className='text-white text-sm'>{bulletPoint}</span>
 									<span className='text-white mt-1.5 text-xs'>•</span>
 								</>
+							}
 						</div>
 					))}
 				</div>
 			</div>
 		</div>
 	);
+}

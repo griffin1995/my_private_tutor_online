@@ -2,10 +2,12 @@
 
 import React from 'react';
 import { VideoMasterclassSection } from './VideoMasterclassSection';
-import { type VideoMasterclass } from '../../../COMPREHENSIVE_VIDEO_CMS';
+import { type VideoMasterclass } from '@/lib/cms/video-masterclasses';
 interface VideoMasterclassGridProps {
 	readonly videos: readonly VideoMasterclass[];
 	readonly className?: string;
+}
+
 export function VideoMasterclassGrid({
 	videos,
 	className = 'py-32',
@@ -29,7 +31,9 @@ export function VideoMasterclassGrid({
 				videos.length,
 				'VideoMasterclassSection components',
 			);
+		}
 		console.groupEnd();
+	}
 	return (
 		<React.Fragment>
 			{videos.map((video, index) => {
@@ -41,13 +45,16 @@ export function VideoMasterclassGrid({
 					console.log('  Layout:', layout);
 					console.log('  Video Object:', video);
 					console.groupEnd();
+				}
 				return (
 					<VideoMasterclassSection
 						key={video.id}
 						video={video}
+						layout={layout}
 						className={className}
 					/>
 				);
 			})}
 		</React.Fragment>
 	);
+}
