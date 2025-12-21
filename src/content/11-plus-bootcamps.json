@@ -1,0 +1,101 @@
+{
+	"_comments": {
+		"lastUpdated": "2025-12-21",
+		"recentChanges": [
+			{
+				"change": "CONTENT EXTRACTION: Created CMS data from hardcoded component data",
+				"reason": "CONTEXT7 SOURCE: /websites/nextjs_15 - CMS architecture modernisation following project patterns",
+				"date": "2025-12-21",
+				"source": "Technical debt removal - moving hardcoded data to CMS patterns",
+				"details": "Extracted schools list, contact information, and section content from page component to follow project's synchronous CMS architecture"
+			}
+		]
+	},
+	"hero": {
+		"h1": "11+",
+		"h1AccentText": "Bootcamps",
+		"h2": "Accelerated preparation programmes designed to maximise your child's potential",
+		"decorativeStyle": "lines",
+		"backgroundImage": "/images/hero/11-plus-bootcamps.jpeg"
+	},
+	"schools": {
+		"allSchools": [
+			"Eton College",
+			"Westminster School",
+			"St Paul's School",
+			"Harrow School",
+			"Oxford University",
+			"Cambridge University",
+			"London School of Economics",
+			"King's College London",
+			"Brighton College",
+			"Durham University",
+			"University of Edinburgh",
+			"Harvard University",
+			"Highgate School",
+			"Le Rosey School",
+			"University of St Andrews",
+			"University of Warwick",
+			"Henrietta Barnett School",
+			"Latymer School",
+			"Queen Elizabeth's School",
+			"Tiffin School"
+		],
+		"universityKeywords": [
+			"university",
+			"college london",
+			"school of economics",
+			"harvard",
+			"lse"
+		]
+	},
+	"settings": {
+		"isSeasonActive": true
+	},
+	"content": {
+		"offSeason": {
+			"title": "11+ Bootcamps",
+			"description": "Our intensive 11+ preparation bootcamps will return for the 2025 season. Please check back later or contact us for more information.",
+			"contact": {
+				"buttonText": "Contact Us for Updates",
+				"message": "Hello, I'd like to be notified when your 11+ Bootcamp programmes become available again. Please add me to your updates list and send me information about upcoming dates.",
+				"subject": "11+ Bootcamp Updates Request",
+				"url": "https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~",
+				"ariaLabel": "Contact us for bootcamp updates - opens enquiry form in new window"
+			}
+		},
+		"tagline": {
+			"title": "We help students place at top 10 UK schools and universities"
+		},
+		"mission": {
+			"quote": "Discover our comprehensive preparation programmes designed for different learning needs and timelines. Choose the perfect fit for your child's 11+ journey."
+		},
+		"preVideo": {
+			"heading": "Examiner-led 11+ Preparation Programmes",
+			"paragraph": "Our bootcamp programmes are specifically designed for students at different stages of their 11+ journey. Whether your child is just beginning their preparation (Years 3 and 4) or needs focused intensive support before examinations (Years 5 and 6), our courses provide the <strong>comprehensive foundation and advanced techniques needed for independent and grammar school success</strong>. Crucially, <strong>our bootcamps are designed and led by 11+ examiners</strong> who mark the real entrance exams and help decide which students will progress to the next round."
+		},
+		"expertGuidance": {
+			"heading": "Expert Guidance for Entrance Exam Success",
+			"paragraph": "With tiny group sizes (typically 3-4 children) and examiner tutors who understand the unique demands of 11+ assessments, we equip students with insider tips and tricks to help them impress even the most oversubscribed schools. Each programme is carefully structured to address the specific challenges students face in verbal reasoning, non-verbal reasoning, mathematics, English and interviews."
+		},
+		"journey": {
+			"heading": "Ready to Begin Your Child's 11+ Journey?",
+			"benefits": [
+				"All sessions led by experienced specialists with 11+ examiner credentials and/or proven track records at top schools",
+				"Exclusive access to curated past papers, practice questions, and revision materials",
+				"Maximum 4-5 students per group ensuring personalised attention and focused learning",
+				"98% success rate with consistent placements at prestigious independent schools",
+				"Focus on exam technique and confidence building alongside academic preparation",
+				"Multiple dates available throughout the year to fit your family's schedule"
+			]
+		},
+		"video": {
+			"videoSrc": "/videos/11-plus-expert-intro-video-mpto.mp4",
+			"thumbnailSrc": "/images/video-thumbnails/thumbnail-11-plus-expert-intro-video-mpto.png",
+			"thumbnailAlt": "Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach",
+			"title": "Meet Emily - Our 11+ Expert Introduction",
+			"poster": "/images/tutors/emily.jpg",
+			"figcaption": "Video introduction featuring Emily, our specialist 11+ tutor, explaining our comprehensive entrance exam preparation approach"
+		}
+	}
+}
