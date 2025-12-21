@@ -6,7 +6,12 @@
 	"singleAttributePerLine": true,
 	"singleQuote": true,
 	"trailingComma": "all",
-	"vueIndentScriptAndStyle": true,
 	"tabWidth": 1,
-	"useTabs": true
+	"useTabs": true,
+	"plugins": ["prettier-plugin-tailwindcss"],
+	"tailwindConfig": "./tailwind.config.ts",
+	"tailwindFunctions": ["clsx", "cn", "cva"],
+	"semi": false,
+	"printWidth": 120,
+	"endOfLine": "lf"
 }
