@@ -39,7 +39,7 @@ const ActionButton: React.FC<{
 	if (!showAllButton || !hasProfiles) {
 		return null;
 
-	const buttonText = showAllButton.label || 'Meet Some of our Team';
+	const buttonText = showAllButton.text || 'Meet Some of our Team';
 
 	return (
 		<div className="mt-8 text-center">
