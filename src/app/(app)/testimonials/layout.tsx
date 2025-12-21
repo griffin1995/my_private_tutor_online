@@ -30,3 +30,4 @@ export default function TestimonialsLayout({
 	children: React.ReactNode;
 }) {
 	return children;
+}
