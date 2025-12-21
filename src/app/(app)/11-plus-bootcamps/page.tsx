@@ -1,150 +1,94 @@
-'use client';
-
 import { PageLayout } from '@/components/layout/page-layout';
 import { SimpleHero } from '@/components/layout/simple-hero';
-import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
+import { ContactButtonClient } from '@/components/pages/eleven-plus-bootcamps/contact-button-client';
+import { VideoSectionClient } from '@/components/pages/eleven-plus-bootcamps/video-section-client';
 import { FirstLessonSection } from '@/components/sections/about/FirstLessonSection';
 import { ScrollingSchools } from '@/components/sections/scrolling-schools';
-import { Button } from '@/components/ui/button';
 import { BootcampVideoSectionVersion } from '@/components/video/BootcampVideoSectionVersion';
-import { VideoPopup } from '@/components/video/video-popup';
-import { useState } from 'react';
-
-// ============================================================================
-// HARDCODED DATA - ALL CMS CONTENT FOR 11+ BOOTCAMPS PAGE
-// ============================================================================
-
-// Bootcamp programme details and success statistics
-// Commented out as currently unused - remove comments when needed for future implementation
-// These contain data for bootcamp programmes, pricing, and success metrics
-
-// Schools list (all schools and universities)
-const ALL_SCHOOLS: readonly string[] = [
-	'Eton College',
-	'Westminster School',
-	"St Paul's School",
-	'Harrow School',
-	'Oxford University',
-	'Cambridge University',
-	'London School of Economics',
-	"King's College London",
-	'Brighton College',
-	'Durham University',
-	'University of Edinburgh',
-	'Harvard University',
-	'Highgate School',
-	'Le Rosey School',
-	'University of St Andrews',
-	'University of Warwick',
-	'Henrietta Barnett School',
-	'Latymer School',
-	"Queen Elizabeth's School",
-	'Tiffin School',
-] as const;
-
-// Filter function to remove universities and keep only schools
-const filterSchoolsOnly = (schools: readonly string[]): readonly string[] => {
-	return schools.filter((school: string) => {
-		const schoolLower = school.toLowerCase();
-		const universityKeywords = [
-			'university',
-			'college london',
-			'school of economics',
-			'harvard',
-			'lse',
-		];
-		const isUniversity = universityKeywords.some((keyword: string) =>
-			schoolLower.includes(keyword),
-		);
-		return !isUniversity;
-	});
-};
-
-// Filtered schools (excludes universities)
-const FILTERED_SCHOOLS = filterSchoolsOnly(ALL_SCHOOLS);
+import {
+	getElevenPlusBootcampsContent,
+	getElevenPlusBootcampsHero,
+	getFilteredSchools,
+	isElevenPlusSeasonActive,
+} from '@/lib/cms/cms-content';
 
 export default function ElevenPlusBootcampsPage() {
-	const [isVideoOpen, setIsVideoOpen] = useState(false);
-	const isSeasonActive = true;
+	// Server Component - Fetch data synchronously following project CMS patterns
+	const bootcampsData = getElevenPlusBootcampsContent();
+	const heroData = getElevenPlusBootcampsHero();
+	const filteredSchools = getFilteredSchools();
+	const isSeasonActive = isElevenPlusSeasonActive();
 
 	if (!isSeasonActive) {
+		const { offSeason } = bootcampsData.content;
 		return (
 			<PageLayout
-				background='white'
+				background="white"
 				showHeader={true}
 				showFooter={true}>
-				<section className='py-24'>
-					<div className='container mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-						<h1 className='mb-4'>11+ Bootcamps</h1>
-						<p className='text-primary-700 mb-8'>
-							Our intensive 11+ preparation bootcamps will return for the 2025 season.
-							Please check back later or contact us for more information.
+				<section className="py-24">
+					<div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+						<h1 className="mb-4">{offSeason.title}</h1>
+						<p className="text-primary-700 mb-8">
+							{offSeason.description}
 						</p>
-						<Button
-							size='lg'
-							onClick={() => {
-								const updatesText = `Hello, I'd like to be notified when your 11+ Bootcamp programmes become available again. Please add me to your updates list and send me information about upcoming dates.`;
-								const encodedText = encodeURIComponent(updatesText);
-								const updatesUrl = `https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~?subject=${encodeURIComponent('11+ Bootcamp Updates Request')}&message=${encodedText}`;
-								window.open(updatesUrl, '_blank', 'noopener,noreferrer');
-							aria-label='Contact us for bootcamp updates - opens enquiry form in new window'>
-							Contact Us for Updates
-						</Button>
+						<ContactButtonClient />
 					</div>
 				</section>
 			</PageLayout>
 		);
+	}
 
 	return (
 		<>
 			{/* Hero Section - Outside PageLayout */}
-			<section id='bootcamps-hero'>
+			<section id="bootcamps-hero">
 				<SimpleHero
-					backgroundImage="/images/hero/11-plus-bootcamps.jpeg"
-					h1="11+"
-					h1AccentText="Bootcamps"
-					h2="Accelerated preparation programmes designed to maximise your child's potential"
-					decorativeStyle="lines"
+					backgroundImage={heroData.backgroundImage}
+					h1={heroData.h1}
+					h1AccentText={heroData.h1AccentText}
+					h2={heroData.h2}
+					decorativeStyle={heroData.decorativeStyle}
 				/>
 			</section>
 
 			<PageLayout
-				background='white'
+				background="white"
 				showHeader={true}
 				showFooter={true}
-				containerSize='full'>
+				containerSize="full">
 
 				{/* Schools Section */}
-				<section id='bootcamps-schools'>
+				<section id="bootcamps-schools">
 					<ScrollingSchools
-						schools={[...FILTERED_SCHOOLS]}
-						className='py-0.5'
+						schools={[...filteredSchools]}
+						className="py-0.5"
 					/>
 				</section>
 
 				{/* Tagline Section */}
 				<section
-					id='bootcamps-tagline'
-					className='bg-white'
-					aria-labelledby='tagline-heading'>
-					<header className='relative text-center flex items-center justify-center'>
-						<div className='flex flex-col items-center justify-center h-full'>
-							<div className='relative z-10 px-4'>
+					id="bootcamps-tagline"
+					className="bg-white"
+					aria-labelledby="tagline-heading">
+					<header className="relative text-center flex items-center justify-center">
+						<div className="flex flex-col items-center justify-center h-full">
+							<div className="relative z-10 px-4">
 								<h2
-									id='tagline-heading'
-									className='tracking-wide dark:text-white'>
-									We help students place at top 10 UK schools and universities
+									id="tagline-heading"
+									className="tracking-wide dark:text-white">
+									{bootcampsData.content.tagline.title}
 								</h2>
 							</div>
 							<div
-								className='flex justify-center items-center space-x-6'
-								role='presentation'
-								aria-hidden='true'>
-								<div className='w-12 h-px bg-neutral-300 dark:bg-neutral-600' />
-								<div className='relative'>
-									<div className='w-3 h-3 rounded-full bg-neutral-400 dark:bg-neutral-500 shadow-lg' />
+								className="flex justify-center items-center space-x-6"
+								role="presentation"
+								aria-hidden="true">
+								<div className="w-12 h-px bg-neutral-300 dark:bg-neutral-600" />
+								<div className="relative">
+									<div className="w-3 h-3 rounded-full bg-neutral-400 dark:bg-neutral-500 shadow-lg" />
 								</div>
-								<div className='w-12 h-px bg-neutral-300 dark:bg-neutral-600' />
+								<div className="w-12 h-px bg-neutral-300 dark:bg-neutral-600" />
 							</div>
 						</div>
 					</header>
@@ -152,47 +96,45 @@ export default function ElevenPlusBootcampsPage() {
 
 				{/* Mission Section */}
 				<section
-					id='bootcamps-mission'
-					className='mt-16'>
-					<div className='container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center'>
-						<blockquote className='italic'>
-							&quot;Discover our comprehensive preparation programmes designed for
-							different learning needs and timelines. Choose the perfect fit for your
-							child&apos;s 11+ journey.&quot;
+					id="bootcamps-mission"
+					className="mt-16">
+					<div className="container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12 text-center">
+						<blockquote className="italic">
+							&quot;{bootcampsData.content.mission.quote}&quot;
 						</blockquote>
 					</div>
 				</section>
 
 				{/* Pre-Video Text Section */}
 				<section
-					id='bootcamps-pre-video-text-section'
-					className='py-16 bg-white'>
+					id="bootcamps-pre-video-text-section"
+					className="py-16 bg-white">
 					<FirstLessonSection
-						heading='Examiner-led 11+ Preparation Programmes'
-						paragraph='Our bootcamp programmes are specifically designed for students at different stages of their 11+ journey. Whether your child is just beginning their preparation (Years 3 and 4) or needs focused intensive support before examinations (Years 5 and 6), our courses provide the <strong>comprehensive foundation and advanced techniques needed for independent and grammar school success</strong>. Crucially, <strong>our bootcamps are designed and led by 11+ examiners</strong> who mark the real entrance exams and help decide which students will progress to the next round.'
-						backgroundColor='white'
-						className=''
+						heading={bootcampsData.content.preVideo.heading}
+						paragraph={bootcampsData.content.preVideo.paragraph}
+						backgroundColor="white"
+						className=""
 					/>
 				</section>
 
 				{/* Intensive Programme Section */}
-				<section aria-labelledby='intensive-programme-heading'>
+				<section aria-labelledby="intensive-programme-heading">
 					<BootcampVideoSectionVersion
-						videoId='intensiveProgramme'
-						className='py-16'
+						videoId="intensiveProgramme"
+						className="py-16"
 					/>
 				</section>
 
 				{/* Expert Guidance Section */}
 				<article
-					id='bootcamps-video-text-section'
-					className='py-16'
-					aria-labelledby='expert-guidance-heading'>
+					id="bootcamps-video-text-section"
+					className="py-16"
+					aria-labelledby="expert-guidance-heading">
 					<FirstLessonSection
-						heading='Expert Guidance for Entrance Exam Success'
-						paragraph='With tiny group sizes (typically 3-4 children) and examiner tutors who understand the unique demands of 11+ assessments, we equip students with insider tips and tricks to help them impress even the most oversubscribed schools. Each programme is carefully structured to address the specific challenges students face in verbal reasoning, non-verbal reasoning, mathematics, English and interviews.'
-						backgroundColor='white'
-						className=''
+						heading={bootcampsData.content.expertGuidance.heading}
+						paragraph={bootcampsData.content.expertGuidance.paragraph}
+						backgroundColor="white"
+						className=""
 					/>
 				</article>
 
@@ -206,73 +148,34 @@ export default function ElevenPlusBootcampsPage() {
 
 				{/* Journey Section */}
 				<aside
-					id='bootcamps-post-video-text-section'
-					className='py-16'
-					aria-labelledby='journey-heading'>
-					<div className='container mx-auto max-w-screen-2xl px-8 sm:px-12 lg:px-16'>
-						<div className='flex flex-col lg:flex-row lg:gap-8'>
-							<div className='flex-1 lg:w-1/2 px-12 py-10'>
+					id="bootcamps-post-video-text-section"
+					className="py-16"
+					aria-labelledby="journey-heading">
+					<div className="container mx-auto max-w-screen-2xl px-8 sm:px-12 lg:px-16">
+						<div className="flex flex-col lg:flex-row lg:gap-8">
+							<div className="flex-1 lg:w-1/2 px-12 py-10">
 								<h3
-									id='journey-heading'
-									className='mb-6'>
-									Ready to Begin Your Child's 11+ Journey?
+									id="journey-heading"
+									className="mb-6">
+									{bootcampsData.content.journey.heading}
 								</h3>
-								<ul className='list-disc list-inside space-y-3 text-primary-700'>
-									<li>
-										All sessions led by experienced specialists with 11+ examiner
-										credentials and/or proven track records at top schools
-									</li>
-									<li>
-										Exclusive access to curated past papers, practice questions, and
-										revision materials
-									</li>
-									<li>
-										Maximum 4-5 students per group ensuring personalised attention and
-										focused learning
-									</li>
-									<li>
-										98% success rate with consistent placements at prestigious
-										independent schools
-									</li>
-									<li>
-										Focus on exam technique and confidence building alongside academic
-										preparation
-									</li>
-									<li>
-										Multiple dates available throughout the year to fit your family's
-										schedule
-									</li>
+								<ul className="list-disc list-inside space-y-3 text-primary-700">
+									{bootcampsData.content.journey.benefits.map((benefit, index) => (
+										<li key={index}>
+											{benefit}
+										</li>
+									))}
 								</ul>
 							</div>
 
-							<div className='flex-1 lg:w-1/2 flex items-center justify-center px-12 py-10'>
-								<figure className='w-full max-w-lg'>
-									<HeroVideoDialog
-										videoSrc='/videos/11-plus-expert-intro-video-mpto.mp4'
-										thumbnailSrc='/images/video-thumbnails/thumbnail-11-plus-expert-intro-video-mpto.png'
-										thumbnailAlt="Emily's 11+ Expert Introduction Video - Meet Emily, our specialist 11+ tutor and learn about our comprehensive entrance exam preparation approach"
-										animationStyle='from-center'
-										className='w-full'
-									/>
-									<figcaption className='sr-only'>
-										Video introduction featuring Emily, our specialist 11+ tutor,
-										explaining our comprehensive entrance exam preparation approach
-									</figcaption>
-								</figure>
+							<div className="flex-1 lg:w-1/2 flex items-center justify-center px-12 py-10">
+								<VideoSectionClient />
 							</div>
 						</div>
 					</div>
 				</aside>
 
-				{/* Video Popup */}
-				<VideoPopup
-					isOpen={isVideoOpen}
-					onClose={() => setIsVideoOpen(false)}
-					videoUrl='/videos/11-plus-expert-intro-video-mpto.mp4'
-					title='Meet Emily - Our 11+ Expert Introduction'
-					poster='/images/tutors/emily.jpg'
-				/>
-
 			</PageLayout>
 		</>
 	);
+}
