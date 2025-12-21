@@ -3984,4 +3984,4 @@ export const getHowItWorksContent = cache(() => {
 	return howItWorksContent;
 });
 
-export { getTestimonialVideos };
+export { getTestimonialVideos, getTutorProfilesSection };
