@@ -10,6 +10,8 @@ interface AspectRatioProps
 	children?: React.ReactNode;
 	errorFallback?: React.ReactNode;
 	loadingPlaceholder?: React.ReactNode;
+}
+
 const AspectRatio = React.forwardRef<
 	React.ElementRef<typeof AspectRatioPrimitive.Root>,
 	AspectRatioProps
@@ -79,15 +81,17 @@ const AspectRatio = React.forwardRef<
 										child.props.className,
 									),
 								});
+							}
 							return child;
+						}
 						return child;
-					})
+					})}
 			</AspectRatioPrimitive.Root>
 		);
 	},
 );
 AspectRatio.displayName = 'AspectRatio';
-const VideoAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'> = (
+const VideoAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
 	props,
 ) => (
 	<AspectRatio
@@ -95,7 +99,7 @@ const VideoAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'> = (
 		{...props}
 	/>
 );
-const SquareAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'> = (
+const SquareAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
 	props,
 ) => (
 	<AspectRatio
@@ -103,7 +107,7 @@ const SquareAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'> = (
 		{...props}
 	/>
 );
-const PortraitAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'> = (
+const PortraitAspectRatio: React.FC<Omit<AspectRatioProps, 'ratio'>> = (
 	props,
 ) => (
 	<AspectRatio

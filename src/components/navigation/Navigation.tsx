@@ -50,10 +50,14 @@ export function Navigation({
 	});
 	const [activeMenuItem, setActiveMenuItem] = useState<string | null>(null);
 	const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-	const { scrollY } = useScroll();
-	useMotionValueEvent(scrollY, 'change', (latest) => {
-		setIsScrolled(latest > 50);
-	});
+
+	useEffect(() => {
+		const handleScroll = () => {
+			setIsScrolled(window.scrollY > 50);
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
 	const hoverDelayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 	// 'On Hover' Sub Menu functionality'
 	// const handleMouseEnter = (menuLabel: string) => {
@@ -85,9 +89,11 @@ export function Navigation({
 		if (hoverDelayTimeoutRef.current) {
 			clearTimeout(hoverDelayTimeoutRef.current);
 			hoverDelayTimeoutRef.current = null;
+		}
 		if (dropdownTimeoutRef.current) {
 			clearTimeout(dropdownTimeoutRef.current);
 			dropdownTimeoutRef.current = null;
+		}
 		if (dropdownState.isOpen && dropdownState.activeMenu === menuLabel) {
 			setDropdownState({
 				isOpen: false,
@@ -100,14 +106,17 @@ export function Navigation({
 				activeMenu: menuLabel,
 			});
 			setActiveMenuItem(menuLabel);
+		}
 	};
 	const handleCloseDropdown = () => {
 		if (hoverDelayTimeoutRef.current) {
 			clearTimeout(hoverDelayTimeoutRef.current);
 			hoverDelayTimeoutRef.current = null;
+		}
 		if (dropdownTimeoutRef.current) {
 			clearTimeout(dropdownTimeoutRef.current);
 			dropdownTimeoutRef.current = null;
+		}
 		setDropdownState({
 			isOpen: false,
 			activeMenu: null,
@@ -175,7 +184,7 @@ export function Navigation({
 								<div
 									key={item.label}
 									className='relative'>
-		{item.items ?
+									{item.items ?
 										<div className='relative'>
 											<div className='flex items-center'>
 												{item.href ?
@@ -197,6 +206,7 @@ export function Navigation({
 														onClick={(e) => {
 															e.preventDefault();
 															handleToggleDropdown(item.label);
+														}}>
 														{item.label}
 													</Link>
 												:	<button
@@ -214,6 +224,7 @@ export function Navigation({
 														)}
 														onClick={() => {
 															handleToggleDropdown(item.label);
+														}}>
 														{item.label}
 													</button>
 											</div>
@@ -231,7 +242,7 @@ export function Navigation({
 												dropdownState.isOpen && !isActive(item.href!) && 'text-primary-700',
 											)}>
 											{item.label}
-										</Link>
+										</Link>}}
 								</div>
 							))}
 						</div>

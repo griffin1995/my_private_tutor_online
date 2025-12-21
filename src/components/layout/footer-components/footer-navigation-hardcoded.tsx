@@ -224,6 +224,7 @@ const FooterSection: React.FC<FooterSectionProps> = ({ section, sectionIndex, is
 interface FooterLinkProps {
   link: FooterLink;
   accessibleLabel: string;
+}
 
 const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
   const isExternal = !link.href.startsWith('/');
@@ -247,6 +248,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
         </BodyText>
       </button>
     );
+  }
 
   if (isExternal) {
     return (
@@ -267,6 +269,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
         </BodyText>
       </a>
     );
+  }
 
   return (
     <Link

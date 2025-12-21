@@ -100,7 +100,7 @@ export function SimpleHero({
 						</DisplayText>
 					</div>
 
-					<div variants={heroItemVariants}>
+					<div>
 						<HeadingText
 							variant="secondary"
 							level={2}
@@ -121,6 +121,7 @@ export function SimpleHero({
 								top: window.innerHeight,
 								behavior: 'smooth',
 							});
+						}}>
 						<svg
 							width='24'
 							height='24'

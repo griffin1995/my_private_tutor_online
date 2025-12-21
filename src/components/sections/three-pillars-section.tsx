@@ -10,6 +10,7 @@ interface PillarData {
 	title: string;
 	description: string;
 	stats: string[];
+}
 
 const pillarsData: PillarData[] = [
 	{
@@ -79,6 +80,7 @@ interface PillarCardProps {
 	pillar: PillarData;
 	index: number;
 	inView: boolean;
+}
 
 const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 	const bgClass = getBgClass(pillar.id);
@@ -95,6 +97,7 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 						style={{
 							backgroundImage: `url(${pillarBackgrounds[pillar.id]})`,
 							backgroundSize: '80px 80px',
+						}}
 					/>
 
 					{/* Breakpoint-specific layout: flexible for single column, fixed for multi-column */}
@@ -138,6 +141,7 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 							{pillar.stats.map((stat, statIndex) => (
 								<div
 									key={statIndex}
+									className="flex items-start">
 									<BodyText
 										variant="default"
 										className="text-white leading-tight opacity-90"

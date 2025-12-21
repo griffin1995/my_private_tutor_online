@@ -26,6 +26,8 @@ interface ConsentRecord {
 	consent: ConsentState;
 	action: 'granted' | 'withdrawn' | 'updated';
 	lawfulBasis: string;
+}
+
 export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 	({ onConsentChange, required = true, className = '', compact = false }) => {
 		const [consentState, setConsentState] = useState<ConsentState>({
@@ -89,6 +91,7 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 					'gdpr-consent-history',
 					JSON.stringify([...consentHistory, record]),
 				);
+			}
 		};
 		const PrivacyInformation = () => (
 			<div className='space-y-4 text-sm'>
@@ -149,11 +152,16 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 						onConsentChange(parsed);
 					} catch (error) {
 						console.error('Failed to parse saved consent:', error);
+					}
+				}
 				if (savedHistory) {
 					try {
 						setConsentHistory(JSON.parse(savedHistory));
 					} catch (error) {
 						console.error('Failed to parse consent history:', error);
+					}
+				}
+			}
 		}, [onConsentChange]);
 		if (compact) {
 			return (
@@ -199,6 +207,7 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 					)}
 				</div>
 			);
+		}
 		return (
 			<div
 				className={cn(
@@ -233,6 +242,8 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 											key as 'marketing' | 'analytics',
 											e.target.checked,
 										);
+									}
+								}}
 								disabled={category.locked}
 								className='mt-1 w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-500 disabled:opacity-50'
 								aria-describedby={`consent-${key}-description`}
@@ -299,6 +310,7 @@ function FooterDataErasure() {
 				setErased(false);
 				setShowConfirm(false);
 			}, 3000);
+		}
 	};
 	return (
 		<div className='space-y-3'>
@@ -341,7 +353,8 @@ function FooterDataErasure() {
 							<BodyText variant="small" className='text-green-800'>
 								Your data has been successfully deleted
 							</BodyText>
-						</div>
-				</div>
+						</div>}
+				</div>}
 		</div>
 	);
+}

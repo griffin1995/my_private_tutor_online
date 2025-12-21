@@ -26,10 +26,12 @@ interface ConsentState {
   marketing: boolean;
   timestamp: string;
   version: string;
+}
 
 interface CookieConsentManagerProps {
   enableAnalytics?: boolean;
   gaTrackingId?: string;
+}
 
 /**
  * GDPR/PECR compliant cookie consent manager
@@ -48,6 +50,7 @@ export function CookieConsentManager({
       window.dataLayer = window.dataLayer || [];
       function gtag(...args: any[]) {
         window.dataLayer.push(arguments);
+      }
 
       // Set default consent to 'denied' before any analytics loading
       gtag('consent', 'default', {
@@ -317,11 +320,13 @@ export function CookieConsentManager({
       });
 
       setIsLoaded(true);
+    }
 
     // Cleanup on unmount
     return () => {
       if (typeof window !== 'undefined' && CookieConsent.reset) {
         CookieConsent.reset(true);
+      }
     };
   }, [enableAnalytics, gaTrackingId]);
 
@@ -386,11 +391,13 @@ export function CookieConsentManager({
     return () => {
       if (document.head.contains(style)) {
         document.head.removeChild(style);
+      }
     };
   }, [isLoaded]);
 
   // Component doesn't render anything - the library handles the UI
   return null;
+}
 
 // Utility functions for checking consent state
 export const cookieConsentUtils = {
