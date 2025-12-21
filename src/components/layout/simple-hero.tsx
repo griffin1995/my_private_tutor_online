@@ -10,13 +10,10 @@ interface SimpleHeroProps {
 	className?: string;
 	decorativeStyle?: 'lines' | 'dots' | 'none';
 	textVerticalOffset?: 'default' | 'lower' | 'higher' | 'much-lower';
-}
 const heroContainerVariants = {
 	hidden: {
-		opacity: 0,
 	},
 	visible: {
-		opacity: 1,
 		transition: {
 			delayChildren: 0.2,
 			staggerChildren: 0.2,
@@ -26,15 +23,9 @@ const heroContainerVariants = {
 };
 const heroItemVariants = {
 	hidden: {
-		opacity: 0,
-		y: 20,
 	},
 	visible: {
-		opacity: 1,
-		y: 0,
 		transition: {
-			duration: 0.6,
-			ease: "easeOut", // Standardized easing
 		},
 	},
 };
@@ -64,7 +55,6 @@ export function SimpleHero({
 						backgroundPosition: 'center',
 						backgroundRepeat: 'no-repeat',
 						animation: 'heroZoom 15s ease-out 0s 1 normal none running',
-					}}
 				/>
 				<style
 					dangerouslySetInnerHTML={{
@@ -72,9 +62,7 @@ export function SimpleHero({
             @keyframes heroZoom {
               0% { transform: scale(1.25); }
               100% { transform: scale(1); }
-            }
           `,
-					}}
 				/>
 			</div>
 
@@ -102,7 +90,6 @@ export function SimpleHero({
 					maskImage: 'radial-gradient(800px circle at center, white, transparent)',
 					WebkitMaskImage:
 						'radial-gradient(800px circle at center, white, transparent)',
-				}}
 			/>
 			<div className='relative z-10 flex flex-col items-center justify-center h-full px-4 text-center'>
 				<div
@@ -147,7 +134,6 @@ export function SimpleHero({
 								top: window.innerHeight,
 								behavior: 'smooth',
 							});
-						}}>
 						<svg
 							width='24'
 							height='24'
@@ -174,5 +160,4 @@ export function SimpleHero({
 			</div>
 		</section>
 	);
-}
 ;

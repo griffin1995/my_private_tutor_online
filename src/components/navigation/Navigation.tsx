@@ -19,17 +19,14 @@ interface NavigationItem {
 	items?: NavigationItem[];
 	featured?: boolean;
 	icon?: React.ReactNode;
-}
 
 interface NavigationProps {
 	className?: string;
 	showBlueNavigation?: boolean;
-}
 
 interface DropdownState {
 	isOpen: boolean;
 	activeMenu: string | null;
-}
 
 // Use imported navigation data from navigation-content.ts
 const navigationData: NavigationItem[] =
@@ -41,39 +38,26 @@ const mobileMenuVariants = {
 		x: '100%',
 		transition: {
 			type: 'tween',
-			duration: 0.3,
-			ease: 'easeInOut',
 		},
 	},
 	open: {
-		x: 0,
 		transition: {
 			type: 'tween',
-			duration: 0.3,
-			ease: 'easeInOut',
 		},
 	},
 };
 const navVariants = {
 	hidden: {
-		y: -100,
-		opacity: 0,
 	},
 	visible: {
-		y: 0,
-		opacity: 1,
 		transition: {
-			duration: 0.3,
-			ease: easeOut,
 		},
 	},
 };
 const dropdownContainerVariants = {
 	hidden: {
-		opacity: 0,
 	},
 	visible: {
-		opacity: 1,
 		transition: {
 			delayChildren: 0.1,
 			staggerChildren: 0.15,
@@ -82,56 +66,37 @@ const dropdownContainerVariants = {
 };
 const dropdownItemVariants = {
 	hidden: {
-		opacity: 0,
-		y: 20,
 	},
 	visible: {
-		opacity: 1,
-		y: 0,
 		transition: {
-			duration: 0.3,
-			ease: 'easeOut',
 		},
 	},
 };
 const arrowGrowVariants = {
 	hidden: {
 		scaleY: 0,
-		y: 50,
-		opacity: 0,
 		transformOrigin: 'bottom',
 	},
 	visible: {
 		scaleY: 1,
-		y: 0,
-		opacity: 1,
 		transition: {
-			delay: 0.85,
 			type: 'spring',
-			duration: 0.6,
 			bounce: 0.2,
 		},
 	},
 };
 const overlayVariants = {
 	hidden: {
-		opacity: 0,
 		scale: 0.98,
 	},
 	visible: {
-		opacity: 1,
 		scale: 1,
 		transition: {
-			duration: 0.15,
-			ease: 'easeOut',
 		},
 	},
 	exit: {
-		opacity: 0,
 		scale: 0.98,
 		transition: {
-			duration: 0.1,
-			ease: 'easeIn',
 		},
 	},
 };
@@ -183,11 +148,9 @@ export function Navigation({
 		if (hoverDelayTimeoutRef.current) {
 			clearTimeout(hoverDelayTimeoutRef.current);
 			hoverDelayTimeoutRef.current = null;
-		}
 		if (dropdownTimeoutRef.current) {
 			clearTimeout(dropdownTimeoutRef.current);
 			dropdownTimeoutRef.current = null;
-		}
 		if (dropdownState.isOpen && dropdownState.activeMenu === menuLabel) {
 			setDropdownState({
 				isOpen: false,
@@ -200,17 +163,14 @@ export function Navigation({
 				activeMenu: menuLabel,
 			});
 			setActiveMenuItem(menuLabel);
-		}
 	};
 	const handleCloseDropdown = () => {
 		if (hoverDelayTimeoutRef.current) {
 			clearTimeout(hoverDelayTimeoutRef.current);
 			hoverDelayTimeoutRef.current = null;
-		}
 		if (dropdownTimeoutRef.current) {
 			clearTimeout(dropdownTimeoutRef.current);
 			dropdownTimeoutRef.current = null;
-		}
 		setDropdownState({
 			isOpen: false,
 			activeMenu: null,
@@ -225,11 +185,9 @@ export function Navigation({
 			if (hoverDelayTimeoutRef.current) {
 				clearTimeout(hoverDelayTimeoutRef.current);
 				hoverDelayTimeoutRef.current = null;
-			}
 			if (dropdownTimeoutRef.current) {
 				clearTimeout(dropdownTimeoutRef.current);
 				dropdownTimeoutRef.current = null;
-			}
 		};
 	}, []);
 	const isActive = (href: string) => {
@@ -243,7 +201,7 @@ export function Navigation({
 	};
 	return (
 		<>
-			<motion.header
+			<header
 				className={cn(
 					'fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-[5.5rem] lg:h-[6.25rem] xl:h-[7rem]',
 					dropdownState.isOpen ? 'bg-white shadow-sm'
@@ -278,7 +236,7 @@ export function Navigation({
 								<div
 									key={item.label}
 									className='relative'>
-									{item.items ?
+		{item.items ?
 										<div className='relative'>
 											<div className='flex items-center'>
 												{item.href ?
@@ -300,7 +258,6 @@ export function Navigation({
 														onClick={(e) => {
 															e.preventDefault();
 															handleToggleDropdown(item.label);
-														}}>
 														{item.label}
 													</Link>
 												:	<button
@@ -318,10 +275,8 @@ export function Navigation({
 														)}
 														onClick={() => {
 															handleToggleDropdown(item.label);
-														}}>
 														{item.label}
 													</button>
-												}
 											</div>
 										</div>
 									:	<Link
@@ -338,7 +293,6 @@ export function Navigation({
 											)}>
 											{item.label}
 										</Link>
-									}
 								</div>
 							))}
 						</div>
@@ -375,7 +329,7 @@ export function Navigation({
 						</button>
 					</nav>
 				</div>
-			</motion.header>
+			</header>
 
 			<div>
 				{dropdownState.isOpen && dropdownState.activeMenu && (
@@ -383,13 +337,11 @@ export function Navigation({
 						className='fixed left-0 right-0 z-40'
 						style={{
 							top: `${getNavbarHeight()}px`,
-						}}>
 						<div className='bg-white shadow-lg'>
 							<div
 								className='w-full overflow-hidden flex flex-col justify-start'
 								style={{
 									height: `calc(100vh - ${getNavbarHeight()}px)`,
-								}}>
 								<div className='container mx-auto px-4 lg:px-6 h-full'>
 									<div className='flex items-start h-full'>
 										<div className='w-48 h-[4.5rem] lg:h-[5.25rem] xl:h-[6rem] flex-shrink-0' />
@@ -408,7 +360,7 @@ export function Navigation({
 																className='w-full h-full'>
 																<div
 																	className='flex flex-col h-full items-stretch pt-8 lg:pt-10 xl:pt-12 pb-6'>
-																	{item.items!.map((subItem, subIndex) => (
+		{item.items!.map((subItem, subIndex) => (
 																		<React.Fragment key={subItem.label}>
 																			<div
 																				className='flex-1'>
@@ -423,7 +375,6 @@ export function Navigation({
 																					)}
 																					style={{
 																						textDecoration: 'none',
-																					}}>
 																					<h3
 																						className={cn(
 																							'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl',
@@ -431,7 +382,6 @@ export function Navigation({
 																						)}
 																						style={{
 																							textDecoration: 'none',
-																						}}>
 																						{subItem.label}
 																					</h3>
 																				</Link>
@@ -520,7 +470,6 @@ export function Navigation({
 			)}
 		</>
 	);
-}
 function MobileNavigation({
 	items,
 	pathname,
@@ -547,7 +496,7 @@ function MobileNavigation({
 					<div
 						key={item.label}
 						className='rounded-lg border-none overflow-hidden'>
-						{hasSubItems ?
+		{hasSubItems ?
 							<>
 								<button
 									onClick={() => toggleExpanded(item.label)}
@@ -602,10 +551,8 @@ function MobileNavigation({
 									{item.label}
 								</span>
 							</Link>
-						}
 					</div>
 				);
 			})}
 		</div>
 	);
-}

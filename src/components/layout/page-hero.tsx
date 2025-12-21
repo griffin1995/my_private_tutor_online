@@ -19,7 +19,6 @@ interface PageHeroProps {
 	overlay?: boolean;
 	overlayOpacity?: 'light' | 'medium' | 'dark';
 	hasStaticNavbar?: boolean;
-}
 export function PageHero({
 	children,
 	className,
@@ -91,7 +90,6 @@ export function PageHero({
 					background === 'image' && backgroundImage ?
 						`url(${backgroundImage})`
 					:	undefined,
-			}}
 			role='banner'
 			aria-label='Page hero section'
 			data-dynamic-viewport={dynamicViewport ? 'true' : 'false'}
@@ -114,7 +112,6 @@ export function PageHero({
 							objectFit: 'contain',
 							transform: 'scale(0.9)',
 							transformOrigin: 'center',
-						}}
 						aria-label='Background video'
 						onError={(e) => {
 							console.warn('Video playback error:', e);
@@ -126,11 +123,8 @@ export function PageHero({
 									'url(/images/hero/landing-page.avif)';
 								section.style.backgroundSize = 'cover';
 								section.style.backgroundPosition = 'center';
-							}
-						}}
 						onCanPlayThrough={(e) => {
 							e.currentTarget.play().catch(console.warn);
-						}}>
 						<source
 							src={backgroundVideo}
 							type='video/mp4'
@@ -168,7 +162,6 @@ export function PageHero({
 			</div>
 		</section>
 	);
-}
 type PageHeroBackground = 'white' | 'gradient' | 'image' | 'video';
 type PageHeroSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
 type PageHeroAlignment = 'left' | 'center' | 'right';

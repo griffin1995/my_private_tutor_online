@@ -14,20 +14,16 @@ interface PageHeaderProps {
 	className?: string;
 	isHeroPage?: boolean;
 	showBlueNavigation?: boolean;
-}
 interface NavigationItem {
 	label: string;
 	href?: string;
 	items?: NavigationSubItem[];
-}
 interface NavigationSubItem {
 	label: string;
 	href: string;
 	description?: string;
-}
 interface DesktopNavigationProps {
 	isTransparent: boolean;
-}
 function useScrollDetection(threshold: number = 75) {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [isMounted, setIsMounted] = useState(false);
@@ -35,7 +31,6 @@ function useScrollDetection(threshold: number = 75) {
 	const handleScroll = useCallback(() => {
 		if (rafId.current) {
 			cancelAnimationFrame(rafId.current);
-		}
 		rafId.current = requestAnimationFrame(() => {
 			if (typeof window === 'undefined') return;
 			const scrollY = window.scrollY;
@@ -53,14 +48,12 @@ function useScrollDetection(threshold: number = 75) {
 			window.removeEventListener('scroll', handleScroll);
 			if (rafId.current) {
 				cancelAnimationFrame(rafId.current);
-			}
 		};
 	}, [handleScroll]);
 	return {
 		isScrolled: isMounted ? isScrolled : false,
 		isMounted,
 	};
-}
 export function PageHeader({
 	className,
 	isHeroPage = false,
@@ -72,5 +65,4 @@ export function PageHeader({
 			className={className}
 		/>
 	);
-}
 ;

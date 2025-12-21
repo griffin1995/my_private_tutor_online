@@ -13,5 +13,4 @@ function FooterSkipLink() {
 			</a>
 		</>
 	);
-}
 export default FooterSkipLink;

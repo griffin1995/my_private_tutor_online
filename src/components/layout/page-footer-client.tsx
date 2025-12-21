@@ -38,7 +38,6 @@ interface FooterContent {
 			label: string;
 		}>;
 	}>;
-}
 interface PageFooterClientProps {
 	footerContent: FooterContent;
 	copyrightText: string;
@@ -47,7 +46,6 @@ interface PageFooterClientProps {
 	showBackToTop?: boolean;
 	showNewsletter?: boolean;
 	showContactForm?: boolean;
-}
 export function PageFooterClient({
 	footerContent,
 	copyrightText,
@@ -113,11 +111,9 @@ export function PageFooterClient({
 				const result = await response.json();
 				if (!result.success) {
 					throw new Error(result.error || 'Subscription failed');
-				}
 			} catch (error) {
 				console.error('Newsletter submission error:', error);
 				throw error;
-			}
 		},
 		[],
 	);
@@ -187,7 +183,7 @@ export function PageFooterClient({
 										needs
 									</BodyText>
 								</div>
-								<motion.a
+								<a
 									href='https://www.bizstim.com/inquiry/my-private-tutor-online/64fdd7e8febbf49c3f18ec855e7b1f02a7ad87311b0ede5991704ae603ed5fef6da333482f3c2ca69a6023d329ef65549ccabecc6bdc73a878e4f2141562cceb9uE20ScSAiO9T5yRIbx7FZ54JW5tLEWIl1aGPLme4-k~'
 									target='_blank'
 									rel='noopener noreferrer'
@@ -210,7 +206,7 @@ export function PageFooterClient({
 											</CaptionText>
 										</div>
 									</div>
-								</motion.a>
+								</a>
 								<div>
 									<CaptionText
 										variant="small"
@@ -307,4 +303,3 @@ export function PageFooterClient({
 			</footer>
 		</>
 	);
-}

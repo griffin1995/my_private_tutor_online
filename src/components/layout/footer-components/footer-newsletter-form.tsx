@@ -16,7 +16,6 @@ interface FooterNewsletterFormProps {
 	className?: string;
 	onSubmit?: (data: NewsletterData) => Promise<void>;
 	autoConsent?: boolean;
-}
 export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 	({ className = '', onSubmit, autoConsent = true }) => {
 		const [submissionState, setSubmissionState] = useState<
@@ -80,8 +79,6 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 					const result = await response.json();
 					if (!result.success) {
 						throw new Error(result.error || 'Subscription failed');
-					}
-				}
 				setSubmissionState('success');
 				reset();
 				setTimeout(() => {
@@ -97,11 +94,8 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 						);
 					} else {
 						setErrorMessage(error.message || 'Network error. Please try again.');
-					}
 				} else {
 					setErrorMessage('An unexpected error occurred. Please try again.');
-				}
-			}
 		};
 		if (submissionState === 'success') {
 			return (
@@ -114,7 +108,6 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 					</div>
 				</div>
 			);
-		}
 		return (
 			<div className={`max-w-md mx-auto ${className}`}>
 				<form
@@ -208,7 +201,6 @@ interface SubmitButtonProps {
 		submitButtonText: Record<string, string>;
 		submitButtonIcon: Record<string, React.ElementType>;
 	};
-}
 const SubmitButton = React.memo<SubmitButtonProps>(
 	({ isSubmitting, submissionState, config }) => {
 		const IconComponent = config.submitButtonIcon[submissionState];

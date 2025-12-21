@@ -11,12 +11,10 @@ import { HeadingText, BodyText } from '@/components/ui/typography';
 interface FooterLink {
   readonly label: string;
   readonly href: string;
-}
 
 interface FooterSection {
   readonly title: string;
   readonly links: readonly FooterLink[];
-}
 
 // Hardcoded footer data - no CMS dependency
 const FOOTER_SECTIONS: readonly FooterSection[] = [
@@ -58,17 +56,15 @@ const FOOTER_SECTIONS: readonly FooterSection[] = [
       { label: "Booking Policy", href: "/legal/booking-policy" },
       { label: "Record of Processing", href: "/legal/record-of-processing" }
     ]
-  }
 ] as const;
 
 interface FooterNavigationHardcodedProps {
   className?: string;
-}
 
 export const FooterNavigationHardcoded: React.FC<FooterNavigationHardcodedProps> = ({
   className = ''
 }) => {
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+  const [openSections, setOpenSections] = useState<Record<string, boolean>({});
 
   const toggleSection = (sectionTitle: string) => {
     setOpenSections(prev => ({
@@ -99,8 +95,6 @@ export const FooterNavigationHardcoded: React.FC<FooterNavigationHardcodedProps>
           cumulativeHeight += 60; // Base height for title
           if (isPrevOpen) {
             cumulativeHeight += prevSection.links.length * 40 + 32; // Height for opened content
-          }
-        }
 
         return (
           <button
@@ -110,7 +104,6 @@ export const FooterNavigationHardcoded: React.FC<FooterNavigationHardcodedProps>
             style={{
               top: `${cumulativeHeight}px`,
               right: '4px'
-            }}
             aria-label={`${openSections[section.title] ? 'Collapse' : 'Expand'} ${section.title} section`}>
             {openSections[section.title] ? (
               <ChevronUp className='w-6 h-6' />
@@ -129,7 +122,6 @@ interface FooterSectionProps {
   sectionIndex: number;
   isOpen: boolean;
   onToggle: () => void;
-}
 
 const FooterSection: React.FC<FooterSectionProps> = ({ section, sectionIndex, isOpen, onToggle }) => {
   const sectionId = `footer-section-${section.title.toLowerCase().replace(/\s+/g, '-')}`;
@@ -140,7 +132,6 @@ const FooterSection: React.FC<FooterSectionProps> = ({ section, sectionIndex, is
       className='flex flex-col animate-fade-in-up text-center md:text-left relative'
       style={{
         animationDelay: `${sectionIndex * 0.1}s`,
-      }}>
 
       {/* Mobile accordion button (default breakpoint only) */}
       <button
@@ -153,7 +144,7 @@ const FooterSection: React.FC<FooterSectionProps> = ({ section, sectionIndex, is
             level={3}
             variant="secondary"
             className="text-primary-900">
-            {section.title}
+		{section.title}
           </HeadingText>
         </div>
       </button>
@@ -167,7 +158,7 @@ const FooterSection: React.FC<FooterSectionProps> = ({ section, sectionIndex, is
           variant="secondary"
           responsive
           className="text-primary-900">
-          {section.title}
+		{section.title}
         </HeadingText>
         <Separator className='flex-1 bg-neutral-300' />
       </div>
@@ -224,7 +215,6 @@ const FooterSection: React.FC<FooterSectionProps> = ({ section, sectionIndex, is
 interface FooterLinkProps {
   link: FooterLink;
   accessibleLabel: string;
-}
 
 const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
   const isExternal = !link.href.startsWith('/');
@@ -244,11 +234,10 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
           variant="large"
           as="span"
           className='text-neutral-700 group-hover:translate-x-1 transition-transform duration-300'>
-          {link.label}
+		{link.label}
         </BodyText>
       </button>
     );
-  }
 
   if (isExternal) {
     return (
@@ -265,11 +254,10 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
           variant="large"
           as="span"
           className='text-neutral-700 group-hover:translate-x-1 transition-transform duration-300'>
-          {link.label}
+		{link.label}
         </BodyText>
       </a>
     );
-  }
 
   return (
     <Link
@@ -284,7 +272,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({ link, accessibleLabel }) => {
         variant="large"
         as="span"
         className='text-neutral-700 group-hover:translate-x-1 transition-transform duration-300'>
-        {link.label}
+		{link.label}
       </BodyText>
     </Link>
   );

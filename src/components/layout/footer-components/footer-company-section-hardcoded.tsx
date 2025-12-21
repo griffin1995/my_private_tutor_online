@@ -17,7 +17,6 @@ const COMPANY_DATA = {
 
 interface FooterCompanySectionHardcodedProps {
 	className?: string;
-}
 
 export const FooterCompanySectionHardcoded: React.FC<FooterCompanySectionHardcodedProps> = ({
 	className = ''

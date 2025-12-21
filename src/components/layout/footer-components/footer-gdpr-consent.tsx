@@ -9,7 +9,6 @@ interface GDPRConsentProps {
 	required?: boolean;
 	className?: string;
 	compact?: boolean;
-}
 export interface ConsentState {
 	marketing: boolean;
 	analytics: boolean;
@@ -17,14 +16,12 @@ export interface ConsentState {
 	timestamp: string;
 	ipAddress?: string;
 	version: string;
-}
 interface ConsentRecord {
 	id: string;
 	timestamp: string;
 	consent: ConsentState;
 	action: 'granted' | 'withdrawn' | 'updated';
 	lawfulBasis: string;
-}
 export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 	({ onConsentChange, required = true, className = '', compact = false }) => {
 		const [consentState, setConsentState] = useState<ConsentState>({
@@ -88,7 +85,6 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 					'gdpr-consent-history',
 					JSON.stringify([...consentHistory, record]),
 				);
-			}
 		};
 		const PrivacyInformation = () => (
 			<div className='space-y-4 text-sm'>
@@ -149,16 +145,11 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 						onConsentChange(parsed);
 					} catch (error) {
 						console.error('Failed to parse saved consent:', error);
-					}
-				}
 				if (savedHistory) {
 					try {
 						setConsentHistory(JSON.parse(savedHistory));
 					} catch (error) {
 						console.error('Failed to parse consent history:', error);
-					}
-				}
-			}
 		}, [onConsentChange]);
 		if (compact) {
 			return (
@@ -204,7 +195,6 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 					)}
 				</div>
 			);
-		}
 		return (
 			<div
 				className={cn(
@@ -239,8 +229,6 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 											key as 'marketing' | 'analytics',
 											e.target.checked,
 										);
-									}
-								}}
 								disabled={category.locked}
 								className='mt-1 w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-500 disabled:opacity-50'
 								aria-describedby={`consent-${key}-description`}
@@ -250,7 +238,7 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 									as="label"
 									htmlFor={`consent-${key}`}
 									className='font-medium text-black cursor-pointer'>
-									{category.title}
+		{category.title}
 									{category.locked && (
 										<CaptionText as="span" variant="muted" className='ml-2'>(Required)</CaptionText>
 									)}
@@ -259,7 +247,7 @@ export const FooterGDPRConsent = React.memo<GDPRConsentProps>(
 									variant="small"
 									id={`consent-${key}-description`}
 									className='text-gray-600 mt-1'>
-									{category.description}
+		{category.description}
 								</BodyText>
 								{showDetails && (
 									<div className='mt-2'>
@@ -307,7 +295,6 @@ function FooterDataErasure() {
 				setErased(false);
 				setShowConfirm(false);
 			}, 3000);
-		}
 	};
 	return (
 		<div className='space-y-3'>
@@ -351,9 +338,6 @@ function FooterDataErasure() {
 								Your data has been successfully deleted
 							</BodyText>
 						</div>
-					}
 				</div>
-			}
 		</div>
 	);
-}

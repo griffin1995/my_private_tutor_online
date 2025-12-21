@@ -18,7 +18,6 @@ interface SectionProps {
 	id?: string;
 	ariaLabel?: string;
 	as?: 'section' | 'div' | 'article' | 'aside';
-}
 export function Section({
 	children,
 	className,
@@ -72,7 +71,6 @@ export function Section({
 			</div>
 		</Component>
 	);
-}
 interface SectionHeaderProps {
 	title: string;
 	subtitle?: string;
@@ -80,7 +78,6 @@ interface SectionHeaderProps {
 	className?: string;
 	alignment?: 'left' | 'center' | 'right';
 	titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-}
 function SectionHeader({
 	title,
 	subtitle,
@@ -112,7 +109,7 @@ function SectionHeader({
 					<CaptionText
 						as="span"
 						className='inline-flex items-center px-3 py-1 bg-accent-100 text-accent-700 font-medium rounded-full'>
-						{subtitle}
+		{subtitle}
 					</CaptionText>
 				</div>
 			)}
@@ -122,7 +119,7 @@ function SectionHeader({
 				variant="primary"
 				responsive
 				className='mb-4'>
-				{title}
+		{title}
 			</HeadingText>
 
 			{description && (
@@ -135,7 +132,6 @@ function SectionHeader({
 			)}
 		</div>
 	);
-}
 type SectionBackground =
 	| 'white'
 	| 'grey'

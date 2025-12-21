@@ -9,7 +9,6 @@ interface LogoSectionProps {
 	isTransparent: boolean;
 	isHomepage: boolean;
 	className?: string;
-}
 export function LogoSection({
 	isTransparent,
 	isHomepage,
@@ -19,21 +18,16 @@ export function LogoSection({
 	const whiteLogo = getMainLogoWhite();
 	const logoVariants = {
 		initial: {
-			opacity: 0,
 			scale: 0.95,
 		},
 		animate: {
-			opacity: 1,
 			scale: 1,
 		},
 		exit: {
-			opacity: 0,
 			scale: 0.95,
 		},
 	};
 	const logoTransition = {
-		duration: 0.3,
-		ease: 'easeInOut',
 	};
 	const currentLogo = isTransparent ? whiteLogo : standardLogo;
 	const logoSrc = currentLogo?.src || '/images/logos/logo-with-name.png';
@@ -54,14 +48,10 @@ export function LogoSection({
 				<div
 					className='relative'
 						scale: 1.05,
-					}}
 						scale: 0.98,
-					}}
 						type: 'spring',
 						stiffness: 400,
 						damping: 25,
-						duration: 0.15,
-					}}>
 					<AnimatePresence mode='wait'>
 						<div
 							key={isTransparent ? 'white-logo' : 'standard-logo'}
@@ -82,7 +72,6 @@ export function LogoSection({
 								style={{
 									aspectRatio: '175/100',
 									maxWidth: 'none',
-								}}
 							/>
 
 							<div
@@ -101,5 +90,4 @@ export function LogoSection({
 			</Link>
 		</div>
 	);
-}
 ;

@@ -71,7 +71,6 @@ interface PageFooterProps {
 	showBackToTop?: boolean;
 	showNewsletter?: boolean;
 	showContactForm?: boolean;
-}
 
 export function PageFooter({
 	className,
@@ -91,6 +90,5 @@ export function PageFooter({
 			showContactForm={showContactForm}
 		/>
 	);
-}
 
 type PageFooterVariant = 'default' | 'minimal' | 'premium';
