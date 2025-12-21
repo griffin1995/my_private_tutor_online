@@ -9,6 +9,7 @@ import landingPageContent from '../../content/landing-page.json';
 import settingsContent from '../../content/settings.json';
 import testimonialsContent from '../../content/testimonials.json';
 import tutorsNewContent from '../../content/tutors-new.json';
+import elevenPlusBootcampsContent from '../../content/11-plus-bootcamps.json';
 import { getTestimonialVideos } from './cms-images';
 import faqContent from './cms-faq';
 export type {
@@ -476,6 +477,81 @@ interface FormContent {
 	readonly common: CommonFormContent;
 	readonly footer: FooterFormContent;
 }
+
+// 11+ Bootcamps Content Types
+interface ElevenPlusBootcampsHero {
+	readonly h1: string;
+	readonly h1AccentText: string;
+	readonly h2: string;
+	readonly decorativeStyle: string;
+	readonly backgroundImage: string;
+}
+
+interface ElevenPlusBootcampsSchools {
+	readonly allSchools: readonly string[];
+	readonly universityKeywords: readonly string[];
+}
+
+interface ElevenPlusBootcampsContact {
+	readonly buttonText: string;
+	readonly message: string;
+	readonly subject: string;
+	readonly url: string;
+	readonly ariaLabel: string;
+}
+
+interface ElevenPlusBootcampsOffSeason {
+	readonly title: string;
+	readonly description: string;
+	readonly contact: ElevenPlusBootcampsContact;
+}
+
+interface ElevenPlusBootcampsSection {
+	readonly heading: string;
+	readonly paragraph: string;
+}
+
+interface ElevenPlusBootcampsJourney {
+	readonly heading: string;
+	readonly benefits: readonly string[];
+}
+
+interface ElevenPlusBootcampsVideo {
+	readonly videoSrc: string;
+	readonly thumbnailSrc: string;
+	readonly thumbnailAlt: string;
+	readonly title: string;
+	readonly poster: string;
+	readonly figcaption: string;
+}
+
+interface ElevenPlusBootcampsContent {
+	readonly offSeason: ElevenPlusBootcampsOffSeason;
+	readonly tagline: { readonly title: string };
+	readonly mission: { readonly quote: string };
+	readonly preVideo: ElevenPlusBootcampsSection;
+	readonly expertGuidance: ElevenPlusBootcampsSection;
+	readonly journey: ElevenPlusBootcampsJourney;
+	readonly video: ElevenPlusBootcampsVideo;
+}
+
+export interface ElevenPlusBootcamps {
+	readonly _comments: {
+		readonly lastUpdated: string;
+		readonly recentChanges: readonly {
+			readonly change: string;
+			readonly reason: string;
+			readonly date: string;
+			readonly source: string;
+			readonly details: string;
+		}[];
+	};
+	readonly hero: ElevenPlusBootcampsHero;
+	readonly schools: ElevenPlusBootcampsSchools;
+	readonly settings: { readonly isSeasonActive: boolean };
+	readonly content: ElevenPlusBootcampsContent;
+}
+
 export interface FAQAnalytics {
 	readonly views: number;
 	readonly helpful: number;
@@ -3876,4 +3952,36 @@ const getTutorProfileById = cache(
 		return newData.profiles[id];
 	},
 );
+
+// 11+ Bootcamps CMS Functions
+export const getElevenPlusBootcampsContent = cache((): ElevenPlusBootcamps => {
+	return elevenPlusBootcampsContent;
+});
+
+export const getFilteredSchools = cache((): readonly string[] => {
+	const data = getElevenPlusBootcampsContent();
+	return data.schools.allSchools.filter((school: string) => {
+		const schoolLower = school.toLowerCase();
+		const universityKeywords = data.schools.universityKeywords;
+		const isUniversity = universityKeywords.some((keyword: string) =>
+			schoolLower.includes(keyword),
+		);
+		return !isUniversity;
+	});
+});
+
+export const getElevenPlusBootcampsHero = cache((): ElevenPlusBootcampsHero => {
+	const data = getElevenPlusBootcampsContent();
+	return data.hero;
+});
+
+export const isElevenPlusSeasonActive = cache((): boolean => {
+	const data = getElevenPlusBootcampsContent();
+	return data.settings.isSeasonActive;
+});
+
+export const getHowItWorksContent = cache(() => {
+	return howItWorksContent;
+});
+
 export { getTestimonialVideos };
