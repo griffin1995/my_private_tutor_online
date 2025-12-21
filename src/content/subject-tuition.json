@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "title": "Subject Tutoring & Exam Preparation",
+    "description": "From entrance exams to university prep, our expert tutors provide personalised instruction across all subjects and educational stages.",
+    "heroImage": "/images/hero/subject-tuition.jpg"
+  },
+  "educationLevels": [
+    {
+      "value": "primary-school",
+      "label": "Primary School",
+      "icon": "School",
+      "description": "The primary curriculum is the scaffolding upon which secondary success plays out; we're passionate about plugging gaps and getting it right.",
+      "subjects": [
+        "Mathematics",
+        "English",
+        "Science",
+        "Reading & Comprehension",
+        "Writing Skills"
+      ],
+      "keyFeatures": [
+        "Interactive learning methods",
+        "Building confidence and enthusiasm",
+        "Personalised learning pace",
+        "Regular progress assessments"
+      ]
+    },
+    {
+      "value": "secondary-school",
+      "label": "Secondary School",
+      "icon": "GraduationCap",
+      "description": "One-to-one tutoring for KS3, GCSE, A-Level and IB, delivered by experienced subject specialists and examiners.",
+      "subjects": [
+        "Mathematics",
+        "English Literature & Language",
+        "Sciences",
+        "History",
+        "Geography",
+        "Modern Foreign Languages"
+      ],
+      "keyFeatures": [
+        "Subject specialist tutors",
+        "Exam technique development",
+        "Study skills coaching",
+        "Transition support to GCSE level"
+      ]
+    },
+    {
+      "value": "entrance-exams",
+      "label": "Entrance Exams",
+      "icon": "Trophy",
+      "description": "Specialised preparation for competitive entrance examinations across all age groups.",
+      "subjects": [
+        "Mathematics",
+        "English Language & Literature",
+        "Biology",
+        "Chemistry",
+        "Physics",
+        "History",
+        "Geography",
+        "Modern Languages"
+      ],
+      "keyFeatures": [
+        "GL Assessment expertise",
+        "CEM preparation",
+        "ISEB Common Entrance",
+        "School-specific papers"
+      ]
+    },
+    {
+      "value": "university-admissions",
+      "label": "University Applications & Specialist Tests",
+      "icon": "BookOpen",
+      "description": "Expert academic support for undergraduates and postgraduates, including essay coaching, dissertations, and subject-specific tutoring.",
+      "subjects": [
+        "Essay Writing",
+        "Research Methods",
+        "Statistics",
+        "Subject-Specific Support",
+        "Dissertation Guidance"
+      ],
+      "keyFeatures": [
+        "Academic writing excellence",
+        "Research methodology training",
+        "Time management strategies",
+        "Peer review processes"
+      ]
+    },
+    {
+      "value": "online-homeschooling",
+      "label": "Online Homeschooling",
+      "icon": "Laptop",
+      "description": "Comprehensive one-to-one homeschooling for families seeking both academic structure and flexibility.",
+      "subjects": [
+        "Professional Qualifications",
+        "Career Development",
+        "Digital Literacy",
+        "Language Learning",
+        "Creative Writing"
+      ],
+      "keyFeatures": [
+        "Private school standard",
+        "Personalised curriculum",
+        "Expert tutor teams",
+        "Flexible scheduling"
+      ]
+    },
+    {
+      "value": "sen-support",
+      "label": "SEN Support & Neurodiverse Learning",
+      "icon": "Heart",
+      "description": "Our Founder Elizabeth's own neurodiversity (dyspraxia) means she's especially passionate about equipping students with gamechanging SEN support.",
+      "subjects": [
+        "Individualised Learning",
+        "Strength Identification",
+        "Learning Style Analysis",
+        "Accessibility Support"
+      ],
+      "keyFeatures": [
+        "Detailed assessments",
+        "Strength identification",
+        "Learning style analysis",
+        "Personalised support plans"
+      ]
+    },
+    {
+      "value": "london-in-person",
+      "label": "London In-Person Tutoring",
+      "icon": "MapPin",
+      "description": "In-person tutoring typically available across Zones 1–5, depending on student location and tutor availability.",
+      "subjects": [
+        "All Academic Subjects",
+        "Interview Preparation",
+        "Entrance Exams",
+        "Study Skills"
+      ],
+      "keyFeatures": [
+        "DBS-checked tutors",
+        "Specialist expertise",
+        "London school experience",
+        "Entrance exam preparation"
+      ]
+    }
+  ]
+}

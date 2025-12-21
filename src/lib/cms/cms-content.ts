@@ -10,6 +10,7 @@ import settingsContent from '../../content/settings.json';
 import testimonialsContent from '../../content/testimonials.json';
 import tutorsNewContent from '../../content/tutors-new.json';
 import elevenPlusBootcampsContent from '../../content/11-plus-bootcamps.json';
+import subjectTuitionContent from '../../content/subject-tuition.json';
 import { getTestimonialVideos } from './cms-images';
 import faqContent from './cms-faq';
 export type {
@@ -550,6 +551,26 @@ export interface ElevenPlusBootcamps {
 	readonly schools: ElevenPlusBootcampsSchools;
 	readonly settings: { readonly isSeasonActive: boolean };
 	readonly content: ElevenPlusBootcampsContent;
+}
+
+interface SubjectTuitionMetadata {
+	readonly title: string;
+	readonly description: string;
+	readonly heroImage: string;
+}
+
+interface SubjectTuitionEducationLevel {
+	readonly value: string;
+	readonly label: string;
+	readonly icon: string;
+	readonly description: string;
+	readonly subjects: readonly string[];
+	readonly keyFeatures: readonly string[];
+}
+
+export interface SubjectTuitionContent {
+	readonly metadata: SubjectTuitionMetadata;
+	readonly educationLevels: readonly SubjectTuitionEducationLevel[];
 }
 
 export interface FAQAnalytics {
@@ -3982,6 +4003,10 @@ export const isElevenPlusSeasonActive = cache((): boolean => {
 
 export const getHowItWorksContent = cache(() => {
 	return howItWorksContent;
+});
+
+export const getSubjectTuitionContent = cache((): SubjectTuitionContent => {
+	return subjectTuitionContent;
 });
 
 export { getTestimonialVideos, getTutorProfilesSection };
