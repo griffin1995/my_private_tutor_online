@@ -53,3 +53,4 @@ export default function ElevenPlusBootcampsLayout({
 	children: React.ReactNode;
 }) {
 	return children;
+}
