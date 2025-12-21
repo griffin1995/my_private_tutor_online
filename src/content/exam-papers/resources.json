@@ -1,0 +1,186 @@
+[
+	{
+		"id": 1001,
+		"title": "11+ English Sample Paper (Free)",
+		"price": 0,
+		"category": "11-plus-english",
+		"description": "Free sample English paper to help you prepare for 11+ entrance exams",
+		"isFree": true
+	},
+	{
+		"id": 1002,
+		"title": "11+ Mathematics Taster Pack (Free)",
+		"price": 0,
+		"category": "11-plus-maths",
+		"description": "Free mathematics practice questions to get started with your preparation",
+		"isFree": true
+	},
+	{
+		"id": 1003,
+		"title": "GCSE English Literature Introduction (Free)",
+		"price": 0,
+		"category": "gcse-aqa-english",
+		"description": "Complimentary guide to GCSE English Literature analysis techniques",
+		"isFree": true
+	},
+	{
+		"id": 1004,
+		"title": "A-Level Chemistry Starter Guide (Free)",
+		"price": 0,
+		"category": "a-level-aqa-sciences",
+		"description": "Free introduction to A-Level Chemistry concepts and study strategies",
+		"isFree": true
+	},
+	{
+		"id": 1005,
+		"title": "IB Mathematics Foundation (Free)",
+		"price": 0,
+		"category": "ib-sl-maths",
+		"description": "Complimentary IB Mathematics standard level revision notes",
+		"isFree": true
+	},
+	{
+		"id": 2001,
+		"title": "7+ English Practice Papers",
+		"price": 24.99,
+		"category": "7-plus-english",
+		"description": "Complete set of English practice papers for 7+ entrance exams",
+		"isFree": false
+	},
+	{
+		"id": 2002,
+		"title": "7+ Mathematics Workbook",
+		"price": 22.99,
+		"category": "7-plus-maths",
+		"description": "Comprehensive mathematics workbook with worked examples",
+		"isFree": false
+	},
+	{
+		"id": 2003,
+		"title": "11+ English Complete Package",
+		"price": 49.99,
+		"category": "11-plus-english",
+		"description": "Complete English package with papers, mark schemes and guidance",
+		"isFree": false
+	},
+	{
+		"id": 2004,
+		"title": "11+ Mathematics Advanced",
+		"price": 47.99,
+		"category": "11-plus-maths",
+		"description": "Advanced mathematics papers for top-tier school preparation",
+		"isFree": false
+	},
+	{
+		"id": 2005,
+		"title": "11+ Verbal Reasoning Premium",
+		"price": 44.99,
+		"category": "11-plus-verbal",
+		"description": "Premium verbal reasoning papers with detailed explanations",
+		"isFree": false
+	},
+	{
+		"id": 3001,
+		"title": "GCSE AQA Mathematics Foundation",
+		"price": 39.99,
+		"category": "gcse-aqa-maths",
+		"description": "Foundation tier mathematics papers covering all topics",
+		"isFree": false
+	},
+	{
+		"id": 3002,
+		"title": "GCSE AQA Mathematics Higher",
+		"price": 44.99,
+		"category": "gcse-aqa-maths",
+		"description": "Higher tier mathematics papers for top grades",
+		"isFree": false
+	},
+	{
+		"id": 3003,
+		"title": "GCSE AQA English Language",
+		"price": 37.99,
+		"category": "gcse-aqa-english",
+		"description": "Complete English Language course with exam papers",
+		"isFree": false
+	},
+	{
+		"id": 3004,
+		"title": "GCSE Edexcel Sciences Triple",
+		"price": 59.99,
+		"category": "gcse-edexcel-sciences",
+		"description": "Triple science package covering Biology, Chemistry and Physics",
+		"isFree": false
+	},
+	{
+		"id": 4001,
+		"title": "A-Level AQA Mathematics",
+		"price": 54.99,
+		"category": "a-level-aqa-maths",
+		"description": "Complete A-Level mathematics course with past papers",
+		"isFree": false
+	},
+	{
+		"id": 4002,
+		"title": "A-Level Physics Premium",
+		"price": 52.99,
+		"category": "a-level-aqa-sciences",
+		"description": "Advanced physics papers with practical exam guidance",
+		"isFree": false
+	},
+	{
+		"id": 4003,
+		"title": "A-Level Chemistry Complete",
+		"price": 49.99,
+		"category": "a-level-edexcel-sciences",
+		"description": "Comprehensive chemistry course with laboratory practicals",
+		"isFree": false
+	},
+	{
+		"id": 5001,
+		"title": "IB Mathematics Standard Level",
+		"price": 47.99,
+		"category": "ib-sl-maths",
+		"description": "Complete IB Mathematics SL course with past papers",
+		"isFree": false
+	},
+	{
+		"id": 5002,
+		"title": "IB Mathematics Higher Level",
+		"price": 54.99,
+		"category": "ib-hl-maths",
+		"description": "Advanced IB Mathematics HL with complex problem solving",
+		"isFree": false
+	},
+	{
+		"id": 5003,
+		"title": "IB English A Literature",
+		"price": 42.99,
+		"category": "ib-hl-english",
+		"description": "Literary analysis and essay writing for IB English A",
+		"isFree": false
+	},
+	{
+		"id": 6001,
+		"title": "GCSE Mathematics Predicted 2026",
+		"price": 34.99,
+		"category": "predicted-gcse-maths",
+		"description": "Predicted GCSE mathematics papers for 2026 examination",
+		"isFree": false
+	},
+	{
+		"id": 6002,
+		"title": "A-Level Physics Predicted 2026",
+		"price": 39.99,
+		"category": "predicted-a-level-sciences",
+		"description": "Predicted A-Level physics papers based on current trends",
+		"isFree": false
+	},
+	{
+		"id": 6003,
+		"title": "IB Mathematics Predicted 2026",
+		"price": 42.99,
+		"category": "predicted-ib-maths",
+		"description": "Predicted IB Mathematics papers for upcoming sessions",
+		"isFree": false
+	}
+]

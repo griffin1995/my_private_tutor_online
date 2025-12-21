@@ -1,0 +1,254 @@
+[
+	{
+		"id": "entrance-exams",
+		"name": "Entrance Exams",
+		"count": 150,
+		"subcategories": [
+			{
+				"id": "7-plus",
+				"name": "7+ Entrance",
+				"count": 20,
+				"subcategories": [
+					{ "id": "7-plus-english", "name": "English", "count": 5 },
+					{ "id": "7-plus-maths", "name": "Mathematics", "count": 5 },
+					{ "id": "7-plus-reasoning", "name": "Reasoning", "count": 5 },
+					{ "id": "7-plus-other", "name": "Other Subjects", "count": 5 }
+				]
+			},
+			{
+				"id": "8-plus",
+				"name": "8+ Entrance",
+				"count": 20,
+				"subcategories": [
+					{ "id": "8-plus-english", "name": "English", "count": 5 },
+					{ "id": "8-plus-maths", "name": "Mathematics", "count": 5 },
+					{ "id": "8-plus-reasoning", "name": "Reasoning", "count": 5 },
+					{ "id": "8-plus-other", "name": "Other Subjects", "count": 5 }
+				]
+			},
+			{
+				"id": "11-plus",
+				"name": "11+ Entrance",
+				"count": 40,
+				"subcategories": [
+					{ "id": "11-plus-english", "name": "English", "count": 8 },
+					{ "id": "11-plus-maths", "name": "Mathematics", "count": 8 },
+					{ "id": "11-plus-verbal", "name": "Verbal Reasoning", "count": 8 },
+					{ "id": "11-plus-non-verbal", "name": "Non-Verbal Reasoning", "count": 8 },
+					{ "id": "11-plus-science", "name": "Science", "count": 4 },
+					{ "id": "11-plus-languages", "name": "Languages", "count": 2 },
+					{ "id": "11-plus-arts", "name": "Arts", "count": 2 }
+				]
+			},
+			{
+				"id": "13-plus",
+				"name": "13+ Entrance",
+				"count": 40,
+				"subcategories": [
+					{ "id": "13-plus-english", "name": "English", "count": 8 },
+					{ "id": "13-plus-maths", "name": "Mathematics", "count": 8 },
+					{ "id": "13-plus-science", "name": "Science", "count": 8 },
+					{ "id": "13-plus-languages", "name": "Languages", "count": 8 },
+					{ "id": "13-plus-humanities", "name": "Humanities", "count": 4 },
+					{ "id": "13-plus-arts", "name": "Arts", "count": 4 }
+				]
+			},
+			{
+				"id": "16-plus",
+				"name": "16+ Entrance",
+				"count": 30,
+				"subcategories": [
+					{ "id": "16-plus-english", "name": "English", "count": 6 },
+					{ "id": "16-plus-maths", "name": "Mathematics", "count": 6 },
+					{ "id": "16-plus-sciences", "name": "Sciences", "count": 6 },
+					{ "id": "16-plus-languages", "name": "Languages", "count": 6 },
+					{ "id": "16-plus-humanities", "name": "Humanities", "count": 6 }
+				]
+			}
+		]
+	},
+	{
+		"id": "gcse",
+		"name": "GCSEs",
+		"count": 200,
+		"subcategories": [
+			{
+				"id": "gcse-aqa",
+				"name": "AQA",
+				"count": 80,
+				"subcategories": [
+					{ "id": "gcse-aqa-english", "name": "English", "count": 15 },
+					{ "id": "gcse-aqa-maths", "name": "Mathematics", "count": 15 },
+					{ "id": "gcse-aqa-sciences", "name": "Sciences", "count": 15 },
+					{ "id": "gcse-aqa-humanities", "name": "Humanities", "count": 15 },
+					{ "id": "gcse-aqa-languages", "name": "Languages", "count": 10 },
+					{ "id": "gcse-aqa-other", "name": "Other Subjects", "count": 10 }
+				]
+			},
+			{
+				"id": "gcse-edexcel",
+				"name": "Edexcel",
+				"count": 80,
+				"subcategories": [
+					{ "id": "gcse-edexcel-english", "name": "English", "count": 15 },
+					{ "id": "gcse-edexcel-maths", "name": "Mathematics", "count": 15 },
+					{ "id": "gcse-edexcel-sciences", "name": "Sciences", "count": 15 },
+					{ "id": "gcse-edexcel-humanities", "name": "Humanities", "count": 15 },
+					{ "id": "gcse-edexcel-languages", "name": "Languages", "count": 10 },
+					{ "id": "gcse-edexcel-other", "name": "Other Subjects", "count": 10 }
+				]
+			},
+			{
+				"id": "gcse-ocr",
+				"name": "OCR",
+				"count": 40,
+				"subcategories": [
+					{ "id": "gcse-ocr-sciences", "name": "Sciences", "count": 15 },
+					{ "id": "gcse-ocr-computing", "name": "Computing", "count": 10 },
+					{ "id": "gcse-ocr-other", "name": "Other Subjects", "count": 15 }
+				]
+			}
+		]
+	},
+	{
+		"id": "igcse",
+		"name": "iGCSEs",
+		"count": 120,
+		"subcategories": [
+			{
+				"id": "igcse-cambridge",
+				"name": "Cambridge",
+				"count": 80,
+				"subcategories": [
+					{ "id": "igcse-cambridge-english", "name": "English", "count": 15 },
+					{ "id": "igcse-cambridge-maths", "name": "Mathematics", "count": 15 },
+					{ "id": "igcse-cambridge-sciences", "name": "Sciences", "count": 15 },
+					{ "id": "igcse-cambridge-humanities", "name": "Humanities", "count": 15 },
+					{ "id": "igcse-cambridge-languages", "name": "Languages", "count": 10 },
+					{ "id": "igcse-cambridge-other", "name": "Other Subjects", "count": 10 }
+				]
+			},
+			{
+				"id": "igcse-edexcel",
+				"name": "Edexcel",
+				"count": 40,
+				"subcategories": [
+					{ "id": "igcse-edexcel-english", "name": "English", "count": 10 },
+					{ "id": "igcse-edexcel-maths", "name": "Mathematics", "count": 10 },
+					{ "id": "igcse-edexcel-sciences", "name": "Sciences", "count": 10 },
+					{ "id": "igcse-edexcel-other", "name": "Other Subjects", "count": 10 }
+				]
+			}
+		]
+	},
+	{
+		"id": "a-level",
+		"name": "A-Levels",
+		"count": 180,
+		"subcategories": [
+			{
+				"id": "a-level-aqa",
+				"name": "AQA",
+				"count": 60,
+				"subcategories": [
+					{ "id": "a-level-aqa-maths", "name": "Mathematics", "count": 15 },
+					{ "id": "a-level-aqa-sciences", "name": "Sciences", "count": 15 },
+					{ "id": "a-level-aqa-english", "name": "English", "count": 10 },
+					{ "id": "a-level-aqa-humanities", "name": "Humanities", "count": 10 },
+					{ "id": "a-level-aqa-languages", "name": "Languages", "count": 10 }
+				]
+			},
+			{
+				"id": "a-level-edexcel",
+				"name": "Edexcel",
+				"count": 60,
+				"subcategories": [
+					{ "id": "a-level-edexcel-maths", "name": "Mathematics", "count": 15 },
+					{ "id": "a-level-edexcel-sciences", "name": "Sciences", "count": 15 },
+					{ "id": "a-level-edexcel-english", "name": "English", "count": 10 },
+					{ "id": "a-level-edexcel-humanities", "name": "Humanities", "count": 10 },
+					{ "id": "a-level-edexcel-business", "name": "Business", "count": 10 }
+				]
+			},
+			{
+				"id": "a-level-ocr",
+				"name": "OCR",
+				"count": 60,
+				"subcategories": [
+					{ "id": "a-level-ocr-maths", "name": "Mathematics", "count": 15 },
+					{ "id": "a-level-ocr-sciences", "name": "Sciences", "count": 15 },
+					{ "id": "a-level-ocr-computing", "name": "Computing", "count": 15 },
+					{ "id": "a-level-ocr-other", "name": "Other Subjects", "count": 15 }
+				]
+			}
+		]
+	},
+	{
+		"id": "ib",
+		"name": "International Baccalaureate (IB)",
+		"count": 100,
+		"subcategories": [
+			{
+				"id": "ib-sl",
+				"name": "Standard Level (SL)",
+				"count": 50,
+				"subcategories": [
+					{ "id": "ib-sl-maths", "name": "Mathematics", "count": 10 },
+					{ "id": "ib-sl-sciences", "name": "Sciences", "count": 10 },
+					{ "id": "ib-sl-english", "name": "English", "count": 10 },
+					{ "id": "ib-sl-languages", "name": "Languages", "count": 10 },
+					{ "id": "ib-sl-humanities", "name": "Humanities", "count": 10 }
+				]
+			},
+			{
+				"id": "ib-hl",
+				"name": "Higher Level (HL)",
+				"count": 50,
+				"subcategories": [
+					{ "id": "ib-hl-maths", "name": "Mathematics", "count": 10 },
+					{ "id": "ib-hl-sciences", "name": "Sciences", "count": 10 },
+					{ "id": "ib-hl-english", "name": "English", "count": 10 },
+					{ "id": "ib-hl-languages", "name": "Languages", "count": 10 },
+					{ "id": "ib-hl-humanities", "name": "Humanities", "count": 10 }
+				]
+			}
+		]
+	},
+	{
+		"id": "predicted-papers",
+		"name": "Predicted Papers",
+		"count": 80,
+		"subcategories": [
+			{
+				"id": "predicted-gcse",
+				"name": "GCSE Predicted",
+				"count": 30,
+				"subcategories": [
+					{ "id": "predicted-gcse-maths", "name": "Mathematics", "count": 10 },
+					{ "id": "predicted-gcse-english", "name": "English", "count": 10 },
+					{ "id": "predicted-gcse-sciences", "name": "Sciences", "count": 10 }
+				]
+			},
+			{
+				"id": "predicted-a-level",
+				"name": "A-Level Predicted",
+				"count": 30,
+				"subcategories": [
+					{ "id": "predicted-a-level-maths", "name": "Mathematics", "count": 10 },
+					{ "id": "predicted-a-level-sciences", "name": "Sciences", "count": 10 },
+					{ "id": "predicted-a-level-other", "name": "Other Subjects", "count": 10 }
+				]
+			},
+			{
+				"id": "predicted-ib",
+				"name": "IB Predicted",
+				"count": 20,
+				"subcategories": [
+					{ "id": "predicted-ib-maths", "name": "Mathematics", "count": 7 },
+					{ "id": "predicted-ib-sciences", "name": "Sciences", "count": 7 },
+					{ "id": "predicted-ib-other", "name": "Other Subjects", "count": 6 }
+				]
+			}
+		]
+	}
+]
