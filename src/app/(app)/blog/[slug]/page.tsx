@@ -20,6 +20,12 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
 	if (!post) {
 		notFound();
+	}
+
+	// Generate the current URL for sharing (server-side approach)
+	const currentUrl = typeof window !== 'undefined' ?
+		`${window.location.origin}/blog/${slug}` :
+		`https://myprivatetutoronline.com/blog/${slug}`;
 
 	// Custom styling options for html-react-parser with proper domToReact usage
 	const parserOptions: HTMLReactParserOptions = {
@@ -31,77 +37,77 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 				switch (name) {
 					case 'h1':
 						return (
-							<h1 className='text-4xl md:text-5xl font-bold text-neutral-800 mt-8 mb-6 leading-tight'>
+							<h1 className="text-4xl md:text-5xl font-bold text-neutral-800 mt-8 mb-6 leading-tight">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</h1>
 						);
 
 					case 'h2':
 						return (
-							<h2 className='text-3xl md:text-4xl font-semibold text-neutral-800 mt-8 mb-5 leading-tight'>
+							<h2 className="text-3xl md:text-4xl font-semibold text-neutral-800 mt-8 mb-5 leading-tight">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</h2>
 						);
 
 					case 'h3':
 						return (
-							<h3 className='text-2xl md:text-3xl font-semibold text-neutral-800 mt-7 mb-4 leading-tight'>
+							<h3 className="text-2xl md:text-3xl font-semibold text-neutral-800 mt-7 mb-4 leading-tight">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</h3>
 						);
 
 					case 'h4':
 						return (
-							<h4 className='text-xl md:text-2xl font-semibold text-neutral-800 mt-6 mb-3'>
+							<h4 className="text-xl md:text-2xl font-semibold text-neutral-800 mt-6 mb-3">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</h4>
 						);
 
 					case 'p':
 						return (
-							<p className='text-lg text-neutral-700 leading-relaxed mb-6'>
+							<p className="text-lg text-neutral-700 leading-relaxed mb-6">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</p>
 						);
 
 					case 'ul':
 						return (
-							<ul className='list-disc ml-6 mb-6 space-y-3'>
+							<ul className="list-disc ml-6 mb-6 space-y-3">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</ul>
 						);
 
 					case 'ol':
 						return (
-							<ol className='list-decimal ml-6 mb-6 space-y-3'>
+							<ol className="list-decimal ml-6 mb-6 space-y-3">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</ol>
 						);
 
 					case 'li':
 						return (
-							<li className='text-lg text-neutral-700 leading-relaxed'>
+							<li className="text-lg text-neutral-700 leading-relaxed">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</li>
 						);
 
 					case 'blockquote':
 						return (
-							<blockquote className='border-l-4 border-accent-600 pl-6 pr-4 py-4 my-8 bg-neutral-50 italic text-lg text-neutral-700 leading-relaxed'>
+							<blockquote className="border-l-4 border-accent-600 pl-6 pr-4 py-4 my-8 bg-neutral-50 italic text-lg text-neutral-700 leading-relaxed">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</blockquote>
 						);
 
 					case 'strong':
 						return (
-							<strong className='font-semibold text-neutral-800'>
+							<strong className="font-semibold text-neutral-800">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</strong>
 						);
 
 					case 'em':
 						return (
-							<em className='italic text-neutral-700'>
+							<em className="italic text-neutral-700">
 								{domToReact(children as DOMNode[], parserOptions)}
 							</em>
 						);
@@ -112,24 +118,28 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 								href={attribs['href']}
 								target={attribs['href']?.startsWith('http') ? '_blank' : undefined}
 								rel={attribs['href']?.startsWith('http') ? 'noopener noreferrer' : undefined}
-								className='text-accent-600 hover:text-accent-700 underline font-medium transition-colors'>
-		{domToReact(children as DOMNode[], parserOptions)}
+								className="text-accent-600 hover:text-accent-700 underline font-medium transition-colors">
+								{domToReact(children as DOMNode[], parserOptions)}
 							</a>
 						);
 
 					default:
 						// Return undefined to use default rendering for other elements
 						return undefined;
+				}
+			}
 			// Return undefined for non-Element nodes or unhandled elements
 			return undefined;
+		}
 	};
 
 	return (
 		<PageLayout headerProps={{ showBlueNavigation: true }}>
-			<BlogArticleLayout post={post}>
-				<article className='blog-content prose-custom max-w-none'>
+			<BlogArticleLayout post={post} currentUrl={currentUrl}>
+				<article className="blog-content prose-custom max-w-none">
 					{parse(post.content, parserOptions)}
 				</article>
 			</BlogArticleLayout>
 		</PageLayout>
 	);
+}
