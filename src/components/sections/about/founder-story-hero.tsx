@@ -9,6 +9,7 @@ interface FounderStoryHeroProps {
     readonly heading: string;
     readonly content: string;
   };
+}
 
 /**
  * Founder Story Hero Section - "Meet Elizabeth, A Different Kind of Educator"
@@ -39,3 +40,4 @@ export function FounderStoryHero({
       priority={true}
     />
   );
+}

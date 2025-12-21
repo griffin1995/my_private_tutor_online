@@ -11,6 +11,7 @@ interface BlogPostPageProps {
 	params: Promise<{
 		slug: string;
 	}>;
+}
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
 	// In Next.js 15, params is a Promise and needs to be unwrapped with React.use()

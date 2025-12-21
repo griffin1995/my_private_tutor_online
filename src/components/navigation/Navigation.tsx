@@ -19,87 +19,24 @@ interface NavigationItem {
 	items?: NavigationItem[];
 	featured?: boolean;
 	icon?: React.ReactNode;
+}
 
 interface NavigationProps {
 	className?: string;
 	showBlueNavigation?: boolean;
+}
 
 interface DropdownState {
 	isOpen: boolean;
 	activeMenu: string | null;
+}
 
 // Use imported navigation data from navigation-content.ts
 const navigationData: NavigationItem[] =
 	MAIN_NAVIGATION_ITEMS as unknown as NavigationItem[];
 const navigationDataMobile: NavigationItem[] =
 	MAIN_NAVIGATION_ITEMS as unknown as NavigationItem[];
-const mobileMenuVariants = {
-	closed: {
-		x: '100%',
-		transition: {
-			type: 'tween',
-		},
-	},
-	open: {
-		transition: {
-			type: 'tween',
-		},
-	},
-};
-const navVariants = {
-	hidden: {
-	},
-	visible: {
-		transition: {
-		},
-	},
-};
-const dropdownContainerVariants = {
-	hidden: {
-	},
-	visible: {
-		transition: {
-			delayChildren: 0.1,
-			staggerChildren: 0.15,
-		},
-	},
-};
-const dropdownItemVariants = {
-	hidden: {
-	},
-	visible: {
-		transition: {
-		},
-	},
-};
-const arrowGrowVariants = {
-	hidden: {
-		scaleY: 0,
-		transformOrigin: 'bottom',
-	},
-	visible: {
-		scaleY: 1,
-		transition: {
-			type: 'spring',
-			bounce: 0.2,
-		},
-	},
-};
-const overlayVariants = {
-	hidden: {
-		scale: 0.98,
-	},
-	visible: {
-		scale: 1,
-		transition: {
-		},
-	},
-	exit: {
-		scale: 0.98,
-		transition: {
-		},
-	},
-};
+
 export function Navigation({
 	className,
 	showBlueNavigation = false,
@@ -185,9 +122,11 @@ export function Navigation({
 			if (hoverDelayTimeoutRef.current) {
 				clearTimeout(hoverDelayTimeoutRef.current);
 				hoverDelayTimeoutRef.current = null;
+			}
 			if (dropdownTimeoutRef.current) {
 				clearTimeout(dropdownTimeoutRef.current);
 				dropdownTimeoutRef.current = null;
+			}
 		};
 	}, []);
 	const isActive = (href: string) => {

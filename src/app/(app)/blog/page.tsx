@@ -132,6 +132,7 @@ export default function BlogPage() {
 	// Debug blog images on development
 	if (process.env.NODE_ENV === 'development') {
 		debugBlogImages();
+	}
 
 	// Filter blog posts based on selected category
 	const filteredPosts = blogPosts.filter((post) => {

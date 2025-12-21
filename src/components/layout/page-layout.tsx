@@ -12,11 +12,15 @@ interface LayoutHeaderProps {
 	isHomepage?: boolean;
 	isHeroPage?: boolean;
 	showBlueNavigation?: boolean;
+}
+
 interface PageFooterProps {
 	className?: string;
 	variant?: 'default' | 'minimal' | 'premium';
 	showBackToTop?: boolean;
 	showContactForm?: boolean;
+}
+
 interface PageLayoutProps {
 	children: ReactNode;
 	className?: string;
@@ -27,6 +31,8 @@ interface PageLayoutProps {
 	footerProps?: PageFooterProps;
 	containerSize?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
 	verticalSpacing?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+}
+
 export function PageLayout({
 	children,
 	className,
@@ -89,6 +95,8 @@ export function PageLayout({
 			{showFooter && <PageFooter {...footerProps} />}
 		</div>
 	);
+}
+
 function SkipToContent() {
 	return (
 		<a
@@ -100,6 +108,8 @@ function SkipToContent() {
 			Skip to main content
 		</a>
 	);
+}
+
 type PageLayoutBackground =
 	| 'white'
 	| 'gradient'

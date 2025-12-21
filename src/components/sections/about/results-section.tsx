@@ -10,6 +10,7 @@ interface ResultsSectionProps {
     readonly title: string;
     readonly content: string;
   };
+}
 
 /**
  * Results Section Component
@@ -52,3 +53,4 @@ export function ResultsSection({
       </section>
     </>
   );
+}

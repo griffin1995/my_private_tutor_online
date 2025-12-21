@@ -9,6 +9,8 @@ interface GDPRConsentProps {
 	required?: boolean;
 	className?: string;
 	compact?: boolean;
+}
+
 export interface ConsentState {
 	marketing: boolean;
 	analytics: boolean;
@@ -16,6 +18,8 @@ export interface ConsentState {
 	timestamp: string;
 	ipAddress?: string;
 	version: string;
+}
+
 interface ConsentRecord {
 	id: string;
 	timestamp: string;

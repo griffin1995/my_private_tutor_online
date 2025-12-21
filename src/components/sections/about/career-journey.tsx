@@ -16,6 +16,7 @@ interface CareerJourneyProps {
       readonly content: string;
     };
   };
+}
 
 /**
  * Career Journey Section - "First Lesson to Seventh Continent"
@@ -47,3 +48,4 @@ export function CareerJourney({
       textAlign="right"
     />
   );
+}

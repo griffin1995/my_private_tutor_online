@@ -12,10 +12,13 @@ import {
 	type NewsletterData,
 } from '@/lib/validation/schemas';
 import { FooterGDPRConsent, type ConsentState } from './footer-gdpr-consent';
+
 interface FooterNewsletterFormProps {
 	className?: string;
 	onSubmit?: (data: NewsletterData) => Promise<void>;
 	autoConsent?: boolean;
+}
+
 export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 	({ className = '', onSubmit, autoConsent = true }) => {
 		const [submissionState, setSubmissionState] = useState<
@@ -38,10 +41,12 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 			},
 			mode: 'onBlur',
 		});
+
 		const handleConsentChange = (consent: ConsentState) => {
 			setConsentState(consent);
 			setValue('consentToMarketing', consent.marketing);
 		};
+
 		const formConfig = useMemo(
 			() => ({
 				submitButtonText: {
@@ -58,12 +63,14 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 			}),
 			[],
 		);
+
 		const handleFormSubmit = async (data: NewsletterData) => {
 			try {
 				setSubmissionState('loading');
 				setErrorMessage('');
 				const controller = new AbortController();
 				const timeoutId = setTimeout(() => controller.abort(), 10000);
+
 				if (onSubmit) {
 					await onSubmit(data);
 				} else {
@@ -79,6 +86,8 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 					const result = await response.json();
 					if (!result.success) {
 						throw new Error(result.error || 'Subscription failed');
+					}
+				}
 				setSubmissionState('success');
 				reset();
 				setTimeout(() => {
@@ -94,9 +103,13 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 						);
 					} else {
 						setErrorMessage(error.message || 'Network error. Please try again.');
+					}
 				} else {
 					setErrorMessage('An unexpected error occurred. Please try again.');
+				}
+			}
 		};
+
 		if (submissionState === 'success') {
 			return (
 				<div className={`max-w-md mx-auto ${className}`}>
@@ -108,6 +121,8 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 					</div>
 				</div>
 			);
+		}
+
 		return (
 			<div className={`max-w-md mx-auto ${className}`}>
 				<form
@@ -193,7 +208,9 @@ export const FooterNewsletterForm = React.memo<FooterNewsletterFormProps>(
 		);
 	},
 );
+
 FooterNewsletterForm.displayName = 'FooterNewsletterForm';
+
 interface SubmitButtonProps {
 	isSubmitting: boolean;
 	submissionState: 'idle' | 'loading' | 'success' | 'error';
@@ -201,6 +218,8 @@ interface SubmitButtonProps {
 		submitButtonText: Record<string, string>;
 		submitButtonIcon: Record<string, React.ElementType>;
 	};
+}
+
 const SubmitButton = React.memo<SubmitButtonProps>(
 	({ isSubmitting, submissionState, config }) => {
 		const IconComponent = config.submitButtonIcon[submissionState];
@@ -225,7 +244,9 @@ const SubmitButton = React.memo<SubmitButtonProps>(
 		);
 	},
 );
+
 SubmitButton.displayName = 'SubmitButton';
+
 export const FooterNewsletterFormSkeleton: React.FC<{
 	className?: string;
 }> = ({ className = '' }) => (
@@ -238,5 +259,7 @@ export const FooterNewsletterFormSkeleton: React.FC<{
 		</div>
 	</div>
 );
+
 FooterNewsletterFormSkeleton.displayName = 'FooterNewsletterFormSkeleton';
+
 export default FooterNewsletterForm;

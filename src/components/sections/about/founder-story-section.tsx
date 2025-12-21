@@ -13,6 +13,7 @@ import { FounderSignature } from './founder-signature';
 interface FounderStorySectionProps {
   backgroundColor?: string;
   className?: string;
+}
 
 /**
  * Founder Story Section - Refactored with Compound Component Pattern
@@ -45,6 +46,7 @@ export function FounderStorySection({
   if (!founderStory) {
     console.error('[FounderStorySection] CMS founder story data not available');
     return <div className="text-center py-8">Content temporarily unavailable.</div>;
+  }
 
   return (
     <section
@@ -87,6 +89,7 @@ export function FounderStorySection({
       <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 max-w-none"></div>
     </section>
   );
+}
 
 // Export sub-components for potential standalone use
 export { FounderStoryHero } from './founder-story-hero';

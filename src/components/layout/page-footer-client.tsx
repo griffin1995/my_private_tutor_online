@@ -38,6 +38,8 @@ interface FooterContent {
 			label: string;
 		}>;
 	}>;
+}
+
 interface PageFooterClientProps {
 	footerContent: FooterContent;
 	copyrightText: string;
@@ -46,6 +48,8 @@ interface PageFooterClientProps {
 	showBackToTop?: boolean;
 	showNewsletter?: boolean;
 	showContactForm?: boolean;
+}
+
 export function PageFooterClient({
 	footerContent,
 	copyrightText,
@@ -111,9 +115,11 @@ export function PageFooterClient({
 				const result = await response.json();
 				if (!result.success) {
 					throw new Error(result.error || 'Subscription failed');
+				}
 			} catch (error) {
 				console.error('Newsletter submission error:', error);
 				throw error;
+			}
 		},
 		[],
 	);
@@ -303,3 +309,4 @@ export function PageFooterClient({
 			</footer>
 		</>
 	);
+}

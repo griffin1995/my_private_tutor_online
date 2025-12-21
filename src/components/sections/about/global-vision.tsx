@@ -9,6 +9,7 @@ interface GlobalVisionProps {
     readonly title: string;
     readonly content: string;
   };
+}
 
 /**
  * Global Vision Section - "A Global View of What Education Can Do"
@@ -37,3 +38,4 @@ export function GlobalVision({
       textAlign="left"
     />
   );
+}

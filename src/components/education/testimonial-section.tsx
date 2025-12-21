@@ -15,6 +15,7 @@ interface Testimonial10Props {
 			alt: string;
 		};
 	};
+}
 
 export const Testimonial10 = ({
 	// quote = 'Testimonial quote text goes here. This is where the customer feedback or testimonial content will be displayed.',
@@ -75,6 +76,7 @@ interface Testimonial10NoRoleProps {
 			alt: string;
 		};
 	};
+}
 
 export const Testimonial10NoRole = ({
 	quote,
@@ -103,30 +105,28 @@ export const Testimonial10NoRole = ({
 	return (
 		<section
 			ref={ref}
-			className='py-6 sm:py-8 md:py-10 lg:py-12 xl:py-14'
-			>div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
+			className='py-6 sm:py-8 md:py-10 lg:py-12 xl:py-14'>
+			<div className='w-full max-w-none mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='flex flex-col items-center text-center'>
-					<div
-						{...scaleIn}
+					<div>
 						<BodyText
 							variant="large"
 							className='mb-6 sm:mb-7 md:mb-8 max-w-3xl sm:max-w-4xl md:max-w-5xl px-4 sm:px-6 md:px-8 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl'
 							responsive>
-							&ldquo;{quote}&rdquo;
+							"{quote}"
 						</BodyText>
 					</div>
 					<div
-						className='flex items-center gap-2 sm:gap-3 md:gap-4'
-						>div
-							{...scaleIn}
+						className='flex items-center gap-2 sm:gap-3 md:gap-4'>
+						<div>
 							<Avatar className='size-10 sm:size-12 md:size-14 lg:size-16'>
 								<AvatarFallback className='bg-transparent text-black'>
 									<Search className='w-1/2 h-1/2' />
 								</AvatarFallback>
 							</Avatar>
 						</div>
-						<div
-							>CaptionText
+						<div>
+							<CaptionText
 								variant="default"
 								className='font-medium'
 								responsive>
