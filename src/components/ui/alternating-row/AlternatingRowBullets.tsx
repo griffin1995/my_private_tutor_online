@@ -46,7 +46,6 @@ const AlternatingRowBullets = memo<AlternatingRowBulletsProps>(
 					return baseClasses;
 				default:
 					return baseClasses;
-			}
 		};
 
 		// Marker classes based on variant
@@ -63,7 +62,6 @@ const AlternatingRowBullets = memo<AlternatingRowBulletsProps>(
 						'rounded-full bg-accent',
 						'mt-2 @md:mt-2.5',
 					);
-			}
 		};
 
 		// Text classes
@@ -105,7 +103,6 @@ const AlternatingRowBullets = memo<AlternatingRowBulletsProps>(
 								aria-hidden='true'
 							/>
 						);
-					}
 					// Fallback to check icon for icons variant
 					return (
 						<Check
@@ -120,7 +117,6 @@ const AlternatingRowBullets = memo<AlternatingRowBulletsProps>(
 							aria-hidden='true'
 						/>
 					);
-			}
 		};
 
 		// Choose appropriate HTML tag based on variant
@@ -139,7 +135,7 @@ const AlternatingRowBullets = memo<AlternatingRowBulletsProps>(
 						<li
 							key={itemId}
 							className={cn(getItemClasses(variant), itemClassName)}>
-							{renderMarker(variant, index, icon)}
+		{renderMarker(variant, index, icon)}
 							<span className={textClasses}>{text}</span>
 						</li>
 					);

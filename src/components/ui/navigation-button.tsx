@@ -62,7 +62,6 @@ const navigationButtonVariants = cva(
 			variant: 'primary',
 			state: 'initial',
 		},
-	}
 );
 
 interface NavigationButtonProps extends VariantProps<typeof navigationButtonVariants> {
@@ -70,7 +69,6 @@ interface NavigationButtonProps extends VariantProps<typeof navigationButtonVari
 	changeText: string;
 	href: string;
 	className?: string;
-}
 
 export const NavigationButton: React.FC<NavigationButtonProps> = ({
 	variant = 'primary',
@@ -85,7 +83,7 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
 		<Link
 			href={href}
 			className={cn('block', className)}>
-			{isHovered ? (
+		{isHovered ? (
 				<button
 					className={cn(
 						navigationButtonVariants({

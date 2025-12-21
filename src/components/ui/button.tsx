@@ -70,8 +70,8 @@ function Button({
 	return (
 		<Comp
 			data-slot='button'
-			className={motionSafeClassName}
-			{...buttonProps}>
+			className={motionSafeClassName}>
+		{...buttonProps}>
 			{loading && (
 				<span
 					className='sr-only'
@@ -85,5 +85,4 @@ function Button({
 			:	props.children}
 		</Comp>
 	);
-}
 export { Button,  };

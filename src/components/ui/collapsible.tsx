@@ -6,7 +6,6 @@ function Collapsible({
   ...props
 }: React.ComponentProps<typeof CollapsiblePrimitive.Root>) {
   return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />
-}
 
 function CollapsibleTrigger({
   ...props
@@ -17,7 +16,6 @@ function CollapsibleTrigger({
       {...props}
     />
   )
-}
 
 function CollapsibleContent({
   ...props
@@ -28,6 +26,5 @@ function CollapsibleContent({
       {...props}
     />
   )
-}
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent }

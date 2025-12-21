@@ -12,11 +12,10 @@ function Tabs({
   return (
     <TabsPrimitive.Root
       data-slot="tabs"
-      className={cn("flex flex-col gap-2", className)}
-      {...props}
+      className={cn("flex flex-col gap-2", className)}>
+		{...props}
     />
   )
-}
 
 function TabsList({
   className,
@@ -32,7 +31,6 @@ function TabsList({
       {...props}
     />
   )
-}
 
 function TabsTrigger({
   className,
@@ -48,7 +46,6 @@ function TabsTrigger({
       {...props}
     />
   )
-}
 
 function TabsContent({
   className,
@@ -57,10 +54,9 @@ function TabsContent({
   return (
     <TabsPrimitive.Content
       data-slot="tabs-content"
-      className={cn("flex-1 outline-none", className)}
-      {...props}
+      className={cn("flex-1 outline-none", className)}>
+		{...props}
     />
   )
-}
 
 export { Tabs, TabsList, TabsTrigger, TabsContent }

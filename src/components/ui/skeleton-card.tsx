@@ -4,14 +4,11 @@ import { Card, CardContent } from '@/components/ui/card';
 interface SkeletonCardProps {
 	readonly variant?: 'testimonial' | 'compact' | 'list';
 	readonly className?: string;
-}
 const skeletonVariants = {
 	loading: {
 		opacity: [0.6, 1, 0.6],
 		transition: {
-			duration: 1.5,
 			repeat: Infinity,
-			ease: 'easeInOut',
 		},
 	},
 };
@@ -19,9 +16,7 @@ const shimmerVariants = {
 	shimmer: {
 		x: [-100, 100],
 		transition: {
-			duration: 2,
 			repeat: Infinity,
-			ease: 'easeInOut',
 		},
 	},
 };
@@ -36,13 +31,13 @@ function SkeletonCard({
 		className?: string;
 		children?: React.ReactNode;
 	}) => (
-		<divdiv
+		<div
 			className={`bg-primary-100 rounded-lg relative overflow-hidden ${className}`}
-			<divdiv
+			<div
 				className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent'
 			/>
 			{children}
-		</divdiv>
+		</div>
 	);
 	if (variant === 'compact') {
 		return (
@@ -77,7 +72,6 @@ function SkeletonCard({
 				</CardContent>
 			</Card>
 		);
-	}
 	if (variant === 'list') {
 		return (
 			<Card
@@ -133,7 +127,6 @@ function SkeletonCard({
 				</CardContent>
 			</Card>
 		);
-	}
 	return (
 		<Card
 			className={`h-full bg-white/80 backdrop-blur-sm border-2 border-primary-100 rounded-3xl ${className}`}>
@@ -195,4 +188,3 @@ function SkeletonCard({
 			</CardContent>
 		</Card>
 	);
-}

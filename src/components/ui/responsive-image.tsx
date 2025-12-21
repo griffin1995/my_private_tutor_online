@@ -24,7 +24,6 @@ interface ResponsiveImageProps {
   objectFit?: 'cover' | 'contain' | 'fill' | 'scale-down' | 'none';
   /** Quality setting for image optimization */
   quality?: number;
-}
 
 /**
  * ResponsiveImage component following 2024-2025 Next.js best practices
@@ -72,7 +71,6 @@ export function ResponsiveImage({
         blurDataURL={generateBlurDataURL()}
       />
     );
-  }
 
   // For non-fill images, use standard responsive behavior
   return (
@@ -88,7 +86,6 @@ export function ResponsiveImage({
       loading={priority ? 'eager' : 'lazy'}
     />
   );
-}
 
 /**
  * Optimized blur data URL generator for faster initial load

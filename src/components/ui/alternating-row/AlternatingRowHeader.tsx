@@ -43,7 +43,6 @@ const AlternatingRowHeader = memo<AlternatingRowHeaderProps>(
 					return cn(baseClasses, 'text-sm @md:text-base @lg:text-lg @xl:text-xl');
 				default:
 					return cn(baseClasses, 'text-2xl @md:text-3xl @lg:text-4xl @xl:text-5xl');
-			}
 		};
 
 		return (

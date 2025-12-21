@@ -16,7 +16,6 @@ interface FallbackImageProps {
   loading?: 'lazy' | 'eager';
   onError?: () => void;
   onLoad?: () => void;
-}
 
 /**
  * Enhanced Image component with robust fallback support
@@ -58,12 +57,10 @@ export function FallbackImage({
       if (process.env.NODE_ENV === 'development') {
         console.log(`[FallbackImage] Failed to load: ${imgSrc}`);
         console.log(`[FallbackImage] Falling back to: ${fallbackSrc}`);
-      }
 
       setImgSrc(fallbackSrc);
       setHasError(true);
       onError?.();
-    }
   };
 
   const handleLoad = () => {
@@ -102,7 +99,6 @@ export function FallbackImage({
       )}
     </div>
   );
-}
 
 /**
  * Get category-specific fallback images for better contextual defaults
@@ -126,7 +122,6 @@ export function getCategoryFallback(category: string): string {
   };
 
   return fallbacks[category] || '/images/blog/education-insights-header.jpg';
-}
 
 /**
  * Validate image path to ensure it's not empty, null, or undefined
@@ -140,4 +135,3 @@ export function validateImagePath(imagePath: string | null | undefined): boolean
     imagePath !== 'null' &&
     imagePath !== 'undefined'
   );
-}

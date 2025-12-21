@@ -4,7 +4,6 @@ interface ArrowUpwardProps extends React.SVGProps<SVGSVGElement> {
 	variants?: any;
 	initial?: string;
 	animate?: string;
-}
 export default function ArrowUpward(props: ArrowUpwardProps) {
 	const { className, variants, initial, animate, ...svgProps } = props;
 	return (
@@ -15,8 +14,8 @@ export default function ArrowUpward(props: ArrowUpwardProps) {
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
 			transform='rotate(0 0 0)'
-			className={className}
-			{...svgProps}>
+			className={className}>
+		{...svgProps}>
 			<path
 				d='M12.5 4L12.5 20M12.5 4L7 9.5M12.5 4L18 9.5'
 				stroke='currentColor'
@@ -27,4 +26,3 @@ export default function ArrowUpward(props: ArrowUpwardProps) {
 			/>
 		</svg>
 	);
-}

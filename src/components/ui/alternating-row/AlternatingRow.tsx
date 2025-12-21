@@ -91,7 +91,6 @@ const AlternatingRow = memo(
 					// Only pass icon prop if it's defined (exactOptionalPropertyTypes compatibility)
 					const additionalProps = Icon ? { icon: Icon } : {};
 					return React.cloneElement(child, additionalProps);
-				}
 				return child;
 			});
 
@@ -132,7 +131,6 @@ const AlternatingRow = memo(
 							sizes={
 								image.sizes ||
 								'(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw'
-							}
 							priority={image.priority || false}
 							placeholder={image.src.includes('data:') ? 'blur' : 'empty'}
 							{...(image.src.includes('data:') && { blurDataURL: image.src })}
@@ -178,7 +176,6 @@ const AlternatingRow = memo(
 						</CardContent>
 					</Card>
 				);
-			}
 
 			// Standard implementation without Card wrapper
 			return (

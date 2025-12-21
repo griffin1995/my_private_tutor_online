@@ -43,7 +43,6 @@ const AlternatingLayout = memo<AlternatingLayoutProps>(
 				case 'normal':
 				default:
 					return 'space-y-0 @lg:space-y-0';
-			}
 		};
 
 		// Container width configuration with automatic padding control
@@ -56,7 +55,6 @@ const AlternatingLayout = memo<AlternatingLayoutProps>(
 				case 'container':
 				default:
 					return 'container mx-auto px-4 @md:px-6 @lg:px-8';
-			}
 		};
 
 		// Container query setup
@@ -67,7 +65,6 @@ const AlternatingLayout = memo<AlternatingLayoutProps>(
 				case 'normal':
 				default:
 					return '';
-			}
 		};
 
 		// Separator styling configuration
@@ -129,7 +126,6 @@ const AlternatingLayout = memo<AlternatingLayoutProps>(
               transparent ${variant === 'dashed' ? '16px' : '6px'}
             )`,
 									height: '1px',
-								}
 							:	undefined;
 
 						acc.push(
@@ -144,7 +140,6 @@ const AlternatingLayout = memo<AlternatingLayoutProps>(
 								style={separatorStyle}
 							/>,
 						);
-					}
 					return acc;
 				}, [])
 			:	childrenArray;

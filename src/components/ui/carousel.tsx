@@ -6,7 +6,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 interface CarouselItem {
 	id: string | number;
 	content: React.ReactNode;
-}
 interface CarouselProps {
 	items: CarouselItem[];
 	className?: string;
@@ -15,7 +14,6 @@ interface CarouselProps {
 	showArrows?: boolean;
 	showDots?: boolean;
 	centerMode?: boolean;
-}
 export function Carousel({
 	items,
 	className,
@@ -51,7 +49,6 @@ export function Carousel({
 		if (isActive) {
 			return {
 				transform: 'scale(1.1) translateX(0)',
-				opacity: 1,
 				zIndex: 3,
 			};
 		} else if (isPrev) {
@@ -69,10 +66,8 @@ export function Carousel({
 		} else {
 			return {
 				transform: 'scale(0.8)',
-				opacity: 0,
 				zIndex: 1,
 			};
-		}
 	};
 	return (
 		<div
@@ -88,35 +83,20 @@ export function Carousel({
 					{centerMode ?
 						<div className='relative flex items-center justify-center h-[400px] w-full'>
 							{items.map((item, index) => (
-								<divdiv
+								<div
 									key={item.id}
-									className='absolute w-full max-w-lg px-4'
-										duration: 0.5,
-										ease: 'easeInOut',
-									}}>
-									{item.content}
-								</divdiv>
+									className='absolute w-full max-w-lg px-4'>
+		{item.content}
+								</div>
 							))}
 						</div>
 					:	<AnimatePresence mode='wait'>
-							<divdiv
+							<div
 								key={currentIndex}
-									opacity: 0,
-									x: 100,
-								}}
-									opacity: 1,
-									x: 0,
-								}}
-									opacity: 0,
-									x: -100,
-								}}
-									duration: 0.5,
-								}}
 								className='w-full'>
-								{items[currentIndex]?.content}
-							</divdiv>
+		{items[currentIndex]?.content}
+							</div>
 						</AnimatePresence>
-					}
 				</div>
 			</div>
 
@@ -156,4 +136,3 @@ export function Carousel({
 			)}
 		</div>
 	);
-}

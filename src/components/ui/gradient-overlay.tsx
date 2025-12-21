@@ -31,7 +31,6 @@ interface GradientOverlayProps {
 		| 'hard-light';
 	position?: 'absolute' | 'relative' | 'fixed';
 	zIndex?: number;
-}
 const gradientDirections = {
 	top: 'bg-gradient-to-t',
 	bottom: 'bg-gradient-to-b',
@@ -46,15 +45,11 @@ const gradientDirections = {
 };
 const animationVariants = {
 	hidden: {
-		opacity: 0,
 		scale: 1.1,
 	},
 	visible: {
-		opacity: 1,
 		scale: 1,
 		transition: {
-			duration: 2,
-			ease: 'easeOut',
 		},
 	},
 };
@@ -82,14 +77,11 @@ export const GradientOverlay: React.FC<GradientOverlayProps> = ({
 			gradientClasses += ` via-${colors[1]} to-${colors[2]}`;
 		} else if (colors.length === 2) {
 			gradientClasses += ` to-${colors[1]}`;
-		}
 	} else {
 		gradientClasses += ` from-${from}`;
 		if (via) {
 			gradientClasses += ` via-${via}`;
-		}
 		gradientClasses += ` to-${to}`;
-	}
 	const baseClasses = `
     ${position}
     ${width}
@@ -112,7 +104,6 @@ export const GradientOverlay: React.FC<GradientOverlayProps> = ({
 					once: true,
 					amount: 0.3,
 				},
-			}
 		:	{};
 	return (
 		<Component
@@ -120,7 +111,6 @@ export const GradientOverlay: React.FC<GradientOverlayProps> = ({
 			style={{
 				opacity,
 				zIndex,
-			}}
 			{...animationProps}
 		/>
 	);

@@ -43,7 +43,6 @@ interface FlowbiteAvatarProps extends Omit<React.ComponentPropsWithoutRef<typeof
   readonly status?: FlowbiteAvatarStatus;
   readonly statusPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   readonly initials?: string;
-}
 
 // ============================================================================
 // CORE RADIX UI AVATAR COMPONENTS (ENHANCED)
@@ -70,7 +69,7 @@ const AvatarImage = React.forwardRef<
 >(({ className, ...props }, ref) => (
 	<AvatarPrimitive.Image
 		ref={ref}
-		className={cn('aspect-square h-full w-full object-cover', className)}
+		className={cn('aspect-square h-full w-full object-cover', className)}>
 		{...props}
 	/>
 ));
