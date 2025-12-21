@@ -23,7 +23,6 @@ interface FeatureSectionProps {
 		href: string;
 	};
 	className?: string;
-}
 
 export function FeatureSection({
 	title,
@@ -52,30 +51,6 @@ export function FeatureSection({
 		rootMargin: '-50px 0px',
 	});
 
-	// Standardized animation variants
-	const fadeInUp = {
-		initial: { opacity: 0, y: 20 },
-		animate: { opacity: 1, y: 0 },
-		transition: { duration: 0.6, ease: 'easeOut' }
-	};
-
-	const slideInLeft = {
-		initial: { opacity: 0, x: -30 },
-		animate: { opacity: 1, x: 0 },
-		transition: { duration: 0.8, ease: 'easeOut' }
-	};
-
-	const slideInRight = {
-		initial: { opacity: 0, x: 30 },
-		animate: { opacity: 1, x: 0 },
-		transition: { duration: 0.8, ease: 'easeOut' }
-	};
-
-	const scaleIn = {
-		initial: { opacity: 0, scale: 0.95 },
-		animate: { opacity: 1, scale: 1 },
-		transition: { duration: 0.8, ease: 'easeOut' }
-	};
 
 	return (
 		<section className={cn('w-full', className)}>
@@ -83,7 +58,7 @@ export function FeatureSection({
 			<div
 				ref={mobileRef}
 				className="flex flex-col lg:hidden">
-				{/* Image - Always first on mobile/tablet */}
+		{/* Image - Always first on mobile/tablet */}
 				<div
 					className="relative w-full h-44 sm:h-56 md:h-96 overflow-hidden">
 					<Image
@@ -118,11 +93,10 @@ export function FeatureSection({
 							</BodyText>
 						</div>
 					)}
+					{/* Secondary Button - Show as primary styled button on mobile (Learn More) */}
 					<div
-						className="flex w-full flex-col justify-center gap-2 md:flex-row"
-						{...fadeInUp}
-						{/* Secondary Button - Show as primary styled button on mobile (Learn More) */}
-						{isExternal(secondaryAction.href) ? (
+						className="flex w-full flex-col justify-center gap-2 md:flex-row">
+		{isExternal(secondaryAction.href) ? (
 							<Button asChild className="rounded-none w-full md:w-auto">
 								<a
 									href={secondaryAction.href}
@@ -164,17 +138,12 @@ export function FeatureSection({
 				className={cn(
 					'hidden lg:grid items-center gap-0 w-full lg:grid-cols-2',
 					imagePosition === 'left' && '[&>*:first-child]:order-2'
-				)}
-				{...fadeInUp}
+				)}>
 				{/* Text Content */}
 				<div
-					className="flex flex-col items-start justify-center text-left px-8 lg:px-10 xl:px-16 min-h-0"
-					{...(imagePosition === 'left' ? slideInRight : slideInLeft)}
-						(imagePosition === 'left' ? slideInRight.animate : slideInLeft.animate) :
-						(imagePosition === 'left' ? slideInRight.initial : slideInLeft.initial)
-					}
-					<div
-						><HeadingText
+					className="flex flex-col items-start justify-center text-left px-8 lg:px-10 xl:px-16 min-h-0">
+					<div>
+						<HeadingText
 							variant="primary"
 							level={3}
 							className="my-4 text-balance"
@@ -193,9 +162,8 @@ export function FeatureSection({
 						</div>
 					)}
 					<div
-						className="flex w-full flex-col justify-start gap-2 sm:flex-row"
-						{...fadeInUp}
-						{isExternal(primaryAction.href) ? (
+						className="flex w-full flex-col justify-start gap-2 sm:flex-row">
+		{isExternal(primaryAction.href) ? (
 							<Button asChild className="rounded-none">
 								<a
 									href={primaryAction.href}
@@ -232,11 +200,7 @@ export function FeatureSection({
 
 				{/* Image */}
 				<div
-					className="relative w-full aspect-[4/3] lg:aspect-video overflow-hidden group"
-					{...(imagePosition === 'left' ? slideInLeft : slideInRight)}
-						(imagePosition === 'left' ? slideInLeft.animate : slideInRight.animate) :
-						(imagePosition === 'left' ? slideInLeft.initial : slideInRight.initial)
-					}
+					className="relative w-full aspect-[4/3] lg:aspect-video overflow-hidden group">
 					<Image
 						src={imageSrc}
 						alt={imageAlt}
@@ -248,5 +212,4 @@ export function FeatureSection({
 			</div>
 		</section>
 	);
-}
 

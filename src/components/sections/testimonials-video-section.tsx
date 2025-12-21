@@ -23,7 +23,6 @@ interface TestimonialVideo {
 	readonly viewCount?: number;
 	readonly rating?: number;
 	readonly uploadDate?: string;
-}
 interface TestimonialsVideoSectionProps {
 	className?: string;
 	backgroundColor?: string;
@@ -31,7 +30,6 @@ interface TestimonialsVideoSectionProps {
 	description?: string;
 	videos?: TestimonialVideo[];
 	maxVideos?: number;
-}
 export function TestimonialsVideoSection({
 	className = '',
 	backgroundColor = 'bg-slate-50',
@@ -54,70 +52,35 @@ export function TestimonialsVideoSection({
 					<div className='text-center mb-16'>
 						<divh2
 							className='text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 mb-6'
-								opacity: 0,
-								y: 30,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
 							viewport={{
 								once: true,
 								margin: '-100px',
-							}}
-								duration: 0.8,
-								ease: [0.25, 0.46, 0.45, 0.94],
-								delay: 0.1,
-							}}>
 							{title}
 						</divh2>
 
 						<divp
 							className='text-xl text-primary-700 leading-relaxed max-w-3xl mx-auto'
-								opacity: 0,
-								y: 30,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
 							viewport={{
 								once: true,
 								margin: '-100px',
-							}}
-								duration: 0.8,
-								ease: [0.25, 0.46, 0.45, 0.94],
-								delay: 0.3,
-							}}>
 							{description}
 						</divp>
 					</div>
 
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
 						{displayVideos.map((video, index) => (
-							<divdiv
+							<div
 								key={video.id}
 								className='group relative'
-									opacity: 0,
-									y: 50,
-								}}
-									opacity: 1,
-									y: 0,
-								}}
 								viewport={{
 									once: true,
 									margin: '-100px',
-								}}
-									duration: 0.8,
-									ease: [0.25, 0.46, 0.45, 0.94],
-									delay: index * 0.2,
-								}}
 									scale: 1.02,
-									y: -8,
 									transition: {
 										type: 'spring',
 										stiffness: 400,
 										damping: 30,
 									},
-								}}>
 								<div
 									className='relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-slate-200 group-hover:border-accent-400/60 transition-all duration-500'
 									role='region'
@@ -153,7 +116,6 @@ export function TestimonialsVideoSection({
 										className='relative'
 										style={{
 											paddingBottom: '56.25%',
-										}}>
 										<div className='absolute inset-0'>
 											<HeroVideoDialog
 												videoSrc={video.videoSrc}
@@ -169,13 +131,13 @@ export function TestimonialsVideoSection({
 										<h3
 											id={`video-title-${video.id}`}
 											className='text-xl font-serif font-bold text-primary-900 mb-3 group-hover:text-primary-800 transition-colors duration-300'>
-											{video.title}
+		{video.title}
 										</h3>
 
 										<p
 											id={`video-description-${video.id}`}
 											className='text-primary-700 leading-relaxed mb-4'>
-											{video.description}
+		{video.description}
 										</p>
 
 										<div className='flex items-center justify-between text-sm text-primary-600'>
@@ -205,50 +167,26 @@ export function TestimonialsVideoSection({
 										</div>
 									</div>
 								</div>
-							</divdiv>
+							</div>
 						))}
 					</div>
 
 					<div className='text-center mt-12'>
 						<divp
 							className='text-lg text-primary-700 mb-6'
-								opacity: 0,
-								y: 20,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
 							viewport={{
 								once: true,
 								margin: '-100px',
-							}}
-								duration: 0.8,
-								ease: [0.25, 0.46, 0.45, 0.94],
-								delay: 0.6,
-							}}>
 							Ready to join our community of successful families?
 						</divp>
 
 						<divbutton
 							className='inline-flex items-center gap-2 px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'
-								opacity: 0,
-								y: 20,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
 							viewport={{
 								once: true,
 								margin: '-100px',
-							}}
-								duration: 0.8,
-								ease: [0.25, 0.46, 0.45, 0.94],
-								delay: 0.8,
-							}}
 								scale: 1.05,
-							}}
 								scale: 0.95,
-							}}>
 							Start Your Journey
 						</divbutton>
 					</div>
@@ -256,5 +194,4 @@ export function TestimonialsVideoSection({
 			</div>
 		</section>
 	);
-}
 ;

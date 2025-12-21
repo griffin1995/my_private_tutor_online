@@ -20,7 +20,6 @@ interface TutorTier {
 	readonly level: string;
 	readonly colour: string;
 	readonly hasCrown?: boolean;
-}
 
 // Tutor tiers content - centralised data source
 const TUTOR_TIERS: readonly TutorTier[] = [
@@ -122,7 +121,6 @@ interface TierDescriptionsProps {
 	readonly subtitle?: string;
 	readonly showExpandable?: boolean;
 	readonly className?: string;
-}
 
 /**
  * TierDescriptions Component
@@ -142,7 +140,7 @@ export function TierDescriptions({
 	className = ""
 }: TierDescriptionsProps) {
 	// State for expandable cards (only used when showExpandable is true)
-	const [expandedCards, setExpandedCards] = useState<Record<number, boolean>>({});
+	const [expandedCards, setExpandedCards] = useState<Record<number, boolean>({});
 
 	// Sort tiers: Tier 1 (Premium), Tier 2 (Mid), Tier 3 (Standard)
 	const sortedTiers = [...TUTOR_TIERS].sort((a, b) => {
@@ -171,28 +169,14 @@ export function TierDescriptions({
 							const isExpanded = expandedCards[index] || false;
 
 							return (
-								<divdiv
+								<div
 									key={index}
 									className='relative'
-										opacity: 0,
-										y: 40,
-									}}
-										opacity: 1,
-										y: 0,
-									}}
 									viewport={{
 										once: true,
 										margin: '-100px',
-									}}
-										duration: 0.8,
-										delay: index * 0.1,
-									}}>
-									<divdiv
+									<div
 											height: isExpanded ? 'auto' : undefined,
-										}}
-											duration: 0.5,
-											ease: [0.25, 0.1, 0.25, 1],
-										}}
 										className={
 											isExpanded ? '' : 'aspect-square overflow-hidden'
 										}>
@@ -232,7 +216,6 @@ export function TierDescriptions({
 																...prev,
 																[index]: true,
 															}))
-														}
 														className='absolute bottom-6 left-1/2 -translate-x-1/2 z-20 px-6 py-2 bg-primary-700 text-white hover:bg-primary-800 transition-colors duration-300 text-sm font-medium rounded'
 														aria-label={`Learn more about ${tier.tier}`}>
 														Learn More
@@ -266,15 +249,14 @@ export function TierDescriptions({
 												</>
 											)}
 										</Card>
-									</divdiv>
-								</divdiv>
+									</div>
+								</div>
 							);
 						})}
 					</div>
 				</div>
 			</section>
 		);
-	}
 
 	// Simplified version for Meet the Team page
 	return (
@@ -290,22 +272,12 @@ export function TierDescriptions({
 
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
 					{sortedTiers.map((tier: TutorTier, index: number) => (
-						<divdiv
+						<div
 							key={index}
 							className='relative'
-								opacity: 0,
-								y: 20,
-							}}
-								opacity: 1,
-								y: 0,
-							}}
 							viewport={{
 								once: true,
 								margin: '-50px',
-							}}
-								duration: 0.6,
-								delay: index * 0.1,
-							}}>
 							<Card className='bg-white border border-neutral-200 shadow-md hover:shadow-lg transition-all duration-300 h-full'>
 								<CardHeader className='text-center pb-4'>
 									<TitleText variant="large" level={3} alignment="center" className="mb-2 text-primary-700">{tier.tier}</TitleText>
@@ -335,13 +307,12 @@ export function TierDescriptions({
 									</div>
 								</CardContent>
 							</Card>
-						</divdiv>
+						</div>
 					))}
 				</div>
 			</div>
 		</section>
 	);
-}
 
 // Export the tier data for use in other components if needed
 ;

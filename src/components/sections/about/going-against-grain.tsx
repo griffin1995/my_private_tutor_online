@@ -9,7 +9,6 @@ interface GoingAgainstGrainProps {
     readonly title: string;
     readonly content: string;
   };
-}
 
 /**
  * Going Against the Grain Section
@@ -38,4 +37,3 @@ export function GoingAgainstGrain({
       textAlign="left"
     />
   );
-}

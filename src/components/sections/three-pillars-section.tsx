@@ -10,7 +10,6 @@ interface PillarData {
 	title: string;
 	description: string;
 	stats: string[];
-}
 
 const pillarsData: PillarData[] = [
 	{
@@ -80,29 +79,13 @@ interface PillarCardProps {
 	pillar: PillarData;
 	index: number;
 	inView: boolean;
-}
 
 const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 	const bgClass = getBgClass(pillar.id);
 
-	// Standardized animation variants
-	const fadeInUp = {
-		initial: { opacity: 0, y: 30, scale: 0.95 },
-		animate: { opacity: 1, y: 0, scale: 1 },
-		transition: {
-			duration: 0.8,
-			ease: 'easeOut',
-			delay: index * 0.15 // Staggered delay
-		}
-	};
-
 	return (
 		<div
-			className='group h-full'
-			{...fadeInUp}
-				...fadeInUp.transition,
-				hover: { duration: 0.3, ease: 'easeOut' }
-			}}>
+			className='group h-full'>
 			<div className='shadow-xl overflow-hidden h-full'>
 				{/* Breakpoint-specific sizing: aspect ratios for single column, further increased height for multi-column */}
 				<div
@@ -112,18 +95,13 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 						style={{
 							backgroundImage: `url(${pillarBackgrounds[pillar.id]})`,
 							backgroundSize: '80px 80px',
-						}}
 					/>
 
 					{/* Breakpoint-specific layout: flexible for single column, fixed for multi-column */}
 					<div className='absolute inset-0 p-4 sm:p-5 md:p-6 lg:p-10 xl:p-12 flex flex-col'>
 						{/* Title section - flexible height on single column, increased fixed height on multi-column */}
 						<div className='flex-shrink-0 lg:h-28 xl:h-32 lg:flex lg:items-end lg:pb-2'>
-							<div
-									duration: 0.6,
-									ease: 'easeOut',
-									delay: index * 0.15 + 0.2
-								}}>
+							<div>
 								<HeadingText
 									variant="primary"
 									level={3}
@@ -137,23 +115,14 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 
 						{/* Separator - responsive spacing */}
 						<div className='flex-shrink-0 py-3 sm:py-4 lg:py-6'>
-							<div
-									duration: 0.8,
-									ease: 'easeOut',
-									delay: index * 0.15 + 0.4
-								}}
-								style={{ transformOrigin: 'left' }}>
+							<div style={{ transformOrigin: 'left' }}>
 								<Separator className='bg-white/30' />
 							</div>
 						</div>
 
 						{/* Description - flexible on single column, controlled height on multi-column for alignment */}
 						<div className='flex-1 lg:flex-none lg:h-72 xl:h-80 flex flex-col justify-center lg:justify-start lg:overflow-hidden'>
-							<div
-									duration: 0.6,
-									ease: 'easeOut',
-									delay: index * 0.15 + 0.6
-								}}>
+							<div>
 								<BodyText
 									variant="large"
 									className="text-white leading-snug lg:leading-relaxed"
@@ -169,10 +138,6 @@ const PillarCard: React.FC<PillarCardProps> = ({ pillar, index, inView }) => {
 							{pillar.stats.map((stat, statIndex) => (
 								<div
 									key={statIndex}
-										duration: 0.4,
-										ease: 'easeOut',
-										delay: index * 0.15 + 0.8 + statIndex * 0.1
-									}}>
 									<BodyText
 										variant="default"
 										className="text-white leading-tight opacity-90"

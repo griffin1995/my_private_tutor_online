@@ -12,7 +12,6 @@ interface ResultsSectionProps {
 	backgroundColor?: string;
 	className?: string;
 	showDescription?: boolean;
-}
 export function ResultsSection({
 	title = 'Results that Speak for Themselves (No styling revisions made yet, only moved)',
 	description,
@@ -36,22 +35,9 @@ export function ResultsSection({
 			<div className='container mx-auto px-6 lg:px-12 max-w-7xl relative'>
 				<div
 					className='text-center mb-16 lg:mb-20'
-						opacity: 0,
-						y: 30,
-					}}
 						isInView ?
 							{
-								opacity: 1,
-								y: 0,
-							}
 						:	{
-								opacity: 0,
-								y: 30,
-							}
-					}
-						duration: 0.8,
-						ease: 'easeOut',
-					}}>
 					<div className='flex items-center justify-center mb-8'>
 						<div className='h-px bg-gradient-to-r from-transparent via-accent-300 to-transparent flex-1 max-w-24' />
 						<Crown className='w-8 h-8 text-accent-600 mx-6' />
@@ -89,35 +75,25 @@ export function ResultsSection({
 				<div
 					className='grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto'
 						hidden: {
-							opacity: 0,
 						},
 						visible: {
-							opacity: 1,
 							transition: {
 								staggerChildren: 0.2,
 								delayChildren: 0.3,
 							},
 						},
-					}}>
 					{resultsStats.map((stat, index) => (
 						<div
 							key={index}
 							className='group relative'
 								hidden: {
-									opacity: 0,
-									y: 40,
 									scale: 0.95,
 								},
 								visible: {
-									opacity: 1,
-									y: 0,
 									scale: 1,
 									transition: {
-										duration: 0.7,
-										ease: 'easeOut',
 									},
 								},
-							}}>
 							<div className='relative p-8 lg:p-10 bg-white rounded-2xl shadow-lg shadow-primary-900/5 border border-primary-100/50 backdrop-blur-sm transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-primary-900/10 group-hover:-translate-y-2 group-hover:scale-[1.02] overflow-hidden'>
 								<div className='absolute inset-0 bg-gradient-to-br from-accent-50/30 via-transparent to-blue-50/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
 
@@ -153,11 +129,9 @@ export function ResultsSection({
 															return <Shield {...iconProps} />;
 														default:
 															return <Award {...iconProps} />;
-													}
 												})()}
 											</div>
 										</>
-									}
 
 									<div className='absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1 h-6 bg-gradient-to-b from-accent-300 to-transparent opacity-30' />
 								</div>
@@ -205,23 +179,9 @@ export function ResultsSection({
 
 				<div
 					className='text-center mt-16 lg:mt-20'
-						opacity: 0,
-						y: 20,
-					}}
 						isInView ?
 							{
-								opacity: 1,
-								y: 0,
-							}
 						:	{
-								opacity: 0,
-								y: 20,
-							}
-					}
-						duration: 0.8,
-						delay: 1.2,
-						ease: 'easeOut',
-					}}>
 					<div className='inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-accent-50 via-accent-100/50 to-accent-50 rounded-full border border-accent-200/50 shadow-lg shadow-accent-500/10'>
 						<Crown className='w-5 h-5 text-accent-600' />
 						<span className='text-sm font-semibold text-primary-800 tracking-wide'>
@@ -233,4 +193,3 @@ export function ResultsSection({
 			</div>
 		</section>
 	);
-}

@@ -10,7 +10,6 @@ interface PullQuoteProps {
   position?: 'left' | 'right';
   /** Disable default float behavior for dynamic positioning */
   disableFloat?: boolean;
-}
 
 /**
  * Accessible pull quote component following WCAG 2.2 standards
@@ -53,4 +52,3 @@ export function PullQuote({
       </blockquote>
     </aside>
   );
-}

@@ -8,7 +8,6 @@ import HeroVideoDialog from '../magicui/hero-video-dialog';
 
 interface FounderIntroductionSectionProps {
 	children?: React.ReactNode;
-}
 export function FounderIntroductionSection({}: FounderIntroductionSectionProps = {}) {
 	// Standardized intersection observer for testimonial
 	const { ref: testimonialRef, inView: testimonialInView } = useInView({
@@ -52,14 +51,13 @@ export function FounderIntroductionSection({}: FounderIntroductionSectionProps =
 								src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp',
 								alt: 'Academic Insight',
 							},
-						}}
 					/>
 				</div>
 
 				<div
 					ref={videoRef}
-					className='w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto'
-					{...scaleIn}
+					className='w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto'>
+		{...scaleIn}
 					<HeroVideoDialog
 						videoSrc='/videos/compressed-elizabeth-introduction-sound.mp4'
 						thumbnailSrc='/images/video-thumbnails/introduction-video-thumbnail-2025.png'
@@ -72,4 +70,3 @@ export function FounderIntroductionSection({}: FounderIntroductionSectionProps =
 			</div>
 		</section>
 	);
-}

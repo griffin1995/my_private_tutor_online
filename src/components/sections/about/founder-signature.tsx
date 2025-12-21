@@ -51,4 +51,3 @@ export function FounderSignature(): JSX.Element {
       </div>
     </div>
   );
-}

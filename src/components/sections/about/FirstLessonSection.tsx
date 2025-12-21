@@ -8,28 +8,20 @@ interface FirstLessonSectionProps {
 	heading?: string;
 	paragraph?: string;
 	showConnectorArrow?: boolean;
-}
 function parseTextWithStrong(text: string): React.ReactNode[] {
 	const parts = text.split(/(<strong>.*?<\/strong>)/g);
 	return parts.map((part, index) => {
 		if (part.startsWith('<strong>') && part.endsWith('</strong>')) {
 			const content = part.replace(/<\/?strong>/g, '');
 			return <strong key={index}>{content}</strong>;
-		}
 		return part;
 	});
-}
 const fadeInUpVariant = {
 	initial: {
-		opacity: 0,
-		y: 30,
 	},
 	animate: {
-		opacity: 1,
-		y: 0,
 	},
 	transition: {
-		duration: 0.8,
 	},
 };
 export function FirstLessonSection({
@@ -52,7 +44,7 @@ export function FirstLessonSection({
 								fill='none'
 								xmlns='http://www.w3.org/2000/svg'
 								className='opacity-80 hover:opacity-100 transition-opacity duration-300 block mx-auto'>
-								{/* Arrow pointing right */}
+		{/* Arrow pointing right */}
 								<path
 									d='M8 24 C12 20, 20 20, 24 24 C28 28, 36 28, 40 24'
 									stroke='currentColor'
@@ -101,4 +93,3 @@ export function FirstLessonSection({
 			</div>
 		</div>
 	);
-}

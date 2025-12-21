@@ -10,7 +10,6 @@ interface TestimonialsSectionProps {
 	backgroundColor?: string;
 	className?: string;
 	showMoreButton?: boolean;
-}
 export function TestimonialsSection({
 	backgroundColor = 'bg-white',
 	className = '',
@@ -51,7 +50,6 @@ export function TestimonialsSection({
 				style={{
 					backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233b82f6' fill-opacity='1'%3E%3Cpath d='M20 10l-5 5L10 10l5-5L20 10zm10 10l-5 5L20 15l5-5L30 20z'/%3E%3C/g%3E%3C/svg%3E")`,
 					backgroundSize: '40px 40px',
-				}}
 			/>
 
 
@@ -60,7 +58,7 @@ export function TestimonialsSection({
 					<div
 						ref={mainRef}
 						className='grid lg:grid-cols-2 gap-8 lg:gap-10'>
-						{(() => {
+		{(() => {
 							const testimonialVideos = getTestimonialVideos();
 							const parentVideo = testimonialVideos.find(
 								(video) => video.id === 'parents-testimonials-2025',
@@ -72,7 +70,7 @@ export function TestimonialsSection({
 								<>
 									<div
 										className='relative'>
-										{parentVideo ? (
+		{parentVideo ? (
 											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
 													videoSrc={parentVideo.videoSrc}
@@ -92,7 +90,7 @@ export function TestimonialsSection({
 
 									<div
 										className='relative'>
-										{studentVideo ? (
+		{studentVideo ? (
 											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
 													videoSrc={studentVideo.videoSrc}
@@ -134,5 +132,4 @@ export function TestimonialsSection({
 
 		</section>
 	);
-}
 ;

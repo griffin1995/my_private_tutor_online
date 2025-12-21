@@ -32,7 +32,6 @@ interface StorySectionProps {
   priority?: boolean;
   /** Custom class name */
   className?: string;
-}
 
 /**
  * Reusable story section component with responsive grid layout
@@ -157,4 +156,3 @@ export function StorySection({
       </div>
     </div>
   );
-}
