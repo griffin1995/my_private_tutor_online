@@ -27,10 +27,11 @@ function Alert({
     <div
       data-slot="alert"
       role="alert"
-      className={cn(alertVariants({ variant }), className)}>
-		{...props}
+      className={cn(alertVariants({ variant }), className)}
+      {...props}
     />
   )
+}
 
 function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -43,6 +44,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
       {...props}
     />
   )
+}
 
 function AlertDescription({
   className,
@@ -58,5 +60,6 @@ function AlertDescription({
       {...props}
     />
   )
+}
 
 export { Alert, AlertTitle, AlertDescription }
