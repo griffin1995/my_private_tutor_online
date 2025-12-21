@@ -31,7 +31,7 @@ interface OfflineOptions {
 }
 interface OfflineActions {
 	queueForSync: (action: string, data: any) => Promise<string>;
-	forcSync: () => Promise<void>;
+	forceSync: () => Promise<void>;
 	clearCache: (cacheKey?: string) => Promise<boolean>;
 	refreshCache: () => Promise<void>;
 	checkDataFreshness: () => Promise<'fresh' | 'stale' | 'unknown'>;

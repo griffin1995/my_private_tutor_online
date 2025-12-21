@@ -207,7 +207,7 @@ class OfflineStrategies {
 		this.syncQueue = [];
 		for (const item of itemsToProcess) {
 			try {
-				await this.processsyncItem(item);
+				await this.processSyncItem(item);
 				console.log(`✅ Sync completed for action: ${item.action}`);
 			} catch (error) {
 				console.warn(`⚠️ Sync failed for action: ${item.action}`, error);
@@ -310,7 +310,7 @@ class OfflineStrategies {
 			connection.addEventListener('change', updateConnectionInfo);
 		}
 	}
-	private async processyncItem(item: SyncQueueItem): Promise<void> {
+	private async processSyncItem(item: SyncQueueItem): Promise<void> {
 		switch (item.action) {
 			case 'faq_rating':
 				await this.syncFAQRating(item.data);

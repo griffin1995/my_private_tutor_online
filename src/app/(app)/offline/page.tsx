@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useOffline } from '@/hooks/use-offline';
+import { useRouter } from 'next/navigation';
+import { useModernOffline } from '@/hooks/use-modern-offline';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -21,11 +22,12 @@ import {
 } from 'lucide-react';
 
 export default function OfflinePage() {
+	const router = useRouter();
 	const showBackButton = true;
 	const showContactInfo = true;
 	const showCachedContent = true;
 	const customMessage = undefined;
-	const { state, actions } = useOffline();
+	const { state, actions } = useModernOffline();
 	const [retryCount, setRetryCount] = useState(0);
 	const [isRetrying, setIsRetrying] = useState(false);
 	useEffect(() => {
@@ -33,18 +35,21 @@ export default function OfflinePage() {
 			if (
 				typeof navigator !== 'undefined' &&
 				navigator.onLine &&
-				!state.isOnline
+				!state.networkStatus.isOnline
 			) {
 				try {
 					await actions.refreshCache();
-					if (state.isOnline) {
-						window.location.href = '/faq';
+					if (state.networkStatus.isOnline) {
+						router.push('/faq');
+					}
 				} catch (error) {
 					console.warn('Connection check failed:', error);
+				}
+			}
 		};
 		const interval = setInterval(checkConnection, 10000);
 		return () => clearInterval(interval);
-	}, [state.isOnline, actions]);
+	}, [state.networkStatus.isOnline, actions, router]);
 	const handleRetry = async () => {
 		setIsRetrying(true);
 		setRetryCount((prev) => prev + 1);
@@ -55,26 +60,28 @@ export default function OfflinePage() {
 				cache: 'no-cache',
 			});
 			if (response.ok) {
-				window.location.href = '/faq';
+				router.push('/faq');
+			}
 		} catch (error) {
 			console.warn('Manual retry failed:', error);
 		} finally {
 			setIsRetrying(false);
+		}
 	};
 	const handleGoBack = () => {
 		if (window.history.length > 1) {
-			window.history.back();
+			router.back();
 		} else {
-			window.location.href = '/';
+			router.push('/');
+		}
 	};
 	const handleViewCachedFAQ = () => {
-		window.location.href = '/faq';
+		router.push('/faq');
 	};
 	return (
 		<div className='min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center px-4'>
 			<div className='w-full max-w-2xl'>
-				<div
-					className='text-center mb-8'>
+				<div className='text-center mb-8'>
 					<div className='inline-flex items-center justify-center w-20 h-20 bg-accent-100 rounded-full mb-6'>
 						<WifiOff className='w-10 h-10 text-accent-600' />
 					</div>
@@ -89,7 +96,7 @@ export default function OfflinePage() {
 					</p>
 				</div>
 
-				<div
+				<div className='mb-8'>
 					<Card className='p-8 shadow-xl border-0 bg-white/90 backdrop-blur-sm'>
 						<div className='flex items-center justify-between mb-6 p-4 bg-accent-50 rounded-lg border border-accent-200'>
 							<div className='flex items-center space-x-3'>
@@ -251,8 +258,7 @@ export default function OfflinePage() {
 					</Card>
 				</div>
 
-				<div
-					className='text-center mt-8'>
+				<div className='text-center mt-8'>
 					<div className='flex items-center justify-center space-x-2 text-slate-600 mb-2'>
 						<Star className='w-4 h-4 text-accent-500' />
 						<span className='text-sm font-medium'>My Private Tutor Online</span>
@@ -265,3 +271,4 @@ export default function OfflinePage() {
 			</div>
 		</div>
 	);
+}
