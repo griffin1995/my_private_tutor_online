@@ -16,17 +16,14 @@ interface LegalPageTemplateProps {
 	children: ReactNode;
 	showCompliance?: boolean;
 	complianceText?: string;
-}
 
 interface LegalMetaInfoProps {
 	lastUpdated: string;
 	showCompliance?: boolean;
 	complianceText?: string;
-}
 
 interface LegalContentProps {
 	children: ReactNode;
-}
 
 /**
  * Meta information component for legal pages
@@ -35,9 +32,8 @@ function LegalMetaInfo({ lastUpdated, showCompliance = true, complianceText }: L
 	const defaultComplianceText = 'This document complies with UK GDPR, Data Protection Act 2018, and PECR requirements.';
 
 	return (
-		<divdiv
-			className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg'
-			viewport={{ once: true }}>
+		<div
+			className='mb-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 shadow-lg'>
 			<div className='flex items-center gap-4 mb-4'>
 				<FileText className='w-6 h-6 text-blue-600' />
 				<p className='text-lg text-blue-800 font-bold'>
@@ -49,9 +45,8 @@ function LegalMetaInfo({ lastUpdated, showCompliance = true, complianceText }: L
 					{complianceText || defaultComplianceText}
 				</p>
 			)}
-		</divdiv>
+		</div>
 	);
-}
 
 /**
  * Content wrapper component for legal pages
@@ -69,7 +64,6 @@ function LegalContent({ children }: LegalContentProps) {
 			</div>
 		</Section>
 	);
-}
 
 /**
  * Standardised footer component for legal pages
@@ -83,7 +77,6 @@ function LegalFooter() {
 			showContactForm={false}
 		/>
 	);
-}
 
 /**
  * Main legal page template component with compound pattern
@@ -123,7 +116,6 @@ export function LegalPageTemplate({
 			<LegalFooter />
 		</>
 	);
-}
 
 // Compound components for advanced usage
 LegalPageTemplate.MetaInfo = LegalMetaInfo;

@@ -12,7 +12,6 @@ interface CookieSettingsButtonProps {
   className?: string;
   showIcon?: boolean;
   children?: React.ReactNode;
-}
 
 /**
  * GDPR-compliant cookie settings button
@@ -41,7 +40,6 @@ export function CookieSettingsButton({
       window.location.href = '/legal/cookie-policy';
     } finally {
       setIsLoading(false);
-    }
   };
 
   return (
@@ -69,24 +67,21 @@ export function CookieSettingsButton({
       {children || 'Cookie Settings'}
     </Button>
   );
-}
 
 /**
  * Cookie status indicator - shows current consent state
  */
 interface CookieStatusIndicatorProps {
   className?: string;
-}
 
 export function CookieStatusIndicator({ className }: CookieStatusIndicatorProps) {
-  const [consentState, setConsentState] = useState<ReturnType<typeof cookieConsentUtils.getConsentState>>(null);
+  const [consentState, setConsentState] = useState<ReturnType<typeof cookieConsentUtils.getConsentState>(null);
 
   // Update consent state when component mounts
   useState(() => {
     if (typeof window !== 'undefined') {
       const state = cookieConsentUtils.getConsentState();
       setConsentState(state);
-    }
   });
 
   if (!consentState) {
@@ -96,7 +91,6 @@ export function CookieStatusIndicator({ className }: CookieStatusIndicatorProps)
         <span>Consent not set</span>
       </div>
     );
-  }
 
   const activeCategories = [
     consentState.analytics && 'Analytics',
@@ -111,11 +105,9 @@ export function CookieStatusIndicator({ className }: CookieStatusIndicatorProps)
         {activeCategories.length > 0
           ? `Active: ${activeCategories.join(', ')}`
           : 'Essential only'
-        }
       </span>
     </div>
   );
-}
 
 /**
  * Privacy control panel for footer or settings page
@@ -123,7 +115,6 @@ export function CookieStatusIndicator({ className }: CookieStatusIndicatorProps)
 interface PrivacyControlPanelProps {
   className?: string;
   showStatus?: boolean;
-}
 
 function PrivacyControlPanel({
   className,
@@ -183,7 +174,6 @@ function PrivacyControlPanel({
       </div>
     </div>
   );
-}
 
 /**
  * Quick consent reset button for development/testing
@@ -192,12 +182,10 @@ function ResetConsentButton({ className }: { className?: string }) {
   const handleReset = () => {
     if (window.confirm('Reset all cookie preferences and show consent banner again?')) {
       cookieConsentUtils.reset();
-    }
   };
 
   if (process.env.NODE_ENV !== 'development') {
     return null;
-  }
 
   return (
     <Button
@@ -209,4 +197,3 @@ function ResetConsentButton({ className }: { className?: string }) {
       Reset Consent (Dev)
     </Button>
   );
-}

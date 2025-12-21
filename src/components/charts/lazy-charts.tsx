@@ -46,7 +46,6 @@ export const LazyPieChart = dynamic(
   {
     loading: () => <ChartSkeleton />,
     ssr: false,
-  }
 );
 
 export const LazyAreaChart = dynamic(
@@ -54,7 +53,6 @@ export const LazyAreaChart = dynamic(
   {
     loading: () => <ChartSkeleton />,
     ssr: false,
-  }
 );
 
 const LazyRadialBarChart = dynamic(
@@ -62,7 +60,6 @@ const LazyRadialBarChart = dynamic(
   {
     loading: () => <ChartSkeleton />,
     ssr: false,
-  }
 );
 
 export const LazyBarChart = dynamic(
@@ -70,7 +67,6 @@ export const LazyBarChart = dynamic(
   {
     loading: () => <ChartSkeleton />,
     ssr: false,
-  }
 );
 
 export const LazyLineChart = dynamic(
@@ -78,7 +74,6 @@ export const LazyLineChart = dynamic(
   {
     loading: () => <ChartSkeleton />,
     ssr: false,
-  }
 );
 
 export const LazyRadarChart = dynamic(
@@ -86,7 +81,6 @@ export const LazyRadarChart = dynamic(
   {
     loading: () => <ChartSkeleton />,
     ssr: false,
-  }
 );
 
 const LazyComposedChart = dynamic(
@@ -94,7 +88,6 @@ const LazyComposedChart = dynamic(
   {
     loading: () => <ChartSkeleton />,
     ssr: false,
-  }
 );
 
 // Chart elements and accessories
@@ -188,28 +181,24 @@ interface LazyAnalyticsChartsProps {
   readonly showRadialChart?: boolean;
   readonly data?: any[];
   readonly className?: string;
-}
 
 const LazyAnalyticsCharts = dynamic(
   () => import('./analytics-charts-bundle').then((mod) => ({ default: mod.AnalyticsChartsBundle })),
   {
     loading: () => <DetailedChartSkeleton />,
     ssr: false,
-  }
 );
 
 interface LazyDashboardChartsProps {
   readonly type: 'testimonials' | 'faq' | 'client-success';
   readonly data?: any[];
   readonly className?: string;
-}
 
 const LazyDashboardCharts = dynamic(
   () => import('./dashboard-charts-bundle').then((mod) => ({ default: mod.DashboardChartsBundle })),
   {
     loading: () => <DetailedChartSkeleton />,
     ssr: false,
-  }
 );
 
 // ============================================================================
@@ -219,7 +208,6 @@ const LazyDashboardCharts = dynamic(
 interface LazyAdminChartsProps {
   readonly children: React.ReactNode;
   readonly fallback?: React.ReactNode;
-}
 
 const LazyAdminCharts = React.memo<LazyAdminChartsProps>(({
   children,
@@ -232,14 +220,12 @@ const LazyAdminCharts = React.memo<LazyAdminChartsProps>(({
 
   if (!isAdminRoute && typeof window !== 'undefined') {
     return null;
-  }
 
   const AdminChartsBundle = dynamic(
     () => Promise.resolve({ default: () => <>{children}</> }),
     {
       loading: () => <>{fallback}</>,
       ssr: false,
-    }
   );
 
   return <AdminChartsBundle />;
@@ -272,7 +258,6 @@ function useChartLoading(chartType: string) {
   }, [chartType]);
 
   return { isLoading, error, setError };
-}
 
 function useAdminRoute() {
   const [isAdmin, setIsAdmin] = React.useState(false);
@@ -284,9 +269,7 @@ function useAdminRoute() {
         pathname.includes('/admin') ||
         pathname.includes('/dashboard')
       );
-    }
   }, []);
 
   return isAdmin;
-}
 

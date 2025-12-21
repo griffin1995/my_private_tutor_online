@@ -11,7 +11,7 @@ import { cookieConsentUtils } from './cookie-consent-manager';
  * Provides live cookie management alongside policy content
  */
 export function CookiePolicyIntegration() {
-  const [consentState, setConsentState] = useState<ReturnType<typeof cookieConsentUtils.getConsentState>>(null);
+  const [consentState, setConsentState] = useState<ReturnType<typeof cookieConsentUtils.getConsentState>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -30,7 +30,6 @@ export function CookiePolicyIntegration() {
 
   if (!mounted) {
     return null; // Prevent SSR issues
-  }
 
   return (
     <div className="space-y-6">
@@ -101,7 +100,6 @@ export function CookiePolicyIntegration() {
               // Accept only essential cookies
               cookieConsentUtils.reset();
               // The banner will appear, then programmatically click "Reject All"
-            }}
           >
             Essential Cookies Only
           </Button>
@@ -113,7 +111,6 @@ export function CookiePolicyIntegration() {
             onClick={() => {
               // This would programmatically accept analytics but reject marketing
               cookieConsentUtils.showPreferences();
-            }}
           >
             Allow Analytics Only
           </Button>
@@ -125,7 +122,6 @@ export function CookiePolicyIntegration() {
             onClick={() => {
               // This would accept all cookies
               cookieConsentUtils.showPreferences();
-            }}
           >
             Accept All Cookies
           </Button>
@@ -153,13 +149,12 @@ export function CookiePolicyIntegration() {
       </Card>
     </div>
   );
-}
 
 /**
  * Cookie compliance checker for development
  */
 export function CookieComplianceChecker() {
-  const [checks, setChecks] = useState<Array<{ name: string; passed: boolean; message: string }>>([]);
+  const [checks, setChecks] = useState<Array<{ name: string; passed: boolean; message: string }>([]);
 
   useEffect(() => {
     const runChecks = () => {
@@ -188,7 +183,6 @@ export function CookieComplianceChecker() {
           name: 'Cookie Settings Accessible',
           passed: typeof cookieConsentUtils.showPreferences === 'function',
           message: 'User should be able to change preferences'
-        }
       ];
 
       setChecks(newChecks);
@@ -201,7 +195,6 @@ export function CookieComplianceChecker() {
 
   if (process.env.NODE_ENV !== 'development') {
     return null;
-  }
 
   return (
     <Card className="p-4 bg-yellow-50 border border-yellow-200">
@@ -224,4 +217,3 @@ export function CookieComplianceChecker() {
       </div>
     </Card>
   );
-}

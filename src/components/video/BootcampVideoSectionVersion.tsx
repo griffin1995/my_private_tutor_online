@@ -5,11 +5,9 @@ interface BootcampVideoSectionVersionProps {
 	readonly videoId: 'kickstarterProgramme' | 'intensiveProgramme';
 	readonly layout: 'text-left' | 'text-right';
 	readonly className?: string;
-}
 const bootcampProgrammes = [
 	{
 		title: '11+ Intensive',
-		duration: '5 Days',
 		target: 'Perfect for students entering Y6 September 2025',
 		description:
 			'Our 11+ Intensive is the perfect runway for students sitting exams in autumn 2025. We tackle a different discipline each day: English, Maths, Verbal Reasoning, Non Verbal Reasoning and Interview Technique.',
@@ -27,7 +25,6 @@ const bootcampProgrammes = [
 	},
 	{
 		title: '11+ Kickstarter',
-		duration: '5 Days',
 		target: 'Perfect for students entering Y4 & 5 September 2025',
 		description:
 			'Our 11+ Kickstarter is a fun and thorough introduction to 11+ curriculum, ideal for students will little to no experience of entrance exams.',
@@ -77,7 +74,6 @@ export function BootcampVideoSectionVersion({
 			className={`relative flex ${flexDirection} items-center bg-cover bg-center bg-no-repeat ${className}`}
 			style={{
 				backgroundImage: `url('${backgroundImage}')`,
-			}}>
 			<div className='absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent' />
 			<div className='relative z-10 flex basis-full md:basis-1/2 justify-center items-center p-8'>
 				<a
@@ -100,7 +96,6 @@ export function BootcampVideoSectionVersion({
 								className='w-full h-full object-cover drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]'
 								style={{
 									aspectRatio: '16/9',
-								}}
 							/>
 						</div>
 					</div>
@@ -159,7 +154,7 @@ export function BootcampVideoSectionVersion({
 						target='_blank'
 						rel='noopener noreferrer'
 						className='!text-white text-sm font-medium hover:!text-accent-600 hover:underline transition-all duration-300 cursor-pointer'>
-						{programme.price} {programme.coursePack}
+		{programme.price} {programme.coursePack}
 					</a>
 				</div>
 
@@ -174,4 +169,3 @@ export function BootcampVideoSectionVersion({
 			</div>
 		</div>
 	);
-}

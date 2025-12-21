@@ -35,7 +35,6 @@ interface GamificationProgress {
 	lastVisitDate: string;
 	totalPoints: number;
 	level: number;
-}
 interface Achievement {
 	id: string;
 	title: string;
@@ -49,7 +48,6 @@ interface Achievement {
 	unlocked: boolean;
 	unlockedDate?: string;
 	tier: 'bronze' | 'silver' | 'gold' | 'royal';
-}
 interface GamificationSystemProps {
 	totalQuestions: number;
 	totalCategories: number;
@@ -62,7 +60,6 @@ interface GamificationSystemProps {
 	compact?: boolean;
 	showLeaderboard?: boolean;
 	enableNotifications?: boolean;
-}
 const ACHIEVEMENTS: Achievement[] = [
 	{
 		id: 'first_faq',
@@ -239,13 +236,10 @@ export function FAQGamificationSystem({
 					parsedProgress.streakDays += 1;
 				} else if (daysDiff > 1) {
 					parsedProgress.streakDays = 1;
-				}
 				parsedProgress.lastVisitDate = today.toISOString();
 				setProgress(parsedProgress);
 			} catch (error) {
 				console.warn('Failed to parse saved gamification progress:', error);
-			}
-		}
 		const savedAchievements = localStorage.getItem(
 			'faq-gamification-achievements',
 		);
@@ -255,8 +249,6 @@ export function FAQGamificationSystem({
 				setAchievements(parsedAchievements);
 			} catch (error) {
 				console.warn('Failed to parse saved achievements:', error);
-			}
-		}
 	}, []);
 	React.useEffect(() => {
 		localStorage.setItem('faq-gamification-progress', JSON.stringify(progress));
@@ -275,7 +267,6 @@ export function FAQGamificationSystem({
 					...prev,
 					readingTimeMinutes: prev.readingTimeMinutes + 1,
 				}));
-			}
 		}, 60000);
 		return () => clearInterval(interval);
 	}, [sessionStartTime]);
@@ -285,13 +276,11 @@ export function FAQGamificationSystem({
 				if (enableNotifications) {
 					setNewAchievement(achievement);
 					setShowAchievementModal(true);
-				}
 				return {
 					...achievement,
 					unlocked: true,
 					unlockedDate: new Date().toISOString(),
 				};
-			}
 			return achievement;
 		});
 		const newlyUnlocked = updatedAchievements.filter(
@@ -306,8 +295,6 @@ export function FAQGamificationSystem({
 					totalPoints: prev.totalPoints + bonusPoints,
 					level: Math.floor((prev.totalPoints + bonusPoints) / 100) + 1,
 				}));
-			}
-		}
 	}, [progress, achievements, enableNotifications]);
 	const handleQuestionRead = React.useCallback(
 		(questionId: string, readingTime: number = 1) => {
@@ -342,7 +329,6 @@ export function FAQGamificationSystem({
 					helpfulVotes: prev.helpfulVotes + 1,
 					totalPoints: prev.totalPoints + 5,
 				}));
-			}
 			onHelpfulVote?.(questionId, isHelpful);
 		},
 		[onHelpfulVote],
@@ -375,20 +361,12 @@ export function FAQGamificationSystem({
 		(unlockedAchievements.length / achievements.length) * 100;
 	if (compact) {
 		return (
-			<divdiv
+			<div
 				className={`fixed bottom-4 right-4 z-50 ${className}`}
-					opacity: 0,
 					scale: 0.8,
-					y: 20,
-				}}
-					opacity: 1,
 					scale: 1,
-					y: 0,
-				}}
-					duration: 0.5,
 					type: 'spring',
 					stiffness: 200,
-				}}>
 				<Button
 					onClick={() => setShowProgressPanel(!showProgressPanel)}
 					className='bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-full w-14 h-14 p-0'
@@ -401,21 +379,10 @@ export function FAQGamificationSystem({
 
 				<AnimatePresence>
 					{showProgressPanel && (
-						<divdiv
-								opacity: 0,
+						<div
 								scale: 0.9,
-								x: 20,
-							}}
-								opacity: 1,
 								scale: 1,
-								x: 0,
-							}}
-								opacity: 0,
 								scale: 0.9,
-								x: 20,
-							}}
-								duration: 0.3,
-							}}
 							className='absolute bottom-16 right-0 w-80'>
 							<Card className='bg-white/95 backdrop-blur-sm border-2 border-amber-200 shadow-xl'>
 								<CardHeader className='pb-3'>
@@ -443,9 +410,9 @@ export function FAQGamificationSystem({
 												Level {progress.level}
 											</span>
 										</div>
-										<divdiv className='text-lg font-semibold text-amber-600'>
+										<div className='text-lg font-semibold text-amber-600'>
 											{animatedPoints.get()} points
-										</divdiv>
+										</div>
 										<Progress
 											value={levelProgress.get()}
 											className='h-2 mt-2'
@@ -485,26 +452,17 @@ export function FAQGamificationSystem({
 									)}
 								</CardContent>
 							</Card>
-						</divdiv>
+						</div>
 					)}
 				</AnimatePresence>
-			</divdiv>
+			</div>
 		);
-	}
 	return (
 		<>
-			<divdiv
+			<div
 				className={`bg-gradient-to-br from-white via-slate-50 to-white border-2 border-slate-200 rounded-3xl shadow-xl p-6 lg:p-8 ${className}`}
-					opacity: 0,
-					y: 20,
-				}}
-					opacity: 1,
-					y: 0,
-				}}
-					duration: 0.6,
 					type: 'spring',
 					stiffness: 100,
-				}}>
 				<div className='flex items-center justify-between mb-8'>
 					<div>
 						<HeadingText variant="primary" level={2} className="text-slate-900 mb-2" responsive>
@@ -525,11 +483,11 @@ export function FAQGamificationSystem({
 								Level {progress.level}
 							</TitleText>
 						</div>
-						<divdiv>
+						<div>
 							<BodyText variant="large" className="font-semibold text-amber-600">
 								{animatedPoints.get()} points
 							</BodyText>
-						</divdiv>
+						</div>
 					</div>
 				</div>
 
@@ -547,7 +505,7 @@ export function FAQGamificationSystem({
 								<Badge
 									variant='outline'
 									className='text-xs'>
-									{progress.totalQuestionsRead}/{totalQuestions}
+		{progress.totalQuestionsRead}/{totalQuestions}
 								</Badge>
 							</div>
 							<Progress
@@ -573,7 +531,7 @@ export function FAQGamificationSystem({
 								<Badge
 									variant='outline'
 									className='text-xs'>
-									{progress.categoriesCompleted.length}/{totalCategories}
+		{progress.categoriesCompleted.length}/{totalCategories}
 								</Badge>
 							</div>
 							<Progress
@@ -599,7 +557,7 @@ export function FAQGamificationSystem({
 								<Badge
 									variant='outline'
 									className='text-xs'>
-									{progress.streakDays} days
+		{progress.streakDays} days
 								</Badge>
 							</div>
 							<div className='text-2xl font-bold text-orange-600 mb-2'>
@@ -621,23 +579,16 @@ export function FAQGamificationSystem({
 						<Badge
 							variant='secondary'
 							className='text-sm'>
-							{Math.round(completionPercentage)}% complete
+		{Math.round(completionPercentage)}% complete
 						</Badge>
 					</div>
 
 					<div className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
 						{achievements.slice(0, 8).map((achievement, index) => (
-							<divdiv
+							<div
 								key={achievement.id}
-									opacity: 0,
 									scale: 0.9,
-								}}
-									opacity: 1,
 									scale: 1,
-								}}
-									duration: 0.3,
-									delay: index * 0.1,
-								}}
 								className={`p-4 rounded-xl border-2 transition-all duration-300 ${achievement.unlocked ? 'bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200 shadow-md' : 'bg-slate-50 border-slate-200 opacity-60'}`}>
 								<div className='text-center'>
 									<div
@@ -653,11 +604,11 @@ export function FAQGamificationSystem({
 									</div>
 									<h4
 										className={`font-semibold text-sm mb-1 ${achievement.unlocked ? 'text-slate-900' : 'text-slate-500'}`}>
-										{achievement.title}
+		{achievement.title}
 									</h4>
 									<p
 										className={`text-xs ${achievement.unlocked ? 'text-slate-600' : 'text-slate-400'}`}>
-										{achievement.description}
+		{achievement.description}
 									</p>
 									{achievement.unlocked && (
 										<div className='mt-2'>
@@ -670,7 +621,7 @@ export function FAQGamificationSystem({
 										</div>
 									)}
 								</div>
-							</divdiv>
+							</div>
 						))}
 					</div>
 				</div>
@@ -701,35 +652,18 @@ export function FAQGamificationSystem({
 						<div className='text-sm text-slate-600'>Shares</div>
 					</div>
 				</div>
-			</divdiv>
+			</div>
 
 			<AnimatePresence>
 				{showAchievementModal && newAchievement && (
-					<divdiv
-							opacity: 0,
-						}}
-							opacity: 1,
-						}}
-							opacity: 0,
-						}}
+					<div
 						className='fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4'
 						onClick={() => setShowAchievementModal(false)}>
-						<divdiv
-								opacity: 0,
+						<div
 								scale: 0.8,
-								y: 20,
-							}}
-								opacity: 1,
 								scale: 1,
-								y: 0,
-							}}
-								opacity: 0,
 								scale: 0.8,
-								y: 20,
-							}}
-								duration: 0.3,
 								type: 'spring',
-							}}
 							className='bg-white rounded-3xl p-8 max-w-md mx-auto text-center shadow-2xl'
 							onClick={(e) => e.stopPropagation()}>
 							<div className='mb-6'>
@@ -757,15 +691,14 @@ export function FAQGamificationSystem({
 								className='w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white font-semibold py-3'>
 								Continue Exploring
 							</Button>
-						</divdiv>
-					</divdiv>
+						</div>
+					</div>
 				)}
 			</AnimatePresence>
 
 			<div
 				style={{
 					display: 'none',
-				}}>
 				{React.createElement('div', {
 					'data-handlers': JSON.stringify({
 						onQuestionRead: handleQuestionRead,
@@ -778,4 +711,3 @@ export function FAQGamificationSystem({
 			</div>
 		</>
 	);
-}

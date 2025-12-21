@@ -23,7 +23,6 @@ const OrganizationSchema: React.FC = () => {
 				addressRegion: 'Greater London',
 				postalCode: 'W1K',
 				addressCountry: 'GB',
-			}}
 			contactPoint={[
 				{
 					telephone: '+44-20-7123-4567',
@@ -62,7 +61,6 @@ const OrganizationSchema: React.FC = () => {
 			numberOfEmployees={{
 				minValue: 50,
 				maxValue: 100,
-			}}
 			priceRange='£££'
 			currenciesAccepted={['GBP']}
 			paymentAccepted={['Credit Card', 'Debit Card', 'Bank Transfer', 'PayPal']}
@@ -85,11 +83,9 @@ const LocalBusinessSchema: React.FC = () => {
 				addressRegion: 'Greater London',
 				postalCode: 'W1K',
 				addressCountry: 'GB',
-			}}
 			geo={{
 				latitude: '51.5074',
 				longitude: '-0.1278',
-			}}
 			images={[
 				'https://myprivatetutoronline.co.uk/images/hero/hero-main.webp',
 				'https://myprivatetutoronline.co.uk/images/about/royal-endorsement.webp',
@@ -112,7 +108,6 @@ const LocalBusinessSchema: React.FC = () => {
 			aggregateRating={{
 				ratingValue: '4.9',
 				ratingCount: '247',
-			}}
 			review={[
 				{
 					reviewRating: {
@@ -135,7 +130,6 @@ interface CourseSchemaProps {
 	subject: string;
 	level: string;
 	duration?: string;
-}
 const CourseSchema: React.FC<CourseSchemaProps> = ({
 	courseName,
 	courseDescription,
@@ -150,7 +144,6 @@ const CourseSchema: React.FC<CourseSchemaProps> = ({
 			provider={{
 				name: 'My Private Tutor Online',
 				url: 'https://myprivatetutoronline.co.uk',
-			}}
 			teaches={[subject]}
 			timeRequired={duration}
 			courseMode='Online'
@@ -159,21 +152,18 @@ const CourseSchema: React.FC<CourseSchemaProps> = ({
 				name: 'Expert Oxbridge Tutors',
 				description:
 					'PhD-qualified tutors from Oxford and Cambridge universities with proven track records in elite education.',
-			}}
 			offers={{
 				price: '150.00',
 				priceCurrency: 'GBP',
 				availability: 'InStock',
 				url: `https://myprivatetutoronline.co.uk/subject-tuition/${subject.toLowerCase()}`,
 				validFrom: new Date().toISOString(),
-			}}
 			hasCourseInstance={{
 				courseMode: 'Online',
 				courseWorkload: 'PT3H',
 				instructor: {
 					name: 'Oxbridge Specialist Tutors',
 				},
-			}}
 		/>
 	);
 };
@@ -183,7 +173,6 @@ interface WebPageSchemaProps {
 	pageUrl: string;
 	lastReviewed?: string;
 	pageType?: 'HomePage' | 'AboutPage' | 'ContactPage' | 'ServicePage';
-}
 const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 	pageTitle,
 	pageDescription,
@@ -199,7 +188,6 @@ const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 			reviewedBy={{
 				type: 'Organization',
 				name: 'My Private Tutor Online Editorial Team',
-			}}
 			mainEntity={{
 				'@type': pageType,
 				name: pageTitle,
@@ -211,7 +199,6 @@ const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 					name: 'My Private Tutor Online',
 					url: 'https://myprivatetutoronline.co.uk',
 				},
-			}}
 			breadcrumb={{
 				'@type': 'BreadcrumbList',
 				itemListElement: [
@@ -228,7 +215,6 @@ const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 						item: pageUrl,
 					},
 				],
-			}}
 		/>
 	);
 };
@@ -263,7 +249,6 @@ interface SchemaMarkupProps {
 	includeOrganization?: boolean;
 	includeLocalBusiness?: boolean;
 	includeSocialProfile?: boolean;
-}
 export const SchemaMarkup: React.FC<SchemaMarkupProps> = ({
 	pageTitle,
 	pageDescription,

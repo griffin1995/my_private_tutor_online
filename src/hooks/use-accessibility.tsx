@@ -70,7 +70,6 @@ const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
 							focusedIndex > 0 ? focusedIndex - 1
 							: loop ? items.length - 1
 							: 0;
-					}
 					break;
 				case 'ArrowDown':
 					if (orientation !== 'horizontal') {
@@ -79,7 +78,6 @@ const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
 							focusedIndex < items.length - 1 ? focusedIndex + 1
 							: loop ? 0
 							: items.length - 1;
-					}
 					break;
 				case 'ArrowLeft':
 					if (orientation !== 'vertical') {
@@ -88,7 +86,6 @@ const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
 							focusedIndex > 0 ? focusedIndex - 1
 							: loop ? items.length - 1
 							: 0;
-					}
 					break;
 				case 'ArrowRight':
 					if (orientation !== 'vertical') {
@@ -97,7 +94,6 @@ const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
 							focusedIndex < items.length - 1 ? focusedIndex + 1
 							: loop ? 0
 							: items.length - 1;
-					}
 					break;
 				case 'Home':
 					event.preventDefault();
@@ -114,14 +110,10 @@ const useKeyboardNavigation = <T extends HTMLElement = HTMLElement>(
 						const item = items[focusedIndex];
 						if (item) {
 							onSelect?.(item, focusedIndex);
-						}
-					}
 					break;
-			}
 			if (newIndex !== focusedIndex && newIndex >= 0 && newIndex < items.length) {
 				setFocusedIndex(newIndex);
 				items[newIndex]?.focus();
-			}
 		},
 		[focusedIndex, items, orientation, loop, onSelect],
 	);

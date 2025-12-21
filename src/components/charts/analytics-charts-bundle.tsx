@@ -27,7 +27,6 @@ interface AnalyticsChartsProps {
   readonly showRadialChart?: boolean;
   readonly data?: any[];
   readonly className?: string;
-}
 
 export const AnalyticsChartsBundle: React.FC<AnalyticsChartsProps> = ({
   showPieChart = true,

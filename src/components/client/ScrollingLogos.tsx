@@ -13,11 +13,9 @@ interface Logo {
 	width: number;
 	height: number;
 	title: string;
-}
 
 interface ScrollingLogosProps {
 	logos: Logo[];
-}
 
 export function ScrollingLogos({ logos }: ScrollingLogosProps) {
 	// Intersection observer for performance optimization
@@ -38,7 +36,6 @@ export function ScrollingLogos({ logos }: ScrollingLogosProps) {
 					'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
 				WebkitMaskRepeat: 'no-repeat',
 				maskRepeat: 'no-repeat',
-			}}>
 			<div className='flex gap-8 sm:gap-12 whitespace-nowrap'>
 				{logos.concat(logos).map((logo, index) => (
 					<div
@@ -59,4 +56,3 @@ export function ScrollingLogos({ logos }: ScrollingLogosProps) {
 			</div>
 		</div>
 	);
-}

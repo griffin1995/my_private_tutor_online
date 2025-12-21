@@ -15,7 +15,6 @@ interface NextWebVitalsMetric {
 	navigationType: string;
 	rating: 'good' | 'needs-improvement' | 'poor';
 	value: number;
-}
 const PERFORMANCE_BUDGETS = {
 	javascriptBudget: 300,
 	cssBudget: 100,
@@ -33,7 +32,6 @@ interface CustomEventData {
 	value?: number;
 	metadata?: Record<string, string | number | boolean>;
 	timestamp: number;
-}
 function WebVitalsReporter() {
 	const metricsBuffer = useRef<NextWebVitalsMetric[]>([]);
 	const customEventsBuffer = useRef<CustomEventData[]>([]);
@@ -43,7 +41,6 @@ function WebVitalsReporter() {
 		metricsBuffer.current.push(metric as NextWebVitalsMetric);
 		if (metric.rating === 'poor') {
 			handlePoorPerformance(metric as NextWebVitalsMetric);
-		}
 		checkPerformanceBudgets(metric as NextWebVitalsMetric);
 		if (process.env.NODE_ENV === 'development') {
 			console.log('[Web Vitals]', {
@@ -53,7 +50,6 @@ function WebVitalsReporter() {
 				delta: metric.delta,
 				id: metric.id,
 			});
-		}
 	});
 	const handlePoorPerformance = useCallback((metric: NextWebVitalsMetric) => {
 		const alert = {
@@ -83,25 +79,20 @@ function WebVitalsReporter() {
 					violations.push(
 						`LCP exceeded budget: ${metric.value}ms > ${PERFORMANCE_BUDGETS.firstMeaningfulPaint}ms`,
 					);
-				}
 				break;
 			case 'FID':
 			case 'INP':
 				if (metric.value > 100) {
 					violations.push(`Interaction delay exceeded: ${metric.value}ms > 100ms`);
-				}
 				break;
 			case 'CLS':
 				if (metric.value > 0.1) {
 					violations.push(`Layout shift exceeded: ${metric.value} > 0.1`);
-				}
 				break;
 			case 'TTFB':
 				if (metric.value > 600) {
 					violations.push(`Server response slow: ${metric.value}ms > 600ms`);
-				}
 				break;
-		}
 		if (violations.length > 0) {
 			customEventsBuffer.current.push({
 				event: 'performance_budget_violation',
@@ -112,7 +103,6 @@ function WebVitalsReporter() {
 				},
 				timestamp: Date.now(),
 			});
-		}
 	}, []);
 	const trackCustomEvent = useCallback(
 		(
@@ -135,7 +125,6 @@ function WebVitalsReporter() {
 			customEventsBuffer.current.length === 0
 		) {
 			return;
-		}
 		const payload = {
 			sessionId: sessionId.current,
 			metrics: [...metricsBuffer.current],
@@ -161,7 +150,6 @@ function WebVitalsReporter() {
 			});
 		} catch (error) {
 			console.error('Failed to report metrics:', error);
-		}
 	}, []);
 	const getConnectionInfo = () => {
 		if ('connection' in navigator) {
@@ -172,7 +160,6 @@ function WebVitalsReporter() {
 				rtt: conn?.rtt,
 				saveData: conn?.saveData,
 			};
-		}
 		return null;
 	};
 	useEffect(() => {
@@ -194,8 +181,6 @@ function WebVitalsReporter() {
 						decodedBodySize: navigation.decodedBodySize,
 					},
 				);
-			}
-		}
 		const observer = new PerformanceObserver((list) => {
 			for (const entry of list.getEntries()) {
 				if (entry.entryType === 'resource') {
@@ -209,7 +194,6 @@ function WebVitalsReporter() {
 							url: resource.name,
 							budget: PERFORMANCE_BUDGETS.javascriptBudget,
 						});
-					}
 					if (
 						resource.name.includes('.css') &&
 						resource.transferSize > PERFORMANCE_BUDGETS.cssBudget * 1024
@@ -219,9 +203,6 @@ function WebVitalsReporter() {
 							url: resource.name,
 							budget: PERFORMANCE_BUDGETS.cssBudget,
 						});
-					}
-				}
-			}
 		});
 		try {
 			observer.observe({
@@ -229,7 +210,6 @@ function WebVitalsReporter() {
 			});
 		} catch (e) {
 			console.warn('Some performance entry types not supported:', e);
-		}
 		reportingInterval.current = setInterval(reportMetrics, 10000);
 		const handleUnload = () => {
 			reportMetrics();
@@ -240,7 +220,6 @@ function WebVitalsReporter() {
 		return () => {
 			if (reportingInterval.current) {
 				clearInterval(reportingInterval.current);
-			}
 			window.removeEventListener('beforeunload', handleUnload);
 			window.removeEventListener('pagehide', handleUnload);
 			observer.disconnect();
@@ -254,7 +233,6 @@ function WebVitalsReporter() {
 					formId: target.id,
 					formType: target.dataset['formType'],
 				});
-			}
 		});
 		document.addEventListener('click', (e) => {
 			const target = e.target as HTMLElement;
@@ -263,7 +241,6 @@ function WebVitalsReporter() {
 					bootcampType: target.dataset['bootcampType'] || 'unknown',
 					tier: target.dataset['tier'] || 'unknown',
 				});
-			}
 		});
 		const trackServiceTierView = () => {
 			const serviceTiers = document.querySelectorAll('[data-service-tier]');
@@ -275,7 +252,6 @@ function WebVitalsReporter() {
 								tier: (entry.target as HTMLElement).dataset['serviceTier'] || 'unknown',
 							});
 							observer.unobserve(entry.target);
-						}
 					});
 				});
 				observer.observe(tier);
@@ -285,10 +261,8 @@ function WebVitalsReporter() {
 			document.addEventListener('DOMContentLoaded', trackServiceTierView);
 		} else {
 			trackServiceTierView();
-		}
 	};
 	return null;
-}
 export const performanceUtils = {
 	measureRenderTime: (componentName: string) => {
 		const startMark = `${componentName}_render_start`;
@@ -304,7 +278,6 @@ export const performanceUtils = {
 					console.log(
 						`[Performance] ${componentName} rendered in ${measure.duration.toFixed(2)}ms`,
 					);
-				}
 			},
 		};
 	},
@@ -314,7 +287,6 @@ export const performanceUtils = {
 			console.warn(
 				`[Performance Budget] ${metric} exceeded: ${value} > ${budget}`,
 			);
-		}
 		return exceeded;
 	},
 	getPerformanceSummary: () => {

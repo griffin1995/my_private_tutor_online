@@ -26,7 +26,6 @@ interface HeroVideoDialogProps {
 	className?: string;
 	isFree?: boolean;
 	borderColor?: 'blue' | 'gold' | 'primary' | 'accent';
-}
 
 const animationVariants = {
 	'from-bottom': {
@@ -127,8 +126,6 @@ function HeroVideoDialog({
 						onKeyDown={(e) => {
 							if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
 								setIsVideoOpen(false);
-							}
-						}}
 						onClick={() => setIsVideoOpen(false)}>
 						<div
 							{...selectedAnimation}
@@ -165,6 +162,5 @@ function HeroVideoDialog({
 			</AnimatePresence>
 		</div>
 	);
-}
 
 export default HeroVideoDialog;

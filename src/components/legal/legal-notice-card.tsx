@@ -9,7 +9,6 @@ interface LegalNoticeCardProps {
 	children: ReactNode;
 	variant?: 'warning' | 'info' | 'success' | 'error';
 	className?: string;
-}
 
 /**
  * Standardised notice card component for legal pages
@@ -53,15 +52,13 @@ export function LegalNoticeCard({
 			iconColor: 'text-red-600',
 			titleColor: 'text-red-800',
 			textColor: 'text-red-800'
-		}
 	};
 
 	const styles = variantStyles[variant];
 	const IconComponent = styles.icon;
 
 	return (
-		<divdiv
-			viewport={{ once: true }}>
+		<div>
 			<Card className={`p-8 my-12 ${styles.background} border-2 ${styles.border} shadow-xl ${className}`}>
 				<div className='flex items-start gap-4'>
 					<IconComponent className={`w-8 h-8 ${styles.iconColor} flex-shrink-0 mt-1`} />
@@ -75,6 +72,5 @@ export function LegalNoticeCard({
 					</div>
 				</div>
 			</Card>
-		</divdiv>
+		</div>
 	);
-}

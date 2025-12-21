@@ -22,7 +22,6 @@ interface SearchResult {
 		question: string;
 		answer: string;
 	};
-}
 interface SearchResponse {
 	results: SearchResult[];
 	metadata: {
@@ -31,7 +30,6 @@ interface SearchResponse {
 		executionTime: number;
 		cached: boolean;
 	};
-}
 const ITEMS_PER_PAGE = 20;
 const VIRTUAL_SCROLL_THRESHOLD = 100;
 export function FAQEdgeSearch() {
@@ -41,7 +39,7 @@ export function FAQEdgeSearch() {
 	const [metadata, setMetadata] = useState<SearchResponse['metadata'] | null>(
 		null,
 	);
-	const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+	const [expandedItems, setExpandedItems] = useState<Set<string>(new Set());
 	const [hasMore, setHasMore] = useState(false);
 	const [offset, setOffset] = useState(0);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -53,13 +51,11 @@ export function FAQEdgeSearch() {
 			setMetadata(null);
 			setHasMore(false);
 			return;
-		}
 		if (loadingMoreRef.current && searchOffset > 0) return;
 		if (searchOffset === 0) {
 			setLoading(true);
 		} else {
 			loadingMoreRef.current = true;
-		}
 		try {
 			const params = new URLSearchParams({
 				q: query,
@@ -74,13 +70,11 @@ export function FAQEdgeSearch() {
 			});
 			if (!response.ok) {
 				throw new Error('Search request failed');
-			}
 			const data: SearchResponse = await response.json();
 			if (searchOffset === 0) {
 				setResults(data.results);
 			} else {
 				setResults((prev) => [...prev, ...data.results]);
-			}
 			setMetadata(data.metadata);
 			setHasMore(data.metadata.totalResults > searchOffset + data.results.length);
 			setOffset(searchOffset + data.results.length);
@@ -88,7 +82,6 @@ export function FAQEdgeSearch() {
 				console.warn(
 					`FAQ search took ${data.metadata.executionTime}ms (target: <100ms)`,
 				);
-			}
 		} catch (error) {
 			console.error('Search error:', error);
 			setResults([]);
@@ -96,7 +89,6 @@ export function FAQEdgeSearch() {
 		} finally {
 			setLoading(false);
 			loadingMoreRef.current = false;
-		}
 	}, []);
 	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchQuery(e.target.value);
@@ -109,7 +101,6 @@ export function FAQEdgeSearch() {
 				next.delete(id);
 			} else {
 				next.add(id);
-			}
 			return next;
 		});
 	};
@@ -118,7 +109,6 @@ export function FAQEdgeSearch() {
 		const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current;
 		if (scrollHeight - scrollTop - clientHeight < VIRTUAL_SCROLL_THRESHOLD) {
 			performSearch(debouncedQuery, offset);
-		}
 	}, [debouncedQuery, offset, hasMore, performSearch]);
 	useEffect(() => {
 		if (debouncedQuery) {
@@ -127,7 +117,6 @@ export function FAQEdgeSearch() {
 		} else {
 			setResults([]);
 			setMetadata(null);
-		}
 	}, [debouncedQuery, performSearch]);
 	useEffect(() => {
 		const container = scrollContainerRef.current;
@@ -212,7 +201,7 @@ export function FAQEdgeSearch() {
 										<CaptionText
 											variant="muted"
 											className='mt-1'>
-											{result.category.title}
+		{result.category.title}
 										</CaptionText>
 									</div>
 									{result.question.featured && (
@@ -256,4 +245,3 @@ export function FAQEdgeSearch() {
 			</div>
 		</div>
 	);
-}

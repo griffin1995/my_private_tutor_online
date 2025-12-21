@@ -13,13 +13,11 @@ interface VideoMasterclassSectionProps {
 	readonly videoId?: string;
 	readonly layout: 'text-left' | 'text-right';
 	readonly className?: string;
-}
 interface VideoModalProps {
 	readonly videoUrl: string;
 	readonly thumbnailUrl: string;
 	readonly alt: string;
 	readonly watchCirclePosition: string;
-}
 function VideoModal({
 	videoUrl,
 	thumbnailUrl,
@@ -47,7 +45,6 @@ function VideoModal({
 								alt={alt}
 								style={{
 									aspectRatio: '16/9',
-								}}
 								className='w-full h-full object-cover'
 							/>
 
@@ -73,7 +70,6 @@ function VideoModal({
 						className='relative w-full'
 						style={{
 							aspectRatio: '16/9',
-						}}>
 						{videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') ?
 							<iframe
 								src={videoUrl}
@@ -90,13 +86,11 @@ function VideoModal({
 								playsInline
 								preload='metadata'
 							/>
-						}
 					</div>
 				</Dialog.Content>
 			</Dialog.Portal>
 		</Dialog.Root>
 	);
-}
 export function VideoMasterclassSection({
 	video: directVideo,
 	videoId,
@@ -114,7 +108,6 @@ export function VideoMasterclassSection({
 			thumbnailUrl: videoData.thumbnailImage,
 			backgroundImage: videoData.backgroundImage,
 			alt: videoData.title,
-			duration: String(videoData.duration),
 			author: 'Elizabeth Burrows',
 			isFree: !videoData.isPaid,
 			price: videoData.isPaid ? 'Premium Content' : undefined,
@@ -151,13 +144,11 @@ export function VideoMasterclassSection({
 			console.log('  videoUrl length:', transformedVideo.videoUrl?.length || 0);
 			console.log('  videoUrl trimmed:', transformedVideo.videoUrl?.trim());
 			console.groupEnd();
-		}
 	} else if (videoId) {
 		transformedVideo = getMasterclassVideo(videoId);
 		if (!transformedVideo) {
 			console.error(`Video not found for videoId: "${videoId}"`);
 			return null;
-		}
 		if (DEBUG_MODE) {
 			console.group(
 				'\n============================================================\n📍 PHASE 1: VideoMasterclassSection Legacy Lookup\n============================================================',
@@ -166,19 +157,16 @@ export function VideoMasterclassSection({
 			console.log('📊 Video ID:', videoId);
 			console.log('📊 Retrieved Video:', transformedVideo);
 			console.groupEnd();
-		}
 	} else {
 		console.error(
 			"VideoMasterclassSection requires either 'video' or 'videoId' prop",
 		);
 		return null;
-	}
 	const video = transformedVideo;
 	const layoutData = video?.layouts?.videoPage;
 	if (!layoutData) {
 		console.error(`Layout data not found for video`);
 		return null;
-	}
 	const {
 		videoUrl,
 		thumbnailUrl,
@@ -204,7 +192,6 @@ export function VideoMasterclassSection({
 		console.log('  isFree:', isFree);
 		console.log('  backgroundImage:', backgroundImage);
 		console.groupEnd();
-	}
 	const { badge, content, animationStyle } = layoutData;
 	const isTextLeft = layout === 'text-left';
 	const textAlignment = isTextLeft ? '' : 'text-right';
@@ -219,12 +206,10 @@ export function VideoMasterclassSection({
 			className={`relative grid md:grid-cols-2 gap-8 items-center bg-cover bg-center bg-no-repeat ${className}`}
 			style={{
 				backgroundImage: `url('${backgroundImage}')`,
-			}}>
 			<div
 				className='absolute inset-0 z-0'
 				style={{
 					background: `radial-gradient(circle at ${isTextLeft ? 'bottom left' : 'bottom right'}, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 80%, transparent 90%)`,
-				}}
 			/>
 			{(
 				(() => {
@@ -242,7 +227,6 @@ export function VideoMasterclassSection({
 							shouldShowVideo ? 'VISIBLE ✅' : 'HIDDEN ❌',
 						);
 						console.groupEnd();
-					}
 					return shouldShowVideo;
 				})()
 			) ?
@@ -267,8 +251,6 @@ export function VideoMasterclassSection({
 								display: computed.display,
 							});
 							console.groupEnd();
-						}
-					}}>
 					{isFree && videoUrl && videoUrl.trim() !== '' ?
 						<VideoModal
 							videoUrl={videoUrl}
@@ -296,18 +278,15 @@ export function VideoMasterclassSection({
 										className='w-full h-full object-cover drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]'
 										style={{
 											aspectRatio: '16/9',
-										}}
 									/>
 								</div>
 							</div>
 						</a>
-					}
 				</div>
 			:	<div
 					className={`relative z-10 flex justify-center items-center p-8 ${videoGridOrder}`}>
 					<div className='w-full max-w-lg mx-auto h-0'>{}</div>
 				</div>
-			}
 
 			<div
 				className={`relative z-10 w-4/5 mx-auto p-8 ${textAlignment} ${textGridOrder}`}>
@@ -335,7 +314,6 @@ export function VideoMasterclassSection({
 							className='!text-white text-sm font-medium hover:!text-accent-600 hover:underline transition-all duration-300 cursor-pointer'>
 							Purchase
 						</a>
-					}
 				</div>
 
 				<Separator
@@ -353,7 +331,6 @@ export function VideoMasterclassSection({
 							className='text-white mb-4'
 							dangerouslySetInnerHTML={{
 								__html: processedText,
-							}}
 						/>
 					);
 				})}
@@ -365,7 +342,7 @@ export function VideoMasterclassSection({
 						<div
 							key={index}
 							className={`flex items-start space-x-2 ${bulletAlignment}`}>
-							{isTextLeft ?
+		{isTextLeft ?
 								<>
 									<span className='text-white mt-1.5 text-xs'>•</span>
 									<span className='text-white text-sm'>{bulletPoint}</span>
@@ -374,11 +351,9 @@ export function VideoMasterclassSection({
 									<span className='text-white text-sm'>{bulletPoint}</span>
 									<span className='text-white mt-1.5 text-xs'>•</span>
 								</>
-							}
 						</div>
 					))}
 				</div>
 			</div>
 		</div>
 	);
-}

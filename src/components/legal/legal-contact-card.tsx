@@ -8,13 +8,11 @@ interface ContactInfo {
 	address: string;
 	phone?: string;
 	website?: string;
-}
 
 interface LegalContactCardProps {
 	title?: string;
 	contactInfo: ContactInfo;
 	className?: string;
-}
 
 /**
  * Standardised contact card component for legal pages
@@ -26,8 +24,7 @@ export function LegalContactCard({
 	className = ''
 }: LegalContactCardProps) {
 	return (
-		<divdiv
-			viewport={{ once: true }}>
+		<div>
 			<Card className={`p-8 my-12 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 shadow-xl ${className}`}>
 				<div className='flex items-start gap-4'>
 					<CheckCircle className='w-8 h-8 text-green-600 flex-shrink-0 mt-1' />
@@ -60,6 +57,5 @@ export function LegalContactCard({
 					</div>
 				</div>
 			</Card>
-		</divdiv>
+		</div>
 	);
-}

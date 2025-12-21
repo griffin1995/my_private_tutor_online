@@ -26,12 +26,10 @@ interface ConsentState {
   marketing: boolean;
   timestamp: string;
   version: string;
-}
 
 interface CookieConsentManagerProps {
   enableAnalytics?: boolean;
   gaTrackingId?: string;
-}
 
 /**
  * GDPR/PECR compliant cookie consent manager
@@ -50,7 +48,6 @@ export function CookieConsentManager({
       window.dataLayer = window.dataLayer || [];
       function gtag(...args: any[]) {
         window.dataLayer.push(arguments);
-      }
 
       // Set default consent to 'denied' before any analytics loading
       gtag('consent', 'default', {
@@ -103,7 +100,6 @@ export function CookieConsentManager({
           });
         } catch (error) {
           console.error('Failed to log consent:', error);
-        }
       };
 
       // Initialize CookieConsent with GDPR-compliant configuration
@@ -321,13 +317,11 @@ export function CookieConsentManager({
       });
 
       setIsLoaded(true);
-    }
 
     // Cleanup on unmount
     return () => {
       if (typeof window !== 'undefined' && CookieConsent.reset) {
         CookieConsent.reset(true);
-      }
     };
   }, [enableAnalytics, gaTrackingId]);
 
@@ -352,22 +346,18 @@ export function CookieConsentManager({
         --cc-cookie-category-block-border: theme(colors.slate.200);
         --cc-separator-border-color: theme(colors.slate.200);
         font-family: theme(fontFamily.sans);
-      }
 
       .cc__main .cc__title {
         font-family: theme(fontFamily.serif);
         font-weight: 700;
-      }
 
       .cc__main .cm__body {
         border-radius: theme(borderRadius.lg);
         box-shadow: theme(boxShadow.xl);
-      }
 
       .cc__main .pm__body {
         border-radius: theme(borderRadius.lg);
         box-shadow: theme(boxShadow.xl);
-      }
 
       /* Ensure equal button prominence for GDPR compliance */
       .cc__main .cm__btn {
@@ -375,25 +365,20 @@ export function CookieConsentManager({
         padding: theme(spacing.2) theme(spacing.4);
         border-radius: theme(borderRadius.md);
         min-width: 120px;
-      }
 
       .cc__main .cm__btn + .cm__btn {
         margin-left: theme(spacing.2);
-      }
 
       /* Mobile responsive adjustments */
       @media (max-width: 640px) {
         .cc__main .cm__body {
           margin: theme(spacing.4);
           max-width: calc(100vw - 2rem);
-        }
 
         .cc__main .cm__btn {
           width: 100%;
           margin-left: 0 !important;
           margin-top: theme(spacing.2);
-        }
-      }
     `;
 
     document.head.appendChild(style);
@@ -401,13 +386,11 @@ export function CookieConsentManager({
     return () => {
       if (document.head.contains(style)) {
         document.head.removeChild(style);
-      }
     };
   }, [isLoaded]);
 
   // Component doesn't render anything - the library handles the UI
   return null;
-}
 
 // Utility functions for checking consent state
 export const cookieConsentUtils = {
@@ -451,7 +434,6 @@ export const cookieConsentUtils = {
       };
     } catch {
       return null;
-    }
   },
 
   /**
@@ -460,7 +442,6 @@ export const cookieConsentUtils = {
   showPreferences: (): void => {
     if (typeof window !== 'undefined') {
       CookieConsent.showPreferences();
-    }
   },
 
   /**
@@ -469,7 +450,6 @@ export const cookieConsentUtils = {
   reset: (): void => {
     if (typeof window !== 'undefined') {
       CookieConsent.reset(true);
-    }
   },
 };
 

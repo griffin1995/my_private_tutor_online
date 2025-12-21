@@ -62,7 +62,6 @@ interface DashboardState {
 	error: string | null;
 	lastUpdated: Date | null;
 	autoRefresh: boolean;
-}
 interface MetricCardProps {
 	title: string;
 	value: string | number;
@@ -70,7 +69,6 @@ interface MetricCardProps {
 	icon: React.ElementType;
 	trend?: 'up' | 'down' | 'stable';
 	color?: 'blue' | 'green' | 'red' | 'gold';
-}
 const MetricCard: React.FC<MetricCardProps> = ({
 	title,
 	value,
@@ -131,7 +129,6 @@ const AlertsSection: React.FC<{
 				return 'default';
 			default:
 				return 'default';
-		}
 	};
 	const getAlertIcon = (type: string) => {
 		switch (type) {
@@ -143,7 +140,6 @@ const AlertsSection: React.FC<{
 				return Target;
 			default:
 				return AlertTriangle;
-		}
 	};
 	return (
 		<div className='space-y-4'>
@@ -494,7 +490,6 @@ const TestimonialsExecutiveDashboard: React.FC = () => {
 		} else if (refreshInterval) {
 			clearInterval(refreshInterval);
 			setRefreshInterval(null);
-		}
 		return () => {
 			if (refreshInterval) clearInterval(refreshInterval);
 		};
@@ -529,7 +524,6 @@ const TestimonialsExecutiveDashboard: React.FC = () => {
 				error:
 					error instanceof Error ? error.message : 'Failed to load dashboard data',
 			}));
-		}
 	};
 	const toggleAutoRefresh = () => {
 		setState((prev) => ({
@@ -546,7 +540,6 @@ const TestimonialsExecutiveDashboard: React.FC = () => {
 				</div>
 			</div>
 		);
-	}
 	if (state.error) {
 		return (
 			<Alert variant='destructive'>
@@ -564,7 +557,6 @@ const TestimonialsExecutiveDashboard: React.FC = () => {
 				</AlertDescription>
 			</Alert>
 		);
-	}
 	const { dashboardData, performanceMetrics, roiAnalysis, aiInsights } = state;
 	return (
 		<div className='space-y-6'>
@@ -609,7 +601,6 @@ const TestimonialsExecutiveDashboard: React.FC = () => {
 							: dashboardData.overview.trendDirection === 'decreasing' ?
 								'down'
 							:	'stable'
-						}
 						color='blue'
 					/>
 					<MetricCard
@@ -665,7 +656,7 @@ const TestimonialsExecutiveDashboard: React.FC = () => {
 				<TabsContent
 					value='overview'
 					className='space-y-6'>
-					{performanceMetrics && (
+		{performanceMetrics && (
 						<Card>
 							<CardHeader>
 								<CardTitle>Performance Trends</CardTitle>
@@ -681,7 +672,7 @@ const TestimonialsExecutiveDashboard: React.FC = () => {
 				<TabsContent
 					value='performance'
 					className='space-y-6'>
-					{dashboardData && (
+		{dashboardData && (
 						<div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
 							<Card>
 								<CardHeader>

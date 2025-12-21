@@ -25,7 +25,6 @@ interface DashboardChartsProps {
   readonly type: 'testimonials' | 'faq' | 'client-success';
   readonly data?: any[];
   readonly className?: string;
-}
 
 export const DashboardChartsBundle: React.FC<DashboardChartsProps> = ({
   type,

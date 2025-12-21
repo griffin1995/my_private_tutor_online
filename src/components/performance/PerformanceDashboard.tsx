@@ -15,20 +15,18 @@ interface PerformanceMetric {
 	rating: 'good' | 'needs-improvement' | 'poor';
 	threshold: number;
 	description: string;
-}
 interface DashboardProps {
 	className?: string;
 	showDetails?: boolean;
 	autoRefresh?: boolean;
 	refreshInterval?: number;
-}
 export function PerformanceDashboard({
 	className = '',
 	showDetails = true,
 	autoRefresh = true,
 	refreshInterval = 5000,
 }: DashboardProps) {
-	const [metrics, setMetrics] = useState<Record<MetricName, WebVitalsData>>(
+	const [metrics, setMetrics] = useState<Record<MetricName, WebVitalsData>(
 		{} as Record<MetricName, WebVitalsData>,
 	);
 	const [navigationMetrics, setNavigationMetrics] = useState<
@@ -55,11 +53,9 @@ export function PerformanceDashboard({
 			setOverallRating('needs-improvement');
 		} else {
 			setOverallRating('good');
-		}
 		const navSummary = performanceUtils.getPerformanceSummary();
 		if (navSummary) {
 			setNavigationMetrics(navSummary);
-		}
 		if (window.performance) {
 			const resources = performance.getEntriesByType(
 				'resource',
@@ -69,7 +65,6 @@ export function PerformanceDashboard({
 				{
 					count: number;
 					size: number;
-				}
 			>();
 			resources.forEach((resource) => {
 				let type = 'other';
@@ -95,7 +90,6 @@ export function PerformanceDashboard({
 					size: data.size,
 				})),
 			);
-		}
 		setLastUpdated(new Date());
 	}, []);
 	useEffect(() => {
@@ -103,12 +97,10 @@ export function PerformanceDashboard({
 		if (autoRefresh) {
 			const interval = setInterval(updateMetrics, refreshInterval);
 			return () => clearInterval(interval);
-		}
 	}, [updateMetrics, autoRefresh, refreshInterval]);
 	const formatValue = (name: MetricName, value: number): string => {
 		if (name === 'CLS') {
 			return value.toFixed(3);
-		}
 		return `${Math.round(value)}ms`;
 	};
 	const getMetricDescription = (name: MetricName): string => {
@@ -131,7 +123,6 @@ export function PerformanceDashboard({
 				return 'text-yellow-700 bg-yellow-50 border-yellow-200';
 			case 'poor':
 				return 'text-red-700 bg-red-50 border-red-200';
-		}
 	};
 	const getRatingEmoji = (
 		rating: 'good' | 'needs-improvement' | 'poor',
@@ -143,7 +134,6 @@ export function PerformanceDashboard({
 				return '⚠️';
 			case 'poor':
 				return '❌';
-		}
 	};
 	const calculatePerformanceScore = (): number => {
 		const metricValues = Object.values(metrics);
@@ -164,7 +154,6 @@ export function PerformanceDashboard({
 	};
 	if (process.env.NODE_ENV !== 'development' && !showDetails) {
 		return null;
-	}
 	return (
 		<div className={`performance-dashboard ${className}`}>
 			<div
@@ -270,7 +259,6 @@ export function PerformanceDashboard({
 										</span>
 									</li>
 								);
-							}
 							return null;
 						})}
 					</ul>
@@ -278,7 +266,6 @@ export function PerformanceDashboard({
 			)}
 		</div>
 	);
-}
 function getRecommendation(name: MetricName, metric: WebVitalsData): string {
 	const recommendations: Record<MetricName, (metric: WebVitalsData) => string> =
 		{
@@ -294,7 +281,6 @@ function getRecommendation(name: MetricName, metric: WebVitalsData): string {
 				`Improve server response time and use CDN for static assets. Current: ${Math.round(divvalue)}ms, Target: <600ms`,
 		};
 	return recommendations[name](metric);
-}
 export const dashboardUtils = {
 	isPerformanceHealthy: (
 		metrics: Record<MetricName, WebVitalsData>,
@@ -312,7 +298,6 @@ export const dashboardUtils = {
 				improvements.push(`${name} could be optimized`);
 			} else {
 				successes.push(`${name} is performing well`);
-			}
 		});
 		return {
 			issues,

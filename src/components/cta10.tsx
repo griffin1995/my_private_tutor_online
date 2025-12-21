@@ -15,7 +15,6 @@ interface Cta10Props {
 			url: string;
 		};
 	};
-}
 
 const Cta10 = ({
 	heading = 'Call to Action',
@@ -38,12 +37,12 @@ const Cta10 = ({
 							level={3}
 							responsive
 							className='mb-3 md:mb-4 lg:mb-6'>
-							{heading}
+		{heading}
 						</HeadingText>
 						<BodyText
 							variant="large"
 							className='text-muted-foreground max-w-xl mx-auto'>
-							{description}
+		{description}
 						</BodyText>
 					</div>
 					<div className='flex justify-center lg:justify-self-end flex-col gap-2'>

@@ -19,7 +19,6 @@ import type { BlogPost } from '../../data/blog-posts';
 interface BlogArticleLayoutProps {
 	post: BlogPost;
 	children: React.ReactNode;
-}
 
 export function BlogArticleLayout({ post, children }: BlogArticleLayoutProps) {
 	const category = blogCategories.find((cat) => cat.id === post.category);
@@ -39,13 +38,11 @@ export function BlogArticleLayout({ post, children }: BlogArticleLayoutProps) {
 			categoryFallback,
 			finalImage: imageToUse
 		});
-	}
 
 	// Get current URL safely on client side
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			setCurrentUrl(window.location.href);
-		}
 	}, []);
 
 	// Get related posts (same category, excluding current post, max 3)
@@ -281,4 +278,3 @@ export function BlogArticleLayout({ post, children }: BlogArticleLayoutProps) {
 			</div>
 		</section>
 	);
-}
