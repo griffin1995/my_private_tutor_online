@@ -62,6 +62,7 @@ const OrganizationSchema: React.FC = () => {
 			numberOfEmployees={{
 				minValue: 50,
 				maxValue: 100,
+			}}
 			priceRange='£££'
 			currenciesAccepted={['GBP']}
 			paymentAccepted={['Credit Card', 'Debit Card', 'Bank Transfer', 'PayPal']}
@@ -134,6 +135,8 @@ interface CourseSchemaProps {
 	subject: string;
 	level: string;
 	duration?: string;
+}
+
 const CourseSchema: React.FC<CourseSchemaProps> = ({
 	courseName,
 	courseDescription,
@@ -148,6 +151,7 @@ const CourseSchema: React.FC<CourseSchemaProps> = ({
 			provider={{
 				name: 'My Private Tutor Online',
 				url: 'https://myprivatetutoronline.co.uk',
+			}}
 			teaches={[subject]}
 			timeRequired={duration}
 			courseMode='Online'
@@ -170,6 +174,7 @@ const CourseSchema: React.FC<CourseSchemaProps> = ({
 				instructor: {
 					name: 'Oxbridge Specialist Tutors',
 				},
+			}}
 		/>
 	);
 };
@@ -196,6 +201,7 @@ const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 			reviewedBy={{
 				type: 'Organization',
 				name: 'My Private Tutor Online Editorial Team',
+			}}
 			mainEntity={{
 				'@type': pageType,
 				name: pageTitle,
@@ -207,6 +213,7 @@ const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 					name: 'My Private Tutor Online',
 					url: 'https://myprivatetutoronline.co.uk',
 				},
+			}}
 			breadcrumb={{
 				'@type': 'BreadcrumbList',
 				itemListElement: [
@@ -223,6 +230,7 @@ const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 						item: pageUrl,
 					},
 				],
+			}}
 		/>
 	);
 };
@@ -257,6 +265,8 @@ interface SchemaMarkupProps {
 	includeOrganization?: boolean;
 	includeLocalBusiness?: boolean;
 	includeSocialProfile?: boolean;
+}
+
 export const SchemaMarkup: React.FC<SchemaMarkupProps> = ({
 	pageTitle,
 	pageDescription,

@@ -194,8 +194,7 @@ export function AboutSectionClient({
 				{/* Recognition Cards Grid - Staggered animation presentation */}
 				<div
 					ref={cardsRef}
-					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'
-					{...staggeredFadeIn}>
+					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'>
 					{recognitionCards
 						.filter((card): card is RecognitionCardData & { contentType: 'logo'; logoImage: { url: string; alt: string } } =>
 							card.contentType === 'logo' && card.logoImage !== undefined

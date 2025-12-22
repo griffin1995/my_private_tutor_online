@@ -1,6 +1,5 @@
 'use client';
 
-import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import { useInView } from 'react-intersection-observer';
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { getTestimonialVideos } from '@/lib/cms/cms-content';
@@ -63,9 +62,9 @@ export function TestimonialsSection({
 		{parentVideo ? (
 											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
-													videoSrc={parentVideo.videoSrc}
-													thumbnailSrc={parentVideo.thumbnailSrc}
-													thumbnailAlt={parentVideo.description}
+													videoSrc={parentVideo.videoSrc || ''}
+													thumbnailSrc={parentVideo.thumbnailSrc || ''}
+													thumbnailAlt={parentVideo.description || ''}
 													className='w-full'
 													animationStyle='from-center'
 												/>
@@ -83,9 +82,9 @@ export function TestimonialsSection({
 		{studentVideo ? (
 											<div className='relative w-full aspect-video'>
 												<HeroVideoDialog
-													videoSrc={studentVideo.videoSrc}
-													thumbnailSrc={studentVideo.thumbnailSrc}
-													thumbnailAlt={studentVideo.description}
+													videoSrc={studentVideo.videoSrc || ''}
+													thumbnailSrc={studentVideo.thumbnailSrc || ''}
+													thumbnailAlt={studentVideo.description || ''}
 													className='w-full'
 													animationStyle='from-center'
 												/>
