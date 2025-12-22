@@ -12,3 +12,4 @@ export default function HowItWorksLayout({
 	children: React.ReactNode;
 }) {
 	return children;
+}

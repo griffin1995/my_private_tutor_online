@@ -62,3 +62,4 @@ export default function ResourcesLayout({
 	children: React.ReactNode;
 }) {
 	return children;
+}

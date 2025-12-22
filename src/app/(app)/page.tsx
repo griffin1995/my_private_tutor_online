@@ -39,6 +39,7 @@ interface RecognitionCardData {
 	footerText?: string;
 	sortOrder: number;
 	status: 'published' | 'unpublished';
+}
 
 // ============================================================================
 // HARDCODED DATA - ALL CMS CONTENT FOR HOMEPAGE
@@ -236,16 +237,19 @@ export default function HomePage() {
 					<div
 						style={{
 							height: 'var(--navbar-height, 5.5rem)',
+						}}
 						className='lg:hidden border-b border-neutral-300'
 					/>
 					<div
 						style={{
 							height: 'var(--navbar-height, 6.25rem)',
+						}}
 						className='hidden lg:block xl:hidden border-b border-neutral-300'
 					/>
 					<div
 						style={{
 							height: 'var(--navbar-height, 7rem)',
+						}}
 						className='hidden xl:block border-b border-neutral-300'
 					/>
 
@@ -339,6 +343,7 @@ export default function HomePage() {
 										ambitious families looking for trusted partners in their child's
 										academic career.
 									</>
+								}
 								author={{
 									name: 'Elizabeth Burrows',
 									role: 'Founder',
@@ -346,6 +351,7 @@ export default function HomePage() {
 										src: '/images/team/elizabeth-burrows-founder-main.jpg',
 										alt: 'Elizabeth Burrows - Founder',
 									},
+								}}
 							/>
 						</div>
 					</section>
@@ -368,3 +374,4 @@ export default function HomePage() {
 			<PageFooter showContactForm={true} />
 		</div>
 	);
+}

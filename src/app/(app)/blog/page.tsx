@@ -35,11 +35,13 @@ function BlogPostCard({ post }: { post: (typeof blogPosts)[0] }) {
 			categoryFallback,
 			finalImage: imageToUse
 		});
+	}
 
 	return (
 		<Link href={`/blog/${post.slug}`}>
-			<divarticle
-				className='group cursor-pointer overflow-hidden border border-neutral-200 hover:shadow-lg transition-shadow mb-6'>
+			<div>
+				<article
+					className='group cursor-pointer overflow-hidden border border-neutral-200 hover:shadow-lg transition-shadow mb-6'>
 				<div className='relative overflow-hidden bg-neutral-800'>
 					{/* Enhanced Image with Fallback Support */}
 					<FallbackImage
@@ -64,9 +66,11 @@ function BlogPostCard({ post }: { post: (typeof blogPosts)[0] }) {
 						<h3 className='typography-h3 text-white text-center'>{post.title}</h3>
 					</div>
 				</div>
-			</divarticle>
+				</article>
+			</div>
 		</Link>
 	);
+}
 
 // Pagination Component
 function Pagination({
@@ -82,6 +86,7 @@ function Pagination({
 		const pages = [];
 		for (let i = 1; i <= totalPages; i++) {
 			pages.push(i);
+		}
 		return pages;
 	};
 
@@ -116,6 +121,7 @@ function Pagination({
 			)}
 		</div>
 	);
+}
 
 // Masonry breakpoint configuration
 const breakpointColumnsObj = {
@@ -177,6 +183,7 @@ export default function BlogPage() {
 								onValueChange={(value) => {
 									setSelectedCategory(value);
 									setCurrentPage(1);
+								}}>
 								<SelectTrigger className='w-full'>
 									<SelectValue placeholder='Select a category' />
 								</SelectTrigger>
@@ -217,6 +224,7 @@ export default function BlogPage() {
 								onClick={() => {
 									setSelectedCategory('all');
 									setCurrentPage(1);
+								}}>
 								View all articles
 							</Button>
 						</div>
@@ -234,3 +242,4 @@ export default function BlogPage() {
 			</PageLayout>
 		</>
 	);
+}

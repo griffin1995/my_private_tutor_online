@@ -10,6 +10,7 @@ import { importMap } from './admin/importMap.js'
 
 type Args = {
   children: React.ReactNode
+}
 
 const serverFunction: ServerFunctionClient = async function (args) {
   'use server'
@@ -18,6 +19,7 @@ const serverFunction: ServerFunctionClient = async function (args) {
     config,
     importMap,
   })
+}
 
 const Layout = ({ children }: Args) => (
   <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
