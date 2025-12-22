@@ -15,6 +15,7 @@ interface Cta10Props {
 			url: string;
 		};
 	};
+}
 
 const Cta10 = ({
 	heading = 'Call to Action',

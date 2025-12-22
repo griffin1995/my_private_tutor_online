@@ -23,6 +23,7 @@ const OrganizationSchema: React.FC = () => {
 				addressRegion: 'Greater London',
 				postalCode: 'W1K',
 				addressCountry: 'GB',
+			}}
 			contactPoint={[
 				{
 					telephone: '+44-20-7123-4567',
@@ -83,9 +84,11 @@ const LocalBusinessSchema: React.FC = () => {
 				addressRegion: 'Greater London',
 				postalCode: 'W1K',
 				addressCountry: 'GB',
+			}}
 			geo={{
 				latitude: '51.5074',
 				longitude: '-0.1278',
+			}}
 			images={[
 				'https://myprivatetutoronline.co.uk/images/hero/hero-main.webp',
 				'https://myprivatetutoronline.co.uk/images/about/royal-endorsement.webp',
@@ -108,6 +111,7 @@ const LocalBusinessSchema: React.FC = () => {
 			aggregateRating={{
 				ratingValue: '4.9',
 				ratingCount: '247',
+			}}
 			review={[
 				{
 					reviewRating: {
@@ -152,12 +156,14 @@ const CourseSchema: React.FC<CourseSchemaProps> = ({
 				name: 'Expert Oxbridge Tutors',
 				description:
 					'PhD-qualified tutors from Oxford and Cambridge universities with proven track records in elite education.',
+			}}
 			offers={{
 				price: '150.00',
 				priceCurrency: 'GBP',
 				availability: 'InStock',
 				url: `https://myprivatetutoronline.co.uk/subject-tuition/${subject.toLowerCase()}`,
 				validFrom: new Date().toISOString(),
+			}}
 			hasCourseInstance={{
 				courseMode: 'Online',
 				courseWorkload: 'PT3H',
@@ -173,6 +179,8 @@ interface WebPageSchemaProps {
 	pageUrl: string;
 	lastReviewed?: string;
 	pageType?: 'HomePage' | 'AboutPage' | 'ContactPage' | 'ServicePage';
+}
+
 const WebPageSchema: React.FC<WebPageSchemaProps> = ({
 	pageTitle,
 	pageDescription,

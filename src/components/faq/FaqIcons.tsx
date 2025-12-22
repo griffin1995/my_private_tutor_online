@@ -6,6 +6,8 @@ interface FaqIconProps {
 	readonly 'aria-label'?: string;
 	readonly width?: number;
 	readonly height?: number;
+}
+
 const GlobeIcon: React.FC<FaqIconProps> = ({
 	className = '',
 	'aria-label': ariaLabel = 'Global services icon',

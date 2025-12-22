@@ -1,4 +1,3 @@
-import { webVitalsTracker } from '@/lib/performance/web-vitals';
 interface BusinessEvent {
 	event: string;
 	category: 'engagement' | 'conversion' | 'navigation' | 'error' | 'performance';

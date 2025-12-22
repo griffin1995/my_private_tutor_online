@@ -11,6 +11,7 @@ interface VideoPopupProps {
 	title: string;
 	poster?: string;
 	className?: string;
+}
 export function VideoPopup({
 	isOpen,
 	onClose,
@@ -27,16 +28,20 @@ export function VideoPopup({
 			document.querySelectorAll('video').forEach((video) => {
 				if (video !== videoRef.current) {
 					video.pause();
+				}
 			});
+		}
 	}, [isOpen]);
 	const handleKeyDown = (e: React.KeyboardEvent) => {
 		if (e.key === 'Escape') {
 			handleClose();
+		}
 	};
 	const handleClose = () => {
 		if (videoRef.current) {
 			videoRef.current.pause();
 			videoRef.current.currentTime = 0;
+		}
 		onClose();
 	};
 	if (!isOpen) return null;
@@ -86,6 +91,7 @@ export function VideoPopup({
 								aria-label={`Video: ${title}`}
 								onError={(e) => {
 									console.error('Video playback error:', e);
+								}}>
 								<p className='text-white text-center p-8'>
 									Your browser does not support the video element. Please try a different
 									browser or contact support.
@@ -103,4 +109,4 @@ export function VideoPopup({
 			</div>
 		</>
 	);
-;
+}
