@@ -1,9 +1,9 @@
-import { fontClassNames } from '@/fonts';
+import { fontClassNames } from '@/fonts/index';
 import { Toaster } from '@/components/ui/sonner';
 import { CookieConsentManager } from '@/components/privacy/cookie-consent-manager';
 import type { Metadata, Viewport } from 'next';
 import React from 'react';
-import './globals.css';
+import '../globals.css';
 
 // Next.js 15 Metadata API - Enhanced SEO Configuration
 export const metadata: Metadata = {

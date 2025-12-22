@@ -1,7 +1,7 @@
 'use client';
 
 // CONTEXT7 SOURCE: /vercel/next.js - Client Component pattern for Next.js App Router
-// ARCHITECTURE REASON: Next.js 15 App Router - Client Component due to interactive features
+// ARCHITECTURE REASON: Next.js 16 App Router - Client Component due to interactive features
 
 // FIXED: Added 'use client' directive - page contains client components with React context
 // Animations, interactions, and dynamic features require client-side rendering
@@ -10,14 +10,14 @@ import { TestimonialsSection } from '@/components/sections/about/testimonials-se
 import { TestimonialAuthorRole } from '@/components/testimonials/TestimonialAuthorRole';
 import { HeadingText } from '@/components/ui/typography';
 // import { ScrollingLogos } from '../../components/client/ScrollingLogos';
-import { ServicesCarousel } from '../../components/sections/ServicesCarousel';
-import { PageFooter } from '../../components/layout/page-footer';
-import { Navigation } from '../../components/navigation/Navigation';
-import { AboutSectionClient } from '../../components/sections/AboutSectionClient';
-import { FeatureSection } from '../../components/sections/feature-section';
-import { FounderIntroductionSection } from '../../components/sections/founder-introduction-section';
-import { ThreePillarsSection } from '../../components/sections/three-pillars-section';
-import { SchemaMarkup } from '../../components/seo/SchemaMarkup';
+import { ServicesCarousel } from '@/components/sections/ServicesCarousel';
+import { PageFooter } from '@/components/layout/page-footer';
+import { Navigation } from '@/components/navigation/Navigation';
+import { AboutSectionClient } from '@/components/sections/AboutSectionClient';
+import { FeatureSection } from '@/components/sections/feature-section';
+import { FounderIntroductionSection } from '@/components/sections/founder-introduction-section';
+import { ThreePillarsSection } from '@/components/sections/three-pillars-section';
+import { SchemaMarkup } from '@/components/seo/SchemaMarkup';
 
 // Import optimized data from JSON files
 import servicesData from '@/content/homepage/services.json';
@@ -257,7 +257,7 @@ export default function HomePage() {
 					<section
 						id='hero-premium-tutoring-landing-combined'
 						className='flex flex-col w-full h-[calc(100dvh-5.5rem)] md:h-[calc(100dvh-6rem)] lg:h-[calc(100dvh-6.25rem)] xl:h-[calc(100dvh-7rem)]'>
-		{/* Top spacing */}
+						{/* Top spacing */}
 						<div className='flex-[0_0_2rem] sm:flex-[0_0_2.5rem] md:flex-[0_0_3rem]' />
 
 						{/* Video Section */}
@@ -298,13 +298,11 @@ export default function HomePage() {
 					</section>
 
 					{/* About Section */}
-					{/* <AboutSectionClient recognitionCards={recognitionCards} /> */}
-					<div>About section temporarily disabled</div>
+					<AboutSectionClient recognitionCards={recognitionCards} />
 
 					{/* Founder Introduction Section */}
 					<div className='[&_.flex.items-center_p]:m-0'>
-						{/* <FounderIntroductionSection /> */}
-						<div>Founder section temporarily disabled</div>
+						<FounderIntroductionSection />
 					</div>
 
 					{/* Three Pillars Section */}
