@@ -6,6 +6,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 interface CarouselItem {
 	id: string | number;
 	content: React.ReactNode;
+}
+
 interface CarouselProps {
 	items: CarouselItem[];
 	className?: string;
@@ -14,6 +16,8 @@ interface CarouselProps {
 	showArrows?: boolean;
 	showDots?: boolean;
 	centerMode?: boolean;
+}
+
 export function Carousel({
 	items,
 	className,
@@ -136,3 +140,4 @@ export function Carousel({
 			)}
 		</div>
 	);
+}

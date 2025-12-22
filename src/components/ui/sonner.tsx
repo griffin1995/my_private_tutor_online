@@ -20,6 +20,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
         warning: <TriangleAlertIcon className="size-4" />,
         error: <OctagonXIcon className="size-4" />,
         loading: <Loader2Icon className="size-4 animate-spin" />,
+      }}
       style={
         {
           "--normal-bg": "var(--popover)",
@@ -27,8 +28,10 @@ const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-border": "var(--border)",
           "--border-radius": "var(--radius)",
         } as React.CSSProperties
+      }
       {...props}
     />
-  )
+  );
+}
 
 export { Toaster }

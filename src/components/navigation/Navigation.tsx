@@ -184,7 +184,7 @@ export function Navigation({
 								<div
 									key={item.label}
 									className='relative'>
-									{item.items ?
+									{item.items ? (
 										<div className='relative'>
 											<div className='flex items-center'>
 												{item.href ?
@@ -227,9 +227,11 @@ export function Navigation({
 														}}>
 														{item.label}
 													</button>
+												}
 											</div>
 										</div>
-									:	<Link
+									) : (
+										<Link
 											href={item.href!}
 											className={cn(
 												'flex items-center px-2 py-1 font-normal font-display transition-all duration-200',
@@ -242,7 +244,8 @@ export function Navigation({
 												dropdownState.isOpen && !isActive(item.href!) && 'text-primary-700',
 											)}>
 											{item.label}
-										</Link>}}
+										</Link>
+									)}
 								</div>
 							))}
 						</div>
@@ -287,11 +290,13 @@ export function Navigation({
 						className='fixed left-0 right-0 z-40'
 						style={{
 							top: `${getNavbarHeight()}px`,
+						}}>
 						<div className='bg-white shadow-lg'>
 							<div
 								className='w-full overflow-hidden flex flex-col justify-start'
 								style={{
 									height: `calc(100vh - ${getNavbarHeight()}px)`,
+								}}>
 								<div className='container mx-auto px-4 lg:px-6 h-full'>
 									<div className='flex items-start h-full'>
 										<div className='w-48 h-[4.5rem] lg:h-[5.25rem] xl:h-[6rem] flex-shrink-0' />
@@ -325,6 +330,7 @@ export function Navigation({
 																					)}
 																					style={{
 																						textDecoration: 'none',
+																					}}>
 																					<h3
 																						className={cn(
 																							'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl',
@@ -332,6 +338,7 @@ export function Navigation({
 																						)}
 																						style={{
 																							textDecoration: 'none',
+																						}}>
 																						{subItem.label}
 																					</h3>
 																				</Link>
@@ -420,6 +427,8 @@ export function Navigation({
 			)}
 		</>
 	);
+}
+
 function MobileNavigation({
 	items,
 	pathname,
@@ -501,8 +510,10 @@ function MobileNavigation({
 									{item.label}
 								</span>
 							</Link>
+						}
 					</div>
 				);
 			})}
 		</div>
 	);
+}

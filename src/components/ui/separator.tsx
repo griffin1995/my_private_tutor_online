@@ -23,5 +23,6 @@ function Separator({
       {...props}
     />
   )
+}
 
 export { Separator }

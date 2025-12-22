@@ -8,6 +8,7 @@ interface WaveSeparatorProps {
 	className?: string;
 	animate?: boolean;
 	ariaLabel?: string;
+}
 const waveVariants = {
 	subtle:
 		'M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,42.7C960,43,1056,53,1152,58.7C1248,64,1344,64,1392,64L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z',
@@ -28,10 +29,14 @@ const animationVariants = {
 		scale: 1,
 		transition: {
 			pathLength: {
+				duration: 2,
+				ease: 'easeInOut',
 			},
 			opacity: {
+				duration: 0.5,
 			},
 			scale: {
+				duration: 1,
 			},
 		},
 	},
@@ -73,18 +78,11 @@ export const WaveSeparator: React.FC<WaveSeparatorProps> = ({
 					maxWidth: '100%',
 					display: 'block',
 					filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05))',
-				{animate ?
-					<path
-						d={wavePath}
-						className={`fill-${color}`}
-						viewport={{
-							once: true,
-							amount: 0.3,
-					/>
-				:	<path
-						d={wavePath}
-						className={`fill-${color}`}
-					/>
+				}}>
+				<path
+					d={wavePath}
+					className={`fill-${color}`}
+				/>
 			</svg>
 		</div>
 	);

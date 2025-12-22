@@ -201,6 +201,7 @@ const typographyVariants = cva('transition-colors duration-200', {
       color: 'secondary',
       emphasis: 'normal',
       class: 'hover:text-accent-500 active:text-accent-700 focus:text-accent-500'
+    },
   ],
   defaultVariants: {
     semantic: 'body-default',
@@ -217,6 +218,7 @@ interface TypographyProps
     VariantProps<typeof typographyVariants> {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div' | 'section' | 'article';
   children: React.ReactNode;
+}
 
 /**
  * Typography Component
@@ -274,6 +276,7 @@ export function Typography({
       {children}
     </Component>
   );
+}
 
 /**
  * Semantic Typography Components
@@ -284,6 +287,7 @@ export function Typography({
 
 interface DisplayTextProps extends Omit<TypographyProps, 'as' | 'semantic'> {
   variant?: 'hero' | 'page';
+}
 
 export function DisplayText({
   variant = 'hero',
@@ -297,16 +301,18 @@ export function DisplayText({
       as="h1"
       semantic={`display-${variant}` as any}
       color={color}
-      className={cn('mb-6', className)}>
-		{...props}
+      className={cn('mb-6', className)}
+      {...props}
     >
       {children}
     </Typography>
   );
+}
 
 interface HeadingTextProps extends Omit<TypographyProps, 'as' | 'semantic'> {
   variant?: 'primary' | 'secondary';
   level?: 2 | 3;
+}
 
 export function HeadingText({
   variant = 'primary',
@@ -322,16 +328,18 @@ export function HeadingText({
       as={Component}
       semantic={`heading-${variant}` as any}
       color={color}
-      className={cn('mb-4', className)}>
-		{...props}
+      className={cn('mb-4', className)}
+      {...props}
     >
       {children}
     </Typography>
   );
+}
 
 interface TitleTextProps extends Omit<TypographyProps, 'as' | 'semantic'> {
   variant?: 'large' | 'medium' | 'small';
   level?: 3 | 4 | 5;
+}
 
 export function TitleText({
   variant = 'large',
@@ -347,16 +355,18 @@ export function TitleText({
       as={componentMap[level]}
       semantic={`title-${variant}` as any}
       color={color}
-      className={cn('mb-3', className)}>
-		{...props}
+      className={cn('mb-3', className)}
+      {...props}
     >
       {children}
     </Typography>
   );
+}
 
 interface BodyTextProps extends Omit<TypographyProps, 'as' | 'semantic'> {
   variant?: 'large' | 'default' | 'small';
   as?: 'p' | 'span' | 'div';
+}
 
 export function BodyText({
   variant = 'default',
@@ -371,16 +381,18 @@ export function BodyText({
       as={Component}
       semantic={`body-${variant}` as any}
       color={color}
-      className={cn('mb-4 last:mb-0', className)}>
-		{...props}
+      className={cn('mb-4 last:mb-0', className)}
+      {...props}
     >
       {children}
     </Typography>
   );
+}
 
 interface CaptionTextProps extends Omit<TypographyProps, 'as' | 'semantic'> {
   variant?: 'large' | 'default' | 'small';
   as?: 'span' | 'div' | 'small';
+}
 
 export function CaptionText({
   variant = 'default',
@@ -395,12 +407,13 @@ export function CaptionText({
       as={Component}
       semantic={`caption-${variant}` as any}
       color={color}
-      className={className}>
-		{...props}
+      className={className}
+      {...props}
     >
       {children}
     </Typography>
   );
+}
 
 /**
  * Legacy Migration Helper Components
@@ -412,6 +425,7 @@ export function CaptionText({
 interface LegacyHeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   level: 1 | 2 | 3 | 4;
   children: React.ReactNode;
+}
 
 /**
  * @deprecated Use DisplayText or HeadingText instead
@@ -430,12 +444,12 @@ export function LegacyHeading({ level, children, className, ...props }: LegacyHe
     <Typography
       as={Component}
       semantic={semanticMapping[level]}
-      className={className}>
-		{...props}
-    >
+      className={className}
+      {...props}>
       {children}
     </Typography>
   );
+}
 
 /**
  * Type exports for external usage

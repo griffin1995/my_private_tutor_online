@@ -13,8 +13,8 @@ function ScrollArea({
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
-      className={cn("relative", className)}>
-		{...props}
+      className={cn("relative", className)}
+      {...props}
     >
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
@@ -26,6 +26,7 @@ function ScrollArea({
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
   )
+}
 
 function ScrollBar({
   className,
@@ -52,5 +53,6 @@ function ScrollBar({
       />
     </ScrollAreaPrimitive.ScrollAreaScrollbar>
   )
+}
 
-export { ScrollArea,  }
+export { ScrollArea, ScrollBar }

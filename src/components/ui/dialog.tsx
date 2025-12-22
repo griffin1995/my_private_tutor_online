@@ -85,20 +85,20 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
 	<DialogPrimitive.Description
 		ref={ref}
-		className={cn('text-sm text-slate-500', className)}>
+		className={cn('text-sm text-slate-500', className)}
 		{...props}
 	/>
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 export {
 	Dialog,
-	
-	
+	DialogPortal,
+	DialogOverlay,
 	DialogTrigger,
 	DialogClose,
 	DialogContent,
-	
-	
-	
-	
+	DialogHeader,
+	DialogFooter,
+	DialogTitle,
+	DialogDescription,
 };
