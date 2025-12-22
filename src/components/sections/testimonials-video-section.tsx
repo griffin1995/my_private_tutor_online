@@ -79,6 +79,7 @@ export function TestimonialsVideoSection({
 										stiffness: 400,
 										damping: 30,
 									},
+							}}>
 								<div
 									className='relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-slate-200 group-hover:border-accent-400/60 transition-all duration-500'
 									role='region'
@@ -170,26 +171,18 @@ export function TestimonialsVideoSection({
 					</div>
 
 					<div className='text-center mt-12'>
-						<divp
-							className='text-lg text-primary-700 mb-6'
-							viewport={{
-								once: true,
-								margin: '-100px',
+						<p
+							className='text-lg text-primary-700 mb-6'>
 							Ready to join our community of successful families?
-						</divp>
+						</p>
 
-						<divbutton
-							className='inline-flex items-center gap-2 px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'
-							viewport={{
-								once: true,
-								margin: '-100px',
-								scale: 1.05,
-								scale: 0.95,
+						<button
+							className='inline-flex items-center gap-2 px-8 py-3 bg-accent-600 hover:bg-accent-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105'>
 							Start Your Journey
-						</divbutton>
+						</button>
 					</div>
 				</div>
 			</div>
 		</section>
 	);
-;
+}

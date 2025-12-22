@@ -20,6 +20,7 @@ interface TutorTier {
 	readonly level: string;
 	readonly colour: string;
 	readonly hasCrown?: boolean;
+}
 
 // Tutor tiers content - centralised data source
 const TUTOR_TIERS: readonly TutorTier[] = [
