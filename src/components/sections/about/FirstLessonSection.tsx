@@ -8,20 +8,27 @@ interface FirstLessonSectionProps {
 	heading?: string;
 	paragraph?: string;
 	showConnectorArrow?: boolean;
+}
+
 function parseTextWithStrong(text: string): React.ReactNode[] {
 	const parts = text.split(/(<strong>.*?<\/strong>)/g);
 	return parts.map((part, index) => {
 		if (part.startsWith('<strong>') && part.endsWith('</strong>')) {
 			const content = part.replace(/<\/?strong>/g, '');
 			return <strong key={index}>{content}</strong>;
+		}
 		return part;
 	});
+}
 const fadeInUpVariant = {
 	initial: {
+		opacity: 0
 	},
 	animate: {
+		opacity: 1
 	},
 	transition: {
+		duration: 0.5
 	},
 };
 export function FirstLessonSection({
@@ -93,3 +100,4 @@ export function FirstLessonSection({
 			</div>
 		</div>
 	);
+}

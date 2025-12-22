@@ -33,12 +33,14 @@ interface ServiceData {
 	icon: string;
 	featureImageUrl?: string;
 	featureImageAlt?: string;
+}
 
 interface StudentImageData {
 	src: string;
 	alt: string;
 	width: number;
 	height: number;
+}
 
 interface ServicesCarouselProps {
 	services: ServiceData[];
@@ -46,6 +48,7 @@ interface ServicesCarouselProps {
 	className?: string;
 	title?: string;
 	description?: string;
+}
 
 export function ServicesCarousel({
 	services = [],
@@ -87,6 +90,8 @@ export function ServicesCarousel({
 			} else if (!inView && isPlaying) {
 				emblaApi.plugins().autoplay?.stop();
 				setIsPlaying(false);
+			}
+		}
 	}, [emblaApi, inView, isPlaying]);
 
 	const scrollPrev = useCallback(() => {
@@ -249,3 +254,4 @@ export function ServicesCarousel({
 			</div>
 		</section>
 	);
+}

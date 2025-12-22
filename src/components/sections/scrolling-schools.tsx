@@ -8,9 +8,12 @@ interface ScrollingSchoolsProps {
 		| {
 				name?: string;
 				title?: string;
+		  }
 	)[];
 	className?: string;
 	speed?: number;
+}
+
 export function ScrollingSchools({
 	schools,
 	className = '',
@@ -27,6 +30,8 @@ export function ScrollingSchools({
 			schools,
 		);
 		return null;
+	}
+
 	const schoolNames = schools.map((school) =>
 		typeof school === 'string' ? school : school.name || school.title || 'School',
 	);
@@ -83,3 +88,4 @@ export function ScrollingSchools({
 			</div>
 		</section>
 	);
+}

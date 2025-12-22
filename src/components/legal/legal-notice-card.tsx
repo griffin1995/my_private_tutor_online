@@ -9,6 +9,7 @@ interface LegalNoticeCardProps {
 	children: ReactNode;
 	variant?: 'warning' | 'info' | 'success' | 'error';
 	className?: string;
+}
 
 /**
  * Standardised notice card component for legal pages
@@ -52,6 +53,7 @@ export function LegalNoticeCard({
 			iconColor: 'text-red-600',
 			titleColor: 'text-red-800',
 			textColor: 'text-red-800'
+		}
 	};
 
 	const styles = variantStyles[variant];
@@ -74,3 +76,4 @@ export function LegalNoticeCard({
 			</Card>
 		</div>
 	);
+}

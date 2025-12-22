@@ -23,6 +23,8 @@ interface TestimonialVideo {
 	readonly viewCount?: number;
 	readonly rating?: number;
 	readonly uploadDate?: string;
+}
+
 interface TestimonialsVideoSectionProps {
 	className?: string;
 	backgroundColor?: string;
@@ -30,6 +32,8 @@ interface TestimonialsVideoSectionProps {
 	description?: string;
 	videos?: TestimonialVideo[];
 	maxVideos?: number;
+}
+
 export function TestimonialsVideoSection({
 	className = '',
 	backgroundColor = 'bg-slate-50',
@@ -50,21 +54,15 @@ export function TestimonialsVideoSection({
 			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='max-w-7xl mx-auto'>
 					<div className='text-center mb-16'>
-						<divh2
-							className='text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 mb-6'
-							viewport={{
-								once: true,
-								margin: '-100px',
+						<h2
+							className='text-3xl lg:text-4xl xl:text-5xl font-serif font-bold text-primary-900 mb-6'>
 							{title}
-						</divh2>
+						</h2>
 
-						<divp
-							className='text-xl text-primary-700 leading-relaxed max-w-3xl mx-auto'
-							viewport={{
-								once: true,
-								margin: '-100px',
+						<p
+							className='text-xl text-primary-700 leading-relaxed max-w-3xl mx-auto'>
 							{description}
-						</divp>
+						</p>
 					</div>
 
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>

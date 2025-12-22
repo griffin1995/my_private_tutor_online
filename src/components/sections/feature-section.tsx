@@ -23,6 +23,7 @@ interface FeatureSectionProps {
 		href: string;
 	};
 	className?: string;
+}
 
 export function FeatureSection({
 	title,
@@ -212,4 +213,5 @@ export function FeatureSection({
 			</div>
 		</section>
 	);
+}
 

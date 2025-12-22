@@ -34,17 +34,23 @@ interface ServiceData {
 	icon: string;
 	featureImageUrl?: string;
 	featureImageAlt?: string;
+}
+
 interface StudentImageData {
 	src: string;
 	alt: string;
 	width: number;
 	height: number;
+}
+
 interface ServicesCarouselProps {
 	services: ServiceData[];
 	studentImages: Record<string, StudentImageData>;
 	className?: string;
 	title?: string;
 	description?: string;
+}
+
 export function ServicesCarousel({
 	services,
 	studentImages,
@@ -108,6 +114,8 @@ export function ServicesCarousel({
 			} else {
 				autoplay.stop();
 				setIsReady(false); // Reset when out of view
+			}
+		}
 		return undefined;
 	}, [emblaApi, inView]);
 	// Standardized animation variants
@@ -121,12 +129,12 @@ export function ServicesCarousel({
 		<section
 			ref={animationRef}
 			className={`pt-16 lg:pt-24 pb-0 bg-white ${className}`}
-			aria-label='Educational pathways and tutoring options available'
-			>div className='container mx-auto px-4 sm:px-6 lg:px-8'>
+			aria-label='Educational pathways and tutoring options available'>
+			<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 				<div
-					className='text-center mb-12'
-					>div
-						>HeadingText
+					className='text-center mb-12'>
+					<div>
+						<HeadingText
 							variant="primary"
 							level={2}
 							className="text-primary-900 mb-0"
@@ -135,8 +143,8 @@ export function ServicesCarousel({
 							{title}
 						</HeadingText>
 					</div>
-					<div
-						>BodyText
+					<div>
+						<BodyText
 							variant="large"
 							className="text-primary-700 max-w-3xl mx-auto mb-3"
 							responsive
@@ -147,19 +155,19 @@ export function ServicesCarousel({
 
 					{/* Navigation buttons positioned above the carousel */}
 					<div
-						className='relative max-w-7xl mx-auto px-4 sm:px-0 mb-3'
-						>div className='flex justify-end gap-2'>
+						className='relative max-w-7xl mx-auto px-4 sm:px-0 mb-3'>
+						<div className='flex justify-end gap-2'>
 							<button
 								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300'
 								onClick={scrollPrev}
-								aria-label='Previous slide'
+								aria-label='Previous slide'>
 								<ChevronLeft className='w-5 h-5 sm:w-6 sm:h-6 text-accent-600' />
 							</button>
 
 							<button
 								className='bg-transparent hover:bg-accent-50 border border-accent-600 hover:border-accent-700 p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300'
 								onClick={scrollNext}
-								aria-label='Next slide'
+								aria-label='Next slide'>
 								<ChevronRight className='w-5 h-5 sm:w-6 sm:h-6 text-accent-600' />
 							</button>
 						</div>
@@ -167,10 +175,10 @@ export function ServicesCarousel({
 
 					<div
 						ref={intersectionRef}
-						className='relative max-w-7xl mx-auto px-4 sm:px-0'
-						>div
+						className='relative max-w-7xl mx-auto px-4 sm:px-0'>
+						<div
 							className='overflow-hidden w-full'
-							ref={emblaRef}
+							ref={emblaRef}>
 							<div className='flex -ml-4 pb-4'>
 								{services.map((service, index) => {
 									const serviceImageMapping = {
@@ -193,14 +201,15 @@ export function ServicesCarousel({
 												alt: service.featureImageAlt,
 												width: 600,
 												height: 400,
-										:	studentImages[imageKey];
+											}
+										: studentImages[imageKey];
 									return (
 										<div
 											key={index}
-											className='flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 pb-4'
+											className='flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-4 pb-4'>
 											<div
 												className='group bg-white shadow-lg hover:shadow-xl transition-shadow duration-300 transform-gpu min-h-full'>
-		{studentImage ? (
+												{studentImage ? (
 													<>
 														{/* Landscape aspect ratio for default/sm screens */}
 														<div className='block lg:hidden'>
@@ -261,7 +270,7 @@ export function ServicesCarousel({
 												)}
 
 												<div className='p-6 lg:p-8 pb-8 space-y-4 text-right flex flex-col items-end'>
-													<div
+													<div>
 														<TitleText
 															variant="large"
 															level={3}
@@ -271,7 +280,7 @@ export function ServicesCarousel({
 															{service.title}
 														</TitleText>
 													</div>
-													<div
+													<div>
 														<BodyText
 															variant="default"
 															className="text-primary-700 leading-relaxed w-full"
@@ -281,7 +290,7 @@ export function ServicesCarousel({
 														</BodyText>
 													</div>
 													<div className='flex justify-end w-full'>
-														<div
+														<div>
 															<NavigationButton
 															key={`button-${index}`}
 															buttonColor='#ca9e5b' // accent-600 design token value
@@ -297,7 +306,7 @@ export function ServicesCarousel({
 																	'Online Homeschooling': '/subject-tuition?tab=online-homeschooling',
 																	'SEN Support': '/subject-tuition?tab=sen-support',
 																	'London In-Person': '/subject-tuition?tab=london-in-person',
-																}[service.title] || '/subject-tuition'
+																}[service.title] || '/subject-tuition'}
 														/>
 														</div>
 													</div>
@@ -313,4 +322,5 @@ export function ServicesCarousel({
 			</div>
 		</section>
 	);
+}
 export type { ServiceData, ServicesCarouselProps, StudentImageData };

@@ -18,6 +18,8 @@ interface SectionProps {
 	id?: string;
 	ariaLabel?: string;
 	as?: 'section' | 'div' | 'article' | 'aside';
+}
+
 export function Section({
 	children,
 	className,
@@ -71,6 +73,8 @@ export function Section({
 			</div>
 		</Component>
 	);
+}
+
 interface SectionHeaderProps {
 	title: string;
 	subtitle?: string;
@@ -78,7 +82,9 @@ interface SectionHeaderProps {
 	className?: string;
 	alignment?: 'left' | 'center' | 'right';
 	titleAs?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-function SectionHeader({
+}
+
+export function SectionHeader({
 	title,
 	subtitle,
 	description,
@@ -132,6 +138,8 @@ function SectionHeader({
 			)}
 		</div>
 	);
+}
+
 type SectionBackground =
 	| 'white'
 	| 'grey'

@@ -8,11 +8,13 @@ interface ContactInfo {
 	address: string;
 	phone?: string;
 	website?: string;
+}
 
 interface LegalContactCardProps {
 	title?: string;
 	contactInfo: ContactInfo;
 	className?: string;
+}
 
 /**
  * Standardised contact card component for legal pages
@@ -59,3 +61,4 @@ export function LegalContactCard({
 			</Card>
 		</div>
 	);
+}

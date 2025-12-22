@@ -16,14 +16,17 @@ interface LegalPageTemplateProps {
 	children: ReactNode;
 	showCompliance?: boolean;
 	complianceText?: string;
+}
 
 interface LegalMetaInfoProps {
 	lastUpdated: string;
 	showCompliance?: boolean;
 	complianceText?: string;
+}
 
 interface LegalContentProps {
 	children: ReactNode;
+}
 
 /**
  * Meta information component for legal pages
@@ -47,6 +50,7 @@ function LegalMetaInfo({ lastUpdated, showCompliance = true, complianceText }: L
 			)}
 		</div>
 	);
+}
 
 /**
  * Content wrapper component for legal pages
@@ -64,6 +68,7 @@ function LegalContent({ children }: LegalContentProps) {
 			</div>
 		</Section>
 	);
+}
 
 /**
  * Standardised footer component for legal pages
@@ -77,6 +82,7 @@ function LegalFooter() {
 			showContactForm={false}
 		/>
 	);
+}
 
 /**
  * Main legal page template component with compound pattern
@@ -116,11 +122,9 @@ export function LegalPageTemplate({
 			<LegalFooter />
 		</>
 	);
+}
 
 // Compound components for advanced usage
 LegalPageTemplate.MetaInfo = LegalMetaInfo;
 LegalPageTemplate.Content = LegalContent;
 LegalPageTemplate.Footer = LegalFooter;
-
-// Export type definitions for external use
-;

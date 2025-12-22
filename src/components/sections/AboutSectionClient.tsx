@@ -24,6 +24,7 @@ interface RecognitionCardData {
 	footerText?: string;
 	sortOrder: number;
 	status: 'published' | 'unpublished';
+}
 
 interface AboutSectionClientProps {
 	className?: string;
@@ -32,6 +33,7 @@ interface AboutSectionClientProps {
 	founderImageUrl?: string;
 	founderImageAlt?: string;
 	recognitionCards: RecognitionCardData[];
+}
 
 /**
  * About Section Client Component
@@ -88,10 +90,11 @@ export function AboutSectionClient({
 				<div
 					ref={mainContentRef}
 					className={gridLayoutClasses}
-					>div
-						<div className='max-w-3xl md:max-w-none mx-auto md:mx-0 px-6 md:px-0 pt-8 sm:pt-12 md:pt-16 lg:pt-0 text-left'>
-							<div
-								<HeadingText
+					>
+					<div
+						className='max-w-3xl md:max-w-none mx-auto md:mx-0 px-6 md:px-0 pt-8 sm:pt-12 md:pt-16 lg:pt-0 text-left'>
+						<div>
+							<HeadingText
 									variant="primary"
 									level={2}
 									className="text-token-primary-dark leading-[1.15] mb-6"
@@ -103,7 +106,7 @@ export function AboutSectionClient({
 								</HeadingText>
 							</div>
 
-							<div
+							<div>
 								<BodyText
 									variant="large"
 									className="text-token-primary-dark leading-[1.6] mb-4"
@@ -122,7 +125,7 @@ export function AboutSectionClient({
 
 							{/* Mobile/Tablet responsive image placement */}
 							<div
-								className='block lg:hidden mb-6 mt-2 relative w-full h-48 sm:h-56 md:h-64 overflow-hidden'
+								className='block lg:hidden mb-6 mt-2 relative w-full h-48 sm:h-56 md:h-64 overflow-hidden'>
 								<Image
 									src='/images/about/meet-elizabeth-a-different-kind-of-educator.webp'
 									alt='Elizabeth Burrows - A Different Kind of Educator'
@@ -134,7 +137,7 @@ export function AboutSectionClient({
 								/>
 							</div>
 
-							<div
+							<div>
 								<BodyText
 									variant="large"
 									className="text-token-primary-dark leading-[1.6] mb-4"
@@ -159,7 +162,7 @@ export function AboutSectionClient({
 								</BodyText>
 							</div>
 
-							<div
+							<div>
 								<BodyText
 									variant="large"
 									className="text-token-primary-dark leading-[1.6]"
@@ -174,7 +177,7 @@ export function AboutSectionClient({
 					</div>
 
 					<div
-						className='hidden lg:flex items-center justify-center h-full'
+						className='hidden lg:flex items-center justify-center h-full'>
 						<Image
 							src={founderImageUrl}
 							alt={founderImageAlt || 'Elizabeth Burrows, Founder'}
@@ -191,15 +194,15 @@ export function AboutSectionClient({
 				{/* Recognition Cards Grid - Staggered animation presentation */}
 				<div
 					ref={cardsRef}
-					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'>
-		{...staggeredFadeIn}
+					className='grid grid-cols-1 md:grid-cols-3 gap-6 w-[75%] sm:w-[60%] md:w-full max-w-5xl mx-auto py-8'
+					{...staggeredFadeIn}>
 					{recognitionCards
 						.filter((card): card is RecognitionCardData & { contentType: 'logo'; logoImage: { url: string; alt: string } } =>
 							card.contentType === 'logo' && card.logoImage !== undefined
 						)
 						.map((card, index) => (
 							<div
-								key={card.id}
+								key={card.id}>
 								<RecognitionCard
 									headerText={card.headerText}
 									contentType={card.contentType}
@@ -214,3 +217,4 @@ export function AboutSectionClient({
 			</div>
 		</section>
 	);
+}

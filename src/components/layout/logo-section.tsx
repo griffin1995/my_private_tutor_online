@@ -5,10 +5,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { getMainLogo, getMainLogoWhite } from '@/lib/cms/cms-images';
+
 interface LogoSectionProps {
 	isTransparent: boolean;
 	isHomepage: boolean;
 	className?: string;
+}
 export function LogoSection({
 	isTransparent,
 	isHomepage,
@@ -45,14 +47,8 @@ export function LogoSection({
 				href='/'
 				className='block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 rounded-lg'
 				aria-label='My Private Tutor Online - Navigate to homepage'>
-				<div
-					className='relative'
-						scale: 1.05,
-						scale: 0.98,
-						type: 'spring',
-						stiffness: 400,
-						damping: 25,
-					<AnimatePresence mode='wait'>
+				<div className='relative'>
+					<div>
 						<div
 							key={isTransparent ? 'white-logo' : 'standard-logo'}
 							className='relative'>
@@ -72,6 +68,7 @@ export function LogoSection({
 								style={{
 									aspectRatio: '175/100',
 									maxWidth: 'none',
+								}}
 							/>
 
 							<div
@@ -85,9 +82,9 @@ export function LogoSection({
 								aria-hidden='true'
 							/>
 						</div>
-					</AnimatePresence>
+					</div>
 				</div>
 			</Link>
 		</div>
 	);
-;
+}
