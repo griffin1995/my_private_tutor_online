@@ -98,3 +98,4 @@ const secondarySchoolData: TabContentData = {
 
 export function SecondarySchoolContent() {
 	return <TabContentLayout data={secondarySchoolData} />;
+}

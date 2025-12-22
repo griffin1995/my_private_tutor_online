@@ -83,3 +83,4 @@ const londonInPersonData: TabContentData = {
 
 export function LondonInPersonContent() {
 	return <TabContentLayout data={londonInPersonData} />;
+}

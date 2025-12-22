@@ -13,6 +13,7 @@ interface Video {
 	thumbnailAlt: string;
 	isFree: boolean;
 	purchaseLink?: string;
+}
 
 interface Feature {
 	id: string;
@@ -23,16 +24,19 @@ interface Feature {
 	icon?: LucideIcon;
 	url?: string;
 	videos?: Video[];
+}
 
 interface FeatureSectionProps {
 	title?: string;
 	description?: string;
 	features: Feature[];
+}
 
 interface VideoModalProps {
 	readonly videoUrl: string;
 	readonly thumbnailUrl: string;
 	readonly alt: string;
+}
 
 function VideoModal({ videoUrl, thumbnailUrl, alt }: VideoModalProps) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +51,7 @@ function VideoModal({ videoUrl, thumbnailUrl, alt }: VideoModalProps) {
 								alt={alt}
 								style={{
 									aspectRatio: '16/9',
+								}}
 								className='w-full h-full object-cover'
 							/>
 
@@ -72,6 +77,7 @@ function VideoModal({ videoUrl, thumbnailUrl, alt }: VideoModalProps) {
 						className='relative w-full'
 						style={{
 							aspectRatio: '16/9',
+						}}>
 						{videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be') ? (
 							<iframe
 								src={videoUrl}
@@ -95,6 +101,7 @@ function VideoModal({ videoUrl, thumbnailUrl, alt }: VideoModalProps) {
 			</Dialog.Portal>
 		</Dialog.Root>
 	);
+}
 
 export const FeatureSection = ({
 	// title = 'Feature Section Main Heading',
@@ -225,6 +232,7 @@ export const FeatureSection = ({
 													className='relative'
 													style={{
 														paddingBottom: '56.25%',
+													}}>
 													<div className='absolute inset-0'>
 														{video.isFree && video.youtubeUrl ? (
 															<VideoModal
@@ -245,6 +253,7 @@ export const FeatureSection = ({
 																		className='w-full h-full object-cover border border-[#3F4A7E] group-hover:border-accent-600 shadow-lg transition-all duration-200 ease-out group-hover:brightness-[0.8]'
 																		style={{
 																			aspectRatio: '16/9',
+																		}}
 																	/>
 																	<div className='absolute inset-0 bg-black/40 flex items-center justify-center'>
 																		<BodyText

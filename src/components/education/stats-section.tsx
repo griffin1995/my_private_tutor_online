@@ -17,6 +17,7 @@ interface StatsItem {
 	readonly label: string;
 	/** Optional additional description */
 	readonly description?: string;
+}
 
 interface StatsSectionProps {
 	/** Array of statistics to display - automatically centers regardless of count */
@@ -34,6 +35,7 @@ interface StatsSectionProps {
 	readonly className?: string;
 	/** Minimum width for each stat item in pixels (default: 280px) */
 	readonly minItemWidth?: number;
+}
 
 /**
  * Modern stats section component with dynamic centering and responsive design.
@@ -59,6 +61,7 @@ export const StatsSection = memo(({
 	// Return null if no valid stats to display
 	if (validStats.length === 0) {
 		return null;
+	}
 
 	return (
 		<section className={cn('py-6 sm:py-7 md:py-8', className)}>
@@ -98,6 +101,7 @@ export const StatsSection = memo(({
 				)}
 				style={{
 					gridTemplateColumns: `repeat(auto-fit, minmax(${minItemWidth}px, 1fr))`,
+				}}
 			>
 				{validStats.map((stat) => (
 					<div
@@ -157,4 +161,4 @@ export const StatsSection = memo(({
 
 StatsSection.displayName = 'StatsSection';
 
-export type { StatsItem,  };
+export type { StatsItem };

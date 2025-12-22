@@ -38,9 +38,11 @@ interface TabContentData {
 			};
 		};
 	};
+}
 
 interface TabContentLayoutProps {
 	data: TabContentData;
+}
 
 export function TabContentLayout({ data }: TabContentLayoutProps) {
 	return (
@@ -107,9 +109,11 @@ export function TabContentLayout({ data }: TabContentLayoutProps) {
 							text: 'Learn Our Process',
 							url: '/how-it-works',
 						},
+					}}
 				/>
 			</div>
 		</div>
 	);
+}
 
-export type { TabContentData,  };
+export type { TabContentData };

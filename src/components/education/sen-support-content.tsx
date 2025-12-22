@@ -83,3 +83,4 @@ const senSupportData: TabContentData = {
 
 export function SenSupportContent() {
 	return <TabContentLayout data={senSupportData} />;
+}

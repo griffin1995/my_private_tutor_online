@@ -92,3 +92,4 @@ const primarySchoolData: TabContentData = {
 
 export function PrimarySchoolContent() {
 	return <TabContentLayout data={primarySchoolData} />;
+}
