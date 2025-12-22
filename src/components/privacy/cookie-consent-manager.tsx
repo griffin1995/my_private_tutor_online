@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import 'vanilla-cookieconsent/dist/cookieconsent.css';
 import * as CookieConsent from 'vanilla-cookieconsent';
+import { CookieErrorBoundary } from './cookie-error-boundary';
 
 // Cookie categories following GDPR/PECR requirements
 const CAT_NECESSARY = 'necessary';
@@ -19,7 +20,8 @@ const SERVICE_FUNCTIONALITY_STORAGE = 'functionality_storage';
 const SERVICE_PERSONALIZATION_STORAGE = 'personalization_storage';
 const SERVICE_SECURITY_STORAGE = 'security_storage';
 
-interface ConsentState {
+// Exported TypeScript interfaces for external use
+export interface ConsentState {
   necessary: boolean;
   analytics: boolean;
   functional: boolean;
@@ -28,70 +30,195 @@ interface ConsentState {
   version: string;
 }
 
-interface CookieConsentManagerProps {
+export interface CookieCategory {
+  name: string;
+  label: string;
+  description: string;
+  required: boolean;
+}
+
+export interface ConsentPreferences {
+  acceptedCategories: string[];
+  rejectedCategories: string[];
+  timestamp: string;
+  version: string;
+}
+
+export interface GoogleConsentState {
+  ad_storage: 'granted' | 'denied';
+  ad_user_data: 'granted' | 'denied';
+  ad_personalization: 'granted' | 'denied';
+  analytics_storage: 'granted' | 'denied';
+  functionality_storage: 'granted' | 'denied';
+  personalization_storage: 'granted' | 'denied';
+  security_storage: 'granted' | 'denied';
+}
+
+export interface CookieConsentManagerProps {
   enableAnalytics?: boolean;
   gaTrackingId?: string;
+  onConsentChange?: (state: ConsentState) => void;
+  onError?: (error: Error) => void;
+}
+
+// Global window interface extension
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+    CookieConsent: typeof CookieConsent;
+  }
 }
 
 /**
  * GDPR/PECR compliant cookie consent manager
  * Implements vanilla-cookieconsent with Google Consent Mode v2
  * Following 2025 UK regulations with proper consent blocking
+ * Enhanced with error boundaries and event-driven updates
  */
 export function CookieConsentManager({
   enableAnalytics = false,
-  gaTrackingId
+  gaTrackingId,
+  onConsentChange,
+  onError
 }: CookieConsentManagerProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  // Error handling wrapper
+  const handleError = useCallback((err: Error, context: string) => {
+    setError(err);
+    if (onError) {
+      onError(err);
+    }
+
+    // Log error in development
+    if (process.env.NODE_ENV === 'development') {
+      console.error(`Cookie Consent Error (${context}):`, err);
+    }
+
+    // Send to analytics in production
+    if (process.env.NODE_ENV === 'production') {
+      try {
+        fetch('/api/analytics/error', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            error: { message: err.message, stack: err.stack },
+            context: `CookieConsent-${context}`,
+            timestamp: new Date().toISOString(),
+          }),
+        }).catch(() => {}); // Silent fail for error reporting
+      } catch {}
+    }
+  }, [onError]);
 
   useEffect(() => {
-    // Initialize Google Consent Mode v2
+    // Initialize Google Consent Mode v2 with enhanced error handling
     if (typeof window !== 'undefined') {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(...args: any[]) {
-        window.dataLayer.push(arguments);
+      try {
+        window.dataLayer = window.dataLayer || [];
+
+        // Enhanced gtag function with error handling
+        function gtag(...args: any[]) {
+          try {
+            window.dataLayer.push(arguments);
+          } catch (err) {
+            handleError(err instanceof Error ? err : new Error(String(err)), 'gtag-push');
+          }
+        }
+
+        // Store gtag globally for use in consent updates
+        window.gtag = gtag;
+
+        // Set default consent to 'denied' before any analytics loading
+        // Google Consent Mode v2 - includes all required parameters for 2025
+        gtag('consent', 'default', {
+          [SERVICE_AD_STORAGE]: 'denied',
+          [SERVICE_AD_USER_DATA]: 'denied', // v2 requirement
+          [SERVICE_AD_PERSONALIZATION]: 'denied', // v2 requirement
+          [SERVICE_ANALYTICS_STORAGE]: 'denied',
+          [SERVICE_FUNCTIONALITY_STORAGE]: 'denied',
+          [SERVICE_PERSONALIZATION_STORAGE]: 'denied',
+          [SERVICE_SECURITY_STORAGE]: 'granted', // Always allowed for security
+          // Additional v2 parameters for enhanced privacy
+          wait_for_update: 500, // Wait up to 500ms for consent update
+          region: ['GB', 'EU'], // Apply to UK and EU regions
+        });
+      } catch (err) {
+        handleError(err instanceof Error ? err : new Error(String(err)), 'google-consent-init');
       }
 
-      // Set default consent to 'denied' before any analytics loading
-      gtag('consent', 'default', {
-        [SERVICE_AD_STORAGE]: 'denied',
-        [SERVICE_AD_USER_DATA]: 'denied',
-        [SERVICE_AD_PERSONALIZATION]: 'denied',
-        [SERVICE_ANALYTICS_STORAGE]: 'denied',
-        [SERVICE_FUNCTIONALITY_STORAGE]: 'denied',
-        [SERVICE_PERSONALIZATION_STORAGE]: 'denied',
-        [SERVICE_SECURITY_STORAGE]: 'granted', // Always allowed for security
-      });
-
-      // Update consent based on user choices
+      // Enhanced consent update with error handling and v2 compliance
       const updateGoogleConsent = () => {
-        gtag('consent', 'update', {
-          [SERVICE_ANALYTICS_STORAGE]: CookieConsent.acceptedService(SERVICE_ANALYTICS_STORAGE, CAT_ANALYTICS) ? 'granted' : 'denied',
-          [SERVICE_AD_STORAGE]: CookieConsent.acceptedService(SERVICE_AD_STORAGE, CAT_MARKETING) ? 'granted' : 'denied',
-          [SERVICE_AD_USER_DATA]: CookieConsent.acceptedService(SERVICE_AD_USER_DATA, CAT_MARKETING) ? 'granted' : 'denied',
-          [SERVICE_AD_PERSONALIZATION]: CookieConsent.acceptedService(SERVICE_AD_PERSONALIZATION, CAT_MARKETING) ? 'granted' : 'denied',
-          [SERVICE_FUNCTIONALITY_STORAGE]: CookieConsent.acceptedService(SERVICE_FUNCTIONALITY_STORAGE, CAT_FUNCTIONAL) ? 'granted' : 'denied',
-          [SERVICE_PERSONALIZATION_STORAGE]: CookieConsent.acceptedService(SERVICE_PERSONALIZATION_STORAGE, CAT_FUNCTIONAL) ? 'granted' : 'denied',
-        });
+        try {
+          const consentUpdate: GoogleConsentState = {
+            [SERVICE_ANALYTICS_STORAGE]: CookieConsent.acceptedService(SERVICE_ANALYTICS_STORAGE, CAT_ANALYTICS) ? 'granted' : 'denied',
+            [SERVICE_AD_STORAGE]: CookieConsent.acceptedService(SERVICE_AD_STORAGE, CAT_MARKETING) ? 'granted' : 'denied',
+            [SERVICE_AD_USER_DATA]: CookieConsent.acceptedService(SERVICE_AD_USER_DATA, CAT_MARKETING) ? 'granted' : 'denied',
+            [SERVICE_AD_PERSONALIZATION]: CookieConsent.acceptedService(SERVICE_AD_PERSONALIZATION, CAT_MARKETING) ? 'granted' : 'denied',
+            [SERVICE_FUNCTIONALITY_STORAGE]: CookieConsent.acceptedService(SERVICE_FUNCTIONALITY_STORAGE, CAT_FUNCTIONAL) ? 'granted' : 'denied',
+            [SERVICE_PERSONALIZATION_STORAGE]: CookieConsent.acceptedService(SERVICE_PERSONALIZATION_STORAGE, CAT_FUNCTIONAL) ? 'granted' : 'denied',
+            [SERVICE_SECURITY_STORAGE]: 'granted', // Always granted
+          };
+
+          gtag('consent', 'update', consentUpdate);
+
+          // Trigger custom callback if provided
+          if (onConsentChange) {
+            const currentState = getCurrentConsentState();
+            if (currentState) {
+              onConsentChange(currentState);
+            }
+          }
+        } catch (err) {
+          handleError(err instanceof Error ? err : new Error(String(err)), 'consent-update');
+        }
       };
 
-      // Log consent for GDPR compliance
+      // Helper function to get current consent state
+      const getCurrentConsentState = (): ConsentState | null => {
+        try {
+          const preferences = CookieConsent.getUserPreferences();
+          return {
+            necessary: true, // Always true
+            analytics: preferences.acceptedCategories.includes(CAT_ANALYTICS),
+            functional: preferences.acceptedCategories.includes(CAT_FUNCTIONAL),
+            marketing: preferences.acceptedCategories.includes(CAT_MARKETING),
+            timestamp: new Date().toISOString(),
+            version: '2.0.0', // Updated for v2
+          };
+        } catch (err) {
+          handleError(err instanceof Error ? err : new Error(String(err)), 'get-consent-state');
+          return null;
+        }
+      };
+
+      // Enhanced consent logging for GDPR compliance with v2 features
       const logConsent = async () => {
         try {
           const preferences = CookieConsent.getUserPreferences();
+          const consentState = getCurrentConsentState();
+
+          if (!consentState) return;
+
           const consentData = {
-            consent: {
-              necessary: true, // Always true
-              analytics: preferences.acceptedCategories.includes(CAT_ANALYTICS),
-              functional: preferences.acceptedCategories.includes(CAT_FUNCTIONAL),
-              marketing: preferences.acceptedCategories.includes(CAT_MARKETING),
-              timestamp: new Date().toISOString(),
-              version: '1.0.0',
-            },
+            consent: consentState,
             userAgent: navigator.userAgent,
             ipAddress: '', // Will be populated server-side
             url: window.location.href,
             sessionId: sessionStorage.getItem('analytics_session') || 'unknown',
+            googleConsentMode: {
+              ad_storage: preferences.acceptedCategories.includes(CAT_MARKETING) ? 'granted' : 'denied',
+              ad_user_data: preferences.acceptedCategories.includes(CAT_MARKETING) ? 'granted' : 'denied',
+              ad_personalization: preferences.acceptedCategories.includes(CAT_MARKETING) ? 'granted' : 'denied',
+              analytics_storage: preferences.acceptedCategories.includes(CAT_ANALYTICS) ? 'granted' : 'denied',
+              functionality_storage: preferences.acceptedCategories.includes(CAT_FUNCTIONAL) ? 'granted' : 'denied',
+              personalization_storage: preferences.acceptedCategories.includes(CAT_FUNCTIONAL) ? 'granted' : 'denied',
+              security_storage: 'granted',
+            },
+            gdprVersion: '2025',
+            consentMechanism: 'banner',
           };
 
           await fetch('/api/analytics/consent', {
@@ -102,11 +229,13 @@ export function CookieConsentManager({
             body: JSON.stringify(consentData),
           });
         } catch (error) {
-          console.error('Failed to log consent:', error);
+          handleError(error instanceof Error ? error : new Error(String(error)), 'consent-logging');
+        }
       };
 
-      // Initialize CookieConsent with GDPR-compliant configuration
-      CookieConsent.run({
+      // Initialize CookieConsent with enhanced error handling
+      try {
+        CookieConsent.run({
         // Core configuration
         guiOptions: {
           consentModal: {
@@ -123,18 +252,45 @@ export function CookieConsentManager({
           },
         },
 
-        // Required callbacks for consent tracking
+        // Enhanced callbacks for consent tracking with error handling
         onFirstConsent: () => {
-          updateGoogleConsent();
-          logConsent();
+          try {
+            updateGoogleConsent();
+            logConsent();
+
+            // Development logging
+            if (process.env.NODE_ENV === 'development') {
+              console.log('Cookie consent: First consent given');
+            }
+          } catch (err) {
+            handleError(err instanceof Error ? err : new Error(String(err)), 'first-consent');
+          }
         },
         onConsent: () => {
-          updateGoogleConsent();
-          logConsent();
+          try {
+            updateGoogleConsent();
+            logConsent();
+
+            // Development logging
+            if (process.env.NODE_ENV === 'development') {
+              console.log('Cookie consent: Consent updated');
+            }
+          } catch (err) {
+            handleError(err instanceof Error ? err : new Error(String(err)), 'consent');
+          }
         },
         onChange: () => {
-          updateGoogleConsent();
-          logConsent();
+          try {
+            updateGoogleConsent();
+            logConsent();
+
+            // Development logging
+            if (process.env.NODE_ENV === 'development') {
+              console.log('Cookie consent: Preferences changed');
+            }
+          } catch (err) {
+            handleError(err instanceof Error ? err : new Error(String(err)), 'consent-change');
+          }
         },
 
         // Cookie categories with auto-clearing and services
@@ -320,6 +476,16 @@ export function CookieConsentManager({
       });
 
       setIsLoaded(true);
+
+      // Store CookieConsent instance globally for access
+      window.CookieConsent = CookieConsent;
+
+      } catch (err) {
+        handleError(err instanceof Error ? err : new Error(String(err)), 'cookie-consent-init');
+
+        // Set loaded to true anyway to prevent infinite loading
+        setIsLoaded(true);
+      }
     }
 
     // Cleanup on unmount
@@ -328,7 +494,7 @@ export function CookieConsentManager({
         CookieConsent.reset(true);
       }
     };
-  }, [enableAnalytics, gaTrackingId]);
+  }, [enableAnalytics, gaTrackingId, handleError]);
 
   // Custom styling to match your brand
   useEffect(() => {
@@ -351,18 +517,22 @@ export function CookieConsentManager({
         --cc-cookie-category-block-border: theme(colors.slate.200);
         --cc-separator-border-color: theme(colors.slate.200);
         font-family: theme(fontFamily.sans);
+      }
 
       .cc__main .cc__title {
         font-family: theme(fontFamily.serif);
         font-weight: 700;
+      }
 
       .cc__main .cm__body {
         border-radius: theme(borderRadius.lg);
         box-shadow: theme(boxShadow.xl);
+      }
 
       .cc__main .pm__body {
         border-radius: theme(borderRadius.lg);
         box-shadow: theme(boxShadow.xl);
+      }
 
       /* Ensure equal button prominence for GDPR compliance */
       .cc__main .cm__btn {
@@ -370,20 +540,25 @@ export function CookieConsentManager({
         padding: theme(spacing.2) theme(spacing.4);
         border-radius: theme(borderRadius.md);
         min-width: 120px;
+      }
 
       .cc__main .cm__btn + .cm__btn {
         margin-left: theme(spacing.2);
+      }
 
       /* Mobile responsive adjustments */
       @media (max-width: 640px) {
         .cc__main .cm__body {
           margin: theme(spacing.4);
           max-width: calc(100vw - 2rem);
+        }
 
         .cc__main .cm__btn {
           width: 100%;
           margin-left: 0 !important;
           margin-top: theme(spacing.2);
+        }
+      }
     `;
 
     document.head.appendChild(style);
@@ -396,17 +571,30 @@ export function CookieConsentManager({
   }, [isLoaded]);
 
   // Component doesn't render anything - the library handles the UI
+  // Return error boundary wrapper if there's an error
+  if (error) {
+    return (
+      <CookieErrorBoundary fallback={null}>
+        {null}
+      </CookieErrorBoundary>
+    );
+  }
+
   return null;
 }
 
-// Utility functions for checking consent state
+// Enhanced utility functions with error handling and v2 features
 export const cookieConsentUtils = {
   /**
    * Check if a specific category is accepted
    */
   isCategoryAccepted: (category: string): boolean => {
     if (typeof window === 'undefined') return false;
-    return CookieConsent.acceptedCategory(category);
+    try {
+      return CookieConsent.acceptedCategory(category);
+    } catch {
+      return false;
+    }
   },
 
   /**
@@ -424,6 +612,13 @@ export const cookieConsentUtils = {
   },
 
   /**
+   * Check if functional cookies are allowed
+   */
+  isFunctionalAllowed: (): boolean => {
+    return cookieConsentUtils.isCategoryAccepted(CAT_FUNCTIONAL);
+  },
+
+  /**
    * Get current consent preferences
    */
   getConsentState: (): ConsentState | null => {
@@ -437,10 +632,48 @@ export const cookieConsentUtils = {
         functional: preferences.acceptedCategories.includes(CAT_FUNCTIONAL),
         marketing: preferences.acceptedCategories.includes(CAT_MARKETING),
         timestamp: new Date().toISOString(),
-        version: '1.0.0',
+        version: '2.0.0',
       };
     } catch {
       return null;
+    }
+  },
+
+  /**
+   * Get Google Consent Mode v2 state
+   */
+  getGoogleConsentState: (): GoogleConsentState | null => {
+    if (typeof window === 'undefined') return null;
+
+    try {
+      const state = cookieConsentUtils.getConsentState();
+      if (!state) return null;
+
+      return {
+        ad_storage: state.marketing ? 'granted' : 'denied',
+        ad_user_data: state.marketing ? 'granted' : 'denied',
+        ad_personalization: state.marketing ? 'granted' : 'denied',
+        analytics_storage: state.analytics ? 'granted' : 'denied',
+        functionality_storage: state.functional ? 'granted' : 'denied',
+        personalization_storage: state.functional ? 'granted' : 'denied',
+        security_storage: 'granted',
+      };
+    } catch {
+      return null;
+    }
+  },
+
+  /**
+   * Check if consent has been given (any choice made)
+   */
+  hasConsentBeenGiven: (): boolean => {
+    if (typeof window === 'undefined') return false;
+    try {
+      const preferences = CookieConsent.getUserPreferences();
+      return preferences && preferences.acceptedCategories !== undefined;
+    } catch {
+      return false;
+    }
   },
 
   /**
@@ -448,7 +681,13 @@ export const cookieConsentUtils = {
    */
   showPreferences: (): void => {
     if (typeof window !== 'undefined') {
-      CookieConsent.showPreferences();
+      try {
+        CookieConsent.showPreferences();
+      } catch (error) {
+        // Fallback: redirect to cookie policy page
+        window.location.href = '/legal/cookie-policy';
+      }
+    }
   },
 
   /**
@@ -456,10 +695,83 @@ export const cookieConsentUtils = {
    */
   reset: (): void => {
     if (typeof window !== 'undefined') {
-      CookieConsent.reset(true);
+      try {
+        CookieConsent.reset(true);
+      } catch (error) {
+        // Clear consent cookies manually as fallback
+        document.cookie = 'cookieconsent_status=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'cc_cookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+        // Reload page to reinitialise
+        window.location.reload();
+      }
+    }
+  },
+
+  /**
+   * Add event listener for consent changes (event-driven updates)
+   */
+  addEventListener: (callback: (state: ConsentState | null) => void): (() => void) => {
+    if (typeof window === 'undefined') return () => {};
+
+    const handleConsentChange = () => {
+      const state = cookieConsentUtils.getConsentState();
+      callback(state);
+    };
+
+    // Listen for custom consent change events
+    window.addEventListener('cc:onChange', handleConsentChange);
+    window.addEventListener('cc:onAccept', handleConsentChange);
+    window.addEventListener('cc:onFirstAccept', handleConsentChange);
+
+    // Return cleanup function
+    return () => {
+      window.removeEventListener('cc:onChange', handleConsentChange);
+      window.removeEventListener('cc:onAccept', handleConsentChange);
+      window.removeEventListener('cc:onFirstAccept', handleConsentChange);
+    };
+  },
+
+  /**
+   * Get all available cookie categories
+   */
+  getAvailableCategories: (): CookieCategory[] => {
+    return [
+      {
+        name: CAT_NECESSARY,
+        label: 'Essential Cookies',
+        description: 'Required for basic website functionality',
+        required: true,
+      },
+      {
+        name: CAT_FUNCTIONAL,
+        label: 'Functional Cookies',
+        description: 'Enable enhanced functionality and personalisation',
+        required: false,
+      },
+      {
+        name: CAT_ANALYTICS,
+        label: 'Analytics Cookies',
+        description: 'Help us understand how you use our website',
+        required: false,
+      },
+      {
+        name: CAT_MARKETING,
+        label: 'Marketing Cookies',
+        description: 'Used to show relevant advertisements',
+        required: false,
+      },
+    ];
+  },
+
+  /**
+   * Check if the cookie consent library is properly loaded
+   */
+  isLoaded: (): boolean => {
+    return typeof window !== 'undefined' &&
+           typeof CookieConsent !== 'undefined' &&
+           typeof CookieConsent.run === 'function';
   },
 };
 
 // Export types for use in other components
-;
-;

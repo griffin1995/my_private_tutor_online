@@ -16,20 +16,30 @@ export function CookiePolicyIntegration() {
 
   useEffect(() => {
     setMounted(true);
+
     const updateConsentState = () => {
       const state = cookieConsentUtils.getConsentState();
       setConsentState(state);
     };
 
+    // Initial state update
     updateConsentState();
 
-    // Listen for consent changes
-    const interval = setInterval(updateConsentState, 1000);
-    return () => clearInterval(interval);
+    // Replace polling with event-driven updates
+    const cleanup = cookieConsentUtils.addEventListener(updateConsentState);
+
+    // Fallback polling for edge cases (reduced frequency)
+    const fallbackInterval = setInterval(updateConsentState, 5000); // Every 5 seconds instead of 1
+
+    return () => {
+      cleanup();
+      clearInterval(fallbackInterval);
+    };
   }, []);
 
   if (!mounted) {
     return null; // Prevent SSR issues
+  }
 
   return (
     <div className="space-y-6">
@@ -100,7 +110,7 @@ export function CookiePolicyIntegration() {
               // Accept only essential cookies
               cookieConsentUtils.reset();
               // The banner will appear, then programmatically click "Reject All"
-          >
+            }}>
             Essential Cookies Only
           </Button>
 
@@ -111,7 +121,7 @@ export function CookiePolicyIntegration() {
             onClick={() => {
               // This would programmatically accept analytics but reject marketing
               cookieConsentUtils.showPreferences();
-          >
+            }}>
             Allow Analytics Only
           </Button>
 
@@ -122,7 +132,7 @@ export function CookiePolicyIntegration() {
             onClick={() => {
               // This would accept all cookies
               cookieConsentUtils.showPreferences();
-          >
+            }}>
             Accept All Cookies
           </Button>
         </div>
@@ -149,6 +159,7 @@ export function CookiePolicyIntegration() {
       </Card>
     </div>
   );
+}
 
 /**
  * Cookie compliance checker for development
@@ -161,40 +172,57 @@ export function CookieComplianceChecker() {
       const newChecks = [
         {
           name: 'Cookie Consent Library Loaded',
-          passed: typeof window !== 'undefined' && !!(window as any).CookieConsent,
+          passed: cookieConsentUtils.isLoaded(),
           message: 'vanilla-cookieconsent library should be loaded'
         },
         {
           name: 'Consent State Available',
-          passed: cookieConsentUtils.getConsentState() !== null,
+          passed: cookieConsentUtils.hasConsentBeenGiven(),
           message: 'User should have made consent choices'
         },
         {
           name: 'Analytics Blocked by Default',
-          passed: !cookieConsentUtils.isAnalyticsAllowed(),
+          passed: !cookieConsentUtils.isAnalyticsAllowed() || cookieConsentUtils.hasConsentBeenGiven(),
           message: 'Analytics should be blocked until user consent'
         },
         {
           name: 'Marketing Blocked by Default',
-          passed: !cookieConsentUtils.isMarketingAllowed(),
+          passed: !cookieConsentUtils.isMarketingAllowed() || cookieConsentUtils.hasConsentBeenGiven(),
           message: 'Marketing cookies should be blocked until user consent'
         },
         {
           name: 'Cookie Settings Accessible',
           passed: typeof cookieConsentUtils.showPreferences === 'function',
           message: 'User should be able to change preferences'
+        },
+        {
+          name: 'Google Consent Mode v2 Active',
+          passed: cookieConsentUtils.getGoogleConsentState() !== null,
+          message: 'Google Consent Mode v2 should be properly configured'
+        }
       ];
 
       setChecks(newChecks);
     };
 
+    // Initial check
     runChecks();
-    const interval = setInterval(runChecks, 2000);
-    return () => clearInterval(interval);
+
+    // Event-driven updates for compliance checks
+    const cleanup = cookieConsentUtils.addEventListener(runChecks);
+
+    // Reduced polling for compliance checks (every 10 seconds)
+    const fallbackInterval = setInterval(runChecks, 10000);
+
+    return () => {
+      cleanup();
+      clearInterval(fallbackInterval);
+    };
   }, []);
 
   if (process.env.NODE_ENV !== 'development') {
     return null;
+  }
 
   return (
     <Card className="p-4 bg-yellow-50 border border-yellow-200">
@@ -217,3 +245,4 @@ export function CookieComplianceChecker() {
       </div>
     </Card>
   );
+}
