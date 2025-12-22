@@ -111,6 +111,7 @@ export const GradientOverlay: React.FC<GradientOverlayProps> = ({
 			style={{
 				opacity,
 				zIndex,
+			}}
 			{...animationProps}
 		/>
 	);

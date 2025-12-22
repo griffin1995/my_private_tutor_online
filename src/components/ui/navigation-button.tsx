@@ -69,6 +69,7 @@ interface NavigationButtonProps extends VariantProps<typeof navigationButtonVari
 	changeText: string;
 	href: string;
 	className?: string;
+}
 
 export const NavigationButton: React.FC<NavigationButtonProps> = ({
 	variant = 'primary',

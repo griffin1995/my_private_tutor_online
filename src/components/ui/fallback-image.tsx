@@ -122,6 +122,7 @@ export function getCategoryFallback(category: string): string {
   };
 
   return fallbacks[category] || '/images/blog/education-insights-header.jpg';
+}
 
 /**
  * Validate image path to ensure it's not empty, null, or undefined
@@ -135,3 +136,4 @@ export function validateImagePath(imagePath: string | null | undefined): boolean
     imagePath !== 'null' &&
     imagePath !== 'undefined'
   );
+}

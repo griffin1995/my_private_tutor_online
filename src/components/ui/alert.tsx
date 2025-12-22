@@ -43,7 +43,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
       )}
       {...props}
     />
-  )
+  );
 }
 
 function AlertDescription({
@@ -59,7 +59,7 @@ function AlertDescription({
       )}
       {...props}
     />
-  )
+  );
 }
 
 export { Alert, AlertTitle, AlertDescription }

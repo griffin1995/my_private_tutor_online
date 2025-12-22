@@ -32,7 +32,7 @@ function SkeletonCard({
 		children?: React.ReactNode;
 	}) => (
 		<div
-			className={`bg-primary-100 rounded-lg relative overflow-hidden ${className}`}
+			className={`bg-primary-100 rounded-lg relative overflow-hidden ${className}`}>
 			<div
 				className='absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent'
 			/>
@@ -188,3 +188,6 @@ function SkeletonCard({
 			</CardContent>
 		</Card>
 	);
+}
+
+export default SkeletonCard;

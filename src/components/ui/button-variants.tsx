@@ -67,10 +67,13 @@ const buttonVariants = cva(
 				lg: 'px-6 py-3 text-lg',
 				xl: 'px-8 py-4 text-xl',
 				icon: 'h-10 w-10 p-0'
+			}
 		},
 		defaultVariants: {
 			variant: 'blue',
 			size: 'default'
+		}
+	}
 );
 
 interface ButtonProps
@@ -78,6 +81,7 @@ interface ButtonProps
 		VariantProps<typeof buttonVariants> {
 	asChild?: boolean;
 	href?: string;
+}
 
 /**
  * Modern Button Component with CVA Variants
@@ -113,8 +117,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		return (
 			<button className={buttonClasses} ref={ref} {...props} />
 		);
+	}
 );
 
 Button.displayName = 'Button';
 
-export { Button,  };
+export { Button };

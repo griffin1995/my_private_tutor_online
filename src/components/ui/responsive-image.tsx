@@ -86,6 +86,7 @@ export function ResponsiveImage({
       loading={priority ? 'eager' : 'lazy'}
     />
   );
+}
 
 /**
  * Optimized blur data URL generator for faster initial load
