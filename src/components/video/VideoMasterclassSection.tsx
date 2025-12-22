@@ -241,14 +241,14 @@ export function VideoMasterclassSection({
 		};
 		if (DEBUG_MODE) {
 			console.group(
-				'\n============================================================\n📍 PHASE 1: VideoMasterclassSection Data Transformation\n============================================================',
+				'\n============================================================\nPHASE 1: VideoMasterclassSection Data Transformation\n============================================================',
 			);
-			console.log('✅ Batch Mode Active: Using direct video object');
-			console.log('📊 Source VideoMasterclass:', videoData);
-			console.log('📊 Transformed Video Object:', transformedVideo);
-			console.log('🔍 Critical Property Mapping:');
+			console.log('Batch Mode Active: Using direct video object');
+			console.log('Source VideoMasterclass:', videoData);
+			console.log('Transformed Video Object:', transformedVideo);
+			console.log('Critical Property Mapping:');
 			console.log('  youtubeUrl (source):', videoData.youtubeUrl);
-			console.log('  ➡️ videoUrl (transformed):', transformedVideo.videoUrl);
+			console.log('  videoUrl (transformed):', transformedVideo.videoUrl);
 			console.log('  videoUrl type:', typeof transformedVideo.videoUrl);
 			console.log('  videoUrl length:', transformedVideo.videoUrl?.length || 0);
 			console.log('  videoUrl trimmed:', transformedVideo.videoUrl?.trim());
@@ -262,11 +262,11 @@ export function VideoMasterclassSection({
 		}
 		if (DEBUG_MODE) {
 			console.group(
-				'\n============================================================\n📍 PHASE 1: VideoMasterclassSection Legacy Lookup\n============================================================',
+				'\n============================================================\nPHASE 1: VideoMasterclassSection Legacy Lookup\n============================================================',
 			);
-			console.log('✅ Legacy Mode Active: Using videoId lookup');
-			console.log('📊 Video ID:', videoId);
-			console.log('📊 Retrieved Video:', transformedVideo);
+			console.log('Legacy Mode Active: Using videoId lookup');
+			console.log('Video ID:', videoId);
+			console.log('Retrieved Video:', transformedVideo);
 			console.groupEnd();
 		}
 	} else {
@@ -293,10 +293,10 @@ export function VideoMasterclassSection({
 	} = video;
 	if (DEBUG_MODE) {
 		console.group(
-			'\n============================================================\n📍 PHASE 1: VideoMasterclassSection Extracted Properties\n============================================================',
+			'\n============================================================\nPHASE 1: VideoMasterclassSection Extracted Properties\n============================================================',
 		);
-		console.log('📊 Layout Data:', layoutData);
-		console.log('🔍 Extracted Properties:');
+		console.log('Layout Data:', layoutData);
+		console.log('Extracted Properties:');
 		console.log('  videoUrl:', videoUrl);
 		console.log('  videoUrl type:', typeof videoUrl);
 		console.log('  videoUrl truthy?:', !!videoUrl);
@@ -334,14 +334,14 @@ export function VideoMasterclassSection({
 					const isPaidVideo = !isFree && !hasVideoUrl;
 					const shouldShowVideo = hasVideoUrl || isPaidVideo;
 					if (DEBUG_MODE) {
-						console.group('\n🎯 CRITICAL CONDITIONAL: Video Visibility Decision');
+						console.group('\nCRITICAL CONDITIONAL: Video Visibility Decision');
 						console.log('  videoUrl value:', videoUrl);
 						console.log('  hasVideoUrl:', hasVideoUrl);
 						console.log('  isFree:', isFree);
 						console.log('  isPaidVideo (no URL, requires purchase):', isPaidVideo);
 						console.log(
 							'  Decision: Video will be',
-							shouldShowVideo ? 'VISIBLE ✅' : 'HIDDEN ❌',
+							shouldShowVideo ? 'VISIBLE' : 'HIDDEN',
 						);
 						console.groupEnd();
 					}
@@ -353,9 +353,9 @@ export function VideoMasterclassSection({
 					ref={(node) => {
 						if (DEBUG_MODE && node) {
 							console.group(
-								'\n============================================================\n📍 PHASE 2: VideoMasterclassSection - Video Container Context\n============================================================',
+								'\n============================================================\nPHASE 2: VideoMasterclassSection - Video Container Context\n============================================================',
 							);
-							console.log('📦 Video Container Element:', node);
+							console.log('Video Container Element:', node);
 							const rect = node.getBoundingClientRect();
 							const computed = window.getComputedStyle(node);
 							console.log('Container Dimensions:', {

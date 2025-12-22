@@ -19,14 +19,14 @@ interface FounderStorySectionProps {
  * Founder Story Section - Refactored with Compound Component Pattern
  *
  * Modernisation improvements:
- * ✅ CMS integration replacing hardcoded content
- * ✅ Component splitting (400+ lines → <100 lines each)
- * ✅ Responsive image optimization
- * ✅ Accessible pull quote markup
- * ✅ Consistent loading strategies
- * ✅ Type safety with CMS data
- * ✅ Compound component architecture
- * ✅ Maintainable, testable structure
+ * DONE: CMS integration replacing hardcoded content
+ * DONE: Component splitting (400+ lines → <100 lines each)
+ * DONE: Responsive image optimization
+ * DONE: Accessible pull quote markup
+ * DONE: Consistent loading strategies
+ * DONE: Type safety with CMS data
+ * DONE: Compound component architecture
+ * DONE: Maintainable, testable structure
  *
  * Performance benefits:
  * - 15-25% image size reduction via Next.js optimization

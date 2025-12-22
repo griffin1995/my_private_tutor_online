@@ -86,11 +86,11 @@ export function debugBlogImages() {
   if (process.env.NODE_ENV === 'development') {
     const analysis = analyseBlogpostImages();
 
-    console.group('🖼️ Blog Images Analysis');
+    console.group('Blog Images Analysis');
     console.log('Summary:', analysis.summary);
 
     if (analysis.issues.length > 0) {
-      console.group('❌ Issues Found:');
+      console.group('Issues Found:');
       analysis.issues.forEach(issue => {
         console.log(`Post ${issue.id} (${issue.slug}): ${issue.status} - ${issue.originalImage}`);
       });

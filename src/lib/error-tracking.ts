@@ -46,7 +46,7 @@ class ErrorTracker {
   async captureException(error: Error & { digest?: string }, extra: Partial<ErrorDetails> = {}): Promise<void> {
     if (!this.config.enabled || this.config.environment === 'development') {
       // In development, just log to console
-      console.error('🔴 ERROR TRACKER:', error, extra);
+      console.error('ERROR TRACKER:', error, extra);
       return;
     }
 
@@ -78,7 +78,7 @@ class ErrorTracker {
       }
     } catch (trackingError) {
       // Never let error tracking break the application
-      console.error('🚨 Error tracking failed:', trackingError);
+      console.error('Error tracking failed:', trackingError);
     }
   }
 
@@ -151,7 +151,7 @@ class ErrorTracker {
    */
   addBreadcrumb(message: string, category: string = 'navigation', data?: any): void {
     if (this.config.enabled) {
-      console.log('🍞 BREADCRUMB:', { message, category, data, timestamp: new Date().toISOString() });
+      console.log('BREADCRUMB:', { message, category, data, timestamp: new Date().toISOString() });
     }
   }
 }

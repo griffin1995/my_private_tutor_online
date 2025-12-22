@@ -21,12 +21,12 @@ interface ModernRecognitionCardProps {
  * Modern Recognition Card Component - 2025 Edition
  *
  * Modernisation improvements:
- * ✅ Removed broken Framer Motion animations
- * ✅ Pure CSS animations with better performance
- * ✅ Intersection Observer API for scroll-triggered effects
- * ✅ Improved accessibility with proper ARIA labels
- * ✅ Reduced JavaScript bundle size
- * ✅ Better Core Web Vitals scores
+ * DONE: Removed broken Framer Motion animations
+ * DONE: Pure CSS animations with better performance
+ * DONE: Intersection Observer API for scroll-triggered effects
+ * DONE: Improved accessibility with proper ARIA labels
+ * DONE: Reduced JavaScript bundle size
+ * DONE: Better Core Web Vitals scores
  *
  * Design consistency:
  * - Maintains existing visual design

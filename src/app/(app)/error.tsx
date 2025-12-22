@@ -19,7 +19,7 @@ export default function Error({
 	// Enhanced error logging with production-ready tracking
 	useEffect(() => {
 		// Log detailed error information for debugging
-		console.error('🔴 ERROR BOUNDARY ACTIVATED:', {
+		console.error('ERROR BOUNDARY ACTIVATED:', {
 			message: error.message,
 			digest: error.digest,
 			timestamp: new Date().toISOString()
@@ -27,7 +27,7 @@ export default function Error({
 
 		// Additional error context for Next.js specific issues
 		if (error.message.includes('force-dynamic') || error.message.includes('payload')) {
-			console.error('🚨 SUSPECTED CAUSE: Next.js 15 + CMS compatibility issue');
+			console.error('SUSPECTED CAUSE: Next.js 15 + CMS compatibility issue');
 			errorTracker.addBreadcrumb('Next.js CMS compatibility issue detected', 'error', {
 				errorMessage: error.message,
 				digest: error.digest

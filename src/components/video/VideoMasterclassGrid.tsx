@@ -15,19 +15,19 @@ export function VideoMasterclassGrid({
 	const DEBUG_MODE = process.env.NODE_ENV === 'development';
 	if (DEBUG_MODE) {
 		console.group(
-			'\n============================================================\n📍 PHASE 1: VideoMasterclassGrid Component Rendering\n============================================================',
+			'\n============================================================\nPHASE 1: VideoMasterclassGrid Component Rendering\n============================================================',
 		);
-		console.log('✅ Component Mounted: VideoMasterclassGrid');
-		console.log('📊 Videos Received:', videos?.length || 0);
-		console.log('📊 Videos Array:', videos);
-		console.log('📊 Class Name:', className);
+		console.log('Component Mounted: VideoMasterclassGrid');
+		console.log('Videos Received:', videos?.length || 0);
+		console.log('Videos Array:', videos);
+		console.log('Class Name:', className);
 		if (!videos || videos.length === 0) {
 			console.error(
-				'❌ No videos array or empty array received in VideoMasterclassGrid',
+				'No videos array or empty array received in VideoMasterclassGrid',
 			);
 		} else {
 			console.log(
-				'✅ Will render',
+				'Will render',
 				videos.length,
 				'VideoMasterclassSection components',
 			);
@@ -39,7 +39,7 @@ export function VideoMasterclassGrid({
 			{videos.map((video, index) => {
 				const layout = index % 2 === 0 ? 'text-left' : 'text-right';
 				if (DEBUG_MODE) {
-					console.group(`\n🎬 Rendering Video ${index}:`);
+					console.group(`\nRendering Video ${index}:`);
 					console.log('  Video ID:', video.id);
 					console.log('  Video Title:', video.title);
 					console.log('  Layout:', layout);
