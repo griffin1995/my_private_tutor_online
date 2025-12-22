@@ -211,10 +211,6 @@ chromatic-build/
 # Sentry Config File
 .sentryclirc
 
-# Playwright
-test-results/
-playwright-report/
-playwright/.cache/
 
 # MSW
 # public/mockServiceWorker.js - already handled above in Gatsby section

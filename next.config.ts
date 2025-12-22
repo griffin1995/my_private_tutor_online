@@ -15,14 +15,14 @@ const nextConfig: NextConfig = {
 	// Fixed: Use reactProductionProfiling instead of experimental.profiler
 	reactProductionProfiling: process.env.NODE_ENV === 'development',
 
-	// Turbopack Configuration (Disabled - Using Webpack)
-	// turbopack: {
-	// 	resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
-	// 	resolveAlias: {
-	// 		'@/*': './src/*',
-	// 		'@payload-config': './payload.config.ts',
-	// 	},
-	// },
+	// Turbopack Configuration (Next.js 16 Default Bundler)
+	turbopack: {
+		resolveExtensions: ['.mdx', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.json'],
+		resolveAlias: {
+			'@': './src',
+			'@payload-config': './payload.config.ts',
+		},
+	},
 
 	// SWC Compiler Optimization
 	compiler: {
@@ -124,79 +124,9 @@ const nextConfig: NextConfig = {
 		},
 	},
 
-	// Simplified Webpack Configuration (Essential Only)
-	webpack: (config, { isServer, dev }) => {
-		// Fix source map issues in development (2025 Security Standards)
-		if (dev) {
-			// Disable server-side source maps in development to prevent payload errors
-			if (isServer) {
-				config.devtool = false;
-			}
-
-			config.optimization = {
-				...config.optimization,
-				removeAvailableModules: false,
-				removeEmptyChunks: false,
-				splitChunks: false,
-			};
-
-			config.resolve = {
-				...config.resolve,
-				symlinks: false, // Faster resolution
-			};
-		}
-
-		// CMS Architecture Validation (Optional)
-		if (!isServer && !dev && process.env.ENABLE_BUILD_PLUGINS === 'true') {
-			console.log('CMS Architecture Validation: Available but disabled for build performance');
-		}
-
-		// Production Optimization (Simplified)
-		if (!isServer && !dev) {
-			config.optimization = {
-				...config.optimization,
-				splitChunks: {
-					chunks: 'all',
-					minSize: 20000,
-					maxSize: 250000,
-					maxInitialRequests: 25,
-					maxAsyncRequests: 30,
-					cacheGroups: {
-						defaultVendors: {
-							test: /[\\/]node_modules[\\/]/,
-							priority: -10,
-							reuseExistingChunk: true,
-							name(module: any) {
-								const packageName = module.context.match(
-									/[\\/]node_modules[\\/](.*?)([\\/]|$)/,
-								)?.[1];
-								return `npm.${packageName?.replace('@', '')}`;
-							},
-						},
-						default: {
-							minChunks: 2,
-							priority: -20,
-							reuseExistingChunk: true,
-						},
-					},
-				},
-				runtimeChunk: 'single',
-				moduleIds: 'deterministic',
-			};
-		}
-
-		// Path alias resolution
-		config.resolve = {
-			...config.resolve,
-			alias: {
-				...config.resolve?.alias,
-				'@': path.resolve(process.cwd(), './src'),
-				'@payload-config': path.resolve(process.cwd(), './payload.config.ts'),
-			},
-		};
-
-		return config;
-	},
+	// Webpack configuration removed - Turbopack handles bundling optimisation automatically
+	// Path aliases migrated to turbopack.resolveAlias above
+	// Bundle splitting and optimisation handled by Turbopack's built-in performance features
 
 	// TypeScript Configuration - Temporarily use development config for debugging
 	typescript: {

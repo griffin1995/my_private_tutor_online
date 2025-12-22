@@ -34,7 +34,7 @@ repos:
       # CONTEXT7 SOURCE: /microsoft/typescript - Type coverage validation
       - id: type-coverage-check
         name: Type Coverage Validation (95%+ Required)
-        entry: bash -c 'npm run typecheck && echo "✅ Type coverage maintained at 95%+"'
+        entry: bash -c 'npm run typecheck && echo "Type coverage maintained at 95%+"'
         language: system
         files: \.(ts|tsx)$
         pass_filenames: false
@@ -43,7 +43,7 @@ repos:
       # CONTEXT7 SOURCE: /microsoft/typescript - Performance budget validation
       - id: performance-budget-check
         name: Performance Budget Check (<15s build time)
-        entry: bash -c 'start_time=$(date +%s); npm run build:fast >/dev/null 2>&1; end_time=$(date +%s); elapsed=$((end_time - start_time)); if [ $elapsed -gt 15 ]; then echo "❌ Build time exceeded: ${elapsed}s > 15s"; exit 1; else echo "✅ Build time: ${elapsed}s"; fi'
+        entry: bash -c 'start_time=$(date +%s); npm run build:fast >/dev/null 2>&1; end_time=$(date +%s); elapsed=$((end_time - start_time)); if [ $elapsed -gt 15 ]; then echo "Build time exceeded: ${elapsed}s > 15s"; exit 1; else echo "Build time: ${elapsed}s"; fi'
         language: system
         files: \.(ts|tsx|js|jsx)$
         pass_filenames: false
@@ -52,7 +52,7 @@ repos:
       # CONTEXT7 SOURCE: /actions/toolkit - Next.js build validation
       - id: nextjs-build-check
         name: Next.js Build Validation
-        entry: bash -c 'npm run build:fast >/dev/null 2>&1 && echo "✅ Next.js build successful"'
+        entry: bash -c 'npm run build:fast >/dev/null 2>&1 && echo "Next.js build successful"'
         language: system
         files: \.(ts|tsx|js|jsx|json)$
         pass_filenames: false
@@ -61,7 +61,7 @@ repos:
       # CONTEXT7 SOURCE: /microsoft/typescript - TypeScript configuration validation
       - id: tsconfig-validation
         name: TSConfig.json Validation
-        entry: bash -c 'npx tsc --showConfig >/dev/null 2>&1 && echo "✅ tsconfig.json valid"'
+        entry: bash -c 'npx tsc --showConfig >/dev/null 2>&1 && echo "tsconfig.json valid"'
         language: system
         files: tsconfig\.json$
         pass_filenames: false
@@ -70,7 +70,7 @@ repos:
       # CONTEXT7 SOURCE: /pre-commit/pre-commit.com - Package.json validation
       - id: package-json-check
         name: Package.json Validation
-        entry: bash -c 'npm audit --audit-level moderate && echo "✅ Package.json security validated"'
+        entry: bash -c 'npm audit --audit-level moderate && echo "Package.json security validated"'
         language: system
         files: package\.json$
         pass_filenames: false
@@ -79,7 +79,7 @@ repos:
       # CONTEXT7 SOURCE: /microsoft/typescript - Build artifact validation
       - id: build-artifacts-check
         name: Build Artifacts Validation
-        entry: bash -c 'if [ -f .next/BUILD_ID ]; then echo "✅ Build artifacts valid"; else echo "⚠️ No build artifacts found"; fi'
+        entry: bash -c 'if [ -f .next/BUILD_ID ]; then echo "Build artifacts valid"; else echo "No build artifacts found"; fi'
         language: system
         files: \.(ts|tsx|js|jsx)$
         pass_filenames: false
@@ -154,7 +154,7 @@ repos:
       # Advanced TypeScript Error Detection
       - id: typescript-strict-check
         name: TypeScript Strict Mode Validation
-        entry: bash -c 'npx tsc --noEmit --strict && echo "✅ Strict TypeScript validation passed"'
+        entry: bash -c 'npx tsc --noEmit --strict && echo "Strict TypeScript validation passed"'
         language: system
         files: \.(ts|tsx)$
         pass_filenames: false
@@ -163,7 +163,7 @@ repos:
       # Bundle Size Validation
       - id: bundle-size-check
         name: Bundle Size Validation (<150KB)
-        entry: bash -c 'npm run build:analyze >/dev/null 2>&1; if [ -f .next/analyze/client.json ]; then size=$(jq ".parsedSize" .next/analyze/client.json 2>/dev/null || echo "0"); if [ "$size" -gt 153600 ]; then echo "❌ Bundle size exceeded: ${size} bytes > 150KB"; exit 1; else echo "✅ Bundle size: ${size} bytes"; fi; else echo "⚠️ Bundle analysis not available"; fi'
+        entry: bash -c 'npm run build:analyze >/dev/null 2>&1; if [ -f .next/analyze/client.json ]; then size=$(jq ".parsedSize" .next/analyze/client.json 2>/dev/null || echo "0"); if [ "$size" -gt 153600 ]; then echo "Bundle size exceeded: ${size} bytes > 150KB"; exit 1; else echo "Bundle size: ${size} bytes"; fi; else echo "Bundle analysis not available"; fi'
         language: system
         files: \.(ts|tsx|js|jsx)$
         pass_filenames: false
@@ -172,7 +172,7 @@ repos:
       # TypeScript Incremental Build Cache Validation
       - id: tsbuildinfo-validation
         name: TypeScript Build Cache Validation
-        entry: bash -c 'if [ -f .tsbuildinfo ]; then echo "✅ TypeScript build cache valid"; else echo "⚠️ No TypeScript build cache found"; fi'
+        entry: bash -c 'if [ -f .tsbuildinfo ]; then echo "TypeScript build cache valid"; else echo "No TypeScript build cache found"; fi'
         language: system
         files: \.(ts|tsx)$
         pass_filenames: false

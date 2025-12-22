@@ -86,11 +86,8 @@
     "tests/**/*",
     "scripts/**/*",
     "coverage/**/*",
-    "playwright-report/**/*",
-    "test-results/**/*",
     "*.config.*",
     "**/*.d.ts",
-    ".playwright-mcp/**/*",
     "logs/**/*",
     "public/**/*" // CONTEXT7 SOURCE: /microsoft/typescript - Skip static assets
   ],

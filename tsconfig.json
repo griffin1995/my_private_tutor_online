@@ -102,8 +102,6 @@
     "src/__tests__/**/*",
     "scripts/**/*",
     "coverage/**/*",
-    "playwright-report/**/*",
-    "test-results/**/*",
     "*.config.js",
     "*.config.ts",
     "**/*.d.ts" // Skip declaration files for faster builds
