@@ -64,19 +64,6 @@
 					"type": "image/png"
 				}
 			]
-		},
-		{
-			"name": "Offline Access",
-			"short_name": "Offline",
-			"description": "View cached content when offline",
-			"url": "/offline?source=pwa_shortcut",
-			"icons": [
-				{
-					"src": "/icons/android-chrome-192x192.png",
-					"sizes": "192x192",
-					"type": "image/png"
-				}
-			]
 		}
 	],
 	"icons": [
