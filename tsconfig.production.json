@@ -9,7 +9,7 @@
       "ES2022",
       "dom"
     ],
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     // CONTEXT7 SOURCE: /microsoft/typescript - All checking disabled for speed
     "strict": false,
     "noImplicitAny": false,

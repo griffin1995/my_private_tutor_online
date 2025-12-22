@@ -66,7 +66,7 @@ const nextConfig: NextConfig = {
 			'@radix-ui/react-select',
 			'@radix-ui/react-scroll-area',
 			'@heroicons/react',
-			'framer-motion',
+			'motion',
 			'date-fns',
 			'clsx',
 			'class-variance-authority',
@@ -199,13 +199,10 @@ const nextConfig: NextConfig = {
 		return config;
 	},
 
-	// TypeScript Configuration
+	// TypeScript Configuration - Temporarily use development config for debugging
 	typescript: {
 		ignoreBuildErrors: process.env.NODE_ENV === 'production',
-		tsconfigPath:
-			process.env.NODE_ENV === 'production' ?
-				'./tsconfig.production.json'
-			:	'./tsconfig.json',
+		tsconfigPath: './tsconfig.json', // Always use development config for now
 	},
 
 };
